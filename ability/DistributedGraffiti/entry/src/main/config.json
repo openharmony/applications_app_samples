@@ -11,7 +11,7 @@
   "module": {
     "mainAbility": ".MainAbility",
     "deviceType": [
-      "phone",
+      "default",
       "tablet"
     ],
     "abilities": [
@@ -64,7 +64,7 @@
           "type": "pageAbility"
         },
         "pages": [
-          "pages/index"
+          "pages/Index"
         ],
         "name": ".MainAbility",
         "window": {

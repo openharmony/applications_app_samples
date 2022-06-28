@@ -1,8 +1,20 @@
-# 时钟
+# 翻页时钟
 
 ### 简介
 
- 本示例运用OpenHarmony系统提供的FA模型与相关接口展示了一个简易的时钟。 
+ 本示例运用OpenHarmony系统提供的FA模型与相关接口展示了一个简易的时钟。 实现效果如下：
+
+![FlipClock](screenshots/devices/FlipClock.png)
+
+![CountDown](screenshots/devices/CountDown.png)
+
+### 相关概念
+
+- 后台代理提醒：后台代理提醒主要提供后台提醒发布接口，开发者在应用开发时，可以调用这些接口去创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
+
+### 相关权限
+
+后台代理提醒权限：ohos.permission.PUBLISH_AGENT_REMINDER
 
 ### 使用说明
 
@@ -15,6 +27,4 @@
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用3.0.0.900及以上的DevEco Studio版本才可编译运行。
-
-3.本示例的时钟页面在预览上显示效果正常，在真机上有待版本修复。
+2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。

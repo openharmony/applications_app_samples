@@ -37,4 +37,4 @@ class Logger {
   }
 }
 
-export default new Logger('eTSWeb')
+export default new Logger('[eTSWeb]')
