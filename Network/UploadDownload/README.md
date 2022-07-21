@@ -3,11 +3,14 @@
 ### Introduction
 
 This sample demonstrates how to use the upload and download interfaces to upload and download files.
+
 ![](screenshots/devices/index.png)
 
 ### Concepts
 
-Upload and download: Transfer files from a mobile phone to a remote server and vice versa.
+**Upload and download**
+
+  Transfer files from a mobile phone to a remote server and vice versa.
 
 ### Required Permissions
 

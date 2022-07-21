@@ -6,7 +6,7 @@ This sample demonstrates the application of Socket in network communications, in
 
 ![](screenshots/devices/chats.png)
 
-#Concepts
+### Concepts
 
 UDP Socket is a connectionless protocol, which allows sending of datagrams to the peer without first establishing a connection. The protocol is applicable when a small amount of data is transmitted at a time and real-time performance takes precedence over reliability.
 
