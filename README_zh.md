@@ -1,3 +1,5 @@
+【示例贡献温馨提示】感谢您关注OpenHarmony，如果您希望提交代码样例/示例/Demo，请参考知识体系的[《如何共建开发样例》](https://gitee.com/openharmony-sig/knowledge/blob/master/docs/co-construct_demos/README_zh.md)，首先提交到SIG（兴趣组）仓，知识体系SIG仓中的提交也是有效贡献。再次感谢您的关注！
+
 # 应用示例<a name="ZH-CN_TOPIC_0000001115464207"></a>
 
 -   [概要简介](#section1470103520301)
