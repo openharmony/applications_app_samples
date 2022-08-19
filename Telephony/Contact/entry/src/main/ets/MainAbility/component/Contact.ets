@@ -14,20 +14,17 @@
  */
 
 import router from '@ohos.router'
+import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import resourceManager from '@ohos.resourceManager'
-import Logger from '../data/Logger'
-import { Pinyin } from '../data/Pinyin'
 import { ItemContainer } from '../component/ItemContainer'
-
-const TAG: string = 'Contact'
 
 @Component
 export struct Contact {
+  @State result: string = ''
   @State position: string = ''
   @State contactNumber: number = 0
   @State contacts: contact.Contact[] = []
-  private pinyin: Pinyin = new Pinyin()
   private controller: TextInputController = new TextInputController()
 
   build() {
@@ -76,13 +73,33 @@ export struct Contact {
       .width('100%')
 
       Stack({ alignContent: Alignment.TopStart }) {
-        TextInput({ placeholder: $r('app.string.search'), controller: this.controller })
+        TextInput({ placeholder: $r('app.string.search'), text: this.result, controller: this.controller })
           .fontSize(20)
           .height(52)
           .padding({ left: 46 })
           .fontColor(Color.Gray)
           .borderRadius(26)
           .placeholderFont({ size: 20 })
+          .onChange(async (value: string) => {
+            this.result = value
+          })
+          .onSubmit(async (enterKey: EnterKeyType) => {
+            for (let i = 0; i < this.contacts.length; i++) {
+              let phoneData = await contact.queryContactsByPhoneNumber(this.result)
+              let emailData = await contact.queryContactsByEmail(this.result)
+              if (this.contacts[i] === phoneData[0] || this.contacts[i] === emailData[0]) {
+                router.push({
+                  url: 'pages/NameCard',
+                  params: { data: this.contacts[i] }
+                })
+              } else {
+                prompt.showToast({
+                  message: 'Error!',
+                  duration: 1500 // 提示弹窗持续时间，单位ms
+                })
+              }
+            }
+          })
         Image($r('app.media.search'))
           .width(24)
           .height(24)
@@ -129,7 +146,6 @@ export struct Contact {
     this.position = await resource.getString($r('app.string.contacts').id)
     this.contacts = await contact.queryContacts()
     this.contactNumber = this.contacts.length
-    Logger.info(TAG, `this contacts is ${JSON.stringify(this.contacts)}`)
     // 对获取到的联系人数组根据姓名首字母排序
     let sortContact = this.contacts.map(function (a, b) {
       return { index: b, value: a.name.fullName.substr(0, 1), key: a.key }
@@ -141,6 +157,5 @@ export struct Contact {
       let contactInfo = await contact.queryContact(sortContact[i].key)
       this.contacts[i] = contactInfo
     }
-    Logger.info(TAG, `this contacts sort is ${JSON.stringify(this.contacts)}`)
   }
 }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,28 +18,30 @@ import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import Logger from '../data/Logger'
 import { UpdateContact } from '../component/UpdateContact'
-import ContactModel from '../data/ContactModel'
 
-const TAG: string = '[EditContact]'
+const TAG: string = 'EditContact'
 
 @Entry
 @Component
 struct EditContact {
+  @State name: string = ''
+  @State email: string = ''
+  @State nickName: string = ''
+  @State phoneNumber: string = ''
+  @State postalAddress: string = ''
   @State contact: contact.Contact = <contact.Contact> router.getParams()['data']
 
   build() {
     Column() {
       Row() {
-        Row() {
-          Image($r('app.media.no'))
-            .width(32)
-            .height(32)
-            .margin({ left: 32, right: 22 })
-            .objectFit(ImageFit.Contain)
-            .onClick(() => {
-              router.back()
-            })
-        }
+        Image($r('app.media.no'))
+          .width(32)
+          .height(32)
+          .margin({ left: 32, right: 22 })
+          .objectFit(ImageFit.Contain)
+          .onClick(() => {
+            router.back()
+          })
 
         Text($r('app.string.editor_contact'))
           .fontSize(26)
@@ -57,14 +58,16 @@ struct EditContact {
           .objectFit(ImageFit.Contain)
           .onClick(async () => {
             let test = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}/
-            if (test.test(this.contact.phoneNumbers[0].phoneNumber) === true) {
-              let id = await ContactModel.updateContact({
-                name: { fullName: this.contact.name.fullName },
-                nickName: { nickName: this.contact.nickName.nickName },
-                phoneNumbers: [{ phoneNumber: this.contact.phoneNumbers[0].phoneNumber }],
-                emails: [{ email: this.contact.emails[0].email }],
-                postalAddresses: [{ postalAddress: this.contact.postalAddresses[0].postalAddress }]
-              })
+            Logger.info(TAG, `this number is ${this.phoneNumber} this test result ${test.test(this.phoneNumber)}`)
+            if (test.test(this.phoneNumber) === true) {
+              let contacts = {
+                name: { fullName: this.name },
+                nickName: { nickName: this.nickName },
+                phoneNumbers: [{ phoneNumber: this.phoneNumber }],
+                emails: [{ email: this.email }],
+                postalAddresses: [{ postalAddress: this.postalAddress }]
+              }
+              await contact.updateContact(contacts)
               router.push({
                 url: 'pages/Index'
               })
@@ -81,10 +84,24 @@ struct EditContact {
       .margin({ top: 32 })
       .constraintSize({ minHeight: 50 })
 
-      UpdateContact({ contact: $contact })
+      UpdateContact({
+        name: $name,
+        phoneNumber: $phoneNumber,
+        nickName: $nickName,
+        email: $email,
+        postalAddress: $postalAddress
+      })
     }
     .width('100%')
     .height('100%')
     .backgroundColor('#fff5f5f5')
+  }
+
+  aboutToAppear() {
+    this.name = this.contact.name.fullName
+    this.phoneNumber = this.contact.phoneNumbers[0].phoneNumber
+    this.nickName = this.contact.nickName.nickName
+    this.email = this.contact.emails[0].email
+    this.postalAddress = this.contact.postalAddresses[0].postalAddress
   }
 }

@@ -3,12 +3,58 @@
     "chat": "聊天",
     "contacts": "联系人",
     "dynamic": "动态",
-    "message": "消息内容",
-    "signature": "个性签名",
     "search": "搜索...",
-    "found": "发现",
-    "event": "热点",
-    "scan": "扫一扫",
-    "game": "游戏"
+    "chat_list": [
+      {
+        "img": "/common/images/Image1.jpg",
+        "contact": "联系人",
+        "message": "消息内容"
+      },
+      {
+        "img": "/common/images/Image2.jpg",
+        "contact": "联系人",
+        "message": "消息内容"
+      },
+      {
+        "img": "/common/images/Image3.jpg",
+        "contact": "联系人",
+        "message": "消息内容"
+      }
+    ],
+    "contact_list": [
+      {
+        "img": "/common/images/Image1.jpg",
+        "contacts": "联系人",
+        "signature": "个性签名"
+      },
+      {
+        "img": "/common/images/Image2.jpg",
+        "contacts": "联系人",
+        "signature": "个性签名"
+      },
+      {
+        "img": "/common/images/Image3.jpg",
+        "contacts": "联系人",
+        "signature": "个性签名"
+      }
+    ],
+    "dynamic_list": [
+      {
+        "img": "/common/images/ic_shortcut_discover.png",
+        "contact": "发现"
+      },
+      {
+        "img": "/common/images/ic_hot.png",
+        "contact": "热点"
+      },
+      {
+        "img": "/common/images/ic_scan.png",
+        "contact": "扫一扫"
+      },
+      {
+        "img": "/common/images/ic_game.png",
+        "contact": "游戏"
+      }
+    ]
   }
 }

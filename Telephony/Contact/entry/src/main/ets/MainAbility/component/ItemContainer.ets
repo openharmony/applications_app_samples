@@ -15,14 +15,12 @@
 
 import router from '@ohos.router'
 import contact from '@ohos.contact'
-import { Pinyin } from '../data/Pinyin'
 
 @Component
 export struct ItemContainer {
   @State selected: number = 0
   @State routerItem: number = 0
   @State letter: string = ''
-  private pinyin: Pinyin = new Pinyin()
   private contacts: contact.Contact[] = []
   private scroller: Scroller = new Scroller()
   private alphabetical: string[] =

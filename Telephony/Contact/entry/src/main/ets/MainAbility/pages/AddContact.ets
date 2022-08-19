@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,9 +18,8 @@ import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import Logger from '../data/Logger'
 import { NewContact } from '../component/NewContact'
-import ContactModel from '../data/ContactModel'
 
-const TAG: string = '[AddContact]'
+const TAG: string = 'AddContact'
 
 @Entry
 @Component
@@ -68,8 +66,7 @@ struct AddContact {
                 emails: [{ email: this.email }],
                 postalAddresses: [{ postalAddress: this.postalAddress }]
               }
-              Logger.info(TAG, `contacts = ${JSON.stringify(contacts)} contact type is ${typeof contact.addContact}`)
-              let id = await ContactModel.addContact(contacts)
+              let id = await contact.addContact(contacts)
               router.replace({
                 url: 'pages/Index'
               })

@@ -17,7 +17,7 @@ import router from '@ohos.router'
 import contact from '@ohos.contact'
 import Logger from '../data/Logger'
 
-const TAG: string = '[ContactInfo]'
+const TAG: string = 'ContactInfo'
 
 @Preview
 @Component
@@ -152,13 +152,8 @@ export struct ContactInfo {
                   primaryButton: {
                     value: $r('app.string.confirm'),
                     action: async () => {
-                      try {
-                        await contact.deleteContact(this.contact.key)
-                        Logger.info(TAG, `delete contact successed`)
-                      } catch (err) {
-                        Logger.info(TAG, `delete contact failed, err = ${JSON.stringify(err)}`)
-                      }
-                      router.back({
+                      await contact.deleteContact(this.contact.key)
+                      router.replace({
                         url: 'pages/Index'
                       })
                     }

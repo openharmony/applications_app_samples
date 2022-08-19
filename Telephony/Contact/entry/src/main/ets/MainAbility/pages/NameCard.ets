@@ -35,9 +35,7 @@ struct NameCard {
       .width('100%')
       .constraintSize({ minHeight: 50 })
       .onClick(() => {
-        router.back({
-          url: 'pages/Index'
-        })
+        router.back()
       })
 
       ContactInfo({ contact: this.contact })

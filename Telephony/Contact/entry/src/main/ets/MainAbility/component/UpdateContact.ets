@@ -18,17 +18,11 @@ import resourceManager from '@ohos.resourceManager'
 
 @Component
 export struct UpdateContact {
-  @State name: string = ''
-  @State email: string = ''
-  @State nickName: string = ''
-  @State phoneNumber: string = ''
-  @State postalAddress: string = ''
-  @State nameText: string = ''
-  @State emailText: string = ''
-  @State nickNameText: string = ''
-  @State phoneNumberText: string = ''
-  @State postalAddressText: string = ''
-  @Link contact: contact.Contact
+  @Link name: string
+  @Link email: string
+  @Link nickName: string
+  @Link phoneNumber: string
+  @Link postalAddress: string
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
@@ -42,18 +36,18 @@ export struct UpdateContact {
         .fontSize(22)
         .margin({ top: 22, bottom: 32 })
 
-      this.updateContact(`${this.nameText} ${this.name}`, $r('app.media.name'))
-      this.updateContact(`${this.nickNameText} ${this.nickName}`, $r('app.media.nickname'))
-      this.updateContact(`${this.phoneNumberText} ${this.phoneNumber}`, $r('app.media.phone'))
-      this.updateContact(`${this.emailText} ${this.email}`, $r('app.media.email'))
-      this.updateContact(`${this.postalAddressText} ${this.postalAddress}`, $r('app.media.address'))
+      this.updateContact($r('app.string.name'), this.name, $r('app.media.name'))
+      this.updateContact($r('app.string.address'), this.postalAddress, $r('app.media.address'))
+      this.updateContact($r('app.string.phone'), this.phoneNumber, $r('app.media.email'))
+      this.updateContact($r('app.string.email'), this.email, $r('app.media.nickname'))
+      this.updateContact($r('app.string.note'), this.nickName, $r('app.media.phone'))
     }
     .width('100%')
     .height('100%')
   }
 
   @Builder
-  updateContact(editText: string, img: Resource) {
+  updateContact(editText: Resource, info: string, img: Resource) {
     Row() {
       Image(img)
         .width(32)
@@ -61,7 +55,7 @@ export struct UpdateContact {
         .margin({ left: 16, right: 18 })
         .objectFit(ImageFit.Contain)
 
-      TextInput({ placeholder: editText })
+      TextInput({ placeholder: editText, text: info })
         .width('80%')
         .fontSize(22)
         .fontWeight(FontWeight.Bold)
@@ -94,19 +88,5 @@ export struct UpdateContact {
     .height(84)
     .borderRadius(32)
     .backgroundColor(Color.White)
-  }
-
-  async aboutToAppear() {
-    let resource = await resourceManager.getResourceManager()
-    this.nameText = await resource.getString($r('app.string.name').id)
-    this.emailText = await resource.getString($r('app.string.email').id)
-    this.nickNameText = await resource.getString($r('app.string.note').id)
-    this.phoneNumberText = await resource.getString($r('app.string.phone').id)
-    this.postalAddressText = await resource.getString($r('app.string.address').id)
-    this.name = this.contact.name.fullName
-    this.phoneNumber = this.contact.phoneNumbers[0].phoneNumber
-    this.nickName = this.contact.nickName.nickName
-    this.email = this.contact.emails[0].email
-    this.postalAddress = this.contact.postalAddresses[0].postalAddress
   }
 }

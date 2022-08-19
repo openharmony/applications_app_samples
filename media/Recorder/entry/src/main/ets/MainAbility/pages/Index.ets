@@ -71,6 +71,7 @@ struct Index {
 
   renameCallBack(newName) {
     Logger.info(TAG, `renameCallBack: newName=${newName}`)
+    let duration = MediaManager.getFileDuration(this.renameRecord.fileAsset.title)
     this.renameRecord.fileAsset.title = newName
     this.renameRecord.fileAsset.commitModify(err => {
       if (err !== undefined) {
@@ -78,6 +79,7 @@ struct Index {
         return
       }
       Logger.info(TAG, `commitModify success`)
+      MediaManager.saveFileDuration(this.renameRecord.fileAsset.title, duration)
       this.renameDialogController.close()
       this.getAudios()
       if (this.record.title == this.renameRecord.title) {

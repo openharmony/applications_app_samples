@@ -3,12 +3,58 @@
     "chat": "Chat",
     "contacts": "Contacts",
     "dynamic": "Dynamic",
-    "message": "Message content",
-    "signature": "Individuality signature",
     "search": "Search",
-    "found": "Found",
-    "event": "Hot Event",
-    "scan": "Scan",
-    "game": "Game"
+    "chat_list": [
+      {
+        "img": "/common/images/Image1.jpg",
+        "contact": "contact",
+        "message": "Message content"
+      },
+      {
+        "img": "/common/images/Image2.jpg",
+        "contact": "contact",
+        "message": "Message content"
+      },
+      {
+        "img": "/common/images/Image3.jpg",
+        "contact": "contact",
+        "message": "Message content"
+      }
+    ],
+    "contact_list": [
+      {
+        "img": "/common/images/Image1.jpg",
+        "contacts": "contact",
+        "signature": "Individuality signature"
+      },
+      {
+        "img": "/common/images/Image2.jpg",
+        "contacts": "contact",
+        "signature": "Individuality signature"
+      },
+      {
+        "img": "/common/images/Image3.jpg",
+        "contacts": "contact",
+        "signature": "Individuality signature"
+      }
+    ],
+    "dynamic_list": [
+      {
+        "img": "/common/images/ic_shortcut_discover.png",
+        "contact": "found"
+      },
+      {
+        "img": "/common/images/ic_hot.png",
+        "contact": "event"
+      },
+      {
+        "img": "/common/images/ic_scan.png",
+        "contact": "扫一扫"
+      },
+      {
+        "img": "/common/images/ic_game.png",
+        "contact": "Game"
+      }
+    ]
   }
 }

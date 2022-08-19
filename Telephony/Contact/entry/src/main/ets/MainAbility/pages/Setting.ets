@@ -20,7 +20,7 @@ import contact from '@ohos.contact'
 import featureAbility from '@ohos.ability.featureAbility'
 import Logger from '../data/Logger'
 
-const TAG: string = '[Setting]'
+const TAG: string = 'Setting'
 
 @Entry
 @Component
@@ -59,21 +59,12 @@ export struct Setting {
           .width('48%')
           .height(48)
           .fontSize(20)
-          .onClick(() => {
-          })
 
         Button($r('app.string.export_file'))
           .margin(10)
           .width('48%')
           .height(48)
           .fontSize(20)
-          .onClick(async () => {
-            await this.writeContact()
-            prompt.showToast({
-              message: 'Exporting the file Successfully',
-              duration: 1500 // 提示弹窗持续时间，单位ms
-            })
-          })
       }
       .width('100%')
       .height('100%')
@@ -94,9 +85,5 @@ export struct Setting {
       fileio.writeSync(fd, `${this.contacts[i]}\n`)
       fileio.closeSync(fd)
     }
-  }
-
-  async readContact() {
-
   }
 }
