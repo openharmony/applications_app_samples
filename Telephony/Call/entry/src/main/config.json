@@ -65,7 +65,12 @@
     ],
     "reqPermissions": [
       {
-        "name": "ohos.permission.PLACE_CALL"
+        "name": "ohos.permission.PLACE_CALL",
+        "reason": "request permission",
+        "usedScene": {
+          "ability": ["MainAbility"],
+          "when": "always"
+        }
       }
     ]
   }

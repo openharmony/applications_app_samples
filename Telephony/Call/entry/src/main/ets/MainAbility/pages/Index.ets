@@ -35,6 +35,7 @@ struct Index {
           Column() {
             TextInput({ placeholder: $r('app.string.input_hint'), text: this.input })
               .type(InputType.Number)
+              .key('telInput')
               .placeholderColor(Color.Grey)
               .placeholderFont({ size: 20, weight: FontWeight.Normal, family: "sans-serif", style: FontStyle.Normal })
               .enterKeyType(EnterKeyType.Next)
@@ -49,6 +50,7 @@ struct Index {
               .onChange((value: string) => {
                 this.input = value
               })
+
             CallView({ input: $input, output: $output })
             Text(this.output)
               .width('90%')

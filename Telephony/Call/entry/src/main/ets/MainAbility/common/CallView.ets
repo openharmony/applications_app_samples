@@ -31,6 +31,7 @@ export struct CallView {
       Image(this.src)
         .width(70)
         .height(70)
+        .key('callImg')
         .onClick(() => {
           if (this.src == this.on) {
             this.src = this.off
@@ -72,6 +73,7 @@ export struct CallView {
         .onFinish(() => {
           this.src = this.off
         })
+
     }
   }
 }
