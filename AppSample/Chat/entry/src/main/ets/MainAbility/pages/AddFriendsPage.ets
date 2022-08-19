@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import router from '@ohos.router';
+import { AddData } from '../components/Header';
 
 @Entry
 @Component
@@ -21,12 +22,11 @@ struct AddFriendsPage {
   @State submitValue: string = ''
   @State explain: string = ''
   private scroller: Scroller = new Scroller()
-  private expl = [["添加身边的好友", $r('app.media.radar'), "雷达加好友"], ["与身边的朋友进入一个群聊", $r('app.media.face'), "面对面建群"], ["扫描二维码名片", $r('app.media.scan'), "扫一扫"], ["添加邀请通讯录中的好友", $r('app.media.add'), "手机联系人"], ["获取更多资讯和服务", $r('app.media.public'), "公众号"], ["通过手机号搜索企业聊天用户", $r('app.media.empresa'), "企业聊天联系人"]]
 
   build() {
     Scroll(this.scroller) {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Column() {
+        Row({}) {
           Image($r('app.media.left'))
             .height(30)
             .width(30)
@@ -40,6 +40,7 @@ struct AddFriendsPage {
             .fontWeight(FontWeight.Bold)
             .fontSize(18)
         }
+        .justifyContent(FlexAlign.SpaceBetween)
         .width("100%")
         .padding({ top: 20, bottom: 20, left: 10, right: 10 })
 
@@ -55,7 +56,7 @@ struct AddFriendsPage {
             })
         }
 
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Row() {
           Text("我的聊天号：*********")
             .fontSize(14)
             .opacity(0.5)
@@ -65,43 +66,29 @@ struct AddFriendsPage {
         }
         .padding(10)
 
-        ForEach(this.expl, (item) => {
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-            Image(item[1])
-              .height(40)
-              .width(40)
-              .margin({ top: 10, left: 5, bottom: 20 })
-            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-              Flex({
-                direction: FlexDirection.Row,
-                alignItems: ItemAlign.Center,
-                justifyContent: FlexAlign.SpaceBetween
-              }) {
-                Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-                  Text(item[2])
-                    .fontSize(16)
-                    .padding({ top: 10, left: 5, right: 5 })
-                  Text(item[0])
-                    .fontSize(12)
-                    .padding(5)
-                    .opacity(0.5)
-                    .margin({ bottom: 5 })
-                }
+        Column() {
+          AddData({ text1: "添加身边的好友", img: $r('app.media.radar'), text2: "雷达加好友" })
+        }
 
-                Image($r('app.media.right'))
-                  .height(15)
-                  .width(15)
-                  .margin({ top: 2 })
-                  .opacity(0.5)
-              }
-              .width("90%")
+        Column() {
+          AddData({ text1: "与身边的朋友进入一个群聊", img: $r('app.media.face'), text2: "面对面建群" })
+        }
 
-              Divider().vertical(false).color("#ffffff").strokeWidth(1)
-            }
-          }
-          .height(70)
-          .backgroundColor("#ffffff")
-        }, (msg, index) => index.toString())
+        Column() {
+          AddData({ text1: "扫描二维码名片", img: $r('app.media.scan'), text2: "扫一扫" })
+        }
+
+        Column() {
+          AddData({ text1: "添加邀请通讯录中的好友", img: $r('app.media.add'), text2: "手机联系人" })
+        }
+
+        Column() {
+          AddData({ text1: "获取更多资讯和服务", img: $r('app.media.public'), text2: "公众号" })
+        }
+
+        Column() {
+          AddData({ text1: "通过手机号搜索企业聊天用户", img: $r('app.media.empresa'), text2: "企业聊天联系人" })
+        }
       }
       .backgroundColor("#f5f5f5")
       .width('100%')

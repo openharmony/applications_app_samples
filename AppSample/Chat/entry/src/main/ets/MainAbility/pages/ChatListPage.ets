@@ -54,7 +54,7 @@ export struct ChatListView {
     Column() {
       List() {
         ListItem() {
-          Flex() {
+          Row() {
             Stack({ alignContent: Alignment.Center }) {
               Text("搜索")
                 .fontSize(20)
@@ -133,9 +133,9 @@ struct ChatView {
 
   build() {
     Stack() {
-      Flex() {
+      Column() {
         Row() {
-          Flex() {
+          Row() {
             Image(this.chatItem.user.userImage)
               .width(50)
               .height(50)

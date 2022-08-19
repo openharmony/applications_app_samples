@@ -22,7 +22,7 @@ export struct DiscoverPage {
   private scroller: Scroller = new Scroller()
 
   build() {
-    Flex() {
+    Column() {
       Scroll(this.scroller) {
         Column() {
           Divider().vertical(false).strokeWidth(20).color("#cccccc")

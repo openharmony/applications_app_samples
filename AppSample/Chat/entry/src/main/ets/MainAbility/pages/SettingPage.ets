@@ -21,10 +21,10 @@ export struct SettingPage {
   private scroller: Scroller = new Scroller()
 
   build() {
-    Flex() {
+    Column() {
       Scroll(this.scroller) {
         Column() {
-          Flex() {
+          Column() {
             Row() {
               Image($r('app.media.personality3'))
                 .width(80)
@@ -43,6 +43,7 @@ export struct SettingPage {
               .alignItems(HorizontalAlign.Start)
               .padding({ left: 20 })
             }
+            .backgroundColor(Color.White)
             .padding(10)
             .backgroundColor(Color.White)
             .width('100%')

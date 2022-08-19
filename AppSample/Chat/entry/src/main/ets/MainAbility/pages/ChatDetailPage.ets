@@ -35,7 +35,7 @@ struct ChatDetailPage {
 
   build() {
     Column() {
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Row() {
         Image($r('app.media.left'))
           .height(30)
           .width(30)
@@ -50,7 +50,6 @@ struct ChatDetailPage {
             .height(40)
             .width(40)
         }
-        .width("10%")
         .onClick(() => {
           router.push({
             url: "pages/ChatNewsPage",
@@ -62,6 +61,7 @@ struct ChatDetailPage {
       .width("100%")
       .backgroundColor("#f5f5f5")
       .padding({ left: 0, right: 10 })
+      .justifyContent(FlexAlign.SpaceBetween)
 
       Stack({ alignContent: Alignment.BottomStart }) {
         List({ scroller: this.scroller, initialIndex: this.msgLength }) {
