@@ -34,7 +34,7 @@ export struct Other {
         .maxLines(2)
         .padding({ left: 10, right: 10 })
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Row() {
         Row() {
           Text() {
             Span('￥')
@@ -56,6 +56,9 @@ export struct Other {
           .aspectRatio(1)
           .margin({ left: 5 })
       }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .margin({ top: 5, bottom: 10 })
     }
     .width('50%')

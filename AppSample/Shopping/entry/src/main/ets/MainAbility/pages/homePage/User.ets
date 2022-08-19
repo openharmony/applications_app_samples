@@ -41,7 +41,7 @@ export struct User {
             .border({ radius: 45 * this.ratio })
             .margin(10)
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text(this.cardName)
                 .fontSize(15 * this.ratio)
                 .fontWeight(FontWeight.Bold)
@@ -58,6 +58,9 @@ export struct User {
                   .objectFit(ImageFit.Contain)
               }
             }
+            .width('100%')
+            .justifyContent(FlexAlign.SpaceBetween)
+            .alignItems(VerticalAlign.Center)
             .padding({ right: 20 })
 
             Row() {
@@ -92,30 +95,61 @@ export struct User {
           .width('70%')
         }
 
-        Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-          ForEach(this.record, item => {
-            Column() {
-              Image(item.img)
-                .width(30 * this.ratio)
-                .aspectRatio(1)
-                .objectFit(ImageFit.Contain)
-                .margin({ bottom: 5 })
-              Text(item.title)
-                .fontSize(10 * this.ratio)
-            }
-            .onClick(() => {
-              router.push({
-                url: item.uri,
-                params: {
-                  num: this.num,
-                  ratio: this.ratio
-                }
-              })
+        Row() {
+          Column() {
+            Image(this.record[0].img)
+              .width(30 * this.ratio)
+              .aspectRatio(1)
+              .objectFit(ImageFit.Contain)
+              .margin({ bottom: 5 })
+            Text(this.record[0].title)
+              .fontSize(10 * this.ratio)
+          }
+          .onClick(() => {
+            router.push({
+              url: 'pages/collect/collected',
+              params: {
+                num: this.num,
+                ratio: this.ratio
+              }
             })
-          }, item => item.toString())
-        }
+          })
 
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Column() {
+            Image(this.record[1].img)
+              .width(30 * this.ratio)
+              .aspectRatio(1)
+              .objectFit(ImageFit.Contain)
+              .margin({ bottom: 5 })
+            Text(this.record[1].title)
+              .fontSize(10 * this.ratio)
+          }
+
+          Column() {
+            Image(this.record[2].img)
+              .width(30 * this.ratio)
+              .aspectRatio(1)
+              .objectFit(ImageFit.Contain)
+              .margin({ bottom: 5 })
+            Text(this.record[2].title)
+              .fontSize(10 * this.ratio)
+          }
+
+          Column() {
+            Image(this.record[3].img)
+              .width(30 * this.ratio)
+              .aspectRatio(1)
+              .objectFit(ImageFit.Contain)
+              .margin({ bottom: 5 })
+            Text(this.record[3].title)
+              .fontSize(10 * this.ratio)
+          }
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceAround)
+        .alignItems(VerticalAlign.Center)
+
+        Row() {
           Row() {
             Text('活动')
               .fontSize(12 * this.ratio)
@@ -138,13 +172,16 @@ export struct User {
               .objectFit(ImageFit.Contain)
           }
         }
+        .width('100%')
         .margin({ top: 10 })
         .padding(10)
         .backgroundColor(Color.White)
         .border({ radius: 10 * this.ratio })
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
 
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('我的订单')
               .fontSize(14 * this.ratio)
               .fontWeight(FontWeight.Bolder)
@@ -158,36 +195,83 @@ export struct User {
                 .objectFit(ImageFit.Contain)
             }
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            ForEach(this.orderData, item => {
-              Column() {
-                Image(item.img)
-                  .width(30 * this.ratio)
-                  .aspectRatio(1)
-                  .objectFit(ImageFit.Contain)
-                  .margin({ bottom: 5 })
-                Text(item.title)
-                  .fontSize(12 * this.ratio)
-              }
-            }, item => item.toString())
+          Row() {
+            Column() {
+              Image(this.orderData[0].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.orderData[0].title)
+                .fontSize(12 * this.ratio)
+            }
+
+            Column() {
+              Image(this.orderData[1].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.orderData[1].title)
+                .fontSize(12 * this.ratio)
+            }
+
+            Column() {
+              Image(this.orderData[2].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.orderData[2].title)
+                .fontSize(12 * this.ratio)
+            }
+
+            Column() {
+              Image(this.orderData[3].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.orderData[3].title)
+                .fontSize(12 * this.ratio)
+            }
+
+            Column() {
+              Image(this.orderData[4].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.orderData[4].title)
+                .fontSize(12 * this.ratio)
+            }
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .margin({ top: 10 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Image('/resources/homeImg/imgLoads/product006.png')
               .width(55 * this.ratio)
               .aspectRatio(1)
               .objectFit(ImageFit.Cover)
               .border({ radius: 5 * this.ratio })
-            Flex({ justifyContent: FlexAlign.SpaceAround, direction: FlexDirection.Column }) {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Column() {
+              Row() {
                 Text('已签收')
                   .fontSize(13 * this.ratio)
                 Text('12-17')
                   .fontSize(12 * this.ratio)
                   .fontColor(Color.Grey)
               }
+              .width('90%')
+              .justifyContent(FlexAlign.SpaceBetween)
+              .alignItems(VerticalAlign.Center)
               .margin({ left: 8 })
 
               Text('派送成功')
@@ -195,12 +279,85 @@ export struct User {
                 .fontColor(Color.Grey)
                 .margin({ left: 8 })
             }
+            .height(55 * this.ratio)
+            .justifyContent(FlexAlign.SpaceAround)
+            .alignItems(HorizontalAlign.Start)
             .backgroundColor('#f8f8fa')
-            .width('90%')
+            .width('85%')
             .padding({ right: 10 })
             .border({ radius: 10 })
           }
           .height(55 * this.ratio)
+          .width('100%')
+          .margin({ top: 10 })
+          .alignItems(VerticalAlign.Center)
+        }
+        .margin({ top: 10 })
+        .padding(10)
+        .backgroundColor(Color.White)
+        .border({ radius: 10 * this.ratio })
+
+        Column() {
+          Row() {
+            Column() {
+              Image(this.discountData[0].img)
+                .width(35 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.discountData[0].name)
+                .fontSize(12 * this.ratio)
+                .margin(5)
+              Text(this.discountData[0].text)
+                .fontSize(12 * this.ratio)
+                .fontColor(Color.Grey)
+            }
+
+            Column() {
+              Image(this.discountData[1].img)
+                .width(35 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.discountData[1].name)
+                .fontSize(12 * this.ratio)
+                .margin(5)
+              Text(this.discountData[1].text)
+                .fontSize(12 * this.ratio)
+                .fontColor(Color.Grey)
+            }
+
+            Column() {
+              Image(this.discountData[2].img)
+                .width(35 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.discountData[2].name)
+                .fontSize(12 * this.ratio)
+                .margin(5)
+              Text(this.discountData[2].text)
+                .fontSize(12 * this.ratio)
+                .fontColor(Color.Grey)
+            }
+
+            Column() {
+              Image(this.discountData[3].img)
+                .width(35 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.discountData[3].name)
+                .fontSize(12 * this.ratio)
+                .margin(5)
+              Text(this.discountData[3].text)
+                .fontSize(12 * this.ratio)
+                .fontColor(Color.Grey)
+            }
+          }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .margin({ top: 10 })
         }
         .margin({ top: 10 })
@@ -209,44 +366,50 @@ export struct User {
         .border({ radius: 10 * this.ratio })
 
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-            ForEach(this.discountData, item => {
-              Column() {
-                Image(item.img)
-                  .width(35 * this.ratio)
-                  .aspectRatio(1)
-                  .objectFit(ImageFit.Contain)
-                  .margin({ bottom: 5 })
-                Text(item.name)
-                  .fontSize(12 * this.ratio)
-                  .margin(5)
-                Text(item.text)
-                  .fontSize(12 * this.ratio)
-                  .fontColor(Color.Grey)
-              }
-            }, item => item.toString())
-          }
-          .margin({ top: 10 })
-        }
-        .margin({ top: 10 })
-        .padding(10)
-        .backgroundColor(Color.White)
-        .border({ radius: 10 * this.ratio })
+          Row() {
+            Column() {
+              Image(this.serviceData[0].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.serviceData[0].title)
+                .fontSize(12 * this.ratio)
+            }
 
-        Column() {
-          Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-            ForEach(this.serviceData, item => {
-              Column() {
-                Image(item.img)
-                  .width(30 * this.ratio)
-                  .aspectRatio(1)
-                  .objectFit(ImageFit.Contain)
-                  .margin({ bottom: 5 })
-                Text(item.title)
-                  .fontSize(12 * this.ratio)
-              }
-            }, item => item.toString())
+            Column() {
+              Image(this.serviceData[1].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.serviceData[1].title)
+                .fontSize(12 * this.ratio)
+            }
+
+            Column() {
+              Image(this.serviceData[2].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.serviceData[2].title)
+                .fontSize(12 * this.ratio)
+            }
+
+            Column() {
+              Image(this.serviceData[3].img)
+                .width(30 * this.ratio)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+                .margin({ bottom: 5 })
+              Text(this.serviceData[3].title)
+                .fontSize(12 * this.ratio)
+            }
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceAround)
+          .alignItems(VerticalAlign.Center)
           .margin({ top: 10 })
         }
         .margin({ top: 10 })

@@ -32,9 +32,9 @@ export struct SinglePage3 {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Flex({ alignItems: ItemAlign.Center }) {
+      Row() {
+        Row() {
+          Row() {
             Text('宝贝状态')
               .fontSize(12 * this.ratio)
             Image('/resources/icon/sort-down.png')
@@ -42,8 +42,9 @@ export struct SinglePage3 {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .alignItems(VerticalAlign.Center)
 
-          Flex({ alignItems: ItemAlign.Center }) {
+          Row() {
             Text('收藏时间')
               .fontSize(12 * this.ratio)
             Image('/resources/icon/sort-down.png')
@@ -51,8 +52,9 @@ export struct SinglePage3 {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .alignItems(VerticalAlign.Center)
 
-          Flex({ alignItems: ItemAlign.Center }) {
+          Row() {
             Text('运动出行')
               .fontSize(12 * this.ratio)
             Image('/resources/icon/sort-down.png')
@@ -60,20 +62,29 @@ export struct SinglePage3 {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .alignItems(VerticalAlign.Center)
         }
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
         .width('75%')
       }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .backgroundColor(Color.White)
       .border({ radius: 5 })
       .padding(10)
 
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Row() {
         Image(this.collectData.src)
           .width('32%')
           .height('16%')
           .objectFit(ImageFit.Contain)
           .border({ radius: 10 })
       }
+      .width('100%')
+      .justifyContent(FlexAlign.Start)
+      .alignItems(VerticalAlign.Center)
       .margin({ top: 10 })
     }
   }

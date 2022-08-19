@@ -19,7 +19,7 @@ export struct NullPage {
   @Prop str: string
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       Text(this.str)
         .fontSize(15 * this.ratio)
         .fontColor(Color.Grey)
@@ -28,5 +28,7 @@ export struct NullPage {
     .width('100%')
     .height('40%')
     .backgroundColor('#dfe5e3')
+    .justifyContent(FlexAlign.SpaceBetween)
+    .alignItems(HorizontalAlign.Center)
   }
 }

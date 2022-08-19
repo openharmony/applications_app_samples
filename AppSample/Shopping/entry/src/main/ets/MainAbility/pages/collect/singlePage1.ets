@@ -35,9 +35,9 @@ export struct SinglePage1 {
   build() {
     Column() {
       if (this.collected) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Flex({ alignItems: ItemAlign.Center }) {
+        Row() {
+          Row() {
+            Row() {
               Text('宝贝状态')
                 .fontSize(13 * this.ratio)
               Image('/resources/icon/sort-down.png')
@@ -45,8 +45,9 @@ export struct SinglePage1 {
                 .aspectRatio(1)
                 .objectFit(ImageFit.Contain)
             }
+            .alignItems(VerticalAlign.Center)
 
-            Flex({ alignItems: ItemAlign.Center }) {
+            Row() {
               Text('收藏时间')
                 .fontSize(13 * this.ratio)
               Image('/resources/icon/sort-down.png')
@@ -54,8 +55,9 @@ export struct SinglePage1 {
                 .aspectRatio(1)
                 .objectFit(ImageFit.Contain)
             }
+            .alignItems(VerticalAlign.Center)
 
-            Flex({ alignItems: ItemAlign.Center }) {
+            Row() {
               Text('运动出行')
                 .fontSize(13 * this.ratio)
               Image('/resources/icon/sort-down.png')
@@ -63,9 +65,15 @@ export struct SinglePage1 {
                 .aspectRatio(1)
                 .objectFit(ImageFit.Contain)
             }
+            .alignItems(VerticalAlign.Center)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('75%')
         }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
         .backgroundColor(Color.White)
         .border({ radius: 5 })
         .padding(10)

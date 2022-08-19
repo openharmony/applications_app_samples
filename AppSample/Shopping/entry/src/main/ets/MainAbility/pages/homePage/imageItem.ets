@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import router from '@ohos.router';
 import { FindImgSrcModel, FindImgIntroModel, FindImgNameModel, FindIconSrcModel } from '../../model/homeModel'
 import { findImgSrcData, findImgIntroData, findImgNameData, findIconSrcData } from '../../data/homeData'
 
@@ -41,7 +41,7 @@ export struct ImageItem {
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .height('15%')
       Row() {
-        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Row() {
           Image(this.iconSrc[this.itemNum].iconSrc)
             .width(20 * this.ratio)
             .aspectRatio(1)
@@ -54,6 +54,8 @@ export struct ImageItem {
             .textOverflow({ overflow: TextOverflow.Ellipsis })
             .width('70%')
         }
+        .justifyContent(FlexAlign.Start)
+        .alignItems(VerticalAlign.Center)
         .width('66%')
         .height('100%')
 
