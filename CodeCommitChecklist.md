@@ -79,9 +79,9 @@ main
 示例如下：
 
 ```
-IssueNo: #I56EH7:【MR】支持窗口属性设置
-Description: set wake up screen.
-Sig: SIG_Sample
+IssueNo: #I56EH7:关联问题
+Description: 描述问题.
+Sig: sig-systemapplications
 Feature or Bugfix: Bugfix
 Binary Source: No
 
