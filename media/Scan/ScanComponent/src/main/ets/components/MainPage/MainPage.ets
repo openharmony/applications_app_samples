@@ -46,11 +46,9 @@ export struct ScanPage {
   @State showInit: boolean = false
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private defaultQrcodeImage: ImageBitmap = new ImageBitmap("common/media/qrcode.png")
   @State resultInit: string = ''
   @State resultPhoto: string = ''
   @State uploadQrcodeImage: image.PixelMap | undefined = undefined
-  @State textContent: string = "扫码"
   @State changeState: boolean = false
   @State multiples: number = 1.3
   @State isPhone: boolean = false
@@ -135,7 +133,7 @@ export struct ScanPage {
         .width('100%')
         .margin({ bottom: 130 })
 
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      Column() {
         Image($r("app.media.scan_border"))
           .width(240 * this.multiples)
           .height(240 * this.multiples)
@@ -155,10 +153,9 @@ export struct ScanPage {
               this.context.drawImage(this.defaultQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
             }
           })
-      }.width("100%").margin({ top: 20, left: 20 }).height("100%").margin({ right: 20 })
+      }.width("100%").margin({ top: 20, left: 20 }).height("100%").margin({ right: 20 }).alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Start)
 
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-
+      Row() {
         Image($r("app.media.scan_back")).width(24 * this.multiples).height(24 * this.multiples)
           .onClick(() => {
             router.back()
@@ -219,6 +216,8 @@ export struct ScanPage {
       .margin({ top: 24 * this.multiples })
       .height("100%")
       .padding({ left: 24 * this.multiples, right: 24 * this.multiples })
+      .alignItems(VerticalAlign.Top)
+      .justifyContent(FlexAlign.SpaceBetween)
 
       Column() {
         Image($r("app.media.scan_light"))
@@ -250,7 +249,7 @@ export struct ScanPage {
       // 相册扫描弹窗
       Panel(this.showPhoto) {
         Column() {
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+         Row() {
             Text($r("app.string.Scan_read_content"))
               .fontSize(25)
               .width('90%')
@@ -259,6 +258,8 @@ export struct ScanPage {
               this.changeState = false
             })
           }.padding(20)
+          .alignItems(VerticalAlign.Center)
+          .justifyContent(FlexAlign.SpaceBetween)
 
           Text(this.resultPhoto.length === 0 ? $r("app.string.Scan_read_fail") : this.resultPhoto).fontSize(25)
 
@@ -339,7 +340,7 @@ struct PanelInit {
   build() {
     Panel(this.showInit) {
       Column() {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Row() {
           Text($r("app.string.Scan_result"))
             .fontSize(25)
             .width('90%')
@@ -347,9 +348,10 @@ struct PanelInit {
             this.showInit = false
           })
         }.padding(20)
+        .alignItems(VerticalAlign.Center)
+        .justifyContent(FlexAlign.SpaceBetween)
 
         Text(this.result.length === 0 ? $r("app.string.Scan_choice") : this.result).fontSize(25)
-
       }
     }
     .type(PanelType.Foldable)

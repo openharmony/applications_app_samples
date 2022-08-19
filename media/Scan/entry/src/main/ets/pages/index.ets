@@ -28,15 +28,17 @@ interface EventHub {
 
 interface AbilityContext {
   terminateSelf(): Promise<void>
+
   eventHub: EventHub
 }
+
 @Entry
 @Component
-struct Index{
+struct Index {
   private contexts: AbilityContext
   contextCaller: any
 
-  async aboutToAppear(){
+  async aboutToAppear() {
     this.contexts = getContext(this) as AbilityContext
     let data = {
       context: null,
@@ -46,13 +48,14 @@ struct Index{
     this.contextCaller = data.context // 拿到全局的context，即类似globalThis.mainAbilityContext
     await this.contextCaller.requestPermissionsFromUser(array)
   }
-  build(){
-    Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.Center,alignItems:ItemAlign.Center}){
-      Button("扫一扫").fontSize(25).onClick(()=>{
+
+  build() {
+    Column() {
+      Button("扫一扫").fontSize(25).onClick(() => {
         router.push({
-          url:"pages/second"
+          url: "pages/second"
         })
       })
-    }.width("100%").height("100%")
+    }.width("100%").height("100%").alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
   }
 }
