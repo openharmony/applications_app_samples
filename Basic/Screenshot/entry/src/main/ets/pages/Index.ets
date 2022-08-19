@@ -59,6 +59,7 @@ struct Index {
         .fontColor(Color.White)
         .fontSize(20)
     }
+    .key(isFullScreen + 'FullScreenShot')
     .type(ButtonType.Capsule)
     .backgroundColor('#0D9FFB')
     .size({ width: '90%', height: 50 })
