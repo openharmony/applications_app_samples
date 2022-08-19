@@ -26,7 +26,7 @@ struct Index {
     nativePageLifecycle.onPageHide();
   }
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Button('ChangeColor')
         .onClick(() => {
           if (this.context) {
