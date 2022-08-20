@@ -31,8 +31,8 @@
   - [`DataAbility`：DataAbility的创建与访问（eTS）（API8）](ability/DataAbility)
   - [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](ability/ServiceAbility)
   - [`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）（Full SDK）](ability/StageCallAbility)
-  - [`FormAbility`：FA模型卡片（JS）（API8）](ability/FormAbility)
-  - [`FormExtAbility`：Stage模型卡片（eTS JS）（API9）](ability/FormExtAbility)
+  - [`FormAbility`：FA模型卡片（eTS）（API8）](ability/FormAbility)
+  - [`FormExtAbility`：Stage模型卡片（eTS）（API9）](ability/FormExtAbility)
   - [`FormLauncher`：卡片使用方（eTS）（API8）（Full SDK）](ability/FormLauncher)
   - [`ServiceExtAbility`：StageExtAbility的创建与使用（eTS）（API9）（Full SDK）](ability/ServiceExtAbility)
   - [`DistributedGraffiti`：分布式涂鸦（eTS）（API8）（Full SDK）](ability/DistributedGraffiti)
@@ -99,7 +99,7 @@
   - [`SimManager`：SIM卡管理（eTS）（API8）](Telephony/SimManager)
   - [`MobileNetwork`：蜂窝数据（eTS）（API9）](Telephony/MobileNetwork)
   - [`Observer`：Observer（eTS）（API9）](Telephony/Observer)
-  - [`RadioTech`：RadioTech（eTS）（API9）](Telephony/RadioTech)
+  - [`Contact`：Contact（eTS）（API8）](Telephony/Contact)
 - thread
   - [`JsWorker`：启动一个worker（JS）（API8）](thread/JsWorker)
 - CompleteApps
@@ -110,19 +110,19 @@
 - ETSUI
   - [`Canvas`：画布组件（eTS）（API8）](ETSUI/Canvas)
   - [`CustomComponent`：组件化（eTS）（API8）](ETSUI/CustomComponent)
-  - [`Process`：进程信息（eTS）（API8）（Full SDK）](ETSUI/Process)
+  - [`Process`：进程信息（eTS）（API9）（Full SDK）](ETSUI/Process)
   - [`BuildCommonView`：创建简单视图（eTS）（API8）](ETSUI/BuildCommonView)
   - [`DefiningPageLayoutAndConnection`：页面布局和连接（eTS）（API8）](ETSUI/DefiningPageLayoutAndConnection)
   - [`Drag`：拖拽事件（eTS）（API8）](ETSUI/Drag)
   - [`Component`：eTS组件测试Demo（eTS）（API8）](ETSUI/Component)
   - [`ArkUIAnimation`：动画（eTS）（API8）](ETSUI/ArkUIAnimation)
   - [`MediaQuery`：媒体查询（eTS）（API8）](ETSUI/MediaQuery)
-  - [`XComponent`：XComponent（eTS）（API8）](ETSUI/XComponent)
+  - [`XComponent`：XComponent（eTS）（API9）](ETSUI/XComponent)
   - [`MouseEvent`：鼠标事件（eTS）（API8）](ETSUI/MouseEvent)
   - [`Web`：Web（eTS）（API8）](ETSUI/Web)
   - [`Gallery`：组件集合（eTS）（API8）](ETSUI/Gallery)
   - [`BringApp`：拉起系统应用（eTS）（API8）](ETSUI/BringApp)
-  - [`Game2048`：2048游戏（eTS）（API9）](ETSUI/Game2048)
+  - [`Game2048`：2048游戏（eTS）（API8）](ETSUI/Game2048)
   - [`Lottie`：Lottie（eTS）（API8）（Full SDK）](ETSUI/Lottie)
   - [`TransitionAnimation`：转场动画（eTS）（API9）](ETSUI/TransitionAnimation)
   - [`PatternLock`：图案密码锁组件（eTS）（API9）](ETSUI/PatternLock)
@@ -150,9 +150,9 @@
   - [`AirQuality`：空气质量（eTS）（API9）](Preset/AirQuality)
   - [`DistributedMusicPlayer`：分布式音乐（eTS）（API9）（Full SDK）](Preset/DistributedMusicPlayer)
 - PackageManagement
-  - [`ZipLib`：压缩与解压（eTS）（API9）](PackageManagement/ZipLib)
+  - [`ZipLib`：压缩与解压（eTS）（API8）](PackageManagement/ZipLib)
 - ResourcesSchedule
-  - [`Flybird`：小鸟避障游戏（eTS）（API9）](ResourcesSchedule/Flybird)
+  - [`Flybird`：小鸟避障游戏（eTS）（API8）](ResourcesSchedule/Flybird)
   - [`BackgroundTaskManager`：后台任务管理（eTS）（API8）](ResourcesSchedule/BackgroundTaskManager)
 - UI
   - [`AtomicLayout`：原子布局（JS）（API8）](UI/AtomicLayout)
@@ -204,7 +204,7 @@
   - [`XmlTextConvert`：xml文本转换（eTS）（API8）](Util/XmlTextConvert)
 - MultiDeviceAppDev
   - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](MultiDeviceAppDev/AdaptiveCapabilities)
-  - [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API9）](MultiDeviceAppDev/JsAdaptiveCapabilities)
+  - [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](MultiDeviceAppDev/JsAdaptiveCapabilities)
 
 
 ## 使用说明<a name="section17988202503116"></a>
