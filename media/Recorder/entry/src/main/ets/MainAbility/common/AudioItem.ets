@@ -63,7 +63,7 @@ export struct AudioItem {
   build() {
     Row() {
       Row() {
-        Flex({ direction: FlexDirection.Column, alignContent: FlexAlign.Center, justifyContent: FlexAlign.Center }) {
+        Column() {
           Text(this.record.fileAsset.title)
             .fontSize(22)
             .fontColor(Color.Black)
@@ -73,8 +73,10 @@ export struct AudioItem {
             .margin({ top: 10 })
         }
         .size({ width: '80%', height: '100%' })
+        .alignItems(HorizontalAlign.Start)
+        .justifyContent(FlexAlign.Center)
 
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.End }) {
+        Row() {
           Text(this.record.duration)
             .fontSize(20)
             .fontColor(Color.Gray)
@@ -91,6 +93,7 @@ export struct AudioItem {
           }
         }
         .width('20%')
+        .justifyContent(FlexAlign.End)
       }
       .width('79%')
       .padding({ top: 10, bottom: 10, left: 10, right: 10 })

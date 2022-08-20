@@ -50,6 +50,7 @@ struct Index {
   @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
   @State deviceFlag: string = 'A'
   @State isFall: boolean = false
+  @State isFlush:boolean = false
 
   dataChange() {
     if (this.deviceFlag !== 'A') {
@@ -93,14 +94,17 @@ struct Index {
         this.distributedData.chessX = gameDataA.chessX
         this.distributedData.chessY = gameDataA.chessY
         this.distributedData.fallLocation = gameDataA.fallLocation
-        this.flushData()
+        if(gameDataA.isOver === true) {
+          this.isFlush = !this.isFlush
+        } else{
+          this.distributedData.isOver = gameDataA.isOver
+        }
       })
     } else if (this.deviceFlag === 'A') {
       logger.info(TAG, `enter this.deviceFlag === 'A'`)
       kvStoreModel.setOnMessageReceivedListener(context, DEVICE_B, (value) => {
         let gameDataB = JSON.parse(value)
         this.fallChressInner(gameDataB.x, gameDataB.y)
-        this.flushData()
       })
     }
   }
@@ -303,7 +307,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       TitleBar({
         startAbilityCallBack: this.startAbilityCallBack,
         remoteDeviceModel: this.remoteDeviceModel,
@@ -333,12 +337,11 @@ struct Index {
           this.fallChress(event)
         }
         this.distributedData.clickCount++
-        this.flushData()
       })
 
       Row() {
         if (this.deviceFlag === 'A') {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Button($r('app.string.restart'), { stateEffect: true })
               .backgroundColor('RGB(210,105,30)')
               .width(this.chessSize * 3)
@@ -351,23 +354,23 @@ struct Index {
                 this.distributedData.step = 0
                 this.distributedData.clickCount = 0
                 this.distributedData.fallLocation = []
-                this.flushData()
               })
             Button($r('app.string.repentance_chess'), { stateEffect: true })
               .backgroundColor('RGB(210,105,30)')
               .width(this.chessSize * 3)
               .height(45)
+              .margin({ left: 20 })
               .fontSize(20 / this.dpiBi)
               .onClick(() => {
                 this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
                 this.distributedData.fallGather.shift()
                 this.distributedData.step--
-                this.flushData()
               })
           }
         }
       }.width('50%')
     }
+    .justifyContent(FlexAlign.Center)
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize({ width: '100%', height: '100%' })
     .width('100%')

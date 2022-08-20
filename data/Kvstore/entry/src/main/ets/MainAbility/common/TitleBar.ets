@@ -23,12 +23,12 @@ const EXIT = 'exit'
 @Component
 export struct TitleBar {
   private selectedIndex: number = 0
-  private startAbilityCallBack = null
+  private startAbilityCallBack: (key: string) => void
   private remoteDeviceModel: RemoteDeviceModel = null
   private dialogController: CustomDialogController = null
   @State deviceList: Array<DeviceDataModel> = []
   @Link isDistributed: boolean
-  @Link dialogShow: boolean
+  @State dialogShow: boolean = false
 
   clearSelectState() {
     this.deviceList = []
@@ -86,14 +86,16 @@ export struct TitleBar {
       }
     }).then((data) => {
       console.log('KvStore[IndexPage] start ability finished:' + JSON.stringify(data))
+    })
+    setTimeout(() => {
       this.startAbilityCallBack(NOTES_CHANGE)
-    });
+    }, 1000)
   }
 
   showDialog() {
     this.dialogShow = true
-    this.deviceList = [];
     this.remoteDeviceModel.registerDeviceListCallback(() => {
+      this.deviceList = []
       console.info('KvStore[IndexPage] registerDeviceListCallback, callback entered')
       this.deviceList.push({
         deviceId: '0',
@@ -113,6 +115,18 @@ export struct TitleBar {
           checked: (this.selectedIndex === i)
         })
       }
+      if (this.dialogShow) {
+        this.dialogController.close()
+        this.dialogController = new CustomDialogController({
+          builder: DeviceDialog({
+            deviceList: this.deviceList,
+            selectedIndex: this.selectedIndex,
+            handleSelectDevice: this.handleSelectDevice
+          }),
+          autoCancel: true
+        })
+        this.dialogController.open()
+      }
     })
     if (this.dialogController === null) {
       this.dialogController = new CustomDialogController({
@@ -123,8 +137,8 @@ export struct TitleBar {
         }),
         autoCancel: true
       })
+      this.dialogController.open()
     }
-    this.dialogController.open()
   }
 
   build() {

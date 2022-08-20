@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import dataRdb from '@ohos.data.rdb'
-import Contact from '../model/Contact'
+import ContactDataSource from '../common/BasicDataSource'
 import RdbModel from '../model/RdbModel'
 import { QueryItem } from '../common/QueryItem'
 import { TABLE_NAME } from '../model/RdbConst'
@@ -22,11 +23,12 @@ import { TABLE_NAME } from '../model/RdbConst'
 @Component
 struct SearchPage {
   private searchText: string = ''
-  @State contacts: Array<Contact> = []
+  private contacts: ContactDataSource = new ContactDataSource()
 
   async getData() {
     if (this.searchText === '') {
-      this.contacts = []
+      this.contacts['dataArray'] = []
+      this.contacts.notifyDataReload()
       return
     }
     let predicates = new dataRdb.RdbPredicates(TABLE_NAME)
@@ -35,7 +37,8 @@ struct SearchPage {
       .contains('phone', this.searchText)
       .or()
       .contains('remark', this.searchText)
-    this.contacts = await RdbModel.query(predicates)
+    this.contacts['dataArray'] = await RdbModel.query(predicates)
+    this.contacts.notifyDataReload()
   }
 
   build() {
@@ -64,12 +67,13 @@ struct SearchPage {
       .margin({ top: 10 })
 
       List() {
-        ForEach(this.contacts, (item, index) => {
+        LazyForEach(this.contacts, item => {
           ListItem() {
             QueryItem({ contact: item })
           }
         }, item => item.name)
       }
+      .layoutWeight(1)
       .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
     }
   }

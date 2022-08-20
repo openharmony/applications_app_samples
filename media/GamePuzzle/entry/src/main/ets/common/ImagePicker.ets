@@ -44,8 +44,9 @@ export default struct ImagePicker {
       .height(160)
       .listDirection(Axis.Horizontal)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button($r('app.string.cancel'))
+          .margin({ right: '25%' })
           .onClick(() => {
             this.controller.close()
           })

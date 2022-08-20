@@ -46,8 +46,8 @@ export default class ImageModel {
     let imageInfo = await imageSource.getImageInfo()
     Logger.info(TAG, `sizeImg createImageSource ${JSON.stringify(imageSource)}`)
     let height = imageInfo.size.height / SPLIT_COUNT
-    for (let i = 0;i < SPLIT_COUNT; i++) {
-      for (let j = 0;j < SPLIT_COUNT; j++) {
+    for (let i = 0; i < SPLIT_COUNT; i++) {
+      for (let j = 0; j < SPLIT_COUNT; j++) {
         let picItem
         if (i === SPLIT_COUNT - 1 && j === SPLIT_COUNT - 1) {
           picItem = new PictureItem(9, undefined)

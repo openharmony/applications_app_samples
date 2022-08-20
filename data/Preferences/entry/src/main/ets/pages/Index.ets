@@ -99,7 +99,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Row() {
         Text($r('app.string.MainAbility_label'))
           .fontSize(25)

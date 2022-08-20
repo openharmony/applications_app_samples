@@ -65,7 +65,7 @@ export struct TabletTitle {
   ]
 
   build() {
-    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+    Row() {
       ForEach(this.navigationButton, item => {
         Button({ type: ButtonType.Normal }) {
           Image(item.imageSrc)
@@ -109,6 +109,7 @@ export struct TabletTitle {
         .placeholderFont({ size: 18, weight: 500 })
         .fontSize(18)
         .margin(2)
+        .width('51%')
         .onChange((value: string) => {
           this.addr = value
         })

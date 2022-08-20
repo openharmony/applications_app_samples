@@ -58,7 +58,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+    Column() {
       TitleBar({
         devices: $devices,
         remoteDeviceModel: $remoteDeviceModel,
@@ -70,6 +70,7 @@ struct Index {
         .width(80)
         .height(80)
         .margin({ top: 50, bottom: 20 })
+        .alignSelf(ItemAlign.Start)
         .translate({ x: this.imageTranslate })
 
       Text($r('app.string.MainAbility_label'))
@@ -142,6 +143,7 @@ struct Index {
         })
       }
     }
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
   }

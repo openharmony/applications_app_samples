@@ -54,10 +54,11 @@ export struct PhoneLayout {
 
   @Builder ToolBar() {
     Column() {
-      Progress({ value: this.browser.progress, total: 100 })
-        .color('#0000ff')
-        .visibility(this.browser.hideProgress ? Visibility.None : Visibility.Visible)
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+      if (!this.browser.hideProgress) {
+        Progress({ value: this.browser.progress, total: 100 })
+          .color('#0000ff')
+      }
+      Row() {
         ForEach(this.toolPoneArray, item => {
           Column() {
             Divider().color('#e9eaec')
@@ -117,17 +118,19 @@ export struct PhoneLayout {
           .width('20%')
         })
       }
+      .justifyContent(FlexAlign.SpaceAround)
       .width('100%')
       .height('100%')
       .backgroundColor('#fdfdfd')
-    }.height('100%')
+    }
+    .height('100%')
   }
 
   build() {
     Column() {
       Navigation() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+        Column() {
+          Row() {
             TextInput({ placeholder: '输入网址...', text: this.browser.inputValue })
               .placeholderFont({ size: 16, weight: 500 })
               .fontSize(16)

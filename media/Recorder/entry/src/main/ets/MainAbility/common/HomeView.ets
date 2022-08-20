@@ -16,6 +16,7 @@
 import router from '@ohos.router'
 import { TitleBar } from '../common/TitleBar'
 import { Record } from '../model/Record'
+import RecordDataSource from '../common/BasicDataSource'
 import { CheckTitle } from '../common/CheckTitle'
 import { AudioItem } from '../common/AudioItem'
 
@@ -25,8 +26,9 @@ export struct HomeView {
   private deleteDialogShow: (num: number, checkRecords: Record[], deleteAction: () => void) => void
   @State leftSliderIndex: number = -1
   @State checkNum: number = 0
-  @Link recordList: Array<Record>
+  @Link @Watch('recordListChange') recordList: Array<Record>
   @State @Watch('checkStateChange') checkState: boolean = false
+  private recordDataSource: RecordDataSource = new RecordDataSource([])
 
   checkItem() {
     this.checkNum = 0
@@ -62,6 +64,11 @@ export struct HomeView {
     }.bind(this))
   }
 
+  recordListChange() {
+    this.recordDataSource['dataArray'] = this.recordList
+    this.recordDataSource.notifyDataReload()
+  }
+
   build() {
     Column() {
       if (this.checkState) {
@@ -70,7 +77,7 @@ export struct HomeView {
         TitleBar()
       }
       List() {
-        ForEach(this.recordList, (item, index) => {
+        LazyForEach(this.recordDataSource, (item, index) => {
           ListItem() {
             AudioItem({
               checkState: $checkState,

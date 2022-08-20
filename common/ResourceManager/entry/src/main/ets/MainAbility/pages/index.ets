@@ -111,7 +111,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+    Column() {
       Text($r("app.string.title"))
         .width('100%')
         .height(50)
@@ -121,7 +121,7 @@ struct Index {
         .padding({ left: 15 })
 
       Scroll() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
+        Column(){
           Text(this.string_str)
             .fontSize(25)
           Text(this.strArray)
@@ -138,7 +138,8 @@ struct Index {
             .fontSize(25)
         }
         .width('100%')
-        .padding(15)
+        .padding(10)
+        .alignItems(HorizontalAlign.Start)
       }
     }
     .width('100%')

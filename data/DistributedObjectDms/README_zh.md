@@ -29,7 +29,7 @@
 
 2.本示例为Stage模型，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.991, built on July 6, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version： 3.0.0.992， built on July 14， 2022)才可编译运行。
 
 4.本示例需所有设备进行授权后退出一次再重新进入应用，所有认证设备（含主设备）均需在线，否则该示例无法正常运行。
 

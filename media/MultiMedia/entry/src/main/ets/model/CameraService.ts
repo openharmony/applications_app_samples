@@ -51,7 +51,7 @@ class CameraService {
   private handleTakePicture: (photoUri: string) => void = undefined
   private videoConfig: any = {
     audioSourceType: 1,
-    videoSourceType: 0,
+    videoSourceType: 1,
     profile: {
       audioBitrate: 48000,
       audioChannels: 2,
@@ -61,8 +61,8 @@ class CameraService {
       fileFormat: 'mp4',
       videoBitrate: 48000,
       videoCodec: 'video/mp4v-es',
-      videoFrameWidth: CameraSize.WIDTH,
-      videoFrameHeight: CameraSize.HEIGHT,
+      videoFrameWidth: 1920,
+      videoFrameHeight: 1080,
       videoFrameRate: 30
     },
     url: '',
@@ -119,10 +119,7 @@ class CameraService {
 
   async initCamera(surfaceId: number) {
     Logger.info(this.tag, 'initCamera')
-    if (this.curMode === CameraMode.MODE_VIDEO) {
-      await this.releaseCamera()
-      this.curMode = CameraMode.MODE_PHOTO
-    }
+//    await this.releaseCamera()
     this.cameraManager = await camera.getCameraManager(globalThis.abilityContext)
     Logger.info(this.tag, 'getCameraManager')
     this.cameras = await this.cameraManager.getCameras()

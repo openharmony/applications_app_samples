@@ -16,6 +16,7 @@
 import Logger from '../model/Logger'
 import AppTime from '../model/AppTime'
 import bundleState from '@ohos.bundleState'
+import {MyDataSource} from '../utils/DataSource'
 import { hmsToString, getAppName, getAppIcon, getTotalTime, getTimStr } from '../utils/Util'
 
 const TAG = 'UsageList'

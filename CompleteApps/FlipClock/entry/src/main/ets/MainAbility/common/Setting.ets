@@ -22,8 +22,8 @@ const TAG: string = '[Setting]'
 
 @Component
 export struct Setting {
-  @State flag: boolean= false
-  @State inSetValue: number= 40
+  @State flag: boolean = false
+  @State inSetValue: number = 40
 
   setBrightness() {
     brightness.setValue(this.inSetValue)
@@ -34,9 +34,10 @@ export struct Setting {
       Divider()
         .strokeWidth(5)
         .color('#F1F3F5')
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text($r("app.string.fullScreen"))
           .fontSize('18vp')
+        Blank()
         Toggle({ type: ToggleType.Switch, isOn: false })
           .switchPointColor(0xe5ffffff)
           .onChange(async () => {
@@ -49,6 +50,7 @@ export struct Setting {
             }
           })
       }
+      .width('98%')
       .height(62)
       .borderRadius(24)
       .margin({ top: 10 })
@@ -58,9 +60,10 @@ export struct Setting {
       Divider()
         .strokeWidth(5)
         .color('#F1F3F5')
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Lock()
       }
+      .width('98%')
       .height(62)
       .borderRadius(24)
       .margin({ top: 10 })
@@ -70,7 +73,7 @@ export struct Setting {
       Divider()
         .strokeWidth(5)
         .color('#F1F3F5')
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text($r("app.string.brightness"))
           .fontSize('18vp')
         Slider({
@@ -91,6 +94,7 @@ export struct Setting {
             this.setBrightness()
           })
       }
+      .width('98%')
       .height(62)
       .borderRadius(24)
       .margin({ top: 10 })
@@ -108,7 +112,7 @@ export struct Setting {
 
 @Component
 struct Lock {
-  @State isComTime: boolean= true
+  @State isComTime: boolean = true
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

@@ -16,25 +16,29 @@
 import reminderAgent from '@ohos.reminderAgent'
 import StorageModel from '../model/StorageModel'
 import { CustomDatePicker } from '../common/CustomDataPicker'
+import { MyDataSource } from '../common/DataSource'
 
 @Component
 export struct AlarmClock {
   @State total: number = 0
-  @Link listItems: Array<unknown>
-  @StorageLink('clockTime') clockTime: any = []
+  @State listItems: MyDataSource = new MyDataSource([])
   private datePicker: CustomDialogController = null
   private storage: StorageModel = StorageModel.getInstance()
   getTest = async () => {
-    this.listItems = []
+    this.listItems.replaceData([])
     let amount = await this.storage.getStorageValue('amount')
     if (amount !== 'null') {
       this.total = parseInt(amount)
     }
-    for (let i = 0;i <= this.total; i++) {
+    for (let i = 0; i <= this.total; i++) {
       let alarmClock = await this.storage.getStorageValue(`alarmClock${i}`)
-      if (alarmClock != 'null') {
+      if (alarmClock !== 'null') {
         let dataTime = JSON.parse(alarmClock).hour + ':' + JSON.parse(alarmClock).minute
-        this.listItems.push({ key: `alarmClock${i}`, value: dataTime, reminderId: JSON.parse(alarmClock).reminderId })
+        this.listItems.pushData({
+          key: `alarmClock${i}`,
+          value: dataTime,
+          reminderId: JSON.parse(alarmClock).reminderId
+        })
       }
     }
   }
@@ -52,7 +56,7 @@ export struct AlarmClock {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text($r('app.string.alarmClock'))
           .fontSize('30vp')
         Text('+')
@@ -72,28 +76,28 @@ export struct AlarmClock {
           })
       }
       .height(62)
-      .backgroundColor('#ffffff')
       .margin({ top: 40, bottom: 40 })
       .padding({ left: '3%', right: '3%' })
 
       Scroll() {
         List() {
-          ForEach(this.listItems, (item, index) => {
+          LazyForEach(this.listItems, (item, index) => {
             ListItem() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row() {
                 Text(item.value)
                   .width('50%')
                   .fontSize('30vp')
                 Button($r('app.string.delete'))
+                  .margin({ left: '20%' })
                   .onClick(() => {
                     this.storage.deleteSync(item.key)
-                    this.listItems.splice(index, 1)
+                    this.listItems.deleteData(index)
                     reminderAgent.cancelReminder(item.reminderId, () => {
                     })
                   })
                   .width('20%')
                   .height('100%')
-                  .backgroundColor('#ff676037')
+                  .backgroundColor('#0D9FFB')
               }
               .padding(10)
               .width('100%')
@@ -104,10 +108,13 @@ export struct AlarmClock {
             .backgroundColor('#f1f3f5')
           }, item => item.value)
         }
+        .width('100%')
         .height('100%')
       }
+      .width('100%')
       .height('100%')
     }
+    .width('100%')
     .height('100%')
   }
 }

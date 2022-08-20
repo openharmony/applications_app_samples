@@ -167,45 +167,46 @@ export struct FlipClock {
         })
     }
     .height(108)
-    .width('40%')
+    .width('50%')
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
+      Row() {
         Row({ space: 2 }) {
           this.box(0)
           this.box(1)
         }
-      }
-      .width('33%')
-      .height('15%')
+        .width('30%')
+        .height('10%')
 
-      Image($r('app.media.dot'))
-        .width(20)
-        .height(50)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Image($r('app.media.dot'))
+          .width(20)
+          .height(50)
+
         Row({ space: 2 }) {
           this.box(2)
           this.box(3)
         }
-      }
-      .width('33%')
-      .height('15%')
+        .width('30%')
+        .height('10%')
 
-      Image($r('app.media.dot'))
-        .width(20)
-        .height(50)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Image($r('app.media.dot'))
+          .width(20)
+          .height(50)
+
         Row({ space: 2 }) {
           this.box(4)
           this.box(5)
         }
+        .width('30%')
+        .height('10%')
       }
-      .width('33%')
-      .height('15%')
+      .width('90%')
+      .height('100%')
     }
     .width('100%')
     .height('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }

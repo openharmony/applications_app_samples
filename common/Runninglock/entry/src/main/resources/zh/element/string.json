@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "entry_MainAbility",
-      "value": "eTSRunningLock"
+      "value": "RunningLock"
     },
     {
       "name": "description_mainability",
@@ -25,7 +25,7 @@
       "value": "休眠锁开关"
     },
     {
-      "name": "timingout_screen",
+      "name": "timingOut_screen",
       "value": "5s后定时熄屏"
     },
     {
@@ -33,7 +33,7 @@
       "value": "本系统支持阻止系统休眠的锁"
     },
     {
-      "name":"unsupportLock",
+      "name":"unSupportLock",
       "value": "本系统不支持阻止系统休眠的锁"
     },
     {

@@ -31,5 +31,5 @@ export const listData = [
   { name: 'Z', city: [{ name: '浙江', city: ['宁波', '杭州'] }] }
 ]
 
-export const heatCity = ['北京', '上海', '广州', '深圳', '杭州', '南京', '苏州', '天津', '武汉', '长沙', '重庆', '成都']
+export const heatCity:Array<string> = ['北京', '上海', '广州', '深圳', '杭州', '南京', '苏州', '天津', '武汉', '长沙', '重庆', '成都']
 

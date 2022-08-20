@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import dataRdb from '@ohos.data.rdb'
 import featureAbility from '@ohos.ability.featureAbility'
 import router from '@ohos.router'
 import Contact from '../model/Contact'
+import ContactDataSource from '../common/BasicDataSource'
 import LiteStore from '../model/LiteStore'
 import Logger from '../model/Logger'
 import RdbModel from '../model/RdbModel'
@@ -33,7 +35,8 @@ const TAG: string = 'Index'
 @Component
 struct Index {
   private intervalId: number = undefined
-  @State contacts: Array<Contact> = []
+  //  @State contacts: Array<Contact> = []
+  private contacts: ContactDataSource = new ContactDataSource()
   @State isMultiCheck: boolean = false
   @State isSelectedAll: boolean = false
   @State state: {
@@ -88,17 +91,14 @@ struct Index {
         })
         Logger.info(TAG, 'onDataChange')
         RdbModel.onDataChange(this.state.distributedDevice, (result) => {
-          this.contacts = result
+          this.contacts['dataArray'] = result
+          this.contacts.notifyDataReload()
         })
       }
     })
   }
 
-  onPageShow() {
-    this.refreshViewState()
-  }
-
-  async refreshViewState() {
+  async onPageShow() {
     await RdbModel.getRdbStore()
     this.intervalId = setInterval(() => {
       this.getWant()
@@ -106,11 +106,11 @@ struct Index {
     await this.getData()
   }
 
-  getData = async () => {
+  async getData() {
     Logger.info(TAG, 'getData')
-    this.contacts = []
     let predicates = new dataRdb.RdbPredicates(TABLE_NAME)
-    this.contacts = await RdbModel.query(predicates)
+    this.contacts['dataArray'] = await RdbModel.query(predicates)
+    this.contacts.notifyDataReload()
     let syncState = await LiteStore.getValue()
     this.state.syncState = `${syncState}`
     if (!this.state.isFA && this.state.isDistributed && syncState === SyncState.AutomaticSync) {
@@ -120,7 +120,7 @@ struct Index {
 
   showDeleteDialog() {
     let deleteContacts = []
-    this.contacts.forEach((contact) => {
+    this.contacts['dataArray'].forEach((contact) => {
       if (contact.isSelected) {
         deleteContacts.push(contact)
       }
@@ -151,11 +151,11 @@ struct Index {
   handleClickContact(item, index) {
     Logger.info(TAG, `handleClickContact, item = ${JSON.stringify(item)}`)
     if (this.isMultiCheck) {
-      let tempContacts = this.contacts
-      this.contacts = []
+      let tempContacts = this.contacts['dataArray']
+      this.contacts['dataArray'] = []
       tempContacts[index].isSelected = !item.isSelected
-      this.contacts = tempContacts
-      Logger.info(TAG, `item.isSelected = ${this.contacts[index].isSelected}`)
+      this.contacts['dataArray'] = tempContacts
+      this.contacts.notifyDataReload()
     } else {
       router.push({
         url: 'pages/ContactEdit',
@@ -165,9 +165,10 @@ struct Index {
   }
 
   refreshSelectState(isSelect) {
-    this.contacts.forEach((contact) => {
+    this.contacts['dataArray'].forEach((contact) => {
       contact.isSelected = isSelect
     })
+    this.contacts.notifyDataReload()
   }
 
   quitMultiCheck() {
@@ -224,7 +225,7 @@ struct Index {
         Column() {
           SearchBar()
           List() {
-            ForEach(this.contacts, (item, index) => {
+            LazyForEach(this.contacts, (item, index) => {
               ListItem() {
                 ContactItem({ contact: item, isMultiCheck: $isMultiCheck })
               }

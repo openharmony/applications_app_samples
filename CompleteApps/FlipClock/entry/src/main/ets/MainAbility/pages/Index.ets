@@ -13,24 +13,24 @@
  * limitations under the License.
  */
 import brightness from '@ohos.brightness'
-import { Setting }from '../common/Setting'
+import { Setting } from '../common/Setting'
 import { CountDown } from '../common/CountDown'
 import { FlipClock } from '../common/FlipClock'
 import { AlarmClock } from '../common/AlarmClock'
+import { MyDataSource } from '../common/DataSource'
 
 AppStorage.Link('clockTime') || AppStorage.SetOrCreate('clockTime', [])
 
 @Entry
 @Component
 struct Index {
-  @State value: number= 128
-  @State output: string= '熄屏'
-  @State currentIndex: number= 0
-  @State isComTime: boolean= true
-  private tabScrollable: boolean= false
-  @StorageLink('clockTime') clockTime: any= []
-  private controller: TabsController= new TabsController()
-  private array: any= [
+  @State value: number = 128
+  @State output: string = '熄屏'
+  @State currentIndex: number = 0
+  @State isComTime: boolean = true
+  private tabScrollable: boolean = false
+  private controller: TabsController = new TabsController()
+  private array: any = [
     {
       icon: $r('app.media.worldclock'),
       icon_after: $r('app.media.worldclock_blue'),
@@ -56,20 +56,23 @@ struct Index {
       num: 3
     }
   ]
+  private mainArray: MyDataSource = new MyDataSource(this.array)
 
   setBrightness() {
     brightness.setValue(this.value)
   }
 
   @Builder TabBuilder(item) {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    Column() {
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Image(this.currentIndex === item.num ? item.icon_after : item.icon)
+          .flexGrow(1)
           .height(30)
           .width('30%')
           .objectFit(ImageFit.Contain)
           .opacity(this.currentIndex === item.num ? 1 : 0.5)
         Text(item.text)
+          .flexGrow(1)
           .fontSize('20vp')
           .fontColor(this.currentIndex === item.num ? '#0A1EFF' : '#182431')
       }
@@ -84,22 +87,17 @@ struct Index {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
       Stack() {
         Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
-          ForEach(this.array, (item) => {
+          LazyForEach(this.mainArray, (item) => {
             TabContent() {
-              Flex({ justifyContent: FlexAlign.Center }) {
-                if (item.text === '闹钟') {
-                  AlarmClock({ listItems: $clockTime })
-                } else if (item.text === '时钟') {
-                  FlipClock()
-                } else if (item.text === '倒计时') {
-                  CountDown()
-                } else if (item.text === '设置') {
-                  Setting()
-                }
+              if (item.text === '闹钟') {
+                AlarmClock()
+              } else if (item.text === '时钟') {
+                FlipClock()
+              } else if (item.text === '倒计时') {
+                CountDown()
+              } else if (item.text === '设置') {
+                Setting()
               }
-              .width('100%')
-              .height('100%')
-              .brightness(this.value)
             }
             .tabBar(this.TabBuilder(item))
           })
@@ -117,6 +115,7 @@ struct Index {
           this.currentIndex = index
         })
       }
+      .flexGrow(1)
       .zIndex(1)
       .width('100%')
       .height('100%')

@@ -21,7 +21,6 @@ enum gameStatus {
 
 const EMPTY_PICTURE: PictureItem = new PictureItem(9, undefined)
 
-@Observed
 export default class GameRules {
   public numArray: PictureItem[]
   public gameStatus: number = gameStatus.over
@@ -115,8 +114,8 @@ export default class GameRules {
 
   gameBegin(pictures: PictureItem[]) {
     this.gameStatus = gameStatus.running
-    var l = pictures.length
-    var index, temp
+    let l = pictures.length
+    let index, temp
     while (l > 0) {
       index = Math.floor(Math.random() * l)
       temp = pictures[l-1]

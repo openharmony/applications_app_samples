@@ -30,7 +30,7 @@ struct Index {
   listener= mediaquery.matchMediaSync('(orientation:landscape)')
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       if (!this.isPhone) {
         TabletTitle({ browser: $browser })
         Progress({ value: this.browser.progress, total: 100 })

@@ -17,6 +17,7 @@ import display from '@ohos.display'
 import Logger from '../util/Logger'
 import geolocation from '@ohos.geolocation'
 import { listData, heatCity } from '../mock/LocationMock'
+import { MyDataSource } from '../util/DataSource'
 import httpRequestResponse from '../net/HttpRequestResponse'
 
 const TAG: string = '[Location]'
@@ -87,155 +88,165 @@ export struct Location {
 
   build() {
     Panel(this.isShow) {
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Start }) {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+      Column() {
+        Column() {
           Text($r('app.string.deliver_to'))
             .fontSize(25)
             .margin({ bottom: 30 })
+            .alignSelf(ItemAlign.Start)
           if (this.currentLocation) {
             Text(`${this.currentLocation}` || $r('app.string.xian'))
-              .fontSize(16 * this.ratio)
+              .fontSize(20)
+              .alignSelf(ItemAlign.Start)
           } else {
             Text($r('app.string.current_positioning'))
               .fontSize(20)
               .opacity(0.6)
+              .alignSelf(ItemAlign.Start)
           }
         }
         .width('100%')
-        .height(130)
+        .height(100)
         .margin({ top: 20 })
 
-        Flex() {
-          Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-            Image($r("app.media.location"))
-              .width(16 * this.ratio)
-              .aspectRatio(1)
-              .padding({ left: 4 })
-            Text(this.city === '' ? $r('app.string.xian') : this.city)
-              .fontSize(14 * this.ratio)
-              .fontColor('#E92F4F')
-              .padding({ right: 3, top: 2 })
-          }
-          .width(64 * this.ratio)
-          .height(20 * this.ratio)
-          .borderRadius(13 * this.ratio)
-          .borderWidth(1)
-          .borderColor('#E92F4F')
-          .onClick(async () => {
-            await this.getLocation()
-          })
+
+        Row() {
+          Image($r("app.media.location"))
+            .width(22)
+            .height(22)
+            .aspectRatio(1)
+            .padding({ left: 4 })
+          Text(this.city === '' ? $r('app.string.xian') : this.city)
+            .fontSize(20)
+            .fontColor('#E92F4F')
+            .margin({ left: 12 })
+            .padding({ right: 3, top: 2 })
         }
-        .margin({ top: 5 * this.ratio })
+        .alignSelf(ItemAlign.Start)
+        .justifyContent(FlexAlign.Center)
+        .width(90)
+        .height(40)
+        .borderRadius(20)
+        .borderWidth(1)
+        .borderColor('#E92F4F')
+        .onClick(async () => {
+          await this.getLocation()
+        })
 
-        Flex({ direction: FlexDirection.Column }) {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Stack({ alignContent: Alignment.End }) {
-              Flex({ wrap: FlexWrap.Wrap }) {
-                Column() {
-                  Flex() {
-                    Text($r('app.string.domestic_hot_city'))
-                      .fontSize(14 * this.ratio)
+
+        Column() {
+          Stack({ alignContent: Alignment.End }) {
+            Column() {
+              Row() {
+                Text($r('app.string.domestic_hot_city'))
+                  .fontSize(20)
+                  .fontColor('#000000')
+                  .opacity(0.6)
+              }
+              .alignSelf(ItemAlign.Start)
+              .margin({ top: 10, bottom: 15 })
+
+              Grid() {
+                LazyForEach(new MyDataSource(heatCity), (item) => {
+                  GridItem() {
+                    Text(`${item}`)
+                      .margin({ bottom: 20 })
+                      .fontSize(20)
+                      .maxLines(3)
                       .fontColor('#000000')
-                      .opacity(0.6)
+                      .onClick(() => {
+                        this.currentLocation = item
+                      })
                   }
-                  .margin({ top: 30 * this.ratio, bottom: 15 * this.ratio })
-
-                  Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap }) {
-                    ForEach(heatCity, (item) => {
-                      Text(`${item}`)
-                        .margin({ bottom: 16 })
-                        .width('25%')
-                        .fontSize(14 * this.ratio)
-                        .maxLines(3)
-                        .fontColor('#000000')
-                        .onClick(() => {
-                          this.currentLocation = item
-                        })
-                    })
-                  }
-                  .width('100%')
-                }
-
-                List({ space: 15, initialIndex: 0, scroller: this.scroller }) {
-                  ForEach(listData, (index) => {
-                    ListItem() {
-                      Column() {
-                        Text(`${index.name}`)
-                          .height(30 * this.ratio)
-                          .fontSize(16 * this.ratio)
-                          .fontColor('#000000;')
-                          .width('100%')
-                        Divider()
-                          .strokeWidth(0.8)
-                          .color('#000000')
-                          .opacity(0.2).margin({ right: 10 })
-
-                        ForEach(index.city, item => {
-                          Text(`${item.name === undefined ? item : item.name}`)
-                            .height(30 * this.ratio)
-                            .fontSize(14 * this.ratio)
-                            .width('100%')
-                            .margin({ top: 10 })
-                            .onClick(() => {
-                              this.currentLocation = item.name === undefined ? item : item.name
-                              if (this.isCity == item.name) {
-                                console.log(this.isCity);
-                                console.log(item.name === undefined ? item : item.name);
-                                this.isCity = ''
-                              } else {
-                                this.isCity = item.name === undefined ? item : item.name
-                              }
-                            })
-                          if (this.isCity == item.name) {
-                            List() {
-                              ForEach(item.city, secondCity => {
-                                ListItem() {
-                                  Column() {
-                                    Text(`${secondCity}`)
-                                      .width('100%')
-                                      .height(30 * this.ratio)
-                                      .fontSize(14 * this.ratio)
-                                      .onClick(() => {
-                                        this.currentLocation = `${item.name}/${secondCity}`
-                                      })
-                                  }
-                                }
-                              })
-                            }
-                            .width('100%')
-                          }
-                        })
-                      }
-                    }
-                  })
-                }
-                .width('100%')
-                .edgeEffect(EdgeEffect.None)
-                .listDirection(Axis.Vertical)
-                .onScrollIndex((firstIndex: number, lastIndex: number) => {
-                  this.TabIndex = firstIndex
                 })
               }
+              .margin({ right: 60, top: 10 })
+              .width('100%')
+              .height(130)
+              .columnsTemplate('1fr 1fr 1fr 1fr')
 
-              Flex() {
-                AlphabetIndexer({ arrayValue: this.tabValue, selected: this.TabIndex })
-                  .height('100%')
-                  .font({ size: 16 })
-                  .popupColor('#FFFFFF') // 弹出框颜色
-                  .selectedBackgroundColor(0xCCCCCC) // 选中背景颜色
-                  .popupBackground(0xCCCCCC) // 弹出框背景颜色
-                  .usingPopup(true) // 是否显示弹出框
-                  .selectedFont({ size: 16, style: FontStyle.Normal }) // 选中的样式
-                  .selectedColor('#969494') // 选中颜色
-                  .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框的演示
-                  .alignStyle(this.location ? IndexerAlign.Right : IndexerAlign.Left)
-                  .onSelect((TabIndex: number) => {
-                    this.scroller.scrollToIndex(TabIndex)
-                  })
+              List({ space: 15, initialIndex: 0, scroller: this.scroller }) {
+                LazyForEach(new MyDataSource(listData), (index) => {
+                  ListItem() {
+                    Column() {
+                      Text(`${index.name}`)
+                        .height(30)
+                        .fontSize(24)
+                        .fontColor('#000000;')
+                        .width('100%')
+                        .margin({ top: 10 })
+                      Divider()
+                        .strokeWidth(0.8)
+                        .color('#000000')
+                        .opacity(0.2)
+                        .margin({ right: 10, top: 12 })
+
+                      ForEach(index.city, item => {
+                        Text(`${item.name === undefined ? item : item.name}`)
+                          .height(30)
+                          .fontSize(20)
+                          .width('100%')
+                          .margin({ top: 16 })
+                          .onClick(() => {
+                            this.currentLocation = item.name === undefined ? item : item.name
+                            if (this.isCity == item.name) {
+                              Logger.info(TAG, `item.name = ${item.name === undefined ? item : item.name}`)
+                              this.isCity = ''
+                            } else {
+                              this.isCity = item.name === undefined ? item : item.name
+                            }
+                          })
+                        if (this.isCity == item.name) {
+                          List() {
+                            ForEach(item.city, (secondCity) => {
+                              ListItem() {
+                                Column() {
+                                  Text(`${secondCity}`)
+                                    .width('100%')
+                                    .height(30)
+                                    .fontSize(18)
+                                    .margin({ top: 4 })
+                                    .onClick(() => {
+                                      this.currentLocation = `${item.name}/${secondCity}`
+                                    })
+                                }
+                              }
+                            })
+                          }
+                          .width('100%')
+                        }
+                      })
+                    }
+                  }
+                })
               }
-              .position({ x: '97%' })
-              .margin({ top: 4 })
+              .height(580)
+              .width('100%')
+              .edgeEffect(EdgeEffect.None)
+              .listDirection(Axis.Vertical)
+              .onScrollIndex((firstIndex: number, lastIndex: number) => {
+                this.TabIndex = firstIndex
+              })
             }
+
+            Column() {
+              AlphabetIndexer({ arrayValue: this.tabValue, selected: this.TabIndex })
+                .height('100%')
+                .font({ size: 16 })
+                .popupColor('#FFFFFF') // 弹出框颜色
+                .selectedBackgroundColor(0xCCCCCC) // 选中背景颜色
+                .popupBackground(0xCCCCCC) // 弹出框背景颜色
+                .usingPopup(true) // 是否显示弹出框
+                .selectedFont({ size: 16, style: FontStyle.Normal }) // 选中的样式
+                .selectedColor('#969494') // 选中颜色
+                .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框的演示
+                .alignStyle(this.location ? IndexerAlign.Right : IndexerAlign.Left)
+                .onSelect((TabIndex: number) => {
+                  this.scroller.scrollToIndex(TabIndex)
+                })
+            }
+            .position({ x: '97%' })
+            .margin({ top: 4 })
           }
         }
       }

@@ -102,13 +102,14 @@ export struct UpdateDialog {
             }
             .height(200)
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row() {
               Button($r('app.string.cancel'))
                 .commonButtonStyle()
                 .fontSize(20)
                 .margin({left:10})
                 .fontColor('#E92F4F')
                 .backgroundColor('rgba(0,0,0,0.05)')
+                .margin({right:10})
                 .onClick(() => {
                   this.customDialogController.close()
                 })
@@ -119,11 +120,12 @@ export struct UpdateDialog {
                 .margin({right:10})
                 .fontColor('#FFFFFF')
                 .backgroundColor('#E92F4F')
+                .margin({left:10})
                 .onClick(() => {
                   this.customDialogController.close()
                 })
             }
-            .margin({ top: 30 })
+            .margin({ top: 30})
           }
           .width('100%')
           .padding({ left: 25, right: 25 })
