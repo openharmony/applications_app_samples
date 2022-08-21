@@ -30,15 +30,15 @@ export default struct DebugInfo {
         .fontWeight(FontWeight.Bold)
 
       if (this.debugWindow) {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center }) {
+        Column() {
           this.showDebug($r('app.string.pss'), this.pssMemory)
           this.showDebug($r('app.string.sharedDirty'), this.sharedMemory)
           this.showDebug($r('app.string.privateDirty'), this.privateMemory)
         }
         .width('85%')
-        .height('30%')
+        .height('25%')
         .margin({ top: '40%' })
-        .padding({ bottom: 10 })
+        .padding({ bottom: '5%', top: '5%' })
         .backgroundColor(Color.White)
         .border({ width: 2, radius: 10 })
       }
@@ -54,7 +54,7 @@ export default struct DebugInfo {
       Text(title)
         .fontSize(20)
         .width('60%')
-        .margin({left: 6})
+        .margin({ left: 6 })
         .textAlign(TextAlign.End)
 
       Text(`${data}KB`)

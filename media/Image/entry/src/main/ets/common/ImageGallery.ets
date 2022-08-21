@@ -14,27 +14,26 @@
  */
 
 import router from '@ohos.router'
-import multimedia_mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../model/Logger'
-import { ImageModel } from '../model/ImageModel'
+import { ImageModel, MyDataSource } from '../model/ImageModel'
 
 const TAG: string = '[ImageGallery]'
 
 @Component
 export struct ImageGallery {
-  @State imgDatas: Array<multimedia_mediaLibrary.FileAsset> = []
+  @State imgDatas: MyDataSource = new MyDataSource()
   private imageModel: ImageModel = new ImageModel()
 
   async aboutToAppear() {
     let context: any = getContext(this)
-    this.imgDatas = await this.imageModel.getAllImg(context)
-    Logger.info(TAG, `this image number = ${this.imgDatas.length}`)
+    this.imgDatas.replaceData(await this.imageModel.getAllImg(context))
+    Logger.info(TAG, `this image number = ${this.imgDatas.totalCount()}`)
   }
 
   build() {
     Column() {
       Grid() {
-        ForEach(this.imgDatas, item => {
+        LazyForEach(this.imgDatas, item => {
           GridItem() {
             Image(item.uri)
               .aspectRatio(1)

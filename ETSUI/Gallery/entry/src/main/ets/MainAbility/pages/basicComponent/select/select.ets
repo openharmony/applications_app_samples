@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {NavigationBar} from "../../../common/components/navigationBar"
-import {GetColor} from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 enum AttributesType {
   BUTTON,
@@ -23,8 +23,8 @@ enum AttributesType {
 
 @Observed
 class SelectAttributes {
-  public selected: number= 0
-  public value: string= 'TTT'
+  public selected: number = 0
+  public value: string = 'TTT'
   public buttonFont: Font = new Font(60, FontWeight.Normal, 'serif', FontStyle.Normal)
   public selectedOptionFont: Font = new Font(60, FontWeight.Normal, 'serif', FontStyle.Normal)
   public optionFont: Font = new Font(40, FontWeight.Normal, 'serif', FontStyle.Normal)
@@ -32,10 +32,10 @@ class SelectAttributes {
 
 @Observed
 class Font {
-  public size: number= 60
-  public weight: FontWeight= FontWeight.Normal
+  public size: number = 60
+  public weight: FontWeight = FontWeight.Normal
   public family: string = 'serif'
-  public style: FontStyle= FontStyle.Normal
+  public style: FontStyle = FontStyle.Normal
 
   constructor(size: number, weight: FontWeight, family: string, style: FontStyle) {
     this.size = size, this.weight = weight, this.family = family, this.style = style
@@ -46,24 +46,24 @@ class Font {
 @Component
 struct SelectSample {
   @State attributes: SelectAttributes = new SelectAttributes()
-  @State fontColor: string= 'white'
-  @State optionFontColor: string= 'black'
-  @State optionBgColor: string= 'white'
-  @State selectedOptionBgColor: string= '#ee0a24'
-  @State selectedOptionFontColor: string= 'black'
+  @State fontColor: string = 'white'
+  @State optionFontColor: string = 'black'
+  @State optionBgColor: string = 'white'
+  @State selectedOptionBgColor: string = '#ee0a24'
+  @State selectedOptionFontColor: string = 'black'
   private controller: TabsController = new TabsController()
-  @State attributesType: AttributesType= AttributesType.BUTTON
+  @State attributesType: AttributesType = AttributesType.BUTTON
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       NavigationBar({ title: 'Select' })
-      //上部分显示效果
+      // 上部分显示效果
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Select([{ value: 'select1', icon: "/common/favor.png" },
-                  { value: 'select2', icon: "/common/favor.png" },
-                  { value: 'select3', icon: "/common/favor.png" },
-                  { value: 'select4', icon: "/common/favor.png" }])
+        Column() {
+          Select([{ value: 'select1', icon: '/common/favor.png' },
+                  { value: 'select2', icon: '/common/favor.png' },
+                  { value: 'select3', icon: '/common/favor.png' },
+                  { value: 'select4', icon: '/common/favor.png' }])
             .selected(this.attributes.selected)
             .value(this.attributes.value)
             .font({
@@ -90,13 +90,15 @@ struct SelectSample {
             .optionBgColor(this.optionBgColor)
             .optionFontColor(this.optionFontColor)
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
         .width('100%')
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .width('100%')
       .padding(18)
       .backgroundColor('#696969')
-      //下部分属性、属性值
+      // 下部分属性、属性值
       Scroll() {
         Column() {
           Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
@@ -172,7 +174,7 @@ struct ButtonControl {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('value')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -182,12 +184,12 @@ struct ButtonControl {
           TextInput({ placeholder: '' })
             .type(InputType.Normal)
             .placeholderColor(Color.Blue)
-            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: "Arial", style: FontStyle.Normal })
+            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: 'Arial', style: FontStyle.Normal })
             .enterKeyType(EnterKeyType.Next)
             .caretColor(Color.Green)
             .width('20%')
             .fontSize('10fp')
-            .fontFamily("cursive")
+            .fontFamily('cursive')
             .fontStyle(FontStyle.Italic)
             .fontWeight(FontWeight.Regular)
             .borderRadius(24)
@@ -198,12 +200,14 @@ struct ButtonControl {
             })
         }
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('fontColor')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -213,6 +217,8 @@ struct ButtonControl {
           GetColor({ colorVal: $fontColor })
         }.width('20%')
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
@@ -230,7 +236,7 @@ struct SelectedOptionControl {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('selectedOptionBgColor')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -241,12 +247,14 @@ struct SelectedOptionControl {
         }.width('20%')
       }
       .width('100%')
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('selectedOptionFontColor')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -256,6 +264,8 @@ struct SelectedOptionControl {
           GetColor({ colorVal: $selectedOptionFontColor })
         }.width('20%')
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
@@ -273,7 +283,7 @@ struct OptionControl {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('selected')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -315,12 +325,14 @@ struct OptionControl {
           },
         ])
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('optionFontColor')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -330,13 +342,15 @@ struct OptionControl {
           GetColor({ colorVal: $optionFontColor })
         }.width('20%')
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('optionBgColor')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -346,6 +360,8 @@ struct OptionControl {
           GetColor({ colorVal: $optionBgColor })
         }.width('20%')
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
@@ -362,7 +378,7 @@ struct FontControl {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('fontSize')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -372,12 +388,12 @@ struct FontControl {
           TextInput({ placeholder: '' })
             .type(InputType.Normal)
             .placeholderColor(Color.Blue)
-            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: "Arial", style: FontStyle.Normal })
+            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: 'Arial', style: FontStyle.Normal })
             .enterKeyType(EnterKeyType.Next)
             .caretColor(Color.Green)
             .width('20%')
             .fontSize(25)
-            .fontFamily("cursive")
+            .fontFamily('cursive')
             .fontStyle(FontStyle.Italic)
             .borderRadius(24)
             .fontWeight(FontWeight.Regular)
@@ -394,13 +410,15 @@ struct FontControl {
             })
         }
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('fontWeight')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -410,12 +428,12 @@ struct FontControl {
           TextInput({ placeholder: '' })
             .type(InputType.Normal)
             .placeholderColor(Color.Blue)
-            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: "Arial", style: FontStyle.Normal })
+            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: 'Arial', style: FontStyle.Normal })
             .enterKeyType(EnterKeyType.Next)
             .caretColor(Color.Green)
             .width('20%')
             .fontSize('10fp')
-            .fontFamily("cursive")
+            .fontFamily('cursive')
             .fontStyle(FontStyle.Italic)
             .borderRadius(24)
             .fontWeight(FontWeight.Regular)
@@ -432,13 +450,15 @@ struct FontControl {
             })
         }
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('fontFamily')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -448,12 +468,12 @@ struct FontControl {
           TextInput({ placeholder: '' })
             .type(InputType.Normal)
             .placeholderColor(Color.Blue)
-            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: "Arial", style: FontStyle.Normal })
+            .placeholderFont({ size: 25, weight: FontWeight.Normal, family: 'Arial', style: FontStyle.Normal })
             .enterKeyType(EnterKeyType.Next)
             .caretColor(Color.Green)
             .width('20%')
             .fontSize('10fp')
-            .fontFamily("cursive")
+            .fontFamily('cursive')
             .fontStyle(FontStyle.Italic)
             .borderRadius(24)
             .fontWeight(FontWeight.Regular)
@@ -470,13 +490,15 @@ struct FontControl {
             })
         }
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('fontStyle')
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431')
@@ -534,6 +556,8 @@ struct FontControl {
           }
         ])
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)

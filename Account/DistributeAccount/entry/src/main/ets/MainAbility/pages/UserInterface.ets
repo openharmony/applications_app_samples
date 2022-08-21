@@ -20,12 +20,93 @@ import account_distributedAccount from '@ohos.account.distributedAccount'
 
 const TAG: string = '[Account.UserInterface]'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount() {
+    return 0
+  }
+
+  public getData(index: number) {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload() {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Resource[] = [$r('app.string.exit_login'), $r('app.string.written_off')]
+
+  public totalCount() {
+    return this.dataArray.length
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number) {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(index: number) {
+    this.dataArray.push()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  public replaceData(result: any[]) {
+    this.dataArray = result
+  }
+}
+
 @Entry
 @Component
 struct UserInterface {
   @State userName: string = <string> router.getParams()["userName"]
   @State password: string = <string> router.getParams()["password"]
-  @State btnText: Resource[] = [$r('app.string.exit_login'), $r('app.string.written_off')]
+  @State btnText: MyDataSource = new MyDataSource()
 
   async onBtnClick(item: Resource) {
     prompt.showToast({ message: `name:${this.userName} ,pwd:${this.password} `, duration: 2000 })
@@ -61,7 +142,7 @@ struct UserInterface {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Row() {
         Text($r('app.string.user_name'))
           .width('35%')
@@ -72,9 +153,11 @@ struct UserInterface {
           .height(50)
           .fontSize(30)
           .fontWeight(FontWeight.Regular)
-      }.width('80%')
+      }
+      .margin({top: '30%'})
+      .width('80%')
 
-      ForEach(this.btnText, item => {
+      LazyForEach(this.btnText, item => {
         Button() {
           Text(item)
             .fontSize(25)

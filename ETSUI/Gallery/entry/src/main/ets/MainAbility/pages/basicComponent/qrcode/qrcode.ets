@@ -13,27 +13,27 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct QrCodeSample {
-  @State value: string = "hello world"
+  @State value: string = 'hello world'
   @State setColor: string = 'rgba(0,0,0,1)'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column(){
       NavigationBar({ title: 'QRCode' })
 
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column(){
             QRCode(this.value)
               .color(this.setColor)
               .width(200)
               .height(200)
-          }.width('100%')
+          }.width('100%').justifyContent(FlexAlign.Center).alignItems(HorizontalAlign.Center)
         }
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -43,7 +43,7 @@ struct QrCodeSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row(){
             Text('value')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -61,29 +61,31 @@ struct QrCodeSample {
               {
                 value: 'hello world',
                 action: () => {
-                  this.value = "hello world"
+                  this.value = 'hello world'
                 }
               },
               {
                 value: 'just do it',
                 action: () => {
-                  this.value = "just do it"
+                  this.value = 'just do it'
                 }
               },
               {
                 value: 'to be No.1',
                 action: () => {
-                  this.value = "to be No.1"
+                  this.value = 'to be No.1'
                 }
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row(){
             Text('color')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -93,6 +95,8 @@ struct QrCodeSample {
               GetColor({ colorVal: $setColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
@@ -104,6 +108,7 @@ struct QrCodeSample {
       .margin({ top: 24 })
     }
     .height('100%')
+    .alignItems(HorizontalAlign.Center)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 20 })
   }

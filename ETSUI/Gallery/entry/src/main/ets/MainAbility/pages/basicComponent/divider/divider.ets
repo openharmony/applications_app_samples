@@ -12,19 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct DividerSample {
   @State list: number[] = [1, 2, 3, 4, 5, 6, 7, 8]
   @State title: string[] = ['控制台', '备案', '工单', '产品分类', '联系我们']
-  @State phoneParams: object[] = [{ type: '网络类型', value: '双模5G' }, { type: '屏幕尺寸', value: '8英寸' }, {
-    type: '电池容量',
-    value: '4500mAh'
-  }, { type: '拍照像素', value: '4800万像素' },
-                                  { type: '65w', value: '充电功率' }]
+  @State phoneParams: object[] =
+    [
+      { type: '网络类型', value: '双模5G' }, { type: '屏幕尺寸', value: '8英寸' },
+      { type: '电池容量', value: '4500mAh' }, { type: '拍照像素', value: '4800万像素' },
+      { type: '65w', value: '充电功率' }
+    ]
   @State getColorVal: string = 'Black'
   @State strokeWidth: number = 1
   @State lineCap: string = 'Butt'
@@ -32,12 +33,12 @@ struct DividerSample {
   build() {
     Column() {
       NavigationBar({ title: 'Divider' })
-      Flex({ direction: FlexDirection.Column }) {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+      Column() {
+        Column() {
           Text('Divider-Vertical')
             .fontWeight(FontWeight.Bold)
             .height('50%')
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+          Row({ space: FlexAlign.SpaceAround }) {
             ForEach(this.title, (item) => {
               Text(item)
                 .fontSize('25fp')
@@ -47,32 +48,34 @@ struct DividerSample {
                 Divider().vertical(true).color('#fff')
               }
             })
-          }.height('50%').backgroundColor('#363636')
+          }.height('50%').alignItems(VerticalAlign.Center).backgroundColor('#363636')
         }
+        .alignItems(HorizontalAlign.Start)
+        .justifyContent(FlexAlign.Start)
         .width('100%')
         .height('13%')
 
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+        Column() {
           Text('Divider-Horizontal').height('10%')
             .fontWeight(FontWeight.Bold)
           Scroll() {
             Column() {
               ForEach(this.list, (item) => {
-                Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
+                Row() {
                   Image($r('app.media.image01')).width('30%')
                   Column() {
                     Row() {
                       Text('HuaWei Mate-x2')
                     }
 
-                    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
+                    Row({ space: FlexAlign.SpaceAround }) {
                       ForEach(this.phoneParams, (item) => {
                         Column() {
-                          Text(item.value).fontSize('18fp')
-                          Text(item.type).fontSize('18fp').fontColor('#999')
+                          Text(item.value).fontSize('12vp')
+                          Text(item.type).fontSize('12vp').fontColor('#999')
                         }
                       })
-                    }.width('100%')
+                    }.width('100%').margin({bottom: 10})
 
                     Row() {
                       Text('￥').fontColor('#f03726').fontSize('20fp')
@@ -80,9 +83,10 @@ struct DividerSample {
                       Text('折后价').fontColor('#f03726').fontSize('25fp').margin({ left: 10 })
                       Text('￥').fontColor('#999').fontSize('30fp').margin({ left: 10 })
                       Text('20000').fontColor('#999').fontSize('25fp')
-                    }.margin({ top: 20 })
+                    }.margin({ top: 10 })
                   }.padding({ top: 20, bottom: 20, left: 10, right: 10 }).alignItems(HorizontalAlign.Start)
                 }
+                .justifyContent(FlexAlign.Start)
                 .width('96%')
                 .backgroundColor('#fff')
                 .height(200)
@@ -100,35 +104,45 @@ struct DividerSample {
             }.backgroundColor('#ccc').padding({ top: 20, bottom: 20 }).width('100%')
           }.width('100%').height('90%')
         }
+        .alignItems(HorizontalAlign.Start)
+        .justifyContent(FlexAlign.Start)
         .width('100%')
-        .height('60%')
+        .height('55%')
 
         Scroll() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('color')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+
+              Blank()
+
               Column() {
                 Row() {
                   GetColor({ colorVal: $getColorVal })
-                }.width(100)
+                }
+                .width(100)
                 .height(24)
               }
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('width')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+
+              Blank()
+
               Column() {
                 Counter() {
                   Text(this.strokeWidth.toString())
@@ -145,18 +159,22 @@ struct DividerSample {
                 .height(24)
               }
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .margin({ top: 8 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('type')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+
+              Blank()
+
               Column() {
                 Text(`${this.lineCap}`)
                   .fontSize('10fp')
@@ -186,15 +204,18 @@ struct DividerSample {
                 },
               ])
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
-          }.width('100%')
-        }.width('100%')
-        .height('37%')
-        .margin({ top: 24 })
+          }
+          .margin({top: 10})
+          .width('100%')
+          .height('40%')
+        }
+        .width('100%')
       }
       .flexGrow(1)
     }

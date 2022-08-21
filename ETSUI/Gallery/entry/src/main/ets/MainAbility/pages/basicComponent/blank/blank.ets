@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct BlankSample {
-  @State blankColor: string= '#eee'
-  @State blankMin: number= 100
+  @State blankColor: string = '#eee'
+  @State blankMin: number = 100
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Blank' })
 
       Column() {
@@ -54,23 +54,27 @@ struct BlankSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('color')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
               .opacity(0.5)
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $blankColor })
             }.width(48)
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row({ space: FlexAlign.SpaceBetween }){
               Text('min')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -107,6 +111,8 @@ struct BlankSample {
       }
       .margin({ top: 24 })
     }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '3%', right: '3%' })
     .height('100%')
     .backgroundColor('#F1F3F5')

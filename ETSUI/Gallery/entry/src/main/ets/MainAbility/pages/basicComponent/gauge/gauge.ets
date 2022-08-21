@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -31,7 +31,7 @@ struct GaugeSample {
     Column() {
       NavigationBar({ title: 'Gauge' })
 
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
         Gauge({ value: this.outSetValue, min: this.minVal, max: this.maxVal })
           .startAngle(this.startAngle)
           .endAngle(this.endAngle)
@@ -40,7 +40,9 @@ struct GaugeSample {
           .width('100%')
           .height('80%')
       }
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+      .height('45%')
       .width('100%')
       .padding(18)
       .backgroundColor('#FFFFFF')
@@ -48,12 +50,15 @@ struct GaugeSample {
       Scroll() {
         Column() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('min')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+
+              Blank()
+
               Column() {
                 Counter() {
                   Text(this.minVal.toString())
@@ -71,16 +76,20 @@ struct GaugeSample {
               }
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('max')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+
+              Blank()
+
               Column() {
                 Counter() {
                   Text(this.maxVal.toString())
@@ -99,13 +108,14 @@ struct GaugeSample {
               }
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+            Column() {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('value')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -141,8 +151,9 @@ struct GaugeSample {
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+
+            Column() {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('startAngle:')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -178,8 +189,8 @@ struct GaugeSample {
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+            Column() {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('endAngle')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -214,8 +225,8 @@ struct GaugeSample {
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+            Column() {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('width')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -253,11 +264,7 @@ struct GaugeSample {
           Column() {
 
             Column() {
-              Flex({
-                direction: FlexDirection.Row,
-                justifyContent: FlexAlign.SpaceBetween,
-                alignItems: ItemAlign.Center
-              }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('Color')
                   .fontColor('#182431')
                   .opacity(0.5)
@@ -277,11 +284,12 @@ struct GaugeSample {
                   this.colorList.push([rgb, 1])
                 })
               }
+              .alignItems(VerticalAlign.Center)
               .width('100%')
               .height(24)
 
               Divider().color('#f2f2f2').margin({ top: 6, bottom: 6 })
-              //show colorlist
+              // show colorlist
               Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap }) {
                 ForEach(this.colorList, (item, index) => {
                   Button() {
@@ -334,7 +342,7 @@ struct GaugeSample {
         }
         .width('100%')
       }
-      .height('35%')
+      .height('40%')
       .margin({ top: 24 })
     }
     .height('100%')

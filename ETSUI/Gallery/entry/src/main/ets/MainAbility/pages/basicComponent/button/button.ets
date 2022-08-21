@@ -13,24 +13,20 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct ButtonSample {
-  @State showType: string= 'Capsule'
+  @State showType: string = 'Capsule'
   @State isStateEffect: boolean = true
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Button' })
 
       Column() {
-        Flex({
-          direction: FlexDirection.Column,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.SpaceAround
-        }) {
+        Column({ space: FlexAlign.SpaceAround }) {
           if (this.showType == 'Circle') {
             Button({ type: ButtonType.Circle, stateEffect: this.isStateEffect }) {
               Image($r('app.media.ic_public_arrow_left')).width(60).height(60)
@@ -70,8 +66,6 @@ struct ButtonSample {
             .backgroundColor(0x317aff)
             .width('40%')
             .height('20%')
-
-
             .onClick((event: ClickEvent) => {
               AlertDialog.show({ message: 'The login is successful' })
             })
@@ -89,18 +83,22 @@ struct ButtonSample {
 
           }
         }
+        .alignItems(HorizontalAlign.Center)
         .width('100%')
         .constraintSize({ minHeight: 218, maxHeight: 402 })
         .padding({ left: 12, right: 12, top: 22, bottom: 22 })
         .backgroundColor('#FFB6C1')
 
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('type')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.showType}`)
                 .width('50%')
@@ -129,19 +127,23 @@ struct ButtonSample {
                   }
                 ])
             }
-
           }
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('stateEffect')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.isStateEffect })
               .selectedColor('#007DFF ')
               .switchPointColor(0xe5ffffff)
@@ -150,6 +152,7 @@ struct ButtonSample {
                 console.log(`${this.isStateEffect}`)
               })
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
@@ -159,6 +162,8 @@ struct ButtonSample {
         .margin({ top: 24 })
       }
     }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '3%', right: '3%', bottom: 10 })
     .height('100%')
     .backgroundColor('#F1F3F5')

@@ -13,40 +13,40 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct TextInputSample {
-  @State inputType: string = "Normal"
-  @State placeholderColor: string = "rgba(0,0,0,1)";
+  @State inputType: string = 'Normal'
+  @State placeholderColor: string = 'rgba(0,0,0,1)';
   @State placeholderfontSize: number = 20;
   @State placeholderfontWeight: number = 200;
-  @State placeholderfontFamily: string = "Microsoft YaHei";
-  @State placeholderfontStyle: string = "Normal";
-  @State enterKeyType: string = "Done";
-  @State caretColor: string = "rgba(0,0,0,1)";
+  @State placeholderfontFamily: string = 'Microsoft YaHei';
+  @State placeholderfontStyle: string = 'Normal';
+  @State enterKeyType: string = 'Done';
+  @State caretColor: string = 'rgba(0,0,0,1)';
   @State maxLength: number = 10;
-  @State bgColor: string = "#E6E6FA";
-  @State textString: string = "";
+  @State bgColor: string = '#E6E6FA';
+  @State textString: string = '';
 
   build() {
-
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-
+    Column() {
       NavigationBar({ title: 'TextInput' })
 
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Text('文本显示框')
             .fontSize(24)
             .margin({ bottom: 30 })
-            .width("100%")
+            .width('100%')
             .textAlign(TextAlign.Center)
           Text(this.textString)
-            .fontSize(18).width("100%").textAlign(TextAlign.Start)
+            .fontSize(18).width('100%').textAlign(TextAlign.Start)
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
         .width('100%')
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -55,17 +55,16 @@ struct TextInputSample {
 
       Text('textInput输入框')
         .width('100%')
-        .height("4%")
+        .height('4%')
         .fontSize(16)
-        .fontColor("#111")
+        .fontColor('#111')
         .padding({ left: '3%', right: '3%' })
         .margin({ top: 8, bottom: 8 })
 
-
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         TextInput({ placeholder: 'input your word textInput' })
-          .width("100%")
-          .height("100%")
+          .width('100%')
+          .height('100%')
           .type(InputType[this.inputType])
           .placeholderColor(this.placeholderColor)
           .placeholderFont({
@@ -81,18 +80,20 @@ struct TextInputSample {
             this.textString = value;
           })
           .onSubmit((enterKey) => {
-            console.log("textInput1")
+            console.log('textInput1')
           })
           .onEditChanged((isEditing) => {
-            console.log("textInput2")
+            console.log('textInput2')
           })
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .height(55)
       .padding({ right: 10 })
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('inputType')
               .fontSize(16)
               .fontColor('#182431')
@@ -108,35 +109,38 @@ struct TextInputSample {
               {
                 value: 'Normal',
                 action: () => {
-                  this.inputType = "Normal"
+                  this.inputType = 'Normal'
                 },
               },
               {
                 value: 'Password',
                 action: () => {
-                  this.inputType = "Password"
+                  this.inputType = 'Password'
                 },
               },
               {
                 value: 'Email',
                 action: () => {
-                  this.inputType = "Email"
+                  this.inputType = 'Email'
                 },
               },
               {
                 value: 'Number',
                 action: () => {
-                  this.inputType = "Number"
+                  this.inputType = 'Number'
                 },
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('placeholderColor')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -146,14 +150,17 @@ struct TextInputSample {
               GetColor({ colorVal: $placeholderColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Text("placeholderfontSize")
+          Row() {
+            Text('placeholderfontSize')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
@@ -179,16 +186,19 @@ struct TextInputSample {
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
-            }.width("48%")
+            }.width('48%')
           }
+          .justifyContent(FlexAlign.Start)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Text("placeholderfontWeight")
+          Row() {
+            Text('placeholderfontWeight')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
@@ -214,15 +224,18 @@ struct TextInputSample {
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
-            }.width("41%")
+            }.width('41%')
           }
+          .justifyContent(FlexAlign.Start)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('placeholderfontFamily')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -238,36 +251,39 @@ struct TextInputSample {
               {
                 value: 'Microsoft YaHei',
                 action: () => {
-                  this.placeholderfontFamily = "Microsoft YaHei"
+                  this.placeholderfontFamily = 'Microsoft YaHei'
                 }
               },
               {
                 value: 'FangSong',
                 action: () => {
-                  this.placeholderfontFamily = "FangSong"
+                  this.placeholderfontFamily = 'FangSong'
                 }
               },
               {
                 value: 'SimHei',
                 action: () => {
-                  this.placeholderfontFamily = "SimHei"
+                  this.placeholderfontFamily = 'SimHei'
                 }
               },
               {
                 value: 'KaiTi',
                 action: () => {
-                  this.placeholderfontFamily = "KaiTi"
+                  this.placeholderfontFamily = 'KaiTi'
                 }
               }
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('placeholderfontStyle')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -283,24 +299,27 @@ struct TextInputSample {
               {
                 value: 'Normal',
                 action: () => {
-                  this.placeholderfontStyle = "Normal"
+                  this.placeholderfontStyle = 'Normal'
                 }
               },
               {
                 value: 'Italic',
                 action: () => {
-                  this.placeholderfontStyle = "Italic"
+                  this.placeholderfontStyle = 'Italic'
                 }
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('enterKeyType')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -316,42 +335,45 @@ struct TextInputSample {
               {
                 value: 'Done',
                 action: () => {
-                  this.enterKeyType = "Done"
+                  this.enterKeyType = 'Done'
                 },
               },
               {
                 value: 'Go',
                 action: () => {
-                  this.enterKeyType = "Go"
+                  this.enterKeyType = 'Go'
                 },
               },
               {
                 value: 'Search',
                 action: () => {
-                  this.enterKeyType = "Search"
+                  this.enterKeyType = 'Search'
                 },
               },
               {
                 value: 'Send',
                 action: () => {
-                  this.enterKeyType = "Send"
+                  this.enterKeyType = 'Send'
                 },
               },
               {
                 value: 'Next',
                 action: () => {
-                  this.enterKeyType = "Next"
+                  this.enterKeyType = 'Next'
                 },
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('caretColor')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -362,27 +384,30 @@ struct TextInputSample {
             }.width(48)
 
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('maxLength')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
             Column() {
-              Text("" + this.maxLength)
+              Text('' + this.maxLength)
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
             }
             .bindMenu([
               {
-                value: "10",
+                value: '10',
                 action: () => {
                   this.maxLength = 10
                 },
@@ -402,19 +427,23 @@ struct TextInputSample {
               }
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
         }
         .width('97%')
-        .margin({ right: "3%", bottom: 5 })
+        .margin({ right: '3%', bottom: 5 })
       }
       .width('100%')
       .height('50%')
       .margin({ bottom: 60 })
     }
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '3%', right: '3%' })
     .height('100%')
     .backgroundColor('#F1F3F5')

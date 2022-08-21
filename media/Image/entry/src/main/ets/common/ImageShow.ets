@@ -33,7 +33,7 @@ export struct ImageShow {
 
   build() {
     Column() {
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
         Image(this.pixel)
           .objectFit(ImageFit.Fill)
           .margin(16)

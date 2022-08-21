@@ -13,83 +13,75 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct TextSpanSample {
-  @State textAlign: string = "Center";
-  @State textOverflow: string = "None";
+  @State textAlign: string = 'Center';
+  @State textOverflow: string = 'None';
   @State maxLines: number = 20;
   @State lineHeight: number = 25;
-  @State decoration: string = "None";
-  @State decorationLineColor: string = "rgba(0,0,0,1)";
+  @State decoration: string = 'None';
+  @State decorationLineColor: string = 'rgba(0,0,0,1)';
   @State baselineOffset: number = 10;
-  @State textCase: string = "Normal";
+  @State textCase: string = 'Normal';
   @State fontSize: number = 20;
   @State fontWeight: number = 200;
-  @State fontColor: string = "rgba(0,0,0,1)";
-  @State fontstyle: string = "Normal";
-  @State fontFamily: string = "Microsoft YaHei";
+  @State fontColor: string = 'rgba(0,0,0,1)';
+  @State fontstyle: string = 'Normal';
+  @State fontFamily: string = 'Microsoft YaHei';
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
-
+    Column() {
       NavigationBar({ title: 'Text' })
 
-      Scroll() {
-        Flex({ justifyContent: FlexAlign.Start, direction: FlexDirection.Column }) {
-          Text("我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。"
-          + "我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。" +
-          "我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。")
-            .width("100%")
-            .height("60%")
-            .textAlign(TextAlign[this.textAlign])
-            .textOverflow({ overflow: TextOverflow[this.textOverflow] })
-            .maxLines(this.maxLines)
-            .lineHeight(this.lineHeight)
-            .decoration({ type: TextDecorationType[this.decoration], color: this.decorationLineColor })
-            .fontSize(this.fontSize)
-            .fontWeight(this.fontWeight)
-            .fontColor(this.fontColor)
-            .fontStyle(FontStyle[this.fontstyle])
-            .fontFamily(this.fontFamily)
-            .baselineOffset(this.baselineOffset)
+      Column() {
+        Text('我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。'
+        + '我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。' +
+        '我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。我能吞下玻璃而不伤身体。')
+          .width('100%')
+          .textAlign(TextAlign[this.textAlign])
+          .textOverflow({ overflow: TextOverflow[this.textOverflow] })
+          .maxLines(this.maxLines)
+          .lineHeight(this.lineHeight)
+          .decoration({ type: TextDecorationType[this.decoration], color: this.decorationLineColor })
+          .fontSize(this.fontSize)
+          .fontWeight(this.fontWeight)
+          .fontColor(this.fontColor)
+          .fontStyle(FontStyle[this.fontstyle])
+          .fontFamily(this.fontFamily)
+          .baselineOffset(this.baselineOffset)
 
-          Text("I can eat glass, it doesn't hurt me.")
-            .textAlign(TextAlign[this.textAlign])
-            .textOverflow({ overflow: TextOverflow[this.textOverflow] })
-            .maxLines(this.maxLines)
-            .lineHeight(this.lineHeight)
-            .decoration({ type: TextDecorationType[this.decoration], color: this.decorationLineColor })
-            .fontSize(this.fontSize)
-            .fontWeight(this.fontWeight)
-            .fontColor(this.fontColor)
-            .fontStyle(FontStyle[this.fontstyle])
-            .fontFamily(this.fontFamily)
-            .textCase(TextCase[this.textCase])
-            .baselineOffset(this.baselineOffset)
-            .margin({ top: 20 })
-        }
-        .height("100%")
+        Text(`I can eat glass, it doesn't hurt me.`)
+          .textAlign(TextAlign[this.textAlign])
+          .textOverflow({ overflow: TextOverflow[this.textOverflow] })
+          .maxLines(this.maxLines)
+          .lineHeight(this.lineHeight)
+          .decoration({ type: TextDecorationType[this.decoration], color: this.decorationLineColor })
+          .fontSize(this.fontSize)
+          .fontWeight(this.fontWeight)
+          .fontColor(this.fontColor)
+          .fontStyle(FontStyle[this.fontstyle])
+          .fontFamily(this.fontFamily)
+          .textCase(TextCase[this.textCase])
+          .baselineOffset(this.baselineOffset)
+          .margin({ top: 20 })
       }
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
-      .padding({ left: 12, right: 12, top: 22, bottom: 22 })
+      .justifyContent(FlexAlign.Start)
       .backgroundColor('#E6E6FA')
 
       Scroll() {
         Column() {
-
           Text('Text组件属性')
             .fontSize(20)
-            .width("100%")
+            .width('100%')
             .padding({ left: '3%', right: '3%' })
-            .border({ width: 1, color: "#eee", radius: 10 })
+            .border({ width: 1, color: '#eee', radius: 10 })
             .margin({ top: 40, bottom: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-
+          Row() {
             Text('textAlign')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -105,30 +97,32 @@ struct TextSpanSample {
               {
                 value: 'Start',
                 action: () => {
-                  this.textAlign = "Start"
+                  this.textAlign = 'Start'
                 }
               },
               {
                 value: 'Center',
                 action: () => {
-                  this.textAlign = "Center"
+                  this.textAlign = 'Center'
                 }
               },
               {
                 value: 'End',
                 action: () => {
-                  this.textAlign = "End"
+                  this.textAlign = 'End'
                 }
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('textOverflow')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -144,40 +138,42 @@ struct TextSpanSample {
               {
                 value: 'None',
                 action: () => {
-                  this.textOverflow = "None"
+                  this.textOverflow = 'None'
                   this.maxLines = 3
                 }
               },
               {
                 value: 'Clip',
                 action: () => {
-                  this.textOverflow = "Clip"
+                  this.textOverflow = 'Clip'
                   this.maxLines = 1
                 }
               },
               {
                 value: 'Ellipsis',
                 action: () => {
-                  this.textOverflow = "Ellipsis"
+                  this.textOverflow = 'Ellipsis'
                   this.maxLines = 1
                 }
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('maxLines')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
             Column() {
-              Text("" + this.maxLines)
+              Text('' + this.maxLines)
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
@@ -209,13 +205,15 @@ struct TextSpanSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('lineHeight')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -254,13 +252,15 @@ struct TextSpanSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('textDecoration')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -276,36 +276,38 @@ struct TextSpanSample {
               {
                 value: 'Overline',
                 action: () => {
-                  this.decoration = "Overline"
+                  this.decoration = 'Overline'
                 }
               },
               {
                 value: 'LineThrough',
                 action: () => {
-                  this.decoration = "LineThrough"
+                  this.decoration = 'LineThrough'
                 }
               },
               {
                 value: 'Underline',
                 action: () => {
-                  this.decoration = "Underline"
+                  this.decoration = 'Underline'
                 },
               },
               {
                 value: 'None',
                 action: () => {
-                  this.decoration = "None"
+                  this.decoration = 'None'
                 },
               }
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('lineColor')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -315,13 +317,15 @@ struct TextSpanSample {
               GetColor({ colorVal: $decorationLineColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('textCase')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -337,30 +341,32 @@ struct TextSpanSample {
               {
                 value: 'Normal',
                 action: () => {
-                  this.textCase = "Normal"
+                  this.textCase = 'Normal'
                 }
               },
               {
                 value: 'LowerCase',
                 action: () => {
-                  this.textCase = "LowerCase"
+                  this.textCase = 'LowerCase'
                 }
               },
               {
                 value: 'UpperCase',
                 action: () => {
-                  this.textCase = "UpperCase"
+                  this.textCase = 'UpperCase'
                 }
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('baselineOffset')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -387,22 +393,24 @@ struct TextSpanSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
 
           Text('文本通用属性')
             .fontSize(20)
-            .width("100%")
+            .width('100%')
             .padding({ left: '3%', right: '3%' })
-            .border({ width: 1, color: "#eee", radius: 10 })
+            .border({ width: 1, color: '#eee', radius: 10 })
             .margin({ top: 24, bottom: 10 })
 
-          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Text("fontSize")
+          Row() {
+            Text('fontSize')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
@@ -424,15 +432,17 @@ struct TextSpanSample {
                   this.fontSize = value
                 })
               Text(this.fontSize.toFixed(0)).fontSize(16)
-            }.width("70%")
+            }.width('70%')
           }
+          .justifyContent(FlexAlign.Start)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('fontWeight')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -471,13 +481,15 @@ struct TextSpanSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('fontColor')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -487,13 +499,15 @@ struct TextSpanSample {
               GetColor({ colorVal: $fontColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('fontStyle')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -509,24 +523,26 @@ struct TextSpanSample {
               {
                 value: 'Normal',
                 action: () => {
-                  this.fontstyle = "Normal"
+                  this.fontstyle = 'Normal'
                 }
               },
               {
                 value: 'Italic',
                 action: () => {
-                  this.fontstyle = "Italic"
+                  this.fontstyle = 'Italic'
                 }
               },
             ])
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('fontFamily')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -542,44 +558,45 @@ struct TextSpanSample {
               {
                 value: 'Microsoft YaHei',
                 action: () => {
-                  this.fontFamily = "Microsoft YaHei"
+                  this.fontFamily = 'Microsoft YaHei'
                 }
               },
               {
                 value: 'FangSong',
                 action: () => {
-                  this.fontFamily = "FangSong"
+                  this.fontFamily = 'FangSong'
                 }
               },
               {
                 value: 'SimHei',
                 action: () => {
-                  this.fontFamily = "SimHei"
+                  this.fontFamily = 'SimHei'
                 }
               },
               {
                 value: 'KaiTi',
                 action: () => {
-                  this.fontFamily = "KaiTi"
+                  this.fontFamily = 'KaiTi'
                 }
               }
             ])
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8, bottom: 13 })
-          .height("15%")
         }
-        .width('97%')
-        .margin({ right: "3%", bottom: 5 })
       }
-      .width('100%')
-      .height('60%')
-      .margin({ top: 24 })
+      .width('97%')
+      .layoutWeight(1)
+      .margin({ right: '3%', top: 10, bottom: 20 })
     }
-    .padding({ left: '3%', right: '3%', bottom: 10 })
     .height('100%')
+    .margin({ bottom: 20 })
+    .padding({ left: '3%', right: '3%' })
     .backgroundColor('#F1F3F5')
   }
 

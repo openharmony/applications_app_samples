@@ -40,7 +40,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Show({ select: 4 }) //  选择第四种转场特效
       TitleBar()
       this.ButtonItem($r('app.string.enter_animation'), 'pages/Home')

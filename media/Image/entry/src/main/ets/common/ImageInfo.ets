@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-import { ImageModel } from '../model/ImageModel'
+import { ImageModel, MyDataSource } from '../model/ImageModel'
 
 @CustomDialog
 export struct ImageInfo {
-  @State showDatas: Array<{
-    name: Resource,
-    value: string
-  }> = []
+  @State showDatas: MyDataSource = new MyDataSource()
   private uri: string = ''
   private flag: number = 0
   private controller?: CustomDialogController
@@ -35,17 +32,19 @@ export struct ImageInfo {
     let imageWidth = result[1]
     let path = fileAsset.relativePath + name
     let size = `${(fileAsset.size / (1024 * 1024)).toFixed(2)}MB`
-    this.showDatas = [
-      { name: $r('app.string.name'), value: name },
-      { name: $r('app.string.size'), value: size },
-      { name: $r('app.string.path'), value: path },
-      { name: $r('app.string.resolution'), value: `${imageWidth}x${imageHeight}` }
-    ]
+    this.showDatas.replaceData(
+      [
+        { name: $r('app.string.name'), value: name },
+        { name: $r('app.string.size'), value: size },
+        { name: $r('app.string.path'), value: path },
+        { name: $r('app.string.resolution'), value: `${imageWidth}x${imageHeight}` }
+      ]
+    )
   }
 
   build() {
     Column() {
-      ForEach(this.showDatas, item => {
+      LazyForEach(this.showDatas, item => {
         Row() {
           Text(item.name)
             .margin(10)

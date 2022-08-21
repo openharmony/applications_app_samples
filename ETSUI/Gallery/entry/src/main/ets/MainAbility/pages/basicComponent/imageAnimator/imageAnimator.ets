@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -26,10 +26,10 @@ struct ImageAnimatorSample {
   @State iterations: number = 1
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: 'ImageAnimator' })
       Column() {
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Row() {
           ImageAnimator()
             .images([
               {
@@ -136,7 +136,7 @@ struct ImageAnimatorSample {
             .onFinish(() => {
               console.info('Finish')
             })
-        }.width('100%')
+        }.width('100%').justifyContent(FlexAlign.Center).alignItems(VerticalAlign.Center)
         .margin({ left: '10%' })
       }
       .width('100%')
@@ -147,12 +147,15 @@ struct ImageAnimatorSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('state')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.state == 0 ? 'Initial' : this.state == 1 ? 'Running' :
                                                         this.state == 2 ? 'Paused' : 'Stopped'}`)
@@ -189,18 +192,22 @@ struct ImageAnimatorSample {
               },
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('reverse')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.reverse}`)
                 .fontSize('16fp')
@@ -225,17 +232,21 @@ struct ImageAnimatorSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('fixedSize')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.fixedSize}`)
                 .fontSize('16fp')
@@ -260,17 +271,21 @@ struct ImageAnimatorSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('fillMode')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.fillMode == 0 ? 'None' : 'Forwards'}`)
                 .fontSize('16fp')
@@ -295,17 +310,21 @@ struct ImageAnimatorSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('iterations')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.iterations}`)
                 .fontSize('16fp')
@@ -330,6 +349,7 @@ struct ImageAnimatorSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
@@ -338,6 +358,9 @@ struct ImageAnimatorSample {
       }
     }
     .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

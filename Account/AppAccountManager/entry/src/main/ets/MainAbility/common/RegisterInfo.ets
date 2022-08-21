@@ -18,16 +18,63 @@ import Logger from '../model/Logger'
 import { AccountData } from '../model/AccountData'
 import { AccountModel } from '../model/AccountModel'
 
-const TAG: string = '[RegisterInfo]'
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
 
-@Component
-export struct RegisterInfo {
-  @State passWord: string = ''
-  @State username: string = ''
-  @State emailInfo: string = ''
-  @State signature: string = ''
-  @State confirmPassword: string = ''
-  @State dataSet: Array<{
+  public totalCount() {
+    return 0
+  }
+
+  public getData(index: number) {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload() {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Array<{
     text: Resource,
     inputType: InputType,
     length: number,
@@ -76,6 +123,40 @@ export struct RegisterInfo {
       promptText: $r('app.string.prompt_confirm_password')
     }
   ]
+
+  public totalCount() {
+    return this.dataArray.length
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number) {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(index: number) {
+    this.dataArray.push()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  public replaceData(result: any[]) {
+    this.dataArray = result
+  }
+}
+
+const TAG: string = '[RegisterInfo]'
+
+@Component
+export struct RegisterInfo {
+  @State passWord: string = ''
+  @State username: string = ''
+  @State emailInfo: string = ''
+  @State signature: string = ''
+  @State confirmPassword: string = ''
+  @State dataSet: MyDataSource = new MyDataSource()
   private bundleName: string = ''
   private storage: AccountData = AccountData.getInstance()
   private accountModel: AccountModel = new AccountModel()
@@ -96,7 +177,7 @@ export struct RegisterInfo {
       }
       .margin(5)
 
-      ForEach(this.dataSet, item => {
+      LazyForEach(this.dataSet, item => {
         Row() {
           Text(item.text)
             .margin(10)
@@ -154,15 +235,6 @@ export struct RegisterInfo {
         .fontColor(Color.White)
         .type(ButtonType.Capsule)
         .onClick(async () => {
-          if (this.username !== '') {
-            await this.accountModel.addAccount(`${this.username}_${this.bundleName}`)
-          }
-          if (this.emailInfo !== '') {
-            await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `email_${this.bundleName}`, this.emailInfo)
-          }
-          if (this.signature !== '') {
-            await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
-          }
           let res = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
           let result = await this.storage.hasStorageValue(this.username, this.bundleName)
           Logger.info(TAG, `This result is ${result}`)
@@ -251,6 +323,15 @@ export struct RegisterInfo {
                 }
               })
           } else {
+            if (this.username !== '') {
+              await this.accountModel.addAccount(`${this.username}_${this.bundleName}`)
+            }
+            if (this.emailInfo !== '') {
+              await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `email_${this.bundleName}`, this.emailInfo)
+            }
+            if (this.signature !== '') {
+              await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
+            }
             await this.accountModel.setAssociatedData(`${this.username}_${this.bundleName}`, `key_${this.bundleName}`, this.passWord)
             await this.storage.putStorageValue(this.username, this.passWord, this.bundleName)
             await this.storage.putStorageValue(this.bundleName, 'true', `${this.username}_${this.bundleName}`)
