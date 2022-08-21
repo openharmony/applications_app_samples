@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Observed
 class ListInfo {
   public id: number = 0;
   public value: string = '';
   public isSolve: boolean = false
-
   constructor(id: number, value: string, isSolve: boolean) {
     this.id = id;
     this.value = value;
@@ -37,8 +36,8 @@ struct ItemTemplate {
 
   build() {
     Row() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Flex({ alignItems: ItemAlign.Center }) {
+      Row({ space: FlexAlign.SpaceBetween }) {
+        Row() {
           Text('' + this.listInfo.value).fontSize(24).padding({ left: '3.3%', right: '3.3%', top: 8, bottom: 8 })
         }
         .layoutWeight(1)
@@ -49,6 +48,7 @@ struct ItemTemplate {
           })
         })
       }
+      .alignItems(VerticalAlign.Center)
       .translate({ x: this.showButton && this.nowId == this.listInfo.id ? this.translateX : 0 })
       .height(72)
       .borderRadius(24)
@@ -64,14 +64,13 @@ struct ItemTemplate {
           animateTo({ duration: 300, curve: Curve.Friction }, () => {
             this.showButton = true;
             this.translateX = -120
-
           })
         })
       )
 
       if (this.showButton && this.nowId == this.listInfo.id) {
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
-          Flex({ justifyContent: FlexAlign.Center }) {
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Row() {
             Image(this.listInfo.isSolve ? $r('app.media.ic_public_edit_filled') : $r('app.media.ic_public_deselect_all'))
               .width(30)
               .height(30)
@@ -88,17 +87,19 @@ struct ItemTemplate {
                 this.showButton = false
               })
           }
+          .justifyContent(FlexAlign.Center)
           .borderRadius(50)
           .backgroundColor('#1a98ec')
           .width(50)
           .height(50)
 
-          Flex({ justifyContent: FlexAlign.Center }) {
+          Row() {
             Image($r('app.media.ic_public_delete_filled'))
               .width(30)
               .height(30)
               .alignSelf(ItemAlign.Center)
           }
+          .justifyContent(FlexAlign.Center)
           .onClick(() => {
             animateTo({ duration: 300, curve: Curve.Friction }, () => {
               this.list.splice(this.list.findIndex(item => item.id === this.nowId), 1)
@@ -117,7 +118,6 @@ struct ItemTemplate {
         .borderRadius(10)
       }
     }
-
   }
 }
 
@@ -139,7 +139,7 @@ struct CustomDialogExample {
         })
         .height(200)
         .margin(20)
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row({ space: FlexAlign.SpaceBetween }) {
         Button('取消')
           .onClick(() => {
             this.controller.close()
@@ -150,7 +150,6 @@ struct CustomDialogExample {
             this.confirm(this.text)
             this.text = ''
           }).backgroundColor(0xffffff).fontColor(Color.Red)
-
       }
     }.margin({ bottom: 10 })
   }
@@ -187,9 +186,9 @@ struct ListSample {
   @State nowId: number = 0
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'List' })
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Column({ space: FlexAlign.SpaceBetween }) {
         List({ space: 12 }) {
           ListItem() {
             Text('未完成')
@@ -246,12 +245,14 @@ struct ListSample {
             this.dialogController.open()
           })
           .margin({ bottom: 12 })
-      }.height('100%')
+      }
+      .height('100%')
+      .alignItems(HorizontalAlign.Center)
     }
     .height('100%')
+    .alignItems(HorizontalAlign.Center)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
-
   }
 
   pageTransition() {

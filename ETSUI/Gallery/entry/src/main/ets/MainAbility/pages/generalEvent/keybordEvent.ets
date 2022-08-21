@@ -13,28 +13,28 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
 struct KeybordSample {
-  @State keybordMessage: string= ""
-  @State borderColorArray: string[]= ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",]
+  @State keybordMessage: string= ''
+  @State borderColorArray: string[]= ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF',]
 
   build() {
     Column() {
       NavigationBar({ title: '按键事件' })
       Column() {
-        Text("请使用键盘输入")
+        Text('请使用键盘输入')
           .focusable(false)
-          .width("90%")
+          .width('90%')
           .height(150)
           .fontSize(30)
           .textAlign(TextAlign.Center)
           .fontWeight(FontWeight.Medium)
         Text(this.keybordMessage)
           .focusable(false)
-          .width("90%")
+          .width('90%')
           .height(100)
           .fontSize(20)
           .textAlign(TextAlign.Center)
@@ -44,22 +44,22 @@ struct KeybordSample {
           .borderRadius(12)
           .onKeyEvent((event: KeyEvent) => {
             if (event.keyCode == 2012) {
-              this.borderColorArray = ["#F89806", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",]
-              this.keybordMessage = "上"
+              this.borderColorArray = ['#F89806', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF',]
+              this.keybordMessage = '上'
             } else if (event.keyCode == 2013) {
-              this.borderColorArray = ["#FFFFFF", "#F89806", "#FFFFFF", "#FFFFFF", "#FFFFFF",]
-              this.keybordMessage = "下"
+              this.borderColorArray = ['#FFFFFF', '#F89806', '#FFFFFF', '#FFFFFF', '#FFFFFF',]
+              this.keybordMessage = '下'
             } else if (event.keyCode == 2014) {
-              this.borderColorArray = ["#FFFFFF", "#FFFFFF", "#F89806", "#FFFFFF", "#FFFFFF",]
-              this.keybordMessage = "左"
+              this.borderColorArray = ['#FFFFFF', '#FFFFFF', '#F89806', '#FFFFFF', '#FFFFFF',]
+              this.keybordMessage = '左'
             }
             else if (event.keyCode == 2015) {
-              this.borderColorArray = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#F89806", "#FFFFFF",]
-              this.keybordMessage = "右"
+              this.borderColorArray = ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#F89806', '#FFFFFF',]
+              this.keybordMessage = '右'
             }
             else {
-              this.borderColorArray = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#F89806",]
-              this.keybordMessage = "确定"
+              this.borderColorArray = ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#F89806',]
+              this.keybordMessage = '确定'
             }
           })
       }
@@ -71,10 +71,10 @@ struct KeybordSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text("上")
+          Row() {
+            Text('上')
               .focusable(false)
-              .width("40%")
+              .width('40%')
               .height(80)
               .fontSize(20)
               .textAlign(TextAlign.Center)
@@ -83,9 +83,10 @@ struct KeybordSample {
               .borderColor(this.borderColorArray[0])
               .borderRadius(12)
 
-            Text("下")
+            Blank()
+            Text('下')
               .focusable(false)
-              .width("40%")
+              .width('40%')
               .height(80)
               .fontSize(20)
               .textAlign(TextAlign.Center)
@@ -94,12 +95,13 @@ struct KeybordSample {
               .borderColor(this.borderColorArray[1])
               .borderRadius(12)
           }
+          .width('100%')
           .margin({ bottom: 22 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text("左")
+          Row() {
+            Text('左')
               .focusable(false)
-              .width("40%")
+              .width('40%')
               .height(80)
               .fontSize(20)
               .textAlign(TextAlign.Center)
@@ -107,10 +109,10 @@ struct KeybordSample {
               .borderWidth(10)
               .borderColor(this.borderColorArray[2])
               .borderRadius(12)
-
-            Text("右")
+            Blank()
+            Text('右')
               .focusable(false)
-              .width("40%")
+              .width('40%')
               .height(80)
               .fontSize(20)
               .textAlign(TextAlign.Center)
@@ -119,11 +121,12 @@ struct KeybordSample {
               .borderColor(this.borderColorArray[3])
               .borderRadius(12)
           }
+          .width('100%')
           .margin({ bottom: 22 })
 
-          Text("确定")
+          Text('确定')
             .focusable(false)
-            .width("60%")
+            .width('60%')
             .height(80)
             .fontSize(20)
             .textAlign(TextAlign.Center)
@@ -133,6 +136,7 @@ struct KeybordSample {
             .borderRadius(12)
         }
       }
+      .height('50%')
       .margin({ top: 24 })
     }
     .height('100%')

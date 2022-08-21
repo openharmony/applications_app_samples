@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component

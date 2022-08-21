@@ -40,7 +40,7 @@ struct PageTitle {
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+    Row({ justifyContent: FlexAlign.SpaceBetween }) {
       Image($r('app.media.Back'))
         .width(21.8)
         .height(19.6)
@@ -86,12 +86,12 @@ struct ContentTable {
   @ObjectLink foodItem: ChangeData
 
   @Builder IngredientItem(title: string, name: string, value: string) {
-    Flex() {
+    Row() {
       Text(title)
         .fontSize(17.4)
         .fontWeight(FontWeight.Bold)
         .layoutWeight(1)
-      Flex({ alignItems: ItemAlign.Center }) {
+      Row({ alignItems: ItemAlign.Center }) {
         Text(name)
           .fontSize(17.4)
           .flexGrow(1)
@@ -103,7 +103,7 @@ struct ContentTable {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
+    Column({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
       this.IngredientItem('Calories', 'Calories', `${this.foodItem.calories}` + 'kcal')
       this.IngredientItem('Nutrition', 'Protein', `${this.foodItem.protein}` + 'g')
       this.IngredientItem(' ', 'Fat', `${this.foodItem.fat}` + 'g')
@@ -125,7 +125,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+      Row({ justifyContent: FlexAlign.SpaceBetween }) {
         Text(`name:`)
           .fontSize(20)
           .lineHeight(30)
@@ -138,7 +138,7 @@ struct CustomDialogExample {
           })
       }.margin({ top: 10, left: 20, right: 20 })
 
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+      Row({justifyContent: FlexAlign.SpaceBetween }) {
         Text(`calories:`)
           .fontSize(20)
           .lineHeight(30)
@@ -149,7 +149,7 @@ struct CustomDialogExample {
           })
       }.margin({ top: 10, left: 20, right: 20 })
 
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+      Row({ justifyContent: FlexAlign.SpaceBetween }) {
         Text(`protein:`)
           .fontSize(20)
           .lineHeight(30)
@@ -162,7 +162,7 @@ struct CustomDialogExample {
           })
       }.margin({ top: 10, left: 20, right: 20 })
 
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+      Row({ justifyContent: FlexAlign.SpaceBetween }) {
         Text(`fat:`)
           .fontSize(20)
           .lineHeight(30)
@@ -175,7 +175,7 @@ struct CustomDialogExample {
           })
       }.margin({ top: 10, left: 20, right: 20 })
 
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+      Row({justifyContent: FlexAlign.SpaceBetween }) {
         Text(`carbohydrates:`)
           .fontSize(20)
           .lineHeight(30)
@@ -188,7 +188,7 @@ struct CustomDialogExample {
           })
       }.margin({ top: 10, left: 20, right: 20 })
 
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+      Row({ justifyContent: FlexAlign.SpaceBetween }) {
         Text(`vitaminC:`)
           .fontSize(20)
           .lineHeight(30)
@@ -201,12 +201,13 @@ struct CustomDialogExample {
           })
       }.margin({ top: 10, left: 20, right: 20 })
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('cancel')
           .onClick(() => {
             this.controller.close()
             this.cancel()
           }).backgroundColor(0xffffff).fontColor(Color.Black).fontSize(20)
+        Blank()
         Button('confirm')
           .onClick(() => {
             this.confirm()

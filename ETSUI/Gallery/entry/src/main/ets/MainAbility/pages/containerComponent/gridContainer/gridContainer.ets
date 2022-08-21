@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 import display from '@ohos.display';
 
 @Observed
@@ -46,20 +46,21 @@ struct GridContainerSample {
   @State indexs: number = 0
   @State typeSpan: string = ''
   @State temp: number = 1
-  @State items: useSizeTypes[] = [
-    new useSizeTypes(1, 1, 1, 1, 1,),
-    new useSizeTypes(2, 1, 1, 1, 1,),
-    new useSizeTypes(3, 1, 1, 1, 1,),
-    new useSizeTypes(4, 1, 1, 1, 1,),
-    new useSizeTypes(5, 1, 1, 1, 1,),
-    new useSizeTypes(6, 1, 1, 1, 1,),
-    new useSizeTypes(7, 1, 1, 1, 1,),
-    new useSizeTypes(8, 1, 1, 1, 1,),
-    new useSizeTypes(9, 1, 1, 1, 1,),
-    new useSizeTypes(10, 1, 1, 1, 1,),
-    new useSizeTypes(11, 1, 1, 1, 1,),
-    new useSizeTypes(12, 1, 1, 1, 1,),
-  ]
+  @State items: useSizeTypes[] =
+    [
+      new useSizeTypes(1, 1, 1, 1, 1,),
+      new useSizeTypes(2, 1, 1, 1, 1,),
+      new useSizeTypes(3, 1, 1, 1, 1,),
+      new useSizeTypes(4, 1, 1, 1, 1,),
+      new useSizeTypes(5, 1, 1, 1, 1,),
+      new useSizeTypes(6, 1, 1, 1, 1,),
+      new useSizeTypes(7, 1, 1, 1, 1,),
+      new useSizeTypes(8, 1, 1, 1, 1,),
+      new useSizeTypes(9, 1, 1, 1, 1,),
+      new useSizeTypes(10, 1, 1, 1, 1,),
+      new useSizeTypes(11, 1, 1, 1, 1,),
+      new useSizeTypes(12, 1, 1, 1, 1,),
+    ]
 
   aboutToAppear(): void{
     display.getDefaultDisplay((err, data) => {
@@ -95,7 +96,7 @@ struct GridContainerSample {
   build() {
     Column() {
       NavigationBar({ title: 'GridContainer' })
-      //上部分显示效果
+      // 上部分显示效果
       Scroll() {
         MyGrid({
           indexs: $indexs,
@@ -110,21 +111,24 @@ struct GridContainerSample {
         })
       }
       .width('100%')
-      .height('40%')
+      .height('30%')
       .padding({ top: 22, bottom: 22 })
       .backgroundColor('#FFFFFF')
       .borderRadius(24)
 
-      //下部分属性、属性值
+      // 下部分属性、属性值
       List() {
         ListItem() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('columnsAuto:')
                 .fontSize(16)
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
+
+              Blank()
+
               Toggle({ type: ToggleType.Switch, isOn: this.isFixedColumns })
                 .selectedColor('#007DFF')
                 .switchPointColor(0xe5ffffff)
@@ -147,56 +151,62 @@ struct GridContainerSample {
                 .height(20)
                 .padding({ top: 0, bottom: 0 })
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
 
-            Divider()
-              .strokeWidth(1)
-              .color(0xeeeeee)
-              .margin(this.isFixedColumns ? { top: 12, bottom: 12 } : 0)
-              .visibility(this.isFixedColumns ? Visibility.Visible : Visibility.None)
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-              Text('columns:')
-                .fontSize(16)
-                .fontWeight(FontWeight.Medium)
-                .fontColor('#182431')
-                .opacity(0.5)
-
-              Text(`${this.columns ? this.columns : 'auto'}`)
-                .fontSize(16)
-                .fontWeight(FontWeight.Medium)
-                .fontColor('#182431')
+            if (this.isFixedColumns) {
+              Divider()
+                .strokeWidth(1)
+                .color(0xeeeeee)
+                .margin(this.isFixedColumns ? { top: 12, bottom: 12 } : 0)
             }
-            .width('100%')
-            .visibility(this.isFixedColumns ? Visibility.Visible : Visibility.None)
 
-            Slider({
-              value: this.columns,
-              min: 0,
-              max: 12,
-              step: 1,
-              style: SliderStyle.OutSet
-            })
-              .blockColor('#FFFFFF')
-              .trackColor('#182431')
-              .selectedColor('#007DFF')
-              .showSteps(true)
-              .showTips(true)
-              .onChange((value: number) => {
-                this.columns = Math.round(value)
-                if (this.columns === 1) {
-                  this.items.forEach(elm => {
-                    elm[this.typeSpan] = 0
-                  })
-                } else {
-                  this.items.forEach(elm => {
-                    elm[this.typeSpan] = 1
-                  })
-                  this.temp = 1
-                }
-                this.initialGutter = this.gutter
-                this.initialMargin = this.margin
+            if (this.isFixedColumns) {
+              Row({ space: FlexAlign.SpaceBetween }) {
+                Text('columns:')
+                  .fontSize(16)
+                  .fontWeight(FontWeight.Medium)
+                  .fontColor('#182431')
+                  .opacity(0.5)
+
+                Text(`${this.columns ? this.columns : 'auto'}`)
+                  .fontSize(16)
+                  .fontWeight(FontWeight.Medium)
+                  .fontColor('#182431')
+              }
+              .width('100%')
+              .alignItems(VerticalAlign.Center)
+            }
+
+            if (this.isFixedColumns) {
+              Slider({
+                value: this.columns,
+                min: 0,
+                max: 12,
+                step: 1,
+                style: SliderStyle.OutSet
               })
-              .visibility(this.isFixedColumns ? Visibility.Visible : Visibility.None)
+                .blockColor('#FFFFFF')
+                .trackColor('#182431')
+                .selectedColor('#007DFF')
+                .showSteps(true)
+                .showTips(true)
+                .onChange((value: number) => {
+                  this.columns = Math.round(value)
+                  if (this.columns === 1) {
+                    this.items.forEach(elm => {
+                      elm[this.typeSpan] = 0
+                    })
+                  } else {
+                    this.items.forEach(elm => {
+                      elm[this.typeSpan] = 1
+                    })
+                    this.temp = 1
+                  }
+                  this.initialGutter = this.gutter
+                  this.initialMargin = this.margin
+                })
+            }
           }
           .padding('3%')
           .borderRadius(24)
@@ -206,7 +216,7 @@ struct GridContainerSample {
 
         ListItem() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('indexColumns:')
                 .fontSize(16)
                 .fontWeight(FontWeight.Medium)
@@ -306,11 +316,12 @@ struct GridContainerSample {
                 },
               ])
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
 
             Divider().strokeWidth(1).color(0xeeeeee).margin({ top: '3%' })
 
-            Flex({ justifyContent: FlexAlign.Center }) {
+            Row() {
               Slider({
                 value: this.temp,
                 min: 0,
@@ -340,6 +351,7 @@ struct GridContainerSample {
                   this.initialMargin = this.margin
                 })
             }
+            .justifyContent(FlexAlign.Center)
           }
           .padding('3%')
           .borderRadius(24)
@@ -349,13 +361,14 @@ struct GridContainerSample {
 
         ListItem() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('gutter:')
                 .fontSize(16)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
 
             Divider().strokeWidth(1).color(0xeeeeee).margin({ top: 12 })
@@ -384,13 +397,14 @@ struct GridContainerSample {
 
         ListItem() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('margin:')
                 .fontSize(16)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
 
             Divider().strokeWidth(1).color(0xeeeeee).margin({ top: 12 })
@@ -418,7 +432,7 @@ struct GridContainerSample {
         }
       }
       .width('100%')
-      .height('60%')
+      .height('65%')
       .margin({ top: 24 })
       .padding({ bottom: 20 })
     }

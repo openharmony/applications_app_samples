@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
-import prompt from '@ohos.prompt';
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component

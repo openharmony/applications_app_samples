@@ -8,14 +8,14 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITION S OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
-const BACKGROUND_COLORS: string[] = ["#EE82EE", "#87CEFA", "#FF4500"]
+const BACKGROUND_COLORS: string[] = ['#EE82EE', '#87CEFA', '#FF4500']
 
 @Observed
 class FlexInfo {
@@ -24,7 +24,6 @@ class FlexInfo {
   public flexShirk: number = 1
   public flexBasis: any = 'auto'
   public alignSelf: ItemAlign = ItemAlign.Auto
-
   constructor(index: number) {
     this.index = index;
   }
@@ -93,16 +92,16 @@ struct FlexSample {
           )
         }
       }.width('100%')
-      .height("35%")
+      .height('35%')
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
       .margin({ bottom: 24 })
 
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Button('+', { type: ButtonType.Capsule, stateEffect: true })
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .width(90)
               .fontSize('16fp')
               .onClick((event: ClickEvent) => {
@@ -110,8 +109,11 @@ struct FlexSample {
                   this.children.push(new FlexInfo(this.children.length))
                 }
               })
+
+            Blank()
+
             Button('-', { type: ButtonType.Capsule, stateEffect: true })
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .width(90)
               .fontSize('16fp')
               .onClick(() => {
@@ -124,28 +126,31 @@ struct FlexSample {
               })
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ bottom: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Button('Container', { type: ButtonType.Capsule, stateEffect: true })
               .borderRadius(14)
               .borderStyle(BorderStyle.Dotted)
               .borderWidth(this.isContainerShow ? 2 : 0)
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .fontColor(Color.White)
               .width(110)
               .onClick(() => {
                 this.isContainerShow = true;
               })
 
+            Blank()
+
             Button('Item', { type: ButtonType.Capsule, stateEffect: true })
               .borderRadius(14)
               .borderStyle(BorderStyle.Dotted)
               .borderWidth(this.isContainerShow ? 0 : 2)
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .fontColor(Color.White)
               .width(110)
               .onClick(() => {
@@ -160,12 +165,15 @@ struct FlexSample {
 
           if (this.isContainerShow) {
             Column() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('direction')
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Column() {
                   Text(`FlexDirection.${FlexDirection[this.FlexOptions['direction']]}`)
                     .fontSize('16fp')
@@ -202,17 +210,21 @@ struct FlexSample {
                 ])
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('justifyContent')
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Column() {
                   Text(`FlexAlign.${FlexAlign[this.FlexOptions['justifyContent']]}`)
                     .fontSize('16fp')
@@ -261,17 +273,21 @@ struct FlexSample {
                 ])
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('alignItems')
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Column() {
                   Text(`ItemAlign.${ItemAlign[this.FlexOptions['alignItems']]}`)
                     .fontSize('16fp')
@@ -308,17 +324,21 @@ struct FlexSample {
                 ])
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('wrap')
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Column() {
                   Text(`FlexWrap.${FlexWrap[this.FlexOptions['wrap']]}`)
                     .fontSize('16fp')
@@ -349,21 +369,25 @@ struct FlexSample {
                 ])
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8, bottom: 20 })
             }
-            .height("60%")
+            .height('60%')
           }
           else {
             Column() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text(`${this.clickedIndex + 1} el flexGrow ${this.currentInfo.flexGrow}`)
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Counter() {
                   Text(`${this.currentInfo.flexGrow}`).fontSize(22)
                 }
@@ -380,17 +404,21 @@ struct FlexSample {
                 })
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text(`${this.clickedIndex + 1} el flexShrink(${this.currentInfo.flexShirk})`)
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Counter() {
                   Text(`${this.currentInfo.flexShirk}`).fontSize(22)
                 }
@@ -408,17 +436,21 @@ struct FlexSample {
                 })
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('alignSelf')
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+
+                Blank()
+
                 Column() {
                   Text(`${ItemAlign[this.currentInfo['alignSelf']]}`)
                     .fontSize('16fp')
@@ -467,19 +499,21 @@ struct FlexSample {
                 ])
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text(`flexBasis  ${this.currentInfo.flexBasis}`)
                   .width('45%')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
                   .fontSize('16fp')
                   .opacity(0.5)
+
+                Blank()
 
                 Counter() {
                   Text(typeof (this.currentInfo.flexBasis) === 'number' ? `${this.currentInfo.flexBasis}` : '0')
@@ -503,7 +537,7 @@ struct FlexSample {
                   }
                 })
 
-                Text("auto")
+                Text('auto')
                   .onClick(() => {
                     this.currentInfo.flexBasis = 'auto'
                   })
@@ -515,19 +549,17 @@ struct FlexSample {
                   .textAlign(TextAlign.End)
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
-
             }
-            .height("60%")
+            .height('60%')
           }
-
         }
       }.width('100%')
-      .height("60%")
-
+      .height('60%')
     }
     .width('100%')
     .height('100%')

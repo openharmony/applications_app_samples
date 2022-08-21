@@ -13,17 +13,16 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { ArrayType } from "../commonDataType/iterateArray"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct ConditionsLoopsSample {
-  @State iconArray: ArrayType[] = [
-    { image: $r("app.media.ic_public_home"), name: 'Home' },
-    { image: $r("app.media.ic_public_add"), name: 'Add' },
-    { image: $r("app.media.ic_public_app"), name: 'App' },
-    { image: $r("app.media.ic_public_albums"), name: 'Albums' }
+  @State iconArray: any [] = [
+    { image: $r('app.media.ic_public_home'), name: 'Home' },
+    { image: $r('app.media.ic_public_add'), name: 'Add' },
+    { image: $r('app.media.ic_public_app'), name: 'App' },
+    { image: $r('app.media.ic_public_albums'), name: 'Albums' }
   ]
   @State selectedIndex: number = 0
 
@@ -36,7 +35,7 @@ struct ConditionsLoopsSample {
           .fontSize(30)
           .width('100%')
           .flexGrow(1)
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Row() {
           ForEach(this.iconArray, (item, index) => {
             Column() {
               Image(this.selectedIndex == index ? item.icon : item.image)

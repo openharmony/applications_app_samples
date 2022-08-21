@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct RowSplitSample {
-  @State space: number= 25
-  @State alignItemsConfig: VerticalAlign= VerticalAlign.Top
-  @State circularArr: number[]= [1, 2, 3]
-  private showMessage: string= "VerticalAlign.Top"
-  private boxWidth: string= "20%"
-  private backGround: string []= ["#EE82EE", "#87CEFA", "#FF4500"]
-  private circularVal: number= 0;
+  @State space: number = 25
+  @State alignItemsConfig: VerticalAlign = VerticalAlign.Top
+  @State circularArr: number[] = [1, 2, 3]
+  private showMessage: string = 'VerticalAlign.Top'
+  private boxWidth: string = '20%'
+  private backGround: string [] = ['#EE82EE', '#87CEFA', '#FF4500']
+  private circularVal: number = 0;
   private scroller: Scroller = new Scroller()
-  @State resizeableVal: boolean= true
+  @State resizeableVal: boolean = true
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'RowSplit' })
       Scroll(this.scroller) {
         RowSplit() {
@@ -47,8 +47,8 @@ struct RowSplitSample {
           )
         }.resizeable(this.resizeableVal)
       }
-      .height("50%")
-      .width("100%")
+      .height('50%')
+      .width('100%')
       .backgroundColor(0xAFEEEE)
       .scrollable(ScrollDirection.Horizontal)
       .scrollBar(BarState.Auto)
@@ -78,7 +78,7 @@ struct RowSplitSample {
           .margin({ top: 3, bottom: 15 })
           .padding(5)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Button('+', { type: ButtonType.Capsule, stateEffect: true })
               .backgroundColor(0x317aff)
               .fontSize('30fp')
@@ -87,6 +87,9 @@ struct RowSplitSample {
                 this.circularVal = this.circularArr.length + 1;
                 this.circularArr[this.circularVal-1] = this.circularVal;
               })
+
+            Blank()
+
             Button('-', { type: ButtonType.Capsule, stateEffect: true })
               .backgroundColor(0x317aff).width(90)
               .fontSize('30fp')
@@ -95,19 +98,24 @@ struct RowSplitSample {
                 this.circularVal = this.circularArr.length + 1
               })
           }
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text("resizeableVal")
+          Row({ space: FlexAlign.SpaceBetween }) {
+            Text('resizeableVal')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
-              Text(this.resizeableVal + "")
+              Text(this.resizeableVal + '')
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .fontWeight(FontWeight.Medium)
@@ -118,21 +126,22 @@ struct RowSplitSample {
                     value: 'ture',
                     action: () => {
                       this.resizeableVal = true
-                      this.showMessage = "resizeableVal:true"
+                      this.showMessage = 'resizeableVal:true'
                     }
                   },
                   {
                     value: 'false',
                     action: () => {
                       this.resizeableVal = false
-                      this.showMessage = "resizeableVal:false"
+                      this.showMessage = 'resizeableVal:false'
                     }
                   },
                 ])
             }
-
           }
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
@@ -142,6 +151,7 @@ struct RowSplitSample {
       .margin({ top: 24 })
     }
     .height('100%')
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '3%', right: '3%', bottom: 10 })
     .backgroundColor('#F1F3F5')
   }

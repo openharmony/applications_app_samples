@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
@@ -89,14 +89,15 @@ struct lazyForEachSample {
   @State data: MyDataSource = new MyDataSource(10)
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '数据懒加载' })
-      Flex({ direction: FlexDirection.Column }) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Column() {
+        Row() {
           Text('数据数量')
             .fontSize('16fp')
             .fontColor('#182431')
             .fontWeight(FontWeight.Medium)
+          Blank()
           Column() {
             Text(`${this.number}`)
               .textAlign(TextAlign.End)
@@ -155,12 +156,12 @@ struct lazyForEachSample {
           LazyForEach(this.data, (item, index) => {
             ListItem() {
               Row() {
-                Image($r("app.media.ic_public_play_norm"))
+                Image($r('app.media.ic_public_play_norm'))
                   .objectFit(ImageFit.Contain)
                   .width('15%')
                   .margin({ top: 10, right: '4%', bottom: 10 })
                   .borderRadius('50%')
-                Text(`${this.data["dataArray"].indexOf(item)}`)
+                Text(`${this.data['dataArray'].indexOf(item)}`)
                   .textAlign(TextAlign.Center)
                   .fontSize('16fp')
                   .fontColor('#182431')

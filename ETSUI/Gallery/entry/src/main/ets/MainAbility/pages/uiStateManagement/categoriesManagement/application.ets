@@ -14,17 +14,19 @@
  */
 
 import router from '@ohos.router';
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { ChangeData } from './foodData';
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { ChangeData } from './foodData'
+import { MyDataSource } from '../../../model/constant'
 
 @Entry
 @Component
 struct ApplicationSample {
-  @StorageLink('FoodItems') foodData: ChangeData[] = [];
+  @StorageLink('FoodItems') foodData: ChangeData[] = []
+  @State foodArray: MyDataSource = new MyDataSource()
 
-  private aboutToAppear(): void  {
-    AppStorage.SetOrCreate<ChangeData[]>("FoodItems", [{
-                                                         name: "Tomato",
+  aboutToAppear() {
+    AppStorage.SetOrCreate<ChangeData[]>('FoodItems', [{
+                                                         name: 'Tomato',
                                                          image: $r('app.media.Tomato'),
                                                          calories: '17',
                                                          protein: '0.9',
@@ -33,7 +35,7 @@ struct ApplicationSample {
                                                          vitaminC: '17.8'
                                                        },
                                                        {
-                                                         name: "Walnut",
+                                                         name: 'Walnut',
                                                          image: $r('app.media.Walnut'),
                                                          calories: '654',
                                                          protein: '15',
@@ -42,7 +44,7 @@ struct ApplicationSample {
                                                          vitaminC: '1.3'
                                                        },
                                                        {
-                                                         name: "Cucumber",
+                                                         name: 'Cucumber',
                                                          image: $r('app.media.Cucumber'),
                                                          calories: '30',
                                                          protein: '3',
@@ -51,7 +53,7 @@ struct ApplicationSample {
                                                          vitaminC: '2.1'
                                                        },
                                                        {
-                                                         name: "Blueberry",
+                                                         name: 'Blueberry',
                                                          image: $r('app.media.Blueberry'),
                                                          calories: '57',
                                                          protein: '0.7',
@@ -60,7 +62,7 @@ struct ApplicationSample {
                                                          vitaminC: '9.7'
                                                        },
                                                        {
-                                                         name: "Crab",
+                                                         name: 'Crab',
                                                          image: $r('app.media.Crab'),
                                                          calories: '97',
                                                          protein: '19',
@@ -69,7 +71,7 @@ struct ApplicationSample {
                                                          vitaminC: ' 7.6'
                                                        },
                                                        {
-                                                         name: "IceCream",
+                                                         name: 'IceCream',
                                                          image: $r('app.media.IceCream'),
                                                          calories: '207',
                                                          protein: '3.5',
@@ -78,7 +80,7 @@ struct ApplicationSample {
                                                          vitaminC: '0.6'
                                                        },
                                                        {
-                                                         name: "Onion",
+                                                         name: 'Onion',
                                                          image: $r('app.media.Onion'),
                                                          calories: '39',
                                                          protein: '1.1',
@@ -87,7 +89,7 @@ struct ApplicationSample {
                                                          vitaminC: '7.4'
                                                        },
                                                        {
-                                                         name: "Mushroom",
+                                                         name: 'Mushroom',
                                                          image: $r('app.media.Mushroom'),
                                                          calories: '22',
                                                          protein: '3.1',
@@ -96,7 +98,7 @@ struct ApplicationSample {
                                                          vitaminC: '2.1'
                                                        },
                                                        {
-                                                         name: "Kiwi",
+                                                         name: 'Kiwi',
                                                          image: $r('app.media.Kiwi'),
                                                          calories: '60',
                                                          protein: '1.1',
@@ -105,7 +107,7 @@ struct ApplicationSample {
                                                          vitaminC: '20.5'
                                                        },
                                                        {
-                                                         name: "Pitaya",
+                                                         name: 'Pitaya',
                                                          image: $r('app.media.Pitaya'),
                                                          calories: '60',
                                                          protein: '1.2',
@@ -114,7 +116,7 @@ struct ApplicationSample {
                                                          vitaminC: '60.9'
                                                        },
                                                        {
-                                                         name: "Avocado",
+                                                         name: 'Avocado',
                                                          image: $r('app.media.Avocado'),
                                                          calories: '160',
                                                          protein: ' 2',
@@ -123,7 +125,7 @@ struct ApplicationSample {
                                                          vitaminC: '10'
                                                        },
                                                        {
-                                                         name: "Strawberry",
+                                                         name: 'Strawberry',
                                                          image: $r('app.media.Strawberry'),
                                                          calories: '32',
                                                          protein: '0.7',
@@ -131,6 +133,7 @@ struct ApplicationSample {
                                                          carbohydrates: '8',
                                                          vitaminC: '58.8'
                                                        }])
+    this.foodArray['dataArray'] = this.foodData
   }
 
   build() {
@@ -139,7 +142,7 @@ struct ApplicationSample {
       Column() {
         Scroll() {
           Grid() {
-            ForEach(this.foodData, (item: ChangeData, index) => {
+            LazyForEach(this.foodArray, (item: ChangeData, index) => {
               GridItem() {
                 Column() {
                   Image(item.image)
@@ -148,7 +151,7 @@ struct ApplicationSample {
                     .width('100%')
                     .backgroundColor('#F1F3F5')
 
-                  Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+                  Row() {
                     Text(item.name)
                       .fontSize(14)
                       .flexGrow(1)
@@ -175,10 +178,12 @@ struct ApplicationSample {
           .columnsTemplate('1fr 1fr')
           .columnsGap(8)
           .rowsGap(8)
-          .height('93%')
+          .height('100%')
         }
+        .height('100%')
         .scrollBar(BarState.Off)
       }
+      .height('100%')
     }
     .height('100%')
     .backgroundColor('#FFFFFF')

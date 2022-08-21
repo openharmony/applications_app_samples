@@ -12,29 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
+
 @Entry
 @Component
 struct Template {
-  @State rate: number  = 1;
+  @State rate: number = 1;
   @State progressStyleString: string = '1';
-  @State value: string = "hello world"
+  @State value: string = 'hello world'
   @State color: Color = Color.Black
-  @State srcs: string = "/common/video1.mp4";
-  @State currentProgressRates: number = 1;  @State autoPlayss: boolean = false;
-
+  @State srcs: string = '/common/video1.mp4';
+  @State currentProgressRates: number = 1;
+  @State autoPlayss: boolean = false;
   @State controlsss: boolean = true;
   myVideoController: VideoController = new VideoController();
   @State startStaus: boolean = true;
   @State muteds: boolean = false
   @State isShow: boolean = false
-  @State isLoop: boolean= false;
-  @State visible: Visibility= Visibility.None;
+  @State isLoop: boolean = false
+  @State visible: Visibility = Visibility.None
+
   build() {
-    Flex({ direction: FlexDirection.Column , alignItems: ItemAlign.Center}) {
+    Column() {
       NavigationBar({ title: 'Video' })
       //上部分显示效果
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
         Video({
           src: this.srcs,
           currentProgressRate: this.currentProgressRates,
@@ -73,57 +75,84 @@ struct Template {
           })
       }
       .width('100%')
+      .height('40%')
+
       Scroll() {
         Column() {
-          Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap,  }) {
+          Row() {
             Column() {
-              Flex ({ justifyContent: FlexAlign.SpaceBetween }) {
-                Button("start").onClick(() => {
-                  this.myVideoController.start();
-                }).width(80).height(40)
-                Button("pause").onClick(() => {
-                  this.myVideoController.pause();
-                }).width(80).height(40)
-                Button("stop").onClick(() => {
-                  this.myVideoController.stop();
-                  this.muteds = false
-                  this.autoPlayss = false
-                  this.isLoop = false
-                }).width(80).height(40)
-              }.width("100%").margin({ bottom: 20 })
-              Flex({ justifyContent: FlexAlign.SpaceBetween}) {
+              Row() {
+                Button('start')
+                  .width(80).height(40)
+                  .onClick(() => {
+                    this.myVideoController.start();
+                  })
+                Blank()
+                Button('pause')
+                  .width(80).height(40)
+                  .onClick(() => {
+                    this.myVideoController.pause();
+                  })
+                Blank()
+                Button('stop')
+                  .width(80).height(40)
+                  .onClick(() => {
+                    this.myVideoController.stop();
+                    this.muteds = false
+                    this.autoPlayss = false
+                    this.isLoop = false
+                  })
+              }
+              .width('100%')
+              .margin({ bottom: 20 })
+
+              Row() {
                 Button() {
-                  Text('isLoop').fontSize(16).fontColor(Color.White)
+                  Text('isLoop')
+                    .fontSize(16)
+                    .fontColor(Color.White)
                 }.width(80).height(40).onClick(() => {
                   this.isLoop = !this.isLoop
                 })
-                Button("src").width(80).height(40).onClick(() => {
-                  if (this.srcs == "http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4") {
+
+                Blank()
+                Button('src')
+                  .width(80).height(40)
+                  .onClick(() => {
+                  if (this.srcs == 'http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4') {
                     console.log(this.srcs)
                     this.srcs = '/common/video1.mp4'
                   } else {
                     console.log(this.srcs)
-                    this.srcs = "http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4";
+                    this.srcs = 'http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4';
                   }
                 });
-                Button("muted").onClick(() => {
+                Blank()
+                Button('muted')
+                  .onClick(() => {
                   this.muteds = !this.muteds
-                });
-              }.width("100%").margin({ bottom: 20 })
-              Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-                Row() {
-                  Button("autoPlays").onClick(() => {
-                    this.autoPlayss = !this.autoPlayss
-                  }).width(155);
-                }
-                Row() {
-                  Button("setCurrentTime").onClick(() => {
-                    this.myVideoController.setCurrentTime(9);
-                  }).width(155);
-                }
-              }.width("100%")
+                })
+              }
+              .width('100%')
+              .margin({ bottom: 20 })
+
+              Row() {
+                Button('autoPlays')
+                  .width(155)
+                  .onClick(() => {
+                  this.autoPlayss = !this.autoPlayss
+                })
+                Blank()
+                Button('setCurrentTime')
+                  .width(155)
+                  .onClick(() => {
+                  this.myVideoController.setCurrentTime(9);
+                })
+
+              }.width('100%')
               .margin({ bottom: 8 })
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+
+              Row() {
                 Text('Rate')
                   .fontColor('#182431')
                   .fontSize('16fp')
@@ -181,7 +210,7 @@ struct Template {
               .backgroundColor('#FFFFFF')
               .margin({ top: 8, bottom: 8 })
             }
-          }.width("95%")
+          }.width('95%')
         }
         .width('100%')
       }

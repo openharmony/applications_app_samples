@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -45,7 +45,7 @@ struct ScrollSample {
             }, item => item)
           }.width('100%').backgroundColor('#F1F3F5').padding({ bottom: 10 })
         } else {
-          Flex({ direction: FlexDirection.Row }) {
+          Row() {
             ForEach(this.list, (item) => {
               Column() {
                 Text(item.toString())
@@ -58,11 +58,14 @@ struct ScrollSample {
               }
               .margin({ bottom: 20, right: 10 })
             }, item => item)
-          }.height('100%').backgroundColor('#F1F3F5').padding({ left: '2%', right: 210 })
+          }
+          .height('100%')
+          .backgroundColor('#F1F3F5')
+          .padding({ left: '2%', right: 210 })
         }
       }
       .width('96%')
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
+      .height('40%')
       .scrollable(this.scrollable == 1 ? ScrollDirection.Horizontal : this.scrollable == 2 ? ScrollDirection.Vertical : ScrollDirection.None)
       .scrollBar(this.scrollBar ? BarState.On : BarState.Off)
       .scrollBarColor(this.scrollBarColor)
@@ -91,6 +94,9 @@ struct ScrollSample {
               .padding({ left: 8, right: 8, top: 6, bottom: 6 })
               .backgroundColor('#007DFF')
               .alignSelf(ItemAlign.Center)
+
+            Blank()
+
             Button('next page')
               .onClick(() => {
                 this.scroller.scrollPage({ next: true })
@@ -126,6 +132,9 @@ struct ScrollSample {
               .padding({ left: 8, right: 8, top: 6, bottom: 6 })
               .backgroundColor('#007DFF')
               .alignSelf(ItemAlign.Center)
+
+            Blank()
+
             Button('back top')
               .onClick(() => {
                 this.scroller.scrollEdge(Edge.Top)
@@ -145,26 +154,25 @@ struct ScrollSample {
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Row() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween }) {
                 Text('scrollable')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
                   .opacity(0.5)
                   .fontSize('16fp')
+              Blank()
                 Text(this.scrollable == 1 ? 'Horizontal' : this.scrollable == 2 ? 'Vertical' : 'None')
                   .fontSize('14fp')
                   .fontWeight(FontWeight.Medium)
                   .width('50%')
                   .textAlign(TextAlign.End)
-              }
-              .width('100%')
-              .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-              .borderRadius(24)
-              .backgroundColor('#FFFFFF')
-              .margin({ top: 8 })
             }
+            .width('100%')
+            .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+            .borderRadius(24)
+            .backgroundColor('#FFFFFF')
+            .margin({ top: 8 })
             .bindMenu([
               {
                 value: 'Horizontal',
@@ -191,24 +199,24 @@ struct ScrollSample {
             ])
 
             Row() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween }) {
                 Text('scrollBar')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
                   .opacity(0.5)
                   .fontSize('16fp')
+              Blank()
                 Text(this.scrollBar ? 'On' : 'Off')
                   .fontSize('14fp')
                   .fontWeight(FontWeight.Medium)
                   .width('50%')
                   .textAlign(TextAlign.End)
-              }
-              .width('100%')
-              .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-              .borderRadius(24)
-              .backgroundColor('#FFFFFF')
-              .margin({ top: 8 })
+
             }
+            .width('100%')
+            .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+            .borderRadius(24)
+            .backgroundColor('#FFFFFF')
+            .margin({ top: 8 })
             .bindMenu([
               {
                 value: 'On',
@@ -226,24 +234,24 @@ struct ScrollSample {
 
             if (this.scrollBar) {
               Row() {
-                Flex({ justifyContent: FlexAlign.SpaceBetween }) {
                   Text('scrollBarColor:')
                     .fontWeight(FontWeight.Medium)
                     .fontColor('#182431')
                     .opacity(0.5)
                     .fontSize('16fp')
+                Blank()
                   Text(this.scrollBarColor == '#d0d0d0' ? '灰色' : '浅蓝灰色')
                     .fontSize('14fp')
                     .fontWeight(FontWeight.Medium)
                     .width('50%')
                     .textAlign(TextAlign.End)
-                }
-                .width('100%')
-                .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-                .borderRadius(24)
-                .backgroundColor('#FFFFFF')
-                .margin({ top: 8 })
+
               }
+              .width('100%')
+              .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+              .borderRadius(24)
+              .backgroundColor('#FFFFFF')
+              .margin({ top: 8 })
               .bindMenu([
                 {
                   value: '灰色',
@@ -262,18 +270,18 @@ struct ScrollSample {
 
             if (this.scrollBar) {
               Column() {
-                Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+                Row() {
                   Text('scrollBarWidth')
                     .fontWeight(FontWeight.Medium)
                     .fontColor('#182431')
                     .opacity(0.5)
                     .fontSize('16fp')
+                  Blank()
                   Text('' + this.scrollBarWidth)
                     .fontSize('16fp')
                     .fontWeight(FontWeight.Medium)
                 }
                 .width('100%')
-
                 .borderRadius(24)
                 .backgroundColor('#FFFFFF')
 
@@ -303,8 +311,10 @@ struct ScrollSample {
             }
           }
         }.width('100%')
-      }.scrollBar(BarState.Off)
+      }
+      .scrollBar(BarState.Off)
       .margin({ top: 24 })
+      .height('45%')
     }
     .height('100%')
     .backgroundColor('#F1F3F5')

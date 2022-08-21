@@ -14,13 +14,13 @@
  */
 
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct ContainerComponentTemplate {
-  @State content: string = "hello world"
+  @State content: string = 'hello world'
   @State backgroundColor: string = '#b6dfff'
   @State value: number = 0
   @State setValue: number = 10;
@@ -28,11 +28,11 @@ struct ContainerComponentTemplate {
   @State setProgressColor: Color = Color.Black;
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '容器组件模板' })
 
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Text('显示效果')
             .fontSize(24)
             .fontColor(this.fontColor)
@@ -109,52 +109,55 @@ struct ContainerComponentTemplate {
       Scroll() {
         Column() {
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('content选项')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
-            Column() {
-              Text(`${this.content}`)
-                .bindMenu([
-                  {
-                    value: 'hello world',
-                    action: () => {
-                      this.content = "hello world"
-                    }
-                  },
-                  {
-                    value: 'just do it',
-                    action: () => {
-                      this.content = "just do it"
-                    }
-                  },
-                  {
-                    value: 'to be No.1',
-                    action: () => {
-                      this.content = "to be No.1"
-                    }
-                  },
-                ])
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-                .width('50%')
-                .textAlign(TextAlign.End)
-            }
+            Blank()
+
+            Text(`${this.content}`)
+              .bindMenu([
+                {
+                  value: 'hello world',
+                  action: () => {
+                    this.content = "hello world"
+                  }
+                },
+                {
+                  value: 'just do it',
+                  action: () => {
+                    this.content = "just do it"
+                  }
+                },
+                {
+                  value: 'to be No.1',
+                  action: () => {
+                    this.content = "to be No.1"
+                  }
+                },
+              ])
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+              .width('50%')
+              .textAlign(TextAlign.End)
+
 
           }
+          .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('true或者false样式')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+            Blank()
             Toggle({ type: ToggleType.Switch, isOn: false })
               .selectedColor('#007DFF')
               .switchPointColor(0xe5ffffff)
@@ -162,18 +165,18 @@ struct ContainerComponentTemplate {
                 console.info('Component status:' + isOn)
               })
           }
-          .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('数字选项样式')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
-            Column() {
+            Blank()
               Counter() {
                 Text(this.value.toString())
               }
@@ -183,44 +186,44 @@ struct ContainerComponentTemplate {
               .onDec(() => {
                 this.value--
               })
-            }
           }
+          .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Button('Ok', { type: ButtonType.Capsule, stateEffect: true }).backgroundColor(0x317aff).width(90)
               .onClick((event: ClickEvent) => {
                 console.info('点击按钮1')
               })
+            Blank()
             Button('Ok', { type: ButtonType.Capsule, stateEffect: true }).backgroundColor(0x317aff).width(90)
               .onClick((event: ClickEvent) => {
                 console.info('点击按钮2')
               })
           }
+          .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({
-            direction: FlexDirection.Column,
-            justifyContent: FlexAlign.Center,
-            alignItems: ItemAlign.Center
-          }) {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Column() {
+            Row() {
               Text('progress value')
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+              Blank()
               Text(this.setValue.toFixed(0))
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .fontWeight(FontWeight.Medium)
             }
+            .width('100%')
 
             Slider({
               value: this.setValue,
@@ -246,33 +249,37 @@ struct ContainerComponentTemplate {
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('backgroundColor')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
-            Column() {
+            Blank()
+            Column(){
               GetColor({ colorVal: $backgroundColor })
-            }.width(48)
-
+            }
+            .width(48)
           }
+          .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('fontColor')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+            Blank()
             Column() {
               GetColor({ colorVal: $fontColor })
-            }.width(48)
-
+            }
+            .width(48)
           }
+          .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')

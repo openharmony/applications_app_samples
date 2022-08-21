@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
-import prompt from '@ohos.prompt';
+import { NavigationBar } from '../../common/components/navigationBar'
+
 
 @Entry
 @Component
@@ -43,12 +43,13 @@ struct MouseEventSample {
     Column() {
       NavigationBar({ title: '鼠标事件' })
       Column({ space: 5 }) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Row() {
           ForEach(this.data, (item, index) => {
             Rows({ data: item })
           })
         }
         .width('100%')
+        .justifyContent(FlexAlign.Center)
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -116,5 +117,6 @@ struct Rows {
         .position({ x: 30, y: 121 })
         .visibility(this.visible)
     }
+    .margin({left: 10, right: 10})
   }
 }

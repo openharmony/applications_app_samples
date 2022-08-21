@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { ArrayType } from "../commonDataType/iterateArray"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { MyDataSource } from '../../../model/constant'
 
 @Entry
 @Component
 struct ConditionalRenderingSample {
-  @State dataArray: ArrayType[] = [];
+  @State dataArray: MyDataSource = new MyDataSource()
   @State showList: boolean = false
 
   build() {
     Column() {
       NavigationBar({ title: '条件渲染' })
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-          Image($r("app.media.ic_public_shuffle"))
+      Column() {
+        Row() {
+          Image($r('app.media.ic_public_shuffle'))
             .height(28)
             .width(28)
             .margin({ right: 24 })
@@ -36,11 +36,12 @@ struct ConditionalRenderingSample {
               this.showList = !this.showList
             })
         }
+        .width('100%')
 
         Column() {
           if (this.showList) {
             List({ space: 12 }) {
-              ForEach(this.dataArray, (item: ArrayType) => {
+              LazyForEach(this.dataArray, (item) => {
                 ListItem() {
                   Row() {
                     Image(item.image)
@@ -63,9 +64,11 @@ struct ConditionalRenderingSample {
                 .backgroundColor('#ffffff')
               }, item => (item.image, item.name))
             }
+            .width('100%')
+            .height('100%')
           } else {
             Grid() {
-              ForEach(this.dataArray, (item: ArrayType) => {
+              LazyForEach(this.dataArray, (item) => {
                 GridItem() {
                   Column() {
                     Image(item.image)
@@ -94,7 +97,6 @@ struct ConditionalRenderingSample {
           }
         }
         .width('100%')
-        .flexGrow(1)
       }
       .height('90%')
       .backgroundColor('#F1F3F5')
@@ -113,10 +115,10 @@ struct ConditionalRenderingSample {
       .opacity(0.0)
   }
 
-  private aboutToAppear(): void  {
+   aboutToAppear() {
     for (let index = 0; index < 15; index++) {
-      this.dataArray.push({
-        image: $r("app.media.ic_public_play_norm"),
+      this.dataArray.pushData({
+        image: $r('app.media.ic_public_play_norm'),
         name: index.toString()
       })
     }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -24,119 +24,117 @@ struct GestureMethodExample {
   @State imageOpacity: number = 1
   @State offsetX: number = 0
   @State offsetY: number = 0
-  @State borderWidth: number= 0
+  @State borderWidth: number = 0
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '手势识别' })
       Column() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Column() {
-            Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
-              TabContent() {
-                Column() {
-                  Text('点击图片优先识别')
-                    .margin({ bottom: 18, top: '18vp' })
-                    .fontSize(15)
-                  Image('/common/test3.png')
-                    .width(280)
-                    .height('160vp')
-                    .shadow({ radius: 10, color: Color.Gray, offsetX: this.offsetX, offsetY: this.offsetY })
-                    .gesture(
-                    TapGesture()
-                      .onAction(() => {
-                        this.gestureValue = '子组件先触发'
-                      })
-                    )
-                    .priorityGesture(
-                    TapGesture()
-                      .onAction(() => {
-                        this.offsetY = 30
-                        this.offsetX = 30
-                      })
-                    )
-                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                    Text('shadowOffset')
-                      .fontSize('16fp')
-                      .opacity(0.5)
-                      .fontColor('#182431')
-                      .fontWeight(FontWeight.Medium)
-                    Column() {
-                      Text(`${this.offsetX}`)
-                        .fontSize('16fp')
-                        .fontColor('#182431')
-                        .fontWeight(FontWeight.Medium)
-                    }
-                  }
-                  .width('100%')
-                  .padding('3%')
-                  .borderRadius(24)
-                  .backgroundColor('#FFFFFF')
-                  .margin({ top: 18 })
-                }
-              }.tabBar('priorityGesture')
-              .backgroundColor('#FFFFFF')
-              .margin({ top: 18 })
+        Column() {
+          Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+            TabContent() {
+              Column() {
+                Text('点击图片优先识别')
+                  .margin({ bottom: 18, top: '18vp' })
+                  .fontSize(15)
+                Image('/common/test3.png')
+                  .width(280)
+                  .height('160vp')
+                  .shadow({ radius: 10, color: Color.Gray, offsetX: this.offsetX, offsetY: this.offsetY })
+                  .gesture(
+                  TapGesture()
+                    .onAction(() => {
+                      this.gestureValue = '子组件先触发'
+                    })
+                  )
+                  .priorityGesture(
+                  TapGesture()
+                    .onAction(() => {
+                      this.offsetY = 30
+                      this.offsetX = 30
+                    })
+                  )
+                Row() {
+                  Text('shadowOffset')
+                    .fontSize('16fp')
+                    .opacity(0.5)
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
+                  Blank()
+                  Text(`${this.offsetX}`)
+                    .fontSize('16fp')
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
 
-              TabContent() {
-                Column() {
-                  Text('点击图片同时识别')
-                    .margin({ top: 18, bottom: 18 })
-                    .fontSize(15)
-                  Image('/common/test5.jpg')
-                    .opacity(this.imageOpacity)
-                    .border({ width: this.borderWidth })
-                    .borderColor(Color.Pink)
-                    .width(280)
-                    .height('160vp')
-                    .gesture(
-                    TapGesture()
-                      .onAction(() => {
-                        this.imageOpacity = 0.3
-                      })
-                    )
-                    .parallelGesture(
-                    TapGesture()
-                      .onAction(() => {
-                        this.borderWidth = 2
-                      })
-                    )
-                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                    Text('opacity')
-                      .fontSize('16fp')
-                      .opacity(0.5)
-                      .fontColor('#182431')
-                      .fontWeight(FontWeight.Medium)
-                    Column() {
-                      Text(`${this.imageOpacity}`)
-                        .fontSize('16fp')
-                        .fontColor('#182431')
-                        .fontWeight(FontWeight.Medium)
-                    }
-                  }
-                  .width('100%')
-                  .padding('3%')
-                  .borderRadius(24)
-                  .backgroundColor('#FFFFFF')
-                  .margin({ top: 20 })
                 }
-                .alignItems(HorizontalAlign.Center)
-              }.tabBar('parallelGesture')
-              .backgroundColor('#FFFFFF')
-              .margin({ top: 18 })
-              .borderRadius(24)
-            }
-            .onChange((index: number) => {
-              this.currentIndex = index
-            })
-            .vertical(false)
-            .scrollable(true)
-            .barMode(BarMode.Fixed)
-            .barWidth(360)
-            .barHeight(56)
+                .width('100%')
+                .padding('3%')
+                .borderRadius(24)
+                .backgroundColor('#FFFFFF')
+                .margin({ top: 18 })
+              }
+            }.tabBar('priorityGesture')
+            .backgroundColor('#FFFFFF')
+            .margin({ top: 18 })
+
+            TabContent() {
+              Column() {
+                Text('点击图片同时识别')
+                  .margin({ top: 18, bottom: 18 })
+                  .fontSize(15)
+                Image('/common/test5.jpg')
+                  .opacity(this.imageOpacity)
+                  .border({ width: this.borderWidth })
+                  .borderColor(Color.Pink)
+                  .width(280)
+                  .height('160vp')
+                  .gesture(
+                  TapGesture()
+                    .onAction(() => {
+                      this.imageOpacity = 0.3
+                    })
+                  )
+                  .parallelGesture(
+                  TapGesture()
+                    .onAction(() => {
+                      this.borderWidth = 2
+                    })
+                  )
+                Row() {
+                  Text('opacity')
+                    .fontSize('16fp')
+                    .opacity(0.5)
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
+
+                  Blank()
+                  Text(`${this.imageOpacity}`)
+                    .fontSize('16fp')
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
+                }
+                .width('100%')
+                .padding('3%')
+                .borderRadius(24)
+                .backgroundColor('#FFFFFF')
+                .margin({ top: 20 })
+              }
+              .alignItems(HorizontalAlign.Center)
+            }.tabBar('parallelGesture')
+            .backgroundColor('#FFFFFF')
+            .margin({ top: 18 })
+            .borderRadius(24)
           }
+          .onChange((index: number) => {
+            this.currentIndex = index
+          })
+          .vertical(false)
+          .scrollable(true)
+          .barMode(BarMode.Fixed)
+          .barWidth(360)
+          .barHeight(56)
         }
       }
       .width('100%')
@@ -144,6 +142,7 @@ struct GestureMethodExample {
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
     }
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F1F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

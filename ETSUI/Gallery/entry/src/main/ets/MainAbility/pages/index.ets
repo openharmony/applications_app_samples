@@ -32,9 +32,8 @@ struct IndexSample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-
+    Column() {
+      Column() {
         Image($r('app.media.homeAnimation'))
           .width('83.3%')
           .height('42%')
@@ -54,9 +53,14 @@ struct IndexSample {
           .fontWeight(FontWeight.Regular)
           .opacity(0.4)
           .textAlign(TextAlign.Center)
-
-      }.width('100%').height('100%').margin({ top: '6%' }).opacity(this.opacity)
+      }
+      .width('100%')
+      .height('100%')
+      .margin({ top: '6%' })
+      .opacity(this.opacity)
+      .alignItems(HorizontalAlign.Center)
     }
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '8.3%', right: '8.3%' })
     .width('100%')
     .height('100%')

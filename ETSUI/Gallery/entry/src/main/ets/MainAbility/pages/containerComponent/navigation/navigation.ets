@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -32,7 +32,7 @@ struct NavigationSample {
         .fontSize(30)
     }
     .onClick(() => {
-      console.log("title")
+      console.log('title')
     })
   }
 
@@ -49,8 +49,7 @@ struct NavigationSample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-      NavigationBar({ title: 'Navigation' })
+    Column() {
       Navigation() {
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.list, (item) => {
@@ -87,24 +86,27 @@ struct NavigationSample {
       })
       .toolBar({ items: [
         { value: 'app', icon: 'images/grid.svg', action: () => {
-          console.log("app")
+          console.log('app')
         } },
         { value: 'add', icon: 'images/add.svg', action: () => {
-          console.log("add")
+          console.log('add')
         } },
         { value: 'collect', icon: 'images/collect.svg', action: () => {
-          console.log("collect")
+          console.log('collect')
         } }] })
       .hideToolBar(this.hideToolBar)
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('hideTitleBar')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.hideTitleBar })
               .selectedColor('#007DFF ')
               .switchPointColor(0xe5ffffff)
@@ -115,16 +117,20 @@ struct NavigationSample {
               .padding(0)
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('hideToolBar')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.hideToolBar })
               .selectedColor('#007DFF')
               .switchPointColor(0xe5ffffff)
@@ -135,17 +141,21 @@ struct NavigationSample {
               .padding(0)
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('hideBackButton')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.hideBackButton })
               .selectedColor('#007DFF')
               .switchPointColor(0xe5ffffff)
@@ -154,20 +164,25 @@ struct NavigationSample {
               })
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('titleMode')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Text(this.titleMode == 1 ? 'Mini' : this.titleMode == 2 ? 'Free' : 'Full').fontSize(16).lineHeight(28)
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
@@ -193,9 +208,11 @@ struct NavigationSample {
             }
           ])
         }
-      }.height('60%')
+      }
     }
     .height('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

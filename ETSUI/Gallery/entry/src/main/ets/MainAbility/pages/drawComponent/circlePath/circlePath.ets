@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 const COLOR_TRANSPARENT = '#00000000'
 const COLOR_BACKGROUND_FILL = '#7ebede'
@@ -56,13 +56,13 @@ struct CircleSample {
       let x2 = RADIUS_IN_PX + x;
       return this.formatPathCommands(x1, x2, y, RADIUS_IN_PX);
     }
-    return "";
+    return ''
   }
 
   build() {
 
     Column() {
-      NavigationBar({ title: "绘制组件" })
+      NavigationBar({ title: '绘制组件' })
 
       Column() {
         Stack() {
@@ -82,11 +82,11 @@ struct CircleSample {
           .width(DIAMETER)
           .height(DIAMETER)
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Text(this.outSetValue.toFixed(0) + "%")
-              .fontSize(60)
-          }
-        }.width(BIG_DIAMETER)
+          Text(this.outSetValue.toFixed(0) + '%')
+            .fontSize(60)
+
+        }
+        .width(BIG_DIAMETER)
         .height(BIG_DIAMETER)
 
         Column({ space: 5 }) {

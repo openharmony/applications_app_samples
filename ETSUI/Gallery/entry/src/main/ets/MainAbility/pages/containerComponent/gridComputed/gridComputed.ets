@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { MyDataSource } from '../../../model/constant'
 
 class ButtonIteam {
   public index: number ;
@@ -31,35 +32,41 @@ class ButtonIteam {
 @Entry
 @Component
 struct GridComputedSample {
-  @State listShow: ButtonIteam[] = [
-    new ButtonIteam(0, "AC", "#A0A0A0"),
-    new ButtonIteam(1, "+/-", "#A0A0A0"),
-    new ButtonIteam(2, "%", "#A0A0A0"),
-    new ButtonIteam(3, "÷", "#F89806"),
-    new ButtonIteam(4, "7", "#313131"),
-    new ButtonIteam(5, "8", "#313131"),
-    new ButtonIteam(6, "9", "#313131"),
-    new ButtonIteam(7, "x", "#F89806"),
-    new ButtonIteam(8, "4", "#313131"),
-    new ButtonIteam(9, "5", "#313131"),
-    new ButtonIteam(10, "6", "#313131"),
-    new ButtonIteam(11, "-", "#F89806"),
-    new ButtonIteam(12, "1", "#313131"),
-    new ButtonIteam(13, "2", "#313131"),
-    new ButtonIteam(14, "3", "#313131"),
-    new ButtonIteam(15, "+", "#F89806"),
-    new ButtonIteam(16, "0", "#313131"),
-    new ButtonIteam(17, ".", "#313131"),
-    new ButtonIteam(18, "=", "#F89806")
-  ]
-  @State columnsGap: number= 10
-  @State rowsGap: number= 10
-  @State showMessage: string= "请点击按钮显示"
+  @State listShow: MyDataSource = new MyDataSource()
+  @State columnsGap: number = 10
+  @State rowsGap: number = 10
+  @State showMessage: string = '请点击按钮显示'
+
+  aboutToAppear() {
+    this.listShow.replace(
+      [
+        new ButtonIteam(0, 'AC', '#A0A0A0'),
+        new ButtonIteam(1, '+/-', '#A0A0A0'),
+        new ButtonIteam(2, '%', '#A0A0A0'),
+        new ButtonIteam(3, '÷', '#F89806'),
+        new ButtonIteam(4, '7', '#313131'),
+        new ButtonIteam(5, '8', '#313131'),
+        new ButtonIteam(6, '9', '#313131'),
+        new ButtonIteam(7, 'x', '#F89806'),
+        new ButtonIteam(8, '4', '#313131'),
+        new ButtonIteam(9, '5', '#313131'),
+        new ButtonIteam(10, '6', '#313131'),
+        new ButtonIteam(11, '-', '#F89806'),
+        new ButtonIteam(12, '1', '#313131'),
+        new ButtonIteam(13, '2', '#313131'),
+        new ButtonIteam(14, '3', '#313131'),
+        new ButtonIteam(15, '+', '#F89806'),
+        new ButtonIteam(16, '0', '#313131'),
+        new ButtonIteam(17, '.', '#313131'),
+        new ButtonIteam(18, '=', '#F89806')
+      ]
+    )
+  }
 
   build() {
     Column() {
       NavigationBar({ title: 'Grid' })
-      //上部分显示效果
+      // 上部分显示效果
       Scroll() {
         Grid() {
           GridItem() {
@@ -72,7 +79,7 @@ struct GridComputedSample {
           }.forceRebuild(false)
           .columnStart(1).columnEnd(4)
 
-          ForEach(this.listShow, (item: ButtonIteam) => {
+          LazyForEach(this.listShow, (item: ButtonIteam) => {
             GridItem() {
               Text(item.textMessage)
                 .fontSize(30)
@@ -104,31 +111,20 @@ struct GridComputedSample {
       .height('75%')
       .backgroundColor(Color.Black)
       .zIndex(99)
-      //下部分属性、属性值
+      // 下部分属性、属性值
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('行间距')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
-//            Counter() {
-//              Text(this.rowsGap + "").fontSize(22)
-//            }
-//            .height(30)
-//            .onInc(() => {
-//              if (this.rowsGap < 80) {
-//                this.rowsGap++
-//              }
-//            })
-//            .onDec(() => {
-//              if (this.rowsGap > 1) {
-//                this.rowsGap--
-//              }
-//            })
+
+            Blank()
+
             Counter() {
-              Text(this.rowsGap + "")
+              Text(this.rowsGap + '')
                 .fontWeight(FontWeight.Regular)
                 .fontColor('#000000')
                 .fontSize('10fp')
@@ -145,33 +141,24 @@ struct GridComputedSample {
             })
             .height(24)
           }
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('列间距')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
-//            Counter() {
-//              Text(this.columnsGap + "").fontSize(22)
-//            }
-//            .height(30)
-//            .onInc(() => {
-//              if (this.columnsGap < 30) {
-//                this.columnsGap++
-//              }
-//            })
-//            .onDec(() => {
-//              if (this.columnsGap > 1) {
-//                this.columnsGap--
-//              }
-//            })
+
+            Blank()
+
             Counter() {
-              Text(this.columnsGap + "")
+              Text(this.columnsGap + '')
                 .fontWeight(FontWeight.Regular)
                 .fontColor('#000000')
                 .fontSize('10fp')
@@ -188,11 +175,12 @@ struct GridComputedSample {
             })
             .height(24)
           }
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-
         }
         .width('97%')
         .margin({ right: '3%' })
@@ -202,6 +190,7 @@ struct GridComputedSample {
       .zIndex(99)
     }
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F1F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

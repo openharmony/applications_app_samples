@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
-import prompt from '@ohos.prompt';
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -22,7 +21,7 @@ struct ClickBallSample {
   @State balloonNumber: number = 3
   private ballsNumber: any[] = []
 
-  private aboutToAppear(): void{
+   aboutToAppear() {
     for (let i = 0; i < this.balloonNumber; i++) {
       this.ballsNumber.length = this.balloonNumber
     }
@@ -31,13 +30,19 @@ struct ClickBallSample {
   build() {
     Column() {
       NavigationBar({ title: '点击事件' })
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
+      Row() {
         ForEach(this.ballsNumber, (item, index) => {
-          Ball()
+          Column(){
+            Ball()
+          }
+          .width('30%')
+          .height('100%')
+          .justifyContent(FlexAlign.Center)
         })
       }
       .width('100%')
       .height('50%')
+      .justifyContent(FlexAlign.Center)
       .backgroundColor(Color.White)
     }
     .height('100%')
@@ -62,10 +67,10 @@ struct Ball {
   @State balloonWidth: number = 60
   @State balloonHeight: number = 60
   @State balloonPositionX: number = 1
-  @State balloonPositionY: number = 270
+  @State balloonPositionY: number = 170
 
   build() {
-    Column() {
+    Row(){
       Text()
         .width(this.balloonWidth)
         .height(this.balloonHeight)
@@ -85,7 +90,7 @@ struct Ball {
           }, 30)
         })
     }
-    .width(100)
-    .height(370)
+    .width(60)
+    .height(60)
   }
 }

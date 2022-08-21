@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { MyDataSource } from '../../../model/constant'
 
 const WEEKS: String[] = ['一', '二', '三', '四', '五', '六', '日']
 
@@ -37,8 +38,8 @@ struct ManagementSample {
   @State month: number = (new Date).getMonth() + 1
   @State day: number = (new Date).getDate()
   @State week: number = (new Date).getDay()
-  @State selectMonth: number = (new Date).getMonth() + 1;
-  @State selectDay: number = (new Date).getDate();
+  @State selectMonth: number = (new Date).getMonth() + 1
+  @State selectDay: number = (new Date).getDate()
 
   build() {
     Column() {
@@ -72,7 +73,7 @@ struct Clock {
   @State second: number = 0
   @State timerId: Number = -1
 
-  private aboutToAppear() {
+  aboutToAppear() {
     this.timerId = setInterval(() => {
       this.hour = (new Date).getHours()
       this.minute = (new Date).getMinutes()
@@ -82,11 +83,7 @@ struct Clock {
 
   build() {
     Column() {
-      Flex({
-        direction: FlexDirection.Row,
-        justifyContent: FlexAlign.Start,
-        alignItems: ItemAlign.Center
-      }) {
+      Row() {
         Row() {
           Text(`${this.hour < 10 ? '0' + this.hour : this.hour}:`)
             .fontSize(48)
@@ -129,6 +126,7 @@ struct NowDate {
 @Component
 struct ShowCalendar {
   private days: number[] = [...Array(42).keys()]
+  private dayArrays: MyDataSource = new MyDataSource()
   @State startIndex: number = 0;
   @State endIndex: number = 0;
   @Prop currentYear: number;
@@ -137,6 +135,7 @@ struct ShowCalendar {
   @Prop currentWeek: number;
   @Link selectMonth: number;
   @Link selectDay: number;
+  @State dataArray: MyDataSource = new MyDataSource()
 
   private calcIndex() {
     let curColumn = (6 + this.currentWeek) % 7;
@@ -158,16 +157,18 @@ struct ShowCalendar {
   }
 
   private selectBorderColor(day: number) {
-    return this.isCurrentDay(day) ? '#000' : "#1E90FF"
+    return this.isCurrentDay(day) ? '#000' : '#1E90FF'
   }
 
   aboutToAppear() {
+    this.dataArray['dataArray'] = WEEKS
+    this.dayArrays['dataArray'] = this.days
     this.calcIndex()
   }
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+      Row() {
         Text(`${this.currentYear}年${this.currentMonth}月`).fontColor('#fff')
           .fontSize(24)
           .alignSelf(ItemAlign.Start)
@@ -199,7 +200,7 @@ struct ShowCalendar {
       }
 
       Grid() {
-        ForEach(WEEKS, (item: string, index: number) => {
+        LazyForEach(this.dataArray, (item: string, index: number) => {
           GridItem() {
             Text(item)
               .fontSize(22)
@@ -210,32 +211,31 @@ struct ShowCalendar {
           }
         }, weekday => weekday)
 
-        ForEach(this.days,
-          (day: number) => {
-            GridItem() {
-              if (this.inRange(day)) {
-                Text(`${day - this.startIndex + 1}`)
-                  .textAlign(TextAlign.Center)
-                  .fontSize(20)
-                  .fontColor('#fff')
-                  .width('100%')
-                  .height('100%')
-                  .border({ width: this.isSelectDay(day) ? 2 : 0, color: this.selectBorderColor(day) })
-              }
-              else {
-                Text('')
-              }
+        LazyForEach(this.dayArrays, (day: number) => {
+          GridItem() {
+            if (this.inRange(day)) {
+              Text(`${day - this.startIndex + 1}`)
+                .textAlign(TextAlign.Center)
+                .fontSize(20)
+                .fontColor('#fff')
+                .width('100%')
+                .height('100%')
+                .border({ width: this.isSelectDay(day) ? 2 : 0, color: this.selectBorderColor(day) })
             }
-            .backgroundColor(this.isCurrentDay(day) ? '#1E90FF' : '')
-            .padding(2)
-            .onClick(() => {
-              if (this.inRange(day)) {
-                this.selectDay = day - this.startIndex + 1;
-                this.selectMonth = this.currentMonth;
-              }
-            })
-            .width('100%')
-          },
+            else {
+              Text('')
+            }
+          }
+          .backgroundColor(this.isCurrentDay(day) ? '#1E90FF' : '')
+          .padding(2)
+          .onClick(() => {
+            if (this.inRange(day)) {
+              this.selectDay = day - this.startIndex + 1;
+              this.selectMonth = this.currentMonth;
+            }
+          })
+          .width('100%')
+        },
           day => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')

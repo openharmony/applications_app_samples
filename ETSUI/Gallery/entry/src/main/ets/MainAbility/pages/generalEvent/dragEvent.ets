@@ -13,21 +13,20 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
-import prompt from '@ohos.prompt';
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
 struct DragEventSample {
   @State blockArr: string[] = []
   @State text: string = ''
-  @State imgSrc:string[] = ['/common/focus04.jpg','/common/focus03.jpg','/common/focus02.jpg']
+  @State imgSrc: string[] = ['/common/focus04.jpg', '/common/focus03.jpg', '/common/focus02.jpg']
   @State bool: boolean = false
   @State bool1: boolean = false
   @State select: number = 0
-  @State AVisible:Visibility = Visibility.Visible
-  @State BVisible:Visibility = Visibility.Visible
-  @State CVisible:Visibility = Visibility.Visible
+  @State AVisible: Visibility = Visibility.Visible
+  @State BVisible: Visibility = Visibility.Visible
+  @State CVisible: Visibility = Visibility.Visible
 
   @Builder pixelMapBuilder() {
     Column() {
@@ -46,6 +45,7 @@ struct DragEventSample {
         Image(this.imgSrc[0])
           .width(200)
           .height(100)
+          .flexGrow(0)
           .backgroundColor(Color.Orange)
           .visibility(this.AVisible)
           .onDragStart(() => {
@@ -56,6 +56,7 @@ struct DragEventSample {
         Image(this.imgSrc[1])
           .width(200)
           .height(100)
+          .flexGrow(0)
           .backgroundColor(Color.Orange)
           .visibility(this.BVisible)
           .onDragStart(() => {
@@ -66,6 +67,7 @@ struct DragEventSample {
         Image(this.imgSrc[2])
           .width(200)
           .height(100)
+          .flexGrow(0)
           .backgroundColor(Color.Orange)
           .visibility(this.CVisible)
           .onDragStart(() => {
@@ -79,7 +81,7 @@ struct DragEventSample {
       List({ space: 20, initialIndex: 0 }) {
         ForEach(this.blockArr, (item, index) => {
           ListItem() {
-            Image(this.imgSrc[index]+item)
+            Image(this.imgSrc[index] + item)
               .width(200)
               .height(100)
           }
