@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct BackgroundSample {
-  @State value: string = "hello world"
+  @State value: string = 'hello world'
   @State color: Color = Color.Black
   @State getColorVal: string = 'rgba(0,0,0,1)'
   @State imageSrc: {
@@ -38,11 +38,11 @@ struct BackgroundSample {
   @State showPosition: string = 'None'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '背景设置' })
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Row() {
               Row()
                 .width('100%')
@@ -62,7 +62,7 @@ struct BackgroundSample {
             .width('100%')
             .height('100%')
             .backgroundColor(this.getColorVal)
-          }.width('100%')
+          }.width('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
         }
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -72,12 +72,15 @@ struct BackgroundSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('backgroundColor')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Row() {
                 GetColor({ colorVal: $getColorVal })
@@ -86,17 +89,21 @@ struct BackgroundSample {
               .height(24)
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('imageSrc')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.imageSrc.name}`)
                 .fontSize('16fp')
@@ -136,18 +143,22 @@ struct BackgroundSample {
               },
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('repeat')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.repeatStyle}`)
                 .fontSize('16fp')
@@ -184,17 +195,21 @@ struct BackgroundSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('backgroundImageSize')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.backgroundImageSize}`)
                 .fontSize('16fp')
@@ -236,56 +251,69 @@ struct BackgroundSample {
               }
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Column() {
-              Row() {
-                Text('width')
-                  .fontSize('16fp')
-                  .opacity(0.5)
-                  .fontColor('#182431')
-                  .fontWeight(FontWeight.Medium)
-                TextInput({ placeholder: this.imageWidthProperty.width.toString() })
-                  .width('30%').type(InputType.Number)
-                  .onChange((value: string) => {
-                    this.imageWidthProperty.width = Number(value)
-                  })
-              }
-            }
+          if (this.showSize !== 'None') {
+            Row() {
+              Column() {
+                Row() {
+                  Text('width')
+                    .fontSize('16fp')
+                    .opacity(0.5)
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
 
-            Column() {
-              Row() {
-                Text('height')
-                  .fontSize('16fp')
-                  .opacity(0.5)
-                  .fontColor('#182431')
-                  .fontWeight(FontWeight.Medium)
-                  .margin({ left: 20 })
-                TextInput({ placeholder: this.imageWidthProperty.height.toString() })
-                  .width('30%')
-                  .type(InputType.Number)
-                  .onChange((value: string) => {
-                    this.imageWidthProperty.height = Number(value)
-                  })
+                  Blank()
+
+                  TextInput({ placeholder: this.imageWidthProperty.width.toString() })
+                    .width('30%').type(InputType.Number)
+                    .onChange((value: string) => {
+                      this.imageWidthProperty.width = Number(value)
+                    })
+                }
+              }
+
+              Column() {
+                Row() {
+                  Text('height')
+                    .fontSize('16fp')
+                    .opacity(0.5)
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
+                    .margin({ left: 20 })
+
+                  Blank()
+
+                  TextInput({ placeholder: this.imageWidthProperty.height.toString() })
+                    .width('30%')
+                    .type(InputType.Number)
+                    .onChange((value: string) => {
+                      this.imageWidthProperty.height = Number(value)
+                    })
+                }
               }
             }
+            .alignItems(VerticalAlign.Center)
+            .justifyContent(FlexAlign.Center)
+            .width('100%')
+            .borderRadius(24)
+            .backgroundColor('#FFFFFF')
           }
-          .visibility(Visibility[this.showSize])
-          .width('100%')
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('backgroundImagePosition')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.backgroundImagePosition}`)
                 .fontSize('16fp')
@@ -368,52 +396,65 @@ struct BackgroundSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8, bottom: 8 })
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Column() {
-              Row() {
-                Text('x:')
-                  .fontSize('16fp')
-                  .opacity(0.5)
-                  .fontColor('#182431')
-                  .fontWeight(FontWeight.Medium)
-                TextInput({ placeholder: this.imageWidthProperty.x.toString() })
-                  .width('50%')
-                  .type(InputType.Number)
-                  .onChange((value: string) => {
-                    this.imageWidthProperty.x = Number(value)
-                  })
-              }
-            }
+          if (this.showPosition !== 'None') {
+            Row() {
+              Column() {
+                Row() {
+                  Text('x:')
+                    .fontSize('16fp')
+                    .opacity(0.5)
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
 
-            Column() {
-              Row() {
-                Text('y:')
-                  .fontSize('16fp')
-                  .opacity(0.5)
-                  .fontColor('#182431')
-                  .fontWeight(FontWeight.Medium)
-                  .margin({ left: 20 })
-                TextInput({ placeholder: this.imageWidthProperty.y.toString() }).width('50%').type(InputType.Number)
-                  .onChange((value: string) => {
-                    this.imageWidthProperty.y = Number(value)
-                  })
+                  Blank()
+
+                  TextInput({ placeholder: this.imageWidthProperty.x.toString() })
+                    .width('50%')
+                    .type(InputType.Number)
+                    .onChange((value: string) => {
+                      this.imageWidthProperty.x = Number(value)
+                    })
+                }
+              }
+
+              Column() {
+                Row() {
+                  Text('y:')
+                    .fontSize('16fp')
+                    .opacity(0.5)
+                    .fontColor('#182431')
+                    .fontWeight(FontWeight.Medium)
+                    .margin({ left: 20 })
+
+                  Blank()
+
+                  TextInput({ placeholder: this.imageWidthProperty.y.toString() }).width('50%').type(InputType.Number)
+                    .onChange((value: string) => {
+                      this.imageWidthProperty.y = Number(value)
+                    })
+                }
               }
             }
+            .alignItems(VerticalAlign.Center)
+            .justifyContent(FlexAlign.Center)
+            .width('100%')
+            .borderRadius(24)
+            .backgroundColor('#FFFFFF')
+            .margin({ bottom: 12 })
           }
-          .visibility(Visibility[this.showPosition])
-          .width('100%')
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ bottom: 12 })
         }.width('100%')
       }.width('100%').height('40%')
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
+    .height('100%')
     .padding({ left: '3%', right: '3%', bottom: 10 })
     .backgroundColor('#F1F3F5')
   }

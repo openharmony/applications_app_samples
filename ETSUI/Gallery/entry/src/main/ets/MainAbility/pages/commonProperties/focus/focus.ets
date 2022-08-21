@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-
-import { NavigationBar } from "../../../common/components/navigationBar"
-
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -23,8 +21,7 @@ struct FocusSmaple {
   @State suspension: boolean= false
   @State borderWithNumber: number[]= [0, 0, 0, 0]
   @State chooseUrlNumber: number= 0
-
-  private urlArray: Resource[]= [$r("app.media.focus_01"), $r("app.media.focus_02"), $r("app.media.focus_03"), $r("app.media.focus_04")]
+  private urlArray: Resource[]= [$r('app.media.focus_01'), $r('app.media.focus_02'), $r('app.media.focus_03'), $r('app.media.focus_04')]
 
   build() {
     Column() {
@@ -34,7 +31,7 @@ struct FocusSmaple {
       .width('100%')
       .height('10%')
       .zIndex(999)
-      //上部分显示效果
+      // 上部分显示效果
       Column() {
         Image(this.urlArray[this.chooseUrlNumber])
           .width(250)
@@ -53,11 +50,11 @@ struct FocusSmaple {
       .backgroundColor('#FFFFFF')
       .zIndex(99)
 
-      //下部分属性、属性值
+      // 下部分属性、属性值
       Column() {
         if (!this.suspension) {
           Row() {
-            Image($r("app.media.focus_01"))
+            Image($r('app.media.focus_01'))
               .width(80)
               .height(80)
               .borderRadius(12)
@@ -65,12 +62,16 @@ struct FocusSmaple {
               .borderWidth(this.borderWithNumber[0])
               .borderColor(Color.Orange)
               .focusable(true)
+              .onClick(() => {
+                this.borderWithNumber = [6, 0, 0, 0]
+                this.chooseUrlNumber = 0
+              })
               .onFocus(() => {
                 this.borderWithNumber = [6, 0, 0, 0]
                 this.chooseUrlNumber = 0
               })
 
-            Image($r("app.media.focus_02"))
+            Image($r('app.media.focus_02'))
               .width(75)
               .height(75)
               .borderRadius(12)
@@ -78,12 +79,16 @@ struct FocusSmaple {
               .borderWidth(this.borderWithNumber[1])
               .borderColor(Color.Orange)
               .focusable(true)
+              .onClick(() => {
+                this.borderWithNumber = [0, 6, 0, 0]
+                this.chooseUrlNumber = 1
+              })
               .onFocus(() => {
                 this.borderWithNumber = [0, 6, 0, 0]
                 this.chooseUrlNumber = 1
               })
 
-            Image($r("app.media.focus_03"))
+            Image($r('app.media.focus_03'))
               .width(75)
               .height(75)
               .borderRadius(12)
@@ -100,7 +105,7 @@ struct FocusSmaple {
                 this.chooseUrlNumber = 2
               })
 
-            Image($r("app.media.focus_04"))
+            Image($r('app.media.focus_04'))
               .width(75)
               .height(75)
               .borderRadius(12)
@@ -124,7 +129,7 @@ struct FocusSmaple {
         }
         else {
           Column() {
-            Text("鼠标正在悬浮")
+            Text('鼠标正在悬浮')
               .fontSize(30)
               .fontColor(Color.Black)
               .textAlign(TextAlign.Center)
@@ -132,7 +137,7 @@ struct FocusSmaple {
               .height(100)
               .margin({ top: 5, bottom: 5 })
 
-            Image($r("app.media.focus_05"))
+            Image($r('app.media.focus_05'))
               .width(150)
               .height(150)
               .borderRadius(12)

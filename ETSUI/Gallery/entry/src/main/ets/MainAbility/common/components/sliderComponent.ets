@@ -20,11 +20,11 @@ export struct SliderComponent {
   @Prop name: string
   @Prop min: number
   @Prop max: number
-  @State step: number= 1
+  @State step: number = 1
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+      Row() {
         Text(this.name)
           .fontSize('16fp')
           .opacity(0.5)
@@ -59,6 +59,6 @@ export struct SliderComponent {
     .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
     .borderRadius(24)
     .backgroundColor('#FFFFFF')
-    .margin({  bottom: 8 })
+    .margin({ bottom: 8 })
   }
 }

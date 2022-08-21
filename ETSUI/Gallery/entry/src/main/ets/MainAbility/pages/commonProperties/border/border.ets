@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct BorderSample {
-  @State value: string = "hello world"
+  @State value: string = 'hello world'
   @State color: Color = Color.Black
   @State borderStyle: string = 'Solid'
   @State borderWidth: number = 18
@@ -26,18 +26,21 @@ struct BorderSample {
   @State borderRadius: number = 0
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '边框设置' })
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Text(this.borderStyle)
               .textAlign(TextAlign.Center)
               .fontSize(35)
               .width('100%')
               .height('100%')
-          }.width(300)
+          }
+          .width(300)
           .height(300)
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
           .borderRadius(this.borderRadius)
           .borderWidth(this.borderWidth)
           .borderStyle(BorderStyle[this.borderStyle])
@@ -50,12 +53,15 @@ struct BorderSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('borderStyle')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.borderStyle}`)
                 .fontSize('16fp')
@@ -68,39 +74,39 @@ struct BorderSample {
               {
                 value: 'Solid',
                 action: () => {
-                  this.borderStyle = "Solid"
+                  this.borderStyle = 'Solid'
                 }
               },
               {
                 value: 'Dotted',
                 action: () => {
-                  this.borderStyle = "Dotted"
+                  this.borderStyle = 'Dotted'
                 }
               },
               {
                 value: 'Dashed',
                 action: () => {
-                  this.borderStyle = "Dashed"
+                  this.borderStyle = 'Dashed'
                 }
               },
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({
-            direction: FlexDirection.Column,
-            justifyContent: FlexAlign.SpaceAround,
-            alignItems: ItemAlign.Center
-          }) {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Column({ space: FlexAlign.SpaceAround }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('borderWidth')
                 .fontSize('16fp')
                 .opacity(0.5)
                 .fontColor('#182431')
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Text(this.borderWidth.toFixed(0))
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -127,17 +133,21 @@ struct BorderSample {
               })
           }
           .width('100%')
+          .alignItems(HorizontalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('color')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Row() {
                 GetColor({ colorVal: $borderColor })
@@ -145,17 +155,14 @@ struct BorderSample {
             }
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({
-            direction: FlexDirection.Column,
-            justifyContent: FlexAlign.SpaceAround,
-            alignItems: ItemAlign.Center
-          }) {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Column({ space: FlexAlign.SpaceAround }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('borderRadius')
                 .fontSize('16fp')
                 .opacity(0.5)
@@ -186,6 +193,7 @@ struct BorderSample {
                 this.borderRadius = value
               })
           }
+          .alignItems(HorizontalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
@@ -194,7 +202,10 @@ struct BorderSample {
         }.width('100%')
       }.width('100%').height('40%')
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

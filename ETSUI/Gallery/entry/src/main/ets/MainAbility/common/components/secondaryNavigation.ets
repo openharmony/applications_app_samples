@@ -13,17 +13,22 @@
  * limitations under the License.
  */
 import router from '@ohos.router';
-import { SECOND_NAV_LIST } from '../../model/constant'
+import { SECOND_NAV_LIST, MyDataSource } from '../../model/constant'
 
 
 @Component
 export struct SecondaryNavigation {
+  @State info: MyDataSource = new MyDataSource()
   private index: number = 0;
+
+  aboutToAppear() {
+    this.info.replace(SECOND_NAV_LIST[this.index])
+  }
 
   build() {
     Column() {
       List() {
-        ForEach(SECOND_NAV_LIST[this.index], (item) => {
+        LazyForEach(this.info, (item) => {
           ListItem() {
             Row() {
               Image($r("app.media.ic_public_collect"))
@@ -55,11 +60,10 @@ export struct SecondaryNavigation {
         })
       }
       .backgroundColor('#FFFFFF')
-      .padding({top:12})
+      .padding({ top: 12 })
       .listDirection(Axis.Vertical)
-      .divider({ strokeWidth: '1', color: '#32000000',startMargin:'10%',  })
+      .divider({ strokeWidth: '1', color: '#32000000', startMargin: '10%', })
     }
-    .width('100%')
     .backgroundColor('#F1F3F5')
   }
 }

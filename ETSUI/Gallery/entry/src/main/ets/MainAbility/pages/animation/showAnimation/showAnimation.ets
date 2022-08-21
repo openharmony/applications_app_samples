@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import Curves from '@ohos.curves';
+import { NavigationBar } from '../../../common/components/navigationBar'
+import Curves from '@ohos.curves'
 
 @Entry
 @Component
@@ -34,7 +33,7 @@ struct ShowAnimationSample {
       animateTo({
         duration: 3000,
         onFinish: () => {
-          console.info(`${this.duration}`)
+          console.info(`success`)
         }
       }, () => {
         this.angle = 2160
@@ -45,7 +44,7 @@ struct ShowAnimationSample {
       animateTo({
         duration: 3000,
         onFinish: () => {
-          console.info(`${this.duration}`)
+          console.info(`success`)
         }
       }, () => {
         this.angle = 0

@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct ShareElementTransitionFromSample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: '共享元素转场' })
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      Row() {
         Navigator({
           target: 'pages/animation/shareElementTransition/shareElementTransitionTo',
           type: NavigationType.Push
@@ -37,12 +37,16 @@ struct ShareElementTransitionFromSample {
           .fontSize(20)
           .fontColor('#000')
           .height(40)
-      }.height('11.1%')
+      }
+      .height('11.1%')
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Start)
       .borderRadius(24)
       .padding({ left: '3.6%', right: '5.4%', top: 12, bottom: 12 })
       .backgroundColor('#ffffff')
     }
     .height('100%')
+    .alignItems(HorizontalAlign.Center)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

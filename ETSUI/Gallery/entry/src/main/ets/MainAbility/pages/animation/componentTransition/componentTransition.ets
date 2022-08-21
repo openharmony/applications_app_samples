@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -22,7 +22,7 @@ struct ComponentTransitionSample {
     x: number,
     y: number
   } = { x: 0, y: 0 }
-  @State opcity: number= 0
+  @State opcity: number = 0
 
   build() {
     Column() {
@@ -120,11 +120,11 @@ struct ShowDialog {
 
   build() {
     if (this.isShow) {
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
         Text('Software uninstall').width('70%').fontSize(20).margin({ top: 10, bottom: 10, left: 20 })
         Image($r('app.media.icon')).width(80).height(80)
         Text('Whether to uninstall a software?').fontSize(16).margin({ bottom: 10 })
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Row({ space: 10 }) {
           Button('cancel')
             .onClick(() => {
               this.eixtAnimateTo()
@@ -143,8 +143,7 @@ struct ShowDialog {
       .borderRadius(40)
       .transition({
         type: TransitionType.Delete,
-        scale: { x: 1.25, y: 1.25, centerX: '0%', centerY: '50%' },
-        //        translate: {x: 100, y: 100, z: 30 }
+        scale: { x: 1.25, y: 1.25, centerX: '0%', centerY: '50%' }
       })
       .transition({ type: TransitionType.Insert, scale: { x: 0, y: 0, centerX: '50%', centerY: '50%' },
         rotate: {

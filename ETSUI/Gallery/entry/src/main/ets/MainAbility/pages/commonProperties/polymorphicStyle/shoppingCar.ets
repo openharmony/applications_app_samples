@@ -19,14 +19,20 @@ import router from '@ohos.router';
 @Component
 struct ShoppingCarSample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          router.back()
+        })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }
+
   pageTransition() {
     PageTransitionEnter({ duration: 370, curve: Curve.Friction })
       .slide(SlideEffect.Bottom)

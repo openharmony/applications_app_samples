@@ -19,14 +19,14 @@ enum Type {
   contrast
 }
 
-import { NavigationBar } from "../../common/components/navigationBar"
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
 struct CanvasExample {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private ctx: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private img: ImageBitmap = new ImageBitmap("/common/test2.jpg")
+  private img: ImageBitmap = new ImageBitmap('/common/test2.jpg')
   @State visibility1: string = 'Visible'
   @State visibility2: string = 'None'
   @State brightnessValue: number = 10
@@ -111,7 +111,7 @@ struct CanvasExample {
     }
     return imageData
   }
-  //RGB转HSV
+  // RGB转HSV
   rgb2hsv(arr) {
     let rr
     let gg
@@ -148,7 +148,7 @@ struct CanvasExample {
     }
     return [Math.round(h * 360), Math.round(s * 100), Math.round(v * 100)]
   }
-  //HSV转RGB
+  // HSV转RGB
   hsv2rgb(hsv) {
     let _l = hsv[0]
     let _m = hsv[1]
@@ -209,7 +209,7 @@ struct CanvasExample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column(){
       Row() {
         NavigationBar({ title: 'Canvas' })
       }
@@ -218,7 +218,7 @@ struct CanvasExample {
       .zIndex(999)
 
       Column() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Column() {
             Canvas(this.ctx)
               .width(350)
@@ -227,12 +227,12 @@ struct CanvasExample {
               .onReady(() => {
                 this.dWidth = 300
                 this.dHeight = 250
-                //绘制原始图片
+                // 绘制原始图片
                 this.ctx.drawImage(this.img, 25, 25, 300, 250)
                 this.adjustBrightness(this.adjustValue)
               })
           }
-        }.width('100%')
+        }.width('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -243,13 +243,13 @@ struct CanvasExample {
           Button('原图')
             .onClick(() => {
               this.clipState = 'original'
-              //裁剪框等于图片大小
+              // 裁剪框等于图片大小
               this.clipWidth = this.dWidth
               this.clipHeight = this.dHeight
               this.clipOffsetx = 25
               this.clipOffsety = 25
               this.ctx.lineWidth = 3
-              this.ctx.strokeStyle = "#ffff00"
+              this.ctx.strokeStyle = '#ffff00'
               this.ctx.save()
             })
             .fontSize('12fp')
@@ -258,14 +258,14 @@ struct CanvasExample {
           Button('1:1')
             .onClick(() => {
               this.clipState = 'sameProportion'
-              //裁剪框左边框(1:1)
+              // 裁剪框左边框(1:1)
               this.cropBoxLeftTwo = (this.dWidth - this.dHeight) / 2 + 25
               this.clipOffsetx = this.cropBoxLeftTwo
               this.clipOffsety = 25
               this.clipWidth = this.dHeight
               this.clipHeight = this.dHeight
               this.ctx.lineWidth = 5
-              this.ctx.strokeStyle = "#ffff00"
+              this.ctx.strokeStyle = '#ffff00'
             })
             .fontSize('12fp')
             .borderRadius(14)
@@ -275,14 +275,14 @@ struct CanvasExample {
               this.clipState = 'HighProportion'
               this.clipHeight = (this.dWidth * 9 / 19)
               this.clipWidth = this.dWidth
-              //裁剪框左边框(16:9)
+              // 裁剪框左边框(16:9)
               this.cropBoxLeftThr = (this.dWidth - this.clipWidth) / 2 + 25
-              //裁剪框上边距（16:9 ； 图片相对于画布）
+              // 裁剪框上边距（16:9 ； 图片相对于画布）
               this.cropBoxTopThr = (this.dHeight - this.clipHeight) / 2 + 25
               this.clipOffsetx = this.cropBoxLeftThr
               this.clipOffsety = this.cropBoxTopThr
               this.ctx.lineWidth = 5
-              this.ctx.strokeStyle = "#ffff00"
+              this.ctx.strokeStyle = '#ffff00'
             })
             .fontSize('12fp')
             .borderRadius(14)
@@ -292,14 +292,14 @@ struct CanvasExample {
               this.clipState = 'LowProportion'
               this.clipWidth = (this.dHeight * 9 / 16)
               this.clipHeight = this.dHeight
-              //裁剪框左边框(9:16)
+              // 裁剪框左边框(9:16)
               this.cropBoxLeftFou = (this.dWidth - this.dHeight * 9 / 16) / 2 + 25
-              //裁剪框上边距（9:16 ；图片相对于画布）
+              // 裁剪框上边距（9:16 ；图片相对于画布）
               this.cropBoxTopFou = 25
               this.clipOffsetx = (this.dWidth - this.clipWidth) / 2 + 25
               this.clipOffsety = this.cropBoxTopFou
               this.ctx.lineWidth = 5
-              this.ctx.strokeStyle = "#ffff00"
+              this.ctx.strokeStyle = '#ffff00'
             })
             .fontSize('12fp')
             .borderRadius(14)
@@ -307,7 +307,6 @@ struct CanvasExample {
         }
         .padding({ bottom: 5, top: 5, left: 30 })
         .visibility(Visibility[this.visibility1])
-
 
         if (this.typeProperties == Type.brightness) {
           Slider({
@@ -327,7 +326,6 @@ struct CanvasExample {
                 } else {
                   const adjust = value / this.oldBrightnessValue
                   this.adjustValue = adjust
-                  //                  this.adjustBrightness(this.adjustValue)
                 }
               }
             })
@@ -452,20 +450,19 @@ struct CanvasExample {
               this.visibility1 = 'Visible'
               this.visibility2 = 'None'
               this.clipState = 'original'
-              //绘制图片 赋值裁剪框宽高
+              // 绘制图片 赋值裁剪框宽高
               this.clipWidth = this.dWidth
               this.clipHeight = this.dHeight
               this.clipOffsetx = 25
               this.clipOffsety = 25
-              //绘制裁剪框
-              this.ctx.fillStyle = "#0344ee"
+              // 绘制裁剪框
+              this.ctx.fillStyle = '#0344ee'
               this.ctx.lineWidth = 5
-              //裁剪框左边距(原图)-++-
+              // 裁剪框左边距(原图)-++-
               this.cropBoxLeftOne = (this.dWidth - this.clipWidth) / 2 + 25
-
-              //裁剪框上边距(原图；图片相对于画布)
+              // 裁剪框上边距(原图；图片相对于画布)
               this.cropBoxTopOne = 25
-              //裁剪框上边距（1:1 ；图片相对于画布）
+              // 裁剪框上边距（1:1 ；图片相对于画布）
               this.cropBoxTopTwo = 25
             })
             .fontSize('12fp')
@@ -491,7 +488,10 @@ struct CanvasExample {
       .padding(12)
       .margin({ top: 24 })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F1F5')
     .padding({ left: '3%', right: '3%' })
   }

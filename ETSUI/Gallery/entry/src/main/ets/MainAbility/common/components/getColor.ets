@@ -58,7 +58,7 @@ export struct GetColor {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
+      Row() {
         Row().width('100%').height('100%').backgroundColor(this.colorVal)
           .borderRadius(24)
       }
@@ -108,7 +108,7 @@ struct SetColor {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private gra: CanvasGradient = new CanvasGradient()
-  //p40:170  rk:400 wgr: 844
+  // p40:170  rk:400 wgr: 844
   @State size: {
     width: number,
     height: number
@@ -128,28 +128,28 @@ struct SetColor {
     })
   }
 
-  //多端适配
+  // 多端适配
   comfortStyle(width: number) {
     if (width == 360) {
-      this.size.width = 170*2
+      this.size.width = 170 * 2
       this.size.height = 170
     } else if (width == 720) {
-      this.size.width = 400*2
+      this.size.width = 400 * 2
       this.size.height = 400
     } else if (width = 2560) {
-      this.size.width = 844*2
+      this.size.width = 844 * 2
       this.size.height = 300
     }
   }
-  //绘制canvas
+  // 绘制canvas
   colorPannel(curColor) {
-    //第一次填充
+    // 第一次填充
     var grad = this.context.createLinearGradient(0, 0, this.size.width, 0)
     grad.addColorStop(0, 'white')
     grad.addColorStop(1, curColor)
     this.context.fillStyle = grad
     this.context.fillRect(0, 0, this.size.width, this.size.height)
-    //第二次填充
+    // 第二次填充
     var myGrad = this.context.createLinearGradient(0, 0, 0, this.size.height)
     myGrad.addColorStop(0, 'rgba(0,0,0,0)')
     myGrad.addColorStop(1, 'rgba(0,0,0,1)')
@@ -157,31 +157,31 @@ struct SetColor {
     this.context.fillRect(0, 0, this.size.width, this.size.height)
   }
 
-  //点击获取颜色
+  // 点击获取颜色
   getColor(event) {
     let data = this.context.getImageData(Math.round(event.x), Math.round(event.y), 2, 2)
     return `rgb(${data.data[0]},${data.data[1]},${data.data[2]})`
   }
 
-  //色相颜色
+  // 色相颜色
   colorBar(getPosition) {
     let colorWidth = 1 / 6
     if (getPosition < 1 / 6) {
-      return `rgba(255,${Number((255 * getPosition / colorWidth).toFixed(0))},0,1)` //红 - 黄
+      return `rgba(255,${Number((255 * getPosition / colorWidth).toFixed(0))},0,1)` // 红 - 黄
     } else if (getPosition < 2 / 6) {
-      return `rgba(${255 - Number((255 * (getPosition - colorWidth) / colorWidth).toFixed(0))},255,0,1)` //黄 - 绿
+      return `rgba(${255 - Number((255 * (getPosition - colorWidth) / colorWidth).toFixed(0))},255,0,1)` // 黄 - 绿
     } else if (getPosition < 3 / 6) {
-      return `rgba(0,255,${Number((255 * (getPosition - colorWidth * 2) / colorWidth).toFixed(0))},1)` //绿 -青
+      return `rgba(0,255,${Number((255 * (getPosition - colorWidth * 2) / colorWidth).toFixed(0))},1)` // 绿 -青
     } else if (getPosition < 4 / 6) {
-      return `rgba(0,${255 - Number((255 * (getPosition - colorWidth * 3) / colorWidth).toFixed(0))},255,1)` //青 - 蓝
+      return `rgba(0,${255 - Number((255 * (getPosition - colorWidth * 3) / colorWidth).toFixed(0))},255,1)` // 青 - 蓝
     } else if (getPosition < 5 / 6) {
-      return `rgba(${Number((255 * (getPosition - colorWidth * 4) / colorWidth).toFixed(0))},0,255,1)` //蓝 - 紫
+      return `rgba(${Number((255 * (getPosition - colorWidth * 4) / colorWidth).toFixed(0))},0,255,1)` // 蓝 - 紫
     } else {
-      return `rgba(255,0,${255 - Number((255 * (getPosition - colorWidth * 5) / colorWidth).toFixed(0))},1)` //紫 - 红
+      return `rgba(255,0,${255 - Number((255 * (getPosition - colorWidth * 5) / colorWidth).toFixed(0))},1)` // 紫 - 红
     }
   }
 
-  //rgb2hex
+  // rgb2hex
   rgbToHex(rgb) {
     let arr = rgb.split(/\D+/);
     let r = arr[1]
@@ -215,7 +215,7 @@ struct SetColor {
             this.cirY = event.touches[0].y - 10
           }
         })
-      //ColorBlock
+      // ColorBlock
       Row()
         .width(20)
         .height(20)
@@ -224,8 +224,8 @@ struct SetColor {
         .backgroundColor('#fff')
         .borderWidth(3)
         .position({ x: this.cirX, y: this.cirY })
-      //colorBar
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+      // colorBar
+      Row() {
         Row()
           .width(50)
           .height(50)
@@ -262,8 +262,8 @@ struct SetColor {
           .width('80%')
           .height(50)
       }.width('100%').height(50).margin({ top: 20, bottom: 20 })
-      //colorVal
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+      // colorVal
+      Row() {
         Text(`RGB:  ${this.myColor}`).fontSize('16fp')
         Text(`十六进制:  ${this.hexColor}`).fontSize('16fp')
       }.width('100%').margin({ bottom: 20 })

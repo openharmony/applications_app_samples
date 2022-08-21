@@ -12,23 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct OverlaySample {
-  @State align: string = "Top"
-  @State offsetX: number= 50
-  @State offsetY: number= 50
+  @State align: string = 'Top'
+  @State offsetX: number = 50
+  @State offsetY: number = 50
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       NavigationBar({ title: '浮层' })
 
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Image('/common/test5.jpg')
               .width('80%').height('90%')
               .overlay('OpenHarmony', {
@@ -36,6 +35,8 @@ struct OverlaySample {
                 offset: { x: this.offsetX - 50, y: this.offsetY - 50 }
               })
           }
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
         }
       }
       .width('100%')
@@ -45,12 +46,14 @@ struct OverlaySample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('align')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
 
             Text(`${this.align}`)
               .fontColor('#182431')
@@ -62,66 +65,67 @@ struct OverlaySample {
                 {
                   value: 'TopStart',
                   action: () => {
-                    this.align = "TopStart"
+                    this.align = 'TopStart'
                   }
                 },
                 {
                   value: 'Top',
                   action: () => {
-                    this.align = "Top"
+                    this.align = 'Top'
                   }
                 },
                 {
                   value: 'TopEnd',
                   action: () => {
-                    this.align = "TopEnd"
+                    this.align = 'TopEnd'
                   }
                 },
                 {
                   value: 'Start',
                   action: () => {
-                    this.align = "Start"
+                    this.align = 'Start'
                   }
                 },
                 {
                   value: 'Center',
                   action: () => {
-                    this.align = "Center"
+                    this.align = 'Center'
                   }
                 },
                 {
                   value: 'End',
                   action: () => {
-                    this.align = "End"
+                    this.align = 'End'
                   }
                 },
                 {
                   value: 'BottomStart',
                   action: () => {
-                    this.align = "BottomStart"
+                    this.align = 'BottomStart'
                   }
                 },
                 {
                   value: 'Bottom',
                   action: () => {
-                    this.align = "Bottom"
+                    this.align = 'Bottom'
                   }
                 },
                 {
                   value: 'BottomEnd',
                   action: () => {
-                    this.align = "BottomEnd"
+                    this.align = 'BottomEnd'
                   }
                 },
               ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ bottom: 10 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('offset(x)')
               .fontColor('#182431')
               .fontSize('16fp')
@@ -150,12 +154,13 @@ struct OverlaySample {
             }
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('offset(y)')
               .fontColor('#182431')
               .fontSize('16fp')
@@ -184,6 +189,7 @@ struct OverlaySample {
             }
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')

@@ -20,9 +20,9 @@ export struct NavigationBar {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Row() {
         // touch area
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Row() {
           // icon 24 * 24
           Image($r("app.media.Back"))
             .width(24)

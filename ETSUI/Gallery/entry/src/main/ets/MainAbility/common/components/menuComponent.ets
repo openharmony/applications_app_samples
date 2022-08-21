@@ -24,27 +24,16 @@ export struct MenuComponent {
   @Link transferParameters: any
   @State arrMenu: any = []
 
-  private aboutToAppear() {
-    for (let i = 0;i < this.transferParameters.length; i++) {
-      this.arrMenu.push(
-        {
-          value: `${this.transferParameters[i]}`,
-          action: () => {
-            this.items = this.transferParameters[i]
-            console.log(this.transferParameters[i])
-          }
-        }
-      )
-    }
-  }
-
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    Row({ space: FlexAlign.SpaceBetween }) {
       Text(this.title)
         .fontColor('#182431')
         .fontSize('16fp')
         .fontWeight(FontWeight.Medium)
         .opacity(0.5)
+
+      Blank()
+
       Column() {
         Text(`${this.items}`)
           .fontColor('#182431')
@@ -60,5 +49,19 @@ export struct MenuComponent {
     .borderRadius(24)
     .backgroundColor('#FFFFFF')
     .margin({ top: 8 })
+  }
+
+  private aboutToAppear() {
+    for (let i = 0;i < this.transferParameters.length; i++) {
+      this.arrMenu.push(
+        {
+          value: `${this.transferParameters[i]}`,
+          action: () => {
+            this.items = this.transferParameters[i]
+            console.log(this.transferParameters[i])
+          }
+        }
+      )
+    }
   }
 }

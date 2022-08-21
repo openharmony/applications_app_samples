@@ -13,33 +13,35 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 import router from '@ohos.router';
 
 @Entry
 @Component
 struct TraAnimationFromSample {
-  @State angle: number= 360
-  @State topY: number= 0
-  @State leftX: number= 0
-  @State rightX: number= 0
-  @State leftX1: number= 0
-  @State rightX1: number= 0
-  @State bottomY: number= 0
+  @State angle: number = 360
+  @State topY: number = 0
+  @State leftX: number = 0
+  @State rightX: number = 0
+  @State leftX1: number = 0
+  @State rightX1: number = 0
+  @State bottomY: number = 0
 
   build() {
     Column() {
       NavigationBar({ title: '页面间转场' })
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-          Flex({ justifyContent: FlexAlign.Center }) {
+      Column() {
+        Column({space: FlexAlign.SpaceAround}) {
+          Row() {
             Text('PAGE')
               .fontSize('35fp')
               .opacity(0.4)
             Text('TRANSITIONS')
               .fontSize('35fp')
               .fontColor('#FFFFFF')
-          }.width('100%')
+          }
+          .width('100%')
+          .justifyContent(FlexAlign.Center)
 
           Text('MOVE TO BOTTOM / FROM TOP')
             .translate({ x: 0, y: this.topY })
@@ -134,10 +136,12 @@ struct TraAnimationFromSample {
               })
             })
         }
+        .alignItems(HorizontalAlign.Center)
         .width('100%')
         .height('70%')
         .margin({ top: 20 })
       }
+      .alignItems(HorizontalAlign.Center)
       .clip(true)
       .height('100%')
       .width('100%')
