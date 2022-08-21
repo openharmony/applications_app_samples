@@ -49,7 +49,7 @@ export struct InPutComponent {
       .width('100%')
       .align(Alignment.Center)
     }
-    .width(this.isLand ? '45%' : '100%')
+    .width(this.isLand ? '34%' : '100%')
     .height(this.isLand ? '100%' : '30%')
   }
 }

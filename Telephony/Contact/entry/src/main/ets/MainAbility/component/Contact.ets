@@ -18,13 +18,14 @@ import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import resourceManager from '@ohos.resourceManager'
 import { ItemContainer } from '../component/ItemContainer'
+import { ItemContainerSource } from "../model/DataSource"
 
 @Component
 export struct Contact {
   @State result: string = ''
   @State position: string = ''
   @State contactNumber: number = 0
-  @State contacts: contact.Contact[] = []
+  @State contacts: ItemContainerSource = new ItemContainerSource([])
   private controller: TextInputController = new TextInputController()
 
   build() {
@@ -84,13 +85,13 @@ export struct Contact {
             this.result = value
           })
           .onSubmit(async (enterKey: EnterKeyType) => {
-            for (let i = 0; i < this.contacts.length; i++) {
+            for (let i = 0; i < this.contacts['contactData'].length; i++) {
               let phoneData = await contact.queryContactsByPhoneNumber(this.result)
               let emailData = await contact.queryContactsByEmail(this.result)
-              if (this.contacts[i] === phoneData[0] || this.contacts[i] === emailData[0]) {
+              if (this.contacts['contactData'][i] === phoneData[0] || this.contacts['contactData'][i] === emailData[0]) {
                 router.push({
                   url: 'pages/NameCard',
-                  params: { data: this.contacts[i] }
+                  params: { data: this.contacts['contactData'][i] }
                 })
               } else {
                 prompt.showToast({
@@ -144,10 +145,11 @@ export struct Contact {
   async aboutToAppear() {
     let resource = await resourceManager.getResourceManager()
     this.position = await resource.getString($r('app.string.contacts').id)
-    this.contacts = await contact.queryContacts()
-    this.contactNumber = this.contacts.length
+    this.contacts['contactData'] = await contact.queryContacts()
+    this.contacts.notifyDataReload()
+    this.contactNumber = this.contacts['contactData'].length
     // 对获取到的联系人数组根据姓名首字母排序
-    let sortContact = this.contacts.map(function (a, b) {
+    let sortContact = this.contacts['contactData'].map(function (a, b) {
       return { index: b, value: a.name.fullName.substr(0, 1), key: a.key }
     })
     sortContact.sort(function (a, b) {
@@ -155,7 +157,7 @@ export struct Contact {
     })
     for (let i = 0; i < sortContact.length; i++) {
       let contactInfo = await contact.queryContact(sortContact[i].key)
-      this.contacts[i] = contactInfo
+      this.contacts['contactData'][i] = contactInfo
     }
   }
 }

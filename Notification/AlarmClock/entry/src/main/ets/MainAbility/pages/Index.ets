@@ -18,6 +18,7 @@ import StorageModel from '../mode/StorageModel'
 import Logger from '../mode/Logger'
 import reminderAgent from '@ohos.reminderAgent'
 import { TitleBar } from '../common/TitleBar'
+import { AlarmClockSource } from "../mode/DataSource"
 
 const TAG = 'Index'
 
@@ -25,25 +26,26 @@ const TAG = 'Index'
 @Component
 struct Index {
   @State total: number = 0
-  @State listItems: Array<unknown> = []
+  @State listItems: AlarmClockSource = new AlarmClockSource([])
   private storage: StorageModel = StorageModel.getInstance()
   private datePicker: CustomDialogController = null
   getTest = async () => {
     Logger.info(TAG, `getTest`)
-    this.listItems = []
+    this.listItems['listItemsData'] = []
+    this.listItems.notifyDataReload()
     let amount = await this.storage.getStorageValue('amount')
     Logger.info(TAG, `getTest amount = ${amount}`)
-    if(amount !== 'null'){
-      this.total =  parseInt(amount)
+    if (amount !== 'null') {
+      this.total = parseInt(amount)
     }
     for (let i = 0;i < this.total; i++) {
       let alarmClock = await this.storage.getStorageValue(`alarmClock${i}`)
       if (alarmClock != 'null') {
         let dataTime = JSON.parse(alarmClock).hour + ':' + JSON.parse(alarmClock).minute
-        this.listItems.push({ key: `alarmClock${i}`, value: dataTime, reminderId: JSON.parse(alarmClock).reminderId })
+        this.listItems.pushData({ key: `alarmClock${i}`, value: dataTime, reminderId: JSON.parse(alarmClock).reminderId })
       }
     }
-    Logger.info(TAG, `ListItem = ${JSON.stringify(this.listItems)}`)
+    Logger.info(TAG, `ListItem = ${JSON.stringify(this.listItems['listItemsData'])}`)
   }
 
   aboutToAppear() {
@@ -82,7 +84,7 @@ struct Index {
       .margin({ top: 40, bottom: 40 })
 
       List() {
-        ForEach(this.listItems, (item, index) => {
+        LazyForEach(this.listItems, (item, index) => {
           ListItem() {
             Row() {
               Text(item.value)
@@ -92,10 +94,11 @@ struct Index {
                 Text($r('app.string.delete'))
                   .fontSize(30)
                   .textAlign(TextAlign.Center)
-                  .onClick( async () => {
+                  .onClick(async () => {
                     Logger.info(TAG, `key = ${item.key}`)
                     this.storage.deleteSync(item.key)
-                    this.listItems.splice(index, 1)
+                    this.listItems['listItemsData'].splice(index, 1)
+                    this.listItems.notifyDataReload()
                     reminderAgent.cancelReminder(item.reminderId, () => {
                       Logger.info(TAG, `do next`)
                     })
@@ -112,6 +115,7 @@ struct Index {
           }
         }, item => item.value)
       }
+      .width("100%")
       .layoutWeight(1)
     }
   }

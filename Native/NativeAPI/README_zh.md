@@ -26,6 +26,6 @@ NativeAPI：IDE中会包含使用Native API的默认工程，使用`File`->`New`
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 3.本示例需要使用特定版本的NDK编译才能正常显示。

@@ -14,14 +14,14 @@
  */
 
 import router from '@ohos.router'
-import contact from '@ohos.contact'
+import { ItemContainerSource } from "../model/DataSource"
 
 @Component
 export struct ItemContainer {
   @State selected: number = 0
   @State routerItem: number = 0
   @State letter: string = ''
-  private contacts: contact.Contact[] = []
+  private contacts: ItemContainerSource = new ItemContainerSource([])
   private scroller: Scroller = new Scroller()
   private alphabetical: string[] =
     [
@@ -33,14 +33,14 @@ export struct ItemContainer {
     Stack({ alignContent: Alignment.End }) {
       Column() {
         List({ space: 4, initialIndex: this.routerItem }) {
-          ForEach(this.contacts, (item, index) => {
+          LazyForEach(this.contacts, (item, index) => {
             ListItem() {
               Column() {
                 if (index === 0) {
                   this.container(item.name.fullName.substr(0, 1).toUpperCase())
                 }
                 else {
-                  if (item.name.fullName.substr(0, 1) !== this.contacts[index - 1].name.fullName.substr(0, 1)) {
+                  if (item.name.fullName.substr(0, 1) !== this.contacts['contactData'][index - 1].name.fullName.substr(0, 1)) {
                     this.container(item.name.fullName.substr(0, 1).toUpperCase())
                   }
                 }
@@ -72,7 +72,7 @@ export struct ItemContainer {
         .height('50%')
         .onScrollIndex((startIndex: number, lastIndex: number) => {
           // 更新选中的字母索引
-          this.letter = this.contacts[startIndex].name.fullName.substr(0, 1)
+          this.letter = this.contacts['contactData'][startIndex].name.fullName.substr(0, 1)
             .toUpperCase()
           this.selected = this.alphabetical.indexOf(this.letter)
         })
@@ -80,7 +80,7 @@ export struct ItemContainer {
       .width('100%')
       .height('100%')
 
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+      Column() {
         AlphabetIndexer({ arrayValue: this.alphabetical, selected: this.selected })
           .itemSize(18)
           .font({ size: 14 })

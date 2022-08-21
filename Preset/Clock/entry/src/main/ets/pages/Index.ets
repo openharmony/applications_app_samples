@@ -185,7 +185,7 @@ struct Clock {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Stack({ alignContent: Alignment.Center }) {
       Canvas(this.context)
         .width(this.canvasWidth)
         .height(this.canvasWidth + HEIGHT_ADD)

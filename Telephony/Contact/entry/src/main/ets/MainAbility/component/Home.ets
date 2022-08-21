@@ -51,7 +51,7 @@ export struct Home {
   }
 
   @Builder TabBuilder(index: number) {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       Image(this.TabItem(index).image)
         .objectFit(ImageFit.Contain)
         .width(32)

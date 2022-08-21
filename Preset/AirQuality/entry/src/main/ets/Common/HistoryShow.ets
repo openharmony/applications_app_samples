@@ -33,8 +33,8 @@ export struct HistoryShow {
     Column() {
       Row() {
         Button($r('app.string.history'))
-          .height(40)
-          .fontSize(30)
+          .height(30)
+          .fontSize(26)
           .onClick(() => {
             router.push({
               url: 'pages/Detail',
@@ -45,7 +45,7 @@ export struct HistoryShow {
           })
       }
       .height(30)
-      .margin({ top: 40 })
+      .margin({ top: 20 })
 
       Row() {
         Text(this.updateTimeText)

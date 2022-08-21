@@ -20,6 +20,7 @@ import Message from '../model/Message'
 import Logger from '../model/Logger'
 import SmsModel from '../model/SmsModel'
 import DateTimeUtil from '../model/DateTimeUtil'
+import {MessageSource} from "../model/DataSource"
 
 const TAG: string = '[SendMessage]'
 const NO_SIM_STATE: number = -1
@@ -32,7 +33,7 @@ struct SendMessage {
   @State serviceCenter: string = ''
   @State deliveryResult: string = ''
   @State content: string = ''
-  @State messages: Array<Message> = []
+  @State messages: MessageSource = new MessageSource([])
   private slotId: number = 0
   private destinationPort: number= 1000
   private contact: Contact
@@ -100,7 +101,7 @@ struct SendMessage {
             Logger.info(`${TAG}, sendCallback--- fail`)
           }
         }
-        this.messages.push(new Message(this.content, this.sendResult))
+        this.messages.pushData(new Message(this.content, this.sendResult))
         this.content = ''
         Logger.info(`${TAG}, sendCallback--- push message`)
       },
@@ -114,11 +115,11 @@ struct SendMessage {
           Logger.info(`${TAG}, deliveryCallback--- success`)
         }
       })
-    Logger.info(`${TAG}, onClick sendMessage done ${JSON.stringify(this.messages)}`)
+    Logger.info(`${TAG}, onClick sendMessage done ${JSON.stringify(this.messages['MessageData'])}`)
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Row() {
         Image($r('app.media.back'))
           .width(150)
@@ -150,8 +151,8 @@ struct SendMessage {
       .margin({ bottom: 10 })
 
       Scroll() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-          ForEach(this.messages, (item) => {
+        Column() {
+          LazyForEach(this.messages, (item) => {
             Row() {
               Text(`${item.sendResult}`)
                 .fontSize(20)

@@ -48,15 +48,15 @@ export struct ImageShow {
 
       Stack({ alignContent: Alignment.Top }) {
         DataPanel({ values: this.values[this.cityIndex], max: 100, type: DataPanelType.Circle })
-          .width(200)
-          .height(200)
+          .width(180)
+          .height(180)
           .margin(10)
         Text($r('app.string.aqi'))
-          .fancyText(30, 40)
+          .fancyText(24, 40)
         Text(this.quality.aqi)
-          .fancyText(40, 90)
+          .fancyText(34, 80)
         Text(this.quality.category)
-          .fancyText(30, 140)
+          .fancyText(24, 120)
       }
       .margin({ top: 10 })
     }

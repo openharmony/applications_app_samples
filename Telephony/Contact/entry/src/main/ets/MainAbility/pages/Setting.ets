@@ -41,7 +41,7 @@ export struct Setting {
       }
       .width('100%')
 
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
 
         Button($r('app.string.add_contact'))
           .margin(10)

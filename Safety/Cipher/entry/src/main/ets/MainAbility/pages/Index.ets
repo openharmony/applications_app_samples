@@ -32,35 +32,37 @@ struct Index {
       .backgroundColor('#0D9FFB')
       .constraintSize({ minHeight: 50 })
 
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Button($r('app.string.encryption'))
-          .margin(10)
-          .fontSize(20)
-          .width('40%')
-          .height('10%')
-          .onClick(() => {
-            router.push({
-              url: 'pages/Second',
-              params: {
-                flag: true
-              }
+      Stack({ alignContent: Alignment.Center }) {
+        Column() {
+          Button($r('app.string.encryption'))
+            .margin(10)
+            .fontSize(20)
+            .width('40%')
+            .height('10%')
+            .onClick(() => {
+              router.push({
+                url: 'pages/Second',
+                params: {
+                  flag: true
+                }
+              })
             })
-          })
 
-        Button($r('app.string.decrypt'))
-          .margin(10)
-          .fontSize(20)
-          .width('40%')
-          .height('10%')
-          .onClick(() => {
-            router.push({
-              url: 'pages/Second',
-              params: {
-                flag: false
-              }
+          Button($r('app.string.decrypt'))
+            .margin(10)
+            .fontSize(20)
+            .width('40%')
+            .height('10%')
+            .onClick(() => {
+              router.push({
+                url: 'pages/Second',
+                params: {
+                  flag: false
+                }
+              })
             })
-          })
-      }
+        }
+      }.height('94%')
 
     }
     .width('100%')

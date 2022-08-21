@@ -35,83 +35,84 @@ async function routePage(uri_string, idNum){
 @Component
 struct Selects{
   build(){
-    Flex({direction:FlexDirection.Column,alignItems:ItemAlign.Center,justifyContent:FlexAlign.Center}){
-      Text('请选择关卡')
-        .fontSize(60)
-      Button(){
-        Text('关卡1')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top : 30
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(()=> {
-        routePage('pages/game', 1)
-      })
-      Button(){
-        Text('关卡2')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top : 30
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(() => {
-        routePage('pages/game', 2)
-      })
-      Button(){
-        Text('关卡3')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top : 30
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(() => {
-        routePage('pages/game', 3)
-      })
-      Button(){
-        Text('关卡4')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top : 30
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(() => {
-        routePage('pages/game', 4)
-      })
-      Button(){
-        Text('关卡5')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top : 30
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(() => {
-        routePage('pages/game', 5)
-      })
-      Button(){
-        Text('返回')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top : 30
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(() => {
-        router.back()
-      })
-    }
-    .width('100%')
+    Stack({alignContent:Alignment.Center}){
+      Column(){
+        Text('请选择关卡')
+          .fontSize(60)
+        Button(){
+          Text('关卡1')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top : 30
+        })
+        .backgroundColor('#0D9FFB')
+        .onClick(()=> {
+          routePage('pages/game', 1)
+        })
+        Button(){
+          Text('关卡2')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top : 30
+        })
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
+          routePage('pages/game', 2)
+        })
+        Button(){
+          Text('关卡3')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top : 30
+        })
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
+          routePage('pages/game', 3)
+        })
+        Button(){
+          Text('关卡4')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top : 30
+        })
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
+          routePage('pages/game', 4)
+        })
+        Button(){
+          Text('关卡5')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top : 30
+        })
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
+          routePage('pages/game', 5)
+        })
+        Button(){
+          Text('返回')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top : 30
+        })
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
+          router.back()
+        })
+      }
+    }.width('100%')
     .height('100%')
   }
 }

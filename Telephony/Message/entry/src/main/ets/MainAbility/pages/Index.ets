@@ -19,6 +19,7 @@ import Logger from '../model/Logger'
 import { TitleBar } from '../common/TitleBar'
 import { AddDialog } from '../common/AddDialog'
 import { grantPermission } from '../model/PermissionUtils'
+import {ContactSource} from "../model/DataSource"
 
 const TAG: string = '[Index]'
 
@@ -32,7 +33,7 @@ const TAG: string = '[Index]'
 @Component
 struct Index {
   @State editable: boolean = false
-  @State contacts: Array<Contact> = []
+  @State contacts: ContactSource = new ContactSource([])
   @State editContact: Contact = new Contact('', '')
   @State managerContact: Resource = $r('app.string.manager')
   private addDialogController: CustomDialogController = new CustomDialogController({
@@ -42,9 +43,9 @@ struct Index {
 
   judgeRepeat(contact: Contact) {
     Logger.info(`${TAG}, judgeRepeat start`)
-    for (let i = 0; i < this.contacts.length; i++) {
-      if (this.contacts[i].name === contact.name && this.contacts[i].destinationHost === contact.destinationHost) {
-        Logger.info(`${TAG}, judgeRepeat ${this.contacts[i]}`)
+    for (let i = 0; i < this.contacts['contactData'].length; i++) {
+      if (this.contacts['contactData'][i].name === contact.name && this.contacts['contactData'][i].destinationHost === contact.destinationHost) {
+        Logger.info(`${TAG}, judgeRepeat ${this.contacts['contactData'][i]}`)
         Logger.info(`${TAG}, judgeRepeat return true`)
         return true
       }
@@ -59,8 +60,9 @@ struct Index {
     Logger.info(`${TAG}, onAccept result = ${JSON.stringify(result)}`)
     if (result === false) {
       let newContact = new Contact(contact.name, contact.destinationHost)
-      this.contacts.unshift(newContact)
-      Logger.info(`${TAG}, onAccept-save contacts = ${JSON.stringify(this.contacts)}`)
+      this.contacts['contactData'].unshift(newContact)
+      this.contacts.notifyDataAdd(0)
+      Logger.info(`${TAG}, onAccept-save contacts = ${JSON.stringify(this.contacts['contactData'])}`)
     } else {
       Logger.info(`${TAG}, onAccept AlertDialog`)
       AlertDialog.show(
@@ -84,7 +86,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       TitleBar()
       Column() {
         Row() {
@@ -123,7 +125,7 @@ struct Index {
 
         Column() {
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.contacts, (item) => {
+            LazyForEach(this.contacts, (item) => {
               ListItem() {
                 Row() {
                   Column() {
@@ -173,11 +175,13 @@ struct Index {
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
           .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
           .onItemDelete((index: number) => {
-            this.contacts.splice(index, 1)
-            Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts[index])}`)
+            this.contacts['contactData'].splice(index, 1)
+            this.contacts.notifyDataReload()
+            Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts['contactData'][index])}`)
             return true
           })
           .width('90%')
+          .height("100%")
         }
         .width('100%')
         .height('80%')

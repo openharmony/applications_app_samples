@@ -70,7 +70,6 @@ struct Game {
   @State historyTime: number = 0;
   @State pipeLength: number = 125;
   @State isChange: boolean = false;
-
   draw = () => {
     let id = router.getParams()['id']
     let fg
@@ -144,7 +143,7 @@ struct Game {
     else {
       ctx.fillText(`historyTime : 0 min 0 s`, 10, this.cvsHeigth - 10);
     }
-    if(this.isChange == true) {
+    if (this.isChange == true) {
       clearTimeout(timeId);
     }
 
@@ -234,28 +233,24 @@ struct Game {
     this.bY -= 20;
   }
 
-  onBackPress(){
+  onBackPress() {
     this.isChange = true;
     router.back();
     return true;
   }
 
   showHistoryScore() {
-    bundleState.queryBundleStateInfos(Number(this.beginTime),Number(this.endTime),(err,res) =>{
-      if(err)
-      {
+    bundleState.queryBundleStateInfos(Number(this.beginTime), Number(this.endTime), (err, res) => {
+      if (err) {
         console.log(this.TAG1 + 'queryBundleStateInfos1 callback failed,because: ' + err.code);
       }
-      else
-      {
+      else {
         console.log(this.TAG1 + "queryBundleStateInfos1 callback success.");
         let i = 1;
-        for(let key in res)
-        {
+        for (let key in res) {
           console.log(this.TAG1 + 'queryBundleStateInfos1 callback i : ' + i);
           console.log(this.TAG1 + 'queryBundleStateInfos1 callback result : ' + JSON.stringify(res[key]));
-          if(res[key].bundleName.includes('flybird'))
-          {
+          if (res[key].bundleName.includes('flybird')) {
             this.historyTime = res[key].abilityInFgTotalTime;
           }
           i++;
@@ -265,7 +260,7 @@ struct Game {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Stack({ alignContent: Alignment.Center }) {
       Canvas(this.context)
         .width(280)
         .height(512)

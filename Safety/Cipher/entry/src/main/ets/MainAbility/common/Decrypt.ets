@@ -27,8 +27,8 @@ export struct Decrypt {
   private cipherModel: CipherModel = new CipherModel()
 
   build() {
-    Column() {
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Stack({alignContent:Alignment.Center}) {
+      Column() {
         Select([{ value: 'RSA' },
                 { value: 'AES' }])
           .margin(4)

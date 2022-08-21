@@ -69,6 +69,6 @@ export struct ButtonComponentTwo {
       .rowsTemplate('1fr 1fr 1fr 1fr')
     }
     .padding(10)
-    .size({ width: '55%', height: '90%' })
+    .size({ width: '70%', height: '90%' })
   }
 }

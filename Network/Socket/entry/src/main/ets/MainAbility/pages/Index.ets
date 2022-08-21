@@ -19,6 +19,7 @@ import socket from '@ohos.net.socket';
 import Logger from '../model/Logger'
 import { ChatBox } from '../model/ChatBox'
 import { resolveIP } from '../Utils/Util'
+import { ChatSource } from "../model/DataSource"
 
 let udp = socket.constructUDPSocketInstance()
 const TAG: string = '[Index]'
@@ -44,7 +45,7 @@ struct Index {
   @State user: string = ''
   @State userImg: Resource = $r('app.media.fengzi')
   @State otherImg: Resource = $r('app.media.wenzi')
-  @State chats: Array<ChatBox> = []
+  @State chats: ChatSource = new ChatSource()
   @State loginState: boolean = true
   @State message: string = ''
   @State afterSend: boolean = false
@@ -101,9 +102,9 @@ struct Index {
         } else {
           Logger.info(TAG, `receive in Chat sucess`)
           let date = new Date().getMonth() + '.' + new Date().getDay() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
-          Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats)}`)
-          this.chats[this.chats.length] = new ChatBox(false, str, date)
-          Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats)}`)
+          Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats["chatsArray"])}`)
+          this.chats[this.chats["chatsArray"].length] = new ChatBox(false, str, date)
+          Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats["chatsArray"])}`)
         }
         str = ''
       } else {
@@ -132,7 +133,8 @@ struct Index {
         .backgroundColor('#ff50afea')
         .onClick(() => {
           if (!this.onlineState) {
-            this.chats = []
+            this.chats["chatsArray"] = []
+            this.chats.notifyDataReload()
             udp.off('message', () => {
             })
             router.back()
@@ -142,7 +144,8 @@ struct Index {
             address: oppositeAddr
           }).then(data => {
             Logger.info(TAG, `send sucess : ${data}`)
-            this.chats = []
+            this.chats["chatsArray"] = []
+            this.chats.notifyDataReload()
             udp.off('message', () => {
             })
             udp.close()
@@ -214,102 +217,102 @@ struct Index {
       ])
 
 
-        Column(){
-          Scroll() {
-            Column() {
-              ForEach(this.chats, (item, index) => {
-                if (item.isSend) {
-                  Row() {
-                    Column() {
-                      Text(item.date)
-                        .fontSize(15) //时间
-                        .width('100%')
-                        .textAlign(TextAlign.End)
-                      Text(item.message)
-                        .maxLines(5)
-                        .padding(10)
-                        .fontSize(20)
-                        .borderRadius(10)
-                        .alignSelf(ItemAlign.End)
-                        .backgroundColor('#ff78dd4d')
-                    }.width('70%').margin({ right: 5 })
+      Column() {
+        Scroll() {
+          Column() {
+            LazyForEach(this.chats, (item, index) => {
+              if (item.isSend) {
+                Row() {
+                  Column() {
+                    Text(item.date)
+                      .fontSize(15) //时间
+                      .width('100%')
+                      .textAlign(TextAlign.End)
+                    Text(item.message)
+                      .maxLines(5)
+                      .padding(10)
+                      .fontSize(20)
+                      .borderRadius(10)
+                      .alignSelf(ItemAlign.End)
+                      .backgroundColor('#ff78dd4d')
+                  }.width('70%').margin({ right: 5 })
 
-                    Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
-                  }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.End)
-                } else {
-                  Row() {
-                    Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
-                    Column() {
-                      Text(item.date).width('100%').textAlign(TextAlign.Start).fontSize(15) //时间
-                      Text(item.message)
-                        .fontSize(20)
-                        .maxLines(5)
-                        .padding(10)
-                        .borderRadius(10)
-                        .alignSelf(ItemAlign.Start)
-                        .backgroundColor('#ff78dd4d')
-                    }.width('70%').margin({ left: 5 })
-                  }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.Start)
-                }
+                  Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
+                }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.End)
+              } else {
+                Row() {
+                  Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
+                  Column() {
+                    Text(item.date).width('100%').textAlign(TextAlign.Start).fontSize(15) //时间
+                    Text(item.message)
+                      .fontSize(20)
+                      .maxLines(5)
+                      .padding(10)
+                      .borderRadius(10)
+                      .alignSelf(ItemAlign.Start)
+                      .backgroundColor('#ff78dd4d')
+                  }.width('70%').margin({ left: 5 })
+                }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.Start)
+              }
 
-              }, item => item.message)
-            }.width('100%').height('100%').backgroundColor(Color.White).padding(5)
-          }
-          .scrollable(ScrollDirection.Vertical)
-          .scrollBar(BarState.Auto)
-          .scrollBarColor(Color.Gray)
-          .scrollBarWidth(30)
-          .width('100%')
-          .height('100%')
-        }.width('100%').layoutWeight(1)
+            }, item => item.message)
+          }.width('100%').height('100%').backgroundColor(Color.White).padding(5)
+        }
+        .scrollable(ScrollDirection.Vertical)
+        .scrollBar(BarState.Auto)
+        .scrollBarColor(Color.Gray)
+        .scrollBarWidth(30)
+        .width('100%')
+        .height('100%')
+      }.width('100%').layoutWeight(1)
 
-        Row() {
-          TextInput({ placeholder: this.message, text: this.message })
-            .height(50)
-            .fontSize(20)
-            .layoutWeight(3)
-            .type(InputType.Normal)
-            .backgroundColor(Color.White)
-            .margin({ left: 2, right: 2 })
-            .onChange((value: string) => {
-              this.message = value
-            })
-
-          Button() {
-            Text($r('app.string.send_message')).fontSize(23).fontColor(Color.White)
-          }
+      Row() {
+        TextInput({ placeholder: this.message, text: this.message })
           .height(50)
-          .layoutWeight(1)
-          .borderRadius(10)
-          .type(ButtonType.Normal)
+          .fontSize(20)
+          .layoutWeight(3)
+          .type(InputType.Normal)
+          .backgroundColor(Color.White)
           .margin({ left: 2, right: 2 })
-          .backgroundColor('#ffadf58e')
-          .onClick(() => {
-            let date = new Date().getMonth() + '.' + new Date().getDay() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
-            let sendMessage = new ChatBox(true, this.message, date)
-            this.chats[this.chats.length] = sendMessage
-            if (this.message !== '' && this.loginState && this.onlineState) {
-              //通过udp发送this.message文本
-              //udp.bind(localAddr)
-              this.bindOption()
-              udp.send({
-                data: this.message,
-                address: oppositeAddr
-              }).then(data => {
-                Logger.info(TAG, 'send sucess')
-                Logger.info(TAG, `send ${data}`)
-                Logger.info(TAG, `this.chats=${JSON.stringify(this.chats)}`)
-                Logger.info(TAG, `(send)opposite_address=${oppositeAddr.address}`)
-                Logger.info(TAG, `(send)opposite_port=${oppositeAddr.port}`)
-                Logger.info(TAG, `(send)this.message=${this.message}`)
-                Logger.info(TAG, `this.chats=${JSON.stringify(this.chats)}`)
-              }).catch(function (err) {
-                Logger.info(TAG, `send ${JSON.stringify(err)}`)
-              })
-            }
-            this.message = ''
+          .onChange((value: string) => {
+            this.message = value
           })
-        }.width('100%').height(70).backgroundColor('#f5f5f5')
+
+        Button() {
+          Text($r('app.string.send_message')).fontSize(23).fontColor(Color.White)
+        }
+        .height(50)
+        .layoutWeight(1)
+        .borderRadius(10)
+        .type(ButtonType.Normal)
+        .margin({ left: 2, right: 2 })
+        .backgroundColor('#ffadf58e')
+        .onClick(() => {
+          let date = new Date().getMonth() + '.' + new Date().getDay() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
+          let sendMessage = new ChatBox(true, this.message, date)
+          this.chats["chatsArray"][this.chats["chatsArray"].length] = sendMessage
+          if (this.message !== '' && this.loginState && this.onlineState) {
+            //通过udp发送this.message文本
+            //udp.bind(localAddr)
+            this.bindOption()
+            udp.send({
+              data: this.message,
+              address: oppositeAddr
+            }).then(data => {
+              Logger.info(TAG, 'send sucess')
+              Logger.info(TAG, `send ${data}`)
+              Logger.info(TAG, `this.chats=${JSON.stringify(this.chats["chatsArray"])}`)
+              Logger.info(TAG, `(send)opposite_address=${oppositeAddr.address}`)
+              Logger.info(TAG, `(send)opposite_port=${oppositeAddr.port}`)
+              Logger.info(TAG, `(send)this.message=${this.message}`)
+              Logger.info(TAG, `this.chats=${JSON.stringify(this.chats["chatsArray"])}`)
+            }).catch(function (err) {
+              Logger.info(TAG, `send ${JSON.stringify(err)}`)
+            })
+          }
+          this.message = ''
+        })
+      }.width('100%').height(70).backgroundColor('#f5f5f5')
 
     }
     .width('100%')

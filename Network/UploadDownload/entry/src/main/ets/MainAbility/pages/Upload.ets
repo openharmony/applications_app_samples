@@ -17,8 +17,9 @@ import request from '@ohos.request'
 import logger from '../model/Logger'
 import { TitleBar } from '../common/TitleBar'
 import { UploadFile } from '../model/UploadFile'
-import { UploadConfigs }  from '../model/UploadConfigs'
+import { UploadConfigs } from '../model/UploadConfigs'
 import { UploadRequestData } from '../model/UploadRequestData'
+import { UploadDownSource } from "../model/DataSource"
 
 const TAG: string = 'Upload'
 
@@ -29,7 +30,7 @@ struct Upload {
   private uploadConfig: UploadConfigs = new UploadConfigs()
   @State uploadedSize: number = 0
   @State totalSize: number = 0
-  @State uploads: Array<string> = router.getParams()['uploads']
+  @State uploads: UploadDownSource = router.getParams()['uploads']
   @State isDialog: boolean = false
   @State selectIndex: number = -1
   handlerClickButton = () => {
@@ -45,7 +46,7 @@ struct Upload {
             .fontSize(25)
             .alignSelf(ItemAlign.Start)
             .margin({ top: 20, left: 10 })
-          ForEach(this.uploads, (item, index) => {
+          LazyForEach(this.uploads, (item, index) => {
             Divider()
               .margin({ top: 20 })
             Row() {
@@ -120,7 +121,7 @@ struct Upload {
             .width('100%')
             .margin({ top: 10, left: 10 })
 
-            if (index === this.uploads.length - 1) {
+            if (index === this.uploads['uploadDownData'].length - 1) {
               Divider()
                 .margin({ top: 20 })
             }
@@ -130,7 +131,7 @@ struct Upload {
       }
       .constraintSize({ maxHeight: '87%' })
 
-      if (this.uploadedSize !== 0 && this.totalSize !== 0 && this.uploads.length > 0) {
+      if (this.uploadedSize !== 0 && this.totalSize !== 0 && this.uploads['uploadDownData'].length > 0) {
         Row() {
           Text($r('app.string.upload_progress'))
             .fontSize(25)

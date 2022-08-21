@@ -32,7 +32,7 @@
 
 2.本示例仅支持API9版本SDK，版本号：3.2.5.5 Beta2。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.991， built on July 30， 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 4.本示例因接口问题，目前实现了联系人查询接口，可通过预置联系人应用添加联系人，再进入本应用查看已添加的联系人。
 

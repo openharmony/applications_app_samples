@@ -34,7 +34,7 @@ export struct setting {
   @State methods: Array<{ name: string }> = [{ name: 'GET' }, { name: 'POST' }, { name: 'PUT' }, { name: 'DELETE' }]
 
   @Builder MenuBuilder() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       ForEach(this.methods, item => {
         Text(item.name)
           .margin(5)
@@ -93,7 +93,7 @@ export struct setting {
                 .margin({ left: 2, right: 4 })
                 .textAlign(TextAlign.Center)
               TextInput()
-                .width('75%')
+                .width('76%')
                 .margin({ left: 4, right: 2 })
                 .onChange((value: string) => {
                   this.keys[this.flag - 1] = value

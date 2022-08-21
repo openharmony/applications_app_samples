@@ -21,6 +21,7 @@ import ChatData from '../model/ChatData'
 import ChatsPage from '../common/ChatsPage'
 import SendMessage from '../common/SendMessage'
 import BindServiceIP from '../common/BindServiceIp'
+import {WebSocketSource} from "../model/DataSource"
 
 const TAG: string = '[Chats]'
 let socket: webSocket.WebSocket = webSocket.createWebSocket()
@@ -47,7 +48,7 @@ struct BindCustomDialog {
 struct Chats {
   @State numberOfPeople: number = 1
   @State message: string = ''
-  @State chats: Array<ChatData> = []
+  @State chats: WebSocketSource = new WebSocketSource([])
   @State isConnect: boolean = false
   @State ipAddress: string = ''
   controller: CustomDialogController = new CustomDialogController({
@@ -78,7 +79,7 @@ struct Chats {
     socket.on('message', (err, value) => {
       Logger.info(TAG, `on message, value = ${value}`)
       let receiveMessage = new ChatData(JSON.stringify(value), true)
-      this.chats.push(receiveMessage)
+      this.chats.pushData(receiveMessage)
     })
   }
 
@@ -93,7 +94,7 @@ struct Chats {
 
   sendMessage() {
     let sendMessage = new ChatData(this.message, false)
-    this.chats.push(sendMessage)
+    this.chats.pushData(sendMessage)
     let sendResult = socket.send(this.message)
     sendResult.then((value) => {
       Logger.info(TAG, `[send]send success:${this.message}`)
@@ -104,7 +105,7 @@ struct Chats {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+   Column() {
       Text($r('app.string.MainAbility_label'))
         .height(50)
         .fontSize(25)

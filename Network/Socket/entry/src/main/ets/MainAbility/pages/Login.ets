@@ -97,7 +97,7 @@ struct Login {
 
   build() {
     Stack({ alignContent: Alignment.Center }) {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      Column() {
         Text($r('app.string.MainAbility_label'))
           .width('100%')
           .height(50)
@@ -134,7 +134,7 @@ struct Login {
       if (this.confirmDialog) {
         Column() {
           Text('确认码：' + this.receiveMsg).fontSize(25)
-          Flex({ justifyContent: FlexAlign.SpaceAround }) {
+          Row() {
             Button($r('app.string.cancel'))
               .onClick(() => {
                 this.confirmDialog = false
@@ -158,6 +158,7 @@ struct Login {
                 this.confirmDialog = false
               }).backgroundColor(0xffffff).fontColor(Color.Red)
           }.margin({ bottom: 10 })
+          .justifyContent(FlexAlign.SpaceAround)
         }
         .width('80%')
         .height(150)
@@ -238,7 +239,7 @@ struct Login {
             .onChange((value: string) => {
               this.roomNumber = value
             })
-          Flex({ justifyContent: FlexAlign.SpaceAround }) {
+          Row() {
             Button($r('app.string.cancel'))
               .onClick(() => {
                 this.roomDialog = false
@@ -265,6 +266,7 @@ struct Login {
                 this.roomDialog = false
               }).backgroundColor(0xffffff).fontColor(Color.Red)
           }.margin({ bottom: 10 })
+          .justifyContent(FlexAlign.SpaceAround)
         }
         .width('80%')
         .height(150)

@@ -25,7 +25,7 @@ export struct UpdateContact {
   @Link postalAddress: string
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+   Column() {
       Image($r('app.media.touxiang'))
         .width(76)
         .height(74)

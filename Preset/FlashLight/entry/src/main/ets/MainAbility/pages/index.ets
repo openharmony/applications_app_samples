@@ -28,7 +28,7 @@ struct Index {
 
   build() {
     Column() {
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Stack({ alignContent: Alignment.Center }) {
         Column() {
           Image($r('app.media.light'))
             .width('30%')

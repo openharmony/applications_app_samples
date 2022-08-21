@@ -14,10 +14,11 @@
  */
 
 import ChatData from '../model/ChatData'
+import {WebSocketSource} from "../model/DataSource"
 
 @Component
 export default struct ChatsPage {
-  @Link chats: Array<ChatData>
+  @Link chats: WebSocketSource
 
   @Builder
   ChatsMessage(name: Resource, message: string, direction: Direction) {
@@ -48,7 +49,7 @@ export default struct ChatsPage {
   build() {
     Column() {
       List() {
-        ForEach(this.chats, (item) => {
+        LazyForEach(this.chats, (item) => {
           ListItem() {
             if (item.isServer) {
               this.ChatsMessage($r('app.string.server'), item.message, Direction.Ltr)
@@ -59,7 +60,7 @@ export default struct ChatsPage {
           .padding(10)
           .width('100%')
         }, item => item.message)
-      }
+      }.width('100%').height('100%')
     }
     .width('100%')
     .layoutWeight(1)
