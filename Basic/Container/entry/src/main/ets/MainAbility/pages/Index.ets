@@ -18,6 +18,73 @@ import Information from '../model/Information'
 import Logger from '../model/Logger'
 import ArrayList from '@ohos.util.ArrayList'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: Information): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = '[index]'
 
 @Entry
@@ -25,7 +92,7 @@ const TAG = '[index]'
 struct Index {
   @State writeInformation: Information = new Information(0, '', NaN, '')
   @State isInserted: boolean = false
-  @State list: Array<Information> = []
+  @State list: MyDataSource = new MyDataSource([])
   private informations: ArrayList<Information> = new ArrayList()
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: AddDialog({
@@ -42,7 +109,7 @@ struct Index {
           Logger.info(TAG, `writeInformation.id= ${writeInformation.id}`)
         }
         this.informations.add(writeInformation)
-        this.list = this.informations.convertToArray()
+        this.list = new MyDataSource(this.informations.convertToArray())
         Logger.info(TAG, `this.list= ${this.list}`)
       }
     }),
@@ -77,7 +144,7 @@ struct Index {
       .padding({ left: 15, right: 15 })
 
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.list, (item, index) => {
+        LazyForEach(this.list, (item, index) => {
           ListItem() {
             Row() {
               Image($r('app.media.contact'))
@@ -129,7 +196,7 @@ struct Index {
               .backgroundColor('#F5F5F5')
               .onClick(() => {
                 this.informations.remove(this.informations[index])
-                this.list = this.informations.convertToArray()
+                this.list = new MyDataSource(this.informations.convertToArray())
               })
             }
             .width('100%')
@@ -139,6 +206,9 @@ struct Index {
           }
         })
       }
+      .padding({bottom:100})
+      .width('100%')
+      .height('100%')
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
     }
     .width('100%')

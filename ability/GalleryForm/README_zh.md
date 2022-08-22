@@ -34,7 +34,7 @@
 
 2.本示例为Stage模型，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.991, built on July 6, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.992, built on July 6, 2022)才可编译运行。
 
 4.在创建卡片前确保系统图库中有图片，否则卡片不更新。
 

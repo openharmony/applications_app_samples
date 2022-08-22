@@ -20,18 +20,86 @@ import RemoteDeviceModel from '../../model/RemoteDeviceModel';
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from '@ohos.bundle';
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 enum Operation {
   AuthDeviceOperation,
   StartRemoteAbilityOperation,
   ContinueAbilityOperation,
   ConnectRemoteServiceOperation,
 }
+
 let connectedAbility;
 let localDeviceId = "";
 let mRemote;
 let remoteDeviceModel = new RemoteDeviceModel;
-let discovereDeviceIdList = [];
-let deviceIdList = [];
+let discovereDeviceIdList = new MyDataSource([]);
+let deviceIdList = new MyDataSource([]);
 let mOperation = Operation.AuthDeviceOperation;
 
 function RegisterDeviceListCallback() {
@@ -42,14 +110,16 @@ function RegisterDeviceListCallback() {
     let deviceSize = remoteDeviceModel.deviceList.length;
     console.info('[dmsDemo] discoveredDeviceSize =' + discoveredDeviceSize);
     console.info('[dmsDemo] deviceSize =' + deviceSize);
-    discovereDeviceIdList = [];
+    let discovereDeviceIdStagingList = [];
     for (let i = 0; i < discoveredDeviceSize; i++) {
-      discovereDeviceIdList.push(remoteDeviceModel.discoverList[i].deviceId);
+      discovereDeviceIdStagingList.push(remoteDeviceModel.discoverList[i].deviceId);
     }
-    deviceIdList = [];
+    discovereDeviceIdList = new MyDataSource(discovereDeviceIdStagingList)
+    let deviceIdStagingList = [];
     for (let i = 0; i < deviceSize; i++) {
-      deviceIdList.push(remoteDeviceModel.deviceList[i].deviceId);
+      deviceIdStagingList.push(remoteDeviceModel.deviceList[i].deviceId);
     }
+    deviceIdList = new MyDataSource(deviceIdStagingList)
     console.info('[dmsDemo] RegisterDeviceListCallback on remote device updated, count=' + deviceSize);
     if (deviceSize === 0) {
       if (discoveredDeviceSize > 0) {
@@ -115,7 +185,7 @@ async function requestPermission() {
     return;
   }
   let context = featureAbility.getContext();
-  context.requestPermissionsFromUser(requestPermissions, 1, (err,data)=>{
+  context.requestPermissionsFromUser(requestPermissions, 1, (err, data) => {
     console.info("data:" + JSON.stringify(data));
     console.info("data requestCode:" + data.requestCode);
     console.info("data permissions:" + data.permissions);
@@ -168,6 +238,7 @@ function onStartRemoteAbility(deviceId) {
 function onConnectLocalService() {
   console.info('[dmsDemo] onConnectLocalService begin');
   console.info('[dmsDemo] onConnectLocalService deviceId is ' + localDeviceId);
+
   async function onConnectCallback(element, remote) {
     console.log('[dmsDemo] onConnectLocalService onConnectDone element: ' + element);
     console.log('[dmsDemo] onConnectLocalService onConnectDone remote: ' + remote);
@@ -201,6 +272,7 @@ function onConnectLocalService() {
       message: "onConnectLocalService onFailed: " + code
     });
   }
+
   connectedAbility = featureAbility.connectAbility(
     {
       deviceId: localDeviceId,
@@ -218,6 +290,7 @@ function onConnectLocalService() {
 
 function onConnectRemoteService(deviceId) {
   console.info('[dmsDemo] onConnectRemoteService begin');
+
   async function onConnectCallback(element, remote) {
     console.log('[dmsDemo] onConnectRemoteService onConnectDone element: ' + element);
     console.log('[dmsDemo] onConnectRemoteService onConnectDone remote: ' + remote);
@@ -251,6 +324,7 @@ function onConnectRemoteService(deviceId) {
       message: "onConnectRemoteService onFailed: " + code
     });
   }
+
   let numDevices = remoteDeviceModel.deviceList.length;
   if (numDevices === 0) {
     prompt.showToast({
@@ -315,18 +389,22 @@ struct CustomDialogExample1 {
   build() {
     Column() {
       List({ space: 10, initialIndex: 0 }) {
-        ForEach(discovereDeviceIdList, (item) => {
+        LazyForEach(discovereDeviceIdList, (item) => {
           ListItem() {
             Row() {
               Text(item)
-                .width('87%').height(50).fontSize(15)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('87%')
+                .height(50)
+                .fontSize(15)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
                 .onClick(() => {
                   console.log('[dmsDemo] Text Item onClick:' + item);
                   callFunction(item);
                   this.controller.close();
                 })
-              Radio({group:'', value:item})
+              Radio({ group: '', value: item })
                 .onChange((isChecked) => {
                   console.log('[dmsDemo] Radio Item:' + item + ' onChange isChecked:' + isChecked);
                   callFunction(item);
@@ -346,21 +424,26 @@ struct CustomDialogExample2 {
   controller: CustomDialogController
   cancel: () => void
   confirm: () => void
+
   build() {
     Column() {
       List({ space: 10, initialIndex: 0 }) {
-        ForEach(deviceIdList, (item) => {
+        LazyForEach(deviceIdList, (item) => {
           ListItem() {
             Row() {
               Text(item)
-                .width('87%').height(50).fontSize(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('87%')
+                .height(50)
+                .fontSize(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
                 .onClick(() => {
                   console.log('[dmsDemo] Text Item onClick:' + item);
                   callFunction(item);
                   this.controller.close();
                 })
-              Radio({group:'', value:item})
+              Radio({ group: '', value: item })
                 .onChange((isChecked) => {
                   console.log('[dmsDemo] Radio Item:' + item + ' onChange isChecked:' + isChecked);
                   callFunction(item);
@@ -387,124 +470,152 @@ struct Index {
     cancel: this.existApp,
     autoCancel: true
   })
+
   aboutToAppear(): void  {
     requestPermission();
   }
+
   aboutToDisappear(): void {
   }
+
   onCancel() {
     console.info('[dmsDemo] Callback when onCancel button is clicked');
   }
+
   onAccept() {
     console.info('[dmsDemo] Callback when onAccept button is clicked');
   }
+
   existApp() {
     console.info('[dmsDemo] Click the callback in the blank area');
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Button() {
         Text('RegisterDeviceListCallback')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         RegisterDeviceListCallback();
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
 
       Button() {
         Text('AuthDevice')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         mOperation = Operation.AuthDeviceOperation;
-        console.log('[dmsDemo] discovereDeviceIdList length:' + discovereDeviceIdList.length);
-        if(discovereDeviceIdList.length >0) {
+        console.log('[dmsDemo] discovereDeviceIdList length:' + discovereDeviceIdList.totalCount());
+        if (discovereDeviceIdList !== new MyDataSource([])) {
           this.dialogController1.open();
-        }else{
-          prompt.showToast({message:'already Authed or no discovereDevice '})
+        } else {
+          prompt.showToast({ message: 'already Authed or no discovereDevice ' })
         }
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
 
       Button() {
         Text('StartLocalAbility')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         onStartLocalAbility();
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
 
       Button() {
         Text('StartRemoteAbility')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         mOperation = Operation.StartRemoteAbilityOperation;
-        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.length);
+        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.totalCount());
         this.dialogController2.open();
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
 
       Button() {
         Text('ConnectLocalService')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         onConnectLocalService();
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
 
       Button() {
         Text('ConnectRemoteService')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         mOperation = Operation.ConnectRemoteServiceOperation;
-        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.length);
+        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.totalCount());
         this.dialogController2.open();
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
 
       Button() {
         Text('DisConnectService')
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
+      }
+      .type(ButtonType.Capsule)
       .margin({
         top: 15
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         onDisconnectService();
-      }).width('90%').height(50)
+      })
+      .width('90%')
+      .height(50)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }

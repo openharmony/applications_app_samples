@@ -17,11 +17,13 @@
 @Component
 struct Index {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Text('Second Ability')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }

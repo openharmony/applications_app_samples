@@ -33,18 +33,19 @@ export default struct CardItem {
   private desktopLayoutModel: DesktopLayoutModel = DesktopLayoutModel.getInstance(getContext(this))
 
   @Builder MenuBuilder() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       AppMenu({
         menuInfos: this.menuInfos
       })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width(243)
     .borderRadius(12)
   }
 
   build() {
-    Flex({
-      direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       FormComponent({
         id: this.formInfo.cardId,
         name: this.formInfo.cardName,
@@ -76,6 +77,8 @@ export default struct CardItem {
         .width('90%')
         .fontSize(14)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
     .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)

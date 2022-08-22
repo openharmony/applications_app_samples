@@ -29,12 +29,79 @@ class LanguageInfo {
   country: string
 }
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: LanguageInfo): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 @Entry
 @Component
 struct Language {
-  private languageSwitchTips: string  = ''
+  private languageSwitchTips: string = ''
   @State localLanguage: string = ''
-  @State preferredLanguages: Array<LanguageInfo> = []
+  @State preferredLanguages: MyDataSource = new MyDataSource([])
   @State currentRegion: string = ''
 
   async aboutToAppear() {
@@ -50,15 +117,16 @@ struct Language {
     Logger.info(TAG, `this.currentRegion = ${this.currentRegion}`)
     this.localLanguage = i18n.getSystemLanguage()
     Logger.info(TAG, `this.localLanguage = ${this.localLanguage}`)
-    this.preferredLanguages = []
+    var preferredLanguages = []
     let preferredLanguageIds = i18n.getPreferredLanguageList()
     Logger.info(TAG, `this.preferredLanguageIds = ${JSON.stringify(preferredLanguageIds)}`)
     preferredLanguageIds.forEach(id => {
-      this.preferredLanguages.push({
+      preferredLanguages.push({
         id: id,
         language: i18n.getDisplayLanguage(id, id),
         country: i18n.getDisplayLanguage(id, this.localLanguage)
       })
+      this.preferredLanguages = new MyDataSource(preferredLanguages)
     })
   }
 
@@ -105,7 +173,7 @@ struct Language {
   @Builder
   LanguageView() {
     Column() {
-      ForEach(this.preferredLanguages, (item, index) => {
+      LazyForEach(this.preferredLanguages, (item, index) => {
         this.LanguageItem(item, index, () => {
           if (item.id !== this.localLanguage) {
             i18n.setSystemLanguage(item.id)

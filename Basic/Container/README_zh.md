@@ -3,8 +3,7 @@
 ### 简介
 
 本示例通过线性容器 ArrayList 模拟了添加删除联系人的操作，展示了 ArrayList 相关的接口功能。效果图如下：
-![](screenshots/device/main.png)
-![](screenshots/device/popup_window.png)
+![](screenshots/device/main.png) ![](screenshots/device/popup_window.png)
 
 ### 相关概念
 
@@ -28,4 +27,4 @@
 
 1.本示例仅支持在标准系统上使用。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

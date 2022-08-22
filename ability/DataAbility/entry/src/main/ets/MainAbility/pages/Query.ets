@@ -18,6 +18,73 @@ import { BASE_URI, COLUMNS, DA_HELPER } from '../model/DaHelperConst'
 import { BookModel, getListFromResultSet } from '../model/BookDataModel'
 import { BookView } from '../component/BookView'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = 'DataAbility.Query'
 
 @Entry
@@ -79,16 +146,17 @@ struct Query {
       .backgroundColor('#F5F5F5')
 
       List() {
-        ForEach(this.bookList, item => {
+        LazyForEach(new MyDataSource(this.bookList), item => {
           ListItem() {
             BookView({ book: item, deleteCallback: null })
           }
         }, item => JSON.stringify(item))
       }
+      .height('100%')
+      .padding({bottom:'8%'})
       .width('100%')
       .layoutWeight(1)
       .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 10, endMargin: 10 })
-
     }
   }
 }

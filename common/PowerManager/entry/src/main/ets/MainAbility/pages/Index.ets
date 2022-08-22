@@ -14,13 +14,79 @@
  */
 
 import power from '@ohos.power'
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
 
 @Entry
 @Component
 struct Index {
   @State window: string = ''
   private num: number = 0
-  private buttonText: Resource[] = [$r('app.string.turnOff'), $r('app.string.restart'), $r('app.string.checkState')]
+  private buttonText: MyDataSource = new MyDataSource([$r('app.string.turnOff'), $r('app.string.restart'), $r('app.string.checkState')])
 
   dialog(title: Resource, message: Resource) {
     AlertDialog.show(
@@ -67,7 +133,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Row() {
         Text($r('app.string.MainAbility_label'))
           .fontColor(Color.White)
@@ -86,7 +152,7 @@ struct Index {
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
 
-      ForEach(this.buttonText, (item, index) => {
+      LazyForEach(this.buttonText, (item, index) => {
         Button() {
           Text(item)
             .fontSize(25)
@@ -97,7 +163,6 @@ struct Index {
         .type(ButtonType.Capsule)
         .backgroundColor('#0D9FFB')
         .onClick(() => {
-          index = this.buttonText.indexOf(item)
           switch (index) {
             case 0:
               this.dialog($r('app.string.turnOff'), $r('app.string.questionTurnOff'))
@@ -114,6 +179,8 @@ struct Index {
         })
       }, item => JSON.stringify(item))
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
   }

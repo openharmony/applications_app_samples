@@ -19,6 +19,73 @@ import { FlexList } from '../common/FlexList'
 import ReceivedData from '../model/ReceivedData'
 import { ProcessData } from '../model/ProcessData'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 let TAG: string = '[eTSRPC.Index]'
 const REQUEST_CODE: number = 1
 
@@ -70,29 +137,31 @@ struct Index {
     Scroll() {
       Column() {
         TitleBar()
-        ForEach(this.options, (item, index) => {
-          FlexList({
-            category: item.category,
-            menu: item.subcategory,
-            index: index,
-            selectStuff: this.selectStuff.bind(this)
-          })
+        LazyForEach(new MyDataSource(this.options), (item, index) => {
+          Row(){
+            FlexList({
+              category: item.category,
+              menu: item.subcategory,
+              index: index,
+              selectStuff: this.selectStuff.bind(this)
+            })
+          }
         }, item => JSON.stringify(item))
 
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center }) {
-          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
+        Column() {
+          Row() {
             Text($r('app.string.final_price'))
               .width('65%')
               .height(25)
               .fontSize(18)
               .textAlign(TextAlign.Center)
             Text(this.result.toString())
-              .width('5%')
               .height(25)
               .fontSize(20)
               .margin({ left: '5%' })
               .textAlign(TextAlign.Center)
           }
+          .justifyContent(FlexAlign.Center)
           .width('80%')
 
           Button($r('app.string.confirm'))
@@ -105,6 +174,8 @@ struct Index {
               this.sortString(priceArray)
             })
         }
+        .width('100%')
+        .justifyContent(FlexAlign.Center)
         .margin({ top: 20 })
         .height('30%')
       }

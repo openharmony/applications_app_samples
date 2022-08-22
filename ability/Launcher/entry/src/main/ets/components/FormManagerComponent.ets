@@ -20,6 +20,73 @@ import DesktopLayoutModel from '../../../../../desktop/src/main/ets/default/mode
 import FormModel from '../../../../../base/src/main/ets/default/model/FormModel'
 import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG: string = 'FormManagerComponent'
 
 @Component
@@ -38,10 +105,10 @@ export default struct FormManagerComponent {
         .fontSize(22)
       Column({ space: 5 }) {
         Swiper(this.mSwiperController) {
-          ForEach(this.formItem, (formItem) => {
-            ForEach(formItem.supportDimensions, (dimensionItem) => {
+          LazyForEach(new MyDataSource(this.formItem), (item) => {
+            LazyForEach(new MyDataSource(item.supportDimensions), (dimensionItem) => {
               Column() {
-                Text(formItem.description)
+                Text(item.description)
                   .width('70%')
                   .fontColor(0xe5ffffff)
                   .fontSize(20)
@@ -49,13 +116,13 @@ export default struct FormManagerComponent {
                 Column() {
                   Flex({
                     direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-                    if (this.formAppInfo.bundleName == formItem.bundleName) {
+                    if (this.formAppInfo.bundleName == item.bundleName) {
                       FormComponent({
-                        id: formItem.cardId,
-                        name: formItem.cardName,
-                        bundle: formItem.bundleName,
-                        ability: formItem.abilityName,
-                        module: formItem.moduleName,
+                        id: item.cardId,
+                        name: item.cardName,
+                        bundle: item.bundleName,
+                        ability: item.abilityName,
+                        module: item.moduleName,
                         dimension: dimensionItem,
                       })
                         .clip(new Rect({
@@ -77,7 +144,7 @@ export default struct FormManagerComponent {
                 .height('80%')
               }.width('100%')
             }, (dimensionItem) => JSON.stringify(dimensionItem))
-          }, (formItem) => JSON.stringify(formItem))
+          }, (item) => JSON.stringify(item))
         }
         .width('100%')
         .height('100%')

@@ -37,11 +37,13 @@ export default struct Bubble {
   @Prop icon: string
 
   @Builder MenuBuilder() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       AppMenu({
         menuInfos: this.menuInfos
       })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width(243)
     .borderRadius(12)
   }

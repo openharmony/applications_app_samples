@@ -45,7 +45,7 @@ export struct FlexList {
 
   build() {
     Column() {
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Text(this.category)
           .width('25%')
           .height(50)
@@ -100,7 +100,10 @@ export struct FlexList {
             })
         }
       }
+      .justifyContent(FlexAlign.SpaceAround)
       .margin({ top: 30 })
+      .width('100%')
+      .height(50)
     }
   }
 }

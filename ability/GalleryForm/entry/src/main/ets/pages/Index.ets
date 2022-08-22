@@ -21,15 +21,83 @@ import GalleryFormConst from '../data/GalleryFormConst'
 
 const TAG: string = 'Index'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: mediaLibrary.FileAsset): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 @Entry
 @Component
 struct Index {
-  @State imageDatas: Array<mediaLibrary.FileAsset> = []
+  @State imageDatas: MyDataSource = new MyDataSource([])
 
   async aboutToAppear() {
     await globalThis.abilityContext.requestPermissionsFromUser(GalleryFormConst.PERMISSIONS, GalleryFormConst.permissionState)
-    this.imageDatas = await ImageData.getAllImage()
-    Logger.info(TAG, `this image number = ${this.imageDatas.length} uri = ${this.imageDatas[0].uri}`)
+    var imageDatas = await ImageData.getAllImage()
+    this.imageDatas = new MyDataSource(imageDatas)
+    Logger.info(TAG, `this image number = ${this.imageDatas.totalCount} uri = ${this.imageDatas[0].uri}`)
 
   }
 
@@ -37,10 +105,9 @@ struct Index {
     Row() {
       Column() {
         TitleBar()
-
         Grid() {
-          if (this.imageDatas.length > 0) {
-            ForEach(this.imageDatas, item => {
+          if ( this.imageDatas != new MyDataSource([])) {
+            LazyForEach(this.imageDatas, item => {
               GridItem() {
                 Image(item.uri)
                   .width('100%')

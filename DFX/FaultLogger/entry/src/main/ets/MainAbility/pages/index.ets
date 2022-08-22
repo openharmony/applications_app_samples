@@ -17,6 +17,73 @@ import Logger from '../model/Logger'
 import { TitleBar } from '../common/TitleBar'
 import { FaultDialog } from '../common/FaultDialog'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: Resource): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG: string = 'Index'
 const DIVIDER: string= '\n---------------------------------------------------\n'
 
@@ -24,8 +91,8 @@ const DIVIDER: string= '\n---------------------------------------------------\n'
 @Component
 struct Index {
   @State message: string = 'FaultLog'
-  private operates: Array<Resource> = [$r('app.string.create_fault'), $r('app.string.catch_js_fault'),
-  $r('app.string.catch_cpp_fault'), $r('app.string.catch_app_freeze_fault'), $r('app.string.catch_all_fault')]
+  private operates: MyDataSource = new MyDataSource([$r('app.string.create_fault'), $r('app.string.catch_js_fault'),
+  $r('app.string.catch_cpp_fault'), $r('app.string.catch_app_freeze_fault'), $r('app.string.catch_all_fault')])
   private faultDialogController: CustomDialogController = null
 
   async catchFaultLog(faultType) {
@@ -91,7 +158,7 @@ struct Index {
 
       Scroll() {
         Column() {
-          ForEach(this.operates, (item, index) => {
+          LazyForEach(this.operates, (item, index) => {
             Button(item)
               .type(ButtonType.Capsule)
               .size({ width: '90%', height: 60 })
