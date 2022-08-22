@@ -32,30 +32,34 @@ struct FoodImageDisplay {
 @Component
 struct ContentTable {
   @Builder IngredientItem(title:string, name: string, value: string) {
-    Flex() {
+    Row() {
       Text(title)
         .fontSize(17.4)
         .fontWeight(FontWeight.Bold)
         .layoutWeight(1)
-      Flex({ alignItems: ItemAlign.Center }) {
+      Row() {
         Text(name)
           .fontSize(17.4)
           .flexGrow(1)
         Text(value)
           .fontSize(17.4)
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .layoutWeight(2)
     }
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
+    Column() {
       this.IngredientItem('Calories', 'Calories', '17kcal')
       this.IngredientItem('Nutrition', 'Protein', '0.9g')
       this.IngredientItem(' ', 'Fat', '0.2g')
       this.IngredientItem(' ', 'Carbohydrates', '3.9g')
       this.IngredientItem(' ', 'VitaminC', '17.8mg')
     }
+    .alignItems(HorizontalAlign.Start)
+    .justifyContent(FlexAlign.SpaceBetween)
     .padding({ top: 20, right: 20, left: 20 })
     .height(250)
   }

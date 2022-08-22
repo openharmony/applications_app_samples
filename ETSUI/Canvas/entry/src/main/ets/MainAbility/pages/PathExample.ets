@@ -27,17 +27,13 @@ struct PathExample {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Column() {
       Canvas(this.context)
         .width('90%')
         .height(300)
         .backgroundColor('#00ffff')
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('arc')
           .width(130)
           .height(45)
@@ -57,8 +53,10 @@ struct PathExample {
             this.context.save()
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('bezierCurveTo')
           .width(130)
           .height(45)
@@ -76,8 +74,10 @@ struct PathExample {
             this.context.stroke(this.path2Dc)
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('ellipse')
           .width(130)
           .height(45)
@@ -98,8 +98,10 @@ struct PathExample {
             this.context.restore();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('closePath')
           .width(130)
           .height(45)
@@ -117,8 +119,10 @@ struct PathExample {
             this.context.clearRect(0, 0, 950, 950)
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('addPath')
           .width(130)
           .height(45)
@@ -134,6 +138,12 @@ struct PathExample {
             router.back()
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }

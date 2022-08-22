@@ -53,7 +53,7 @@ export struct TempView {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Row() {
         Text($r('app.string.judge_temp'))
           .fontSize(20)
@@ -139,6 +139,8 @@ export struct TempView {
         this.tempRange()
       })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('29%')
   }

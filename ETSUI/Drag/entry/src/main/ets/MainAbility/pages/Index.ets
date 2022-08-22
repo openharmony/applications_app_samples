@@ -16,6 +16,73 @@
 import  HiLog  from '../model/HiLogUtil'
 import { Icon, iconInit } from '../model/IconData'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = '[Index]'
 
 @Extend(Image) function preferFancy (imageFit: ImageFit, padding: number) {
@@ -58,7 +125,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
 
       List() {
-        ForEach(this.desktopIcons, item => {
+        LazyForEach(new MyDataSource(this.desktopIcons), item => {
           ListItem() {
             Column() {
               Image(item.icon)
@@ -102,7 +169,7 @@ struct Index {
       })
 
       List() {
-        ForEach(this.dockIcons, (item, index) => {
+        LazyForEach(new MyDataSource(this.dockIcons), (item, index) => {
           ListItem() {
             Image(item.icon)
               .margin({ left: '10%', right: '10%' })

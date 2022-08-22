@@ -24,19 +24,20 @@ struct Index {
   build() {
     Column() {
       TitleBar()
-      Scroll() {
-        Column() {
-          Text(this.resultText)
-            .width('90%')
-            .fontSize(16)
-            .margin({ top: 10 })
-            .constraintSize({ minHeight: 200 })
-            .border({ width: 1, color: Color.Gray, radius: 15 })
-            .padding(15)
+      Column() {
+
+        Text(this.resultText)
+          .width('90%')
+          .fontSize(16)
+          .margin({ top: 10 })
+          .constraintSize({ minHeight: 200 })
+          .border({ width: 1, color: Color.Gray, radius: 15 })
+          .padding(15)
+
+        Row(){
           Operation({ resultText: $resultText })
         }
       }
-      .layoutWeight(1)
     }
     .width('100%').height('100%')
   }

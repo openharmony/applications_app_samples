@@ -22,13 +22,9 @@ struct IndexExample {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Column() {
       Canvas(this.context).width(600).height(300).backgroundColor('#00ffff')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('arc')
           .width(130).height(45)
           .onClick(() => {
@@ -43,9 +39,12 @@ struct IndexExample {
             this.context.font = '100px sans-serif';
             this.context.strokeText("hello World!", 50, 150);
           })
-      }.margin({ top: 10 })
+      }
+      .margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('closePath')
           .width(130).height(45)
           .onClick(() => {
@@ -66,8 +65,10 @@ struct IndexExample {
             this.context.stroke();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('textBaseline')
           .width(130).height(45)
           .onClick(() => {
@@ -90,15 +91,21 @@ struct IndexExample {
             this.context.clearRect(0, 0, 950, 950)
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('back')
           .width(130).height(45).backgroundColor(Color.Orange)
           .onClick(() => {
             router.back()
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }

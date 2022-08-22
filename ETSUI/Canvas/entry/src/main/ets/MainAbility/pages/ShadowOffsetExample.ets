@@ -26,7 +26,7 @@ struct ShadowOffsetExample {
       Column() {
         Canvas(this.context)
           .width(600).height('40%').backgroundColor('#00ffff')
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Row() {
           Button('shadowOffsetY')
             .width(130).height(45)
             .onClick(() => {
@@ -60,6 +60,8 @@ struct ShadowOffsetExample {
               this.context.save();
             })
         }.margin({ top: 10 })
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceAround)
 
         Button('back')
           .width(130)

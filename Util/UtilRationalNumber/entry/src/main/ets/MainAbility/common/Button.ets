@@ -14,11 +14,77 @@
  */
 
 import util from '@ohos.util';
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
 
 @Component
 export struct ButtonComponent {
-  private options: Resource [] = [$r('app.string.compare'), $r('app.string.get'), $r('app.string.getDenominator'),
-  $r('app.string.isZero'), $r('app.string.isNaN'), $r('app.string.isFinite')]
+  private options: MyDataSource = new MyDataSource([$r('app.string.compare'), $r('app.string.get'), $r('app.string.getDenominator'),
+  $r('app.string.isZero'), $r('app.string.isNaN'), $r('app.string.isFinite')])
   private rationalNumber = new util.RationalNumber(1, 2)
   @Link textTitle: string
 
@@ -82,7 +148,7 @@ export struct ButtonComponent {
 
   build() {
     Column() {
-      ForEach(this.options, (item, index) => {
+      LazyForEach(this.options, (item, index) => {
         Button() {
           Text(item)
             .fontSize(25)

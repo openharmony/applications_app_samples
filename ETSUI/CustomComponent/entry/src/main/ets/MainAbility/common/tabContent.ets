@@ -19,6 +19,73 @@ import { nearRelease, hotRelease, classicRelease } from '../util/actionUtils'
 import { VideoOperation } from '../common/videoOperation'
 import Logger from '../model/Logger'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = '[Component.TabContentView]'
 
 @Component
@@ -35,7 +102,7 @@ export struct TabContentView {
   @State classicList: Array<ReleaseData> = []
   private controller = new TabsController
   private boxList: Array<ReleaseData> = []
-  private topTabs: string[] = ['近日发布会', '热门发布会', '经典发布会']
+  private topTabs: MyDataSource = new MyDataSource(['近日发布会', '热门发布会', '经典发布会'])
 
   releaseChange() {
     this.ContentRefresh(this.releaseList)
@@ -110,7 +177,7 @@ export struct TabContentView {
   }
 
   @Builder ContentView(releaseA: Array<ReleaseData>) {
-    ForEach(releaseA, (item) => {
+    LazyForEach(new MyDataSource(releaseA), (item) => {
       Row() {
         Image($r('app.media.cover'))
           .width('30%').height(90)
@@ -140,7 +207,7 @@ export struct TabContentView {
   build() {
     Column() {
       Row() {
-        ForEach(this.topTabs, (item, index) => {
+        LazyForEach(this.topTabs, (item, index) => {
           Text(item)
             .fontSize(17)
             .layoutWeight(1)
@@ -148,7 +215,7 @@ export struct TabContentView {
             .textAlign(TextAlign.Center)
             .fontColor(getTextColor(index, this.topTabIndex))
             .onClick(() => {
-              Logger.info(TAG, `topTabs[index]= ${this.topTabs[index]}`)
+              Logger.info(TAG, `topTabs[index]= ${this.topTabs.getData(index)}`)
               Logger.info(TAG, `index= ${index.toString()}`)
               this.topTabIndex = index
               Logger.info(TAG, `topTabIndex = ${this.topTabIndex}`)

@@ -22,16 +22,12 @@ struct RenderingExample {
   private img: ImageBitmap = new ImageBitmap("/common/images/icon.png")
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Column() {
       Canvas(this.context)
         .width(600).height('50%').backgroundColor('#00ffff')
         .onReady(() => {
         })
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('arcTo').width(130).height(45)
           .onClick(() => {
             this.context.arcTo(150, 50, 250, 150, 250);
@@ -49,8 +45,10 @@ struct RenderingExample {
             this.context.save()
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('ellipse').width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -68,8 +66,10 @@ struct RenderingExample {
             this.context.save();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('createPattern').width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -90,8 +90,10 @@ struct RenderingExample {
             this.context.save();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('scale').width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -106,6 +108,8 @@ struct RenderingExample {
             this.context.clearRect(0, 0, 950, 950)
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
       Button('back')
         .width(130)
@@ -116,5 +120,7 @@ struct RenderingExample {
         })
         .margin({ top: 10 })
     }.width('100%').height('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

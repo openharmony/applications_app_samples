@@ -21,13 +21,9 @@ struct AllRenderingExample {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Column() {
       Canvas(this.context).width(600).height(300).backgroundColor('#00ffff')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('strokeStyle')
           .width(130).height(45)
           .onClick(() => {
@@ -49,8 +45,10 @@ struct AllRenderingExample {
             this.context.save();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('globalAlpha')
           .width(130).height(45)
           .onClick(() => {
@@ -84,8 +82,10 @@ struct AllRenderingExample {
             this.context.save();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('lineJoin')
           .width(130).height(45)
           .onClick(() => {
@@ -114,8 +114,10 @@ struct AllRenderingExample {
             this.context.save();
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('globalCompositeOperation')
           .width(130).height(45)
           .onClick(() => {
@@ -139,15 +141,21 @@ struct AllRenderingExample {
             this.context.clearRect(0, 0, 950, 950)
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('back')
           .width(130).height(45).backgroundColor(Color.Orange)
           .onClick(() => {
             router.back()
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }

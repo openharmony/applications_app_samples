@@ -63,7 +63,7 @@ export struct SleepView {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column(){
       Row() {
         Text($r('app.string.judge_sleep'))
           .fontSize(20)
@@ -116,11 +116,13 @@ export struct SleepView {
       .margin({ bottom: 4 })
       .padding({ left: 10 })
 
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+      Row() {
         Text($r('app.string.sleep_time'))
           .fontSize(18)
           .fontColor(Color.Red)
       }
+      .width('100%')
+      .alignItems(VerticalAlign.Center)
       .height('9.5%')
       .padding({ left: 10 })
 
@@ -138,6 +140,8 @@ export struct SleepView {
         this.sleepRange()
       })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('29%')
   }

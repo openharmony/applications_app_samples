@@ -77,7 +77,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.title'))
         .width('100%')
         .height(50)
@@ -122,12 +122,15 @@ struct Index {
           .height('100%')
           .sticky(Sticky.Normal)
         }
+        .height('100%')
         .width('100%')
         .editMode(false)
       }
       .width('90%')
       .height('100%')
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
   }

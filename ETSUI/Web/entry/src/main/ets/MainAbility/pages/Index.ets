@@ -54,7 +54,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       TitleBar({ webTitle: $webTitle })
       SearchBar({
         url: $url,
@@ -132,6 +132,8 @@ struct Index {
       .width('100%')
       .layoutWeight(1)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
   }

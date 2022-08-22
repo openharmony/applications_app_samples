@@ -14,19 +14,19 @@
  */
 
 import util from '@ohos.util'
-import {Temperature} from '../model/Temperature'
-import {TempView} from '../common/TempView'
-import {SleepView} from '../common/SleepView'
+import { Temperature } from '../model/Temperature'
+import { TempView } from '../common/TempView'
+import { SleepView } from '../common/SleepView'
 
 @Entry
 @Component
 struct Index {
-  @State age: number= 0
-  @State tempMorning: number= 0
-  @State tempNoon: number= 1
-  @State tempNight: number= 2
-  @State shortTime: number= 0
-  @State longTime: number= 0
+  @State age: number = 0
+  @State tempMorning: number = 0
+  @State tempNoon: number = 1
+  @State tempNight: number = 2
+  @State shortTime: number = 0
+  @State longTime: number = 0
 
   dialog(title, message, value) {
     AlertDialog.show(
@@ -55,7 +55,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.range'))
         .textAlign(TextAlign.Center)
         .width('100%')
@@ -113,7 +113,8 @@ struct Index {
       TempView()
       SleepView()
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%').height('100%')
-
   }
 }

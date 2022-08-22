@@ -19,7 +19,7 @@ export struct Texts {
   private Denominator: string
 
   build() {
-    Flex({ alignContent: FlexAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+    Row() {
       Text($r('app.string.numerator'))
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
@@ -36,8 +36,10 @@ export struct Texts {
         .width('80')
         .fontSize(30)
         .textAlign(TextAlign.Center)
-
     }
+    .width('100%')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.SpaceAround)
   }
 }
 

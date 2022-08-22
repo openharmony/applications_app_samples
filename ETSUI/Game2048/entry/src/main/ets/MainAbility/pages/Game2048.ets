@@ -13,6 +13,73 @@
  * limitations under the License.
  */
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 enum GameStatus {
   BEFORE = -1,
   RUNNING = 1,
@@ -107,14 +174,14 @@ struct Game2048 {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+    Column() {
+      Column() {
+        Row() {
           Image($r('app.media.logo2048'))
             .width(this.screenSize.x * 0.25)
             .height(this.screenSize.x * 0.25)
 
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+          Column() {
             Text('Score')
               .fontSize('30px')
               .fontColor('#efe1d3')
@@ -125,12 +192,14 @@ struct Game2048 {
               .fontColor('#fcf8f5')
               .fontWeight(FontWeight.Bolder)
           }
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
           .backgroundColor('#bbada0')
           .width(this.screenSize.x * 0.25)
           .height(this.screenSize.x * 0.25)
           .borderRadius(15)
 
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+          Column() {
             Text('Max')
               .fontSize('50px')
               .fontColor('#efe1d3')
@@ -141,16 +210,20 @@ struct Game2048 {
               .fontColor('#fcf8f5')
               .fontWeight(FontWeight.Bolder)
           }
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
           .backgroundColor('#bbada0')
           .width(this.screenSize.x * 0.25)
           .height(this.screenSize.x * 0.25)
           .borderRadius(15)
         }
+        .alignItems(VerticalAlign.Center)
+        .justifyContent(FlexAlign.SpaceAround)
         .margin({ bottom: 20 })
         .width(this.screenSize.x)
 
         Grid() {
-          ForEach(this.dataNumbers, (item) => {
+          LazyForEach(new MyDataSource(this.dataNumbers), (item) => {
             GridItem() {
               Text(`${item === 0 ? '' : item}`)
                 .fontSize('85px')
@@ -197,18 +270,23 @@ struct Game2048 {
         })
         ))
 
-        Button('Start', { type: ButtonType.Normal })
-          .borderRadius(5)
-          .margin({ top: 50 })
-          .width(200)
-          .onClick(() => {
-            this.gameStart()
-          })
-          .visibility(this.gameStatus !== -1 ? Visibility.Hidden : Visibility.Visible)
+        if(this.gameStatus === -1){
+          Button('Start', { type: ButtonType.Normal })
+            .borderRadius(5)
+            .margin({ top: 50 })
+            .width(200)
+            .onClick(() => {
+              this.gameStart()
+            })
+        }
       }
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
       .height('100%')
       .width('100%')
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
     .backgroundImage($r('app.media.gridBackground'))
@@ -248,7 +326,7 @@ struct ScorePannel {
         .height(40)
         .textAlign(TextAlign.Center)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('Reset', { type: ButtonType.Normal })
           .borderRadius(5)
           .margin({ top: 10 })
@@ -257,7 +335,7 @@ struct ScorePannel {
             this.gameStart()
             this.controller.close()
           })
-      }
+      }.justifyContent(FlexAlign.SpaceAround)
       .margin({ top: 10, bottom: 10 })
     }
     .backgroundColor('#f0f0f0')

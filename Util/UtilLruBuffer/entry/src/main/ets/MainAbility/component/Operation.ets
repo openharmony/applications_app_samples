@@ -16,17 +16,91 @@
 import util from '@ohos.util'
 import { ActionSheetDialog } from '../component/ActionSheetDialog'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = 'LruBuffer.Operation'
 let buffer = null
 let self = null
 
 @Component
 export struct Operation {
-  private operation: Array<Resource> = [$r('app.string.initialize_buffer'), $r('app.string.get_buffer_capacity'),
-  $r('app.string.update_buffer_capacity'), $r('app.string.get_buffer_string'),
-  $r('app.string.add_key_value'), $r('app.string.get_value_with_key'),
-  $r('app.string.get_all_key_values'), $r('app.string.delete_key_and_value'),
-  $r('app.string.clear_all_key_values'), $r('app.string.view_operation_record')]
+  private operation: Array<any> = [
+    $r('app.string.initialize_buffer'),
+    $r('app.string.get_buffer_capacity'),
+    $r('app.string.update_buffer_capacity'),
+    $r('app.string.get_buffer_string'),
+    $r('app.string.add_key_value'),
+    $r('app.string.get_value_with_key'),
+    $r('app.string.get_all_key_values'),
+    $r('app.string.delete_key_and_value'),
+    $r('app.string.clear_all_key_values'),
+    $r('app.string.view_operation_record'),
+  ]
   private isGet: boolean = true
   @State actionSheets: Array<string> = []
   @Link resultText: string
@@ -132,25 +206,37 @@ export struct Operation {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center }) {
-      ForEach(this.operation, (item, index) => {
-        Button() {
-          Text(item)
-            .fontSize(16)
-            .fontColor(Color.White)
-        }
-        .width(160).height(50)
-        .type(ButtonType.Capsule)
-        .margin({ right: 10, top: 10 })
-        .onClick(() => {
-          console.info(TAG + ' Click index:' + index)
-          if (index !== 0 && buffer === null) {
-            this.resultText = 'Click the first button and then operate'
-            return
+    Column() {
+      GridRow({columns:12,gutter:{x:2,y:5},
+      breakpoints:{value:["400vp","600vp","800vp"],reference:BreakpointsReference.WindowSize},
+      direction:GridRowDirection.Row
+      })
+      {
+        LazyForEach(new MyDataSource(this.operation), (item, index) => {
+          GridCol({span:{xs:6,sm:6,md:4,lg:3}}){
+            Row(){
+              Button() {
+                Text(item)
+                  .fontSize(16)
+                  .fontColor(Color.White)
+              }
+              .width(160)
+              .height(50)
+              .type(ButtonType.Capsule)
+              .margin({ right: 10, top: 10 })
+              .onClick(() => {
+                console.info(TAG + ' Click index:' + item.id)
+                if (index !== 0 && buffer === null) {
+                  this.resultText = 'Click the first button and then operate'
+                  return
+                }
+                this.doOperation(index)
+              })
+            }
+            .justifyContent(FlexAlign.Center)
           }
-          this.doOperation(index)
-        })
-      }, item => JSON.stringify(item))
+        }, index => index)
+      }
     }
     .width('100%')
     .padding({ bottom: 15 })

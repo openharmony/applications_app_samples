@@ -33,8 +33,7 @@ struct StrCodec {
   @State write:string =''
 
   build() {
-
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.StringCodec_title'))
         .width('100%')
         .height(50)
@@ -162,5 +161,7 @@ struct StrCodec {
         }
       }
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
   }
 }
