@@ -19,7 +19,7 @@ import LruCache from './LruCache'
 
 const KEY_ICON = 'icon'
 const KEY_NAME = 'name'
-const TAG = 'ResourceManager'
+const TAG: string = 'ResourceManager'
 
 /**
  * Wrapper class for resourceManager interfaces.

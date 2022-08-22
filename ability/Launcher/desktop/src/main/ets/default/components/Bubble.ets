@@ -18,6 +18,7 @@ import CardItemInfo from '../../../../../../base/src/main/ets/default/bean/CardI
 import CheckEmptyUtils from '../../../../../../base/src/main/ets/default/utils/CheckEmptyUtils'
 import CommonConstants from '../../../../../../base/src/main/ets/default/constants/CommonConstants'
 import DesktopLayoutModel from '../model/DesktopLayoutModel'
+import DeleteDialog from '../../../../../../base/src/main/ets/default/components/DeleteDialog'
 import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
 import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
 import MenuInfo from '../../../../../../base/src/main/ets/default/bean/MenuInfo'
@@ -35,6 +36,18 @@ export default struct Bubble {
   @State customPopup: boolean = false
   @State formInfo: CardItemInfo | undefined = undefined
   @Prop icon: string
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: DeleteDialog({
+      confirm: () => {
+        // 卸载应用的逻辑
+        this.desktopLayoutModel.uninstallAppItem(this.appInfo)
+      },
+      appInfo: this.appInfo,
+      dialogContent: this.appInfo.appName + ' ?',
+    }),
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   @Builder MenuBuilder() {
     Column() {
@@ -42,7 +55,6 @@ export default struct Bubble {
         menuInfos: this.menuInfos
       })
     }
-    .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
     .width(243)
     .borderRadius(12)
@@ -148,7 +160,7 @@ export default struct Bubble {
     this.context = getContext(this)
     this.desktopLayoutModel = DesktopLayoutModel.getInstance(this.context)
     this.updateIcon()
-    this.menuInfos = this.desktopLayoutModel.buildMenuInfoList(this.appInfo)
+    this.menuInfos = this.desktopLayoutModel.buildMenuInfoList(this.appInfo, this.dialogController)
     let appFormInfo = this.desktopLayoutModel.getAppItemFormInfo(this.appInfo.bundleName)
     if (appFormInfo && appFormInfo.length > 0) {
       this.formInfo = appFormInfo[0]
@@ -160,7 +172,7 @@ export default struct Bubble {
   }
 
   iconLoadCallback = (image: string) => {
-    this.icon = image;
+    this.icon = image
   }
 
   public updateIcon() {

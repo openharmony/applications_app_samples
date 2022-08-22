@@ -19,6 +19,14 @@
     {
       "name": "remove",
       "value": "Remove"
+    },
+    {
+      "name": "uninstall",
+      "value": "Uninstall"
+    },
+    {
+      "name": "whether_to_uninstall",
+      "value": "Whether to uninstall"
     }
   ]
 }

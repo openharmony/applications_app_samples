@@ -5,4 +5,6 @@
 /.hvigor
 /build-profile.json5
 /package-lock.json
-/entry/package-lock.json
+**/build-profile.json5
+**/package-lock.json
+**/node_modules

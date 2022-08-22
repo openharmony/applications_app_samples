@@ -19,6 +19,14 @@
     {
       "name": "remove",
       "value": "移除"
+    },
+    {
+      "name": "uninstall",
+      "value": "卸载"
+    },
+    {
+      "name": "whether_to_uninstall",
+      "value": "是否卸载"
     }
   ]
 }

@@ -16,7 +16,7 @@
 /**
  * default form size od one grid
  */
-const FORM_MGR_FORM_SIZE: number = 350
+const FORM_MGR_FORM_SIZE: number = 320
 
 export default class CommonConstants {
   /**

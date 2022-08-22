@@ -38,7 +38,6 @@ export default struct CardItem {
         menuInfos: this.menuInfos
       })
     }
-    .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
     .width(243)
     .borderRadius(12)
@@ -77,9 +76,7 @@ export default struct CardItem {
         .width('90%')
         .fontSize(14)
     }
-    .alignItems(HorizontalAlign.Center)
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
+    .width('80%')
     .height('100%')
     .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
   }

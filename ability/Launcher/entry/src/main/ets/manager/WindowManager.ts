@@ -49,7 +49,7 @@ export default class WindowManager {
     Logger.info(TAG, `createWindow, name: ${windowName}  page: ${page}`)
     try {
       let displayData = await display.getDefaultDisplay()
-      let window = await Window.create(this.context, windowName, 2001)
+      let window = await Window.create(this.context, windowName, Window.WindowType.TYPE_DESKTOP)
       await window.resetSize(displayData.height, displayData.width)
       await window.loadContent(page)
       if (isFullScreen) {

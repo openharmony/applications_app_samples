@@ -17,7 +17,7 @@ import CardItemInfo from '../bean/CardItemInfo'
 import FormManager from '../manager/FormManager'
 import Logger from '../utils/Logger'
 
-const TAG = 'FormModel'
+const TAG: string = 'FormModel'
 
 /**
  * form model.

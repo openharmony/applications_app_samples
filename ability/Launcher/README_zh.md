@@ -16,15 +16,15 @@
 
 ### 相关概念
 
-1.使用 innerBundleManager模块接口，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
+1.**使用 innerBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework）**，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
 
-2.使用bundle模块的getBundleInstaller接口获取到BundleInstaller，调用uninstall接口实现应用卸载功能。
+2.**使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework）**，调用uninstall接口实现应用卸载功能。
 
-3.使用formHost接口获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。
+3.**使用formHost接口（系统能力：SystemCapability.Ability.Form）**，获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。
 
-4.使用rdb接口实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
+4.使用关系型数据库rdb接口（系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core），实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
 
-5.使用missionManager模块接口，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
+5.**使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission）**，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
 
 ### 相关权限
 
@@ -64,4 +64,4 @@
 
 5.本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
-6.本示例当前仅实现了使用说明中的1、2、3、4个功能点，其他功能点会后续增加。
+6.本示例当前第7个功能点还未合入，暂时只支持1-6。

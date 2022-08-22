@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+import prompt from '@ohos.prompt'
 import router from '@ohos.router'
 import AppItemInfo from '../../../../../../base/src/main/ets/default/bean/AppItemInfo'
 import CheckEmptyUtils from '../../../../../../base/src/main/ets/default/utils/CheckEmptyUtils'
+import EventConstants from '../../../../../../base/src/main/ets/default/constants/EventConstants'
 import CommonConstants from '../../../../../../base/src/main/ets/default/constants/CommonConstants'
 import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
 import FormManager from '../../../../../../base/src/main/ets/default/manager/FormManager'
@@ -23,6 +25,7 @@ import FormModel from '../../../../../../base/src/main/ets/default/model/FormMod
 import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
 import LauncherAbilityManager from '../../../../../../base/src/main/ets/default/manager/LauncherAbilityManager'
 import MenuInfo from '../../../../../../base/src/main/ets/default/bean/MenuInfo'
+import RdbManager from '../../../../../../base/src/main/ets/default/manager/RdbManager'
 import ResourceManager from '../../../../../../base/src/main/ets/default/manager/ResourceManager'
 
 const TAG: string = 'LayoutInfoModel'
@@ -38,6 +41,20 @@ export default class DesktopLayoutModel {
   constructor(context) {
     this.context = context
     this.mLauncherAbilityManager = LauncherAbilityManager.getInstance(context)
+    this.mLauncherAbilityManager.registerLauncherAbilityChangeListener(this.appChangeListener)
+  }
+
+  appChangeListener = (event, bundleName: string, userId) => {
+    Logger.info(TAG, `appChangeListener event = ${event},bundle = ${bundleName}`)
+    FormModel.updateAppItemFormInfo(bundleName)
+    if (event === EventConstants.EVENT_PACKAGE_REMOVED) {
+      this.removeItemByBundle(bundleName)
+    } else if (event === EventConstants.EVENT_PACKAGE_ADDED) {
+      this.mLauncherAbilityManager.getAppInfoByBundleName(bundleName).then(appInfo => {
+        Logger.debug(TAG, `appChangeListener EVENT_PACKAGE_ADDED,info = ${JSON.stringify(appInfo)}`)
+        this.addAppToDesktop(appInfo, true)
+      })
+    }
   }
 
 
@@ -51,6 +68,17 @@ export default class DesktopLayoutModel {
       globalThis.LayoutInfoModel = new DesktopLayoutModel(context)
     }
     return globalThis.LayoutInfoModel
+  }
+
+  private removeItemByBundle(bundleName: string) {
+    let page = this.layoutInfo.length
+    for (let i = 0;i < page; i++) {
+      for (let j = 0;j < this.layoutInfo[i].length; j++) {
+        if (this.layoutInfo[i][j].bundleName === bundleName) {
+          this.removeItemFromDeskTop(this.layoutInfo[i][j])
+        }
+      }
+    }
   }
 
   /**
@@ -67,7 +95,7 @@ export default class DesktopLayoutModel {
    *
    * @param appInfo: GridLayoutItemInfo
    */
-  buildMenuInfoList(appInfo: GridLayoutItemInfo) {
+  buildMenuInfoList(appInfo: GridLayoutItemInfo, dialog: any) {
     if (CheckEmptyUtils.isEmpty(appInfo)) {
       return undefined
     }
@@ -97,6 +125,17 @@ export default class DesktopLayoutModel {
       }
       menuInfoList.push(addFormToDeskTopMenu)
     }
+
+    const uninstallMenu = new MenuInfo()
+    uninstallMenu.menuImgSrc = $r('app.media.ic_public_delete')
+    uninstallMenu.menuText = $r('app.string.uninstall')
+    uninstallMenu.onMenuClick = () => {
+      Logger.info(TAG, 'Launcher click menu item uninstall')
+      if (!CheckEmptyUtils.isEmpty(dialog)) {
+        dialog.open()
+      }
+    }
+    menuInfoList.push(uninstallMenu)
     return menuInfoList
   }
 
@@ -183,12 +222,110 @@ export default class DesktopLayoutModel {
    * getLayoutInfo
    */
   async getLayoutInfo() {
+    await RdbManager.initRdbConfig(this.context)
     let infos = await this.getAppListAsync()
-    let result = this.initPositionInfos(infos)
-    Logger.info(TAG, `getLayoutInfo result0,${JSON.stringify(result)}`)
-    this.layoutInfo = result
-    return this.layoutInfo
+    let gridLayoutItemInfos = await RdbManager.queryLayoutInfo()
+    Logger.info(TAG, `queryLayoutInfo,gridLayoutItemInfos = ${gridLayoutItemInfos.length}`)
+    let result: Array<Array<GridLayoutItemInfo>> = []
+    let plusApps = []
+    // 如果查询到的数据长度是0，说明之前没有过数据，此时初始化数据并插入
+    if (gridLayoutItemInfos.length === 0) {
+      let result = this.initPositionInfos(infos)
+      await RdbManager.insertData(result)
+      Logger.info(TAG, `getLayoutInfo result0,${JSON.stringify(result)}`)
+      this.layoutInfo = result
+      return result
+    }
+    // 数据库中查询到了数据，则优先加载数据库中的应用和卡片，剩余的应用图标在最后一个图标的位置后面添加
+    else {
+      for (let i = 0;i < infos.length; i++) {
+        Logger.info(TAG, `getLayoutInfo infos,i = ${i}`)
+        let find = false
+        for (let j = 0;j < gridLayoutItemInfos.length; j++) {
+          if (infos[i].bundleName === gridLayoutItemInfos[j].bundleName) {
+            Logger.info(TAG, `getLayoutInfo find,j = ${j}`)
+            if (gridLayoutItemInfos[j].page >= result.length) {
+              result.push([])
+            }
+            result[gridLayoutItemInfos[j].page].push(gridLayoutItemInfos[j])
+            find = true
+          }
+        }
+        if (!find) {
+          plusApps.push(infos[i])
+        }
+      }
+      Logger.info(TAG, `getLayoutInfo result1,${JSON.stringify(result[0].length)}`)
+      this.layoutInfo = result
+      // 加载完数据库中的后，剩余的app
+      if (plusApps.length > 0) {
+        Logger.info(TAG, `加载完数据库中的后，剩余的app`)
+        for (let k = 0;k < infos.length; k++) {
+          let item = plusApps[k]
+          if (item) {
+            this.addAppToDesktop(item, false)
+          }
+        }
+      }
+      Logger.info(TAG, `getLayoutInfo result2,${JSON.stringify(result[0].length)}`)
+      return this.layoutInfo
+    }
+  }
 
+  private async addAppToDesktop(appInfo: AppItemInfo, isRefresh: boolean) {
+    if (CheckEmptyUtils.isEmpty(appInfo)) {
+      return
+    }
+    let gridItem: GridLayoutItemInfo = this.covertAppItemToGridItem(appInfo, 0, 0, 0)
+    let page = this.layoutInfo.length
+    gridItem = this.updateItemLayoutInfo(gridItem)
+    if (gridItem.page >= page) {
+      this.layoutInfo.push([])
+    }
+    this.layoutInfo[gridItem.page].push(gridItem)
+    Logger.debug(TAG, `addAppToDesktop item ${JSON.stringify(gridItem)}`)
+    await RdbManager.insertItem(gridItem)
+    if (isRefresh) {
+      AppStorage.SetOrCreate('isRefresh', true)
+    }
+  }
+
+  /**
+   * uninstallAppItem
+   *
+   * @param itemInfo: GridLayoutItemInfo
+   */
+  async uninstallAppItem(itemInfo: GridLayoutItemInfo) {
+    if (CheckEmptyUtils.isEmpty(itemInfo)) {
+      return
+    }
+    let appInfo = await this.mLauncherAbilityManager.getAppInfoByBundleName(itemInfo.bundleName)
+    if (CheckEmptyUtils.isEmpty(appInfo)) {
+      return
+    }
+    if (appInfo.isUninstallAble) {
+      this.mLauncherAbilityManager.uninstallLauncherAbility(itemInfo.bundleName, (result) => {
+        if (result.code == CommonConstants.UNINSTALL_SUCCESS) {
+        }
+        this.informUninstallResult(result.code)
+      })
+    } else {
+      this.informUninstallResult(CommonConstants.UNINSTALL_FORBID)
+    }
+  }
+
+  private informUninstallResult(resultCode: number) {
+    let uninstallMessage: string = ''
+    if (resultCode === CommonConstants.UNINSTALL_FORBID) {
+      uninstallMessage = this.context.resourceManager.getStringSync($r('app.string.disable_uninstall').id)
+    } else if (resultCode === CommonConstants.UNINSTALL_SUCCESS) {
+      uninstallMessage = this.context.resourceManager.getStringSync($r('app.string.uninstall_success').id)
+    } else {
+      uninstallMessage = this.context.resourceManager.getStringSync($r('app.string.uninstall_failed').id)
+    }
+    prompt.showToast({
+      message: uninstallMessage
+    })
   }
 
   /**
@@ -197,6 +334,9 @@ export default class DesktopLayoutModel {
    * @param appInfos
    */
   initPositionInfos(appInfos: Array<AppItemInfo>) {
+    if (CheckEmptyUtils.isEmptyArr(appInfos)) {
+      return []
+    }
     Logger.info(TAG, `initPositionInfos, appInfos size = ${appInfos.length}`)
     let countsOnePage = CommonConstants.DEFAULT_COLUMN_COUNT * CommonConstants.DEFAULT_ROW_COUNT
     let result: Array<Array<GridLayoutItemInfo>> = []
@@ -258,6 +398,7 @@ export default class DesktopLayoutModel {
       this.layoutInfo.push([])
     }
     this.layoutInfo[gridItem.page].push(gridItem)
+    await RdbManager.insertItem(gridItem)
     Logger.info(TAG, `createCardToDeskTop gridItem2 =  ${JSON.stringify(gridItem)}`)
     AppStorage.SetOrCreate('isRefresh', true)
   }
@@ -289,6 +430,7 @@ export default class DesktopLayoutModel {
       }
     }
     this.layoutInfo = pageInfos
+    await RdbManager.deleteItemByPosition(item.page, item.row, item.column)
     Logger.info(TAG, `removeCardFromDeskTop item= ${JSON.stringify(item)}`)
     AppStorage.SetOrCreate('isRefresh', true)
   }

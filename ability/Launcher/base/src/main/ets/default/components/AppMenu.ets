@@ -39,11 +39,7 @@ struct MenuItem {
   private menuInfo: MenuInfo
 
   build() {
-    Flex({
-      direction: FlexDirection.Row,
-      alignItems: ItemAlign.Center
-    }) {
-
+    Row() {
       Image(this.menuInfo.menuImgSrc)
         .objectFit(ImageFit.Contain)
         .height(20)
@@ -59,6 +55,7 @@ struct MenuItem {
     .borderRadius(12)
     .height(40)
     .width(235)
+    .justifyContent(FlexAlign.Start)
     .onClick(() => {
       this.menuInfo.onMenuClick()
       ContextMenu.close()

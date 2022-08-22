@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
+import bundleMgr from '@ohos.bundle'
 import launcherBundleMgr from '@ohos.bundle.innerBundleManager'
 import osAccount from '@ohos.account.osAccount'
 import AppItemInfo from '../bean/AppItemInfo'
 import CheckEmptyUtils from '../utils/CheckEmptyUtils'
+import CommonConstants from '../constants/CommonConstants'
+import EventConstants from '../constants/EventConstants'
 import Logger from '../utils/Logger'
 import ResourceManager from './ResourceManager'
 
@@ -29,6 +32,7 @@ export default class LauncherAbilityManager {
   private static readonly BUNDLE_STATUS_CHANGE_KEY = 'BundleStatusChange'
   private readonly mAppMap = new Map<string, AppItemInfo>()
   private mResourceManager: ResourceManager = undefined
+  private readonly mLauncherAbilityChangeListeners: any[] = []
   private mUserId: number = 100
   private context: any = undefined
 
@@ -134,5 +138,85 @@ export default class LauncherAbilityManager {
     }, (err) => {
       Logger.error(TAG, `startApplication promise error: ${JSON.stringify(err)}`)
     })
+  }
+
+  /**
+ * 卸载应用
+ *
+ * @params bundleName 应用包名
+ * @params callback 卸载回调
+ */
+  async uninstallLauncherAbility(bundleName: string, callback): Promise<void> {
+    Logger.info(TAG, `uninstallLauncherAbility bundleName: ${bundleName}`)
+    const bundlerInstaller = await bundleMgr.getBundleInstaller()
+    bundlerInstaller.uninstall(bundleName, {
+      userId: this.mUserId,
+      installFlag: 0,
+      isKeepData: false
+    }, (result) => {
+      Logger.info(TAG, `uninstallLauncherAbility result => ${JSON.stringify(result)}`)
+      callback(result)
+    })
+  }
+
+  mBundleStatusCallback: BundleStatusCallback = {
+    add: (bundleName, userId) => {
+      Logger.debug(TAG, `mBundleStatusCallback add bundleName: ${bundleName}, userId: ${userId}, mUserId ${this.mUserId}`)
+      this.mUserId == userId && this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_ADDED, bundleName, userId)
+    },
+    remove: (bundleName, userId) => {
+      Logger.debug(TAG, `mBundleStatusCallbackremove bundleName: ${bundleName}, userId: ${userId}, mUserId ${this.mUserId}`)
+      this.mUserId == userId && this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_REMOVED, bundleName, userId)
+    },
+    update: (bundleName, userId) => {
+    }
+  }
+
+  /**
+    * 开始监听系统应用状态.
+    *
+    * @params listener 监听对象
+    */
+  registerLauncherAbilityChangeListener(listener: any): void {
+    if (!CheckEmptyUtils.isEmpty(listener)) {
+      if (this.mLauncherAbilityChangeListeners.length == 0) {
+        launcherBundleMgr.on(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY, this.mBundleStatusCallback).then(data => {
+          Logger.info(TAG, `registerCallback success: ${JSON.stringify(data)}`)
+        }).catch(err => {
+          Logger.error(TAG, `registerCallback fail: ${JSON.stringify(err)}`)
+        })
+      }
+      const index = this.mLauncherAbilityChangeListeners.indexOf(listener)
+      if (index == CommonConstants.INVALID_VALUE) {
+        this.mLauncherAbilityChangeListeners.push(listener)
+      }
+    }
+  }
+
+  /**
+   * 取消监听系统应用状态.
+   *
+   * @params listener 监听对象
+   */
+  unregisterLauncherAbilityChangeListener(listener: any): void {
+    if (!CheckEmptyUtils.isEmpty(listener)) {
+      const index = this.mLauncherAbilityChangeListeners.indexOf(listener)
+      if (index != CommonConstants.INVALID_VALUE) {
+        this.mLauncherAbilityChangeListeners.splice(index, 1)
+      }
+      if (this.mLauncherAbilityChangeListeners.length == 0) {
+        launcherBundleMgr.off(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY).then(data => {
+          Logger.info(TAG, 'unregisterCallback success')
+        }).catch(err => {
+          Logger.error(TAG, `unregisterCallback fail: ${JSON.stringify(err)}`)
+        })
+      }
+    }
+  }
+
+  private notifyLauncherAbilityChange(event: string, bundleName: string, userId: number): void {
+    for (let index = 0; index < this.mLauncherAbilityChangeListeners.length; index++) {
+      this.mLauncherAbilityChangeListeners[index](event, bundleName, userId)
+    }
   }
 }
