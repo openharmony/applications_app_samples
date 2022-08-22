@@ -1,0 +1,8 @@
+{
+  "float": [
+    {
+      "name": "app_safe_margin",
+      "value": "12vp"
+    }
+  ]
+}
