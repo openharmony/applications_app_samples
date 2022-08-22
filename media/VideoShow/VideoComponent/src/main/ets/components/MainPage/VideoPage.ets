@@ -65,27 +65,29 @@ export struct VideoPage {
           })
 
         // 空白层预览
-        Column() {
-          Image($r('app.media.previewImg'))
-            .objectFit(ImageFit.Contain)
+        if(this.isHidden){
+          Column() {
+            Image($r('app.media.previewImg'))
+              .objectFit(ImageFit.Contain)
+          }
+          .width('100%')
+          .aspectRatio(1.12)
+          .backgroundColor('#ffffff')
         }
-        .width('100%')
-        .aspectRatio(1.12)
-        .backgroundColor('#ffffff')
-        .visibility(this.isHidden ? Visibility.Visible : Visibility.Hidden)
 
         // 视频上的play图标
-        Column() {
-          Image($r('app.media.play'))
-            .width(76).height(76)
-            .onClick(() => {
-              this.detailVideoController.start()
-              this.isHidden = !this.isHidden
-              this.isStart = true
-              this.isPlayClick = false
-            })
+        if(this.isHidden){
+          Column() {
+            Image($r('app.media.play'))
+              .width(76).height(76)
+              .onClick(() => {
+                this.detailVideoController.start()
+                this.isHidden = !this.isHidden
+                this.isStart = true
+                this.isPlayClick = false
+              })
+          }
         }
-        .visibility(this.isHidden ? Visibility.Visible : Visibility.Hidden)
       }
       .width('100%')
       .height('100%')

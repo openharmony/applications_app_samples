@@ -14,7 +14,7 @@
  */
 import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
-import { LiveInfoDataModel } from './model/LiveDataModel'
+import { LiveInfoDataModel, MyDataSource } from './model/LiveDataModel'
 import { liveData } from './mock/LiveData'
 import { live } from './net/Utils'
 import { commentPage } from './CommentPage'
@@ -71,7 +71,7 @@ export struct LivePage {
     Scroll() {
       Column() {
         Swiper() {
-          ForEach(this.liveInfoList, (item, index) => {
+          LazyForEach(new MyDataSource(this.liveInfoList), (item, index) => {
             Stack({}) {
               if (this.active == index) {
                 Video({ src: item.uri })

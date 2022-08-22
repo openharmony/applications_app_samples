@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import mediaQuery from '@ohos.mediaquery';
-import { LiveInfoDataModel } from './model/LiveDataModel'
+import { LiveInfoDataModel, MyDataSource } from './model/LiveDataModel'
 import { liveData } from './mock/LiveData'
 
 @Component
@@ -57,7 +57,7 @@ export struct commentPage {
       // 评论框
       Column() {
         List({ space: 6, initialIndex: 0 }) {
-          ForEach(this.liveList, (items) => {
+          LazyForEach(new MyDataSource(this.liveList), (items) => {
             ListItem() {
               Text() {
                 Span(items.name)
