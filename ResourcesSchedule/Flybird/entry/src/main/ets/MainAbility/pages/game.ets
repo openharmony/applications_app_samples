@@ -103,6 +103,7 @@ struct Game {
         pipeSouth = this.pipeSouthFour
         bg = this.bgFour
         this.sleep = 30
+        break
       case 5:
         fg = this.bgFive
         pipeNorth = this.pipeNorthFive
