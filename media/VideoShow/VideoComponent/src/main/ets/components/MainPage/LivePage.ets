@@ -86,7 +86,7 @@ export struct LivePage {
               // 直播界面信息栏
               Row() {
                 // 信息栏左边信息
-                Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+                Row() {
                   Row() {
                     Image($r('app.media.live_author')) // 直播间头像
                       .width(38).height(38)
@@ -112,6 +112,7 @@ export struct LivePage {
                     .height(35)
                     .width(59)
                 }
+                .justifyContent(FlexAlign.SpaceBetween)
                 .padding({ left: this.isPhone ? '2%' : '1%', right: this.isPhone ? '2%' : '1%' })
                 .width(this.isPhone ? '57.2%' : '30%')
                 .aspectRatio(this.isPhone ? 5.15 : 7)

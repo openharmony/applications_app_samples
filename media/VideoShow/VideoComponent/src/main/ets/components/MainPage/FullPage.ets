@@ -74,10 +74,9 @@ export struct FullPage {
             })
             .onStart(() => {
               this.isHidden = false
-              this.fullVideoController.setCurrentTime(this.playTime)
             })
             .onPrepared((e) => {
-              console.info('FullPage_onPrepared:' + e.duration)
+              this.fullVideoController.setCurrentTime(this.playTime)
               this.maxValue = e.duration
             })
             .onUpdate((e) => {
@@ -88,16 +87,17 @@ export struct FullPage {
             })
 
           // 暂停按钮
-          Column() {
-            Image($r('app.media.play'))
-              .width(78).height(78)
-              .onClick(() => {
-                this.fullVideoController.start()
-                this.isHidden = !this.isHidden
-              })
+          if(this.isHidden){
+            Column() {
+              Image($r('app.media.play'))
+                .width(78).height(78)
+                .onClick(() => {
+                  this.fullVideoController.start()
+                  this.isHidden = !this.isHidden
+                })
+            }
+            .position({ x: this.isPhone ? '42%' : '47%', y: '45%' })
           }
-          .position({ x: this.isPhone ? '42%' : '47%', y: '45%' })
-          .visibility(this.isHidden ? Visibility.Visible : Visibility.Hidden)
         }.width('100%').height('100%')
 
         // 返回上一页按钮

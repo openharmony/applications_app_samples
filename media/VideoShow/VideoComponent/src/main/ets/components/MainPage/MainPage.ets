@@ -16,6 +16,7 @@ import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
 import { VideoPage } from "./VideoPage"
 import { smallVideo } from "./SmallVideo"
+import { MyDataSource } from './model/LiveDataModel'
 
 @Entry
 @Component
@@ -72,7 +73,7 @@ export struct MainPage {
             Swiper() {
               VideoPage({ isStart: $openFirst })
               // 模拟Swiper数据
-              ForEach(this.arrSwiper, (item) => {
+              LazyForEach(new MyDataSource(this.arrSwiper), (item) => {
                 Text(item.toString())
                   .width('100%')
                   .aspectRatio(1.12)
@@ -90,7 +91,7 @@ export struct MainPage {
               this.activeVideo = index
             })
             // 模拟scroll数据
-            ForEach(this.arrScroll, (item) => {
+            LazyForEach(new MyDataSource(this.arrScroll), (item) => {
               Text(item.toString())
                 .width('90%')
                 .height(150)

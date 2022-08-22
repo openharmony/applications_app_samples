@@ -77,6 +77,8 @@ export struct commentPage {
             .editable(true)
           }, item => item.toString())
         }
+        .width('100%')
+        .height('100%')
       }
       .alignItems(HorizontalAlign.Start)
       .width('60%')
