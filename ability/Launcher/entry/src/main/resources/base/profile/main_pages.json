@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Home",
-    "pages/FormPage"
+    "pages/FormPage",
+    "pages/RecentsPage"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "recents",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "uiSyntax": "ets"
+  }
+}

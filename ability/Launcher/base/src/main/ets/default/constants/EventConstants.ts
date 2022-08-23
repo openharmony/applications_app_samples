@@ -22,6 +22,7 @@ const EventConstants = {
   EVENT_BADGE_UPDATE: 'launcher.event.EVENT_BADGE_UPDATE',
   EVENT_ENTER_HOME: 'launcher.event.EVENT_ENTER_HOME',
   EVENT_ENTER_RECENTS: 'launcher.event.EVENT_ENTER_RECENTS',
+  EVENT_CLEAR_RECENTS: 'launcher.event.EVENT_CLEAR_RECENTS',
   EVENT_ENTER_FROM_MANAGER: 'launcher.event.EVENT_ENTER_FROM_MANAGER'
 }
 

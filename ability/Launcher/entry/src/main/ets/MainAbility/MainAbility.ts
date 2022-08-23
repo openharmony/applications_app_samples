@@ -29,6 +29,7 @@ export default class MainAbility extends ServiceExtensionAbility {
 
   async initLauncher() {
     this.windowManager = new WindowManager(this.context)
+    this.windowManager.registerWindowEvent()
     await this.windowManager.showOrCreateWindow(WINDOW_NAMES.HOME, WINDOW_PAGES.HOME, false)
   }
 

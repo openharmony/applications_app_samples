@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-
+import CommonEvent from '@ohos.commonEvent'
+import EventConstants from '../../../../../../base/src/main/ets/default/constants/EventConstants'
 import DesktopLayoutModel from '../model/DesktopLayoutModel'
 import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
 import LauncherGridLayout from '../components/LauncherGridLayout'
@@ -41,6 +42,20 @@ export default struct WorkSpace {
       .width('100%')
       .height('95%')
       .margin({ top: '5%' })
+      .gesture(
+      PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 20 })
+        .onActionStart((event: GestureEvent) => {
+          console.info('Pan start')
+        })
+        .onActionUpdate((event: GestureEvent) => {
+        })
+        .onActionEnd(() => {
+          console.info('Pan end')
+          CommonEvent.publish(EventConstants.EVENT_ENTER_RECENTS, () => {
+            Logger.info(TAG, 'publish EVENT_ENTER_RECENTS')
+          })
+        })
+      )
     }
     .width('100%')
     .height('100%')
