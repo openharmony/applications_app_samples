@@ -165,6 +165,7 @@ struct Index {
           .width('80%')
 
           Button($r('app.string.confirm'))
+            .key('confirmOrderBtn')
             .width('80%')
             .height(40)
             .margin({ top: 30 })

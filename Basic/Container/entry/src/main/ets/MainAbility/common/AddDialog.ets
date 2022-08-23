@@ -46,6 +46,7 @@ export struct AddDialog {
           .margin({ left: 10 })
 
         TextInput({ placeholder: $r('app.string.input_name'), text: this.writeInformation.name })
+          .key('inputName')
           .layoutWeight(1)
           .type(InputType.Normal)
           .placeholderColor(Color.Gray)
@@ -66,6 +67,7 @@ export struct AddDialog {
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Medium)
         TextInput({ placeholder: $r('app.string.input_age'), text: this.writeInformation.age.toString() })
+          .key('inputAge')
           .layoutWeight(1)
           .type(InputType.Number)
           .inputFilter('^[1-9][0-9]*')
@@ -88,6 +90,7 @@ export struct AddDialog {
           .margin({ left: 10 })
 
         TextInput({ placeholder: $r('app.string.input_phone'), text: this.writeInformation.phone })
+          .key('inputPhone')
           .layoutWeight(1)
           .type(InputType.Number)
           .inputFilter('^1[0-9]*')
@@ -104,6 +107,7 @@ export struct AddDialog {
       Row() {
         Button() {
           Text($r("app.string.button_confirm"))
+            .key('confirm')
             .fontColor(Color.Blue)
             .fontSize(17)
         }
