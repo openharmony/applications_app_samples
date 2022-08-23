@@ -151,6 +151,7 @@ struct Index {
         Button() {
           Image($r('app.media.add'))
         }
+        .key('add')
         .type(ButtonType.Circle)
         .width(60).height(60)
         .backgroundColor('#0D9FFB')
