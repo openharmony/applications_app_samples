@@ -28,6 +28,7 @@ export struct OperateView {
         .onChange((value: string) => {
           this.before = value
         })
+
       Text(this.after)
         .fontSize(22)
         .width('94%')
