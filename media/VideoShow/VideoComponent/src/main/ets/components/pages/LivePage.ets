@@ -14,10 +14,10 @@
  */
 import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
-import { LiveInfoDataModel, MyDataSource } from './model/LiveDataModel'
-import { liveData } from './mock/LiveData'
-import { live } from './net/Utils'
-import { commentPage } from './CommentPage'
+import { LiveInfoDataModel, MyDataSource } from '../model/LiveDataModel'
+import { LiveData } from '../mock/LiveData'
+import { Live } from '../net/Utils'
+import { CommentPage } from './CommentPage'
 
 class LiveInfoResponse {
   code: number
@@ -40,7 +40,7 @@ class commentInfo {
 @Component
 export struct LivePage {
   @State active: number = 0
-  @State liveInfoList: Array<LiveInfoDataModel> = liveData // 直播信息
+  @State liveInfoList: Array<LiveInfoDataModel> = LiveData // 直播信息
   @State liveList: any[] = []
   @State mData: LiveInfoResponse = {
     code: 0,
@@ -59,7 +59,7 @@ export struct LivePage {
     this.listenerIsPhone.on('change', this.portraitFunc)
 
     try {
-      let a = await live() // 调用网络接口
+      let a = await Live() // 调用网络接口
       this.mData = JSON.parse(a.result.toString())
       this.liveInfoList = this.mData.data
     } catch (error) {
@@ -140,7 +140,7 @@ export struct LivePage {
               // 评论框
               Column() {
                 if (this.active === index) {
-                  commentPage({ activeItem: $active })
+                  CommentPage({ activeItem: $active })
                 }
               }
               .position({ x: '4.4%', y: this.isPhone ? '72%' : '62%' })

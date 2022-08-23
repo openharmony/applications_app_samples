@@ -15,7 +15,7 @@
 
 import { LiveInfoDataModel } from '../model/LiveDataModel'
 
-export const liveData: Array<LiveInfoDataModel> = [
+export const LiveData: Array<LiveInfoDataModel> = [
   { "uri": $rawfile('video_1.mp4'),
     "name": $r("app.string.first_author"),
     "peopleNum": "520",

@@ -16,7 +16,7 @@ import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
 
-export function live() {
+export function Live() {
   return httpRequest.request(
     "http://123.60.114.86:8090/goods/liveInfo?id=2",
     {

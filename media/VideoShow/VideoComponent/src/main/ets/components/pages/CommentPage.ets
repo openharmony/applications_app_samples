@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 import mediaQuery from '@ohos.mediaquery';
-import { LiveInfoDataModel, MyDataSource } from './model/LiveDataModel'
-import { liveData } from './mock/LiveData'
+import { LiveInfoDataModel, MyDataSource } from '../model/LiveDataModel'
+import { LiveData } from '../mock/LiveData'
 
 @Component
-export struct commentPage {
+export struct CommentPage {
   @State liveList: Array<any> = []
-  @State comments: Array<LiveInfoDataModel> = liveData
+  @State comments: Array<LiveInfoDataModel> = LiveData
   @State text: string = ''
   @State isPhone: boolean = false
   @Link @Watch("onActiveUpdated") activeItem: number
