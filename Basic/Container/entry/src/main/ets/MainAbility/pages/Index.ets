@@ -130,6 +130,7 @@ struct Index {
             .objectFit(ImageFit.Contain)
             .align(Alignment.End)
         }
+        .key('addBtn')
         .width('10%')
         .type(ButtonType.Normal)
         .backgroundColor('#0D9FFB')
@@ -187,6 +188,7 @@ struct Index {
 
               Button() {
                 Text($r('app.string.button_delete'))
+                  .key('delContact')
                   .fontColor(Color.Red)
                   .fontSize(19)
                   .width(100)
