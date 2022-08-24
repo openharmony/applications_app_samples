@@ -8,9 +8,11 @@
 
 使用说明：
 
-1.点击**+**，跳转添加联系人界面，输入联系人信息，点击**√**，确认添加联系人，并返回首页。
+1.点击**+**按钮，跳转添加联系人界面，输入联系人信息，点击**√**，确认添加联系人，并返回首页。
 
 2.点击联系人列表跳转页面查看详细信息，并且可以编辑或删除联系人信息。
+
+3.在搜索栏输入号码或邮箱可查询对应的联系人。
 
 ### 效果预览
 
@@ -30,10 +32,6 @@
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API9版本SDK，版本号：3.2.5.5 Beta2。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
-
-4.本示例因接口问题，目前实现了联系人查询接口，可通过预置联系人应用添加联系人，再进入本应用查看已添加的联系人。
-
-5.因联系人接口问题添加忽略编译校验。
+3.本示例涉及[ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)、[ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md))查看），需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))。

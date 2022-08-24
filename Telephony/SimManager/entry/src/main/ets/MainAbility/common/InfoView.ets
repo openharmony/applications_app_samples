@@ -34,9 +34,15 @@ export struct InfoView {
   private sim2Text: Resource = undefined
 
   async getColor(slotId: number) {
-    let result = await sim.hasSimCard(slotId)
-    Logger.info(TAG, `color result is ${result}`)
-    let color = result ? '#0D9FFB' : '#FFFFFF'
+    let color: string = ''
+    try {
+      let result = await sim.hasSimCard(slotId)
+      Logger.info(TAG, `color result is ${result}`)
+      color = result ? '#0D9FFB' : '#FFFFFF'
+    } catch (err) {
+      color = '#FFFFFF'
+      Logger.info(TAG, `err is ${JSON.stringify(err)}`)
+    }
     Logger.info(TAG, `color is ${JSON.stringify(color)}`)
     return color
   }
@@ -75,9 +81,10 @@ export struct InfoView {
   }
 
   async aboutToAppear() {
-    [this.sim1Color, this.sim2Color, this.sim1Text, this.sim2Text] = await Promise.all([
-      this.getColor(card1), this.getColor(card2), this.getTextData(card1), this.getTextData(card2)
-    ])
+    this.sim1Text = await this.getTextData(card1)
+    this.sim2Text = await this.getTextData(card2)
+    this.sim1Color = await this.getColor(card1)
+    this.sim2Color = await this.getColor(card2)
     this.flag = true
     Logger.info(TAG, `sim1Text is ${JSON.stringify(this.sim1Text)} sim2Text is ${JSON.stringify(this.sim2Text)}`)
   }
