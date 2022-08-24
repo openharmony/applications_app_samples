@@ -177,7 +177,7 @@ export struct RegisterInfo {
       }
       .margin(5)
 
-      LazyForEach(this.dataSet, item => {
+      LazyForEach(this.dataSet, (item, index) => {
         Row() {
           Text(item.text)
             .margin(10)
@@ -193,6 +193,7 @@ export struct RegisterInfo {
               .textAlign(TextAlign.Center)
 
             TextInput({ placeholder: 'xxxxx' })
+              .key('Register' + (index + 1))
               .margin(10)
               .width('55%')
               .fontSize(20)
@@ -229,6 +230,7 @@ export struct RegisterInfo {
       }, item => JSON.stringify(item))
 
       Button($r('app.string.setting'))
+        .key('complete')
         .margin(10)
         .width('60%')
         .fontSize(20)

@@ -28,6 +28,7 @@ export struct PswDialog {
         .fontSize(20)
         .width('95%')
       TextInput({ placeholder: 'input password' })
+        .key('input')
         .type(InputType.Password)
         .placeholderColor(Color.Gray)
         .fontSize(19)

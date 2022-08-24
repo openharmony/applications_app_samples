@@ -188,7 +188,7 @@ export struct ModifyInfo {
       }
       .margin(5)
 
-      LazyForEach(this.dataSet, item => {
+      LazyForEach(this.dataSet, (item, index) => {
         Row() {
           Text(item.text)
             .margin(10)
@@ -204,6 +204,7 @@ export struct ModifyInfo {
               .textAlign(TextAlign.Center)
 
             TextInput({ placeholder: 'xxxxx' })
+              .key('Modify' + (index + 1))
               .margin(10)
               .width('55%')
               .fontSize(20)
@@ -236,6 +237,7 @@ export struct ModifyInfo {
       }, item => JSON.stringify(item))
 
       Button($r('app.string.setting'))
+        .key('modComplete')
         .margin(10)
         .width('60%')
         .fontSize(20)
