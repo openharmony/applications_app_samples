@@ -14,7 +14,7 @@
  */
 
 @Component
-export struct smallVideo {
+export struct SmallVideo {
   @State smallVideoSrc: Resource = $rawfile('video_4.mp4')
   @Link @Watch("onChanged") isHidden: boolean
   @Link isCancel: boolean

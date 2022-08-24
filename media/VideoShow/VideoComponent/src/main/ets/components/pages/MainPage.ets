@@ -15,8 +15,8 @@
 import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
 import { VideoPage } from "./VideoPage"
-import { smallVideo } from "./SmallVideo"
-import { MyDataSource } from './model/LiveDataModel'
+import { SmallVideo } from "./SmallVideo"
+import { MyDataSource } from '../model/LiveDataModel'
 
 @Entry
 @Component
@@ -115,7 +115,7 @@ export struct MainPage {
 
         // 视频小窗口
         Column() {
-          smallVideo({ isHidden: $isHidden, isCancel: $isCancel })
+          SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })
         }
         .position({ x: '64%', y: '42%' })
 
