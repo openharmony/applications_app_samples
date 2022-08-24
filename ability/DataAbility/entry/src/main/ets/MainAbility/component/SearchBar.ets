@@ -31,6 +31,7 @@ export struct SearchBar {
         .margin({ right: '5%' })
         .objectFit(ImageFit.Contain)
     }
+    .key('searchTip')
     .zIndex(10)
     .height(50).width('100%')
     .backgroundColor('#F5F5F5')

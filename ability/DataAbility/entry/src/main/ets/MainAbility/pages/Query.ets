@@ -129,6 +129,7 @@ struct Query {
           .margin('3%')
           .backgroundColor('#F0F0F0')
           .border({ radius: 20 })
+          .key('search')
           .onChange((value: string) => {
             console.info(TAG + ' query str=' + value)
             if (value !== '') {

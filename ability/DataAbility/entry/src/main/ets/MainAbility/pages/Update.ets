@@ -56,6 +56,7 @@ struct Update {
           .fontSize(20)
           .layoutWeight(1)
         Image($r('app.media.submit'))
+          .key('submit')
           .width(50).height(50)
           .objectFit(ImageFit.Contain)
           .onClick(() => {
@@ -84,6 +85,7 @@ struct Update {
             .margin({ top: 20 })
             .fontColor(Color.Black)
           TextInput({ placeholder: 'input name', text: this.book.name })
+            .key('input name')
             .type(InputType.Normal)
             .placeholderColor(Color.Gray)
             .fontSize(19)
@@ -99,6 +101,7 @@ struct Update {
             .fontColor(Color.Black)
             .margin({ top: 20 })
           TextInput({ placeholder: 'input introduction', text: this.book.introduction })
+            .key('input introduction')
             .type(InputType.Normal)
             .placeholderColor(Color.Gray)
             .fontSize(19)

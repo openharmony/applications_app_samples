@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.example.flybird",
-    "vendor": "example",
+    "bundleName": "com.samples.flybird",
+    "vendor": "samples",
     "version": {
       "code": 1000000,
       "name": "1.0.0"

@@ -48,6 +48,7 @@ export struct BookView {
           Image($r('app.media.delete_red'))
             .height(35).width(35)
             .objectFit(ImageFit.Contain)
+            .key('delete')
         }
         .type(ButtonType.Circle)
         .height(50)
