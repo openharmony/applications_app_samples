@@ -80,7 +80,7 @@ struct CameraPage {
         })
           .onLoad(() => {
             Logger.info(this.tag, 'onLoad is called')
-            this.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
+            this.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 640, surfaceHeight: 480 })
             this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
             Logger.info(this.tag, `onLoad surfaceId: ${this.surfaceId}`)
             this.curModel = CameraMode.MODE_PHOTO
@@ -102,6 +102,9 @@ struct CameraPage {
                     this.isRecording = false
                   }
                   this.curModel = CameraMode.MODE_PHOTO
+                  setTimeout(() => {
+                    CameraService.initCamera(this.surfaceId)
+                  }, 500)
                   this.videoThumbnail = undefined
                 }
               })
@@ -113,6 +116,7 @@ struct CameraPage {
                 if (this.curModel === CameraMode.MODE_PHOTO) {
                   prompt.showToast({ message: '切换中...', duration: 1000 })
                   this.curModel = CameraMode.MODE_VIDEO
+                  CameraService.initCamera(this.surfaceId)
                 }
               })
           }

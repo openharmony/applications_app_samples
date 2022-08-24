@@ -131,7 +131,6 @@ struct Index {
               Image(item.icon)
                 .width(70)
                 .height(70)
-                .padding(0)
                 .layoutWeight(1)
                 .objectFit(ImageFit.Fill)
               Text(item.name).fontSize(15).height(30).fontWeight(FontWeight.Bold)
@@ -163,6 +162,10 @@ struct Index {
         if (this.desktopDragging) {
           this.desktopIcons.splice(this.select, 1)
           this.desktopIcons.splice(this.insert, 0, this.movingIcon)
+          this.dockDragging = false
+          this.desktopDragging = false
+        }
+        if (this.dockDragging) {
           this.dockDragging = false
           this.desktopDragging = false
         }

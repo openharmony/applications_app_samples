@@ -111,7 +111,7 @@ struct Index {
   unzipHandler(path: string, fileName: string) {
     let zipFile = `${path}/${fileName}`
     Logger.info(TAG, `zipFile = ${zipFile}`)
-    let tempName = this.fileName.split('.')
+    let tempName = fileName.split('.')
     let newName = tempName[0]
     let zipOutFile = `${this.path}/${newName}`
     Logger.info(TAG, `zipOutFile = ${zipOutFile}`)

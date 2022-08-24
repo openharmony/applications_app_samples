@@ -28,9 +28,9 @@ export function iconInit(): Array<Icon> {
     { icon: $r('app.media.call'), name: '电话' },
     { icon: $r('app.media.mms'), name: '短信' },
     { icon: $r('app.media.music'), name: '音乐' },
-    { icon: $r('app.media.notes'), name: "备忘录" },
-    { icon: $r('app.media.camera'), name: "相机" },
-    { icon: $r('app.media.video'), name: "相册" }
+    { icon: $r('app.media.notes'), name: '备忘录' },
+    { icon: $r('app.media.camera'), name: '相机' },
+    { icon: $r('app.media.video'), name: '相册' }
   ]
   return iconList
 }

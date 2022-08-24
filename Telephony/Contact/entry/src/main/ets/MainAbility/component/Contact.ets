@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,14 +19,13 @@ import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import resourceManager from '@ohos.resourceManager'
 import { ItemContainer } from '../component/ItemContainer'
-import { ItemContainerSource } from "../model/DataSource"
 
 @Component
 export struct Contact {
   @State result: string = ''
   @State position: string = ''
   @State contactNumber: number = 0
-  @State contacts: ItemContainerSource = new ItemContainerSource([])
+  @State contacts: contact.Contact[] = []
   private controller: TextInputController = new TextInputController()
 
   build() {
@@ -85,20 +85,19 @@ export struct Contact {
             this.result = value
           })
           .onSubmit(async (enterKey: EnterKeyType) => {
-            for (let i = 0; i < this.contacts['contactData'].length; i++) {
-              let phoneData = await contact.queryContactsByPhoneNumber(this.result)
-              let emailData = await contact.queryContactsByEmail(this.result)
-              if (this.contacts['contactData'][i] === phoneData[0] || this.contacts['contactData'][i] === emailData[0]) {
-                router.push({
-                  url: 'pages/NameCard',
-                  params: { data: this.contacts['contactData'][i] }
-                })
-              } else {
-                prompt.showToast({
-                  message: 'Error!',
-                  duration: 1500 // 提示弹窗持续时间，单位ms
-                })
-              }
+            let phoneData = await contact.queryContactsByPhoneNumber(this.result)
+            let emailData = await contact.queryContactsByEmail(this.result)
+            if (phoneData[0] !== [] || emailData[0] !== []) {
+              router.push({
+                url: 'pages/NameCard',
+                params: { data: await contact.queryContact(phoneData[0].key) }
+              })
+            } else {
+              this.result = ''
+              prompt.showToast({
+                message: 'Error!',
+                duration: 1500 // 提示弹窗持续时间，单位ms
+              })
             }
           })
         Image($r('app.media.search'))
@@ -145,11 +144,10 @@ export struct Contact {
   async aboutToAppear() {
     let resource = await resourceManager.getResourceManager()
     this.position = await resource.getString($r('app.string.contacts').id)
-    this.contacts['contactData'] = await contact.queryContacts()
-    this.contacts.notifyDataReload()
-    this.contactNumber = this.contacts['contactData'].length
+    this.contacts = await contact.queryContacts()
+    this.contactNumber = this.contacts.length
     // 对获取到的联系人数组根据姓名首字母排序
-    let sortContact = this.contacts['contactData'].map(function (a, b) {
+    let sortContact = this.contacts.map(function (a, b) {
       return { index: b, value: a.name.fullName.substr(0, 1), key: a.key }
     })
     sortContact.sort(function (a, b) {
@@ -157,7 +155,7 @@ export struct Contact {
     })
     for (let i = 0; i < sortContact.length; i++) {
       let contactInfo = await contact.queryContact(sortContact[i].key)
-      this.contacts['contactData'][i] = contactInfo
+      this.contacts[i] = contactInfo
     }
   }
 }
