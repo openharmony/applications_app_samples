@@ -102,7 +102,7 @@ export default struct Bubble {
   build() {
     Column() {
       Image(this.icon)
-        .width('60%')
+        .height('50%')
         .aspectRatio(1)
         .objectFit(ImageFit.Cover)
         .borderRadius(10)

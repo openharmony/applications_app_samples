@@ -35,6 +35,10 @@
     {
       "name": "request_form_permission",
       "value": "Used to request form information"
+    },
+    {
+      "name": "clear_all_missions_message",
+      "value": "Cleaned to optimal condition"
     }
   ]
 }

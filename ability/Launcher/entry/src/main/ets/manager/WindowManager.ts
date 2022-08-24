@@ -14,24 +14,74 @@
  */
 
 import display from '@ohos.display'
+import CommonEvent from '@ohos.commonEvent'
 import Window from '@ohos.window'
+import prompt from '@ohos.prompt'
+import EventConstants from '../../../../../base/src/main/ets/default/constants/EventConstants'
 import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
 
 const TAG: string = 'WindowManager'
 
 export const WINDOW_NAMES = {
-  HOME: 'Home'
+  HOME: 'Home',
+  RECENTS: 'RecentsPage',
 }
 
 export const WINDOW_PAGES = {
-  HOME: 'pages/Home'
+  HOME: 'pages/Home',
+  RECENTS: 'pages/RecentsPage',
+}
+
+const SUBSCRIBER_INFO = {
+  events: [
+    EventConstants.EVENT_ENTER_HOME,
+    EventConstants.EVENT_ENTER_RECENTS,
+    EventConstants.EVENT_CLEAR_RECENTS
+  ]
 }
 
 export default class WindowManager {
+  public mWindowSize: number[] = [720, 1080]
+  private subscriber = undefined
   private context: any = undefined
 
   constructor(context) {
     this.context = context
+  }
+
+  subscribeCallBack = async (err, data) => {
+    if (err.code) {
+      Logger.error(TAG, `subscribe, failed: ${JSON.stringify(err)}`)
+      return
+    }
+    Logger.info(TAG, `subscribe, ${JSON.stringify(data)}`)
+    switch (data.event) {
+      case EventConstants.EVENT_CLEAR_RECENTS:
+        let message = this.context.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id)
+        prompt.showToast({
+          message: message
+        })
+      case EventConstants.EVENT_ENTER_HOME:
+        this.hideWindow(WINDOW_NAMES.RECENTS)
+        this.showOrCreateWindow(WINDOW_NAMES.HOME, WINDOW_PAGES.HOME, false)
+        break
+      case EventConstants.EVENT_ENTER_RECENTS:
+        this.showOrCreateWindow(WINDOW_NAMES.RECENTS, WINDOW_PAGES.RECENTS, true)
+        break
+      default:
+        break
+    }
+  }
+
+  async registerWindowEvent() {
+    this.subscriber = await CommonEvent.createSubscriber(SUBSCRIBER_INFO)
+    CommonEvent.subscribe(this.subscriber, this.subscribeCallBack)
+  }
+
+  async getWindowSize() {
+    let displayData = await display.getDefaultDisplay()
+    this.mWindowSize = [displayData.width, displayData.height]
+    return this.mWindowSize
   }
 
   /**
@@ -77,6 +127,16 @@ export default class WindowManager {
     try {
       let window = await Window.find(windowName)
       await window.hide()
+    } catch (error) {
+      Logger.error(TAG, `showWindow, show error: ${JSON.stringify(error)}`)
+    }
+  }
+
+  async destoryWindow(windowName: string) {
+    Logger.info(TAG, 'destoryWindow')
+    try {
+      let window = await Window.find(windowName)
+      await window.destroy()
     } catch (error) {
       Logger.error(TAG, `showWindow, show error: ${JSON.stringify(error)}`)
     }
