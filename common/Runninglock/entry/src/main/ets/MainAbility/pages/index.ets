@@ -60,6 +60,7 @@ struct Index {
                 .fontColor(Color.White)
                 .textAlign(TextAlign.Center)
             }
+            .key('searchSupport')
             .type(ButtonType.Capsule)
             .width(200)
             .height(50)
@@ -83,6 +84,7 @@ struct Index {
                 .fontColor(Color.White)
                 .textAlign(TextAlign.Center)
             }
+            .key('timingOut')
             .backgroundColor('#0D9FFB')
             .width(200)
             .height(50)
