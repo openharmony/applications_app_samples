@@ -92,6 +92,7 @@ struct TopBar {
                 .height(30)
                 .width(30)
             }
+            .key('addBtn')
             .height("100%")
             .width(50)
             .onClick(() => {

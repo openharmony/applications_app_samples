@@ -59,6 +59,7 @@ export struct ChatListView {
               Text("搜索")
                 .fontSize(20)
             }
+            .key('search')
             .backgroundColor(Color.White)
             .height("100%")
             .width("100%")
