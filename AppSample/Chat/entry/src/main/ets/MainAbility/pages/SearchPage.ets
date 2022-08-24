@@ -41,6 +41,7 @@ struct SearchPage {
         .borderRadius(10)
 
         Text("取消")
+          .key('cancelSearchBtn')
           .fontSize(16)
           .fontColor("#0066cc")
           .margin({ left: 10 })

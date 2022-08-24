@@ -115,6 +115,7 @@ struct SearchPage {
         Row() {
           Navigator() {
             Image('/resources/icon/back.png')
+              .key('leftSearchPageBtn')
               .width(25 * this.ratio)
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
@@ -172,6 +173,7 @@ struct SearchPage {
                   .fontSize(15 * this.ratio)
                   .fontWeight(FontWeight.Bold)
                 Image(this.flag ? '/resources/icon/show.png' : 'resources/icon/hide.png')
+                  .key('isShowBtn')
                   .width(25 * this.ratio)
                   .aspectRatio(1)
                   .objectFit(ImageFit.Contain)
@@ -287,6 +289,7 @@ struct SearchPage {
                 Column() {
                   Row() {
                     Image(this.isShow ? '/resources/icon/show.png' : '/resources/icon/hide.png')
+                      .key('isOpenHotSearch')
                       .width(25 * this.ratio)
                       .aspectRatio(1)
                       .objectFit(ImageFit.Contain)

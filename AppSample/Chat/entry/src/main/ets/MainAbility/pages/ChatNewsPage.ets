@@ -27,6 +27,7 @@ struct ChatNewsPage {
       Column() {
         Row() {
           Image($r('app.media.left'))
+            .key('leftBtn')
             .height(30)
             .width(30)
             .onClick(() => {
