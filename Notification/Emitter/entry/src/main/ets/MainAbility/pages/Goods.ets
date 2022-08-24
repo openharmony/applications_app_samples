@@ -60,6 +60,7 @@ struct Goods {
 
                   Column() {
                     Toggle({ type: ToggleType.Checkbox, isOn: item.isCheck })
+                      .key(item.name + 'Toggle')
                       .size({ width: 28, height: 28 })
                       .selectedColor(0xed6f21)
                       .onChange((isOn: boolean) => {
@@ -91,6 +92,7 @@ struct Goods {
           Row() {
             Button() {
               Text($r('app.string.submit'))
+                .key('submitBtn')
                 .textAlign(TextAlign.Center)
                 .width('60%')
                 .fontSize(25)
