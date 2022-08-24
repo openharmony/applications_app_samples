@@ -22,6 +22,7 @@ export struct Header {
   build() {
     Row() {
       Image($r('app.media.left'))
+        .key('leftCurrentPageBtn')
         .height(30)
         .width(30)
         .margin({ left: 10, top: 2 })

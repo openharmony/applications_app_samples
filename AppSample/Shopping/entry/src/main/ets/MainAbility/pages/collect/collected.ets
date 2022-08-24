@@ -102,6 +102,7 @@ struct CollectedPage {
 
               if (this.collected) {
                 Image('/resources/icon/layout.png')
+                  .key('changeLayoutBtn')
                   .width(20 * (this.ratio + 0.2))
                   .aspectRatio(1)
                   .objectFit(ImageFit.Contain)

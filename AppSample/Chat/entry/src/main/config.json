@@ -1,6 +1,6 @@
 {
   "app": {
-    "vendor": "example",
+    "vendor": "samples",
     "bundleName": "ohos.samples.chat",
     "version": {
       "code": 1000000,
@@ -45,7 +45,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "com.example.entry",
+    "package": "ohos.samples.chat",
     "srcPath": "",
     "name": ".entry",
     "js": [
