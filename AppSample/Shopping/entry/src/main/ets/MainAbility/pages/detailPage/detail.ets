@@ -113,6 +113,7 @@ struct Detail {
             Row() {
               Navigator() {
                 Image('/resources/icon/back.png')
+                  .key('leftDetailPageBtn')
                   .objectFit(ImageFit.Contain)
                   .width(25 * this.ratio)
                   .aspectRatio(1)

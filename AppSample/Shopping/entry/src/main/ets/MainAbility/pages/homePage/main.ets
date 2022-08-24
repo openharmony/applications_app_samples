@@ -164,6 +164,7 @@ export struct MainPage {
               })
             })
           }
+          .key('searchInput')
           .width('65%')
           .autoPlay(true)
           .loop(true)
@@ -247,6 +248,7 @@ export struct MainPage {
               .objectFit(ImageFit.Contain)
               .border({ radius: 10 * this.ratio })
           }
+          .key('carousel')
           .autoPlay(true)
           .loop(true)
           .width('93%')

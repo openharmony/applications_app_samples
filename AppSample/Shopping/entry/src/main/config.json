@@ -1,6 +1,6 @@
 {
   "app": {
-    "vendor": "example",
+    "vendor": "sample",
     "bundleName": "ohos.sample.shopping",
     "version": {
       "code": 1000000,
@@ -45,7 +45,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "com.example.entry",
+    "package": "ohos.sample.shopping",
     "srcPath": "",
     "name": ".entry",
     "js": [

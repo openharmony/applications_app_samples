@@ -37,6 +37,7 @@ struct ChatDetailPage {
     Column() {
       Row() {
         Image($r('app.media.left'))
+          .key('returnBtn')
           .height(30)
           .width(30)
           .onClick(() => {
@@ -50,6 +51,7 @@ struct ChatDetailPage {
             .height(40)
             .width(40)
         }
+        .key('moreBtn')
         .onClick(() => {
           router.push({
             url: "pages/ChatNewsPage",
@@ -82,6 +84,7 @@ struct ChatDetailPage {
             .height(20)
             .width(20)
           TextInput({ placeholder: "", text: "" })
+            .key('bottomTextInput')
             .height(40)
             .width('80%')
             .enterKeyType(EnterKeyType.Send)
@@ -98,6 +101,7 @@ struct ChatDetailPage {
               this.scroller.scrollToIndex(this.msgLength)
             })
           Image($r('app.media.chatting_expression'))
+            .key('chatExpression')
             .height(20)
             .width(20)
             .onClick(() => {

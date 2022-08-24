@@ -28,6 +28,7 @@ struct AddFriendsPage {
       Column() {
         Row({}) {
           Image($r('app.media.left'))
+            .key('leftAddFriendPageBtn')
             .height(30)
             .width(30)
             .onClick(() => {
