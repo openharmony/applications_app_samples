@@ -54,6 +54,7 @@ struct Index {
           .fontColor('#FFFFFF')
           .fontWeight(FontWeight.Bold)
         Text($r('app.string.enter_mall'))
+          .key('enterMall')
           .width('30%')
           .textAlign(TextAlign.End)
           .fontSize(25)
