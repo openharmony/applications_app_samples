@@ -72,7 +72,7 @@ export struct AddDialog {
             .fontColor(Color.Blue)
             .fontSize(17)
         }
-      .key('confirmBtn')
+        .key('confirmBtn')
         .margin(5)
         .layoutWeight(7)
         .backgroundColor(Color.White)
