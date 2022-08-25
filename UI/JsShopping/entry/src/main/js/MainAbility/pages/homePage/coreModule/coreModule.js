@@ -14,10 +14,10 @@
  */
 
 export default {
-    props: ['coredata'],
-    data() {
-        return {
-            coreData: this.coredata,
-        }
-    },
+  props: ['coredata'],
+  data() {
+    return {
+      coreData: this.coredata,
+    }
+  },
 }

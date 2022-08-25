@@ -13,26 +13,26 @@
   limitations under the License.
  -->
 <div class="container">
-    <list class="listDatas" scrollbar="auto" shapemode="rect" scrolleffect="spring" cachedcount="10"
-          onrequestitem="buildItem" beginindex="{{ this.beginIndex }}" endindex="{{ this.endIndex }}"
-          repeatedlength="40">
-        <list-item type="productAlone" class="content-item" for="{{ tempList }}">
-            <div class="itemlist">
-                <image class="img" src="{{ $item.uri }}"></image>
-                <text class="itemlist-text">{{ $item.title }}
-                </text>
-                <div>
-                    <label class="labels">
-                        {{ $item.labels }}
-                    </label>
-                    <text class="imgnum">
-                        第{{ $item.index }}张
-                    </text>
-                </div>
-                <text class="price" style="color : red;">
-                    ￥{{ $item.index }}
-                </text>
-            </div>
-        </list-item>
-    </list>
+  <list class="listDatas" scrollbar="auto" shapemode="rect" scrolleffect="spring" cachedcount="10"
+        onrequestitem="buildItem" beginindex="{{ this.beginIndex }}" endindex="{{ this.endIndex }}"
+        repeatedlength="40">
+    <list-item type="productAlone" class="content-item" for="{{ tempList }}">
+      <div class="itemlist">
+        <image class="img" src="{{ $item.uri }}"></image>
+        <text class="itemlist-text">{{ $item.title }}
+        </text>
+        <div>
+          <label class="labels">
+            {{ $item.labels }}
+          </label>
+          <text class="imgnum">
+            第{{ $item.index }}张
+          </text>
+        </div>
+        <text class="price" style="color : red;">
+          ￥{{ $item.index }}
+        </text>
+      </div>
+    </list-item>
+  </list>
 </div>

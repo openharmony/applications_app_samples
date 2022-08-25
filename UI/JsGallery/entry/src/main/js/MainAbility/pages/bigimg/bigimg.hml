@@ -14,32 +14,32 @@
  -->
 
 <div class="container">
-    <div class="top">
-        <div class="icons-div">
-            <image class="icon" src="/common/arrow.png" onclick="back"></image>
-        </div>
-        <image class="icon" src="/common/tip.png" onclick="showInfo"></image>
+  <div class="top">
+    <div class="icons-div">
+      <image class="icon" src="/common/arrow.png" onclick="back"></image>
     </div>
-    <stack>
-        <div class="content">
-            <image src="{{ imgsrc }}"
-                   style="object-fit : contain;" oncomplete="loadComplete"></image>
-        </div>
-        <div class="positiondiv" if="{{ display }}">
-            <div>
-                <image style="width : 15px; height : 15px; object-fit : contain;" src="/common/tip.png"></image>
-                <text>
-                    File information
-                </text>
-            </div>
-            <text>
-                LOADPIC_{{ imgsrc }}
-            </text>
-            <text>{{ width }}X{{ height }}
-            </text>
-            <text class="hidetext" onclick="hideInfo">
-                Close Info Overlay
-            </text>
-        </div>
-    </stack>
+    <image class="icon" src="/common/tip.png" onclick="showInfo"></image>
+  </div>
+  <stack>
+    <div class="content">
+      <image src="{{ imgsrc }}"
+             style="object-fit : contain;" oncomplete="loadComplete"></image>
+    </div>
+    <div class="positiondiv" if="{{ display }}">
+      <div>
+        <image style="width : 15px; height : 15px; object-fit : contain;" src="/common/tip.png"></image>
+        <text>
+          File information
+        </text>
+      </div>
+      <text>
+        LOADPIC_{{ imgsrc }}
+      </text>
+      <text>{{ width }}X{{ height }}
+      </text>
+      <text class="hidetext" onclick="hideInfo">
+        Close Info Overlay
+      </text>
+    </div>
+  </stack>
 </div>

@@ -16,20 +16,20 @@
 import tabbarData from '../../common/indexData.js'
 
 export default {
-    data() {
-        return {
-            tabbardata: tabbarData
-        }
-    },
-    onInit() {
-    },
-    changeTabIndex(e) {
-        for (let i = 0; i < this.tabbardata.length; i++) {
-            let element = this.tabbardata[i];
-            element.show = false;
-            if (i === e.index) {
-                element.show = true;
-            }
-        }
+  data() {
+    return {
+      tabbardata: tabbarData
     }
+  },
+  onInit() {
+  },
+  changeTabIndex(e) {
+    for (let i = 0; i < this.tabbardata.length; i++) {
+      let element = this.tabbardata[i];
+      element.show = false;
+      if (i === e.index) {
+        element.show = true;
+      }
+    }
+  }
 }

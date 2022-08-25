@@ -16,17 +16,17 @@
 import router from '@ohos.router'
 
 export default {
-    data: {
-        title: ""
-    },
-    onInit() {
-        this.title = this.$t('strings.world');
-    },
-    onclick: function () {
-        router.replace({
-            url: "pages/second/second"
-        })
-    }
+  data: {
+    title: ""
+  },
+  onInit() {
+    this.title = this.$t('strings.world');
+  },
+  onclick: function () {
+    router.replace({
+      url: "pages/second/second"
+    })
+  }
 }
 
 

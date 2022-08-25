@@ -16,47 +16,47 @@
 import prompt from '@ohos.prompt';
 
 export default {
-    data: {
-        result: "",
-        menus: [],
-        snacks: [],
-        drinks: []
-    },
-    onInit() {
-        this.menus = this.$t('strings.menus')
-        this.snacks = this.$t('strings.snacks')
-        this.drinks = this.$t('strings.drinks')
-    },
-    onMenuChange(e) {
-        this.onSelect(e)
-    },
-    onSnackChange(e) {
-        this.onSelect(e)
-    },
-    onDrinkChange(e) {
-        this.onSelect(e)
-    },
-    onSelect(e) {
-        console.info("onSelect:" + e.newValue)
-        if (this.result.length > 0) {
-            this.result = this.result + "," + e.newValue
-        } else {
-            this.result = e.newValue
-        }
-    },
-    onClearClick() {
-        this.result = ""
-    },
-    onFinishClick() {
-        if (this.result.length > 0) {
-            prompt.showToast({
-                message: this.$t('strings.finish_oder')
-            })
-        } else {
-            prompt.showToast({
-                message: this.$t('strings.empty_order')
-            })
-        }
-        this.result = ""
+  data: {
+    result: "",
+    menus: [],
+    snacks: [],
+    drinks: []
+  },
+  onInit() {
+    this.menus = this.$t('strings.menus')
+    this.snacks = this.$t('strings.snacks')
+    this.drinks = this.$t('strings.drinks')
+  },
+  onMenuChange(e) {
+    this.onSelect(e)
+  },
+  onSnackChange(e) {
+    this.onSelect(e)
+  },
+  onDrinkChange(e) {
+    this.onSelect(e)
+  },
+  onSelect(e) {
+    console.info("onSelect:" + e.newValue)
+    if (this.result.length > 0) {
+      this.result = this.result + "," + e.newValue
+    } else {
+      this.result = e.newValue
     }
+  },
+  onClearClick() {
+    this.result = ""
+  },
+  onFinishClick() {
+    if (this.result.length > 0) {
+      prompt.showToast({
+        message: this.$t('strings.finish_oder')
+      })
+    } else {
+      prompt.showToast({
+        message: this.$t('strings.empty_order')
+      })
+    }
+    this.result = ""
+  }
 }

@@ -14,10 +14,10 @@
  */
 
 export default {
-    showPopup() {
-        this.$element("popup").show();
-    },
-    hidePopup() {
-        this.$element("popup").hide();
-    }
+  showPopup() {
+    this.$element("popup").show();
+  },
+  hidePopup() {
+    this.$element("popup").hide();
+  }
 }

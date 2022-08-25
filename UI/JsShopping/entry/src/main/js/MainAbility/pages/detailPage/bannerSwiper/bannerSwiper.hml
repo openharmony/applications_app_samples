@@ -13,12 +13,12 @@
   limitations under the License.
  -->
 <div class="container">
-    <swiper class="swiper" onchange="changeTabIndex">
-        <video id="video" autoplay="true" class="swiperimg" src="{{ bannerData.videos.videourl }}"
-               onfinish="playComplete"
-               ontimeupdate="getBigVideoTime" controls="false"></video>
-        <image class="swiperImg" src="{{ bannerData.goodImgList[0].url }}"></image>
-        <image class="swiperImg" src="{{ bannerData.goodImgList[1].url }}"></image>
-        <image class="swiperImg" src="{{ bannerData.goodImgList[2].url }}"></image>
-    </swiper>
+  <swiper class="swiper" onchange="changeTabIndex">
+    <video id="video" autoplay="true" class="swiperimg" src="{{ bannerData.videos.videourl }}"
+           onfinish="playComplete"
+           ontimeupdate="getBigVideoTime" controls="false"></video>
+    <image class="swiperImg" src="{{ bannerData.goodImgList[0].url }}"></image>
+    <image class="swiperImg" src="{{ bannerData.goodImgList[1].url }}"></image>
+    <image class="swiperImg" src="{{ bannerData.goodImgList[2].url }}"></image>
+  </swiper>
 </div>

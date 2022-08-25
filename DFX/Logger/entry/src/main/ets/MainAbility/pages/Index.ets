@@ -15,7 +15,7 @@
 
 import logger from '@ohos/Log'
 import { LogLevel } from '@ohos/Log'
-import { Configure }  from '@ohos/Log'
+import { Configure } from '@ohos/Log'
 
 let configure: Configure = {
   cheese: {

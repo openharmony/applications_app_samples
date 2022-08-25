@@ -15,19 +15,19 @@
 import homedata from '../../../common/pageHomeData.js'
 
 export default {
-    data: {
-        placeholder: [
-            {
-                title: '防晒霜'
-            },
-            {
-                title: '精品好衣'
-            },
-            {
-                title: '节日大优惠'
-            }
-        ],
-        currIndex: 0,
-        homeData: homedata
-    },
+  data: {
+    placeholder: [
+      {
+        title: '防晒霜'
+      },
+      {
+        title: '精品好衣'
+      },
+      {
+        title: '节日大优惠'
+      }
+    ],
+    currIndex: 0,
+    homeData: homedata
+  },
 }

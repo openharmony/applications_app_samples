@@ -15,34 +15,34 @@
 import router from '@ohos.router';
 
 export default {
-    props: [
-        'deliveryinfo',
-        'commonimg'
-    ],
-    data() {
-        return {
-            deliveryInfo: this.deliveryinfo,
-            commonImg: this.commonimg,
-            buyNumber: 1,
-        }
-    },
-    openOptions() {
-        this.$element('dialogs').show();
-    },
-    closeOptions() {
-        this.$element('dialogs').close();
-    },
-    redirect() {
-        router.push({
-            url: 'pages/performance/performance',
-        });
-    },
-    cutNumber() {
-        if (this.buyNumber > 1) {
-            this.buyNumber = this.buyNumber - 1;
-        }
-    },
-    addNumber() {
-        this.buyNumber = this.buyNumber + 1;
-    },
+  props: [
+    'deliveryinfo',
+    'commonimg'
+  ],
+  data() {
+    return {
+      deliveryInfo: this.deliveryinfo,
+      commonImg: this.commonimg,
+      buyNumber: 1,
+    }
+  },
+  openOptions() {
+    this.$element('dialogs').show();
+  },
+  closeOptions() {
+    this.$element('dialogs').close();
+  },
+  redirect() {
+    router.push({
+      url: 'pages/performance/performance',
+    });
+  },
+  cutNumber() {
+    if (this.buyNumber > 1) {
+      this.buyNumber = this.buyNumber - 1;
+    }
+  },
+  addNumber() {
+    this.buyNumber = this.buyNumber + 1;
+  },
 };

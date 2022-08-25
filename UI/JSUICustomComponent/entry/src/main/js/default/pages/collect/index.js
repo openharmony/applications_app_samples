@@ -15,16 +15,16 @@
 import router from '@ohos.router';
 
 export default {
-    data: {
-        showTips: false
-    },
-    onInit() {
-        console.info("onInit," + JSON.stringify(this.bookNames))
-        if (JSON.stringify(this.bookNames).length <= 2) {
-            this.showTips = true
-        }
-    },
-    back: function () {
-        router.back()
+  data: {
+    showTips: false
+  },
+  onInit() {
+    console.info("onInit," + JSON.stringify(this.bookNames))
+    if (JSON.stringify(this.bookNames).length <= 2) {
+      this.showTips = true
     }
+  },
+  back: function () {
+    router.back()
+  }
 }

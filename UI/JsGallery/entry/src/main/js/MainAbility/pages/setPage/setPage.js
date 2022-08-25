@@ -16,29 +16,29 @@
 import router from "@ohos.router"
 
 export default {
-    data: {
-        col: 8,
-        num: 200
-    },
-    onInit() {
-    },
-    changeCol(e) {
-        this.col = e.text
-    },
-    changeNum(e) {
-        this.num = e.text
-    },
-    redirect() {
-        router.clear()
-        router.push({
-            url: "pages/index/index",
-            params: {
-                message: [this.col, this.num],
-                pass: true
-            }
-        })
-    },
-    back() {
-        router.back()
-    }
+  data: {
+    col: 8,
+    num: 200
+  },
+  onInit() {
+  },
+  changeCol(e) {
+    this.col = e.text
+  },
+  changeNum(e) {
+    this.num = e.text
+  },
+  redirect() {
+    router.clear()
+    router.push({
+      url: "pages/index/index",
+      params: {
+        message: [this.col, this.num],
+        pass: true
+      }
+    })
+  },
+  back() {
+    router.back()
+  }
 }

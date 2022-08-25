@@ -15,19 +15,19 @@
 import router from '@ohos.router';
 
 export default {
-    props: [
-        'evaluation',
-        'commonimg'
-    ],
-    data() {
-        return {
-            evaluation: this.evaluation,
-            commonImg: this.commonimg,
-        }
-    },
-    redirect() {
-        router.push({
-            url: 'pages/three/three',
-        });
+  props: [
+    'evaluation',
+    'commonimg'
+  ],
+  data() {
+    return {
+      evaluation: this.evaluation,
+      commonImg: this.commonimg,
     }
+  },
+  redirect() {
+    router.push({
+      url: 'pages/three/three',
+    });
+  }
 };
