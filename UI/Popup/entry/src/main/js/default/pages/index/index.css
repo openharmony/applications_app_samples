@@ -21,27 +21,31 @@
     flex-direction: column;
     background-color: #F2F3F5
 }
+
 .item {
     height: 72px;
     width: 100%;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
     margin-right: 12px;
     margin-left: 12px;
     margin-bottom: 2px;
 }
+
 .content {
     display: flex;
-    margin-left:20px;
+    margin-left: 20px;
     flex-direction: column;
     align-content: flex-start;
     justify-content: space-between;
 }
+
 .img {
     height: 40px;
     width: 40px;
 }
+
 .title {
     font-size: 16px;
     color: #e6000000;
@@ -49,6 +53,7 @@
     margin-top: 8px;
     margin-bottom: 1px;
 }
+
 .text {
     font-size: 14px;
     color: #99000000;
@@ -56,16 +61,18 @@
     margin-top: 1px;
     margin-bottom: 8px;
 }
+
 .popup {
     opacity: 0.8;
     font-size: 14px;
     background-color: #4D4D4D;
-    border-top-left-radius:16px;
-    border-bottom-left-radius:16px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
     border-top-right-radius: 16px;
-    border-bottom-right-radius:16px;
+    border-bottom-right-radius: 16px;
 }
+
 .button {
-    width:100px;
+    width: 100px;
     margin-top: 50px;
 }

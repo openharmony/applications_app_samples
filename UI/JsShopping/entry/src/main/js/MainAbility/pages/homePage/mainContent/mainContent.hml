@@ -18,21 +18,21 @@
 <element name="recommended" src="../recommended/recommended.hml"></element>
 <element name="commoditys" src="../commoditys/commoditys.hml"></element>
 <div class="container">
-    <list scrolleffect='no' class="list">
-        <list-item type="top_nav" class="list-good">
-            <navbar navbardata="{{ Home.navbarData }}" icon="{{ Home.searchbarIcon }}"></navbar>
-        </list-item>
-        <list-item type="top_banner" class="list-good">
-            <banner bannerdata="{{ Home.bannerData }}"></banner>
-        </list-item>
-        <list-item type="top_coreModule" class="list-good">
-            <coreModule coredata="{{ Home.coreData }}"></coreModule>
-        </list-item>
-        <list-item type="top_recommended" class="list-good">
-            <recommended boutiquedata="{{ Home.recommendedData }}"></recommended>
-        </list-item>
-        <list-item type="top_load" class="list-good">
-            <commoditys></commoditys>
-        </list-item>
-    </list>
+  <list scrolleffect='no' class="list">
+    <list-item type="top_nav" class="list-good">
+      <navbar navbardata="{{ Home.navbarData }}" icon="{{ Home.searchbarIcon }}"></navbar>
+    </list-item>
+    <list-item type="top_banner" class="list-good">
+      <banner bannerdata="{{ Home.bannerData }}"></banner>
+    </list-item>
+    <list-item type="top_coreModule" class="list-good">
+      <coreModule coredata="{{ Home.coreData }}"></coreModule>
+    </list-item>
+    <list-item type="top_recommended" class="list-good">
+      <recommended boutiquedata="{{ Home.recommendedData }}"></recommended>
+    </list-item>
+    <list-item type="top_load" class="list-good">
+      <commoditys></commoditys>
+    </list-item>
+  </list>
 </div>

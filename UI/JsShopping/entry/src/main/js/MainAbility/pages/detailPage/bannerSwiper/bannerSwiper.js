@@ -13,42 +13,42 @@
  * limitations under the License.
  */
 export default {
-    props: ['bannerdata'],
-    data() {
-        return {
-            bannerData: this.bannerdata,
-            currIndex: 0,
-            currentTime: 0,
-        }
-    },
-    changeTabIndex(e) {
-        this.currIndex = e.index;
-        if (this.currIndex != 0) {
-            this.$element('video').pause();
-        } else {
-            this.$element('video').start();
-        }
-    },
-    onInit() {
-        this.$on('smallVideoTime', this.getPassValue);
-        this.$on('videoTime', this.setVideoTime)
-    },
-    getBigVideoTime(e) {
-        this.currentTime = e.currenttime;
-    },
-    getPassValue() {
-        this.$element('video').pause();
-        this.$dispatch('receive', {
-            params: this.currentTime
-        })
-    },
-    setVideoTime(e) {
-        this.$element('video').setCurrentTime({
-            currenttime: e.detail.params,
-        });
-        this.$element('video').start();
-    },
-    playComplete() {
-        this.$element('video').start();
+  props: ['bannerdata'],
+  data() {
+    return {
+      bannerData: this.bannerdata,
+      currIndex: 0,
+      currentTime: 0,
     }
+  },
+  changeTabIndex(e) {
+    this.currIndex = e.index;
+    if (this.currIndex != 0) {
+      this.$element('video').pause();
+    } else {
+      this.$element('video').start();
+    }
+  },
+  onInit() {
+    this.$on('smallVideoTime', this.getPassValue);
+    this.$on('videoTime', this.setVideoTime)
+  },
+  getBigVideoTime(e) {
+    this.currentTime = e.currenttime;
+  },
+  getPassValue() {
+    this.$element('video').pause();
+    this.$dispatch('receive', {
+      params: this.currentTime
+    })
+  },
+  setVideoTime(e) {
+    this.$element('video').setCurrentTime({
+      currenttime: e.detail.params,
+    });
+    this.$element('video').start();
+  },
+  playComplete() {
+    this.$element('video').start();
+  }
 }

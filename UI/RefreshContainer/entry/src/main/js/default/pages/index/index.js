@@ -14,40 +14,40 @@
  */
 
 export default {
-    data: {
-        listItem: [
-            {
-                title: " "
-            },
-            {
-                title: " "
-            },
-            {
-                title: " "
-            },
-            {
-                title: " "
-            }
-        ]
-    },
-    onInit() {
-        this.initData()
-    },
-    refreshData: function (refreshing) {
-        if ("end" == refreshing.state) {
-            for (var index = 0; index < 2; index++) {
-                var item = {
-                    title: this.$t('strings.title') + (this.listItem.length + 1)
-                }
-                this.listItem.splice(0, 0, item)
-            }
+  data: {
+    listItem: [
+      {
+        title: " "
+      },
+      {
+        title: " "
+      },
+      {
+        title: " "
+      },
+      {
+        title: " "
+      }
+    ]
+  },
+  onInit() {
+    this.initData()
+  },
+  refreshData: function (refreshing) {
+    if ("end" == refreshing.state) {
+      for (var index = 0; index < 2; index++) {
+        var item = {
+          title: this.$t('strings.title') + (this.listItem.length + 1)
         }
-    },
-    initData: function () {
-        var index = this.listItem.length
-        for (let todolistKey in this.listItem) {
-            this.listItem[todolistKey].title = this.$t('strings.title') + index
-            index--
-        }
+        this.listItem.splice(0, 0, item)
+      }
     }
+  },
+  initData: function () {
+    var index = this.listItem.length
+    for (let todolistKey in this.listItem) {
+      this.listItem[todolistKey].title = this.$t('strings.title') + index
+      index--
+    }
+  }
 }

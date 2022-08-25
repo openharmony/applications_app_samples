@@ -53,6 +53,7 @@ export struct Choose {
             Image(this.getImg(1))
               .height(30).width(30)
               .objectFit(ImageFit.Contain)
+              .key('longText')
             Text($r("app.string.notification_type_long_text"))
               .padding(10)
               .fontSize(20)

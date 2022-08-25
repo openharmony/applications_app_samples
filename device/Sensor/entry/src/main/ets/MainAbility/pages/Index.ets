@@ -25,7 +25,6 @@ struct Index {
   @State angleTest: string = '0°'
   @State isLand: boolean = false
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
-
   onLand = (mediaQueryResult) => {
     console.info(`${TAG} onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
@@ -54,7 +53,7 @@ struct Index {
           .fontSize(20)
           .margin({ left: '60%' })
 
-        Image(this.isLand? $r('app.media.compass') : $r('app.media.compass_'))
+        Image(this.isLand ? $r('app.media.compass') : $r('app.media.compass_'))
           .objectFit(ImageFit.Auto)
           .rotate({
             x: 0,

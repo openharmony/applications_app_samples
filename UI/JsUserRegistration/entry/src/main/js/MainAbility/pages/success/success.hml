@@ -14,8 +14,8 @@
  -->
 
 <div class="container">
-    <div class="item-container">
-        <text class="txt"> {{ $t('Strings.success') }}</text>
-        <input type="button" class="btn" onclick="onBack" value="{{ $t('Strings.back') }}"/>
-    </div>
+  <div class="item-container">
+    <text class="txt"> {{ $t('Strings.success') }}</text>
+    <input type="button" class="btn" onclick="onBack" value="{{ $t('Strings.back') }}"/>
+  </div>
 </div>

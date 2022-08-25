@@ -37,6 +37,7 @@ export struct Contact {
           .height(32)
           .margin({ right: 32, top: 32 })
           .objectFit(ImageFit.Contain)
+          .key('add')
           .onClick(() => {
             router.push({
               url: 'pages/AddContact'
@@ -47,6 +48,7 @@ export struct Contact {
           .height(32)
           .margin({ right: 32, top: 32 })
           .objectFit(ImageFit.Contain)
+          .key('setting')
           .onClick(() => {
             router.push({
               url: 'pages/Setting'

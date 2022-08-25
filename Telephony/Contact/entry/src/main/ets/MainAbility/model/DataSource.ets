@@ -1,4 +1,5 @@
 import contact from '@ohos.contact'
+
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 

@@ -35,6 +35,7 @@ export struct Setting {
           .height(32)
           .margin({ left: 32, top: 32 })
           .objectFit(ImageFit.Contain)
+          .key('back')
           .onClick(() => {
             router.back()
           })
@@ -48,6 +49,7 @@ export struct Setting {
           .width('48%')
           .height(48)
           .fontSize(20)
+          .key('newAddContact')
           .onClick(() => {
             router.push({
               url: 'pages/AddContact'
@@ -59,12 +61,14 @@ export struct Setting {
           .width('48%')
           .height(48)
           .fontSize(20)
+          .key('inputFile')
 
         Button($r('app.string.export_file'))
           .margin(10)
           .width('48%')
           .height(48)
           .fontSize(20)
+          .key('exportFile')
       }
       .width('100%')
       .height('100%')

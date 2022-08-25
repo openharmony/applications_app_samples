@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <text class="title" on:click="replacePage">
-        {{ $t('strings.hello') }} {{ $t('strings.push') }} {{ data1 }}
-    </text>
+  <text class="title" on:click="replacePage">
+    {{ $t('strings.hello') }} {{ $t('strings.push') }} {{ data1 }}
+  </text>
 </div>

@@ -13,18 +13,18 @@
   limitations under the License.
  -->
 <div class="container">
-    <stack class="stack">
-        <tabs class="containnav">
-            <tab-bar class="tab-bar" mode="scrollable">
-                <text for="navbarData" class="tab-item-text">{{$item.title}}
-                </text>
-            </tab-bar>
-        </tabs>
-        <div class="classification">
-            <image class="classification-image" src="{{icon[5].url}}"></image>
-            <text>
-                分类
-            </text>
-        </div>
-    </stack>
+  <stack class="stack">
+    <tabs class="containnav">
+      <tab-bar class="tab-bar" mode="scrollable">
+        <text for="navbarData" class="tab-item-text">{{ $item.title }}
+        </text>
+      </tab-bar>
+    </tabs>
+    <div class="classification">
+      <image class="classification-image" src="{{ icon[5].url }}"></image>
+      <text>
+        分类
+      </text>
+    </div>
+  </stack>
 </div>

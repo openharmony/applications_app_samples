@@ -14,10 +14,10 @@
  -->
 
 <div class="item">
-    <image class="book_image" src="common/images/book.png"></image>
-    <div class="content">
-        <text class="text-name">{{ name }}</text>
-        <slot name="first"></slot>
-        <text class="text-collect" style="color : {{ collectColor }};" onclick="childClicked">{{ collectStr }}</text>
-    </div>
+  <image class="book_image" src="common/images/book.png"></image>
+  <div class="content">
+    <text class="text-name">{{ name }}</text>
+    <slot name="first"></slot>
+    <text class="text-collect" style="color : {{ collectColor }};" onclick="childClicked">{{ collectStr }}</text>
+  </div>
 </div>

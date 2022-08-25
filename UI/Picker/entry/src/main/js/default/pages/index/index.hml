@@ -14,28 +14,28 @@
  -->
 
 <div class="container">
-    <div class="picker-text">
-        <text class="text">{{ $t('strings.picker-text') }}</text>
-        <picker class="picker" type="text" range="{{ data }}" on:change="textChange">{{ dataText }}</picker>
-    </div>
-    <div class="picker-text">
-        <text class="text">{{ $t('strings.date-text') }}</text>
-        <picker class="picker" type="date" start="1997-10-21" end="2100-12-31" value="2021-7-26"
-                on:change="dateChange">{{ dataDate }}</picker>
-    </div>
-    <div class="picker-text">
-        <text class="text">{{ $t('strings.time-text') }}</text>
-        <picker class="picker" type="time" containsecond="true" value="00:00:00" hours="24" on:change="timeChange">{{
-            dataTime }}</picker>
-    </div>
-    <div class="picker-text">
-        <text class="text">{{ $t('strings.datetime-text') }}</text>
-        <picker class="picker" type="datetime" hours="24" on:change="dateTimeChange">{{ dataDateTime }}
-        </picker>
-    </div>
-    <div class="picker-text">
-        <text class="text">{{ $t('strings.multi-text') }}</text>
-        <picker class="picker" type="multi-text" columns="3" range="{{ multiText }}"
-                on:change="multiTextChange">{{ pickerMulti }}</picker>
-    </div>
+  <div class="picker-text">
+    <text class="text">{{ $t('strings.picker-text') }}</text>
+    <picker class="picker" type="text" range="{{ data }}" on:change="textChange">{{ dataText }}</picker>
+  </div>
+  <div class="picker-text">
+    <text class="text">{{ $t('strings.date-text') }}</text>
+    <picker class="picker" type="date" start="1997-10-21" end="2100-12-31" value="2021-7-26"
+            on:change="dateChange">{{ dataDate }}</picker>
+  </div>
+  <div class="picker-text">
+    <text class="text">{{ $t('strings.time-text') }}</text>
+    <picker class="picker" type="time" containsecond="true" value="00:00:00" hours="24" on:change="timeChange">{{
+      dataTime }}</picker>
+  </div>
+  <div class="picker-text">
+    <text class="text">{{ $t('strings.datetime-text') }}</text>
+    <picker class="picker" type="datetime" hours="24" on:change="dateTimeChange">{{ dataDateTime }}
+    </picker>
+  </div>
+  <div class="picker-text">
+    <text class="text">{{ $t('strings.multi-text') }}</text>
+    <picker class="picker" type="multi-text" columns="3" range="{{ multiText }}"
+            on:change="multiTextChange">{{ pickerMulti }}</picker>
+  </div>
 </div>

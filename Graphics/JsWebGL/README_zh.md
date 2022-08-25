@@ -26,4 +26,4 @@ webgl：WebGL标准图形API，对应OpenGL ES 2.0特性集。
 
 2.设备必须具备调用GPU资源的能力（3516不支持，RK3568支持）。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

@@ -14,28 +14,28 @@
  -->
 
 <div class="container">
-    <div class="div-select">
-        <text class="menu-text">{{ $t('strings.menu') }}</text>
-        <select class="select" id="select" on:change="onMenuChange">
-            <option class="menu-option" for="{{ menus }}" value="{{ $item.name }}">{{ $item.name }}</option>
-        </select>
-    </div>
-    <div class="div-select">
-        <text class="menu-text">{{ $t('strings.snack') }}</text>
-        <select class="select" id="snackSelect" on:change="onSnackChange">
-            <option class="menu-option" for="{{ snacks }}" value="{{ $item.name }}">{{ $item.name }}</option>
-        </select>
-    </div>
-    <div class="div-select">
-        <text class="menu-text">{{ $t('strings.drink') }}</text>
-        <select class="select" id="drinkSelect" on:change="onDrinkChange">
-            <option class="menu-option" for="{{ drinks }}" value="{{ $item.name }}">{{ $item.name }}</option>
-        </select>
-    </div>
-    <text class="result-text">{{ $t('strings.resultStr') }}</text>
-    <text id="result" class="result-text">{{ result }}</text>
-    <div class="div-btn">
-        <button class="button" onclick="onClearClick">{{ $t('strings.clear_oder') }}</button>
-        <button class="button" onclick="onFinishClick">{{ $t('strings.submit_oder') }}</button>
-    </div>
+  <div class="div-select">
+    <text class="menu-text">{{ $t('strings.menu') }}</text>
+    <select class="select" id="select" on:change="onMenuChange">
+      <option class="menu-option" for="{{ menus }}" value="{{ $item.name }}">{{ $item.name }}</option>
+    </select>
+  </div>
+  <div class="div-select">
+    <text class="menu-text">{{ $t('strings.snack') }}</text>
+    <select class="select" id="snackSelect" on:change="onSnackChange">
+      <option class="menu-option" for="{{ snacks }}" value="{{ $item.name }}">{{ $item.name }}</option>
+    </select>
+  </div>
+  <div class="div-select">
+    <text class="menu-text">{{ $t('strings.drink') }}</text>
+    <select class="select" id="drinkSelect" on:change="onDrinkChange">
+      <option class="menu-option" for="{{ drinks }}" value="{{ $item.name }}">{{ $item.name }}</option>
+    </select>
+  </div>
+  <text class="result-text">{{ $t('strings.resultStr') }}</text>
+  <text id="result" class="result-text">{{ result }}</text>
+  <div class="div-btn">
+    <button class="button" onclick="onClearClick">{{ $t('strings.clear_oder') }}</button>
+    <button class="button" onclick="onFinishClick">{{ $t('strings.submit_oder') }}</button>
+  </div>
 </div>

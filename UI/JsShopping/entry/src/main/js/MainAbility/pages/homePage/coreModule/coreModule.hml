@@ -13,13 +13,13 @@
   limitations under the License.
  -->
 <div class="container">
-    <list class="swiper-list">
-        <list-item type="coreModule" class="swiper-list-item" for="{{ coreData }}">
-            <div class="type">
-                <image src="{{ $item.uri }}" class="alonetype-image"></image>
-                <text class="typename">{{ $item.title }}
-                </text>
-            </div>
-        </list-item>
-    </list>
+  <list class="swiper-list">
+    <list-item type="coreModule" class="swiper-list-item" for="{{ coreData }}">
+      <div class="type">
+        <image src="{{ $item.uri }}" class="alonetype-image"></image>
+        <text class="typename">{{ $item.title }}
+        </text>
+      </div>
+    </list-item>
+  </list>
 </div>

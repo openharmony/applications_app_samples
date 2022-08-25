@@ -16,12 +16,12 @@
 import router from '@ohos.router'
 
 export default {
-    data: {
-        title: 'World'
-    },
-    onclick: function () {
-        router.replace({
-            url: "pages/index/index"
-        })
-    }
+  data: {
+    title: 'World'
+  },
+  onclick: function () {
+    router.replace({
+      url: "pages/index/index"
+    })
+  }
 }

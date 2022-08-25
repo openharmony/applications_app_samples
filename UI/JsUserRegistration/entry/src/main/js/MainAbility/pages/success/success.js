@@ -16,11 +16,11 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
+  data: {},
 
-    onBack() {
-        router.push({
-            url: 'pages/index/index'
-        })
-    }
+  onBack() {
+    router.push({
+      url: 'pages/index/index'
+    })
+  }
 }

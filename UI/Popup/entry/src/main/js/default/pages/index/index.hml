@@ -14,18 +14,19 @@
  -->
 
 <div class="container">
-    <div class="item" id="item">
-        <div style="align-items:center;">
-            <image class="img" src="common/images/ic_me_purchased_items.png"/>
-            <div class="content">
-                <text class="title">{{$t('strings.title')}}</text>
-                <text class="text">{{$t('strings.content')}}</text>
-            </div>
-        </div>
-        <image class="img" src="common/images/ic_public_arrow_right.png"/>
+  <div class="item" id="item">
+    <div style="align-items : center;">
+      <image class="img" src="common/images/ic_me_purchased_items.png"/>
+      <div class="content">
+        <text class="title">{{ $t('strings.title') }}</text>
+        <text class="text">{{ $t('strings.content') }}</text>
+      </div>
     </div>
-    <popup id="popup" class="popup" target="item" placement="top" arrowoffset="-75px" keepalive="true" clickable="true" onclick="hidePopup">
-        <text style="color:white; font-size:14px">{{$t('strings.popup')}}</text>
-    </popup>
-    <button id="button" class="button" type="capsule" onclick="showPopup">{{$t('strings.btn')}}</button>
+    <image class="img" src="common/images/ic_public_arrow_right.png"/>
+  </div>
+  <popup id="popup" class="popup" target="item" placement="top" arrowoffset="-75px" keepalive="true" clickable="true"
+         onclick="hidePopup">
+    <text style="color : white; font-size : 14px">{{ $t('strings.popup') }}</text>
+  </popup>
+  <button id="button" class="button" type="capsule" onclick="showPopup">{{ $t('strings.btn') }}</button>
 </div>

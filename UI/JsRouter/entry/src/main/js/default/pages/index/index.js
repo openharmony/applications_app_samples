@@ -17,19 +17,19 @@
 import router from '@ohos.router';
 
 export default {
-    data: {
-        title: ''
-    },
-    onInit() {
-        this.title = this.$t('strings.page');
-    },
-    pushPage() {
-        router.push({
-            url: 'pages/pushPage/index',
-            params: {
-                data1:
-                this.$t('strings.value')
-            }
-        });
-    }
+  data: {
+    title: ''
+  },
+  onInit() {
+    this.title = this.$t('strings.page');
+  },
+  pushPage() {
+    router.push({
+      url: 'pages/pushPage/index',
+      params: {
+        data1:
+        this.$t('strings.value')
+      }
+    });
+  }
 };

@@ -15,30 +15,30 @@
 import router from '@ohos.router';
 
 export default {
-    data: {
-        title: ""
-    },
-    onInit() {
-        this.title = this.$t('strings.world');
-    },
-    svgOnClick1() {
-        router.push({
-            url: 'pages/svg1/svg1'
-        })
-    },
-    svgOnClick2() {
-        router.push({
-            url: 'pages/svg2/svg2'
-        })
-    },
-    svgOnClick3() {
-        router.push({
-            url: 'pages/svg3/svg3'
-        })
-    },
-    svgOnClick4() {
-        router.push({
-            url: 'pages/svg4/svg4'
-        })
-    }
+  data: {
+    title: ""
+  },
+  onInit() {
+    this.title = this.$t('strings.world');
+  },
+  svgOnClick1() {
+    router.push({
+      url: 'pages/svg1/svg1'
+    })
+  },
+  svgOnClick2() {
+    router.push({
+      url: 'pages/svg2/svg2'
+    })
+  },
+  svgOnClick3() {
+    router.push({
+      url: 'pages/svg3/svg3'
+    })
+  },
+  svgOnClick4() {
+    router.push({
+      url: 'pages/svg4/svg4'
+    })
+  }
 }

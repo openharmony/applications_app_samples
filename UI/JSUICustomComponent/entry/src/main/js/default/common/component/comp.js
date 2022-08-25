@@ -14,52 +14,52 @@
  */
 
 export default {
-    data: {
-        collectStr: "",
-        collectColor: "blue",
-        props: {
-            name: {
-                default: 'Book Name',
-            },
-            collect: {
-                default: false
-            }
-        }
-    },
-    onInit() {
-        console.info('[JsCustomComponet] comp onInit')
-    },
-    initData() {
-        if (this.collect) {
-            this.collectStr = this.$t("strings.collected")
-            this.collectColor = "gray"
-        } else {
-            this.collectStr = this.$t("strings.collect")
-            this.collectColor = "blue"
-        }
-    },
-    clearData() {
-        this.collectStr = ""
-        this.collectColor = ""
-    },
-    onAttached() {
-        console.info('[JsCustomComponet] comp onAttached')
-    },
-    onDetached() {
-        console.info('[JsCustomComponet] comp onDetached')
-    },
-    onPageShow() {
-        this.initData();
-        console.info('[JsCustomComponet] comp onPageShow')
-    },
-    onPageHide() {
-        console.info('[JsCustomComponet] comp onPageHide')
-        this.clearData()
-    },
-    childClicked() {
-        this.$emit('eventType1', {
-            bookName: this.name
-        })
-        this.initData()
-    },
+  data: {
+    collectStr: "",
+    collectColor: "blue",
+    props: {
+      name: {
+        default: 'Book Name',
+      },
+      collect: {
+        default: false
+      }
+    }
+  },
+  onInit() {
+    console.info('[JsCustomComponet] comp onInit')
+  },
+  initData() {
+    if (this.collect) {
+      this.collectStr = this.$t("strings.collected")
+      this.collectColor = "gray"
+    } else {
+      this.collectStr = this.$t("strings.collect")
+      this.collectColor = "blue"
+    }
+  },
+  clearData() {
+    this.collectStr = ""
+    this.collectColor = ""
+  },
+  onAttached() {
+    console.info('[JsCustomComponet] comp onAttached')
+  },
+  onDetached() {
+    console.info('[JsCustomComponet] comp onDetached')
+  },
+  onPageShow() {
+    this.initData();
+    console.info('[JsCustomComponet] comp onPageShow')
+  },
+  onPageHide() {
+    console.info('[JsCustomComponet] comp onPageHide')
+    this.clearData()
+  },
+  childClicked() {
+    this.$emit('eventType1', {
+      bookName: this.name
+    })
+    this.initData()
+  },
 }

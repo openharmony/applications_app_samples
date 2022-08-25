@@ -13,24 +13,24 @@
   limitations under the License.
  -->
 <div class="container">
-    <div class="comments-header">
-        <text class="comments-title">
-            旗舰店(48088)
-        </text>
-        <div class="more-img">
-            <text class="comments-more">
-                查看全部
-            </text>
-            <image class="comments-header-image" src="{{ commonImg[0].url }}"></image>
-        </div>
+  <div class="comments-header">
+    <text class="comments-title">
+      旗舰店(48088)
+    </text>
+    <div class="more-img">
+      <text class="comments-more">
+        查看全部
+      </text>
+      <image class="comments-header-image" src="{{ commonImg[0].url }}"></image>
     </div>
-    <div class="recommend-box">
-        <div for="{{ recommendData.recommendgood }}" class="recommend-box-alone">
-            <image class="recommend-img" src="{{ $item.icon }}"></image>
-            <text class="recommend-good-name">{{ $item.title }}
-            </text>
-            <text class="recommend-price">{{ $item.price }}
-            </text>
-        </div>
+  </div>
+  <div class="recommend-box">
+    <div for="{{ recommendData.recommendgood }}" class="recommend-box-alone">
+      <image class="recommend-img" src="{{ $item.icon }}"></image>
+      <text class="recommend-good-name">{{ $item.title }}
+      </text>
+      <text class="recommend-price">{{ $item.price }}
+      </text>
     </div>
+  </div>
 </div>

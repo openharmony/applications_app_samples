@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 export default {
-    data: {
-        title: 'World'
-    }
+  data: {
+    title: 'World'
+  }
 }
