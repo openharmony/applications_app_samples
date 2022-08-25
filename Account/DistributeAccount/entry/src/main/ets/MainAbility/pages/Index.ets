@@ -69,7 +69,7 @@ struct Index {
       Column() {
         SelectUser({ user: $user })
       }
-      .margin({top: '10%'})
+      .margin({ top: '10%' })
 
       Button() {
         Text($r("app.string.login"))

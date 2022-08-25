@@ -59,7 +59,7 @@ export default function appTest() {
       await driver.delayMs(200)
       // 选择长文本类型
       await driver.assertComponentExist(BY.key('longText'))
-      let longTextComp =  await driver.findComponent(BY.key('longText'))
+      let longTextComp = await driver.findComponent(BY.key('longText'))
       await longTextComp.click()
       await driver.delayMs(1000)
       await driver.assertComponentExist(BY.key('publishNotice'))
@@ -76,7 +76,7 @@ export default function appTest() {
       await driver.delayMs(200)
       // 取消最近通知
       await driver.assertComponentExist(BY.key('longText'))
-      let cancelLastComp =  await driver.findComponent(BY.key('cancelLast'))
+      let cancelLastComp = await driver.findComponent(BY.key('cancelLast'))
       await cancelLastComp.click()
       await driver.delayMs(1000)
       // 取消全部通知
