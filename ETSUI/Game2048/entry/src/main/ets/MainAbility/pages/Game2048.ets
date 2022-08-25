@@ -89,7 +89,7 @@ enum GameStatus {
 import display from '@ohos.display'
 import Logger from '../model/Logger'
 import dataStorage from '@ohos.data.storage'
-import  { GameRule }   from '../model/GameRule'
+import { GameRule } from '../model/GameRule'
 import featureAbility from '@ohos.ability.featureAbility'
 
 const TAG = '[Game2048]'
@@ -270,11 +270,12 @@ struct Game2048 {
         })
         ))
 
-        if(this.gameStatus === -1){
+        if (this.gameStatus === -1) {
           Button('Start', { type: ButtonType.Normal })
             .borderRadius(5)
             .margin({ top: 50 })
             .width(200)
+            .key('startGame')
             .onClick(() => {
               this.gameStart()
             })

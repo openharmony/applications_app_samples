@@ -51,7 +51,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "com.example.entry",
+    "package": "ohos.samples.uploaddownload",
     "srcPath": "",
     "name": ".entry",
     "js": [
