@@ -33,6 +33,7 @@ export struct SelectUser {
           .type(InputType.Normal)
           .fontWeight(FontWeight.Regular)
           .border({ width: 2, radius: 5, color: Color.Black })
+          .key('inputUserName')
           .onChange((value: string) => {
             this.user.userName = value
           })
@@ -53,6 +54,7 @@ export struct SelectUser {
           .fontWeight(FontWeight.Regular)
           .type(InputType.Password)
           .border({ width: 2, radius: 5, color: Color.Black })
+          .key('inputPassword')
           .onChange((value: string) => {
             this.user.password = value
           })
