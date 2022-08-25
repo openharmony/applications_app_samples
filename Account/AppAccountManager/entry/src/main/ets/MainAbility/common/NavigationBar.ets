@@ -39,6 +39,7 @@ export struct NavigationBar {
               .textAlign(TextAlign.End)
               .fontColor(Color.White)
           }
+          .key('back')
           .layoutWeight(1)
           .onClick(() => {
             AlertDialog.show(

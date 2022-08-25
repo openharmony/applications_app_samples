@@ -52,6 +52,7 @@ export struct AccountInfo {
         this.infoShow($r('app.string.signature'), this.signature)
 
         Button($r('app.string.modify'))
+          .key('modify')
           .margin(10)
           .width('60%')
           .fontSize(20)
@@ -68,6 +69,7 @@ export struct AccountInfo {
           })
 
         Button($r('app.string.application'))
+          .key('application')
           .margin(10)
           .width('60%')
           .fontSize(20)
@@ -99,6 +101,7 @@ export struct AccountInfo {
           })
 
         Button($r('app.string.delete'))
+          .key('delete')
           .margin(10)
           .width('60%')
           .fontSize(20)
