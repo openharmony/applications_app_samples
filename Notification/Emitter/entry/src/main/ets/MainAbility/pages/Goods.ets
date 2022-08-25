@@ -15,19 +15,20 @@
 
 import router from '@ohos.router'
 import emitter from '@ohos.events.emitter'
-import { CustomText }  from '../common/CustomText'
+import { CustomText } from '../common/CustomText'
 import { getData } from '../model/Good'
 import { Good } from '../model/Good'
+import { ArrIfoSource } from "../model/DataSource"
 
 const TAG = `[eTSEmitter.Goods]`
 
 @Entry
 @Component
 struct Goods {
-  @State arrInfo: Array<Good> = getData()
+  @State arrInfo: ArrIfoSource = new ArrIfoSource(getData())
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.event_notification'))
         .width('100%')
         .height('9%')
@@ -39,7 +40,7 @@ struct Goods {
       Stack({ alignContent: Alignment.TopStart }) {
         Column() {
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.arrInfo, (item, index) => {
+            LazyForEach(this.arrInfo, (item, index) => {
               ListItem() {
                 Row() {
                   Column() {
@@ -63,7 +64,8 @@ struct Goods {
                       .selectedColor(0xed6f21)
                       .onChange((isOn: boolean) => {
                         item.isCheck = isOn
-                        this.arrInfo[index].isCheck = isOn
+                        this.arrInfo['ArrIfoData'][index].isCheck = isOn
+                        this.arrInfo.notifyDataReload()
                         var innerEvent = { eventId: 1001 }
                         var eventData = {
                           data: {

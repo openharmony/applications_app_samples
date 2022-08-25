@@ -20,6 +20,7 @@ import Logger from '../model/Logger'
 import storage from '@ohos.data.storage'
 import { AddDialog } from '../common/AddDialog'
 import featureAbility from '@ohos.ability.featureAbility'
+import { ZipLibSource } from "../model/DataSource"
 
 const TAG: string = '[Index]'
 let fileList: storage.Storage = null
@@ -28,7 +29,7 @@ let fileList: storage.Storage = null
 @Component
 struct Index {
   @State isInserted: boolean = false
-  @State files: Array<string> = []
+  @State files: ZipLibSource = new ZipLibSource([])
   @State fileName: string = ''
   @State fileContent: string = ''
   private path: string = ''
@@ -41,7 +42,7 @@ struct Index {
       createFile: (isInserted: boolean, fileName: string, fileContent: string) => {
         Logger.info(TAG, `enter the createFile`)
         this.fileName = `${fileName}.txt`
-        let isDuplication = this.files.includes(this.fileName)
+        let isDuplication = this.files['fileData'].includes(this.fileName)
         Logger.info(TAG, `isInserted = ${isInserted}  isDuplication = ${isDuplication}`)
         if (!isInserted || isDuplication) {
           return
@@ -49,9 +50,9 @@ struct Index {
         let fd = fileio.openSync(`${this.path}/${this.fileName}`, 0o100 | 0o2, 0o666)
         let number = fileio.writeSync(fd, fileContent)
         Logger.info(TAG, `fd = ${fd} number = ${number}`)
-        this.files.push(this.fileName)
-        Logger.info(TAG, `this.files = ${JSON.stringify(this.files)}`)
-        fileList.putSync('fileName', JSON.stringify(this.files))
+        this.files.pushData(this.fileName)
+        Logger.info(TAG, `this.files = ${JSON.stringify(this.files['fileData'])}`)
+        fileList.putSync('fileName', JSON.stringify(this.files['fileData']))
         fileList.flushSync()
       }
     }),
@@ -66,7 +67,8 @@ struct Index {
       Logger.info(TAG, `path = ${this.path}`)
       fileList = storage.getStorageSync(`${this.path}/fileList`)
       let value = fileList.getSync('fileName', '')
-      this.files = JSON.parse(`${value}`)
+      this.files['fileData'] = JSON.parse(`${value}`)
+      this.files.notifyDataReload()
     })
   }
 
@@ -83,7 +85,7 @@ struct Index {
       memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
       strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
     }
-    if (this.files.includes(newName)) {
+    if (this.files['fileData'].includes(newName)) {
       prompt.showToast({
         message: `已存在压缩文件，压缩失败`
       })
@@ -95,25 +97,25 @@ struct Index {
         prompt.showToast({
           message: `文件压缩完成`
         })
-        this.files.push(`${newName}`)
+        this.files.pushData(`${newName}`)
       })
     } catch {
       prompt.showToast({
         message: `文件压缩失败`
       })
     }
-    fileList.putSync('fileName', JSON.stringify(this.files))
+    fileList.putSync('fileName', JSON.stringify(this.files['fileData']))
     fileList.flushSync()
   }
 
   unzipHandler(path: string, fileName: string) {
     let zipFile = `${path}/${fileName}`
     Logger.info(TAG, `zipFile = ${zipFile}`)
-    let tempName = this.fileName.split('.')
+    let tempName = fileName.split('.')
     let newName = tempName[0]
     let zipOutFile = `${this.path}/${newName}`
     Logger.info(TAG, `zipOutFile = ${zipOutFile}`)
-    if (this.files.includes(newName)) {
+    if (this.files['fileData'].includes(newName)) {
       prompt.showToast({
         message: '已存在同名压缩文件，解压失败'
       })
@@ -131,8 +133,8 @@ struct Index {
     prompt.showToast({
       message: `文件解压完成`
     })
-    this.files.push(`${newName}`)
-    fileList.putSync('fileName', JSON.stringify(this.files))
+    this.files.pushData(`${newName}`)
+    fileList.putSync('fileName', JSON.stringify(this.files['fileData']))
     fileList.flushSync()
   }
 
@@ -166,7 +168,7 @@ struct Index {
         .backgroundColor('#0D9FFB')
 
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.files, (item) => {
+          LazyForEach(this.files, (item) => {
             ListItem() {
               Row() {
                 Image(item.includes('.zip') ? $r('app.media.zip') : $r('app.media.file'))
@@ -197,7 +199,8 @@ struct Index {
             .align(Alignment.Center)
             .backgroundColor('#FFFFFF')
           }, item => item)
-        }
+        }.width("100%")
+        .layoutWeight(1)
       }
       .height('100%')
       .width('100%')

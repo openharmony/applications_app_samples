@@ -17,13 +17,80 @@ import router from '@ohos.router'
 import { Category, FoodData } from '../model/FoodData'
 import { initializeOnStartup } from '../model/FoodDataModels'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 @Component
 struct FoodListItem {
   private foodItem: FoodData
 
   build() {
     Navigator({ target: 'pages/FoodDetail' }) {
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Row() {
         Row() {
           Image(this.foodItem.image)
             .objectFit(ImageFit.Contain)
@@ -40,6 +107,8 @@ struct FoodListItem {
         Text(this.foodItem.calories + ' kcal')
           .fontSize(14)
       }
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Start)
       .height(64)
     }
     .params({ foodId: this.foodItem })
@@ -54,21 +123,25 @@ struct FoodList {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('Food List')
           .fontSize(20)
           .margin({ left: 20 })
       }
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Start)
       .height('7%')
       .backgroundColor('#FFf1f3f5')
 
       List() {
-        ForEach(this.foodItems, item => {
+        LazyForEach(new MyDataSource(this.foodItems), item => {
           ListItem() {
             FoodListItem({ foodItem: item })
           }
         }, item => item.id.toString())
-      }.height('93%')
+      }
+      .width('100%')
+      .height('93%')
     }
   }
 }
@@ -86,7 +159,7 @@ struct FoodGridItem {
           .width('100%')
       }.backgroundColor('#FFf1f3f5')
 
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Row() {
         Text(this.foodItem.name)
           .fontSize(14)
           .flexGrow(1)
@@ -95,6 +168,8 @@ struct FoodGridItem {
           .fontSize(14)
           .margin({ right: 6 })
       }
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Start)
       .height(32)
       .width('100%')
       .backgroundColor('#FFe5e5e5')
@@ -122,7 +197,7 @@ struct FoodGrid {
   build() {
     Scroll() {
       Grid() {
-        ForEach(this.foodItems, (item: FoodData) => {
+        LazyForEach(new MyDataSource(this.foodItems), (item: FoodData) => {
           GridItem() {
             FoodGridItem({ foodItem: item })
           }
@@ -170,7 +245,8 @@ struct FoodCategory {
           FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
         }.tabBar('Dessert')
       }
-      .barWidth(280)
+      .barWidth('80%')
+      .barHeight(70)
       .barMode(BarMode.Scrollable)
     }
   }

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { MenuComponent } from "../../../common/components/menuComponent"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { MenuComponent } from '../../../common/components/menuComponent'
 
 @Entry
 @Component
@@ -23,15 +23,15 @@ struct MarqueeSample {
   @State fromStart: boolean = true;
   @State step: number = 50;
   @State loop: number = 2;
-  @State src: string = "Running Marquee starts rolling";
+  @State src: string = 'Running Marquee starts rolling';
   @State isOn: boolean = false;
   @State content: any[] = [5, 25, 50, 75]
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Marquee' })
       Column() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Text('Marquee')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
@@ -59,6 +59,8 @@ struct MarqueeSample {
               this.start = false
             })
         }
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 302 })
@@ -67,13 +69,13 @@ struct MarqueeSample {
 
       Scroll() {
         Column() {
-          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+          Row() {
             Button('start')
               .borderRadius(14)
               .backgroundColor('#007DFF')
               .fontSize('12fp')
               .fontWeight(FontWeight.Medium)
-              .fontColor("#FFFFFF")
+              .fontColor('#FFFFFF')
               .padding({ left: 8, right: 8, top: 8, bottom: 8 })
               .onClick(() => {
                 this.start = true
@@ -83,21 +85,26 @@ struct MarqueeSample {
               .backgroundColor('#007DFF')
               .fontSize('12fp')
               .fontWeight(FontWeight.Medium)
-              .fontColor("#FFFFFF")
+              .fontColor('#FFFFFF')
               .padding({ left: 8, right: 8, top: 8, bottom: 8 })
               .onClick(() => {
                 this.start = false
               })
           }
+          .alignItems(VerticalAlign.Center)
+          .justifyContent(FlexAlign.SpaceBetween)
           .width('100%')
           .height(35)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('fromStart')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.isOn })
               .width(35)
               .height(20)
@@ -110,66 +117,24 @@ struct MarqueeSample {
                 this.start = false
               })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          //控件写法
+          // 控件写法
           MenuComponent({ title: 'step', transferParameters: $content, items: $step })
-          //原本写法
-          //          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          //            Text('step')
-          //              .fontColor('#182431')
-          //              .fontSize('16fp')
-          //              .fontWeight(FontWeight.Medium)
-          //              .opacity(0.5)
-          //            Text(`${this.step}`)
-          //              .fontColor('#182431')
-          //              .fontSize('16fp')
-          //              .fontWeight(FontWeight.Medium)
-          //              .width('50%')
-          //              .textAlign(TextAlign.End)
-          //              .bindMenu([
-          //                {
-          //                  value: '5',
-          //                  action: () => {
-          //                    this.step = 5
-          //                  }
-          //                },
-          //                {
-          //                  value: '25',
-          //                  action: () => {
-          //                    this.step = 25
-          //                  }
-          //                },
-          //                {
-          //                  value: '50',
-          //                  action: () => {
-          //                    this.step = 50
-          //                  }
-          //                },
-          //                {
-          //                  value: '75',
-          //                  action: () => {
-          //                    this.step = 75
-          //                  }
-          //                },
-          //              ])
-          //          }
-          //          .width('100%')
-          //          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          //          .borderRadius(24)
-          //          .backgroundColor('#FFFFFF')
-          //          .margin({ top: 8 })
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('loop')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
 
             Text(`${this.loop}`)
               .fontColor('#182431')
@@ -205,17 +170,21 @@ struct MarqueeSample {
               ])
           }
           .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('src')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
 
             Text(`${this.src}`)
               .fontColor('#182431')
@@ -225,20 +194,22 @@ struct MarqueeSample {
               .textAlign(TextAlign.End)
               .bindMenu([
                 {
-                  value: "Enter by yourself",
+                  value: 'Enter by yourself',
                   action: () => {
-                    this.src = "Enter by yourself"
+                    this.src = 'Enter by yourself'
                   }
                 },
                 {
                   value: 'Running Marquee starts rolling',
                   action: () => {
-                    this.src = "Running Marquee starts rolling"
+                    this.src = 'Running Marquee starts rolling'
                   }
                 },
               ])
           }
           .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
@@ -248,6 +219,8 @@ struct MarqueeSample {
       .margin({ top: 24 })
     }
     .height('100%')
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

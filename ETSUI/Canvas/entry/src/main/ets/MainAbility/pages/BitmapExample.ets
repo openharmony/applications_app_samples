@@ -23,13 +23,9 @@ struct BitmapExample {
   private img: ImageBitmap = new ImageBitmap("/common/images/test1.jpg")
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Column() {
       Canvas(this.context)
-        .width('90%').height('40%').backgroundColor(Color.Pink)
+        .width(600).height('40%').backgroundColor(Color.Pink)
         .onReady(() => {
           this.context.imageSmoothingEnabled = false
           this.context.drawImage(this.img, 60, 50, 200, 200)
@@ -43,5 +39,7 @@ struct BitmapExample {
         })
         .margin({ top: 10 })
     }.width('100%').height('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }

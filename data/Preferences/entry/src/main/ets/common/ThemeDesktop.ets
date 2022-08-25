@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import {MyDataSource} from '../util/DataSource'
+
 @Component
 export default struct ThemeDesktop {
   @Link themeDatas: Array<{
@@ -22,7 +24,7 @@ export default struct ThemeDesktop {
 
   build() {
     Grid() {
-      ForEach(this.themeDatas, (item) => {
+      LazyForEach(new MyDataSource(this.themeDatas), (item) => {
         GridItem() {
           Column() {
             Image(item.image)

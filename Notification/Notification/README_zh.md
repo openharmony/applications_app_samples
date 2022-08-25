@@ -1,7 +1,5 @@
 # 订阅、发送通知
 
-
-
 ### 简介
 
 本示例展示了在eTS中如何使用Notification的接口完成通知订阅、取消订阅、发布通知、取消通知功能。实现效果如下：
@@ -10,13 +8,15 @@
 
 ### 相关概念
 
-- 发布通知：使用 Notification.publish接口发布通知。
-- 订阅通知：创建订阅者并实现接收通知回调函数，可以实现监听通知的功能。
--  NotificationRequest：设置要发布通知内容的NotificationRequest对象。
+发布通知：使用 Notification.publish接口发布通知。
+
+订阅通知：创建订阅者并实现接收通知回调函数，可以实现监听通知的功能。
+
+NotificationRequest：设置要发布通知内容的NotificationRequest对象。
 
 ### 相关权限
 
-不涉及
+管理通知和订阅通知: ohos.permission.NOTIFICATION_CONTROLLER,
 
 ### 使用说明
 
@@ -30,7 +30,8 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，从API version 9开始支持。
+2.本示例仅支持API9版本SDK，本示例涉及使用系统接口：subscribe()，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
-3.本示例需要使用3.0.0.901及以上的DevEco Studio版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
+4.本示例所配置的权限ohos.permission.NOTIFICATION_CONTROLLER为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))。

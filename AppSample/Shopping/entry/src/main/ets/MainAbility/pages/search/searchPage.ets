@@ -14,18 +14,73 @@
  */
 
 import mediaQuery from '@ohos.mediaquery';
-import router from '@system.router';
+import router from '@ohos.router';
 import { ExampleDataModel, SearchDataModel } from '../../model/searchModel';
 import { exampleData, searchData } from '../../data/searchData'
 
 let portraitSearch = null
 
+class newsNum implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 6
+  listeners: DataChangeListener[] = []
+}
+
+class newsItem implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 10
+  listeners: DataChangeListener[] = []
+}
+
 @Entry
 @Component
 struct SearchPage {
-  @State placeholder: string = (router.getParams().message).toString()
-  @State width: number = parseInt(router.getParams().num as string, 10)
-  @State ratio: number = parseInt(router.getParams().ratio as string, 10)
+  @State placeholder: string = router.getParams()['message']
+  @State width: number = router.getParams()['num']
+  @State ratio: number = router.getParams()['ratio']
+  @State swiperWidth: number = router.getParams()['swiperWidth']
+  newsNum: newsNum = new newsNum()
+  newsItem: newsItem = new newsItem()
   @State value: string = ''
   @State flag: boolean = true
   @State isShow: boolean = true
@@ -35,7 +90,6 @@ struct SearchPage {
   @State searchData: Array<SearchDataModel> = searchData
   @State searched: string[] = []
   @State isFlag: boolean = false
-  @State swiperWidth: number = 30
   @State opacity: number = 1
   listener = mediaQuery.matchMediaSync('(orientation:landscape)');
 
@@ -58,9 +112,10 @@ struct SearchPage {
   build() {
     Column() {
       Column() {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row() {
           Navigator() {
             Image('/resources/icon/back.png')
+              .key('leftSearchPageBtn')
               .width(25 * this.ratio)
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
@@ -70,7 +125,7 @@ struct SearchPage {
             this.active = true
           })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Row() {
             Column() {
               TextInput({ placeholder: this.placeholder, text: this.value })
                 .placeholderFont({ size: 10 * this.ratio })
@@ -86,6 +141,7 @@ struct SearchPage {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
           .width('65%')
           .padding({ left: 10, right: 10 })
           .border({ width: 1, color: Color.Orange, radius: 20 * this.ratio })
@@ -102,18 +158,22 @@ struct SearchPage {
           .border({ radius: 50 * this.ratio })
           .padding({ left: 5, right: 5, top: 10, bottom: 10 })
         }
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
         .padding({ left: 10, right: 10 })
         .margin({ top: 10, bottom: 10 })
         .height(35 * this.ratio)
+        .width('100%')
 
         Stack({ alignContent: Alignment.Top }) {
           if (!this.isFlag) {
             Column() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row() {
                 Text('搜索发现')
                   .fontSize(15 * this.ratio)
                   .fontWeight(FontWeight.Bold)
                 Image(this.flag ? '/resources/icon/show.png' : 'resources/icon/hide.png')
+                  .key('isShowBtn')
                   .width(25 * this.ratio)
                   .aspectRatio(1)
                   .objectFit(ImageFit.Contain)
@@ -121,23 +181,101 @@ struct SearchPage {
                     this.flag = !this.flag
                   })
               }
-              .margin(10)
+              .width('100%')
+              .justifyContent(FlexAlign.SpaceBetween)
+              .alignItems(VerticalAlign.Center)
+              .padding(10)
 
               if (this.flag) {
-                Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
-                  ForEach(this.exampleText, item => {
-                    Button() {
-                      Text(item.exampleText)
-                        .fontSize(12 * this.ratio)
-                        .fontColor(Color.Black)
-                        .margin({ left: 10, right: 10 })
-                    }
-                    .margin(3)
-                    .height(30 * this.ratio)
-                    .backgroundColor('#f8f8f8')
-                  }, item => item.toString())
+                Row() {
+                  Button() {
+                    Text(this.exampleText[0].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+
+                  Button() {
+                    Text(this.exampleText[1].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+
+                  Button() {
+                    Text(this.exampleText[2].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+
+                  Button() {
+                    Text(this.exampleText[3].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+
+                  Button() {
+                    Text(this.exampleText[4].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
                 }
                 .margin({ left: 10, right: 10 })
+                .justifyContent(FlexAlign.Start)
+                .alignItems(VerticalAlign.Center)
+
+                Row() {
+                  Button() {
+                    Text(this.exampleText[5].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+
+                  Button() {
+                    Text(this.exampleText[6].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+
+                  Button() {
+                    Text(this.exampleText[7].exampleText)
+                      .fontSize(12 * this.ratio)
+                      .fontColor(Color.Black)
+                      .margin({ left: 10, right: 10 })
+                  }
+                  .margin(3)
+                  .height(30 * this.ratio)
+                  .backgroundColor('#f8f8f8')
+                }
+                .margin({ left: 10, right: 10 })
+                .justifyContent(FlexAlign.Start)
+                .alignItems(VerticalAlign.Center)
               } else {
                 Column() {
                   Text('当前搜索发现隐藏')
@@ -151,6 +289,7 @@ struct SearchPage {
                 Column() {
                   Row() {
                     Image(this.isShow ? '/resources/icon/show.png' : '/resources/icon/hide.png')
+                      .key('isOpenHotSearch')
                       .width(25 * this.ratio)
                       .aspectRatio(1)
                       .objectFit(ImageFit.Contain)
@@ -174,112 +313,100 @@ struct SearchPage {
                 .margin({ bottom: 10 })
                 .alignItems(HorizontalAlign.Start)
 
-                List() {
-                  ForEach([1, 2, 3, 4, 5, 6], item => {
-                    ListItem() {
-                      Column() {
-                        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-                            Image('/resources/common/activity.png')
-                              .width(30 * this.ratio)
-                              .aspectRatio(1)
-                              .objectFit(ImageFit.Contain)
-                            Text('XX热搜')
-                              .fontSize(15 * this.ratio)
-                              .fontColor('#995528')
-                              .fontWeight(FontWeight.Bold)
-                              .margin({ left: 10, right: 10 })
-                            Text('今日最新消息全知道')
-                              .fontSize(10 * this.ratio)
-                              .fontColor('#8b5b2f')
+                Column() {
+                  if (this.isShow) {
+                    List() {
+                      LazyForEach(this.newsNum, item => {
+                        ListItem() {
+                          Column() {
+                            Row() {
+                              Row() {
+                                Image('/resources/common/activity.png')
+                                  .width(30 * this.ratio)
+                                  .aspectRatio(1)
+                                  .objectFit(ImageFit.Contain)
+                                Text('XX热搜')
+                                  .fontSize(15 * this.ratio)
+                                  .fontColor('#995528')
+                                  .fontWeight(FontWeight.Bold)
+                                  .margin({ left: 10, right: 10 })
+                                Text('今日最新消息全知道')
+                                  .fontSize(10 * this.ratio)
+                                  .fontColor('#8b5b2f')
+                              }
+                              .width('100%')
+                              .justifyContent(FlexAlign.Start)
+                              .alignItems(VerticalAlign.Center)
+                            }
+                            .padding({ left: 5, right: 5 })
+                            .justifyContent(FlexAlign.SpaceBetween)
+                            .alignItems(VerticalAlign.Center)
+
+                            LazyForEach(this.newsItem, item => {
+                              Row() {
+                                Row() {
+                                  Row() {
+                                    Text(`${item}`)
+                                      .fontSize(10 * this.ratio)
+                                      .fontColor(Color.White)
+                                      .fontWeight(FontWeight.Bold)
+                                  }
+                                  .width(15 * this.ratio)
+                                  .aspectRatio(1)
+                                  .border({ radius: 3 * this.ratio })
+                                  .margin({ right: 5 })
+                                  .backgroundColor('#ceb198')
+                                  .justifyContent(FlexAlign.Center)
+                                  .alignItems(VerticalAlign.Center)
+
+                                  Text('XX公司5G手机发布会议于xx日开始')
+                                    .fontSize(12 * this.ratio)
+                                    .maxLines(1)
+                                    .textOverflow({ overflow: TextOverflow.Ellipsis })
+                                }
+                                .alignItems(VerticalAlign.Center)
+
+                                Image(`${Math.round(Math.random()) ? '/resources/icon/up.png' : '/resources/icon/down.png'}`)
+                                  .width(10 * this.ratio)
+                                  .height(15 * this.ratio)
+                                  .objectFit(ImageFit.Contain)
+                              }
+                              .padding({ left: 5, right: 5 })
+                              .width('100%')
+                              .height(40 * this.ratio)
+                              .justifyContent(FlexAlign.SpaceBetween)
+                              .alignItems(VerticalAlign.Center)
+                            }, item => item.toString())
                           }
                           .width('100%')
                         }
-                        .padding({ left: 5, right: 5 })
-
-                        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], item => {
-                          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                            Flex({ alignItems: ItemAlign.Center }) {
-                              Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-                                Text(`${item}`)
-                                  .fontSize(10 * this.ratio)
-                                  .fontColor(Color.White)
-                                  .fontWeight(FontWeight.Bold)
-                              }
-                              .width(15 * this.ratio)
-                              .aspectRatio(1)
-                              .border({ radius: 3 * this.ratio })
-                              .margin({ right: 5 })
-                              .backgroundColor('#ceb198')
-
-                              Text('XX公司5G手机发布会议于xx日开始')
-                                .fontSize(12 * this.ratio)
-                            }
-
-                            Image(`${Math.round(Math.random()) ? '/resources/icon/up.png' : '/resources/icon/down.png'}`)
-                              .width(10 * this.ratio)
-                              .height(15 * this.ratio)
-                              .objectFit(ImageFit.Contain)
-                          }
-                          .padding({ left: 5, right: 5 })
-                          .width('100%')
-                          .height(40 * this.ratio)
-                        }, item => item.toString())
-                      }
-                      .width('100%')
+                        .border({ radius: 15 * this.ratio })
+                        .margin({ left: 5, right: 5 })
+                        .padding({ top: 5 })
+                        .backgroundColor(Color.White)
+                        .width(`${this.swiperWidth}%`)
+                      }, item => item.toString())
                     }
-                    .border({ radius: 15 * this.ratio })
-                    .margin({ left: 5, right: 5 })
-                    .padding({ top: 5 })
-                    .backgroundColor(Color.White)
-                    .width(`${this.swiperWidth}%`)
-                  }, item => item.toString())
+                    .width('100%')
+                    .height('100%')
+                    .listDirection(Axis.Horizontal)
+                    .padding({ left: 5, right: 5 })
+                  }
                 }
-                .listDirection(Axis.Horizontal)
                 .height('70%')
-                .width('95%')
-                .margin({ left: 5, right: 5 })
-                .visibility(this.isShow ? Visibility.Visible : Visibility.Hidden)
+                .width('100%')
               }
               .padding({ top: 10, bottom: 0 })
-              .alignItems(HorizontalAlign.Start)
+              .alignItems(HorizontalAlign.Center)
               .width('100%')
             }
             .alignItems(HorizontalAlign.Start)
             .width('100%')
           }
-          if (this.isFlag) {
-            Column() {
-              ForEach(this.searched, item => {
-                Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                  Row() {
-                    Image('/resources/icon/search.png')
-                      .width(25 * this.ratio)
-                      .aspectRatio(1)
-                      .objectFit(ImageFit.Contain)
-                    Text(item)
-                      .fontSize(18 * this.ratio)
-                      .margin({ left: 15 })
-                  }
-
-                  Image('/resources/icon/leftTop.png')
-                    .width(25 * this.ratio)
-                    .aspectRatio(1)
-                    .objectFit(ImageFit.Contain)
-                }
-                .width('100%')
-                .height(50 * this.ratio)
-                .padding({ left: 10, right: 10 })
-                .onClick(() => {
-                  this.isFlag = false
-                  this.value = item
-                })
-              }, item => item.toString())
-            }
-          }
         }
       }
       .width(`${this.width}%`)
+      .border({ width: this.width === 45 ? 1 : 0, color: '#10000000' })
     }
     .width('100%')
     .backgroundColor('#F9F9F9')
@@ -287,14 +414,10 @@ struct SearchPage {
     .backgroundImageSize({ width: '100%', height: '100%' })
   }
 
-  pageTransition() {
-    PageTransitionExit({ duration: 0, curve: Curve.Linear })
-      .onExit((type: RouteType, progress: number) => {
-        this.opacity = 1
-      })
-    PageTransitionEnter({ duration: 0, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
-        this.opacity = 1
-      })
+  PageTransition() {
+    PageTransitionEnter({ duration: 0 })
+      .opacity(1)
+    PageTransitionExit({ duration: 0 })
+      .opacity(1)
   }
 }

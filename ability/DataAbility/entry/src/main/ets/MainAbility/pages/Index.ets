@@ -23,6 +23,73 @@ import { SearchBar } from '../component/SearchBar'
 const TAG = '[DataAbility].Index'
 let self = null
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 @Entry
 @Component
 struct Index {
@@ -64,23 +131,27 @@ struct Index {
       SearchBar()
       Stack({ alignContent: Alignment.BottomEnd }) {
         List() {
-          ForEach(this.bookList, item => {
+          LazyForEach(new MyDataSource(this.bookList), item => {
             ListItem() {
               BookView({ book: item, deleteCallback: this.deleteCallback })
             }
             .onClick(() => {
               router.push({ url: 'pages/Update', params: { book: item } })
             })
-          }, item => JSON.stringify(item))
+          }, item => item)
         }
+        .height('100%')
+        .translate({y:-50})
+        .padding({bottom:'8%'})
+        .margin({top:50})
         .width('100%')
-        .margin({ bottom: 100 })
         .constraintSize({ minHeight: '100%' })
         .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 10, endMargin: 10 })
 
         Button() {
           Image($r('app.media.add'))
         }
+        .key('add')
         .type(ButtonType.Circle)
         .width(60).height(60)
         .backgroundColor('#0D9FFB')
@@ -92,6 +163,7 @@ struct Index {
             console.info(TAG + ' insert num=' + num)
             this.bookList.push({ id: num, name: 'Book name', introduction: 'Book introduction' })
           })
+          valuesBuckets = null
         })
       }
       .width('100%').height('100%')

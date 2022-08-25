@@ -23,31 +23,146 @@ export struct Boutique {
 
   build() {
     Column() {
-      Flex({ wrap: FlexWrap.Wrap, direction: FlexDirection.Row }) {
-        ForEach(this.boutiqueData, item => {
-          Column() {
-            Text(item.text1)
-              .fontSize(15 * this.ratio)
-              .fontWeight(item.text2)
-            Text(item.text2)
-              .fontSize(15 * this.ratio)
-              .margin(5)
-            Row() {
-              Image(item.img1)
-                .width('45%')
-                .aspectRatio(0.8)
-                .objectFit(ImageFit.Contain)
-              Image(item.img2)
-                .width('45%')
-                .aspectRatio(0.8)
-                .objectFit(ImageFit.Contain)
-            }
-            .width('100%')
+      Row() {
+        Column() {
+          Text(this.boutiqueData[0].text1)
+            .fontSize(15 * this.ratio)
+            .fontWeight(FontWeight.Bold)
+          Text(this.boutiqueData[0].text2)
+            .fontSize(15 * this.ratio)
+            .margin(5)
+          Row() {
+            Image(this.boutiqueData[0].img1)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+            Image(this.boutiqueData[0].img2)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
           }
-          .width('50%')
-          .alignItems(HorizontalAlign.Start)
-        }, item => item.toString())
+          .width('100%')
+        }
+        .width('50%')
+        .alignItems(HorizontalAlign.Start)
+
+        Column() {
+          Text(this.boutiqueData[1].text1)
+            .fontSize(15 * this.ratio)
+            .fontWeight(FontWeight.Bold)
+          Text(this.boutiqueData[1].text2)
+            .fontSize(15 * this.ratio)
+            .margin(5)
+          Row() {
+            Image(this.boutiqueData[1].img1)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+            Image(this.boutiqueData[1].img2)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+          }
+          .width('100%')
+        }
+        .width('50%')
+        .alignItems(HorizontalAlign.Start)
       }
+      .width('100%')
+
+      Row() {
+        Column() {
+          Text(this.boutiqueData[2].text1)
+            .fontSize(15 * this.ratio)
+            .fontWeight(FontWeight.Bold)
+          Text(this.boutiqueData[2].text2)
+            .fontSize(15 * this.ratio)
+            .margin(5)
+          Row() {
+            Image(this.boutiqueData[2].img1)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+            Image(this.boutiqueData[2].img2)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+          }
+          .width('100%')
+        }
+        .width('50%')
+        .alignItems(HorizontalAlign.Start)
+
+        Column() {
+          Text(this.boutiqueData[3].text1)
+            .fontSize(15 * this.ratio)
+            .fontWeight(FontWeight.Bold)
+          Text(this.boutiqueData[3].text2)
+            .fontSize(15 * this.ratio)
+            .margin(5)
+          Row() {
+            Image(this.boutiqueData[3].img1)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+            Image(this.boutiqueData[3].img2)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+          }
+          .width('100%')
+        }
+        .width('50%')
+        .alignItems(HorizontalAlign.Start)
+      }
+      .width('100%')
+
+      Row() {
+        Column() {
+          Text(this.boutiqueData[4].text1)
+            .fontSize(15 * this.ratio)
+            .fontWeight(FontWeight.Bold)
+          Text(this.boutiqueData[4].text2)
+            .fontSize(15 * this.ratio)
+            .margin(5)
+          Row() {
+            Image(this.boutiqueData[4].img1)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+            Image(this.boutiqueData[4].img2)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+          }
+          .width('100%')
+        }
+        .width('50%')
+        .alignItems(HorizontalAlign.Start)
+
+        Column() {
+          Text(this.boutiqueData[5].text1)
+            .fontSize(15 * this.ratio)
+            .fontWeight(FontWeight.Bold)
+          Text(this.boutiqueData[5].text2)
+            .fontSize(15 * this.ratio)
+            .margin(5)
+          Row() {
+            Image(this.boutiqueData[5].img1)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+            Image(this.boutiqueData[5].img2)
+              .width('45%')
+              .aspectRatio(0.8)
+              .objectFit(ImageFit.Contain)
+          }
+          .width('100%')
+        }
+        .width('50%')
+        .alignItems(HorizontalAlign.Start)
+      }
+      .width('100%')
     }
     .width('92%')
   }

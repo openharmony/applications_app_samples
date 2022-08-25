@@ -15,15 +15,15 @@
 
 @Observed
 export class FirstNavInfo {
-  public title: string = '组件化和生命周期';
-  public isClicked: boolean = false;
-  public uri: string = "";
-  public secondIndex: number= 0;
+  public title: string = '组件化和生命周期'
+  public isClicked: boolean = false
+  public uri: string = ''
+  public secondIndex: number= 0
 
   constructor(title: string, uri: string, secondIndex: number) {
-    this.title = title;
-    this.uri = uri;
-    this.isClicked = false;
-    this.secondIndex = secondIndex;
+    this.title = title
+    this.uri = uri
+    this.isClicked = false
+    this.secondIndex = secondIndex
   }
 }

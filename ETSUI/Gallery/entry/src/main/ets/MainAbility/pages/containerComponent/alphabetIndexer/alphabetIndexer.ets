@@ -12,16 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
-import { listData } from "../../../model/AlphabetIndexerData"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
+import { listData } from '../../../model/AlphabetIndexerData'
+import { MyDataSource } from '../../../model/constant'
 
 @Entry
 @Component
 struct AlphabetIndexerSample {
   scroller: Scroller = new Scroller()
-  private value: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  private listValue: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
   @State index: number = 0
   @State selectedColor: string = '#00ffff'
   @State popupColor: string = '#00ffff'
@@ -30,16 +29,29 @@ struct AlphabetIndexerSample {
   @State usingPopup: boolean = true
   @State itemSize: number = 13
   @State location: boolean = true
+  private value: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  private listValue: MyDataSource = new MyDataSource()
+  private listData: MyDataSource = new MyDataSource()
+
+  aboutToAppear() {
+    this.listValue.replace(
+      [
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+      ]
+    )
+    this.listData.replace(listData)
+  }
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       Row() {
         NavigationBar({ title: 'AlphabetIndexer' })
       }.padding({ left: '3%' })
 
       Flex({ direction: this.location ? FlexDirection.Row : FlexDirection.RowReverse }) {
         List({ space: 10, initialIndex: 0, scroller: this.scroller }) {
-          ForEach(this.listValue, (item) => {
+          LazyForEach(this.listValue, (item) => {
             ListItem() {
               Column() {
                 Text('     ' + item)
@@ -90,116 +102,136 @@ struct AlphabetIndexerSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('selectedColor')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $selectedColor })
             }.width(48)
           }
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('popupColor')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $popupColor })
             }.width(48)
           }
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('selectedBackgroundColor')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $selectedBackgroundColor })
             }.width(48)
           }
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Row() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-              Text('popupBackground')
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .opacity(0.5)
-                .fontWeight(FontWeight.Medium)
 
-              Text('' + this.popupBackground == '#fff000' ? '黄色' : '红色')
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-                .width('50%')
-                .textAlign(TextAlign.End)
-                .bindMenu([
-                  {
-                    value: '红色',
-                    action: () => {
-                      this.popupBackground = '#ff0000'
-                    }
-                  },
-                  {
-                    value: '黄色',
-                    action: () => {
-                      this.popupBackground = '#fff000'
-                    }
+          Row({ space: FlexAlign.SpaceBetween }) {
+            Text('popupBackground')
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .opacity(0.5)
+              .fontWeight(FontWeight.Medium)
+
+            Blank()
+
+            Text('' + this.popupBackground == '#fff000' ? '黄色' : '红色')
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+              .width('50%')
+              .textAlign(TextAlign.End)
+              .bindMenu([
+                {
+                  value: '红色',
+                  action: () => {
+                    this.popupBackground = '#ff0000'
                   }
-                ])
-            }
-            .padding('3%')
-            .borderRadius(24)
-            .backgroundColor('#FFFFFF')
-            .margin({ top: 8 })
+                },
+                {
+                  value: '黄色',
+                  action: () => {
+                    this.popupBackground = '#fff000'
+                  }
+                }
+              ])
           }
+          .padding('3%')
+          .borderRadius(24)
+          .width('100%')
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
+
+
+          Row({ space: FlexAlign.SpaceBetween }) {
+            Text('usingPopup')
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .opacity(0.5)
+              .fontWeight(FontWeight.Medium)
+              .alignSelf(ItemAlign.Center)
+
+            Blank()
+
+            Toggle({ type: ToggleType.Switch, isOn: this.usingPopup })
+              .selectedColor('#007DFF')
+              .switchPointColor(0xe5ffffff)
+              .onChange((isOn: boolean) => {
+                this.usingPopup = !this.usingPopup
+              })
+              .margin(0)
+              .padding(0)
+          }
+          .padding('3%')
+          .borderRadius(24)
+          .width('100%')
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
 
           Row() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-              Text('usingPopup')
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .opacity(0.5)
-                .fontWeight(FontWeight.Medium)
-                .alignSelf(ItemAlign.Center)
-              Toggle({ type: ToggleType.Switch, isOn: this.usingPopup })
-                .selectedColor('#007DFF')
-                .switchPointColor(0xe5ffffff)
-                .onChange((isOn: boolean) => {
-                  this.usingPopup = !this.usingPopup
-                })
-                .margin(0)
-                .padding(0)
-            }
-            .padding('3%')
-            .borderRadius(24)
-            .backgroundColor('#FFFFFF')
-            .margin({ top: 8 })
-          }
-
-          Row() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('location')
                 .fontSize(16)
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Text(this.location ? 'Right' : 'Left')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -211,6 +243,7 @@ struct AlphabetIndexerSample {
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
+            .width('100%')
           }
           .bindMenu([
             {
@@ -228,12 +261,15 @@ struct AlphabetIndexerSample {
           ])
 
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('itemSize')
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Text('' + this.itemSize)
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -259,6 +295,7 @@ struct AlphabetIndexerSample {
                 this.itemSize = Math.floor(value)
               })
           }
+          .width('100%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')

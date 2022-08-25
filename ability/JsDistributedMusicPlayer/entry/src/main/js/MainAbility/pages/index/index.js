@@ -155,9 +155,10 @@ export default {
     },
     onDestroy() {
         console.info('MusicPlayer[IndexPage] onDestroy begin');
-        if (!(Object.keys(this.playerModel).length === 0)) {
-            this.playerModel.release();
+        if (this.playerModel === undefined) {
+            return
         }
+        this.playerModel.release();
         this.remoteDeviceModel.unregisterDeviceListCallback();
         console.info('MusicPlayer[IndexPage] onDestroy end');
     },
@@ -176,7 +177,6 @@ export default {
         this.totalMs = this.playerModel.getDuration();
         this.totalTimeText = getShownTimer(this.totalMs);
         this.currentTimeText = getShownTimer(this.playerModel.getCurrentMs());
-        this.currentProgress = Math.floor(this.playerModel.getCurrentMs() / this.totalMs * 100);
 
         console.info('MusicPlayer[IndexPage] refreshSongInfo this.title=' + this.title + ' this.totalMs='
         + this.totalMs + ' this.totalTimeText=' + this.totalTimeText + ' this.currentTimeText=' + this.currentTimeText);

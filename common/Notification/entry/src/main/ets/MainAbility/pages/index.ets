@@ -35,12 +35,7 @@ struct Index {
         .fontSize(20)
         .padding({ left: 15 })
       Scroll() {
-        Flex({
-          direction: FlexDirection.Row,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.Center,
-          wrap: FlexWrap.Wrap
-        }) {
+        Column() {
           Choose({ selectIndex: $contentType })
           Column() {
             Button() {

@@ -16,24 +16,49 @@
 import { Cart } from './cart'
 import { Other } from './other'
 
+class cartNum implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 10
+  listeners: DataChangeListener[] = []
+}
+
 @Component
 export struct ShopCart {
-  @State cartNum: number[] = [...Array(10).keys()]
+  cartNum: cartNum = new cartNum()
   @State isSelected1: boolean = false
   @State isSelected2: boolean = false
-  @State isOn: boolean = false
   @Prop ratio: number
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Row() {
           Text('购物车')
             .fontSize(15 * this.ratio)
             .fontWeight(FontWeight.Bold)
         }
 
-        Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+        Row() {
           Text('降价')
             .fontSize(14 * this.ratio)
           Text('经常购')
@@ -41,15 +66,20 @@ export struct ShopCart {
           Text('管理')
             .fontSize(14 * this.ratio)
         }
+        .justifyContent(FlexAlign.SpaceAround)
+        .alignItems(VerticalAlign.Center)
         .width('45%')
       }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .backgroundColor('#dfe5e3')
       .padding({ top: 8, bottom: 8 })
 
       Scroll() {
         Column() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Row() {
                 Image('/resources/icon/smile.png')
                   .width(30 * this.ratio)
@@ -59,6 +89,9 @@ export struct ShopCart {
                   .margin({ left: 10 })
               }
             }
+            .width('100%')
+            .justifyContent(FlexAlign.SpaceBetween)
+            .alignItems(VerticalAlign.Center)
             .padding({ top: 5, bottom: 5 })
 
             Cart({ ratio: this.ratio })
@@ -69,7 +102,7 @@ export struct ShopCart {
           .backgroundColor(Color.White)
           .border({ radius: 10 * this.ratio })
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('- - - -')
               .fontSize(15 * this.ratio)
               .fontColor('#80FF0000')
@@ -93,11 +126,13 @@ export struct ShopCart {
               .fontColor('#80FF0000')
               .margin({ right: 10 })
           }
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Center)
           .margin({ top: 10, bottom: 10 })
 
           Row() {
             Column() {
-              ForEach(this.cartNum, item => {
+              LazyForEach(this.cartNum, item => {
                 Column() {
                   Other({ item: item % 6, ratio: this.ratio })
                 }
@@ -106,7 +141,7 @@ export struct ShopCart {
             .margin(2)
 
             Column() {
-              ForEach(this.cartNum, item => {
+              LazyForEach(this.cartNum, item => {
                 Column() {
                   Other({ item: item % 6, ratio: this.ratio })
                 }

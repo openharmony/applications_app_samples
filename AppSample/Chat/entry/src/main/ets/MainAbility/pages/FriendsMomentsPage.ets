@@ -26,10 +26,10 @@ struct FriendsMomentsPage {
   private imageList = [$r('app.media.personality1'), $r('app.media.personality1'), $r('app.media.personality1'), $r('app.media.personality1')]
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Column() {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Image($r('app.media.left'))
+        Row() {
+          Image($r('app.media.icon_back'))
             .height(30)
             .width(30)
             .onClick(() => {
@@ -43,30 +43,33 @@ struct FriendsMomentsPage {
             .height(30)
             .width(30)
         }
+        .backgroundColor(Color.Black)
+        .justifyContent(FlexAlign.SpaceBetween)
         .height(50)
         .width('100%')
         .padding({ left: 10, right: 10 })
-        .backgroundColor(Color.Black)
 
         Column() {
           List() {
             ListItem() {
-              Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.End, justifyContent: FlexAlign.Start }) {
-                Flex() {
+              Column() {
+                Row() {
                   Image($r('app.media.user_ba'))
                 }
                 .height('100%')
                 .width('100%')
 
-                Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
+                Row() {
                   Text("name")
                     .fontSize(20)
                     .fontColor(Color.Black)
                   Image($r('app.media.personality3'))
                     .height(50)
                     .width(50)
-                }
+                }.margin({ top: -25 })
               }
+
+              .alignItems(HorizontalAlign.End)
               .height('40%')
             }
 
@@ -111,14 +114,14 @@ struct OneMoment {
 
   build() {
     Row() {
-      Flex() {
+      Row() {
         Image(this.moment.user.userImage)
           .autoResize(false)
       }
       .width(50)
       .height(50)
 
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+      Column() {
         Text(this.moment.user.userName)
           .fontSize(15)
           .fontColor(Color.Black)
@@ -146,16 +149,20 @@ struct OneMoment {
         }
         .margin({ top: 5, right: 10 })
 
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+        Row() {
           Text(this.moment.time).fontColor("#e3e3e3").fontSize(12)
           Image($r('app.media.afr')).height(15).width(20)
         }
+        .justifyContent(FlexAlign.SpaceBetween)
+        .width('100%')
         .margin({ top: 5 })
         .padding({ right: 5 })
       }
+      .alignItems(HorizontalAlign.Start)
       .width('100%')
       .margin({ left: 10 })
     }
+    .justifyContent(FlexAlign.Start)
     .margin({ left: 10 })
     .padding({ right: 70 })
     .alignItems(VerticalAlign.Top)

@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { MyDataSource } from '../../../model/constant'
 
 @Entry
 @Component
 struct LoadingProgressSample {
   @State color: Color = Color.Black
-  @State arr_color: string[]= []
+  @State arr_color: MyDataSource = new MyDataSource()
 
   private getRandomColor(): string{
     let randomColor: string = '#';
@@ -32,7 +33,7 @@ struct LoadingProgressSample {
 
   private aboutToAppear(): void{
     for (let i = 0;i < 6; i++) {
-      this.arr_color.push(this.getRandomColor())
+      this.arr_color.pushData(this.getRandomColor())
     }
   }
 
@@ -40,27 +41,32 @@ struct LoadingProgressSample {
     Column() {
       NavigationBar({ title: 'LoadingProgress' })
 
-      //上部分显示效果
+      // 上部分显示效果
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           LoadingProgress()
             .color(this.color).margin({ top: '30%' })
         }
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
         .width('100%')
       }
       .width('100%')
       .height('40%')
       .margin({ top: 20 })
 
-      //下部分属性、属性值
+      // 下部分属性、属性值
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('Color:')
               .fontSize(16)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Button({ type: ButtonType.Circle, stateEffect: true }) {
               Text('+').fontColor('#FFFFFF').fontSize(26).position({ x: 0, y: -4 })
             }
@@ -68,20 +74,21 @@ struct LoadingProgressSample {
             .width(22)
             .height(22)
             .onClick(() => {
-              this.arr_color.push(this.getRandomColor())
+              this.arr_color.pushData(this.getRandomColor())
             })
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
 
           Divider().strokeWidth(1).color('#F2F2F2').lineCap(LineCapStyle.Round).margin({ top: 8, bottom: 8 })
 
           Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap }) {
-            ForEach(this.arr_color, (item, index) => {
+            LazyForEach(this.arr_color, (item, index) => {
               Column() {
                 Column() {
-                  Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
+                  Row() {
                     Column() {
-                      Image($r("app.media.ic_public_cancel"))
+                      Image($r('app.media.ic_public_cancel'))
                     }
                     .borderColor('#F2F2F2')
                     .borderRadius(10)
@@ -92,9 +99,11 @@ struct LoadingProgressSample {
                     .margin({ right: 2 })
                     .padding(1)
                     .onClick(() => {
-                      this.arr_color.splice(index, 1)
+                      this.arr_color.addData(index, 1)
                     })
                   }
+                  .justifyContent(FlexAlign.End)
+                  .alignItems(VerticalAlign.Center)
                   .backgroundColor(item)
                   .width(42)
                   .height(18)

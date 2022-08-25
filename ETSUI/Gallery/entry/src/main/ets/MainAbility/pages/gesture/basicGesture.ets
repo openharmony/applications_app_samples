@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -30,15 +30,11 @@ struct BasicGestureExample {
   @State gestureValue: string = ''
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '基础手势' })
       Column() {
         Text('点击两下&长按&平移&双指捏合&旋转手势').fontSize(15)
-        Flex({
-          direction: FlexDirection.Column,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.SpaceBetween
-        }) {
+        Column() {
           Image('/common/test1.jpg')
         }
         .margin(20)
@@ -113,12 +109,13 @@ struct BasicGestureExample {
       .margin({ bottom: 24 })
 
       Column() {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row() {
           Text('angle')
             .fontSize('16fp')
             .opacity(0.5)
             .fontColor('#182431')
             .fontWeight(FontWeight.Medium)
+          Blank()
           Column() {
             Text(`${this.angle}`)
               .fontSize('16fp')
@@ -197,6 +194,7 @@ struct BasicGestureExample {
       }
     }
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F1F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

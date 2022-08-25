@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct PathAnimationSample {
-  @State path: string= 'M0,0 ' +
+  @State path: string = 'M0,0 ' +
   'C20,100.143 40.90861,80 60,18 ' +
   'C80.09139,119 100,-62.90861 120,66 ' +
   'C140,110.86 160,24.54 180,-90.6 ' +
@@ -30,10 +30,10 @@ struct PathAnimationSample {
   'C560,-100 580,10.13 600,108.15 ' +
   'C620,-79 640,-44.23 660,-112.43 ' +
   'C680,-48.51 700,-64.23 720,-108.43 '
-  @State toggle: boolean= true
+  @State toggle: boolean = true
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: '路径动画' })
       Column() {
         Column() {
@@ -65,14 +65,16 @@ struct PathAnimationSample {
         .backgroundColor('#007DFF')
         .fontSize('24fp')
         .fontWeight(FontWeight.Medium)
-        .fontColor("#FFFFFF")
+        .fontColor('#FFFFFF')
         .margin({ top: 120 })
         .onClick((event: ClickEvent) => {
           animateTo({ duration: 6000, curve: Curve.Linear }, () => {
             this.toggle = !this.toggle;
           })
         })
-    }.height('100%')
+    }
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

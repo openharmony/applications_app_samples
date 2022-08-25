@@ -52,6 +52,7 @@ struct Index {
   @State imageArrays: Array<Resource> = [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')]
   private dialogController: CustomDialogController = null
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
+  private context
   onLand = (mediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
@@ -141,7 +142,7 @@ struct Index {
       })
     }, 3000)
 
-    KvStoreModel.setOnMessageReceivedListener(REMOTE_ABILITY_STARTED, () => {
+    KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
       Logger.info(TAG, 'OnMessageReceived, terminateSelf')
       clearTimeout(timerId)
       globalThis.abilityConText.terminateSelf((error) => {
@@ -207,8 +208,8 @@ struct Index {
     let minStr: string
     let secStr: string
     let min = (seconds - sec) / SIXTY
-    sec < 10 ? secStr = '0' + sec : '' + sec
-    min < 10 ? minStr = '0' + min : '' + min
+      sec < 10 ? secStr = '0' + sec : '' + sec
+      min < 10 ? minStr = '0' + min : '' + min
     return minStr + ':' + secStr
   }
 
@@ -226,7 +227,6 @@ struct Index {
     this.totalMs = PlayerModel.getDuration()
     this.totalTimeText = this.getShownTimer(this.totalMs)
     this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs())
-    this.currentProgress = Math.floor(PlayerModel.getCurrentMs() / this.totalMs * ONE_HUNDRED)
 
     Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs=
             ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
@@ -298,7 +298,7 @@ struct Index {
     Logger.info(TAG, 'restoreFromWant')
     let status = globalThis.abilityWant.parameters
     if (status !== null && status.uri !== null) {
-      KvStoreModel.broadcastMessage(REMOTE_ABILITY_STARTED)
+      KvStoreModel.broadcastMessage(this.context, REMOTE_ABILITY_STARTED)
       Logger.info(TAG, 'restorePlayingStatus')
       PlayerModel.restorePlayingStatus(status, (index) => {
         Logger.info(TAG, `restorePlayingStatus finished, index= ${index}`)
@@ -324,6 +324,7 @@ struct Index {
     globalThis.abilityConText.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], requestCode, function (result) {
       Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result= ${result}`)
     })
+    this.context = getContext(this)
     display.getDefaultDisplay().then((dis) => {
       Logger.info(TAG, `getDefaultDisplay dis= ${JSON.stringify(dis)}`)
       let proportion = DESIGN_WIDTH / dis.width
@@ -406,11 +407,7 @@ struct Index {
           }
         })
 
-      Flex({
-        direction: FlexDirection.Row,
-        alignContent: FlexAlign.SpaceAround,
-        justifyContent: FlexAlign.SpaceEvenly
-      }) {
+      Row() {
         ForEach(this.imageArrays, (item, index) => {
           Column() {
             Image(item)
@@ -440,9 +437,11 @@ struct Index {
           .alignItems(HorizontalAlign.Center)
           .justifyContent(FlexAlign.Center)
         })
+
       }
       .width('100%')
       .margin({ top: '10%' })
+      .justifyContent(FlexAlign.SpaceEvenly)
     }
     .width('100%')
     .height('100%')

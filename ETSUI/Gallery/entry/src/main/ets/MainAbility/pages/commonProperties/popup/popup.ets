@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
+import { MyDataSource } from '../../../model/constant'
 
 @Entry
 @Component
@@ -22,19 +23,25 @@ struct PopupSample {
   @State showPopup: boolean = false
   @State placementOnTop: boolean = false
   @State customPopup: boolean = false
-  @State customList: object[] = [{ image: $r('app.media.favor'), desc: '选项一' }, {
-    image: $r('app.media.good'),
-    desc: '选项二'
-  }, { image: $r('app.media.love'), desc: '选项三' }]
+  @State customList: MyDataSource = new MyDataSource()
   @State placement: string = 'Bottom'
   @State maskColor: string = 'rgba(51,0,0,0)'
   @State popupColor: string = 'rgba(255,255,255,1)'
   @State enableArrow: boolean = false
   @State autoCancel: boolean = false
 
+  aboutToAppear() {
+    this.customList.replace(
+      [
+        { image: $r('app.media.favor'), desc: '选项一' }, { image: $r('app.media.good'), desc: '选项二' },
+        { image: $r('app.media.love'), desc: '选项三' }
+      ]
+    )
+  }
+
   @Builder popupBuilder() {
     Column() {
-      ForEach(this.customList, (item) => {
+      LazyForEach(this.customList, (item) => {
         Row() {
           Column() {
             Image(item.image).width(20).height(20)
@@ -52,7 +59,7 @@ struct PopupSample {
   build() {
     Column() {
       NavigationBar({ title: 'Popup控制' })
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Row() {
         Text('Clike Me')
           .width('20%')
           .height('20%')
@@ -110,181 +117,209 @@ struct PopupSample {
           })
       }
       .width('100%')
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .backgroundColor('#FFB6C1')
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
 
-      Scroll() {
-        Column() {
-          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Text('message')
-              .fontSize(18)
-            TextInput({ placeholder: this.textMessage })
-              .width('30%')
-              .onChange((value: string) => {
-                this.textMessage = value
-              })
-              .flexGrow(1)
-              .onSubmit((enterKey) => {
-                this.showPopup = true
-              })
-              .margin({ left: 10 })
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
+      Column() {
+        Row() {
+          Text('message')
+            .fontSize(18)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('placementOnTop')
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
-            Toggle({ type: ToggleType.Switch, isOn: this.placementOnTop })
-              .selectedColor('#007DFF')
-              .switchPointColor(0xe5ffffff)
-              .onChange((isOn: boolean) => {
-                this.placementOnTop = !this.placementOnTop
-                this.showPopup = true
-                console.log(this.placementOnTop.toString())
-              })
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ top: 8 })
+          Blank()
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('placement')
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
-
-            Text(`${this.placement}`)
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .width('50%')
-              .textAlign(TextAlign.End)
-              .bindMenu([
-                {
-                  value: 'Left',
-                  action: () => {
-                    this.placement = "Left"
-                    this.customPopup = true
-                  }
-                },
-                {
-                  value: 'Right',
-                  action: () => {
-                    this.placement = 'Right'
-                    this.customPopup = true
-                  }
-                },
-                {
-                  value: 'Top',
-                  action: () => {
-                    this.placement = 'Top'
-                    this.customPopup = true
-                  }
-                },
-                {
-                  value: 'Bottom',
-                  action: () => {
-                    this.placement = 'Bottom'
-                    this.customPopup = true
-                  }
-                },
-              ])
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ top: 8 })
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('maskColor')
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
-            Column() {
-              GetColor({ colorVal: $maskColor })
-            }.width(48)
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ top: 8 })
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('popupColor')
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
-            Column() {
-              GetColor({ colorVal: $popupColor })
-            }.width(48)
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ top: 8 })
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('enableArrow')
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
-            Toggle({ type: ToggleType.Switch, isOn: this.enableArrow })
-              .selectedColor('#007DFF')
-              .switchPointColor(0xe5ffffff)
-              .onChange((isOn: boolean) => {
-                this.enableArrow = !this.enableArrow
-                this.customPopup = true
-              }).width(48)
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ top: 8 })
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('autoCancel')
-              .fontColor('#182431')
-              .fontSize('16fp')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
-            Toggle({ type: ToggleType.Switch, isOn: this.autoCancel })
-              .selectedColor('#007DFF')
-              .switchPointColor(0xe5ffffff)
-              .onChange((isOn: boolean) => {
-                this.autoCancel = !this.autoCancel
-                this.customPopup = true
-              }).width(48)
-          }
-          .width('100%')
-          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .borderRadius(24)
-          .backgroundColor('#FFFFFF')
-          .margin({ top: 8, bottom: 8 })
+          TextInput({ placeholder: this.textMessage })
+            .width('30%')
+            .onChange((value: string) => {
+              this.textMessage = value
+            })
+            .flexGrow(1)
+            .onSubmit((enterKey) => {
+              this.showPopup = true
+            })
+            .margin({ left: 10 })
         }
+        .alignItems(VerticalAlign.Center)
+        .justifyContent(FlexAlign.Start)
+        .width('100%')
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Text('placementOnTop')
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.5)
+
+          Blank()
+
+          Toggle({ type: ToggleType.Switch, isOn: this.placementOnTop })
+            .selectedColor('#007DFF')
+            .switchPointColor(0xe5ffffff)
+            .onChange((isOn: boolean) => {
+              this.placementOnTop = !this.placementOnTop
+              this.showPopup = true
+              console.log(this.placementOnTop.toString())
+            })
+        }
+        .width('100%')
+        .alignItems(VerticalAlign.Center)
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+        .margin({ top: 8 })
+
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Text('placement')
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.5)
+
+          Blank()
+
+          Text(`${this.placement}`)
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .width('50%')
+            .textAlign(TextAlign.End)
+            .bindMenu([
+              {
+                value: 'Left',
+                action: () => {
+                  this.placement = 'Left'
+                  this.customPopup = true
+                }
+              },
+              {
+                value: 'Right',
+                action: () => {
+                  this.placement = 'Right'
+                  this.customPopup = true
+                }
+              },
+              {
+                value: 'Top',
+                action: () => {
+                  this.placement = 'Top'
+                  this.customPopup = true
+                }
+              },
+              {
+                value: 'Bottom',
+                action: () => {
+                  this.placement = 'Bottom'
+                  this.customPopup = true
+                }
+              },
+            ])
+        }
+        .width('100%')
+        .alignItems(VerticalAlign.Center)
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+        .margin({ top: 8 })
+
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Text('maskColor')
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.5)
+
+          Blank()
+
+          Column() {
+            GetColor({ colorVal: $maskColor })
+          }.width(48)
+        }
+        .alignItems(VerticalAlign.Center)
+        .width('100%')
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+        .margin({ top: 8 })
+
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Text('popupColor')
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.5)
+
+          Blank()
+
+          Column() {
+            GetColor({ colorVal: $popupColor })
+          }.width(48)
+        }
+        .width('100%')
+        .alignItems(VerticalAlign.Center)
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+        .margin({ top: 8 })
+
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Text('enableArrow')
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.5)
+
+          Blank()
+
+          Toggle({ type: ToggleType.Switch, isOn: this.enableArrow })
+            .selectedColor('#007DFF')
+            .switchPointColor(0xe5ffffff)
+            .onChange((isOn: boolean) => {
+              this.enableArrow = !this.enableArrow
+              this.customPopup = true
+            }).width(48)
+        }
+        .width('100%')
+        .alignItems(VerticalAlign.Center)
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+        .margin({ top: 8 })
+
+        Row({ space: FlexAlign.SpaceBetween }) {
+          Text('autoCancel')
+            .fontColor('#182431')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.5)
+
+          Blank()
+
+          Toggle({ type: ToggleType.Switch, isOn: this.autoCancel })
+            .selectedColor('#007DFF')
+            .switchPointColor(0xe5ffffff)
+            .onChange((isOn: boolean) => {
+              this.autoCancel = !this.autoCancel
+              this.customPopup = true
+            }).width(48)
+        }
+        .alignItems(VerticalAlign.Center)
+        .width('100%')
+        .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+        .borderRadius(24)
+        .backgroundColor('#FFFFFF')
+        .margin({ top: 8, bottom: 8 })
       }
-      .margin({ top: 24 })
-      .height('56%')
+      .height('55%')
+      .margin({ top: 10 })
     }
     .height('100%')
     .backgroundColor('#F1F3F5')
-    .padding({ left: '3%', right: '3%', bottom: 15 })
+    .padding({ left: '3%', right: '3%' })
   }
 
   pageTransition() {

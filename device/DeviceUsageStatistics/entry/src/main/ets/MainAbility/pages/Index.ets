@@ -21,7 +21,7 @@ import { UsageList } from '../common/UsageList'
 @Component
 struct Index {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.MainAbility_label'))
         .width('100%')
         .height(50)

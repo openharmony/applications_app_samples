@@ -2,26 +2,22 @@
 
 ### 简介
 
- 此Demo展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。实现效果如下：
+此Demo展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。实现效果如下：
 
 ![main](screenshots/devices/main.png)
 
 ### 相关概念
 
--  媒体库管理：媒体库管理提供接口对公共媒体资源文件进行管理，包括文件的增、删、改、查等。
--  相机：相机模块支持相机相关基础功能的开发，主要包括预览、拍照、录像等。。
+媒体库管理：媒体库管理提供接口对公共媒体资源文件进行管理，包括文件的增、删、改、查等。
+相机：相机模块支持相机相关基础功能的开发，主要包括预览、拍照、录像等。。
 
 ### 相关权限
-
-```
-本示例需要在module.json5中配置如下权限:
 
 相机权限：ohos.permission.CAMERA
 麦克风权限：ohos.permission.MICROPHONE
 访问媒体文件地理位置信息权限：ohos.permission.MEDIA_LOCATION
 读取公共媒体文件权限：ohos.permission.READ_MEDIA
 读写公共媒体文件权限：ohos.permission.WRITE_MEDIA
-```
 
 ### 使用说明
 
@@ -37,14 +33,16 @@
 
 6.点击相册进入文件列表界面，展示相册内的文件，列表中有**删除**和**重命名**按钮，点击可以删除文件和重命名文件。
 
-7.安装视频播放demo后，点击视频文件可以调起视频博凡该界面播放视频。
+7.安装视频播放VideoPlayer应用后，点击视频文件可以调起视频播放界面播放该视频。
 
 ### 约束与限制
 
-1.rk3568底层录像功能有问题，暂不支持录像功能。
+1.rk3568底层录像功能有问题，暂不支持录像功能，当前拍照功能仅支持部分机型。
 
 2.本示例仅支持标准系统上运行。
 
 3.本示例为Stage模型，从API version 9开始支持。
 
-4.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。。
+4.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+5.本示例需要使用@ohos.multimedia.mediaLibrary系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。

@@ -14,6 +14,7 @@
  */
 
 import { Goods } from '../common/goods'
+import {MyDataSource} from '../util/DataSource'
 import { Good, deleteGood, clearGoodShop, GoodInit, getShopCartFromStorage, getShopCart } from '../model/product'
 
 @CustomDialog
@@ -26,6 +27,10 @@ struct CartDialog {
   private action: (cartNum: number) => void
   onCancel = () => {
     this.controller.close()
+  }
+
+  aboutToAppear() {
+    this.getPriceCount()
   }
 
   getPriceCount() {
@@ -199,7 +204,7 @@ struct Shopping {
       .backgroundColor('#0D9FFB')
 
       Grid() {
-        ForEach(this.goodsList, item => {
+        LazyForEach(new MyDataSource(this.goodsList), item => {
           GridItem() {
             Goods({ good: item, cartNum: $cartNum })
           }

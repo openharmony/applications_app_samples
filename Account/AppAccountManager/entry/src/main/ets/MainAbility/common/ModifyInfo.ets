@@ -20,17 +20,63 @@ import { AccountModel } from '../model/AccountModel'
 
 const TAG: string = '[ModifyInfo]'
 
-@Component
-export struct ModifyInfo {
-  @State passWord: string = ''
-  @State emailInfo: string = ''
-  @State signature: string = ''
-  @State confirmPassword: string = ''
-  private username: string
-  private bundleName: string
-  private storage: AccountData = AccountData.getInstance()
-  private accountModel: AccountModel = new AccountModel()
-  @State dataSet: Array<{
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount() {
+    return 0
+  }
+
+  public getData(index: number) {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload() {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Array<{
     text: Resource,
     inputType: InputType,
     length: number,
@@ -67,6 +113,51 @@ export struct ModifyInfo {
     }
   ]
 
+  public totalCount() {
+    return this.dataArray.length
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number) {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(index: number) {
+    this.dataArray.push()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  public replaceData(result: any[]) {
+    this.dataArray = result
+  }
+}
+
+@Component
+export struct ModifyInfo {
+  @State passWord: string = ''
+  @State emailInfo: string = ''
+  @State signature: string = ''
+  @State confirmPassword: string = ''
+  @Prop username: string
+  @Prop bundleName: string
+  @State dataSet: MyDataSource = new MyDataSource()
+  private storage: AccountData = AccountData.getInstance()
+  private accountModel: AccountModel = new AccountModel()
+
+  async getInfo(value: string, name: string, credentialType: string) {
+    try {
+      value = await this.accountModel.getAccountCredential(name, credentialType)
+      Logger.info(TAG, `getAccountCredential email is ${value}`)
+    } catch (err) {
+      Logger.info(TAG, `getAccountCredential failed err is ${JSON.stringify(err)}`)
+    }
+    return value
+  }
+
   build() {
     Column() {
       Row() {
@@ -97,7 +188,7 @@ export struct ModifyInfo {
       }
       .margin(5)
 
-      ForEach(this.dataSet, item => {
+      LazyForEach(this.dataSet, item => {
         Row() {
           Text(item.text)
             .margin(10)
@@ -125,17 +216,9 @@ export struct ModifyInfo {
                 switch (item.event) {
                   case 0:
                     this.emailInfo = value
-                    Logger.info(TAG, `setAccountCredential enter ${this.emailInfo}`)
-                    if (this.emailInfo !== '') {
-                      await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `email_${this.bundleName}`, this.emailInfo)
-                    }
                     break
                   case 1:
                     this.signature = value
-                    Logger.info(TAG, `setAccountExtraInfo enter ${this.signature}`)
-                    if (this.signature !== '') {
-                      await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
-                    }
                     break
                   case 2:
                     this.passWord = value
@@ -159,10 +242,14 @@ export struct ModifyInfo {
         .fontColor(Color.White)
         .type(ButtonType.Capsule)
         .onClick(async () => {
+          if (this.emailInfo !== '') {
+            await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `email_${this.bundleName}`, this.emailInfo)
+          }
+          if (this.signature !== '') {
+            await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
+          }
           let res = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
           let userPassWord = await this.storage.getStorageValue(this.username, this.bundleName)
-          Logger.info(TAG, `This userPassWord is ${userPassWord}`)
-          Logger.info(TAG, `This passWord is ${this.passWord}`)
           if (this.emailInfo !== '' && !res.test(this.emailInfo)) {
             AlertDialog.show(
               {
@@ -221,6 +308,8 @@ export struct ModifyInfo {
               })
           } else if (this.passWord !== '' && this.confirmPassword !== '') {
             await this.storage.putStorageValue(this.username, this.passWord, this.bundleName)
+            let email = await this.getInfo('null', `${this.username}_${this.bundleName}`, `email_${this.bundleName}`)
+            let signature = await this.getInfo('null', `${this.username}_${this.bundleName}`, `signature_${this.bundleName}`)
             AlertDialog.show(
               {
                 message: $r('app.string.modify_info'),
@@ -230,6 +319,8 @@ export struct ModifyInfo {
                     router.replace({
                       url: 'pages/Account',
                       params: {
+                        email: email,
+                        signature: signature,
                         bundleName: this.bundleName,
                         username: this.username
                       }
@@ -242,6 +333,8 @@ export struct ModifyInfo {
               })
           }
           else {
+            let email = await this.getInfo('null', `${this.username}_${this.bundleName}`, `email_${this.bundleName}`)
+            let signature = await this.getInfo('null', `${this.username}_${this.bundleName}`, `signature_${this.bundleName}`)
             AlertDialog.show(
               {
                 message: $r('app.string.modify_info'),
@@ -251,6 +344,8 @@ export struct ModifyInfo {
                     router.replace({
                       url: 'pages/Account',
                       params: {
+                        email: email,
+                        signature: signature,
                         bundleName: this.bundleName,
                         username: this.username
                       }

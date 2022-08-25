@@ -22,7 +22,7 @@ struct Index {
 
   build() {
     Scroll() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Column() {
         Text($r('app.string.rationalNumber'))
           .width('100%')
           .fontSize(32)
@@ -41,13 +41,16 @@ struct Index {
 
         Text(this.textTitle)
           .border({ width: 1, color: '#000000', radius: 10, style: BorderStyle.Solid })
-          .width('80%').height('100')
+          .width('80%')
+          .height('100')
           .fontSize(30)
           .margin({ top: 20 })
           .textAlign(TextAlign.Center)
 
         ButtonComponent({ textTitle: $textTitle })
       }
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
     }
   }
 }

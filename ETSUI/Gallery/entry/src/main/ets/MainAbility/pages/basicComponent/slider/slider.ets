@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
@@ -32,12 +32,12 @@ struct SliderSample {
   @State sliderstyle: string = 'Outset'
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       NavigationBar({ title: 'Slider' })
 
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Text('slider')
               .fontSize('24fp')
               .fontWeight(FontWeight.Medium)
@@ -65,6 +65,8 @@ struct SliderSample {
             }
             .width('100%')
           }
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
           .width('100%')
           .height('100%')
         }
@@ -76,8 +78,7 @@ struct SliderSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-
+          Row() {
             Text('blockColor')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -87,13 +88,15 @@ struct SliderSample {
               GetColor({ colorVal: $blockColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('trackColor')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -103,13 +106,15 @@ struct SliderSample {
               GetColor({ colorVal: $trackColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('selectColor')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -119,13 +124,15 @@ struct SliderSample {
               GetColor({ colorVal: $selectColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('slider step')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -156,13 +163,15 @@ struct SliderSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('slider showSteps')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -178,13 +187,15 @@ struct SliderSample {
                 this.setSliderShowSteps = !this.setSliderShowSteps
               })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('slider showTips')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -200,13 +211,15 @@ struct SliderSample {
                 this.setSliderShowTips = !this.setSliderShowTips
               })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('slider style')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -240,13 +253,15 @@ struct SliderSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('direction')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -277,6 +292,8 @@ struct SliderSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)

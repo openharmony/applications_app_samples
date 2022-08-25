@@ -24,9 +24,10 @@ struct ChatNewsPage {
 
   build() {
     Scroll(this.scroller) {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Column() {
+        Row() {
           Image($r('app.media.left'))
+            .key('leftBtn')
             .height(30)
             .width(30)
             .onClick(() => {
@@ -40,10 +41,11 @@ struct ChatNewsPage {
             .fontWeight(FontWeight.Bold)
             .fontSize(18)
         }
+        .justifyContent(FlexAlign.SpaceBetween)
         .width("100%")
         .padding({ top: 20, bottom: 20, left: 10, right: 10 })
 
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+        Row() {
           Column() {
             Image(`/resources/images/photo${((router.getParams().IMAGEID) % 50)}.jpg`)
               .height(60)
@@ -60,6 +62,8 @@ struct ChatNewsPage {
             .margin({ top: -6, left: 10 })
             .opacity(0.8)
         }
+        .width('100%')
+        .justifyContent(FlexAlign.Start)
         .backgroundColor("#ffffff")
         .padding({ top: 10, bottom: 10 })
 
@@ -97,6 +101,7 @@ struct ChatNewsPage {
       .backgroundColor("#f5f5f5")
       .width("100%")
     }
+    .width('100%')
   }
 
   pageTransition() {

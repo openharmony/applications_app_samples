@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "Contact"
+    },
+    {
+      "name": "description_mainability",
+      "value": "Read or write contacts"
+    },
+    {
+      "name": "save",
+      "value": "Save to: mobile phone"
+    },
+    {
+      "name": "search",
+      "value": "Searching for Contacts"
+    },
+    {
+      "name": "contacts",
+      "value": "contacts"
+    },
+    {
+      "name": "phone",
+      "value": "phone"
+    },
+    {
+      "name": "contact",
+      "value": "contact"
+    },
+    {
+      "name": "collection",
+      "value": "collection"
+    },
+    {
+      "name": "newContact",
+      "value": "new contact"
+    },
+    {
+      "name": "defaults",
+      "value": "default"
+    },
+    {
+      "name": "phone_ring",
+      "value": "phone ringing"
+    },
+    {
+      "name": "editor",
+      "value": "editor"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "name_card",
+      "value": "business card"
+    },
+    {
+      "name": "group",
+      "value": "group"
+    },
+    {
+      "name": "editor_contact",
+      "value": "editor contact"
+    },
+    {
+      "name": "add_contact",
+      "value": "add contact"
+    },
+    {
+      "name": "import_file",
+      "value": "import file"
+    },
+    {
+      "name": "export_file",
+      "value": "export file"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "warning",
+      "value": "warning"
+    },
+    {
+      "name": "delete_show",
+      "value": "You are deleting this contact. Please confirm whether to delete it"
+    },
+    {
+      "name": "not_fill",
+      "value": "not fill"
+    },
+    {
+      "name": "name",
+      "value": "name"
+    },
+    {
+      "name": "address",
+      "value": "address"
+    },
+    {
+      "name": "email",
+      "value": "email"
+    },
+    {
+      "name": "note",
+      "value": "note"
+    }
+  ]
+}

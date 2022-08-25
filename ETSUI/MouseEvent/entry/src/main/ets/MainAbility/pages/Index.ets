@@ -20,6 +20,73 @@ import { initialize } from '../model/Initialize'
 import { GameOverDialog } from '../common/GameOverDialog';
 import { WinningGameDialog } from '../common/WinningGameDialog';
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = '[Index]'
 const PRESS = 1
 const LEFT = 1
@@ -109,7 +176,7 @@ struct Index {
   build() {
     Column() {
       TitleBar()
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Column() {
         Row() {
           Text($r('app.string.surplus'))
             .height('10%')
@@ -121,9 +188,9 @@ struct Index {
             .textAlign(TextAlign.Start)
         }
 
-        ForEach(this.board, (item, row) => {
+        LazyForEach(new MyDataSource(this.board), (item, row) => {
           Row() {
-            ForEach(this.board[row], (item, col) => {
+            LazyForEach(new MyDataSource(this.board[row]), (item, col) => {
               Text(this.signs[row][col])
                 .width(70)
                 .height(70)
@@ -210,6 +277,8 @@ struct Index {
           }
         });
       }
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
       .width('100%')
       .height('90%')
     }

@@ -45,11 +45,7 @@ struct Index {
         List() {
           ForEach(newsList, (item) => {
             ListItem() {
-              Flex({
-                direction: FlexDirection.Column,
-                alignContent: FlexAlign.Center,
-                justifyContent: FlexAlign.Center
-              }) {
+              Column(){
                 Text(item.title)
                   .width('100%')
                   .fontSize(22)
@@ -62,6 +58,7 @@ struct Index {
               .height('10%')
               .constraintSize({ minHeight: 80 })
               .backgroundColor(Color.White)
+              .justifyContent(FlexAlign.Center)
             }
             .onClick(() => {
               if (!this.isLand) {

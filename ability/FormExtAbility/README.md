@@ -10,10 +10,10 @@ This sample shows how to create and use the widget provider in the stage model.
 
 2. The following figure shows the widget style. When the widget is updated, the temperature and time on the widget change.
 
-![eTSFormExample](screenshots/eTSFormExample2.png)
+![eTSFormExample](screenshots/eTSFormExample.png)
 
 ### Constraints
 
 1. This sample can only be run on standard-system devices.
-2. This sample demonstrates the stage model, which supports only API version 9.
+2. This sample is based on the stage model, which is supported from API version 9.
 3. The IDE version used in this sample must be 3.0.0.901 or later.

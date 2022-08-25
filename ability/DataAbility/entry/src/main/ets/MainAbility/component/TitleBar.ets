@@ -25,6 +25,7 @@ export struct TitleBar {
         .layoutWeight(1)
       Button() {
         Text($r('app.string.batch_insert'))
+          .key('batchInsert')
           .fontColor(Color.White)
           .fontSize(22)
           .textAlign(TextAlign.End)

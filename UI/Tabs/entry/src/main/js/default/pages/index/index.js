@@ -14,26 +14,35 @@
  */
 
 export default {
-    data: {
-        chat: ["/common/images/ic_public_community_messages_filled.png"],
-        contacts: ["/common/images/ic_public_contacts.png"],
-        dynamic: ["/common/images/ic_gallery_discover.png"]
-    },
-    change: function(e) {
-        if (e.index == 0) {
-            this.chat = "/common/images/ic_public_community_messages_filled.png"
-            this.contacts = "/common/images/ic_public_contacts.png"
-            this.dynamic = "/common/images/ic_gallery_discover.png"
-        }
-        if (e.index == 1) {
-            this.chat = "/common/images/ic_public_community_messages.png"
-            this.contacts = "/common/images/ic_public_contacts_filled.png"
-            this.dynamic = "/common/images/ic_gallery_discover.png"
-        }
-        if (e.index == 2) {
-            this.chat = "/common/images/ic_public_community_messages.png"
-            this.contacts = "/common/images/ic_public_contacts.png"
-            this.dynamic = "/common/images/ic_discover_10.png"
-        }
+  data: {
+    chat: ['/common/images/ic_public_community_messages_filled.png'],
+    contacts: ['/common/images/ic_public_contacts.png'],
+    dynamic: ['/common/images/ic_gallery_discover.png'],
+    chatList: [],
+    contactList: [],
+    dynamicList: []
+  },
+  onInit() {
+    this.chatList = this.$t('strings.chat_list');
+    this.contactList = this.$t('strings.contact_list');
+    this.dynamicList = this.$t('strings.dynamic_list');
+  },
+
+  change: function (e) {
+    if (e.index === 0) {
+      this.chat = '/common/images/ic_public_community_messages_filled.png';
+      this.contacts = '/common/images/ic_public_contacts.png';
+      this.dynamic = '/common/images/ic_gallery_discover.png';
     }
+    if (e.index === 1) {
+      this.chat = '/common/images/ic_public_community_messages.png';
+      this.contacts = '/common/images/ic_public_contacts_filled.png';
+      this.dynamic = '/common/images/ic_gallery_discover.png';
+    }
+    if (e.index === 2) {
+      this.chat = '/common/images/ic_public_community_messages.png';
+      this.contacts = '/common/images/ic_public_contacts.png';
+      this.dynamic = '/common/images/ic_discover_10.png';
+    }
+  }
 }

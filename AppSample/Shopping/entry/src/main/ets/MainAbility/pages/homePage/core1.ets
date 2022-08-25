@@ -16,33 +16,69 @@
 import { CoreDataModel } from '../../model/homeModel'
 import { coreData } from '../../data/homeData'
 
+class CoreNum1 implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 10
+  listeners: DataChangeListener[] = []
+}
+
 @Component
 export struct Core1 {
   @Prop ratio: number
-  @State cols: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State rows: number[] = [0, 1]
+  coreNum: CoreNum1 = new CoreNum1()
   @State coreData: Array<CoreDataModel> = coreData
 
   build() {
     Column() {
       List() {
-        ForEach(this.cols, item1 => {
+        LazyForEach(this.coreNum, item1 => {
           ListItem() {
             Grid() {
-              ForEach(this.rows, item2 => {
-                GridItem() {
-                  Column() {
-                    Image(`${this.coreData[item1 * 2 + item2].uri}`)
-                      .width(40 * this.ratio)
-                      .aspectRatio(1)
-                      .objectFit(ImageFit.Contain)
-                    Text(`${this.coreData[item1 * 2 + item2].title}`)
-                      .fontSize(15 * this.ratio)
-                      .margin({ top: 5 })
-                  }
+              GridItem() {
+                Column() {
+                  Image(`${this.coreData[item1 * 2].uri}`)
+                    .width(40 * this.ratio)
+                    .aspectRatio(1)
+                    .objectFit(ImageFit.Contain)
+                  Text(`${this.coreData[item1 * 2 + 1].title}`)
+                    .fontSize(15 * this.ratio)
+                    .margin({ top: 5 })
                 }
-                .width('100%')
-              }, item => item.toString())
+              }
+              .width('100%')
+
+              GridItem() {
+                Column() {
+                  Image(`${this.coreData[item1 * 2].uri}`)
+                    .width(40 * this.ratio)
+                    .aspectRatio(1)
+                    .objectFit(ImageFit.Contain)
+                  Text(`${this.coreData[item1 * 2 + 1].title}`)
+                    .fontSize(15 * this.ratio)
+                    .margin({ top: 5 })
+                }
+              }
+              .width('100%')
             }
             .rowsTemplate('1fr 1fr')
             .columnsTemplate('1fr')
@@ -51,6 +87,7 @@ export struct Core1 {
         }, item => item.toString())
       }
       .listDirection(Axis.Horizontal)
+      .width('100%')
       .height(160 * this.ratio)
     }
   }

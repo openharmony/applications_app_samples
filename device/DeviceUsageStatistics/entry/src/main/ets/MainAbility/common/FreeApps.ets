@@ -16,6 +16,7 @@
 import Logger from '../model/Logger'
 import bundleState from '@ohos.bundleState'
 import { AppInfo, appInit } from '../model/AppInfo'
+import {MyDataSource} from '../utils/DataSource'
 import { getAppName, getAppIcon } from '../utils/Util'
 
 const TAG = 'FreeApps'

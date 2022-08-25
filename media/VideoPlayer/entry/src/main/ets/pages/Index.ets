@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
 import MediaUtils from '../model/MediaUtils'
+import MediaDataSource from '../common/BasicDataSource'
 import TitleBar from '../common/TitleBar'
 import VideoItem from '../common/VideoItem'
 
@@ -25,7 +27,8 @@ const TAG: string = 'Index'
 @Component
 struct Index {
   private scroller: Scroller = new Scroller()
-  @State mediaList: Array<mediaLibrary.FileAsset> = []
+//  @State mediaList: Array<mediaLibrary.FileAsset> = []
+  private mediaDataSource:MediaDataSource = new MediaDataSource([])
 
   async aboutToAppear() {
     router.clear()
@@ -35,11 +38,12 @@ struct Index {
   }
 
   async getData() {
-    this.mediaList = []
+    this.mediaDataSource['dataArray'] = []
     let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
     fileAsset.then(fileList => {
       Logger.info(TAG, 'getFileList callback')
-      this.mediaList = fileList
+      this.mediaDataSource['dataArray'] = fileList
+      this.mediaDataSource.notifyDataReload()
     }).catch(err => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
@@ -54,7 +58,7 @@ struct Index {
         .textAlign(TextAlign.Start)
         .padding(10)
       Grid(this.scroller) {
-        ForEach(this.mediaList, item => {
+        LazyForEach(this.mediaDataSource, item => {
           GridItem() {
             VideoItem({ media: item })
           }

@@ -6,13 +6,11 @@
 
 ![](screenshots/devices/home.png)
 
-# 相关概念
+### 相关概念
 
-提供具有网页显示能力的Web组件。
+Web：提供具有网页显示能力的Web组件。
 
 ### 相关权限
-
-本示例需要在module.json5中配置如下权限:
 
 网络使用权限：ohos.permission.INTERNET
 
@@ -30,4 +28,4 @@
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

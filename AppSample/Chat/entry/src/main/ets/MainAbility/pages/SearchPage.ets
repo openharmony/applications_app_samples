@@ -18,13 +18,12 @@ import router from '@ohos.router';
 @Component
 struct SearchPage {
   @State changeValue: string = ''
-  private con = ["社区", "文章", "公众号", "小程序", "音乐", "表情", "服务"]
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+    Column() {
       Row() {
         Stack({ alignContent: Alignment.Center }) {
-          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
+          Row() {
             Image($r('app.media.search'))
               .width(20)
               .height(20)
@@ -42,6 +41,7 @@ struct SearchPage {
         .borderRadius(10)
 
         Text("取消")
+          .key('cancelSearchBtn')
           .fontSize(16)
           .fontColor("#0066cc")
           .margin({ left: 10 })
@@ -51,7 +51,7 @@ struct SearchPage {
       }
       .margin({ top: 30 })
 
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
+      Row() {
         Text("搜索指定内容")
           .fontSize(16)
       }
@@ -59,22 +59,56 @@ struct SearchPage {
       .padding(30)
       .height(86)
 
-      Flex({
-        direction: FlexDirection.Row,
-        wrap: FlexWrap.Wrap,
-        alignItems: ItemAlign.Center,
-        justifyContent: FlexAlign.SpaceBetween
-      }) {
-        ForEach(this.con, (item) => {
-          Text(item)
-            .fontColor("#0066cc")
-            .width("33%")
-            .fontSize(20)
-            .padding(20)
-        }, (msg, index) => index.toString())
+      Row() {
+        Text("社区")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
+        Text("文章")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
+        Text("表情")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
       }
       .margin({ left: "7%" })
-    }.padding(10).backgroundColor("#f5f5f5")
+      .justifyContent(FlexAlign.SpaceBetween)
+
+      Row() {
+        Text("小程序")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
+        Text("音乐")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
+        Text("公众号")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
+      }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .margin({ left: "7%" })
+
+      Row() {
+        Text("服务")
+          .fontColor("#0066cc")
+          .width("33%")
+          .fontSize(20)
+          .padding(20)
+      }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .margin({ left: "7%" })
+    }.padding(10).backgroundColor("#f5f5f5").height('100%')
   }
 
   pageTransition() {

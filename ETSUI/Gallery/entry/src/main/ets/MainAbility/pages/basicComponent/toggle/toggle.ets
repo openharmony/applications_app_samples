@@ -13,24 +13,24 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct ToggleSample {
   @State toggleType: ToggleType = ToggleType.Switch;
-  @State toggleString: string = "Switch";
+  @State toggleString: string = 'Switch';
   @State isOn: boolean = false;
   @State selectedColor: Color = Color.Orange;
   @State switchPointColor: Color = Color.Yellow;
   @State setProgressColor: Color = Color.Black;
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Toggle' })
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           if (this.toggleType === ToggleType.Switch) {
             Toggle({ type: this.toggleType, isOn: this.isOn })
               .size({ width: 90, height: 35 })
@@ -58,15 +58,16 @@ struct ToggleSample {
             })
           }
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
         .width('100%')
-        .height('100%')
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('toggleType')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -79,21 +80,21 @@ struct ToggleSample {
                     value: 'Switch',
                     action: () => {
                       this.toggleType = ToggleType.Switch
-                      this.toggleString = "Switch"
+                      this.toggleString = 'Switch'
                     }
                   },
                   {
                     value: 'Checkbox',
                     action: () => {
                       this.toggleType = ToggleType.Checkbox
-                      this.toggleString = "Checkbox"
+                      this.toggleString = 'Checkbox'
                     }
                   },
                   {
                     value: 'Button',
                     action: () => {
                       this.toggleType = ToggleType.Button
-                      this.toggleString = "Button"
+                      this.toggleString = 'Button'
                     }
                   },
                 ])
@@ -105,11 +106,14 @@ struct ToggleSample {
             }
 
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('isOn')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -123,12 +127,15 @@ struct ToggleSample {
                 this.isOn = !this.isOn
               })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('selectedColor')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -138,12 +145,15 @@ struct ToggleSample {
               GetColor({ colorVal: $selectedColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('switchPointColor')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -152,18 +162,20 @@ struct ToggleSample {
             Column() {
               GetColor({ colorVal: $switchPointColor })
             }.width(48)
-
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
         }
         .width('100%')
       }
-      .height('55%')
       .margin({ top: 24 })
     }
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '3%', right: '3%', bottom: 10 })
     .backgroundColor('#F1F3F5 ')
     .height('100%')

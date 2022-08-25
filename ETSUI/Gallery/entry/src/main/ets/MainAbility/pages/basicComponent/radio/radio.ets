@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
@@ -23,12 +23,11 @@ struct ProgressSample {
   @State setBackgroundColor: string = '#F1F3F5';
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-
+    Column(){
       NavigationBar({ title: 'Radio' })
 
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column(){
           Text('radio')
             .fontSize(24)
             .margin(10)
@@ -41,16 +40,18 @@ struct ProgressSample {
               console.log('Radio1 status is ' + value)
             })
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
         .width('100%')
         .height('100%')
       }
       .width('100%')
       .height('40%')
       .backgroundColor(this.setBackgroundColor)
-      //属性属性值
+      // 属性属性值
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row(){
             Text('progressChecked')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -65,6 +66,8 @@ struct ProgressSample {
                   this.setProgressChecked ? this.setProgressChecked = false : this.setProgressChecked = true
               })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(35)
           .padding({ left: 12, right: 12 })
@@ -72,7 +75,7 @@ struct ProgressSample {
           .backgroundColor('#FFF')
           .margin({ top: 8, bottom: 8,left:12,right:12 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row(){
             Text('backgroundColor')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -82,6 +85,8 @@ struct ProgressSample {
               GetColor({ colorVal: $setBackgroundColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(35)
           .padding({ left: 12, right: 12 })
@@ -95,6 +100,8 @@ struct ProgressSample {
       .height('60%')
     }
     .width('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .height('100%')
     .padding({ left: '2%', right: '2%' })
     .backgroundColor('#F1F3F5')

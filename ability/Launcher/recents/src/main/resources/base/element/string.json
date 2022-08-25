@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "message_no_mission",
+      "value": "No apps running recently"
+    },
+    {
+      "name": "clear_all_missions_message",
+      "value": "Cleaned to optimal condition"
+    }
+  ]
+}

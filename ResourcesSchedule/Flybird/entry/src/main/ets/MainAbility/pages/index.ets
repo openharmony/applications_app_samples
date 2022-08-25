@@ -83,12 +83,12 @@ struct Index {
         }
       ],
       wantAgent: {
-        pkgName: "com.example.flybird",
-        abilityName: "com.example.flybird.MainAbility"
+        pkgName: "com.samples.flybird",
+        abilityName: "com.samples.flybird.MainAbility"
       },
       maxScreenWantAgent: {
-        pkgName: "com.example.flybird",
-        abilityName: "com.example.flybird.MainAbility"
+        pkgName: "com.samples.flybird",
+        abilityName: "com.samples.flybird.MainAbility"
       },
       ringDuration: 10,
       snoozeTimes: 2,
@@ -125,12 +125,12 @@ struct Index {
       repeatMonths: [1],
       repeatDays: [1],
       wantAgent: {
-        pkgName: "com.example.flybird",
-        abilityName: "com.example.flybird.MainAbility"
+        pkgName: "com.samples.flybird",
+        abilityName: "com.samples.flybird.MainAbility"
       },
       maxScreenWantAgent: {
-        pkgName: "com.example.flybird",
-        abilityName: "com.example.flybird.MainAbility"
+        pkgName: "com.samples.flybird",
+        abilityName: "com.samples.flybird.MainAbility"
       },
       ringDuration: 5,
       snoozeTimes: 2,
@@ -162,25 +162,7 @@ struct Index {
     let msg = reply.readString()
     this.afterSortString = msg
   }
-
-  async restartMusic() {
-    logger.log(`${TAG} restartMusic begin`)
-    let mRemote = this.serviceModel.getRemoteObject()
-    if (mRemote === null) {
-      prompt.showToast({
-        message: 'please connect service'
-      })
-    }
-
-    let option: rpc.MessageOption = new rpc.MessageOption()
-    let data: rpc.MessageParcel = rpc.MessageParcel.create()
-    let reply: rpc.MessageParcel = rpc.MessageParcel.create()
-    data.writeString("restart_music")
-    await mRemote.sendRequest(1, data, reply, option)
-    let msg = reply.readString()
-    this.afterSortString = msg
-  }
-
+  
   async startGame() {
     let mRemote = this.serviceModel.getRemoteObject()
     if (mRemote === null) {
@@ -191,8 +173,6 @@ struct Index {
       if (!this.isStart) {
         this.startGameEx()
         this.isStart = true
-      } else {
-        this.restartMusic()
       }
       routePage()
     }

@@ -15,25 +15,92 @@
 import i18n from '@ohos.i18n'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: [string, string]): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
 
 const TAG: string = 'EditPreferred'
 
 @Entry
 @Component
 struct EditPreferred {
+  @State preferredLanguages: MyDataSource = new MyDataSource([])
   private localLanguage: string = router.getParams()['language']
   private deletePreferredLanguages: Array<number> = []
-  @State preferredLanguages: Array<[string, string]> = []
 
   aboutToAppear() {
-    this.preferredLanguages = []
+    var preferredLanguages = []
     let preferredLanguageIds = i18n.getPreferredLanguageList()
     Logger.info(TAG, `this.preferredLanguageIds = ${JSON.stringify(preferredLanguageIds)}`)
     preferredLanguageIds.forEach(id => {
-      this.preferredLanguages.push([
+      preferredLanguages.push([
         i18n.getDisplayLanguage(id, id),
         i18n.getDisplayLanguage(id, this.localLanguage)
       ])
+      this.preferredLanguages = new MyDataSource(preferredLanguages)
     })
   }
 
@@ -68,7 +135,7 @@ struct EditPreferred {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             this.deletePreferredLanguages.push(index)
-            this.preferredLanguages.splice(index, 1)
+            this.preferredLanguages.unregisterDataChangeListener(index)
           })
       }
     }
@@ -77,7 +144,7 @@ struct EditPreferred {
   @Builder
   PreferredView() {
     Column() {
-      ForEach(this.preferredLanguages, (item, index) => {
+      LazyForEach(this.preferredLanguages, (item, index) => {
         this.PreferredItem(item, index)
       }, item => item[1])
     }

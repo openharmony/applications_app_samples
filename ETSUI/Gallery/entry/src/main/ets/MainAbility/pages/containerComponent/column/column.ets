@@ -12,21 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct ColumnSample {
-  @State space: number= 25
-  @State alignItemsConfig: HorizontalAlign= HorizontalAlign.Start
-  @State circularArr: number[]= [1, 2, 3]
-  private showMessage: string= "VerticalAlign.Start"
-  private boxWidth: string= "20%"
-  private backGround: string []= ["#EE82EE", "#87CEFA", "#FF4500"]
-  private circularVal: number= 0;
+  @State space: number = 25
+  @State alignItemsConfig: HorizontalAlign = HorizontalAlign.Start
+  @State circularArr: number[] = [1, 2, 3]
+  private showMessage: string = 'VerticalAlign.Start'
+  private boxWidth: string = '20%'
+  private backGround: string [] = ['#EE82EE', '#87CEFA', '#FF4500']
+  private circularVal: number = 0;
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Column' })
       Scroll() {
         Column({ space: this.space }) {
@@ -67,22 +67,25 @@ struct ColumnSample {
           }.margin({ top: 3, bottom: 15 })
           .padding(5)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Button('+', { type: ButtonType.Capsule, stateEffect: true })
               .borderRadius(14)
               .width(44)
               .height(28)
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .fontSize('16fp')
               .onClick(() => {
                 this.circularVal = this.circularArr.length + 1;
                 this.circularArr[this.circularVal-1] = this.circularVal;
               })
+
+            Blank()
+
             Button('-', { type: ButtonType.Capsule, stateEffect: true })
               .borderRadius(14)
               .width(44)
               .height(28)
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .fontSize('16fp')
               .onClick(() => {
                 this.circularArr = this.circularArr.slice(0, this.circularArr.length - 1)
@@ -90,16 +93,20 @@ struct ColumnSample {
               })
           }
           .padding('3%')
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('alignIteam')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
 
             Column() {
               Text(`${this.showMessage.split('.')[1]}`)
@@ -113,40 +120,45 @@ struct ColumnSample {
               {
                 value: 'Start',
                 action: () => {
-                  this.boxWidth = "20%"
+                  this.boxWidth = '20%'
                   this.alignItemsConfig = HorizontalAlign.Start
-                  this.showMessage = "HorizontalAlign.Start"
+                  this.showMessage = 'HorizontalAlign.Start'
                 }
               },
               {
                 value: 'Center',
                 action: () => {
-                  this.boxWidth = "20%"
+                  this.boxWidth = '20%'
                   this.alignItemsConfig = HorizontalAlign.Center
-                  this.showMessage = "HorizontalAlign.Center"
+                  this.showMessage = 'HorizontalAlign.Center'
                 }
               },
               {
                 value: 'End',
                 action: () => {
-                  this.boxWidth = "20%"
+                  this.boxWidth = '20%'
                   this.alignItemsConfig = HorizontalAlign.End
-                  this.showMessage = "HorizontalAlign.End"
+                  this.showMessage = 'HorizontalAlign.End'
                 }
               },
             ])
           }
           .padding('3%')
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('spacing')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Counter() {
               Text(`${this.space}`).fontSize('10fp').fontColor('#000000').fontWeight(FontWeight.Regular)
             }.width(100)
@@ -162,6 +174,8 @@ struct ColumnSample {
           }
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
         }
@@ -172,6 +186,7 @@ struct ColumnSample {
       .height('45%')
       .margin({ top: 24 })
     }
+    .alignItems(HorizontalAlign.Center)
     .height('100%')
     .padding({ left: '3%', right: '3%', bottom: 10 })
     .backgroundColor('#F1F3F5')

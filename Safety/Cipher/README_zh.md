@@ -3,19 +3,18 @@
 ### 简介
 
 本示例展示了加解密算法，包括RSA加密算法与AES加密算法。效果图如下：
-![](screenshots/device/index.png)
-![](screenshots/device/encryption.png)
-![](screenshots/device/decrypt.png)
+
+![](screenshots/device/index.png) ![](screenshots/device/encryption.png) ![](screenshots/device/decrypt.png)
 
 ### 相关概念
 
-- [RSA加密算法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md)：RSA公开密钥密码体制是一种使用不同的加密密钥与解密密钥，由已知加密密钥推导出解密密钥在计算上是不可行的密码体制。
+RSA加密算法：RSA公开密钥密码体制是一种使用不同的加密密钥与解密密钥，由已知加密密钥推导出解密密钥在计算上是不可行的密码体制。
 
-- [AES加密算法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md)：AES密码学中的高级加密标准，又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。
+AES加密算法：AES密码学中的高级加密标准，又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。
 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 使用说明
 
@@ -31,5 +30,7 @@
 
 ### 约束与限制
 
-本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+1.本示例仅支持在标准系统上运行。
+
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 

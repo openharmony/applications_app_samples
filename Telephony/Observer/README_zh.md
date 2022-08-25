@@ -4,15 +4,13 @@
 
 本示例通过observer接口订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。
 
-![](./screenshots/device/observer.png)
+![](screenshots/device/observer.png)
 
 ### 相关概念
 
-@ohos.telephony.observer: 通过注册相关监听事件，来监听手机网络、信号、通话、sim卡等状态，并返回相应的结果。
+observer: 通过注册相关监听事件，来监听手机网络、信号、通话、sim卡等状态，并返回相应的结果。
 
 ### 相关权限
-
-本示例需要在module.json5中配置如下权限:
 
 获取网络状态权限:ohos.permission.GET_NETWORK_INFO
 
@@ -34,6 +32,10 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，从API version 9开始支持。
+2.本示例需要插入SIM卡，目前该功能仅支持部分机型。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+3.本示例为Stage模型，从API version 9开始支持。
+
+4.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+5.本示例所配置的权限ohos.permission.READ_CALL_LOG为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))。

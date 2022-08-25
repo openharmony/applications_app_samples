@@ -26,7 +26,8 @@ export struct BookView {
         .height(110).width(80)
         .objectFit(ImageFit.Cover)
         .margin({ top: 5, bottom: 5 })
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+
+      Column() {
         Text(this.book.name)
           .fontColor(Color.Black)
           .fontSize(22)
@@ -36,6 +37,9 @@ export struct BookView {
           .fontSize(20)
           .margin({ top: 10 })
       }
+      .height(110)
+      .width('100%')
+      .alignItems(HorizontalAlign.Start)
       .layoutWeight(1)
       .margin({ left: 5 })
 
@@ -44,15 +48,18 @@ export struct BookView {
           Image($r('app.media.delete_red'))
             .height(35).width(35)
             .objectFit(ImageFit.Contain)
+            .key('delete')
         }
         .type(ButtonType.Circle)
-        .height(50).width(50)
+        .height(50)
+        .width(50)
         .backgroundColor('#F5F5F5')
         .onClick(() => {
           this.deleteCallback(this.book)
         })
       }
     }
+    .height(110)
     .width('100%')
     .padding({ left: 15, right: 15 })
   }

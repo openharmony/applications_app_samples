@@ -22,14 +22,10 @@ struct TransformExample {
   private Scroller = new Scroller()
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Column() {
       Canvas(this.context)
-        .width('100%').height('50%').backgroundColor('#00ffff')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        .width(600).height('50%').backgroundColor('#00ffff')
+      Row() {
         Button('translate')
           .width(130).height(45)
           .onClick(() => {
@@ -57,8 +53,10 @@ struct TransformExample {
             this.context.setTransform(1, 0.5, -0.5, 1, 10, 10);
           })
       }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button('rotate').width(130).height(45)
           .onClick(() => {
             this.context.rotate(45 * Math.PI / 180);
@@ -70,7 +68,10 @@ struct TransformExample {
             router.back()
           })
       }.margin({ top: 10 })
-
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

@@ -28,7 +28,7 @@ struct SidebarExample {
   @State setSideBarColor: string = 'rgba(225,225,225,1)';
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'SideBarContainer' })
 
       SideBarContainer(SideBarContainerType.Embed) {
@@ -52,17 +52,19 @@ struct SidebarExample {
             this.text = 'Six Click'
           }).width('100%')
           Text(this.text)
-        }.backgroundColor(this.setSideBarColor)
+        }
+        .backgroundColor(this.setSideBarColor)
         .width(this.setSideBarWidth)
 
         RowSplit() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text('setSideBarColor')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+              Blank()
               Column() {
                 GetColor({ colorVal: $setSideBarColor })
               }.width(48)
@@ -74,12 +76,13 @@ struct SidebarExample {
             .backgroundColor('#FFF')
             .margin({ top: 8, bottom: 8, left: 12, right: 12 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text('showSideBar')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+              Blank()
               Toggle({ type: ToggleType.Switch, isOn: this.setShowSideBar })
                 .width(35)
                 .height(20)
@@ -94,14 +97,15 @@ struct SidebarExample {
             .padding({ left: 12, right: 12 })
             .borderRadius(14)
             .backgroundColor('#FFF')
-            .margin({ top: 8, bottom: 8,left:12,right:12 })
+            .margin({ top: 8, bottom: 8, left: 12, right: 12 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text('showControlButton')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+              Blank()
               Toggle({ type: ToggleType.Switch, isOn: this.setShowControlButton })
                 .width(35)
                 .height(20)
@@ -116,14 +120,15 @@ struct SidebarExample {
             .padding({ left: 12, right: 12 })
             .borderRadius(14)
             .backgroundColor('#FFF')
-            .margin({ top: 8, bottom: 8,left:12,right:12 })
+            .margin({ top: 8, bottom: 8, left: 12, right: 12 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text('sidebarWidth')
                 .fontSize(16)
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431 ')
                 .opacity(0.5)
+              Blank()
               Column() {
                 Text(`${this.setSideBarWidth}`)
                   .fontSize(16)
@@ -164,12 +169,13 @@ struct SidebarExample {
             .backgroundColor('#FFF')
             .margin({ top: 8, bottom: 8, left: 12, right: 12 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text('minSideBarWidth')
                 .fontSize(16)
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431 ')
                 .opacity(0.5)
+              Blank()
               Column() {
                 Text(`${this.setMinSideBarWidth}`)
                   .fontSize(16)
@@ -210,12 +216,13 @@ struct SidebarExample {
             .backgroundColor('#FFF')
             .margin({ top: 8, bottom: 8, left: 12, right: 12 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Text('maxSideBarWidth')
                 .fontSize(16)
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431 ')
                 .opacity(0.5)
+              Blank()
               Column() {
                 Text(`${this.setMaxSideBarWidth}`)
                   .fontSize(16)

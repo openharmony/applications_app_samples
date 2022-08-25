@@ -19,25 +19,25 @@ import router from '@ohos.router';
 @Entry
 @Component
 struct Setting {
-  private scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller()
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-      Header({ title: "设置" })
+    Column() {
       Scroll(this.scroller) {
         Column() {
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+          Header({ title: "设置" })
+          Column() {
             SettingValue({ name: "账号与安全" })
           }
           .margin({ bottom: 10 })
 
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+          Column() {
             SettingValue({ name: "青少年模式" })
             SettingValue({ name: "关怀模式" })
           }
           .margin({ bottom: 10 })
 
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+          Column() {
             SettingValue({ name: "新消息通知" })
             SettingValue({ name: "聊天" })
             SettingValue({ name: "隐私" })
@@ -45,14 +45,14 @@ struct Setting {
           }
           .margin({ bottom: 10 })
 
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+          Column() {
             SettingValue({ name: "帮助与反馈" })
             SettingValue({ name: "关于聊天" })
             SettingValue({ name: "插件" })
           }
           .margin({ bottom: 10 })
 
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+          Column() {
             SettingValue({ name: "负载开关" })
           }
           .margin({ bottom: 10 })
@@ -104,7 +104,7 @@ struct SettingValue {
   @State name: string = ""
 
   build() {
-    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+    Row() {
       Column() {
         Text(this.name)
           .fontSize(16)

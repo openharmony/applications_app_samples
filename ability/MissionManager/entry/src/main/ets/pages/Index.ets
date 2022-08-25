@@ -21,11 +21,77 @@ import { TitleBar } from '../common/TitleBar'
 
 const TAG: string = 'Index'
 const NUMMAX: number = 10
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: Mission): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
 
 @Entry
 @Component
 struct Index {
-  @State missionInfos: Array<Mission> = []
+  @State missionInfos: MyDataSource = new MyDataSource([])
   @State listenerId: number = 0
   @State isRefreshing: boolean = false
   @State refreshMission: Resource = $r('app.string.get_mission_manager')
@@ -55,11 +121,12 @@ struct Index {
     Logger.info(TAG, `clickCallback start`)
     this.isShow = false
     missionManager.getMissionInfos('', NUMMAX, (error, data) => {
-      this.missionInfos = []
+      var missionInfos = []
       setTimeout(() => {
-        this.missionInfos = data.map((item) => {
+        missionInfos = data.map((item) => {
           return item
         })
+        this.missionInfos = new MyDataSource(missionInfos)
         Logger.info(TAG, `getMissionInfos missionInfos= ${JSON.stringify(this.missionInfos)}`)
       }, 1000)
     })
@@ -90,12 +157,13 @@ struct Index {
         .margin(10)
       Refresh({ refreshing: this.isRefreshing, offset: 120, friction: 100 }) {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.missionInfos, (item) => {
+          LazyForEach(this.missionInfos, (item) => {
             ListItem() {
               MissionInfoComponent({ mission: item, handlerRefresh: this.handlerRefresh })
             }
           }, item => item.timestamp)
         }
+        .width('100%')
         .height('90%')
       }
       .width('95%')

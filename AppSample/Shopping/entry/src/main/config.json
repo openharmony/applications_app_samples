@@ -1,7 +1,7 @@
 {
   "app": {
-    "vendor": "example",
-    "bundleName": "ohos.sample.myapplication",
+    "vendor": "sample",
+    "bundleName": "ohos.sample.shopping",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -36,7 +36,7 @@
         "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "singleton"
       }
     ],
     "distro": {
@@ -45,7 +45,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "com.example.entry",
+    "package": "ohos.sample.shopping",
     "srcPath": "",
     "name": ".entry",
     "js": [

@@ -19,18 +19,22 @@ import dateTimeUtil from '../Common/DateTimeUtil'
 @Component
 export struct HistoryShow {
   @State city: string = ''
+  @State updateTimeText:string = ''
   private updateTime: string = ''
 
-  aboutToAppear() {
+
+  async aboutToAppear() {
     this.updateTime = dateTimeUtil.getTime()
+    this.updateTimeText = await globalThis.abilityContext.resourceManager.getString($r('app.string.update_time'))
+    this.updateTimeText = `${this.updateTimeText}${this.updateTime}`
   }
 
   build() {
     Column() {
       Row() {
         Button($r('app.string.history'))
-          .height(40)
-          .fontSize(30)
+          .height(30)
+          .fontSize(26)
           .onClick(() => {
             router.push({
               url: 'pages/Detail',
@@ -41,10 +45,10 @@ export struct HistoryShow {
           })
       }
       .height(30)
-      .margin({ top: 40 })
+      .margin({ top: 20 })
 
       Row() {
-        Text($r('app.string.update_time') + `${this.updateTime}`)
+        Text(this.updateTimeText)
           .width('100%')
           .height(35)
           .fontSize(30)

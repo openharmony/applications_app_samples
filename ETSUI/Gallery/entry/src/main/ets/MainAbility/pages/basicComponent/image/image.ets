@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -22,16 +22,16 @@ struct ImageSample {
   private on: string = 'http://image.xtep.com.cn/util/upload/product/202112172037/20211217203719485D6769491555162288862AC9594BC346E.jpg'
   @State src: string = this.on;
   @State width: number = 0;
-  @State height: number= 0;
+  @State height: number = 0;
   @State xWidth: number = 0;
   @State yHeight: number = 0;
   @State colOpacity: number = 1;
-  @State Visibility1: string= 'Visible'
-  @State Visibility2: string= 'None'
-  @State Visibility3: string= 'None'
-  @State Visibility4: string= 'None'
-  @State Visibility5: string= 'None'
-  @State Visibility6: string= 'None'
+  @State Visibility1: string = 'Visible'
+  @State Visibility2: string = 'None'
+  @State Visibility3: string = 'None'
+  @State Visibility4: string = 'None'
+  @State Visibility5: string = 'None'
+  @State Visibility6: string = 'None'
   @State objectFit: ImageFit = ImageFit.None
   @State objectRepeat: ImageRepeat = ImageRepeat.NoRepeat
   @State interpolation: ImageInterpolation = ImageInterpolation.None
@@ -40,10 +40,10 @@ struct ImageSample {
   @State align: Alignment = Alignment.Bottom
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: 'Image' })
       Column() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Column() {
             Row({ space: 4 }) {
               Image('/common/test1.jpg')
@@ -61,7 +61,7 @@ struct ImageSample {
             }.margin({ bottom: 10 })
 
             Row({ space: 4 }) {
-              Image($r("app.media.svg1a"))
+              Image($r('app.media.svg1a'))
                 .width('30%')
                 .height('35%')
                 .border({ width: 1 })
@@ -110,7 +110,7 @@ struct ImageSample {
 
           Row({ space: 5 }) {
             Image('')
-              .alt($r("app.media.icon"))
+              .alt($r('app.media.icon'))
               .border({ width: 1 })
               .borderStyle(BorderStyle.Dashed)
               .objectRepeat(this.objectRepeat)
@@ -135,7 +135,7 @@ struct ImageSample {
               .onError(() => {
                 console.info('load image fail')
               })
-            Image($r("app.media.svg2a"))
+            Image($r('app.media.svg2a'))
               .border({ width: 1 })
               .borderStyle(BorderStyle.Dashed)
               .width('30%')
@@ -146,7 +146,7 @@ struct ImageSample {
                 this.colOpacity = 0.3
               })
           }.visibility(Visibility[this.Visibility6])
-        }.width('100%')
+        }.width('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -216,12 +216,15 @@ struct ImageSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('width')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text('20%')
                 .fontSize('16fp')
@@ -231,6 +234,7 @@ struct ImageSample {
                 .textAlign(TextAlign.End)
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
@@ -238,12 +242,15 @@ struct ImageSample {
           .visibility(Visibility[this.Visibility1])
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('height')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text('30%')
                 .fontSize('16fp')
@@ -253,6 +260,7 @@ struct ImageSample {
                 .textAlign(TextAlign.End)
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
@@ -260,7 +268,7 @@ struct ImageSample {
           .margin({ top: 8 })
           .visibility(Visibility[this.Visibility1])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('objectFit')
               .fontSize('16fp')
               .opacity(0.5)
@@ -308,14 +316,15 @@ struct ImageSample {
               },
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
-          .margin({ top: "-8vp" })
+          .margin({ top: '-8vp' })
           .visibility(Visibility[this.Visibility2])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('renderMode')
               .fontSize('16fp')
               .opacity(0.5)
@@ -344,14 +353,15 @@ struct ImageSample {
               }
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
-          .margin({ top: "-8vp" })
+          .margin({ top: '-8vp' })
           .visibility(Visibility[this.Visibility3])
 
-          Flex({ direction: FlexDirection.Column }) {
+          Column() {
             Text('sourceSize')
               .fontSize('16fp')
               .opacity(0.5)
@@ -393,7 +403,7 @@ struct ImageSample {
           .backgroundColor('#FFFFFF')
           .visibility(Visibility[this.Visibility3])
 
-          Flex({ direction: FlexDirection.Column }) {
+          Column() {
             Text('sourceSize')
               .fontSize('16fp')
               .opacity(0.5)
@@ -432,7 +442,7 @@ struct ImageSample {
           .margin({ top: 8, bottom: 8 })
           .visibility(Visibility[this.Visibility3])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('interpolation')
               .fontSize('16fp')
               .opacity(0.5)
@@ -474,14 +484,15 @@ struct ImageSample {
               },
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .margin({ top: "-16vp" })
+          .margin({ top: '-16vp' })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .visibility(Visibility[this.Visibility4])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('objectRepeat')
               .fontSize('16fp')
               .opacity(0.5)
@@ -524,13 +535,14 @@ struct ImageSample {
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .margin({ top: "-16vp" })
+          .margin({ top: '-16vp' })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .visibility(Visibility[this.Visibility5])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('onComplete')
               .fontSize('16fp')
               .opacity(0.5)
@@ -545,14 +557,15 @@ struct ImageSample {
                 .textAlign(TextAlign.End)
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          .margin({ top: "-16vp" })
+          .margin({ top: '-16vp' })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .visibility(Visibility[this.Visibility6])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('onFinish')
               .fontSize('16fp')
               .opacity(0.5)
@@ -567,16 +580,20 @@ struct ImageSample {
                 .textAlign(TextAlign.End)
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
-          .margin({ top: "-8vp", bottom: 8 })
+          .margin({ top: '-8vp', bottom: 8 })
           .visibility(Visibility[this.Visibility6])
         }.width('100%')
       }.width('100%').height('25%')
     }
     .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .backgroundColor('#F1F1F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

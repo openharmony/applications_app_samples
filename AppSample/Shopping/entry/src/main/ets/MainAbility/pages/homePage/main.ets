@@ -13,12 +13,64 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import router from '@ohos.router';
 import { NavDataModel, SearchTextModel, SwiperModel, TitleBarModel } from '../../model/homeModel'
 import { navData, findSearchTextData, swiperData, titleBarData } from '../../data/homeData'
 import { Core1 } from './core1'
 import { Boutique } from './boutique'
 import { GoodsList } from './goodsList'
+
+class navNum implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 19
+  listeners: DataChangeListener[] = []
+}
+
+class mainTabsTitle implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 4
+  listeners: DataChangeListener[] = []
+}
 
 @Component
 export struct MainPage {
@@ -26,15 +78,18 @@ export struct MainPage {
   @State searchData: Array<SearchTextModel> = findSearchTextData
   @State tabsIndex: number = 0
   @State swiperData: Array<SwiperModel> = swiperData
+  navNum: navNum = new navNum()
+  mainTabsTitle: mainTabsTitle = new mainTabsTitle()
   controller: TabsController = new TabsController()
   @State titleBarData: Array<TitleBarModel> = titleBarData
   @State ListIndex: number = 0
   @Prop num: number
   @Prop ratio: number
+  @Prop swiperWidth: number
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+      Row() {
         Column() {
           Image('/resources/icon/scan.png')
             .width(30 * this.ratio)
@@ -43,33 +98,73 @@ export struct MainPage {
         }
         .padding({ top: 5, bottom: 5 })
 
-        Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+        Row() {
           Image('/resources/icon/search.png')
             .width(25 * (this.ratio + 0.2))
             .aspectRatio(1)
             .objectFit(ImageFit.Contain)
           Swiper() {
-            ForEach(this.searchData, item => {
-              Column() {
-                Text(item.searchText)
-                  .fontSize(14 * (this.ratio + 0.2))
-                  .lineHeight(23 * (this.ratio + 0.2))
-              }
-              .height(25 * (this.ratio + 0.2))
-              .width('100%')
-              .alignItems(HorizontalAlign.Start)
-              .onClick(() => {
-                router.push({
-                  uri: 'pages/search/searchPage',
-                  params: {
-                    message: item.searchText,
-                    num: this.num,
-                    ratio: this.ratio
-                  }
-                })
+            Column() {
+              Text(this.searchData[0].searchText)
+                .fontSize(14 * (this.ratio + 0.2))
+                .lineHeight(23 * (this.ratio + 0.2))
+            }
+            .height(25 * (this.ratio + 0.2))
+            .width('100%')
+            .alignItems(HorizontalAlign.Start)
+            .onClick(() => {
+              router.push({
+                url: 'pages/search/searchPage',
+                params: {
+                  message: this.searchData[0].searchText,
+                  num: this.num,
+                  ratio: this.ratio,
+                  swiperWidth: this.swiperWidth
+                }
               })
-            }, item => item.toString())
+            })
+
+            Column() {
+              Text(this.searchData[1].searchText)
+                .fontSize(14 * (this.ratio + 0.2))
+                .lineHeight(23 * (this.ratio + 0.2))
+            }
+            .height(25 * (this.ratio + 0.2))
+            .width('100%')
+            .alignItems(HorizontalAlign.Start)
+            .onClick(() => {
+              router.push({
+                url: 'pages/search/searchPage',
+                params: {
+                  message: this.searchData[1].searchText,
+                  num: this.num,
+                  ratio: this.ratio,
+                  swiperWidth: this.swiperWidth
+                }
+              })
+            })
+
+            Column() {
+              Text(this.searchData[2].searchText)
+                .fontSize(14 * (this.ratio + 0.2))
+                .lineHeight(23 * (this.ratio + 0.2))
+            }
+            .height(25 * (this.ratio + 0.2))
+            .width('100%')
+            .alignItems(HorizontalAlign.Start)
+            .onClick(() => {
+              router.push({
+                url: 'pages/search/searchPage',
+                params: {
+                  message: this.searchData[2].searchText,
+                  num: this.num,
+                  ratio: this.ratio,
+                  swiperWidth: this.swiperWidth
+                }
+              })
+            })
           }
+          .key('searchInput')
           .width('65%')
           .autoPlay(true)
           .loop(true)
@@ -85,6 +180,8 @@ export struct MainPage {
         .border({ width: 2, color: Color.Orange, radius: 20 })
         .width('70%')
         .padding(5)
+        .justifyContent(FlexAlign.SpaceAround)
+        .alignItems(VerticalAlign.Center)
 
         Column() {
           Image('/resources/icon/barcode.png')
@@ -94,17 +191,20 @@ export struct MainPage {
         }
         .padding({ top: 5, bottom: 5 })
       }
+      .width('100%')
       .padding(5)
+      .justifyContent(FlexAlign.SpaceAround)
+      .alignItems(VerticalAlign.Center)
 
       Scroll() {
         Column() {
           Row() {
             List() {
-              ForEach(this.navData, item => {
+              LazyForEach(this.navNum, item => {
                 ListItem() {
-                  Text(item.navData)
-                    .fontColor(`${item.navData == '首页' ? Color.Blue : Color.Black}`)
-                    .fontWeight(`${item.navData == '首页' ? FontWeight.Bold : FontWeight.Normal}`)
+                  Text(this.navData[item].navData)
+                    .fontColor(this.navData[item].navData == '首页' ? Color.Blue : Color.Black)
+                    .fontWeight(this.navData[item].navData == '首页' ? FontWeight.Bold : FontWeight.Normal)
                     .fontSize(19 * this.ratio)
                     .margin({ left: 5, right: 8 })
                     .lineHeight(30 * this.ratio)
@@ -116,7 +216,7 @@ export struct MainPage {
             .width('85%')
             .listDirection(Axis.Horizontal)
 
-            Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+            Row() {
               Image('/resources/icon/nav_classification.png')
                 .width(20 * this.ratio)
                 .aspectRatio(1)
@@ -124,30 +224,44 @@ export struct MainPage {
               Text('分类')
                 .fontSize(15 * this.ratio)
             }
+            .justifyContent(FlexAlign.SpaceAround)
+            .alignItems(VerticalAlign.Center)
             .height(30 * this.ratio)
             .width('15%')
           }
           .margin({ bottom: 0, left: 5, right: 5 })
 
           Swiper() {
-            ForEach(this.swiperData, item => {
-              Navigator({ target: 'pages/detailPage/detail' }) {
-                Image(item.img)
-                  .width('100%')
-                  .height('100%')
-                  .objectFit(ImageFit.Contain)
-                  .border({ radius: 10 * this.ratio })
-              }
-              .params({
-                num: this.num,
-                ratio: this.ratio
-              })
-            }, item => item.toString())
+            Image(this.swiperData[0].img)
+              .width('100%')
+              .height('100%')
+              .objectFit(ImageFit.Contain)
+              .border({ radius: 10 * this.ratio })
+            Image(this.swiperData[1].img)
+              .width('100%')
+              .height('100%')
+              .objectFit(ImageFit.Contain)
+              .border({ radius: 10 * this.ratio })
+            Image(this.swiperData[2].img)
+              .width('100%')
+              .height('100%')
+              .objectFit(ImageFit.Contain)
+              .border({ radius: 10 * this.ratio })
           }
+          .key('carousel')
           .autoPlay(true)
           .loop(true)
           .width('93%')
           .aspectRatio(2.6)
+          .onClick(() => {
+            router.push({
+              url: 'pages/detailPage/detail',
+              params: {
+                num: this.num,
+                ratio: this.ratio
+              }
+            })
+          })
 
           Column() {
             Core1({ ratio: this.ratio })
@@ -158,22 +272,24 @@ export struct MainPage {
           }
           .margin({ top: 10 })
 
-          Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-            ForEach(this.titleBarData, item => {
+          Row() {
+            LazyForEach(this.mainTabsTitle, item => {
               Column() {
-                Text(item.title)
+                Text(this.titleBarData[item].title)
                   .fontSize(15 * this.ratio)
                   .margin(3)
-                  .fontColor(this.tabsIndex == item.id ? Color.Orange : Color.Black)
+                  .fontColor(this.tabsIndex == item ? Color.Orange : Color.Black)
               }
               .width('20%')
               .padding({ top: 5, bottom: 5 })
               .onClick(() => {
-                this.tabsIndex = item.id
-                this.controller.changeIndex(item.id)
+                this.tabsIndex = item
+                this.controller.changeIndex(item)
               })
             }, item => item.toString())
           }
+          .justifyContent(FlexAlign.SpaceAround)
+          .alignItems(VerticalAlign.Center)
           .height('7%')
           .zIndex(2)
           .backgroundColor(Color.White)

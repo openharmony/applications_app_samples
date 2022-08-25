@@ -25,7 +25,7 @@ export struct FriendsPage {
   private friendListData = new FriendListData()
 
   build() {
-    Flex() {
+    Column() {
       Stack({ alignContent: Alignment.Top }) {
         Column() {
           List() {

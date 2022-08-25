@@ -48,7 +48,7 @@ export struct Show {
         .width('20%')
         .height('10%')
 
-        Flex({ direction: FlexDirection.Column, alignContent: FlexAlign.Start }) {
+        Column() {
           Text(this.simCard)
             .fontSize(18)
           Text(this.simText)

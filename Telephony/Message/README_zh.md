@@ -4,7 +4,7 @@
 
 本示例展示了电话服务中发送短信的功能。实现效果如下：
 
-<img src="./screenshots/device/create_contact.png" /> <img src="./screenshots/device/save_contact.png" /> <img src="./screenshots/device/send_message.png" />
+![](screenshots/device/create_contact.png) ![](screenshots/device/save_contact.png) ![](screenshots/device/send_message.png)
 
 ### 相关概念
 
@@ -13,7 +13,9 @@
 ### 相关权限
 
 发送短信权限：ohos.permission.SEND_MESSAGES
+
 设置通话状态权限：ohos.permission.SET_TELEPHONY_STATE
+
 获取通话状态权限：ohos.permission.GET_TELEPHONY_STATE
 
 ### 使用说明
@@ -32,4 +34,10 @@
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要插入SIM卡，目前该功能仅支持部分机型。
+
+3.本示例涉及使用系统接口：getSmscAddr()，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+
+4.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+5.本示例所配置的权限ohos.permission.SEND_MESSAGES、ohos.permission.SET_TELEPHONY_STATE、ohos.permission.GET_TELEPHONY_STATE为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))。

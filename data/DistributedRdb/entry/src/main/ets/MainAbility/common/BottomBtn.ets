@@ -52,6 +52,7 @@ export struct BottomBtn {
               .fontSize(16)
               .fontColor(Color.Black)
           }
+          .flexShrink(1)
           .onClick(() => {
             this.handleBottomBtnClick(index)
           })

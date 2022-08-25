@@ -142,6 +142,6 @@ export class FriendMoment {
   }
 
   toString(): string {
-    return this.id + "  " + this.user.toString() + "  " + this.text + "  " + this.time + "  " // +this.imageList.toString()
+    return this.id + "  " + this.user.toString() + "  " + this.text + "  " + this.time + "  "
   }
 }

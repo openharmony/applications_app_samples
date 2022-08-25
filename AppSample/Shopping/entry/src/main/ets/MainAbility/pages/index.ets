@@ -24,6 +24,33 @@ import { ShopCart } from './homePage/shopCart'
 import { User } from './homePage/User'
 
 let portraitIndex = null
+let timer = null
+
+class tabTitle implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 5
+  listeners: DataChangeListener[] = []
+}
 
 @Entry
 @Component
@@ -32,17 +59,19 @@ struct Index {
   @State tabsIndex: number = 0
   @State tabTittleData: Array<TabTitleModel> = tabTitleData
   @State idx: number = 0
+  tabTitle: tabTitle = new tabTitle()
   controller: TabsController = new TabsController()
   @State opacity: number = 1
   @State width: number = 100
   @State ratio: number = 1
+  @State swiperWidth: number = 60
   listener = mediaQuery.matchMediaSync('(orientation:landscape)')
 
   aboutToAppear() {
     display.getAllDisplay((err, data) => {
       let aspect = data[0].width / data[0].height
       if (aspect == 0.5625) {
-        this.ratio = 1.4
+        this.ratio = 1
       }
     })
     portraitIndex = this.onPortrait.bind(this)
@@ -53,8 +82,10 @@ struct Index {
     let result = mediaQueryResult.matches
     if (result) {
       this.width = 45
+      this.swiperWidth = 30
     } else {
       this.width = 100
+      this.swiperWidth = 60
     }
   }
 
@@ -63,7 +94,7 @@ struct Index {
       Column() {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller, index: this.tabsIndex }) {
           TabContent() {
-            MainPage({ num: this.width, ratio: this.ratio })
+            MainPage({ num: this.width, ratio: this.ratio, swiperWidth: this.swiperWidth })
           }.tabBar({ text: this.tabTittleData[0].title })
 
           TabContent() {
@@ -89,48 +120,48 @@ struct Index {
         .height('92%')
 
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-            ForEach(this.tabTittleData, item => {
-              Flex({
-                direction: FlexDirection.Column,
-                justifyContent: FlexAlign.Center,
-                alignItems: ItemAlign.Center
-              }) {
-                Image(this.tabsIndex == item.id ? item.selectedUri : item.uri)
+          Row() {
+            LazyForEach(this.tabTitle, item => {
+              Column() {
+                Image(this.tabsIndex == item ? this.tabTittleData[item].selectedUri : this.tabTittleData[item].uri)
                   .width(25 * this.ratio)
                   .aspectRatio(1)
                   .objectFit(ImageFit.Contain)
-                Text(item.title)
+                Text(this.tabTittleData[item].title)
                   .fontSize(15 * this.ratio)
                   .margin(1)
-                  .fontColor(this.tabsIndex == item.id ? Color.Orange : Color.Black)
+                  .fontColor(this.tabsIndex == item ? Color.Orange : Color.Black)
               }
               .width('20%')
+              .alignItems(HorizontalAlign.Center)
+              .justifyContent(FlexAlign.Center)
               .onClick(() => {
-                this.tabsIndex = item.id
-                this.controller.changeIndex(item.id)
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                  this.tabsIndex = item
+                  this.controller.changeIndex(item)
+                }, 200)
               })
             }, item => item.toString())
           }
           .height('8%')
+          .justifyContent(FlexAlign.SpaceAround)
+          .alignItems(VerticalAlign.Center)
         }
         .width('100%')
       }
       .width(`${this.width}%`)
       .backgroundColor(Color.White)
+      .border({ width: this.width === 45 ? 1 : 0 })
     }
     .width('100%')
-    .backgroundColor('#10000000')
+    .backgroundColor('#FFFFFF')
   }
 
   PageTransition() {
-    PageTransitionEnter({ duration: 0, curve: Curve.Linear, delay: 0 })
-      .onEnter((type: RouteType, progress: number) => {
-        this.opacity = 1
-      })
-    PageTransitionExit({ duration: 0, curve: Curve.Linear, delay: 0 })
-      .onExit((type: RouteType, progress: number) => {
-        this.opacity = 1
-      })
+    PageTransitionEnter({ duration: 0 })
+      .opacity(1)
+    PageTransitionExit({ duration: 0 })
+      .opacity(1)
   }
 }

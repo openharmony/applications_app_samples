@@ -8,11 +8,11 @@
 
 ### 相关概念
 
-- 资源管理：资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。
+资源管理：资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。
 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 使用说明
 
@@ -22,4 +22,4 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

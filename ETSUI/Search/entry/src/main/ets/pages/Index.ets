@@ -1,18 +1,112 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import DataModel from '../model/DataModel'
 import TitleBar from '../common/TitleBar'
-import Logger from '../model/Logger'
+import { MainPage } from '@ohos/search'
 
-const TAG: string = 'Index'
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount() {
+    return 0
+  }
+
+  public getData(index: number) {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload() {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Array<{
+    title: string,
+    introduction: string,
+    image: Resource
+  }> = DataModel.getAllData()
+
+  public totalCount() {
+    return this.dataArray.length
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number) {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(title: string, introduction: string, image: Resource) {
+    this.dataArray.push({ title, introduction, image })
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  public replaceData(result: any[]) {
+    this.dataArray = result
+  }
+}
 
 @Entry
 @Component
 struct Index {
   @State changeValue: string = ''
-  @State books: Array<{
-    title: string,
-    introduction: string,
-    image: Resource
-  }> = DataModel.getAllData()
+  @State books: MyDataSource = new MyDataSource()
   private controller: SearchController = new SearchController()
 
   @Builder
@@ -40,28 +134,13 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       TitleBar()
-      Search({ value: this.changeValue, placeholder: 'input to search', controller: this.controller })
-        .searchButton('Search')
-        .width('95%')
-        .height(40)
-        .textFont({ size: 25, weight: FontWeight.Bold })
-        .placeholderFont({ size: 25, weight: FontWeight.Normal, style: FontStyle.Normal })
-        .backgroundColor(Color.White)
-        .placeholderColor(Color.Grey)
-        .onSubmit((value: string) => {
-          Logger.info(TAG, `onSubmit: ${value}`)
-          this.books = DataModel.query(value)
-        })
-        .onChange((value: string) => {
-          Logger.info(TAG, `onChange: ${value}`)
-          this.changeValue = value
-          this.books = DataModel.query(value)
-        })
-        .margin({ top: 10 })
+      MainPage({ textInfo: $changeValue, customizeFunction: () => {
+        this.books.replaceData(DataModel.query(this.changeValue))
+      } })
       List({ space: 10 }) {
-        ForEach(this.books, item => {
+        LazyForEach(this.books, item => {
           ListItem() {
             this.BookItem(item.image, item.title, item.introduction)
           }

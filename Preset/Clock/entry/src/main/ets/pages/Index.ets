@@ -55,7 +55,7 @@ struct Clock {
   async getSize() {
     let mDisplay = await display.getDefaultDisplay()
     Logger.info(TAG, `getDefaultDisplay mDisplay = ${JSON.stringify(mDisplay)}`)
-    this.canvasWidth = mDisplay.width > mDisplay.height ? mDisplay.height * 0.5 : mDisplay.width * 0.5
+    this.canvasWidth = px2vp(mDisplay.width > mDisplay.height ? mDisplay.height * 0.5 : mDisplay.width * 0.5)
     this.radius = this.canvasWidth / 2
   }
 
@@ -185,7 +185,7 @@ struct Clock {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Stack({ alignContent: Alignment.Center }) {
       Canvas(this.context)
         .width(this.canvasWidth)
         .height(this.canvasWidth + HEIGHT_ADD)

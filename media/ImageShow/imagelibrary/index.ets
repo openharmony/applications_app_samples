@@ -1,0 +1,1 @@
+export { ChoicePhotos } from './src/main/ets/components/pages/ChoicePhotos'

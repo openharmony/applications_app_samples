@@ -19,7 +19,6 @@ const componentBasisItems = [
   { title: 'Button', url: 'pages/component_basis/button/buttonPage' },
   { title: 'Text', url: 'pages/component_basis/text/textPage' },
   { title: 'Span', url: 'pages/component_basis/span/spanPage' },
-  { title: 'Image', url: 'pages/component_basis/image/imagePage' },
   { title: 'TextArea', url: 'pages/component_basis/textArea/textAreaPage' },
   { title: "Divider", url: 'pages/component_basis/divider/dividerPage' },
   { title: "QRCode", url: 'pages/component_basis/qrCode/QRCodePage' },
@@ -30,7 +29,7 @@ const componentBasisItems = [
   { title: "Menu", url: 'pages/component_basis/menu/menuPage' },
   { title: "Gauge", url: 'pages/component_basis/gauge/gaugePage' },
   { title: "DataPanel", url: 'pages/component_basis/dataPanel/dataPanelPage' },
-  { title: "Progress", url: 'pages/component_basis/progress/progressPage' },,
+  { title: "Progress", url: 'pages/component_basis/progress/progressPage' },
   { title: "TextInput", url: 'pages/component_basis/textInput/textInputPage' },
 ]
 
@@ -74,9 +73,3 @@ struct component_basis {
     }
   }
 }
-
-
-
-
-
-

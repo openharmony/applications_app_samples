@@ -31,7 +31,7 @@ struct Index {
   @State presetValue: Array<unknown> = [numVal, strVal, boolVal, int8Array]
 
   build() {
-    Flex() {
+    Column() {
       Column() {
         Text($r('app.string.entry_MainAbility'))
           .textAlign(TextAlign.Center)

@@ -14,34 +14,80 @@
  */
 
 import rpc from '@ohos.rpc'
-import prompt from '@ohos.prompt';
 import { TitleBar } from '../common/TitleBar'
 import { FlexList } from '../common/FlexList'
-import { ReceivedData } from '../model/ReceivedData'
+import ReceivedData from '../model/ReceivedData'
 import { ProcessData } from '../model/ProcessData'
+
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
 
 let TAG: string = '[eTSRPC.Index]'
 const REQUEST_CODE: number = 1
-
-async function sortString(sendData: Array<string>, callback) {
-  console.log(`${TAG} sortString is ${sendData}`)
-  console.log(`${TAG} sendData typeof ${typeof(sendData)}`)
-  let send = new ReceivedData('send')
-  let data = new rpc.MessageParcel()
-  let reply = new rpc.MessageParcel()
-  let option = new rpc.MessageOption()
-  console.log(`${TAG} getCallingUid: ${send.getCallingUid()}  getCallingPid: ${send.getCallingPid()}`)
-  data.writeStringArray(sendData)
-  let descriptor = send.getInterfaceDescriptor();
-  prompt.showToast({
-    message: `descriptor ${descriptor}`,
-    duration: 2000
-  })
-  console.log(`${TAG} descriptor ${descriptor}`)
-  await send.sendRequest(REQUEST_CODE, data, reply, option)
-  callback(reply.readInt())
-  reply.reclaim()
-}
 
 @Entry
 @Component
@@ -69,52 +115,68 @@ struct Index {
   ]
   private selectStuffs: Array<any> = new Array(4).fill({ subcategory: '', count: 0 })
 
-  selectStuff(index:number, good:string, count:number) {
+  selectStuff(index: number, good: string, count: number) {
     console.info(`${TAG} index=  ${index}, count= ${count}, good= ${good}`)
     this.selectStuffs[index] = { subcategory: good, count: count }
+  }
+
+  async sortString(sendData: Array<string>) {
+    console.log(`${TAG} sortString is ${sendData}`)
+    console.log(`${TAG} sendData typeof ${typeof (sendData)}`)
+    let option: rpc.MessageOption = new rpc.MessageOption()
+    let data: rpc.MessageParcel = rpc.MessageParcel.create()
+    let reply: rpc.MessageParcel = rpc.MessageParcel.create()
+    console.log(`${TAG} getCallingUid: ${ReceivedData.getCallingUid()}  getCallingPid: ${ReceivedData.getCallingPid()}`)
+    data.writeStringArray(sendData)
+    await ReceivedData.sendRequest(REQUEST_CODE, data, reply, option)
+    this.result = reply.readInt()
+    reply.reclaim()
   }
 
   build() {
     Scroll() {
       Column() {
         TitleBar()
-        ForEach(this.options, (item, index) => {
-          FlexList({
-            category: item.category,
-            menu: item.subcategory,
-            index: index,
-            selectStuff: this.selectStuff.bind(this)
-          })
+        LazyForEach(new MyDataSource(this.options), (item, index) => {
+          Row(){
+            FlexList({
+              category: item.category,
+              menu: item.subcategory,
+              index: index,
+              selectStuff: this.selectStuff.bind(this)
+            })
+          }
         }, item => JSON.stringify(item))
 
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center }) {
-          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
+        Column() {
+          Row() {
             Text($r('app.string.final_price'))
               .width('65%')
               .height(25)
               .fontSize(18)
               .textAlign(TextAlign.Center)
             Text(this.result.toString())
-              .width('5%')
               .height(25)
               .fontSize(20)
               .margin({ left: '5%' })
               .textAlign(TextAlign.Center)
           }
+          .justifyContent(FlexAlign.Center)
           .width('80%')
 
           Button($r('app.string.confirm'))
+            .key('confirmOrderBtn')
             .width('80%')
             .height(40)
             .margin({ top: 30 })
             .onClick(() => {
               let priceArray = this.Process.getPrice(this.selectStuffs)
               console.info(`${TAG} priceArray= ${priceArray}`)
-              sortString(priceArray, (after) => {
-                this.result = after
-              })
+              this.sortString(priceArray)
             })
         }
+        .width('100%')
+        .justifyContent(FlexAlign.Center)
         .margin({ top: 20 })
         .height('30%')
       }

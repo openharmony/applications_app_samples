@@ -58,7 +58,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.distribute_account_manager'))
         .width('100%')
         .fontSize(25)
@@ -66,7 +66,11 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .fontColor(Color.White)
         .fontWeight(FontWeight.Bold)
-      SelectUser({ user: $user })
+      Column() {
+        SelectUser({ user: $user })
+      }
+      .margin({top: '10%'})
+
       Button() {
         Text($r("app.string.login"))
           .fontSize(25)

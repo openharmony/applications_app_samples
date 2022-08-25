@@ -54,7 +54,7 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       TitleBar({ webTitle: $webTitle })
       SearchBar({
         url: $url,
@@ -72,8 +72,7 @@ struct Index {
             if (this.isWebError === true) {
               Text(`errCode : ${this.webError.errCode.toString()}`).errText(40, 100)
               Text(`errInfo : ${this.webError.errInfo}`).errText(25, 15)
-            }
-            else if (this.isHttpError === true) {
+            } else if (this.isHttpError === true) {
               Text(`code : ${this.httpError.code.toString()}`).errText(35, 100)
               Text(`message : ${this.httpError.message}`).errText(25, 15)
               Text(`data : ${this.httpError.data}`).errText(25, 15)
@@ -95,19 +94,20 @@ struct Index {
               })
             }
           }
-          else if (this.backToHome === true) {
-            HomePage({ homeWebs: $homeWebs, url: $url, webState: $webState, backToHome: $backToHome })
-          }
           else {
-            BrowseHistory({
-              url: $url,
-              browses: $browses,
-              webState: $webState,
-              isLoading: $isLoading,
-              backToHome: $backToHome,
-              isWebError: $isWebError,
-              isHttpError: $isHttpError
-            })
+            if (this.backToHome === true) {
+              HomePage({ homeWebs: $homeWebs, url: $url, webState: $webState, backToHome: $backToHome })
+            } else if(this.browses.length !== 0){
+              BrowseHistory({
+                url: $url,
+                browses: $browses,
+                webState: $webState,
+                isLoading: $isLoading,
+                backToHome: $backToHome,
+                isWebError: $isWebError,
+                isHttpError: $isHttpError
+              })
+            }
           }
         }
         .width('100%')
@@ -132,6 +132,8 @@ struct Index {
       .width('100%')
       .layoutWeight(1)
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
   }

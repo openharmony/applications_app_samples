@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
-      "value": "Http"
+      "name": "entry_desc",
+      "value": "description"
     },
     {
-      "name": "mainability_description",
-      "value": "Http Ability"
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
     }
   ]
 }

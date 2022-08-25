@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import { NavigationBar } from '../../common/components/navigationBar'
+
 @Entry
 @Component
 struct SwipeGestureSample {
@@ -23,11 +25,12 @@ struct SwipeGestureSample {
   @State iVelocity: number = 0 //初速度
   @State distances: number = 360
   @State rotateAngle: number = 0
-  @State Displacement: number = 360  //距离x
+  @State Displacement: number = 360 //距离x
   @State time: number = 0
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
+      NavigationBar({ title: 'SwipeGesture' })
       Column() {
         Stack() {
           Image('/common/test3.png')
@@ -64,11 +67,6 @@ struct SwipeGestureSample {
                     }
                   }
                 })
-                //        let t = 100 / this.speed * (200)
-                //        animateTo({duration: t}, () => {
-                //          if ()
-                //          this.distances = '100%'
-                //        })
               })
             )
         }
@@ -79,6 +77,11 @@ struct SwipeGestureSample {
         Text(`${this.rotateAngle}`).fontSize(20)
         Text(`${this.speed}`).fontSize(20)
       }
+      .height('100%')
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
     }
+    .height('100%')
+    .width('100%')
   }
 }

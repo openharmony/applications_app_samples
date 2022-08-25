@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import deviceManager from '@ohos.distributedHardware.deviceManager'
 import router from '@ohos.router'
 import { BUNDLE, ABILITY } from '../model/Const'
@@ -19,10 +20,10 @@ import DeviceDialog from '../common/DeviceDialog'
 import DistributedObjectModel from '../model/DistributedObjectModel'
 import Logger from '../model/Logger'
 import Note from '../model/Note'
+import NoteDataSource from '../common/BasicDataSource'
 import NoteItem from '../common/NoteItem'
 import RemoteDeviceModel from '../model/RemoteDeviceModel'
 import TitleBar from '../common/TitleBar'
-
 const TAG: string = 'Index'
 
 @Entry
@@ -30,10 +31,11 @@ const TAG: string = 'Index'
 struct Index {
   private dialogController?: CustomDialogController
   private selectedIndex: number = 0
-  private sessionId: string = globalThis.sessionId
+  private sessionId: string = ''
   @State devices: Array<deviceManager.DeviceInfo> = []
   @State isOnline: boolean = false
   @State notes: Array<Note> = []
+  private noteDataSource : NoteDataSource = new NoteDataSource()
 
   aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
@@ -41,7 +43,8 @@ struct Index {
   }
 
   onPageShow() {
-    this.notes = globalThis.objectModel.distributedObject.documents
+    this.noteDataSource['dataArray'] = globalThis.objectModel.distributedObject.documents
+    this.noteDataSource.notifyDataReload()
     Logger.info(TAG, `this.sessionId = ${this.sessionId}`)
     Logger.info(TAG, `globalThis.sessionId = ${globalThis.sessionId}`)
     if (this.sessionId !== globalThis.sessionId) {
@@ -52,10 +55,9 @@ struct Index {
 
   share() {
     Logger.info(TAG, `sessionId = ${this.sessionId}`)
-    globalThis.objectModel.distributedObject.setSessionId(this.sessionId)
     globalThis.objectModel.setChangeCallback(() => {
-      this.notes = globalThis.objectModel.distributedObject.documents
-      Logger.info(TAG, `changecallback,${JSON.stringify(this.notes)}`)
+      this.noteDataSource['dataArray'] = globalThis.objectModel.distributedObject.documents
+      this.noteDataSource.notifyDataReload()
     })
     globalThis.objectModel.setStatusCallback((session, networkId, status) => {
       Logger.info(TAG, `StatusCallback,${status}`)
@@ -65,6 +67,7 @@ struct Index {
         this.isOnline = false
       }
     })
+    globalThis.objectModel.distributedObject.setSessionId(this.sessionId)
   }
 
   clearSelectState() {
@@ -95,7 +98,8 @@ struct Index {
     globalThis.objectModel = new DistributedObjectModel()
     this.sessionId = globalThis.objectModel.genSessionId()
     globalThis.sessionId = this.sessionId
-    this.notes = []
+    this.noteDataSource['dataArray'] = []
+    this.noteDataSource.notifyDataReload()
     globalThis.objectModel.off()
     this.share()
     Logger.info(TAG, `startAbility deviceId:${deviceId}`)
@@ -144,7 +148,7 @@ struct Index {
       .padding(16)
 
       List({ space: 10 }) {
-        ForEach(this.notes, (item, index) => {
+        LazyForEach(this.noteDataSource, (item, index) => {
           ListItem() {
             NoteItem({ note: item, index: index })
           }
@@ -164,7 +168,8 @@ struct Index {
         }.layoutWeight(1)
         .onClick(() => {
           Logger.info(TAG, 'clear notes')
-          this.notes = []
+          this.noteDataSource['dataArray'] = []
+          this.noteDataSource.notifyDataReload()
           globalThis.objectModel.clear()
         })
 

@@ -69,7 +69,7 @@ struct FullImagePage {
   @State size: number = 0
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Image(`/resources/images/photo${this.imageStrId.toString()}.jpg`)
         //此处330为初始图片大小
         .width(330 + this.picChange)

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { GetColor } from '../../common/components/getColor'
-import { NavigationBar } from "../../common/components/navigationBar"
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component

@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import prompt from '@ohos.prompt';
+
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -55,13 +55,13 @@ struct DialogSample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       NavigationBar({ title: '弹窗' })
 
       Column() {
         Column() {
           Text('警告弹窗').fontSize(20)
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('AlertDialog')
               .fontSize(18)
             Column() {
@@ -69,6 +69,7 @@ struct DialogSample {
                 .fontSize(18).fontColor('#969799')
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(35)
           .padding({ left: '3%', right: '3%' })
@@ -88,12 +89,14 @@ struct DialogSample {
 
         Scroll() {
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('options')
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .opacity(0.5)
+
+              Blank()
 
               Text(this.buttonDesc)
                 .fontColor('#182431')
@@ -151,16 +154,19 @@ struct DialogSample {
                 ])
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('alignment')
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .opacity(0.5)
+
+              Blank()
 
               Text(this.DialogAlignment[this.paramObject.alignment])
                 .fontColor('#182431')
@@ -196,17 +202,21 @@ struct DialogSample {
                 ])
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('gridCount')
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .opacity(0.5)
+
+              Blank()
+
               Column() {
                 Counter() {
                   Text(this.paramObject.gridCount.toString())
@@ -223,18 +233,21 @@ struct DialogSample {
               }.width(72).height(24)
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
             Text('列表选择弹窗:').width('100%').fontSize('16fp').margin({ top: 8 })
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('actionSheet')
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .opacity(0.5)
+
+              Blank()
 
               Text('>')
                 .fontColor('#182431')
@@ -243,6 +256,7 @@ struct DialogSample {
                 .width('50%')
                 .textAlign(TextAlign.End)
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
@@ -288,12 +302,14 @@ struct DialogSample {
               })
             })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('alignment')
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .opacity(0.5)
+
+              Blank()
 
               Text(this.DialogAlignment[this.AlignmentIndex])
                 .fontColor('#182431')
@@ -328,6 +344,7 @@ struct DialogSample {
                   },
                 ])
             }
+            .alignItems(VerticalAlign.Center)
             .width('100%')
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
@@ -335,12 +352,15 @@ struct DialogSample {
             .margin({ top: 8 })
 
             Text('自定义弹窗:').width('100%').fontSize('16fp').margin({ top: 8 })
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('CustomDialog')
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
                 .opacity(0.5)
+
+              Blank()
+
               Column() {
                 Text('>')
                   .fontColor('#182431')
@@ -349,6 +369,7 @@ struct DialogSample {
               }
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
@@ -392,37 +413,13 @@ struct CustomDialogExample {
   @State colorG: string = '255'
   @State colorB: string = '255'
   @State arrColor: string[] = ['255', '255', '255']
-  /* 获取颜色值
-   *@params event{object} 点击元素的事件对象
-   *        opacityVal{Number} 透明度
-  */
-  private getColor(event, opacityVal) {
-
-    let getPosition = event.x / event.target.area.width //点击位置占被点击元素的百分比
-    let colorWidth = 1 / 6 //每个色阶占比
-    let opacityColor = opacityVal / 100 //透明度
-    if (getPosition < 1 / 6) {
-      return `rgba(255,${Number((255 * getPosition / colorWidth).toFixed(0))},0,${opacityColor})` //红 - 黄
-    } else if (getPosition < 2 / 6) {
-      return `rgba(${255 - Number((255 * (getPosition - colorWidth) / colorWidth).toFixed(0))},255,0,${opacityColor})` //黄 - 绿
-    } else if (getPosition < 3 / 6) {
-      return `rgba(0,255,${Number((255 * (getPosition - colorWidth * 2) / colorWidth).toFixed(0))},${opacityColor})` //绿 -青
-    } else if (getPosition < 4 / 6) {
-      return `rgba(0,${255 - Number((255 * (getPosition - colorWidth * 3) / colorWidth).toFixed(0))},255,${opacityColor})` //青 - 蓝
-    } else if (getPosition < 5 / 6) {
-      return `rgba(${Number((255 * (getPosition - colorWidth * 4) / colorWidth).toFixed(0))},0,255,${opacityColor})` //蓝 - 紫
-    } else {
-      return `rgba(255,0,${255 - Number((255 * (getPosition - colorWidth * 5) / colorWidth).toFixed(0))},${opacityColor})` //紫 - 红
-    }
-  }
-
   controller: CustomDialogController
   cancel: () => void
   confirm: (colorVal) => void
 
   build() {
     Column() {
-      //色板
+      // 色板
       Shape() {
         Circle()
           .width(10)
@@ -446,7 +443,7 @@ struct CustomDialogExample {
       .borderRadius(25)
       .onClick((event: ClickEvent) => {
         this.colorVal = this.getColor(event, this.opacityVal)
-        //颜色数组
+        // 颜色数组
         this.arrColor = this.colorVal.substr(5, this.colorVal.length - 6).split(',')
         this.colorR = this.arrColor[0]
         this.colorG = this.arrColor[1]
@@ -456,7 +453,7 @@ struct CustomDialogExample {
         this.circlePosition.y = -event.y + 10 + 510
       })
 
-      //透明度 色值
+      // 透明度 色值
       Column() {
         Column() {
           Text(`Opacity:${(this.opacityVal / 100).toFixed(2)}`).fontSize(30)
@@ -478,7 +475,7 @@ struct CustomDialogExample {
             })
         }.alignItems(HorizontalAlign.Start).padding(5)
 
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Row({ space: FlexAlign.SpaceAround }) {
           Row() {
             Text('R:').fontSize(30)
             Text(this.colorR)
@@ -498,10 +495,10 @@ struct CustomDialogExample {
             Text(this.colorB)
               .fontSize(30).margin({ left: 5 })
           }
-        }.height(80).padding({ top: 10, bottom: 10 })
+        }.height(80).padding({ top: 10, bottom: 10 }).alignItems(VerticalAlign.Center)
       }
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row({ space: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
             this.controller.close()
@@ -524,5 +521,29 @@ struct CustomDialogExample {
     PageTransitionExit({ duration: 370, curve: Curve.Friction })
       .slide(SlideEffect.Bottom)
       .opacity(0.0)
+  }
+
+  /* 获取颜色值
+   *@params event{object} 点击元素的事件对象
+   *        opacityVal{Number} 透明度
+  */
+  private getColor(event, opacityVal) {
+
+    let getPosition = event.x / event.target.area.width // 点击位置占被点击元素的百分比
+    let colorWidth = 1 / 6 // 每个色阶占比
+    let opacityColor = opacityVal / 100 // 透明度
+    if (getPosition < 1 / 6) {
+      return `rgba(255,${Number((255 * getPosition / colorWidth).toFixed(0))},0,${opacityColor})` // 红 - 黄
+    } else if (getPosition < 2 / 6) {
+      return `rgba(${255 - Number((255 * (getPosition - colorWidth) / colorWidth).toFixed(0))},255,0,${opacityColor})` // 黄 - 绿
+    } else if (getPosition < 3 / 6) {
+      return `rgba(0,255,${Number((255 * (getPosition - colorWidth * 2) / colorWidth).toFixed(0))},${opacityColor})` // 绿 -青
+    } else if (getPosition < 4 / 6) {
+      return `rgba(0,${255 - Number((255 * (getPosition - colorWidth * 3) / colorWidth).toFixed(0))},255,${opacityColor})` // 青 - 蓝
+    } else if (getPosition < 5 / 6) {
+      return `rgba(${Number((255 * (getPosition - colorWidth * 4) / colorWidth).toFixed(0))},0,255,${opacityColor})` // 蓝 - 紫
+    } else {
+      return `rgba(255,0,${255 - Number((255 * (getPosition - colorWidth * 5) / colorWidth).toFixed(0))},${opacityColor})` // 紫 - 红
+    }
   }
 }

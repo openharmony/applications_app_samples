@@ -8,12 +8,13 @@
 
 ### 相关概念
 
--   FaultLogInfo：获取到的故障信息的数据结构。
--  querySelfFaultLog：获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
+FaultLogInfo：获取到的故障信息的数据结构。
+
+querySelfFaultLog：获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 使用说明
 
@@ -25,5 +26,5 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 

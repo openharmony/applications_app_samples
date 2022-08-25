@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
 import MediaUtils from '../model/MediaUtils'
+import MediaDataSource from '../view/BasicDataSource'
 import { MediaItem } from '../view/MediaItem'
 import { RenameDialog } from '../view/RenameDialog'
 import TitleBar from '../view/TitleBar'
@@ -28,18 +30,20 @@ struct AlbumPage {
   private mediaType: number = <number> router.getParams()['mediaType']
   private mediaUtils: MediaUtils = MediaUtils.getInstance()
   private renameDialogController: CustomDialogController = null
-  @State mediaList: Array<mediaLibrary.FileAsset> = []
+//  @State mediaList: Array<mediaLibrary.FileAsset> = []
+  private mediaDataSource: MediaDataSource = new MediaDataSource()
   @State selectMedia: mediaLibrary.FileAsset = undefined
 
   btnAction(operate, index) {
     Logger.info(this.tag, `btnAction callback,operate: ${operate}, index: ${index}`)
-    this.selectMedia = this.mediaList[index]
+    this.selectMedia = this.mediaDataSource['dataArray'][index]
     if (operate === 'delete') {
       this.deleteMedia(() => {
         let deleteResult = this.mediaUtils.deleteFile(this.selectMedia)
         deleteResult.then(() => {
           Logger.info(this.tag, 'deleteFile callback')
-          this.mediaList.splice(index, 1)
+          this.mediaDataSource['dataArray'].splice(index, 1)
+          this.mediaDataSource.notifyDataReload()
         }).catch(err => {
           Logger.error(this.tag, `deleteFile err,err: ${err}`)
         })
@@ -91,11 +95,11 @@ struct AlbumPage {
   }
 
   refreshData() {
-    this.mediaList = []
     let fileAsset = this.mediaUtils.getFileAssetsFromType(this.mediaType)
     fileAsset.then(fileList => {
       Logger.info(this.tag, 'getFileList callback')
-      this.mediaList = fileList
+      this.mediaDataSource['dataArray'] = fileList
+      this.mediaDataSource.notifyDataReload()
     }).catch(err => {
       Logger.error(this.tag, `getFileList err,err = ${err}`)
     })
@@ -110,7 +114,7 @@ struct AlbumPage {
     Column() {
       TitleBar({ title: this.albumName })
       List() {
-        ForEach(this.mediaList, (item, index) => {
+        LazyForEach(this.mediaDataSource, (item, index) => {
           ListItem() {
             MediaItem({ media: item, index: index, btnAction: this.btnAction.bind(this) })
           }

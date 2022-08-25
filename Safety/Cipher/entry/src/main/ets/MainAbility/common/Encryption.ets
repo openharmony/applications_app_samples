@@ -27,37 +27,32 @@ export struct Encryption {
   private cipherModel: CipherModel = new CipherModel()
 
   build() {
-    Column() {
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Row() {
+    Stack({alignContent:Alignment.Center}) {
+      Column() {
           Select([{ value: 'RSA' },
                   { value: 'AES' }])
-            .margin(6)
+            .margin(4)
             .selected(0)
-            .width('30%')
             .value(this.algorithmType)
             .font({ size: 20, weight: 300, family: 'serif', style: FontStyle.Normal })
-            .selectedOptionFont({ size: 16, weight: 280, family: 'serif', style: FontStyle.Normal })
             .optionFont({ size: 16, weight: 280, family: 'serif', style: FontStyle.Normal })
+            .selectedOptionFont({ size: 16, weight: 280, family: 'serif', style: FontStyle.Normal })
             .onSelect((index: number, value: string) => {
               this.algorithmType = value
               Logger.info(TAG, `Select: ${index} value: ${value}`)
             })
 
-          TextInput()
-            .margin(5)
+        TextArea()
+            .margin(4)
             .width('60%')
             .onChange((value: string) => {
               this.message = value
             })
-        }
-        .width('100%')
-        .margin(10)
 
         Row() {
           Button($r('app.string.encryption'))
-            .fontSize(20)
             .margin(10)
+            .fontSize(20)
             .width('45%')
             .height('6%')
             .onClick(() => {
@@ -69,20 +64,20 @@ export struct Encryption {
                 if (this.algorithmType === 'RSA') {
                   this.cipherModel.rsaEncrypt(this.message, (result) => {
                     Logger.info(TAG, `this result = ${JSON.stringify(result)}`)
-                    this.info = `Encryption result is :  ${result.data.text}`
+                    this.info = `Encryption result is :  ${result.text}`
                   })
                 } else {
                   this.cipherModel.aesEncrypt(this.message, (result) => {
                     Logger.info(TAG, `this result = ${JSON.stringify(result)}`)
-                    this.info = `Encryption result is :  ${result.data.text}`
+                    this.info = `Encryption result is :  ${result.text}`
                   })
                 }
               }
             })
 
           Button($r('app.string.reset'))
-            .fontSize(20)
             .margin(10)
+            .fontSize(20)
             .width('30%')
             .height('6%')
             .onClick(() => {

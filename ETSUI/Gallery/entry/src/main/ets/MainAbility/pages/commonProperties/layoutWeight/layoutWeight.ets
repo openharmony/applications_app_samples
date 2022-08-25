@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
-const BACKGROUND_COLORS: string[] = ["#EE82EE", "#87CEFA", "#FF4500"]
+const BACKGROUND_COLORS: string[] = ['#EE82EE', '#87CEFA', '#FF4500']
 
 @Observed
 class FlexInfo {
@@ -79,14 +79,16 @@ struct LayOutWeightSample {
     Column() {
       NavigationBar({ title: '尺寸设置' })
       Column() {
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          ForEach(this.children,
-            (item, index) => {
+        Row() {
+          ForEach(this.children, (item, index) => {
               ItemTemplate({ index: index, clickedIndex: $clickedIndex, flexInfo: this.children[index] })
             }, (item) => item.index
           )
-        }.width('100%')
+        }
+        .width('100%')
         .height('100%')
+        .alignItems(VerticalAlign.Center)
+        .justifyContent(FlexAlign.Center)
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -95,22 +97,25 @@ struct LayOutWeightSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Button('+', { type: ButtonType.Capsule, stateEffect: true })
               .borderRadius(14)
               .width(44)
               .height(28)
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .onClick((event: ClickEvent) => {
                 this.children.push(new FlexInfo(this.children.length))
               })
+
+            Blank()
+
             Button('-', { type: ButtonType.Capsule, stateEffect: true })
               .borderRadius(14)
               .width(44)
               .height(28)
-              .backgroundColor("#007DFF")
+              .backgroundColor('#007DFF')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .onClick(() => {
@@ -122,18 +127,22 @@ struct LayOutWeightSample {
                 }
               })
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(45)
           .borderRadius(24)
-          .padding({left:'3%',right:'3%'})
+          .padding({ left: '3%', right: '3%' })
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text(`${this.clickedIndex + 1} el layoutWeight(${this.currentInfo.layoutWeight})`)
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Column() {
               Counter() {
                 Text(`${this.currentInfo.layoutWeight}`)
@@ -152,6 +161,7 @@ struct LayOutWeightSample {
               .height(24)
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)

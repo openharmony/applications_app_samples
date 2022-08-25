@@ -8,17 +8,11 @@
 
 ### 相关概念
 
--   分布式数据对象：组网内的设备，通过创建相同sessionId的分布式数据对象，修改分布式对象时，对端设备可以监听到数据变化并获取到新的数据，从而实现不同设备间的数据交换。
+分布式数据对象：组网内的设备，通过创建相同sessionId的分布式数据对象，修改分布式对象时，对端设备可以监听到数据变化并获取到新的数据，从而实现不同设备间的数据交换。
 
 ### 相关权限
 
-```
-本示例需要在module.json5中配置如下权限:
-
-分布式数据管理权限：ohos.permission.DISTRIBUTED_DATASYNC
-```
-
-### 使用说明
+允许不同设备间的数据交换：ohos.permission.DISTRIBUTED_DATASYNC
 
 ### 使用说明
 
@@ -38,4 +32,6 @@
 
 2.本示例为Stage模型，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。

@@ -42,8 +42,8 @@ struct SwitchPage {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Column() {
+      Row() {
         Image($r('app.media.left'))
           .height(30)
           .width(30)
@@ -57,12 +57,13 @@ struct SwitchPage {
           .fontWeight(FontWeight.Bold)
           .fontSize(18)
       }
+      .justifyContent(FlexAlign.SpaceBetween)
       .width('100%')
       .padding({ top: 20, bottom: 20, left: 10, right: 10 })
       .backgroundColor("#f5f5f5")
       //5000类处理
       Column() {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Row() {
           Text('启动加载5000类')
             .fontSize(16)
           Row() {
@@ -89,11 +90,13 @@ struct SwitchPage {
             }
           })
         }
+        .width('95%')
+        .justifyContent(FlexAlign.SpaceBetween)
       }
       .margin({ top: 5 })
       //500类处理
       Column() {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Row() {
           Text('启动加载500类')
             .fontSize(16)
           Row() {
@@ -120,11 +123,13 @@ struct SwitchPage {
             }
           })
         }
+        .width('95%')
+        .justifyContent(FlexAlign.SpaceBetween)
       }
       .margin({ top: 5 })
       //线程处理
       Column() {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Row() {
           Text('启动加载线程')
             .fontSize(16)
           Row() {
@@ -151,6 +156,8 @@ struct SwitchPage {
             }
           })
         }
+        .width('95%')
+        .justifyContent(FlexAlign.SpaceBetween)
       }
       .margin({ top: 5 })
     }

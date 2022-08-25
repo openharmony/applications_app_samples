@@ -18,6 +18,7 @@ import emitter from '@ohos.events.emitter';
 import { CustomText }  from '../common/CustomText'
 import { getData } from '../model/Good'
 import { Good } from '../model/Good'
+import {EmitterSource} from "../model/DataSource"
 
 const TAG = `[eTSEmitter.Index]`
 
@@ -27,25 +28,25 @@ struct Index {
   @State enabled: boolean = true
   @State color: string = '#EF5B0C'
   @State productArr: Array<Good> = getData()
-  @State indexArr: Array<unknown> = []
+  @State indexArr: EmitterSource = new EmitterSource([])
 
   onProductAdd(eventData) {
     console.log(`${TAG} eventData= ${JSON.stringify(eventData)}`)
     let index = eventData.data.index
     if (eventData.data.isAdd) {
-      this.indexArr.push(this.productArr[index])
+      this.indexArr.pushData(this.productArr[index])
     }
-    console.log(`${TAG} onProductAdd indexArr= ${JSON.stringify(this.indexArr)}`)
+    console.log(`${TAG} onProductAdd indexArr= ${JSON.stringify(this.indexArr['productData'])}`)
   }
 
   aboutToAppear() {
     var innerEvent = { eventId: 1001 }
     emitter.on(innerEvent, this.onProductAdd.bind(this))
-    console.log(`${TAG} indexArr= ${JSON.stringify(this.indexArr)}`)
+    console.log(`${TAG} indexArr= ${JSON.stringify(this.indexArr['productData'])}`)
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Row() {
         Text($r('app.string.event_notification'))
           .width('70%')
@@ -76,7 +77,7 @@ struct Index {
         .fontSize(25)
         .fontWeight(FontWeight.Bold)
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.indexArr, (item, index) => {
+        LazyForEach(this.indexArr, (item, index) => {
           ListItem() {
             Column() {
               Row() {
@@ -108,6 +109,7 @@ struct Index {
           }
         }, item => item.name)
       }
+      .width("100%")
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 15, endMargin: 15 })
       .layoutWeight(1)
     }

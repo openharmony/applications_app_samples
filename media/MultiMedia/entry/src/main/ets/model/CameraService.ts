@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import camera from '@ohos.multimedia.camera'
+import deviceInfo from '@ohos.deviceInfo'
 import fileio from '@ohos.fileio'
 import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
@@ -61,8 +63,8 @@ class CameraService {
       fileFormat: 'mp4',
       videoBitrate: 48000,
       videoCodec: 'video/mp4v-es',
-      videoFrameWidth: CameraSize.WIDTH,
-      videoFrameHeight: CameraSize.HEIGHT,
+      videoFrameWidth: 640,
+      videoFrameHeight: 480,
       videoFrameRate: 30
     },
     url: '',
@@ -121,7 +123,12 @@ class CameraService {
     Logger.info(this.tag, 'initCamera')
     if (this.curMode === CameraMode.MODE_VIDEO) {
       await this.releaseCamera()
-      this.curMode = CameraMode.MODE_PHOTO
+    }
+    Logger.info(this.tag, `deviceInfo.deviceType = ${deviceInfo.deviceType}`)
+    if (deviceInfo.deviceType === 'default') {
+      this.videoConfig.videoSourceType = 1
+    } else {
+      this.videoConfig.videoSourceType = 0
     }
     this.cameraManager = await camera.getCameraManager(globalThis.abilityContext)
     Logger.info(this.tag, 'getCameraManager')
@@ -175,14 +182,17 @@ class CameraService {
 
   async startVideo() {
     Logger.info(this.tag, 'startVideo begin')
-    if (this.curMode === CameraMode.MODE_PHOTO) {
-      this.curMode = CameraMode.MODE_VIDEO
-    }
     await this.captureSession.stop()
     await this.captureSession.beginConfig()
-    if (this.videoOutput) {
-      await this.captureSession.removeOutput(this.videoOutput)
-      Logger.info(this.tag, ` old videoOutput has been removed.`)
+    if (this.curMode === CameraMode.MODE_PHOTO) {
+      this.curMode = CameraMode.MODE_VIDEO
+      if (this.photoOutPut) {
+        await this.captureSession.removeOutput(this.photoOutPut)
+      }
+    } else {
+      if (this.videoOutput) {
+        await this.captureSession.removeOutput(this.videoOutput)
+      }
     }
     this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.VIDEO)
     this.fd = await this.mediaUtil.getFdPath(this.fileAsset)
@@ -208,7 +218,6 @@ class CameraService {
 
   async releaseCamera() {
     Logger.info(this.tag, 'releaseCamera')
-    await this.captureSession.stop()
     if (this.cameraInput) {
       await this.cameraInput.release()
     }
@@ -221,8 +230,9 @@ class CameraService {
     if (this.videoOutput) {
       await this.videoOutput.release()
     }
-    await this.cameraInput.release()
-    await this.captureSession.release()
+    if (this.captureSession) {
+      await this.captureSession.release()
+    }
   }
 }
 

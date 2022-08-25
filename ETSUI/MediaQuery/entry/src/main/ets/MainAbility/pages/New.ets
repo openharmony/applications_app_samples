@@ -29,7 +29,7 @@ struct New {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column(){
       TitleBar({ title: this.title })
       NewView({ currentNew: $currentNew })
     }

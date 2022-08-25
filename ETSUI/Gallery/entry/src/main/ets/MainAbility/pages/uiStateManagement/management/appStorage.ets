@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 AppStorage.Link('isShowDialog') || AppStorage.SetOrCreate('isShowDialog', true)
 
@@ -27,7 +27,7 @@ struct DialogContentSample {
 
   build() {
     Column() {
-      Text('弹窗提醒')
+      Text($r('app.string.dialog'))
         .width('90%')
         .fontSize('16fp')
         .textAlign(TextAlign.Start)
@@ -40,38 +40,42 @@ struct DialogContentSample {
             this.isOn = !this.isOn
             this.isShowDialog = !this.isOn
           }).size({ width: 15, height: 15 })
-        Text('下次不再提示')
+        Text($r('app.string.next'))
           .fontSize('16fp')
           .fontColor('#182431')
           .opacity(0.6)
           .fontWeight(FontWeight.Regular)
       }.margin({ top: 12, bottom: 12 })
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Button() {
-          Text('取消').fontColor('#007DFF').fontSize('16fp')
+          Text($r('app.string.cancel'))
+            .fontColor('#007DFF')
+            .fontSize('16fp')
         }
         .onClick(() => {
           this.controller.close()
           this.cancel()
-        }).backgroundColor(0xffffff).fontColor(Color.Black)
+        })
+        .backgroundColor(0xffffff)
+        .fontColor(Color.Black)
 
-        Row() {
-          Text()
-            .width(1)
-            .backgroundColor(Color.Grey)
-            .opacity(0.6)
-            .height(16)
-        }
+        Blank()
 
         Button() {
-          Text('确认').fontColor('#007DFF').fontSize('16fp')
+          Text($r('app.string.confirm'))
+            .fontColor('#007DFF')
+            .fontSize('16fp')
         }
         .onClick(() => {
           this.controller.close()
           this.confirm()
-        }).backgroundColor(0xffffff).fontColor(Color.Red)
-      }.width('70%').margin({ bottom: 10 })
+        })
+        .backgroundColor(0xffffff)
+        .fontColor(Color.Red)
+      }
+      .width('70%')
+      .margin({ bottom: 10 })
     }.width('100%')
   }
 }
@@ -81,7 +85,7 @@ struct DialogContentSample {
 struct DialogSample {
   @StorageLink('isShowDialog') isShowDialog: boolean = true
 
-  private onPageShow(): void  {
+   onPageShow(): void  {
     if (this.isShowDialog) {
       this.dialogController.open()
     }
@@ -106,17 +110,20 @@ struct DialogSample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: 'AppStorage' })
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Text(`提示弹框${this.isShowDialog ? "正常弹出" : "不在弹出"}`).fontSize('16fp').fontWeight(FontWeight.Medium)
-        Button('重置')
+      Row() {
+        Text(`提示弹框${this.isShowDialog ? '正常弹出' : '不在弹出'}`).fontSize('16fp').fontWeight(FontWeight.Medium)
+        Button($r('app.string.reset'))
           .fontSize('16')
           .onClick(() => {
             this.isShowDialog = true
             this.dialogController.open()
           }).backgroundColor('#007DFF')
-      }.width('100%').margin({ top: '40%' })
+      }
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Center)
     }
     .width('100%')
     .backgroundColor('#F1F3F5')

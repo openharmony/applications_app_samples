@@ -14,7 +14,7 @@
  */
 import distributedData from '@ohos.data.distributedData';
 
-const STORE_ID = 'distributedCalc';
+const STORE_ID = 'distributedcalc';
 
 export class KvStoreModel {
     kvManager;
@@ -69,8 +69,7 @@ export class KvStoreModel {
 
     off() {
         if (this.kvStore !== null) {
-            this.kvStore.off('dataChange', () => {
-                console.info('[KvStoreModel]  off dataChange');
+            this.kvStore.off('dataChange');
             })
         }
     }

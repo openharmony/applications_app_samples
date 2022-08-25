@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar";
+import { NavigationBar } from '../../../common/components/navigationBar'
 import Curves from '@ohos.curves';
 
 @Entry
 @Component
 struct InterpolationSample {
-  @State positionX: string= '0%'
+  @State positionX: string = '0%'
   @State flag: boolean = false
-  @State width: string= '15%'
+  @State width: string = '15%'
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: '插值计算' })
       Column() {
         Text('Curve.Linear')
@@ -85,7 +85,7 @@ struct InterpolationSample {
         .padding(10)
         .onClick(() => {
             this.flag ? this.width = '15%' : this.width = '85%'
-            this.flag = !this.flag
+          this.flag = !this.flag
         })
     }
     .height('100%')

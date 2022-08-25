@@ -4,8 +4,7 @@
 
 这是一个仿购物类应用，使用了混合的布局，包含图片、视频、文本等资源。为了优化内存与性能体验，在滑动列表场景下使用了懒加载特性，开发者可借鉴使用。效果图如下：
 
-![](screenshots/device/home1.png)
-![](screenshots/device/collect.png)
+![](screenshots/device/home1.png) ![](screenshots/device/collect.png)
 
 ### 相关概念
 
@@ -13,11 +12,11 @@
 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 使用说明
 
-1、启动应用显示首页内容，包括“首页”、“分类”、“消息”、“购物车”、“我的”五个模块，可点击下方tabBar可切换模块内容
+1、启动应用显示首页内容，包括“首页”、“分类”、“消息”、“购物车”、“我的”五个模块，可点击下方tabBar可切换模块内容。
 
 2、“首页”页面具有Swiper轮播，LazyForEach懒加载，Grid网格布局，Tabs组件切换等功能。
 
@@ -31,4 +30,4 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例需要使用3.0.0.901及以上的DevEco Studio版本才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。

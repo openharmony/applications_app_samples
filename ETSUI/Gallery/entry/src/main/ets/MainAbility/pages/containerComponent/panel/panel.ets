@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -34,7 +34,7 @@ struct PanelSample {
     Column() {
       NavigationBar({ title: 'Panel' })
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Text('Click for details')
             .fontWeight(FontWeight.Medium)
             .width('100%')
@@ -48,6 +48,8 @@ struct PanelSample {
               this.show = !this.show
             })
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
@@ -57,12 +59,15 @@ struct PanelSample {
           Text('change attribute').fontSize(18)
           Divider()
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('show')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.isOn })
               .selectedColor('#007DFF')
               .switchPointColor(0xe5ffffff)
@@ -71,19 +76,23 @@ struct PanelSample {
                 this.show = !this.show
               })
           }
+          .alignItems(VerticalAlign.Center)
           .width('97%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('type')
               .fontSize('16fp')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.panelTypeString}`)
                 .bindMenu([
@@ -119,19 +128,23 @@ struct PanelSample {
             }
 
           }
+          .alignItems(VerticalAlign.Center)
           .width('97%')
           .padding('3%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             if (this.type === PanelType.Minibar) {
               Text('mode')
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Column() {
                 Text(`${this.panelModeString}`)
                   .bindMenu([
@@ -171,6 +184,9 @@ struct PanelSample {
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Column() {
                 Text(`${this.panelModeString}`)
                   .bindMenu([
@@ -210,6 +226,9 @@ struct PanelSample {
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Column() {
                 Text(`${this.panelModeString}`)
                   .bindMenu([
@@ -247,15 +266,19 @@ struct PanelSample {
           .width('97%')
           .padding('3%')
           .borderRadius(24)
+          .alignItems(VerticalAlign.Center)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('dragBar')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.isOnDragBar })
               .selectedColor('#007DFF')
               .switchPointColor(0xe5ffffff)
@@ -265,6 +288,7 @@ struct PanelSample {
                 this.isOnDragBar = !this.isOnDragBar
               })
           }
+          .alignItems(VerticalAlign.Center)
           .width('97%')
           .padding('3%')
           .borderRadius(24)
@@ -285,7 +309,7 @@ struct PanelSample {
     }
     .height('100%')
     .backgroundColor(0xDCDCDC)
-    .padding({left: '3%', right: '3%', bottom: 10 })
+    .padding({ left: '3%', right: '3%', bottom: 10 })
   }
 
   pageTransition() {

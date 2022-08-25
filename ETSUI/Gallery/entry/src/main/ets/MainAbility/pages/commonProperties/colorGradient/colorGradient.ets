@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 enum GradientType {
   LineGradient,
@@ -30,8 +30,8 @@ enum MethodType {
 class GradientAttributes {
   public isRepeating: boolean = false
   public angle: number = 0
-  public showDirection: GradientDirection= GradientDirection.Left
-  public direction: string= 'Left'
+  public showDirection: GradientDirection = GradientDirection.Left
+  public direction: string = 'Left'
   public sweepStart: number = 0
   public sweepEnd: number = 359
   public radius: number = 100
@@ -61,10 +61,10 @@ struct ColorGradientSample {
   @State radialCenter: number[] = [100, 100]
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '颜色渐变' })
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           if (this.typeGradient == GradientType.LineGradient) {
             ShowLinear({
               startAngle: $startAngle,
@@ -92,10 +92,10 @@ struct ColorGradientSample {
               showColorList: $showColorList
             })
           }
-        }.width('100%')
+        }.width('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
       }
       .width('100%')
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
+      .height('40%')
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
 
       Scroll() {
@@ -119,7 +119,10 @@ struct ColorGradientSample {
         }.width('100%')
       }.width('100%').height('55%')
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }
@@ -240,12 +243,15 @@ struct ControlLinear {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row({ space: FlexAlign.SpaceBetween }) {
         Text('angle/direction')
           .fontSize('16fp')
           .opacity(0.5)
           .fontColor('#182431')
           .fontWeight(FontWeight.Medium)
+
+        Blank()
+
         Column() {
           Text(this.gradientMethod == MethodType.Angele ? 'angle' : 'direction')
             .fontSize('16fp')
@@ -269,6 +275,7 @@ struct ControlLinear {
           },
         ])
       }
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
@@ -283,12 +290,15 @@ struct ControlLinear {
           }
         }.margin({ top: 10 })
       } else if (this.gradientMethod == MethodType.Direction) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row({ space: FlexAlign.SpaceBetween }) {
           Text('direction ')
             .fontSize('16fp')
             .opacity(0.5)
             .fontColor('#182431')
             .fontWeight(FontWeight.Medium)
+
+          Blank()
+
           Column() {
             Text(`${this.linear.direction}`)
               .fontSize('16fp')
@@ -348,6 +358,7 @@ struct ControlLinear {
             },
           ])
         }
+        .alignItems(VerticalAlign.Center)
         .width('100%')
         .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
         .borderRadius(24)
@@ -425,12 +436,15 @@ struct ControlSweep {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row({ space: FlexAlign.SpaceBetween }) {
         Text('start')
           .fontSize('16fp')
           .opacity(0.5)
           .fontColor('#182431')
           .fontWeight(FontWeight.Medium)
+
+        Blank()
+
         Column() {
           Text(this.sweep.sweepStart.toFixed(0))
             .fontSize('16fp')
@@ -440,18 +454,22 @@ struct ControlSweep {
             .textAlign(TextAlign.End)
         }
       }
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row({ space: FlexAlign.SpaceBetween }) {
         Text('end')
           .fontSize('16fp')
           .opacity(0.5)
           .fontColor('#182431')
           .fontWeight(FontWeight.Medium)
+
+        Blank()
+
         Column() {
           Text(this.sweep.sweepEnd.toFixed(0))
             .fontSize('16fp')
@@ -461,6 +479,7 @@ struct ControlSweep {
             .textAlign(TextAlign.End)
         }
       }
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
       .borderRadius(24)
@@ -520,12 +539,15 @@ struct ControlRadial {
   @ObjectLink radial: GradientAttributes
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    Row({ space: FlexAlign.SpaceBetween }) {
       Text('radius')
         .fontSize('16fp')
         .opacity(0.5)
         .fontColor('#182431')
         .fontWeight(FontWeight.Medium)
+
+      Blank()
+
       Column() {
         Text(this.radial.radius.toFixed(0))
           .fontSize('16fp')
@@ -535,6 +557,7 @@ struct ControlRadial {
           .textAlign(TextAlign.End)
       }
     }
+    .alignItems(VerticalAlign.Center)
     .width('100%')
     .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
     .borderRadius(24)
@@ -555,12 +578,15 @@ struct CommonProperties {
   build() {
     Column() {
       if (this.typeGradient !== GradientType.LineGradient) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row({ space: FlexAlign.SpaceBetween }) {
           Text('center x')
             .fontSize('16fp')
             .opacity(0.5)
             .fontColor('#182431')
             .fontWeight(FontWeight.Medium)
+
+          Blank()
+
           Column() {
             if (this.typeGradient == GradientType.SweepGradient) {
               Text(this.sweepCenter[0].toFixed(0))
@@ -579,18 +605,22 @@ struct CommonProperties {
             }
           }
         }
+        .alignItems(VerticalAlign.Center)
         .width('100%')
         .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
         .borderRadius(24)
         .backgroundColor('#FFFFFF')
         .margin({ top: 8 })
 
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row({ space: FlexAlign.SpaceBetween }) {
           Text('center y')
             .fontSize('16fp')
             .opacity(0.5)
             .fontColor('#182431')
             .fontWeight(FontWeight.Medium)
+
+          Blank()
+
           Column() {
             if (this.typeGradient == GradientType.SweepGradient) {
               Text(this.sweepCenter[1].toFixed(0))
@@ -609,18 +639,23 @@ struct CommonProperties {
             }
           }
         }
+        .alignItems(VerticalAlign.Center)
         .width('100%')
         .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
         .borderRadius(24)
         .backgroundColor('#FFFFFF')
         .margin({ top: 8 })
       }
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+
+      Row({ space: FlexAlign.SpaceBetween }) {
         Text('repeating')
           .fontSize('16fp')
           .opacity(0.5)
           .fontColor('#182431')
           .fontWeight(FontWeight.Medium)
+
+        Blank()
+
         Toggle({ type: ToggleType.Switch, isOn: this.common.isRepeating })
           .size({ width: 35, height: 20 })
           .selectedColor(0x317aff)
@@ -630,31 +665,31 @@ struct CommonProperties {
             console.log(`${this.common.isRepeating}`)
           })
       }
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .padding({ left: '3%', right: '3%' })
       .borderRadius(24)
       .backgroundColor('#FFFFFF')
       .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Text('colorType').align(Alignment.Bottom).width('28%').fontSize(20).textAlign(TextAlign.Center)
-        Text('colorStep').width('40%').fontSize(20).textAlign(TextAlign.Center).padding({ left: '20%' })
-        Text('edit').width('35%').fontSize(20).textAlign(TextAlign.Center).padding({ left: '5%' })
-      }.width('96%').margin({ top: 15 })
+      Row({ space: FlexAlign.SpaceBetween }) {
+        Text('colorType').align(Alignment.Bottom).fontSize(20).textAlign(TextAlign.Center)
+        Text('colorStep').fontSize(20).textAlign(TextAlign.Center).padding({ left: '20%' })
+        Text('edit').fontSize(20).textAlign(TextAlign.Center).padding({ left: '20%' })
+      }.width('96%').margin({ top: 15 }).alignItems(VerticalAlign.Center)
 
       Scroll() {
         Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceAround }) {
           Column() {
-            Flex({
-              direction: FlexDirection.Row,
-              justifyContent: FlexAlign.SpaceBetween,
-              alignItems: ItemAlign.Center
-            }) {
+            Row() {
               Text('Color')
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Button({ type: ButtonType.Circle, stateEffect: true }) {
                 Text('+').fontColor('#ffffff').fontSize('16fp').fontWeight(FontWeight.Medium)
               }
@@ -669,6 +704,8 @@ struct CommonProperties {
                 this.showColorList.push([rgb, 1])
               })
             }
+            .justifyContent(FlexAlign.SpaceBetween)
+            .alignItems(VerticalAlign.Center)
             .width('100%')
             .height(24)
 
@@ -724,7 +761,11 @@ struct CommonProperties {
 
           ForEach(this.showColorList, (item, index) => {
             Row() {
-              Row().align(Alignment.Start).backgroundColor(item[0]).width('30%').height(24)
+              Row()
+                .align(Alignment.Start)
+                .backgroundColor(item[0])
+                .width('30%')
+                .height(24)
               Row() {
                 Column() {
                   Counter() {

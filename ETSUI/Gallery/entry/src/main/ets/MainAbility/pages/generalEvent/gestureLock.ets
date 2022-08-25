@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../common/components/navigationBar"
-import prompt from '@ohos.prompt';
+import { NavigationBar } from '../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -72,9 +71,9 @@ struct GestureLockSample {
   }
   //判断输入的密码
   private checkPass(lastPoint) {
-    let pwd1 = "1235789", //成功的密码
-      pwd2 = "";
-    for (let i = 0;i < lastPoint.length; i++) {
+    let pwd1 = '1235789', //成功的密码
+      pwd2 = ''
+    for (let i = 0; i < lastPoint.length; i++) {
       pwd2 += lastPoint[i].index;
     }
     if (pwd1 === pwd2) {
@@ -87,7 +86,7 @@ struct GestureLockSample {
   }
   //  判断结束后的状态
   private drawStatusPoint(type) {
-    for (let i = 0;i < this.lastPoint.length; i++) {
+    for (let i = 0; i < this.lastPoint.length; i++) {
       this.context.strokeStyle = type;
       this.context.beginPath();
       this.context.arc(this.lastPoint[i].x, this.lastPoint[i].y, 45, 0, 2 * Math.PI, true);
@@ -135,7 +134,7 @@ struct GestureLockSample {
               if (this.touchFlag) {
                 //清屏
                 this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-                for (let i = 0;i < this.arr.length; i++) {
+                for (let i = 0; i < this.arr.length; i++) {
                   this.drawCircle(this.arr[i].x, this.arr[i].y);
                 }
                 //画实心圆

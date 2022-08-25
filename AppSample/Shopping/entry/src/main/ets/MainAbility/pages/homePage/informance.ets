@@ -16,15 +16,41 @@
 import { InformationModel } from '../../model/homeModel'
 import { informationData } from '../../data/homeData'
 
+class informationNum implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 16
+  listeners: DataChangeListener[] = []
+}
 @Component
 export struct Information {
   @State information: Array<InformationModel> = informationData
+  informationNum: informationNum = new informationNum()
   @Prop ratio: number
 
   build() {
     Column() {
       Column() {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row() {
           Text('消息')
             .fontSize(20 * this.ratio)
             .fontWeight(FontWeight.Bolder)
@@ -40,15 +66,18 @@ export struct Information {
               .margin({ left: 20 })
           }
         }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
         .padding({ left: 10, right: 10 })
         .margin({ top: 10, bottom: 10 })
       }
       .backgroundColor('#dfe5e3')
 
-      Flex({ justifyContent: FlexAlign.Center }) {
+      Row() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
+            Row() {
               Text('@')
                 .fontSize(15 * this.ratio)
                 .fontColor('#40000000')
@@ -65,6 +94,8 @@ export struct Information {
                 .aspectRatio(1)
                 .objectFit(ImageFit.Contain)
             }
+            .justifyContent(FlexAlign.SpaceBetween)
+            .alignItems(VerticalAlign.Center)
             .width('40%')
 
             Image('/resources/icon/more.png')
@@ -72,14 +103,17 @@ export struct Information {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .margin({ bottom: 10 })
 
           Grid() {
-            ForEach(this.information, item => {
+            LazyForEach(this.informationNum, item => {
               GridItem() {
-                Flex({ alignItems: ItemAlign.Center }) {
+                Row() {
                   Column() {
-                    Image(item.uri)
+                    Image(this.information[item].uri)
                       .width(55 * this.ratio)
                       .aspectRatio(1)
                       .objectFit(ImageFit.Contain)
@@ -87,15 +121,17 @@ export struct Information {
                   }
 
                   Column() {
-                    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                      Text(item.title)
+                    Row() {
+                      Text(this.information[item].title)
                         .fontSize(14 * this.ratio)
                       Text(item.time)
                         .fontSize(13 * this.ratio)
                         .fontColor(Color.Gray)
                     }
+                    .justifyContent(FlexAlign.SpaceBetween)
+                    .alignItems(VerticalAlign.Center)
 
-                    Text(item.notice)
+                    Text(this.information[item].notice)
                       .fontSize(13 * this.ratio)
                       .fontColor(Color.Grey)
                       .margin({ top: 5, bottom: 10 })
@@ -107,6 +143,7 @@ export struct Information {
                   .padding({ left: 10, top: 10, bottom: 10 })
                   .alignItems(HorizontalAlign.Start)
                 }
+                .alignItems(VerticalAlign.Center)
               }
             }, item => item.toString())
           }
@@ -115,6 +152,7 @@ export struct Information {
         .padding(10)
         .backgroundColor(Color.White)
       }
+      .justifyContent(FlexAlign.SpaceBetween)
       .width('100%')
     }
     .width('100%')

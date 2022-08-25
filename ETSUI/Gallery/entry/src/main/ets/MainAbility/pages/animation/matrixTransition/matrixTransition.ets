@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar";
+import { NavigationBar } from '../../../common/components/navigationBar'
 import matrix4 from '@ohos.matrix4';
 
 @Component
 struct Card {
-  @State angle: number= 0
+  @State angle: number = 0
   private startY: number = 0
-  @State rotateX: number= 0
-  @State rotateZ: number= 1
+  @State rotateX: number = 0
+  @State rotateZ: number = 1
 
   build() {
     Row() {
@@ -74,17 +74,20 @@ struct Card {
 @Component
 struct MatrixTransitionSample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center}) {
+    Column() {
       NavigationBar({ title: '矩阵变换' })
-     Flex({ justifyContent:FlexAlign.Center, alignItems: ItemAlign.Center}){
+      Row() {
         Card()
-      }.flexGrow(1)
+      }
+      .justifyContent(FlexAlign.Center)
+      .flexGrow(1)
       .backgroundColor('#FFFFFF')
       .width('100%')
     }
     .height('100%')
     .backgroundColor('#F1F3F5')
   }
+
   pageTransition() {
     PageTransitionEnter({ duration: 370, curve: Curve.Friction })
       .slide(SlideEffect.Bottom)

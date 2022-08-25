@@ -15,17 +15,84 @@
 
 import ButtonClickModel from '../model/ButtonClickModel'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: Resource): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 @Entry
 @Component
 struct Index {
-  private buttonRes: Array<Resource> = [
+  private buttonRes: MyDataSource = new MyDataSource([
     $r('app.string.Start_Callee_Ability'),
     $r('app.string.Start_Remote_Ability'),
     $r('app.string.Get_Caller'),
     $r('app.string.Get_Remote_Caller'),
     $r('app.string.Release_Caller'),
     $r('app.string.Caller_CallWithResult')
-  ]
+  ])
   private buttonClickModel = new ButtonClickModel()
   @State message: string = 'Call Sample'
   @State originMsg: string = ''
@@ -37,7 +104,7 @@ struct Index {
         Text(this.message)
           .fontSize(28)
           .fontWeight(FontWeight.Bold)
-        ForEach(this.buttonRes, (item, index) => {
+        LazyForEach(this.buttonRes, (item, index) => {
           Button() {
             Text(item)
               .fontSize(16)

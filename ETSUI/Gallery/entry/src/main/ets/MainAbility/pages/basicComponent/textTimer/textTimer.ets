@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar";
+import { NavigationBar } from '../../../common/components/navigationBar';
 
 @Entry
 @Component
@@ -24,16 +24,15 @@ struct TextTimerSample {
   myTimerController: TextTimerController = new TextTimerController();
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-
+    Column() {
       NavigationBar({ title: 'TextTimer' })
 
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+          Column() {
             Text('计时显示')
-              .width("100%")
-              .height("10%")
+              .width('100%')
+              .height('10%')
               .fontSize(18)
               .margin({ bottom: 10 })
               .textAlign(TextAlign.Center)
@@ -45,31 +44,33 @@ struct TextTimerSample {
             })
               .format(this.format)
               .fontColor(Color.Black)
-              .height("20%")
+              .height('20%')
               .fontSize(50)
               .onTimer((utc: number, elapsedTime: number) => {
                 console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
               })
           }
-          .width("100%")
+          .justifyContent(FlexAlign.Start)
+          .alignItems(HorizontalAlign.Center)
+          .width('100%')
         }
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
       .margin({ bottom: 24 })
-      .backgroundColor("#FFFFFF")
+      .backgroundColor('#FFFFFF')
 
 
       Scroll() {
         Column() {
           Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround, wrap: FlexWrap.Wrap }) {
-            Button("开始计时")
-              .width("30%")
+            Button('开始计时')
+              .width('30%')
               .borderRadius(14)
               .fontSize(12)
-              .backgroundColor("#007DFF")
-              .fontColor("#FFFFFF")
+              .backgroundColor('#007DFF')
+              .fontColor('#FFFFFF')
               .fontWeight(FontWeight.Medium)
               .margin({ top: 15, bottom: 10 })
               .onClick(() => {
@@ -77,23 +78,23 @@ struct TextTimerSample {
                 this.myTimerController.start();
                 this.minutes = 1;
               });
-            Button("暂停计时")
-              .width("30%")
+            Button('暂停计时')
+              .width('30%')
               .borderRadius(14)
               .fontSize(12)
-              .backgroundColor("#007DFF")
-              .fontColor("#FFFFFF")
+              .backgroundColor('#007DFF')
+              .fontColor('#FFFFFF')
               .fontWeight(FontWeight.Medium)
               .margin({ top: 15, bottom: 10 })
               .onClick(() => {
                 this.myTimerController.pause();
               });
-            Button("重置计时")
-              .width("30%")
+            Button('重置计时')
+              .width('30%')
               .borderRadius(14)
               .fontSize(12)
-              .backgroundColor("#007DFF")
-              .fontColor("#FFFFFF")
+              .backgroundColor('#007DFF')
+              .fontColor('#FFFFFF')
               .fontWeight(FontWeight.Medium)
               .margin({ top: 15, bottom: 10 })
               .onClick(() => {
@@ -101,53 +102,53 @@ struct TextTimerSample {
                 this.minutes = 1;
               });
 
-            Button("开始倒计时")
-              .width("30%")
+            Button('开始倒计时')
+              .width('30%')
               .borderRadius(14)
               .fontSize(12)
-              .backgroundColor("#007DFF")
-              .fontColor("#FFFFFF")
+              .backgroundColor('#007DFF')
+              .fontColor('#FFFFFF')
               .fontWeight(FontWeight.Medium)
               .onClick(() => {
                 this.isCountDown = true;
                 this.myTimerController.start();
               });
-            Button("暂停倒计时")
-              .width("30%")
+            Button('暂停倒计时')
+              .width('30%')
               .borderRadius(14)
               .fontSize(12)
-              .backgroundColor("#007DFF")
-              .fontColor("#FFFFFF")
+              .backgroundColor('#007DFF')
+              .fontColor('#FFFFFF')
               .fontWeight(FontWeight.Medium)
               .onClick(() => {
                 this.myTimerController.pause();
               });
-            Button("重置倒计时")
-              .width("30%")
+            Button('重置倒计时')
+              .width('30%')
               .borderRadius(14)
               .fontSize(12)
-              .backgroundColor("#007DFF")
-              .fontColor("#FFFFFF")
+              .backgroundColor('#007DFF')
+              .fontColor('#FFFFFF')
               .fontWeight(FontWeight.Medium)
               .onClick(() => {
                 this.myTimerController.reset();
                 this.minutes = 1;
               });
           }
-          .width("100%")
-          .height("15%")
+          .width('100%')
+          .height('15%')
           .borderRadius(24)
-          .padding({ left: "1%", right: "1%" })
+          .padding({ left: '1%', right: '1%' })
           .margin({ bottom: 8 })
-          .backgroundColor("#FFFFFF")
+          .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('count:').fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
             Counter() {
-              Text("" + this.minutes).fontSize(18)
+              Text('' + this.minutes).fontSize(18)
             }
             .onInc(() => {
               this.minutes++
@@ -156,8 +157,10 @@ struct TextTimerSample {
                 this.minutes > 0 ? this.minutes-- : 0
             })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
-          .height("6%")
+          .height('6%')
           .padding({ left: '3%', right: '4%' })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
@@ -165,7 +168,10 @@ struct TextTimerSample {
         }
       }
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }
@@ -180,4 +186,3 @@ struct TextTimerSample {
       .opacity(0.0)
   }
 }
-

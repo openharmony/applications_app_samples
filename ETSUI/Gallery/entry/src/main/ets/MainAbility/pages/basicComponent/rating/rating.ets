@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -33,7 +33,7 @@ struct RatingSample {
       NavigationBar({ title: 'Rating' })
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+          Column() {
             Text('Rating')
               .fontSize('24fp')
               .margin({ bottom: 80 })
@@ -52,6 +52,7 @@ struct RatingSample {
               })
             Text('current score is ' + this.rating).fontSize('20fp').fontColor('blue').margin({ top: 10 })
           }
+          .alignItems(HorizontalAlign.Center)
           .width('100%')
         }
       }
@@ -62,7 +63,7 @@ struct RatingSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('rating')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -88,11 +89,13 @@ struct RatingSample {
 
           }
           .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('indicator')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -107,13 +110,15 @@ struct RatingSample {
                   this.indicator ? this.indicator = false : this.indicator = true
               })
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('stars')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -136,13 +141,15 @@ struct RatingSample {
               })
             }
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('stepSize')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -178,12 +185,14 @@ struct RatingSample {
             ])
           }
           .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('starStyle')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
@@ -230,6 +239,8 @@ struct RatingSample {
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)

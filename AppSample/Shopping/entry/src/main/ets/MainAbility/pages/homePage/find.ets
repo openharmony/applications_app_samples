@@ -17,10 +17,36 @@ import { SearchTextModel, FindTitleTextModel } from '../../model/homeModel'
 import { findSearchTextData, findTitleTextData } from '../../data/homeData'
 import { ImageItem } from './imageItem'
 
+class ImageItems implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 10
+  listeners: DataChangeListener[] = []
+}
 @Component
 export struct FindPage {
   @Link bgColor: string
   @Link ratio: number
+  imageItems: ImageItems = new ImageItems()
   @State searchText: Array<SearchTextModel> = findSearchTextData
   @State titleText: Array<FindTitleTextModel> = findTitleTextData
 
@@ -28,22 +54,25 @@ export struct FindPage {
     Column() {
       List() {
         ListItem() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Image('/resources/icon/search.png')
               .width(25 * this.ratio)
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
-              .fillColor(Color.Orange)
               .margin({ left: 10 })
             Divider()
               .vertical(true)
               .height('8%')
             Swiper() {
-              ForEach(this.searchText, item => {
-                Text(item.searchText)
-                  .fontSize(15 * this.ratio)
-                  .fontColor(Color.Grey)
-              }, item => item.toString())
+              Text(this.searchText[0].searchText)
+                .fontSize(15 * this.ratio)
+                .fontColor(Color.Grey)
+              Text(this.searchText[1].searchText)
+                .fontSize(15 * this.ratio)
+                .fontColor(Color.Grey)
+              Text(this.searchText[2].searchText)
+                .fontSize(15 * this.ratio)
+                .fontColor(Color.Grey)
             }
             .width('65%')
             .autoPlay(false)
@@ -64,22 +93,35 @@ export struct FindPage {
             .backgroundColor(Color.Orange)
             .padding(0)
           }
-          .height('5%')
+          .height('6%')
           .clip(true)
           .border({ width: 2, color: Color.Orange, radius: 20 })
           .width('100%')
           .backgroundColor(Color.White)
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
         }
         .padding({ left: 10, right: 10 })
         .margin({ bottom: 10 })
 
         ListItem() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            ForEach(this.titleText, item => {
-              Text(item.titleText)
-                .fontSize(15 * this.ratio)
-            }, item => item.toString())
+          Row() {
+            Text(this.titleText[0].titleText)
+              .fontSize(15 * this.ratio)
+            Text(this.titleText[1].titleText)
+              .fontSize(15 * this.ratio)
+            Text(this.titleText[2].titleText)
+              .fontSize(15 * this.ratio)
+            Text(this.titleText[3].titleText)
+              .fontSize(15 * this.ratio)
+            Text(this.titleText[4].titleText)
+              .fontSize(15 * this.ratio)
+            Text(this.titleText[5].titleText)
+              .fontSize(15 * this.ratio)
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: 15, right: 15 })
         }
         .sticky(Sticky.Normal)
@@ -89,7 +131,7 @@ export struct FindPage {
 
         ListItem() {
           Column() {
-            ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], item => {
+            LazyForEach(this.imageItems, item => {
               Row() {
                 Column() {
                   ImageItem({ ratio: this.ratio })
@@ -112,6 +154,8 @@ export struct FindPage {
         .backgroundColor(Color.White)
         .offset({ x: 0, y: -10 })
       }
+      .width('100%')
+      .height('100%')
       .backgroundColor('#dfe5e3')
       .onScrollIndex((e) => {
         if (e != 0) {

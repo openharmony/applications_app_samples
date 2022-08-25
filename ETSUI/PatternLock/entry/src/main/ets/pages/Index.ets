@@ -118,6 +118,7 @@ struct Index {
               this.defaultPassword = this.password.toString()
               PreferencesUtils.setPassword(this.password.toString())
               this.message = $r('app.string.message_set_success')
+              this.isShowSetting = false
               this.isHasPass = true
               this.patternLockController.reset()
               this.password = []

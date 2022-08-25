@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct ProgressSample {
   @State setValue: number = 10;
   @State setProgressColor: string = 'rgba(0,0,0,1)'
-  @State setProgressStyle: number  = ProgressStyle.Linear;
+  @State setProgressStyle: number = ProgressStyle.Linear;
   @State progressStyleString: string = 'Linear';
   @State setSliderShowSteps: boolean = true;
   @State setSliderShowTips: boolean = true;
@@ -29,15 +29,17 @@ struct ProgressSample {
   @State setSliderStyle: SliderStyle = SliderStyle.OutSet;
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Progress' })
       Column() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Progress({ value: 10, total: 100, style: this.setProgressStyle })
             .color(this.setProgressColor)
             .width(180)
             .value(this.setValue)
         }
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
         .width('100%')
         .height('100%')
       }
@@ -47,28 +49,35 @@ struct ProgressSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('setProgressColor')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $setProgressColor })
             }.width(48)
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8, bottom: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('progress style')
               .fontColor('#182431')
               .fontSize('16fp')
               .fontWeight(FontWeight.Medium)
               .opacity(0.5)
+
+            Blank()
+
             Column() {
               Text(`${this.progressStyleString}`)
                 .fontColor('#182431')
@@ -115,18 +124,15 @@ struct ProgressSample {
               }
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8, bottom: 8 })
 
-          Flex({
-            direction: FlexDirection.Column,
-            justifyContent: FlexAlign.Center,
-            alignItems: ItemAlign.Center
-          }) {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Column() {
+            Row() {
               Text('progress value')
                 .fontColor('#182431')
                 .fontSize('16fp')
@@ -136,7 +142,7 @@ struct ProgressSample {
                 .fontColor('#182431')
                 .fontSize('16fp')
                 .fontWeight(FontWeight.Medium)
-            }
+            }.justifyContent(FlexAlign.SpaceBetween)
 
             Slider({
               value: this.setValue,
@@ -157,6 +163,8 @@ struct ProgressSample {
                 console.info('value:' + value + 'mode:' + mode.toString())
               })
           }
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
@@ -167,6 +175,8 @@ struct ProgressSample {
       .margin({ top: 24 })
     }
     .height('100%')
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

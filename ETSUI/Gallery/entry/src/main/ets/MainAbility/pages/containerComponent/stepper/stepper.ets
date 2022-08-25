@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct StepperSample {
   @State currentIndex: number = 0
   @State iteamStateType: ItemState = ItemState.Normal
-  @State showMessage: string= "default"
-  private iteamArrays: string[]= ["Normal", "Disabled", "Waiting", "Skip"]
+  @State showMessage: string = 'default'
+  private iteamArrays: string[] = ['Normal', 'Disabled', 'Waiting', 'Skip']
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: 'Stepper' })
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Stepper({
               index: this.currentIndex
             }) {
@@ -68,10 +68,10 @@ struct StepperSample {
               .nextLabel('Finish')
             }
             .onFinish(() => {
-              this.showMessage = "Finish"
+              this.showMessage = 'Finish'
             })
             .onSkip(() => {
-              this.showMessage = "Skip"
+              this.showMessage = 'Skip'
             })
             .onChange((prevIndex: number, index: number) => {
               this.currentIndex = index
@@ -79,6 +79,8 @@ struct StepperSample {
             .align(Alignment.Center)
           }
         }
+        .width('100%')
+        .height('100%')
       }
       .width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
@@ -87,56 +89,55 @@ struct StepperSample {
 
       Scroll() {
         Column() {
-          Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center }) {
-            Text(this.showMessage)
-              .fontSize('20fp')
-              .fontColor('#000000')
-              .fontWeight(FontWeight.Medium)
-              .opacity(0.8)
-              .textAlign(TextAlign.Center)
-          }
+          Text(this.showMessage)
+            .fontSize('20fp')
+            .fontColor('#000000')
+            .fontWeight(FontWeight.Medium)
+            .opacity(0.8)
+            .textAlign(TextAlign.Center)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('PageTwo-ItemState')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
-            Column() {
-              Text(this.iteamArrays[`${this.iteamStateType}`])
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-                .width('50%')
-                .textAlign(TextAlign.End)
-            }
-            .bindMenu([
-              {
-                value: 'Normal',
-                action: () => {
-                  this.iteamStateType = ItemState.Normal
-                }
-              },
-              {
-                value: 'Disabled',
-                action: () => {
-                  this.iteamStateType = ItemState.Disabled
-                }
-              },
-              {
-                value: 'Waiting',
-                action: () => {
-                  this.iteamStateType = ItemState.Waiting
 
-                }
-              },
-              {
-                value: 'Skip',
-                action: () => {
-                  this.iteamStateType = ItemState.Skip
-                }
-              },
-            ])
+            Blank()
+
+            Text(this.iteamArrays[`${this.iteamStateType}`])
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+              .width('50%')
+              .textAlign(TextAlign.End)
+              .bindMenu([
+                {
+                  value: 'Normal',
+                  action: () => {
+                    this.iteamStateType = ItemState.Normal
+                  }
+                },
+                {
+                  value: 'Disabled',
+                  action: () => {
+                    this.iteamStateType = ItemState.Disabled
+                  }
+                },
+                {
+                  value: 'Waiting',
+                  action: () => {
+                    this.iteamStateType = ItemState.Waiting
+
+                  }
+                },
+                {
+                  value: 'Skip',
+                  action: () => {
+                    this.iteamStateType = ItemState.Skip
+                  }
+                },
+              ])
           }
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
@@ -147,6 +148,7 @@ struct StepperSample {
       }
     }
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

@@ -3,15 +3,16 @@
 ### 简介
 
 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口。效果图如下：
+
 ![](screenshots/device/main.png)
 
 ### 相关概念
 
-- [鼠标输入事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mouseevent.md)：设备上报的鼠标事件。
+鼠标输入事件：设备上报的鼠标事件。
 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 使用说明
 
@@ -25,7 +26,7 @@
 
 5.在数字方格上点击鼠标中键，数字方格周围一圈的的空白方格闪烁，打开或标记为地雷的方格不闪烁。
 
-6.点击弹窗按钮**重新开始**，游戏界面刷新，开启新一局游戏。
+6.点击弹窗按钮**再来一局**，游戏界面刷新，开启新一局游戏。
 
 7.点击弹窗按钮**退出游戏**，游戏结束应用关闭。
 
@@ -33,4 +34,4 @@
 
 1.本示例正常测试需要外接鼠标，仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

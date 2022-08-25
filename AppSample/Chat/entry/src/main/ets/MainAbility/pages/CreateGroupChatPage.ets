@@ -22,7 +22,7 @@ struct CreateGroupChatPage {
   @State message: string = 'Hello World'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       //页头
       Header({ title: "选择联系人" })
       //搜索

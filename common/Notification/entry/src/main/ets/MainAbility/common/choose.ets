@@ -27,7 +27,7 @@ export struct Choose {
 
   build() {
     Column() {
-      Flex({ direction: FlexDirection.Column }) {
+      Column() {
         Text($r("app.string.choose_notification_type"))
           .width(300)
           .padding({ top: 10 })

@@ -14,42 +14,31 @@
  */
 
 import router from '@ohos.router'
-import multimedia_mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../model/Logger'
-import { ImageModel } from '../model/ImageModel'
+import { ImageModel, MyDataSource } from '../model/ImageModel'
 
 const TAG: string = '[ImageGallery]'
-const PERMISSIONS: Array<string> =
-  [
-    'ohos.permission.MEDIA_LOCATION',
-    'ohos.permission.READ_MEDIA',
-    'ohos.permission.WRITE_MEDIA'
-  ]
 
 @Component
 export struct ImageGallery {
-  @State imgDatas: Array<multimedia_mediaLibrary.FileAsset> = []
+  @State imgDatas: MyDataSource = new MyDataSource()
   private imageModel: ImageModel = new ImageModel()
 
   async aboutToAppear() {
-    let permissionState = 666 //  传递给返回结果的请求代码
-    let result = await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS, permissionState)
-    Logger.info(TAG, `grantPermission requestPermissionsFromUser result.requestCode = ${JSON.stringify(result)}`)
-    this.imgDatas = await this.imageModel.getAllImg()
-    Logger.info(TAG, `this image number = ${this.imgDatas.length} uri = ${this.imgDatas[0].uri}`)
+    let context: any = getContext(this)
+    this.imgDatas.replaceData(await this.imageModel.getAllImg(context))
+    Logger.info(TAG, `this image number = ${this.imgDatas.totalCount()}`)
   }
 
   build() {
     Column() {
       Grid() {
-        ForEach(this.imgDatas, item => {
+        LazyForEach(this.imgDatas, item => {
           GridItem() {
             Image(item.uri)
-              .width('100%')
               .aspectRatio(1)
-              .objectFit(ImageFit.Cover)
+              .objectFit(ImageFit.Contain)
               .onClick(() => {
-                Logger.info(TAG, `111111111`)
                 router.replace({
                   url: 'pages/Second',
                   params: {
@@ -58,15 +47,17 @@ export struct ImageGallery {
                 })
               })
           }
+          .padding(2)
         }, item => item.toString())
       }
-      .margin({ top: 10, bottom: 6, left: 6, right: 6 })
+      .margin(4)
+      .rowsGap(4)
       .maxCount(2)
-      .width('95%')
-      .height('95%')
-      .rowsGap('2%')
-      .columnsGap('2%')
+      .columnsGap(4)
       .columnsTemplate('1fr 1fr')
     }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#fff6f6f6')
   }
 }

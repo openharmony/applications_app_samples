@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "message_no_mission",
+      "value": "最近无运行应用"
+    },
+    {
+      "name": "clear_all_missions_message",
+      "value": "已清理至最佳状态"
+    }
+  ]
+}

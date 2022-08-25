@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 export function GetHardKeyValue(keyCode) {
   let keyList = {
     2000: "0",
@@ -10,6 +24,8 @@ export function GetHardKeyValue(keyCode) {
     2007: "7",
     2008: "8",
     2009: "9",
+    2010: "*",
+    2011: "#",
     2012: "KEYCODE_DPAD_UP",
     2013: "KEYCODE_DPAD_DOWN",
     2014: "KEYCODE_DPAD_LEFT",
@@ -41,8 +57,17 @@ export function GetHardKeyValue(keyCode) {
     2040: "x",
     2041: "y",
     2042: "z",
+    2043: ",",
+    2044: ".",
+    2050: " ",
     2055: "KEYCODE_FORWARD_DEL",
+    2058: "=",
     2071: "KEYCODE_DEL",
+    2064: "/",
+    2065: "@",
+    2066: "+",
+    2121: "(",
+    2122: ")",
   };
 
   if (keyList.hasOwnProperty(keyCode)) {

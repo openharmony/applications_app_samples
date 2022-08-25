@@ -18,6 +18,7 @@ import { ChatListView } from './ChatListPage'
 import { DiscoverPage } from './DiscoverPage'
 import { SettingPage } from './SettingPage'
 import { FriendsPage } from './FriendsPage'
+import { Prompt } from '../components/Header';
 
 @Entry
 @Component
@@ -74,7 +75,7 @@ struct TopBar {
   })
 
   build() {
-    Flex() {
+    Row() {
       Column() {
         Stack({ alignContent: Alignment.Center }) {
           Stack({ alignContent: Alignment.Center }) {
@@ -91,8 +92,9 @@ struct TopBar {
                 .height(30)
                 .width(30)
             }
+            .key('addBtn')
             .height("100%")
-            .width("100%")
+            .width(50)
             .onClick(() => {
               this.dialogController.open()
             })
@@ -107,34 +109,48 @@ struct TopBar {
       }
     }
     .width('100%')
-    .padding(5)
     .height(50)
   }
 }
 
 @CustomDialog
 struct CustomDialogExample {
-  private asd = [[$r('app.media.pic1'), "添加好友", "pages/AddFriendsPage"], [$r('app.media.pic2'), "发起群聊", "pages/CreateGroupChatPage"], [$r('app.media.pic3'), "扫一扫"], [$r('app.media.pic4'), "收付款"], [$r('app.media.pic5'), "帮助与反馈",]]
+  private asd = [[], [], [], []]
   controller: CustomDialogController
 
   build() {
     Column() {
-      ForEach(this.asd, (item) => {
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
-          Image(item[0])
-            .height(20)
-            .width(20)
-            .margin({ top: 5 })
-          Text(item[1])
-            .fontSize(16)
-            .fontColor("#ffffff")
-            .margin({ top: 5 })
-        }
-        .onClick(() => {
-          this.controller.close()
-          router.push({ url: item[2] })
-        })
-      }, (msg, index) => index.toString())
+      Column() {
+        Prompt({ img: $r('app.media.pic1'), text: "添加好友" })
+      }.onClick(() => {
+        this.controller.close()
+        router.push({ url: "pages/AddFriendsPage" })
+      })
+
+      Column() {
+        Prompt({ img: $r('app.media.pic2'), text: "发起群聊" })
+      }.onClick(() => {
+        this.controller.close()
+        router.push({ url: "pages/CreateGroupChatPage" })
+      })
+
+      Column() {
+        Prompt({ img: $r('app.media.pic3'), text: "扫一扫" })
+      }.onClick(() => {
+        this.controller.close()
+      })
+
+      Column() {
+        Prompt({ img: $r('app.media.pic4'), text: "收付款" })
+      }.onClick(() => {
+        this.controller.close()
+      })
+
+      Column() {
+        Prompt({ img: $r('app.media.pic5'), text: "帮助与反馈" })
+      }.onClick(() => {
+        this.controller.close()
+      })
     }
     .backgroundColor("#696969")
     .borderRadius(5)

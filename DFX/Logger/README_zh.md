@@ -1,18 +1,18 @@
 # 日志打印
 
-## 简介
+### 简介
 
 提供日志打印类，并将日志信息保存至应用安装目录下。
 
 ### 相关概念
 
-- [日志打印](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md)：hilog日志系统，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
+日志打印：hilog日志系统，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
 
 ### 相关权限
 
-不涉及
+不涉及。
 
-## 导入接口
+##### 导入接口
 
 ```
     import logger from '@ohos/log'
@@ -20,7 +20,7 @@
     import { Configure }  from '@ohos/log'
 ```
 
-## 接口说明
+##### 接口说明
 
 1. configure参数设置
 
@@ -80,8 +80,8 @@
    //value为打印日志内容
 ```
 
-## 兼容性
+### 兼容性
 
-1.支持 OpenHarmony API version 8 及以上版本。
+1.本示例支持 OpenHarmony API version 8 及以上版本。
 
 2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。

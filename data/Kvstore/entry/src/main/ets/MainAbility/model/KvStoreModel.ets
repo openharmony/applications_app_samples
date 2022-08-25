@@ -14,16 +14,16 @@
  */
 import distributedData from '@ohos.data.distributedData'
 
-const STORE_ID = 'etskvstore_test'
+const STORE_ID = 'etskvstore'
 
 export class KvStoreModel {
-  kvManager
-  kvStore
+  private kvManager: distributedData.KVManager = undefined
+  private kvStore: distributedData.KVStore = undefined
 
   constructor() {
   }
 
-  createKvStore(callback) {
+  async createKvStore(callback) {
     if ((typeof (this.kvStore) != 'undefined')) {
       callback()
       return;
@@ -34,33 +34,26 @@ export class KvStoreModel {
         userId: '0',
         userType: 0
       }
-    };
-    let self = this;
+    }
     console.info('[KvStoreModel] createKVManager begin')
-    distributedData.createKVManager(config).then((manager) => {
-      console.info('[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager))
-      self.kvManager = manager;
-      let options = {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: true,
-        kvStoreType: 1,
-        securityLevel: 1,
-      };
-      console.info('[KvStoreModel] kvManager.getKVStore begin')
-      self.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        console.info('[KvStoreModel] getKVStore success, kvStore=' + store)
-        self.kvStore = store
-        callback()
-      })
-      console.info('kvstore[KvStoreModel] kvManager.getKVStore end')
-    });
+    this.kvManager = await distributedData.createKVManager(config)
     console.info('kvstore[KvStoreModel] createKVManager end')
+    let options = {
+      createIfMissing: true,
+      encrypt: false,
+      backup: false,
+      autoSync: true,
+      kvStoreType: 1,
+      securityLevel: 1,
+    }
+    console.info('[KvStoreModel] kvManager.getKVStore begin')
+    this.kvStore = await this.kvManager.getKVStore(STORE_ID, options)
+    console.info('kvstore[KvStoreModel] kvManager.getKVStore end')
+    callback()
   }
 
   put(key, value) {
-    console.info('[KvStoreModel] kvStore.put ' + key + '=' + value);
+    console.info('[KvStoreModel] kvStore.put ' + key + '=' + value)
     this.kvStore.put(key, value).then((data) => {
       console.info('[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data))
     }).catch((err) => {

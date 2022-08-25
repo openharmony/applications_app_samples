@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
@@ -27,29 +27,33 @@ struct DataPanelSample {
   })
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: 'DataPanel' })
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+        Column({ space: FlexAlign.SpaceAround }) {
           DataPanel({ values: this.dataList, max: 100, type: DataPanelType[this.showType] })
             .width(this.showWidth)
             .height(this.showHeight)
         }
+        .alignItems(HorizontalAlign.Center)
         .width('100%')
         .height('100%')
       }
-      .height('40%')
+      .height('35%')
       .width('100%')
       .padding(18)
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('type')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
               .opacity(0.5)
               .fontSize('16fp')
+
+            Blank()
+
             Column() {
               Text(`${this.showType}`)
                 .fontSize('16fp')
@@ -75,18 +79,22 @@ struct DataPanelSample {
               },
             ])
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('Max')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
               .opacity(0.5)
               .fontSize('16fp')
+
+            Blank()
+
             Column() {
               TextInput({ placeholder: '100' })
                 .type(InputType.Number)
@@ -94,7 +102,7 @@ struct DataPanelSample {
                 .placeholderFont({
                   size: 14,
                   weight: FontWeight.Normal,
-                  family: "sans-serif",
+                  family: 'sans-serif',
                   style: FontStyle.Normal
                 })
                 .enterKeyType(EnterKeyType.Next)
@@ -109,13 +117,14 @@ struct DataPanelSample {
                 })
             }
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.Center }) {
+          Row() {
             Button('+', { type: ButtonType.Circle, stateEffect: true })
               .width(55)
               .height(55)
@@ -129,13 +138,14 @@ struct DataPanelSample {
                 }
               })
           }
+          .justifyContent(FlexAlign.Center)
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ direction: FlexDirection.Column }) {
+          Column() {
             ForEach(this.dataList, (item, index) => {
               Row() {
                 Column() {
@@ -194,6 +204,8 @@ struct DataPanelSample {
       .height('60%')
       .margin({ top: 24 })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')

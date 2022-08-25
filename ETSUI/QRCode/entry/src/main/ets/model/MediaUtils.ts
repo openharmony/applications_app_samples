@@ -16,7 +16,7 @@ import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import fileio from '@ohos.fileio'
 import prompt from '@ohos.prompt'
-import DateTimeUtil from '../model/datetimeutil'
+import DateTimeUtil from '../model/DateTimeUtil'
 import Logger from '../model/Logger'
 
 const TAG: string = '[MediaUtils]'
@@ -58,7 +58,6 @@ class MediaUtils {
             let imageResource = await image.createImageSource(fd)
             let pixelMap = await imageResource.createPixelMap()
             await imageResource.release()
-            file.close(fd)
             return pixelMap
         }
         return null

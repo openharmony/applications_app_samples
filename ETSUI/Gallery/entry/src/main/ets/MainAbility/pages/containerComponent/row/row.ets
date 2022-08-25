@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct RowSample {
-  @State space: number= 25
-  @State alignItemsConfig: VerticalAlign= VerticalAlign.Top
-  @State circularArr: number[]= [1, 2, 3]
-  private showMessage: string= "VerticalAlign.Top"
-  private boxWidth: string= "20%"
-  private backGround: string []= ["#EE82EE", "#87CEFA", "#FF4500"]
-  private circularVal: number= 0;
+  @State space: number = 25
+  @State alignItemsConfig: VerticalAlign = VerticalAlign.Top
+  @State circularArr: number[] = [1, 2, 3]
+  private showMessage: string = 'VerticalAlign.Top'
+  private boxWidth: string = '20%'
+  private backGround: string [] = ['#EE82EE', '#87CEFA', '#FF4500']
+  private circularVal: number = 0;
   private scroller: Scroller = new Scroller()
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: 'Row' })
       Scroll(this.scroller) {
         Row({ space: this.space }) {
@@ -48,8 +48,8 @@ struct RowSample {
         }
         .alignItems(this.alignItemsConfig)
       }
-      .height("50%")
-      .width("100%")
+      .height('40%')
+      .width('100%')
       .backgroundColor(0xAFEEEE)
       .scrollable(ScrollDirection.Horizontal)
       .scrollBar(BarState.Auto)
@@ -78,7 +78,7 @@ struct RowSample {
           }.margin({ top: 3, bottom: 15 })
           .padding(5)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Button('+', { type: ButtonType.Capsule, stateEffect: true })
               .backgroundColor(0x317aff).width(90)
               .fontSize(30)
@@ -86,6 +86,9 @@ struct RowSample {
                 this.circularVal = this.circularArr.length + 1;
                 this.circularArr[this.circularVal-1] = this.circularVal;
               })
+
+            Blank()
+
             Button('-', { type: ButtonType.Capsule, stateEffect: true })
               .backgroundColor(0x317aff).width(90)
               .fontSize(30)
@@ -94,17 +97,22 @@ struct RowSample {
                 this.circularVal = this.circularArr.length + 1
               })
           }
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('alignIteam')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.showMessage.split('.')[1]}`)
                 .fontSize(18)
@@ -115,41 +123,46 @@ struct RowSample {
                   {
                     value: 'Top',
                     action: () => {
-                      this.boxWidth = "20%"
+                      this.boxWidth = '20%'
                       this.alignItemsConfig = VerticalAlign.Top
-                      this.showMessage = "VerticalAlign.Top"
+                      this.showMessage = 'VerticalAlign.Top'
                     }
                   },
                   {
                     value: 'Center',
                     action: () => {
-                      this.boxWidth = "20%"
+                      this.boxWidth = '20%'
                       this.alignItemsConfig = VerticalAlign.Center
-                      this.showMessage = "VerticalAlign.Center"
+                      this.showMessage = 'VerticalAlign.Center'
                     }
                   },
                   {
                     value: 'Bottom',
                     action: () => {
-                      this.boxWidth = "20%"
+                      this.boxWidth = '20%'
                       this.alignItemsConfig = VerticalAlign.Bottom
-                      this.showMessage = "VerticalAlign.Bottom"
+                      this.showMessage = 'VerticalAlign.Bottom'
                     }
                   },
                 ])
             }
           }
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('spacing')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Counter() {
               Text(`${this.space}`).fontSize(18)
             }
@@ -162,7 +175,9 @@ struct RowSample {
               }
             })
           }
+          .alignItems(VerticalAlign.Center)
           .padding('3%')
+          .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
@@ -172,6 +187,7 @@ struct RowSample {
       .margin({ top: 24 })
     }
     .height('100%')
+    .alignItems(HorizontalAlign.Center)
     .padding({ left: '3%', right: '3%', bottom: 10 })
     .backgroundColor('#F1F3F5')
   }

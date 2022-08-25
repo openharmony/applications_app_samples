@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { MyDataSource } from '../../../model/constant'
 
 @Entry
 @Component
@@ -47,13 +48,14 @@ struct SwiperSample {
       color: '#00FFFF'
     }
   ]
+  @State dataArrays: MyDataSource = new MyDataSource()
 
   build() {
     Column() {
       NavigationBar({ title: 'Swiper' })
       Column() {
         Swiper(this.swiperController) {
-          ForEach(this.arr, (item) => {
+          LazyForEach(this.dataArrays, (item) => {
             Text('' + item.name)
               .width('95%')
               .height('100%')
@@ -78,13 +80,13 @@ struct SwiperSample {
         })
       }
       .width('100%')
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
+      .height('40%')
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
       .margin({ bottom: 24 })
 
       if (this.loop) {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Row() {
             Button('preview', { type: ButtonType.Capsule, stateEffect: true })
               .alignSelf(ItemAlign.Center)
               .width(80)
@@ -97,6 +99,7 @@ struct SwiperSample {
               .onClick(() => {
                 this.swiperController.showPrevious()
               })
+            Blank()
             Button('next', { type: ButtonType.Capsule, stateEffect: true })
               .alignSelf(ItemAlign.Center)
               .width(80)
@@ -120,25 +123,24 @@ struct SwiperSample {
       Scroll(this.scroller) {
         Column() {
           Row() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-              Text('index')
-                .fontSize('16fp')
-                .opacity(0.5)
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-              Text('' + this.index)
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-                .width('50%')
-                .textAlign(TextAlign.End)
-            }
-            .width('100%')
-            .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-            .borderRadius(24)
-            .backgroundColor('#FFFFFF')
-            .margin({ top: 8 })
+            Text('index')
+              .fontSize('16fp')
+              .opacity(0.5)
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+            Blank()
+            Text('' + this.index)
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+              .width('50%')
+              .textAlign(TextAlign.End)
           }
+          .width('100%')
+          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+          .borderRadius(24)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
           .bindMenu([
             {
               value: '0',
@@ -173,25 +175,24 @@ struct SwiperSample {
           ])
 
           Row() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-              Text('cachedCount')
-                .fontSize('16fp')
-                .opacity(0.5)
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-              Text('' + this.cachedCount)
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-                .width('50%')
-                .textAlign(TextAlign.End)
-            }
-            .width('100%')
-            .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-            .borderRadius(24)
-            .backgroundColor('#FFFFFF')
-            .margin({ top: 8 })
+            Text('cachedCount')
+              .fontSize('16fp')
+              .opacity(0.5)
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+            Blank()
+            Text('' + this.cachedCount)
+              .fontSize('16fp')
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+              .width('50%')
+              .textAlign(TextAlign.End)
           }
+          .width('100%')
+          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+          .borderRadius(24)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
           .bindMenu([
             {
               value: '1',
@@ -219,12 +220,13 @@ struct SwiperSample {
             },
           ])
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('vertical')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+            Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.vertical })
               .width(35)
               .height(20)
@@ -242,12 +244,13 @@ struct SwiperSample {
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('disableSwipe')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+            Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.disableSwipe })
               .width(35)
               .height(20)
@@ -265,12 +268,13 @@ struct SwiperSample {
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('indicator')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+            Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.indicator })
               .width(35)
               .height(20)
@@ -288,12 +292,13 @@ struct SwiperSample {
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('autoPlay')
               .fontSize('16fp')
               .opacity(0.5)
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
+            Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.autoPlay })
               .width(35)
               .height(20)
@@ -312,29 +317,26 @@ struct SwiperSample {
           .margin({ top: 8 })
 
           Row() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-              Text('loop')
-                .fontSize('16fp')
-                .opacity(0.5)
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-              Toggle({ type: ToggleType.Switch, isOn: this.loop })
-                .width(35)
-                .height(20)
-                .selectedColor(0x317aff)
-                .switchPointColor(0xe5ffffff)
-                .onChange((isOn: boolean) => {
-                  this.loop = !this.loop
-                })
-                .margin(0)
-                .padding(0)
-            }
-            .width('100%')
-            .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-            .borderRadius(24)
-            .backgroundColor('#FFFFFF')
-            .margin({ top: 8 })
+            Text('loop')
+              .fontSize('16fp')
+              .opacity(0.5)
+              .fontColor('#182431')
+              .fontWeight(FontWeight.Medium)
+            Blank()
+            Toggle({ type: ToggleType.Switch, isOn: this.loop })
+              .width(35)
+              .height(20)
+              .selectedColor(0x317aff)
+              .switchPointColor(0xe5ffffff)
+              .onChange((isOn: boolean) => {
+                this.loop = !this.loop
+              })
           }
+          .width('100%')
+          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
+          .borderRadius(24)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
           .bindMenu([
             {
               value: 'true',
@@ -352,19 +354,22 @@ struct SwiperSample {
 
           if (this.loop) {
             Column() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+              Row() {
                 Text('animationDuration')
                   .fontSize('16fp')
                   .opacity(0.5)
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
+                Blank()
                 Text('' + this.interval)
                   .fontSize('16fp')
                   .fontColor('#182431')
                   .fontWeight(FontWeight.Medium)
                   .width('50%')
                   .textAlign(TextAlign.End)
-              }.height(35)
+              }
+              .width('100%')
+              .height(35)
 
               Slider({
                 value: this.interval / 100,
@@ -391,12 +396,13 @@ struct SwiperSample {
           }
 
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row() {
               Text('duration')
                 .fontSize('16fp')
                 .opacity(0.5)
                 .fontColor('#182431')
                 .fontWeight(FontWeight.Medium)
+              Blank()
               Text('' + this.duration)
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -404,6 +410,7 @@ struct SwiperSample {
                 .width('50%')
                 .textAlign(TextAlign.End)
             }
+            .width('100%')
 
             Slider({
               value: this.duration / 100,
@@ -429,19 +436,22 @@ struct SwiperSample {
           .margin({ top: 8 })
 
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row() {
               Text('itemSpace')
                 .fontSize('16fp')
                 .opacity(0.5)
                 .fontColor('#182431')
                 .fontWeight(FontWeight.Medium)
+              Blank()
               Text('' + this.itemSpace)
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .fontWeight(FontWeight.Medium)
                 .width('50%')
                 .textAlign(TextAlign.End)
-            }.height(35)
+            }
+            .width('100%')
+            .height(35)
 
             Slider({
               value: this.itemSpace,
@@ -473,11 +483,15 @@ struct SwiperSample {
       .scrollBarColor(Color.Gray)
       .scrollBarWidth(30)
       .width('100%')
-      .height('50%')
+      .height('45%')
     }
     .width('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
+  }
+
+  aboutToAppear(){
+    this.dataArrays['dataArray'] = this.arr
   }
 
   pageTransition() {

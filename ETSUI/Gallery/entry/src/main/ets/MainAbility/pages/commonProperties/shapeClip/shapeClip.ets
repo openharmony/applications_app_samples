@@ -12,26 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct ShapeClipSample {
-  @State showType: string = "clip"
-  @State clip: string = "false"
+  @State showType: string = 'clip'
+  @State clip: string = 'false'
   @State clipWidth: number = 250
   @State clipHeight: number = 250
-  @State mask: string = "Rect"
+  @State mask: string = 'Rect'
   @State maskWidth: number = 250
   @State maskHeight: number = 250
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       NavigationBar({ title: '形状裁剪' })
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
+            Column() {
               if (this.showType == 'clip') {
                 if (this.clip == 'false') {
                   Column() {
@@ -72,25 +72,29 @@ struct ShapeClipSample {
                   .borderRadius(20)
                 }
               }
-            }.width('100%').height('100%')
+            }.width('100%').height('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
           }
           .width('100%')
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.Center)
         }
       }
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
+      .height(('40%'))
       .width('100%')
       .padding(18)
       .backgroundColor('#FFFFFF')
 
-
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('属性')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
               .opacity(0.5)
               .fontSize('16fp')
+
+            Blank()
+
             Column() {
               Text(`${this.showType}`)
                 .fontWeight(FontWeight.Regular)
@@ -101,29 +105,33 @@ struct ShapeClipSample {
               {
                 value: 'clip',
                 action: () => {
-                  this.showType = "clip"
+                  this.showType = 'clip'
                 }
               },
               {
                 value: 'mask',
                 action: () => {
-                  this.showType = "mask"
+                  this.showType = 'mask'
                 }
               },
             ])
           }
           .width('100%')
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
           if (this.showType == 'clip') {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('clip')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontSize('16fp')
+
+              Blank()
+
               Column() {
                 Text(`${this.clip}`)
                   .fontWeight(FontWeight.Regular)
@@ -134,31 +142,32 @@ struct ShapeClipSample {
                 {
                   value: 'false',
                   action: () => {
-                    this.clip = "false"
+                    this.clip = 'false'
                   }
                 },
                 {
                   value: 'Rect',
                   action: () => {
-                    this.clip = "Rect"
+                    this.clip = 'Rect'
                   }
                 },
                 {
                   value: 'Circle',
                   action: () => {
-                    this.clip = "Circle"
+                    this.clip = 'Circle'
                   }
                 },
               ])
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
             if (this.clip !== 'false') {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('clipWidth')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -192,12 +201,13 @@ struct ShapeClipSample {
                 }
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('clipHeight')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -231,13 +241,14 @@ struct ShapeClipSample {
                 }
               }
               .width('100%')
+              .alignItems(VerticalAlign.Center)
               .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
               .borderRadius(24)
               .backgroundColor('#FFFFFF')
               .margin({ top: 8 })
             }
           } else if (this.showType == 'mask') {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('mask')
                 .fontWeight(FontWeight.Medium)
                 .fontColor('#182431')
@@ -253,25 +264,26 @@ struct ShapeClipSample {
                 {
                   value: 'Rect',
                   action: () => {
-                    this.mask = "Rect"
+                    this.mask = 'Rect'
                   }
                 },
                 {
                   value: 'Circle',
                   action: () => {
-                    this.mask = "Circle"
+                    this.mask = 'Circle'
                   }
                 },
               ])
             }
             .width('100%')
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+            Column() {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('maskWidth')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')
@@ -307,8 +319,8 @@ struct ShapeClipSample {
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+            Column() {
+              Row({ space: FlexAlign.SpaceBetween }) {
                 Text('maskHeight')
                   .fontWeight(FontWeight.Medium)
                   .fontColor('#182431')

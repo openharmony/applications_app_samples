@@ -19,7 +19,7 @@ import { FoodData } from '../model/FoodData'
 @Component
 struct PageTitle {
   build() {
-    Flex({ alignItems: ItemAlign.Start }) {
+    Row() {
       Image($r('app.media.Back'))
         .width(21.8)
         .height(19.6)
@@ -27,6 +27,7 @@ struct PageTitle {
         .fontSize(21.8)
         .margin({ left: 17.4 })
     }
+    .alignItems(VerticalAlign.Top)
     .height(61)
     .backgroundColor('#FFedf2f5')
     .padding({ top: 13, bottom: 15, left: 28.3 })
@@ -59,30 +60,34 @@ struct ContentTable {
   private foodItem: FoodData
 
   @Builder IngredientItem(title: string, name: string, value: string) {
-    Flex() {
+    Row() {
       Text(title)
         .fontSize(17.4)
         .fontWeight(FontWeight.Bold)
         .layoutWeight(1)
-      Flex({ alignItems: ItemAlign.Center }) {
+      Row() {
         Text(name)
           .fontSize(17.4)
           .flexGrow(1)
         Text(value)
           .fontSize(17.4)
       }
+      .width('100%')
+      .alignItems(VerticalAlign.Center)
       .layoutWeight(2)
     }
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
+    Column() {
       this.IngredientItem('Calories', 'Calories', this.foodItem.calories + 'kcal')
       this.IngredientItem('Nutrition', 'Protein', this.foodItem.protein + 'g')
       this.IngredientItem(' ', 'Fat', this.foodItem.fat + 'g')
       this.IngredientItem(' ', 'Carbohydrates', this.foodItem.carbohydrates + 'g')
       this.IngredientItem(' ', 'VitaminC', this.foodItem.vitaminC + 'mg')
     }
+    .alignItems(HorizontalAlign.Start)
+    .justifyContent(FlexAlign.SpaceBetween)
     .padding({ top: 20, right: 20, left: 20 })
     .height(250)
   }

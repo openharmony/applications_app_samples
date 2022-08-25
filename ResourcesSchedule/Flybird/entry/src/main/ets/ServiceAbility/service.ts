@@ -17,14 +17,11 @@ import rpc from "@ohos.rpc"
 import wantAgent from '@ohos.wantAgent';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
 import logger from '../MainAbility/utils/logger'
 
 const TAG: string = '[flybirdDebug.ServiceAbility]'
 
 class FirstServiceAbilityStub extends rpc.RemoteObject {
-    private audioPlayer;
     constructor(des: any) {
         if (typeof des === 'string') {
             super(des)
@@ -44,18 +41,11 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
                 logger.log(`${TAG} result=${result}`)
                 reply.writeString(result)
             } else if (dataStr === 'disconnect_service') {
-                this.stopContinousTask();
                 let result = 'ok disconnect service'
                 logger.log(`${TAG} result=${result}`)
                 reply.writeString(result)
-            } else if (dataStr === 'restart_music') {
-                this.audioPlayer.pause();
-                this.audioPlayer.release();
-                this.startContinousTask();
-                let result = 'ok restart music'
-                logger.log(`${TAG} result=${result}`)
-                reply.writeString(result)
-            } else {
+            } 
+            else {
                 logger.log(`${TAG} error string}`)
             }
         } else {
@@ -64,24 +54,14 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
         return true;
     }
 
-    stopContinousTask() {
-        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then((data) => {
-            logger.info(TAG + "stop backgroundRunning promise success");
-            this.audioPlayer.pause();
-            this.audioPlayer.release();
-        }).catch((error) => {
-            logger.error(TAG + " stop backgroundRunning failed because: " + JSON.stringify(error));
-        })
-    }
-
     startContinousTask() {
         logger.info(TAG + " start background continousTask api");
 
         let wantAgentInfo = {
             wants: [
                 {
-                    bundleName: "com.example.flybird",
-                    abilityName: "com.example.flybird.MainAbility"
+                    bundleName: "com.samples.flybird",
+                    abilityName: "com.samples.flybird.MainAbility"
                 }
             ],
             operationType:wantAgent.OperationType.START_ABILITY,
@@ -89,41 +69,7 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            logger.info(TAG + " start background continousTask api begin");
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(), backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, data, this.callback);
-
-            this.audioPlayer = media.createAudioPlayer();
-            this.SetCallback();
-            let path = 'data/12664.mp3';
-            fileIO.open(path).then((number) => {
-                 let fdpath = 'fd://'
-                 fdpath = fdpath + '' + number;
-                 this.audioPlayer.src = fdpath;
-                logger.info('open fd sucess fd is' + fdpath);
-            }).catch((err) => {
-                logger.info("err:" + err);
-            });
-            //audioPlayer.setVolume(0.5);
-            this.audioPlayer.loop = true;
-        });
     }
-
-    SetCallback() {
-        this.audioPlayer.on('dataLoad', () => {
-            logger.info(TAG + ' audio set source success');
-            this.audioPlayer.play();
-        });
-        this.audioPlayer.on('play', () => {
-            logger.info(TAG + ' audio play success');
-        })
-        this.audioPlayer.on('finish', () => {
-            logger.info(TAG + ' audio play finish');
-            this.audioPlayer.release();
-            this.audioPlayer.undefined;
-        })
-    }
-
      callback(err, data) {
         if (err) {
             logger.error(TAG + "Operation failed Cause: " + err);

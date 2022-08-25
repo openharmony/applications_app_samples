@@ -18,12 +18,79 @@ import { TitleBar } from '../component/TitleBar'
 import { OperateView } from '../component/OperateView'
 import { ServiceModel } from '../model/ServiceModel'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: Resource): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 let TAG: string = '[ServiceAbility.index]'
 
 @Entry
 @Component
 struct Index {
-  private btnResources: Array<Resource> = [$r('app.string.connect_service'), $r('app.string.disconnect_service'), $r('app.string.sort_string')]
+  private btnResources: MyDataSource = new MyDataSource([$r('app.string.connect_service'), $r('app.string.disconnect_service'), $r('app.string.sort_string')])
   private serviceModel = new ServiceModel()
   @State beforeSortString: string = ''
   @State afterSortString: string = ''
@@ -58,7 +125,7 @@ struct Index {
       Scroll() {
         Column() {
           OperateView({ before: $beforeSortString, after: $afterSortString })
-          ForEach(this.btnResources, (item, index) => {
+          LazyForEach(this.btnResources, (item, index) => {
             Button() {
               Text(item)
                 .fontColor(Color.White)

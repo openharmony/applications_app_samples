@@ -1,9 +1,25 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { keySourceListData, numberSourceListData, symbolSourceListData, keySourceListType, sourceListType
 } from '../model/keyboardKeyData'
 import { InputHandler } from '../model/KeyboardController'
 import styleConfiguration from '../common/styleConfiguration'
+import Log from '../model/Log'
 
 let inputStyle: any = styleConfiguration.getInputStyle()
+let TAG: string = 'index->'
 //有大小写的按键组件
 @Component
 struct keyItemNumber {
@@ -19,7 +35,7 @@ struct keyItemNumber {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.keyValue.title)
         .fontSize(inputStyle.litterNumberFontSize)
         .fontColor(0x606060)
@@ -532,7 +548,7 @@ struct Index {
   @State menuType: number= 0
 
   onBackPress(): boolean{
-    console.info('kikaInput onBackPress');
+    Log.showInfo(TAG, 'kikaInput onBackPress');
     InputHandler.getInstance().hideKeyboardSelf();
     return true;
   }

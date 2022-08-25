@@ -16,6 +16,73 @@
 import  HiLog  from '../model/HiLogUtil'
 import { Icon, iconInit } from '../model/IconData'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 const TAG = '[Index]'
 
 @Extend(Image) function preferFancy (imageFit: ImageFit, padding: number) {
@@ -37,63 +104,12 @@ struct Index {
   @State movingIcon: Icon = { icon: $r('app.media.icon'), name: '' }
   @State hanlePopup: boolean[] = [false, false, false, false]
 
-  onDesktopIconDragStart(extraParams: string) {
-    HiLog.info(TAG, `bool-onStart:extraParams = ${JSON.stringify(extraParams)}`)
-    let jsonString = JSON.parse(extraParams)
-    this.desktopDragging = true
-    this.select = jsonString.selectedIndex
-    this.movingIcon = this.desktopIcons[this.select]
-    return this.pixelMapBuilder()
-  }
-
-  onDesktopIconDragDrop(extraParams: string) {
-    HiLog.info(TAG, `bool-onDrop:extraParams = ${JSON.stringify(extraParams)}`)
-    let jsonString = JSON.parse(extraParams)
-    this.insert = jsonString.insertIndex
-    if (this.desktopDragging) {
-      this.desktopIcons.splice(this.select, 1)
-      this.desktopIcons.splice(this.insert, 0, this.movingIcon)
-      this.dockDragging = false
-      this.desktopDragging = false
-    }
-  }
-
-  onDockIconDragStart(extraParams: string) {
-    HiLog.info(TAG, `boolBottom-onStart:extraParams = ${JSON.stringify(extraParams)}`)
-    let jsonString = JSON.parse(extraParams)
-    this.dockDragging = true
-    this.select = jsonString.selectedIndex
-    this.movingIcon = this.dockIcons[this.select]
-    return this.pixelMapBuilder()
-  }
-
-  onDockIconDragDrop(extraParams: string) {
-    HiLog.info(TAG, `boolBottom-onDrop:extraParams = ${JSON.stringify(extraParams)}`)
-    let jsonString = JSON.parse(extraParams)
-    this.insert = jsonString.insertIndex
-    if (this.dockDragging) {
-      this.dockIcons.splice(this.select, 1)
-      this.dockIcons.splice(this.insert, 0, this.movingIcon)
-      this.dockDragging = false
-      this.desktopDragging = false
-    }
-    if (this.desktopDragging) {
-      this.desktopIcons.splice(this.select, 1)
-      this.dockIcons.splice(this.insert, 0, this.movingIcon)
-      this.desktopDragging = false
-      this.dockDragging = false
-    }
-  }
-
   @Builder pixelMapBuilder() {
     Column() {
-      Text(this.movingIcon.name)
-        .width('50%')
-        .height(60)
-        .fontSize(16)
-        .borderRadius(10)
-        .textAlign(TextAlign.Center)
-        .backgroundColor(Color.Yellow)
+      Image(this.movingIcon.icon)
+        .width(70)
+        .height(70)
+        .objectFit(ImageFit.Fill)
     }
   }
 
@@ -109,13 +125,12 @@ struct Index {
         .fontWeight(FontWeight.Bold)
 
       List() {
-        ForEach(this.desktopIcons, item => {
+        LazyForEach(new MyDataSource(this.desktopIcons), item => {
           ListItem() {
             Column() {
               Image(item.icon)
                 .width(70)
                 .height(70)
-                .padding(0)
                 .layoutWeight(1)
                 .objectFit(ImageFit.Fill)
               Text(item.name).fontSize(15).height(30).fontWeight(FontWeight.Bold)
@@ -125,7 +140,12 @@ struct Index {
             .margin(5)
           }
           .onDragStart((event: DragEvent, extraParams: string) => {
-            this.onDesktopIconDragStart(extraParams)
+            HiLog.info(TAG, `bool-onStart:extraParams = ${JSON.stringify(extraParams)}`)
+            let jsonString = JSON.parse(extraParams)
+            this.desktopDragging = true
+            this.select = jsonString.selectedIndex
+            this.movingIcon = this.desktopIcons[this.select]
+            return this.pixelMapBuilder
           })
         }, item => JSON.stringify(item))
       }
@@ -136,11 +156,23 @@ struct Index {
       .listDirection(Axis.Horizontal)
       .margin({ left: 10, right: 10 })
       .onDrop((event: DragEvent, extraParams: string) => {
-        this.onDesktopIconDragDrop(extraParams)
+        HiLog.info(TAG, `bool-onDrop:extraParams = ${JSON.stringify(extraParams)}`)
+        let jsonString = JSON.parse(extraParams)
+        this.insert = jsonString.insertIndex
+        if (this.desktopDragging) {
+          this.desktopIcons.splice(this.select, 1)
+          this.desktopIcons.splice(this.insert, 0, this.movingIcon)
+          this.dockDragging = false
+          this.desktopDragging = false
+        }
+        if (this.dockDragging) {
+          this.dockDragging = false
+          this.desktopDragging = false
+        }
       })
 
       List() {
-        ForEach(this.dockIcons, (item, index) => {
+        LazyForEach(new MyDataSource(this.dockIcons), (item, index) => {
           ListItem() {
             Image(item.icon)
               .margin({ left: '10%', right: '10%' })
@@ -162,9 +194,13 @@ struct Index {
                 }
               ])
           }
-
           .onDragStart((event: DragEvent, extraParams: string) => {
-            this.onDockIconDragStart(extraParams)
+            HiLog.info(TAG, `boolBottom-onStart:extraParams = ${JSON.stringify(extraParams)}`)
+            let jsonString = JSON.parse(extraParams)
+            this.dockDragging = true
+            this.select = jsonString.selectedIndex
+            this.movingIcon = this.dockIcons[this.select]
+            return this.pixelMapBuilder
           })
         }, item => JSON.stringify(item))
       }
@@ -175,7 +211,21 @@ struct Index {
       .listDirection(Axis.Horizontal)
       .margin({ bottom: 10, left: 10, right: 10 })
       .onDrop((event: DragEvent, extraParams: string) => {
-        this.onDockIconDragDrop(extraParams)
+        HiLog.info(TAG, `boolBottom-onDrop:extraParams = ${JSON.stringify(extraParams)}`)
+        let jsonString = JSON.parse(extraParams)
+        this.insert = jsonString.insertIndex
+        if (this.dockDragging) {
+          this.dockIcons.splice(this.select, 1)
+          this.dockIcons.splice(this.insert, 0, this.movingIcon)
+          this.dockDragging = false
+          this.desktopDragging = false
+        }
+        if (this.desktopDragging) {
+          this.desktopIcons.splice(this.select, 1)
+          this.dockIcons.splice(this.insert, 0, this.movingIcon)
+          this.desktopDragging = false
+          this.dockDragging = false
+        }
       })
     }
     .width('100%')

@@ -14,8 +14,7 @@
  */
 
 import util from '@ohos.util'
-import { SpecInput } from '../common/specInput.ets'
-import { ErrInput } from '../common/errInput.ets'
+import { SpecInput } from '../common/specInput'
 
 var resArray
 
@@ -28,21 +27,13 @@ struct StrCodec {
   @State SpecStrInput_d: string = ''
   @State SpecStrInput_i: string = ''
 
-
-  @State err_res01:string = ''
-  @State err_res02:string = ''
-  @State err_res03:string = ''
-  @State err_res04:string = ''
-  @State err_res05:string = ''
-
   @State resen:string =''
   @State resdec:string =''
   @State read:string =''
   @State write:string =''
 
   build() {
-
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       Text($r('app.string.StringCodec_title'))
         .width('100%')
         .height(50)
@@ -78,40 +69,12 @@ struct StrCodec {
           .width(300)
           .margin({ top: 20 })
           .onClick(() => {
-            this.specStrInput_f = util.printf("%f", "HarmonyOS 3.0");
-            this.SpecStrInput_i = util.printf("%i", "HarmonyOS 3.0");
-            this.SpecStrInput_d = util.printf("%d", "HarmonyOS 3.0");
-            this.SpecStrInput_s = util.printf("%s", "HarmonyOS 3.0");
+            this.specStrInput_f = util.printf("%f", "OpenHarmony 3.0");
+            this.SpecStrInput_i = util.printf("%i", "OpenHarmony 3.0");
+            this.SpecStrInput_d = util.printf("%d", "OpenHarmony 3.0");
+            this.SpecStrInput_s = util.printf("%s", "OpenHarmony 3.0");
           })
           .backgroundColor("#0D9FFB")
-
-
-          Text('').width('100%').height(10).backgroundColor("#0D9FFB").margin({top:20}).border({width:2,color:"#0D9FFB"})
-
-          ErrInput({result_err: $r("app.string.num1"),errStrInput:this.err_res01})
-          ErrInput({result_err: $r("app.string.num2"),errStrInput:this.err_res02})
-          ErrInput({result_err: $r("app.string.num3"),errStrInput:this.err_res03})
-          ErrInput({result_err: $r("app.string.num4"),errStrInput:this.err_res04})
-          ErrInput({result_err: $r("app.string.num5"),errStrInput:this.err_res05})
-
-          Button(){
-            Text($r('app.string.getErrorInfo')).fontColor(Color.White).fontSize(15).fontWeight(FontWeight.Bold)
-          }
-          .margin({ top: 20 })
-          .onClick(() => {
-            var errnum_01 = 10;
-            var errnum_02 = 20;
-            var errnum_03 = 100;
-            var errnum_04 = -10;
-            var errnum_05 = 1000;
-            this.err_res01 = util.getErrorString(errnum_01);
-            this.err_res02 = util.getErrorString(errnum_02);
-            this.err_res03 = util.getErrorString(errnum_03);
-            this.err_res04 = util.getErrorString(errnum_04);
-            this.err_res05 = util.getErrorString(errnum_05);
-          })
-          .backgroundColor("#0D9FFB")
-          .width(300)
 
           Text('').width('100%').height(10).backgroundColor("#0D9FFB").margin({top:20}).border({width:2,color:"#0D9FFB"})
 
@@ -164,8 +127,8 @@ struct StrCodec {
             var textEncoder = new  util.TextEncoder()
             var buffer = new ArrayBuffer(100)
             resArray = new Uint8Array(buffer);
-            resArray = textEncoder.encode("HarmonyOS 3.0，未来有迹可循！");
-            var resArratNum = textEncoder.encodeInto("HarmonyOS 3.0，未来有迹可循！", resArray)
+            resArray = textEncoder.encode("OpenHarmony 3.0，未来有迹可循！");
+            var resArratNum = textEncoder.encodeInto("OpenHarmony 3.0，未来有迹可循！", resArray)
             this.resen = resArray.toString();
             this.read = JSON.stringify(resArratNum.read)
             this.write = JSON.stringify(resArratNum. written)
@@ -198,5 +161,7 @@ struct StrCodec {
         }
       }
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
   }
 }

@@ -6,18 +6,17 @@
 
 实现效果如下：
 
-![](screenshots/device/stepper_1.png)
-![](screenshots/device/stepper_2.png)
+![](screenshots/device/stepper_1.png) ![](screenshots/device/stepper_2.png)
 
 ### 相关概念
 
--  Stepper：步骤导航器。
+Stepper：步骤导航器。
 
--  StepperItem：步骤导航器元素。
+StepperItem：步骤导航器元素。
 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 使用说明
 
@@ -32,5 +31,4 @@
 1.本示例仅支持标准系统上运行。
 
 2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
-
 

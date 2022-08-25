@@ -18,16 +18,12 @@
 
 ### 相关概念
 
--  QRCode：显示二维码信息组件，传入要生成二维码的字符串即可显示生成的二维码。
--  jsqr：提供解析二维码的api，支持npm安装。
+QRCode：显示二维码信息组件，传入要生成二维码的字符串即可显示生成的二维码。
+jsqr：提供解析二维码的api，支持npm安装。
 
 ### 相关权限
 
-```
-本示例需要在module.json5中配置如下权限:
-
 获取屏幕截图权限：ohos.permission.CAPTURE_SCREEN
-```
 
 ### 使用说明
 
@@ -37,7 +33,7 @@
 
 3.点击**解析二维码**进入界面，会显示一个默认的二维码，点击**选择二维码文件**可以在设备中选择生成二维码界面中保存的二维码图片。
 
-4.点击**解析二维码**，解析完成会在二维码下方显示解析结果
+4.点击**解析二维码**，解析完成会在二维码下方显示解析结果。
 
 ### 约束与限制
 
@@ -46,3 +42,5 @@
 2.本示例为Stage模型，从API version 9开始支持。
 
 3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+
+4.本示例所配置的权限ohos.permission.CAPTURE_SCREEN为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))。

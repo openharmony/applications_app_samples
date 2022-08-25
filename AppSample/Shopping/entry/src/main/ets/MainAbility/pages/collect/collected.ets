@@ -14,7 +14,7 @@
  */
 
 import mediaQuery from '@ohos.mediaquery'
-import router from '@system.router'
+import router from '@ohos.router'
 import { NullPage } from './nullPage'
 import { SinglePage1 } from './singlePage1'
 import { SinglePage2 } from './singlePage2'
@@ -25,8 +25,8 @@ let portraitCollected = null
 @Entry
 @Component
 struct CollectedPage {
-  @State width: number = parseInt(router.getParams().num as string, 10)
-  @State ratio: number = parseInt(router.getParams().ratio as string, 10)
+  @State width: number = router.getParams()['num']
+  @State ratio: number = router.getParams()['ratio']
   @State opacity: number = 1
   @State num: number = 1
   @State layoutId: number = 0
@@ -51,7 +51,7 @@ struct CollectedPage {
   build() {
     Column() {
       Column() {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row() {
           Image('/resources/icon/arrow_left.png')
             .width(30 * this.ratio)
             .aspectRatio(1)
@@ -76,6 +76,9 @@ struct CollectedPage {
               .fontSize(18 * this.ratio)
           }
         }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
         .padding({ top: 10, left: 10, right: 10 })
 
         Tabs() {
@@ -99,6 +102,7 @@ struct CollectedPage {
 
               if (this.collected) {
                 Image('/resources/icon/layout.png')
+                  .key('changeLayoutBtn')
                   .width(20 * (this.ratio + 0.2))
                   .aspectRatio(1)
                   .objectFit(ImageFit.Contain)
@@ -145,16 +149,13 @@ struct CollectedPage {
     }
     .width('100%')
     .backgroundColor('#F9F9F9')
+    .border({ width: this.width === 45 ? 1 : 0, color: '#10000000' })
   }
 
   PageTransition() {
-    PageTransitionExit({ duration: 0, curve: Curve.Linear })
-      .onExit((type: RouteType, progress: number) => {
-        this.opacity = 1
-      })
-    PageTransitionEnter({ duration: 0, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
-        this.opacity = 1
-      })
+    PageTransitionEnter({ duration: 0 })
+      .opacity(1)
+    PageTransitionExit({ duration: 0 })
+      .opacity(1)
   }
 }

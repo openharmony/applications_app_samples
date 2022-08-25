@@ -38,7 +38,6 @@ struct CustomUSBDeviceInfoDialog {
       DeviceCustomDialog({ device: this.device, onCancel: this.onCancel })
     }
     .width('80%')
-    .height('80%')
   }
 }
 
@@ -158,19 +157,22 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .fontWeight(FontWeight.Bold)
 
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
         Text($r('app.string.usb_listener'))
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
+          .margin({right:70})
         Toggle({ type: ToggleType.Switch, isOn: this.isListener })
           .selectedColor(0xed6f21)
           .switchPointColor(0xe5ffffff)
+          .margin({left:70})
           .onChange((isOn: boolean) => {
             Logger.info(TAG, `Component status:${isOn}`)
             this.isListener = !this.isListener
             this.listenerSwitch(this.isListener)
           })
-      }.margin({ top: 50 })
+      }
+      .margin({ top: 50 })
 
       DeviceList({
         isRefreshing: $isRefreshing,

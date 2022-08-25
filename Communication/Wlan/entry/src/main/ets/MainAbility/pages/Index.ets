@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import featureAbility from '@ohos.ability.featureAbility'
 import wifi from '@ohos.wifi'
 import { AvailableWifi } from '../component/AvailableWifi'
@@ -33,17 +34,17 @@ struct Index {
     rssi: 0,
     band: 0
   }
-  @State wifiList: Array<any> = []
   @State isLinked: boolean = false
   @State isSwitchOn: boolean = false
 
   scan() {
+    this.getLinkedInfo()
     this.wifiModel.getScanInfos((result) => {
       if (this.isSwitchOn) {
-        this.wifiList = result
+        AppStorage.SetOrCreate('wifiList', result)
         setTimeout(() => {
           this.scan()
-        }, 2000)
+        }, 3000)
       }
     })
   }
@@ -78,7 +79,7 @@ struct Index {
     })
     wifi.on('wifiStateChange', state => {
       Logger.log(TAG, `wifiStateLisener state: ${state}`)
-      this.wifiList = []
+      AppStorage.SetOrCreate('wifiList', [])
       if (state === 1) { // 1: wifi is enable, 0:wifi is disable
         wifi.scan()
         this.scan()
@@ -108,12 +109,12 @@ struct Index {
         Text($r('app.string.wlan'))
           .fontSize(22)
           .fontWeight(FontWeight.Bold)
-          .layoutWeight(1)
+          .height(40)
         Column() {
           Toggle({ type: ToggleType.Switch, isOn: this.isSwitchOn })
             .onChange((isOn: boolean) => {
               Logger.log(TAG, `wifi swtich is: ${isOn}`)
-              this.wifiList = []
+              AppStorage.SetOrCreate('wifiList', [])
               if (isOn) {
                 this.isSwitchOn = true
                 wifi.enableWifi()
@@ -128,30 +129,38 @@ struct Index {
             })
         }
       }
-      .width('95%')
+      .width('100%')
+      .padding({ left: 16, right: 16 })
 
-      if (this.isLinked) {
-        Text($r('app.string.connected'))
-          .fontSize(22)
-          .width('95%')
-        Row() {
-          Text(this.linkedInfo.ssid)
-            .fontSize(20)
-            .fontColor(Color.Black)
-            .layoutWeight(1)
+      if (this.isLinked && this.isSwitchOn) {
+        Column(){
           Text($r('app.string.connected'))
-            .fontSize(18)
-            .fontColor(Color.Black)
+            .fontSize(22)
+            .width('100%')
+          Row() {
+            Text(this.linkedInfo.ssid)
+              .fontSize(20)
+              .fontColor(Color.Black)
+              .layoutWeight(1)
+            Text($r('app.string.connected'))
+              .fontSize(18)
+              .fontColor(Color.Black)
+          }
+          .width('100%')
+          .padding(10)
+          .margin({ left: 16, right: 16 })
+          .border({ radius: 15, color: Color.Gray, width: 1 })
+          .backgroundColor(Color.White)
         }
-        .width('95%')
-        .padding(10)
-        .margin(10)
-        .border({ radius: 15, color: Color.Gray, width: 1 })
-        .backgroundColor(Color.White)
+        .width('100%')
+        .padding({ left: 16, right: 16 })
       }
-      AvailableWifi({ wifiList: this.wifiList, linkedInfo: this.linkedInfo })
+      if (this.isSwitchOn) {
+        AvailableWifi({ linkedInfo: this.linkedInfo })
+      }
     }
-    .size({ width: '100%', height: '100%' })
+    .width('100%')
+    .height('100%')
     .backgroundColor('#F5F5F5')
   }
 

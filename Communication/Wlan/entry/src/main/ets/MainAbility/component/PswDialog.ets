@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+import wifi from '@ohos.wifi'
+
 @CustomDialog
 export struct PswDialog {
-  private scanInfo: any = null
+  @Link scanInfo: wifi.WifiScanInfo
   private psw: string = ''
   private controller: CustomDialogController
   private action: (scanInfo, psw) => void

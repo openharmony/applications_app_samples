@@ -39,17 +39,18 @@ const CHECK_MODE: [number, number][] = [
 struct Index {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  @State width: number = WITH
-  @State height: number = HEIGHT
-  @State dpiBi: number = vp2px(this.width) / this.width
-  @State chessSize: number = this.width / this.dpiBi / SIZE
-  private chessMapArr: Array<Array<string>> = []
+  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
+  @State chessMapArr: Array<Array<string>> = []
+  @State screenWidth: number = WITH
+  @State screenHeight: number = HEIGHT
+  @State dpiBi: number = vp2px(this.screenWidth) / this.screenWidth
+  @State chessSize: number = this.screenWidth / this.dpiBi / SIZE
   @State isDistributed: boolean = false
   @State dialogShow: boolean = false
-  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
   @State deviceFlag: string = 'A'
   @State isFall: boolean = false
+  @State isFlush:boolean = false
 
   dataChange() {
     if (this.deviceFlag !== 'A') {
@@ -74,6 +75,7 @@ struct Index {
     logger.info(TAG, `enter aboutToAppear`)
     await globalThis.abilityContext.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
     this.distributedData.init()
+    let context = getContext(this)
     if (globalThis.deviceFlag) {
       this.isDistributed = true
     }
@@ -83,9 +85,8 @@ struct Index {
     }
     if (this.deviceFlag === 'B') {
       logger.info(TAG, `enter this.deviceFlag === 'B'`)
-      kvStoreModel.setOnMessageReceivedListener(DEVICE_A, (value) => {
+      kvStoreModel.setOnMessageReceivedListener(context, DEVICE_A, (value) => {
         let gameDataA = JSON.parse(value)
-        this.distributedData.isOver = gameDataA.isOver
         this.distributedData.step = gameDataA.step
         this.distributedData.clickCount = gameDataA.clickCount
         this.distributedData.chessMapArr = gameDataA.chessMapArr
@@ -93,10 +94,15 @@ struct Index {
         this.distributedData.chessX = gameDataA.chessX
         this.distributedData.chessY = gameDataA.chessY
         this.distributedData.fallLocation = gameDataA.fallLocation
+        if(gameDataA.isOver === true) {
+          this.isFlush = !this.isFlush
+        } else{
+          this.distributedData.isOver = gameDataA.isOver
+        }
       })
     } else if (this.deviceFlag === 'A') {
       logger.info(TAG, `enter this.deviceFlag === 'A'`)
-      kvStoreModel.setOnMessageReceivedListener(DEVICE_B, (value) => {
+      kvStoreModel.setOnMessageReceivedListener(context, DEVICE_B, (value) => {
         let gameDataB = JSON.parse(value)
         this.fallChressInner(gameDataB.x, gameDataB.y)
       })
@@ -114,7 +120,7 @@ struct Index {
 
   private cleanChessBoard() {
     this.context.fillStyle = 'RGB(222,184,135)'
-    this.context.fillRect(0, 0, this.width / this.dpiBi, this.width / this.dpiBi)
+    this.context.fillRect(0, 0, this.screenWidth / this.dpiBi, this.screenWidth / this.dpiBi)
   }
 
   private drawChess(x, y, color) {
@@ -143,15 +149,15 @@ struct Index {
       this.context.shadowBlur = 3
       this.context.shadowColor = '#afb4db'
       this.context.beginPath()
-      this.context.arc(this.width / this.dpiBi / 2, this.width / this.dpiBi / 2, 3, 0, Math.PI * 2, false)
-      this.context.arc(this.width / this.dpiBi / 4, this.width / this.dpiBi / 4, 3, 0, Math.PI * 2, false)
-      this.context.arc(this.width / this.dpiBi / 4 * 3, this.width / this.dpiBi / 4 * 3, 3, 0, Math.PI * 2, false)
+      this.context.arc(this.screenWidth / this.dpiBi / 2, this.screenWidth / this.dpiBi / 2, 3, 0, Math.PI * 2, false)
+      this.context.arc(this.screenWidth / this.dpiBi / 4, this.screenWidth / this.dpiBi / 4, 3, 0, Math.PI * 2, false)
+      this.context.arc(this.screenWidth / this.dpiBi / 4 * 3, this.screenWidth / this.dpiBi / 4 * 3, 3, 0, Math.PI * 2, false)
       this.context.closePath()
       this.context.fillStyle = 'black'
       this.context.fill()
       this.context.beginPath()
-      this.context.arc(this.width / this.dpiBi / 4, this.width / this.dpiBi / 4 * 3, 3, 0, Math.PI * 2, false)
-      this.context.arc(this.width / this.dpiBi / 4 * 3, this.width / this.dpiBi / 4, 3, 0, Math.PI * 2, false)
+      this.context.arc(this.screenWidth / this.dpiBi / 4, this.screenWidth / this.dpiBi / 4 * 3, 3, 0, Math.PI * 2, false)
+      this.context.arc(this.screenWidth / this.dpiBi / 4 * 3, this.screenWidth / this.dpiBi / 4, 3, 0, Math.PI * 2, false)
       this.context.closePath()
       this.context.fillStyle = 'black'
       this.context.fill()
@@ -227,6 +233,7 @@ struct Index {
   }
 
   private checkWin(x, y, color, mode) {
+    logger.info(TAG, `checkWin x = ${x}, y = ${y}`)
     var count = 1
     for (let i = 1; i < 5; i++) {
       if (this.distributedData.chessMapArr[x + i * mode[0]]) {
@@ -246,8 +253,10 @@ struct Index {
         }
       }
     }
+    logger.info(TAG, `checkWin count = ${count}`)
     if (count >= 5) {
       setTimeout(() => {
+        logger.info(TAG, `AlertDialog`)
         AlertDialog.show({
           message: `共计${Math.ceil(this.distributedData.step / 2)}回合,${CHESS_COLOR[this.distributedData.step % 2] === 'black' ? '白子' : '黑子'}胜！`
         })
@@ -276,8 +285,29 @@ struct Index {
     this.context.closePath()
   }
 
+  flushData(){
+    this.cleanChessBoard()
+    this.drawChessBoard()
+    this.drawAll()
+    if (this.distributedData.isOver === false) {
+      for (var i = 0; i < 4; i++) {
+        logger.info(TAG, `[111] check ${this.distributedData.chessX},${this.distributedData.chessY}`)
+        let x = this.distributedData.chessX
+        let y = this.distributedData.chessY
+        if (x < 0 || x > 14 || y < 0 || y > 14) {
+          continue
+        }
+        let color = this.distributedData.chessMapArr[x][y]
+        logger.info(TAG, `[111] check ${x},${y},${color}`)
+        this.checkWin(x, y, color, CHECK_MODE[i])
+        logger.info(TAG, `end Canvas onReady`)
+      }
+    }
+    this.fallFlag()
+  }
+
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Column() {
       TitleBar({
         startAbilityCallBack: this.startAbilityCallBack,
         remoteDeviceModel: this.remoteDeviceModel,
@@ -290,27 +320,12 @@ struct Index {
 
       Column() {
         Canvas(this.context)
-          .width(this.width / this.dpiBi)
-          .height(this.width / this.dpiBi)
+          .width(this.screenWidth / this.dpiBi)
+          .height(this.screenWidth / this.dpiBi)
           .backgroundColor('RGB(222,184,135)')
           .onReady(() => {
-            this.cleanChessBoard()
-            this.drawChessBoard()
-            this.drawAll()
-            if (this.distributedData.isOver === false) {
-              for (var i = 0; i < 4; i++) {
-                logger.info(TAG, `[111] check ${this.distributedData.chessX},${this.distributedData.chessY}`)
-                let x = this.distributedData.chessX
-                let y = this.distributedData.chessY
-                if (x < 0 || x > 14 || y < 0 || y > 14) {
-                  continue
-                }
-                let color = this.distributedData.chessMapArr[x][y]
-                logger.info(TAG, `[111] check ${x},${y},${color}`)
-                this.checkWin(x, y, color, CHECK_MODE[i])
-              }
-            }
-            this.fallFlag()
+            logger.info(TAG, `enter Canvas onReady`)
+            this.flushData()
           })
           .border({ width: 1, color: 'red' })
       }
@@ -326,10 +341,11 @@ struct Index {
 
       Row() {
         if (this.deviceFlag === 'A') {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Button($r('app.string.restart'), { stateEffect: true })
               .backgroundColor('RGB(210,105,30)')
               .width(this.chessSize * 3)
+              .height(45)
               .fontSize(20 / this.dpiBi)
               .margin({ right: 20 })
               .onClick(() => {
@@ -342,6 +358,8 @@ struct Index {
             Button($r('app.string.repentance_chess'), { stateEffect: true })
               .backgroundColor('RGB(210,105,30)')
               .width(this.chessSize * 3)
+              .height(45)
+              .margin({ left: 20 })
               .fontSize(20 / this.dpiBi)
               .onClick(() => {
                 this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
@@ -352,6 +370,7 @@ struct Index {
         }
       }.width('50%')
     }
+    .justifyContent(FlexAlign.Center)
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize({ width: '100%', height: '100%' })
     .width('100%')

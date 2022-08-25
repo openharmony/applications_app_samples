@@ -22,7 +22,6 @@ struct Index {
   @State output: string = `call information\n`
 
   build() {
-    Flex() {
       Column() {
         Text($r('app.string.entry_MainAbility'))
           .width('100%')
@@ -60,7 +59,6 @@ struct Index {
           }
         }
       }
-    }
     .height('100%')
     .width('100%')
   }

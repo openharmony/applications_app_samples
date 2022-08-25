@@ -27,12 +27,20 @@ struct Index {
   build() {
     Scroll() {
       Column() {
-        Text($r("app.string.change_str") + this.input)
-          .width('90%')
-          .height('10%')
-          .textAlign(TextAlign.Center)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
+        Row() {
+          Text($r('app.string.change_str'))
+            .width('50%')
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.End)
+          Text(this.input)
+            .width('50%')
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Start)
+        }
+        .width('90%')
+        .height('10%')
 
         Text(this.resultEncode)
           .width('90%')

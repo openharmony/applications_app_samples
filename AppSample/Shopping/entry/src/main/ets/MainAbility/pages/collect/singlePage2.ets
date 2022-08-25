@@ -32,9 +32,9 @@ export struct SinglePage2 {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Flex({ alignItems: ItemAlign.Center }) {
+      Row() {
+        Row() {
+          Row() {
             Text('宝贝状态')
               .fontSize(12 * this.ratio)
             Image('/resources/icon/sort-down.png')
@@ -42,8 +42,9 @@ export struct SinglePage2 {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .alignItems(VerticalAlign.Center)
 
-          Flex({ alignItems: ItemAlign.Center }) {
+          Row() {
             Text('收藏时间')
               .fontSize(12 * this.ratio)
             Image('/resources/icon/sort-down.png')
@@ -51,9 +52,15 @@ export struct SinglePage2 {
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
+          .alignItems(VerticalAlign.Center)
         }
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
         .width('45%')
       }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
       .backgroundColor(Color.White)
       .border({ radius: 5 })
       .padding(10)
@@ -74,7 +81,7 @@ export struct SinglePage2 {
         .padding({ left: 10 })
 
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Column() {
               Image(this.collectData.src)
                 .width('20%')
@@ -91,6 +98,9 @@ export struct SinglePage2 {
             .alignItems(HorizontalAlign.Start)
             .padding(10)
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
         }
         .width('75%')
         .height('100%')

@@ -4,7 +4,7 @@
 
 本示例通过eTS来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。实现效果如下：
 
-<img src="./screenshots/device/main.png" />
+![](screenshots/device/main.png)
 
 ### 相关概念
 
@@ -27,4 +27,6 @@
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要插入SIM卡，目前该功能仅支持部分机型。
+
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

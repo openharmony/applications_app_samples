@@ -24,7 +24,7 @@ export struct VisitPage {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+      Row() {
         Image('/resources/icon/camera.png')
           .width(30 * this.ratio)
           .aspectRatio(1)
@@ -39,12 +39,14 @@ export struct VisitPage {
           .objectFit(ImageFit.Contain)
           .border({ radius: 15 * this.ratio })
       }
+      .width('100%')
       .padding({ top: 10 })
       .backgroundColor(this.bgColor)
+      .justifyContent(FlexAlign.SpaceAround)
+      .alignItems(VerticalAlign.Center)
 
       Tabs({ controller: this.controller, index: 1 }) {
         TabContent() {
-
         }
 
         TabContent() {

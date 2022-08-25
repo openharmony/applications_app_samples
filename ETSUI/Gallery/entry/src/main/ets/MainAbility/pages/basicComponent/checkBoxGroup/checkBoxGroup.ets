@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
@@ -23,8 +23,7 @@ struct CheckboxExample {
   @State setBackgroundColor: string = '#F1F3F5';
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-
+    Column() {
       NavigationBar({ title: 'CheckboxGroup' })
 
       Scroll() {
@@ -33,7 +32,7 @@ struct CheckboxExample {
             CheckboxGroup({ group: 'checkboxGroup' })
               .selectedColor(0xed6f21)
               .onChange((itemName: CheckboxGroupResult) => {
-                console.info("TextPicker::dialogResult is" + JSON.stringify(itemName))
+                console.info('TextPicker::dialogResult is' + JSON.stringify(itemName))
               })
             Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
               .select(false)
@@ -56,16 +55,20 @@ struct CheckboxExample {
           }
           .backgroundColor(this.setBackgroundColor)
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('boxColor')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
               .opacity(0.5)
               .fontSize('16fp')
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $setBoxColor })
             }.width(48)
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(35)
           .padding({ left: 12, right: 12 })
@@ -73,29 +76,34 @@ struct CheckboxExample {
           .backgroundColor('#FFF')
           .margin({ top: 8, bottom: 8, left: 12, right: 12 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('backgroundColor')
               .fontWeight(FontWeight.Medium)
               .fontColor('#182431')
               .opacity(0.5)
               .fontSize('16fp')
+
+            Blank()
+
             Column() {
               GetColor({ colorVal: $setBackgroundColor })
             }.width(48)
           }
+          .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(35)
           .padding({ left: 12, right: 12 })
           .borderRadius(14)
           .backgroundColor('#FFF')
           .margin({ top: 8, bottom: 8, left: 12, right: 12 })
-
         }
       }
       .width('100%')
       .height('100%')
       .padding({ left: '2%', right: '2%' })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .backgroundColor('#F1F3F5')
   }
 }

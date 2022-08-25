@@ -22,6 +22,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "search",
+      "srcPath": "./search"
     }
   ]
 }

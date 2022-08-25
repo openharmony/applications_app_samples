@@ -20,15 +20,97 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 const TAG = '[BringApps]'
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount() {
+    return 0
+  }
+
+  public getData(index: number) {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload() {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: any[] = Apps
+
+  public totalCount() {
+    return this.dataArray.length
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number) {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(index: number) {
+    this.dataArray.push()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  public deleteData() {
+    this.dataArray.pop()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+}
+
 @Component
 export struct BringApp {
   @State text: string = ''
-  @State app: Apps = new Apps()
+  @State app: MyDataSource = new MyDataSource()
 
   build() {
     Scroll() {
       Column() {
-        ForEach(this.app.apps, item => {
+        LazyForEach(this.app, item => {
           Row() {
             Image(item.img)
               .margin(5)

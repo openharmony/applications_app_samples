@@ -7,12 +7,11 @@
 
 ### 相关概念
 
-- [Util工具函数](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-util.md)：该模块主要提供常用的工具函数，实现字符串编解码（TextEncoder，TextDecoder）、有理数运算（RationalNumber）、缓冲区管理（LruBuffer）、范围判断（Scope）、Base64编解码（Base64）、内置对象类型检查（Types）等功能。
+Util工具函数：该模块主要提供常用的工具函数，实现字符串编解码（TextEncoder，TextDecoder）、有理数运算（RationalNumber）、缓冲区管理（LruBuffer）、范围判断（Scope）、Base64编解码（Base64）、内置对象类型检查（Types）等功能。
 
 ### 相关权限
 
-不涉及
-
+不涉及。
 
 ### 使用说明
 
@@ -24,4 +23,4 @@
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

@@ -70,7 +70,6 @@ struct Game {
   @State historyTime: number = 0;
   @State pipeLength: number = 125;
   @State isChange: boolean = false;
-
   draw = () => {
     let id = router.getParams()['id']
     let fg
@@ -104,6 +103,7 @@ struct Game {
         pipeSouth = this.pipeSouthFour
         bg = this.bgFour
         this.sleep = 30
+        break
       case 5:
         fg = this.bgFive
         pipeNorth = this.pipeNorthFive
@@ -144,7 +144,7 @@ struct Game {
     else {
       ctx.fillText(`historyTime : 0 min 0 s`, 10, this.cvsHeigth - 10);
     }
-    if(this.isChange == true) {
+    if (this.isChange == true) {
       clearTimeout(timeId);
     }
 
@@ -234,7 +234,7 @@ struct Game {
     this.bY -= 20;
   }
 
-  onBackPress(){
+  onBackPress() {
     this.isChange = true;
     router.back();
     return true;
@@ -242,25 +242,26 @@ struct Game {
 
   showHistoryScore() {
     bundleState.queryBundleStateInfos(Number(this.beginTime), Number(this.endTime), (err, res) => {
-      if (err.code === 0) {
-        logger.log(this.TAG1 + "queryBundleStateInfos1 callback success,result size = " + res.length);
+      if (err) {
+        console.log(this.TAG1 + 'queryBundleStateInfos1 callback failed,because: ' + err.code);
+      }
+      else {
+        console.log(this.TAG1 + "queryBundleStateInfos1 callback success.");
         let i = 1;
         for (let key in res) {
-          logger.log(this.TAG1 + 'queryBundleStateInfos1 callback i : ' + i);
-          logger.log(this.TAG1 + 'queryBundleStateInfos1 callback result : ' + JSON.stringify(res[key]));
+          console.log(this.TAG1 + 'queryBundleStateInfos1 callback i : ' + i);
+          console.log(this.TAG1 + 'queryBundleStateInfos1 callback result : ' + JSON.stringify(res[key]));
           if (res[key].bundleName.includes('flybird')) {
-            this.historyTime = res[key].abilityInFgTotalTime
+            this.historyTime = res[key].abilityInFgTotalTime;
           }
           i++;
         }
-      } else {
-        logger.log(this.TAG1 + 'queryBundleStateInfos1 callback failed,because: ' + JSON.stringify(err));
       }
     })
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Stack({ alignContent: Alignment.Center }) {
       Canvas(this.context)
         .width(280)
         .height(512)

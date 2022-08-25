@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { SliderComponent } from "../../../common/components/sliderComponent"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { SliderComponent } from '../../../common/components/sliderComponent'
 
 @Entry
 @Component
@@ -25,7 +25,7 @@ struct BoxModelSample {
   @State contentHeight: number = 80
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: '盒模型' })
       Column() {
         Text('width:' + `${this.contentWidth.toFixed(0)}` + '     ' + 'height:' + `${this.contentHeight.toFixed(0)}`)
@@ -43,8 +43,6 @@ struct BoxModelSample {
                 .fontSize(12)
                 .offset({ x: 0, y: 0 })
                 .zIndex(1)
-            } else {
-
             }
 
             Column() {
@@ -75,59 +73,27 @@ struct BoxModelSample {
       }
       .width('100%')
       .alignItems(HorizontalAlign.Start)
-      .constraintSize({ minHeight: 218, maxHeight: 402 })
+      .height('40%')
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
       .backgroundColor(('#FFFFFF'))
 
       Scroll() {
         Column() {
-          //控件写法
+          // 控件写法
           SliderComponent({ name: 'Width', value: $contentWidth, min: 0, max: 260 })
-          //原本写法
-          //          Column() {
-          //            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-          //              Text('Width')
-          //                .fontSize('16fp')
-          //                .opacity(0.5)
-          //                .fontColor('#182431')
-          //                .fontWeight(FontWeight.Medium)
-          //              Text('' + this.contentWidth.toFixed(0))
-          //                .fontSize('16fp')
-          //                .fontColor('#182431')
-          //                .fontWeight(FontWeight.Medium)
-          //                .width('50%')
-          //                .textAlign(TextAlign.End)
-          //            }.width('100%')
-          //
-          //            Slider({
-          //              value: this.contentWidth,
-          //              min: 0,
-          //              max: 260,
-          //              step: 1,
-          //              style: SliderStyle.OutSet
-          //            })
-          //              .width('100%')
-          //              .blockColor('#FFFFFF')
-          //              .trackColor('#182431')
-          //              .selectedColor('#007DFF')
-          //              .showSteps(true)
-          //              .showTips(false)
-          //              .onChange((value: number) => {
-          //                this.contentWidth = value
-          //              })
-          //          }
-          //          .width('100%')
-          //          .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
-          //          .borderRadius(24)
-          //          .backgroundColor('#FFFFFF')
           SliderComponent({ name: 'Height', value: $contentHeight, min: 0, max: 800, })
           SliderComponent({ name: 'padding', value: $padding, min: 0, max: 50, })
           SliderComponent({ name: 'margin', value: $margin, min: 0, max: 50 })
           SliderComponent({ name: 'border', value: $margin, min: 0, max: 50 })
-        }.width('100%')
-      }.width('100%').height('45%')
+        }
+        .width('100%')
+        .margin({ top: 10 })
+      }.width('100%').height('50%')
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

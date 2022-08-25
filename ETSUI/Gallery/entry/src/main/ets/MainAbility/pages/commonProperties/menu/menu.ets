@@ -13,34 +13,39 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct Index {
   @Builder MenuBuilder(){
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column(){
       Text('close')
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           ContextMenu.close();
         })
-    }.height(200)
+    }
+    .height(200)
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.Pink)
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center,direction:FlexDirection.Column }) {
+    Column(){
+      NavigationBar({ title: 'Menu' })
 
-      NavigationBar({ title: 'CheckboxGroup' })
-
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row({space: FlexAlign.SpaceBetween}){
         Text('ContextMenu.close')
           .fontSize(16)
           .fontWeight(FontWeight.Medium)
           .fontColor('#182431 ')
           .opacity(0.5)
+
+        Blank()
+
         Column() {
           Text('LongPress')
             .fontSize(16)
@@ -50,6 +55,7 @@ struct Index {
         }
         .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
       }
+      .alignItems(VerticalAlign.Center)
       .width('100%')
       .height(35)
       .padding({ left: 12, right: 12 })
@@ -57,5 +63,7 @@ struct Index {
       .backgroundColor('#F1F3F5')
       .margin({ top: 0, bottom: 8, left: 12, right: 12 })
     }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Start)
   }
 }

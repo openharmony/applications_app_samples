@@ -14,8 +14,8 @@
  */
 import mediaquery from '@ohos.mediaquery'
 import parameter from '@ohos.systemparameter'
-import { TabletTitle, BrowserTabs, WebTab } from '../common/Titlebar'
-import { PhoneLayout } from '../common/Phonelayout'
+import { TabletTitle, BrowserTabs, WebTab } from '../common/TitleBar'
+import { PhoneLayout } from '../common/PhoneLayout'
 import { Browser, LoadingStatus } from '../model/Browser'
 import Logger from '../model/Logger'
 
@@ -30,7 +30,7 @@ struct Index {
   listener= mediaquery.matchMediaSync('(orientation:landscape)')
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       if (!this.isPhone) {
         TabletTitle({ browser: $browser })
         Progress({ value: this.browser.progress, total: 100 })

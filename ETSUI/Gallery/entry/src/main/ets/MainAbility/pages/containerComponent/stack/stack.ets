@@ -12,20 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct StackSample {
-  @State alignDirection: string = "Bottom"
-  @State fontDirection: string = "Top"
+  @State alignDirection: string = 'Bottom'
+  @State fontDirection: string = 'Top'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
       NavigationBar({ title: 'Stack' })
       Column() {
         Scroll() {
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Stack({ alignContent: Alignment[this.alignDirection] }) {
               Column()
                 .width('100%')
@@ -76,104 +76,108 @@ struct StackSample {
                 .fontSize('16fp')
                 .textAlign(TextAlign.Center)
             }.width('60%').height('81%')
-          }.width('100%').height('100%')
-        }.width('100%')
+          }
+          .width('100%')
+          .height('100%')
+          .justifyContent(FlexAlign.Center)
+        }
+        .width('100%')
+        .height('100%')
       }.width('100%')
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
       .margin({ bottom: 24 })
 
       Scroll() {
-        Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('align')
-              .fontSize('16fp')
-              .opacity(0.5)
-              .fontColor('#182431')
-              .fontWeight(FontWeight.Medium)
-            Column() {
-              Text(`${this.alignDirection}`)
-                .fontSize('16fp')
-                .fontColor('#182431')
-                .fontWeight(FontWeight.Medium)
-                .width('50%')
-                .textAlign(TextAlign.End)
-            }
+        Row() {
+          Text('align')
+            .fontSize('16fp')
+            .opacity(0.5)
+            .fontColor('#182431')
+            .fontWeight(FontWeight.Medium)
+          Blank()
+          Text(`${this.alignDirection}`)
+            .fontSize('16fp')
+            .fontColor('#182431')
+            .fontWeight(FontWeight.Medium)
+            .width('50%')
+            .textAlign(TextAlign.End)
             .bindMenu([
               {
                 value: 'TopStart',
                 action: () => {
-                  this.alignDirection = "TopStart"
-                  this.fontDirection = "Bottom"
+                  this.alignDirection = 'TopStart'
+                  this.fontDirection = 'Bottom'
                 }
               },
               {
                 value: 'Top',
                 action: () => {
-                  this.alignDirection = "Top"
-                  this.fontDirection = "Bottom"
+                  this.alignDirection = 'Top'
+                  this.fontDirection = 'Bottom'
                 }
               },
               {
                 value: 'TopEnd',
                 action: () => {
-                  this.alignDirection = "TopEnd"
-                  this.fontDirection = "Bottom"
+                  this.alignDirection = 'TopEnd'
+                  this.fontDirection = 'Bottom'
                 }
               },
               {
                 value: 'Start',
                 action: () => {
-                  this.alignDirection = "Start"
-                  this.fontDirection = "Top"
+                  this.alignDirection = 'Start'
+                  this.fontDirection = 'Top'
                 }
               },
               {
                 value: 'Center',
                 action: () => {
-                  this.alignDirection = "Center"
-                  this.fontDirection = "Top"
+                  this.alignDirection = 'Center'
+                  this.fontDirection = 'Top'
                 }
               },
               {
                 value: 'End',
                 action: () => {
-                  this.alignDirection = "End"
-                  this.fontDirection = "Top"
+                  this.alignDirection = 'End'
+                  this.fontDirection = 'Top'
                 }
               },
               {
                 value: 'BottomStart',
                 action: () => {
-                  this.alignDirection = "BottomStart"
-                  this.fontDirection = "Top"
+                  this.alignDirection = 'BottomStart'
+                  this.fontDirection = 'Top'
                 }
               },
               {
                 value: 'Bottom',
                 action: () => {
-                  this.alignDirection = "Bottom"
-                  this.fontDirection = "Top"
+                  this.alignDirection = 'Bottom'
+                  this.fontDirection = 'Top'
                 }
               },
               {
                 value: 'BottomEnd',
                 action: () => {
-                  this.alignDirection = "BottomEnd"
-                  this.fontDirection = "Top"
+                  this.alignDirection = 'BottomEnd'
+                  this.fontDirection = 'Top'
                 }
               },
             ])
-          }
+        }
           .width('100%')
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8, bottom: 20 })
-        }.width('100%')
       }
+      .height('10%')
     }
     .width('100%')
+    .height('100%')
     .backgroundColor('#F1F3F5')
     .padding({ left: '3%', right: '3%', bottom: 10 })
   }

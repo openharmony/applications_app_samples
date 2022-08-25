@@ -19,11 +19,12 @@ import logger from '../Common/Logger'
 import { Element } from '../Common/Element'
 import { TitleBar } from '../Common/TitleBar'
 import { AirQualityModel } from '../Model/AirQualityModel'
+import { AirSource } from "../Model/DataSource"
 
 @Extend(Text) function fancyText (backgroundColor: string, height: number, margin: number) {
   .backgroundColor(backgroundColor)
   .height(height)
-  .width('14%')
+  .width('16%')
   .margin({ left: margin })
 }
 
@@ -34,7 +35,7 @@ const TAG: string = 'Detail'
 struct Detail {
   private preference: preferences.Preferences = undefined
   private city: string = router.getParams()['city']
-  @State airQualitysHistory: Array<AirQualityModel> = []
+  @State airQualitysHistory: AirSource = new AirSource([])
   handlerClickButton = () => {
     router.back()
   }
@@ -43,13 +44,15 @@ struct Detail {
     this.preference = await preferences.getPreferences(globalThis.abilityContext, 'airquality')
     if (this.city === '深圳') {
       let shenZhenResult = <string> await this.preference.get('shenzhen', 'default')
-      this.airQualitysHistory = JSON.parse(shenZhenResult)
-      logger.info(TAG, `this.airQualitysHistoryShenZhen = ${JSON.stringify(this.airQualitysHistory)}`)
+      this.airQualitysHistory['AirHistoryData'] = JSON.parse(shenZhenResult)
+      this.airQualitysHistory.notifyDataReload()
+      logger.info(TAG, `this.airQualitysHistoryShenZhen = ${JSON.stringify(this.airQualitysHistory['AirHistoryData'])}`)
     }
     if (this.city === '东莞') {
       let shenZhenResult = <string> await this.preference.get('shenzhen', 'default')
-      this.airQualitysHistory = JSON.parse(shenZhenResult)
-      logger.info(TAG, `this.airQualitysHistoryDongGuan = ${JSON.stringify(this.airQualitysHistory)}`)
+      this.airQualitysHistory['AirHistoryData'] = JSON.parse(shenZhenResult)
+      this.airQualitysHistory.notifyDataReload()
+      logger.info(TAG, `this.airQualitysHistoryDongGuan = ${JSON.stringify(this.airQualitysHistory['AirHistoryData'])}`)
     }
   }
 
@@ -74,31 +77,34 @@ struct Detail {
           .width('100%')
           .margin({ top: 30 })
 
-          Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-            ForEach(this.airQualitysHistory, (item, index) => {
-              Column() {
-                Text(item.date)
-                  .fontSize(30)
-                  .width('100%')
-                  .height(30)
-                  .textAlign(TextAlign.Start)
+          GridRow({ columns: { sm: 2, md: 2, lg: 3 },
+            gutter: { x: 10, y: 10 },
+            breakpoints: { reference: BreakpointsReference.ComponentSize } }) {
+            LazyForEach(this.airQualitysHistory, (item, index) => {
+              GridCol({span:1}) {
+                Column() {
+                  Text(item.date)
+                    .fontSize(30)
+                    .width('100%')
+                    .height(30)
+                    .textAlign(TextAlign.Start)
+                    .margin({ top: 20 })
+                  Row() {
+                    Text().fancyText('#00ff00', this.formatNumber(item.co.data), 0)
+                    Text().fancyText('#00ff00', this.formatNumber(item.so2.data), 5)
+                    Text().fancyText('#ff0000', this.formatNumber(item.pm10.data), 5)
+                    Text().fancyText('#ff0000', this.formatNumber(item.pm2p5.data), 5)
+                    Text().fancyText('#FF7500', this.formatNumber(item.no2.data), 5)
+                  }
+                  .alignItems(VerticalAlign.Bottom)
                   .margin({ top: 20 })
-                Flex({ alignItems: ItemAlign.End }) {
-                  Text().fancyText('#00ff00', this.formatNumber(item.co.data), 0)
-                  Text().fancyText('#00ff00', this.formatNumber(item.so2.data), 5)
-                  Text().fancyText('#ff0000', this.formatNumber(item.pm10.data), 5)
-                  Text().fancyText('#ff0000', this.formatNumber(item.pm2p5.data), 5)
-                  Text().fancyText('#FF7500', this.formatNumber(item.no2.data), 5)
+                  Element()
                 }
-                .margin({ top: 20 })
-
-                Element()
               }
-              .width('47%')
-              .margin({ left: 10 })
             })
           }
           .width('100%')
+          .height('64%')
 
         }
         .constraintSize({ minHeight: '100%' })

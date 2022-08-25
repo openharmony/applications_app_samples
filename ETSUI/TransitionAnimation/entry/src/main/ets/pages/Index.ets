@@ -14,10 +14,12 @@
  */
 import router from '@ohos.router'
 import TitleBar from '../common/TitleBar'
+import { Show } from '@ohos/enter-animation'
 
 @Entry
 @Component
 struct Index {
+
   @Builder
   ButtonItem(text: Resource | string, pageUrl: string) {
     Button({ type: ButtonType.Capsule }) {
@@ -38,8 +40,10 @@ struct Index {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+    Column() {
+      Show({ select: 4 }) //  选择第四种转场特效
       TitleBar()
+      this.ButtonItem($r('app.string.enter_animation'), 'pages/Home')
       this.ButtonItem($r('app.string.page_transition_bottom'), 'pages/page/BottomTransition')
       this.ButtonItem($r('app.string.page_transition_custom_first'), 'pages/page/CustomTransition')
       this.ButtonItem($r('app.string.page_transition_custom_second'), 'pages/page/CustomTransition2')

@@ -3,16 +3,16 @@
 ### 简介
 
 本示例展示了Stage模型启动Ability及Call功能的使用，包括拉起另一个Ability、创建Callee被调用端以及访问Callee被调用端。效果图如下：
-![](screenshots/device/image.png)
-![](screenshots/device/second.png)
+
+![](screenshots/device/image.png) ![](screenshots/device/second.png)
 
 ### 相关概念
 
-- [Ability开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/Readme-CN.md)：Ability开发。
+Call调用：Ability Call调用是Ability能力的扩展，它为Ability提供一种能够被外部调用的能力，使Ability既能被拉起到前台展示UI，也支持Ability在后台被创建并运行。应用开发者可通过Call调用，使用IPC通信实现不同Ability之间的数据共享。
 
 ### 相关权限
 
-远程协同：ohos.permission.DISTRIBUTED_DATASYNC
+允许不同设备间的数据交换：ohos.permission.DISTRIBUTED_DATASYNC
 
 ### 使用说明
 
@@ -34,4 +34,6 @@
 
 2.本示例为Stage模型，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。

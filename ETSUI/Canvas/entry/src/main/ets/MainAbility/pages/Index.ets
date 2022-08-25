@@ -15,7 +15,74 @@
 
 import router from '@ohos.router';
 
-let basicList = [
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: any): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
+let basicList = new MyDataSource([
   { title: 'RenderingContext', url: 'pages/RenderingContext' },
   { title: 'RenderingContext1', url: 'pages/RenderingContext1' },
   { title: 'RenderingContext2', url: 'pages/RenderingContext2' },
@@ -24,7 +91,7 @@ let basicList = [
   { title: 'path2D', url: 'pages/PathExample' },
   { title: 'ImageBitmap', url: 'pages/BitmapExample' },
   { title: 'CanvasGradient', url: 'pages/GradientExample' }
-]
+])
 
 @Entry
 @Component
@@ -36,7 +103,7 @@ struct Index {
   build() {
     Column() {
       List({ space: 6, initialIndex: 0 }) {
-        ForEach(basicList, (item) => {
+        LazyForEach(basicList, (item) => {
           ListItem() {
             Text(item.title).fontSize(18)
           }.backgroundColor(Color.Orange)
@@ -49,6 +116,8 @@ struct Index {
           })
         }, item => item.title)
       }
+      .width('100%')
+      .height(462)
     }.width('100%')
     .height('100%')
     .padding({ left: '5%', right: '5%' })

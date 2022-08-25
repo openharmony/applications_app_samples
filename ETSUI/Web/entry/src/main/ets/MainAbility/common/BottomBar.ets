@@ -13,6 +13,73 @@
  * limitations under the License.
  */
 
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = []
+
+  constructor(ele) {
+    super()
+    for (var index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+}
+
 @Component
 export struct BottomBar {
   private controller: WebController = null
@@ -56,15 +123,19 @@ export struct BottomBar {
   ]
 
   build() {
-    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-      ForEach(this.options, item => {
-        Image(item.image)
-          .width(40)
-          .height(40)
-          .objectFit(ImageFit.Contain)
-          .onClick(item.onClick)
-      }, item => JSON.stringify(item))
+    Row() {
+      LazyForEach(new MyDataSource(this.options), item => {
+        Row(){
+          Image(item.image)
+            .width(40)
+            .height(40)
+            .objectFit(ImageFit.Contain)
+            .onClick(item.onClick)
+        }
+      }, item => item)
     }
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.SpaceAround)
     .width('100%')
     .height(50)
   }

@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct BadgeSample {
-  @State showType: string = "1"
+  @State showType: string = '1'
   @State position: number = 0
   @State fontSize: number = 40
   @State badgeSize: number = 80
@@ -29,10 +29,10 @@ struct BadgeSample {
   @State badgeColor: string = 'red'
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
+    Column() {
       NavigationBar({ title: 'Badge' })
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           if (this.showType == '1') {
             Badge({
               position: this.position,
@@ -92,7 +92,7 @@ struct BadgeSample {
                 .backgroundColor(0xF3F4ED)
             }.width('40%').height('25%')
           }
-        }.width('100%').height('100%')
+        }.width('100%').height('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
@@ -102,12 +102,15 @@ struct BadgeSample {
 
       Scroll() {
         Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('type')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.showType}`)
                 .width('50%')
@@ -120,7 +123,7 @@ struct BadgeSample {
               {
                 value: '1',
                 action: () => {
-                  this.showType = "1"
+                  this.showType = '1'
                   this.showType = '1'
                   this.fontSize = 40
                   this.badgeSize = 80
@@ -131,7 +134,7 @@ struct BadgeSample {
               {
                 value: '2',
                 action: () => {
-                  this.showType = "2"
+                  this.showType = '2'
                   this.showType = '2'
                   this.fontSize = 40
                   this.badgeSize = 60
@@ -142,7 +145,7 @@ struct BadgeSample {
               {
                 value: '3',
                 action: () => {
-                  this.showType = "3"
+                  this.showType = '3'
                   this.showType = '3'
                   this.position = 1
                   this.badgeColor = 'red'
@@ -152,15 +155,20 @@ struct BadgeSample {
             ])
           }
           .padding('3%')
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('position')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Column() {
               Text(`${this.position}`)
                 .fontSize('16fp')
@@ -191,13 +199,14 @@ struct BadgeSample {
             ])
           }
           .padding('3%')
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-
           if (this.showType == '1') {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('count')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -233,10 +242,12 @@ struct BadgeSample {
             }
             .padding('3%')
             .borderRadius(24)
+            .width('100%')
+            .alignItems(VerticalAlign.Center)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('maxCount')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -267,12 +278,14 @@ struct BadgeSample {
             }
             .padding('3%')
             .borderRadius(24)
+            .width('100%')
+            .alignItems(VerticalAlign.Center)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
           }
 
           if (this.showType == '2') {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('value')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -281,14 +294,14 @@ struct BadgeSample {
                 TextInput({ placeholder: '' })
                   .type(InputType.Normal)
                   .placeholderColor(Color.Blue)
-                  .placeholderFont({ size: 25, weight: FontWeight.Normal, family: "Arial", style: FontStyle.Normal })
+                  .placeholderFont({ size: 25, weight: FontWeight.Normal, family: 'Arial', style: FontStyle.Normal })
                   .enterKeyType(EnterKeyType.Next)
                   .caretColor(Color.Green)
                   .height('60%')
                   .width('20%')
                   .fontSize(25)
                   .fontWeight(FontWeight.Bold)
-                  .fontFamily("cursive")
+                  .fontFamily('cursive')
                   .fontStyle(FontStyle.Italic)
                   .borderRadius('50%')
                   .fontColor(Color.Red)
@@ -300,13 +313,14 @@ struct BadgeSample {
             }
             .width('100%')
             .height(70)
+            .alignItems(VerticalAlign.Center)
             .padding({ left: '3%', right: '3%' })
             .borderRadius(10)
             .backgroundColor('#B0E0E6')
             .margin({ bottom: 8 })
           }
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('fontSize')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -340,10 +354,12 @@ struct BadgeSample {
           }
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('badgeSize')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -374,16 +390,21 @@ struct BadgeSample {
           }
           .padding('3%')
           .borderRadius(24)
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
 
           if (this.showType !== '3') {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row({ space: FlexAlign.SpaceBetween }) {
               Text('color')
                 .fontSize('16fp')
                 .fontColor('#182431')
                 .opacity(0.5)
                 .fontWeight(FontWeight.Medium)
+
+              Blank()
+
               Row() {
                 GetColor({ colorVal: $changeColor })
               }.width('20%')
@@ -391,23 +412,29 @@ struct BadgeSample {
             .width('100%')
             .height(70)
             .padding('3%')
+            .alignItems(VerticalAlign.Center)
             .borderRadius(10)
             .backgroundColor('#FFFFFF')
             .margin({ top: 8 })
           }
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row({ space: FlexAlign.SpaceBetween }) {
             Text('badgeColor')
               .fontSize('16fp')
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Row() {
               GetColor({ colorVal: $badgeColor })
             }.width('20%')
           }
           .height(70)
           .padding('3%')
+          .width('100%')
+          .alignItems(VerticalAlign.Center)
           .borderRadius(10)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })

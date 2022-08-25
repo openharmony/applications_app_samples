@@ -18,31 +18,32 @@ export struct Cart {
   @State flag: boolean = true
   @State value: number = 1
   @Prop ratio: number
+  @State checked: boolean = false
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         Row() {
           Image('/resources/homeImg/imgLoads/product004.png')
             .width(130 * this.ratio)
             .aspectRatio(1)
             .objectFit(ImageFit.Contain)
             .border({ radius: 10 * this.ratio })
-          Flex({ justifyContent: FlexAlign.SpaceBetween, direction: FlexDirection.Column }) {
+          Column() {
             Column() {
               Text('功能手机5G网速')
                 .fontSize(15 * this.ratio)
                 .fontWeight(FontWeight.Bolder)
                 .width('52%')
                 .margin({ bottom: 20 })
-              Text('12GB+GB 官方精品')
+              Text('12GB+8GB 官方精品')
                 .fontSize(12 * this.ratio)
                 .margin({ top: 10 })
             }
             .alignItems(HorizontalAlign.Start)
             .margin({ bottom: 20 })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Row() {
                 Text('￥')
                   .fontSize(12 * this.ratio)
@@ -80,13 +81,25 @@ export struct Cart {
               }
             }
             .width('60%')
+            .justifyContent(FlexAlign.SpaceBetween)
+            .alignItems(VerticalAlign.Center)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
         }
 
-        Toggle({ type: ToggleType.Checkbox })
+        Toggle({ type: ToggleType.Checkbox, isOn: this.checked })
           .width(20)
           .aspectRatio(1)
+          .onChange((isOn) => {
+            if (isOn.toString() === '1') {
+              this.checked = true
+            } else {
+              this.checked = false
+            }
+          })
       }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
     }
     .margin({ bottom: 10 })
   }

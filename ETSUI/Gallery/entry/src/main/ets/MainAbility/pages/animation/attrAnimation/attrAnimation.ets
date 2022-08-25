@@ -12,24 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 
 @Entry
 @Component
 struct AttrAnimationSample {
-  @State flag: boolean= true
-  @State borderColor: string= '#ca760f'
-  @State borderRadius: number= 0
-  @State backGroundColor: string= '#0099FF'
-  @State width: number= 200
-  @State height: number= 100
-  @State opacity: number= 1
-  @State fontColor: string= '#2ad085'
+  @State flag: boolean = true
+  @State borderColor: string = '#ca760f'
+  @State borderRadius: number = 0
+  @State backGroundColor: string = '#0099FF'
+  @State width: number = 200
+  @State height: number = 100
+  @State opacity: number = 1
+  @State fontColor: string = '#2ad085'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+    Column() {
       NavigationBar({ title: '属性动画' })
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+      Column() {
         Text('ANIMATION')
           .width(this.width)
           .height(this.height)

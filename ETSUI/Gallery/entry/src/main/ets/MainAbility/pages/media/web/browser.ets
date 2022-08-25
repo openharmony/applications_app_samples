@@ -13,23 +13,24 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
+import { NavigationBar } from '../../../common/components/navigationBar'
 import mediaquery from '@ohos.mediaquery'
 import http from '@ohos.net.http'
+import { MyDataSource } from '../../../model/constant'
 
 const ButtonWidth: number = 22
 const ButtonRadius: number = 4
-const downColor: string = "#e4e4e4"
-const upColor: string = "#00000000"
-const phoneUserAgent: string = "Mozilla/5.0 (Linux; Android 9; VRD-AL10; HMSCore 6.3.0.331) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 Mobile Safari/537.36"
-const padUserAgent: string = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 Safari/537.36"
+const downColor: string = '#e4e4e4'
+const upColor: string = '#00000000'
+const phoneUserAgent: string = 'Mozilla/5.0 (Linux; Android 9; VRD-AL10; HMSCore 6.3.0.331) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 Mobile Safari/537.36'
+const padUserAgent: string = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 Safari/537.36'
 
 
 class WebObject {
-  controller:WebController;
-  isRegistered:boolean;
+  controller: WebController;
+  isRegistered: boolean;
 
-  constructor(controller:WebController, isRegistered:boolean) {
+  constructor(controller: WebController, isRegistered: boolean) {
     this.controller = controller
     this.isRegistered = isRegistered
   }
@@ -41,19 +42,19 @@ struct Browser {
   @State isPhone: boolean = false;
   @State arrayIndex: number = 0;
   @State array1Index: number = 0;
-  @State pageCount: string = "1"
-  @State progress:number = 0;
-  @State hideProgress:boolean = true;
-  @State tabArrayIndex:number = 0;
-  @State webArray:Array<number> = [0]  //浏览器内容区域数组
-  @State tabButtonIndex : number = -1
-  @State hasDown:boolean = false
-  @State inputValue:string = ""
-  isRegistered:boolean = false
+  @State pageCount: string = '1'
+  @State progress: number = 0;
+  @State hideProgress: boolean = true;
+  @State tabArrayIndex: number = 0;
+  @State webArray: Array<number> = [0] //浏览器内容区域数组
+  @State tabButtonIndex: number = -1
+  @State hasDown: boolean = false
+  @State inputValue: string = ''
+  @State buttonArrays: MyDataSource = new MyDataSource()
+  isRegistered: boolean = false
   listener = mediaquery.matchMediaSync('(orientation: landscape)')
   controller: WebController = new WebController();
   tabsController: TabsController = new TabsController()
-
   private buttonArray1: Array<Object> = [
     {
       imageSrc: $r('app.media.ic_public_back'),
@@ -104,28 +105,27 @@ struct Browser {
     },
   ]
   private webControllerArray: Array<WebObject> = [new WebObject(this.controller, false)]
-
   testObj = {
     test: (addr) => {
 
-      this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: "https://www.baidu.com"})
+      this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: 'https://www.baidu.com' })
     },
-    isPhone:()=>{
+    isPhone: () => {
       return this.isPhone;
     }
   }
 
-
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }){
-      Row(){
+    Column() {
+      Row() {
         NavigationBar({ title: 'web' })
       }
       .padding({ left: '3%', right: '3%', bottom: 10 })
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+
+      Column() {
         if (!this.isPhone) {
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-            ForEach(this.buttonArray1, item => {
+          Row() {
+            LazyForEach(this.buttonArrays, item => {
               Button({ type: ButtonType.Normal }) {
                 Image(item.imageSrc)
               }
@@ -156,12 +156,12 @@ struct Browser {
                     this.Refresh()
                     break;
                   case 4:
-                    this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: "https://www.baidu.com/" })
+                    this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: 'https://www.baidu.com/' })
                     break;
                 }
               })
             }, item => item.id)
-            TextInput({ placeholder: '输入网址...', text: this.inputValue})
+            TextInput({ placeholder: '输入网址...', text: this.inputValue })
               .placeholderFont({ size: 18, weight: 500 })
               .fontSize(18)
               .margin(2)
@@ -170,7 +170,7 @@ struct Browser {
                 this.inputValue = value
               })
               .onSubmit((enterKey: EnterKeyType) => {
-                this.controller.loadUrl({url: this.inputValue})
+                this.controller.loadUrl({ url: this.inputValue })
               })
             //        跳转按钮和添加标签按钮
             ForEach(this.buttonArray2, item => {
@@ -206,26 +206,28 @@ struct Browser {
                 }
                 //              点击跳转按钮
                 if (item.id == 5) {
-                  let addr: string = "https://" + this.inputValue
-                  this.webControllerArray[this.tabArrayIndex].controller.loadUrl({url:  addr})
+                  let addr: string = 'https://' + this.inputValue
+                  this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: addr })
                 }
               })
             }, item => item.id)
+
           }
           .width('100%')
           .padding({ right: 5 })
 
-          Progress({ value: this.progress, total: 100 })
-            .color('#0000ff')
-            .visibility(this.hideProgress ? Visibility.None : Visibility.Visible)
-          //      标签框
+          if (!this.hideProgress) {
+            Progress({ value: this.progress, total: 100 })
+              .color('#0000ff')
+          }
+          // 标签框
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start }) {
             ForEach(this.webArray, item => {
               Row() {
                 Row() {
                   Text('主页')
                 }.width('100%').flexShrink(1).justifyContent(FlexAlign.Center).height('100%')
-                //              删除标签框按钮
+                // 删除标签框按钮
                 Button({ type: ButtonType.Normal }) {
                   Image($r('app.media.ic_public_cancel_filled')).width(12).height(12)
                 }
@@ -257,21 +259,23 @@ struct Browser {
               Divider().vertical(true).color('#c6c6c6')
             })
           }.height(33).flexShrink(0).backgroundColor('#ececec')
-          //        Button('点击')
 
           Divider().color('#c6c6c6').width('100%').flexShrink(0)
 
-          //        html内容展示区，Tabs组件做容器，ForEach循环遍历webArray，TabContent做内容切换
+          // html内容展示区，Tabs组件做容器，ForEach循环遍历webArray，TabContent做内容切换
           Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
             ForEach(this.webArray, item => {
               TabContent() {
-                Web({ src: $rawfile('index2.html'), controller: this.webControllerArray[this.tabArrayIndex].controller })
-                  .javaScriptAccess(true)    //设置是否允许执行JavaScript脚本，默认允许执行
-                  .fileAccess(true)          //设置是否开启Web中通过FILE方式访问应用中的本地文件， 默认启用。
+                Web({
+                  src: $rawfile('index2.html'),
+                  controller: this.webControllerArray[this.tabArrayIndex].controller
+                })
+                  .javaScriptAccess(true) //设置是否允许执行JavaScript脚本，默认允许执行
+                  .fileAccess(true) //设置是否开启Web中通过FILE方式访问应用中的本地文件， 默认启用。
                   .userAgent(this.isPhone ? phoneUserAgent : padUserAgent)
                   .onPageEnd(e => {
                     // test() 在 index.html 中已定义
-                    this.controller.runJavaScript({script: 'test()'});
+                    this.controller.runJavaScript({ script: 'test()' });
                   })
                   .onProgressChange((event) => {
                     this.progress = event.newProgress
@@ -286,7 +290,7 @@ struct Browser {
           }
           .barHeight(0)
           .scrollable(false)
-        }else {
+        } else {
           Navigation() {
             Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
@@ -299,7 +303,7 @@ struct Browser {
 
                   })
                   .onSubmit((enterKey: EnterKeyType) => {
-                    this.controller.loadUrl({url: this.inputValue})
+                    this.controller.loadUrl({ url: this.inputValue })
                   })
                 Button({ type: ButtonType.Normal }) {
                   Image($r('app.media.submit'))
@@ -320,22 +324,26 @@ struct Browser {
                   }
                 })
                 .onClick((event: ClickEvent) => {
-                  console.info("jyj input value " + this.inputValue)
-                  let addr: string = "https://" + this.inputValue
+                  console.info('jyj input value ' + this.inputValue)
+                  let addr: string = 'https://' + this.inputValue
                   this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: addr })
                 })
 
               }
+
               Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
                 ForEach(this.webArray, item => {
                   TabContent() {
-                    Web({ src: $rawfile('index.html'), controller: this.webControllerArray[this.tabArrayIndex].controller })
+                    Web({
+                      src: $rawfile('index.html'),
+                      controller: this.webControllerArray[this.tabArrayIndex].controller
+                    })
                       .javaScriptAccess(true)
                       .fileAccess(true)
                       .userAgent(this.isPhone ? phoneUserAgent : padUserAgent)
                       .onPageEnd((event) => {
 
-                        this.controller.runJavaScript({script: 'test()'});
+                        this.controller.runJavaScript({ script: 'test()' });
                       })
                       .onProgressChange((event) => {
                         this.progress = event.newProgress
@@ -359,6 +367,7 @@ struct Browser {
     }
 
   }
+
   pageTransition() {
     PageTransitionEnter({ duration: 370, curve: Curve.Friction })
       .slide(SlideEffect.Bottom)
@@ -372,6 +381,7 @@ struct Browser {
   aboutToAppear() {
     //    this.HttpRequest()
     this.listener.on('change', this.orientationCallback.bind(this))
+    this.buttonArrays['dataArray'] = this.buttonArray1
   }
 
   orientationCallback(result) {
@@ -400,8 +410,7 @@ struct Browser {
     this.webControllerArray[this.tabArrayIndex].controller.refresh()
   }
 
-
-  onBackPress():boolean {
+  onBackPress(): boolean {
 
     if (this.webControllerArray[this.tabArrayIndex].controller.accessBackward()) {
       this.webControllerArray[this.tabArrayIndex].controller.backward()
@@ -429,11 +438,11 @@ struct Browser {
 
       this.webControllerArray[this.tabArrayIndex].isRegistered = true
       this.webControllerArray[this.tabArrayIndex].controller.registerJavaScriptProxy({
-        //        注入ArkUI对象到HTML中，并在HTML中调用该对象的方法，参数不支持更新。
-        object: this.testObj,                 //      -obj: 参与注册的对象。
-        name: "etsObj",                    //      -name: 注册对象的名称，与HTML中调用的对象名一致。
-        methodList: ["test", "isPhone"]    //      -methodList: 参与注册的方法。
-        //      -controller: 控制器。
+        // 注入ArkUI对象到HTML中，并在HTML中调用该对象的方法，参数不支持更新。
+        object: this.testObj, //      -obj: 参与注册的对象。
+        name: 'etsObj', //      -name: 注册对象的名称，与HTML中调用的对象名一致。
+        methodList: ['test', 'isPhone'] //      -methodList: 参与注册的方法。
+        // -controller: 控制器。
       })
       this.webControllerArray[this.tabArrayIndex].controller.refresh();
     }

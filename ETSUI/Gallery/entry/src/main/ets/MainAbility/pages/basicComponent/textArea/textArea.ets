@@ -13,38 +13,38 @@
  * limitations under the License.
  */
 
-import { NavigationBar } from "../../../common/components/navigationBar"
-import { GetColor } from "../../../common/components/getColor"
+import { NavigationBar } from '../../../common/components/navigationBar'
+import { GetColor } from '../../../common/components/getColor'
 
 @Entry
 @Component
 struct TextAreaSample {
-  @State placeholderColor: string = "rgba(0,0,0,1)";
+  @State placeholderColor: string = 'rgba(0,0,0,1)';
   @State placeholderfontSize: number = 20;
   @State placeholderfontWeight: number = 200;
-  @State placeholderfontFamily: string = "Microsoft YaHei";
-  @State placeholderfontStyle: string = "Normal";
-  @State textAlign: string = "Start"
-  @State caretColor: string = "rgba(0,0,0,1)";
-  @State bgColor: string = "#E6E6FA";
-  @State textString: string = ""
+  @State placeholderfontFamily: string = 'Microsoft YaHei';
+  @State placeholderfontStyle: string = 'Normal';
+  @State textAlign: string = 'Start'
+  @State caretColor: string = 'rgba(0,0,0,1)';
+  @State bgColor: string = '#E6E6FA';
+  @State textString: string = ''
 
   build() {
-
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-
+    Column() {
       NavigationBar({ title: 'TextArea' })
 
       Scroll() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        Column() {
           Text('文本显示框')
             .fontSize(24)
             .margin({ bottom: 30 })
             .textAlign(TextAlign.Center)
 
           Text(this.textString)
-            .fontSize(18).width("100%").textAlign(TextAlign.Start)
+            .fontSize(18).width('100%').textAlign(TextAlign.Start)
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
       }
       .constraintSize({ minHeight: 218, maxHeight: 402 })
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
@@ -53,15 +53,15 @@ struct TextAreaSample {
 
       Text('textArea输入框')
         .width('100%')
-        .height("4%")
+        .height('4%')
         .fontSize(16)
-        .fontColor("#111")
+        .fontColor('#111')
         .padding({ left: '3%' })
         .margin({ top: 8 })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
         TextArea({ placeholder: 'input your word textArea' })
-          .height("100%")
+          .height('100%')
           .textAlign(TextAlign[this.textAlign])
           .placeholderColor(this.placeholderColor)
           .placeholderFont({
@@ -75,13 +75,14 @@ struct TextAreaSample {
             this.textString = value
           })
       }
-      .height("6%")
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Center)
+      .height('6%')
       .padding({ right: 10 })
 
       Scroll() {
         Column() {
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('placeholderColor').fontSize(16).fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
@@ -89,14 +90,16 @@ struct TextAreaSample {
               GetColor({ colorVal: $placeholderColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-
-          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Text("placeholderfontSize")
+          Row() {
+            Text('placeholderfontSize')
               .fontSize('16')
               .fontColor('#182431')
               .opacity(0.5)
@@ -119,16 +122,19 @@ struct TextAreaSample {
 
                 })
               Text(this.placeholderfontSize.toFixed(0)).fontSize(18)
-            }.width("49%")
+            }.width('49%')
           }
+          .justifyContent(FlexAlign.Start)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-            Text("placeholderfontWeight")
+          Row() {
+            Text('placeholderfontWeight')
               .fontSize('16')
               .fontColor('#182431')
               .opacity(0.5)
@@ -151,15 +157,18 @@ struct TextAreaSample {
                   console.log(`${mode}`)
                 })
               Text(this.placeholderfontWeight.toFixed(0)).fontSize(18)
-            }.width("40%")
+            }.width('40%')
           }
+          .justifyContent(FlexAlign.Start)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('placeholderfontFamily')
               .fontSize('16')
               .fontColor('#182431')
@@ -175,36 +184,39 @@ struct TextAreaSample {
               {
                 value: 'Microsoft YaHei',
                 action: () => {
-                  this.placeholderfontFamily = "Microsoft YaHei"
+                  this.placeholderfontFamily = 'Microsoft YaHei'
                 }
               },
               {
                 value: 'FangSong',
                 action: () => {
-                  this.placeholderfontFamily = "FangSong"
+                  this.placeholderfontFamily = 'FangSong'
                 }
               },
               {
                 value: 'SimHei',
                 action: () => {
-                  this.placeholderfontFamily = "SimHei"
+                  this.placeholderfontFamily = 'SimHei'
                 }
               },
               {
                 value: 'KaiTi',
                 action: () => {
-                  this.placeholderfontFamily = "KaiTi"
+                  this.placeholderfontFamily = 'KaiTi'
                 }
               }
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('placeholderfontStyle')
               .fontSize('16')
               .fontColor('#182431')
@@ -220,24 +232,27 @@ struct TextAreaSample {
               {
                 value: 'Normal',
                 action: () => {
-                  this.placeholderfontStyle = "Normal"
+                  this.placeholderfontStyle = 'Normal'
                 }
               },
               {
                 value: 'Italic',
                 action: () => {
-                  this.placeholderfontStyle = "Italic"
+                  this.placeholderfontStyle = 'Italic'
                 }
               },
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('textAlign')
               .fontSize('16')
               .fontColor('#182431')
@@ -253,30 +268,33 @@ struct TextAreaSample {
               {
                 value: 'Start',
                 action: () => {
-                  this.textAlign = "Start"
+                  this.textAlign = 'Start'
                 }
               },
               {
                 value: 'Center',
                 action: () => {
-                  this.textAlign = "Center"
+                  this.textAlign = 'Center'
                 }
               },
               {
                 value: 'End',
                 action: () => {
-                  this.textAlign = "End"
+                  this.textAlign = 'End'
                 }
               }
             ])
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Row() {
             Text('caretColor')
               .fontSize('16')
               .fontColor('#182431')
@@ -286,20 +304,24 @@ struct TextAreaSample {
               GetColor({ colorVal: $caretColor })
             }.width(48)
           }
+          .justifyContent(FlexAlign.SpaceBetween)
+          .alignItems(VerticalAlign.Center)
           .padding({ left: '3%', right: '3%', top: 12, bottom: 12 })
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
-          .height("15%")
+          .height('15%')
+          .width('100%')
 
         }
         .width('97%')
-        .margin({ right: "3%" })
+        .margin({ right: '3%' })
       }
       .width('100%')
       .height('45%')
       .margin({ top: 28 })
     }
+    .alignItems(HorizontalAlign.Center)
     .height('100%')
     .padding({ left: '3%', right: '3%' })
     .backgroundColor('#F1F3F5')
