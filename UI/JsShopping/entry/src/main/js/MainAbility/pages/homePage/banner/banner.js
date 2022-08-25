@@ -15,15 +15,15 @@
 import router from '@ohos.router'
 
 export default {
-    props: ['bannerdata'],
-    data() {
-        return {
-            bannerData: this.bannerdata,
-        }
-    },
-    redirect() {
-        router.push({
-            url: 'pages/detailPage/detail/detail',
-        });
-    },
+  props: ['bannerdata'],
+  data() {
+    return {
+      bannerData: this.bannerdata,
+    }
+  },
+  redirect() {
+    router.push({
+      url: 'pages/detailPage/detail/detail',
+    });
+  },
 }

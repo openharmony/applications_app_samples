@@ -14,14 +14,14 @@
  */
 
 export default {
-    props: [
-        'recommenddata',
-        'commonimg'
-    ],
-    data() {
-        return {
-            recommendData: this.recommenddata,
-            commonImg: this.commonimg,
-        }
+  props: [
+    'recommenddata',
+    'commonimg'
+  ],
+  data() {
+    return {
+      recommendData: this.recommenddata,
+      commonImg: this.commonimg,
     }
+  }
 };

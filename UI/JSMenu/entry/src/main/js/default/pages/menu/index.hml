@@ -13,31 +13,31 @@
  limitations under the License.
  -->
 <div class="container">
-    <div class="div-menu-text">
-        <text class="menu-text">{{ $t('strings.menu') }}</text>
-        <text onclick="onMenuClick" class="menu-title">{{ menu_result }}</text>
-        <menu id="menu"onselected="onMenuSelected">
-            <option class="menu-option" for="{{ menus }}" value="{{ $item.name }}">{{ $item.name }}</option>
-        </menu>
-    </div>
-    <div class="div-menu-text">
-        <text class="menu-text">{{ $t('strings.snack') }}</text>
-        <text onclick="onSnackClick" class="menu-title">{{ snack_result }}</text>
-        <menu id="snackMenu" onselected="onSnackSelected">
-            <option class="snack-option" for="{{ snacks }}" value="{{ $item.name }}">{{ $item.name }}</option>
-        </menu>
-    </div>
-    <div class="div-menu-text">
-        <text class="menu-text">{{ $t('strings.drink') }}</text>
-        <text onclick="onDrinkClick" class="menu-title">{{ drink_result }}</text>
-        <menu id="drinkMenu" onselected="onDrinkSelected">
-           <option class="drink-option" for="{{ drinks }}" value="{{ $item.name }}">{{ $item.name }}</option>
-        </menu>
-    </div>
-    <text class="result-text">{{ $t('strings.resultStr') }}</text>
-    <text id="result" class="result-text">{{ result }}</text>
-    <div class="div-btn">
-        <button class="button" onclick="onClearClick">{{ $t('strings.clear_oder') }}</button>
-        <button class="button" onclick="onFinishClick">{{ $t('strings.submit_oder') }}</button>
-    </div>
+  <div class="div-menu-text">
+    <text class="menu-text">{{ $t('strings.menu') }}</text>
+    <text onclick="onMenuClick" class="menu-title">{{ menu_result }}</text>
+    <menu id="menu" onselected="onMenuSelected">
+      <option class="menu-option" for="{{ menus }}" value="{{ $item.name }}">{{ $item.name }}</option>
+    </menu>
+  </div>
+  <div class="div-menu-text">
+    <text class="menu-text">{{ $t('strings.snack') }}</text>
+    <text onclick="onSnackClick" class="menu-title">{{ snack_result }}</text>
+    <menu id="snackMenu" onselected="onSnackSelected">
+      <option class="snack-option" for="{{ snacks }}" value="{{ $item.name }}">{{ $item.name }}</option>
+    </menu>
+  </div>
+  <div class="div-menu-text">
+    <text class="menu-text">{{ $t('strings.drink') }}</text>
+    <text onclick="onDrinkClick" class="menu-title">{{ drink_result }}</text>
+    <menu id="drinkMenu" onselected="onDrinkSelected">
+      <option class="drink-option" for="{{ drinks }}" value="{{ $item.name }}">{{ $item.name }}</option>
+    </menu>
+  </div>
+  <text class="result-text">{{ $t('strings.resultStr') }}</text>
+  <text id="result" class="result-text">{{ result }}</text>
+  <div class="div-btn">
+    <button class="button" onclick="onClearClick">{{ $t('strings.clear_oder') }}</button>
+    <button class="button" onclick="onFinishClick">{{ $t('strings.submit_oder') }}</button>
+  </div>
 </div>

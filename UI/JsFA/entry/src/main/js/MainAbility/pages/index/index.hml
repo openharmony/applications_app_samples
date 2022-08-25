@@ -14,22 +14,22 @@
  -->
 
 <div class="container">
-    <div class="title">
-        <text class="name">Merchandise</text>
-        <text class="sub-title">Choose What You Like</text>
+  <div class="title">
+    <text class="name">Merchandise</text>
+    <text class="sub-title">Choose What You Like</text>
+  </div>
+  <div>
+    <swiper id="swiperImage" class="swiper-style" indicator="true">
+      <image src="{{ $item }}" class="image-mode" focusable="true" for="{{ imageList }}"></image>
+    </swiper>
+    <div class="container">
+      <div class="description-first-paragraph">
+        <text class="description">{{ descriptionFirstParagraph }}</text>
+      </div>
     </div>
-    <div>
-        <swiper id="swiperImage" class="swiper-style" indicator="true">
-            <image src="{{ $item }}" class="image-mode" focusable="true" for="{{ imageList }}"></image>
-        </swiper>
-        <div class="container">
-            <div class="description-first-paragraph">
-                <text class="description">{{ descriptionFirstParagraph }}</text>
-            </div>
-        </div>
-    </div>
-    <div class="cart">
-        <text class="{{ cartStyle }}" onclick="addCart" onfocus="getFocus" onblur="lostFocus" focusable="true">
-            {{ cartText }}</text>
-    </div>
+  </div>
+  <div class="cart">
+    <text class="{{ cartStyle }}" onclick="addCart" onfocus="getFocus" onblur="lostFocus" focusable="true">
+      {{ cartText }}</text>
+  </div>
 </div>

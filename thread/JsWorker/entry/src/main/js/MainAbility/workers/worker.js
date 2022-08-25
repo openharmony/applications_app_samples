@@ -19,18 +19,18 @@ const parentPort = workers.parentPort
 const TAG = 'JsWorker.worker'
 
 parentPort.onmessageerror = function (e) {
-    let data = e.data
-    console.info(`${TAG} onmessageerror:${JSON.stringify(data)}`)
+  let data = e.data
+  console.info(`${TAG} onmessageerror:${JSON.stringify(data)}`)
 }
 parentPort.onmessage = function (e) {
-    let data = e.data
-    console.info(`${TAG} onmessage:${JSON.stringify(data)}`)
-    if (data.objType == 'normal') {
-        let obj = data.data
-        console.info(`${TAG} postMessage obj: ${obj}`)
-        let after = obj.split(",").sort()
-        console.info(`${TAG} postMessage after: ${after}`)
-        data.data = after
-        parentPort.postMessage(data)
-    }
+  let data = e.data
+  console.info(`${TAG} onmessage:${JSON.stringify(data)}`)
+  if (data.objType == 'normal') {
+    let obj = data.data
+    console.info(`${TAG} postMessage obj: ${obj}`)
+    let after = obj.split(",").sort()
+    console.info(`${TAG} postMessage after: ${after}`)
+    data.data = after
+    parentPort.postMessage(data)
+  }
 }

@@ -14,34 +14,34 @@
  -->
 <element name="productList" src="../productList/productList.hml"></element>
 <div class="container">
-    <tabs class="tabs">
-        <tab-bar class="tab-bar">
-            <text class="tab-text">
-                全部
-            </text>
-            <text class="tab-text">
-                推荐
-            </text>
-            <text class="tab-text">
-                优惠
-            </text>
-            <text class="tab-text">
-                直播
-            </text>
-        </tab-bar>
-        <tab-content>
-            <div class="tab-content">
-                <productList></productList>
-            </div>
-            <div class="tab-content">
-                <productList></productList>
-            </div>
-            <div class="tab-content">
-                <productList></productList>
-            </div>
-            <div class="tab-content">
-                <productList></productList>
-            </div>
-        </tab-content>
-    </tabs>
+  <tabs class="tabs">
+    <tab-bar class="tab-bar">
+      <text class="tab-text">
+        全部
+      </text>
+      <text class="tab-text">
+        推荐
+      </text>
+      <text class="tab-text">
+        优惠
+      </text>
+      <text class="tab-text">
+        直播
+      </text>
+    </tab-bar>
+    <tab-content>
+      <div class="tab-content">
+        <productList></productList>
+      </div>
+      <div class="tab-content">
+        <productList></productList>
+      </div>
+      <div class="tab-content">
+        <productList></productList>
+      </div>
+      <div class="tab-content">
+        <productList></productList>
+      </div>
+    </tab-content>
+  </tabs>
 </div>

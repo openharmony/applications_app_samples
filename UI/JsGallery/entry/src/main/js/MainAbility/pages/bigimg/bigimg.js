@@ -16,27 +16,27 @@
 import router from '@ohos.router'
 
 export default {
-    data: {
-        imgsrc: '',
-        width: '',
-        height: '',
-        display: false,
-        url: undefined
-    },
-    onInit() {
-        this.imgsrc = this.url
-    },
-    loadComplete(e) {
-        this.width = e.width
-        this.height = e.height
-    },
-    back() {
-        router.back();
-    },
-    showInfo() {
-        this.display = true
-    },
-    hideInfo() {
-        this.display = false
-    }
+  data: {
+    imgsrc: '',
+    width: '',
+    height: '',
+    display: false,
+    url: undefined
+  },
+  onInit() {
+    this.imgsrc = this.url
+  },
+  loadComplete(e) {
+    this.width = e.width
+    this.height = e.height
+  },
+  back() {
+    router.back();
+  },
+  showInfo() {
+    this.display = true
+  },
+  hideInfo() {
+    this.display = false
+  }
 }

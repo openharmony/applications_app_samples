@@ -13,16 +13,16 @@
   limitations under the License.
  -->
 <div class="containers">
-    <div class="recommended" for="boutiqueData" onclick="redirect">
-        <div class="texts">
-            <text class="text1">{{ $item.text1 }}
-            </text>
-            <text class="text2">{{ $item.text2 }}
-            </text>
-        </div>
-        <div class="images">
-            <image src="{{ $item.url1 }}"></image>
-            <image src="{{ $item.url2 }}"></image>
-        </div>
+  <div class="recommended" for="boutiqueData" onclick="redirect">
+    <div class="texts">
+      <text class="text1">{{ $item.text1 }}
+      </text>
+      <text class="text2">{{ $item.text2 }}
+      </text>
     </div>
+    <div class="images">
+      <image src="{{ $item.url1 }}"></image>
+      <image src="{{ $item.url2 }}"></image>
+    </div>
+  </div>
 </div>

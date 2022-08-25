@@ -15,10 +15,10 @@
 <element name="searchbar" src="../searchbar/searchbar.hml"></element>
 <element name="mainContent" src="../mainContent/mainContent.hml"></element>
 <div class="container">
-    <div class="searchbar">
-        <searchbar placeholder="{{ placeholder }}" searchbardata="{{ homeData.searchbarIcon }}"></searchbar>
-    </div>
-    <div class="mainContainer">
-        <mainContent home="{{ homeData }}"></mainContent>
-    </div>
+  <div class="searchbar">
+    <searchbar placeholder="{{ placeholder }}" searchbardata="{{ homeData.searchbarIcon }}"></searchbar>
+  </div>
+  <div class="mainContainer">
+    <mainContent home="{{ homeData }}"></mainContent>
+  </div>
 </div>

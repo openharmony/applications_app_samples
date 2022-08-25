@@ -14,20 +14,20 @@
  -->
 
 <div class="container">
-    <div class="top">
-        <div class="icons-div">
-            <image class="icon" src="/common/arrow.png" onclick="back"></image>
-        </div>
-        <div class="operating">
-            <text class="operating-text" onclick="redirectSetting">设置</text>
-            <image class="colnum" src="/common/setlayout.png" onclick="setColumn"></image>
-        </div>
+  <div class="top">
+    <div class="icons-div">
+      <image class="icon" src="/common/arrow.png" onclick="back"></image>
     </div>
-    <list id="imglist" class="list" style="columns: {{columns}};" cachedcount="150" onrequestitem="buildItem"
-          onscrolltop="scrollTop" onscrollbottom="scrollBottom" ontouchstart="touchStart">
-        <list-item type="common" for="{{tempList}}" style="flex-direction: column;">
-            <image class="imgs" src="{{$item.SourceFile}}" data="{{$item.SourceFile}}" onclick="redirect"
-                   style="height:{{height}}"></image>
-        </list-item>
-    </list>
+    <div class="operating">
+      <text class="operating-text" onclick="redirectSetting">设置</text>
+      <image class="colnum" src="/common/setlayout.png" onclick="setColumn"></image>
+    </div>
+  </div>
+  <list id="imglist" class="list" style="columns : {{ columns }};" cachedcount="150" onrequestitem="buildItem"
+        onscrolltop="scrollTop" onscrollbottom="scrollBottom" ontouchstart="touchStart">
+    <list-item type="common" for="{{ tempList }}" style="flex-direction : column;">
+      <image class="imgs" src="{{ $item.SourceFile }}" data="{{ $item.SourceFile }}" onclick="redirect"
+             style="height : {{ height }}"></image>
+    </list-item>
+  </list>
 </div>

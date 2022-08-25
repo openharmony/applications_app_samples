@@ -15,24 +15,24 @@
 import router from '@ohos.router';
 
 export default {
-    props: [
-        'placeholder',
-        'searchbardata'
-    ],
-    data() {
-        return {
-            placeholder: this.placeholder,
-            searchbarData: this.searchbardata,
-        }
-    },
-    onInit() {
-        if (this.placeholder === '' || this.placeholder === undefined) {
-            this.placeholder = '搜索栏组件默认字符';
-        }
-    },
-    redirect() {
-        router.push({
-            url: 'pages/four/four'
-        });
+  props: [
+    'placeholder',
+    'searchbardata'
+  ],
+  data() {
+    return {
+      placeholder: this.placeholder,
+      searchbarData: this.searchbardata,
     }
+  },
+  onInit() {
+    if (this.placeholder === '' || this.placeholder === undefined) {
+      this.placeholder = '搜索栏组件默认字符';
+    }
+  },
+  redirect() {
+    router.push({
+      url: 'pages/four/four'
+    });
+  }
 }

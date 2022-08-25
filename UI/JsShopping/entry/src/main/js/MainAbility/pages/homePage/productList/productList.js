@@ -15,29 +15,29 @@
 import productsData from '../../../common/productListData.js'
 
 export default {
-    data: {
-        productList: [],
-        hasMoreData: true,
-        tempList: [],
-        beginIndex: 0,
-        endIndex: 0,
-        products: productsData,
-    },
-    onInit() {
-    },
-    buildItem(param) {
-        if (this.products.length == 0) {
-            return;
-        }
-        this.beginIndex = param.begin;
-        this.endIndex = param.end;
-        let tempArray = [];
-        for (let index = this.beginIndex;index < this.endIndex; ++index) {
-            let tempIndex = index % this.products.length;
-            let tempValue = JSON.parse(JSON.stringify(this.products[tempIndex]));
-            tempValue.index = index + 1;
-            tempArray.push(tempValue);
-        }
-        this.tempList = tempArray;
-    },
+  data: {
+    productList: [],
+    hasMoreData: true,
+    tempList: [],
+    beginIndex: 0,
+    endIndex: 0,
+    products: productsData,
+  },
+  onInit() {
+  },
+  buildItem(param) {
+    if (this.products.length == 0) {
+      return;
+    }
+    this.beginIndex = param.begin;
+    this.endIndex = param.end;
+    let tempArray = [];
+    for (let index = this.beginIndex;index < this.endIndex; ++index) {
+      let tempIndex = index % this.products.length;
+      let tempValue = JSON.parse(JSON.stringify(this.products[tempIndex]));
+      tempValue.index = index + 1;
+      tempArray.push(tempValue);
+    }
+    this.tempList = tempArray;
+  },
 }

@@ -14,10 +14,10 @@
  */
 
 export default {
-    props: ['boutiquedata'],
-    data() {
-        return {
-            boutiqueData: this.boutiquedata,
-        }
+  props: ['boutiquedata'],
+  data() {
+    return {
+      boutiqueData: this.boutiquedata,
     }
+  }
 }
