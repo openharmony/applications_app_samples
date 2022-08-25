@@ -9,7 +9,7 @@
   },
   "deviceConfig": {},
   "module": {
-    "mainAbility": ".MainAbility",
+    "mainAbility": "ohos.samples.contact.MainAbility",
     "deviceType": [
       "default",
       "tablet"

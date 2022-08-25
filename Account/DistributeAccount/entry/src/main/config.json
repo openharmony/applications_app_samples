@@ -9,7 +9,7 @@
   },
   "deviceConfig": {},
   "module": {
-    "mainAbility": ".MainAbility",
+    "mainAbility": "ohos.samples.etsdistributeaccount.MainAbility",
     "deviceType": [
       "default",
       "tablet"
@@ -45,7 +45,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "ohos.samples.entry",
+    "package": "ohos.samples.etsdistributeaccount",
     "srcPath": "",
     "name": ".entry",
     "js": [

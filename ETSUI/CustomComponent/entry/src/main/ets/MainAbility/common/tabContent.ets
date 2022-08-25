@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ReleaseData, addStorage, modifyStorage,getStorageList } from '../model/releaseData'
+import { ReleaseData, addStorage, modifyStorage, getStorageList } from '../model/releaseData'
 import { getTextColor, checkExist, menuTitle } from '../util/utils'
 import { nearRelease, hotRelease, classicRelease } from '../util/actionUtils'
 import { VideoOperation } from '../common/videoOperation'

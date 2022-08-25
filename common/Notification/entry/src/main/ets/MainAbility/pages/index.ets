@@ -48,6 +48,7 @@ struct Index {
             .width(340)
             .height(60)
             .backgroundColor('#0D9FFB')
+            .key("createSlot")
             .onClick(() => {
               console.info('[notification] addSlot')
               notify.addSlot(notify.SlotType.CONTENT_INFORMATION, () => {
@@ -66,6 +67,7 @@ struct Index {
             .width(340)
             .height(60)
             .backgroundColor('#0D9FFB')
+            .key('publishNotice')
             .onClick(() => {
               console.info('[notification]publish notification')
               let WantAgentInfo = {
@@ -100,6 +102,7 @@ struct Index {
             .width(340)
             .height(60)
             .backgroundColor('#0D9FFB')
+            .key('cancelLast')
             .onClick(() => {
               console.info('[notification]cancel notification')
               let notificationId = getNotificationId(this.contentType)
@@ -118,6 +121,7 @@ struct Index {
             .width(340)
             .height(60)
             .backgroundColor('#0D9FFB')
+            .key('cancelAll')
             .onClick(() => {
               console.info('[notification]cancel notification')
               notify.cancelAll(() => {
@@ -135,6 +139,7 @@ struct Index {
             .width(340)
             .height(60)
             .backgroundColor('#0D9FFB')
+            .key('deleteSlot')
             .onClick(() => {
               console.info('[notification]delete slot')
               notify.removeSlot(notify.SlotType.CONTENT_INFORMATION, () => {
