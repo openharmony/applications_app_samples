@@ -78,6 +78,8 @@ napi_value PluginManager::GetContext(napi_env env, napi_callback_info info)
                 /****************  声明式开发范式 JS Page 生命周期注册 ****************************/
                 LOGD("GetContext JS_PAGE_LIFECYCLE");
                 napi_property_descriptor desc[] = {
+                    DECLARE_NAPI_FUNCTION("aboutToAppear", PluginManager::NapiAboutToAppear),
+                    DECLARE_NAPI_FUNCTION("aboutToDisappear", PluginManager::NapiAboutToDisappear),
                     DECLARE_NAPI_FUNCTION("onPageShow", PluginManager::NapiOnPageShow),
                     DECLARE_NAPI_FUNCTION("onPageHide", PluginManager::NapiOnPageHide),
                 };
@@ -176,6 +178,18 @@ napi_value PluginManager::NapiOnCreate(napi_env env, napi_callback_info info)
 napi_value PluginManager::NapiOnShow(napi_env env, napi_callback_info info)
 {
     PluginManager::GetInstance()->OnShowNative();
+    return nullptr;
+}
+
+napi_value PluginManager::NapiAboutToAppear(napi_env env, napi_callback_info info)
+{
+    LOGD("PluginManager::NapiAboutToAppear");
+    return nullptr;
+}
+
+napi_value PluginManager::NapiAboutToDisappear(napi_env env, napi_callback_info info)
+{
+    LOGD("PluginManager::NapiAboutToDisappear");
     return nullptr;
 }
 

@@ -53,6 +53,8 @@ public:
     /**                      JS Page : Lifecycle                        **/
     static napi_value NapiOnPageShow(napi_env env, napi_callback_info info);
     static napi_value NapiOnPageHide(napi_env env, napi_callback_info info);
+    static napi_value NapiAboutToAppear(napi_env env, napi_callback_info info);
+    static napi_value NapiAboutToDisappear(napi_env env, napi_callback_info info);
     void OnPageShowNative();
     void OnPageHideNative();
     /*************************************************************************/
