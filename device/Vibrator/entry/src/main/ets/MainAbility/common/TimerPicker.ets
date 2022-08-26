@@ -14,7 +14,7 @@
  */
 
 import Logger from '../mode/Logger'
-import TimerData  from '../mode/TimerData'
+import TimerData from '../mode/TimerData'
 
 let TAG = '[TimerPicker]'
 const HOURS = 3600
@@ -99,7 +99,7 @@ export struct TimerPicker {
             this.minutes = this.minute
             this.seconds = this.second
             this.duration = this.hour * HOURS + this.minute * MINUTES + this.second
-            Logger.info(TAG, `hours: ${ this.hours }, minutes: ${ this.minutes }, seconds: ${ this.seconds}`)
+            Logger.info(TAG, `hours: ${this.hours}, minutes: ${this.minutes}, seconds: ${this.seconds}`)
             this.controller.close()
           })
 

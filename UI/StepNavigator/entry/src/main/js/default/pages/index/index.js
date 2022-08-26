@@ -16,23 +16,23 @@
 import router from '@ohos.router';
 
 export default {
-    finish() {
-        router.push({
-            url: 'pages/homepage/index'
-        })
-    },
-    skip() {
-        router.push({
-            url: 'pages/homepage/index'
-        })
+  finish() {
+    router.push({
+      url: 'pages/homepage/index'
+    })
+  },
+  skip() {
+    router.push({
+      url: 'pages/homepage/index'
+    })
 
-    },
-    change(e) {
-        if (e.checked) {
-            this.$element('stepper').setNextButtonStatus({
-                status: 'skip',
-                label: this.$t('strings.skipping')
-            })
-        }
+  },
+  change(e) {
+    if (e.checked) {
+      this.$element('stepper').setNextButtonStatus({
+        status: 'skip',
+        label: this.$t('strings.skipping')
+      })
     }
+  }
 }

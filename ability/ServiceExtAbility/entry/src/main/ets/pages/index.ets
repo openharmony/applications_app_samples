@@ -26,7 +26,7 @@ struct Index {
   @State localFir: number = 0
   @State localSec: number = 0
   @State remoteCallbackInfo: number = 0
-  @State connectState: Resource  = $r("app.string.state_unconnected")
+  @State connectState: Resource = $r("app.string.state_unconnected")
 
   build() {
     Row() {

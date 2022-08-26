@@ -19,7 +19,7 @@ import AbilityStage from "@ohos.application.AbilityStage"
 const TAG = '[MyAbilityStage]'
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        Logger.info(TAG, `MyAbilityStage onCreate`)
-    }
+  onCreate() {
+    Logger.info(TAG, `MyAbilityStage onCreate`)
+  }
 }

@@ -17,60 +17,60 @@ import prompt from '@ohos.prompt';
 import router from '@ohos.router'
 
 export default {
-    data: {
-        containerBackground: "white",
-        listBackground: "white",
-        hidden: "hidden",
-        title: "",
-        num: 0,
-        isState: true,
-        isHidden: false
-    },
-    onInit() {
-        this.num = this.ref
-        this.flash(this.num)
-    },
-    flash(id) {
-        this.title = this.$t('strings.the') + JSON.stringify(id) + this.$t('strings.chapter')
-    },
-    show() {
-        if (this.isHidden) {
-            this.hidden = "hidden"
-            this.isHidden = false
-        } else {
-            this.hidden = "visible"
-            this.isHidden = true
-        }
-    },
-    jumpBack() {
-        router.push({
-            url: 'pages/index/index'
-        })
-    },
-    black() {
-        if (this.isState) {
-            this.isState = false
-            this.containerBackground = "#999999"
-            this.listBackground = "#999999"
-        } else {
-            this.isState = true
-            this.containerBackground = "white"
-            this.listBackground = "white"
-        }
-    },
-    change(choose) {
-        if (this.num == 1 && choose == "previous") {
-            prompt.showToast({
-                message: this.$t('strings.first')
-            })
-        } else if (choose == "previous") {
-            this.flash(--this.num)
-        } else if (this.num == 15 && choose == "next") {
-            prompt.showToast({
-                message: this.$t('strings.last')
-            })
-        } else if (choose == "next") {
-            this.flash(++this.num)
-        }
+  data: {
+    containerBackground: "white",
+    listBackground: "white",
+    hidden: "hidden",
+    title: "",
+    num: 0,
+    isState: true,
+    isHidden: false
+  },
+  onInit() {
+    this.num = this.ref
+    this.flash(this.num)
+  },
+  flash(id) {
+    this.title = this.$t('strings.the') + JSON.stringify(id) + this.$t('strings.chapter')
+  },
+  show() {
+    if (this.isHidden) {
+      this.hidden = "hidden"
+      this.isHidden = false
+    } else {
+      this.hidden = "visible"
+      this.isHidden = true
     }
+  },
+  jumpBack() {
+    router.push({
+      url: 'pages/index/index'
+    })
+  },
+  black() {
+    if (this.isState) {
+      this.isState = false
+      this.containerBackground = "#999999"
+      this.listBackground = "#999999"
+    } else {
+      this.isState = true
+      this.containerBackground = "white"
+      this.listBackground = "white"
+    }
+  },
+  change(choose) {
+    if (this.num == 1 && choose == "previous") {
+      prompt.showToast({
+        message: this.$t('strings.first')
+      })
+    } else if (choose == "previous") {
+      this.flash(--this.num)
+    } else if (this.num == 15 && choose == "next") {
+      prompt.showToast({
+        message: this.$t('strings.last')
+      })
+    } else if (choose == "next") {
+      this.flash(++this.num)
+    }
+  }
 }

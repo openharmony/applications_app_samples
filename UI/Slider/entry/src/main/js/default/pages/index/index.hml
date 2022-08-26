@@ -14,15 +14,15 @@
  -->
 
 <div class="container">
-    <div class="text-title">
-        <text class="title" style="font-size : {{ fontSize }};">{{ $t('strings.title') }}</text>
-    </div>
-    <div class="div-text">
-        <text class="text-c" style="font-size : {{ fontSize }};">{{ $t('strings.texts') }}</text>
-    </div>
-    <div class="slider-div">
-        <text class="text-l">A</text>
-        <slider class="slider" min="0" max="100" step="20" on:change="font"></slider>
-        <text>A</text>
-    </div>
+  <div class="text-title">
+    <text class="title" style="font-size : {{ fontSize }};">{{ $t('strings.title') }}</text>
+  </div>
+  <div class="div-text">
+    <text class="text-c" style="font-size : {{ fontSize }};">{{ $t('strings.texts') }}</text>
+  </div>
+  <div class="slider-div">
+    <text class="text-l">A</text>
+    <slider class="slider" min="0" max="100" step="20" on:change="font"></slider>
+    <text>A</text>
+  </div>
 </div>
