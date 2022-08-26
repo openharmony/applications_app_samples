@@ -23,42 +23,39 @@ const TAG: string = 'TestAbility'
 
 export default class TestAbility extends Ability {
   onCreate(want, launchParam) {
-    console.log('TestAbility onCreate')
-
-  }
-
-  onDestroy() {
-    console.log('TestAbility onDestroy')
-  }
-
-  onWindowStageCreate(windowStage) {
-    console.log('TestAbility onWindowStageCreate')
-    windowStage.loadContent("TestAbility/pages/index", (err, data) => {
-      if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-    });
-
-    globalThis.abilityContext = this.context;
-    var abilityDelegator: any
+    Logger.info(TAG, `TestAbility onCreate`)
+    let abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
+    let abilityDelegatorArguments: any
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    console.info('start run testcase!!!')
+    Logger.info(TAG, `start run testcase!!!`)
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
+  onDestroy() {
+    Logger.info(TAG, `TestAbility onDestroy`)
+  }
+
+  onWindowStageCreate(windowStage) {
+    Logger.info(TAG, `TestAbility onWindowStageCreate`)
+    windowStage.loadContent("TestAbility/pages/index", (err, data) => {
+      if (err.code) {
+        Logger.info(TAG, `Failed to load the content. Cause = ${JSON.stringify(err)}`);
+        return
+      }
+      Logger.info(TAG, `Succeeded in loading the content. Data = ${JSON.stringify(data)}`)
+    })
+  }
+
   onWindowStageDestroy() {
-    console.log('TestAbility onWindowStageDestroy')
+    Logger.info(TAG, `TestAbility onWindowStageDestroy`)
   }
 
   onForeground() {
-    console.log('TestAbility onForeground')
+    Logger.info(TAG, `TestAbility onForeground`)
   }
 
   onBackground() {
-    console.log('TestAbility onBackground')
+    Logger.info(TAG, `TestAbility onBackground`)
   }
-};
+}
