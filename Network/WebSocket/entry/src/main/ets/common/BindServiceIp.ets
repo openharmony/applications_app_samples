@@ -29,6 +29,7 @@ export default struct BindServiceIp {
         .fontSize(15)
         .width('70%')
         .margin({ top: 20 })
+        .key('ipInput')
         .onChange((value: string) => {
           this.ipAddress = `ws://${value}/string`
         })

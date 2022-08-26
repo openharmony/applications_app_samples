@@ -171,12 +171,14 @@ struct Index {
             .width(180)
             .height(50)
             .margin({ top: 30 })
+            .key('uploadBtn')
             .onClick(() => {
               router.push({
                 url: 'pages/Upload',
                 params: { uploads: this.uploads }
               })
             })
+
         }
         .width('100%')
       }
