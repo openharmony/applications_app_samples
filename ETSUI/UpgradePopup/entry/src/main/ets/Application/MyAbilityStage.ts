@@ -14,7 +14,7 @@
  */
 
 import AbilityStage from '@ohos.application.AbilityStage'
-import Logger from '../../../../../updatedialog/src/main/ets/components/util/Logger'
+import Logger  from '../../../../../updatedialog/src/main/ets/components/util/Logger'
 
 const TAG: string = 'MyAbilityStage'
 
