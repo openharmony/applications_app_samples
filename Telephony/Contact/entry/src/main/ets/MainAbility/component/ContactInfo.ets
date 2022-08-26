@@ -15,6 +15,7 @@
 
 import router from '@ohos.router'
 import contact from '@ohos.contact'
+import resourceManager from '@ohos.resourceManager';
 import Logger from '../data/Logger'
 
 const TAG: string = 'ContactInfo'
@@ -22,9 +23,9 @@ const TAG: string = 'ContactInfo'
 @Preview
 @Component
 export struct ContactInfo {
-  @State phone: string | Resource = ''
-  @State email: string | Resource = ''
-  @State address: string | Resource = ''
+  @State phone: string = ''
+  @State email: string = ''
+  @State address: string = ''
   private contact: contact.Contact
 
   build() {
@@ -185,17 +186,35 @@ export struct ContactInfo {
     try {
       this.phone = this.contact.phoneNumbers[0].phoneNumber
     } catch (err) {
-      this.phone = $r('app.string.not_fill')
+      resourceManager.getResourceManager((error, mgr) => {
+        mgr.getString($r('app.string.not_fill').id).then(value => {
+          this.phone = value
+        }).catch(error => {
+          Logger.info(TAG, `getstring promise error is ${error}`)
+        })
+      })
     }
     try {
       this.email = this.contact.emails[0].email
     } catch (err) {
-      this.email = $r('app.string.not_fill')
+      resourceManager.getResourceManager((error, mgr) => {
+        mgr.getString($r('app.string.not_fill').id).then(value => {
+          this.email = value
+        }).catch(error => {
+          Logger.info(TAG, `getstring promise error is ${error}`)
+        })
+      })
     }
     try {
       this.address = this.contact.postalAddresses[0].postalAddress
     } catch (err) {
-      this.address = $r('app.string.not_fill')
+      resourceManager.getResourceManager((error, mgr) => {
+        mgr.getString($r('app.string.not_fill').id).then(value => {
+          this.address = value
+        }).catch(error => {
+          Logger.info(TAG, `getstring promise error is ${error}`)
+        })
+      })
     }
   }
 }
