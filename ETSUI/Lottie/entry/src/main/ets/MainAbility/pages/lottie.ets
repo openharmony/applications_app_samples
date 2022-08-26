@@ -88,6 +88,7 @@ struct Lottie {
                 .width('50%')
                 .textAlign(TextAlign.End)
             }
+            .key('selectAnimationBtn')
             .bindMenu([
               {
                 value: 'grunt动画',

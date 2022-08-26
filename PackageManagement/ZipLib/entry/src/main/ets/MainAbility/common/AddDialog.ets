@@ -26,7 +26,7 @@ export struct AddDialog {
   private createFile: (isInserted: boolean, name: string, content: string) => void
   private controller: CustomDialogController
 
-  @Builder InputLine(inputName: Resource, inputPrompt: Resource, inputContent: string, onChange: (value: string) => void) {
+  @Builder InputLine(inputName: Resource, key:string, inputPrompt: Resource, inputContent: string, onChange: (value: string) => void) {
     Row() {
       Text(inputName)
         .width(80)
@@ -35,6 +35,7 @@ export struct AddDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Medium)
       TextInput({ placeholder: inputPrompt, text: inputContent })
+	.key('input' + (key))
         .layoutWeight(1)
         .placeholderColor(Color.Gray)
         .fontSize(16)
@@ -58,10 +59,10 @@ export struct AddDialog {
         .fontWeight(FontWeight.Bold)
         .margin({ top: '3%' })
 
-      this.InputLine($r('app.string.file_name'), $r('app.string.input_name'), this.fileName, (value: string) => {
+      this.InputLine($r('app.string.file_name'), 'FileName', $r('app.string.input_name'), this.fileName, (value: string) => {
         this.fileName = value
       })
-      this.InputLine($r('app.string.file_content'), $r('app.string.input_content'), this.fileContent, (value: string) => {
+      this.InputLine($r('app.string.file_content'), 'FileContent', $r('app.string.input_content'), this.fileContent, (value: string) => {
         this.fileContent = value
       })
 
@@ -71,6 +72,7 @@ export struct AddDialog {
             .fontColor(Color.Blue)
             .fontSize(17)
         }
+        .key('confirmBtn')
         .margin(5)
         .layoutWeight(7)
         .backgroundColor(Color.White)
