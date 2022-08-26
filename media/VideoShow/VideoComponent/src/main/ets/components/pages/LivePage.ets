@@ -71,8 +71,8 @@ export struct LivePage {
     Scroll() {
       Column() {
         Swiper() {
-          LazyForEach(new MyDataSource(this.liveInfoList), (item, index) => {
-            Stack({}) {
+          ForEach(this.liveInfoList, (item, index) => {
+            Stack() {
               if (this.active == index) {
                 Video({ src: item.uri })
                   .autoPlay(true)
