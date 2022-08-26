@@ -19,7 +19,7 @@ import Logger from '../util/Logger'
 const TAG: string = 'MyAbilityStage'
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        Logger.info(TAG, '[Demo] MyAbilityStage onCreate')
-    }
+  onCreate() {
+    Logger.info(TAG, '[Demo] MyAbilityStage onCreate')
+  }
 }
