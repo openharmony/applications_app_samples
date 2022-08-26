@@ -16,9 +16,9 @@
 import router from '@ohos.router';
 
 export default {
-    onclick() {
-        router.push({
-            url: 'pages/index/index'
-        })
-    }
+  onclick() {
+    router.push({
+      url: 'pages/index/index'
+    })
+  }
 }

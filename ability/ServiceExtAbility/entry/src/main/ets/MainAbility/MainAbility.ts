@@ -17,34 +17,34 @@ import Ability from '@ohos.application.Ability'
 import Logger from '../model/Logger'
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        Logger.log(`MainAbility onCreate`)
-        globalThis.abilityWant = want;
-    }
+  onCreate(want, launchParam) {
+    Logger.log(`MainAbility onCreate`)
+    globalThis.abilityWant = want;
+  }
 
-    onDestroy() {
-        Logger.log(`MainAbility onDestroy`)
-    }
+  onDestroy() {
+    Logger.log(`MainAbility onDestroy`)
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        Logger.log(`MainAbility onWindowStageCreate`);
-        globalThis.mainAbilityContext = this.context;
-        windowStage.setUIContent(this.context, "pages/index", null)
-    }
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    Logger.log(`MainAbility onWindowStageCreate`);
+    globalThis.mainAbilityContext = this.context;
+    windowStage.setUIContent(this.context, "pages/index", null)
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        Logger.log(`MainAbility onWindowStageDestroy`)
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    Logger.log(`MainAbility onWindowStageDestroy`)
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        Logger.log(`MainAbility onForeground`)
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    Logger.log(`MainAbility onForeground`)
+  }
 
-    onBackground() {
-        // Ability has back to background
-        Logger.log(`MainAbility onBackground`)
-    }
+  onBackground() {
+    // Ability has back to background
+    Logger.log(`MainAbility onBackground`)
+  }
 };

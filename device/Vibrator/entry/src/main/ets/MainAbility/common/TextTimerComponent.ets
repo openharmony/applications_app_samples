@@ -57,7 +57,7 @@ export struct TextTimerComponent {
     this.textStr = `${this.hourText} : ${this.minuteText} : ${this.secondText}`
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     this.textStr = `${this.hourText} : ${this.minuteText} : ${this.secondText}`
   }
 
@@ -83,7 +83,7 @@ export struct TextTimerComponent {
         .backgroundColor('#0D9FFB')
         .onClick(() => {
           this.timerId = setInterval(() => {
-            Logger.info(TAG, `countdown hours: ${this.hours}, minutes: ${this.minutes }, seconds: ${this.seconds}`)
+            Logger.info(TAG, `countdown hours: ${this.hours}, minutes: ${this.minutes}, seconds: ${this.seconds}`)
             this.counts = this.hours * HOUR_MS + this.minutes * MINUTE_MS + this.seconds * SECOND_MS
             this.progressValue += TOTAL / this.duration
             if (this.counts > 0) {

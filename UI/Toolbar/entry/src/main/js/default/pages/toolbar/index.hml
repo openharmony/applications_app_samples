@@ -14,18 +14,20 @@
  -->
 
 <div class="container" style="background-color : {{ containerBackground }};">
-    <text class="title">{{ title }}</text>
-    <div class="list" style="background-color : {{ listBackground }}" onclick="show">
-        <text class="text">{{ $t('strings.context') }}</text>
-    </div>
-    <toolbar class="toolbar" show="{{ isHidden }}">
-        <toolbar-item icon="/common/images/previous.png" value="{{ $t('strings.previous') }}"
-                      onclick="change('previous')"></toolbar-item>
-        <toolbar-item icon="/common/images/directory.png" value="{{ $t('strings.directory') }}" onclick="jumpBack">
-        </toolbar-item>
-        <toolbar-item if="{{ isState }}" icon="/common/images/dark.png" value="{{ $t('strings.dark') }}" onclick="black" ></toolbar-item>
-        <toolbar-item else icon="/common/images/bright.png" value="{{ $t('strings.bright') }}" onclick="black" ></toolbar-item>
-        <toolbar-item icon="/common/images/next.png" value="{{ $t('strings.next') }}" onclick="change('next')">
-        </toolbar-item>
-    </toolbar>
+  <text class="title">{{ title }}</text>
+  <div class="list" style="background-color : {{ listBackground }}" onclick="show">
+    <text class="text">{{ $t('strings.context') }}</text>
+  </div>
+  <toolbar class="toolbar" show="{{ isHidden }}">
+    <toolbar-item icon="/common/images/previous.png" value="{{ $t('strings.previous') }}"
+                  onclick="change('previous')"></toolbar-item>
+    <toolbar-item icon="/common/images/directory.png" value="{{ $t('strings.directory') }}" onclick="jumpBack">
+    </toolbar-item>
+    <toolbar-item if="{{ isState }}" icon="/common/images/dark.png" value="{{ $t('strings.dark') }}" onclick="black">
+    </toolbar-item>
+    <toolbar-item else icon="/common/images/bright.png" value="{{ $t('strings.bright') }}" onclick="black">
+    </toolbar-item>
+    <toolbar-item icon="/common/images/next.png" value="{{ $t('strings.next') }}" onclick="change('next')">
+    </toolbar-item>
+  </toolbar>
 </div>

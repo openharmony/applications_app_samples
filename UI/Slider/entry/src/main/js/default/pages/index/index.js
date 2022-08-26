@@ -14,31 +14,31 @@
  */
 
 export default {
-    data: {
-        fontSize: "16px"
-    },
-    font(e) {
-        switch (e.value) {
-            case 0:
-                this.fontSize = "16px"
-                break
-            case 20:
-                this.fontSize = "20px"
-                break
-            case 40:
-                this.fontSize = "24px"
-                break
-            case 60:
-                this.fontSize = "28px"
-                break
-            case 80:
-                this.fontSize = "32px"
-                break
-            case 100:
-                this.fontSize = "36px"
-                break
-            default:
-                break
-        }
+  data: {
+    fontSize: "16px"
+  },
+  font(e) {
+    switch (e.value) {
+      case 0:
+        this.fontSize = "16px"
+        break
+      case 20:
+        this.fontSize = "20px"
+        break
+      case 40:
+        this.fontSize = "24px"
+        break
+      case 60:
+        this.fontSize = "28px"
+        break
+      case 80:
+        this.fontSize = "32px"
+        break
+      case 100:
+        this.fontSize = "36px"
+        break
+      default:
+        break
     }
+  }
 }

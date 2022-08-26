@@ -7,10 +7,12 @@ const nativePageLifecycle = nativerender.getContext(ContextType.JSPAGE_LIFECYCLE
 @Component
 struct Index {
   private context = null;
+
   aboutToAppear() {
     console.log('[LIFECYCLE-Index] aboutToAppear');
     nativePageLifecycle.aboutToAppear();
   }
+
   aboutToDisappear() {
     console.log('[LIFECYCLE-Index] aboutToDisappear');
     nativePageLifecycle.aboutToDisappear();
@@ -25,6 +27,7 @@ struct Index {
     console.log('[LIFECYCLE-Page] onPageHide');
     nativePageLifecycle.onPageHide();
   }
+
   build() {
     Column() {
       Button('ChangeColor')
@@ -44,7 +47,7 @@ struct Index {
         .width(200)
         .height(80)
 
-      XComponent({ id: 'xcomponentId', type: 'texture', libraryname: 'nativerender'})
+      XComponent({ id: 'xcomponentId', type: 'texture', libraryname: 'nativerender' })
         .onLoad((context) => {
           this.context = context;
         })
