@@ -69,7 +69,8 @@ export class KvStoreModel {
 
     off() {
         if (this.kvStore !== null) {
-            this.kvStore.off('dataChange');
+            this.kvStore.off('dataChange', () => {
+                console.info('[KvStoreModel]  off dataChange');
             })
         }
     }

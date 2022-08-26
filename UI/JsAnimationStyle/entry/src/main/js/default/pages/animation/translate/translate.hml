@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <text class="translate_style">
-        {{ $t('strings.translate') }}
-    </text>
+  <text class="translate_style">
+    {{ $t('strings.translate') }}
+  </text>
 </div>

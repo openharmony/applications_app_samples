@@ -16,10 +16,10 @@
 import router from '@ohos.router';
 
 export default {
-    data: {
-        title: 'World'
-    },
-    launch: function () {
-        router.back();
-    }
+  data: {
+    title: 'World'
+  },
+  launch: function () {
+    router.back();
+  }
 }

@@ -17,42 +17,42 @@ import router from '@ohos.router'
 import deviceInfo from '@ohos.deviceInfo';
 
 export default {
-    data: {
-        serial: '',
-        bootloaderVersion: '',
-        abiList: '',
-        securityPatchTag: '',
-        displayVersion: '',
-        osReleaseType: '',
-        osFullName: '',
-        majorVersion: '',
-        seniorVersion: '',
-        featureVersion: '',
-        buildVersion: '',
-        sdkApiVersion: '',
-        firstApiVersion: '',
-        versionId: '',
-        data1: ''
-    },
-    onInit() {
-        this.deviceInfo();
-    },
-    deviceInfo() {
-        this.serial = deviceInfo.serial;
-        this.bootloaderVersion = deviceInfo.bootloaderVersion;
-        this.securityPatchTag = deviceInfo.securityPatchTag;
-        this.displayVersion = deviceInfo.displayVersion;
-        this.osReleaseType = deviceInfo.osReleaseType;
-        this.osFullName = deviceInfo.osFullName;
-        this.majorVersion = deviceInfo.majorVersion;
-        this.seniorVersion = deviceInfo.seniorVersion;
-        this.featureVersion = deviceInfo.featureVersion;
-        this.buildVersion = deviceInfo.buildVersion;
-        this.sdkApiVersion = deviceInfo.sdkApiVersion;
-        this.firstApiVersion = deviceInfo.firstApiVersion;
-        this.versionId = deviceInfo.versionId;
-    },
-    back() {
-        router.back();
-    }
+  data: {
+    serial: '',
+    bootloaderVersion: '',
+    abiList: '',
+    securityPatchTag: '',
+    displayVersion: '',
+    osReleaseType: '',
+    osFullName: '',
+    majorVersion: '',
+    seniorVersion: '',
+    featureVersion: '',
+    buildVersion: '',
+    sdkApiVersion: '',
+    firstApiVersion: '',
+    versionId: '',
+    data1: ''
+  },
+  onInit() {
+    this.deviceInfo();
+  },
+  deviceInfo() {
+    this.serial = deviceInfo.serial;
+    this.bootloaderVersion = deviceInfo.bootloaderVersion;
+    this.securityPatchTag = deviceInfo.securityPatchTag;
+    this.displayVersion = deviceInfo.displayVersion;
+    this.osReleaseType = deviceInfo.osReleaseType;
+    this.osFullName = deviceInfo.osFullName;
+    this.majorVersion = deviceInfo.majorVersion;
+    this.seniorVersion = deviceInfo.seniorVersion;
+    this.featureVersion = deviceInfo.featureVersion;
+    this.buildVersion = deviceInfo.buildVersion;
+    this.sdkApiVersion = deviceInfo.sdkApiVersion;
+    this.firstApiVersion = deviceInfo.firstApiVersion;
+    this.versionId = deviceInfo.versionId;
+  },
+  back() {
+    router.back();
+  }
 }

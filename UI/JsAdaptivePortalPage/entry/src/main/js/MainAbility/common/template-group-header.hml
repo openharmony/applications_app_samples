@@ -14,11 +14,11 @@
  -->
 
 <div class="content-title-more">
-    <div class="div-title-left">
-        <text class="txt-content-title">{{ $t('strings.txt-content-title')}}</text>
-    </div>
-    <div class="div-title-right">
-        <text class="txt-content-more">{{ $t('strings.txt-content-more') }}</text>
-        <image class="img-content-more"></image>
-    </div>
+  <div class="div-title-left">
+    <text class="txt-content-title">{{ $t('strings.txt-content-title') }}</text>
+  </div>
+  <div class="div-title-right">
+    <text class="txt-content-more">{{ $t('strings.txt-content-more') }}</text>
+    <image class="img-content-more"></image>
+  </div>
 </div>

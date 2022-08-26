@@ -14,14 +14,14 @@
  -->
 
 <div class="container" onswipe="touchMove">
-    <text class="title"> {{ $t('strings.appName') }} </text>
-    <text class="window">{{ this.Text }}</text>
-    <div class="line">
-        <input class="btn" type="button" value="{{ $t('strings.event') }}" onclick="appEvent"></input>
-    </div>
-    <div class="line-switch">
-        <text>{{ $t('strings.disable') }}</text>
-        <switch checked="false" @change="switchChange"></switch>
-    </div>
+  <text class="title"> {{ $t('strings.appName') }} </text>
+  <text class="window">{{ this.Text }}</text>
+  <div class="line">
+    <input class="btn" type="button" value="{{ $t('strings.event') }}" onclick="appEvent"></input>
+  </div>
+  <div class="line-switch">
+    <text>{{ $t('strings.disable') }}</text>
+    <switch checked="false" @change="switchChange"></switch>
+  </div>
 </div>
 

@@ -14,10 +14,10 @@
  -->
 
 <div class="container">
-    <text class="tip">{{ $t('strings.tip') }}</text>
-    <div class="slider-div">
-        <text class="text">{{ $t('strings.dark') }}</text>
-        <slider class="slider" value="{{ defaultValue }}" min="0" max="255" step="10" on:change="brightness"></slider>
-        <text class="text">{{ $t('strings.bright') }}</text>
-    </div>
+  <text class="tip">{{ $t('strings.tip') }}</text>
+  <div class="slider-div">
+    <text class="text">{{ $t('strings.dark') }}</text>
+    <slider class="slider" value="{{ defaultValue }}" min="0" max="255" step="10" on:change="brightness"></slider>
+    <text class="text">{{ $t('strings.bright') }}</text>
+  </div>
 </div>

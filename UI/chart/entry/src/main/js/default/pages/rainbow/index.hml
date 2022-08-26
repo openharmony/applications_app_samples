@@ -14,27 +14,27 @@
  -->
 
 <div class="container">
-    <chart class="chart-data" type="rainbow" segments="{{ segment }}"></chart>
-    <div class="box">
-        <div class="rainbow-box">
-            <div class="yellow-box"></div>
-            <text class="text">{{ $t('strings.accounted') }} 40%</text>
-        </div>
-        <div class="rainbow-box">
-            <div class="orangered-box"></div>
-            <text class="text">{{ $t('strings.accounted') }} 20%</text>
-        </div>
-        <div class="rainbow-box">
-            <div class="palevioletred-box"></div>
-            <text class="text">{{ $t('strings.accounted') }} 10%</text>
-        </div>
-        <div class="rainbow-box">
-            <div class="purple-box"></div>
-            <text class="text">{{ $t('strings.accounted') }} 15%</text>
-        </div>
-        <div class="rainbow-box">
-            <div class="darkslateblue-box"></div>
-            <text class="text">{{ $t('strings.accounted') }} 15%</text>
-        </div>
+  <chart class="chart-data" type="rainbow" segments="{{ segment }}"></chart>
+  <div class="box">
+    <div class="rainbow-box">
+      <div class="yellow-box"></div>
+      <text class="text">{{ $t('strings.accounted') }} 40%</text>
     </div>
+    <div class="rainbow-box">
+      <div class="orangered-box"></div>
+      <text class="text">{{ $t('strings.accounted') }} 20%</text>
+    </div>
+    <div class="rainbow-box">
+      <div class="palevioletred-box"></div>
+      <text class="text">{{ $t('strings.accounted') }} 10%</text>
+    </div>
+    <div class="rainbow-box">
+      <div class="purple-box"></div>
+      <text class="text">{{ $t('strings.accounted') }} 15%</text>
+    </div>
+    <div class="rainbow-box">
+      <div class="darkslateblue-box"></div>
+      <text class="text">{{ $t('strings.accounted') }} 15%</text>
+    </div>
+  </div>
 </div>

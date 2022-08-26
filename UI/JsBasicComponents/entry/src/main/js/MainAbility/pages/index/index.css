@@ -26,11 +26,11 @@
     position: relative;
     flex-direction: column;
     background-color: white;
-    margin-left : 24px;
-    margin-right : 24px;
+    margin-left: 24px;
+    margin-right: 24px;
 }
 
-.item-div{
+.item-div {
     flex-direction: column;
 }
 
@@ -170,7 +170,7 @@
 }
 
 .title-text {
-    color:black;
+    color: black;
     font-size: 36px;
     height: 90px;
     width: 100%;
@@ -180,7 +180,7 @@
 }
 
 .paragraph-text {
-    color:black;
+    color: black;
     margin-top: 12px;
     font-size: 28px;
     line-height: 30px;
@@ -297,60 +297,60 @@
 }
 
 .txt-case1-t1 {
-    font-size : 20px;
-    font-weight : bold;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .div-button-case1 {
-    flex-direction : row;
-    margin-top : 20px;
+    flex-direction: row;
+    margin-top: 20px;
 }
 
 .txt-case1-t2 {
-    font-size : 20px;
-    font-weight : bold;
-    margin-top : 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .div-column-top20 {
-    flex-direction : column;
-    align-items : center;
-    width : 100%;
-    margin-top : 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .div-progress-row {
-    flex-direction : row;
-    width : 100%;
-    align-items : center;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
 }
 
 .txt-progress-name {
-    text-color : black;
-    font-size : 20px;
+    text-color: black;
+    font-size: 20px;
     margin-top: 20px;
 }
 
 .div-progress {
-    flex-direction : column;
-    stroke-width : 20px;
-    align-items : center;
-    justify-content : center;
-    width : 50%;
+    flex-direction: column;
+    stroke-width: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
 }
 
 .div-horizontal-progress {
-    width : 80%;
-    margin-top : 20px;
-    stroke-width : 30px;
+    width: 80%;
+    margin-top: 20px;
+    stroke-width: 30px;
 }
 
 .div-select-content {
-    flex-direction : column;
-    align-items : center;
-    width : 100%;
-    margin-top : 20px;
-    padding-bottom : 300px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 300px;
 }
 
 .btn-input {
@@ -358,29 +358,30 @@
     height: 100px;
 }
 
-.piece-class{
+.piece-class {
     font-weight: bold;
     font-size: 30px;
     text-color: black;
 }
 
-.cass-qrcode{
+.cass-qrcode {
     width: 40%;
     height: 40%;
     color: black;
     margin-top: 10px;
-    background-color:lightgray ;
+    background-color: lightgray;
 }
 
 .margin {
     margin: 7px;
 }
 
-.css-switch{
+.css-switch {
     width: 300px;
     height: 100px;
 }
-.css-switch-custom{
+
+.css-switch-custom {
     width: 300px;
     height: 100px;
     text-padding: 20px;
@@ -390,36 +391,37 @@
     textoff-color: black;
 }
 
-.div-switch-row{
-    flex-direction : row;
-    width : 100%;
+.div-switch-row {
+    flex-direction: row;
+    width: 100%;
     justify-content: center;
 }
 
 .div-switch {
-    flex-direction : column;
-    align-items : center;
+    flex-direction: column;
+    align-items: center;
     padding-top: 30px;
-    width : 50%;
+    width: 50%;
 }
 
 .txt-switch-name {
-    text-color : black;
-    font-size : 20px;
+    text-color: black;
+    font-size: 20px;
     margin-top: 10px;
 }
-.txt-rating{
+
+.txt-rating {
     font-size: 20px;
     textoff-color: black;
     font-weight: bold;
 }
 
-.class-rating{
+.class-rating {
     width: 300px;
     height: 60px;
 }
 
-.class-rating-custom{
+.class-rating-custom {
     width: 300px;
     height: 60px;
     star-foreground: url("/common/images/like_yellow.png");
@@ -427,7 +429,7 @@
     star-background: url("/common/images/like_space.png");
 }
 
-.div-content-rating2{
+.div-content-rating2 {
     flex-direction: column;
     width: 100%;
     padding-left: 5px;
@@ -435,6 +437,6 @@
     margin-top: 20px;
 }
 
-.div-toggle{
+.div-toggle {
     flex-wrap: wrap
 }

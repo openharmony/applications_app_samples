@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <div class="div">
-        <text style="font-size: 30px; width: 100%;height: 100%;" on:click="jumpBack">{{ $t('strings.detail') }}</text>
-    </div>
+  <div class="div">
+    <text style="font-size : 30px; width : 100%; height : 100%;" on:click="jumpBack">{{ $t('strings.detail') }}</text>
+  </div>
 </div>

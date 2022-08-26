@@ -19,7 +19,6 @@ import resourceManager from '@ohos.resourceManager'
 import featureAbility from '@ohos.ability.featureAbility'
 import logger from '../model/Logger'
 import { TitleBar } from '../common/TitleBar'
-import { UploadDownSource } from "../model/DataSource"
 
 const TAG: string = 'Index'
 
@@ -29,8 +28,8 @@ struct Index {
   @State receivedSize: number = 0
   @State totalSize: number = 0
   @State message: string = ''
-  @State files: UploadDownSource = new UploadDownSource([])
-  @State uploads: UploadDownSource = new UploadDownSource([])
+  @State files: Array<string> = []
+  @State uploads: Array<string> = []
   private downloadConfig = {
     url: '',
     filePath: ''
@@ -65,10 +64,10 @@ struct Index {
           let splitFiles = tempFiles[i].split('//')[1].split('/')
           logger.info(TAG, `splitFiles = ${JSON.stringify(splitFiles)}`)
           if (splitFiles.indexOf('upload') === -1) {
-            this.files.pushData(tempFiles[i])
+            this.files.push(tempFiles[i])
           }
         }
-        logger.info(TAG, `files = ${JSON.stringify(this.files['uploadDownData'])}`)
+        logger.info(TAG, `files = ${JSON.stringify(this.files)}`)
       } else {
         logger.info(TAG, `error: ${JSON.stringify(err)}`)
         httpRequest.destroy()
@@ -85,7 +84,7 @@ struct Index {
             .fontSize(25)
             .alignSelf(ItemAlign.Start)
             .margin({ top: 20, left: 10 })
-          LazyForEach(this.files, (item, index) => {
+          ForEach(this.files, (item, index) => {
             Divider()
               .margin({ top: 20 })
             Row() {
@@ -121,11 +120,8 @@ struct Index {
                     })
 
                     downloadTask.on('complete', async () => {
-                      await this.files['uploadDownData'].splice(index, 1)
-                      await this.files.notifyDataReload()
-                      await this.uploads['uploadDownData'].push(item)
-                      await this.uploads.notifyDataReload()
-
+                      await this.files.splice(index, 1)
+                      await this.uploads.push(item)
                       AlertDialog.show({
                         message: `${item}${downloadSuccess}`,
                         confirm: {
@@ -161,7 +157,7 @@ struct Index {
             }
             .width('100%')
 
-            if (index === this.files['uploadDownData'].length - 1) {
+            if (index === this.files.length - 1) {
               Divider()
                 .margin({ top: 20 })
             }
@@ -184,7 +180,7 @@ struct Index {
       }
       .constraintSize({ maxHeight: '87%' })
 
-      if (this.receivedSize !== 0 && this.totalSize !== 0 && this.files['uploadDownData'].length > 0) {
+      if (this.receivedSize !== 0 && this.totalSize !== 0 && this.files.length > 0) {
         Row() {
           Text($r('app.string.download_progress'))
             .fontSize(25)

@@ -14,107 +14,107 @@
  */
 
 export default {
-    data: {
-        lineData: [
-            {
-                strokeColor: '#0081ff',
-                fillColor: '#cce5ff',
-                data: [
-                    {
-                        value: 25,
-                        description: "25",
-                        textLocation: "top",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 20,
-                        description: "20",
-                        textLocation: "bottom",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 37,
-                        description: "37",
-                        textLocation: "top",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 48,
-                        description: "48",
-                        textLocation: "top",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 27,
-                        description: "27",
-                        textLocation: "bottom",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 80,
-                        description: "80",
-                        textLocation: "top",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 20,
-                        description: "20",
-                        textLocation: "bottom",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 66,
-                        description: "66",
-                        textLocation: "top",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 21,
-                        description: "21",
-                        textLocation: "bottom",
-                        textColor: '#000000'
-                    },
-                    {
-                        value: 81,
-                        description: "81",
-                        textLocation: "top",
-                        textColor: '#000000'
-                    },
-                ],
-                gradient: true,
-            }
+  data: {
+    lineData: [
+      {
+        strokeColor: '#0081ff',
+        fillColor: '#cce5ff',
+        data: [
+          {
+            value: 25,
+            description: "25",
+            textLocation: "top",
+            textColor: '#000000'
+          },
+          {
+            value: 20,
+            description: "20",
+            textLocation: "bottom",
+            textColor: '#000000'
+          },
+          {
+            value: 37,
+            description: "37",
+            textLocation: "top",
+            textColor: '#000000'
+          },
+          {
+            value: 48,
+            description: "48",
+            textLocation: "top",
+            textColor: '#000000'
+          },
+          {
+            value: 27,
+            description: "27",
+            textLocation: "bottom",
+            textColor: '#000000'
+          },
+          {
+            value: 80,
+            description: "80",
+            textLocation: "top",
+            textColor: '#000000'
+          },
+          {
+            value: 20,
+            description: "20",
+            textLocation: "bottom",
+            textColor: '#000000'
+          },
+          {
+            value: 66,
+            description: "66",
+            textLocation: "top",
+            textColor: '#000000'
+          },
+          {
+            value: 21,
+            description: "21",
+            textLocation: "bottom",
+            textColor: '#000000'
+          },
+          {
+            value: 81,
+            description: "81",
+            textLocation: "top",
+            textColor: '#000000'
+          },
         ],
-        lineOps: {
-            xAxis: {
-                min: 0,
-                max: 10,
-                axisTick: 10,
-                display: true,
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                axisTick: 20,
-                display: true,
-            },
-            series: {
-                lineStyle: {
-                    width: "3px",
-                    smooth: true,
-                },
-                headPoint: {
-                    shape: "circle",
-                    size: 5,
-                    strokeWidth: 5,
-                    fillColor: '#000000',
-                    strokeColor: '#007aff',
-                    display: true,
-                },
-                loop: {
-                    margin: 2,
-                    gradient: true,
-                }
-            }
+        gradient: true,
+      }
+    ],
+    lineOps: {
+      xAxis: {
+        min: 0,
+        max: 10,
+        axisTick: 10,
+        display: true,
+      },
+      yAxis: {
+        min: 0,
+        max: 100,
+        axisTick: 20,
+        display: true,
+      },
+      series: {
+        lineStyle: {
+          width: "3px",
+          smooth: true,
         },
-    }
+        headPoint: {
+          shape: "circle",
+          size: 5,
+          strokeWidth: 5,
+          fillColor: '#000000',
+          strokeColor: '#007aff',
+          display: true,
+        },
+        loop: {
+          margin: 2,
+          gradient: true,
+        }
+      }
+    },
+  }
 }

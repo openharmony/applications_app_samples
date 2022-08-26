@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <text class="rotate_style">
-        {{ $t('strings.rotate') }}
-    </text>
+  <text class="rotate_style">
+    {{ $t('strings.rotate') }}
+  </text>
 </div>

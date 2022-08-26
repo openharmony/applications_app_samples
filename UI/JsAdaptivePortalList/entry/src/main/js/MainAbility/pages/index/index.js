@@ -16,30 +16,30 @@
 import mediaquery from '@ohos.mediaquery';
 
 export default {
-    data: {
-        list_data: Array(16).fill().map((_, index) => ({
-            id: "item_" + index
-        })),
-        tabBars: [
-            {
-                icon: "icon_person_blue.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-        ],
-        menu_tabs_index: 0,
-        isTabletLandscape: false
-    },
-    onInit() {
-        mediaquery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)').on("change", (data) => {
-            this.isTabletLandscape = data.matches
-        })
-    }
+  data: {
+    list_data: Array(16).fill().map((_, index) => ({
+      id: "item_" + index
+    })),
+    tabBars: [
+      {
+        icon: "icon_person_blue.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+    ],
+    menu_tabs_index: 0,
+    isTabletLandscape: false
+  },
+  onInit() {
+    mediaquery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)').on("change", (data) => {
+      this.isTabletLandscape = data.matches
+    })
+  }
 }

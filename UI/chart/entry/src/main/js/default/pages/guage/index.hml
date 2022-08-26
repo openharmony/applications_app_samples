@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <div class="gauge-region">
-        <chart class="data-gauge" type="gauge" percent="50"></chart>
-    </div>
+  <div class="gauge-region">
+    <chart class="data-gauge" type="gauge" percent="50"></chart>
+  </div>
 </div>

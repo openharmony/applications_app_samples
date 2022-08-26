@@ -14,10 +14,10 @@
  */
 
 export default {
-    data: {
-        text: ""
-    },
-    onInit() {
-        this.text = this.$t('strings.text');
-    }
+  data: {
+    text: ""
+  },
+  onInit() {
+    this.text = this.$t('strings.text');
+  }
 }

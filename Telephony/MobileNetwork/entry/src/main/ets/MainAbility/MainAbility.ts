@@ -19,10 +19,9 @@ import Ability from '@ohos.application.Ability'
 const TAG: string = '[MainAbility]'
 
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  async onCreate(want, launchParam) {
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    globalThis.abilityWant = want
-    globalThis.context = this.context
+    await this.context.requestPermissionsFromUser(['ohos.permission.GET_NETWORK_INFO'])
   }
 
   onDestroy() {

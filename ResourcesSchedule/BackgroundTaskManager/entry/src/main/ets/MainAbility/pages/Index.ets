@@ -39,18 +39,18 @@ struct Index {
       Image($r('app.media.file'))
         .width('100%')
         .height('30%')
-        .margin({top:30})
+        .margin({ top: 30 })
         .objectFit(ImageFit.Contain)
       Text($r('app.string.fileName'))
         .fontSize(30)
       Button() {
         Text($r('app.string.download'))
-        .fontSize(20)
+          .fontSize(20)
       }
       .margin({ top: 60 })
       .type(ButtonType.Capsule)
       .backgroundColor('#0D9FFB')
-      .size({width:'60%'})
+      .size({ width: '60%' })
       .onClick(() => {
         Logger.info(TAG, 'ServiceAbility Start')
         startServiceAbility()

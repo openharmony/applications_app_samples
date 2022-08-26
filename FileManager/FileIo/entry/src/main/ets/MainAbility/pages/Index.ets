@@ -39,7 +39,7 @@ struct Index {
     $r('app.string.read_fileIo'),
     $r('app.string.delete_fileIo')
   ]
- private stream: fileIo.Stream
+  private stream: fileIo.Stream
 
   create_fileIo() {
     this.result = path + '/xxx.txt'

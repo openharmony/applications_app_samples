@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <text class="scale_style" >
-        {{ $t('strings.scale') }}
-    </text>
+  <text class="scale_style">
+    {{ $t('strings.scale') }}
+  </text>
 </div>

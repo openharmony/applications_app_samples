@@ -14,5 +14,5 @@
  -->
 
 <div class="container">
-    <chart class="chart-data" type="progress" segments="{{ segment }}"></chart>
+  <chart class="chart-data" type="progress" segments="{{ segment }}"></chart>
 </div>

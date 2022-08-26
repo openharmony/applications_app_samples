@@ -14,10 +14,10 @@
  -->
 
 <div class="container">
-    <div class="app-title">
-        <text class="title-text">{{ $t('strings.title') }}</text>
-    </div>
-    <div class="body">
-        <text class="text">{{ text }}</text>
-    </div>
+  <div class="app-title">
+    <text class="title-text">{{ $t('strings.title') }}</text>
+  </div>
+  <div class="body">
+    <text class="text">{{ text }}</text>
+  </div>
 </div>

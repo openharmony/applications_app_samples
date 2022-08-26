@@ -16,13 +16,13 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
-    onInit() {
-    },
+  data: {},
+  onInit() {
+  },
 
-    jumpSharedTargetPage() {
-        router.push({
-            url: 'pages/transitions/sharedtargetpage/sharedtargetpage',
-        });
-    }
+  jumpSharedTargetPage() {
+    router.push({
+      url: 'pages/transitions/sharedtargetpage/sharedtargetpage',
+    });
+  }
 }
