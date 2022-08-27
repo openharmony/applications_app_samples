@@ -110,7 +110,7 @@ export struct BringApp {
   build() {
     Scroll() {
       Column() {
-        LazyForEach(this.app, item => {
+        LazyForEach(this.app, (item, index) => {
           Row() {
             Image(item.img)
               .margin(5)
@@ -137,6 +137,7 @@ export struct BringApp {
           .height('12%')
           .borderRadius(20)
           .backgroundColor('#f6f6f6')
+          .key('app' + (index + 1))
           .onClick(() => {
             try {
               featureAbility.startAbility(
