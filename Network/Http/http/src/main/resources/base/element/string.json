@@ -13,6 +13,14 @@
       "value": "请输入网址"
     },
     {
+      "name": "key",
+      "value": "请输入Key"
+    },
+    {
+      "name": "value",
+      "value": "请输入Value"
+    },
+    {
       "name": "add",
       "value": "增加"
     },

@@ -113,6 +113,7 @@ export struct UpdateDialog {
                 .onClick(() => {
                   this.customDialogController.close()
                 })
+               .key("cancel")
 
               Button($r('app.string.update_now'))
                 .commonButtonStyle()
@@ -123,7 +124,11 @@ export struct UpdateDialog {
                 .margin({left:10})
                 .onClick(() => {
                   this.customDialogController.close()
+                  setTimeout(()=>{
+                    this.customDialogController.open()
+                  },2000)
                 })
+                .key("Now")
             }
             .margin({ top: 30})
           }

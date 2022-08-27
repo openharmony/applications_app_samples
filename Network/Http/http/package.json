@@ -7,8 +7,12 @@
   "ohos": {
     "org": ""
   },
-  "main": "index.ets",
+  "main": "src/main/ets/components/MainPage/MainPage.ets",
   "repository": {},
   "version": "1.0.0",
   "dependencies": {}
 }
+
+
+
+
