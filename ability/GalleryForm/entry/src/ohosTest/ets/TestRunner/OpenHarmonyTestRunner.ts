@@ -22,58 +22,58 @@ let abilityDelegator = undefined
 let abilityDelegatorArguments = undefined
 
 function translateParamsToString(parameters) {
-    const keySet = new Set([
-        '-s class', '-s notClass', '-s suite', '-s it',
-        '-s level', '-s testType', '-s size', '-s timeout',
-        '-s dryRun'
-    ])
-    let targetParams = ''
-    for (const key in parameters) {
-        if (keySet.has(key)) {
-            targetParams = `${targetParams} ${key} ${parameters[key]}`
-        }
+  const keySet = new Set([
+    '-s class', '-s notClass', '-s suite', '-s it',
+    '-s level', '-s testType', '-s size', '-s timeout',
+    '-s dryRun'
+  ])
+  let targetParams = ''
+  for (const key in parameters) {
+    if (keySet.has(key)) {
+      targetParams = `${targetParams} ${key} ${parameters[key]}`
     }
-    return targetParams.trim()
+  }
+  return targetParams.trim()
 }
 
 async function onAbilityCreateCallback() {
-    Logger.info(TAG, 'onAbilityCreateCallback')
+  Logger.info(TAG, 'onAbilityCreateCallback')
 }
 
 async function addAbilityMonitorCallback(err: any) {
-    Logger.info(TAG, `addAbilityMonitorCallback : ${JSON.stringify(err)}`)
+  Logger.info(TAG, `addAbilityMonitorCallback : ${JSON.stringify(err)}`)
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
-    constructor() {
-    }
+  constructor() {
+  }
 
-    onPrepare() {
-        Logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare ')
-    }
+  onPrepare() {
+    Logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare ')
+  }
 
-    async onRun() {
-        Logger.info(TAG, 'OpenHarmonyTestRunner onRun run')
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
-        let lMonitor = {
-            abilityName: testAbilityName,
-            onAbilityCreate: onAbilityCreateCallback,
-        }
-        abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
-        let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
-        cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
-        let debug = abilityDelegatorArguments.parameters["-D"]
-        if (debug == 'true') {
-            cmd += ' -D'
-        }
-        Logger.info(TAG, `cmd : ${+cmd}`)
-        abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
-            Logger.info(TAG, `executeShellCommand : err : ${JSON.stringify(err)}`)
-            Logger.info(TAG, `executeShellCommand : data : ${d.stdResult}`)
-            Logger.info(TAG, `executeShellCommand : data : ${d.exitCode}`)
-        })
-        Logger.info(TAG, 'OpenHarmonyTestRunner onRun end')
+  async onRun() {
+    Logger.info(TAG, 'OpenHarmonyTestRunner onRun run')
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
+    let lMonitor = {
+      abilityName: testAbilityName,
+      onAbilityCreate: onAbilityCreateCallback,
     }
+    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
+    let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
+    cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
+    let debug = abilityDelegatorArguments.parameters["-D"]
+    if (debug == 'true') {
+      cmd += ' -D'
+    }
+    Logger.info(TAG, `cmd : ${+cmd}`)
+    abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
+        Logger.info(TAG, `executeShellCommand : err : ${JSON.stringify(err)}`)
+        Logger.info(TAG, `executeShellCommand : data : ${d.stdResult}`)
+        Logger.info(TAG, `executeShellCommand : data : ${d.exitCode}`)
+      })
+    Logger.info(TAG, 'OpenHarmonyTestRunner onRun end')
+  }
 }
