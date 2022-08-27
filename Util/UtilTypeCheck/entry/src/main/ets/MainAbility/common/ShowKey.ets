@@ -27,6 +27,7 @@ export struct ShowKey {
         .textAlign(TextAlign.Center)
         .width('85%')
     }
+    .key('displayPresetValue')
     .type(ButtonType.Capsule)
     .backgroundColor('#0D9FFB')
     .padding(5)
