@@ -1,14 +1,16 @@
 {
   "license": "ISC",
-  "types": "",
   "devDependencies": {},
-  "name": "@ohos/common",
-  "description": "a npm package which contains arkUI2.0 page",
+  "name": "product",
   "ohos": {
-    "org": ""
+    "org": "huawei",
+    "directoryLevel": "module",
+    "buildTool": "hvigor"
   },
-  "main": "./index.ets",
+  "description": "example description",
   "repository": {},
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+    "@ohos/common": "file:../common"
+  }
 }
