@@ -19,9 +19,8 @@ import { TitleBar } from "../common/TitleBar"
 @Entry
 @Component
 struct Index {
-
   build() {
-    Column(){
+    Column() {
       TitleBar()
       Query()
     }

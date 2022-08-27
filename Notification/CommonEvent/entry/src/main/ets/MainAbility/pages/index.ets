@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {PublishEventView} from '../common/publishEvent'
-import {SubscribeEventView} from '../common/subscribeEvent'
+import { PublishEventView } from '../common/publishEvent'
+import { SubscribeEventView } from '../common/subscribeEvent'
 
 @Entry
 @Component
@@ -36,7 +36,7 @@ struct Index {
           Line()
             .width("100%").height(2)
             .backgroundColor("#D5D5D5")
-            .margin({ top: 15})
+            .margin({ top: 15 })
 
           PublishEventView()
 

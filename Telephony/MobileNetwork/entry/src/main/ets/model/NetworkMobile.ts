@@ -31,7 +31,7 @@ export class NetworkMobile {
   }
 
   async isCellularDataEnabled() {
-    let dataEnabled: boolean = undefined
+    let dataEnabled: boolean = false
     try {
       dataEnabled = await data.isCellularDataEnabled()
       Logger.info(TAG, `isCellularDataEnabled dataEnabled = ${dataEnabled}`)
@@ -42,7 +42,7 @@ export class NetworkMobile {
   }
 
   async isCellularDataRoamingEnabled(slotId: number) {
-    let dataRoamingEnabled: boolean = undefined
+    let dataRoamingEnabled: boolean = false
     try {
       dataRoamingEnabled = await data.isCellularDataRoamingEnabled(slotId)
       Logger.info(TAG, `isCellularDataRoamingEnabled dataRoamingEnabled = ${dataRoamingEnabled}`)
@@ -50,5 +50,69 @@ export class NetworkMobile {
       Logger.info(TAG, `isCellularDataRoamingEnabled failed err is ${JSON.stringify(err)}`)
     }
     return dataRoamingEnabled
+  }
+
+  async getCellularDataFlowType() {
+    let dataFlow: data.DataFlowType = data.DataFlowType.DATA_FLOW_TYPE_NONE
+    let result: Resource = $r('app.string.none')
+    try {
+      dataFlow = await data.getCellularDataFlowType()
+      Logger.info(TAG, `getCellularDataFlowType dataFlow = ${JSON.stringify(dataFlow)}`)
+    } catch (err) {
+      Logger.info(TAG, `getCellularDataFlowType failed err is ${JSON.stringify(err)}`)
+    }
+    switch (dataFlow) {
+      case data.DataFlowType.DATA_FLOW_TYPE_NONE:
+        result = $r('app.string.none')
+        break
+      case data.DataFlowType.DATA_FLOW_TYPE_DOWN:
+        result = $r('app.string.down')
+        break
+      case data.DataFlowType.DATA_FLOW_TYPE_UP:
+        result = $r('app.string.up')
+        break
+      case data.DataFlowType.DATA_FLOW_TYPE_UP_DOWN:
+        result = $r('app.string.upDown')
+        break
+      case data.DataFlowType.DATA_FLOW_TYPE_DORMANT:
+        result = $r('app.string.dormant')
+        break
+      default:
+        result = $r('app.string.none')
+        break
+    }
+    return result
+  }
+
+  async getCellularDataState() {
+    let dataConnectState: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    let result: Resource = $r('app.string.unknown')
+    try {
+      dataConnectState = await data.getCellularDataState()
+      Logger.info(TAG, `getCellularDataState dataConnectState = ${JSON.stringify(dataConnectState)}`)
+    } catch (err) {
+      Logger.info(TAG, `getCellularDataState failed err is ${JSON.stringify(err)}`)
+    }
+    switch (dataConnectState) {
+      case data.DataConnectState.DATA_STATE_UNKNOWN:
+        result = $r('app.string.unknown')
+        break
+      case data.DataConnectState.DATA_STATE_DISCONNECTED:
+        result = $r('app.string.disconnect')
+        break
+      case data.DataConnectState.DATA_STATE_CONNECTING:
+        result = $r('app.string.connecting')
+        break
+      case data.DataConnectState.DATA_STATE_CONNECTED:
+        result = $r('app.string.connect')
+        break
+      case data.DataConnectState.DATA_STATE_SUSPENDED:
+        result = $r('app.string.suspended')
+        break
+      default:
+        result = $r('app.string.unknown')
+        break
+    }
+    return result
   }
 }

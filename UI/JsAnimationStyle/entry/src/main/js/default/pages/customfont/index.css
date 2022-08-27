@@ -21,7 +21,7 @@
     background-color: aliceblue;
 }
 
-.demo-default{
+.demo-default {
     font-size: 20px;
 }
 
@@ -30,7 +30,8 @@
     margin-top: 10px;
     font-size: 20px;
 }
-@font-face{
+
+@font-face {
     font-family: font_bold;
     src: url("/common/style/SourceHanSansSC-Bold.otf");
 }
@@ -40,7 +41,8 @@
     margin-top: 10px;
     font-size: 20px;
 }
-@font-face{
+
+@font-face {
     font-family: font_extraLight;
     src: url("/common/style/SourceHanSansSC-ExtraLight.otf");
 }
@@ -50,7 +52,8 @@
     margin-top: 10px;
     font-size: 20px;
 }
-@font-face{
+
+@font-face {
     font-family: font_heavy;
     src: url("/common/style/SourceHanSansSC-Heavy.otf");
 }
@@ -60,7 +63,8 @@
     margin-top: 10px;
     font-size: 20px;
 }
-@font-face{
+
+@font-face {
     font-family: font_medium;
     src: url("/common/style/SourceHanSansSC-Medium.otf");
 }
@@ -70,7 +74,8 @@
     margin-top: 10px;
     font-size: 20px;
 }
-@font-face{
+
+@font-face {
     font-family: font_normal;
     src: url("/common/style/SourceHanSansSC-Normal.otf");
 }
@@ -80,7 +85,8 @@
     margin-top: 10px;
     font-size: 20px;
 }
-@font-face{
+
+@font-face {
     font-family: font_regular;
     src: url("/common/style/SourceHanSansSC-Regular.otf");
 }

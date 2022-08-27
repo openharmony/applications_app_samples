@@ -19,7 +19,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding:10px;
+    padding: 10px;
 }
 
 .translate_style {
@@ -37,13 +37,13 @@
     animation-timing-function: linear;
 }
 
-@keyframes translate_animation
-{
+@keyframes translate_animation {
     from {
-        transform:translate(0px) ;
+        transform: translate(0px);
     }
+
     to {
-        transform:translate(150px) ;
+        transform: translate(150px);
     }
 }
 
@@ -62,13 +62,13 @@
     animation-timing-function: linear;
 }
 
-@keyframes rotate_animation
-{
+@keyframes rotate_animation {
     from {
-        transform:rotate(0deg);
+        transform: rotate(0deg);
     }
+
     to {
-        transform:rotate(180deg);
+        transform: rotate(180deg);
     }
 }
 
@@ -87,13 +87,13 @@
     animation-timing-function: linear;
 }
 
-@keyframes scale_animation
-{
+@keyframes scale_animation {
     from {
         transform: scale(1.0);
     }
+
     to {
-        transform:scale(2.0);
+        transform: scale(2.0);
     }
 }
 
@@ -104,20 +104,21 @@
     background-color: #f76160;
     width: 100px;
     height: 100px;
-    animation-name:compositeAnimation ;
+    animation-name: compositeAnimation;
     animation-duration: 4s;
     animation-delay: 0s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
-@keyframes compositeAnimation
-{
+
+@keyframes compositeAnimation {
     from {
         background-color: #f76160;
-        transform:translate(-100px,-100px) rotate(0deg) scale(1.0);
+        transform: translate(-100px, -100px) rotate(0deg) scale(1.0);
     }
+
     to {
         background-color: #09ba07;
-        transform:translate(200px,100px) rotate(180deg) scale(1.5);
+        transform: translate(200px, 100px) rotate(180deg) scale(1.5);
     }
 }

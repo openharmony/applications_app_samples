@@ -33,6 +33,7 @@
         transform: translateX(0px);
         opacity: 1;
     }
+
     to {
         transform: translateX(-750px);
         opacity: 0;

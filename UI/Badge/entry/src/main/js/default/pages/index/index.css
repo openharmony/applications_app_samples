@@ -82,6 +82,7 @@
         height: 100%;
         justify-content: center;
     }
+
     .container {
         width: 35%;
         height: 100%;
@@ -91,6 +92,7 @@
         margin-right: 12px;
         margin-left: 12px;
     }
+
     .item {
         height: 50px;
         width: 100%;
@@ -99,6 +101,7 @@
         margin-bottom: 2px;
         background-color: white;
     }
+
     .badge {
         position: absolute;
         height: 100%;

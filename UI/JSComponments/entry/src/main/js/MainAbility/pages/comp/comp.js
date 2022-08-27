@@ -14,21 +14,21 @@
  */
 
 export default {
-    props: {
-        title: {
-            default: 'title',
-        },
-        showObject: {},
+  props: {
+    title: {
+      default: 'title',
     },
-    data() {
-        return {
-            display: this.showObject,
-        };
-    },
-    childClicked() {
-        this.$emit('eventType1', {
-            text: 'Get Child Component Parameter'
-        });
-        this.show = !this.show;
-    },
+    showObject: {},
+  },
+  data() {
+    return {
+      display: this.showObject,
+    };
+  },
+  childClicked() {
+    this.$emit('eventType1', {
+      text: 'Get Child Component Parameter'
+    });
+    this.show = !this.show;
+  },
 }

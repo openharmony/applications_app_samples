@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <div class = "content">
-        <button class="btn"  value="{{ $t('strings.clickback') }}"  on:click="jumpBack"></button>
-    </div>
+  <div class="content">
+    <button class="btn" value="{{ $t('strings.clickback') }}" on:click="jumpBack"></button>
+  </div>
 </div>

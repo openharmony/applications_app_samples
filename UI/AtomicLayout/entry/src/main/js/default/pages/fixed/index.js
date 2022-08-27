@@ -14,16 +14,16 @@
  */
 
 export default {
-    data: {
-        "height": "300px",
-        "width": "300px"
-    },
-    onClickReturn() {
-        this.height = "300px"
-        this.width = "300px"
-    },
-    onClickRefresh() {
-        this.height = "100px"
-        this.width = "200px"
-    }
+  data: {
+    "height": "300px",
+    "width": "300px"
+  },
+  onClickReturn() {
+    this.height = "300px"
+    this.width = "300px"
+  },
+  onClickRefresh() {
+    this.height = "100px"
+    this.width = "200px"
+  }
 }

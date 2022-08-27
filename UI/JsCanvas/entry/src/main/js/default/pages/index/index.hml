@@ -13,29 +13,32 @@
  limitations under the License.
  -->
 <div class="container-div">
-<div class="container">
+  <div class="container">
     <canvas class="canvas" ref="canvas" id="drawImage"></canvas>
     <div class="button-div">
-        <div class="div-input">
-            <input class="canvas-input" type="button" value="{{ $t('strings.arc') }}" on:click="handleClick"></input>
-            <input class="canvas-input" type="button" value="{{ $t('strings.strokeText') }}" on:click="strokeClick"></input>
-        </div>
-        <div class="div-input">
-            <input class="canvas-input" type="button" value="{{ $t('strings.close') }}" on:click="closeClick"></input>
-            <input class="canvas-input" type="button" value="{{ $t('strings.bezierCurve') }}" on:click="bezierCurve"></input>
-        </div>
-        <div class="div-input">
-            <input class="canvas-input" type="button" value="{{ $t('strings.textBaseline') }}" on:click="textBase"></input>
-            <input class="canvas-input" type="button" value="{{ $t('strings.image') }}" on:click="imageClick"></input>
-        </div>
-        <div class="div-input">
-            <input class="canvas-input" type="button" value="{{ $t('strings.radialGradient') }}" on:click="radialGradient"></input>
-            <input class="canvas-input" type="button" value="{{$t('strings.linearGradient')}}" on:click="linearGradient"></input>
-        </div>
-        <div class="div-input">
-            <input class="canvas-input" type="button" value="{{ $t('strings.filter') }}" on:click="offScreen"></input>
-            <input class="canvas-input" type="button" value="{{ $t('strings.delete') }}" on:click="clearRect"></input>
-        </div>
+      <div class="div-input">
+        <input class="canvas-input" type="button" value="{{ $t('strings.arc') }}" on:click="handleClick"></input>
+        <input class="canvas-input" type="button" value="{{ $t('strings.strokeText') }}" on:click="strokeClick"></input>
+      </div>
+      <div class="div-input">
+        <input class="canvas-input" type="button" value="{{ $t('strings.close') }}" on:click="closeClick"></input>
+        <input class="canvas-input" type="button" value="{{ $t('strings.bezierCurve') }}" on:click="bezierCurve">
+        </input>
+      </div>
+      <div class="div-input">
+        <input class="canvas-input" type="button" value="{{ $t('strings.textBaseline') }}" on:click="textBase"></input>
+        <input class="canvas-input" type="button" value="{{ $t('strings.image') }}" on:click="imageClick"></input>
+      </div>
+      <div class="div-input">
+        <input class="canvas-input" type="button" value="{{ $t('strings.radialGradient') }}" on:click="radialGradient">
+        </input>
+        <input class="canvas-input" type="button" value="{{ $t('strings.linearGradient') }}" on:click="linearGradient">
+        </input>
+      </div>
+      <div class="div-input">
+        <input class="canvas-input" type="button" value="{{ $t('strings.filter') }}" on:click="offScreen"></input>
+        <input class="canvas-input" type="button" value="{{ $t('strings.delete') }}" on:click="clearRect"></input>
+      </div>
     </div>
-</div>
+  </div>
 </div>

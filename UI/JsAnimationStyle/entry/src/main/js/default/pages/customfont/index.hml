@@ -14,11 +14,11 @@
  -->
 
 <div class="container">
-    <text class="demo-default">{{$t('strings.txt_default')}}</text>
-    <text class="demo-bold">{{$t('strings.txt_bold')}}</text>
-    <text class="demo-extraLight">{{$t('strings.txt_extraLight')}}</text>
-    <text class="demo-heavy">{{$t('strings.txt_heavy')}}</text>
-    <text class="demo-medium">{{$t('strings.txt_medium')}}</text>
-    <text class="demo-normal">{{$t('strings.txt_normal')}}</text>
-    <text class="demo-regular">{{$t('strings.txt_regular')}}</text>
+  <text class="demo-default">{{ $t('strings.txt_default') }}</text>
+  <text class="demo-bold">{{ $t('strings.txt_bold') }}</text>
+  <text class="demo-extraLight">{{ $t('strings.txt_extraLight') }}</text>
+  <text class="demo-heavy">{{ $t('strings.txt_heavy') }}</text>
+  <text class="demo-medium">{{ $t('strings.txt_medium') }}</text>
+  <text class="demo-normal">{{ $t('strings.txt_normal') }}</text>
+  <text class="demo-regular">{{ $t('strings.txt_regular') }}</text>
 </div>

@@ -14,10 +14,10 @@
  -->
 
 <div class="container">
-    <button class="btn" value="{{ $t('strings.line') }}" onclick="onClick('line')"></button>
-    <button class="btn" value="{{ $t('strings.bar') }}" onclick="onClick('bar')"></button>
-    <button class="btn" value="{{ $t('strings.guage') }}" onclick="onClick('guage')"></button>
-    <button class="btn" value="{{ $t('strings.progress') }}" onclick="onClick('progress')"></button>
-    <button class="btn" value="{{ $t('strings.loading') }}" onclick="onClick('loading')"></button>
-    <button class="btn" value="{{ $t('strings.rainbow') }}" onclick="onClick('rainbow')"></button>
+  <button class="btn" value="{{ $t('strings.line') }}" onclick="onClick('line')"></button>
+  <button class="btn" value="{{ $t('strings.bar') }}" onclick="onClick('bar')"></button>
+  <button class="btn" value="{{ $t('strings.guage') }}" onclick="onClick('guage')"></button>
+  <button class="btn" value="{{ $t('strings.progress') }}" onclick="onClick('progress')"></button>
+  <button class="btn" value="{{ $t('strings.loading') }}" onclick="onClick('loading')"></button>
+  <button class="btn" value="{{ $t('strings.rainbow') }}" onclick="onClick('rainbow')"></button>
 </div>

@@ -14,5 +14,5 @@
  -->
 
 <div class="container">
-    <chart class="data-bar" type="bar" id="bar-chart" options="{{ barOps }}" datasets="{{ barData }}"></chart>
+  <chart class="data-bar" type="bar" id="bar-chart" options="{{ barOps }}" datasets="{{ barData }}"></chart>
 </div>

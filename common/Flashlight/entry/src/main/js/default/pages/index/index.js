@@ -15,43 +15,44 @@
 import app from '@system.app';
 
 export default {
-    data: {
-        lightShow: true,
-        time: ''
-    },
-    onInit() {
-        setTimeout(() => {
-            app.terminate();
-        }, 300000);
-    },
-    onShow() {
-        this.refreshTime();
-    },
-    onDestroy() {},
-    refreshTime() {
-        setTimeout(() => {
-            let nowTime = new Date();
-            let minutes = nowTime.getMinutes();
-            let hours = nowTime.getHours();
-            let minStr = '';
-            let hourStr = '';
-            if (minutes < 10) {
-                minStr = '0' + minutes.toString();
-            } else {
-                minStr = minutes.toString();
-            }
-            if (hours < 10) {
-                hourStr = '0' + hours.toString();
-            } else {
-                hourStr = hours.toString();
-            }
-            this.time = hourStr + ':' + minStr;
-            this.refreshTime();
-        }, 1000);
-    },
-    changeMode() {
-        this.lightShow = !this.lightShow;
-    }
+  data: {
+    lightShow: true,
+    time: ''
+  },
+  onInit() {
+    setTimeout(() => {
+      app.terminate();
+    }, 300000);
+  },
+  onShow() {
+    this.refreshTime();
+  },
+  onDestroy() {
+  },
+  refreshTime() {
+    setTimeout(() => {
+      let nowTime = new Date();
+      let minutes = nowTime.getMinutes();
+      let hours = nowTime.getHours();
+      let minStr = '';
+      let hourStr = '';
+      if (minutes < 10) {
+        minStr = '0' + minutes.toString();
+      } else {
+        minStr = minutes.toString();
+      }
+      if (hours < 10) {
+        hourStr = '0' + hours.toString();
+      } else {
+        hourStr = hours.toString();
+      }
+      this.time = hourStr + ':' + minStr;
+      this.refreshTime();
+    }, 1000);
+  },
+  changeMode() {
+    this.lightShow = !this.lightShow;
+  }
 }
 
 

@@ -23,6 +23,7 @@
     margin: 20px;
     padding: 20px;
 }
+
 .button-row {
     flex-direction: row;
     align-items: center;

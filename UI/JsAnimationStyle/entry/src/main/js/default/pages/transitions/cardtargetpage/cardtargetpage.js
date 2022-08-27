@@ -16,11 +16,11 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
-    onInit() {
-    },
+  data: {},
+  onInit() {
+  },
 
-    jumpBack() {
-        router.back();
-    }
+  jumpBack() {
+    router.back();
+  }
 }

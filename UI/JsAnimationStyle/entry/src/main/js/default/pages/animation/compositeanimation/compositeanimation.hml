@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <text class="composite_style">
-        {{ $t('strings.compositeAnimation') }}
-    </text>
+  <text class="composite_style">
+    {{ $t('strings.compositeAnimation') }}
+  </text>
 </div>

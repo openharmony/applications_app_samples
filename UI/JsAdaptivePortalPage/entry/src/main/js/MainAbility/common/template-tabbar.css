@@ -45,9 +45,11 @@
         width: 100%;
         height: 20%;
     }
+
     .img-tab-bar-bottom {
         margin-bottom: 2px;
     }
+
     .txt-tab-bar-bottom {
         font-size: 10px;
         text-align: center;

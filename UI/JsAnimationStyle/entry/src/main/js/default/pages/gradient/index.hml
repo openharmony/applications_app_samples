@@ -14,19 +14,19 @@
  -->
 
 <div class="container">
-    <text class="style_default">
-        {{ $t('strings.default') }}
-    </text>
+  <text class="style_default">
+    {{ $t('strings.default') }}
+  </text>
 
-    <text class="style_angle">
-        {{ $t('strings.angle') }}
-    </text>
+  <text class="style_angle">
+    {{ $t('strings.angle') }}
+  </text>
 
-    <text class="style_right">
-        {{ $t('strings.right') }}
-    </text>
+  <text class="style_right">
+    {{ $t('strings.right') }}
+  </text>
 
-    <text class="style_repeat">
-        {{ $t('strings.repeat') }}
-    </text>
+  <text class="style_repeat">
+    {{ $t('strings.repeat') }}
+  </text>
 </div>

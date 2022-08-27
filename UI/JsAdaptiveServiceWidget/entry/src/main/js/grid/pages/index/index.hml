@@ -14,28 +14,28 @@
  -->
 
 <div class="container">
-	<div class="header-div">
-	    <image class="image-up" src="/common/ic_app.svg" ></image>
-        <text class="text-up">{{ $t('strings.title') }}</text>
-	</div>
-    <div class="main-div">
-        <stack class="stack-left">
-            <image class="image-radius" src="/common/image.png" ></image>
-            <text class="text-down">0.33</text>
-        </stack>
-        <stack class="stack-right">
-            <image class="image-radius" src="/common/image.png" ></image>
-            <text class="text-down">0.33</text>
-        </stack>
-    </div>
-    <div class="main-div">
-        <stack class="stack-left">
-            <image class="image-radius" src="/common/image.png" ></image>
-            <text class="text-down">0.33</text>
-        </stack>
-        <stack class="stack-right">
-            <image class="image-radius" src="/common/image.png" ></image>
-            <text class="text-down">0.33</text>
-        </stack>
-    </div>
+  <div class="header-div">
+    <image class="image-up" src="/common/ic_app.svg"></image>
+    <text class="text-up">{{ $t('strings.title') }}</text>
+  </div>
+  <div class="main-div">
+    <stack class="stack-left">
+      <image class="image-radius" src="/common/image.png"></image>
+      <text class="text-down">0.33</text>
+    </stack>
+    <stack class="stack-right">
+      <image class="image-radius" src="/common/image.png"></image>
+      <text class="text-down">0.33</text>
+    </stack>
+  </div>
+  <div class="main-div">
+    <stack class="stack-left">
+      <image class="image-radius" src="/common/image.png"></image>
+      <text class="text-down">0.33</text>
+    </stack>
+    <stack class="stack-right">
+      <image class="image-radius" src="/common/image.png"></image>
+      <text class="text-down">0.33</text>
+    </stack>
+  </div>
 </div>

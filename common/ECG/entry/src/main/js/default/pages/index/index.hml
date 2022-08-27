@@ -13,22 +13,24 @@
   limitations under the License.
 -->
 <div class="main">
-   <div class="div_top">
-       <image src="{{ chartHeartImg }}" class="chart_t_l"></image>
-       <image src="{{ hundredImg }}" class="numberImg hundredImg" style="display: {{ hundredDisplay }};" ></image>
-       <image src="{{ tensImg }}" class="numberImg" style="left: {{ tensLeft }};" ></image>
-       <image src="{{ onesImg }}" class="numberImg" style="left: {{ onesLeft }};" ></image>
-       <text class="chart_t_r" style="letter-spacing: {{ $t('css.letter_spacing') }}; font-family: {{ $t('css.fontFamily')}}; left: {{ chartUnit }};">
-           {{ $t('strings.times_minute') }}
-       </text>
-   </div>
-    <stack class="stack_main">
-        <image src="/common/A054_048.png" class="chartBg"></image>
-        <chart ref='chart' type="line" class="chart"  datasets="{{ datasets }}" options="{{ options }}"></chart>
-    </stack>
-    <div class="div_bottom">
-        <text class="chart_time font_size" style="font-family: {{ $t('css.fontFamily') }};">
-            {{ chartTime }}{{ $t('strings.count_down') }}
-        </text>
-    </div>
+  <div class="div_top">
+    <image src="{{ chartHeartImg }}" class="chart_t_l"></image>
+    <image src="{{ hundredImg }}" class="numberImg hundredImg" style="display : {{ hundredDisplay }};"></image>
+    <image src="{{ tensImg }}" class="numberImg" style="left : {{ tensLeft }};"></image>
+    <image src="{{ onesImg }}" class="numberImg" style="left : {{ onesLeft }};"></image>
+    <text class="chart_t_r"
+          style="letter-spacing : {{ $t('css.letter_spacing') }}; font-family : {{ $t('css.fontFamily') }};
+                  left : {{ chartUnit }};">
+      {{ $t('strings.times_minute') }}
+    </text>
+  </div>
+  <stack class="stack_main">
+    <image src="/common/A054_048.png" class="chartBg"></image>
+    <chart ref='chart' type="line" class="chart" datasets="{{ datasets }}" options="{{ options }}"></chart>
+  </stack>
+  <div class="div_bottom">
+    <text class="chart_time font_size" style="font-family : {{ $t('css.fontFamily') }};">
+      {{ chartTime }}{{ $t('strings.count_down') }}
+    </text>
+  </div>
 </div>

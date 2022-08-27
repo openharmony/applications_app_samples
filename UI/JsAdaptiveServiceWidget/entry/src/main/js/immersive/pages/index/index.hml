@@ -14,10 +14,10 @@
  -->
 
 <div class="container">
-    <div class="image-div">
-        <image class="image" src="/common/envelope.png" ></image>
-    </div>
-    <div class="button-div">
-        <button class="button">Join Now</button>
-    </div>
+  <div class="image-div">
+    <image class="image" src="/common/envelope.png"></image>
+  </div>
+  <div class="button-div">
+    <button class="button">Join Now</button>
+  </div>
 </div>
