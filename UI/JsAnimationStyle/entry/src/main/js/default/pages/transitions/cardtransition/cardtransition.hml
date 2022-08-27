@@ -14,13 +14,13 @@
  -->
 
 <div class="container">
-    <div class="outer">
-        <text style="font-size: 23px; margin-bottom: 20px" >{{$t('strings.remove')}}</text>
-    </div>
-    <list style="width:340px;height:600px;flex-direction:column;justify-content:center;align-items:center">
-        <list-item type="listItem" class="item"  for="list" id="{{$item.id}}"
-                   onclick="jumpPage({{$item.id}}, {{$item.url}})">
-            <text style="margin-left: 10px; font-size: 23px;">{{$item.title}}</text>
-        </list-item>
-    </list>
+  <div class="outer">
+    <text style="font-size : 23px; margin-bottom : 20px">{{ $t('strings.remove') }}</text>
+  </div>
+  <list style="width : 340px; height : 600px; flex-direction : column; justify-content : center; align-items : center">
+    <list-item type="listItem" class="item" for="list" id="{{ $item.id }}"
+               onclick="jumpPage({{ $item.id }}, {{ $item.url }})">
+      <text style="margin-left : 10px; font-size : 23px;">{{ $item.title }}</text>
+    </list-item>
+  </list>
 </div>

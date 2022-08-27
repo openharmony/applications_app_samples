@@ -16,10 +16,10 @@
 import router from '@ohos.router';
 
 export default {
-    data: {},
-    onClick(type) {
-        router.push({
-            url: 'pages/' + type +'/index'
-        })
-    }
+  data: {},
+  onClick(type) {
+    router.push({
+      url: 'pages/' + type + '/index'
+    })
+  }
 }

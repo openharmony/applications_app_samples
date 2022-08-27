@@ -39,6 +39,7 @@ struct Index {
             .height(50)
             .type(ButtonType.Normal)
             .margin('5%')
+            .key('getCode')
             .onClick(() => {
               this.value = ''
               for (let i = 0; i < 6; i++) {
@@ -57,6 +58,7 @@ struct Index {
             .width(150)
             .height(50)
             .type(ButtonType.Normal)
+            .key('indexNextPage')
             .margin({ top: '25%', left: '2%' })
             .onClick(() => {
               this.value = ''

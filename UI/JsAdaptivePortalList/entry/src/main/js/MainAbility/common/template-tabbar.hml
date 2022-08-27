@@ -14,8 +14,8 @@
  -->
 
 <div class="div-tab-bar-bottom">
-    <div class="icons">
-        <image class="img-tab-bar-bottom" src="/common/images/{{ icon }}"></image>
-    </div>
-    <text class="txt-tab-bar-bottom" style="color : {{ active == true ? '#035AFF' : '#808080' }};">{{ text }}</text>
+  <div class="icons">
+    <image class="img-tab-bar-bottom" src="/common/images/{{ icon }}"></image>
+  </div>
+  <text class="txt-tab-bar-bottom" style="color : {{ active == true ? '#035AFF' : '#808080' }};">{{ text }}</text>
 </div>

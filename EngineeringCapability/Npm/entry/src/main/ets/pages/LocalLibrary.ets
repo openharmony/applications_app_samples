@@ -36,15 +36,16 @@ struct LocalLibrary {
         Column() {
           TextShow({ text: $r('app.string.third_string_splicing'), fontSize: 25 })
           TextShow({ text: $r('app.string.input_first_string'), fontSize: 20 })
-          TextAreaShow({ placeholder: '', value: $firstString })
+          TextAreaShow({ placeholder: '', value: $firstString, inputNumber: 3 })
           TextShow({ text: $r('app.string.input_second_string'), fontSize: 20 })
-          TextAreaShow({ placeholder: '', value: $secondString })
+          TextAreaShow({ placeholder: '', value: $secondString, inputNumber: 4 })
           Button('确定')
             .fontSize(20)
             .width(100)
             .height(50)
             .type(ButtonType.Normal)
             .margin({ top: 20 })
+            .key('confirmBtn')
             .onClick(() => {
               if (this.firstString === '') {
                 this.pinDialogController = new CustomDialogController({

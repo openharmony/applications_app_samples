@@ -16,13 +16,13 @@
 import brightness from '@ohos.brightness';
 
 export default {
-    data: {
-        defaultValue: 125
-    },
-    onInit() {
-        brightness.setValue(this.defaultValue);
-    },
-    brightness(e) {
-        brightness.setValue(e.value);
-    }
+  data: {
+    defaultValue: 125
+  },
+  onInit() {
+    brightness.setValue(this.defaultValue);
+  },
+  brightness(e) {
+    brightness.setValue(e.value);
+  }
 }

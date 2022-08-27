@@ -14,5 +14,5 @@
  -->
 
 <div class="container">
-    <button class="btn"  value="{{ $t('strings.customtarget') }}"  on:click="onClickCustomTarget"></button>
+  <button class="btn" value="{{ $t('strings.customtarget') }}" on:click="onClickCustomTarget"></button>
 </div>

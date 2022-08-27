@@ -16,30 +16,30 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
-    onInit() {
-    },
-    onClickTranslate() {
-        router.push({
-            url: 'pages/animation/translate/translate'
-        })
-    },
+  data: {},
+  onInit() {
+  },
+  onClickTranslate() {
+    router.push({
+      url: 'pages/animation/translate/translate'
+    })
+  },
 
-    onClickRotate() {
-        router.push({
-            url: 'pages/animation/rotate/rotate'
-        })
-    },
+  onClickRotate() {
+    router.push({
+      url: 'pages/animation/rotate/rotate'
+    })
+  },
 
-    onClickScale() {
-        router.push({
-            url: 'pages/animation/scale/scale'
-        })
-    },
+  onClickScale() {
+    router.push({
+      url: 'pages/animation/scale/scale'
+    })
+  },
 
-    onClickComposite() {
-        router.push({
-            url: 'pages/animation/compositeanimation/compositeanimation'
-        })
-    }
+  onClickComposite() {
+    router.push({
+      url: 'pages/animation/compositeanimation/compositeanimation'
+    })
+  }
 }

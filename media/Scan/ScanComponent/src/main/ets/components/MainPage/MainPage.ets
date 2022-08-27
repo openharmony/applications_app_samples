@@ -31,6 +31,7 @@ interface EventHub {
 
 interface AbilityContext {
   terminateSelf(): Promise<void>
+
   eventHub: EventHub
 }
 
@@ -87,6 +88,7 @@ export struct ScanPage {
   OperationBtn(Img: Resource, handleClick: () => void) {
     Image($r("app.media.scan_photo")).width(24 * this.multiples).height(24 * this.multiples)
       .onClick(handleClick)
+      .key('getScanPicture')
   }
 
   aboutToAppear() {
@@ -153,7 +155,13 @@ export struct ScanPage {
               this.context.drawImage(this.defaultQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
             }
           })
-      }.width("100%").margin({ top: 20, left: 20 }).height("100%").margin({ right: 20 }).alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Start)
+      }
+      .width("100%")
+      .margin({ top: 20, left: 20 })
+      .height("100%")
+      .margin({ right: 20 })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Start)
 
       Row() {
         Image($r("app.media.scan_back")).width(24 * this.multiples).height(24 * this.multiples)
@@ -238,10 +246,11 @@ export struct ScanPage {
             this.showInit = true
           })
         Text($r("app.string.Scan_light")).fontSize(20).fontColor(Color.White).margin({ top: 4 * this.multiples })
+          .key('touchLight')
       }.margin({ top: 350 })
 
       // 扫一扫 文本翻译 字体设置
-      FunctionSet({isPhone: $isPhone})
+      FunctionSet({ isPhone: $isPhone })
 
       // 初始化扫描弹窗
       PanelInit({ showInit: $showInit, result: $resultInit })
@@ -249,7 +258,7 @@ export struct ScanPage {
       // 相册扫描弹窗
       Panel(this.showPhoto) {
         Column() {
-         Row() {
+          Row() {
             Text($r("app.string.Scan_read_content"))
               .fontSize(25)
               .width('90%')
@@ -302,9 +311,15 @@ struct FunctionSet {
           Image($r("app.media.scans")).width(60 * this.multiples).height(60 * this.multiples)
         }
         if (this.changeTextOne) {
-          Text(this.changeTextOne ? $r("app.string.Scan_translate") : $r("app.string.Scan_code")).fontColor(Color.White).fontSize(20).margin({ top: 20 })
+          Text(this.changeTextOne ? $r("app.string.Scan_translate") : $r("app.string.Scan_code"))
+            .fontColor(Color.White)
+            .fontSize(20)
+            .margin({ top: 20 })
         } else if (this.changeTextTwo) {
-          Text(this.changeTextTwo ? $r("app.string.Scan_fonts") : $r("app.string.Scan_code")).fontColor(Color.White).fontSize(20).margin({ top: 20 })
+          Text(this.changeTextTwo ? $r("app.string.Scan_fonts") : $r("app.string.Scan_code"))
+            .fontColor(Color.White)
+            .fontSize(20)
+            .margin({ top: 20 })
         } else {
           Text($r("app.string.Scan_code")).fontColor(Color.White).fontSize(20).margin({ top: 20 })
         }
@@ -328,7 +343,7 @@ struct FunctionSet {
             this.changeTextOne = false
           }
         })
-    }.position({ x:this.isPhone ?"47%":"42%", y: "78%" })
+    }.position({ x: this.isPhone ? "47%" : "42%", y: "78%" })
   }
 }
 

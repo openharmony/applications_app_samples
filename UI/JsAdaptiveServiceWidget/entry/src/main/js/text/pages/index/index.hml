@@ -14,14 +14,14 @@
  -->
 
 <div class="container">
-    <div class="main-div" for="{{ array }}" tid="id">
-        <div class="display-div">
-            <text class="exponent-div">{{ $item.name }}</text>
-            <text class="exponent">{{ $item.exponent }}</text>
-        </div>
-        <div class="display-div">
-            <text class="coded-div">{{ $item.coded }}</text>
-            <text class="per-div">{{ $item.per }}</text>
-        </div>
+  <div class="main-div" for="{{ array }}" tid="id">
+    <div class="display-div">
+      <text class="exponent-div">{{ $item.name }}</text>
+      <text class="exponent">{{ $item.exponent }}</text>
     </div>
+    <div class="display-div">
+      <text class="coded-div">{{ $item.coded }}</text>
+      <text class="per-div">{{ $item.per }}</text>
+    </div>
+  </div>
 </div>

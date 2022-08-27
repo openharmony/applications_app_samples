@@ -15,17 +15,17 @@
 import router from '@ohos.router'
 
 export default {
-    data: {
-        location: ''
-    },
-    onInit() {
-        if (this.selectedCityIndex === 0) {
-            this.location = '东莞';
-        } else {
-            this.location = '深圳';
-        }
-    },
-    backMain() {
-        router.back()
+  data: {
+    location: ''
+  },
+  onInit() {
+    if (this.selectedCityIndex === 0) {
+      this.location = '东莞';
+    } else {
+      this.location = '深圳';
     }
+  },
+  backMain() {
+    router.back()
+  }
 }

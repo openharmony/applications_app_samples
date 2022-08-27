@@ -74,6 +74,7 @@
     align-items: flex-end;
     align-content: flex-end;
 }
+
 .stack-right {
     margin-left: 5%;
     justify-content: flex-end;

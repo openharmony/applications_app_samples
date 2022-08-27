@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
-import Logger from '../../../../main/ets/data/Logger'
-
-const TAG: string = 'ohosTest-Index'
+import router from '@ohos.router';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-
   aboutToAppear() {
-    Logger.info(TAG, 'TestAbility index aboutToAppear')
+    console.info('TestAbility index aboutToAppear')
   }
+
+  @State message: string = 'Hello World'
 
   build() {
     Row() {

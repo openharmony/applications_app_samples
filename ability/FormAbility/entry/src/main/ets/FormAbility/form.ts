@@ -25,156 +25,156 @@ const FORM_PARAM_NAME_KEY = "ohos.extra.param.key.form_name";
 const FORM_PARAM_TEMPORARY_KEY = "ohos.extra.param.key.form_temporary";
 
 function getTemperature(formId: string, count: number) {
-    const DECIMAL: number = 10;
-    const parsedFormId: number = parseInt(formId, DECIMAL);
-    const BASE_TEMP_MOD: number = 20;
-    const baseTemperature: number = parsedFormId % BASE_TEMP_MOD;
-    const RANGE_TEMP_MOD: number = 20;
-    return baseTemperature + Math.abs(count % RANGE_TEMP_MOD - RANGE_TEMP_MOD / 2);
+  const DECIMAL: number = 10;
+  const parsedFormId: number = parseInt(formId, DECIMAL);
+  const BASE_TEMP_MOD: number = 20;
+  const baseTemperature: number = parsedFormId % BASE_TEMP_MOD;
+  const RANGE_TEMP_MOD: number = 20;
+  return baseTemperature + Math.abs(count % RANGE_TEMP_MOD - RANGE_TEMP_MOD / 2);
 }
 
 function padZero(num: number) {
-    // trans num to string and pad 0
-    if (num < 10) {
-        return `0${num}`;
-    } else {
-        return num.toString();
-    }
+  // trans num to string and pad 0
+  if (num < 10) {
+    return `0${num}`;
+  } else {
+    return num.toString();
+  }
 }
 
 function getTime() {
-    const date = new Date();
-    const hours = padZero(date.getHours());
-    const minutes = padZero(date.getMinutes());
-    const seconds = padZero(date.getSeconds());
-    return `${hours}:${minutes}:${seconds}`
+  const date = new Date();
+  const hours = padZero(date.getHours());
+  const minutes = padZero(date.getMinutes());
+  const seconds = padZero(date.getSeconds());
+  return `${hours}:${minutes}:${seconds}`
 }
 
 async function storeFormInfo(formId: string, formName: string, tempFlag: boolean) {
-    let formInfo = {
-        "formName": formName,
-        "tempFlag": tempFlag,
-        "updateCount": 0
-    };
-    try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
-        // put form info
-        await storage.put(formId, JSON.stringify(formInfo));
-        Logger.log(`storeFormInfo, put form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        Logger.error(`failed to storeFormInfo, err: ${JSON.stringify(err)}`);
-    }
+  let formInfo = {
+    "formName": formName,
+    "tempFlag": tempFlag,
+    "updateCount": 0
+  };
+  try {
+    const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+    // put form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    Logger.log(`storeFormInfo, put form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    Logger.error(`failed to storeFormInfo, err: ${JSON.stringify(err)}`);
+  }
 }
 
 async function updateTempFormInfo(formId: string) {
-    let formInfoDefault = {
-        "formName": "",
-        "tempFlag": false,
-        "updateCount": 0
-    };
-    try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
-        // get form info
-        const data = await storage.get(formId, JSON.stringify(formInfoDefault));
-        Logger.log(`updateTempFormInfo, get form info successfully, formId: ${formId}`);
-        const formInfo = JSON.parse(data.toString());
-        if (!formInfo.tempFlag) {
-            Logger.log(`updateTempFormInfo, formId: ${formId} is not temporary.`);
-            return;
-        }
-
-        formInfo.tempFlag = false;
-        // update form info
-        await storage.put(formId, JSON.stringify(formInfo));
-        Logger.log(`updateTempFormInfo, update form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        Logger.error(`failed to updateTempFormInfo, err: ${JSON.stringify(err)}`);
+  let formInfoDefault = {
+    "formName": "",
+    "tempFlag": false,
+    "updateCount": 0
+  };
+  try {
+    const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+    // get form info
+    const data = await storage.get(formId, JSON.stringify(formInfoDefault));
+    Logger.log(`updateTempFormInfo, get form info successfully, formId: ${formId}`);
+    const formInfo = JSON.parse(data.toString());
+    if (!formInfo.tempFlag) {
+      Logger.log(`updateTempFormInfo, formId: ${formId} is not temporary.`);
+      return;
     }
+
+    formInfo.tempFlag = false;
+    // update form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    Logger.log(`updateTempFormInfo, update form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    Logger.error(`failed to updateTempFormInfo, err: ${JSON.stringify(err)}`);
+  }
 }
 
 async function updateForm(formId: string) {
-    let formInfoDefault = {
-        "formName": "",
-        "tempFlag": false,
-        "updateCount": 0
+  let formInfoDefault = {
+    "formName": "",
+    "tempFlag": false,
+    "updateCount": 0
+  };
+  try {
+    const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+    // get form info
+    const data = await storage.get(formId, JSON.stringify(formInfoDefault));
+    Logger.log(`updateForm, get form info successfully, formId: ${formId}`);
+    const formInfo = JSON.parse(data.toString());
+    formInfo.updateCount = formInfo.updateCount + 1;
+
+    let obj = {
+      "temperature": getTemperature(formId, formInfo.updateCount).toString(),
+      "time": getTime()
     };
-    try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
-        // get form info
-        const data = await storage.get(formId, JSON.stringify(formInfoDefault));
-        Logger.log(`updateForm, get form info successfully, formId: ${formId}`);
-        const formInfo = JSON.parse(data.toString());
-        formInfo.updateCount = formInfo.updateCount + 1;
+    let formData = formBindingData.createFormBindingData(obj);
+    formProvider.updateForm(formId, formData).catch((err) => {
+      Logger.error(`updateForm, err: ${JSON.stringify(err)}`);
+    });
 
-        let obj = {
-            "temperature": getTemperature(formId, formInfo.updateCount).toString(),
-            "time": getTime()
-        };
-        let formData = formBindingData.createFormBindingData(obj);
-        formProvider.updateForm(formId, formData).catch((err) => {
-            Logger.error(`updateForm, err: ${JSON.stringify(err)}`);
-        });
-
-        // update form info
-        await storage.put(formId, JSON.stringify(formInfo));
-        Logger.log(`updateForm, update form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        Logger.error(`failed to updateForm, err: ${JSON.stringify(err)}`);
-    }
+    // update form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    Logger.log(`updateForm, update form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    Logger.error(`failed to updateForm, err: ${JSON.stringify(err)}`);
+  }
 }
 
 async function deleteFormInfo(formId: string) {
-    try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
-        // del form info
-        await storage.delete(formId);
-        Logger.log(`deleteFormInfo, del form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        Logger.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-    }
+  try {
+    const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+    // del form info
+    await storage.delete(formId);
+    Logger.log(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    Logger.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+  }
 }
 
 export default {
-    onCreate(want) {
-        Logger.log(`FormAbility onCreate, want: ${JSON.stringify(want)}`);
+  onCreate(want) {
+    Logger.log(`FormAbility onCreate, want: ${JSON.stringify(want)}`);
 
-        // get form info
-        let formId = want.parameters[FORM_PARAM_IDENTITY_KEY];
-        let formName = want.parameters[FORM_PARAM_NAME_KEY];
-        let tempFlag = want.parameters[FORM_PARAM_TEMPORARY_KEY];
-        storeFormInfo(formId, formName, tempFlag);
+    // get form info
+    let formId = want.parameters[FORM_PARAM_IDENTITY_KEY];
+    let formName = want.parameters[FORM_PARAM_NAME_KEY];
+    let tempFlag = want.parameters[FORM_PARAM_TEMPORARY_KEY];
+    storeFormInfo(formId, formName, tempFlag);
 
-        let obj = {
-            "temperature": getTemperature(formId, 0).toString(),
-            "time": getTime()
-        };
-        let formData = formBindingData.createFormBindingData(obj);
-        return formData;
-    },
-    onCastToNormal(formId) {
-        Logger.log(`FormAbility onCastToNormal, formId: ${formId}`);
-        updateTempFormInfo(formId);
-    },
-    onUpdate(formId) {
-        Logger.log(`FormAbility onUpdate, formId: ${formId}`);
-        updateForm(formId);
-    },
-    onVisibilityChange(newStatus) {
-        Logger.log(`FormAbility onVisibilityChange`);
-    },
-    onEvent(formId, message) {
-        Logger.log(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-    },
-    onDestroy(formId) {
-        Logger.log(`FormAbility onDestroy, formId = ${formId}`);
-        deleteFormInfo(formId);
-    },
-    onAcquireFormState(want) {
-        Logger.log(`FormAbility onAcquireFormState`);
-        return formInfo.FormState.READY;
-    },
+    let obj = {
+      "temperature": getTemperature(formId, 0).toString(),
+      "time": getTime()
+    };
+    let formData = formBindingData.createFormBindingData(obj);
+    return formData;
+  },
+  onCastToNormal(formId) {
+    Logger.log(`FormAbility onCastToNormal, formId: ${formId}`);
+    updateTempFormInfo(formId);
+  },
+  onUpdate(formId) {
+    Logger.log(`FormAbility onUpdate, formId: ${formId}`);
+    updateForm(formId);
+  },
+  onVisibilityChange(newStatus) {
+    Logger.log(`FormAbility onVisibilityChange`);
+  },
+  onEvent(formId, message) {
+    Logger.log(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+  },
+  onDestroy(formId) {
+    Logger.log(`FormAbility onDestroy, formId = ${formId}`);
+    deleteFormInfo(formId);
+  },
+  onAcquireFormState(want) {
+    Logger.log(`FormAbility onAcquireFormState`);
+    return formInfo.FormState.READY;
+  },
 }

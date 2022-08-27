@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <button class="btn"  value="{{ $t('strings.element') }}"  on:click="onClickElement"></button>
-    <button class="btn"  value="{{ $t('strings.card') }}"  on:click="onClickCard"></button>
-    <button class="btn"  value="{{ $t('strings.customtransition') }}"  on:click="onClickCustomTransition"></button>
+  <button class="btn" value="{{ $t('strings.element') }}" on:click="onClickElement"></button>
+  <button class="btn" value="{{ $t('strings.card') }}" on:click="onClickCard"></button>
+  <button class="btn" value="{{ $t('strings.customtransition') }}" on:click="onClickCustomTransition"></button>
 </div>

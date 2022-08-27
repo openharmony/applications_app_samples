@@ -14,9 +14,9 @@
  */
 
 export default {
-    data: {
-        segment: {
-            value: 100
-        }
+  data: {
+    segment: {
+      value: 100
     }
+  }
 }

@@ -14,32 +14,32 @@
  */
 
 export default {
-    timer: undefined,
-    data: {
-        hour: 0,
-        minute: 0,
-        second: 0
-    },
-    onInit() {
-        this.updateTime();
-        this.timer = setInterval(this.updateTime, 1000)
-    },
-    updateTime: function () {
-        var nowTime = new Date()
-        this.hour = nowTime.getHours()
-        this.minute = nowTime.getMinutes()
-        this.second = nowTime.getSeconds()
-        if (this.hour < 10) {
-            this.hour = '0' + this.hour
-        }
-        if (this.minute < 10) {
-            this.minute = '0' + this.minute
-        }
-        if (this.second < 10) {
-            this.second = '0' + this.second
-        }
-    },
-    onDestroy() {
-        clearInterval(this.timer)
+  timer: undefined,
+  data: {
+    hour: 0,
+    minute: 0,
+    second: 0
+  },
+  onInit() {
+    this.updateTime();
+    this.timer = setInterval(this.updateTime, 1000)
+  },
+  updateTime: function () {
+    var nowTime = new Date()
+    this.hour = nowTime.getHours()
+    this.minute = nowTime.getMinutes()
+    this.second = nowTime.getSeconds()
+    if (this.hour < 10) {
+      this.hour = '0' + this.hour
     }
+    if (this.minute < 10) {
+      this.minute = '0' + this.minute
+    }
+    if (this.second < 10) {
+      this.second = '0' + this.second
+    }
+  },
+  onDestroy() {
+    clearInterval(this.timer)
+  }
 }

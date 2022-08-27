@@ -14,5 +14,5 @@
  -->
 
 <div class="container">
-    <chart class="chart-data" type="line" options="{{ lineOps }}" datasets="{{ lineData }}"></chart>
+  <chart class="chart-data" type="line" options="{{ lineOps }}" datasets="{{ lineData }}"></chart>
 </div>

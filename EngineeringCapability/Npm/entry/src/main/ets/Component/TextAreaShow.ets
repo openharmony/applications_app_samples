@@ -17,10 +17,11 @@
 export struct TextAreaShow {
   @Link value: string
   private placeholder?: string
+  private inputNumber: number
 
   build() {
     Row() {
-      TextArea({ placeholder: this.placeholder })
+      TextInput({ placeholder: this.placeholder })
         .height(40)
         .width('70%')
         .fontSize(30)
@@ -31,6 +32,7 @@ export struct TextAreaShow {
         .fontWeight(FontWeight.Bold)
         .fontStyle(FontStyle.Normal)
         .placeholderFont({ size: 20, weight: 50, style: FontStyle.Italic })
+        .key('inputText' + this.inputNumber)
         .onChange((value: string) => {
           this.value = value
         })

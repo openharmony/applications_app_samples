@@ -26,20 +26,21 @@
     background-color: #f76160;
     width: 100px;
     height: 100px;
-    animation-name:compositeAnimation ;
+    animation-name: compositeAnimation;
     animation-duration: 4s;
     animation-delay: 0s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
-@keyframes compositeAnimation
-{
+
+@keyframes compositeAnimation {
     from {
         background-color: #f76160;
-        transform:translate(100px,100px) rotate(0deg) scale(1.0);
+        transform: translate(100px, 100px) rotate(0deg) scale(1.0);
     }
+
     to {
         background-color: #09ba07;
-        transform:translate(200px,200px) rotate(180deg) scale(1.5);
+        transform: translate(200px, 200px) rotate(180deg) scale(1.5);
     }
 }

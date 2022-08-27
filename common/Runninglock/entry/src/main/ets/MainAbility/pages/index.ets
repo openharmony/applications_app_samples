@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import lock from '@ohos.runninglock'
+import lock from '@ohos.runningLock'
 import { LockSwitch } from '../common/lockSwitch'
 import Logger from '../util/Logger'
 

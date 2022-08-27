@@ -14,100 +14,100 @@ limitations under the License.
 -->
 
 <div class="calc-container">
-    <div class="content">
-        <stack class="calc-titlebar">
-            <div @click="handleExist">
-                <image class="calc-icon calc-back-btn" src="/common/ic_back.png"/>
-                <text class="calc-title">
-                    {{ title }}
-                </text>
-            </div>
-            <image if="{{ isFA == false }}" class="calc-icon calc-select-device-btn" @click="showDialog"
-                   src="/common/ic_hop_normal.png"/>
-        </stack>
-        <text class="calc-expr">
-            {{ expression }}
+  <div class="content">
+    <stack class="calc-titlebar">
+      <div @click="handleExist">
+        <image class="calc-icon calc-back-btn" src="/common/ic_back.png"/>
+        <text class="calc-title">
+          {{ title }}
         </text>
-        <text class="calc-rsl">
-            {{ result }}
-        </text>
-    </div>
-    <div class="input">
-        <stack class="input-area">
-            <div class="calc-text-btn calc-btn-row-1 calc-btn-col-1" @click="handleInput('7')">
-                <text class="text-number">7</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-1 calc-btn-col-2" @click="handleInput('8')">
-                <text class="text-number">8</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-1 calc-btn-col-3" @click="handleInput('9')">
-                <text class="text-number">9</text>
-            </div>
-            <div class="calc-op-btn calc-btn-row-1 calc-btn-col-4" @click="handleInput('/')">
-                <image class="calc-icon" src="/common/ic_cal_devide.png"></image>
-            </div>
-            <div class="calc-op-btn calc-btn-row-1 calc-btn-col-5" @click="handleBackspace()">
-                <image class="calc-icon" src="/common/ic_cal_delete.png"></image>
-            </div>
-            <div class="calc-text-btn calc-btn-row-2 calc-btn-col-1" @click="handleInput('4')">
-                <text class="text-number">4</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-2 calc-btn-col-2" @click="handleInput('5')">
-                <text class="text-number">5</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-2 calc-btn-col-3" @click="handleInput('6')">
-                <text class="text-number">6</text>
-            </div>
-            <div class="calc-op-btn calc-btn-row-2 calc-btn-col-4" @click="handleInput('*')">
-                <image class="calc-icon" src="/common/ic_cal_multiply.png"></image>
-            </div>
-            <div class="calc-op-btn calc-btn-row-2 calc-btn-col-5" @click="handleClear">
-                <image class="calc-icon" src="/common/ic_cal_c.png"></image>
-            </div>
-            <div class="calc-text-btn calc-btn-row-3 calc-btn-col-1" @click="handleInput('1')">
-                <text class="text-number">1</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-3 calc-btn-col-2" @click="handleInput('2')">
-                <text class="text-number">2</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-3 calc-btn-col-3" @click="handleInput('3')">
-                <text class="text-number">3</text>
-            </div>
-            <div class="calc-op-btn calc-btn-row-3 calc-btn-col-4" @click="handleInput('-')">
-                <image class="calc-icon" src="/common/ic_cal_minus.png"></image>
-            </div>
-            <div class="calc-equals-btn calc-btn-row-3 calc-btn-col-5 calc-btn-col-span-2"
-                 @click="handleEqual">
-                <image class="calc-icon" src="/common/ic_cal_equal.png"></image>
-            </div>
-            <div class="calc-text-btn calc-btn-row-4 calc-btn-col-1 calc-btn-row-span-2" @click="handleInput('0')">
-                <text class="text-number">0</text>
-            </div>
-            <div class="calc-text-btn calc-btn-row-4 calc-btn-col-3" @click="handleInput('.')">
-                <text class="text-number">.</text>
-            </div>
-            <div class="calc-op-btn calc-btn-row-4 calc-btn-col-4" @click="handleInput('+')">
-                <image class="calc-icon" src="/common/ic_cal_plus.png"></image>
-            </div>
-        </stack>
-    </div>
-    <dialog id="showDialog" class="calc-select-device-dialog" oncancel="cancelDialog">
-        <div class="calc-select-device-wrapper">
-            <text class="calc-select-device-text calc-select-device-item-title">选择设备</text>
-            <list class="calc-select-device-item">
-                <list-item style="width : 100%; height : 50%;" for="{{ deviceList }}">
-                    <div>
-                        <text class="calc-select-device-item-left" on:click="selectDevice({{ $item }})">{{ $item.deviceName
-                            }}
-                        </text>
-                        <input class="calc-select-device-item-right" type="radio" name="deviceRadio"
-                               value="{{ $item.deviceName }}" checked="{{ $item.checked }}"
-                               @change="selectDevice({{ $item }})"></input>
-                    </div>
-                </list-item>
-            </list>
-            <text class="calc-select-device-text calc-select-device-item-cancel-btn" @click="cancelDialog">取消
+      </div>
+      <image if="{{ isFA == false }}" class="calc-icon calc-select-device-btn" @click="showDialog"
+             src="/common/ic_hop_normal.png"/>
+    </stack>
+    <text class="calc-expr">
+      {{ expression }}
+    </text>
+    <text class="calc-rsl">
+      {{ result }}
+    </text>
+  </div>
+  <div class="input">
+    <stack class="input-area">
+      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-1" @click="handleInput('7')">
+        <text class="text-number">7</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-2" @click="handleInput('8')">
+        <text class="text-number">8</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-3" @click="handleInput('9')">
+        <text class="text-number">9</text>
+      </div>
+      <div class="calc-op-btn calc-btn-row-1 calc-btn-col-4" @click="handleInput('/')">
+        <image class="calc-icon" src="/common/ic_cal_devide.png"></image>
+      </div>
+      <div class="calc-op-btn calc-btn-row-1 calc-btn-col-5" @click="handleBackspace()">
+        <image class="calc-icon" src="/common/ic_cal_delete.png"></image>
+      </div>
+      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-1" @click="handleInput('4')">
+        <text class="text-number">4</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-2" @click="handleInput('5')">
+        <text class="text-number">5</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-3" @click="handleInput('6')">
+        <text class="text-number">6</text>
+      </div>
+      <div class="calc-op-btn calc-btn-row-2 calc-btn-col-4" @click="handleInput('*')">
+        <image class="calc-icon" src="/common/ic_cal_multiply.png"></image>
+      </div>
+      <div class="calc-op-btn calc-btn-row-2 calc-btn-col-5" @click="handleClear">
+        <image class="calc-icon" src="/common/ic_cal_c.png"></image>
+      </div>
+      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-1" @click="handleInput('1')">
+        <text class="text-number">1</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-2" @click="handleInput('2')">
+        <text class="text-number">2</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-3" @click="handleInput('3')">
+        <text class="text-number">3</text>
+      </div>
+      <div class="calc-op-btn calc-btn-row-3 calc-btn-col-4" @click="handleInput('-')">
+        <image class="calc-icon" src="/common/ic_cal_minus.png"></image>
+      </div>
+      <div class="calc-equals-btn calc-btn-row-3 calc-btn-col-5 calc-btn-col-span-2"
+           @click="handleEqual">
+        <image class="calc-icon" src="/common/ic_cal_equal.png"></image>
+      </div>
+      <div class="calc-text-btn calc-btn-row-4 calc-btn-col-1 calc-btn-row-span-2" @click="handleInput('0')">
+        <text class="text-number">0</text>
+      </div>
+      <div class="calc-text-btn calc-btn-row-4 calc-btn-col-3" @click="handleInput('.')">
+        <text class="text-number">.</text>
+      </div>
+      <div class="calc-op-btn calc-btn-row-4 calc-btn-col-4" @click="handleInput('+')">
+        <image class="calc-icon" src="/common/ic_cal_plus.png"></image>
+      </div>
+    </stack>
+  </div>
+  <dialog id="showDialog" class="calc-select-device-dialog" oncancel="cancelDialog">
+    <div class="calc-select-device-wrapper">
+      <text class="calc-select-device-text calc-select-device-item-title">选择设备</text>
+      <list class="calc-select-device-item">
+        <list-item style="width : 100%; height : 50%;" for="{{ deviceList }}">
+          <div>
+            <text class="calc-select-device-item-left" on:click="selectDevice({{ $item }})">{{ $item.deviceName
+              }}
             </text>
-        </div>
-    </dialog>
+            <input class="calc-select-device-item-right" type="radio" name="deviceRadio"
+                   value="{{ $item.deviceName }}" checked="{{ $item.checked }}"
+                   @change="selectDevice({{ $item }})"></input>
+          </div>
+        </list-item>
+      </list>
+      <text class="calc-select-device-text calc-select-device-item-cancel-btn" @click="cancelDialog">取消
+      </text>
+    </div>
+  </dialog>
 </div>
