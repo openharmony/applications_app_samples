@@ -138,6 +138,7 @@ export struct FaultDialog {
               .fontSize(20)
               .fontColor(Color.Black)
           }
+          .key(item)
           .width('100%')
           .onClick(() => {
             this.selectIndex = index
@@ -152,6 +153,7 @@ export struct FaultDialog {
               .textAlign(TextAlign.Center)
               .fontSize(20)
           }
+          .key('OK')
           .type(ButtonType.Capsule)
           .backgroundColor(Color.White)
           .layoutWeight(1)

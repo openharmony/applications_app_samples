@@ -111,6 +111,7 @@ struct Index {
           })
         if (this.isShowSetting) {
           Button($r('app.string.message_set_password'))
+            .key('setPassword')
             .margin(30)
             .width('60%')
             .onClick(() => {
