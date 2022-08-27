@@ -64,6 +64,7 @@ export struct CheckType {
         .textAlign(TextAlign.Center)
         .width('85%')
     }
+    .key('checkPresetValue')
     .type(ButtonType.Capsule)
     .backgroundColor('#0D9FFB')
     .padding(5)
