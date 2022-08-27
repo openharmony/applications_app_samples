@@ -1,76 +1,44 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
-      "value": "Image processing"
+      "name": "entry_desc",
+      "value": "image processing"
     },
     {
-      "name": "description_mainability",
-      "value": "Get the local picture and picture information, rotate the picture and save it"
+      "name": "MainAbility_desc",
+      "value": "image processing"
     },
     {
-      "name": "back",
-      "value": "Return"
+      "name": "MainAbility_label",
+      "value": "ImageProcessing"
     },
     {
-      "name": "more",
-      "value": "More Details"
+      "name": "publish_comments",
+      "value": "publish comments"
     },
     {
-      "name": "width",
-      "value": "Width: "
+      "name": "submit",
+      "value": "commit"
     },
     {
-      "name": "height",
-      "value": "Height: "
+      "name": "commodity_comment",
+      "value": "commodity comment"
     },
     {
-      "name": "bytes",
-      "value": "BytesNumber: "
+      "name": "tip",
+      "value": "      In accordance with the evaluation rules, evaluation more than 10 words can be obtained orange beans"
     },
     {
-      "name": "storage",
-      "value": "Whether to save to local"
+      "name": "anonymous_display",
+      "value": "Your comments will be displayed anonymously on the product review page."
     },
     {
-      "name": "cancel",
-      "value": "Cancel"
+      "name": "add_picture",
+      "value": "add picture/photo"
     },
     {
-      "name": "confirm",
-      "value": "Confirm"
-    },
-    {
-      "name": "rotate",
-      "value": "Rotate"
-    },
-    {
-      "name": "rotate_single",
-      "value": "Rotate Single"
-    },
-    {
-      "name": "save",
-      "value": "Save"
-    },
-    {
-      "name": "name",
-      "value": "Name"
-    },
-    {
-      "name": "size",
-      "value": "Size"
-    },
-    {
-      "name": "resolution",
-      "value": "Resolution"
-    },
-    {
-      "name": "path",
-      "value": "Path"
-    },
-    {
-      "name": "close",
-      "value": "Close"
+      "name": "media_read_permission",
+      "value": "Allows applications to read media files from external storage"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "license": "ISC",
   "devDependencies": {},
-  "name": "etsimage",
+  "name": "mediamodify",
   "ohos": {
     "org": "huawei",
     "directoryLevel": "project",
