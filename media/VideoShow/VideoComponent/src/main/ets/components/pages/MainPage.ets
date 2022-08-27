@@ -137,6 +137,7 @@ export struct MainPage {
         .border({ color: 'rgba(0,0,0,0.2)' })
         .borderRadius(16)
         .borderWidth(1.3)
+        .key('directVideo')
         .onClick(() => {
           router.push({ url: 'pages/LivePage' })
         })

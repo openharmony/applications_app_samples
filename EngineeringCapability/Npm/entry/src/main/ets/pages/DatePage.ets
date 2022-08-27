@@ -39,17 +39,18 @@ struct DatePage {
         Column() {
           TextShow({ text: $r('app.string.second_dayjs'), fontSize: 25 })
           TextShow({ text: $r('app.string.input_math_date'), fontSize: 20 })
-          TextAreaShow({ placeholder: '2000-01-01', value: $value })
+          TextAreaShow({ placeholder: '2000-01-01', value: $value, inputNumber: 0 })
           TextShow({ text: $r('app.string.before_day'), fontSize: 20 })
-          TextAreaShow({ placeholder: '0', value: $beforeDays })
+          TextAreaShow({ placeholder: '0', value: $beforeDays, inputNumber: 1 })
           TextShow({ text: $r('app.string.after_day'), fontSize: 20 })
-          TextAreaShow({ placeholder: '0', value: $afterDays })
+          TextAreaShow({ placeholder: '0', value: $afterDays, inputNumber: 2 })
           Button($r('app.string.sure'))
             .fontSize(20)
             .width(100)
             .height(50)
             .type(ButtonType.Normal)
             .margin({ top: 20 })
+            .key('confirm')
             .onClick(() => {
               if (this.value === '') {
                 this.pinDialogController = new CustomDialogController({
@@ -99,6 +100,7 @@ struct DatePage {
             .height(50)
             .type(ButtonType.Normal)
             .margin({ top: 20 })
+            .key('dateNextPage')
             .onClick(() => {
               this.value = ''
               router.push({
