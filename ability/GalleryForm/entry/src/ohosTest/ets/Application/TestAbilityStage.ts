@@ -19,7 +19,7 @@ import Logger from '../../../main/ets/data/Logger'
 const TAG: string = 'TestAbilityStage'
 
 export default class TestAbilityStage extends AbilityStage {
-  onCreate() {
-    Logger.info(TAG, '[Demo] TestAbilityStage onCreate')
-  }
+    onCreate() {
+        Logger.info(TAG, '[Demo] TestAbilityStage onCreate')
+    }
 }
