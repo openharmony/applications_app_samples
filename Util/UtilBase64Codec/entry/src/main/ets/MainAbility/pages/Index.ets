@@ -56,6 +56,7 @@ struct Index {
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
         }
+        .key('encodeBtn')
         .width('80%')
         .height('10%')
         .type(ButtonType.Capsule)
@@ -86,6 +87,7 @@ struct Index {
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
         }
+        .key('decodeBtn')
         .width('80%')
         .height('10%')
         .type(ButtonType.Capsule)

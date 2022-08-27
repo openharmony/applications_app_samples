@@ -81,6 +81,7 @@ export struct SleepView {
           .width('52%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.enter_sleep_time') })
+          .key('shortestSleepTime')
           .width('46%')
           .type(InputType.Number)
           .fontSize(20)
@@ -101,6 +102,7 @@ export struct SleepView {
           .width('52%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.enter_sleep_time') })
+          .key('longestSleepTime')
           .width('46%')
           .type(InputType.Number)
           .fontSize(20)
@@ -133,6 +135,7 @@ export struct SleepView {
           .width('30%')
           .textAlign(TextAlign.Center)
       }
+      .key('sleepAnalysis')
       .type(ButtonType.Capsule)
       .margin({ top: 10, bottom: 10 })
       .backgroundColor(0x317aff)
