@@ -39,6 +39,7 @@ export struct ActionSheetDialog {
                 .fontSize(18)
                 .fontColor(Color.Gray)
             }
+            .key('getValueOfTheKey')
             .width('100%')
             .margin(10)
           }

@@ -80,6 +80,7 @@ struct Index {
 
       Row({ space: 5 }) {
         TextInput({ placeholder: $r('app.string.age_placeholder') })
+          .key('inputAge')
           .height('100%')
           .width('60%')
           .type(InputType.Number)
@@ -101,6 +102,7 @@ struct Index {
             .textAlign(TextAlign.Center)
             .lineHeight(26)
         }
+        .key('ageAnalysis')
         .type(ButtonType.Capsule)
         .backgroundColor(0x317aff)
         .onClick(() => {
