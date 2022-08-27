@@ -16,7 +16,7 @@
 /**
  * GridLayoutInfo  Columns
  */
-export default class GridLayoutInfoColumns {
+export class GridLayoutInfoColumns {
   static readonly ID: string = 'id'
   static readonly APP_NAME: string = 'app_name'
   static readonly CONTAINER: string = 'container'

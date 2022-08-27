@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import WorkSpace from '../../../../../desktop/src/main/ets/default/layout/WorkSpace'
+import { WorkSpace } from '@ohos/desktop'
 
 @Entry
 @Component

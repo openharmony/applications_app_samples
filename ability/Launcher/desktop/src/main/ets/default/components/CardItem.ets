@@ -13,14 +13,8 @@
  * limitations under the License.
  */
 
-import AppMenu from '../../../../../../base/src/main/ets/default/components/AppMenu'
-import CommonConstants from '../../../../../../base/src/main/ets/default/constants/CommonConstants'
-import DesktopLayoutModel from '../model/DesktopLayoutModel'
-import FormManager from '../../../../../../base/src/main/ets/default/manager/FormManager'
-import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
-import MenuInfo from '../../../../../../base/src/main/ets/default/bean/MenuInfo'
-import RemoveDialog from '../../../../../../base/src/main/ets/default//components/RemoveDialog'
+import { DesktopLayoutModel } from '../model/DesktopLayoutModel'
+import { AppMenu, CommonConstants, FormManager, GridLayoutItemInfo, Logger, MenuInfo, RemoveDialog } from '@ohos/base'
 
 const TAG: string = 'CardItem'
 

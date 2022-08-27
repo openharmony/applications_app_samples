@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import CheckEmptyUtils from '../utils/CheckEmptyUtils'
-import GridLayoutInfoColumns from './GridLayoutInfoColumns'
+import { CheckEmptyUtils } from '../utils/CheckEmptyUtils'
+import { GridLayoutInfoColumns } from './GridLayoutInfoColumns'
 
 /**
  * Item info of GridLayoutInfo item.
  */
-export default class GridLayoutItemInfo {
+export class GridLayoutItemInfo {
   /**
    * GridLayoutItemInfo: id
    */

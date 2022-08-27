@@ -16,7 +16,7 @@
 /**
  * common app info
  */
-export default class AppItemInfo {
+export class AppItemInfo {
   /**
    * Indicates app id.
    */

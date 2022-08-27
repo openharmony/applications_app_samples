@@ -203,13 +203,24 @@ struct Index {
   }
 
   getShownTimer(ms) {
-    let seconds = Math.floor(ms / ONE_THOUSAND)
-    let sec = seconds % SIXTY
     let minStr: string
     let secStr: string
+    let seconds = Math.floor(ms / ONE_THOUSAND)
+    let sec = seconds % SIXTY
+    Logger.info(TAG, `getShownTimer sec = ${sec}`)
     let min = (seconds - sec) / SIXTY
-      sec < 10 ? secStr = '0' + sec : '' + sec
-      min < 10 ? minStr = '0' + min : '' + min
+    Logger.info(TAG, `getShownTimer min = ${min}`)
+    if (sec < 10) {
+      secStr = '0' + sec
+    } else {
+      secStr = sec.toString(10)
+    }
+    if (min < 10) {
+      minStr = '0' + min
+    } else {
+      minStr = min.toString(10)
+    }
+    Logger.warn(TAG, `getShownTimer = ${minStr}:${secStr}`)
     return minStr + ':' + secStr
   }
 
@@ -287,7 +298,7 @@ struct Index {
       PlayerModel.pause()
       this.imageArrays[2] = $r('app.media.ic_play')
     } else {
-      PlayerModel.preLoad(0, () => {
+      PlayerModel.preLoad(PlayerModel.index, () => {
         PlayerModel.play(-1, true)
         this.imageArrays[2] = $r('app.media.ic_pause')
       })

@@ -13,16 +13,18 @@
  * limitations under the License.
  */
 
-import AppMenu from '../../../../../../base/src/main/ets/default/components/AppMenu'
-import CardItemInfo from '../../../../../../base/src/main/ets/default/bean/CardItemInfo'
-import CheckEmptyUtils from '../../../../../../base/src/main/ets/default/utils/CheckEmptyUtils'
-import CommonConstants from '../../../../../../base/src/main/ets/default/constants/CommonConstants'
-import DesktopLayoutModel from '../model/DesktopLayoutModel'
-import DeleteDialog from '../../../../../../base/src/main/ets/default/components/DeleteDialog'
-import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
-import MenuInfo from '../../../../../../base/src/main/ets/default/bean/MenuInfo'
-import ResourceManager from '../../../../../../base/src/main/ets/default/manager/ResourceManager'
+import { DesktopLayoutModel } from '../model/DesktopLayoutModel'
+import {
+  AppMenu,
+  CardItemInfo,
+  CheckEmptyUtils,
+  CommonConstants,
+  DeleteDialog,
+  GridLayoutItemInfo,
+  Logger,
+  MenuInfo,
+  ResourceManager
+} from '@ohos/base'
 
 const TAG: string = 'Bubble'
 

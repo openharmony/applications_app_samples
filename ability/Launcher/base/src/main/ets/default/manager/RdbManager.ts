@@ -14,11 +14,11 @@
  */
 
 import dataRdb from '@ohos.data.rdb'
-import Logger from '../utils/Logger'
-import CommonConstants from '../constants/CommonConstants'
-import CheckEmptyUtils from '../utils/CheckEmptyUtils'
-import GridLayoutItemInfo from '../bean/GridLayoutItemInfo'
-import GridLayoutInfoColumns from '../bean/GridLayoutInfoColumns'
+import { CheckEmptyUtils } from '../utils/CheckEmptyUtils'
+import { CommonConstants } from '../constants/CommonConstants'
+import { GridLayoutItemInfo } from '../bean/GridLayoutItemInfo'
+import { GridLayoutInfoColumns } from '../bean/GridLayoutInfoColumns'
+import { Logger } from '../utils/Logger'
 
 export const TABLE_NAME: string = 'launcher'
 
@@ -41,7 +41,7 @@ export const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS launcher ' +
 
 export const STORE_CONFIG = { name: 'launcher.db' }
 const TAG: string = 'RdbModel'
-class RdbManager {
+class RdbManagerModel {
   private mRdbStore: dataRdb.RdbStore = undefined
 
   constructor() {
@@ -194,4 +194,4 @@ class RdbManager {
   }
 }
 
-export default new RdbManager()
+export let  RdbManager =  new RdbManagerModel()
