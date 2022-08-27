@@ -160,6 +160,7 @@ struct Index {
         Column() {
           LazyForEach(this.operates, (item, index) => {
             Button(item)
+              .key(item)
               .type(ButtonType.Capsule)
               .size({ width: '90%', height: 60 })
               .margin({ top: 10 })
