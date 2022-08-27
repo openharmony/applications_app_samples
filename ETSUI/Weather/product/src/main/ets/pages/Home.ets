@@ -41,7 +41,6 @@ struct Home {
       Column() {
         IndexTitleBar({ curBp: this.curBp, showSideBar: $showSideBar })
           .height(56)
-          .flexShrink(0)
 
         Swiper() {
           ForEach(this.cityListWeatherData, (item, index) => {
@@ -59,11 +58,12 @@ struct Home {
         .index(this.swiperIndex)
         .loop(false)
         .width('100%')
-        .height('100%')
-        .flexShrink(1)
+        .layoutWeight(1)
       }
       .backgroundImage($r('app.media.bg'))
       .backgroundImageSize(ImageSize.Cover)
+      .width('100%')
+      .height('100%')
     }
     .height('100%')
     .sideBarWidth('33.3%')
