@@ -147,7 +147,7 @@ export struct Location {
               .margin({ top: 10, bottom: 15 })
 
               Grid() {
-                LazyForEach(new MyDataSource(heatCity), (item) => {
+                LazyForEach(new MyDataSource(heatCity), (item,index) => {
                   GridItem() {
                     Text(`${item}`)
                       .margin({ bottom: 20 })
@@ -158,6 +158,8 @@ export struct Location {
                         this.currentLocation = item
                       })
                   }
+                  .key("city"+(index+1))
+
                 })
               }
               .margin({ right: 60, top: 10 })
@@ -166,7 +168,7 @@ export struct Location {
               .columnsTemplate('1fr 1fr 1fr 1fr')
 
               List({ space: 15, initialIndex: 0, scroller: this.scroller }) {
-                LazyForEach(new MyDataSource(listData), (index) => {
+                LazyForEach(new MyDataSource(listData), (index,indexTwo) => {
                   ListItem() {
                     Column() {
                       Text(`${index.name}`)
@@ -181,7 +183,7 @@ export struct Location {
                         .opacity(0.2)
                         .margin({ right: 10, top: 12 })
 
-                      ForEach(index.city, item => {
+                      ForEach(index.city,(item,index) => {
                         Text(`${item.name === undefined ? item : item.name}`)
                           .height(30)
                           .fontSize(20)
@@ -196,6 +198,7 @@ export struct Location {
                               this.isCity = item.name === undefined ? item : item.name
                             }
                           })
+                          .key("city_ah")
                         if (this.isCity == item.name) {
                           List() {
                             ForEach(item.city, (secondCity) => {
@@ -206,6 +209,7 @@ export struct Location {
                                     .height(30)
                                     .fontSize(18)
                                     .margin({ top: 4 })
+                                    .key("region"+(index+1))
                                     .onClick(() => {
                                       this.currentLocation = `${item.name}/${secondCity}`
                                     })

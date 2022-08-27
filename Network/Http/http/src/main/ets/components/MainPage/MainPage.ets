@@ -81,23 +81,25 @@ export struct setting {
               .onChange((value: string) => {
                 this.url = value
               })
+             .key("GET")
           }
           .width('95%')
           .height('10%')
 
-          ForEach(this.list, item => {
+          ForEach(this.list, (item,index) => {
             Row() {
               Text('Key: ')
                 .width('20%')
                 .fontSize(18)
                 .margin({ left: 2, right: 4 })
                 .textAlign(TextAlign.Center)
-              TextInput()
+              TextInput({ placeholder: $r('app.string.key') })
                 .width('76%')
                 .margin({ left: 4, right: 2 })
                 .onChange((value: string) => {
                   this.keys[this.flag - 1] = value
                 })
+               .key("Key"+(index+1))
             }
             .width('95%')
             .height('10%')
@@ -108,12 +110,13 @@ export struct setting {
                 .fontSize(18)
                 .margin({ left: 2, right: 4 })
                 .textAlign(TextAlign.Center)
-              TextInput()
+              TextInput({ placeholder: $r('app.string.value') })
                 .width('75%')
                 .margin({ left: 4, right: 2 })
                 .onChange((value: string) => {
                   this.values[this.flag -1] = value
                 })
+                .key("Value"+(index+1))
             }
             .width('95%')
             .height('10%')
@@ -128,6 +131,7 @@ export struct setting {
                 this.flag += 1
                 this.list = Http.setList(this.list, this.flag)
               })
+             .key("add")
 
             Button($r('app.string.reduce'))
               .margin(10)
@@ -139,6 +143,7 @@ export struct setting {
                 }
                 this.list = Http.setList(this.list, this.flag)
               })
+             .key("reduce")
 
             Button($r('app.string.reset'))
               .margin(10)
@@ -169,6 +174,7 @@ export struct setting {
                 }
                 this.showPage = !this.showPage
               })
+             .key("submit")
 
             Button($r('app.string.back'))
               .margin(10)
@@ -203,6 +209,7 @@ export struct setting {
               this.method = 'GET'
               this.showPage = !this.showPage
             })
+           .key("errorBack")
         }
       }
     }
