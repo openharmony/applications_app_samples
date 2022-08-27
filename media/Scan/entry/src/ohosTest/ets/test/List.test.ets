@@ -12,20 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import appTest from "./App.test"
 
-import { describe, it, expect } from '@ohos/hypium'
-import Logger from '../../../main/ets/data/Logger'
-
-const TAG: string = 'abilityTest'
-
-export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      Logger.info(TAG, 'it begin')
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
-    })
-  })
+export default function testsuite() {
+  appTest()
 }

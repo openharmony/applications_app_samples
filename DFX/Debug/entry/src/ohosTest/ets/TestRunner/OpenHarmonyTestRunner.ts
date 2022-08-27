@@ -15,11 +15,9 @@
 
 import TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import Logger from '../../../main/ets/data/Logger'
 
-const TAG: string = 'OpenHarmonyTestRunner'
-let abilityDelegator = undefined
-let abilityDelegatorArguments = undefined
+var abilityDelegator = undefined
+var abilityDelegatorArguments = undefined
 
 function translateParamsToString(parameters) {
   const keySet = new Set([
@@ -27,7 +25,7 @@ function translateParamsToString(parameters) {
     '-s level', '-s testType', '-s size', '-s timeout',
     '-s dryRun'
   ])
-  let targetParams = ''
+  let targetParams = '';
   for (const key in parameters) {
     if (keySet.has(key)) {
       targetParams = `${targetParams} ${key} ${parameters[key]}`
@@ -37,11 +35,11 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-  Logger.info(TAG, 'onAbilityCreateCallback')
+  console.log("onAbilityCreateCallback");
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  Logger.info(TAG, 'addAbilityMonitorCallback : ' + JSON.stringify(err))
+  console.info("addAbilityMonitorCallback : " + JSON.stringify(err))
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -49,32 +47,32 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    Logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare ')
+    console.info("OpenHarmonyTestRunner OnPrepare ")
   }
 
   async onRun() {
-    Logger.info(TAG, 'OpenHarmonyTestRunner onRun run')
+    console.log('OpenHarmonyTestRunner onRun run')
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
+    var testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
     let lMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
-    }
+    };
     abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
-    let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
+    var cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
     cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
-    let debug = abilityDelegatorArguments.parameters['-D']
+    var debug = abilityDelegatorArguments.parameters["-D"]
     if (debug == 'true') {
       cmd += ' -D'
     }
-    Logger.info(TAG, 'cmd : ' + cmd)
+    console.info('cmd : ' + cmd)
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
-        Logger.info(TAG, 'executeShellCommand : err : ' + JSON.stringify(err))
-        Logger.info(TAG, 'executeShellCommand : data : ' + d.stdResult)
-        Logger.info(TAG, 'executeShellCommand : data : ' + d.exitCode)
+        console.info('executeShellCommand : err : ' + JSON.stringify(err));
+        console.info('executeShellCommand : data : ' + d.stdResult);
+        console.info('executeShellCommand : data : ' + d.exitCode);
       })
-    Logger.info(TAG, 'OpenHarmonyTestRunner onRun end')
+    console.info('OpenHarmonyTestRunner onRun end')
   }
-}
+};

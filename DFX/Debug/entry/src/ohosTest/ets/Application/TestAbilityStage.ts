@@ -13,13 +13,10 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.application.AbilityStage'
-import Logger from '../../../main/ets/data/Logger'
-
-const TAG: string = 'TestAbilityStage'
+import AbilityStage from "@ohos.application.AbilityStage"
 
 export default class TestAbilityStage extends AbilityStage {
   onCreate() {
-    Logger.info(TAG, '[Demo] TestAbilityStage onCreate')
+    console.log("[Demo] TestAbilityStage onCreate")
   }
 }
