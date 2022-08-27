@@ -47,7 +47,7 @@
       {
         "pages": [
           "pages/index/index",
-          "pages/collect/index"
+          "pages/collect/collect"
         ],
         "name": ".MainAbility",
         "window": {

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import lock from '@ohos.runninglock'
+import lock from '@ohos.runningLock'
 import Logger from '../util/Logger'
 
 const TAG: string = 'RunningLock'
