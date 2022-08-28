@@ -68,7 +68,7 @@ export default struct HomeContent {
       }
     }
     .width('100%')
-    .height('100%')
+    .layoutWeight(1)
     .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
     .scrollBar(BarState.Off)
     .onScroll(() => {
