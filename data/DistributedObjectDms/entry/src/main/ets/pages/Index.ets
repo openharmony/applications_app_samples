@@ -130,6 +130,7 @@ struct Index {
             .fontSize(30)
             .fontColor(Color.White)
         }
+        .key('startBtn')
         .width('40%')
         .height(60)
         .margin({ top: 100 })

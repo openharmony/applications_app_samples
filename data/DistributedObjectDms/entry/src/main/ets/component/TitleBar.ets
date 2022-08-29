@@ -51,6 +51,7 @@ export default struct TitleBar {
 
       if (!this.isStart) {
         Image($r('app.media.ic_hop'))
+          .key('flowBtn')
           .width(40)
           .height(40)
           .margin({ left: 15 })

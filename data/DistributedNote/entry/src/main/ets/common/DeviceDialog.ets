@@ -56,6 +56,7 @@ export default struct DeviceDialog {
           .textAlign(TextAlign.Center)
           .fontSize(20)
       }
+      .key('cancel')
       .type(ButtonType.Capsule)
       .backgroundColor(Color.White)
       .margin({ top: 20 })

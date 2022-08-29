@@ -56,6 +56,7 @@ struct Edit {
         .width('100%')
 
         TextInput({ placeholder: 'input the title', text: this.note.title })
+          .key('titleInput')
           .placeholderColor(Color.Gray)
           .fontSize(30)
           .margin({ left: 15, right: 15, top: 15 })
@@ -65,6 +66,7 @@ struct Edit {
             this.note.title = value
           })
         TextArea({ placeholder: 'input the content', text: this.note.content })
+          .key('contentInput')
           .placeholderColor(Color.Gray)
           .backgroundColor(Color.White)
           .fontSize(30)
@@ -80,6 +82,7 @@ struct Edit {
             .fontColor(Color.White)
             .fontSize(17)
         }
+        .key('saveNote')
         .backgroundColor('#0D9FFB')
         .height(50)
         .width(200)
