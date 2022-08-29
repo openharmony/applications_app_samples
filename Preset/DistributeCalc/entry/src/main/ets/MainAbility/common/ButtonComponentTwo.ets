@@ -30,6 +30,7 @@ export struct ButtonComponentTwo {
                 this.onInputValue(item.value)
               })
           }
+          .key(item.value)
           .rowStart(index)
           .rowEnd(index === 2 ? index + 1 : index)
           .columnStart(4)
@@ -44,7 +45,7 @@ export struct ButtonComponentTwo {
                 .onClick(() => {
                   this.onInputValue(item.value)
                 })
-            }
+            }.key(item.value)
           })
         })
 
@@ -56,6 +57,7 @@ export struct ButtonComponentTwo {
                 this.onInputValue(item.value)
               })
           }
+          .key(item.value)
           .rowStart(4)
           .rowEnd(4)
           .columnStart(index)

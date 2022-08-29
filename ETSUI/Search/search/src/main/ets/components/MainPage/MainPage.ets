@@ -22,6 +22,7 @@ export struct MainPage {
   build() {
     Column() {
       Search({ value: this.textInfo, placeholder: 'Input to search', controller: this.controller })
+        .key('search')
         .searchButton('Search')
         .width('95%')
         .height(40)

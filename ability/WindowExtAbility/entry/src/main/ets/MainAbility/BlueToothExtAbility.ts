@@ -19,7 +19,7 @@ import Rpc from '../feature/Rpc'
 
 const TAG: string = 'BlueToothExtAbility'
 
-export default class BlueToothExtAbility extends WindowExtensionAbility {
+export default class BluetoothExtAbility extends WindowExtensionAbility {
   onWindowReady(window) {
     window.loadContent('pages/BlueTooth').then(() => {
       window.getProperties().then((pro) => {

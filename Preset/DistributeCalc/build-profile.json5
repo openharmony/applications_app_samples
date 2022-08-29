@@ -6,9 +6,9 @@
     "products": [
       {
         "name": "default",
-        "signingConfig": 'default'
-      },
-    ],
+        "signingConfig": "default",
+      }
+    ]
   },
   "modules": [
     {
@@ -18,10 +18,10 @@
         {
           "name": "default",
           "applyToProducts": [
-            "default",
-          ],
-        },
-      ],
-    },
-  ],
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
 }
