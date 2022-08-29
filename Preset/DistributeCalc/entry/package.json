@@ -1,4 +1,5 @@
 {
+  "license": "ISC",
   "devDependencies": {},
   "name": "entry",
   "ohos": {
@@ -6,6 +7,8 @@
     "directoryLevel": "module",
     "buildTool": "hvigor"
   },
+  "description": "example description",
+  "repository": {},
   "version": "1.0.0",
   "dependencies": {
     "mathjs": "^10.5.0"

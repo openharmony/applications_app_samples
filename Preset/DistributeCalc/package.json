@@ -1,4 +1,5 @@
 {
+  "license": "ISC",
   "devDependencies": {},
   "name": "distributecalc",
   "ohos": {
@@ -6,10 +7,13 @@
     "directoryLevel": "project",
     "buildTool": "hvigor"
   },
+  "description": "example description",
+  "repository": {},
   "version": "1.0.0",
   "dependencies": {
     "@ohos/hypium": "1.0.1",
     "@ohos/hvigor-ohos-plugin": "1.1.6",
+    "hypium": "^1.0.0",
     "@ohos/hvigor": "1.1.6"
   }
 }

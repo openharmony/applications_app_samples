@@ -40,6 +40,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('getUptime')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -56,6 +57,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('getDirectory')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -73,6 +75,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('changeDirectory')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -91,6 +94,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('sendSignal')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -114,6 +118,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('startProcess')
           .type(ButtonType.Capsule)
           .height(40)
           .margin({ top: 15 })
@@ -137,6 +142,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('closeProcess')
           .type(ButtonType.Capsule)
           .height(40)
           .margin({ top: 15 })
@@ -155,6 +161,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
+          .key('exitProcess')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
