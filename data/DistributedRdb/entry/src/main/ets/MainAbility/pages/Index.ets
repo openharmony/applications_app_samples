@@ -259,6 +259,7 @@ struct Index {
             .objectFit(ImageFit.Contain)
             .align(Alignment.End)
         }
+        .key('btnAdd')
         .size({ width: '15%', height: 80 })
         .margin({ right: 20, bottom: 50 })
         .type(ButtonType.Circle)

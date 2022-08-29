@@ -32,7 +32,7 @@ struct Settings {
     })
   }
 
-  @Builder SwitchBar(text, switchOn, onChange) {
+  @Builder SwitchBar(key, text, switchOn, onChange) {
     Row() {
       Text(text)
         .fontSize(22)
@@ -40,6 +40,7 @@ struct Settings {
         .layoutWeight(1)
       Column() {
         Toggle({ type: ToggleType.Switch, isOn: switchOn })
+          .key((key) + 'Toggle')
           .onChange(onChange)
       }
     }
@@ -53,13 +54,13 @@ struct Settings {
   build() {
     Column() {
       TitleBar({ hasBackPress: true })
-      this.SwitchBar($r('app.string.automatic'), this.syncState === SyncState.AutomaticSync, (isOn: boolean) => {
+      this.SwitchBar('automatic', $r('app.string.automatic'), this.syncState === SyncState.AutomaticSync, (isOn: boolean) => {
         Logger.info(TAG, `automatic swtich is: ${isOn}`)
         LiteStore.setValue(SyncState.AutomaticSync)
         this.syncState = SyncState.AutomaticSync
       })
 
-      this.SwitchBar($r('app.string.manual'), this.syncState === SyncState.ManualSync, (isOn: boolean) => {
+      this.SwitchBar('manual', $r('app.string.manual'), this.syncState === SyncState.ManualSync, (isOn: boolean) => {
         Logger.info(TAG, `manualmatic swtich is: ${isOn}`)
         LiteStore.setValue(SyncState.ManualSync)
         this.syncState = SyncState.ManualSync
