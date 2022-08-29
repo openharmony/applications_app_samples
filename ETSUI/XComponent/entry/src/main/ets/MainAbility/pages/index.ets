@@ -1,3 +1,4 @@
+// @ts-nocheck
 import nativerender from "libnativerender.so";
 import { ContextType } from "../common/Constants"
 
@@ -38,6 +39,7 @@ struct Index {
         })
         .width(200)
         .height(80)
+        .key('changeColor')
       Button('ChangeShape')
         .onClick(() => {
           if (this.context) {
@@ -46,6 +48,7 @@ struct Index {
         })
         .width(200)
         .height(80)
+        .key('changeShape')
 
       XComponent({ id: 'xcomponentId', type: 'texture', libraryname: 'nativerender' })
         .onLoad((context) => {

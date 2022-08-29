@@ -1,8 +1,6 @@
 {
   "license": "ISC",
-  "devDependencies": {
-    "@types/libhello.so": "file:./src/main/cpp/types/libhello"
-  },
+  "devDependencies": {},
   "name": "entry",
   "ohos": {
     "org": "huawei",

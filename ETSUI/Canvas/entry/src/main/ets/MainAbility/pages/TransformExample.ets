@@ -28,6 +28,7 @@ struct TransformExample {
       Row() {
         Button('translate')
           .width(130).height(45)
+          .key('translate')
           .onClick(() => {
             this.context.fillRect(90, 90, 100, 100);
             this.context.translate(90, 90)
@@ -35,6 +36,7 @@ struct TransformExample {
           })
         Button('transform')
           .width(130).height(45)
+          .key('transform')
           .onClick(() => {
             this.context.fillStyle = 'rgb(0,0,0)';
             this.context.fillRect(0, 0, 100, 100);
@@ -47,6 +49,7 @@ struct TransformExample {
           })
         Button('setTransform')
           .width(130).height(45)
+          .key('setTransform')
           .onClick(() => {
             this.context.fillStyle = 'rgb(0,0,255)';
             this.context.fillRect(20, 20, 100, 100);
@@ -58,12 +61,14 @@ struct TransformExample {
 
       Row() {
         Button('rotate').width(130).height(45)
+          .key('rotate')
           .onClick(() => {
             this.context.rotate(45 * Math.PI / 180);
             this.context.fillRect(300, 100, 100, 100);
           })
         Button('back')
           .width(130).height(45).backgroundColor(Color.Orange)
+          .key('back')
           .onClick(() => {
             router.back()
           })

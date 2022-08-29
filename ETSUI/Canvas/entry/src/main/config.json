@@ -1,6 +1,6 @@
 {
   "app": {
-    "vendor": "example",
+    "vendor": "samples",
     "bundleName": "ohos.samples.etscanvas",
     "version": {
       "code": 1000000,
