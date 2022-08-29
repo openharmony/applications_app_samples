@@ -68,8 +68,8 @@
         ]
       },
       {
-        "name": "BlueToothExtAbility",
-        "srcEntrance": "./ets/MainAbility/BlueToothExtAbility.ts",
+        "name": "BluetoothExtAbility",
+        "srcEntrance": "./ets/MainAbility/BluetoothExtAbility.ts",
         "icon": "$media:icon",
         "description": "WindowExtension",
         "type": "window",
