@@ -37,6 +37,7 @@ export default struct TitleBar {
       Blank()
       if (this.rightBtn) {
         Image(this.rightBtn)
+          .key('rightBtn')
           .width(50).height('100%')
           .objectFit(ImageFit.Contain)
           .onClick(this.onRightBtnClicked)
