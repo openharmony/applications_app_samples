@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "ok",
+      "value": "确认"
+    },
+    {
+      "name": "no",
+      "value": "取消"
+    }
+  ]
+}
