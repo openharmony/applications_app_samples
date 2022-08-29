@@ -29,6 +29,7 @@ struct GradientExample {
         .backgroundColor('#00ffff')
       Row() {
         Button('createRadialGradient').width(130).height(45)
+	  .key('createRadialGradient')
           .onClick(() => {
             var grad = this.context.createRadialGradient(130, 130, 30, 130, 130, 60)
             grad.addColorStop(0.0, 'red');
@@ -38,6 +39,7 @@ struct GradientExample {
             this.context.fillRect(50, 30, 150, 200);
           })
         Button('createLinearGradient').width(130).height(45)
+	  .key('createLinearGradient')
           .onClick(() => {
             var grad = this.context.createLinearGradient(150, 0, 250, 300)
             grad.addColorStop(0.0, 'red');
@@ -53,6 +55,7 @@ struct GradientExample {
       Button('back')
         .width(130)
         .height(45)
+        .key('back')
         .backgroundColor(Color.Orange)
         .onClick(() => {
           router.back()

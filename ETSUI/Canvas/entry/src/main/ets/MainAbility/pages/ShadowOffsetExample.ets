@@ -29,6 +29,7 @@ struct ShadowOffsetExample {
         Row() {
           Button('shadowOffsetY')
             .width(130).height(45)
+            .key('shadowOffsetY')
             .onClick(() => {
               this.context.restore();
               this.context.shadowBlur = 30;
@@ -40,6 +41,7 @@ struct ShadowOffsetExample {
             })
           Button('shadowOffsetX')
             .width(130).height(45)
+            .key('shadowOffsetX')
             .onClick(() => {
               this.context.restore();
               this.context.shadowBlur = 30;
@@ -51,6 +53,7 @@ struct ShadowOffsetExample {
             })
           Button('shadowBlur')
             .width(130).height(45)
+            .key('shadowBlur')
             .onClick(() => {
               this.context.restore();
               this.context.shadowBlur = 50;
@@ -66,6 +69,7 @@ struct ShadowOffsetExample {
         Button('back')
           .width(130)
           .height(45)
+          .key('back')
           .backgroundColor(Color.Orange)
           .onClick(() => {
             router.back()

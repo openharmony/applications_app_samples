@@ -33,6 +33,7 @@ struct BitmapExample {
       Button('back')
         .width(130)
         .height(45)
+        .key('back')
         .backgroundColor(Color.Orange)
         .onClick(() => {
           router.back()

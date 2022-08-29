@@ -103,7 +103,7 @@ struct Index {
   build() {
     Column() {
       List({ space: 6, initialIndex: 0 }) {
-        LazyForEach(basicList, (item) => {
+        LazyForEach(basicList, (item, index) => {
           ListItem() {
             Text(item.title).fontSize(18)
           }.backgroundColor(Color.Orange)
@@ -114,6 +114,7 @@ struct Index {
               url: item.url
             })
           })
+          .key('item' + (index + 1))
         }, item => item.title)
       }
       .width('100%')
