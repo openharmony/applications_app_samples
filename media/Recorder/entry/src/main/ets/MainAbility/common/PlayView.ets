@@ -102,6 +102,7 @@ export struct PlayView {
         Image(this.isPlay ? $r('app.media.pause') : $r('app.media.play'))
           .objectFit(ImageFit.Contain)
           .size({ width: 70, height: 70 })
+          .key('playItem')
       }
       .type(ButtonType.Circle)
       .size({ width: 70, height: 70 })

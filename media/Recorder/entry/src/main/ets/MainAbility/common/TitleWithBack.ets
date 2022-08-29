@@ -27,6 +27,7 @@ export struct TitleBar {
         .onClick(() => {
           router.back()
         })
+        .key('titleBack')
       Text(this.title)
         .fontColor(Color.Black)
         .fontSize(25)

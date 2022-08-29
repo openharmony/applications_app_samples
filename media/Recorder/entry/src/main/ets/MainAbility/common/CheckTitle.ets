@@ -26,6 +26,7 @@ export struct CheckTitle {
         .onClick(() => {
           this.checkState = false
         })
+        .key('close')
       Text(this.num > 0 ? $r('app.string.check_title_selected') : $r('app.string.check_title_unselected'))
         .fontColor(Color.Black)
         .fontSize(25)
