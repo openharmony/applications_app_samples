@@ -76,6 +76,7 @@ export struct ShowInfo {
       Text($r('app.string.info'))
         .margin(10)
         .fontSize(20)
+        .key('deviceInfo')
 
       Column() {
         this.infoText($r('app.string.id'), this.screenInfo('id'))
