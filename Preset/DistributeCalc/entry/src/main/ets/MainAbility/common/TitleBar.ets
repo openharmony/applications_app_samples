@@ -135,6 +135,7 @@ export struct TitleBar {
   build() {
     Row() {
       Image($r("app.media.ic_back"))
+        .key('back')
         .height('60%')
         .margin({ left: 32 })
         .width(this.isLand ? '5%' : '8%')
@@ -144,6 +145,7 @@ export struct TitleBar {
         })
       Blank().layoutWeight(1)
       Image($r("app.media.ic_hop"))
+        .key('hop')
         .height('60%')
         .margin({ right: 32 })
         .width(this.isLand ? '5%' : '8%')
