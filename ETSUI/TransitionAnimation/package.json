@@ -1,7 +1,7 @@
 {
   "license": "ISC",
   "devDependencies": {},
-  "name": "transitionanimtation",
+  "name": "transitionanimation",
   "ohos": {
     "org": "huawei",
     "directoryLevel": "project",

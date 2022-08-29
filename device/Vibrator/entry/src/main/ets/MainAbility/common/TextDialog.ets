@@ -36,6 +36,7 @@ export struct TextDialog {
           Text($r('app.string.yes'))
             .fontSize(30)
         }
+        .key('confirmDialog')
         .backgroundColor(Color.White)
         .margin({ top: 20, right: 40, bottom: 20 })
         .onClick(() => {

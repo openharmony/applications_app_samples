@@ -27,6 +27,7 @@ export struct SmallAnimation {
       .width('20%')
       .height('20%')
       .objectFit(ImageFit.Contain)
+      .key('smallImg')
       .translate(this.mainFlag ? { x: this.point.x, y: this.point.y } : { x: 0, y: 0 })
       .rotate({ x: 0, y: 0, z: 1, angle: this.item.clicked ? 360 : 90 })
       .scale(this.item.clicked ? { x: 1.25, y: 1.25 } : { x: 1, y: 1 })

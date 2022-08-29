@@ -55,6 +55,7 @@ export struct PinDialog {
         Checkbox({ name: 'checkbox' })
           .select(false)
           .selectedColor('#ff3d6fb8')
+          .key('checkBox')
         Text($r('app.string.grant_permission'))
           .fontSize(15)
           .margin({ left: 3, top: 6 })
