@@ -34,6 +34,7 @@ export struct Goods {
         Image($r('app.media.buycart')).width(20).height(20)
         Text($r("app.string.insertCart")).fontSize(18).margin({ left: 3 })
       }.margin({ top: 3 })
+      .key('add'+ this.good.name)
       .backgroundColor(this.background)
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {

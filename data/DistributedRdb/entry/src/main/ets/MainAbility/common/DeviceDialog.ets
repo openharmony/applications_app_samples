@@ -63,6 +63,7 @@ export struct DeviceDialog {
           .textAlign(TextAlign.Center)
           .fontSize(20)
       }
+      .key('cancelBtn')
       .type(ButtonType.Capsule)
       .backgroundColor(Color.White)
       .onClick(() => {

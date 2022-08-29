@@ -54,6 +54,7 @@ export struct ContactItem {
           })
       }
     }
+    .key('contact')
     .width('100%')
     .padding(16)
     .backgroundColor(Color.White)

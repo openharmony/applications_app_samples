@@ -108,6 +108,7 @@ struct Index {
           .fontColor(Color.White)
           .fontWeight(FontWeight.Bold)
         Image($r('app.media.change'))
+          .key('changeBtn')
           .height(30)
           .layoutWeight(1)
           .objectFit(ImageFit.ScaleDown)
