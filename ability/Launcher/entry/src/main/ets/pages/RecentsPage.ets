@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import RecentsLayout from '../../../../../recents/src/main/ets/default/layout/RecentsLayout'
+import { RecentsLayout } from '@ohos/recents'
 
 @Entry
 @Component

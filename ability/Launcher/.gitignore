@@ -1,10 +1,9 @@
 /node_modules
 /local.properties
 /.idea
-**/build
 /.hvigor
-/build-profile.json5
 /package-lock.json
-**/build-profile.json5
+**/build
+**/.preview
 **/package-lock.json
 **/node_modules

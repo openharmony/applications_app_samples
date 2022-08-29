@@ -1,76 +1,44 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
+      "name": "entry_desc",
       "value": "图片处理"
     },
     {
-      "name": "description_mainability",
-      "value": "获取本地图片与图片信息，对图片进行旋转操作并保存"
+      "name": "MainAbility_desc",
+      "value": "图片处理"
     },
     {
-      "name": "back",
-      "value": "返回"
+      "name": "MainAbility_label",
+      "value": "图片处理"
     },
     {
-      "name": "more",
-      "value": "细节"
+      "name": "publish_comments",
+      "value": "发表评价"
     },
     {
-      "name": "width",
-      "value": "宽度: "
+      "name": "submit",
+      "value": "提交"
     },
     {
-      "name": "height",
-      "value": "高度: "
+      "name": "commodity_comment",
+      "value": "商品评价"
     },
     {
-      "name": "bytes",
-      "value": "字节数: "
+      "name": "tip",
+      "value": "      符合评价规则，评价超过10个字即可获得桔豆"
     },
     {
-      "name": "storage",
-      "value": "是否保存至本地"
+      "name": "anonymous_display",
+      "value": "您的评价内容在商品评价页面将会被匿名展示。"
     },
     {
-      "name": "cancel",
-      "value": "取消"
+      "name": "add_picture",
+      "value": "添加图片/照片"
     },
     {
-      "name": "confirm",
-      "value": "确认"
-    },
-    {
-      "name": "rotate",
-      "value": "旋转"
-    },
-    {
-      "name": "rotate_single",
-      "value": "旋转角度"
-    },
-    {
-      "name": "save",
-      "value": "保存"
-    },
-    {
-      "name": "name",
-      "value": "名称"
-    },
-    {
-      "name": "size",
-      "value": "大小"
-    },
-    {
-      "name": "resolution",
-      "value": "分辨率"
-    },
-    {
-      "name": "path",
-      "value": "路径"
-    },
-    {
-      "name": "close",
-      "value": "关闭"
+      "name": "media_read_permission",
+      "value": "允许应用读取用户外部存储中的媒体文件信息"
     }
   ]
 }

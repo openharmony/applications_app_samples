@@ -16,7 +16,7 @@
 /**
  * Indicates form info
  */
-export default class CardItemInfo {
+export class CardItemInfo {
   /**
    * Indicates form id
    */

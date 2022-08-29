@@ -13,32 +13,45 @@
  * limitations under the License.
  */
 
-import { UiDriver } from '@ohos.uitest'
-import { describe, it, expect } from '@ohos/hypium'
-import Logger from '../../../main/ets/data/Logger'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
+import featureAbility from '@ohos.ability.featureAbility'
+import hilog from '@ohos.hilog'
 
-const TAG: string = 'AppTest'
+const TAG = '[Sample_GalleryForm]'
+const DOMAIN = 0xF811
+const BUNDLE = 'GalleryForm_'
 
-export default function AppTest() {
+export default function appTest() {
   describe('appTest', function () {
-    it('testClick_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
       let want = {
-        bundleName: 'ohos.samples.sportshealthfa',
-        abilityName: 'MainAbility'
+        bundleName: "ohos.samples.galleryform",
+        abilityName: "MainAbility"
       }
       await globalThis.abilityContext.startAbility(want, (err, data) => {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
       })
     })
 
-    it('testClick_002', 0, async function () {
-      Logger.info(TAG, 'SampleTest begin')
-
+    /**
+      * 点击允许按钮
+      */
+    it(BUNDLE + 'GalleryFunction_001', 0, async function () {
+      //  create UiDriver
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GalleryFunction_001 begin')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
-
-      Logger.info(TAG, 'SampleTest end')
+      // click permission
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GalleryAddFunction_001 enter')
+      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
+      let btnEnter = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await btnEnter.click()
+      await driver.delayMs(1000)
     })
   })
 }

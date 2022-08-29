@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-export default {
+class CheckEmptyUtilsModel {
 
   /**
    * Check obj is empty.
@@ -23,7 +23,7 @@ export default {
    */
   isEmpty(obj: any): boolean {
     return (typeof obj === 'undefined' || obj == null || obj === '')
-  },
+  }
 
   /**
    * Check str is empty.
@@ -33,7 +33,7 @@ export default {
    */
   checkStrIsEmpty(str: string): boolean {
     return str == undefined || str == null || str.trim().length == 0
-  },
+  }
 
   /**
    * Check array is empty.
@@ -45,3 +45,5 @@ export default {
     return arr == undefined || arr == null || arr.length == 0
   }
 }
+
+export let CheckEmptyUtils = new CheckEmptyUtilsModel()

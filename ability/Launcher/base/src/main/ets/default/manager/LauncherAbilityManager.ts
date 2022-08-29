@@ -16,19 +16,19 @@
 import bundleMgr from '@ohos.bundle'
 import launcherBundleMgr from '@ohos.bundle.innerBundleManager'
 import osAccount from '@ohos.account.osAccount'
-import AppItemInfo from '../bean/AppItemInfo'
-import CheckEmptyUtils from '../utils/CheckEmptyUtils'
-import CommonConstants from '../constants/CommonConstants'
-import EventConstants from '../constants/EventConstants'
-import Logger from '../utils/Logger'
-import ResourceManager from './ResourceManager'
+import { AppItemInfo } from '../bean/AppItemInfo'
+import { CheckEmptyUtils } from '../utils/CheckEmptyUtils'
+import { CommonConstants } from '../constants/CommonConstants'
+import { EventConstants } from '../constants/EventConstants'
+import { ResourceManager } from './ResourceManager'
+import { Logger } from '../utils/Logger'
 
 const TAG: string = 'LauncherAbilityManager'
 
 /**
  * Wrapper class for innerBundleManager and formManager interfaces.
  */
-export default class LauncherAbilityManager {
+export class LauncherAbilityManager {
   private static readonly BUNDLE_STATUS_CHANGE_KEY = 'BundleStatusChange'
   private readonly mAppMap = new Map<string, AppItemInfo>()
   private mResourceManager: ResourceManager = undefined

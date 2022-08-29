@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import CheckEmptyUtils from '../utils/CheckEmptyUtils'
-import ResourceManager from '../manager/ResourceManager'
-import GridLayoutItemInfo from '../bean/GridLayoutItemInfo'
+import { CheckEmptyUtils } from '../utils/CheckEmptyUtils'
+import { ResourceManager } from '../manager/ResourceManager'
+import { GridLayoutItemInfo } from '../bean/GridLayoutItemInfo'
 
 @CustomDialog
-export default struct DeleteDialog {
+export struct DeleteDialog {
   private appInfo: GridLayoutItemInfo = new GridLayoutItemInfo()
   private dialogContent: string = ''
   private controller: CustomDialogController

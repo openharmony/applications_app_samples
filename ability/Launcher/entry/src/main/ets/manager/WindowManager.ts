@@ -17,8 +17,7 @@ import display from '@ohos.display'
 import CommonEvent from '@ohos.commonEvent'
 import Window from '@ohos.window'
 import prompt from '@ohos.prompt'
-import EventConstants from '../../../../../base/src/main/ets/default/constants/EventConstants'
-import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
+import { EventConstants,Logger } from '@ohos/base'
 
 const TAG: string = 'WindowManager'
 

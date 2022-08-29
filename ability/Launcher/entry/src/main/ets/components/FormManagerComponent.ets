@@ -14,11 +14,9 @@
  */
 
 import router from '@ohos.router'
-import CheckEmptyUtils from '../../../../../base/src/main/ets/default/utils/CheckEmptyUtils'
-import CommonConstants from '../../../../../base/src/main/ets/default/constants/CommonConstants'
-import DesktopLayoutModel from '../../../../../desktop/src/main/ets/default/model/DesktopLayoutModel'
-import FormModel from '../../../../../base/src/main/ets/default/model/FormModel'
-import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
+import { CheckEmptyUtils,CommonConstants,FormModel,Logger } from '@ohos/base'
+import { DesktopLayoutModel } from '@ohos/desktop'
+
 
 const TAG: string = 'FormManagerComponent'
 

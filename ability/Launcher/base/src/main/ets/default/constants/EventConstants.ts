@@ -16,7 +16,7 @@
 /**
  * Constants of events that will be registered to system.
  */
-const EventConstants = {
+export const EventConstants = {
   EVENT_PACKAGE_ADDED: 'usual.event.PACKAGE_ADDED',
   EVENT_PACKAGE_REMOVED: 'usual.event.PACKAGE_REMOVED',
   EVENT_BADGE_UPDATE: 'launcher.event.EVENT_BADGE_UPDATE',
@@ -25,5 +25,3 @@ const EventConstants = {
   EVENT_CLEAR_RECENTS: 'launcher.event.EVENT_CLEAR_RECENTS',
   EVENT_ENTER_FROM_MANAGER: 'launcher.event.EVENT_ENTER_FROM_MANAGER'
 }
-
-export default EventConstants

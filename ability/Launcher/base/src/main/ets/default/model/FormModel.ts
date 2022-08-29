@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import CardItemInfo from '../bean/CardItemInfo'
-import FormManager from '../manager/FormManager'
-import Logger from '../utils/Logger'
+import { CardItemInfo } from '../bean/CardItemInfo'
+import { FormManager } from '../manager/FormManager'
+import { Logger } from '../utils/Logger'
 
 const TAG: string = 'FormModel'
 
 /**
  * form model.
  */
-class FormModel {
+class FormDataModel {
   private readonly mAppItemFormInfoMap = new Map<string, CardItemInfo[]>()
 
   /**
@@ -97,4 +97,4 @@ class FormModel {
   }
 }
 
-export default new FormModel()
+export let FormModel =  new FormDataModel()

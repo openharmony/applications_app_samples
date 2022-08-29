@@ -15,9 +15,8 @@
 
 import missionManager from '@ohos.application.missionManager'
 import image from '@ohos.multimedia.image'
-import LauncherAbilityManager from '../../../../../../base/src/main/ets/default/manager/LauncherAbilityManager'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
 import MissionInfo from '../bean/MisssionInfo'
+import { LauncherAbilityManager, Logger } from '@ohos/base'
 
 const NUMMAX: number = 20
 const TAG: string = 'MissionModel'

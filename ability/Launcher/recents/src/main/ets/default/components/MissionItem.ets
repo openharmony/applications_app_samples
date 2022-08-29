@@ -15,12 +15,10 @@
 
 import image from '@ohos.multimedia.image'
 import CommonEvent from '@ohos.commonEvent'
-import EventConstants from '../../../../../../base/src/main/ets/default/constants/EventConstants'
-import LauncherAbilityManager from '../../../../../../base/src/main/ets/default/manager/LauncherAbilityManager'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
 import MissionInfo from '../bean/MisssionInfo'
 import MissionModel from '../model/MissionModel'
-import ResourceManager from '../../../../../../base/src/main/ets/default/manager/ResourceManager'
+import { EventConstants, LauncherAbilityManager, Logger, ResourceManager } from '@ohos/base'
+
 
 const TAG: string = 'MissionItem'
 const MISSION_OPERATE = {

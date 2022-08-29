@@ -42,6 +42,7 @@ struct Index {
               this.flag = !this.flag
               this.textColor === '#ffffff' ? this.clockColor = '#ff000000' : this.clockColor = '#ffffff'
             })
+          .key('imgLight')
 
           TextClock()
             .margin(10)

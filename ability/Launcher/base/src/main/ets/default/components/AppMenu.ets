@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import MenuInfo from '../bean/MenuInfo'
+import { MenuInfo } from '../bean/MenuInfo'
 
 @Component
-export default struct AppMenu {
+export struct AppMenu {
   private menuInfos: Array<MenuInfo> = new Array<MenuInfo>()
 
   build() {
