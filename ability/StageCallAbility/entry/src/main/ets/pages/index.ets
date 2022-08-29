@@ -146,6 +146,7 @@ struct Index {
         }, item => JSON.stringify(item))
 
         TextArea({ placeholder: $r('app.string.Input_Placeholder') })
+          .key('inputMessage')
           .fontSize(12)
           .width('35%')
           .constraintSize({ minHeight: 40 })
