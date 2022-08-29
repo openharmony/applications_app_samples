@@ -45,7 +45,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "com.example.entry",
+    "package": "ohos.samples.deviceusage",
     "srcPath": "",
     "name": ".entry",
     "js": [

@@ -43,6 +43,7 @@ export struct Decrypt {
           })
 
         TextArea()
+	  .key('decryptInput')
           .margin(6)
           .width('60%')
           .onChange((value: string) => {
@@ -55,6 +56,7 @@ export struct Decrypt {
             .margin(10)
             .width('30%')
             .height('6%')
+            .key('decryptBtn')
             .onClick(() => {
               if (this.message === '') {
                 prompt.showToast({
@@ -80,6 +82,7 @@ export struct Decrypt {
             .margin(10)
             .width('30%')
             .height('6%')
+            .key('resetBtn')
             .onClick(() => {
               this.info = ''
             })

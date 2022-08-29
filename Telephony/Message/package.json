@@ -1,7 +1,7 @@
 {
   "license": "ISC",
   "devDependencies": {},
-  "name": "etsmessage",
+  "name": "message",
   "ohos": {
     "org": "huawei",
     "directoryLevel": "project",

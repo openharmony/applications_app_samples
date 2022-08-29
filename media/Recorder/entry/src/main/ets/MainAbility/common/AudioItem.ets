@@ -85,6 +85,7 @@ export struct AudioItem {
               .size({ width: 20, height: 20 })
               .objectFit(ImageFit.Contain)
               .margin({ left: 5 })
+              .key('checked')
           } else {
             Image($r('app.media.ic_about'))
               .size({ width: 20, height: 20 })

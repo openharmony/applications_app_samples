@@ -36,6 +36,7 @@ export struct RenameDialog {
         .onChange((value: string) => {
           this.newName = value
         })
+        .key('renameInput')
       Row() {
         Button() {
           Text($r('app.string.sure'))

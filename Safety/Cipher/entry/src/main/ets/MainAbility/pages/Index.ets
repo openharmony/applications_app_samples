@@ -35,6 +35,7 @@ struct Index {
       Stack({ alignContent: Alignment.Center }) {
         Column() {
           Button($r('app.string.encryption'))
+	    .key('encryption')
             .margin(10)
             .fontSize(20)
             .width('40%')
@@ -49,6 +50,7 @@ struct Index {
             })
 
           Button($r('app.string.decrypt'))
+	    .key('decrypt')
             .margin(10)
             .fontSize(20)
             .width('40%')
