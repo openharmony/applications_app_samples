@@ -70,6 +70,7 @@ export struct TextTimerComponent {
       Row() {
         Text(this.textStr)
           .fontSize(35)
+          .key('textTime')
       }
       .margin({ bottom: 80 })
       .onClick(() => {
@@ -81,6 +82,7 @@ export struct TextTimerComponent {
         .fontSize(30)
         .margin({ top: 20 })
         .backgroundColor('#0D9FFB')
+        .key('start')
         .onClick(() => {
           this.timerId = setInterval(() => {
             Logger.info(TAG, `countdown hours: ${this.hours}, minutes: ${this.minutes}, seconds: ${this.seconds}`)
@@ -119,6 +121,7 @@ export struct TextTimerComponent {
         .fontSize(30)
         .margin({ top: 40 })
         .backgroundColor('#0D9FFB')
+        .key('reset')
         .onClick(() => {
           this.progressValue = 0
           this.textStr = '00:00:00'

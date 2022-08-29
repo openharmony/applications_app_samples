@@ -92,6 +92,7 @@ export struct TimerPicker {
       Row() {
         Text($r('app.string.yes'))
           .fontSize(20)
+          .key('confirm')
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {
@@ -105,6 +106,7 @@ export struct TimerPicker {
 
         Text($r('app.string.no'))
           .fontSize(20)
+          .key('cancel')
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {

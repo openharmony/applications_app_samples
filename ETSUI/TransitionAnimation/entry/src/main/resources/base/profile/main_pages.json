@@ -6,7 +6,6 @@
     "pages/page/CustomTransition2",
     "pages/ComponentTransition",
     "pages/share/SharePage",
-    "pages/share/ShareItem",
-    "pages/Home"
+    "pages/share/ShareItem"
   ]
 }
