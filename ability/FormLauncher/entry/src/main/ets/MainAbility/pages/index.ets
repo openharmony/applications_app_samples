@@ -63,6 +63,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
+        .key('castTempFormBtn')
         .type(ButtonType.Capsule)
         .margin({
           top: 20
@@ -85,6 +86,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
+        .key('updateFormBtn')
         .type(ButtonType.Capsule)
         .margin({
           top: 20
@@ -107,6 +109,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
+        .key('deleteFormBtn')
         .type(ButtonType.Capsule)
         .margin({
           top: 20
