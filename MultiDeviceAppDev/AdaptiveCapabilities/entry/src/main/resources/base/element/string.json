@@ -97,6 +97,34 @@
       "value": "Indentation layout"
     },
     {
+      "name": "header",
+      "value": "header"
+    },
+    {
+      "name": "banner",
+      "value": "banner"
+    },
+    {
+      "name": "operationEntries",
+      "value": "operation entries"
+    },
+    {
+      "name": "tabs",
+      "value": "tabs layout"
+    },
+    {
+      "name": "bigImage",
+      "value": "big image"
+    },
+    {
+      "name": "multiLaneList",
+      "value": "multi lane list"
+    },
+    {
+      "name": "grid",
+      "value": "grid layout"
+    },
+    {
       "name": "user_improvement",
       "value": "User Experience Improvement Program"
     },

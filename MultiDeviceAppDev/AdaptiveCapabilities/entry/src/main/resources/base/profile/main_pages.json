@@ -14,10 +14,17 @@
     "pages/resourceQualifier/ResourceQualifier",
     "pages/responsiveLayout/gridContainer/GridContainerSample",
     "pages/responsiveLayout/ResponsiveLayoutIndex",
-    "pages/responsiveLayout/typicalScene/indentation/IndentationSample",
-    "pages/responsiveLayout/typicalScene/TypicalSceneIndex",
     "pages/responsiveLayout/mediaQuery/MediaQuerySample",
-    "pages/responsiveLayout/typicalScene/diversion/DiversionSample",
-    "pages/responsiveLayout/typicalScene/repeat/RepeatSample"
+    "pages/typicalScene/TypicalSceneIndex",
+    "pages/typicalScene/indentation/IndentationSample",
+    "pages/typicalScene/diversion/DiversionSample",
+    "pages/typicalScene/repeat/RepeatSample",
+    "pages/typicalScene/header/HeaderSample",
+    "pages/typicalScene/banner/BannerSample",
+    "pages/typicalScene/operationEntries/OperationEntriesSample",
+    "pages/typicalScene/tabs/TabsSample",
+    "pages/typicalScene/multiLaneList/MultiLaneListSample",
+    "pages/typicalScene/responsiveGrid/ResponsiveGridSample",
+    "pages/typicalScene/bigImage/BigImageSample"
   ]
 }

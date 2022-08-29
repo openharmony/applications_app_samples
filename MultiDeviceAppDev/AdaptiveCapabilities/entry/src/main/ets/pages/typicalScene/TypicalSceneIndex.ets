@@ -15,12 +15,17 @@
 import router from '@ohos.router'
 
 const typicalScene = [
-  { title: $r('app.string.diversion_layout'), uri: "pages/responsiveLayout/typicalScene/diversion/DiversionSample" },
-  { title: $r('app.string.repeat_layout'), uri: "pages/responsiveLayout/typicalScene/repeat/RepeatSample" },
-  {
-    title: $r('app.string.indentation_layout'),
-    uri: "pages/responsiveLayout/typicalScene/indentation/IndentationSample"
-  },
+  { title: $r('app.string.diversion_layout'), uri: "pages/typicalScene/diversion/DiversionSample" },
+  { title: $r('app.string.repeat_layout'), uri: "pages/typicalScene/repeat/RepeatSample" },
+  { title: $r('app.string.indentation_layout'),
+    uri: "pages/typicalScene/indentation/IndentationSample" },
+  { title: $r('app.string.header'), uri: "pages/typicalScene/header/HeaderSample" },
+  { title: $r('app.string.banner'), uri: "pages/typicalScene/banner/BannerSample" },
+  { title: $r('app.string.operationEntries'), uri: "pages/typicalScene/operationEntries/OperationEntriesSample" },
+  { title: $r('app.string.tabs'), uri: "pages/typicalScene/tabs/TabsSample" },
+  { title: $r('app.string.bigImage'), uri: "pages/typicalScene/bigImage/BigImageSample" },
+  { title: $r('app.string.multiLaneList'), uri: "pages/typicalScene/multiLaneList/MultiLaneListSample" },
+  { title: $r('app.string.grid'), uri: "pages/typicalScene/responsiveGrid/ResponsiveGridSample" },
 ]
 
 @Entry

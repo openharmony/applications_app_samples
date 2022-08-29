@@ -17,7 +17,6 @@ import router from '@ohos.router'
 const responsiveLayout = [
   { title: $r('app.string.media_query'), uri: "pages/responsiveLayout/mediaQuery/MediaQuerySample" },
   { title: $r('app.string.grid_layout'), uri: "pages/responsiveLayout/gridContainer/GridContainerSample" },
-  { title: $r('app.string.typical_scenario'), uri: "pages/responsiveLayout/typicalScene/TypicalSceneIndex" },
 ]
 
 @Entry
