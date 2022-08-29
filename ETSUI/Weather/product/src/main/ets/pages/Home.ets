@@ -14,8 +14,8 @@
  */
 
 import mediaquery from '@ohos.mediaquery'
-import HomeContent from './home/homecontent'
-import IndexTitleBar from './home/indextitlebar'
+import HomeContent from './home/HomeContent'
+import IndexTitleBar from './home/IndexTitleBar'
 import Logger from '../util/Logger'
 import SideContent from './home/SideContent'
 import { CityListData, getCityListWeatherData } from '@ohos/common'
