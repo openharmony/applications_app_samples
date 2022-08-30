@@ -13,53 +13,117 @@
  * limitations under the License.
  */
 
-export const Apps: Array<{
+const Apps: Array<{
   img: Resource,
-  bundleName: string,
-  abilityName: string,
+  info: string,
   name: Resource
 }> =
   [
     {
       img: $r('app.media.camera'),
-      bundleName: 'com.ohos.camera',
-      abilityName: 'com.ohos.camera.MainAbility',
+      info: 'camera',
       name: $r('app.string.camera')
     },
     {
       img: $r('app.media.gallery'),
-      bundleName: 'com.ohos.photos',
-      abilityName: 'com.ohos.photos.MainAbility',
+      info: 'photos',
       name: $r('app.string.gallery')
     },
     {
       img: $r('app.media.contact'),
-      bundleName: 'com.ohos.contacts',
-      abilityName: 'com.ohos.contacts.MainAbility',
+      info: 'contact',
       name: $r('app.string.contacts')
     },
     {
       img: $r('app.media.messages'),
-      bundleName: 'com.ohos.mms',
-      abilityName: 'com.ohos.mms.MainAbility',
+      info: 'mms',
       name: $r('app.string.message')
     },
     {
-      img: $r('app.media.falshlight'),
-      bundleName: 'ohos.samples.flashlight',
-      abilityName: 'ohos.samples.flashlight.default',
-      name: $r('app.string.flash')
-    },
-    {
-      img: $r('app.media.airquality'),
-      bundleName: 'ohos.samples.airquality',
-      abilityName: 'ohos.samples.airquality.default',
-      name: $r('app.string.air')
-    },
-    {
       img: $r('app.media.clock'),
-      bundleName: 'ohos.samples.clock',
-      abilityName: 'ohos.samples.clock.default',
+      info: 'clock',
       name: $r('app.string.clock')
     }
   ]
+
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount() {
+    return 0
+  }
+
+  public getData(index: number) {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload() {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number) {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+export class MyDataSource extends BasicDataSource {
+  private dataArray: any[] = Apps
+
+  public totalCount() {
+    return this.dataArray.length
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number) {
+    this.dataArray.splice(index, 0)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(index: number) {
+    this.dataArray.push()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  public deleteData() {
+    this.dataArray.pop()
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+}

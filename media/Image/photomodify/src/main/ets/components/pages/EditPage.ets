@@ -15,7 +15,6 @@
 
 import router from '@ohos.router'
 import image from '@ohos.multimedia.image'
-import mediaQuery from '@ohos.mediaquery'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { logger } from '../util/Logger'
 
@@ -47,14 +46,7 @@ export struct EditPage {
   @State selectIndex: number = 0
   @State isLand: boolean = false
   private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this))
-  private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
-  onLand = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.isLand = true
-    } else {
-      this.isLand = false
-    }
-  }
+
 
   flushPage() {
     this.tempPixelMap = this.pixelMap
@@ -136,8 +128,10 @@ export struct EditPage {
 
   async aboutToAppear() {
     logger.info(TAG, `enter aboutToAppear uris = ${JSON.stringify(router.getParams()['mediaUris'])}`)
-    this.listener.on('change', this.onLand)
     this.pixelMaps = []
+    if(router.getParams() && router.getParams()['isLand']){
+      this.isLand = router.getParams()['isLand']
+    }
     for (let i = 0; i < this.mediaUris.length; i++) {
       let pixelMap = await this.getPixelMap(this.mediaUris[i])
       logger.info(TAG, `this.pixelMap = ${JSON.stringify(this.pixelMap)}`)

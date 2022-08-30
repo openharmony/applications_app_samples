@@ -1,25 +1,35 @@
 # 拉起系统应用示例
 
-### 简介
+### 介绍
 
-本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。效果图如下：
+本示例选择想要拉起的应用，点击相应图标拉起应用。
+
+本示例使用[LazyForeach](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-rending-control-syntax-lazyforeach.md)从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
+
+本示例使用[FeatureAbility模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-featureAbility.md)，通过应用的bundleName名与Ability名，拉起系统应用。
+
+使用说明：
+
+选择想要拉起的应用，点击相应图标拉起应用。
+
+### 效果预览
 
 ![](screenshots/device/main.png)
-
-### 相关概念
-
-FeatureAbility模块：FeatureAbility模块提供带有UI设计与用户交互的能力，包括启动新的ability、获取dataAbilityHelper、设置此Page Ability、获取当前Ability对应的窗口，连接服务等。
 
 ### 相关权限
 
 不涉及。
 
-### 使用说明
+### 相关依赖
 
-选择想要拉起的应用，点击相应图标拉起应用。
+不涉及。
 
 ### 约束与限制
 
-1.本示例仅支持在标准系统上运行。
+1.本示例仅支持标准系统上运行，支持设备：支持RK3568。
 
-2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+2.本示例仅支持API8版本SDK，版本号：3.1.7.5。
+
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+4.本示例使用的innerBundleManager为系统接口，需要使用Full SDK手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。

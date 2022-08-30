@@ -54,7 +54,7 @@ struct Detail {
   }
 
   formatNumber(data) {
-    return data * 20
+    return data * 5
   }
 
   build() {

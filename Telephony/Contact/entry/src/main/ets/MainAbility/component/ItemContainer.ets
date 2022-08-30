@@ -14,15 +14,14 @@
  */
 
 import router from '@ohos.router'
-import { ItemContainerSource } from "../model/DataSource"
+import contact from '@ohos.contact'
 
 @Component
 export struct ItemContainer {
-  @State selected: number = 0
+  @Link selected: number
   @State routerItem: number = 0
   @State letter: string = ''
-  private contacts: ItemContainerSource = new ItemContainerSource([])
-  private scroller: Scroller = new Scroller()
+  private contacts: contact.Contact[] = []
   private alphabetical: string[] =
     [
       'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -30,72 +29,50 @@ export struct ItemContainer {
     ]
 
   build() {
-    Stack({ alignContent: Alignment.End }) {
-      Column() {
-        List({ space: 4, initialIndex: this.routerItem }) {
-          LazyForEach(this.contacts, (item, index) => {
-            ListItem() {
-              Column() {
-                if (index === 0) {
+    Column() {
+      List({ space: 4, initialIndex: this.routerItem }) {
+        ForEach(this.contacts, (item, index) => {
+          ListItem() {
+            Column() {
+              if (index === 0) {
+                this.container(item.name.fullName.substr(0, 1).toUpperCase())
+              }
+              else {
+                if (item.name.fullName.substr(0, 1) !== this.contacts[index - 1].name.fullName.substr(0, 1)) {
                   this.container(item.name.fullName.substr(0, 1).toUpperCase())
                 }
-                else {
-                  if (item.name.fullName.substr(0, 1) !== this.contacts['contactData'][index - 1].name.fullName.substr(0, 1)) {
-                    this.container(item.name.fullName.substr(0, 1).toUpperCase())
-                  }
-                }
-                Row() {
-                  Image($r('app.media.head'))
-                    .width(52)
-                    .height(52)
-                    .borderRadius(90)
-                    .margin({ left: 32 })
+              }
+              Row() {
+                Image($r('app.media.head'))
+                  .width(52)
+                  .height(52)
+                  .borderRadius(90)
+                  .margin({ left: 32 })
 
-                  Text(item.name.fullName)
-                    .fontSize(20)
-                    .margin({ left: 22 })
-                }
-                .width('100%')
-                .borderRadius(15)
-                .onClick(() => {
-                  router.push({
-                    url: 'pages/NameCard',
-                    params: { data: item }
-                  })
-                })
+                Text(item.name.fullName)
+                  .fontSize(20)
+                  .margin({ left: 22 })
               }
               .width('100%')
+              .borderRadius(15)
+              .onClick(() => {
+                router.push({
+                  url: 'pages/NameCard',
+                  params: { data: item }
+                })
+              })
             }
-          }, item => item.toString())
-        }
-        .width('100%')
-        .height('50%')
-        .onScrollIndex((startIndex: number, lastIndex: number) => {
-          // 更新选中的字母索引
-          this.letter = this.contacts['contactData'][startIndex].name.fullName.substr(0, 1)
-            .toUpperCase()
-          this.selected = this.alphabetical.indexOf(this.letter)
-        })
+            .width('100%')
+          }
+        }, item => item.toString())
       }
       .width('100%')
-      .height('100%')
-
-      Column() {
-        AlphabetIndexer({ arrayValue: this.alphabetical, selected: this.selected })
-          .itemSize(18)
-          .font({ size: 14 })
-          .borderRadius(25)
-          .usingPopup(false)
-          .selectedColor('#007DFF')
-          .margin({ left: 2, right: 4, top: 4 })
-          .alignStyle(IndexerAlign.Right)
-          .selectedFont({ size: 14, weight: FontWeight.Bolder })
-          .onSelect((selected: number) => {
-            // 跳转到指定索引位置
-            this.scroller.scrollToIndex(selected)
-          })
-      }
-      .margin({ right: 16 })
+      .height('45%')
+      .onScrollIndex((startIndex: number, lastIndex: number) => {
+        // 更新选中的字母索引
+        this.letter = this.contacts[startIndex].name.fullName.substr(0, 1).toUpperCase()
+        this.selected = this.alphabetical.indexOf(this.letter)
+      })
     }
     .width('100%')
     .height('100%')

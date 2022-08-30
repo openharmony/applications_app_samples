@@ -74,17 +74,12 @@ export default struct HomeContent {
     .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
     .scrollBar(BarState.Off)
     .onScroll(() => {
+      this.headerOpacity = 1 - (this.scroller.currentOffset().yOffset - 45) / 100
       if (this.scroller.currentOffset().yOffset > 45) {
         this.titleText[this.index] = this.cityListData.header.city
         AppStorage.SetOrCreate('titleText', this.titleText)
-        if (this.headerOpacity > 0) {
-          this.headerOpacity = this.headerOpacity - 0.1
-        }
       } else if (this.scroller.currentOffset().yOffset < 45) {
         this.titleText[this.index] = ''
-        if (this.headerOpacity < 1) {
-          this.headerOpacity = this.headerOpacity + 0.2
-        }
         AppStorage.SetOrCreate('titleText', this.titleText)
       }
     })

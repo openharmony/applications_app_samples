@@ -15,7 +15,6 @@
 
 import fileio from '@ohos.fileio'
 import router from '@ohos.router'
-import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import featureAbility from '@ohos.ability.featureAbility'
 import Logger from '../data/Logger'
@@ -43,7 +42,6 @@ export struct Setting {
       .width('100%')
 
       Column() {
-
         Button($r('app.string.add_contact'))
           .margin(10)
           .width('48%')
