@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { logger } from '../../../../../../updatedialog/src/main/ets/components/util/Logger'
+import  logger  from '../../../../../../updatedialog/src/main/ets/components/util/Logger'
 
 const TAG: string = 'Index'
 
