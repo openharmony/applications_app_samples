@@ -33,6 +33,8 @@ struct Index {
       PlayListHeader()
       // 歌单
       MusicContent()
+        .flexGrow(1)
+        .flexShrink(1)
       // 播放器
       MusicBar()
     }

@@ -24,6 +24,68 @@ export default struct PlayList {
   @Consume('margin') listCoverMargin: number
   @Consume('coverHeight') PlayListCoverHeight: number
 
+  @Builder
+  playAll() {
+    Row() {
+      Row() {
+        Image($r('app.media.ic_detail_play_all')).height(23).width(23)
+        Text($r('app.string.play_all'))
+          .maxLines(1)
+          .fontWeight(400)
+          .padding({ left: 10 })
+          .fontColor('#000000')
+          .fontSize(this.fontSize)
+      }.width('70%')
+
+      Row() {
+        Image($r('app.media.ic_order_play'))
+          .width(24)
+          .height(24)
+          .margin({ right: 16 })
+        Image($r('app.media.ic_sort_list')).height(24).width(24)
+      }
+      .width('30%')
+      .justifyContent(FlexAlign.End)
+    }
+    .height(60)
+    .width('100%')
+    .borderRadius(20)
+    .justifyContent(FlexAlign.SpaceBetween)
+    .backgroundColor('#fff')
+    .position({ x: 0, y: 0 })
+    .padding({ left: '12vp', right: '12vp' })
+  }
+
+  @Builder
+  songItem(title: string, label: Resource, singer: string) {
+    Row() {
+      Column() {
+        Text(title)
+          .fontColor('#000000')
+          .fontSize(this.fontSize)
+          .margin({ bottom: 4 })
+        Row() {
+          Image(label)
+            .width(16)
+            .height(16)
+            .margin({ right: 4 })
+          Text(singer)
+            .opacity(0.38)
+            .fontColor('#000000')
+            .fontSize(this.fontSize - 4)
+        }
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Start)
+
+      Blank()
+      Image($r('app.media.ic_list_more')).height(24).width(24)
+    }
+    .height(60)
+    .width('100%')
+    .alignItems(VerticalAlign.Center)
+  }
+
   build() {
     Stack() {
       Row()
@@ -40,34 +102,7 @@ export default struct PlayList {
         .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
 
       // 播放全部
-      Row() {
-        Row() {
-          Image($r('app.media.ic_detail_play_all')).height(23).width(23)
-          Text($r('app.string.play_all'))
-            .maxLines(1)
-            .fontWeight(400)
-            .padding({ left: 10 })
-            .fontColor('#000000')
-            .fontSize(this.fontSize)
-        }.width('70%')
-
-        Row() {
-          Image($r('app.media.ic_order_play'))
-            .width(24)
-            .height(24)
-            .margin({ right: 16 })
-          Image($r('app.media.ic_sort_list')).height(24).width(24)
-        }
-        .width('30%')
-        .justifyContent(FlexAlign.End)
-      }
-      .height(60)
-      .width('100%')
-      .borderRadius(20)
-      .justifyContent(FlexAlign.SpaceBetween)
-      .backgroundColor('#fff')
-      .position({ x: 0, y: 0 })
-      .padding({ left: '12vp', right: '12vp' })
+      this.playAll()
 
       Scroll() {
         // 歌曲列表
@@ -75,34 +110,7 @@ export default struct PlayList {
           LazyForEach(new MyDataSource(songList), (item) => {
             ListItem() {
               Column() {
-                Row() {
-                  Column() {
-                    Text(item.title)
-                      .fontColor('#000000')
-                      .fontSize(this.fontSize)
-                      .margin({ bottom: 4 })
-                    Row() {
-                      Image(item.label)
-                        .width(16)
-                        .height(16)
-                        .margin({ right: 4 })
-                      Text(item.singer)
-                        .opacity(0.38)
-                        .fontColor('#000000')
-                        .fontSize(this.fontSize - 4)
-                    }
-                  }
-                  .justifyContent(FlexAlign.Center)
-                  .alignItems(HorizontalAlign.Start)
-
-                  Blank()
-                  Image($r('app.media.ic_list_more')).height(24).width(24)
-                }
-
-                .height(60)
-                .width('100%')
-                .alignItems(VerticalAlign.Center)
-
+                this.songItem(item.title, item.label, item.singer)
                 Divider()
                   .strokeWidth(0.5)
                   .color('#000')

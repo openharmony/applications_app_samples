@@ -20,10 +20,7 @@ export default struct PlayListHeader {
   @Consume('margin') listCoverMargin: number
 
   build() {
-    GridRow({
-      columns: 12,
-      breakpoints: { value: ['320vp', '520vp', '840vp'], reference: BreakpointsReference.WindowSize }
-    }) {
+    GridRow({ columns: 12 }) {
       GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
         Row() {
           Image($r('app.media.ic_back'))

@@ -22,10 +22,7 @@ export default struct MusicContent {
   @Provide('coverHeight') PlayListCoverHeight: number = 0
 
   build() {
-    GridRow({
-      columns: 12,
-      breakpoints: { value: ['320vp', '520vp', '840vp'], reference: BreakpointsReference.WindowSize }
-    }) {
+    GridRow({ columns: 12}) {
       // 歌单信息
       GridCol({ span: { sm: 12, md: 6, lg: 4 } }) {
         PlayListCover()
@@ -34,7 +31,6 @@ export default struct MusicContent {
           })
       }
       .backgroundColor('#e4ecf7')
-      .height(this.currentBreakPoint === 'sm' ? null : '100%')
       // 歌单列表
       GridCol({ span: { sm: 12, md: 6, lg: 8 } }) {
         PlayList()
@@ -42,8 +38,6 @@ export default struct MusicContent {
       .borderRadius(40)
       .backgroundColor('#ffffff')
     }
-    .flexGrow(1)
-    .flexShrink(1)
     .height('100%')
   }
 }

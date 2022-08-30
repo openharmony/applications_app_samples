@@ -26,10 +26,7 @@ export default struct PlayListCover {
 
   build() {
     Column() {
-      GridRow({
-        columns: 12,
-        breakpoints: { value: ['320vp', '520vp', '840vp'], reference: BreakpointsReference.WindowSize }
-      }) {
+      GridRow({ columns: 12 }) {
         // 歌单图片
         GridCol({ span: { sm: 4, md: 10, lg: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
           Row() {
@@ -42,7 +39,7 @@ export default struct PlayListCover {
                   this.coverImgHeight = newArea.height as number
                 })
               // 收藏人数
-              Text('12.5万')
+              Text($r('app.string.collection_num'))
                 .letterSpacing(1)
                 .fontColor('#fff')
                 .fontSize(this.fontSize - 4)

@@ -22,7 +22,7 @@ const songList = [
   { id: 6, title: '我是UOUYGBJ', singer: '我是小树', label: $r('app.media.ic_SQ') },
   { id: 7, title: '好好学习', singer: '全村最帅', label: $r('app.media.ic_SQ') },
   { id: 8, title: '安心安心', singer: '小安安', label: $r('app.media.ic_SQ') },
-  { id: 1, title: 'HBNJGHJHB', singer: '我是小树', label: $r('app.media.ic_SQ') },
+  { id: 9, title: 'HBNJGHJHB', singer: '我是小树', label: $r('app.media.ic_SQ') },
   { id: 10, title: '安心安心', singer: '小安安', label: $r('app.media.ic_SQ') },
   { id: 11, title: 'Notebook', singer: '小安安', label: $r('app.media.ic_SQ') },
   { id: 12, title: '不知道', singer: '小碗你好', label: $r('app.media.ic_vip') },
