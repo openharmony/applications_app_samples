@@ -14,7 +14,7 @@ Stage模型的设计基于如下三个出发点：
 
   OpenHarmony是原生支持分布式的操作系统，应用框架需要从架构设计上使得组件更易于实现迁移和协同。Stage模型通过Ability与UI分离及UI展示与服务能力合一等模型特性，实现这一设计目标。
 
-- **支持多设备和多窗口形态的特点
+- **支持多设备和多窗口形态的特点**
 
   为了支持多种设备形态和更易于实现多种不同的窗口形态，需要组件管理服务和窗口管理服务在架构层面上是解耦的，从而方便裁剪，更有利于定制不同的窗口形态。Stage模型通过重新定义了Ability生命周期定义和设计组件管理服务和窗口管理服务的单向依赖解决这一问题。
 
@@ -58,85 +58,86 @@ Stage模型的设计基于如下三个出发点：
 
 **FeatureAbility——>AbilityContext接口：**
 
-FeatureAbilityTest：getWant——>MainAbility：want
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWant——>MainAbility：want
 
-FeatureAbilityTest：startAbilityForResult——>AbilityContextController：startAbilityForResult
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：startAbilityForResult——>AbilityContextController：startAbilityForResult
 
-FeatureAbilityTest：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
 
-FeatureAbilityTest：terminateSelfWithResult——>AbilityContextController：terminateSelfWithResult
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：terminateSelfWithResult——>AbilityContextController：terminateSelfWithResult
 
-FeatureAbilityTest：hasWindowFocus——>Stage模型不支持
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：hasWindowFocus——>Stage模型不支持
 
-FeatureAbilityTest：terminateSelf——>AbilityContextController：terminateSelf
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：terminateSelf——>AbilityContextController：terminateSelf
 
-FeatureAbilityTest：getWindow——>WindowController：getTopWindow
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWindow——>WindowController：getTopWindow
 
-FeatureAbilityTest：startServiceAbility——>AbilityContextController：startAbility
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：startServiceAbility——>AbilityContextController：startAbility
 
-FeatureAbilityTest：connectService——>AbilityContextController：connectAbility
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：connectService——>AbilityContextController：connectAbility
 
-FeatureAbilityTest：disconnectService——>AbilityContextController：disconnectAbility
+[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：disconnectService——>AbilityContextController：disconnectAbility
 
 **context-->AbilityContext、Bundle、Window、abilityAccessCtrl接口：**
 
-AppContext：getOrCreateLocalDir——>BundleController：entryDir
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getOrCreateLocalDir——>BundleController：entryDir
 
-AppContext：verifyPermission——>AbilityAccessCtrlController：verifyAccessToken
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：verifyPermission——>AbilityAccessCtrlController：verifyAccessToken
 
-AppContext：requestPermissionsFromUser——>AbilityContextController：requestPermissionsFromUser
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：requestPermissionsFromUser——>AbilityContextController：requestPermissionsFromUser
 
-AppContext：getApplicationInfo——>BundleController：getApplicationInfo
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getApplicationInfo——>BundleController：getApplicationInfo
 
-AppContext：getBundleName——>AbilityContextPage：abilityInfo.bundleName（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getBundleName——>AbilityContextPage：abilityInfo.bundleName（属性）
 
-AppContext：getDisplayOrientation——>AbilityContextPage：config.direction（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getDisplayOrientation——>AbilityContextPage：config.direction（属性）
 
-AppContext：setDisplayOrientation——>WindowController：setPreferredOrientation
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setDisplayOrientation——>WindowController：setPreferredOrientation
 
-AppContext：setShowOnLockScreen——>MainAbility：setShowOnLockScreen
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setShowOnLockScreen——>MainAbility：setShowOnLockScreen
 
-AppContext：setWakeUpScreen——>WindowController：setWakeUpScreen
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setWakeUpScreen——>WindowController：setWakeUpScreen
 
-AppContext：getProcessInfo——>AbilityContextPage：abilityInfo.descriptionId；abilityInfo.name（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getProcessInfo——>AbilityContextPage：abilityInfo.descriptionId；abilityInfo.name（属性）
 
-AppContext：getElementName——>BundleController：getAbilityInfo
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getElementName——>BundleController：getAbilityInfo
 
-AppContext：getProcessName——>BundleController：process
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getProcessName——>BundleController：process
 
-AppContext：getCallingBundle——>want.parameters（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getCallingBundle——>want.parameters（属性）
 
-AppContext：getCacheDir——>AbilityContextPage：cacheDir（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getCacheDir——>AbilityContextPage：cacheDir（属性）
 
-AppContext：getFilesDir——>AbilityContextPage：filesDir（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getFilesDir——>AbilityContextPage：filesDir（属性）
 
-AppContext：getOrCreateDistributedDir——>AbilityContextPage：distributedFilesDir（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getOrCreateDistributedDir——>AbilityContextPage：distributedFilesDir（属性）
 
-AppContext：getAppType——>BundleController：entityType
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAppType——>BundleController：entityType
 
-AppContext：getHapModuleInfo——>AbilityContextPage：currentHapModuleInfo（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getHapModuleInfo——>AbilityContextPage：currentHapModuleInfo（属性）
 
-AppContext：getAppVersionInfo——>BundleController.getDispatcherVersion
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAppVersionInfo——>BundleController.getDispatcherVersion
 
-AppContext：getAbilityInfo——>AbilityContextPage：abilityInfo（属性）
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAbilityInfo——>AbilityContextPage：abilityInfo（属性）
 
-AppContext：getApplicationContext——>AbilityContextPage：getApplicationContext()
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getApplicationContext——>AbilityContextPage：getApplicationContext()
 
-AppContext：isUpdatingConfigurations——>Stage模型不支持
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：isUpdatingConfigurations——>Stage模型不支持
 
-AppContext：printDrawnCompleted——>Stage模型不支持
+[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：printDrawnCompleted——>Stage模型不支持
 
  **particleAbility ——>ServiceExtensionContext、dataShare接口：**
 
- ParticleAbilityTest ：startAbility——>ServiceExtContextController：startAbility
 
- ParticleAbilityTest ：connectAbility——>ServiceExtContextController：connectAbility
+ [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
 
- ParticleAbilityTest ：disconnectAbility——>ServiceExtContextController：disconnectAbility
+ [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
 
- ParticleAbilityTest ：terminateSelf——>ServiceExtContextController：terminateSelf
+ [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
 
- ParticleAbilityTest ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
+ [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
+
+ [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
 
 #### 使用说明：
 
@@ -150,27 +151,11 @@ AppContext：printDrawnCompleted——>Stage模型不支持
 
    点击返回键，返回首页。
 
-2.点击**AbilityContextPage**按钮，跳转到AbilityContext界面；
-
-   点击AbilityContext界面的相关按钮即可查看对应接口的相关功能；
-
-   点击返回键，返回首页。
-
-3.点击**ServiceExContextPage**按钮，跳转到ServiceExtensionAbility界面；
-
-   点击ServiceExtensionAbility界面的相关按钮即可查看对应接口的相关功能；
-
-  点击返回键，返回首页。
-
-4.点击**FormExContextPage**按钮，跳转到FormExContext界面；
-
-   点击FormExContext界面的相关按钮即可查看对应接口的相关功能；
-
-  点击返回键，返回首页。
+2.点击各个功能按钮测试各个接口。
 
 #### 效果预览：
 
-![](screenshots\device\stage_mode.png)
+![](./screenshots/device/stage_mode.png)
 
 ### 相关权限
 
@@ -178,12 +163,12 @@ AppContext：printDrawnCompleted——>Stage模型不支持
 
 ### 依赖 
 
-不涉及。
+FaModel升级StageModel，对应的FaModel参考[FaModel](../FaModel)。
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例需要使用 @ohos.i18n 系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+2.本示例需要使用 ServiceExtensionAbility、DataShareExtensionAbility等系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
 3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)版本进行编译。

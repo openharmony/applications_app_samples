@@ -20,7 +20,7 @@ import Logger from '../MainAbility/util/Logger'
 import { TABLE_NAME, STORE_CONFIG, SQL_CREATE_TABLE } from '../MainAbility/model/DaHelperConst'
 
 const TAG: string = 'data'
-let rdbStore = undefined
+let rdbStore: rdb.RdbStore = undefined
 // 对应stage模型中DataShareExtensionAbility.ts
 export default {
 
@@ -29,13 +29,13 @@ export default {
     Logger.info(TAG, 'DataAbility onInitialized start')
 
     // 初始化RDB数据库
-    rdb.getRdbStore(featureAbility.getContext(), STORE_CONFIG, 1, (err, rdb) => { // 1代表需要升级或降级的数据库版本号
+    rdb.getRdbStore(featureAbility.getContext(), STORE_CONFIG, 1, (err, data) => { // 1代表需要升级或降级的数据库版本号
       if (err) {
         Logger.info(TAG, `getRdbStore create table err = ${JSON.stringify(err)}`)
       }
       Logger.info(TAG, `getRdbStore create table done`)
-      rdb.executeSql(SQL_CREATE_TABLE)
-      rdbStore = rdb
+      data.executeSql(SQL_CREATE_TABLE)
+      rdbStore = data
       Logger.info(TAG, `create table end, rdbStore = ${rdbStore}`)
     })
     Logger.info(TAG, 'DataAbility onInitialized end')
