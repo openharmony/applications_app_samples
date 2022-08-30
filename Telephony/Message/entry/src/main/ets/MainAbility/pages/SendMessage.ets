@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -124,7 +125,6 @@ struct SendMessage {
         Image($r('app.media.back'))
           .width(150)
           .height(50)
-          .key('backImg')
           .margin({ left: 20 })
           .objectFit(ImageFit.Contain)
           .onClick(() => {
@@ -187,7 +187,6 @@ struct SendMessage {
 
       Row() {
         TextArea({ placeholder: $r('app.string.message'), text: this.content })
-          .key('smsInput')
           .placeholderColor('#92958C')
           .placeholderFont({ size: 20, weight: 100, family: 'cursive', style: FontStyle.Normal })
           .textAlign(TextAlign.Start)
@@ -203,7 +202,6 @@ struct SendMessage {
         Image($r('app.media.arrow'))
           .width(50)
           .height(50)
-          .key('smsArrow')
           .margin({ right: 10 })
           .objectFit(ImageFit.Contain)
           .onClick(() => {

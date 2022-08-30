@@ -40,6 +40,7 @@ struct QRCodePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
             TextInput({placeholder: '', text: this.temporary })
+              .key('QRCodeInput')
               .enterKeyType(EnterKeyType.Send)
               .placeholderFont({size:15})
               .height(40)

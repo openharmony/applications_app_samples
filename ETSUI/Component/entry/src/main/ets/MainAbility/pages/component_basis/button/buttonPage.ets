@@ -60,6 +60,7 @@ struct ButtonPage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             Button('true')
+              .key('btnTextTrue')
               .fontSize(15)
               .width(100)
               .margin({ right: 10 })
@@ -67,6 +68,7 @@ struct ButtonPage {
                 this.btnText = true
               })
             Button('false')
+              .key('btnTextFalse')
               .width(100)
               .fontSize(15)
               .onClick(() => {
@@ -89,6 +91,7 @@ struct ButtonPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               TextInput({ placeholder: '', text: this.temporary })
+                .key('labelInput')
                 .enterKeyType(EnterKeyType.Send)
                 .placeholderFont({ size: 15 })
                 .height(40)
@@ -105,7 +108,6 @@ struct ButtonPage {
             .margin({ top: 10, bottom: 5, right: 10 })
           }
         }
-
         Column() {
           Text('切换效果：')
             .fontSize(15)
@@ -116,6 +118,7 @@ struct ButtonPage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             Button('true')
+              .key('btnEffectTrue')
               .margin({ right: 10 })
               .fontSize(15)
               .width(100)
@@ -123,6 +126,7 @@ struct ButtonPage {
                 this.effect = true
               })
             Button('false')
+              .key('btnEffectFalse')
               .width(100)
               .fontSize(15)
               .onClick(() => {

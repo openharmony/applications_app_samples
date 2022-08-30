@@ -121,6 +121,7 @@ struct BadgeItemExample {
 
           GridItem() {
             TextInput({ placeholder: '', text: this.temporary })
+              .key('textInput')
               .enterKeyType(EnterKeyType.Send)
               .placeholderFont({ size: 12 })
               .height(40)
@@ -147,6 +148,7 @@ struct BadgeItemExample {
 
           GridItem() {
             Slider({ value: this.count, step: 1, min: -1, max: this.maxCount + 50 })
+              .key('countSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.count = Math.round(e)
@@ -166,6 +168,7 @@ struct BadgeItemExample {
 
           GridItem() {
             Slider({ value: this.maxCount, step: 1, min: -1, max: 1000 })
+              .key('maxCountSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.maxCount = Math.round(e)
@@ -191,6 +194,7 @@ struct BadgeItemExample {
 
           GridItem() {
             Slider({ value: this.fontSize, step: 1, min: 10, max: 15 })
+	      .key('fontSizeSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.fontSize = Math.round(e)
@@ -210,6 +214,7 @@ struct BadgeItemExample {
 
           GridItem() {
             Slider({ value: this.fontSize, step: 1, min: 23, max: 25 })
+	      .key('badgeSizeSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.badgeSize = Math.round(e)
@@ -252,6 +257,7 @@ struct BadgeItemExample {
           ForEach(this.num2, item => {
             GridItem() {
               Button(this.colorDescribe[`${item}`])
+                .key('color' + this.colorDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {
@@ -274,6 +280,7 @@ struct BadgeItemExample {
           ForEach(this.num2, item => {
             GridItem() {
               Button(this.colorDescribe[`${item}`])
+                .key('badgeColor' + this.colorDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {

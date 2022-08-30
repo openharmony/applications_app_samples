@@ -55,6 +55,7 @@ struct SpanPage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             TextInput({ placeholder: '', text: this.temporary })
+              .key('spanInput')
               .enterKeyType(EnterKeyType.Send)
               .placeholderFont({ size: 15 })
               .height(40)

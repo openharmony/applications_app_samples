@@ -74,6 +74,7 @@ struct menu_testcase {
                 .width('40%')
                 .height('40%')
             }
+            .key('menu2')
             .bindMenu([
               {
                 value: 'Menu1',

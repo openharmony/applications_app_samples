@@ -55,6 +55,7 @@ struct NavigatorPage {
 
           GridItem() {
             Button('目标页面1')
+              .key('navigatorDetail1')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -64,6 +65,7 @@ struct NavigatorPage {
 
           GridItem() {
             Button('目标页面2')
+              .key('navigatorDetail2')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -103,6 +105,7 @@ struct NavigatorPage {
 
           GridItem() {
             Button('true')
+              .key('true')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -112,6 +115,7 @@ struct NavigatorPage {
 
           GridItem() {
             Button('false')
+              .key('false')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -130,6 +134,7 @@ struct NavigatorPage {
 
           GridItem() {
             TextInput({ placeholder: '', text: this.temporary })
+              .key('navigatorInput')
               .enterKeyType(EnterKeyType.Send)
               .placeholderFont({ size: 15 })
               .height(40)

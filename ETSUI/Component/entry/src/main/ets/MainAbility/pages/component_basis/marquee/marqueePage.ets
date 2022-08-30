@@ -72,6 +72,7 @@ struct MarqueePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             TextInput({ placeholder: '', text: this.temporary })
+              .key('textInput')
               .enterKeyType(EnterKeyType.Send)
               .placeholderFont({ size: 15 })
               .height(40)
@@ -101,6 +102,7 @@ struct MarqueePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             Button('true')
+              .key('start')
               .margin({right:10})
               .fontSize(15)
               .width(90)
@@ -108,6 +110,7 @@ struct MarqueePage {
                 this.start = true
               })
             Button('false')
+              .key('stop')
               .margin({right:10})
               .fontSize(15)
               .width(90)
@@ -130,6 +133,7 @@ struct MarqueePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             Slider({ value: this.step, step: 1, min: 0, max: 100 })
+	            .key('stepSlider')
               .blockColor(Color.Orange)
               .height(40)
               .onChange((e) => {
@@ -150,6 +154,7 @@ struct MarqueePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             Slider({ value: this.loop, step: 1, min: 0, max: 15 })
+	            .key('loopSlider')
               .height(40)
               .blockColor(Color.Orange)
               .onChange((e) => {
@@ -170,6 +175,7 @@ struct MarqueePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start}) {
             Button('left')
+              .key('left')
               .fontSize(15)
               .margin({right:10})
               .width(90)
@@ -177,6 +183,7 @@ struct MarqueePage {
                 this.fromStart = true
               })
             Button('right')
+              .key('right')
               .margin({right:10})
               .fontSize(15)
               .width(90)

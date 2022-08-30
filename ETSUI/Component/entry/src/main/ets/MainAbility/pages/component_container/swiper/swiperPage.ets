@@ -86,6 +86,7 @@ struct SwiperPage {
 
           GridItem() {
             Slider({ value: this.itemSpace, step: 1, min: 1, max: 2 })
+              .key('indexSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -106,6 +107,7 @@ struct SwiperPage {
 
           GridItem() {
             Slider({ value: this.itemSpace, step: 1, min: -10, max: 50 })
+              .key('intervalSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -126,6 +128,7 @@ struct SwiperPage {
 
           GridItem() {
             Slider({ value: this.itemSpace, step: 1, min: -10, max: 50 })
+              .key('durationSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -146,6 +149,7 @@ struct SwiperPage {
 
           GridItem() {
             Slider({ value: this.itemSpace, step: 1, min: -10, max: 50 })
+              .key('itemSpaceSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -166,6 +170,7 @@ struct SwiperPage {
 
           GridItem() {
             Button(`${this.autoPlay}`)
+              .key('autoPlay')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -185,6 +190,7 @@ struct SwiperPage {
 
           GridItem() {
             Button(`${this.loop}`)
+              .key('loop')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -204,6 +210,7 @@ struct SwiperPage {
 
           GridItem() {
             Button(`${this.indicator}`)
+              .key('indicator')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -223,6 +230,7 @@ struct SwiperPage {
 
           GridItem() {
             Button(`${this.vertical}`)
+              .key('vertical')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -270,6 +278,7 @@ struct SwiperPage {
 
           GridItem() {
             Button('翻至下一页')
+              .key('showNext')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -279,6 +288,7 @@ struct SwiperPage {
 
           GridItem() {
             Button('翻至上一页')
+              .key('showPrevious')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
