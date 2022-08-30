@@ -81,6 +81,7 @@ export struct MediaItem {
             .size({ width: 40, height: 40 })
         }
       }
+      .key('rename')
       .size({ width: 50, height: 50 })
       .backgroundColor('#F5F5F5')
       .onClick(() => {
@@ -94,6 +95,7 @@ export struct MediaItem {
             .size({ width: 40, height: 40 })
         }
       }
+      .key('delete')
       .size({ width: 50, height: 50 })
       .margin({ left: 15, right: 10 })
       .backgroundColor('#F5F5F5')

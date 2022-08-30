@@ -205,6 +205,7 @@ struct Language {
               .fontSize(22).fontColor(Color.Gray)
             Blank()
             Text($r('app.string.edit'))
+              .key('edit')
               .fontSize(22).fontColor(Color.Blue)
               .onClick(() => {
                 router.push({

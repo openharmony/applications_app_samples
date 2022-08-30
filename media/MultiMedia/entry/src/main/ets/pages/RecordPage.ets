@@ -77,7 +77,7 @@ struct Record {
       Row() {
         Blank()
         Button({ type: ButtonType.Circle, stateEffect: true }) {
-          Rect({ width: 25, height: 25 }).fill(Color.Red).radius(5)
+          Rect({ width: 25, height: 25 }).fill(Color.Red).radius(5).key('end')
         }
         .size({ width: 75, height: 75 })
         .backgroundColor('#FFFFFF')
@@ -93,11 +93,12 @@ struct Record {
               Rect({ width: 5, height: 25 })
               Rect({ width: 5, height: 25 })
                 .margin({ left: 10 })
-            }.width(20).height(25)
+            }.width(20).height(25).key('stop')
           } else {
             Polyline({ width: 20, height: 25 })
               .points([[0, 0], [20, 12.5], [0, 25]])
               .margin({ left: 5 })
+              .key('start')
           }
         }
         .size({ width: 75, height: 75 })

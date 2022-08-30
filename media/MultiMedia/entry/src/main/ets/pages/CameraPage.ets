@@ -144,6 +144,7 @@ struct CameraPage {
             Image(this.getCameraIcon())
               .size({ width: 70, height: 70 })
               .margin({ left: 50 })
+              .key('photo')
               .onClick(() => {
                 if (this.curModel === CameraMode.MODE_PHOTO) {
                   Logger.info(this.tag, 'takePicture begin')
