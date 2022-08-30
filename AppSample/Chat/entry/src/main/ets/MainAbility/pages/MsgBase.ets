@@ -36,6 +36,7 @@ struct MsgBase {
 export class ChatModel {
   user: EMContact
   lastMsg: string;
+
   constructor(user: EMContact, lastMsg: string) {
     this.user = user
     this.lastMsg = lastMsg
@@ -54,6 +55,7 @@ export class MessageBase {
   msgBody: MessageBody
   msgType: number
   msgTime: number
+
   constructor(id: string, fo: EMContact, to: EMContact, msg: MessageBody, ty: number, time: number) {
     this.msgId = id
     this.fo = fo
@@ -111,6 +113,7 @@ export class EMContact {
   userId: string
   userName: string
   userImage: string
+
   toString(): string {
     return this.userId + "  " + this.userName + "  " + this.userImage
   }
@@ -131,6 +134,7 @@ export class FriendMoment {
   text: string
   time: string
   imageList: Array<string>
+
   constructor(id: string, user: EMContact, text: string, time: string, List?: Array<string>) {
     this.id = id
     this.user = user

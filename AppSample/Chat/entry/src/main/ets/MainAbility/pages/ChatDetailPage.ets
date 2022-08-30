@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 // @ts-nocheck
-import { BasicDataSource } from '../common/BasicDataSource';
-import { MessageBase, EMContact, MessageBody, TextMessage, ImageMessage } from './MsgBase';
-import router from '@ohos.router';
+import { BasicDataSource } from '../common/BasicDataSource'
+import { MessageBase, EMContact, MessageBody, TextMessage, ImageMessage } from './MsgBase'
+import router from '@ohos.router'
 
 @Entry
 @Component
@@ -24,7 +24,7 @@ struct ChatDetailPage {
   @State chatName: string = ''
   @State msgLength: number = 0
   user1 = new EMContact("1", "自己")
-  user2= new EMContact("2", "朋友1")
+  user2 = new EMContact("2", "朋友1")
   msg = new TextMessage("我是好友消息1")
   msg2 = new TextMessage("我是好友消息2")
   tdate = new Date()

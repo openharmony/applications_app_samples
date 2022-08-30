@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router';
-import { BasicDataSource } from '../common/BasicDataSource';
+import router from '@ohos.router'
+import { BasicDataSource } from '../common/BasicDataSource'
 import { EMContact } from './MsgBase'
 
 @Entry

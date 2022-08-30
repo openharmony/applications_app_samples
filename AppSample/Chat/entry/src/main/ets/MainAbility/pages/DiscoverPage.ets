@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router';
-import { SettingItemView } from './SettingPage';
+import router from '@ohos.router'
+import { SettingItemView } from './SettingPage'
 
 @Entry
 @Component

@@ -53,7 +53,7 @@
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.991, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 3.本示例涉及相关权限为system_core级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) 查看），
 需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)) 。
