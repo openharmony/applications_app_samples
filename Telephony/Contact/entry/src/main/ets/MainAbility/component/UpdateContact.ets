@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-import contact from '@ohos.contact'
-import resourceManager from '@ohos.resourceManager'
-
 @Component
 export struct UpdateContact {
   @Link name: string
@@ -25,25 +22,29 @@ export struct UpdateContact {
   @Link postalAddress: string
 
   build() {
-    Column() {
-      Image($r('app.media.touxiang'))
-        .width(76)
-        .height(74)
-        .margin({ top: 52 })
-        .objectFit(ImageFit.Contain)
+    Scroll() {
+      Column() {
+        Image($r('app.media.touxiang'))
+          .width(76)
+          .height(74)
+          .margin({ top: 52 })
+          .objectFit(ImageFit.Contain)
 
-      Text($r('app.string.save'))
-        .fontSize(22)
-        .margin({ top: 22, bottom: 32 })
+        Text($r('app.string.save'))
+          .fontSize(22)
+          .margin({ top: 22, bottom: 32 })
 
-      this.updateContact($r('app.string.name'), this.name, $r('app.media.name'))
-      this.updateContact($r('app.string.address'), this.postalAddress, $r('app.media.address'))
-      this.updateContact($r('app.string.phone'), this.phoneNumber, $r('app.media.email'))
-      this.updateContact($r('app.string.email'), this.email, $r('app.media.nickname'))
-      this.updateContact($r('app.string.note'), this.nickName, $r('app.media.phone'))
+        Column() {
+          this.updateContact($r('app.string.name'), this.name, $r('app.media.name'))
+          this.updateContact($r('app.string.address'), this.postalAddress, $r('app.media.address'))
+          this.updateContact($r('app.string.phone'), this.phoneNumber, $r('app.media.email'))
+          this.updateContact($r('app.string.email'), this.email, $r('app.media.nickname'))
+          this.updateContact($r('app.string.note'), this.nickName, $r('app.media.phone'))
+        }
+        .height('80%')
+      }
+      .width('100%')
     }
-    .width('100%')
-    .height('100%')
   }
 
   @Builder

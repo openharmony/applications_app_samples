@@ -1,6 +1,6 @@
 {
   "data": {
-    "jsonImage": "memory://image"
+    "jsonImage": "/common/poster.png"
   },
   "actions": {
     "routerEvent": {

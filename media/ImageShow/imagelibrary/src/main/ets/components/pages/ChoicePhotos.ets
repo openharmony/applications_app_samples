@@ -15,6 +15,7 @@
 
 import prompt from '@ohos.prompt'
 import router from '@ohos.router'
+import mediaQuery from '@ohos.mediaquery'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../data/Logger'
 
@@ -33,6 +34,15 @@ export struct ChoicePhotos {
   @State mediaUris: Array<string> = []
   @State isChoice: boolean = false
   @State nextText: string = ''
+  @State isLand: boolean = false
+  private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
+  onLand = (mediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.isLand = true
+    } else {
+      this.isLand = false
+    }
+  }
 
   choiceChange() {
     if (this.choiceMedias.length > 0) {
@@ -84,8 +94,21 @@ export struct ChoicePhotos {
     return await this.convertContext(getContext(this)).resourceManager.getString(resource)
   }
 
+  getMaxHeight() {
+    if (!this.isLand && this.isChoice) {
+      return { maxHeight: '65.9%' }
+    } else if (!this.isLand && !this.isChoice) {
+      return { maxHeight: '77%' }
+    } else if (this.isLand && this.isChoice) {
+      return { maxHeight: '60%' }
+    } else if (this.isLand && !this.isChoice) {
+      return { maxHeight: '71%' }
+    }
+  }
+
   async aboutToAppear() {
     Logger.info(TAG, `aboutToAppear`)
+    this.listener.on('change', this.onLand)
     this.nextText = await this.convertResourceToString($r('app.string.next'))
     this.getFileAssetsFromType(mediaLibrary.MediaType.IMAGE)
   }
@@ -223,7 +246,7 @@ export struct ChoicePhotos {
       }
       .margin({ top: 20 })
       .width('100%')
-      .constraintSize(this.isChoice === true ? { maxHeight: '66%' } : { maxHeight: '77%' })
+      .constraintSize(this.getMaxHeight())
       .backgroundColor('#fff5f3f3')
 
       if (this.isChoice) {

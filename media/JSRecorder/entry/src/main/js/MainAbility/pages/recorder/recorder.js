@@ -101,13 +101,13 @@ export default {
             if (this.isRecord) {
                 this.isRecord = false
                 logger.info(`${TAG} pause isRecord= ${this.isRecord}`)
-                this.mainData.dataTime = this.dataTime
-                logger.info(`${TAG} mainData = ${JSON.stringify(this.mainData)}`)
-                this.util.put(this.mainData)
-                logger.info(`${TAG} put end`)
-                this.millisecond = 0
-                router.back()
             }
+            this.mainData.dataTime = this.dataTime
+            logger.info(`${TAG} mainData = ${JSON.stringify(this.mainData)}`)
+            this.util.put(this.mainData)
+            logger.info(`${TAG} put end`)
+            this.millisecond = 0
+            router.back()
         })
         logger.info(`${TAG} back success`)
     },

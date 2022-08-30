@@ -15,6 +15,7 @@
 
 import prompt from '@ohos.prompt'
 import router from '@ohos.router'
+import mediaQuery from '@ohos.mediaquery'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { logger } from '../util/Logger'
 
@@ -32,7 +33,16 @@ export struct ChoicePhoto {
   @State mediaUris: Array<string> = []
   @State isChoice: boolean = false
   @State nextText: string = ''
+  @State isLand: boolean = false
   private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this))
+  private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
+  onLand = (mediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.isLand = true
+    } else {
+      this.isLand = false
+    }
+  }
 
   choiceChange() {
     if (this.choiceMedias.length > 0) {
@@ -88,8 +98,21 @@ export struct ChoicePhoto {
 
   async aboutToAppear() {
     logger.info(TAG, `aboutToAppear`)
+    this.listener.on('change', this.onLand)
     this.nextText = await this.convertResourceToString($r('app.string.next'))
     this.getFileAssetsFromType(mediaLibrary.MediaType.IMAGE)
+  }
+
+  getMaxHeight() {
+    if (!this.isLand && this.isChoice) {
+      return { maxHeight: '64%' }
+    } else if (!this.isLand && !this.isChoice) {
+      return { maxHeight: '75%' }
+    } else if (this.isLand && this.isChoice) {
+      return { maxHeight: '62%' }
+    } else if (this.isLand && !this.isChoice) {
+      return { maxHeight: '73%' }
+    }
   }
 
   build() {
@@ -131,7 +154,7 @@ export struct ChoicePhoto {
             })
             router.push({
               url: 'pages/EditPages',
-              params: { mediaUris: this.mediaUris }
+              params: { mediaUris: this.mediaUris, isLand: this.isLand }
 
             })
           })
@@ -228,7 +251,7 @@ export struct ChoicePhoto {
       }
       .margin({ top: 20 })
       .width('100%')
-      .constraintSize(this.isChoice === true ? { maxHeight: '64%' } : { maxHeight: '75.5%' })
+      .constraintSize(this.getMaxHeight())
       .backgroundColor('#fff5f3f3')
 
       if (this.isChoice) {

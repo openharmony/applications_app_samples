@@ -119,7 +119,7 @@ struct Index {
             })
           }
           .width('100%')
-          .height('90%')
+          .height(540)
           .sticky(Sticky.Normal)
         }
         .height('100%')

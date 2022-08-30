@@ -19,8 +19,18 @@ import { setting } from '@ohos/http'
 @Entry
 @Component
 struct Index {
-  @State url: string = <string> router.getParams()['url']
-  @State option: object = <object> router.getParams()['option']
+  @State url: string = ''
+  @State option: object = undefined
+
+  aboutToAppear() {
+    try {
+      this.url = <string> router.getParams()['url']
+      this.option = <object> router.getParams()['option']
+    } catch (err) {
+      this.url = ''
+      this.option = undefined
+    }
+  }
 
   build() {
     Column() {
