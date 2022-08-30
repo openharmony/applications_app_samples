@@ -87,6 +87,7 @@ export default struct IndexTitleBar {
         .fontSize(20)
         .fontColor(Color.White)
         .textAlign(TextAlign.Center)
+        .margin({ left: (!this.showSideBar && this.curBp === 'lg') ? 0 : 25 })
         .layoutWeight(1)
       Image($r('app.media.icon_more'))
         .size({ width: 24, height: 24 })

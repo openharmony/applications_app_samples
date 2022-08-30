@@ -41,6 +41,7 @@ struct Home {
       Column() {
         IndexTitleBar({ curBp: this.curBp, showSideBar: $showSideBar })
           .height(56)
+          .flexShrink(0)
 
         Swiper() {
           ForEach(this.cityListWeatherData, (item, index) => {
@@ -62,8 +63,6 @@ struct Home {
       }
       .backgroundImage($r('app.media.bg'))
       .backgroundImageSize(ImageSize.Cover)
-      .width('100%')
-      .height('100%')
     }
     .height('100%')
     .sideBarWidth('33.3%')
@@ -106,8 +105,10 @@ struct Home {
   }
   isBreakpointLG = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
+      if (this.curBp !== 'lg') {
+        this.showSideBar = true
+      }
       this.curBp = 'lg'
-      this.showSideBar = true
       AppStorage.SetOrCreate('curBp', this.curBp)
     }
     Logger.info(TAG, `this.curBp = ${this.curBp}`)
