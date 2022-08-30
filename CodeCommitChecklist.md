@@ -125,6 +125,8 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
 	6.4 高等级APL特殊签名说明，示例如下：
 
 		本示例涉及[相关权限]为system_basic(或者system_core)级别（相关权限级别可通过[权限定义列表]查看），需要配置高权限签名，可参考[特殊权限配置方法]；
+		
+[ReadMe模板链接](SampleReadTemplate.md)
 
 ## UI自动化用例编写规范<a name="section5"></a>
 
