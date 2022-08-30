@@ -99,6 +99,7 @@ function addCity(city: City) {
   let cities: City[] = AppStorage.Get('cityList')
   let cityIndex = cities.length % 5
   city.weather = weather[cityIndex].data[1].wea
+  city.temp = weather[cityIndex].data[1].tem
   cities.push(city)
   AppStorage.SetOrCreate('cityList', cities)
 }

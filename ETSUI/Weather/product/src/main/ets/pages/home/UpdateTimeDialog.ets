@@ -14,13 +14,13 @@
  */
 
 import Style from '../../util/Style'
-import { getUpdateTimes, MyDataSource } from '@ohos/common'
+import { getUpdateTimes } from '@ohos/common'
 
 @Preview
 @CustomDialog
 export default struct UpdateTimeDialog {
   private controller: CustomDialogController
-  private updateTimeResource: MyDataSource = new MyDataSource(getUpdateTimes())
+  private updateTimes: string[] = getUpdateTimes()
   private handleCancelDialog: () => void
   @StorageLink('curBp') curBp: string = 'md'
 
@@ -37,7 +37,7 @@ export default struct UpdateTimeDialog {
               .fontWeight(FontWeight.Medium)
               .margin({ top: 14 })
             List() {
-              LazyForEach(this.updateTimeResource, (item, index) => {
+              ForEach(this.updateTimes, (item, index) => {
                 ListItem() {
                   Row() {
                     Text(item)
