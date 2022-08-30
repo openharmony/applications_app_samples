@@ -122,6 +122,7 @@ struct FlexPage {
           ForEach(this.num3, item => {
             GridItem() {
               Button(this.flexAlignDescribe[`${item}`])
+                .key('flexAlign' + this.flexAlignDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {
@@ -144,6 +145,7 @@ struct FlexPage {
             ForEach(this.num3, item => {
               GridItem() {
                 Button(this.itemAlignDescribe[`${item}`])
+                  .key(this.itemAlignDescribe[`${item}`])
                   .fontSize(15)
                   .width('100%')
                   .onClick(() => {
@@ -168,6 +170,7 @@ struct FlexPage {
             ForEach(this.num3, item => {
               GridItem() {
                 Button(this.flexAlignDescribe[`${item}`])
+                  .key('alignContent' + this.flexAlignDescribe[`${item}`])
                   .fontSize(15)
                   .width('100%')
                   .onClick(() => {

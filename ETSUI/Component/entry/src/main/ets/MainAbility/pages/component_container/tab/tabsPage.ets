@@ -136,6 +136,7 @@ struct TabsPage {
 
           GridItem() {
             Slider({ value: this.changeIndex, step: 1, min: 1, max: 6 })
+              .key('controllerSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -157,6 +158,7 @@ struct TabsPage {
 
           GridItem() {
             Button(`${this.vertical}`)
+              .key('changeVertical')
               .fontSize(15)
               .width('80%')
               .onClick(() => {
@@ -176,6 +178,7 @@ struct TabsPage {
 
           GridItem() {
             Button(`${this.vertical}`)
+              .key('scrollable')
               .fontSize(15)
               .width('80%')
               .onClick(() => {
@@ -223,6 +226,7 @@ struct TabsPage {
 
           GridItem() {
             Slider({ value: this.changeIndex, step: 1, min: -10, max: 50 })
+              .key('barWidthSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -243,6 +247,7 @@ struct TabsPage {
 
           GridItem() {
             Slider({ value: this.changeIndex, step: 1, min: -10, max: 50 })
+              .key('barHeightSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)
@@ -263,6 +268,7 @@ struct TabsPage {
 
           GridItem() {
             Slider({ value: this.changeIndex, step: 1, min: -10, max: 50 })
+              .key('animationDuration')
               .blockColor(Color.Orange)
               .width('100%')
               .showSteps(true)

@@ -55,6 +55,7 @@ struct GaugePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
             Slider({ value: this.value, step: 1, min: -1, max: this.max })
+              .key('currentValueSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.value = Math.round(e)
@@ -74,6 +75,7 @@ struct GaugePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
             Slider({ value: this.min, step: 1, min: -10, max: 50 })
+              .key('minSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.min = Math.round(e)
@@ -93,6 +95,7 @@ struct GaugePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
             Slider({ value: this.max, step: 1, min: -1, max: 365 })
+              .key('maxSlider')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.max = Math.round(e)
@@ -112,6 +115,7 @@ struct GaugePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
             Slider({ value: this.startAngle, step: 1, min: -360, max: 360 })
+              .key('startAngle')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.startAngle = Math.round(e)
@@ -131,6 +135,7 @@ struct GaugePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
             Slider({ value: this.endAngle, step: 1, min: -36, max: 360 })
+              .key('endAngle')
               .blockColor(Color.Orange)
               .onChange((e) => {
                 this.endAngle = Math.round(e)

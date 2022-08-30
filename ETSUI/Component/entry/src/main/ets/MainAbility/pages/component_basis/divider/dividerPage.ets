@@ -47,6 +47,7 @@ struct DividerPage {
           .fontWeight(FontWeight.Bolder)
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
           Slider({ value: this.strokeWidth, step: 1, min: -10, max: 100 })
+            .key('strokeWidthSlider')
             .blockColor(Color.Orange)
             .onChange((e) => {
               this.strokeWidth = Math.round(e)

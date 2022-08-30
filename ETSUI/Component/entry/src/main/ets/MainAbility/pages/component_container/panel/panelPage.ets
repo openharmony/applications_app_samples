@@ -69,6 +69,7 @@ struct PanelPage {
 
           GridItem() {
             Button('true')
+              .key('showPanelTrue')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -78,6 +79,7 @@ struct PanelPage {
 
           GridItem() {
             Button('false')
+              .key('showPanelFalse')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -139,6 +141,7 @@ struct PanelPage {
 
           GridItem() {
             Button('true')
+              .key('dragBarTrue')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -148,6 +151,7 @@ struct PanelPage {
 
           GridItem() {
             Button('false')
+              .key('dragBarFalse')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
