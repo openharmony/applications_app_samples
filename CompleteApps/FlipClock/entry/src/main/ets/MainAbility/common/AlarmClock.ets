@@ -60,6 +60,7 @@ export struct AlarmClock {
         Text($r('app.string.alarmClock'))
           .fontSize('30vp')
         Text('+')
+          .key('add')
           .width('60%')
           .height('100%')
           .fontSize('50VP')

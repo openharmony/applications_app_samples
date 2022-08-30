@@ -443,6 +443,7 @@ struct Index {
                 }
               })
           }
+          .key('image' + (index + 1))
           .width(100)
           .height(100)
           .alignItems(HorizontalAlign.Center)
