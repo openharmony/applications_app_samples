@@ -65,6 +65,7 @@ export struct CustomDatePicker {
 
       Row() {
         Button($r('app.string.yes'))
+          .key('yes')
           .fontSize('20')
           .fontColor(Color.Blue)
           .layoutWeight(1)

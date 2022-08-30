@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
-import { logger } from '../../../../../../photomodify/src/main/ets/components/util/Logger'
-
-const TAG: string = 'Index'
+import router from '@ohos.router'
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-
   aboutToAppear() {
-    logger.info(TAG, `TestAbility index aboutToAppear`)
+    console.info('TestAbility index aboutToAppear')
   }
+
+  @State message: string = 'Hello World'
 
   build() {
     Row() {
@@ -38,7 +36,9 @@ struct Index {
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
-        .margin({ top: 20 })
+        .margin({
+          top: 20
+        })
         .backgroundColor('#0D9FFB')
         .width('35%')
         .height('5%')
