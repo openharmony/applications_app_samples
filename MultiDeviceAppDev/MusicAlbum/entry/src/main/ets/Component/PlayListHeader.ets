@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@Component
+export default struct PlayListHeader {
+  @Consume('font') fontSize: number
+  @Consume('breakPoint') currentBreakPoint: string
+  @Consume('margin') listCoverMargin: number
+
+  build() {
+    GridRow({
+      columns: 12,
+      breakpoints: { value: ['320vp', '520vp', '840vp'], reference: BreakpointsReference.WindowSize }
+    }) {
+      GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
+        Row() {
+          Image($r('app.media.ic_back'))
+            .width('20vp')
+            .height('20vp')
+            .margin({ left: 16 })
+          Text($r('app.string.play_list'))
+            .fontSize(this.fontSize + 4)
+            .fontWeight(500)
+            .fontColor('#556B89')
+            .opacity(0.9)
+            .letterSpacing(2)
+            .padding({ left: 10 })
+        }
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#e4ecf7')
+      }
+
+      GridCol({ span: { sm: 6, md: 6, lg: 8 } }) {
+        Row() {
+          Image($r('app.media.ic_add'))
+            .width('20vp')
+            .height('20vp')
+            .margin({ right: 16 })
+        }
+        .width('100%')
+        .height('100%')
+        .justifyContent(FlexAlign.End)
+        .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
+      }
+    }
+    .height(50)
+    .width('100%')
+    .flexShrink(0)
+    .onBreakpointChange((currentBreakpoint) => {
+      this.currentBreakPoint = currentBreakpoint
+      if (currentBreakpoint === 'sm') {
+        this.fontSize = 14
+        this.listCoverMargin = 10
+      }
+      if (currentBreakpoint === 'md') {
+        this.fontSize = 16
+        this.listCoverMargin = 30
+      }
+      if (currentBreakpoint === 'lg') {
+        this.fontSize = 18
+        this.listCoverMargin = 40
+      }
+    })
+  }
+}
