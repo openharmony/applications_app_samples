@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-import { ImageGallery } from '../common/ImageGallery'
+import router from '@ohos.router'
+import image from '@ohos.multimedia.image'
+import { logger } from '@ohos/photomodify'
 
 const TAG: string = 'Index'
 

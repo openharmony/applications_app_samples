@@ -2,7 +2,7 @@
   "src": [
     "pages/Index",
     "pages/Wlan",
-    "pages/BlueTooth",
+    "pages/Bluetooth",
     "pages/MobileData"
   ]
 }
