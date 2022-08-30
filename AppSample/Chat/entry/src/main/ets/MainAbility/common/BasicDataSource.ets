@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 import fileio from "@ohos.fileio"
-import { MessageBase, EMContact, ChatModel, TextMessage, ImageMessage } from '../pages/MsgBase';
-import dataRdb from '@ohos.data.rdb';
-import ability_featureAbility from '@ohos.ability.featureAbility';
+import { MessageBase, EMContact, ChatModel, TextMessage, ImageMessage } from '../pages/MsgBase'
+import dataRdb from '@ohos.data.rdb'
+import ability_featureAbility from '@ohos.ability.featureAbility'
 
 @Entry
 @Component

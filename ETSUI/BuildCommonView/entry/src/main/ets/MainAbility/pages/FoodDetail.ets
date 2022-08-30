@@ -31,7 +31,7 @@ struct FoodImageDisplay {
 
 @Component
 struct ContentTable {
-  @Builder IngredientItem(title:string, name: string, value: string) {
+  @Builder IngredientItem(title: string, name: string, value: string) {
     Row() {
       Text(title)
         .fontSize(17.4)

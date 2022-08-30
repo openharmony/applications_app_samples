@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BasicDataSource } from '../common/BasicDataSource';
-import router from '@ohos.router';
+import { BasicDataSource } from '../common/BasicDataSource'
+import router from '@ohos.router'
 import { EMContact, MessageBase, FriendMoment } from './MsgBase'
 
 @Entry
 @Component
 struct FriendsMomentsPage {
-  @State itemLength: number = 0;
+  @State itemLength: number = 0
   private momentData = new FriendMomentsData()
   private id: string
   private imageList = [$r('app.media.personality1'), $r('app.media.personality1'), $r('app.media.personality1'), $r('app.media.personality1')]
@@ -102,7 +102,7 @@ struct FriendsMomentsPage {
   makeDataLocal() {
     for (let i = 0;i < 100; i++) {
       let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-      let mo = new FriendMoment(i.toString(), new EMContact(i.toString(), `朋友${i.toString()}`, imageStr), `我是聊天社区消息${i.toString()}`);
+      let mo = new FriendMoment(i.toString(), new EMContact(i.toString(), `朋友${i.toString()}`, imageStr), `我是聊天社区消息${i.toString()}`)
       this.momentData.pushData(mo)
     }
   }
@@ -171,9 +171,9 @@ struct OneMoment {
 
 @Component
 struct MomentsImage {
-  private imageStr: string = $r('app.media.photo0');
+  private imageStr: string = $r('app.media.photo0')
   private imageStrId: number = 0
-  @State active: boolean = false;
+  @State active: boolean = false
 
   build() {
     Stack() {
