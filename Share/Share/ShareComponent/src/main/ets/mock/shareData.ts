@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { DialogDataModel } from "../model/shareModel"
+import { DialogDataModel } from "../model/ShareModel"
 
 export const dialogData: Array<DialogDataModel> = [
   {

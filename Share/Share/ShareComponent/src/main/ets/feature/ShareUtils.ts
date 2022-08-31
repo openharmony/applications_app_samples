@@ -18,8 +18,8 @@ import fileio from '@ohos.fileio'
 import screenshot from '@ohos.screenshot'
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import Logger from "../model/logger"
-import MediaUtils from '../feature/mediautils'
+import Logger from "../model/Logger"
+import MediaUtils from '../feature/MediaUtils'
 
 const TAG: string = "[Sample_ShareComponent]"
 let context: any = getContext(this)
@@ -96,7 +96,6 @@ class ShareUtils {
       }
       try {
         let readOut = await fileio.readSync(fdImg, buf, opt)
-        // let readOut = await fileio.readSync(fd, buf, opt)
         Logger.info(TAG, "y**, readOutBefore = " + JSON.stringify(readOut));
         Logger.info(TAG, "y**, buf = " + JSON.stringify(buf));
         let view = new Uint32Array(buf);
@@ -191,7 +190,6 @@ class ShareUtils {
       try {
         if (mediaList[i].displayName == fileAssetName) {
           let fileAsset = mediaList[i]
-          //          currentIndex = index
           fdNum = await fileAsset.open('Rw')
           Logger.info(TAG, `queryMedia:queryMedia---------fd  ${fdNum}`)
           break;

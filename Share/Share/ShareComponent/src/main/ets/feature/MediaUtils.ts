@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import Logger from '../model/logger'
+import Logger from '../model/Logger'
 
 const TAG: string = 'MediaUtils'
 
