@@ -28,7 +28,6 @@ export default struct MusicBar {
         Text('不知道')
           .fontColor('#000000')
           .fontSize(this.fontSize - 1)
-          .fontWeight(400)
         Row() {
           Image($r('app.media.ic_vip'))
             .height(16)
@@ -37,7 +36,6 @@ export default struct MusicBar {
           Text('小碗你好')
             .fontColor('#000000')
             .fontSize(this.fontSize - 4)
-            .fontWeight(400)
             .opacity(0.38)
         }
       }
@@ -62,6 +60,5 @@ export default struct MusicBar {
     .backgroundColor('#F6F9FC')
     .alignItems(VerticalAlign.Center)
     .padding({ left: 16, right: 16 })
-    .flexShrink(0)
   }
 }

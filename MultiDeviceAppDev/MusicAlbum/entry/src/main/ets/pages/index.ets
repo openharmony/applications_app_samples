@@ -30,13 +30,13 @@ struct Index {
   build() {
     Column() {
       // 头部
-      PlayListHeader()
+      PlayListHeader().flexShrink(0)
       // 歌单
       MusicContent()
         .flexGrow(1)
         .flexShrink(1)
       // 播放器
-      MusicBar()
+      MusicBar().flexShrink(0)
     }
     .width('100%')
     .height('100%')

@@ -28,7 +28,7 @@ export default struct PlayListCover {
     Column() {
       GridRow({ columns: 12 }) {
         // 歌单图片
-        GridCol({ span: { sm: 4, md: 10, lg: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
+        GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
           Row() {
             Stack() {
               Image($r('app.media.pic_album'))
@@ -51,7 +51,7 @@ export default struct PlayListCover {
           .aspectRatio(1)
         }
         // 歌单介绍
-        GridCol({ span: { sm: 8, md: 10, lg: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+        GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
           Column() {
             Row() {
               Text($r('app.string.list_name'))
@@ -79,9 +79,9 @@ export default struct PlayListCover {
           })
         }
         // 按钮
-        GridCol({ span: { sm: 12, md: 10, lg: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+        GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
           Row() {
-            LazyForEach(new MyOptionSource(optionList), (item) => {
+            LazyForEach(new MyOptionSource(optionList), item => {
               Row() {
                 Column({ space: 4 }) {
                   Image(item.image).height('30vp').width('30vp')

@@ -21,7 +21,7 @@ export default struct PlayListHeader {
 
   build() {
     GridRow({ columns: 12 }) {
-      GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
+      GridCol({ span: { sm: 6, lg: 4 } }) {
         Row() {
           Image($r('app.media.ic_back'))
             .width('20vp')
@@ -40,7 +40,7 @@ export default struct PlayListHeader {
         .backgroundColor('#e4ecf7')
       }
 
-      GridCol({ span: { sm: 6, md: 6, lg: 8 } }) {
+      GridCol({ span: { sm: 6, lg: 8 } }) {
         Row() {
           Image($r('app.media.ic_add'))
             .width('20vp')
@@ -55,7 +55,6 @@ export default struct PlayListHeader {
     }
     .height(50)
     .width('100%')
-    .flexShrink(0)
     .onBreakpointChange((currentBreakpoint) => {
       this.currentBreakPoint = currentBreakpoint
       if (currentBreakpoint === 'sm') {

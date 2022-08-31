@@ -24,9 +24,9 @@ export default class MyDataSource implements IDataSource {
   private dataArray: SongItem[] = []
   private listeners: DataChangeListener[] = []
 
-  constructor(ele: SongItem[]) {
-    for (let index = 0; index < ele.length; index++) {
-      this.dataArray.push(ele[index])
+  constructor(element: SongItem[]) {
+    for (let index = 0; index < element.length; index++) {
+      this.dataArray.push(element[index])
     }
   }
 

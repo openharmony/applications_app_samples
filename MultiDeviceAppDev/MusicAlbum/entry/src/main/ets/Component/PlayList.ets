@@ -31,11 +31,10 @@ export default struct PlayList {
         Image($r('app.media.ic_detail_play_all')).height(23).width(23)
         Text($r('app.string.play_all'))
           .maxLines(1)
-          .fontWeight(400)
           .padding({ left: 10 })
           .fontColor('#000000')
           .fontSize(this.fontSize)
-      }.width('70%')
+      }
 
       Row() {
         Image($r('app.media.ic_order_play'))
@@ -44,7 +43,6 @@ export default struct PlayList {
           .margin({ right: 16 })
         Image($r('app.media.ic_sort_list')).height(24).width(24)
       }
-      .width('30%')
       .justifyContent(FlexAlign.End)
     }
     .height(60)
@@ -107,7 +105,7 @@ export default struct PlayList {
       Scroll() {
         // 歌曲列表
         List() {
-          LazyForEach(new MyDataSource(songList), (item) => {
+          LazyForEach(new MyDataSource(songList), item => {
             ListItem() {
               Column() {
                 this.songItem(item.title, item.label, item.singer)
