@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaQuery from '@ohos.mediaquery'
 
 export default class BreakpointSystem {

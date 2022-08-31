@@ -37,12 +37,6 @@ export default class MainAbility extends Ability {
       }
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
     })
-
-    window.getTopWindow(this.context)
-      .then(windowObj => {
-        globalThis.windowObj = windowObj
-        windowObj.resetSize(vp2px(globalThis.abilityWant.parameters.size.width), vp2px(globalThis.abilityWant.parameters.size.height))
-      })
   }
 
   onWindowStageDestroy() {
