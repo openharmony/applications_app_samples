@@ -21,7 +21,7 @@ const TAG: string = 'BlueToothExtAbility'
 
 export default class BluetoothExtAbility extends WindowExtensionAbility {
   onWindowReady(window) {
-    window.loadContent('pages/BlueTooth').then(() => {
+    window.loadContent('pages/Bluetooth').then(() => {
       window.getProperties().then((pro) => {
         Logger.info(TAG, `BlueTooth WindowExtension ${JSON.parse(pro)}`)
       })
