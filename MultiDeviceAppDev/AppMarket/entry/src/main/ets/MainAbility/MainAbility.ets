@@ -14,7 +14,6 @@
  */
 
 import Ability from '@ohos.application.Ability'
-import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {

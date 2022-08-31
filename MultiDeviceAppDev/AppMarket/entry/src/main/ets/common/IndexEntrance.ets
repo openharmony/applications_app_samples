@@ -13,17 +13,15 @@
  * limitations under the License.
  */
 
-import { icons } from '../model/AppList'
-import { AllIcons, MyIconSource } from '../model/AllIcons'
+import { entranceIcons } from '../model/AppList'
+import { AllIcons } from '../model/AllIcons'
 
 @Component
 export default struct IndexEntrance {
-  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
-
   build() {
     Row() {
       Row() {
-        LazyForEach(new MyIconSource(icons), (icon: AllIcons) => {
+        ForEach(entranceIcons, (icon: AllIcons) => {
           Column() {
             Image(icon.image)
               .width(40)
@@ -34,7 +32,7 @@ export default struct IndexEntrance {
               .textAlign(TextAlign.Center)
               .fontWeight(400)
           }
-        }, (icon: AllIcons) => icon.title.toString())
+        })
       }
       .width('100%')
       .height(64)

@@ -36,47 +36,21 @@ export default struct TabBarItem {
   }
 
   build() {
-    if (this.currentBreakpoint === 'md') {
-      Row() {
-        Image(this.getIcon())
-          .width(24)
-          .height(24)
-          .margin({ bottom: 4 })
-        Row() {
-          Text(this.title)
-            .fontColor(this.getFontColor())
-            .height(14)
-            .fontSize(10)
-            .textAlign(TextAlign.Center)
-            .fontWeight(500)
-        }
-        .width(65.45)
-        .justifyContent(FlexAlign.Center)
-      }
-      .width(65.45)
-      .height('100%')
-      .justifyContent(FlexAlign.Center)
-      .alignItems(VerticalAlign.Center)
-    } else {
-      Column() {
-        Image(this.getIcon())
-          .width(24)
-          .height(24)
-          .margin({ bottom: 4 })
-        Row() {
-          Text(this.title)
-            .fontColor(this.getFontColor())
-            .height(14)
-            .fontSize(10)
-            .textAlign(TextAlign.Center)
-            .fontWeight(500)
-        }
-        .width(65.45)
-        .justifyContent(FlexAlign.Center)
-      }
-      .height('100%')
-      .justifyContent(FlexAlign.Center)
-      .alignItems(HorizontalAlign.Center)
+    Flex({ direction: this.currentBreakpoint === 'md' ? FlexDirection.Row : FlexDirection.Column,
+      justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Image(this.getIcon())
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
+        .objectFit(ImageFit.Contain)
+      Text(this.title)
+        .fontColor(this.getFontColor())
+        .width(this.currentBreakpoint === 'md' ? 60 : '100%')
+        .height(this.currentBreakpoint === 'md' ? '100%' : 14)
+        .fontSize(10)
+        .textAlign(TextAlign.Center)
+        .fontWeight(500)
     }
+    .height('100%')
   }
 }

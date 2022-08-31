@@ -15,41 +15,32 @@
 
 @Component
 export default struct IndexHeader {
-  controller: SearchController = new SearchController()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
   @Builder searchBar() {
-    Stack() {
-      Row() {
-        TextArea({ placeholder: $r('app.string.search') })
-          .placeholderColor('#FF000000')
-          .placeholderFont({ size: 16, weight: 400 })
-          .textAlign(TextAlign.Start)
-          .caretColor('#FF000000')
-          .width('100%')
-          .height(40)
-          .fontWeight(400)
-          .padding({ top: 9, bottom: 9 })
-          .fontSize(16)
-          .backgroundColor(Color.White)
-      }.width('100%').height('100%')
+    Stack({alignContent: Alignment.End}) {
+      TextArea({ placeholder: $r('app.string.search') })
+        .placeholderColor('#FF000000')
+        .placeholderFont({ size: 16, weight: 400 })
+        .textAlign(TextAlign.Start)
+        .caretColor('#FF000000')
+        .width('100%')
+        .height(40)
+        .fontWeight(400)
+        .padding({ top: 9, bottom: 9 })
+        .fontSize(16)
+        .backgroundColor(Color.White)
 
-      Row() {
-        Image($r('app.media.ic_public_search'))
-          .width(16)
-          .height(16)
-          .margin({ right: 20 })
-      }
-      .width('100%')
-      .height('100%')
-      .justifyContent(FlexAlign.End)
+      Image($r('app.media.ic_public_search'))
+        .width(16)
+        .height(16)
+        .margin({ right: 20 })
     }.height(56).width('100%')
   }
 
   @Builder titleBar() {
     Row() {
       Text($r('app.string.tabBar1'))
-        .width(48)
         .height(32)
         .fontSize(24)
         .fontWeight(500)
@@ -64,7 +55,6 @@ export default struct IndexHeader {
       GridCol({ span: { xs: 12, lg: 8 } }) {
         this.titleBar()
       }
-
       GridCol({ span: { xs: 12, lg: 4 } }) {
         this.searchBar()
       }

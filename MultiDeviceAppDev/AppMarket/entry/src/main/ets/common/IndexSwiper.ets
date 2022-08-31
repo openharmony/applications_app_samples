@@ -18,34 +18,25 @@ export default struct IndexSwiper {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
   @Builder swiperItem(imageSrc) {
-    Column() {
-      Image(imageSrc)
-        .width('100%')
-        .aspectRatio(2.5)
-        .objectFit(ImageFit.Fill)
-    }
-    .width('100%')
-    .alignItems(HorizontalAlign.Center)
+    Image(imageSrc)
+      .width('100%')
+      .aspectRatio(2.5)
+      .objectFit(ImageFit.Fill)
   }
 
   build() {
-    Row() {
-      Swiper() {
-        this.swiperItem($r('app.media.ic_public_swiper1'))
-        this.swiperItem($r('app.media.ic_public_swiper2'))
-        this.swiperItem($r('app.media.ic_public_swiper3'))
-        this.swiperItem($r('app.media.ic_public_swiper1'))
-        this.swiperItem($r('app.media.ic_public_swiper2'))
-        this.swiperItem($r('app.media.ic_public_swiper3'))
-      }
-      .cachedCount(3)
-      .autoPlay(true)
-      .interval(4000)
-      .indicator(false)
-      .duration(1000)
-      .itemSpace(10)
-      .displayCount(this.currentBreakpoint === 'sm' ? 1 : (this.currentBreakpoint === 'md' ? 2 : 3))
+    Swiper() {
+      this.swiperItem($r('app.media.ic_public_swiper1'))
+      this.swiperItem($r('app.media.ic_public_swiper2'))
+      this.swiperItem($r('app.media.ic_public_swiper3'))
+      this.swiperItem($r('app.media.ic_public_swiper1'))
+      this.swiperItem($r('app.media.ic_public_swiper2'))
+      this.swiperItem($r('app.media.ic_public_swiper3'))
     }
+    .autoPlay(true)
+    .indicator(false)
+    .itemSpace(10)
+    .displayCount(this.currentBreakpoint === 'sm' ? 1 : (this.currentBreakpoint === 'md' ? 2 : 3))
     .width('100%')
     .padding({ left: 12, right: 12, bottom: 16, top: 16 })
   }

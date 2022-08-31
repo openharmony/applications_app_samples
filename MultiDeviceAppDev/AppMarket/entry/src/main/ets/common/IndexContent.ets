@@ -27,19 +27,15 @@ export default struct IndexContent {
       ListItem() {
         IndexSwiper()
       }
-
       ListItem() {
         IndexEntrance()
       }
-
       ListItem() {
         IndexApps({ title: $r('app.string.boutique_application'), apps: appList })
       }
-
       ListItem() {
         IndexApps({ title: $r('app.string.boutique_game'), apps: gameList })
       }
-
       ListItem() {
         IndexApps({ title: $r('app.string.boutique_game'), apps: gameList })
       }

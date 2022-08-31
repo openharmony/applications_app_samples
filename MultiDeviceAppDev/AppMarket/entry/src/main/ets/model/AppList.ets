@@ -36,6 +36,7 @@ const appList = [
   { id: '19', title: $r('app.string.public_app9'), image: $r('app.media.ic_public_app9') },
   { id: '20', title: $r('app.string.public_app10'), image: $r('app.media.ic_public_app10') }
 ]
+
 const gameList = [
   { id: '21', title: $r('app.string.public_game1'), image: $r('app.media.ic_public_game1') },
   { id: '22', title: $r('app.string.public_game2'), image: $r('app.media.ic_public_game2') },
@@ -58,7 +59,8 @@ const gameList = [
   { id: '39', title: $r('app.string.public_game9'), image: $r('app.media.ic_public_game9') },
   { id: '40', title: $r('app.string.public_game10'), image: $r('app.media.ic_public_game10') }
 ]
-const icons = [
+
+const entranceIcons = [
   { title: $r('app.string.home_categories'), image: $r('app.media.ic_home_categories') },
   { title: $r('app.string.home_top'), image: $r('app.media.ic_home_top') },
   { title: $r('app.string.home_fast'), image: $r('app.media.ic_home_fast') },
@@ -66,5 +68,4 @@ const icons = [
   { title: $r('app.string.home_education'), image: $r('app.media.ic_home_education') },
 ]
 
-
-export { icons, appList, gameList }
+export { entranceIcons, appList, gameList }
