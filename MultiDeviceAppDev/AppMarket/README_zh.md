@@ -1,9 +1,9 @@
-## 多窗口适应能力
+## 应用市场首页
 
 ### 简介
 本示例展示了如何使用自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。
 
-![index](screenshots/Devices/index.png)
+![](screenshots/Devices/preview.png)
 
 ### 相关概念
 
@@ -21,7 +21,7 @@
 
 1.启动应用，可以查看本应用在全屏状态下的显示效果。
 
-![](screenshots/Devices/index.png)
+![](screenshots/Devices/img.png)
 
 2.在应用顶部，下滑出现窗口操作按钮。（建议通过外接鼠标操作，接入鼠标只需要将鼠标移动至顶部即可出现窗口）
 
@@ -31,9 +31,12 @@
 
 ![](screenshots/Devices/img3.png)
 
-4.拖动应用悬浮窗口的四个顶角，改变窗口尺寸，触发应用显示刷新。改变窗口尺寸的过程中，窗口尺寸可能超出屏幕尺寸，此时在屏幕中只能看到应用部分区域的显示。可以通过移动窗口位置，查看应用其它区域的显示。
+4.拖动应用悬浮窗口的边框，改变窗口尺寸，触发应用刷新，即可查看应用在不同窗口下的显示效果。
 
-![](screenshots/Devices/img4.png)
+改变窗口尺寸的过程中，窗口尺寸可能超出屏幕尺寸。此时在屏幕中只能看到应用部分区域的显示，但可以通过移动窗口位置，查看应用其它区域的显示。
+
+| ![](screenshots/Devices/img4.png) | ![](screenshots/Devices/img5.png) |
+| --------------------------------- | --------------------------------- |
 
 5.点击关闭按钮，关闭应用。
 
@@ -44,10 +47,17 @@
 
 3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.991, built on July 6, 2022)才可编译运行。
 
-4.本实例在RK板上运行需要修改RK文件才能使用应用窗口能力，操作如下：
+4.本示例在开发板上运行时，需要修改开发板系统配置文件以使能应用窗口能力。
 
-+ 使用`hdc file recv system/etc/window/resources/window_manager_config.xml C:\ `将系统文件拉取到C盘；
-+ 将文件中`<decor enable="false"></decor>`改为`<decor enable="true"></decor>`；
-+ 使用`hdc shell mount -o rw,remount /`修改文件读写权限；
-+ 使用`hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml`替换系统文件;
-+ 重启RK。
+```shell
+# 将开发板文件系统的权限配置为可读写
+hdc shell mount -o rw,remount /
+# 取出原始配置文件
+hdc file recv system/etc/window/resources/window_manager_config.xml C:\
+# 将文件中<decor enable="false"></decor>改为<decor enable="true"></decor>
+# 用修改后的文件替换系统中的原始文件
+hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml
+# 重启后生效
+hdc shell reboot
+```
+
