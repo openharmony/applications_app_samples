@@ -159,6 +159,6 @@ export struct LivePage {
           this.active = index
         })
       }
-    }.key('ScrollVideo')
+    }
   }
 }
