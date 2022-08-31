@@ -90,17 +90,6 @@ struct Index {
     })
   }
 
-  @Builder
-  tabItem(index: number, title: Resource, icon: Resource, iconSelected: Resource) {
-    TabBarItem({
-      index: index,
-      currentIndex: this.currentIndex,
-      title: title,
-      icon: icon,
-      iconSelected: iconSelected,
-    })
-  }
-
   build() {
     Tabs({ barPosition: this.currentBreakpoint === 'lg' ? BarPosition.Start : BarPosition.End }) {
       TabContent() {
