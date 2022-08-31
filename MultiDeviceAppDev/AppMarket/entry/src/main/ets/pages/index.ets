@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import Home from '../Components/home'
-import TabBarItem from '../Components/TabBarItem'
-import BreakpointSystem from '../Module/MediaData'
+import Home from '../common/home'
+import TabBarItem from '../common/TabBarItem'
+import BreakpointSystem from '../model/MediaData'
 
 @Entry
 @Component

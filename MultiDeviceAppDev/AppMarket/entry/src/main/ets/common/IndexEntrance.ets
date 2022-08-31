@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { icons } from '../Module/AppList'
-import { AllIcons, MyIconSource } from '../Module/AllIcons'
+import { icons } from '../model/AppList'
+import { AllIcons, MyIconSource } from '../model/AllIcons'
 
 @Component
 export default struct IndexEntrance {

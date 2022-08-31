@@ -16,7 +16,7 @@
 import IndexSwiper from './indexswiper'
 import IndexEntrance from './indexentrance'
 import IndexApps from './IndexApps'
-import { appList, gameList } from '../Module/AppList'
+import { appList, gameList } from '../model/AppList'
 
 @Component
 export default struct IndexContent {

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { AppItem, MyAppSource } from '../Module/AllIcons'
+import { AppItem, MyAppSource } from '../model/AllIcons'
 
 @Component
 export default struct IndexApps {
