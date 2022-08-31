@@ -13,9 +13,17 @@
  * limitations under the License.
  */
 // @ts-nocheck
-import { BasicDataSource } from '../common/BasicDataSource'
-import { MessageBase, EMContact, MessageBody, TextMessage, ImageMessage } from './MsgBase'
-import router from '@ohos.router'
+import { BasicDataSource } from '../common/BasicDataSource';
+import { MessageBase, EMContact, MessageBody, TextMessage, ImageMessage } from './MsgBase';
+import router from '@ohos.router';
+import { ImgTextMessage, FileMessage } from './MsgBase';
+import { WantModel, WantFileModel } from './Index'
+import prompt from '@ohos.prompt'
+import image from '@ohos.multimedia.image';
+import fileio from '@ohos.fileio';
+import resourceManager from '@ohos.resourceManager'
+
+const TAG = "[Sample_Chat]"
 
 @Entry
 @Component
@@ -32,6 +40,15 @@ struct ChatDetailPage {
   keyboartStr: string
   private chatDetailData = new ChatDetailData()
   private scroller: Scroller = new Scroller()
+  @State wantParams: WantModel = new WantModel() // want的自定义参数
+  @State wantFileParams: WantFileModel = new WantFileModel() // want的自定义参数
+  @State visibility: Visibility = Visibility.None
+  @State imgFile: image.PixelMap = undefined
+  @State wantId: number = 0
+  @State fdImg: number = undefined
+  @State contextCaller: any = undefined
+  @State user1Name: string = undefined
+  @State user2Name: string = undefined
 
   build() {
     Column() {
@@ -69,7 +86,7 @@ struct ChatDetailPage {
         List({ scroller: this.scroller, initialIndex: this.msgLength }) {
           LazyForEach(this.chatDetailData, (msg: MessageBase) => {
             ListItem() {
-              ChatItemView({ msg: msg })
+              ChatItemView({ msg: msg, imgFile: $imgFile })
             }
           }, (msg: MessageBase) => msg.msgId)
         }
@@ -127,8 +144,65 @@ struct ChatDetailPage {
     .padding({ bottom: 60 })
   }
 
-  private aboutToAppear(): void {
+  async convertResourceToString(resource: Resource) {
+    let manager = await resourceManager.getResourceManager()
+    return await manager.getString(resource.id)
+  }
+
+  async fdTransformPixelMap(): void {
+    try {
+      let buf = new ArrayBuffer(90960)
+      let opt = {
+        offset: 0, // 保证下面读取是从头开始读取的。
+        position: 0,
+        length: 90000
+      }
+      let readOut = await fileio.readSync(this.wantFileParams.fdImg, buf, opt)
+      console.info(TAG + "fdTransformPixelMap: readOut---" + readOut)
+      let imgSource: image.ImageSource = undefined
+      imgSource = await image.createImageSource(buf)
+      let decodingOptions = {
+        editable: true, // 是否可编辑
+        desiredPixelFormat: 3 // 解码的像素格式
+      }
+      this.imgFile = await imgSource.createPixelMap(decodingOptions) // 通过图片解码参数创建PixelMap对象
+    } catch (errorOut) {
+      console.info(TAG + "fdTransformPixelMap: errorOut ---" + errorOut)
+    }
+  }
+
+  private async aboutToAppear(): void {
     this.makeDataLocal()
+    // 把Resource类型转成String
+    this.user1Name = this.convertResourceToString($r("app.string.user1Name"))
+    this.user2Name = this.convertResourceToString($r("app.string.user2Name"))
+    // 接收路由传来的分享参数
+    this.wantParams = router.getParams().wantParams;
+    console.info(TAG + this.wantParams.textCon)
+    console.info(TAG + this.wantParams.srcImg)
+    this.wantFileParams = router.getParams().wantFileParams
+    this.wantId = this.wantParams.kindId || this.wantFileParams.kindId
+    this.fdImg = this.wantFileParams.fdImg
+    // >接收AppStorage中的wantParams数据
+    console.info(TAG + `aboutToAppear: wantFileParams--- ${JSON.stringify(this.wantFileParams)}`)
+    await this.fdTransformPixelMap()
+    // 对分享来的数据分类处理
+    let user1 = new EMContact("1",this.user1Name)
+    let user2 = new EMContact("2", `${this.user2Name}${router.getParams().chatId.toString()}`, `/resources/images/photo${(parseInt(
+      router.getParams()
+      .chatId) % 50).toString()}.jpg`)
+    let content
+    let msg
+    let tdate = new Date()
+    if (this.wantId == 1) {
+      content = new ImgTextMessage(200, "100%", this.wantParams.srcImg, this.wantParams.textCon); // 消息内容
+      msg = new MessageBase(1000, user1, user2, content, 3, tdate.getSeconds()) // 消息构成
+      this.chatDetailData.pushData(msg)
+    } else if (this.wantId == 2) {
+      content = new FileMessage(180, 200, this.imgFile);
+      msg = new MessageBase(1000, user1, user2, content, 4, tdate.getSeconds()) // 消息构成
+      this.chatDetailData.pushData(msg)
+    }
   }
 
   pageTransition() {
@@ -172,65 +246,93 @@ struct ChatDetailPage {
 @Component
 struct ChatItemView {
   private msg: MessageBase
+  @Link imgFile: image.PixelMap
 
   build() {
-    if (this.msg.fo.userId != '1') {
-      //聊天页面对方的消息
-      Row() {
-        Image(this.msg.fo.userImage)
-          .width(40)
-          .height(40)
-          .borderRadius(5)
-        Column() {
-          Text(this.msg.fo.userName)
-          if (this.msg.msgType === 1) {
-            Text((this.msg.msgBody as TextMessage).msg)
-              .fontSize(15)
-              .fontColor("#000")
-              .backgroundColor(Color.White)
-              .padding(10)
-          } else if (this.msg.msgType === 2) {
-            Image((this.msg.msgBody as ImageMessage).img)
-              .width((this.msg.msgBody as ImageMessage).width)
-              .height((this.msg.msgBody as ImageMessage).height)
+    Column() {
+      if (this.msg.fo.userId != '1') {
+        // 聊天页面对方的消息
+        Row() {
+          Image(this.msg.fo.userImage)
+            .width(40)
+            .height(40)
+            .borderRadius(5)
+          Column() {
+            Text(this.msg.fo.userName)
+            if (this.msg.msgType === 1) {
+              Text((this.msg.msgBody as TextMessage).msg)
+                .fontSize(15)
+                .fontColor("#000")
+                .backgroundColor(Color.White)
+                .padding(10)
+            } else if (this.msg.msgType === 2) {
+              Image((this.msg.msgBody as ImageMessage).img)
+                .width((this.msg.msgBody as ImageMessage).width)
+                .height((this.msg.msgBody as ImageMessage).height)
+            }
           }
+          .alignItems(HorizontalAlign.Start)
+          .margin({ left: 5 })
         }
-        .alignItems(HorizontalAlign.Start)
-        .margin({ left: 5 })
-      }
-      .width("100%")
-      .alignItems(VerticalAlign.Top)
-      .margin({ top: 15 })
-      .padding({ right: 50 })
-    } else {
-      //聊天页面本人消息
-      Row() {
-        Image(this.msg.fo.userImage)
-          .width(40)
-          .height(40)
-          .borderRadius(5)
-        Column() {
-          Text(this.msg.fo.userName)
-          if (this.msg.msgType === 1) {
-            Text((this.msg.msgBody as TextMessage).msg)
-              .fontSize(15)
-              .fontColor("#000")
-              .backgroundColor("#7fec7d")
-              .borderRadius(5)
-              .padding(10)
-          } else if (this.msg.msgType === 2) {
-            Image((this.msg.msgBody as ImageMessage).img)
-              .width((this.msg.msgBody as ImageMessage).width)
-              .height((this.msg.msgBody as ImageMessage).height)
+        .width("100%")
+        .alignItems(VerticalAlign.Top)
+        .margin({ top: 15 })
+        .padding({ right: 50 })
+      } else {
+        // 聊天页面本人消息
+        Row() {
+          Image(this.msg.fo.userImage)
+            .width(40)
+            .height(40)
+            .borderRadius(5)
+          Column() {
+            Text(this.msg.fo.userName)
+            if (this.msg.msgType === 1) {
+              Text((this.msg.msgBody as TextMessage).msg)
+                .fontSize(15)
+                .fontColor("#000")
+                .backgroundColor("#7fec7d")
+                .borderRadius(5)
+                .padding(10)
+            } else if (this.msg.msgType === 2) {
+              Image((this.msg.msgBody as ImageMessage).img)
+                .width((this.msg.msgBody as ImageMessage).width)
+                .height((this.msg.msgBody as ImageMessage).height)
+            } else if (this.msg.msgType === 3) {
+              // 接收分享的页面
+              Column() {
+                // let msgBody = this.msg.msgBody as ImgTextMessage
+                Text((this.msg.msgBody as ImgTextMessage).msg)
+                  .backgroundColor("#FFFFFF")
+                  .width("100%")
+                  .fontSize(15)
+                  .fontColor("#000")
+                  .borderRadius(5)
+                  .padding(10)
+                // Image($r("app.media.phone"))
+                 Image((this.msg.msgBody as ImgTextMessage).img)
+                  .width((this.msg.msgBody as ImgTextMessage).width)
+                  .height((this.msg.msgBody as ImgTextMessage).height)
+              }
+              .margin({ left: "40%" })
+              .padding({ left: "2%", right: "2%", bottom: "2%" })
+              .backgroundColor("#FFFFFF")
+            } else if (this.msg.msgType == 4) {
+              Image((this.msg.msgBody as FileMessage).img)
+                .width((this.msg.msgBody as FileMessage).width)
+                .height((this.msg.msgBody as FileMessage).height)
+                .objectFit(ImageFit.Contain)
+            }
           }
+          .alignItems(HorizontalAlign.Start)
+          .margin({ left: 5 })
         }
-        .alignItems(HorizontalAlign.Start)
-        .margin({ left: 5 })
+        .alignItems(VerticalAlign.Top)
+        .width("100%")
+        .direction(Direction.Rtl)
+        .padding({ left: 50 })
+        .margin({ top: 15 })
       }
-      .width("100%")
-      .direction(Direction.Rtl)
-      .padding({ left: 50 })
-      .margin({ top: 15 })
     }
   }
 }

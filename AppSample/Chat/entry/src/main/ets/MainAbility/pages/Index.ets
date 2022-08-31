@@ -13,23 +13,113 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router'
+import featureAbility from '@ohos.ability.featureAbility'
+import image from '@ohos.multimedia.image'
+import fileio from '@ohos.fileio'
 import { ChatListView } from './ChatListPage'
 import { DiscoverPage } from './DiscoverPage'
 import { SettingPage } from './SettingPage'
 import { FriendsPage } from './FriendsPage'
 import { Prompt } from '../components/Header';
 
+const TAG: string = "[Sample_Chat]"
+
+export class WantModel {
+  srcImg: string
+  textCon: string
+  kindId: number
+
+  constructor(srcImg: string, text: string, kindId: number) {
+    this.srcImg = srcImg;
+    this.textCon = text;
+    this.kindId = kindId;
+  }
+
+  toString(): string {
+    return this.srcImg + "  " + this.textCon + "  " + this.kindId
+  }
+}
+
+export class WantFileModel {
+  fdImg: number
+  kindId: number
+}
+
 @Entry
 @Component
 struct Index {
+  @State wantParams: WantModel = new WantModel("./resources/images/photo0.jpg", "111", 0)
+  @State wantFileParams: WantFileModel = new WantFileModel()
+  @State flagWant: boolean = false;
+  @State _pixelMap: image.PixelMap = undefined
+  @State imgSource: image.ImageSource = undefined
+
+  private async getWant() {
+    featureAbility.getWant()
+      .then(async (data) => {
+        console.info("Sample_Chat")
+        let want = data;
+        console.info(`${TAG}  getWant: want.parameters ---${JSON.stringify(want.parameters)}`)
+        if (want.parameters) {
+          // 文本、链接的参数处理
+          this.wantParams.srcImg = want.parameters.srcImg;
+          this.wantParams.textCon = want.parameters.text;
+          this.wantParams.kindId = want.parameters.kindId;
+          console.info(`${TAG} getWant: params.srcImg--- ${want.parameters.srcImg}`)
+          console.info(`${TAG} getWant: params.textContent---${want.parameters.text}`)
+          // 图片文件的参数处理
+          this.wantFileParams.fdImg = want.parameters["keyFd"].value
+          this.wantFileParams.kindId = want.parameters.kindId
+          console.info(`${TAG} getWant: params.fdImg--- ${this.wantFileParams.fdImg} ,type: ${typeof (this.wantFileParams.fdImg)} `)
+          console.info(`${TAG} getWant: params.kindId---${this.wantFileParams.kindId}`)
+          let fd = want.parameters["keyFd"].value;
+          console.info(`${TAG} getWant, fd111 = ${JSON.stringify(fd)}`)
+          // Test
+          let buf = new ArrayBuffer(90960);
+          let opt = {
+            offset: 0,
+            position: 0,
+            length: 90000
+          }
+          try {
+            let readOut, view
+            readOut = await fileio.readSync(fd, buf, opt)
+            console.info(TAG + "getWant, fd222 = " + JSON.stringify(fd))
+            console.info(TAG + "getWant, readLength = " + JSON.stringify(readOut))
+            console.info(TAG + "getWant, buf = " + JSON.stringify(buf))
+            view = new Uint32Array(buf)
+            console.info(TAG + "getWant, view = " + JSON.stringify(view))
+          } catch (e) {
+            console.info(TAG + "getWant, e = " + JSON.stringify(e))
+          }
+          // 查看fd是否传来成功
+          try {
+            let stat = fileio.fstatSync(this.wantFileParams.fdImg)
+            console.info(TAG + `getWant ,stat ---${stat.uid}`)
+          } catch (error) {
+            console.info(TAG + 'getWant ,stat error')
+          }
+          this.flagWant = true;
+          return this.flagWant;
+        }
+        return this.flagWant;
+
+      })
+  }
+
+  private aboutToAppear(): void {
+    this.getWant();
+  }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Column() {
             TopBar()
-            ChatListView()
+            ChatListView({ wantParams: this.wantParams, wantFileParams: this.wantFileParams })
           }
         }
         .tabBar({ icon: $r('app.media.afr'), text: "聊天" })

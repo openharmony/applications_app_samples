@@ -18,11 +18,11 @@ import fileio from '@ohos.fileio'
 import prompt from '@ohos.prompt'
 import screenshot from '@ohos.screenshot'
 import image from '@ohos.multimedia.image'
-import { requestRes, requestResContent } from "../model/httprequest"
-import { httpRequest } from "../net/httprequest"
-import { dialogData } from "../mock/sharedata"
-import { DialogDataModel } from "../model/sharemodel"
-import Logger from "../model/logger"
+import { RequestRes, RequestResContent } from "../model/HttpModel"
+import { httpRequest } from "../net/HttpRequest"
+import { dialogData } from "../mock/ShareData"
+import { DialogDataModel } from "../model/ShareModel"
+import Logger from "../model/Logger"
 import ShareUtils from "../feature/ShareUtils"
 
 interface EventHub {
@@ -205,8 +205,8 @@ export struct ButtonDialogBuilder {
     this.contextCaller = data.context // 拿到全局的context，即类似globalThis.mainAbilityContext
     Logger.info(TAG, JSON.stringify(this.contextCaller))
     httpRequest("http://123.60.114.86:8090/goods/detail?id=1", "get", "", (data) => {
-      let requestRes: requestRes = JSON.parse(data.result)
-      let requestResContent: requestResContent = requestRes.data
+      let requestRes: RequestRes = JSON.parse(data.result)
+      let requestResContent: RequestResContent = requestRes.data
       Logger.info(TAG, "requestRes" + requestRes)
       Logger.info(TAG, "requestResContent" + requestResContent)
       this.title = requestResContent.title

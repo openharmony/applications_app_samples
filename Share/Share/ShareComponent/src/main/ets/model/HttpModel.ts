@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-export class requestRes {
+export class RequestRes {
   code: number
-  data: requestResContent
+  data: RequestResContent
   error: null
 }
 
-export class requestResContent {
+export class RequestResContent {
   id: number
   uri: string
   title: string
