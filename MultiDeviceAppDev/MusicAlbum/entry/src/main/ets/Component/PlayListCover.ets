@@ -26,7 +26,7 @@ export default struct PlayListCover {
 
   build() {
     Column() {
-      GridRow({ columns: 12 }) {
+      GridRow({ columns: 12, breakpoints: { reference: BreakpointsReference.WindowSize } }) {
         // 歌单图片
         GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
           Row() {

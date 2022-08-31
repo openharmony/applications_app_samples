@@ -22,7 +22,7 @@ export default struct MusicContent {
   @Provide('coverHeight') PlayListCoverHeight: number = 0
 
   build() {
-    GridRow({ columns: 12}) {
+    GridRow({ columns: 12, breakpoints: { reference: BreakpointsReference.WindowSize } }) {
       // 歌单信息
       GridCol({ span: { sm: 12, md: 6, lg: 4 } }) {
         PlayListCover()
