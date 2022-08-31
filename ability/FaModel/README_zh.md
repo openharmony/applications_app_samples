@@ -33,7 +33,7 @@ PageAbility：应用的界面绘制。
 
 3.FA模型中ability生命周期与Stage模型生命周期区别：
 
-FA模型生命周期[具体参考文档]( [zh-cn/application-dev/ability/fa-brief.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) )；Stage模型生命周期[具体参考文档]( [zh-cn/application-dev/ability/stage-brief.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) )。
+FA模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) ；Stage模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) 。
 
 4.FA模型中DataAbility对应Stage模型中DataShareExtensionAbility，具体实现差异详见方法注释。
 

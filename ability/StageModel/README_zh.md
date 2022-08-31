@@ -44,7 +44,7 @@ Stage模型的设计基于如下三个出发点：
 
 2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
 
-3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期]( [zh-cn/application-dev/ability/stage-brief.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) )，[FA模型生命周期]( [zh-cn/application-dev/ability/fa-brief.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) )。
+3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) 。
 
 4.Stage模型中DataShareExtensionAbility对应FA模型中DataAbility，具体实现差异详见方法注释。
 
