@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BasicDataSource } from '../common/BasicDataSource'
-import { ChatModel, EMContact } from './MsgBase'
-import router from '@ohos.router'
+
+import { BasicDataSource } from '../common/BasicDataSource';
+import { ChatModel, EMContact } from './MsgBase';
+import router from '@ohos.router';
+import { WantModel } from './Index';
+import { WantFileModel } from './Index';
 
 @Entry
 @Component
@@ -37,16 +40,18 @@ struct ChatListPage {
 
 @Component
 export struct ChatListView {
+  @State wantParams: WantModel = { srcImg: "000", textCon: "000", kindId: 0 }
+  @State wantFileParams: WantFileModel = new WantFileModel(0, 0);
   @State chatListLength: number = 0
-  //滑动开始纵坐标
+  // 滑动开始纵坐标
   @State blurStart: number = 0
-  //滑动结束纵坐标
+  // 滑动结束纵坐标
   @State blurEnd: number = 0
-  //滑动距离
+  // 滑动距离
   @State bl: number = 0
-  //当前item的索引
+  // 当前item的索引
   @State blurIndex: number = 0
-  //模糊值
+  // 模糊值
   @State blurNum: number = 0
   private chatListData = new ChatListData()
 
@@ -56,7 +61,7 @@ export struct ChatListView {
         ListItem() {
           Row() {
             Stack({ alignContent: Alignment.Center }) {
-              Text("搜索")
+              Text($r("app.string.search"))
                 .fontSize(20)
             }
             .key('search')
@@ -75,7 +80,7 @@ export struct ChatListView {
 
         LazyForEach(this.chatListData, (msg: ChatModel) => {
           ListItem() {
-            ChatView({ chatItem: msg })
+            ChatView({ chatItem: msg, wantParams: this.wantParams, wantFileParams: this.wantFileParams })
           }
         }, (msg: ChatModel) => msg.user.userId)
       }
@@ -92,7 +97,7 @@ export struct ChatListView {
         } else if (event.type === TouchType.Move) {
           this.blurEnd = event.touches[0].y
           this.bl = this.blurEnd - this.blurStart
-          //判断第一个item的索引是不是0
+          // 判断第一个item的索引是不是0
           if (this.blurIndex === 0) {
             if (this.bl > 0) {
               this.blurNum = this.bl / 30
@@ -131,13 +136,15 @@ export struct ChatListView {
 @Component
 struct ChatView {
   private chatItem: ChatModel
+  private wantParams: WantModel
+  private wantFileParams: WantFileModel
 
   build() {
     Stack() {
       Column() {
         Row() {
           Row() {
-            Image(this.chatItem.user.userImage)
+            Image(this.chatItem.user.userImage) // 用户头像
               .width(50)
               .height(50)
               .borderRadius(5)
@@ -159,13 +166,19 @@ struct ChatView {
           }
           .padding({ left: 12 })
           .layoutWeight(7)
-
         }
         .width("100%")
         .onClick(() => {
+          console.log(this.wantParams.textCon)
           router.push({
             url: 'pages/ChatDetailPage',
-            params: { chatName: this.chatItem.user.userName, chatId: this.chatItem.user.userId }
+            params: {
+              chatName: this.chatItem.user.userName,
+              chatId: this.chatItem.user.userId,
+              // Ability来的want的分享数据
+              wantParams: this.wantParams,
+              wantFileParams: this.wantFileParams
+            }
           })
         })
       }
