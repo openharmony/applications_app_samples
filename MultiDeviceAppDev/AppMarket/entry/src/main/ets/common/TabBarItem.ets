@@ -36,21 +36,30 @@ export default struct TabBarItem {
   }
 
   build() {
-    Flex({ direction: this.currentBreakpoint === 'md' ? FlexDirection.Row : FlexDirection.Column,
-      justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Image(this.getIcon())
-        .width(24)
-        .height(24)
-        .margin({ bottom: 4 })
-        .objectFit(ImageFit.Contain)
-      Text(this.title)
-        .fontColor(this.getFontColor())
-        .width(this.currentBreakpoint === 'md' ? 60 : '100%')
-        .height(this.currentBreakpoint === 'md' ? '100%' : 14)
-        .fontSize(10)
-        .textAlign(TextAlign.Center)
-        .fontWeight(500)
+    if (this.currentBreakpoint !== 'md' ) {
+      Column() {
+        Image(this.getIcon())
+          .width(24)
+          .height(24)
+          .margin(5)
+          .objectFit(ImageFit.Contain)
+        Text(this.title)
+          .fontColor(this.getFontColor())
+          .fontSize(12)
+          .fontWeight(500)
+      }.justifyContent(FlexAlign.Center).height('100%').width('100%')
+    } else {
+      Row() {
+        Image(this.getIcon())
+          .width(24)
+          .height(24)
+          .margin(5)
+          .objectFit(ImageFit.Contain)
+        Text(this.title)
+          .fontColor(this.getFontColor())
+          .fontSize(12)
+          .fontWeight(500)
+      }.justifyContent(FlexAlign.Center).height('100%').width('100%')
     }
-    .height('100%')
   }
 }

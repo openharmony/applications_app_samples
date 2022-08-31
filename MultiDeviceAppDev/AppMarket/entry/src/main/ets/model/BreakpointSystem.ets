@@ -17,9 +17,9 @@ import mediaQuery from '@ohos.mediaquery'
 
 export default class BreakpointSystem {
   private currentBreakpoint: string = 'md'
-  private smListener: any
-  private mdListener: any
-  private lgListener: any
+  private smListener: mediaQuery.MediaQueryListener
+  private mdListener: mediaQuery.MediaQueryListener
+  private lgListener: mediaQuery.MediaQueryListener
 
   private updateCurrentBreakpoint(breakpoint: string) {
     if (this.currentBreakpoint !== breakpoint) {
@@ -33,11 +33,13 @@ export default class BreakpointSystem {
       this.updateCurrentBreakpoint('sm')
     }
   }
+
   private isBreakpointMD = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint('md')
     }
   }
+
   private isBreakpointLG = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint('lg')
@@ -45,11 +47,11 @@ export default class BreakpointSystem {
   }
 
   public register() {
-    this.smListener = mediaQuery.matchMediaSync('(320vp<width<520vp)')
+    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<520vp)')
     this.smListener.on('change', this.isBreakpointSM)
-    this.mdListener = mediaQuery.matchMediaSync('(520vp<width<840vp)')
+    this.mdListener = mediaQuery.matchMediaSync('(520vp<=width<840vp)')
     this.mdListener.on('change', this.isBreakpointMD)
-    this.lgListener = mediaQuery.matchMediaSync('(840vp<width)')
+    this.lgListener = mediaQuery.matchMediaSync('(840vp<=width)')
     this.lgListener.on('change', this.isBreakpointLG)
   }
 

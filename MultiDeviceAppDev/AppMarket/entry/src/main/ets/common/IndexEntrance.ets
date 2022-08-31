@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { entranceIcons } from '../model/AppList'
-import { AllIcons } from '../model/AllIcons'
+import { entranceIcons } from '../model/HomeData'
+import { AllIcons } from '../model/HomeDataType'
 
 @Component
 export default struct IndexEntrance {

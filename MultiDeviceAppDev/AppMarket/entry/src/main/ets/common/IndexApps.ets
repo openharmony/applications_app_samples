@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { AppItem, MyAppSource } from '../model/AllIcons'
+import { AppItem, MyAppSource } from '../model/HomeDataType'
 
 @Component
 export default struct IndexApps {
@@ -31,7 +31,6 @@ export default struct IndexApps {
         .fontWeight(500)
       Blank()
       Text($r('app.string.more'))
-        .width(50)
         .fontSize(14)
         .textAlign(TextAlign.End)
         .fontWeight(400)
