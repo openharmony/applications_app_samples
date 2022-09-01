@@ -15,7 +15,7 @@
 
 import Home from '../common/home'
 import TabBarItem from '../common/TabBarItem'
-import BreakpointSystem from '../model/BreakpointSystem'
+import BreakpointSystem from '../common/breakpointsystem'
 
 @Entry
 @Component

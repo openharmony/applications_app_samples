@@ -19,7 +19,7 @@ export default struct IndexHeader {
 
   @Builder searchBar() {
     Stack({alignContent: Alignment.End}) {
-      TextArea({ placeholder: $r('app.string.search') })
+      TextInput({ placeholder: $r('app.string.search') })
         .placeholderColor('#FF000000')
         .placeholderFont({ size: 16, weight: 400 })
         .textAlign(TextAlign.Start)
@@ -39,15 +39,13 @@ export default struct IndexHeader {
   }
 
   @Builder titleBar() {
-    Row() {
-      Text($r('app.string.tabBar1'))
-        .height(32)
-        .fontSize(24)
-        .fontWeight(500)
-        .fontColor('#18181A')
-        .textAlign(TextAlign.Start)
-    }
-    .height(56).width('100%')
+    Text($r('app.string.tabBar1'))
+      .fontSize(24)
+      .fontWeight(500)
+      .fontColor('#18181A')
+      .textAlign(TextAlign.Start)
+      .height(56)
+      .width('100%')
   }
 
   build() {

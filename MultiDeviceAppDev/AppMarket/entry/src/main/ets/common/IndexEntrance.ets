@@ -20,25 +20,22 @@ import { AllIcons } from '../model/HomeDataType'
 export default struct IndexEntrance {
   build() {
     Row() {
-      Row() {
-        ForEach(entranceIcons, (icon: AllIcons) => {
-          Column() {
-            Image(icon.image)
-              .width(40)
-              .height(40)
-              .margin({ bottom: 4 })
-            Text(icon.title)
-              .fontSize(12)
-              .textAlign(TextAlign.Center)
-              .fontWeight(400)
-          }
-        })
-      }
-      .width('100%')
-      .height(64)
-      .justifyContent(FlexAlign.SpaceEvenly)
+      ForEach(entranceIcons, (icon: AllIcons) => {
+        Column() {
+          Image(icon.image)
+            .width(40)
+            .height(40)
+            .margin({ bottom: 4 })
+          Text(icon.title)
+            .fontSize(12)
+            .textAlign(TextAlign.Center)
+            .fontWeight(400)
+        }
+      })
     }
     .width('100%')
+    .height(64)
+    .justifyContent(FlexAlign.SpaceEvenly)
     .padding({ left: 12, right: 12 })
   }
 }

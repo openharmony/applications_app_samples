@@ -48,28 +48,26 @@ export default struct IndexApps {
 
   @Builder
   appListItem(app:AppItem) {
-    ListItem() {
-      Column() {
-        Image(app.image)
-          .width(this.currentBreakpoint === 'lg' ? 80 : 56)
-          .height(this.currentBreakpoint === 'lg' ? 80 : 56)
-          .margin({ bottom: 8 })
-        Text(app.title)
-          .width(this.currentBreakpoint === 'lg' ? 80 : 56)
-          .height(16)
-          .fontSize(12)
-          .textAlign(TextAlign.Center)
-          .fontColor('#18181A')
-          .margin({ bottom: 8 })
-        Button($r('app.string.install'))
-          .width(this.currentBreakpoint === 'lg' ? 80 : 56)
-          .height(28)
-          .fontColor('#0A59F7')
-          .fontWeight(500)
-          .fontSize(12)
-          .padding({ top: 6, bottom: 6, left: 8, right: 8 })
-          .backgroundColor('rgba(0,0,0,0.05)')
-      }
+    Column() {
+      Image(app.image)
+        .width(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .height(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .margin({ bottom: 8 })
+      Text(app.title)
+        .width(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .height(16)
+        .fontSize(12)
+        .textAlign(TextAlign.Center)
+        .fontColor('#18181A')
+        .margin({ bottom: 8 })
+      Button($r('app.string.install'))
+        .width(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .height(28)
+        .fontColor('#0A59F7')
+        .fontWeight(500)
+        .fontSize(12)
+        .padding({ top: 6, bottom: 6, left: 8, right: 8 })
+        .backgroundColor('rgba(0,0,0,0.05)')
     }
   }
 
@@ -79,7 +77,9 @@ export default struct IndexApps {
       this.appListHeader()
       List({ space: this.currentBreakpoint === 'lg' ? 44 : 20}) {
         LazyForEach(new MyAppSource(this.apps), app => {
-          this.appListItem(app)
+          ListItem() {
+            this.appListItem(app)
+          }
         }, app => app.id)
       }
       .width('100%')
