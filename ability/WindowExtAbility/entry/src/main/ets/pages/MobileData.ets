@@ -35,7 +35,6 @@ struct MobileData {
           Text($r('app.string.airplane'))
             .height(48)
             .fontSize(16)
-            .layoutWeight(1)
             .fontColor('#182431')
 
           Blank()
@@ -47,6 +46,7 @@ struct MobileData {
             .selectedColor('#0D9FFB')
             .switchPointColor(0xe5ffffff)
         }
+        .width('100%')
         .borderRadius(24)
         .padding({ left: 24, right: 24 })
         .backgroundColor(Color.White)

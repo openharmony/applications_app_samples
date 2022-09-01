@@ -128,8 +128,8 @@ struct Index {
       abilityName: info,
       bundleName: 'ohos.samples.windowextability'
     })
-      .width(805)
-      .height(767)
+      .width(767)
+      .height(805)
   }
 
   onPortrait(mediaQueryResult) {

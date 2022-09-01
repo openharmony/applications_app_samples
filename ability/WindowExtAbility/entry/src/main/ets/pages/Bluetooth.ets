@@ -18,7 +18,7 @@ import { TitleBar, Title, Taggle, Show } from './common/Common'
 
 @Entry
 @Component
-struct BlueTooth {
+struct Bluetooth {
   private isLand: boolean = false
 
   build() {
