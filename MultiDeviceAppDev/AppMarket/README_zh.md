@@ -44,7 +44,7 @@
 
 2. 本示例仅支持API9版本的SDK，版本号： 3.2.5.5 Beta2。
 
-3. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.991, built on July 6, 2022)才可编译运行。
+3. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 4. 本示例在开发板上运行时，需要修改开发板系统配置文件以使能应用窗口能力。
 
