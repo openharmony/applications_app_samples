@@ -52,8 +52,8 @@ struct DataPage {
         }, item => item.name)
       }
       .width('94%')
+      .height('100%')
       .margin({ bottom: 120 })
-      .constraintSize({ minHeight: '100%' })
       .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 110, endMargin: 20 })
     }
     .width('100%')

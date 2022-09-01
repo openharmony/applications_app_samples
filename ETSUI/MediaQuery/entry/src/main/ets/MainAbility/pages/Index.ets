@@ -71,6 +71,8 @@ struct Index {
             })
           }, item => JSON.stringify(item))
         }
+        .width('100%')
+        .height('100%')
         .layoutWeight(1)
         .divider({ strokeWidth: 1, startMargin: 15, endMargin: 15 })
         .padding({ left: 10, right: 10 })

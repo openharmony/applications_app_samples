@@ -26,8 +26,7 @@ export const FIRST_NAV_LIST = [
   new FirstNavInfo('画布组件', '', 8),
   new FirstNavInfo('动画', '', 2),
   new FirstNavInfo('UI状态管理', '', 5),
-  new FirstNavInfo('渲染控制语法', '', 9),
-  new FirstNavInfo('杂项', '', -1),
+  new FirstNavInfo('渲染控制语法', '', 9)
 ]
 
 const BASIC = [

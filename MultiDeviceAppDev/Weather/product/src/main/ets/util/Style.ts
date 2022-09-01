@@ -83,4 +83,15 @@ export default class Style {
   * weather big text weight.
   */
   static BIG_FONT_WEIGHT = 300
+
+  /**
+  * time list height.
+  */
+  static TIME_LIST_HEIGHT = 48
+
+  /**
+  * time list height.
+  */
+  static TIME_LIST_MARGIN = 22
+
 }

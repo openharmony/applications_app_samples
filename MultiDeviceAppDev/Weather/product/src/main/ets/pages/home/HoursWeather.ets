@@ -58,6 +58,7 @@ export default struct HoursWeather {
         }
       }, item => `${item.desc}${item.date}:00`)
     }
+    .width('100%')
     .height(Style.CARD_HEIGHT)
     .borderRadius(Style.NORMAL_RADIUS)
     .backgroundColor(Style.CARD_BACKGROUND_COLOR)

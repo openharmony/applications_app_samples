@@ -69,6 +69,8 @@ struct ListPage {
             .editable(this.editable)
           }, item => item.toString())
         }
+        .width('100%')
+        .height('100%')
         .listDirection(this.listDirection)
         .divider({
           strokeWidth: this.strokeWidth,

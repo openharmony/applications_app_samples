@@ -20,8 +20,8 @@ export default struct DeviceList {
   @Link isRefreshing: boolean
   @Link device: DeviceAttribute
   @Link devices: Array<DeviceAttribute>
-  private getDeviceList?: () => void
-  private openDialog?: () => void
+  public getDeviceList?: () => void
+  public openDialog?: () => void
 
   build() {
     Column() {
@@ -48,7 +48,8 @@ export default struct DeviceList {
             })
           }, item => item.name)
         }
-        .height(300)
+        .height('40%')
+        .width('80%')
         .divider({ strokeWidth: 1, color: Color.Black, startMargin: 50, endMargin: 50 })
       }
       .height(300)

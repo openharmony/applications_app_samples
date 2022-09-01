@@ -29,15 +29,6 @@ export class BookModel {
   }
 }
 
-export function initValuesBuckets() {
-  let valuesBuckets = [
-    { 'name': 'Book name1', 'introduction': 'Book introduction1' },
-    { 'name': 'Book name2', 'introduction': 'Book introduction2' },
-    { 'name': 'Book name3', 'introduction': 'Book introduction3' }
-  ]
-  return valuesBuckets
-}
-
 export function getBooksFromResultSet(resultSet) {
   let books = []
   Logger.info(TAG, `getBooksFromResultSet columnNames= ${resultSet.columnNames}, rowCount= ${resultSet.rowCount}`)

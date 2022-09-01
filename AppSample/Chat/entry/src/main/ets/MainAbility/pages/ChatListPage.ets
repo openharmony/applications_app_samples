@@ -87,7 +87,8 @@ export struct ChatListView {
       .listDirection(Axis.Vertical)
       .blur(this.blurNum)
       .divider({ strokeWidth: 1, color: "#f3f3f3", startMargin: 20, endMargin: 20 })
-      .height("92%")
+      .height('92%')
+      .width('100%')
       .onScrollIndex((firstIndex: number) => {
         this.blurIndex = firstIndex
       })

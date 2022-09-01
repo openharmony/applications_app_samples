@@ -38,10 +38,10 @@ struct Home {
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       SideContent({ showSideBar: $showSideBar })
+      .height('100%')
       Column() {
         IndexTitleBar({ curBp: this.curBp, showSideBar: $showSideBar })
           .height(56)
-          .flexShrink(0)
 
         Swiper() {
           ForEach(this.cityListWeatherData, (item, index) => {
@@ -61,6 +61,7 @@ struct Home {
         .width('100%')
         .layoutWeight(1)
       }
+      .height('100%')
       .backgroundImage(getBg(this.cityListWeatherData[this.swiperIndex].header.weatherType, this.showSideBar))
       .backgroundImageSize(ImageSize.Cover)
     }

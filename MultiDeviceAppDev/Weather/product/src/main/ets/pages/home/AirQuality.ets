@@ -65,6 +65,7 @@ export default struct AirQuality {
       }
       .width('50%')
       .margin({ left: 10 })
+      .height('75%')
     }
     .height(Style.CARD_HEIGHT)
     .justifyContent(FlexAlign.Center)

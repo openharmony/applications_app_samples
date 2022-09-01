@@ -51,6 +51,7 @@ export struct ActionSheetDialog {
         })
       }
       .width('100%')
+      .height('100%')
       .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 5, endMargin: 5 })
     }
     .width('80%')

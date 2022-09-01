@@ -85,7 +85,8 @@ export struct FriendsPage {
             }, (msg: EMContact) => msg.userId)
           }
           .listDirection(Axis.Vertical)
-          .height("100%")
+          .height('100%')
+          .width('100%')
         }
       }
       .width('100%')

@@ -54,6 +54,7 @@ export struct DeviceDialog {
           }
         }, item => item.deviceName)
       }
+      .layoutWeight(1)
 
       Button() {
         Text($r('app.string.cancel'))
