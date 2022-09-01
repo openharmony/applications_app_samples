@@ -18,7 +18,6 @@ import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     console.log('[Sample_appMarket] MainAbility onCreate')
-    globalThis.abilityWant = want
   }
 
   onDestroy() {
