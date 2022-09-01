@@ -15,7 +15,7 @@
 
 import router from '@ohos.router'
 import Style from '../util/Style'
-import { City, getBg, MyDataSource } from '@ohos/common'
+import { City, getSideBg, MyDataSource } from '@ohos/common'
 
 @Entry
 @Component
@@ -87,7 +87,7 @@ struct CityList {
                   .borderRadius(Style.NORMAL_RADIUS)
                   .alignItems(VerticalAlign.Center)
                   .backgroundImageSize(ImageSize.Cover)
-                  .backgroundImage(getBg(item.weather))
+                  .backgroundImage(getSideBg(item.weather))
                 }
               }, item => item.name)
             }
