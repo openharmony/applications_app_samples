@@ -35,7 +35,6 @@ export default struct PlayListHeader {
             .letterSpacing(2)
             .padding({ left: 10 })
         }
-        .width('100%')
         .height('100%')
         .backgroundColor('#e4ecf7')
       }
@@ -47,15 +46,13 @@ export default struct PlayListHeader {
             .height(20)
             .margin({ right: 16 })
         }
-        .width('100%')
         .height('100%')
         .justifyContent(FlexAlign.End)
         .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
       }
     }
     .height(50)
-    .width('100%')
-    .onBreakpointChange((currentBreakpoint) => {
+    .onBreakpointChange((currentBreakpoint: string) => {
       this.currentBreakPoint = currentBreakpoint
       if (currentBreakpoint === 'sm') {
         this.fontSize = 14

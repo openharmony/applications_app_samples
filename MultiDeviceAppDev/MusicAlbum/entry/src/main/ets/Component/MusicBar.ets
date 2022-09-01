@@ -39,7 +39,6 @@ export default struct MusicBar {
             .opacity(0.38)
         }
       }
-      .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Start)
 
       Blank()
@@ -58,7 +57,6 @@ export default struct MusicBar {
     .width('100%')
     .height(48)
     .backgroundColor('#F6F9FC')
-    .alignItems(VerticalAlign.Center)
     .padding({ left: 16, right: 16 })
   }
 }

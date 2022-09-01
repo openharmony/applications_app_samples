@@ -27,18 +27,18 @@ export default struct PlayList {
   @Builder
   playAll() {
     Row() {
-        Image($r('app.media.ic_detail_play_all')).height(23).width(23)
-        Text($r('app.string.play_all'))
-          .maxLines(1)
-          .padding({ left: 10 })
-          .fontColor('#000000')
-          .fontSize(this.fontSize)
-        Blank()
-        Image($r('app.media.ic_order_play'))
-          .width(24)
-          .height(24)
-          .margin({ right: 16 })
-        Image($r('app.media.ic_sort_list')).height(24).width(24)
+      Image($r('app.media.ic_detail_play_all')).height(23).width(23)
+      Text($r('app.string.play_all'))
+        .maxLines(1)
+        .padding({ left: 10 })
+        .fontColor('#000000')
+        .fontSize(this.fontSize)
+      Blank()
+      Image($r('app.media.ic_order_play'))
+        .width(24)
+        .height(24)
+        .margin({ right: 16 })
+      Image($r('app.media.ic_sort_list')).height(24).width(24)
     }
     .height(60)
     .width('100%')
@@ -67,7 +67,6 @@ export default struct PlayList {
             .fontSize(this.fontSize - 4)
         }
       }
-      .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Start)
 
       Blank()
@@ -75,7 +74,6 @@ export default struct PlayList {
     }
     .height(60)
     .width('100%')
-    .alignItems(VerticalAlign.Center)
   }
 
   build() {

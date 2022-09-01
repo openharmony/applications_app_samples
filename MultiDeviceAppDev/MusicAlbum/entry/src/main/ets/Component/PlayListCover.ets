@@ -41,7 +41,10 @@ export default struct PlayListCover {
               .fontSize(this.fontSize - 4)
               .position({ x: 0, y: '100%' })
               .translate({ x: '10', y: '-200%' })
-          }.width('100%').height('100%').aspectRatio(1)
+          }
+          .width('100%')
+          .height('100%')
+          .aspectRatio(1)
         }
 
         GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
@@ -78,13 +81,11 @@ export default struct PlayListCover {
               Column({ space: 4 }) {
                 Image(item.image).height(30).width(30)
                 Text(item.text)
-                  .fontWeight(400)
                   .fontColor('#556B89')
                   .fontSize(this.fontSize - 1)
               }
             }, item => item.id)
           }
-          .width('100%')
           .height(70)
           .padding({
             left: this.currentBreakPoint === 'sm' ? 20 : 0,
@@ -101,7 +102,6 @@ export default struct PlayListCover {
         this.coverHeight = newArea.height as number
       })
     }
-    .justifyContent(FlexAlign.Start)
     .height(this.currentBreakPoint === 'sm' ? this.coverHeight : '100%')
     .padding({ top: this.currentBreakPoint === 'sm' ? 0 : 20 })
   }
