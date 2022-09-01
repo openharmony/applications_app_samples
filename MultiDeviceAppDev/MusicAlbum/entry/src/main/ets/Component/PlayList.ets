@@ -27,31 +27,25 @@ export default struct PlayList {
   @Builder
   playAll() {
     Row() {
-      Row() {
         Image($r('app.media.ic_detail_play_all')).height(23).width(23)
         Text($r('app.string.play_all'))
           .maxLines(1)
           .padding({ left: 10 })
           .fontColor('#000000')
           .fontSize(this.fontSize)
-      }
-
-      Row() {
+        Blank()
         Image($r('app.media.ic_order_play'))
           .width(24)
           .height(24)
           .margin({ right: 16 })
         Image($r('app.media.ic_sort_list')).height(24).width(24)
-      }
-      .justifyContent(FlexAlign.End)
     }
     .height(60)
     .width('100%')
     .borderRadius(20)
-    .justifyContent(FlexAlign.SpaceBetween)
     .backgroundColor('#fff')
     .position({ x: 0, y: 0 })
-    .padding({ left: '12vp', right: '12vp' })
+    .padding({ left: 12, right: 12 })
   }
 
   @Builder
@@ -99,11 +93,9 @@ export default struct PlayList {
         .translate({ x: '-100%', y: 0 })
         .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
 
-      // 播放全部
       this.playAll()
 
       Scroll() {
-        // 歌曲列表
         List() {
           LazyForEach(new MyDataSource(songList), item => {
             ListItem() {

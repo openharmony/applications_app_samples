@@ -22,20 +22,15 @@ import MusicContent from '../Component/MusicContent'
 struct Index {
   @Provide('font') fontSize: number = 0
   @Provide('breakPoint') currentBreakPoint: string = 'sm'
-  // 歌单封面margin
   @Provide('margin') listCoverMargin: number = 0
-  // 歌单图片高度
   @Provide('height') coverImgHeight: number = 0
 
   build() {
     Column() {
-      // 头部
       PlayListHeader().flexShrink(0)
-      // 歌单
       MusicContent()
         .flexGrow(1)
         .flexShrink(1)
-      // 播放器
       MusicBar().flexShrink(0)
     }
     .width('100%')

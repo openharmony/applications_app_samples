@@ -14,7 +14,6 @@
  */
 
 import { optionList } from '../Module/SongList'
-import MyOptionSource from '../Module/OptionModule'
 
 @Component
 export default struct PlayListCover {
@@ -26,31 +25,25 @@ export default struct PlayListCover {
 
   build() {
     Column() {
-      GridRow({ columns: 12, breakpoints: { reference: BreakpointsReference.WindowSize } }) {
-        // 歌单图片
+      GridRow() {
         GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
-          Row() {
-            Stack() {
-              Image($r('app.media.pic_album'))
-                .width('100%')
-                .aspectRatio(1)
-                .borderRadius(8)
-                .onAreaChange((oldArea: Area, newArea: Area) => {
-                  this.coverImgHeight = newArea.height as number
-                })
-              // 收藏人数
-              Text($r('app.string.collection_num'))
-                .letterSpacing(1)
-                .fontColor('#fff')
-                .fontSize(this.fontSize - 4)
-                .position({ x: 0, y: '100%' })
-                .translate({ x: '10', y: '-200%' })
-            }.width('100%').height('100%')
-          }
-          .width('100%')
-          .aspectRatio(1)
+          Stack() {
+            Image($r('app.media.pic_album'))
+              .width('100%')
+              .aspectRatio(1)
+              .borderRadius(8)
+              .onAreaChange((oldArea: Area, newArea: Area) => {
+                this.coverImgHeight = newArea.height as number
+              })
+            Text($r('app.string.collection_num'))
+              .letterSpacing(1)
+              .fontColor('#fff')
+              .fontSize(this.fontSize - 4)
+              .position({ x: 0, y: '100%' })
+              .translate({ x: '10', y: '-200%' })
+          }.width('100%').height('100%').aspectRatio(1)
         }
-        // 歌单介绍
+
         GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
           Column() {
             Row() {
@@ -78,23 +71,21 @@ export default struct PlayListCover {
             bottom: this.currentBreakPoint === 'sm' ? 0 : 20
           })
         }
-        // 按钮
+
         GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
           Row() {
-            LazyForEach(new MyOptionSource(optionList), item => {
-              Row() {
-                Column({ space: 4 }) {
-                  Image(item.image).height('30vp').width('30vp')
-                  Text(item.text)
-                    .fontWeight(400)
-                    .fontColor('#556B89')
-                    .fontSize(this.fontSize - 1)
-                }
+            ForEach(optionList, item => {
+              Column({ space: 4 }) {
+                Image(item.image).height(30).width(30)
+                Text(item.text)
+                  .fontWeight(400)
+                  .fontColor('#556B89')
+                  .fontSize(this.fontSize - 1)
               }
             }, item => item.id)
           }
           .width('100%')
-          .height('70vp')
+          .height(70)
           .padding({
             left: this.currentBreakPoint === 'sm' ? 20 : 0,
             right: this.currentBreakPoint === 'sm' ? 20 : 0

@@ -20,12 +20,12 @@ export default struct PlayListHeader {
   @Consume('margin') listCoverMargin: number
 
   build() {
-    GridRow({ columns: 12, breakpoints: { reference: BreakpointsReference.WindowSize } }) {
+    GridRow() {
       GridCol({ span: { sm: 6, lg: 4 } }) {
         Row() {
           Image($r('app.media.ic_back'))
-            .width('20vp')
-            .height('20vp')
+            .width(20)
+            .height(20)
             .margin({ left: 16 })
           Text($r('app.string.play_list'))
             .fontSize(this.fontSize + 4)
@@ -43,8 +43,8 @@ export default struct PlayListHeader {
       GridCol({ span: { sm: 6, lg: 8 } }) {
         Row() {
           Image($r('app.media.ic_add'))
-            .width('20vp')
-            .height('20vp')
+            .width(20)
+            .height(20)
             .margin({ right: 16 })
         }
         .width('100%')
