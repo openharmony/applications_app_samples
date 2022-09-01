@@ -46,8 +46,8 @@
 
 4.本实例在RK板上运行需要修改RK文件才能使用应用窗口能力，操作如下：
 
-+ 使用hdc file recv system/etc/window/resources/window_manager_config.xml C:\ 将系统文件拉取到C盘；
-+ 将文件中<decor enable="false"></decor>改为<decor enable="true"></decor>；
-+ 使用hdc shell mount -o rw,remount /修改文件读写权限；
-+ 使用hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml替换系统文件;
++ 使用`hdc file recv system/etc/window/resources/window_manager_config.xml C:\`将系统文件拉取到C盘；
++ 将文件中`<decor enable="false"></decor>`改为`<decor enable="true"></decor>`；
++ 使用`hdc shell mount -o rw,remount /`修改文件读写权限；
++ 使用`hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml`替换系统文件;
 + 重启RK。
