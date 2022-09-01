@@ -23,75 +23,87 @@ export default struct PlayListCover {
   @Consume('margin') listCoverMargin: number
   @State coverHeight: number = 0
 
+  @Builder CoverImage() {
+    Stack() {
+      Image($r('app.media.pic_album'))
+        .width('100%')
+        .aspectRatio(1)
+        .borderRadius(8)
+        .onAreaChange((oldArea: Area, newArea: Area) => {
+          this.coverImgHeight = newArea.height as number
+        })
+      Text($r('app.string.collection_num'))
+        .letterSpacing(1)
+        .fontColor('#fff')
+        .fontSize(this.fontSize - 4)
+        .position({ x: 0, y: '100%' })
+        .translate({ x: '10', y: '-200%' })
+    }
+    .width('100%')
+    .height('100%')
+    .aspectRatio(1)
+  }
+
+  @Builder CoverIntroduction() {
+    Column() {
+      Row() {
+        Text($r('app.string.list_name'))
+          .opacity(0.9)
+          .fontWeight(500)
+          .fontColor('#556B89')
+          .fontSize(this.fontSize + 2)
+      }.margin({ bottom: 10 })
+
+      Text($r('app.string.playlist_Introduction'))
+        .opacity(0.6)
+        .width('100%')
+        .fontWeight(400)
+        .fontColor('#556B89')
+        .fontSize(this.fontSize - 2)
+    }
+    .width('100%')
+    .height(this.currentBreakPoint === 'sm' ? this.coverImgHeight : 70)
+    .alignItems(HorizontalAlign.Start)
+    .justifyContent(FlexAlign.Center)
+    .padding({ left: this.currentBreakPoint === 'sm' ? 20 : 0 })
+    .margin({
+      top: this.currentBreakPoint === 'sm' ? 0 : 30,
+      bottom: this.currentBreakPoint === 'sm' ? 0 : 20
+    })
+  }
+
+  @Builder CoverOptions() {
+    Row() {
+      ForEach(optionList, item => {
+        Column({ space: 4 }) {
+          Image(item.image).height(30).width(30)
+          Text(item.text)
+            .fontColor('#556B89')
+            .fontSize(this.fontSize - 1)
+        }
+      }, item => item.id)
+    }
+    .height(70)
+    .padding({
+      left: this.currentBreakPoint === 'sm' ? 20 : 0,
+      right: this.currentBreakPoint === 'sm' ? 20 : 0
+    })
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+
   build() {
     Column() {
       GridRow() {
         GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
-          Stack() {
-            Image($r('app.media.pic_album'))
-              .width('100%')
-              .aspectRatio(1)
-              .borderRadius(8)
-              .onAreaChange((oldArea: Area, newArea: Area) => {
-                this.coverImgHeight = newArea.height as number
-              })
-            Text($r('app.string.collection_num'))
-              .letterSpacing(1)
-              .fontColor('#fff')
-              .fontSize(this.fontSize - 4)
-              .position({ x: 0, y: '100%' })
-              .translate({ x: '10', y: '-200%' })
-          }
-          .width('100%')
-          .height('100%')
-          .aspectRatio(1)
+          this.CoverImage()
         }
 
         GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
-          Column() {
-            Row() {
-              Text($r('app.string.list_name'))
-                .opacity(0.9)
-                .fontWeight(500)
-                .fontColor('#556B89')
-                .fontSize(this.fontSize + 2)
-            }.margin({ bottom: 10 })
-
-            Text($r('app.string.playlist_Introduction'))
-              .opacity(0.6)
-              .width('100%')
-              .fontWeight(400)
-              .fontColor('#556B89')
-              .fontSize(this.fontSize - 2)
-          }
-          .width('100%')
-          .height(this.currentBreakPoint === 'sm' ? this.coverImgHeight : 70)
-          .alignItems(HorizontalAlign.Start)
-          .justifyContent(FlexAlign.Center)
-          .padding({ left: this.currentBreakPoint === 'sm' ? 20 : 0 })
-          .margin({
-            top: this.currentBreakPoint === 'sm' ? 0 : 30,
-            bottom: this.currentBreakPoint === 'sm' ? 0 : 20
-          })
+          this.CoverIntroduction()
         }
 
         GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
-          Row() {
-            ForEach(optionList, item => {
-              Column({ space: 4 }) {
-                Image(item.image).height(30).width(30)
-                Text(item.text)
-                  .fontColor('#556B89')
-                  .fontSize(this.fontSize - 1)
-              }
-            }, item => item.id)
-          }
-          .height(70)
-          .padding({
-            left: this.currentBreakPoint === 'sm' ? 20 : 0,
-            right: this.currentBreakPoint === 'sm' ? 20 : 0
-          })
-          .justifyContent(FlexAlign.SpaceBetween)
+          this.CoverOptions()
         }.margin({
           top: this.currentBreakPoint === 'sm' ? 15 : 0,
           bottom: this.currentBreakPoint === 'sm' ? 15 : 0

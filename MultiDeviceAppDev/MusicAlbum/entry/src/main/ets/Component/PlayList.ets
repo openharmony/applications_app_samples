@@ -25,7 +25,7 @@ export default struct PlayList {
   @Consume('coverHeight') PlayListCoverHeight: number
 
   @Builder
-  playAll() {
+  PlayAll() {
     Row() {
       Image($r('app.media.ic_detail_play_all')).height(23).width(23)
       Text($r('app.string.play_all'))
@@ -49,7 +49,7 @@ export default struct PlayList {
   }
 
   @Builder
-  songItem(title: string, label: Resource, singer: string) {
+  SongItem(title: string, label: Resource, singer: string) {
     Row() {
       Column() {
         Text(title)
@@ -91,14 +91,14 @@ export default struct PlayList {
         .translate({ x: '-100%', y: 0 })
         .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
 
-      this.playAll()
+      this.PlayAll()
 
       Scroll() {
         List() {
           LazyForEach(new MyDataSource(songList), item => {
             ListItem() {
               Column() {
-                this.songItem(item.title, item.label, item.singer)
+                this.SongItem(item.title, item.label, item.singer)
                 Divider()
                   .strokeWidth(0.5)
                   .color('#000')

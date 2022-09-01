@@ -1,53 +1,60 @@
-## 一多适配能力
+# 一多音乐专辑主页
 
-#### 简介
+### 介绍
 
-本示例展示了新栅格组件如何使用自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常展示。
+本示例展示了音乐专辑主页，页面中包括头部返回栏、专辑封面、歌曲列表、播放器等。
 
-#### 相关概念
+本示例使用[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。
 
-一次开发多端部署：一套代码工程，一次开发上架，多端按需部署。
-
-自适应布局：当外部容器大小发生变化时，元素可以根据相对关系自动变化以适应外部容器变化的布局能力。
-
-响应式布局：当外部容器大小发生变化时，元素可以根据断点、栅格或特定的特征（如屏幕的方向、窗口宽高等）自动变化以适应外部环境变化的的布局能力。
-
-#### 相关权限
-
-不涉及。
-
-#### 使用说明
+使用说明：
 
 1.启动应用，查看本应用在全屏状态下的效果。
 
-![](assets/index.png)
-
 2.在应用顶部，下滑出现窗口操作按钮。（建议通过外接鼠标操作，接入鼠标只需要将鼠标移动至顶部即可出现窗口）
-
-![](assets/img1.png)
 
 3.点击悬浮图标，将应用悬浮在其他界面上显示。
 
-![](assets/img2.png)
-
 4.拖动应用悬浮窗口的四个顶角，改变窗口尺寸，触发应用显示刷新。改变窗口尺寸的过程中，窗口尺寸可能超出屏幕尺寸，此时在屏幕中只能看到应用部分区域的显示。可以通过移动窗口位置，查看应用其它区域的显示。
 
-![](assets/img3.png)
+### 效果预览
 
-5.点击关闭按钮，关闭应用。
+本示例在预览器中的效果：
 
-#### 约束与限制
+|Phone                |MatePadPro         |
+|---------------------|-------------------|
+|![](assets/phone.png)|![](assets/pad.png)|
 
-1.本实例仅支持在标准系统上运行。
+本示例在开发板上运行的效果：
 
-2.本实例为Stage模型，从API version9开始支持。
+|全屏展示               |窗口操作按钮          |悬浮窗口显示          |修改窗口大小          |
+|---------------------|--------------------|--------------------|--------------------|
+|![](assets/index.png)|![](assets/img1.png)|![](assets/img2.png)|![](assets/img3.png)|
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.991, built on July 6, 2022)才可编译运行。
+### 相关权限
 
-4.本实例在RK板上运行需要修改RK文件才能使用应用窗口能力，操作如下：
+不涉及。
 
-+ 使用`hdc file recv system/etc/window/resources/window_manager_config.xml C:\`将系统文件拉取到C盘；
-+ 将文件中`<decor enable="false"></decor>`改为`<decor enable="true"></decor>`；
-+ 使用`hdc shell mount -o rw,remount /`修改文件读写权限；
-+ 使用`hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml`替换系统文件;
-+ 重启RK。
+### 依赖
+
+不涉及。
+
+### 约束与限制
+
+1. 本示例仅支持在标准系统上运行。
+
+2. 本示例仅支持API9版本的SDK，版本号： 3.2.5.5 Beta2。
+
+3. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+4. 本示例在开发板上运行时，需要修改开发板系统配置文件以使能应用窗口能力。
+
+```shell
+# 将开发板文件系统的权限配置为可读写
+hdc shell mount -o rw,remount /
+# 取出原始配置文件
+hdc file recv system/etc/window/resources/window_manager_config.xml C:\
+# 将文件中<decor enable="false"></decor>改为<decor enable="true"></decor>
+# 用修改后的文件替换系统中的原始文件
+hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml
+# 重启后生效
+hdc shell reboot
