@@ -18,7 +18,7 @@ import HomeContent from './home/HomeContent'
 import IndexTitleBar from './home/IndexTitleBar'
 import Logger from '../util/Logger'
 import SideContent from './home/SideContent'
-import { CityListData, getCityListWeatherData } from '@ohos/common'
+import { CityListData, getCityListWeatherData, getBg } from '@ohos/common'
 
 const TAG: string = 'Home'
 
@@ -61,7 +61,7 @@ struct Home {
         .width('100%')
         .layoutWeight(1)
       }
-      .backgroundImage($r('app.media.bg'))
+      .backgroundImage(getBg(this.cityListWeatherData[this.swiperIndex].header.weatherType, this.showSideBar))
       .backgroundImageSize(ImageSize.Cover)
     }
     .height('100%')

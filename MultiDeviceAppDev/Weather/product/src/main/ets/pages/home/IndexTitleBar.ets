@@ -89,6 +89,7 @@ export default struct IndexTitleBar {
         .textAlign(TextAlign.Center)
         .margin({ left: (!this.showSideBar && this.curBp === 'lg') ? 0 : 25 })
         .layoutWeight(1)
+
       Image($r('app.media.icon_more'))
         .size({ width: 24, height: 24 })
         .objectFit(ImageFit.Fill)
@@ -111,7 +112,6 @@ export default struct IndexTitleBar {
     .width('100%')
     .height('100%')
     .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
-    .justifyContent(FlexAlign.End)
   }
 
   cancelDialog = () => {

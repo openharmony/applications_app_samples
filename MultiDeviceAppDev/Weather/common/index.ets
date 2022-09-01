@@ -24,6 +24,7 @@ export {
   getWeekWeatherData,
   getAirIndexData,
   getLifeData,
+  getSideBg,
   getBg
 } from './src/main/ets/mock/RequestData'
 

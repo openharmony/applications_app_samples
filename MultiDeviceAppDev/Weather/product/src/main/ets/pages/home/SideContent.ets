@@ -14,7 +14,7 @@
  */
 
 import Style from '../../util/Style'
-import { City, getBg, MyDataSource } from '@ohos/common'
+import { City, getSideBg, MyDataSource } from '@ohos/common'
 
 @Component
 export default struct SideContent {
@@ -92,7 +92,7 @@ export default struct SideContent {
             })
             .alignItems(VerticalAlign.Center)
             .backgroundImageSize(ImageSize.Cover)
-            .backgroundImage(getBg(item.weather))
+            .backgroundImage(getSideBg(item.weather))
           }
           .onClick(() => {
             this.swiperIndex = index
