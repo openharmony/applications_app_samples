@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import IndexSwiper from './indexswiper'
-import IndexEntrance from './indexentrance'
+import IndexSwiper from './IndexSwiper'
+import IndexEntrance from './IndexEntrance'
 import IndexApps from './IndexApps'
 import { appList, gameList } from '../model/HomeData'
 

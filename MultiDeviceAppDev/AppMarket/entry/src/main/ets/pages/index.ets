@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import Home from '../common/home'
+import Home from '../common/Home'
 import TabBarItem from '../common/TabBarItem'
-import BreakpointSystem from '../common/breakpointsystem'
+import BreakpointSystem from '../common/BreakpointSystem'
 
 @Entry
 @Component
