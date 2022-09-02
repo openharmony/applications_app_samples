@@ -77,6 +77,7 @@ struct ColumnPage {
           ForEach(this.num1, item => {
             GridItem() {
               Button(this.alignItemsDescribe[`${item}`])
+                .key(this.alignItemsDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {
@@ -97,6 +98,7 @@ struct ColumnPage {
 
           GridItem() {
             Slider({ value: this.space, step: 1, min: -10, max: 50 })
+              .key('spaceSlider')
               .blockColor(Color.Orange)
               .width('100%')
               .onChange((e) => {
@@ -118,6 +120,7 @@ struct ColumnPage {
           ForEach(this.num1, item => {
             GridItem() {
               Button(this.flexItemsDescribe[`${item}`])
+	        .key('custom' + this.flexItemsDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {

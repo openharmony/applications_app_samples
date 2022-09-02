@@ -1,4 +1,3 @@
-// @ts-nocheck
 import nativerender from "libnativerender.so";
 import { ContextType } from "../common/Constants"
 
@@ -30,7 +29,7 @@ struct Index {
   }
 
   build() {
-    Column() {
+    Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center}) {
       Button('ChangeColor')
         .onClick(() => {
           if (this.context) {
@@ -39,7 +38,7 @@ struct Index {
         })
         .width(200)
         .height(80)
-        .key('changeColor')
+        .flexShrink(0)
       Button('ChangeShape')
         .onClick(() => {
           if (this.context) {
@@ -48,7 +47,7 @@ struct Index {
         })
         .width(200)
         .height(80)
-        .key('changeShape')
+        .flexShrink(0)
 
       XComponent({ id: 'xcomponentId', type: 'texture', libraryname: 'nativerender' })
         .onLoad((context) => {

@@ -39,7 +39,7 @@ export default {
       }
     }
     router.push({
-      url: 'pages/collect/index',
+      url: 'pages/collect/collect',
       params: {
         bookNames: collects,
       }

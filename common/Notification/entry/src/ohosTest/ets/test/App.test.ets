@@ -79,10 +79,16 @@ export default function appTest() {
       let cancelLastComp = await driver.findComponent(BY.key('cancelLast'))
       await cancelLastComp.click()
       await driver.delayMs(1000)
+      // 再次发布通知
+      await driver.assertComponentExist(BY.key('publishNotice'))
+      let PublishComp = await driver.findComponent(BY.key('publishNotice'))
+      await PublishComp.click()
+      await driver.delayMs(1000)
       // 取消全部通知
       await driver.assertComponentExist(BY.key('cancelAll'))
-      let PublishComp = await driver.findComponent(BY.key('cancelAll'))
-      await PublishComp.click()
+      let cancelAll = await driver.findComponent(BY.key('cancelAll'))
+      await cancelAll.click()
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_CancelNotice end")
     })
     /**

@@ -153,7 +153,7 @@ struct Index {
               .objectFit(ImageFit.Contain)
               .align(Alignment.End)
           }
-	  .key('addFileBtn')
+          .key('addFileBtn')
           .width('10%')
           .type(ButtonType.Normal)
           .backgroundColor('#0D9FFB')
@@ -200,7 +200,8 @@ struct Index {
             .align(Alignment.Center)
             .backgroundColor('#FFFFFF')
           }, item => item)
-        }.width("100%")
+        }
+        .width('100%')
         .layoutWeight(1)
       }
       .height('100%')

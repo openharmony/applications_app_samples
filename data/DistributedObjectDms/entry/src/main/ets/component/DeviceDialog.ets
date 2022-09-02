@@ -59,6 +59,8 @@ export default struct DeviceDialog {
           }
         }, item => item.deviceName)
       }
+      .width('100%')
+      .height('100%')
 
       Button() {
         Text($r('app.string.cancel'))
@@ -67,6 +69,7 @@ export default struct DeviceDialog {
           .fontColor('#0C9FFC')
           .textAlign(TextAlign.Center)
       }
+      .key('cancelBtn')
       .margin({ top: 22 })
       .type(ButtonType.Capsule)
       .backgroundColor(Color.White)

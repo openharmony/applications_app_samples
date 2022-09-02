@@ -203,6 +203,7 @@ export struct CountDown {
         }
         Row() {
           Image(this.resetImg)
+            .key('reset')
             .width(48)
             .height(48)
             .margin({ right: 100 })
@@ -211,6 +212,7 @@ export struct CountDown {
               this.Reset()
             })
           Image(this.startImg)
+            .key('start')
             .width(48)
             .height(48)
             .onClick(() => {

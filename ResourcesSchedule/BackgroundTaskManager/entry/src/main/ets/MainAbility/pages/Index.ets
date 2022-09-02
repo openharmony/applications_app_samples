@@ -47,6 +47,7 @@ struct Index {
         Text($r('app.string.download'))
           .fontSize(20)
       }
+      .key('download')
       .margin({ top: 60 })
       .type(ButtonType.Capsule)
       .backgroundColor('#0D9FFB')

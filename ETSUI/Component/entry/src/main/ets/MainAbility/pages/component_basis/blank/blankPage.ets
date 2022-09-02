@@ -94,6 +94,7 @@ struct BlankPage {
           .fontWeight(FontWeight.Bolder)
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
           Slider({ value: this.minLength, step: 1, min: -10, max: 300 })
+            .key('blankSlider')
             .blockColor(Color.Orange)
             .onChange((e) => {
               this.minLength = Math.round(e)

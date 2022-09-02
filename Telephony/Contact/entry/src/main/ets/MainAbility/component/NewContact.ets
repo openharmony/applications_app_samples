@@ -26,25 +26,29 @@ export struct NewContact {
   @Link postalAddress: string
 
   build() {
-    Column() {
-      Image($r('app.media.touxiang'))
-        .width(76)
-        .height(74)
-        .margin({ top: 52 })
-        .objectFit(ImageFit.Contain)
+    Scroll() {
+      Column() {
+        Image($r('app.media.touxiang'))
+          .width(76)
+          .height(74)
+          .margin({ top: 52 })
+          .objectFit(ImageFit.Contain)
 
-      Text($r('app.string.save'))
-        .fontSize(22)
-        .margin({ top: 22, bottom: 32 })
+        Text($r('app.string.save'))
+          .fontSize(22)
+          .margin({ top: 22, bottom: 32 })
 
-      this.newContact($r('app.string.name'), $r('app.media.name'))
-      this.newContact($r('app.string.address'), $r('app.media.address'))
-      this.newContact($r('app.string.phone'), $r('app.media.phone'))
-      this.newContact($r('app.string.email'), $r('app.media.email'))
-      this.newContact($r('app.string.note'), $r('app.media.nickname'))
+        Column() {
+          this.newContact($r('app.string.name'), $r('app.media.name'))
+          this.newContact($r('app.string.address'), $r('app.media.address'))
+          this.newContact($r('app.string.phone'), $r('app.media.phone'))
+          this.newContact($r('app.string.email'), $r('app.media.email'))
+          this.newContact($r('app.string.note'), $r('app.media.nickname'))
+        }
+        .height('80%')
+      }
+      .width('100%')
     }
-    .width('100%')
-    .height('100%')
   }
 
   @Builder

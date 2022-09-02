@@ -62,6 +62,7 @@ struct CartDialog {
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Bold)
         Text($r("app.string.deleteGoods"))
+          .key('delGoods')
           .fontSize(18)
           .layoutWeight(2)
           .textAlign(TextAlign.Center)
@@ -91,6 +92,7 @@ struct CartDialog {
             Row() {
               if (this.editFlag) {
                 Image($r('app.media.delete'))
+                  .key('cartDel' + (index+1))
                   .width(20)
                   .height(20)
                   .margin({ left: 20 })
@@ -185,6 +187,7 @@ struct Shopping {
           Button('message') {
             Image(this.cartNum >= 5 ? $r('app.media.cartfull') : $r('app.media.cartnone')).width(40).height(40)
           }
+          .key('cart')
           .onClick(() => {
             this.dialogController = new CustomDialogController({
               builder: CartDialog({ action: this.cartDialog.bind(this) }),

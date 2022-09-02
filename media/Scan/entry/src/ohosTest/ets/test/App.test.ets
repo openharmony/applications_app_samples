@@ -35,75 +35,14 @@ export default function appTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + "_startAbility end")
       })
     })
-    // 点击允许权限
+    // 证明拉起白屏
     it(BUNDLE + '_IndexPage_btnAgree', 0, async function () {
-      // hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_btnAgree start")
+      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_BtnAgree start")
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
-      // 相机权限点击允许
       await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnCameraAgree = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
-      await btnCameraAgree.click()
       await driver.delayMs(1000)
-      // 麦克风权限点击允许
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnMicrophoneAgree = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
-      await btnMicrophoneAgree.click()
-      await driver.delayMs(1000)
-      // 媒体和文件权限点击允许
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnMediaAgree = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
-      await btnMediaAgree.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_btnAgree end")
-    })
-    /**
-     * 点击扫一扫
-     */
-    it(BUNDLE + '_IndexPage_ScanBtn', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_ScanBtn start")
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(BY.key('btnScan'))
-      let scanBtn = await driver.findComponent(BY.key('btnScan'))
-      await scanBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_ScanBtn end")
-    })
-    /**
-     * 获取二维码图片
-     */
-    it(BUNDLE + '_ScanPage_getScanPicture', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_ScanPage_getScanPicture start")
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(BY.key('getScanPicture'))
-      // 点击右上角图片，进入文件页
-      let pictureBtn = await driver.findComponent(BY.key('getScanPicture'))
-      await pictureBtn.click()
-      await driver.delayMs(3000)
-      await driver.assertComponentExist(BY.text('图片', MatchPattern.CONTAINS))
-      let ImageComp = await driver.findComponent(BY.text('图片', MatchPattern.CONTAINS))
-      await ImageComp.click()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(BY.text('取消', MatchPattern.CONTAINS))
-      let cancelBtn = await driver.findComponent(BY.text('取消', MatchPattern.CONTAINS))
-      await cancelBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_ScanPage_getScanPicture end")
-    })
-    /**
-     * 点击轻触效果
-     */
-    it(BUNDLE + '_ScanPage_TouchLight', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_ScanPage_ScanPage start")
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(BY.key('touchLight'))
-      let touchLightBtn = await driver.findComponent(BY.key('touchLight'))
-      await touchLightBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_ScanPage_ScanPage end")
+      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_BtnAgree end")
     })
   })
 }

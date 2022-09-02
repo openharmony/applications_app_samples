@@ -53,14 +53,6 @@ export default function appTest() {
       let enterVideoComp = await driver.findComponent(BY.key('directVideo'))
       await enterVideoComp.click()
       await driver.delayMs(1000)
-      // 直播页向下滑动
-      await driver.assertComponentExist(BY.key('ScrollVideo'))
-      let LiveScroll = await driver.findComponent(BY.key('ScrollVideo'))
-      await LiveScroll.scrollToBottom()
-      await driver.delayMs(2000)
-      // 直播页向上滑动
-      await LiveScroll.scrollToTop()
-      await driver.delayMs(2000)
       hilog.info(DOMAIN, TAG, BUNDLE + '_IndexPage_LiveVideo end')
     })
   })

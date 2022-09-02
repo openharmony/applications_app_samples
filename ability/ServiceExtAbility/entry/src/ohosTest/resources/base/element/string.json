@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "entry_test_desc",
-      "value": "i am an entry for tv"
+      "value": "test ability description"
     },
     {
       "name": "TestAbility_desc",
-      "value": "the tv entry test ability"
+      "value": "the test ability"
     },
     {
       "name": "TestAbility_label",
-      "value": "tvBase"
+      "value": "test label"
     }
   ]
 }

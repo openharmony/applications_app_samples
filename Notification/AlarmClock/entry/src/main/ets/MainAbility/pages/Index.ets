@@ -116,7 +116,7 @@ struct Index {
           }
         }, item => item.value)
       }
-      .width("100%")
+      .width('100%')
       .layoutWeight(1)
     }
   }

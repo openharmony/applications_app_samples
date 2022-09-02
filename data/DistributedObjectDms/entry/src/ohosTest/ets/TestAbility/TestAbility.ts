@@ -24,12 +24,6 @@ const TAG: string = 'TestAbility'
 export default class TestAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, `TestAbility onCreate`)
-    let abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info(TAG, `start run testcase!!!`)
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   onDestroy() {
@@ -46,6 +40,12 @@ export default class TestAbility extends Ability {
       Logger.info(TAG, `Succeeded in loading the content. Data = ${JSON.stringify(data)}`)
     })
     globalThis.abilityContext = this.context
+    let abilityDelegator: any
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments: any
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    Logger.info(TAG, `start run testcase!!!`)
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   onWindowStageDestroy() {

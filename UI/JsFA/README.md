@@ -24,4 +24,4 @@ On the app page, you can select a food image by moving the focus to one of the c
 
 1.This sample can only be run on standard-system devices.
 
-2.This example requires the DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022) to compile and run.
+2.This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.

@@ -101,6 +101,7 @@ export struct StackButton {
             this.reset()
             this.animate()
           })
+        .key('mainImg')
       }
       .rotate({ x: 0, y: 0, z: 1, angle: this.mainFlag ? 360 : 90 })
       .width('100%')
@@ -117,6 +118,7 @@ export struct StackButton {
           .onClick(() => {
             this.add()
           })
+          .key('add')
         Image($r('app.media.reduce'))
           .objectFit(ImageFit.Contain)
           .width('20%')
@@ -125,6 +127,7 @@ export struct StackButton {
           .onClick(() => {
             this.reduce()
           })
+          .key('reduce')
       }
       .height('10%')
     }

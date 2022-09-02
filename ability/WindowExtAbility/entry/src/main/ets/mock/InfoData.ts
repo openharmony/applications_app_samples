@@ -34,12 +34,12 @@ export const INFODATA: Array<{
     },
     {
       name: $r('app.string.bluetooth'),
-      info: 'BlueToothExtAbility',
+      info: 'BluetoothExtAbility',
       image: $r('app.media.bluetooth'),
       value: $r('app.string.start'),
       flag: true,
       index: 1,
-      uri: 'pages/BlueTooth'
+      uri: 'pages/Bluetooth'
     },
     {
       name: $r('app.string.mobile_network'),

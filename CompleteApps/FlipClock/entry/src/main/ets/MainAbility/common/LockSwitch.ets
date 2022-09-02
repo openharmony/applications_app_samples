@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import lock from '@ohos.runninglock'
+import lock from '@ohos.runningLock'
 import Logger from '../model/Logger'
 
 const TAG: string = '[LockSwitch]'

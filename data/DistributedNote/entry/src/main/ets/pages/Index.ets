@@ -152,6 +152,7 @@ struct Index {
           ListItem() {
             NoteItem({ note: item, index: index })
           }
+          .key('noteList')
         }, item => item.title)
       }
       .width('95%')
@@ -166,6 +167,7 @@ struct Index {
             .fontColor(Color.Red)
             .fontSize(20)
         }.layoutWeight(1)
+        .key('clearNote')
         .onClick(() => {
           Logger.info(TAG, 'clear notes')
           this.noteDataSource['dataArray'] = []
@@ -180,6 +182,7 @@ struct Index {
             .fontColor(Color.Black)
             .fontSize(20)
         }.layoutWeight(1)
+        .key('addNote')
         .onClick(() => {
           router.push({
             url: 'pages/Edit',

@@ -86,6 +86,7 @@ struct Goods {
             })
           }
           .width('100%')
+          .height('100%')
           .layoutWeight(1)
           .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
 

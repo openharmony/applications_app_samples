@@ -75,6 +75,7 @@ struct TextAreaPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               TextInput({ placeholder: '', text: this.temporary1 })
+                .key('placeholder')
                 .enterKeyType(EnterKeyType.Send)
                 .placeholderFont({ size: 15 })
                 .height(40)
@@ -101,6 +102,7 @@ struct TextAreaPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               TextInput({ placeholder: '', text: this.temporary2 })
+                .key('text')
                 .enterKeyType(EnterKeyType.Send)
                 .placeholderFont({ size: 15 })
                 .height(40)
@@ -127,6 +129,7 @@ struct TextAreaPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.size, step: 1, min: 10, max: 20 })
+	        .key('placeholderSizeSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.size = Math.round(e)
@@ -234,6 +237,7 @@ struct TextAreaPage {
             } else {
               Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Start }) {
                 Slider({ value: this.fontWeight, step: 100, min: -100, max: 1000 })
+                  .key('fontWeightSlider')
                   .blockColor(Color.Orange)
                   .width('100%')
                   .onChange((e) => {
@@ -283,6 +287,7 @@ struct TextAreaPage {
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               ForEach(this.num2, item => {
                 Button(this.colorDescribe[`${item}`])
+                  .key('caretColor' + this.colorDescribe[`${item}`])
                   .margin({right:10})
                   .fontSize(15)
                   .width(90)

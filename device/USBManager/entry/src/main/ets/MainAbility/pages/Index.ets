@@ -49,16 +49,16 @@ struct Index {
   @State isRefreshing: boolean = false
   @State devices: Array<DeviceAttribute> = []
   @State device: DeviceAttribute = new DeviceAttribute()
-  private commonEventSubscriber: any = undefined
-  private eventTips = {
-    ATTACHED: 'usual.event.hardware.usb.action.USB_DEVICE_ATTACHED',
-    DETACHED: 'usual.event.hardware.usb.action.USB_DEVICE_DETACHED'
-  }
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomUSBDeviceInfoDialog({ device: this.device }),
     cancel: this.existApp,
     autoCancel: true
   })
+  private commonEventSubscriber: any = undefined
+  private eventTips = {
+    ATTACHED: 'usual.event.hardware.usb.action.USB_DEVICE_ATTACHED',
+    DETACHED: 'usual.event.hardware.usb.action.USB_DEVICE_DETACHED'
+  }
 
   existApp() {
     Logger.info(TAG, 'Click the callback in the blank area')
@@ -105,16 +105,16 @@ struct Index {
   }
 
   getDeviceList() {
-    this.devices = []
     Logger.info(TAG, `usb getDeviceList...`)
-    let usbDevices = usb.getDevices()
+    let usbDevices: any [] = usb.getDevices()
+    Logger.info(TAG, `usb getDeviceList 000 is : ${JSON.stringify(usbDevices)}`)
     if (CheckEmptyUtils.isEmptyArray(usbDevices)) {
       Logger.info(TAG, `usb getDeviceList is null`)
       this.result = 'device list is empty'
       return
     }
-    Logger.info(TAG, `usb getDeviceList : ${JSON.stringify(usbDevices)}`)
     for (let index = 0; index < usbDevices.length; index++) {
+      Logger.info(TAG, `usb this.devices ${index} : ${JSON.stringify(this.devices)}`)
       let deviceAttribute = {
         version: usbDevices[index].version,
         serial: usbDevices[index].serial,
@@ -128,8 +128,8 @@ struct Index {
         deviceAddress: usbDevices[index].devAddress
       }
       this.devices.push(deviceAttribute)
+      Logger.info(TAG, `usb this.devices : ${JSON.stringify(this.devices)}`)
     }
-    Logger.info(TAG, `usb this.devices : ${JSON.stringify(this.devices)}`)
   }
 
   unSubscriberListener() {
@@ -161,11 +161,11 @@ struct Index {
         Text($r('app.string.usb_listener'))
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
-          .margin({right:70})
+          .margin({ right: 70 })
         Toggle({ type: ToggleType.Switch, isOn: this.isListener })
           .selectedColor(0xed6f21)
           .switchPointColor(0xe5ffffff)
-          .margin({left:70})
+          .margin({ left: 70 })
           .onChange((isOn: boolean) => {
             Logger.info(TAG, `Component status:${isOn}`)
             this.isListener = !this.isListener

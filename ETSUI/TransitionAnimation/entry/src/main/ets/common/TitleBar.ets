@@ -25,6 +25,7 @@ export default struct TitleBar {
         Image($r('app.media.ic_back'))
           .width(50).height('100%')
           .objectFit(ImageFit.Contain)
+          .key('backImg')
           .onClick(() => {
             router.back()
           })

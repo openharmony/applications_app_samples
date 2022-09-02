@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AppMarket"
+    },
+    {
+      "name": "more",
+      "value": "更多"
+    },
+    {
+      "name": "install",
+      "value": "安装"
+    },
+    {
+      "name": "boutique_application",
+      "value": "精品应用"
+    },
+    {
+      "name": "boutique_game",
+      "value": "精品游戏"
+    },
+    {
+      "name": "home_categories",
+      "value": "分类"
+    },
+    {
+      "name": "home_top",
+      "value": "排行"
+    },
+    {
+      "name": "home_fast",
+      "value": "快应用"
+    },
+    {
+      "name": "home_flower",
+      "value": "小华花圃"
+    },
+    {
+      "name": "home_education",
+      "value": "教育中心"
+    },
+    {
+      "name": "tabBar0",
+      "value": "首页"
+    },
+    {
+      "name": "tabBar1",
+      "value": "应用"
+    },
+    {
+      "name": "tabBar2",
+      "value": "对战"
+    },
+    {
+      "name": "tabBar3",
+      "value": "探索"
+    },
+    {
+      "name": "tabBar4",
+      "value": "我的"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "public_app1",
+      "value": "实时笔记"
+    },
+    {
+      "name": "public_app2",
+      "value": "touch下"
+    },
+    {
+      "name": "public_app3",
+      "value": "沉浸睡眠"
+    },
+    {
+      "name": "public_app4",
+      "value": "游端"
+    },
+    {
+      "name": "public_app5",
+      "value": "EXPESIR"
+    },
+    {
+      "name": "public_app6",
+      "value": "备忘录"
+    },
+    {
+      "name": "public_app7",
+      "value": "相册"
+    },
+    {
+      "name": "public_app8",
+      "value": "视频播放"
+    },
+    {
+      "name": "public_app9",
+      "value": "Date"
+    },
+    {
+      "name": "public_app10",
+      "value": "实时监测"
+    },
+    {
+      "name": "public_game1",
+      "value": "卧虎藏龙"
+    },
+    {
+      "name": "public_game2",
+      "value": "如意金箍"
+    },
+    {
+      "name": "public_game3",
+      "value": "笋笋"
+    },
+    {
+      "name": "public_game4",
+      "value": "你的星星"
+    },
+    {
+      "name": "public_game5",
+      "value": "点点能量"
+    },
+    {
+      "name": "public_game6",
+      "value": "神龙呼唤"
+    },
+    {
+      "name": "public_game7",
+      "value": "梦中的你"
+    },
+    {
+      "name": "public_game8",
+      "value": "元素方兴"
+    },
+    {
+      "name": "public_game9",
+      "value": "虎虎生威"
+    },
+    {
+      "name": "public_game10",
+      "value": "新屋萌宠"
+    }
+  ]
+}

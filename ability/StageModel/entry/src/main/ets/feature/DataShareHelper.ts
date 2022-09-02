@@ -109,22 +109,22 @@ class DataShareHelper {
   }
 
   // 注册观察者以观察给定uri指定的数据。对应FA模型的DataAbilityHelper中的on
-  on = () => {
-    this.dataShareHelper.on('dataChange', BASE_URI, (err) => {
-      Logger.info(TAG, `on: ${err}`)
+  on = async () => {
+    Logger.info(TAG, `on start`)
+    await this.dataShareHelper.on('dataChange', BASE_URI)
+    Logger.info(TAG, `on end`)
       prompt.showToast({
-        message: `on: ${err}`
-      })
+        message: `on success`
     })
   }
 
   // 注销用于监视给定uri指定的数据的观察者。对应FA模型的DataAbilityHelper中的off
-  off = () => {
-    this.dataShareHelper.off('dataChange', BASE_URI, (err) => {
-      Logger.info(TAG, `off: ${err}`)
+  off = async () => {
+    Logger.info(TAG, `off start`)
+    await this.dataShareHelper.off('dataChange', BASE_URI)
+    Logger.info(TAG, `off end`)
       prompt.showToast({
-        message: `off: ${err}`
-      })
+        message: `off success`
     })
   }
 

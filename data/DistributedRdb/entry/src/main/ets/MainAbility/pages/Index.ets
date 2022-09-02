@@ -234,6 +234,8 @@ struct Index {
               })
             }, item => item.name)
           }
+          .width('80%')
+          .height(150)
           .margin({ bottom: 130 })
           .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
         }
@@ -259,6 +261,7 @@ struct Index {
             .objectFit(ImageFit.Contain)
             .align(Alignment.End)
         }
+        .key('btnAdd')
         .size({ width: '15%', height: 80 })
         .margin({ right: 20, bottom: 50 })
         .type(ButtonType.Circle)

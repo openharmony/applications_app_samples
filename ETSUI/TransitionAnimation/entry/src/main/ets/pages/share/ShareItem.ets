@@ -129,6 +129,7 @@ struct ShareItem {
               .aspectRatio(1)
               .sharedTransition(index.toString(), { duration: 600, curve: Curve.Smooth, delay: 100 })
           }
+          .key('shareItem' + (index + 1))
           .padding(10)
           .backgroundColor('#F5F5F5')
           .borderRadius(10)

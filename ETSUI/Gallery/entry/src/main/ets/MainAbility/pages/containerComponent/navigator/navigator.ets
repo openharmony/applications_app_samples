@@ -51,12 +51,16 @@ struct NavigatorSample {
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Text(this.text)
               .fontSize('16fp')
               .fontColor('#182431')
               .fontWeight(FontWeight.Medium)
           }
-          .padding('3%')
+          .margin(4)
+          .padding(10)
           .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
@@ -69,10 +73,11 @@ struct NavigatorSample {
             .onChange((value: string) => {
               this.text = value
             })
-            .padding('3%')
+            .margin(4)
+            .padding(10)
+            .width('100%')
             .borderRadius(24)
             .backgroundColor('#FFFFFF')
-            .width('100%')
 
           Row({ space: FlexAlign.SpaceBetween }) {
             Text('type')
@@ -80,6 +85,9 @@ struct NavigatorSample {
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Text(this.navigationType == 1 ? 'Push' : this.navigationType == 2 ? 'Back' : 'Replace')
               .fontSize('16fp')
               .fontColor('#182431')
@@ -107,9 +115,10 @@ struct NavigatorSample {
                 }
               ])
           }
-          .padding('3%')
-          .borderRadius(24)
+          .margin(4)
+          .padding(10)
           .width('100%')
+          .borderRadius(24)
           .backgroundColor('#FFFFFF')
 
           Row({ space: FlexAlign.SpaceBetween }) {
@@ -118,27 +127,28 @@ struct NavigatorSample {
               .fontColor('#182431')
               .opacity(0.5)
               .fontWeight(FontWeight.Medium)
+
+            Blank()
+
             Toggle({ type: ToggleType.Switch, isOn: this.active })
               .selectedColor('#007DFF')
               .switchPointColor(0xe5ffffff)
               .onChange((isOn: boolean) => {
                 this.active = !this.active
               })
-              .margin(0)
-              .padding(0)
           }
           .alignItems(VerticalAlign.Center)
-          .padding('3%')
+          .margin(4)
+          .padding(10)
           .width('100%')
           .borderRadius(24)
           .backgroundColor('#FFFFFF')
-          .margin({ top: 8 })
         }
       }
       .margin({ top: 24 })
     }
     .alignItems(HorizontalAlign.Center)
-    .padding({ left: '3%', right: '3%' })
+    .padding({ left: 10, right: 10 })
     .height('100%')
     .backgroundColor('#F1F3F5')
   }

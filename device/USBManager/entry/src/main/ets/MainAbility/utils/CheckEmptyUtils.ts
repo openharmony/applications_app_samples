@@ -21,7 +21,7 @@ export default {
   },
 
   isEmptyArray(array: Array<usb.USBDevice>) {
-    return array.length === 0
+    return (array.length === 0 ? true : false)
   }
 }
  

@@ -153,6 +153,7 @@ export struct TitleBar {
           .width(70).height(40)
           .objectFit(ImageFit.Contain)
       }
+      .key('rightBtn')
       .type(ButtonType.Normal)
       .backgroundColor('#0D9FFB')
       .onClick(() => {

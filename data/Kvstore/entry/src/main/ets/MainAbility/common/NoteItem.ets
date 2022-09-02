@@ -23,6 +23,7 @@ export struct NoteListItem {
     Column() {
       if (this.note.title === '' && this.note.content === '') {
         Image($r('app.media.add'))
+          .key('add')
           .objectFit(ImageFit.Contain)
           .width(50).height('100%')
       } else {
@@ -44,6 +45,7 @@ export struct NoteListItem {
           .width('100%').height('100%')
 
           Image($r('app.media.delete'))
+            .key('del' + this.note.title)
             .width('30%')
             .height('30%')
             .objectFit(ImageFit.Contain)

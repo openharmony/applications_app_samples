@@ -28,7 +28,7 @@ export default {
         title: this.$t("strings.atomic_layout_capability"), uri: "pages/atomicLayoutCapability/index/index"
       },
       {
-        title: this.$t("strings.responsive_layout"), uri: "pages/responsiveLayout/index/index"
+        title: this.$t("strings.responsive_layout"), uri: "pages/responsiveLayout/index/responsiveLayout"
       }
     ];
   },

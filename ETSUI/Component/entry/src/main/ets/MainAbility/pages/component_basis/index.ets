@@ -41,10 +41,7 @@ struct component_basis {
   @State containerActive: boolean = false
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center
-    }) {
+    Column() {
       List() {
         ForEach(componentBasisItems, (item) => {
           ListItem() {
@@ -70,6 +67,7 @@ struct component_basis {
         }, item => item.title)
       }
       .width('100%')
+      .height('100%')
     }
   }
 }

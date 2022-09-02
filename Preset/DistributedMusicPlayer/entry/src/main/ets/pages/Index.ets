@@ -112,7 +112,6 @@ struct Index {
   }
 
   startAbilityContinuation(deviceId) {
-    this.dialogController.close()
     let params
     Logger.info(TAG, `startAbilityContinuation PlayerModel.index= ${PlayerModel.index}/${PlayerModel.playlist.audioFiles.length}`)
     if (PlayerModel.index >= 0 && PlayerModel.index <= PlayerModel.playlist.audioFiles.length) {
@@ -145,12 +144,12 @@ struct Index {
     KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
       Logger.info(TAG, 'OnMessageReceived, terminateSelf')
       clearTimeout(timerId)
-      globalThis.abilityConText.terminateSelf((error) => {
+      this.context.terminateSelf((error) => {
         Logger.info(TAG, `terminateSelf finished, error= ${error}`)
       })
     })
     Logger.info(TAG, `globalThis.abilityConText.startAbility start`)
-    globalThis.abilityConText.startAbility(wantValue).then((data) => {
+    this.context.startAbility(wantValue).then((data) => {
       Logger.info(TAG, `globalThis.abilityConText.startAbility finished ${JSON.stringify(data)}`)
     })
     this.clearSelectState()
@@ -198,8 +197,10 @@ struct Index {
 
   clearSelectState() {
     this.deviceLists = []
-    this.dialogController.close()
-    this.dialogController = null
+    if(this.dialogController){
+      this.dialogController.close()
+      this.dialogController = null
+    }
   }
 
   getShownTimer(ms) {
@@ -238,9 +239,7 @@ struct Index {
     this.totalMs = PlayerModel.getDuration()
     this.totalTimeText = this.getShownTimer(this.totalMs)
     this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs())
-
-    Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs=
-            ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
+    Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
   }
 
   onPreviousClick() {
@@ -320,6 +319,8 @@ struct Index {
             this.refreshSongInfo(0)
           })
         }
+        Logger.info(TAG, `Index PlayerModel.restorePlayingStatus this.totalMs = ${this.totalMs}, status.seekTo = ${status.seekTo}`)
+        this.currentProgress = Math.floor(status.seekTo / this.totalMs * ONE_HUNDRED)
       })
     } else {
       PlayerModel.preLoad(0, () => {
@@ -331,11 +332,11 @@ struct Index {
   aboutToAppear() {
     Logger.info(TAG, `begin`)
     Logger.info(TAG, 'grantPermission')
+    this.context = getContext(this) as any
     let requestCode = 666
-    globalThis.abilityConText.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], requestCode, function (result) {
+    this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], requestCode, function (result) {
       Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result= ${result}`)
     })
-    this.context = getContext(this)
     display.getDefaultDisplay().then((dis) => {
       Logger.info(TAG, `getDefaultDisplay dis= ${JSON.stringify(dis)}`)
       let proportion = DESIGN_WIDTH / dis.width
@@ -443,6 +444,7 @@ struct Index {
                 }
               })
           }
+          .key('image' + (index + 1))
           .width(100)
           .height(100)
           .alignItems(HorizontalAlign.Center)

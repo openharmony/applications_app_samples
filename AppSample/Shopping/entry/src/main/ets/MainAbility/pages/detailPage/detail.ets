@@ -913,6 +913,7 @@ struct Detail {
       }
       .padding({ bottom: 10, left: 10, right: 10 })
       .width(`${this.width}%`)
+      .height('100%')
       .backgroundColor(Color.White)
     }
     .width('100%')

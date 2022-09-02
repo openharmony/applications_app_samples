@@ -88,6 +88,7 @@ struct Index {
           }, item => JSON.stringify(item))
         }
         .width('90%')
+        .height('100%')
         .borderRadius(24)
         .margin({ top: '2%' })
         .backgroundColor(Color.White)
@@ -128,8 +129,8 @@ struct Index {
       abilityName: info,
       bundleName: 'ohos.samples.windowextability'
     })
-      .width(805)
-      .height(767)
+      .width(767)
+      .height(805)
   }
 
   onPortrait(mediaQueryResult) {

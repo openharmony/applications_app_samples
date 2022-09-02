@@ -169,6 +169,7 @@ struct EditPreferred {
           .layoutWeight(1)
         Blank()
         Image($r('app.media.check'))
+          .key('check')
           .width(60).height('100%')
           .objectFit(ImageFit.Contain)
           .onClick(() => {

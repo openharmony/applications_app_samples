@@ -1,0 +1,48 @@
+{
+  "float": [
+    {
+      "name": "wh_value_260",
+      "value": "260vp"
+    },
+    {
+      "name": "wh_value_66",
+      "value": "66vp"
+    },
+    {
+      "name": "wh_value_100",
+      "value": "100vp"
+    },
+    {
+      "name": "fontSize_10",
+      "value": "10vp"
+    },
+    {
+      "name": "fontSize_18",
+      "value": "18vp"
+    },
+    {
+      "name": "fontSize_20",
+      "value": "20vp"
+    },
+    {
+      "name": "maxLines_2",
+      "value": "2vp"
+    },
+    {
+      "name": "margin_bottom_10",
+      "value": "10vp"
+    },
+    {
+      "name": "margin_bottom_36",
+      "value": "36vp"
+    },
+    {
+      "name": "margin_20",
+      "value": "20vp"
+    },
+    {
+      "name": "padding_24",
+      "value": "24vp"
+    }
+  ]
+}

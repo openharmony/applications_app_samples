@@ -84,6 +84,7 @@ struct ScrollPage {
           ForEach(this.num1, item => {
             GridItem() {
               Button(this.scrollableDescribe[`${item}`])
+                .key('scrollable' + this.scrollableDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {
@@ -105,6 +106,7 @@ struct ScrollPage {
           ForEach(this.num1, item => {
             GridItem() {
               Button(this.barStateDescribe[`${item}`])
+                .key('barState' + this.barStateDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {
@@ -145,6 +147,7 @@ struct ScrollPage {
 
           GridItem() {
             Slider({ value: this.scrollWidth, step: 1, min: -10, max: 50 })
+              .key('scrollWidth')
               .blockColor(Color.Orange)
               .width("100%")
               .onChange((e) => {
@@ -154,6 +157,7 @@ struct ScrollPage {
 
           GridItem() {
             Button('滑动到指定位置')
+              .key('scrollTo')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -170,6 +174,7 @@ struct ScrollPage {
 
           GridItem() {
             Button('滑动到容器边缘')
+              .key('scrollEdgeEnd')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -179,6 +184,7 @@ struct ScrollPage {
 
           GridItem() {
             Button('滑动到下一页')
+              .key('scrollPage')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -191,6 +197,7 @@ struct ScrollPage {
 
           GridItem() {
             Button('滑动偏移量')
+              .key('scrollToOffset')
               .fontSize(15)
               .width('100%')
               .onClick(() => {

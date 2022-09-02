@@ -54,6 +54,7 @@ struct TogglePage {
             .fontWeight(FontWeight.Bolder)
           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
             Button('true')
+              .key('true')
               .margin({ right: 10 })
               .fontSize(15)
               .width(110)
@@ -61,6 +62,7 @@ struct TogglePage {
                 this.isOn = true
               })
             Button('false')
+              .key('false')
               .fontSize(15)
               .width(110)
               .onClick(() => {
