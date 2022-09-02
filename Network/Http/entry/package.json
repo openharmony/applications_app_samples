@@ -13,3 +13,4 @@
   "dependencies": {
     "@ohos/http": "file:../http"
   }
+}
