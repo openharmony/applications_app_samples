@@ -46,7 +46,7 @@ export default struct Banner {
           .padding(8)
       })
     }
-    .indicator(new BreakPointType({ sm: true, md: false, lg: false }).GetValue(this.currentBreakpoint))
-    .displayCount(new BreakPointType({ sm: 1, md: 2, lg: 3 }).GetValue(this.currentBreakpoint))
+    .indicator(new BreakPointType({ sm: true, md: false, lg: false }).getValue(this.currentBreakpoint))
+    .displayCount(new BreakPointType({ sm: 1, md: 2, lg: 3 }).getValue(this.currentBreakpoint))
   }
 }

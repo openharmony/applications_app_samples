@@ -61,7 +61,7 @@ struct MultiLaneList {
         }
       })
     }
-    .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).GetValue(this.currentBreakpoint))
+    .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).getValue(this.currentBreakpoint))
     .width('100%')
   }
 }

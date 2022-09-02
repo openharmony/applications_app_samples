@@ -45,7 +45,7 @@ struct Home {
         sm: FlexDirection.Column,
         md: FlexDirection.Row,
         lg: FlexDirection.Column
-      }).GetValue(this.currentBreakpoint),
+      }).getValue(this.currentBreakpoint),
       justifyContent: FlexAlign.Center,
       alignItems: ItemAlign.Center
     }) {
@@ -56,7 +56,7 @@ struct Home {
         .margin(new BreakPointType({
           sm: { top: 4 },
           md: { left: 8 },
-          lg: { top: 4 } }).GetValue(this.currentBreakpoint))
+          lg: { top: 4 } }).getValue(this.currentBreakpoint))
         .fontSize(16)
     }
     .width('100%')
@@ -80,7 +80,7 @@ struct Home {
         sm: BarPosition.End,
         md: BarPosition.End,
         lg: BarPosition.Start
-      }).GetValue(this.currentBreakpoint)
+      }).getValue(this.currentBreakpoint)
     }) {
       ForEach(this.tabs, (item, index) => {
         TabContent() {
@@ -90,9 +90,9 @@ struct Home {
         }.tabBar(this.TabBarBuilder(index, item))
       })
     }
-    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).GetValue(this.currentBreakpoint))
-    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).GetValue(this.currentBreakpoint))
-    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).GetValue(this.currentBreakpoint))
+    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint))
+    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint))
+    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint))
     .animationDuration(0)
     .onChange((index: number) => {
       this.currentIndex = index

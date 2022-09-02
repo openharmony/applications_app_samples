@@ -66,6 +66,6 @@ export default struct ResponsiveGrid {
       sm: '1fr 1fr',
       md: '1fr 1fr 1fr 1fr',
       lg: '1fr 1fr 1fr 1fr 1fr 1fr'
-    }).GetValue(this.currentBreakpoint))
+    }).getValue(this.currentBreakpoint))
   }
 }
