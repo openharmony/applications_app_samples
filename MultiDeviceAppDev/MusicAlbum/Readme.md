@@ -20,13 +20,13 @@
 
 本示例在预览器中的效果：
 
-![](assets/img3.png)
+![](screenShot/img3.png)
 
 本示例在开发板上运行的效果：
 
 |全屏展示               |窗口操作按钮          |悬浮窗口显示          |
 |---------------------|--------------------|--------------------|
-|![](assets/index.png)|![](assets/img1.png)|![](assets/img2.png)|
+|![](screenShot/index.png)|![](screenShot/img1.png)|![](screenShot/img2.png)|
 
 ### 相关权限
 
