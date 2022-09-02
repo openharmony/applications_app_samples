@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { songList } from '../Module/SongList'
-import MyDataSource from '../Module/SongModule'
+import { songList } from '../model/SongList'
+import MyDataSource from '../model/SongModule'
 
 @Component
 export default struct PlayList {
@@ -80,7 +80,7 @@ export default struct PlayList {
   }
 
   build() {
-    Stack() {
+    Column() {
       this.PlayAll()
       Scroll() {
         List() {

@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import PlayListHeader from '../Component/PlayListHeader'
-import MusicBar from '../Component/MusicBar'
-import MusicContent from '../Component/MusicContent'
+import PlayListHeader from '../common/PlayListHeader'
+import MusicBar from '../common/MusicBar'
+import MusicContent from '../common/MusicContent'
 
 @Entry
 @Component

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import PlayListCover from '../Component/PlayListCover'
-import PlayList from '../Component/PlayList'
+import PlayListCover from '../common/PlayListCover'
+import PlayList from '../common/PlayList'
 
 @Component
 export default struct MusicContent {

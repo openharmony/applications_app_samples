@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { optionList } from '../Module/SongList'
+import { optionList } from '../model/SongList'
 
 @Component
 export default struct PlayListCover {
