@@ -20,13 +20,13 @@
 
 本示例在预览器中的效果：
 
-![](screenshots/img3.png)
+![](screenshots/device/img3.png)
 
 本示例在开发板上运行的效果：
 
 |全屏展示               |窗口操作按钮          |悬浮窗口显示          |
 |---------------------|--------------------|--------------------|
-|![](screenshots/index.png)|![](screenshots/img1.png)|![](screenshots/img2.png)|
+|![](screenshots/device/index.png)|![](screenshots/device/img1.png)|![](screenshots/device/img2.png)|
 
 ### 相关权限
 
@@ -56,3 +56,4 @@ hdc file recv system/etc/window/resources/window_manager_config.xml C:\
 hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml
 # 重启后生效
 hdc shell reboot
+```
