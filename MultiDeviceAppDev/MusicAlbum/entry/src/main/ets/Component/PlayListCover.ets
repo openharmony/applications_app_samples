@@ -24,7 +24,7 @@ export default struct PlayListCover {
   @State coverHeight: number = 0
 
   @Builder CoverImage() {
-    Stack() {
+    Stack({alignContent: Alignment.BottomStart}) {
       Image($r('app.media.pic_album'))
         .width('100%')
         .aspectRatio(1)
@@ -36,8 +36,7 @@ export default struct PlayListCover {
         .letterSpacing(1)
         .fontColor('#fff')
         .fontSize(this.fontSize - 4)
-        .position({ x: 0, y: '100%' })
-        .translate({ x: '10', y: '-200%' })
+        .translate({ x: 10, y: '-100%' })
     }
     .width('100%')
     .height('100%')

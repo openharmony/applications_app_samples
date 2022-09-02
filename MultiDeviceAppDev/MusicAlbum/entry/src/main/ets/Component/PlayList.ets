@@ -27,25 +27,28 @@ export default struct PlayList {
   @Builder
   PlayAll() {
     Row() {
-      Image($r('app.media.ic_detail_play_all')).height(23).width(23)
-      Text($r('app.string.play_all'))
-        .maxLines(1)
-        .padding({ left: 10 })
-        .fontColor('#000000')
-        .fontSize(this.fontSize)
-      Blank()
-      Image($r('app.media.ic_order_play'))
-        .width(24)
-        .height(24)
-        .margin({ right: 16 })
-      Image($r('app.media.ic_sort_list')).height(24).width(24)
+      Row() {
+        Image($r('app.media.ic_detail_play_all')).height(23).width(23)
+        Text($r('app.string.play_all'))
+          .maxLines(1)
+          .padding({ left: 10 })
+          .fontColor('#000000')
+          .fontSize(this.fontSize)
+        Blank()
+        Image($r('app.media.ic_order_play'))
+          .width(24)
+          .height(24)
+          .margin({ right: 16 })
+        Image($r('app.media.ic_sort_list')).height(24).width(24)
+      }
+      .height(60)
+      .width('100%')
+      .backgroundColor('#fff')
+      .padding({ left: 12, right: 12 })
+      .borderRadius({ topRight: 20, topLeft: 20 })
     }
-    .height(60)
-    .width('100%')
-    .borderRadius(20)
-    .backgroundColor('#fff')
+    .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
     .position({ x: 0, y: 0 })
-    .padding({ left: 12, right: 12 })
   }
 
   @Builder
@@ -78,21 +81,7 @@ export default struct PlayList {
 
   build() {
     Stack() {
-      Row()
-        .width(40)
-        .height(20)
-        .position({ x: 0, y: 0 })
-        .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
-
-      Row()
-        .width(40)
-        .height(20)
-        .position({ x: '100%', y: 0 })
-        .translate({ x: '-100%', y: 0 })
-        .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
-
       this.PlayAll()
-
       Scroll() {
         List() {
           LazyForEach(new MyDataSource(songList), item => {
@@ -111,7 +100,7 @@ export default struct PlayList {
         .height('100%')
         .lanes(this.currentBreakPoint === 'lg' ? 2 : 1)
       }
-      .padding({ top: 50, bottom: this.currentBreakPoint === 'sm' ? this.PlayListCoverHeight : 0 })
+      .margin({ top: 50, bottom: this.currentBreakPoint === 'sm' ? this.PlayListCoverHeight : 0 })
     }
   }
 }

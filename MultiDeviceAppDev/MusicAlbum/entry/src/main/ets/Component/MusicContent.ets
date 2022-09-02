@@ -35,7 +35,6 @@ export default struct MusicContent {
         PlayList()
       }
       .borderRadius(40)
-      .backgroundColor('#ffffff')
     }
     .height('100%')
   }

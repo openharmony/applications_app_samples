@@ -25,7 +25,7 @@ export default struct MusicBar {
         .borderRadius(5)
         .margin({ right: 12 })
       Column() {
-        Text('不知道')
+        Text($r('app.string.song_name'))
           .fontColor('#000000')
           .fontSize(this.fontSize - 1)
         Row() {
@@ -33,7 +33,7 @@ export default struct MusicBar {
             .height(16)
             .width(16)
             .margin({ right: 4 })
-          Text('小碗你好')
+          Text($r('app.string.singer'))
             .fontColor('#000000')
             .fontSize(this.fontSize - 4)
             .opacity(0.38)
