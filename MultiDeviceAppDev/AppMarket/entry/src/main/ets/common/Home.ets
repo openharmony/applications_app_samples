@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import IndexHeader from './indexheader'
+import IndexHeader from './IndexHeader'
 import IndexContent from './IndexContent'
 
 @Component
