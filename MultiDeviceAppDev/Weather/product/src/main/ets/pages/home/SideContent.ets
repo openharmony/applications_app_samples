@@ -35,14 +35,12 @@ export default struct SideContent {
           })
       }
       .width('100%')
-      .flexShrink(0)
 
       Text($r('app.string.weather'))
         .fontColor(Color.White)
         .fontSize(30)
         .fontWeight(FontWeight.Medium)
         .width('100%')
-        .flexShrink(0)
       Search({ placeholder: '搜索城市（中文/拼音）', icon: '/common/images/icon_search.svg' })
         .placeholderFont({ size: 16 })
         .placeholderColor('#60FFFFFF')
@@ -50,7 +48,6 @@ export default struct SideContent {
         .backgroundColor('#26FFFFFF')
         .margin({ top: 4 })
         .borderRadius(45)
-        .flexShrink(0)
       List({ space: 12 }) {
         LazyForEach(this.cityList, (item, index) => {
           ListItem() {
@@ -101,8 +98,8 @@ export default struct SideContent {
         }, item => item.name)
       }
       .margin({ top: 8 })
-      .flexShrink(1)
       .width('100%')
+      .layoutWeight(1)
     }
     .width('100%')
     .height('100%')

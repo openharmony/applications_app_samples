@@ -68,6 +68,7 @@ export struct AvailableWifi {
       }, item => JSON.stringify(item))
     }
     .width('100%')
+    .height('100%')
     .padding({ left: 16, right: 16 })
     .layoutWeight(1)
     .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 10, endMargin: 10 })

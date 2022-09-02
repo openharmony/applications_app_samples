@@ -96,7 +96,7 @@ struct DragEventSample {
         }, item => item)
       }
       .width('100%')
-      .height(420)
+      .height('60%')
       .padding({ left: 12, right: 12, top: 22, bottom: 22 })
       .margin({ bottom: 24 })
       .backgroundColor('#FFFFFF')

@@ -24,10 +24,7 @@ const HomeContents = [
 @Component
 struct HomePage {
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center
-    }) {
+    Column(){
       List() {
         ForEach(HomeContents, (item) => {
           ListItem() {
@@ -35,7 +32,6 @@ struct HomePage {
               Text(item.title)
                 .fontSize(16)
                 .padding({ left: 10 })
-
             }
             .padding({ left: 10 })
             .width('100%')
@@ -52,8 +48,12 @@ struct HomePage {
           }
         }, item => item.title)
       }
-      .width('100%')
+      .width('90%')
+      .height('100%')
     }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 

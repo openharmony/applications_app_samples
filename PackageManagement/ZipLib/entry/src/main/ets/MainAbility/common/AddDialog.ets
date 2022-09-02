@@ -26,7 +26,7 @@ export struct AddDialog {
   private createFile: (isInserted: boolean, name: string, content: string) => void
   private controller: CustomDialogController
 
-  @Builder InputLine(inputName: Resource, key:string, inputPrompt: Resource, inputContent: string, onChange: (value: string) => void) {
+  @Builder InputLine(inputName: Resource, key: string, inputPrompt: Resource, inputContent: string, onChange: (value: string) => void) {
     Row() {
       Text(inputName)
         .width(80)
@@ -35,7 +35,7 @@ export struct AddDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Medium)
       TextInput({ placeholder: inputPrompt, text: inputContent })
-	.key('input' + (key))
+        .key('input' + (key))
         .layoutWeight(1)
         .placeholderColor(Color.Gray)
         .fontSize(16)
@@ -46,7 +46,7 @@ export struct AddDialog {
     .margin({ top: '3%' })
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     this.fileName = ''
     this.fileContent = ''
   }

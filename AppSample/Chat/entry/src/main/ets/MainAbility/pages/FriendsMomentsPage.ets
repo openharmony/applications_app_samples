@@ -79,6 +79,8 @@ struct FriendsMomentsPage {
               }
             }, (msg: FriendMoment) => msg.id)
           }
+          .width('100%')
+          .height('100%')
           .listDirection(Axis.Vertical)
         }
         .height('100%')

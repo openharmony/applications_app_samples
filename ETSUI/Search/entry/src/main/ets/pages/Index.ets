@@ -62,6 +62,7 @@ struct Index {
         }, item => item.title)
       }
       .width('100%')
+      .height('100%')
       .layoutWeight(1)
       .margin({ bottom: 20 })
     }

@@ -63,6 +63,7 @@ struct Index {
           .listDirection(Axis.Vertical)
           .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
           .width('98%')
+          .height('100%')
         }
         .width('100%')
       }

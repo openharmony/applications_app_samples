@@ -67,6 +67,7 @@ export default struct MultidayWeather {
         }
       }, item => item.week)
     }
+    .width('100%')
     .height(Style.CARD_HEIGHT)
     .listDirection(Axis.Horizontal)
     .borderRadius(Style.NORMAL_RADIUS)

@@ -88,6 +88,7 @@ struct Index {
           }, item => JSON.stringify(item))
         }
         .width('90%')
+        .height('100%')
         .borderRadius(24)
         .margin({ top: '2%' })
         .backgroundColor(Color.White)

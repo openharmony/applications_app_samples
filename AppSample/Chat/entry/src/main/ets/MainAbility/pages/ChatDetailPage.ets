@@ -94,7 +94,8 @@ struct ChatDetailPage {
         .divider({ strokeWidth: 2, color: "#f3f3f3" })
         .margin({ bottom: 60 })
         .padding({ left: 10, right: 10, bottom: 60 })
-        .height("100%")
+        .height('100%')
+        .width('100%')
         //底部输入框
         Row({ space: 5 }) {
           Image($r('app.media.chatting_setmode_voice'))

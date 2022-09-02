@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import DataShareExtAbilityPage from '../feature/DataShareHelper'
 import DateShareHelper from '../feature/DataShareHelper'
 import { PublicTitleBar } from './component/PublicTitleBar'
 
@@ -26,15 +25,15 @@ struct DataShareHelperPage {
       Scroll() {
         Column() {
           Button($r('app.string.denormalize_uri'))
-            .fancy(DataShareExtAbilityPage.denormalizeUri)
+            .fancy(DateShareHelper.denormalizeUri)
           Button($r('app.string.normalize_uri'))
-            .fancy(DataShareExtAbilityPage.normalizeUri)
+            .fancy(DateShareHelper.normalizeUri)
           Button($r('app.string.notify_change'))
-            .fancy(DataShareExtAbilityPage.notifyChange)
+            .fancy(DateShareHelper.notifyChange)
           Button($r('app.string.on'))
-            .fancy(DataShareExtAbilityPage.on)
+            .fancy(DateShareHelper.on)
           Button($r('app.string.off'))
-            .fancy(DataShareExtAbilityPage.off)
+            .fancy(DateShareHelper.off)
         }
         .width('100%')
       }

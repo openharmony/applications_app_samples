@@ -49,13 +49,13 @@ struct Index {
     Column() {
       Row() {
         Text($r('app.string.event_notification'))
-          .width('70%')
+          .width('60%')
           .fontSize(25)
           .fontColor('#FFFFFF')
           .fontWeight(FontWeight.Bold)
         Text($r('app.string.enter_mall'))
           .key('enterMall')
-          .width('30%')
+          .width('40%')
           .textAlign(TextAlign.End)
           .fontSize(25)
           .fontColor('#FFFFFF')
@@ -110,7 +110,8 @@ struct Index {
           }
         }, item => item.name)
       }
-      .width("100%")
+      .width('100%')
+      .height('100%')
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 15, endMargin: 15 })
       .layoutWeight(1)
     }

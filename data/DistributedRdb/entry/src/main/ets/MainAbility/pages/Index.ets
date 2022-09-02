@@ -234,6 +234,8 @@ struct Index {
               })
             }, item => item.name)
           }
+          .width('80%')
+          .height(150)
           .margin({ bottom: 130 })
           .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
         }

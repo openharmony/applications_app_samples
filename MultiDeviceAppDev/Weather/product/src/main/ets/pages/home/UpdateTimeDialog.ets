@@ -48,14 +48,16 @@ export default struct UpdateTimeDialog {
                       .height(20)
                   }
                   .width('100%')
-                  .height(48)
+                  .height(Style.TIME_LIST_HEIGHT)
                   .padding(this.curBp === 'lg' ? (index % 2 === 0 ? { right: 10 } : { left: 10 }) : 0)
                 }
               }, item => item)
             }
             .lanes(this.curBp === 'lg' ? 2 : 1)
             .divider({ strokeWidth: 1 })
-            .margin({ top: 22 })
+            .margin({ top: Style.TIME_LIST_MARGIN })
+            .width('100%')
+            .height(this.calcListHeight())
 
             Text($r('app.string.cancel'))
               .width('100%')
@@ -80,6 +82,14 @@ export default struct UpdateTimeDialog {
           bottom: this.curBp === 'sm' ? Style.DIALOG_PADDING_OUT : 0
         })
       }
+    }
+  }
+
+  calcListHeight() {
+    if (this.curBp === 'lg') {
+      return Style.TIME_LIST_HEIGHT * this.updateTimes.length / 2 + Style.TIME_LIST_MARGIN
+    } else {
+      return Style.TIME_LIST_HEIGHT * this.updateTimes.length + Style.TIME_LIST_MARGIN
     }
   }
 }
