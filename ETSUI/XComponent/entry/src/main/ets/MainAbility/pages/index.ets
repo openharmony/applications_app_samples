@@ -31,6 +31,7 @@ struct Index {
   build() {
     Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center}) {
       Button('ChangeColor')
+        .key('changeColor')
         .onClick(() => {
           if (this.context) {
             this.context.changeColor();
@@ -40,6 +41,7 @@ struct Index {
         .height(80)
         .flexShrink(0)
       Button('ChangeShape')
+        .key('changeShape')
         .onClick(() => {
           if (this.context) {
             this.context.changeShape();

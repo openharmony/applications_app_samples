@@ -47,8 +47,8 @@ export default function appTest() {
       await driver.delayMs(2000)
       // 进入应用
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 enter')
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnEnter = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnEnter = await driver.findComponent(BY.text('允许'))
       await btnEnter.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 end')
     })

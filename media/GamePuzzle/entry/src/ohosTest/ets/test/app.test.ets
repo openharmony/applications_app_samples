@@ -48,6 +48,7 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 enter')
       await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
       let btnCreate = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await btnCreate.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })
