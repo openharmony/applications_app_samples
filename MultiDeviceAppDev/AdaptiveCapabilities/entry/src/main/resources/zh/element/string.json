@@ -93,6 +93,34 @@
       "value": "缩进布局"
     },
     {
+      "name": "header",
+      "value": "顶部布局"
+    },
+    {
+      "name": "banner",
+      "value": "广告栏"
+    },
+    {
+      "name": "operationEntries",
+      "value": "操作入口"
+    },
+    {
+      "name": "tabs",
+      "value": "页签布局"
+    },
+    {
+      "name": "bigImage",
+      "value": "大图浏览"
+    },
+    {
+      "name": "multiLaneList",
+      "value": "多列列表"
+    },
+    {
+      "name": "grid",
+      "value": "网格视图"
+    },
+    {
       "name": "user_improvement",
       "value": "用户体验改进计划"
     },

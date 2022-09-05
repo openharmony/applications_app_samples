@@ -19,6 +19,7 @@ const directory = [
   { title: $r('app.string.resource_qualifier'), uri: "pages/resourceQualifier/ResourceQualifier" },
   { title: $r('app.string.atomic_capability'), uri: "pages/atomicLayoutCapability/AtomicLayoutCapabilityIndex" },
   { title: $r('app.string.responsive_layout'), uri: "pages/responsiveLayout/ResponsiveLayoutIndex" },
+  { title: $r('app.string.typical_scenario'), uri: "pages/typicalScene/TypicalSceneIndex" },
 ]
 
 @Entry
