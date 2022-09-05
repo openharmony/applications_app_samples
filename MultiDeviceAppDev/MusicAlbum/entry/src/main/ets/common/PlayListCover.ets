@@ -23,7 +23,8 @@ export default struct PlayListCover {
   @Consume('margin') listCoverMargin: number
   @State coverHeight: number = 0
 
-  @Builder CoverImage() {
+  @Builder
+  CoverImage() {
     Stack({alignContent: Alignment.BottomStart}) {
       Image($r('app.media.pic_album'))
         .width('100%')
@@ -43,7 +44,8 @@ export default struct PlayListCover {
     .aspectRatio(1)
   }
 
-  @Builder CoverIntroduction() {
+  @Builder
+  CoverIntroduction() {
     Column() {
       Row() {
         Text($r('app.string.list_name'))
@@ -71,7 +73,8 @@ export default struct PlayListCover {
     })
   }
 
-  @Builder CoverOptions() {
+  @Builder
+  CoverOptions() {
     Row() {
       ForEach(optionList, item => {
         Column({ space: 4 }) {
