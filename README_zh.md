@@ -155,6 +155,7 @@
 - ResourcesSchedule
   - [`Flybird`：小鸟避障游戏（eTS）（API8）](ResourcesSchedule/Flybird)
   - [`BackgroundTaskManager`：后台任务管理（eTS）（API8）](ResourcesSchedule/BackgroundTaskManager)
+  - [`WorkScheduler`：延迟任务调度（eTS）（API9）](ResourcesSchedule/WorkScheduler)
 - UI
   - [`AtomicLayout`：原子布局（JS）（API8）](UI/AtomicLayout)
   - [`Badge`：事件标记控件（JS）（API8）](UI/Badge)

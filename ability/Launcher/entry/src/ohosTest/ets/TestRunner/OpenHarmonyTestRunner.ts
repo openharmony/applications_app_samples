@@ -15,7 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import TestRunner from '@ohos.application.testRunner'
-import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
+import { Logger } from '@ohos/base'
 
 var abilityDelegator = undefined
 var abilityDelegatorArguments = undefined

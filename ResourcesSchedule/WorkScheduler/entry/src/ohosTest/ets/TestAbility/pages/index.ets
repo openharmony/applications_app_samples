@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Logger from '../../../../main/ets/util/Logger'
+import { Logger } from '@ohos/notification'
 
 const TAG: string = 'Index'
 

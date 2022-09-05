@@ -16,7 +16,7 @@
 import { Hypium } from '@ohos/hypium'
 import Ability from '@ohos.application.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
+import { Logger } from '@ohos/base'
 import testsuite from '../test/List.test'
 
 const TAG: string = 'TestAbility'

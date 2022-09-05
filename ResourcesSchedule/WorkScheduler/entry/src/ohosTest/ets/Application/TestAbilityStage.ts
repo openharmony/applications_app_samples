@@ -14,7 +14,7 @@
  */
 
 import AbilityStage from "@ohos.application.AbilityStage"
-import Logger from '../../../main/ets/util/Logger'
+import { Logger } from '@ohos/notification'
 
 const TAG: string = 'TestAbilityStage'
 

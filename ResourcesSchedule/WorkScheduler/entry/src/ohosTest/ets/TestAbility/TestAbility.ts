@@ -15,7 +15,7 @@
 
 import Ability from '@ohos.application.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import Logger from '../../../main/ets/util/Logger'
+import { Logger } from '@ohos/notification'
 import testsuite from '../test/List.test'
 import { Hypium } from '@ohos/hypium'
 
