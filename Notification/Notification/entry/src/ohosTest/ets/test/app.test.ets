@@ -36,7 +36,20 @@ export default function appTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
       })
     })
-    /
+    /**
+     * 点击允许
+     */
+    it(BUNDLE + 'ClickAcceptFunction_001', 0, async function () {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 begin')
+      let driver = await UiDriver.create()
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAcceptBtn')
+      // 点击允许
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnAccept = await driver.findComponent(BY.text('允许'))
+      await btnAccept.click()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 end')
+    })
     /**
      * 订阅通知
      */
@@ -48,17 +61,14 @@ export default function appTest() {
       // 订阅通知
       await driver.assertComponentExist(BY.text('订阅通知', MatchPattern.CONTAINS))
       let subBtn = await driver.findComponent(BY.text('订阅通知', MatchPattern.CONTAINS))
-      await subBtn.click()
       await driver.delayMs(1000)
+      await subBtn.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'SubscribeNotificationFunction_001 cancelSubscribe')
       // 取消订阅
       await driver.assertComponentExist(BY.text('取消订阅', MatchPattern.CONTAINS))
       let cancel = await driver.findComponent(BY.text('取消订阅', MatchPattern.CONTAINS))
+      await driver.delayMs(1000)
       await cancel.click()
-      await driver.delayMs(1000)
-      // 退出
-      await driver.pressHome()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'SubscribeNotificationFunction_001 end')
     })
   })
