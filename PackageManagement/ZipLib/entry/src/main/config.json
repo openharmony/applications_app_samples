@@ -1,6 +1,7 @@
 {
   "app": {
     "bundleName": "ohos.samples.ziplib",
+    "vendor": "samples",
     "version": {
       "code": 1000000,
       "name": "1.0.0"

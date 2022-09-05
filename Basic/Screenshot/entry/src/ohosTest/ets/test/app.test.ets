@@ -30,8 +30,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 点击允许
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAgreeFunction_001 clickAcceptBtn')
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnAccept = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnAccept = await driver.findComponent(BY.text('允许'))
       await btnAccept.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAgreeFunction_001 end')

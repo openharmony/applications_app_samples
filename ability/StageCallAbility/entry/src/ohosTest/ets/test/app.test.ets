@@ -45,8 +45,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAcceptBtn')
       // 点击允许
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnAccept = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnAccept = await driver.findComponent(BY.text('允许'))
       await btnAccept.click()
       await driver.delayMs(3000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 end')
@@ -60,8 +60,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickStartCalleeAbilityFunction_001 clickStartCalleeAbilityBtn')
       // 点击启动Callee Ability按钮
-      await driver.assertComponentExist(BY.text('启动Callee Ability', MatchPattern.CONTAINS))
-      let btnStart = await driver.findComponent(BY.text('启动Callee Ability', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('启动Callee Ability'))
+      let btnStart = await driver.findComponent(BY.text('启动Callee Ability'))
       await btnStart.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickStartCalleeAbilityFunction_001 end')
@@ -91,8 +91,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickObtainCallerFunction_001 clickObtainCallerBtn')
       // 点击获取Caller
-      await driver.assertComponentExist(BY.text('获取Caller', MatchPattern.CONTAINS))
-      let btnCaller = await driver.findComponent(BY.text('获取Caller', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('获取Caller'))
+      let btnCaller = await driver.findComponent(BY.text('获取Caller'))
       await btnCaller.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickObtainCallerFunction_001 end')
@@ -115,8 +115,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'InputSendMessageFunction_001 clickSendMessageBtn')
       // 点击通过Call调用发送消息
-      await driver.assertComponentExist(BY.text('通过Call调用发送消息', MatchPattern.CONTAINS))
-      let btnSendMessage = await driver.findComponent(BY.text('通过Call调用发送消息', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('通过Call调用发送消息'))
+      let btnSendMessage = await driver.findComponent(BY.text('通过Call调用发送消息'))
       await btnSendMessage.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'InputSendMessageFunction_001 end')
@@ -130,8 +130,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartCalleeAbilityFunction_001 clickStartCalleeAbilityBtn')
       // 点击启动Callee Ability
-      await driver.assertComponentExist(BY.text('启动Callee Ability', MatchPattern.CONTAINS))
-      let btnStart = await driver.findComponent(BY.text('启动Callee Ability', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('启动Callee Ability'))
+      let btnStart = await driver.findComponent(BY.text('启动Callee Ability'))
       await btnStart.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartCalleeAbilityFunction_001 end')
@@ -161,8 +161,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickCallerReleaseFunction_001 cliclkCallerReleaseBtn')
       // 点击释放Caller
-      await driver.assertComponentExist(BY.text('释放Caller', MatchPattern.CONTAINS))
-      let btnCallerRelease = await driver.findComponent(BY.text('释放Caller', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('释放Caller'))
+      let btnCallerRelease = await driver.findComponent(BY.text('释放Caller'))
       await btnCallerRelease.click()
       await driver.delayMs(1000)
       // 再次输入待发送消息
@@ -176,8 +176,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickCallerReleaseFunction_001 clickSendMessageBtn')
       // 点击通过Call调用发送消息
-      await driver.assertComponentExist(BY.text('通过Call调用发送消息', MatchPattern.CONTAINS))
-      let btnSendMessage = await driver.findComponent(BY.text('通过Call调用发送消息', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('通过Call调用发送消息'))
+      let btnSendMessage = await driver.findComponent(BY.text('通过Call调用发送消息'))
       await btnSendMessage.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickCallerReleaseFunction_001 end')
