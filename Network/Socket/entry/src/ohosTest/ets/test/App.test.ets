@@ -41,17 +41,5 @@ export default function appTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility end')
       })
     })
-    /**
-     * 输入Ip
-     */
-    it(BUNDLE + '_IndexPage_Login', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_Login start")
-      let driver = await UiDriver.create()
-      await driver.delayMs(200)
-      await driver.assertComponentExist(BY.key('ipInput'))
-      let ipInput = await driver.findComponent(BY.key('ipInput'))
-      await ipInput.inputText('192.168.101.41')
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_Login end")
-    })
   })
 }

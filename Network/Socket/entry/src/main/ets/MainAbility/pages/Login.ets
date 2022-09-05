@@ -195,7 +195,6 @@ struct Login {
             .width(200)
             .fontSize(25)
             .margin({ top: 10 })
-            .key('ipInput')
             .onChange((value: string) => {
               oppositeAddr.address = value
             })

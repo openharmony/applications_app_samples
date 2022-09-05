@@ -54,44 +54,5 @@ export default function appTest() {
       await webBtn.click()
       hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage__BtnIcon end")
     })
-    /**
-     * 在浏览多级网页后，可以通过点击**底部导航条**可实现进入上一级网页、下一级网页、进入主页面等操作。
-     */
-    it(BUNDLE + '_IndexPage_BottomBar', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_BottomBar start")
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      // 点击返回主页
-      await driver.assertComponentExist(BY.key('option1'))
-      let backBtn = await driver.findComponent(BY.key('option1'))
-      await backBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_BottomBar end")
-    })
-    /**
-     * 点击停止加载页面
-     */
-    it(BUNDLE + '_IndexPage_UpdatePage', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_UpdatePage start")
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      // 首页进入应用页
-      await driver.assertComponentExist(BY.key('homeWeb0'))
-      let webBtn = await driver.findComponent(BY.key('homeWeb0'))
-      await webBtn.click()
-      await driver.delayMs(1000)
-      // 点击刷新按钮按钮
-      await driver.assertComponentExist(BY.key('refresh'))
-      let refreshPage = await driver.findComponent(BY.key('refresh'))
-      await refreshPage.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_UpdatePage end")
-      // 点击返回主页
-      await driver.assertComponentExist(BY.key('option1'))
-      let backBtn = await driver.findComponent(BY.key('option1'))
-      await backBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_UpdatePage end")
-    })
   })
 }

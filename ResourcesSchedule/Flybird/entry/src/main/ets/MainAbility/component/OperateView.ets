@@ -25,6 +25,7 @@ export struct OperateView {
         .width('94%')
         .constraintSize({ minHeight: 50 })
         .margin({ top: 10 })
+        .key('textArea')
         .onChange((value: string) => {
           this.before = value
         })

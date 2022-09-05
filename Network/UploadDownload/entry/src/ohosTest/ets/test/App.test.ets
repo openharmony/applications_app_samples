@@ -51,6 +51,7 @@ export default function appTest() {
       await driver.assertComponentExist(BY.key('uploadBtn'))
       let uploadBtn = await driver.findComponent(BY.key('uploadBtn'))
       await uploadBtn.click()
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_Upload end")
     })
   })
