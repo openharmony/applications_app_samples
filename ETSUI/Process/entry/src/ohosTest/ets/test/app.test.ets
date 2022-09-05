@@ -78,18 +78,6 @@ export default function appTest() {
       let startProcess = await driver.findComponent(BY.key('startProcess'))
       await startProcess.click()
       await driver.delayMs(3000)
-      // 关闭子进程
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ProcessFunction_001 closeProcess')
-      await driver.assertComponentExist(BY.key('closeProcess'))
-      let closeProcess = await driver.findComponent(BY.key('closeProcess'))
-      await closeProcess.click()
-      await driver.delayMs(3000)
-      // 退出当前系统
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ProcessFunction_001 exitProcess')
-      await driver.assertComponentExist(BY.key('exitProcess'))
-      let exitProcess = await driver.findComponent(BY.key('exitProcess'))
-      await exitProcess.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ProcessFunction_001 end')
     })
   })

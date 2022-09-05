@@ -44,83 +44,14 @@ export default function appTest() {
     it(BUNDLE + 'EnterFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 begin')
       let driver = await UiDriver.create()
-      await driver.delayMs(800)
+      await driver.delayMs(1000)
       // enter
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 enter')
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnEnter = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnEnter = await driver.findComponent(BY.text('允许'))
       await btnEnter.click()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 end')
-    })
-
-    /**
-     * 相关信息弹出框
-     */
-    it(BUNDLE + 'DialogFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DialogFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(800)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DialogFunction_001 showDialogClick')
-      await driver.assertComponentExist(BY.key('image1'))
-      let showDialog = await driver.findComponent(BY.key('image1'))
-      await showDialog.click()
-      await driver.delayMs(500)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DialogFunction_001 cancelClick')
-      await driver.assertComponentExist(BY.text('取消', MatchPattern.CONTAINS))
-      let btnCancel = await driver.findComponent(BY.text('取消', MatchPattern.CONTAINS))
-      await btnCancel.click()
-      await driver.delayMs(500)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DialogFunction_001 end')
-    })
-
-    /**
-     * 播放
-     */
-    it(BUNDLE + 'PlayFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(800)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayFunction_001 onPlayClick')
-      await driver.assertComponentExist(BY.key('image3'))
-      let onPlay = await driver.findComponent(BY.key('image3'))
-      await onPlay.click()
-      await driver.delayMs(3000)
-      await onPlay.click()
-      await driver.delayMs(800)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayFunction_001 end')
-    })
-
-    /**
-     * 上一首
-     */
-    it(BUNDLE + 'PreviousFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PreviousFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(800)
-      // 点击上一首切换音乐
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PreviousFunction_001 onPreviousClick')
-      await driver.assertComponentExist(BY.key('image2'))
-      let onPrevious = await driver.findComponent(BY.key('image2'))
-      await onPrevious.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PreviousFunction_001 end')
-    })
-
-    /**
-     * 下一首
-     */
-    it(BUNDLE + 'NextFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NextFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(800)
-      // 点击下一首切换音乐
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NextFunction_001 onNextClick')
-      await driver.assertComponentExist(BY.key('image4'))
-      let onNext = await driver.findComponent(BY.key('image4'))
-      await onNext.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NextFunction_001 end')
     })
   })
 }
