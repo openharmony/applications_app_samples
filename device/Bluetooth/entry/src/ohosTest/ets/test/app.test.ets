@@ -48,8 +48,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // RequestPermission
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 RequestPermission')
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let requestPermission = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let requestPermission = await driver.findComponent(BY.text('允许'))
       await requestPermission.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 end')

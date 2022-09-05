@@ -83,6 +83,7 @@ export struct Setting {
           step: 5,
           style: SliderStyle.OutSet
         })
+          .key('brightness')
           .width('90%')
           .showTips(false)
           .showSteps(false)

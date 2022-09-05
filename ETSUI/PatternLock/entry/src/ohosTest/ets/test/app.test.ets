@@ -18,9 +18,9 @@ import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import featureAbility from '@ohos.ability.featureAbility'
 import hilog from '@ohos.hilog'
 
-const TAG = '[Sample_FaultLogger]'
+const TAG = '[Sample_PatternLock_]'
 const DOMAIN = 0xF811
-const BUNDLE = 'FaultLogger_'
+const BUNDLE = 'PatternLock__'
 
 export default function appTest() {
   describe('appTest', function () {
