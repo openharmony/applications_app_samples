@@ -13,26 +13,32 @@
  * limitations under the License.
  */
 
-import PlayListHeader from '../common/PlayListHeader'
-import MusicBar from '../common/MusicBar'
-import MusicContent from '../common/MusicContent'
+import Header from '../common/Header'
+import Player from '../common/Player'
+import Content from '../common/Content'
+import BreakpointSystem from '../model/MediaData'
 
 @Entry
 @Component
 struct Index {
-  @Provide('font') fontSize: number = 0
-  @Provide('breakPoint') currentBreakPoint: string = 'sm'
-  @Provide('margin') listCoverMargin: number = 0
-  @Provide('height') coverImgHeight: number = 0
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
+  aboutToAppear() {
+    this.breakpointSystem.register()
+  }
 
+  aboutToDisappear() {
+    this.breakpointSystem.unregister()
+  }
   build() {
     Column() {
-      PlayListHeader().flexShrink(0)
-      MusicContent()
+      Header().flexShrink(0)
+      Content()
         .flexGrow(1)
         .flexShrink(1)
-      MusicBar().flexShrink(0)
+      Player().flexShrink(0)
     }
     .width('100%')
+    .backgroundColor(this.currentBreakpoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
   }
 }

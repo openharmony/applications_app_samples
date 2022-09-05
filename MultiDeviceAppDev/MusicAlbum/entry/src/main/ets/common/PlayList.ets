@@ -18,36 +18,31 @@ import MyDataSource from '../model/SongModule'
 
 @Component
 export default struct PlayList {
-  @Consume('height') coverImgHeight: number
-  @Consume('font') fontSize: number
-  @Consume('breakPoint') currentBreakPoint: string
-  @Consume('margin') listCoverMargin: number
-  @Consume('coverHeight') PlayListCoverHeight: number
+  @Consume coverHeight: number
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
+  @StorageProp('fontSize') fontSize: number = 0
 
   @Builder
   PlayAll() {
     Row() {
-      Row() {
-        Image($r('app.media.ic_detail_play_all')).height(23).width(23)
-        Text($r('app.string.play_all'))
-          .maxLines(1)
-          .padding({ left: 10 })
-          .fontColor('#000000')
-          .fontSize(this.fontSize)
-        Blank()
-        Image($r('app.media.ic_order_play'))
-          .width(24)
-          .height(24)
-          .margin({ right: 16 })
-        Image($r('app.media.ic_sort_list')).height(24).width(24)
-      }
-      .height(60)
-      .width('100%')
-      .backgroundColor('#fff')
-      .padding({ left: 12, right: 12 })
-      .borderRadius({ topRight: 20, topLeft: 20 })
+      Image($r("app.media.ic_play_all")).height(23).width(23)
+      Text($r('app.string.play_all'))
+        .maxLines(1)
+        .padding({ left: 10 })
+        .fontColor('#000000')
+        .fontSize(this.fontSize)
+      Blank()
+      Image($r('app.media.ic_order_play'))
+        .width(24)
+        .height(24)
+        .margin({ right: 16 })
+      Image($r('app.media.ic_sort_list')).height(24).width(24)
     }
-    .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
+    .height(60)
+    .width('100%')
+    .backgroundColor('#fff')
+    .padding({ left: 12, right: 12 })
+    .borderRadius({ topRight: 20, topLeft: 20 })
     .position({ x: 0, y: 0 })
   }
 
@@ -98,9 +93,10 @@ export default struct PlayList {
         }
         .width('100%')
         .height('100%')
-        .lanes(this.currentBreakPoint === 'lg' ? 2 : 1)
+        .lanes(this.currentBreakpoint === 'lg' ? 2 : 1)
       }
-      .margin({ top: 50, bottom: this.currentBreakPoint === 'sm' ? this.PlayListCoverHeight : 0 })
+      .backgroundColor('#fff')
+      .margin({ top: 50, bottom: this.currentBreakpoint === 'sm' ? this.coverHeight : 0 })
     }
   }
 }

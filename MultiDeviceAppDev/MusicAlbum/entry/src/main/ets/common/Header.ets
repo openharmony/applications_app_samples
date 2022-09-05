@@ -14,10 +14,10 @@
  */
 
 @Component
-export default struct PlayListHeader {
-  @Consume('font') fontSize: number
-  @Consume('breakPoint') currentBreakPoint: string
-  @Consume('margin') listCoverMargin: number
+export default struct Header {
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
+  @StorageProp('fontSize') fontSize: number = 0
+
 
   build() {
     GridRow() {
@@ -41,31 +41,16 @@ export default struct PlayListHeader {
 
       GridCol({ span: { sm: 6, lg: 8 } }) {
         Row() {
-          Image($r('app.media.ic_add'))
+          Image($r("app.media.ic_more"))
             .width(20)
             .height(20)
             .margin({ right: 16 })
         }
         .height('100%')
         .justifyContent(FlexAlign.End)
-        .backgroundColor(this.currentBreakPoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
+        .backgroundColor(this.currentBreakpoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
       }
     }
     .height(50)
-    .onBreakpointChange((currentBreakpoint: string) => {
-      this.currentBreakPoint = currentBreakpoint
-      if (currentBreakpoint === 'sm') {
-        this.fontSize = 14
-        this.listCoverMargin = 10
-      }
-      if (currentBreakpoint === 'md') {
-        this.fontSize = 16
-        this.listCoverMargin = 30
-      }
-      if (currentBreakpoint === 'lg') {
-        this.fontSize = 18
-        this.listCoverMargin = 40
-      }
-    })
   }
 }

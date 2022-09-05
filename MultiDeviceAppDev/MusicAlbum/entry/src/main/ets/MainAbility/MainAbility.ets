@@ -17,38 +17,38 @@ import Ability from '@ohos.application.Ability'
 
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
-    console.log('[Samples_MusicAlbum] MainAbility onCreate')
+    console.log('[Sample_MusicAlbum] MainAbility onCreate')
   }
 
   onDestroy() {
-    console.log('[Samples_MusicAlbum] MainAbility onDestroy')
+    console.log('[Sample_MusicAlbum] MainAbility onDestroy')
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    console.log('[Samples_MusicAlbum] MainAbility onWindowStageCreate')
+    console.log('[Sample_MusicAlbum] MainAbility onWindowStageCreate')
 
     windowStage.loadContent("pages/index", (err, data) => {
       if (err.code) {
-        console.error('[Samples_MusicAlbum] Failed to load the content. Cause:' + JSON.stringify(err))
+        console.error('[Sample_MusicAlbum] Failed to load the content. Cause:' + JSON.stringify(err))
         return
       }
-      console.info('[Samples_MusicAlbum] Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      console.info('[Sample_MusicAlbum] Succeeded in loading the content. Data: ' + JSON.stringify(data))
     })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    console.log('[Samples_MusicAlbum] MainAbility onWindowStageDestroy')
+    console.log('[Sample_MusicAlbum] MainAbility onWindowStageDestroy')
   }
 
   onForeground() {
     // Ability has brought to foreground
-    console.log('[Samples_MusicAlbum] MainAbility onForeground')
+    console.log('[Sample_MusicAlbum] MainAbility onForeground')
   }
 
   onBackground() {
     // Ability has back to background
-    console.log('[Samples_MusicAlbum] MainAbility onBackground')
+    console.log('[Sample_MusicAlbum] MainAbility onBackground')
   }
 };

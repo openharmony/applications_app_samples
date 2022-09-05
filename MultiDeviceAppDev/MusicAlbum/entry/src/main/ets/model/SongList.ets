@@ -40,10 +40,10 @@ const songList = [
   { id: 25, title: 'Notebook', singer: '小安安', label: $r('app.media.ic_SQ') }
 ]
 const optionList = [
-  { id: 1, image: $r('app.media.ic_collect'), text: '999+' },
-  { id: 2, image: $r('app.media.ic_download'), text: $r('app.string.download') },
-  { id: 3, image: $r('app.media.icon_review'), text: $r('app.string.comment') },
-  { id: 4, image: $r('app.media.icon_share'), text: $r('app.string.share') }
+  { image: $r('app.media.ic_collect'), text: '999+' },
+  { image: $r('app.media.ic_download'), text: $r('app.string.download') },
+  { image: $r("app.media.icon_comments"), text: $r('app.string.comment') },
+  { image: $r('app.media.icon_share'), text: $r('app.string.share') }
 ]
 
 export { songList, optionList }

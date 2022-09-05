@@ -14,8 +14,8 @@
  */
 
 @Component
-export default struct MusicBar {
-  @Consume('font') fontSize: number
+export default struct Player {
+  @StorageProp('fontSize') fontSize: number = 0
 
   build() {
     Row() {

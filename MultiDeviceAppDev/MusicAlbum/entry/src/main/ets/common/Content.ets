@@ -17,16 +17,15 @@ import PlayListCover from '../common/PlayListCover'
 import PlayList from '../common/PlayList'
 
 @Component
-export default struct MusicContent {
-  @Consume('breakPoint') currentBreakPoint: string
-  @Provide('coverHeight') PlayListCoverHeight: number = 0
+export default struct Content {
+  @Provide coverHeight: number = 0
 
   build() {
     GridRow() {
       GridCol({ span: { sm: 12, md: 6, lg: 4 } }) {
         PlayListCover()
           .onAreaChange((oldArea: Area, newArea: Area) => {
-            this.PlayListCoverHeight = newArea.height as number
+            this.coverHeight = newArea.height as number
           })
       }
       .backgroundColor('#e4ecf7')

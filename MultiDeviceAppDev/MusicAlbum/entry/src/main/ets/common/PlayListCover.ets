@@ -17,21 +17,21 @@ import { optionList } from '../model/SongList'
 
 @Component
 export default struct PlayListCover {
-  @Consume('height') coverImgHeight: number
-  @Consume('font') fontSize: number
-  @Consume('breakPoint') currentBreakPoint: string
-  @Consume('margin') listCoverMargin: number
+  @State imgHeight: number = 0
   @State coverHeight: number = 0
+  @StorageProp('coverMargin') coverMargin: number = 0
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
+  @StorageProp('fontSize') fontSize: number = 0
 
   @Builder
   CoverImage() {
-    Stack({alignContent: Alignment.BottomStart}) {
+    Stack({ alignContent: Alignment.BottomStart }) {
       Image($r('app.media.pic_album'))
         .width('100%')
         .aspectRatio(1)
         .borderRadius(8)
         .onAreaChange((oldArea: Area, newArea: Area) => {
-          this.coverImgHeight = newArea.height as number
+          this.imgHeight = newArea.height as number
         })
       Text($r('app.string.collection_num'))
         .letterSpacing(1)
@@ -47,13 +47,12 @@ export default struct PlayListCover {
   @Builder
   CoverIntroduction() {
     Column() {
-      Row() {
-        Text($r('app.string.list_name'))
-          .opacity(0.9)
-          .fontWeight(500)
-          .fontColor('#556B89')
-          .fontSize(this.fontSize + 2)
-      }.margin({ bottom: 10 })
+      Text($r('app.string.list_name'))
+        .opacity(0.9)
+        .fontWeight(500)
+        .fontColor('#556B89')
+        .fontSize(this.fontSize + 2)
+        .margin({ bottom: 10 })
 
       Text($r('app.string.playlist_Introduction'))
         .opacity(0.6)
@@ -63,13 +62,13 @@ export default struct PlayListCover {
         .fontSize(this.fontSize - 2)
     }
     .width('100%')
-    .height(this.currentBreakPoint === 'sm' ? this.coverImgHeight : 70)
+    .height(this.currentBreakpoint === 'sm' ? this.imgHeight : 70)
     .alignItems(HorizontalAlign.Start)
     .justifyContent(FlexAlign.Center)
-    .padding({ left: this.currentBreakPoint === 'sm' ? 20 : 0 })
+    .padding({ left: this.currentBreakpoint === 'sm' ? 20 : 0 })
     .margin({
-      top: this.currentBreakPoint === 'sm' ? 0 : 30,
-      bottom: this.currentBreakPoint === 'sm' ? 0 : 20
+      top: this.currentBreakpoint === 'sm' ? 0 : 30,
+      bottom: this.currentBreakpoint === 'sm' ? 0 : 20
     })
   }
 
@@ -83,12 +82,12 @@ export default struct PlayListCover {
             .fontColor('#556B89')
             .fontSize(this.fontSize - 1)
         }
-      }, item => item.id)
+      })
     }
     .height(70)
     .padding({
-      left: this.currentBreakPoint === 'sm' ? 20 : 0,
-      right: this.currentBreakPoint === 'sm' ? 20 : 0
+      left: this.currentBreakpoint === 'sm' ? 20 : 0,
+      right: this.currentBreakpoint === 'sm' ? 20 : 0
     })
     .justifyContent(FlexAlign.SpaceBetween)
   }
@@ -107,16 +106,16 @@ export default struct PlayListCover {
         GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
           this.CoverOptions()
         }.margin({
-          top: this.currentBreakPoint === 'sm' ? 15 : 0,
-          bottom: this.currentBreakPoint === 'sm' ? 15 : 0
+          top: this.currentBreakpoint === 'sm' ? 15 : 0,
+          bottom: this.currentBreakpoint === 'sm' ? 15 : 0
         })
       }
-      .margin({ left: this.listCoverMargin, right: this.listCoverMargin })
+      .margin({ left: this.coverMargin, right: this.coverMargin })
       .onAreaChange((oldArea: Area, newArea: Area) => {
         this.coverHeight = newArea.height as number
       })
     }
-    .height(this.currentBreakPoint === 'sm' ? this.coverHeight : '100%')
-    .padding({ top: this.currentBreakPoint === 'sm' ? 0 : 20 })
+    .height(this.currentBreakpoint === 'sm' ? this.coverHeight : '100%')
+    .padding({ top: this.currentBreakpoint === 'sm' ? 0 : 20 })
   }
 }
