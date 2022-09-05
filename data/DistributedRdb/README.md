@@ -22,4 +22,4 @@ This sample shows how to add, delete, modify, query, and synchronize data in the
 
 - This sample can run only on standard-system devices, and API version 8 or later are supported.
 
-- DevEco Studio 3.0.0.900 or later must be used.
+- This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.

@@ -120,7 +120,7 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
 
 	6.3 支持的IDE版本，示例如下：
 
-		本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)版本进行编译；
+		本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行；
 
 	6.4 高等级APL特殊签名说明，示例如下：
 
