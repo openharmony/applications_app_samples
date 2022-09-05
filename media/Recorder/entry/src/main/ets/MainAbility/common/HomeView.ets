@@ -88,6 +88,7 @@ export struct HomeView {
               checkItem: this.checkItem.bind(this)
             })
           }
+	  .key('audioItem' + (index + 1))
         }, item => item.title + item.isCheck)
       }
       .layoutWeight(1)
@@ -111,6 +112,7 @@ export struct HomeView {
           .backgroundColor('#F5F5F5')
           .enabled(this.checkNum == 1)
           .opacity(this.checkNum == 1 ? 1.0 : 0.5)
+          .key('longRename')
           .onClick(() => {
             let checkRecord = null
             for (let i = 0;i < this.recordList.length; i++) {
@@ -142,6 +144,7 @@ export struct HomeView {
           .onClick(() => {
             this.batchDelete()
           })
+          .key('longDelete')
         }
         .width('100%')
         .margin(10)
@@ -150,6 +153,7 @@ export struct HomeView {
           Image($r('app.media.rectangle'))
             .objectFit(ImageFit.Contain)
             .size({ width: 30, height: 30 })
+            .key('startImg')
         }
         .size({ width: 70, height: 70 })
         .backgroundColor('#FFFFFF')

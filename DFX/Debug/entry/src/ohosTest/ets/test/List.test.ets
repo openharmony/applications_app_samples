@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-import AppTest from './App.test'
-import abilityTest from './Ability.test'
+import appTest from './App.test'
 
 export default function testsuite() {
-  abilityTest()
-  AppTest()
+  appTest()
 }

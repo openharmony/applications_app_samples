@@ -20,52 +20,64 @@ import Logger from '../model/Logger'
 const REQUEST_VALUE = 1;
 
 class StubTest extends rpc.RemoteObject {
-    constructor(des) {
-        super(des);
+  constructor(des) {
+    super(des);
+  }
+
+  onRemoteRequest(code, data, reply, option) {
+    Logger.log(`onRemoteRequest`);
+    if (code === REQUEST_VALUE) {
+      let optFir = data.readInt();
+      let optSec = data.readInt();
+      reply.writeInt(optFir + optSec);
+      Logger.log(`onRemoteRequest: opt: ${optFir}, opt2: ${optSec}`);
     }
-    onRemoteRequest(code, data, reply, option) {
-        Logger.log(`onRemoteRequest`);
-        if (code === REQUEST_VALUE) {
-            let optFir = data.readInt();
-            let optSec = data.readInt();
-            reply.writeInt(optFir + optSec);
-            Logger.log(`onRemoteRequest: opt: ${optFir}, opt2: ${optSec}`);
-        }
-        return true;
-    }
-    queryLocalInterface(descriptor) {
-        return null;
-    }
-    getInterfaceDescriptor() {
-        return "";
-    }
-    sendRequest(code, data, reply, options) {
-        return null;
-    }
-    getCallingPid() {
-        return REQUEST_VALUE;
-    }
-    getCallingUid() {
-        return REQUEST_VALUE;
-    }
-    attachLocalInterface(localInterface, descriptor){}
+    return true;
+  }
+
+  queryLocalInterface(descriptor) {
+    return null;
+  }
+
+  getInterfaceDescriptor() {
+    return "";
+  }
+
+  sendRequest(code, data, reply, options) {
+    return null;
+  }
+
+  getCallingPid() {
+    return REQUEST_VALUE;
+  }
+
+  getCallingUid() {
+    return REQUEST_VALUE;
+  }
+
+  attachLocalInterface(localInterface, descriptor) {
+  }
 }
 
 export default class ServiceExtAbility extends Extension {
-    onCreate(want) {
-        Logger.log(`onCreate, want: ${want.abilityName}`);
-    }
-    onRequest(want, startId) {
-        Logger.log(`onRequest, want: ${want.abilityName}`);
-    }
-    onConnect(want) {
-        Logger.log(`onConnect , want: ${want.abilityName}`);
-        return new StubTest("test");
-    }
-    onDisconnect(want) {
-        Logger.log(`onDisconnect, want: ${want.abilityName}`);
-    }
-    onDestroy() {
-        Logger.log(`onDestroy`);
-    }
+  onCreate(want) {
+    Logger.log(`onCreate, want: ${want.abilityName}`);
+  }
+
+  onRequest(want, startId) {
+    Logger.log(`onRequest, want: ${want.abilityName}`);
+  }
+
+  onConnect(want) {
+    Logger.log(`onConnect , want: ${want.abilityName}`);
+    return new StubTest("test");
+  }
+
+  onDisconnect(want) {
+    Logger.log(`onDisconnect, want: ${want.abilityName}`);
+  }
+
+  onDestroy() {
+    Logger.log(`onDestroy`);
+  }
 }

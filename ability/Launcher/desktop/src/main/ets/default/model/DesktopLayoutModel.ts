@@ -15,24 +15,26 @@
 
 import prompt from '@ohos.prompt'
 import router from '@ohos.router'
-import AppItemInfo from '../../../../../../base/src/main/ets/default/bean/AppItemInfo'
-import CheckEmptyUtils from '../../../../../../base/src/main/ets/default/utils/CheckEmptyUtils'
-import EventConstants from '../../../../../../base/src/main/ets/default/constants/EventConstants'
-import CommonConstants from '../../../../../../base/src/main/ets/default/constants/CommonConstants'
-import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
-import FormManager from '../../../../../../base/src/main/ets/default/manager/FormManager'
-import FormModel from '../../../../../../base/src/main/ets/default/model/FormModel'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
-import LauncherAbilityManager from '../../../../../../base/src/main/ets/default/manager/LauncherAbilityManager'
-import MenuInfo from '../../../../../../base/src/main/ets/default/bean/MenuInfo'
-import RdbManager from '../../../../../../base/src/main/ets/default/manager/RdbManager'
-import ResourceManager from '../../../../../../base/src/main/ets/default/manager/ResourceManager'
+import {
+  AppItemInfo,
+  CheckEmptyUtils,
+  EventConstants,
+  CommonConstants,
+  GridLayoutItemInfo,
+  FormManager,
+  FormModel,
+  Logger,
+  LauncherAbilityManager,
+  MenuInfo,
+  RdbManager,
+  ResourceManager
+} from '@ohos/base'
 
 const TAG: string = 'LayoutInfoModel'
 const SYSTEM_APPLICATIONS: string = 'com.ohos.launcher,ohos.samples.launcher,com.ohos.systemui,com.ohos.devicemanagerui,com.ohos.callui,com.example.kikakeyboard,com.ohos.contactdataability,com.ohos.telephonydataability,com.ohos.medialibrary.MediaLibraryDataA,com.ohos.medialibrary.MediaScannerAbilityA'
 const KEY_NAME = 'name'
 
-export default class DesktopLayoutModel {
+export class DesktopLayoutModel {
   private layoutInfo: Array<Array<GridLayoutItemInfo>> = []
   private readonly mSystemApplicationName = SYSTEM_APPLICATIONS.split(',')
   private mLauncherAbilityManager: LauncherAbilityManager = undefined

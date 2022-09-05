@@ -14,7 +14,7 @@
  */
 
 import Logger from '../mode/Logger'
-import TimerData  from '../mode/TimerData'
+import TimerData from '../mode/TimerData'
 
 let TAG = '[TimerPicker]'
 const HOURS = 3600
@@ -92,6 +92,7 @@ export struct TimerPicker {
       Row() {
         Text($r('app.string.yes'))
           .fontSize(20)
+          .key('confirm')
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {
@@ -99,12 +100,13 @@ export struct TimerPicker {
             this.minutes = this.minute
             this.seconds = this.second
             this.duration = this.hour * HOURS + this.minute * MINUTES + this.second
-            Logger.info(TAG, `hours: ${ this.hours }, minutes: ${ this.minutes }, seconds: ${ this.seconds}`)
+            Logger.info(TAG, `hours: ${this.hours}, minutes: ${this.minutes}, seconds: ${this.seconds}`)
             this.controller.close()
           })
 
         Text($r('app.string.no'))
           .fontSize(20)
+          .key('cancel')
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {

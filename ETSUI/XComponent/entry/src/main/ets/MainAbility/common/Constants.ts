@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 export enum ContextType {
-    APP_LIFECYCLE = 0,
-    JSPAGE_LIFECYCLE,
+  APP_LIFECYCLE = 0,
+  JSPAGE_LIFECYCLE,
 }

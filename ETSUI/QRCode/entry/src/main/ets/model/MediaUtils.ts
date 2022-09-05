@@ -22,64 +22,64 @@ import Logger from '../model/Logger'
 const TAG: string = '[MediaUtils]'
 
 class MediaUtils {
-    private tag: string = 'MediaUtils'
-    private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
+  private tag: string = 'MediaUtils'
+  private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
 
-    async createAndGetFile() {
-        let info = {
-            prefix: 'IMG_', suffix: '.jpg', directory: mediaLibrary.DirectoryType.DIR_IMAGE
-        }
-        let dateTimeUtil = new DateTimeUtil()
-        let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`
-        let displayName = `${info.prefix}${name}${info.suffix}`
-        Logger.info(this.tag, `displayName = ${displayName}`)
-        let publicPath = await this.mediaTest.getPublicDirectory(info.directory)
-        return await this.mediaTest.createAsset(mediaLibrary.MediaType.IMAGE, displayName, publicPath)
+  async createAndGetFile() {
+    let info = {
+      prefix: 'IMG_', suffix: '.jpg', directory: mediaLibrary.DirectoryType.DIR_IMAGE
+    }
+    let dateTimeUtil = new DateTimeUtil()
+    let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`
+    let displayName = `${info.prefix}${name}${info.suffix}`
+    Logger.info(this.tag, `displayName = ${displayName}`)
+    let publicPath = await this.mediaTest.getPublicDirectory(info.directory)
+    return await this.mediaTest.createAsset(mediaLibrary.MediaType.IMAGE, displayName, publicPath)
+  }
+
+  async queryFile(uri: string) {
+    let fetchOp = {
+      selections: '',
+      selectionArgs: [],
+      uri: uri
     }
 
-    async queryFile(uri: string) {
-        let fetchOp = {
-            selections: '',
-            selectionArgs: [],
-            uri: uri
-        }
+    let fileAssetsResult = await this.mediaTest.getFileAssets(fetchOp)
+    Logger.info(TAG, `queryFile fetchFileResult.getCount() = ${fileAssetsResult.getCount()}`)
+    return await fileAssetsResult.getFirstObject()
+  }
 
-        let fileAssetsResult = await this.mediaTest.getFileAssets(fetchOp)
-        Logger.info(TAG, `queryFile fetchFileResult.getCount() = ${fileAssetsResult.getCount()}`)
-        return await fileAssetsResult.getFirstObject()
+  async getPixelMap(uri: string) {
+    Logger.info(this.tag, `getPixelMap, uri = ${uri}`)
+    let file = await this.queryFile(uri)
+    if (file.mediaType === mediaLibrary.MediaType.IMAGE) {
+      let fd = await file.open('r')
+      Logger.info(this.tag, `getPixelMap, fd = ${fd}`)
+      let imageResource = await image.createImageSource(fd)
+      let pixelMap = await imageResource.createPixelMap()
+      await imageResource.release()
+      return pixelMap
     }
+    return null
+  }
 
-    async getPixelMap(uri: string) {
-        Logger.info(this.tag, `getPixelMap, uri = ${uri}`)
-        let file = await this.queryFile(uri)
-        if (file.mediaType === mediaLibrary.MediaType.IMAGE) {
-            let fd = await file.open('r')
-            Logger.info(this.tag, `getPixelMap, fd = ${fd}`)
-            let imageResource = await image.createImageSource(fd)
-            let pixelMap = await imageResource.createPixelMap()
-            await imageResource.release()
-            return pixelMap
-        }
-        return null
+  async savePicture(data: image.PixelMap) {
+    Logger.info(TAG, `savePicture`)
+    let packOpts: image.PackingOption = {
+      format: "image/jpeg", quality: 100
     }
-
-    async savePicture(data: image.PixelMap) {
-        Logger.info(TAG, `savePicture`)
-        let packOpts: image.PackingOption = {
-            format: "image/jpeg", quality: 100
-        }
-        let imagePackerApi = image.createImagePacker()
-        let arrayBuffer = await imagePackerApi.packing(data, packOpts)
-        let fileAsset = await this.createAndGetFile()
-        let fd = await fileAsset.open('Rw')
-        imagePackerApi.release()
-        await fileio.write(fd, arrayBuffer)
-        await fileAsset.close(fd)
-        Logger.info(TAG, `write done`)
-        prompt.showToast({
-            message: '图片保存成功', duration: 1000
-        })
-    }
+    let imagePackerApi = image.createImagePacker()
+    let arrayBuffer = await imagePackerApi.packing(data, packOpts)
+    let fileAsset = await this.createAndGetFile()
+    let fd = await fileAsset.open('Rw')
+    imagePackerApi.release()
+    await fileio.write(fd, arrayBuffer)
+    await fileAsset.close(fd)
+    Logger.info(TAG, `write done`)
+    prompt.showToast({
+      message: '图片保存成功', duration: 1000
+    })
+  }
 }
 
 export default new MediaUtils()

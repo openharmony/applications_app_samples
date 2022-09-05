@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import lock from '@ohos.runninglock'
+import lock from '@ohos.runningLock'
 import Logger from '../model/Logger'
 
 const TAG: string = '[LockSwitch]'
@@ -27,6 +27,7 @@ export struct LockSwitch {
       Text($r('app.string.screenLight'))
         .fontSize('18vp')
       Toggle({ type: ToggleType.Switch, isOn: this.isLock })
+        .key('screenLight')
         .onChange(() => {
           this.isLock = !(this.isLock)
           lock.createRunningLock("running_lock_test", lock.RunningLockType.PROXIMITY_SCREEN_CONTROL)

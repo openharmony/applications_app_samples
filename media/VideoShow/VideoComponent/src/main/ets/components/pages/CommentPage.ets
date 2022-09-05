@@ -18,11 +18,12 @@ import { LiveData } from '../mock/LiveData'
 
 @Component
 export struct CommentPage {
-  @State liveList: Array<any> = []
   @State comments: Array<LiveInfoDataModel> = LiveData
   @State text: string = ''
   @State isPhone: boolean = false
+  @State @Watch("onLiveListUpdated") liveList: Array<any> = []
   @Link @Watch("onActiveUpdated") activeItem: number
+  scroller: Scroller = new Scroller()
   portraitFunc = null
   listenerIsPhone = mediaQuery.matchMediaSync('(orientation:landscape)');
 
@@ -34,6 +35,17 @@ export struct CommentPage {
     this.updateCommentList()
   }
 
+  onLiveListUpdated(): void {
+    var i = 0
+    let intervalID = setInterval(() => {
+      i++
+      this.scroller.scrollPage({ next: true })
+      if (i == this.comments[0]["commentList"].length) {
+        clearInterval(intervalID);
+      }
+    }, 100);
+  }
+
   updateCommentList() {
     var i = 0
     let intervalID = setInterval(() => {
@@ -41,7 +53,6 @@ export struct CommentPage {
       if (i == this.comments[0]["commentList"].length) {
         clearInterval(intervalID);
       }
-      console.log(JSON.stringify(this.liveList))
     }, 1000);
   }
 
@@ -56,7 +67,7 @@ export struct CommentPage {
     Column() {
       // 评论框
       Column() {
-        List({ space: 6, initialIndex: 0 }) {
+        List({ space: 6, initialIndex: 0, scroller: this.scroller }) {
           LazyForEach(new MyDataSource(this.liveList), (items) => {
             ListItem() {
               Text() {

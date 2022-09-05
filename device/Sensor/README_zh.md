@@ -24,6 +24,6 @@
 
 2.本示例仅支持在标准系统上运行。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 4.本示例需要特殊模块与特定传感器，目前该功能仅支持部分机型。

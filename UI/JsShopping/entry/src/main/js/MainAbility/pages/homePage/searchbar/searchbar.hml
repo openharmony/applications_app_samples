@@ -13,24 +13,24 @@
   limitations under the License.
  -->
 <div class="container">
-    <div class="code">
-        <image class="image1" src="{{ searchbarData[3].url }}"></image>
-        <text class="text1">
-            扫一扫
-        </text>
-    </div>
-    <div class="div-search" onclick="redirect">
-        <image class="image-search" src="{{ searchbarData[1].url }}"></image>
-        <swiper class="findswiper" autoplay="true" vertical="true" indicator="false">
-            <text class="place-holder" for="{{ placeholder }}">{{ $item.title }}
-            </text>
-        </swiper>
-        <image class="image-search" src="{{ searchbarData[2].url }}"></image>
-    </div>
-    <div class="code">
-        <image class="image1" src="{{ searchbarData[4].url }}"></image>
-        <text class="text1">
-            会员码
-        </text>
-    </div>
+  <div class="code">
+    <image class="image1" src="{{ searchbarData[3].url }}"></image>
+    <text class="text1">
+      扫一扫
+    </text>
+  </div>
+  <div class="div-search" onclick="redirect">
+    <image class="image-search" src="{{ searchbarData[1].url }}"></image>
+    <swiper class="findswiper" autoplay="true" vertical="true" indicator="false">
+      <text class="place-holder" for="{{ placeholder }}">{{ $item.title }}
+      </text>
+    </swiper>
+    <image class="image-search" src="{{ searchbarData[2].url }}"></image>
+  </div>
+  <div class="code">
+    <image class="image1" src="{{ searchbarData[4].url }}"></image>
+    <text class="text1">
+      会员码
+    </text>
+  </div>
 </div>

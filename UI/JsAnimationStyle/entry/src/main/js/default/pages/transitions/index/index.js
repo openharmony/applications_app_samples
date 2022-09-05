@@ -16,24 +16,24 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
-    onInit() {
-    },
-    onClickElement() {
-        router.push({
-            url: 'pages/transitions/sharedelement/sharedelement'
-        })
-    },
+  data: {},
+  onInit() {
+  },
+  onClickElement() {
+    router.push({
+      url: 'pages/transitions/sharedelement/sharedelement'
+    })
+  },
 
-    onClickCard() {
-        router.push({
-            url: 'pages/transitions/cardtransition/cardtransition'
-        })
-    },
+  onClickCard() {
+    router.push({
+      url: 'pages/transitions/cardtransition/cardtransition'
+    })
+  },
 
-    onClickCustomTransition() {
-        router.push({
-            url: 'pages/transitions/customtransition/customtransition'
-        })
-    }
+  onClickCustomTransition() {
+    router.push({
+      url: 'pages/transitions/customtransition/customtransition'
+    })
+  }
 }

@@ -71,6 +71,7 @@ struct CreateQRCode {
             .aspectRatio(1)
             .margin(40)
           TextInput({ placeholder: $r('app.string.input_placeholder'), text: this.codeStr })
+            .key('createQRCodeInput')
             .width('90%')
             .height(60)
             .placeholderColor(Color.Gray)
@@ -86,6 +87,7 @@ struct CreateQRCode {
               .fontSize(30)
               .fontColor(Color.White)
           }
+          .key('save')
           .width('90%')
           .height(70)
           .backgroundColor('#0D9FFB')

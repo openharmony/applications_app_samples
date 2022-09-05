@@ -17,80 +17,80 @@ import prompt from '@ohos.prompt'
 import router from '@ohos.router'
 
 export default {
-    data: {
-        name: '',
-        date: '1990-01-01',
-        gender: 'Strings.male',
-        education: 'Strings.graduated',
-    },
-    onInit() {
-    },
-    getName(e) {
-        this.name = e.value;
-        console.info("name=" + this.name)
-    },
-    getDate(e) {
-        this.date = e.year + '-' + (e.month + 1) + '-' + e.day;
-        console.info("date=" + this.date)
-    },
-    getFemaleGender(e) {
-        if (e.checked) {
-            this.gender = 'Strings.female'
-            console.info("gender =" + this.gender)
-        }
-    },
-    getMaleGender(e) {
-        if (e.checked) {
-            this.gender = 'Strings.male'
-            console.info("gender =" + this.gender)
-        }
-    },
-    getEducation(e) {
-        this.education = e.newValue;
-        console.info("education=" + this.education)
-    },
-    onRegiste() {
-        if (this.name.length == 0) {
-            prompt.showToast({
-                message: this.$t('Strings.name_null')
-            })
-            return;
-        }
-        if (this.name.length < 6) {
-            prompt.showToast({
-                message: this.$t('Strings.name_short')
-            })
-            return;
-        }
-        if (this.name.length > 20) {
-            prompt.showToast({
-                message: this.$t('Strings.name_long')
-            })
-            return;
-        }
-        if (this.date.length == 0) {
-            prompt.showToast({
-                message: this.$t('Strings.date_null')
-            })
-            return;
-        }
-
-        if (this.gender.length == 0) {
-            prompt.showToast({
-                message: this.$t('Strings.gender_null')
-            })
-            return;
-        }
-
-        if (this.education.length == 0) {
-            prompt.showToast({
-                message: this.$t('Strings.education_null')
-            })
-            return;
-        }
-
-        router.push({
-            url: 'pages/success/success'
-        })
+  data: {
+    name: '',
+    date: '1990-01-01',
+    gender: 'Strings.male',
+    education: 'Strings.graduated',
+  },
+  onInit() {
+  },
+  getName(e) {
+    this.name = e.value;
+    console.info("name=" + this.name)
+  },
+  getDate(e) {
+    this.date = e.year + '-' + (e.month + 1) + '-' + e.day;
+    console.info("date=" + this.date)
+  },
+  getFemaleGender(e) {
+    if (e.checked) {
+      this.gender = 'Strings.female'
+      console.info("gender =" + this.gender)
     }
+  },
+  getMaleGender(e) {
+    if (e.checked) {
+      this.gender = 'Strings.male'
+      console.info("gender =" + this.gender)
+    }
+  },
+  getEducation(e) {
+    this.education = e.newValue;
+    console.info("education=" + this.education)
+  },
+  onRegiste() {
+    if (this.name.length == 0) {
+      prompt.showToast({
+        message: this.$t('Strings.name_null')
+      })
+      return;
+    }
+    if (this.name.length < 6) {
+      prompt.showToast({
+        message: this.$t('Strings.name_short')
+      })
+      return;
+    }
+    if (this.name.length > 20) {
+      prompt.showToast({
+        message: this.$t('Strings.name_long')
+      })
+      return;
+    }
+    if (this.date.length == 0) {
+      prompt.showToast({
+        message: this.$t('Strings.date_null')
+      })
+      return;
+    }
+
+    if (this.gender.length == 0) {
+      prompt.showToast({
+        message: this.$t('Strings.gender_null')
+      })
+      return;
+    }
+
+    if (this.education.length == 0) {
+      prompt.showToast({
+        message: this.$t('Strings.education_null')
+      })
+      return;
+    }
+
+    router.push({
+      url: 'pages/success/success'
+    })
+  }
 }

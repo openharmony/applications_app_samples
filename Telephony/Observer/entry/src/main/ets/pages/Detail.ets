@@ -23,6 +23,7 @@ const TAG: string = 'Detail'
 @Component
 export struct Detail {
   @State detailData?: DetailData = new DetailData()
+
   aboutToAppear() {
     this.detailData = <DetailData> router.getParams()['detailData']
     Logger.info(TAG, `this.detailData = ${JSON.stringify(this.detailData)}`)
@@ -348,6 +349,7 @@ export struct Detail {
           .onClick(() => {
             router.back()
           })
+          .key('back')
         Text($r('app.string.detail'))
           .fontSize(30)
           .margin({ left: '26%' })

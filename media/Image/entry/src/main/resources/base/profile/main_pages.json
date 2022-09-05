@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/Second"
+    "pages/ChoicePhotos",
+    "pages/EditPages"
   ]
 }

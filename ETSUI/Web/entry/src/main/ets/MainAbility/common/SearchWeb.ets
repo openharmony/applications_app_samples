@@ -16,7 +16,7 @@
 import prompt from '@ohos.prompt'
 import Logger from '../model/Logger'
 
-const TAG : string = '[SearchWeb]'
+const TAG: string = '[SearchWeb]'
 
 @Component
 export struct SearchBar {
@@ -34,6 +34,7 @@ export struct SearchBar {
         .width('20%')
         .height(40)
         .objectFit(ImageFit.Contain)
+        .key('refresh')
         .onClick(() => {
           if (!this.isLoading) { // 如果加载完成则刷新页面
             this.controller.refresh()
@@ -54,7 +55,7 @@ export struct SearchBar {
           .onChange((value: string) => {
             this.url = value
             this.webState = false
-            if(this.url.length === 0) {
+            if (this.url.length === 0) {
               this.backToHome = true
             } else {
               this.backToHome = false
@@ -79,7 +80,7 @@ export struct SearchBar {
         this.isLoading = true
         this.isWebError = false
         this.isHttpError = false
-        Logger.info(TAG,`this.url=${this.url}`)
+        Logger.info(TAG, `this.url=${this.url}`)
       })
     }
     .height(50)

@@ -13,30 +13,28 @@
  * limitations under the License.
  */
 
-//
-
 class Logger {
-    prefix = ''
+  prefix = ''
 
-    constructor(prefix) {
-        this.prefix = prefix
-    }
+  constructor(prefix) {
+    this.prefix = prefix
+  }
 
-    debug(...args) {
-        console.debug(this.prefix + args)
-    }
+  debug(...args) {
+    console.debug(this.prefix + args)
+  }
 
-    info(...args) {
-        console.info(this.prefix + args)
-    }
+  info(...args) {
+    console.info(this.prefix + args)
+  }
 
-    warn(...args) {
-        console.warn(this.prefix + args)
-    }
+  warn(...args) {
+    console.warn(this.prefix + args)
+  }
 
-    error(...args) {
-        console.error(this.prefix + args)
-    }
+  error(...args) {
+    console.error(this.prefix + args)
+  }
 }
 
 export default new Logger('[JsAdaptiveServiceWidget]')

@@ -88,6 +88,7 @@ struct RecordPage {
             Image(this.isRecording ? $r('app.media.ic_pause') : $r('app.media.ic_play'))
               .objectFit(ImageFit.Contain)
               .size({ width: 55, height: 55 })
+              .key('playImg')
           }
           .size({ width: 60, height: 60 })
           .backgroundColor('#FFFFFF')

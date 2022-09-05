@@ -25,6 +25,7 @@ struct AllRenderingExample {
       Canvas(this.context).width(600).height(300).backgroundColor('#00ffff')
       Row() {
         Button('strokeStyle')
+	  .key('strokeStyle')
           .width(130).height(45)
           .onClick(() => {
             this.context.beginPath();
@@ -33,6 +34,7 @@ struct AllRenderingExample {
             this.context.strokeRect(50, 20, 100, 100)
           })
         Button('lineCap')
+	  .key('lineCap')
           .width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -44,12 +46,14 @@ struct AllRenderingExample {
             this.context.stroke();
             this.context.save();
           })
+
       }.margin({ top: 10 })
       .width('100%')
       .justifyContent(FlexAlign.SpaceAround)
 
       Row() {
         Button('globalAlpha')
+	  .key('globalAlpha')
           .width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -61,6 +65,7 @@ struct AllRenderingExample {
             this.context.save();
           })
         Button('textAlign')
+	  .key('textAlign')
           .width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -87,6 +92,7 @@ struct AllRenderingExample {
 
       Row() {
         Button('lineJoin')
+	  .key('lineJoin')
           .width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -101,6 +107,7 @@ struct AllRenderingExample {
             this.context.save();
           })
         Button('miterLimit')
+	  .key('miterLimit')
           .width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -119,6 +126,7 @@ struct AllRenderingExample {
 
       Row() {
         Button('globalCompositeOperation')
+	  .key('globalCompositeOperation')
           .width(130).height(45)
           .onClick(() => {
             this.context.restore();
@@ -136,16 +144,19 @@ struct AllRenderingExample {
             this.context.save();
           })
         Button('delete')
+	  .key('delete')
           .width(130).height(45)
           .onClick(() => {
             this.context.clearRect(0, 0, 950, 950)
           })
+
       }.margin({ top: 10 })
       .width('100%')
       .justifyContent(FlexAlign.SpaceAround)
 
       Row() {
         Button('back')
+	  .key('back')
           .width(130).height(45).backgroundColor(Color.Orange)
           .onClick(() => {
             router.back()

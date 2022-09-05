@@ -41,7 +41,7 @@ struct Index {
 
   build() {
     Column() {
-      Show({ select: 4 }) //  é€‰æ‹©ç¬¬å››ç§è½¬åœºç‰¹æ•ˆ
+      Show({ select: 4 }) //  Ñ¡ÔñµÚËÄÖÖ×ª³¡ÌØĞ§
       TitleBar()
       this.ButtonItem($r('app.string.enter_animation'), 'pages/Home')
       this.ButtonItem($r('app.string.page_transition_bottom'), 'pages/page/BottomTransition')

@@ -14,5 +14,5 @@
  -->
 
 <div class="container">
-    <chart class="chart-data" type="loading" segments="{{ segment }}"></chart>
+  <chart class="chart-data" type="loading" segments="{{ segment }}"></chart>
 </div>

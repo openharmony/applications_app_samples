@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "shareTitle1",
+      "value": "文本+链接分享"
+    },
+    {
+      "name": "shareTitle2",
+      "value": "应用内文件分享"
+    },
+    {
+      "name": "shareTitle3",
+      "value": "其它应用分享"
+    },
+    {
+      "name": "detail0",
+      "value": "推荐一个好物给你请查收"
+    },
+    {
+      "name": "detail1",
+      "value": "9800"
+    },
+    {
+      "name": "title",
+      "value": "手机拥有超光谱摄影系统 创新双屏操作体验 120Hz高刷 8GB+256GB"
+    },
+    {
+      "name": "srcImg",
+      "value": "https://gitee.com/wangjixing/applications_app_samples/tree/master/AppSample/Chat/entry/src/main/resources/base/media/phone.png"
+    },
+    {
+      "name": "startChatFail",
+      "value": "请先安装一个chat应用！"
+    },
+    {
+      "name": "shotPrompt",
+      "value": "截图成功!   分享加载中..."
+    }
+  ]
+}

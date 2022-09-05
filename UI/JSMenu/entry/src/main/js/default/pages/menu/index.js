@@ -16,73 +16,73 @@
 import prompt from '@ohos.prompt';
 
 export default {
-    data: {
-        result: "",
-        menus: [],
-        snacks:[],
-        drinks:[],
-        menu_result:"",
-        snack_result:"",
-        drink_result:""
-    },
-    onInit() {
-        this.menus = this.$t('strings.menus')
-        this.snacks = this.$t('strings.snacks')
-        this.drinks = this.$t('strings.drinks')
-        this.menu_result = this.menus[0].name
-        this.snack_result = this.snacks[0].name
-        this.drink_result = this.drinks[0].name
-    },
-    onMenuSelected(e) {
-        this.menu_result = e.value
-        this.onSelect(e)
-    },
-    onSnackSelected(e) {
-        this.snack_result = e.value
-        this.onSelect(e)
-    },
-    onDrinkSelected(e) {
-        this.drink_result = e.value
-        this.onSelect(e)
-    },
-    onSelect(e) {
-        if (this.result.length > 0) {
-            this.result = this.result + "," + e.value
-        } else {
-            this.result = e.value
-        }
-    },
-    onMenuClick() {
-        this.$element("menu").show({
-            x: 130,
-            y: 45
-        });
-    },
-    onSnackClick() {
-        this.$element("snackMenu").show({
-            x: 130,
-            y: 120
-        });
-    },
-    onDrinkClick() {
-        this.$element("drinkMenu").show({
-            x: 130,
-            y: 190
-        });
-    },
-    onClearClick() {
-        this.result = ""
-    },
-    onFinishClick() {
-        if (this.result.length > 0) {
-            prompt.showToast({
-                message: this.$t('strings.finish_oder')
-            })
-        } else {
-            prompt.showToast({
-                message: this.$t('strings.empty_order')
-            })
-        }
-        this.result = ""
+  data: {
+    result: "",
+    menus: [],
+    snacks: [],
+    drinks: [],
+    menu_result: "",
+    snack_result: "",
+    drink_result: ""
+  },
+  onInit() {
+    this.menus = this.$t('strings.menus')
+    this.snacks = this.$t('strings.snacks')
+    this.drinks = this.$t('strings.drinks')
+    this.menu_result = this.menus[0].name
+    this.snack_result = this.snacks[0].name
+    this.drink_result = this.drinks[0].name
+  },
+  onMenuSelected(e) {
+    this.menu_result = e.value
+    this.onSelect(e)
+  },
+  onSnackSelected(e) {
+    this.snack_result = e.value
+    this.onSelect(e)
+  },
+  onDrinkSelected(e) {
+    this.drink_result = e.value
+    this.onSelect(e)
+  },
+  onSelect(e) {
+    if (this.result.length > 0) {
+      this.result = this.result + "," + e.value
+    } else {
+      this.result = e.value
     }
+  },
+  onMenuClick() {
+    this.$element("menu").show({
+      x: 130,
+      y: 45
+    });
+  },
+  onSnackClick() {
+    this.$element("snackMenu").show({
+      x: 130,
+      y: 120
+    });
+  },
+  onDrinkClick() {
+    this.$element("drinkMenu").show({
+      x: 130,
+      y: 190
+    });
+  },
+  onClearClick() {
+    this.result = ""
+  },
+  onFinishClick() {
+    if (this.result.length > 0) {
+      prompt.showToast({
+        message: this.$t('strings.finish_oder')
+      })
+    } else {
+      prompt.showToast({
+        message: this.$t('strings.empty_order')
+      })
+    }
+    this.result = ""
+  }
 }

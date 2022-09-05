@@ -16,40 +16,40 @@
 import mediaquery from '@ohos.mediaquery';
 
 export default {
-    data: {
-        subTabList: ["子页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签"],
-        listOne: Array(5).fill(0).map((_, index) => ({
-            uri: "", title: "item", id: "item_" + index
-        })),
-        listTwo: Array(16).fill(0).map((_, index) => ({
-            uri: "", title: "item " + index, id: "item_" + index
-        })),
-        listThree: Array(16).fill(0).map((_, index) => ({
-            msg1: "The End Of The World", msg2: "Justin Timberland", id: "item_" + index
-        })),
-        tabBars: [
-            {
-                icon: "icon_person_blue.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-            {
-                icon: "icon_person_gray.png", text: "页签"
-            },
-        ],
-        isTablet: false,
-        menu_tabs_index: 0
-    },
-    onInit() {
-        mediaquery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)').on("change", (data) => {
-            this.isTablet = data.matches
-        })
-    }
+  data: {
+    subTabList: ["子页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签", "页签"],
+    listOne: Array(5).fill(0).map((_, index) => ({
+      uri: "", title: "item", id: "item_" + index
+    })),
+    listTwo: Array(16).fill(0).map((_, index) => ({
+      uri: "", title: "item " + index, id: "item_" + index
+    })),
+    listThree: Array(16).fill(0).map((_, index) => ({
+      msg1: "The End Of The World", msg2: "Justin Timberland", id: "item_" + index
+    })),
+    tabBars: [
+      {
+        icon: "icon_person_blue.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+      {
+        icon: "icon_person_gray.png", text: "页签"
+      },
+    ],
+    isTablet: false,
+    menu_tabs_index: 0
+  },
+  onInit() {
+    mediaquery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)').on("change", (data) => {
+      this.isTablet = data.matches
+    })
+  }
 }

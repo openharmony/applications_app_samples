@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "WorkScheduler"
+    },
+    {
+      "name": "WorkSchedulerExtensionAbility_label",
+      "value": "WorkSchedulerExtensionAbility"
+    },
+    {
+      "name": "WorkSchedulerExtensionAbility_desc",
+      "value": "system schedules the task execution time"
+    },
+    {
+      "name": "notification_permission",
+      "value": "允许应用管理通知和订阅通知。"
+    },
+    {
+      "name": "upgrade",
+      "value": "升级"
+    }
+  ]
+}

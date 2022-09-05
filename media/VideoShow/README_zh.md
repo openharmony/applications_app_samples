@@ -28,8 +28,8 @@
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备:RK3568 WGR。
+1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
-2.本示例仅支持API version 9版本SDK，版本号：3.2.5.5；
+2.本示例仅支持API version 9版本SDK，版本号：3.2.5.5。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.991, built on July 6, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

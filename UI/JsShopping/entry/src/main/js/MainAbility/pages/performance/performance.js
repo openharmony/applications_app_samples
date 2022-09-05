@@ -15,30 +15,30 @@
 import comments from '../../common/performanceData.js'
 
 export default {
-    data: {
-        commentlist: [],
-        tempList: [],
-        beginIndex: 0,
-        endIndex: 0,
-        productListLengthLimit: 100,
-        comments: comments,
-        commentlist1: [],
-    },
-    onInit() {
-    },
-    buildItem(param) {
-        if (this.comments.length == 0) {
-            return;
-        }
-        this.beginIndex = param.begin;
-        this.endIndex = param.end;
-        let tempArray = [];
-        for (let index = this.beginIndex;index < this.endIndex; ++index) {
-            let tempIndex = index % this.comments.length;
-            let tempValue = JSON.parse(JSON.stringify(this.comments[tempIndex]));
-            tempValue.index = index + 1;
-            tempArray.push(tempValue);
-        }
-        this.tempList = tempArray;
+  data: {
+    commentlist: [],
+    tempList: [],
+    beginIndex: 0,
+    endIndex: 0,
+    productListLengthLimit: 100,
+    comments: comments,
+    commentlist1: [],
+  },
+  onInit() {
+  },
+  buildItem(param) {
+    if (this.comments.length == 0) {
+      return;
     }
+    this.beginIndex = param.begin;
+    this.endIndex = param.end;
+    let tempArray = [];
+    for (let index = this.beginIndex;index < this.endIndex; ++index) {
+      let tempIndex = index % this.comments.length;
+      let tempValue = JSON.parse(JSON.stringify(this.comments[tempIndex]));
+      tempValue.index = index + 1;
+      tempArray.push(tempValue);
+    }
+    this.tempList = tempArray;
+  }
 }

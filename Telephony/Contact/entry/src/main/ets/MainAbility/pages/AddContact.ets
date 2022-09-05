@@ -39,6 +39,7 @@ struct AddContact {
           .height(32)
           .margin({ left: 32, right: 22 })
           .objectFit(ImageFit.Contain)
+          .key('backIndex')
           .onClick(() => {
             router.back()
           })

@@ -14,98 +14,32 @@
  */
 
 import prompt from '@ohos.prompt'
-import { Apps } from '../model/Apps'
+import innerBundleManager from '@ohos.bundle.innerBundleManager'
+import { MyDataSource } from '../model/Apps'
 import Logger from '../model/Logger'
 import featureAbility from '@ohos.ability.featureAbility'
 
 const TAG = '[BringApps]'
 
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount() {
-    return 0
-  }
-
-  public getData(index: number) {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener) {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener) {
-    const pos = this.listeners.indexOf(listener)
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload() {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number) {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
-    })
-  }
-
-  notifyDataChange(index: number) {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index)
-    })
-  }
-
-  notifyDataDelete(index: number) {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
-    })
-  }
-
-  notifyDataMove(from: number, to: number) {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  private dataArray: any[] = Apps
-
-  public totalCount() {
-    return this.dataArray.length
-  }
-
-  public getData(index: number) {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number) {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-
-  public pushData(index: number) {
-    this.dataArray.push()
-    this.notifyDataAdd(this.dataArray.length - 1)
-  }
-
-  public deleteData() {
-    this.dataArray.pop()
-    this.notifyDataAdd(this.dataArray.length - 1)
-  }
-}
-
 @Component
 export struct BringApp {
   @State text: string = ''
+  @State bundleName: string[] = []
+  @State abilityName: string[] = []
   @State app: MyDataSource = new MyDataSource()
+
+  async aboutToAppear() {
+    let result: any[] = []
+    result = await innerBundleManager.getAllLauncherAbilityInfos(100)
+    if (result !== []) {
+      for (let i = 0; i < result.length; i++) {
+        this.bundleName.push(result[i].elementName.bundleName)
+        this.abilityName.push(result[i].elementName.abilityName)
+      }
+      Logger.info(TAG, `this bundleName is ${JSON.stringify(this.bundleName)}`)
+      Logger.info(TAG, `this abilityName is ${JSON.stringify(this.abilityName)}`)
+    }
+  }
 
   build() {
     Scroll() {
@@ -137,30 +71,34 @@ export struct BringApp {
           .height('12%')
           .borderRadius(20)
           .backgroundColor('#f6f6f6')
-          .onClick(() => {
+          .onClick(async () => {
+            let wantBundleName: string = ''
+            let wantAbilityName: string = ''
+            for (let i = 0, j = 0; i < this.bundleName.length, j < this.abilityName.length; i++, j++) {
+              if (this.bundleName[i].includes(item.info) && this.abilityName[i].includes(item.info)) {
+                wantBundleName = this.bundleName[i]
+                wantAbilityName = this.abilityName[i]
+                break
+              }
+            }
             try {
-              featureAbility.startAbility(
-                {
-                  want:
-                  {
-                    bundleName: item.bundleName,
-                    abilityName: item.abilityName,
-                  },
-                }
-              ).then((data) => {
-                this.text = 'Success!'
-                Logger.info(TAG, `End ability data is ${data}} `)
+              await featureAbility.startAbility({
+                want: {
+                  bundleName: wantBundleName,
+                  abilityName: wantAbilityName,
+                },
               })
+              this.text = 'Success!'
             } catch (err) {
               this.text = 'Error!'
-              Logger.info(TAG, `err is ${err}`)
+              Logger.info(TAG, `err is ${JSON.stringify(err)}`)
             }
             prompt.showToast({
               message: this.text,
               duration: 1500
             })
           })
-        }, item => item.toString())
+        }, item => item.name)
       }
     }
     .width('100%')

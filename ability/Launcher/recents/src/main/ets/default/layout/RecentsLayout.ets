@@ -15,12 +15,11 @@
 
 import prompt from '@ohos.prompt'
 import CommonEvent from '@ohos.commonEvent'
-import EventConstants from '../../../../../../base/src/main/ets/default/constants/EventConstants'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
 import MissionItem from '../components/MissionItem'
 import MissionInfo from '../bean/MisssionInfo'
 import MissionModel from '../model/MissionModel'
-import MyDataSource from '../../../../../../base/src/main/ets/default/model/BasicDataSource'
+import { EventConstants, Logger, MyDataSource } from '@ohos/base'
+
 
 const TAG: string = 'RecentsLayout'
 const SUBSCRIBER_INFO = {
@@ -34,7 +33,7 @@ const MISSION_OPERATE = {
 }
 
 @Component
-export default struct RecentsLayout {
+export struct RecentsLayout {
   @State missionInfos: Array<MissionInfo> = new Array<MissionInfo>()
   @State showEmptyMessage: boolean = false
   private subscriber = undefined

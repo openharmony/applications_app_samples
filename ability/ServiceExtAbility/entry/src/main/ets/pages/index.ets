@@ -26,7 +26,7 @@ struct Index {
   @State localFir: number = 0
   @State localSec: number = 0
   @State remoteCallbackInfo: number = 0
-  @State connectState: Resource  = $r("app.string.state_unconnected")
+  @State connectState: Resource = $r("app.string.state_unconnected")
 
   build() {
     Row() {
@@ -43,6 +43,7 @@ struct Index {
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
           Text(this.connectState)
+            .key('connectState')
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
         }
@@ -67,6 +68,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
+        .key('startService')
         .type(ButtonType.Capsule)
         .margin({
           top: 5,
@@ -102,6 +104,7 @@ struct Index {
           .fontSize(15)
           .margin({ bottom: 5 })
         TextInput({ placeholder: $r("app.string.tips_connect_first_value") })
+          .key('inputFirstNum')
           .width('50%')
           .type(InputType.Number)
           .margin({ bottom: 5 })
@@ -109,6 +112,7 @@ struct Index {
             this.localFir = Number(value);
           })
         TextInput({ placeholder: $r("app.string.tips_connect_second_value") })
+          .key('inputSecondNum')
           .width('50%')
           .type(InputType.Number)
           .margin({ bottom: 20 })
@@ -132,6 +136,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
+        .key('connectService')
         .type(ButtonType.Capsule)
         .margin({
           top: 5,
@@ -184,6 +189,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
+        .key('disconnectService')
         .type(ButtonType.Capsule)
         .margin({
           top: 5

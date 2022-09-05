@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 export default {
-    props: [
-        'navbardata',
-        'icon'
-    ],
-    data() {
-        return {
-            navbarData: this.navbardata,
-            icon: this.icon,
-        }
+  props: [
+    'navbardata',
+    'icon'
+  ],
+  data() {
+    return {
+      navbarData: this.navbardata,
+      icon: this.icon,
     }
+  }
 }

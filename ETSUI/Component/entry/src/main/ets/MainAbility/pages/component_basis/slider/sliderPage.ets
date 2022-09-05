@@ -75,6 +75,7 @@ struct SliderPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.currentValue, step: 1, min: -1, max: this.max })
+                .key('currentValueSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.currentValue = Math.round(e)
@@ -94,6 +95,7 @@ struct SliderPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.min, step: 1, min: -1, max: 20 })
+                .key('minSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.min = Math.round(e)
@@ -113,6 +115,7 @@ struct SliderPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.max, step: 1, min: -1, max: 500 })
+                .key('maxSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.max = Math.round(e)
@@ -132,6 +135,7 @@ struct SliderPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.step, step: 1, min: -1, max: 20 })
+                .key('stepSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.step = Math.round(e)
@@ -203,6 +207,7 @@ struct SliderPage {
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               ForEach(this.num1, item => {
                 Button(this.colorDescribe[`${item}`])
+                  .key('trackColor' + this.colorDescribe[`${item}`])
                   .margin({right:10})
                   .fontSize(15)
                   .width(90)
@@ -226,6 +231,7 @@ struct SliderPage {
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start}) {
               ForEach(this.num1, item => {
                 Button(this.colorDescribe[`${item}`])
+                  .key('selectedColor' + this.colorDescribe[`${item}`])
                   .margin({right:10})
                   .fontSize(15)
                   .width(90)
@@ -270,6 +276,7 @@ struct SliderPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Button(`${this.showTips}`)
+                .key('showTips')
                 .margin({right:10})
                 .fontSize(15)
                 .width(90)

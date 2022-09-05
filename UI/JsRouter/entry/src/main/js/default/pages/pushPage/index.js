@@ -17,12 +17,12 @@
 import router from '@ohos.router';
 
 export default {
-    data: {
-        data1: 'default'
-    },
-    replacePage() {
-        router.replace({
-            url: 'pages/replacePage/index'
-        });
-    }
+  data: {
+    data1: 'default'
+  },
+  replacePage() {
+    router.replace({
+      url: 'pages/replacePage/index'
+    });
+  }
 };

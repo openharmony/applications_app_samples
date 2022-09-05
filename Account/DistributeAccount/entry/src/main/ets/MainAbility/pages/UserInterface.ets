@@ -154,7 +154,7 @@ struct UserInterface {
           .fontSize(30)
           .fontWeight(FontWeight.Regular)
       }
-      .margin({top: '30%'})
+      .margin({ top: '30%' })
       .width('80%')
 
       LazyForEach(this.btnText, item => {

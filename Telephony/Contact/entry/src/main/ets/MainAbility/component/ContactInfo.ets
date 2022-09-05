@@ -15,6 +15,7 @@
 
 import router from '@ohos.router'
 import contact from '@ohos.contact'
+import resourceManager from '@ohos.resourceManager';
 import Logger from '../data/Logger'
 
 const TAG: string = 'ContactInfo'
@@ -22,10 +23,7 @@ const TAG: string = 'ContactInfo'
 @Preview
 @Component
 export struct ContactInfo {
-  @State phone: string | Resource = ''
-  @State email: string | Resource = ''
-  @State address: string | Resource = ''
-  private contact: contact.Contact
+  @State contact: contact.Contact = undefined
 
   build() {
     Column() {
@@ -123,13 +121,13 @@ export struct ContactInfo {
             .fontColor(Color.Black)
             .margin(4)
             .borderRadius(10)
-            .onClick(() => {
-              router.push({
-                url: 'pages/EditContact',
-                params: { data: this.contact }
-              })
-            })
         }
+        .onClick(() => {
+          router.push({
+            url: 'pages/EditContact',
+            params: { data: this.contact }
+          })
+        })
         .layoutWeight(1)
 
         Column() {
@@ -139,37 +137,36 @@ export struct ContactInfo {
             .margin({ top: 6 })
             .objectFit(ImageFit.Contain)
 
-
           Text($r('app.string.delete'))
             .fontSize(14)
             .fontColor(Color.Black)
             .borderRadius(10)
-            .onClick(async () => {
-              AlertDialog.show(
-                {
-                  title: $r('app.string.warning'),
-                  message: $r('app.string.delete_show'),
-                  primaryButton: {
-                    value: $r('app.string.confirm'),
-                    action: async () => {
-                      await contact.deleteContact(this.contact.key)
-                      router.replace({
-                        url: 'pages/Index'
-                      })
-                    }
-                  },
-                  secondaryButton: {
-                    value: $r('app.string.cancel'),
-                    action: () => {
-                      Logger.info(TAG, `AlertDialog enter`)
-                    }
-                  },
-                  cancel: () => {
-                    Logger.info(TAG, `AlertDialog close`)
-                  }
-                })
-            })
         }
+        .onClick(async () => {
+          AlertDialog.show(
+            {
+              title: $r('app.string.warning'),
+              message: $r('app.string.delete_show'),
+              primaryButton: {
+                value: $r('app.string.confirm'),
+                action: async () => {
+                  await contact.deleteContact(this.contact.key)
+                  router.replace({
+                    url: 'pages/Index'
+                  })
+                }
+              },
+              secondaryButton: {
+                value: $r('app.string.cancel'),
+                action: () => {
+                  Logger.info(TAG, `AlertDialog enter`)
+                }
+              },
+              cancel: () => {
+                Logger.info(TAG, `AlertDialog close`)
+              }
+            })
+        })
         .layoutWeight(1)
       }
       .width('100%')
@@ -179,23 +176,5 @@ export struct ContactInfo {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
-  }
-
-  aboutToAppear() {
-    try {
-      this.phone = this.contact.phoneNumbers[0].phoneNumber
-    } catch (err) {
-      this.phone = $r('app.string.not_fill')
-    }
-    try {
-      this.email = this.contact.emails[0].email
-    } catch (err) {
-      this.email = $r('app.string.not_fill')
-    }
-    try {
-      this.address = this.contact.postalAddresses[0].postalAddress
-    } catch (err) {
-      this.address = $r('app.string.not_fill')
-    }
   }
 }

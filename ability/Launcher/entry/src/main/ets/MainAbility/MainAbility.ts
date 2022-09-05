@@ -14,8 +14,8 @@
  */
 
 import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
-import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
 import WindowManager from '../manager/WindowManager'
+import { Logger } from '@ohos/base'
 import { WINDOW_NAMES, WINDOW_PAGES } from '../manager/WindowManager'
 
 export default class MainAbility extends ServiceExtensionAbility {

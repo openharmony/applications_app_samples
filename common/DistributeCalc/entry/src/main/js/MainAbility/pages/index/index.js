@@ -25,263 +25,263 @@ let remoteDeviceModel = new RemoteDeviceModel()
 let timerId = 0
 
 export default {
-    data: {
-        title: '计算器',
-        expression: '',
-        result: '',
-        selectedIndex: 0,
-        isFA: false,
-        isPush: false,
-        isDistributed: false,
-        deviceList: []
-    },
-    onInit() {
-        this.grantPermission()
-        this.$watch('expression', (value) => {
-            if (value !== '') {
-                console.info('Calc[IndexPage] value  ' + value);
-                this.result = calc(value);
-                console.info('Calc[IndexPage] result =  ' + this.result);
-                console.log('Calc[IndexPage] put key start');
-                this.dataChange('expression', value);
-            }
-        });
-        this.initKVManager();
-    },
-    onShow() {
-        featureAbility.getWant((error, want) => {
-            console.info('Calc[IndexPage] featureAbility.getWant =' + JSON.stringify(want.parameters));
-            if (want.parameters.isFA === 'FA') {
-                this.isFA = true;
-                this.isDistributed = true;
-            }
-        });
-    },
-    grantPermission() {
-        console.info('Calc[IndexPage] grantPermission')
-        let context = featureAbility.getContext()
-        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-            console.info(`Calc[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
-        })
-    },
-    dataChange(key, value) {
-        console.log('Calc[IndexPage] dataChange isDistributed = ' + this.isDistributed);
-        if (this.isDistributed && kvStoreModel != null) {
-            kvStoreModel.put(key, value);
-        }
-    },
-    initKVManager() {
-        kvStoreModel.setOnMessageReceivedListener('expression', (value) => {
-            console.log('Calc[IndexPage] data changed:' + value);
-            if (value === 'exit') {
-                console.info('Calc[CalcPage] app exit!');
-                app.terminate();
-                return;
-            }
-            if (value === 'clear') {
-                console.log('Calc[IndexPage] data expression:clear');
-                this.expression = '';
-                this.result = '';
-                return;
-            }
-            if (value === 'equal') {
-                if (this.result !== '') {
-                    console.log('Calc[IndexPage] data expression:equal');
-                    this.expression = this.result;
-                    this.result = '';
-                    pressedEqual = true;
-                }
-                return;
-            }
-            this.expression = value;
-            pressedEqual = false;
-            console.log('Calc[IndexPage] data expression:' + this.expression);
-        });
-        timerId = setInterval(() => {
-            if (this.isDistributed) {
-                let temp = this.expression;
-                this.expression = temp;
-            }
-        }, 200);
-    },
-    stopDataListener() {
-        console.log('Calc[IndexPage] stopDataListener');
-        if(kvStoreModel === null || kvStoreModel === undefined) {
-            return
-        }
-        kvStoreModel.off()
-    },
-    onHide() {
-        if (remoteDeviceModel === undefined) {
-            return
-        }
-        remoteDeviceModel.unregisterDeviceListCallback();
-        if (this.isDistributed && kvStoreModel != null) {
-            this.stopDataListener();
-            this.isDistributed = false;
-        }
-        clearInterval(timerId)
-        kvStoreModel = null
-        remoteDeviceModel = undefined
-    },
-    showDialog() {
-        console.info('Calc[IndexPage] showDialog start');
-        this.deviceList = [];
-        if (remoteDeviceModel === undefined) {
-            remoteDeviceModel = new RemoteDeviceModel()
-        }
-        remoteDeviceModel.registerDeviceListCallback(() => {
-            console.info('Calc[IndexPage] registerDeviceListCallback on remote device updated, count='
-            + remoteDeviceModel.deviceList.length);
-            let list = [];
-            list.push({
-                deviceId: '0',
-                deviceName: 'Local device',
-                deviceType: 0,
-                networkId: '',
-                checked: this.selectedIndex === 0
-            });
-            let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList;
-            for (let i = 0; i < tempList.length; i++) {
-                console.info('Calc[IndexPage] device ' + i + '/' + tempList.length
-                + ' deviceId=' + tempList[i].deviceId + ' deviceName=' + tempList[i].deviceName
-                + ' deviceType=' + tempList[i].deviceType);
-                list.push({
-                    deviceId: tempList[i].deviceId,
-                    deviceName: tempList[i].deviceName,
-                    deviceType: tempList[i].deviceType,
-                    networkId: tempList[i].networkId,
-                    checked: this.selectedIndex === (i + 1)
-                });
-            }
-            this.deviceList = list;
-            this.$element('showDialog').close();
-            this.$element('showDialog').show();
-        });
-    },
-    cancelDialog() {
-        this.$element('showDialog').close();
-        if(remoteDeviceModel === undefined) {
-            return;
-        }
-        remoteDeviceModel.unregisterDeviceListCallback();
-    },
-
-    selectDevice(item) {
-        let index = this.deviceList.indexOf(item);
-        console.log('Calc[IndexPage] select index:' + index);
-        console.log('Calc[IndexPage] select selectedIndex:' + this.selectedIndex);
-        if (index === this.selectedIndex) {
-            console.log('Calc[IndexPage] index === this.selectedIndex');
-            return;
-        }
-        this.selectedIndex = index;
-        if (index === 0) {
-            console.log('Calc[IndexPage] stop ability');
-            this.dataChange('expression', 'exit');
-            this.isDistributed = false;
-            this.stopDataListener();
-            this.clearSelectState();
-            return;
-        }
-        console.log('Calc[IndexPage] start ability ......');
+  data: {
+    title: '计算器',
+    expression: '',
+    result: '',
+    selectedIndex: 0,
+    isFA: false,
+    isPush: false,
+    isDistributed: false,
+    deviceList: []
+  },
+  onInit() {
+    this.grantPermission()
+    this.$watch('expression', (value) => {
+      if (value !== '') {
+        console.info('Calc[IndexPage] value  ' + value);
+        this.result = calc(value);
+        console.info('Calc[IndexPage] result =  ' + this.result);
+        console.log('Calc[IndexPage] put key start');
+        this.dataChange('expression', value);
+      }
+    });
+    this.initKVManager();
+  },
+  onShow() {
+    featureAbility.getWant((error, want) => {
+      console.info('Calc[IndexPage] featureAbility.getWant =' + JSON.stringify(want.parameters));
+      if (want.parameters.isFA === 'FA') {
+        this.isFA = true;
         this.isDistributed = true;
-        if (remoteDeviceModel === undefined || remoteDeviceModel.discoverList.length <= 0) {
-            console.log('Calc[IndexPage] continue device:' + JSON.stringify(this.deviceList));
-            this.startAbility(this.deviceList[index].deviceId);
-            this.clearSelectState();
-            return;
-        }
-        console.log('Calc[IndexPage] start ability1, needAuth');
-        remoteDeviceModel.authenticateDevice(this.deviceList[index], () => {
-            console.log('Calc[IndexPage] auth and online finished');
-            this.startAbility(this.deviceList[index].deviceId);
-        });
-        this.clearSelectState();
-        console.log('Calc[IndexPage] start ability end....');
-    },
-    clearSelectState() {
-        this.deviceList = [];
-        this.$element('showDialog').close();
-    },
-    async startAbility(deviceId) {
-        console.log('Calc[IndexPage] startAbility deviceId:' + deviceId);
-        await featureAbility.startAbility({
-            want: {
-                bundleName: 'ohos.samples.distributedcalc',
-                abilityName: 'ohos.samples.distributedcalc.MainAbility',
-                deviceId: deviceId,
-                parameters: {
-                    isFA: 'FA'
-                }
-            }
-        })
-        console.log('Calc[IndexPage] start ability finished');
-        this.dataChange('expression', this.expression);
-        console.log('Calc[IndexPage] startAbility end');
-    },
-    handleClear() {
+      }
+    });
+  },
+  grantPermission() {
+    console.info('Calc[IndexPage] grantPermission')
+    let context = featureAbility.getContext()
+    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+      console.info(`Calc[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
+    })
+  },
+  dataChange(key, value) {
+    console.log('Calc[IndexPage] dataChange isDistributed = ' + this.isDistributed);
+    if (this.isDistributed && kvStoreModel != null) {
+      kvStoreModel.put(key, value);
+    }
+  },
+  initKVManager() {
+    kvStoreModel.setOnMessageReceivedListener('expression', (value) => {
+      console.log('Calc[IndexPage] data changed:' + value);
+      if (value === 'exit') {
+        console.info('Calc[CalcPage] app exit!');
+        app.terminate();
+        return;
+      }
+      if (value === 'clear') {
+        console.log('Calc[IndexPage] data expression:clear');
         this.expression = '';
         this.result = '';
-        console.log('Calc[IndexPage] handleClear');
-        this.dataChange('expression', 'clear');
-    },
-    handleInput(value) {
-        console.log('Calc[IndexPage] handle input value:' + value);
-        this.isPush = false;
-        if (isOperator(value)) {
-            if (pressedEqual) {
-                pressedEqual = false;
-            } else {
-                const size = this.expression.length;
-                if (size) {
-                    const last = this.expression.charAt(size - 1);
-                    if (isOperator(last)) {
-                        this.expression = this.expression.substring(0, this.expression.length - 1);
-                    }
-                }
-            }
-            if (!this.expression && (value === '*' || value === '/')) {
-                return;
-            }
-            this.expression += value;
-        } else {
-            if (pressedEqual) {
-                pressedEqual = false;
-            }
-            this.expression += value;
-        }
-
-    },
-    handleBackspace() {
-        if (pressedEqual) {
-            this.expression = '';
-            this.result = '';
-            pressedEqual = false;
-            console.log('Calc[IndexPage] handleBackspace1');
-            this.dataChange('expression', 'clear');
-        } else {
-            this.isPush = false;
-            this.expression = this.expression.substring(0, this.expression.length - 1);
-            if (!this.expression.length) {
-                this.result = '';
-                console.log('Calc[IndexPage] handleBackspace2');
-                this.dataChange('expression', 'clear');
-            }
-        }
-    },
-    handleEqual() {
+        return;
+      }
+      if (value === 'equal') {
         if (this.result !== '') {
-            this.isPush = true;
-            this.expression = this.result;
-            this.result = '';
-            pressedEqual = true;
-            console.log('Calc[IndexPage] handleEqual');
-            this.dataChange('expression', 'equal');
+          console.log('Calc[IndexPage] data expression:equal');
+          this.expression = this.result;
+          this.result = '';
+          pressedEqual = true;
         }
-    },
-    handleExist() {
-        console.log('Calc[IndexPage] handleExist');
-        app.terminate();
+        return;
+      }
+      this.expression = value;
+      pressedEqual = false;
+      console.log('Calc[IndexPage] data expression:' + this.expression);
+    });
+    timerId = setInterval(() => {
+      if (this.isDistributed) {
+        let temp = this.expression;
+        this.expression = temp;
+      }
+    }, 200);
+  },
+  stopDataListener() {
+    console.log('Calc[IndexPage] stopDataListener');
+    if (kvStoreModel === null || kvStoreModel === undefined) {
+      return
     }
+    kvStoreModel.off()
+  },
+  onHide() {
+    if (remoteDeviceModel === undefined) {
+      return
+    }
+    remoteDeviceModel.unregisterDeviceListCallback();
+    if (this.isDistributed && kvStoreModel != null) {
+      this.stopDataListener();
+      this.isDistributed = false;
+    }
+    clearInterval(timerId)
+    kvStoreModel = null
+    remoteDeviceModel = undefined
+  },
+  showDialog() {
+    console.info('Calc[IndexPage] showDialog start');
+    this.deviceList = [];
+    if (remoteDeviceModel === undefined) {
+      remoteDeviceModel = new RemoteDeviceModel()
+    }
+    remoteDeviceModel.registerDeviceListCallback(() => {
+      console.info('Calc[IndexPage] registerDeviceListCallback on remote device updated, count='
+      + remoteDeviceModel.deviceList.length);
+      let list = [];
+      list.push({
+        deviceId: '0',
+        deviceName: 'Local device',
+        deviceType: 0,
+        networkId: '',
+        checked: this.selectedIndex === 0
+      });
+      let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList;
+      for (let i = 0; i < tempList.length; i++) {
+        console.info('Calc[IndexPage] device ' + i + '/' + tempList.length
+        + ' deviceId=' + tempList[i].deviceId + ' deviceName=' + tempList[i].deviceName
+        + ' deviceType=' + tempList[i].deviceType);
+        list.push({
+          deviceId: tempList[i].deviceId,
+          deviceName: tempList[i].deviceName,
+          deviceType: tempList[i].deviceType,
+          networkId: tempList[i].networkId,
+          checked: this.selectedIndex === (i + 1)
+        });
+      }
+      this.deviceList = list;
+      this.$element('showDialog').close();
+      this.$element('showDialog').show();
+    });
+  },
+  cancelDialog() {
+    this.$element('showDialog').close();
+    if (remoteDeviceModel === undefined) {
+      return;
+    }
+    remoteDeviceModel.unregisterDeviceListCallback();
+  },
+
+  selectDevice(item) {
+    let index = this.deviceList.indexOf(item);
+    console.log('Calc[IndexPage] select index:' + index);
+    console.log('Calc[IndexPage] select selectedIndex:' + this.selectedIndex);
+    if (index === this.selectedIndex) {
+      console.log('Calc[IndexPage] index === this.selectedIndex');
+      return;
+    }
+    this.selectedIndex = index;
+    if (index === 0) {
+      console.log('Calc[IndexPage] stop ability');
+      this.dataChange('expression', 'exit');
+      this.isDistributed = false;
+      this.stopDataListener();
+      this.clearSelectState();
+      return;
+    }
+    console.log('Calc[IndexPage] start ability ......');
+    this.isDistributed = true;
+    if (remoteDeviceModel === undefined || remoteDeviceModel.discoverList.length <= 0) {
+      console.log('Calc[IndexPage] continue device:' + JSON.stringify(this.deviceList));
+      this.startAbility(this.deviceList[index].deviceId);
+      this.clearSelectState();
+      return;
+    }
+    console.log('Calc[IndexPage] start ability1, needAuth');
+    remoteDeviceModel.authenticateDevice(this.deviceList[index], () => {
+      console.log('Calc[IndexPage] auth and online finished');
+      this.startAbility(this.deviceList[index].deviceId);
+    });
+    this.clearSelectState();
+    console.log('Calc[IndexPage] start ability end....');
+  },
+  clearSelectState() {
+    this.deviceList = [];
+    this.$element('showDialog').close();
+  },
+  async startAbility(deviceId) {
+    console.log('Calc[IndexPage] startAbility deviceId:' + deviceId);
+    await featureAbility.startAbility({
+      want: {
+        bundleName: 'ohos.samples.distributedcalc',
+        abilityName: 'ohos.samples.distributedcalc.MainAbility',
+        deviceId: deviceId,
+        parameters: {
+          isFA: 'FA'
+        }
+      }
+    })
+    console.log('Calc[IndexPage] start ability finished');
+    this.dataChange('expression', this.expression);
+    console.log('Calc[IndexPage] startAbility end');
+  },
+  handleClear() {
+    this.expression = '';
+    this.result = '';
+    console.log('Calc[IndexPage] handleClear');
+    this.dataChange('expression', 'clear');
+  },
+  handleInput(value) {
+    console.log('Calc[IndexPage] handle input value:' + value);
+    this.isPush = false;
+    if (isOperator(value)) {
+      if (pressedEqual) {
+        pressedEqual = false;
+      } else {
+        const size = this.expression.length;
+        if (size) {
+          const last = this.expression.charAt(size - 1);
+          if (isOperator(last)) {
+            this.expression = this.expression.substring(0, this.expression.length - 1);
+          }
+        }
+      }
+      if (!this.expression && (value === '*' || value === '/')) {
+        return;
+      }
+      this.expression += value;
+    } else {
+      if (pressedEqual) {
+        pressedEqual = false;
+      }
+      this.expression += value;
+    }
+
+  },
+  handleBackspace() {
+    if (pressedEqual) {
+      this.expression = '';
+      this.result = '';
+      pressedEqual = false;
+      console.log('Calc[IndexPage] handleBackspace1');
+      this.dataChange('expression', 'clear');
+    } else {
+      this.isPush = false;
+      this.expression = this.expression.substring(0, this.expression.length - 1);
+      if (!this.expression.length) {
+        this.result = '';
+        console.log('Calc[IndexPage] handleBackspace2');
+        this.dataChange('expression', 'clear');
+      }
+    }
+  },
+  handleEqual() {
+    if (this.result !== '') {
+      this.isPush = true;
+      this.expression = this.result;
+      this.result = '';
+      pressedEqual = true;
+      console.log('Calc[IndexPage] handleEqual');
+      this.dataChange('expression', 'equal');
+    }
+  },
+  handleExist() {
+    console.log('Calc[IndexPage] handleExist');
+    app.terminate();
+  }
 };

@@ -47,10 +47,11 @@ export struct AvailableWifi {
         .width('100%')
       }
 
-      LazyForEach(this.wifiDataResource, item => {
+      LazyForEach(this.wifiDataResource, (item, index) => {
         ListItem() {
           WifiView({ wifi: item })
         }
+	.key('Wifi' + index)
         .onClick(() => {
           Logger.info(TAG, 'wifi click')
           this.scanInfo = item
@@ -67,6 +68,7 @@ export struct AvailableWifi {
       }, item => JSON.stringify(item))
     }
     .width('100%')
+    .height('100%')
     .padding({ left: 16, right: 16 })
     .layoutWeight(1)
     .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 10, endMargin: 10 })

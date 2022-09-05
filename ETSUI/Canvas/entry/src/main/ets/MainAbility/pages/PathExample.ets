@@ -37,6 +37,7 @@ struct PathExample {
         Button('arc')
           .width(130)
           .height(45)
+          .key('arc')
           .onClick(() => {
             this.path2Da.arc(155, 150, 100, 0, 6.28);
             this.context.stroke(this.path2Da);
@@ -45,6 +46,7 @@ struct PathExample {
         Button('quadraticCurveTo')
           .width(150)
           .height(45)
+          .key('quadraticCurveTo')
           .onClick(() => {
             this.context.restore()
             this.path2Da.moveTo(20, 20)
@@ -60,6 +62,7 @@ struct PathExample {
         Button('bezierCurveTo')
           .width(130)
           .height(45)
+          .key('bezierCurveTo')
           .onClick(() => {
             this.path2Da.moveTo(100, 30);
             this.path2Da.bezierCurveTo(50, 100, 250, 100, 200, 30);
@@ -69,6 +72,7 @@ struct PathExample {
         Button('arcTo')
           .width(130)
           .height(45)
+          .key('arcTo')
           .onClick(() => {
             this.path2Dc.arcTo(100, 80, 120, 50, 50)
             this.context.stroke(this.path2Dc)
@@ -81,6 +85,7 @@ struct PathExample {
         Button('ellipse')
           .width(130)
           .height(45)
+          .key('ellipse')
           .onClick(() => {
             this.context.restore();
             this.path2De.ellipse(100, 150, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
@@ -91,6 +96,7 @@ struct PathExample {
         Button('rect')
           .width(130)
           .height(45)
+          .key('rect')
           .onClick(() => {
             this.context.save();
             this.path2Df.rect(20, 240, 100, 100)
@@ -105,6 +111,7 @@ struct PathExample {
         Button('closePath')
           .width(130)
           .height(45)
+          .key('closePath')
           .onClick(() => {
             this.path2Da.moveTo(160, 150);
             this.path2Da.lineTo(110, 220);
@@ -115,6 +122,7 @@ struct PathExample {
         Button('delete')
           .width(130)
           .height(45)
+          .key('delete')
           .onClick(() => {
             this.context.clearRect(0, 0, 950, 950)
           })
@@ -126,6 +134,7 @@ struct PathExample {
         Button('addPath')
           .width(130)
           .height(45)
+          .key('addPath')
           .onClick(() => {
             this.path2Da.addPath(this.path2Db)
             this.context.stroke(this.path2Da)
@@ -133,6 +142,7 @@ struct PathExample {
         Button('back')
           .width(130)
           .height(45)
+          .key('back')
           .backgroundColor(Color.Orange)
           .onClick(() => {
             router.back()

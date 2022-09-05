@@ -14,12 +14,12 @@
  -->
 
 <div class="div-list-item-three">
-    <image class="img-hmqs-three"></image>
-    <div class="div-txt-hmqs-three">
-        <text class="txt-list-three-item-top">{{ title }}</text>
-        <div class="div-list-three-item-right-down">
-            <image class="img-list-three-item-right-down" src="/common/images/img_sq.png"></image>
-            <text class="txt-list-three-item-bottom">{{ author }}</text>
-        </div>
+  <image class="img-hmqs-three"></image>
+  <div class="div-txt-hmqs-three">
+    <text class="txt-list-three-item-top">{{ title }}</text>
+    <div class="div-list-three-item-right-down">
+      <image class="img-list-three-item-right-down" src="/common/images/img_sq.png"></image>
+      <text class="txt-list-three-item-bottom">{{ author }}</text>
     </div>
+  </div>
 </div>

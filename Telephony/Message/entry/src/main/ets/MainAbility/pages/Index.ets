@@ -95,6 +95,7 @@ struct Index {
               .fancyText('40%', TextAlign.Center)
               .fontColor(Color.White)
           }
+          .key('newContact')
           .height(40)
           .type(ButtonType.Capsule)
           .backgroundColor('#0D9FFB')
@@ -109,6 +110,7 @@ struct Index {
               .fancyText('40%', TextAlign.Center)
               .fontColor(Color.White)
           }
+          .key('manage')
           .height(40)
           .type(ButtonType.Capsule)
           .backgroundColor('#0D9FFB')
@@ -161,8 +163,8 @@ struct Index {
                           contact: item
                         }
                       })
-                    }
-                    )
+                    })
+                    .key('sendSms')
                 }
                 .width('100%')
               }

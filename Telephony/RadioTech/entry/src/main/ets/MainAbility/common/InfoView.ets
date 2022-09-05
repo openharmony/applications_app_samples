@@ -39,7 +39,7 @@ export struct InfoView {
 
   build() {
     Column() {
-      ForEach(this.simArray, item => {
+      ForEach(this.simArray, (item, index) => {
         Row() {
           Column() {
             Text(item.title)
@@ -60,6 +60,7 @@ export struct InfoView {
             .margin({ right: 10 })
         }
         .width('100%')
+        .key('arrow' + (index + 1))
         .onClick(() => {
           Logger.info(`${TAG}, PanelView`)
           this.show = !this.show

@@ -112,7 +112,6 @@ struct Index {
   }
 
   startAbilityContinuation(deviceId) {
-    this.dialogController.close()
     let params
     Logger.info(TAG, `startAbilityContinuation PlayerModel.index= ${PlayerModel.index}/${PlayerModel.playlist.audioFiles.length}`)
     if (PlayerModel.index >= 0 && PlayerModel.index <= PlayerModel.playlist.audioFiles.length) {
@@ -145,12 +144,12 @@ struct Index {
     KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
       Logger.info(TAG, 'OnMessageReceived, terminateSelf')
       clearTimeout(timerId)
-      globalThis.abilityConText.terminateSelf((error) => {
+      this.context.terminateSelf((error) => {
         Logger.info(TAG, `terminateSelf finished, error= ${error}`)
       })
     })
     Logger.info(TAG, `globalThis.abilityConText.startAbility start`)
-    globalThis.abilityConText.startAbility(wantValue).then((data) => {
+    this.context.startAbility(wantValue).then((data) => {
       Logger.info(TAG, `globalThis.abilityConText.startAbility finished ${JSON.stringify(data)}`)
     })
     this.clearSelectState()
@@ -198,18 +197,31 @@ struct Index {
 
   clearSelectState() {
     this.deviceLists = []
-    this.dialogController.close()
-    this.dialogController = null
+    if(this.dialogController){
+      this.dialogController.close()
+      this.dialogController = null
+    }
   }
 
   getShownTimer(ms) {
-    let seconds = Math.floor(ms / ONE_THOUSAND)
-    let sec = seconds % SIXTY
     let minStr: string
     let secStr: string
+    let seconds = Math.floor(ms / ONE_THOUSAND)
+    let sec = seconds % SIXTY
+    Logger.info(TAG, `getShownTimer sec = ${sec}`)
     let min = (seconds - sec) / SIXTY
-      sec < 10 ? secStr = '0' + sec : '' + sec
-      min < 10 ? minStr = '0' + min : '' + min
+    Logger.info(TAG, `getShownTimer min = ${min}`)
+    if (sec < 10) {
+      secStr = '0' + sec
+    } else {
+      secStr = sec.toString(10)
+    }
+    if (min < 10) {
+      minStr = '0' + min
+    } else {
+      minStr = min.toString(10)
+    }
+    Logger.warn(TAG, `getShownTimer = ${minStr}:${secStr}`)
     return minStr + ':' + secStr
   }
 
@@ -227,9 +239,7 @@ struct Index {
     this.totalMs = PlayerModel.getDuration()
     this.totalTimeText = this.getShownTimer(this.totalMs)
     this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs())
-
-    Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs=
-            ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
+    Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
   }
 
   onPreviousClick() {
@@ -287,7 +297,7 @@ struct Index {
       PlayerModel.pause()
       this.imageArrays[2] = $r('app.media.ic_play')
     } else {
-      PlayerModel.preLoad(0, () => {
+      PlayerModel.preLoad(PlayerModel.index, () => {
         PlayerModel.play(-1, true)
         this.imageArrays[2] = $r('app.media.ic_pause')
       })
@@ -309,6 +319,8 @@ struct Index {
             this.refreshSongInfo(0)
           })
         }
+        Logger.info(TAG, `Index PlayerModel.restorePlayingStatus this.totalMs = ${this.totalMs}, status.seekTo = ${status.seekTo}`)
+        this.currentProgress = Math.floor(status.seekTo / this.totalMs * ONE_HUNDRED)
       })
     } else {
       PlayerModel.preLoad(0, () => {
@@ -320,11 +332,11 @@ struct Index {
   aboutToAppear() {
     Logger.info(TAG, `begin`)
     Logger.info(TAG, 'grantPermission')
+    this.context = getContext(this) as any
     let requestCode = 666
-    globalThis.abilityConText.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], requestCode, function (result) {
+    this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], requestCode, function (result) {
       Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result= ${result}`)
     })
-    this.context = getContext(this)
     display.getDefaultDisplay().then((dis) => {
       Logger.info(TAG, `getDefaultDisplay dis= ${JSON.stringify(dis)}`)
       let proportion = DESIGN_WIDTH / dis.width
@@ -432,6 +444,7 @@ struct Index {
                 }
               })
           }
+          .key('image' + (index + 1))
           .width(100)
           .height(100)
           .alignItems(HorizontalAlign.Center)

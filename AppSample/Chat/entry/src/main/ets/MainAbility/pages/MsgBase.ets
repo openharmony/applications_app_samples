@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import image from '@ohos.multimedia.image'
+
 @Entry
 @Component
 struct MsgBase {
@@ -46,8 +48,9 @@ export class ChatModel {
   }
 }
 
-//聊天信息
+// 聊天信息
 export class MessageBase {
+  img: image.PixelMap
   msgId: string
   fo: EMContact
   to: EMContact
@@ -74,7 +77,7 @@ export class MessageBody {
   }
 }
 
-//文本消息
+// 文本消息
 export class TextMessage extends MessageBody {
   toString(): string {
     return this.msg
@@ -88,7 +91,7 @@ export class TextMessage extends MessageBody {
   msg: string
 }
 
-//图片消息
+// 图片消息
 export class ImageMessage extends MessageBody {
   toString(): string {
     return this.height + "  " + this.width + "  " + this.img
@@ -106,7 +109,41 @@ export class ImageMessage extends MessageBody {
   img: string
 }
 
-//user消息
+// wantParams:图片+文本消息
+export class ImgTextMessage extends MessageBody {
+  toString(): string {
+    return this.msg + ' ' +
+    this.height + "  " + this.width + "  " + this.img
+  }
+
+  constructor(hei: number, wid: number, img: string | Resource, msg: string) {
+    super()
+    this.height = hei
+    this.width = wid
+    this.img = img
+    this.msg = msg
+  }
+
+  height: number
+  width: number
+  img: string | Resource
+  msg: string
+}
+
+// wantParams:图片文件
+export class FileMessage extends MessageBody {
+  height: number | string
+  width: number | string
+  img: image.PixelMap
+  constructor(hei: number | string, wid: number | string, img: image.PixelMap) {
+    super()
+    this.height = hei
+    this.width = wid
+    this.img = img
+  }
+}
+
+// user消息
 export class EMContact {
   userId: string
   userName: string
@@ -142,6 +179,6 @@ export class FriendMoment {
   }
 
   toString(): string {
-    return this.id + "  " + this.user.toString() + "  " + this.text + "  " + this.time + "  "
+    return this.id + "  " + this.user.toString() + "  " + this.text + "  " + this.time + "  " // +this.imageList.toString()
   }
 }

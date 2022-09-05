@@ -14,19 +14,19 @@
  -->
 
 <div class="container">
-    <stack class="header-div">
-        <div class="image-div">
-            <image src="/common/ic_app.svg" class="image-up"></image>
-        </div>
-        <div class="text-div">
-            <text class="text-right-up">{{title}}</text>
-        </div>
-    </stack>
-    <div class="main-div">
-        <div class="item-div" for="{{ list }}"  tid="id" style="display-index: {{ $item.displayIndex }};" >
-            <image class="item-image" src="{{ $item.poster }}" ></image>
-            <text class="item-title-up"> {{ $item.title }}</text>
-            <text class="item-title-down"> {{ $item.detail }}</text>
-        </div>
+  <stack class="header-div">
+    <div class="image-div">
+      <image src="/common/ic_app.svg" class="image-up"></image>
     </div>
+    <div class="text-div">
+      <text class="text-right-up">{{ title }}</text>
+    </div>
+  </stack>
+  <div class="main-div">
+    <div class="item-div" for="{{ list }}" tid="id" style="display-index : {{ $item.displayIndex }};">
+      <image class="item-image" src="{{ $item.poster }}"></image>
+      <text class="item-title-up"> {{ $item.title }}</text>
+      <text class="item-title-down"> {{ $item.detail }}</text>
+    </div>
+  </div>
 </div>

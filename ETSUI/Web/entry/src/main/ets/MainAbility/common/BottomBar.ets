@@ -124,12 +124,13 @@ export struct BottomBar {
 
   build() {
     Row() {
-      LazyForEach(new MyDataSource(this.options), item => {
-        Row(){
+      LazyForEach(new MyDataSource(this.options), (item, index) => {
+        Row() {
           Image(item.image)
             .width(40)
             .height(40)
             .objectFit(ImageFit.Contain)
+            .key('option' + index)
             .onClick(item.onClick)
         }
       }, item => item)

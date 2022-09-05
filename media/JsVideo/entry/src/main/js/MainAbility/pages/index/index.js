@@ -29,7 +29,7 @@ export default {
     startTime: 0,
     // 播放速度
     speed: 0.3,
-    isStart:false
+    isStart: false
   },
   // 视频准备完成时触发该事件
   prepared(e) {
@@ -74,16 +74,18 @@ export default {
   },
   // 点击视频
   onClick() {
-    if(this.isStart) {
+    if (this.isStart) {
       this.$element('video').pause()
       this.isStart = false
-    }else {
+    } else {
       this.$element('video').start()
       this.isStart = true
     }
   },
   // 长按视频
-  longPress(){
-    router.replace({url:'pages/index/index'})
+  longPress() {
+    router.replace({
+      url: 'pages/index/index'
+    })
   }
 }

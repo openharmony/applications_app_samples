@@ -18,7 +18,7 @@
  */
 const FORM_MGR_FORM_SIZE: number = 320
 
-export default class CommonConstants {
+export class CommonConstants {
   /**
    * Grid item type for apps.
    */

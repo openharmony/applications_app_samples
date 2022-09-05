@@ -31,7 +31,7 @@ export struct SecondaryNavigation {
         LazyForEach(this.info, (item) => {
           ListItem() {
             Row() {
-              Image($r("app.media.ic_public_collect"))
+              Image($r('app.media.ic_public_collect'))
                 .objectFit(ImageFit.Contain)
                 .width('6%')
                 .height(24)
@@ -42,14 +42,14 @@ export struct SecondaryNavigation {
                 .fontWeight(FontWeight.Medium)
                 .width('55%')
                 .margin({ left: '5.2%', right: '20.2%' })
-              Image($r("app.media.ic_public_arrow_right"))
+              Image($r('app.media.ic_public_arrow_right'))
                 .objectFit(ImageFit.Contain)
                 .width('4%')
                 .height(24)
             }
           }
           .width('100%')
-          .height(56)
+          .height('10%')
           .backgroundColor('#ffffff')
           .editable(true)
           .onClick(() => {
@@ -59,8 +59,10 @@ export struct SecondaryNavigation {
           })
         })
       }
-      .backgroundColor('#FFFFFF')
+      .height('40%')
+      .width('100%')
       .padding({ top: 12 })
+      .backgroundColor('#FFFFFF')
       .listDirection(Axis.Vertical)
       .divider({ strokeWidth: '1', color: '#32000000', startMargin: '10%', })
     }

@@ -99,10 +99,14 @@ struct EditContact {
   }
 
   aboutToAppear() {
-    this.name = this.contact.name.fullName
-    this.phoneNumber = this.contact.phoneNumbers[0].phoneNumber
-    this.nickName = this.contact.nickName.nickName
-    this.email = this.contact.emails[0].email
-    this.postalAddress = this.contact.postalAddresses[0].postalAddress
+    this.contact.name.fullName === '' ? this.name = '' : this.name = this.contact.name.fullName
+    this.contact.phoneNumbers[0].phoneNumber === '' ? this.phoneNumber = '' : this.phoneNumber = this.contact.phoneNumbers[0].phoneNumber
+    try{
+      this.nickName = this.contact.nickName.nickName
+    } catch(err) {
+      this.nickName = ''
+    }
+    this.contact.emails[0].email === '' ? this.email = '' : this.email = this.contact.emails[0].email
+    this.contact.postalAddresses[0].postalAddress === '' ? this.postalAddress = '' : this.postalAddress = this.contact.postalAddresses[0].postalAddress
   }
 }

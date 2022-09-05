@@ -15,7 +15,7 @@
 
 import hilog from '@ohos.hilog'
 
-class Logger {
+class LoggerModel {
   private domain: number
   private prefix: string
   private format: string = '%{public}s, %{public}s'
@@ -58,4 +58,4 @@ class Logger {
   }
 }
 
-export default new Logger('[Sample_Launcher]')
+export let Logger =  new LoggerModel('[Sample_Launcher]')

@@ -14,16 +14,16 @@
  */
 
 import formManagerAbility from '@ohos.application.formHost'
-import CardItemInfo from '../bean/CardItemInfo'
-import CommonConstants from '../constants/CommonConstants'
-import Logger from '../utils/Logger'
+import { CardItemInfo } from '../bean/CardItemInfo'
+import { CommonConstants } from '../constants/CommonConstants'
+import { Logger } from '../utils/Logger'
 
 const TAG: string = 'FormManager'
 
 /**
  * Wrapper class for formManager interfaces.
  */
-class FormManager {
+class FormManagerModel {
   private readonly CARD_SIZE_1x2: number[] = [1, 2]
   private readonly CARD_SIZE_2x2: number[] = [2, 2]
   private readonly CARD_SIZE_2x4: number[] = [2, 4]
@@ -116,5 +116,5 @@ class FormManager {
   }
 }
 
-export default new FormManager()
+export let FormManager =  new FormManagerModel()
 

@@ -14,8 +14,8 @@
  -->
 
 <div class="container">
-    <text class="title">
-        This is the detail page.
-    </text>
-    <button type="capsule" value="Go back" class="button" onclick="launch"></button>
+  <text class="title">
+    This is the detail page.
+  </text>
+  <button type="capsule" value="Go back" class="button" onclick="launch"></button>
 </div>

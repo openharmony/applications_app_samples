@@ -71,6 +71,7 @@ struct TextPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.lines, step: 1, min: -1, max: 15 })
+                .key('maxLinesSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.lines = Math.round(e)
@@ -90,6 +91,7 @@ struct TextPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.lineHeight, step: 1, min: -1, max: 99 })
+                .key('lineHeightSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.lineHeight = Math.round(e)
@@ -109,6 +111,7 @@ struct TextPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               Slider({ value: this.baselineOffset, step: 1, min: -1, max: 99 })
+                .key('baselineOffsetSlider')
                 .blockColor(Color.Orange)
                 .onChange((e) => {
                   this.baselineOffset = Math.round(e)
@@ -128,6 +131,7 @@ struct TextPage {
               .fontWeight(FontWeight.Bolder)
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
               TextInput({ placeholder: '', text: this.temporary })
+                .key('TextInput')
                 .enterKeyType(EnterKeyType.Send)
                 .placeholderFont({ size: 15 })
                 .height(40)

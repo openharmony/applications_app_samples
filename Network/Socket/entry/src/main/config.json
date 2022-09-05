@@ -45,7 +45,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "ohos.samples.entry",
+    "package": "ohos.samples.socket",
     "srcPath": "",
     "name": ".entry",
     "js": [

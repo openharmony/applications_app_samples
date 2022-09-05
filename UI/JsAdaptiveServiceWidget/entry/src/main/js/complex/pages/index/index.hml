@@ -14,41 +14,41 @@
  -->
 
 <div class="container">
-    <div class="region-title" >
-        <image class="left-image" src="/common/ic_gift.svg"></image>
-        <text class="left-text">{{ title }}</text>
+  <div class="region-title">
+    <image class="left-image" src="/common/ic_gift.svg"></image>
+    <text class="left-text">{{ title }}</text>
+  </div>
+  <div class="region-plates">
+    <div for="{{ arrayPlates }}" tid="id" class="{{ $item.exponent }}">
+      <text class="exponent-text">{{ $item.name }}</text>
+      <text class="{{ $item.exponentNum }}">{{ $item.num }}</text>
+      <div class="exponent-div">
+        <text class="{{ $item.exponentFloat }}">{{ $item.float }}</text>
+        <text class="{{ $item.exponentPer }}">{{ $item.per }}</text>
+      </div>
     </div>
-    <div class="region-plates">
-        <div for="{{ arrayPlates }}" tid="id" class="{{ $item.exponent }}">
-            <text class="exponent-text">{{ $item.name }}</text>
-            <text class="{{ $item.exponentNum }}">{{ $item.num }}</text>
-            <div class="exponent-div">
-                <text class="{{ $item.exponentFloat }}">{{ $item.float }}</text>
-                <text class="{{ $item.exponentPer }}">{{ $item.per }}</text>
-            </div>
-        </div>
+  </div>
+  <div class="region-fund">
+    <div class="row-div">
+      <text class="fund-text">{{ fundText }}</text>
+      <text class="time-text-front">{{ timeText }}</text>
+      <text class="time-text-after">{{ timeText }}</text>
     </div>
-    <div class="region-fund">
-        <div class="row-div">
-            <text class="fund-text">{{ fundText }}</text>
-            <text class="time-text-front">{{ timeText }}</text>
-            <text class="time-text-after">{{ timeText }}</text>
+    <div class="region-fund-item">
+      <div class="region-row-div" for="{{ array }}" tid="id" style="display-index : {{ $item.displayIndex }};">
+        <div class="column-div">
+          <text class="exponent-text">{{ $item.name }}</text>
+          <text class="coded-text">{{ $item.coded }}</text>
         </div>
-        <div class="region-fund-item">
-            <div class="region-row-div" for="{{ array }}" tid="id" style="display-index: {{ $item.displayIndex }};">
-                <div class="column-div">
-                    <text class="exponent-text">{{ $item.name }}</text>
-                    <text class="coded-text">{{ $item.coded }}</text>
-                </div>
-                <text class="per-text">{{ $item.perFront }}</text>
-                <text class="{{ $item.perTextAfter }}">{{ $item.perAfter }}</text>
-            </div>
-        </div>
+        <text class="per-text">{{ $item.perFront }}</text>
+        <text class="{{ $item.perTextAfter }}">{{ $item.perAfter }}</text>
+      </div>
     </div>
-    <div class="region-bottom">
-        <div class="region-bottom-item" for="{{ arrayImage }}" tid="id">
-            <image class="region-bottom-image" src="/common/ic_add.svg"></image>
-            <text class="region-bottom-text">{{ $item.text }}</text>
-        </div>
+  </div>
+  <div class="region-bottom">
+    <div class="region-bottom-item" for="{{ arrayImage }}" tid="id">
+      <image class="region-bottom-image" src="/common/ic_add.svg"></image>
+      <text class="region-bottom-text">{{ $item.text }}</text>
     </div>
+  </div>
 </div>

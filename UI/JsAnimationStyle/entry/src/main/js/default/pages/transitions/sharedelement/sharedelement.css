@@ -31,13 +31,15 @@
     shared-transition-name: shared-transition;
     shared-transition-timing-function: friction;
 }
+
 @keyframes shared-transition {
     from {
         opacity: 0;
-        transform:translate(20px) ;
+        transform: translate(20px);
     }
+
     to {
         opacity: 1;
-        transform:translate(100px) ;
+        transform: translate(100px);
     }
 }

@@ -20,11 +20,13 @@
     align-items: center;
     background-color: #ABDAFF;
 }
+
 .item {
     height: 80px;
     background-color: #FAFAFA;
     margin-top: 2px;
 }
+
 .outer {
     width: 300px;
     height: 100px;

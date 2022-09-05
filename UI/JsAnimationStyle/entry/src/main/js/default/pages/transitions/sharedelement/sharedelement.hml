@@ -14,5 +14,6 @@
  -->
 
 <div class="container">
-    <text onclick="jumpSharedTargetPage" shareid="shareTxt_1" class="shared-element-txt1-transition-style" >{{ $t('strings.sharedjump') }}</text>
+  <text onclick="jumpSharedTargetPage" shareid="shareTxt_1" class="shared-element-txt1-transition-style">{{
+    $t('strings.sharedjump') }}</text>
 </div>

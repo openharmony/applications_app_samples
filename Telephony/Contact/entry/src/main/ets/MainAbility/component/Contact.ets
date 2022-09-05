@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,14 +18,24 @@ import prompt from '@ohos.prompt'
 import contact from '@ohos.contact'
 import resourceManager from '@ohos.resourceManager'
 import { ItemContainer } from '../component/ItemContainer'
+import Logger from '../data/Logger'
+
+const TAG: string = 'Contact'
 
 @Component
 export struct Contact {
   @State result: string = ''
+  @State selected: number = 0
   @State position: string = ''
   @State contactNumber: number = 0
   @State contacts: contact.Contact[] = []
+  private scroller: Scroller = new Scroller()
   private controller: TextInputController = new TextInputController()
+  private alphabetical: string[] =
+    [
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+      'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ]
 
   build() {
     Column() {
@@ -37,6 +46,7 @@ export struct Contact {
           .height(32)
           .margin({ right: 32, top: 32 })
           .objectFit(ImageFit.Contain)
+          .key('add')
           .onClick(() => {
             router.push({
               url: 'pages/AddContact'
@@ -47,6 +57,7 @@ export struct Contact {
           .height(32)
           .margin({ right: 32, top: 32 })
           .objectFit(ImageFit.Contain)
+          .key('setting')
           .onClick(() => {
             router.push({
               url: 'pages/Setting'
@@ -86,14 +97,19 @@ export struct Contact {
           })
           .onSubmit(async (enterKey: EnterKeyType) => {
             let phoneData = await contact.queryContactsByPhoneNumber(this.result)
+            Logger.info(TAG, `this phoneData is ${JSON.stringify(phoneData)}`)
             let emailData = await contact.queryContactsByEmail(this.result)
-            if (phoneData[0] !== [] || emailData[0] !== []) {
+            Logger.info(TAG, `this emailData is ${JSON.stringify(emailData)}`)
+            if (JSON.stringify(phoneData) !== '[]' || JSON.stringify(emailData) !== '[]') {
+              let result: contact.Contact = undefined
+              result = (JSON.stringify(phoneData) !== '[]' ? await contact.queryContact(phoneData[0].key) : await contact.queryContact(emailData[0].key))
+              Logger.info(TAG, `this phoneDat query result is ${JSON.stringify(result)}`)
               router.push({
                 url: 'pages/NameCard',
-                params: { data: await contact.queryContact(phoneData[0].key) }
+                params: { data: result }
               })
             } else {
-              this.result = ''
+              Logger.info(TAG, `333`)
               prompt.showToast({
                 message: 'Error!',
                 duration: 1500 // 提示弹窗持续时间，单位ms
@@ -108,33 +124,58 @@ export struct Contact {
       .margin({ left: 32, right: 32 })
 
       Row() {
-        Image($r('app.media.heads'))
-          .width(52)
-          .height(52)
-          .margin({ left: 32 })
+        Column() {
+          Row() {
+            Image($r('app.media.heads'))
+              .width(52)
+              .height(52)
+              .margin({ left: 32 })
 
-        Text($r('app.string.group'))
-          .fontSize(20)
-          .margin({ left: 16 })
+            Text($r('app.string.group'))
+              .fontSize(20)
+              .margin({ left: 16 })
+          }
+          .margin({ top: 22, bottom: 22 })
+          .width('100%')
+          .borderRadius(15)
+
+          Row() {
+            Image($r('app.media.heads'))
+              .width(52)
+              .height(52)
+              .margin({ left: 32 })
+
+            Text($r('app.string.name_card'))
+              .fontSize(20)
+              .margin({ left: 16 })
+          }
+          .width('100%')
+          .borderRadius(15)
+
+          ItemContainer({ contacts: this.contacts, selected: $selected })
+        }
+        .width('90%')
+
+        Column() {
+          AlphabetIndexer({ arrayValue: this.alphabetical, selected: this.selected })
+            .itemSize(14)
+            .font({ size: 12 })
+            .borderRadius(25)
+            .usingPopup(false)
+            .selectedColor('#007DFF')
+            .margin({ left: 2, right: 4, top: 4 })
+            .alignStyle(IndexerAlign.Right)
+            .selectedFont({ size: 14, weight: FontWeight.Bolder })
+            .onSelect((selected: number) => {
+              // 跳转到指定索引位置
+              this.scroller.scrollToIndex(selected)
+            })
+        }
+        .width('10%')
+        .height('100%')
+        .margin({ top: 20 })
       }
-      .margin({ top: 22, bottom: 22 })
       .width('100%')
-      .borderRadius(15)
-
-      Row() {
-        Image($r('app.media.heads'))
-          .width(52)
-          .height(52)
-          .margin({ left: 32 })
-
-        Text($r('app.string.name_card'))
-          .fontSize(20)
-          .margin({ left: 16 })
-      }
-      .width('100%')
-      .borderRadius(15)
-
-      ItemContainer({ contacts: this.contacts })
     }
     .width('100%')
     .height('100%')

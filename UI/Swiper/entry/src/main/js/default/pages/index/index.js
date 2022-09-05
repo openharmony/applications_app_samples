@@ -14,10 +14,10 @@
  */
 
 export default {
-    showNext: function () {
-        this.$element('swiper').showNext()
-    },
-    showPrevious: function () {
-        this.$element('swiper').showPrevious()
-    }
+  showNext: function () {
+    this.$element('swiper').showNext()
+  },
+  showPrevious: function () {
+    this.$element('swiper').showPrevious()
+  }
 }

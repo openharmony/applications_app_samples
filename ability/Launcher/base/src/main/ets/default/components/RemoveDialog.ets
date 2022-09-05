@@ -14,7 +14,7 @@
  */
 
 @CustomDialog
-export default struct RemoveDialog {
+export struct RemoveDialog {
   private cardName: string = ''
   private controller: CustomDialogController
   private confirm: () => void

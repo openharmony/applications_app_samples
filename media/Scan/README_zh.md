@@ -43,8 +43,8 @@
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备:RK3568 WGR。
+1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
 2.本示例为stage模型，从API version 9开始支持,需要手动替换full sdk中的xcomponent.d.ts。
 
-3.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.991, built on May 30, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。

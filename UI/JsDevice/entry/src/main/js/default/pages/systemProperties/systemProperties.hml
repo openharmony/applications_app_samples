@@ -14,23 +14,23 @@
  -->
 
 <div class="container">
-    <div class="title-box">
-        <text class="title" onclick="back">{{ $t('strings.systemProperties_title') }}</text>
-    </div>
-    <text class="info-text">{{ $t('strings.results') }}: {{ results }}</text>
-    <div class="button-row">
-        <input class="info-button" type="button" value="setKey" onclick="setKey"></input>
-        <input class="info-button" type="button" value="getKey" onclick="getKey"></input>
-    </div>
-    <div class="button-row">
-        <input class="info-button" type="button" value="setSync" onclick="setSync"></input>
-        <input class="info-button" type="button" value="getSync" onclick="getSync"></input>
-    </div>
-    <div class="button-row">
-        <input class="info-button" type="button" value="setASyncCallback" onclick="setASyncCallback"></input>
-        <input class="info-button" type="button" value="getAsyncCallback" onclick="getAsyncCallback"></input>
-    </div>
-    <div class="button-row">
-        <input class="button-down" type="button" value="getDefAsyncCallback" onclick="getDefAsyncCallback"></input>
-    </div>
+  <div class="title-box">
+    <text class="title" onclick="back">{{ $t('strings.systemProperties_title') }}</text>
+  </div>
+  <text class="info-text">{{ $t('strings.results') }}: {{ results }}</text>
+  <div class="button-row">
+    <input class="info-button" type="button" value="setKey" onclick="setKey"></input>
+    <input class="info-button" type="button" value="getKey" onclick="getKey"></input>
+  </div>
+  <div class="button-row">
+    <input class="info-button" type="button" value="setSync" onclick="setSync"></input>
+    <input class="info-button" type="button" value="getSync" onclick="getSync"></input>
+  </div>
+  <div class="button-row">
+    <input class="info-button" type="button" value="setASyncCallback" onclick="setASyncCallback"></input>
+    <input class="info-button" type="button" value="getAsyncCallback" onclick="getAsyncCallback"></input>
+  </div>
+  <div class="button-row">
+    <input class="button-down" type="button" value="getDefAsyncCallback" onclick="getDefAsyncCallback"></input>
+  </div>
 </div>

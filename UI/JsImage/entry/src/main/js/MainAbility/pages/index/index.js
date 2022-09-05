@@ -14,50 +14,50 @@
  */
 
 export default {
-    data: {
-        componentName: 'Image',
-        srcImage: 'common/test.png',
-        width: '',
-        height: '',
-        scaleX: '',
-        rotate: '',
-        rotateX: '',
-        rotateY: '',
-    },
+  data: {
+    componentName: 'Image',
+    srcImage: 'common/test.png',
+    width: '',
+    height: '',
+    scaleX: '',
+    rotate: '',
+    rotateX: '',
+    rotateY: '',
+  },
 
-    onInit: function () {
-        var img = new Image();
-        img.src = this.srcImage;
-        img.onload = function () {
-            console.info("load img ok");
-        };
-        img.onerror = function () {
-            console.info("load img fail");
-        };
-    },
+  onInit: function () {
+    var img = new Image();
+    img.src = this.srcImage;
+    img.onload = function () {
+      console.info("load img ok");
+    };
+    img.onerror = function () {
+      console.info("load img fail");
+    };
+  },
 
-    onload: function (data) {
-        this.width = data.width;
-        this.height = data.height;
-    },
+  onload: function (data) {
+    this.width = data.width;
+    this.height = data.height;
+  },
 
-    onScalex: function () {
-        this.scaleX = "";
-        this.scaleX = "scaleX";
-    },
+  onScalex: function () {
+    this.scaleX = "";
+    this.scaleX = "scaleX";
+  },
 
-    onRotate: function () {
-        this.rotate = "";
-        this.rotate = "rotate";
-    },
+  onRotate: function () {
+    this.rotate = "";
+    this.rotate = "rotate";
+  },
 
-    onRotateX: function () {
-        this.rotateX = "";
-        this.rotateX = "rotateX";
-    },
+  onRotateX: function () {
+    this.rotateX = "";
+    this.rotateX = "rotateX";
+  },
 
-    onRotateY: function () {
-        this.rotateY = "";
-        this.rotateY = "rotateY";
-    },
+  onRotateY: function () {
+    this.rotateY = "";
+    this.rotateY = "rotateY";
+  },
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // @ts-nocheck
-import router from '@ohos.router';
+import router from '@ohos.router'
 import { InLine, Swit } from '../components/Header'
 
 @Entry

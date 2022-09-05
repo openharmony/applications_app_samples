@@ -16,28 +16,28 @@
 import prompt from '@ohos.prompt';
 
 export default {
-    getCol(e) {
-        this.$element('myGrid').getColumns(function (result) {
-            prompt.showToast({
-                message: e.target.id + ' result = ' + result,
-                duration: 3000,
-            });
-        })
-    },
-    getColWidth(e) {
-        this.$element('myGrid').getColumnWidth(function (result) {
-            prompt.showToast({
-                message: e.target.id + ' result = ' + result,
-                duration: 3000,
-            });
-        })
-    },
-    getGutWidth(e) {
-        this.$element('myGrid').getGutterWidth(function (result) {
-            prompt.showToast({
-                message: e.target.id + ' result = ' + result,
-                duration: 3000,
-            });
-        })
-    }
+  getCol(e) {
+    this.$element('myGrid').getColumns(function (result) {
+      prompt.showToast({
+        message: e.target.id + ' result = ' + result,
+        duration: 3000,
+      });
+    })
+  },
+  getColWidth(e) {
+    this.$element('myGrid').getColumnWidth(function (result) {
+      prompt.showToast({
+        message: e.target.id + ' result = ' + result,
+        duration: 3000,
+      });
+    })
+  },
+  getGutWidth(e) {
+    this.$element('myGrid').getGutterWidth(function (result) {
+      prompt.showToast({
+        message: e.target.id + ' result = ' + result,
+        duration: 3000,
+      });
+    })
+  }
 }

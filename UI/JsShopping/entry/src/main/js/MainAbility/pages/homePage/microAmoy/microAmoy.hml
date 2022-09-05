@@ -13,52 +13,52 @@
   limitations under the License.
  -->
 <div class="container">
-    <list class="list" scrollbar="off" shapemode="rect" scrolleffect="fade" cachedcount="5" onrequestitem="buildItem">
-        <list-item type="top" class="listitem-title">
-            <div class="top-listitem">
-                <text class="top-text">商城</text>
-                <div>
-                    <image class="top-image" src="/common/Icon/search.png"></image>
-                    <image class="top-image" src="/common/Icon/user.png"></image>
-                </div>
+  <list class="list" scrollbar="off" shapemode="rect" scrolleffect="fade" cachedcount="5" onrequestitem="buildItem">
+    <list-item type="top" class="listitem-title">
+      <div class="top-listitem">
+        <text class="top-text">商城</text>
+        <div>
+          <image class="top-image" src="/common/Icon/search.png"></image>
+          <image class="top-image" src="/common/Icon/user.png"></image>
+        </div>
+      </div>
+    </list-item>
+    <list-item type="ceil" sticky="normal" class="listitem-ceil">
+      <text class="tab-bar-text" for="{{ navbarData }}">{{ $item }}</text>
+    </list-item>
+    <list-item type="common" class="listitem" for="{{ tempList }}">
+      <div class="content">
+        <div class="list-top">
+          <div class="list-top-left">
+            <image class="list-top-left-image" src="{{ $item.topdata.img1 }}"></image>
+            <div class="list-top-left-div">
+              <text class="list-top-text1">{{ $item.topdata.text1 }}</text>
+              <text class="list-top-text2">{{ $item.topdata.text2 }}</text>
             </div>
-        </list-item>
-        <list-item type="ceil" sticky="normal" class="listitem-ceil">
-            <text class="tab-bar-text" for="{{ navbarData }}">{{ $item }}</text>
-        </list-item>
-        <list-item type="common" class="listitem" for="{{ tempList }}">
-            <div class="content">
-                <div class="list-top">
-                    <div class="list-top-left">
-                        <image class="list-top-left-image" src="{{ $item.topdata.img1 }}"></image>
-                        <div class="list-top-left-div">
-                            <text class="list-top-text1">{{ $item.topdata.text1 }}</text>
-                            <text class="list-top-text2">{{ $item.topdata.text2 }}</text>
-                        </div>
-                    </div>
-                    <div class="list-top-right">
-                        <image class="list-top-right-image1" src="{{ $item.topdata.imgright1 }}"></image>
-                        <image class="list-top-right-image1" src="{{ $item.topdata.imgright2 }}"></image>
-                        <image class="list-top-right-image2" src="{{ $item.topdata.imgright3 }}"></image>
-                    </div>
-                </div>
-                <div>
-                    <image src="{{ $item.topdata.imgcenter1 }}" class="list-center1-image"></image>
-                    <text class="list-center1-text">{{ $item.topdata.textcenter }}</text>
-                </div>
-                <div class="list-center2">
-                    <image class="list-center2-img" for="{{ $item.imgcenter }}" src="{{ $item.icon }}"></image>
-                </div>
-                <div class="list-bottom">
-                    <text class="list-bottom-text">{{ $item.imgbottom.text1 }}</text>
-                    <div class="list-bottom-div">
-                        <image class="list-bottom-img" src="{{ $item.imgbottom.imgbottom1 }}"></image>
-                        <text class="list-bottom-text">{{ $item.imgbottom.text2 }}</text>
-                        <image class="list-bottom-img" src="{{ $item.imgbottom.imgbottom2 }}"></image>
-                        <text class="list-bottom-text">{{ $item.imgbottom.text3 }}</text>
-                    </div>
-                </div>
-            </div>
-        </list-item>
-    </list>
+          </div>
+          <div class="list-top-right">
+            <image class="list-top-right-image1" src="{{ $item.topdata.imgright1 }}"></image>
+            <image class="list-top-right-image1" src="{{ $item.topdata.imgright2 }}"></image>
+            <image class="list-top-right-image2" src="{{ $item.topdata.imgright3 }}"></image>
+          </div>
+        </div>
+        <div>
+          <image src="{{ $item.topdata.imgcenter1 }}" class="list-center1-image"></image>
+          <text class="list-center1-text">{{ $item.topdata.textcenter }}</text>
+        </div>
+        <div class="list-center2">
+          <image class="list-center2-img" for="{{ $item.imgcenter }}" src="{{ $item.icon }}"></image>
+        </div>
+        <div class="list-bottom">
+          <text class="list-bottom-text">{{ $item.imgbottom.text1 }}</text>
+          <div class="list-bottom-div">
+            <image class="list-bottom-img" src="{{ $item.imgbottom.imgbottom1 }}"></image>
+            <text class="list-bottom-text">{{ $item.imgbottom.text2 }}</text>
+            <image class="list-bottom-img" src="{{ $item.imgbottom.imgbottom2 }}"></image>
+            <text class="list-bottom-text">{{ $item.imgbottom.text3 }}</text>
+          </div>
+        </div>
+      </div>
+    </list-item>
+  </list>
 </div>

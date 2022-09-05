@@ -43,6 +43,6 @@ Application access control: provides application permission management, includin
 
 - Before building a project, you need to run **Make Module 'entry'**.
 
-- DevEco Studio 3.0 Beta3 (Build version: 3.0.0.901, built on May 30, 2022) must be used.
+- This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.
 
 - The ohos.permission.GET_SENSITIVE_PERMISSIONS, ohos.permission.REVOKE_SENSITIVE_PERMISSIONS, and ohos.permission.GRANT_SENSITIVE_PERMISSIONS permissions used in this sample are of the system_core level. You need to configure signatures for these permissions. For details about the application permission level (APL), see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md).

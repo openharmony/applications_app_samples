@@ -31,12 +31,13 @@ struct ContactEdit {
   @State contact: Contact = <Contact> this.params.contact
   @State handleSelect: boolean = false
 
-  @Builder InputText(icon, placeHolder, text, filter, maxLength, onChange) {
+  @Builder InputText(icon, placeHolder, key, text, filter, maxLength, onChange) {
     Row() {
       Image(icon)
         .height(30).width(30)
         .objectFit(ImageFit.Contain)
       TextInput({ placeholder: placeHolder, text: text })
+        .key('input' + (key))
         .layoutWeight(1)
         .fontSize(25)
         .placeholderFont({ size: 25 })
@@ -140,13 +141,13 @@ struct ContactEdit {
               })
           }
 
-          this.InputText($r('app.media.ic_contact'), $r('app.string.name'), this.contact.name, '', 20, (value: string) => {
+          this.InputText($r('app.media.ic_contact'), $r('app.string.name'), 'Name', this.contact.name, '', 20, (value: string) => {
             this.contact.name = value
           })
-          this.InputText($r('app.media.ic_telephone'), $r('app.string.phone'), this.contact.phone, '^1[0-9]*$', 11, (value: string) => {
+          this.InputText($r('app.media.ic_telephone'), $r('app.string.phone'), 'Phone', this.contact.phone, '^1[0-9]*$', 11, (value: string) => {
             this.contact.phone = value
           })
-          this.InputText($r('app.media.ic_remark'), $r('app.string.remark'), this.contact.remark, '', 50, (value: string) => {
+          this.InputText($r('app.media.ic_remark'), $r('app.string.remark'), 'Remark', this.contact.remark, '', 50, (value: string) => {
             this.contact.remark = value
           })
         }

@@ -16,13 +16,13 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
-    onInit() {
-    },
+  data: {},
+  onInit() {
+  },
 
-    onClickCustomTarget() {
-        router.push({
-            url: 'pages/transitions/customtarget/customtarget'
-        })
-    }
+  onClickCustomTarget() {
+    router.push({
+      url: 'pages/transitions/customtarget/customtarget'
+    })
+  }
 }

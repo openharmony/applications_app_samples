@@ -49,13 +49,14 @@ struct CustomContainer {
       .width('80%')
       .height(30)
       .margin({ top: 10 })
+
       this.closeContent()
     }
   }
 }
 
 @Builder
-function specificParam(img: Resource, imgText: Resource) {
+function specificParam(img: Resource, imgText: Resource, index: number) {
   Row() {
     Image(img)
       .width(20)
@@ -64,6 +65,7 @@ function specificParam(img: Resource, imgText: Resource) {
     Text(imgText)
       .fontSize(17)
       .margin({ left: 5 })
+      .key('broadcast' + index)
   }
 }
 
@@ -100,24 +102,24 @@ export struct TopView {
     this.topViewList = todayList.concat(noReleaseList)
   }
 
-  browseOnClick(data:ReleaseData) {
+  browseOnClick(data: ReleaseData) {
     let exist = checkExist(data.title, this.broMenu)
     if (exist !== true) {
       addStorage(data, 'browse')
       let browseList = getStorageList('browse')
       this.broMenu = menuTitle(browseList)
-      Logger.info(TAG,`browseList= ${JSON.stringify(browseList)} \n browseList.length= ${browseList.length.toString()}`)
+      Logger.info(TAG, `browseList= ${JSON.stringify(browseList)} \n browseList.length= ${browseList.length.toString()}`)
     }
   }
 
-  reservationOnClick(data:ReleaseData) {
-    Logger.info(TAG,`data = ${JSON.stringify(data)}`)
+  reservationOnClick(data: ReleaseData) {
+    Logger.info(TAG, `data = ${JSON.stringify(data)}`)
     data.isRes = !data.isRes
     let i = this.releaseList.indexOf(data)
     this.releaseList[i] = data
     data.resImg = data.isRes == false ? $r('app.media.nofocus') : $r('app.media.focus')
     modifyStorage(data, i, 'release')
-    Logger.info(TAG,`releaseList = ${JSON.stringify(this.releaseList)}`)
+    Logger.info(TAG, `releaseList = ${JSON.stringify(this.releaseList)}`)
     if (!data.isRes) {
       let j = this.reservationList.indexOf(data)
       this.reservationList.splice(j, 1)
@@ -125,7 +127,7 @@ export struct TopView {
       this.reservationList.push(data)
     }
     this.resMenu = menuTitle(this.reservationList)
-    Logger.info(TAG,`reservationList = ${JSON.stringify(this.reservationList)} \n reservationList.length = ${this.reservationList.length.toString()}`)
+    Logger.info(TAG, `reservationList = ${JSON.stringify(this.reservationList)} \n reservationList.length = ${this.reservationList.length.toString()}`)
     this.viewList()
     let list = this.releaseList
     this.releaseList = []
@@ -135,7 +137,7 @@ export struct TopView {
   build() {
     Column() {
       Swiper() {
-        ForEach(this.topViewList, (item) => {
+        ForEach(this.topViewList, (item, index) => {
           Column() {
             Text(item.title).textFancy(25, FontWeight.Bold, 15)
             Text(item.date).textFancy(17, FontWeight.Normal, 2)
@@ -146,14 +148,14 @@ export struct TopView {
             }) {
               Row() {
                 specificParam(item.isRelease === true ? $r('app.media.review') : item.resImg,
-                    item.isRelease === true ? $r('app.string.liveBack') : $r('app.string.liveAppointment'))
+                    item.isRelease === true ? $r('app.string.liveBack') : $r('app.string.liveAppointment'), index)
               }
               .width(100)
               .height(30)
               .margin({ top: 7 })
-              .onClick(()=>{
-                Logger.info(TAG,`guojin item.isRelease = ${item.isRelease}`)
-                item.isRelease === true ? this.browseOnClick(item) : this.reservationOnClick(item)
+              .onClick(() => {
+                Logger.info(TAG, `guojin item.isRelease = ${item.isRelease}`)
+                  item.isRelease === true ? this.browseOnClick(item) : this.reservationOnClick(item)
               })
             }
           }

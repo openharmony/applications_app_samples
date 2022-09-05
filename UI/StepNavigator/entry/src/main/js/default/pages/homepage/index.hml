@@ -14,10 +14,10 @@
  -->
 
 <div class="container">
-    <div class="containerText">
-        <text>{{ $t('strings.hello') }}</text>
-    </div>
-    <div class="reset" on:click="onclick">
-        <text class="text">{{ $t('strings.reset') }}</text>
-    </div>
+  <div class="containerText">
+    <text>{{ $t('strings.hello') }}</text>
+  </div>
+  <div class="reset" on:click="onclick">
+    <text class="text">{{ $t('strings.reset') }}</text>
+  </div>
 </div>

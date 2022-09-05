@@ -14,10 +14,10 @@
  -->
 
 <div class="container">
-    <stack class="stack">
-        <div class="box-red"></div>
-        <div class="box-origin"></div>
-        <div class="box-yellow"></div>
-        <div class="box-green"></div>
-    </stack>
+  <stack class="stack">
+    <div class="box-red"></div>
+    <div class="box-origin"></div>
+    <div class="box-yellow"></div>
+    <div class="box-green"></div>
+  </stack>
 </div>

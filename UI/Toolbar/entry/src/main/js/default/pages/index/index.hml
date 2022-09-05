@@ -14,11 +14,11 @@
  -->
 
 <div class="container">
-    <text class="title">{{ $t('strings.directory') }}</text>
-    <list class="list">
-        <list-item type="listItem" class="item" for="list" id="{{ $item.id }}"
-                   onclick="jumpPage({{ $item.id }}, {{ $item.url }})">
-            <text class="text">{{ $item.title }}</text>
-        </list-item>
-    </list>
+  <text class="title">{{ $t('strings.directory') }}</text>
+  <list class="list">
+    <list-item type="listItem" class="item" for="list" id="{{ $item.id }}"
+               onclick="jumpPage({{ $item.id }}, {{ $item.url }})">
+      <text class="text">{{ $item.title }}</text>
+    </list-item>
+  </list>
 </div>

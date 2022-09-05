@@ -15,28 +15,28 @@
 import amoyData from '../../../common/microAmoyData.js'
 
 export default {
-    data: {
-        navbarData: ['关注', '推荐', '直播', '畅享', '福利', '视频'],
-        tempList: [],
-        beginIndex: 0,
-        endIndex: 0,
-        amoyData: amoyData,
-    },
-    onInit() {
-    },
-    buildItem(param) {
-        if (this.amoyData.length == 0) {
-            return;
-        }
-        this.beginIndex = param.begin;
-        this.endIndex = param.end;
-        let tempArray = [];
-        for (let index = this.beginIndex;index < this.endIndex; ++index) {
-            let tempIndex = index % this.amoyData.length;
-            let tempValue = JSON.parse(JSON.stringify(this.amoyData[tempIndex]));
-            tempValue.index = index + 1;
-            tempArray.push(tempValue);
-        }
-        this.tempList = tempArray;
+  data: {
+    navbarData: ['关注', '推荐', '直播', '畅享', '福利', '视频'],
+    tempList: [],
+    beginIndex: 0,
+    endIndex: 0,
+    amoyData: amoyData,
+  },
+  onInit() {
+  },
+  buildItem(param) {
+    if (this.amoyData.length == 0) {
+      return;
     }
+    this.beginIndex = param.begin;
+    this.endIndex = param.end;
+    let tempArray = [];
+    for (let index = this.beginIndex;index < this.endIndex; ++index) {
+      let tempIndex = index % this.amoyData.length;
+      let tempValue = JSON.parse(JSON.stringify(this.amoyData[tempIndex]));
+      tempValue.index = index + 1;
+      tempArray.push(tempValue);
+    }
+    this.tempList = tempArray;
+  }
 }

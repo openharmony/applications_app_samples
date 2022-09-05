@@ -55,7 +55,7 @@ struct Index {
         router.push({
           url: "pages/second"
         })
-      })
+      }).key("btnScan")
     }.width("100%").height("100%").alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
   }
 }

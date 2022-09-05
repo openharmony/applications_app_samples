@@ -69,6 +69,8 @@ struct ListPage {
             .editable(this.editable)
           }, item => item.toString())
         }
+        .width('100%')
+        .height('100%')
         .listDirection(this.listDirection)
         .divider({
           strokeWidth: this.strokeWidth,
@@ -108,6 +110,7 @@ struct ListPage {
 
           GridItem() {
             Slider({ value: this.space, step: 5, min: -10, max: 100 })
+              .key('spaceSlider')
               .blockColor(Color.Orange)
               .width("100%")
               .onChange((e) => {
@@ -127,6 +130,7 @@ struct ListPage {
 
           GridItem() {
             Button("Vertical")
+              .key('Vertical')
               .fontSize(15)
               .height(40)
               .width('100%')
@@ -137,6 +141,7 @@ struct ListPage {
 
           GridItem() {
             Button("Horizontal")
+              .key('Horizontal')
               .fontSize(15)
               .height(40)
               .width('100%')
@@ -157,6 +162,7 @@ struct ListPage {
 
           GridItem() {
             Slider({ value: this.strokeWidth, step: 5, min: -10, max: 100 })
+              .key('strokeWidth')
               .width("100%")
               .blockColor(Color.Orange)
               .onChange((e) => {
@@ -176,6 +182,7 @@ struct ListPage {
 
           GridItem() {
             Slider({ value: this.startMargin, step: 5, min: -10, max: 100 })
+              .key('startMargin')
               .width("100%")
               .blockColor(Color.Orange)
               .onChange((e) => {
@@ -196,6 +203,7 @@ struct ListPage {
 
           GridItem() {
             Slider({ value: this.endMargin, step: 5, min: -10, max: 100 })
+              .key('endMargin')
               .width("100%")
               .blockColor(Color.Orange)
               .onChange((e) => {
@@ -237,6 +245,7 @@ struct ListPage {
 
           GridItem() {
             Button('true')
+              .key('editModeTrue')
               .width('100%')
               .fontSize(15)
               .onClick(() => {
@@ -246,6 +255,7 @@ struct ListPage {
 
           GridItem() {
             Button('false')
+              .key('editModeFalse')
               .width('100%')
               .fontSize(15)
               .onClick(() => {
@@ -265,6 +275,7 @@ struct ListPage {
 
           GridItem() {
             Button('true')
+              .key('chainAnimationTrue')
               .width('100%')
               .fontSize(15)
               .onClick(() => {
@@ -274,6 +285,7 @@ struct ListPage {
 
           GridItem() {
             Button('false')
+              .key('chainAnimationFalse')
               .width('100%')
               .fontSize(15)
               .onClick(() => {
@@ -316,6 +328,7 @@ struct ListPage {
 
           GridItem() {
             Button("None")
+              .key('stickyNone')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -325,6 +338,7 @@ struct ListPage {
 
           GridItem() {
             Button("Normal")
+              .key('stickyNormal')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -345,6 +359,7 @@ struct ListPage {
 
           GridItem() {
             Button("true")
+              .key('editableTrue')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -354,6 +369,7 @@ struct ListPage {
 
           GridItem() {
             Button("false")
+              .key('editableFalse')
               .fontSize(15)
               .width('100%')
               .onClick(() => {
@@ -363,6 +379,7 @@ struct ListPage {
 
           GridItem() {
             Button('删除')
+              .key('delete')
               .fontSize(15)
               .width("100%")
               .onClick(() => {

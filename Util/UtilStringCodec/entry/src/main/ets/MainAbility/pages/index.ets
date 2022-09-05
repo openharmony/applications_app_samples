@@ -66,6 +66,7 @@ struct StrCodec {
           Button(){
             Text($r('app.string.SpecFormOutput')).fontSize(15).fontWeight(FontWeight.Bold).fontColor(Color.White)
           }
+          .key('specFormatOutput')
           .width(300)
           .margin({ top: 20 })
           .onClick(() => {
@@ -122,6 +123,7 @@ struct StrCodec {
           Button(){
             Text($r('app.string.Text_encoder')).fontColor(Color.White).fontSize(15).fontWeight(FontWeight.Bold)
           }
+          .key('textEncoder')
           .margin({ top: 20 })
           .onClick(() => {
             var textEncoder = new  util.TextEncoder()
@@ -150,6 +152,7 @@ struct StrCodec {
           Button(){
             Text($r('app.string.Text_decoder')).fontColor(Color.White).fontSize(15).fontWeight(FontWeight.Bold)
           }
+          .key('textDecoder')
           .margin({ top: 20,bottom:50 })
           .onClick(() => {
             var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});

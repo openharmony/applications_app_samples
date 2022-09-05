@@ -14,8 +14,7 @@
  */
 
 export default {
-    data: {
-    },
-    onInit() {
-    }
+  data: {},
+  onInit() {
+  }
 }

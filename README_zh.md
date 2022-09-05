@@ -39,15 +39,15 @@
   - [`MissionManager`：系统任务管理（eTS）（API9）（Full SDK）](ability/MissionManager)
   - [`GalleryForm`：图库卡片（eTS）（API9）](ability/GalleryForm)
   - [`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](ability/Launcher)
+  - [`FaModel`：FA模型（eTS）（API9）](ability/FaModel)
+  - [`StageModel`：Stage模型（eTS）（API9）（Full SDK）](ability/StageModel)
+  - [`WindowExtAbility`：窗口扩展（eTS）（API9）（Full SDK）](ability/WindowExtAbility)
 - common
-  - [`AirQuality`：空气质量（JS）（API8）](common/AirQuality)
   - [`Clock`：时钟（JS）（API8）](common/Clock)
   - [`DistributeCalc`：分布式计算器（JS）（API8）（Full SDK）](common/DistributeCalc)
-  - [`ECG`：心率检测（JS）（API8）](common/ECG)
   - [`Notification`：通知（eTS）（API8）](common/Notification)
   - [`ResourceManager`：资源管理器（eTS）（API8）](common/ResourceManager)
   - [`Runninglock`：运行锁（eTS）（API8）](common/Runninglock)
-  - [`Flashlight`：手电筒（JS）（API8）](common/Flashlight)
   - [`JsHelloWorld`：你好世界（JS）（API8）](common/JsHelloWorld)
   - [`PowerManager`：系统电源管理（eTS）（API8）（Full SDK）](common/PowerManager)
   - [`International`：国际化（eTS）（API8）（Full SDK）](common/International)
@@ -84,6 +84,7 @@
   - [`GamePuzzle`：拼图（eTS）（API9）](media/GamePuzzle)
   - [`Scan`：媒体库相机（eTS）（API9）](media/Scan)
   - [`VideoShow`：媒体库视频（eTS）（API9）](media/VideoShow)
+  - [`ImageShow`：图片显示（eTS）（API9）](media/ImageShow)
 - DFX
   - [`JsDotTest`：测试打点（JS）（API8）](DFX/JsDotTest)
   - [`FaultLogger`：故障日志获取（eTS）（API8）](DFX/FaultLogger)
@@ -121,7 +122,7 @@
   - [`MouseEvent`：鼠标事件（eTS）（API8）](ETSUI/MouseEvent)
   - [`Web`：Web（eTS）（API8）](ETSUI/Web)
   - [`Gallery`：组件集合（eTS）（API8）](ETSUI/Gallery)
-  - [`BringApp`：拉起系统应用（eTS）（API8）](ETSUI/BringApp)
+  - [`BringApp`：拉起系统应用（eTS）（API8）（Full SDK）](ETSUI/BringApp)
   - [`Game2048`：2048游戏（eTS）（API8）](ETSUI/Game2048)
   - [`Lottie`：Lottie（eTS）（API8）（Full SDK）](ETSUI/Lottie)
   - [`TransitionAnimation`：转场动画（eTS）（API9）](ETSUI/TransitionAnimation)
@@ -205,6 +206,8 @@
 - MultiDeviceAppDev
   - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](MultiDeviceAppDev/AdaptiveCapabilities)
   - [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](MultiDeviceAppDev/JsAdaptiveCapabilities)
+- Share
+  - [`Share`：分享（eTS）（API9）（Full SDK）](Share/Share)
 
 
 ## 使用说明<a name="section17988202503116"></a>

@@ -16,38 +16,37 @@
 import Logger from '../model/Logger'
 import Ability from '@ohos.application.Ability'
 
-const TAG:string = '[MainAbility]'
+const TAG: string = '[MainAbility]'
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        Logger.info(TAG, `[Demo] MainAbility onCreate`)
-        globalThis.abilityWant = want
-        globalThis.context = this.context
-    }
+  async onCreate(want, launchParam) {
+    Logger.info(TAG, `[Demo] MainAbility onCreate`)
+    await this.context.requestPermissionsFromUser(['ohos.permission.GET_NETWORK_INFO'])
+  }
 
-    onDestroy() {
-        Logger.info(TAG, `[Demo] MainAbility onDestroy`)
-    }
+  onDestroy() {
+    Logger.info(TAG, `[Demo] MainAbility onDestroy`)
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        Logger.info(TAG, `[Demo] MainAbility onWindowStageCreate`)
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    Logger.info(TAG, `[Demo] MainAbility onWindowStageCreate`)
 
-        windowStage.setUIContent(this.context, 'pages/Index', null)
-    }
+    windowStage.setUIContent(this.context, 'pages/Index', null)
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        Logger.info(TAG, `[Demo] MainAbility onWindowStageDestroy`)
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    Logger.info(TAG, `[Demo] MainAbility onWindowStageDestroy`)
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        Logger.info(TAG, `[Demo] MainAbility onForeground`)
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    Logger.info(TAG, `[Demo] MainAbility onForeground`)
+  }
 
-    onBackground() {
-        // Ability has back to background
-        Logger.info(TAG, `[Demo] MainAbility onBackground`)
-    }
+  onBackground() {
+    // Ability has back to background
+    Logger.info(TAG, `[Demo] MainAbility onBackground`)
+  }
 };

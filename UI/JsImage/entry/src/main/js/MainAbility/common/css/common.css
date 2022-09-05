@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-.container{
+.container {
     width: 100%;
     flex: 1;
     flex-direction: column;
@@ -27,7 +27,7 @@
     justify-content: center;
 }
 
-.page-title{
+.page-title {
     padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 40px;

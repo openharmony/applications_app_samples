@@ -16,14 +16,14 @@
 import router from '@ohos.router';
 
 export default {
-    onMenuClick() {
-        router.push({
-            url: 'pages/menu/index'
-        })
-    },
-    onSelectClick() {
-        router.push({
-            url: 'pages/select/index'
-        })
-    }
+  onMenuClick() {
+    router.push({
+      url: 'pages/menu/index'
+    })
+  },
+  onSelectClick() {
+    router.push({
+      url: 'pages/select/index'
+    })
+  }
 }

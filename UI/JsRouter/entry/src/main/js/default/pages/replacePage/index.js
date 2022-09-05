@@ -17,15 +17,15 @@
 import router from '@ohos.router';
 
 export default {
-    data: {
-        dataValue: ''
-    },
-    onInit() {
-        this.dataValue = this.$t('strings.replace');
-    },
-    backPage() {
-        router.back({
-            url: 'pages/index/index'
-        });
-    }
+  data: {
+    dataValue: ''
+  },
+  onInit() {
+    this.dataValue = this.$t('strings.replace');
+  },
+  backPage() {
+    router.back({
+      url: 'pages/index/index'
+    });
+  }
 };

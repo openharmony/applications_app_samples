@@ -42,6 +42,7 @@ struct ComponentTransition {
     Column() {
       TitleBar({ hasBackPress: true })
       Button(this.isShow ? $r('app.string.hide') : $r('app.string.show'))
+        .key('show')
         .onClick(() => {
           // 执行动效，动效时长600ms
           animateTo({ duration: 600 }, () => {

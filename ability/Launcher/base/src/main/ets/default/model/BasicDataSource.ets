@@ -64,7 +64,7 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-export default class MyDataSource extends BasicDataSource {
+export class MyDataSource extends BasicDataSource {
   private dataArray: any[] = []
 
   constructor(data: any[]) {

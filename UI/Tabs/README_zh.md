@@ -26,6 +26,6 @@ TabContent：仅在Tabs中使用，对应一个切换页签的内容视图。
 
 1.该示例仅在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.901, built on May 30, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 

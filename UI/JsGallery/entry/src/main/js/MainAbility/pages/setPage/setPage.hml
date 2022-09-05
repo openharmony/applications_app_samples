@@ -14,27 +14,27 @@
  -->
 
 <div class="container">
-    <div class="content">
-        <text class="title">
-            负载配置
+  <div class="content">
+    <text class="title">
+      负载配置
+    </text>
+    <div class="setnum">
+      <div>
+        <text>
+          列数:
         </text>
-        <div class="setnum">
-            <div>
-                <text>
-                    列数:
-                </text>
-                <input type="number" value="{{ col }}" onchange="changeCol"></input>
-            </div>
-            <div>
-                <text>
-                    张数:
-                </text>
-                <input type="number" value="{{ num }}" onchange="changeNum"></input>
-            </div>
-        </div>
-        <div class="submit">
-            <button value="确定" onclick="redirect"></button>
-            <button value="取消" onclick="back"></button>
-        </div>
+        <input type="number" value="{{ col }}" onchange="changeCol"></input>
+      </div>
+      <div>
+        <text>
+          张数:
+        </text>
+        <input type="number" value="{{ num }}" onchange="changeNum"></input>
+      </div>
     </div>
+    <div class="submit">
+      <button value="确定" onclick="redirect"></button>
+      <button value="取消" onclick="back"></button>
+    </div>
+  </div>
 </div>

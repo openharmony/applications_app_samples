@@ -50,7 +50,7 @@ struct Index {
   @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
   @State deviceFlag: string = 'A'
   @State isFall: boolean = false
-  @State isFlush:boolean = false
+  @State isFlush: boolean = false
 
   dataChange() {
     if (this.deviceFlag !== 'A') {
@@ -94,9 +94,9 @@ struct Index {
         this.distributedData.chessX = gameDataA.chessX
         this.distributedData.chessY = gameDataA.chessY
         this.distributedData.fallLocation = gameDataA.fallLocation
-        if(gameDataA.isOver === true) {
+        if (gameDataA.isOver === true) {
           this.isFlush = !this.isFlush
-        } else{
+        } else {
           this.distributedData.isOver = gameDataA.isOver
         }
       })
@@ -285,7 +285,7 @@ struct Index {
     this.context.closePath()
   }
 
-  flushData(){
+  flushData() {
     this.cleanChessBoard()
     this.drawChessBoard()
     this.drawAll()

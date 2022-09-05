@@ -14,6 +14,6 @@
  -->
 
 <div class="container">
-    <button class="button" on:click="onMenuClick">{{ $t('strings.menu_option') }}</button>
-    <button class="button" on:click="onSelectClick">{{ $t('strings.select_option') }}</button>
+  <button class="button" on:click="onMenuClick">{{ $t('strings.menu_option') }}</button>
+  <button class="button" on:click="onSelectClick">{{ $t('strings.select_option') }}</button>
 </div>

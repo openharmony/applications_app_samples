@@ -134,10 +134,11 @@ struct FoodList {
       .backgroundColor('#FFf1f3f5')
 
       List() {
-        LazyForEach(new MyDataSource(this.foodItems), item => {
+        LazyForEach(new MyDataSource(this.foodItems), (item, index) => {
           ListItem() {
             FoodListItem({ foodItem: item })
           }
+          .key('foodListItem' + (index + 1))
         }, item => item.id.toString())
       }
       .width('100%')
@@ -197,10 +198,11 @@ struct FoodGrid {
   build() {
     Scroll() {
       Grid() {
-        LazyForEach(new MyDataSource(this.foodItems), (item: FoodData) => {
+        LazyForEach(new MyDataSource(this.foodItems), (item: FoodData, index) => {
           GridItem() {
             FoodGridItem({ foodItem: item })
           }
+          .key('foodGridItem' + (index + 1))
         }, (item: FoodData) => item.id.toString())
       }
       .rowsTemplate(this.gridRowTemplate)
@@ -269,6 +271,7 @@ struct FoodCategoryList {
         Image($r('app.media.Switch'))
           .height(24)
           .width(24)
+          .key('switch')
           .margin({ top: 15, right: 10 })
           .onClick(() => {
             this.showList = !this.showList

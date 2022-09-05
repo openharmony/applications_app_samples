@@ -78,6 +78,7 @@ struct AlphabetIndexerSample {
             .editable(true)
           }, item => item)
         }
+        .layoutWeight(1)
         .listDirection(Axis.Vertical)
         .onScrollIndex((firstIndex: number, lastIndex: number) => {
           this.index = firstIndex

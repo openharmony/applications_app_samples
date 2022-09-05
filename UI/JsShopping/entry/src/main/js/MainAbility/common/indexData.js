@@ -13,51 +13,51 @@
  * limitations under the License.
  */
 var tabbarData = [
-    {
-        i: 0,
-        title: '首页',
-        color: '#515151',
-        selectedColor: '#EEB174',
-        img: '/common/Icon/home.png',
-        selectedImg: '/common/Icon/selected_home.png',
-        show: true,
-    },
-    {
-        i: 1,
-        title: '分类',
-        color: '#515151',
-        selectedColor: '#EEB174',
-        img: '/common/Icon/classification.png',
-        selectedImg: '/common/Icon/selecteds.png',
-        show: false,
-    },
-    {
-        i: 1,
-        title: '发现',
-        color: '#515151',
-        selectedColor: '#EEB174',
-        img: '/common/Icon/find.png',
-        selectedImg: '/common/Icon/selected_find.png',
-        show: false,
-    },
-    {
-        i: 2,
-        title: '购物车',
-        color: '#515151',
-        selectedColor: '#EEB174',
-        img: '/common/Icon/cart.png',
-        selectedImg: '/common/Icon/selected_cart.png',
-        show: false,
-    },
-    {
-        i: 3,
-        title: '我的',
-        color: '#515151',
-        selectedColor: '#EEB174',
-        img: '/common/Icon/user.png',
-        selectedImg: '/common/Icon/selected_user.png',
-        show: false,
-    }
+  {
+    i: 0,
+    title: '首页',
+    color: '#515151',
+    selectedColor: '#EEB174',
+    img: '/common/Icon/home.png',
+    selectedImg: '/common/Icon/selected_home.png',
+    show: true,
+  },
+  {
+    i: 1,
+    title: '分类',
+    color: '#515151',
+    selectedColor: '#EEB174',
+    img: '/common/Icon/classification.png',
+    selectedImg: '/common/Icon/selecteds.png',
+    show: false,
+  },
+  {
+    i: 1,
+    title: '发现',
+    color: '#515151',
+    selectedColor: '#EEB174',
+    img: '/common/Icon/find.png',
+    selectedImg: '/common/Icon/selected_find.png',
+    show: false,
+  },
+  {
+    i: 2,
+    title: '购物车',
+    color: '#515151',
+    selectedColor: '#EEB174',
+    img: '/common/Icon/cart.png',
+    selectedImg: '/common/Icon/selected_cart.png',
+    show: false,
+  },
+  {
+    i: 3,
+    title: '我的',
+    color: '#515151',
+    selectedColor: '#EEB174',
+    img: '/common/Icon/user.png',
+    selectedImg: '/common/Icon/selected_user.png',
+    show: false,
+  }
 ]
 
 export default tabbarData;

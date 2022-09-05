@@ -68,6 +68,7 @@ struct Index {
         Text($r('app.string.alarmClock'))
           .fontSize('30')
         Image($r('app.media.add'))
+          .key('addAlarmClock')
           .width('30')
           .height('30')
           .margin({ left: '40%' })
@@ -115,7 +116,7 @@ struct Index {
           }
         }, item => item.value)
       }
-      .width("100%")
+      .width('100%')
       .layoutWeight(1)
     }
   }

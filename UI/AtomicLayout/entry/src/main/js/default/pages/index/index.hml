@@ -14,7 +14,7 @@
  -->
 
 <div class="container">
-    <button class="btn" value="{{ $t('strings.hide_capabilities') }}" on:click="onchange('hide')"></button>
-    <button class="btn" value="{{ $t('strings.percentage') }}" on:click="onchange('percentage')"></button>
-    <button class="btn" value="{{ $t('strings.fixed_scale') }}" on:click="onchange('fixed')"></button>
+  <button class="btn" value="{{ $t('strings.hide_capabilities') }}" on:click="onchange('hide')"></button>
+  <button class="btn" value="{{ $t('strings.percentage') }}" on:click="onchange('percentage')"></button>
+  <button class="btn" value="{{ $t('strings.fixed_scale') }}" on:click="onchange('fixed')"></button>
 </div>

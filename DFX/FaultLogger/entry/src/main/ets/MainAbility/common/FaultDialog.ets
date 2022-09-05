@@ -16,78 +16,11 @@ import data_rdb from '@ohos.data.rdb'
 import prompt from '@ohos.prompt'
 import router from '@ohos.router'
 
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
-
 @Preview
 @CustomDialog
 export struct FaultDialog {
   private controller: CustomDialogController
-  private faultTypes: MyDataSource = new MyDataSource(['JS_CRASH', 'CPP_CRASH', 'FREEZE_CRASH'])
+  private faultTypes: string[] = ['JS_CRASH', 'CPP_CRASH', 'FREEZE_CRASH']
   @State selectIndex: number = 0
 
   addFaultLog() {
@@ -128,9 +61,9 @@ export struct FaultDialog {
         .width('100%')
         .fontSize(22)
       Column() {
-        LazyForEach(this.faultTypes, (item, index) => {
+        ForEach(this.faultTypes, (item, index) => {
           Row() {
-            Image(this.selectIndex === index?$r('app.media.checked'):$r('app.media.uncheck'))
+            Image(this.selectIndex === index ? $r('app.media.checked') : $r('app.media.uncheck'))
               .height(30).width(30)
               .objectFit(ImageFit.Contain)
             Text(item)
@@ -138,6 +71,7 @@ export struct FaultDialog {
               .fontSize(20)
               .fontColor(Color.Black)
           }
+          .key(item)
           .width('100%')
           .onClick(() => {
             this.selectIndex = index
@@ -152,6 +86,7 @@ export struct FaultDialog {
               .textAlign(TextAlign.Center)
               .fontSize(20)
           }
+          .key('OK')
           .type(ButtonType.Capsule)
           .backgroundColor(Color.White)
           .layoutWeight(1)

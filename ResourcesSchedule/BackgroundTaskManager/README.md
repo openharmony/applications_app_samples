@@ -24,4 +24,4 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 - You need to refresh the notification window to view the download progress. In addition, the download ends when the download progress reaches 20% in this sample.
 - This feature is supported form API version 9.
 
-- DevEco Studio 3.0 Beta3 (Build version: 3.0.0.901, built on May 30, 2022) must be used.
+- This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.

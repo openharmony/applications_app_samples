@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import CheckEmptyUtils from '../utils/CheckEmptyUtils'
-import Logger from '../utils/Logger'
 import LruCache from './LruCache'
+import { CheckEmptyUtils } from '../utils/CheckEmptyUtils'
+import { Logger } from '../utils/Logger'
 
 const KEY_ICON = 'icon'
 const KEY_NAME = 'name'
@@ -24,7 +24,7 @@ const TAG: string = 'ResourceManager'
 /**
  * Wrapper class for resourceManager interfaces.
  */
-export default class ResourceManager {
+export class ResourceManager {
   private readonly memoryCache = new LruCache()
   private context: any = undefined
 

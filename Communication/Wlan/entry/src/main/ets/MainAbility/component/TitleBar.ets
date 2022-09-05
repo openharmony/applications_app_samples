@@ -26,7 +26,9 @@ export struct TitleBar {
         Image($r('app.media.about'))
           .size({ width: 60, height: '95%' })
           .objectFit(ImageFit.Contain)
-      }.type(ButtonType.Normal)
+      }
+      .key('about')
+      .type(ButtonType.Normal)
       .height('90%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {

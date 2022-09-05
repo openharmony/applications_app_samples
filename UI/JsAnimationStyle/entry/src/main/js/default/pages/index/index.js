@@ -16,31 +16,31 @@
 import router from '@ohos.router'
 
 export default {
-    data: {},
-    onInit() {
-    },
+  data: {},
+  onInit() {
+  },
 
-    onClickAnimationStyle() {
-        router.push({
-            url: 'pages/animation/index/index'
-        })
-    },
+  onClickAnimationStyle() {
+    router.push({
+      url: 'pages/animation/index/index'
+    })
+  },
 
-    onClickGradientStyle() {
-        router.push({
-            url: 'pages/gradient/index'
-        })
-    },
+  onClickGradientStyle() {
+    router.push({
+      url: 'pages/gradient/index'
+    })
+  },
 
-    onClickTransitionStyle() {
-        router.push({
-            url: 'pages/transitions/index/index'
-        })
-    },
+  onClickTransitionStyle() {
+    router.push({
+      url: 'pages/transitions/index/index'
+    })
+  },
 
-    onClickCustomFontStyle() {
-        router.push({
-            url: 'pages/customfont/index'
-        })
-    }
+  onClickCustomFontStyle() {
+    router.push({
+      url: 'pages/customfont/index'
+    })
+  }
 }

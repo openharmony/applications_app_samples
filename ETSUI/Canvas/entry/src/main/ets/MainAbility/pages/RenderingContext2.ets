@@ -29,6 +29,7 @@ struct RenderingExample {
         })
       Row() {
         Button('arcTo').width(130).height(45)
+          .key('arcTo')
           .onClick(() => {
             this.context.arcTo(150, 50, 250, 150, 250);
             this.context.lineWidth = 1;
@@ -36,6 +37,7 @@ struct RenderingExample {
             this.context.save();
           })
         Button('bezierCurveTo').width(130).height(45)
+          .key('bezierCurveTo')
           .onClick(() => {
             this.context.restore();
             this.context.beginPath();
@@ -50,6 +52,7 @@ struct RenderingExample {
 
       Row() {
         Button('ellipse').width(130).height(45)
+          .key('ellipse')
           .onClick(() => {
             this.context.restore();
             this.context.beginPath();
@@ -59,6 +62,7 @@ struct RenderingExample {
             this.context.save();
           })
         Button('rect').width(130).height(45)
+          .key('rect')
           .onClick(() => {
             this.context.restore();
             this.context.rect(80, 250, 100, 100);
@@ -71,6 +75,7 @@ struct RenderingExample {
 
       Row() {
         Button('createPattern').width(130).height(45)
+          .key('createPattern')
           .onClick(() => {
             this.context.restore();
             var pattern = this.context.createPattern(this.img, 'repeat');
@@ -81,6 +86,7 @@ struct RenderingExample {
           })
         Button('lineDashOffset')
           .width(130).height(45)
+          .key('lineDashOffset')
           .onClick(() => {
             this.context.restore();
             this.context.arc(250, 100, 40, 0, 6.28);
@@ -95,6 +101,7 @@ struct RenderingExample {
 
       Row() {
         Button('scale').width(130).height(45)
+          .key('scale')
           .onClick(() => {
             this.context.restore();
             this.context.strokeRect(10, 10, 25, 25);
@@ -114,6 +121,7 @@ struct RenderingExample {
       Button('back')
         .width(130)
         .height(45)
+        .key('back')
         .backgroundColor(Color.Orange)
         .onClick(() => {
           router.back()

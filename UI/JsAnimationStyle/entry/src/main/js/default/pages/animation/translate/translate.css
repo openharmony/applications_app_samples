@@ -34,12 +34,12 @@
     animation-timing-function: linear;
 }
 
-@keyframes translate_animation
-{
+@keyframes translate_animation {
     from {
-        transform:translate(0px) ;
+        transform: translate(0px);
     }
+
     to {
-        transform:translate(150px) ;
+        transform: translate(150px);
     }
 }

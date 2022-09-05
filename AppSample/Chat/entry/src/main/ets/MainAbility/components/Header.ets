@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router';
+import router from '@ohos.router'
 
 @Entry
 @Component
@@ -92,7 +92,7 @@ export struct Swit {
           this.color = "#00cc33"
           this.btn = false
         } else {
-          this.num = 1;
+          this.num = 1
           this.color = "#f0f0f0"
           this.btn = true
         }

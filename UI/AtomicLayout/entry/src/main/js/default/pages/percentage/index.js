@@ -14,13 +14,13 @@
  */
 
 export default {
-    data: {
-        height: "200px",
-    },
-    onClickReturn() {
-        this.height = "200px"
-    },
-    onClickRefresh() {
-        this.height = "500px"
-    }
+  data: {
+    height: "200px",
+  },
+  onClickReturn() {
+    this.height = "200px"
+  },
+  onClickRefresh() {
+    this.height = "500px"
+  }
 }

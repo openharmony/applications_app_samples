@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 export default {
-    props: ['home'],
-    data() {
-        return {
-            Home: this.home,
-        }
+  props: ['home'],
+  data() {
+    return {
+      Home: this.home,
     }
+  }
 }

@@ -14,16 +14,14 @@
  */
 
 import CommonEvent from '@ohos.commonEvent'
-import EventConstants from '../../../../../../base/src/main/ets/default/constants/EventConstants'
-import DesktopLayoutModel from '../model/DesktopLayoutModel'
-import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
 import LauncherGridLayout from '../components/LauncherGridLayout'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
+import { DesktopLayoutModel } from '../model/DesktopLayoutModel'
+import { EventConstants, GridLayoutItemInfo, Logger } from '@ohos/base'
 
 const TAG: string = 'WorkSpace'
 
 @Component
-export default struct WorkSpace {
+export struct WorkSpace {
   @StorageLink('isRefresh') @Watch('refreshWorkSpace') isRefresh: boolean = false;
   @State appPages: Array<Array<GridLayoutItemInfo>> = [[]]
   private swiperController: SwiperController = new SwiperController()

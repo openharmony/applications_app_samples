@@ -34,6 +34,6 @@ ohos.permission.MANAGE_BLUETOOTH
 
 - This sample is based on the stage model, which is supported from API version 9.
 
-- DevEco Studio 3.0 Beta3 (Build version: 3.0.0.901, built on May 30, 2022) must be used.
+- This example requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run. 
 
 - The ohos.permission.MANAGE_BLUETOOTH permission used in this sample is of the system_basic level. You need to configure a signature for it. For details about the application permission level (APL), see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md).

@@ -63,6 +63,7 @@ export struct Home {
         .fontColor(this.currentIndex === index ? '#007DFF' : '#66000000')
     }
     .width('100%')
+    .key('tab' + index)
   }
 
   TabItem(index: number) {

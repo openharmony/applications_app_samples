@@ -15,11 +15,7 @@
 
 import Bubble from './Bubble'
 import CardItem from './CardItem'
-import CommonConstants from '../../../../../../base/src/main/ets/default/constants/CommonConstants'
-import GridLayoutItemInfo from '../../../../../../base/src/main/ets/default/bean/GridLayoutItemInfo'
-import Logger from '../../../../../../base/src/main/ets/default/utils/Logger'
-import MyDataSource from '../../../../../../base/src/main/ets/default/model/BasicDataSource'
-import ResourceManager from '../../../../../../base/src/main/ets/default/manager/ResourceManager'
+import { CommonConstants, GridLayoutItemInfo, Logger, MyDataSource, ResourceManager } from '@ohos/base'
 
 const TAG: string = 'LauncherGridLayout'
 

@@ -14,8 +14,8 @@
  -->
 
 <div class="container">
-    <button class="btn"  value="{{ $t('strings.animationstyle') }}" on:click="onClickAnimationStyle"></button>
-    <button class="btn"  value="{{ $t('strings.gradientstyle') }}"  on:click="onClickGradientStyle"></button>
-    <button class="btn"  value="{{ $t('strings.transitionstyle') }}"  on:click="onClickTransitionStyle"></button>
-    <button class="btn"  value="{{ $t('strings.customfontstyle') }}"  on:click="onClickCustomFontStyle"></button>
+  <button class="btn" value="{{ $t('strings.animationstyle') }}" on:click="onClickAnimationStyle"></button>
+  <button class="btn" value="{{ $t('strings.gradientstyle') }}" on:click="onClickGradientStyle"></button>
+  <button class="btn" value="{{ $t('strings.transitionstyle') }}" on:click="onClickTransitionStyle"></button>
+  <button class="btn" value="{{ $t('strings.customfontstyle') }}" on:click="onClickCustomFontStyle"></button>
 </div>
