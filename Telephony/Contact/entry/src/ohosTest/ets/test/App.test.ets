@@ -63,13 +63,13 @@ export default function appTest() {
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
       // 电话tab
-      await driver.assertComponentExist(BY.text('电话'))
-      let tabPhone = await driver.findComponent(BY.text('电话'))
+      await driver.assertComponentExist(BY.key('tab0'))
+      let tabPhone = await driver.findComponent(BY.key('tab0'))
       await tabPhone.click()
       await driver.delayMs(1000)
       // 收藏tab
-      await driver.assertComponentExist(BY.text('收藏'))
-      let tabCollect = await driver.findComponent(BY.text('收藏'))
+      await driver.assertComponentExist(BY.key('tab2'))
+      let tabCollect = await driver.findComponent(BY.key('tab2'))
       await tabCollect.click()
       await driver.delayMs(1000)
       // 联系人tab

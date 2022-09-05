@@ -48,8 +48,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // input输入
       hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 flyInput')
-      await driver.assertComponentExist(BY.type('TextArea'))
-      let flyInput = await driver.findComponent(BY.type('TextArea'))
+      await driver.assertComponentExist(BY.key('textArea'))
+      let flyInput = await driver.findComponent(BY.key('textArea'))
       await flyInput.inputText('flybird')
       let flyVal = await flyInput.getText()
       expect('flybird').assertEqual(flyVal)

@@ -38,11 +38,10 @@ export default function appTest() {
     /**
      * 点击获取验证码
      */
-
     it(BUNDLE + '_IndexPage_getCode', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + '_IndexPage_getCode start')
       let driver = await UiDriver.create()
-      await driver.delayMs(1000)
+      await driver.delayMs(2000)
       // 点击获取验证码
       await driver.assertComponentExist(BY.key('getCode'))
       let btnGetCode = await driver.findComponent(BY.key('getCode'))
