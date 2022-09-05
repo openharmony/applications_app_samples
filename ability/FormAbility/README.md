@@ -15,5 +15,5 @@ This sample shows how to create and use the widget provider in the FA model.
 ### Constraints
 
 1. This sample can only be run on standard-system devices.
-2. This example requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run. 
+2. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run. 
 

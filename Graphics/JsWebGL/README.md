@@ -16,4 +16,4 @@ This sample shows how to use WebGL APIs to draw pentagrams and rectangles by inv
 
 2. The device that runs the sample app must have the capability of invoking GPU resources. For example, an RK3568-powered device has this capability, but a device running the Hi3516 development board does not have this capability.
 
-3. The DevEco Studio version used in this sample must be 3.0.0.900 or later.
+3. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.

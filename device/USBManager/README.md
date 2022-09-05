@@ -28,6 +28,6 @@ Not involved
 
 ### Constraints and Restrictions
 
-1. This example is only supported to run on standard systems.
+1. This sample is only supported to run on standard systems.
 
-2. This example requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run. 
+2. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run. 
