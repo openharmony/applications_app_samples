@@ -63,8 +63,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckAgeFunction_001 clickConfirm')
       // 点击确定
-      await driver.assertComponentExist(BY.text('确定', MatchPattern.CONTAINS))
-      let ageConfirmBtn = await driver.findComponent(BY.text('确定', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('确定'))
+      let ageConfirmBtn = await driver.findComponent(BY.text('确定'))
       await ageConfirmBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckAgeFunction_001 end')
@@ -89,10 +89,10 @@ export default function appTest() {
       // 输入中午体温
       await driver.assertComponentExist(BY.key('noonTemperature'))
       let noonTemperature = await driver.findComponent(BY.key('noonTemperature'))
-      await noonTemperature.inputText('37')
+      await noonTemperature.inputText('36')
       let valNoon = await morningTemperature.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckTemperatureFunction_001 valNoon')
-      expect('37').assertEqual(valNoon)
+      expect('36').assertEqual(valNoon)
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckTemperatureFunction_001 inputNightTemperature')
       // 输入晚上体温
@@ -111,8 +111,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckTemperatureFunction_001 clickConfirm')
       // 点击确定
-      await driver.assertComponentExist(BY.text('确定', MatchPattern.CONTAINS))
-      let temperatureConfirmBtn = await driver.findComponent(BY.text('确定', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('确定'))
+      let temperatureConfirmBtn = await driver.findComponent(BY.text('确定'))
       await temperatureConfirmBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckTemperatureFunction_001 end')
@@ -140,7 +140,7 @@ export default function appTest() {
       await longestSleepTime.inputText('8')
       let valLongestTime = await longestSleepTime.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckSleepFunction_001 valLongestTime')
-      expect('6').assertEqual(valLongestTime)
+      expect('8').assertEqual(valLongestTime)
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckSleepFunction_001 clickSleepAnalysis')
       // 点击睡眠分析
@@ -150,7 +150,7 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckSleepFunction_001 clickConfirm')
       // 点击确定
-      let sleepTimeConfirmBtn = await driver.findComponent(BY.text('确定', MatchPattern.CONTAINS))
+      let sleepTimeConfirmBtn = await driver.findComponent(BY.text('确定'))
       await sleepTimeConfirmBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CheckSleepFunction_001 end')

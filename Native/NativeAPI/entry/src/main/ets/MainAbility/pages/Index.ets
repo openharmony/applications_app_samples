@@ -200,6 +200,7 @@ struct Index {
             .fontSize(25)
             .fontColor(Color.White)
         }
+        .key('startGame')
         .width('80%')
         .height(50)
         .margin(10)

@@ -50,8 +50,8 @@ export default function appTest() {
       // 点击添加
       await driver.assertComponentExist(BY.key('addFileBtn'))
       let btnAdd = await driver.findComponent(BY.key('addFileBtn'))
+      await driver.delayMs(3000)
       await btnAdd.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 inputFileName')
       // 输入文件名称
       await driver.assertComponentExist(BY.key('inputFileName'))
@@ -87,14 +87,14 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CompressedFileFunction_001 clickZipBtn')
       // 点击压缩
-      await driver.assertComponentExist(BY.text('压缩', MatchPattern.CONTAINS))
-      let zip = await driver.findComponent(BY.text('压缩', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('压缩'))
+      let zip = await driver.findComponent(BY.text('压缩'))
       await zip.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CompressedFileFunction_001 clickUnZipBtn')
       // 点击解压
-      await driver.assertComponentExist(BY.text('解压', MatchPattern.CONTAINS))
-      let unzip = await driver.findComponent(BY.text('解压', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('解压'))
+      let unzip = await driver.findComponent(BY.text('解压'))
       await unzip.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CompressedFileFunction_001 end')
