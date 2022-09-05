@@ -48,7 +48,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept')
       // 点击允许
-      let btnAccept = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnAccept = await driver.findComponent(BY.text('允许'))
       await btnAccept.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 end')
@@ -70,8 +71,8 @@ export default function appTest() {
       // 点击取消
       await driver.assertComponentExist(BY.key('cancel'))
       let cancelBtn = await driver.findComponent(BY.key('cancel'))
+      await driver.delayMs(3000)
       await cancelBtn.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickRightBtnFunction_001 end')
     })
     /**
@@ -85,8 +86,8 @@ export default function appTest() {
       // 点击添加
       await driver.assertComponentExist(BY.key('add'))
       let addBtn = await driver.findComponent(BY.key('add'))
+      await driver.delayMs(3000)
       await addBtn.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 delCard')
       // 删除卡片
       await driver.assertComponentExist(BY.key('del笔记1'))
@@ -97,8 +98,8 @@ export default function appTest() {
       // 点击添加
       await driver.assertComponentExist(BY.key('add'))
       let addBtn2 = await driver.findComponent(BY.key('add'))
+      await driver.delayMs(3000)
       await addBtn2.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 end')
     })
   })

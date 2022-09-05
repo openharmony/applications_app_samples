@@ -39,5 +39,18 @@ export default function appTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
       })
     })
+    /**
+     * 点击开始游戏
+     */
+    it(BUNDLE + 'ClickStartFunction_001', 0, async function () {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickStartFunction_001 begin')
+      let driver = UiDriver.create()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(BY.key('startGame'))
+      let startGame = await driver.findComponent(BY.key('startGame'))
+      await driver.delayMs(1000)
+      await startGame.click()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickStartFunction_001 end')
+    })
   })
 }
