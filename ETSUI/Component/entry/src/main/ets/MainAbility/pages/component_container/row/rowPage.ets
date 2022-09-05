@@ -134,7 +134,7 @@ struct RowPage {
           ForEach(this.num1, item => {
             GridItem() {
               Button(this.flexItemsDescribe[`${item}`])
-	        .key('edge' + this.flexItemsDescribe[`${item}`])
+                .key('custom' + this.flexItemsDescribe[`${item}`])
                 .fontSize(15)
                 .width('100%')
                 .onClick(() => {

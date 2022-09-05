@@ -50,8 +50,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 拉起短信
       hilog.info(DOMAIN, TAG, BUNDLE + 'MessageFunction_001 message')
-      await driver.assertComponentExist(BY.key('app4'))
-      let appBtn4 = await driver.findComponent(BY.key('app4'))
+      await driver.assertComponentExist(BY.key('app3'))
+      let appBtn4 = await driver.findComponent(BY.key('app3'))
       await appBtn4.click()
       await driver.delayMs(5000)
       // 返回上一级
@@ -59,27 +59,6 @@ export default function appTest() {
       await driver.pressBack()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'MessageFunction_001 end')
-    })
-
-    /**
-     * 拉起手电筒
-     */
-    it(BUNDLE + 'FlashLightFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlashLightFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      // 拉起手电筒
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlashLightFunction_001 flashLight')
-      await driver.assertComponentExist(BY.key('app5'))
-      let appBtn5 = await driver.findComponent(BY.key('app5'))
-      await appBtn5.click()
-      await driver.delayMs(5000)
-      // 返回上一级
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlashLightFunction_001 pressBack')
-      await driver.pressBack()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlashLightFunction_001 end')
     })
   })
 }
