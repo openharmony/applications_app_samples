@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import Logger from '../../../main/ets/util/Logger'
+import { Logger } from '@ohos/notification'
 
 const TAG: string = 'abilityTest'
 

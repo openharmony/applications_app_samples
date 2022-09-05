@@ -15,7 +15,7 @@
 
 import TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import Logger from '../../../main/ets/util/Logger'
+import { Logger } from '@ohos/notification'
 
 const TAG: string = 'OpenHarmonyTestRunner'
 

@@ -15,7 +15,7 @@
 
 import { UiDriver, BY } from '@ohos.uitest'
 import { describe, it, expect } from '@ohos/hypium'
-import Logger from '../../../../../base/src/main/ets/default/utils/Logger'
+import { Logger } from '@ohos/base'
 
 const TAG: string = 'AppTest'
 
