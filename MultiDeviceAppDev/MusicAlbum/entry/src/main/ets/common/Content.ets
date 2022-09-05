@@ -36,5 +36,6 @@ export default struct Content {
       .borderRadius(40)
     }
     .height('100%')
+    .padding({top: 50, bottom: 48})
   }
 }

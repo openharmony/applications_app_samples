@@ -31,12 +31,10 @@ struct Index {
     this.breakpointSystem.unregister()
   }
   build() {
-    Column() {
-      Header().flexShrink(0)
+    Stack({alignContent: Alignment.Top}) {
+      Header()
       Content()
-        .flexGrow(1)
-        .flexShrink(1)
-      Player().flexShrink(0)
+      Player()
     }
     .width('100%')
     .backgroundColor(this.currentBreakpoint === 'sm' ? '#e4ecf7' : '#f6f9fc')

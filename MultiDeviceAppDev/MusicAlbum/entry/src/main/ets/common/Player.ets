@@ -58,5 +58,7 @@ export default struct Player {
     .height(48)
     .backgroundColor('#F6F9FC')
     .padding({ left: 16, right: 16 })
+    .position({x: 0,y: '100%'})
+    .translate({x: 0,y: '-100%'})
   }
 }
