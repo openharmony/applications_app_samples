@@ -116,6 +116,6 @@ export default struct PlayListCover {
       })
     }
     .height(this.currentBreakpoint === 'sm' ? this.coverHeight : '100%')
-    .padding({ top: this.currentBreakpoint === 'sm' ? 0 : 20 })
+    .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })
   }
 }

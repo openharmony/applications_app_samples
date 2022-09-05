@@ -18,39 +18,32 @@ export default struct Header {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
   @StorageProp('fontSize') fontSize: number = 0
 
-
   build() {
-    GridRow() {
-      GridCol({ span: { sm: 6, lg: 4 } }) {
-        Row() {
-          Image($r('app.media.ic_back'))
-            .width(20)
-            .height(20)
-            .margin({ left: 16 })
-          Text($r('app.string.play_list'))
-            .fontSize(this.fontSize + 4)
-            .fontWeight(500)
-            .fontColor('#556B89')
-            .opacity(0.9)
-            .letterSpacing(2)
-            .padding({ left: 10 })
-        }
-        .height('100%')
-        .backgroundColor('#e4ecf7')
+    Row() {
+      Row() {
+        Image($r('app.media.ic_back'))
+          .width(20)
+          .height(20)
+          .margin({ left: 16 })
+        Text($r('app.string.play_list'))
+          .fontSize(this.fontSize + 4)
+          .fontWeight(500)
+          .fontColor('#556B89')
+          .opacity(0.9)
+          .letterSpacing(2)
+          .padding({ left: 10 })
       }
+      .height('100%')
+      .backgroundColor('#e4ecf7')
 
-      GridCol({ span: { sm: 6, lg: 8 } }) {
-        Row() {
-          Image($r("app.media.ic_more"))
-            .width(20)
-            .height(20)
-            .margin({ right: 16 })
-        }
-        .height('100%')
-        .justifyContent(FlexAlign.End)
-        .backgroundColor(this.currentBreakpoint === 'sm' ? '#e4ecf7' : '#f6f9fc')
-      }
+      Blank()
+      Image($r("app.media.ic_more"))
+        .width(20)
+        .height(20)
+        .margin({ right: 16 })
     }
+    .width('100%')
     .height(50)
+    .zIndex(2)
   }
 }
