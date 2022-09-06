@@ -146,9 +146,7 @@
   - [`UploadDownload`：上传下载（eTS）（API8）](Network/UploadDownload)
 - Preset
   - [`Clock`：简单时钟（eTS）（API9）](Preset/Clock)
-  - [`FlashLight`：手电筒（eTS）（API8）（Full SDK）](Preset/FlashLight)
   - [`DistributeCalc`：分布式计算器（eTS）（API8）（Full SDK）](Preset/DistributeCalc)
-  - [`AirQuality`：空气质量（eTS）（API9）](Preset/AirQuality)
   - [`DistributedMusicPlayer`：分布式音乐（eTS）（API9）（Full SDK）](Preset/DistributedMusicPlayer)
 - PackageManagement
   - [`ZipLib`：压缩与解压（eTS）（API8）](PackageManagement/ZipLib)
@@ -207,6 +205,8 @@
 - MultiDeviceAppDev
   - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](MultiDeviceAppDev/AdaptiveCapabilities)
   - [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](MultiDeviceAppDev/JsAdaptiveCapabilities)
+  - [`AppMarket`：一多应用市场首页（eTS）（API9）](MultiDeviceAppDev/AppMarket)
+  - [`Weather`：一多天气（eTS）（API9）](MultiDeviceAppDev/Weather)
 - Share
   - [`Share`：分享（eTS）（API9）（Full SDK）](Share/Share)
 
