@@ -128,7 +128,7 @@
   - [`TransitionAnimation`：转场动画（eTS）（API9）](ETSUI/TransitionAnimation)
   - [`PatternLock`：图案密码锁组件（eTS）（API9）](ETSUI/PatternLock)
   - [`Search`：Search组件（eTS）（API9）](ETSUI/Search)
-  - [`QRCode`：二维码（eTS）（API9）](ETSUI/QRCode)
+  - [`QRCode`：二维码（eTS）（API9）（Full SDK）](ETSUI/QRCode)
   - [`UpgradePopup`：自定义弹窗（eTS）（API9）](ETSUI/UpgradePopup)
 - FileManager
   - [`FileIo`：文件管理（eTS）（API8）](FileManager/FileIo)

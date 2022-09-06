@@ -26,7 +26,7 @@ const TAG: string = '[Location]'
 @Component
 export struct Location {
   @State ratio: number = 1
-  @State TabIndex: number = 0
+  @State alphabetIndex: number = 0
   @State location: boolean = true
   @State isCity: string = ''
   @State currentLocation: string = ''
@@ -39,13 +39,13 @@ export struct Location {
   private scroller: Scroller = new Scroller()
 
   async aboutToAppear() {
-    display.getAllDisplay((err, data) => {
-      Logger.info(TAG, `data = ${JSON.stringify(data)}`)
-      let aspect = data[0].width / data[0].height
+    let defaultDisplay = await display.getDefaultDisplay()
+    if (defaultDisplay) {
+      let aspect = defaultDisplay.width / defaultDisplay.height
       if (aspect === 0.5625) {
         this.ratio = 1.4
       }
-    })
+    }
     await this.requestResponse()
   }
 
@@ -69,7 +69,7 @@ export struct Location {
   locationChange = async (location) => {
     this.latitude = location.latitude
     this.longitude = location.longitude
-    if (this.longitude !== 0 && this.longitude !== 0) {
+    if (this.latitude !== 0 && this.longitude !== 0) {
       Logger.info(TAG, `latitude = ${this.latitude}, longitude = ${this.longitude}`)
       await this.requestResponse()
     }
@@ -77,11 +77,11 @@ export struct Location {
 
   async getLocation() {
     let requestInfo: geolocation.LocationRequest = {
-      priority: 0x203,
-      scenario: 0x300,
-      timeInterval: 0,
-      distanceInterval: 100,
-      maxAccuracy: 100
+      priority: geolocation.LocationRequestPriority.FIRST_FIX, // 快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段
+      scenario: geolocation.LocationRequestScenario.UNSET, // 未设置场景信息
+      timeInterval: 0, // 上报位置信息的时间间隔
+      distanceInterval: 100, // 上报位置信息的距离间隔
+      maxAccuracy: 100 // 精度信息
     }
     geolocation.on('locationChange', requestInfo, this.locationChange)
   }
@@ -109,7 +109,6 @@ export struct Location {
         .height(100)
         .margin({ top: 20 })
 
-
         Row() {
           Image($r("app.media.location"))
             .width(22)
@@ -133,7 +132,6 @@ export struct Location {
           await this.getLocation()
         })
 
-
         Column() {
           Stack({ alignContent: Alignment.End }) {
             Column() {
@@ -147,7 +145,7 @@ export struct Location {
               .margin({ top: 10, bottom: 15 })
 
               Grid() {
-                LazyForEach(new MyDataSource(heatCity), (item,index) => {
+                LazyForEach(new MyDataSource(heatCity), (item, index) => {
                   GridItem() {
                     Text(`${item}`)
                       .margin({ bottom: 20 })
@@ -158,7 +156,7 @@ export struct Location {
                         this.currentLocation = item
                       })
                   }
-                  .key("city"+(index+1))
+                  .key("city" + (index + 1))
 
                 })
               }
@@ -168,13 +166,13 @@ export struct Location {
               .columnsTemplate('1fr 1fr 1fr 1fr')
 
               List({ space: 15, initialIndex: 0, scroller: this.scroller }) {
-                LazyForEach(new MyDataSource(listData), (index,indexTwo) => {
+                LazyForEach(new MyDataSource(listData), (firstItem) => {
                   ListItem() {
                     Column() {
-                      Text(`${index.name}`)
+                      Text(`${firstItem.name}`)
                         .height(30)
                         .fontSize(24)
-                        .fontColor('#000000;')
+                        .fontColor('#000000')
                         .width('100%')
                         .margin({ top: 10 })
                       Divider()
@@ -183,7 +181,7 @@ export struct Location {
                         .opacity(0.2)
                         .margin({ right: 10, top: 12 })
 
-                      ForEach(index.city,(item,index) => {
+                      ForEach(firstItem.city, (item, index) => {
                         Text(`${item.name === undefined ? item : item.name}`)
                           .height(30)
                           .fontSize(20)
@@ -191,7 +189,7 @@ export struct Location {
                           .margin({ top: 16 })
                           .onClick(() => {
                             this.currentLocation = item.name === undefined ? item : item.name
-                            if (this.isCity == item.name) {
+                            if (this.isCity === item.name) {
                               Logger.info(TAG, `item.name = ${item.name === undefined ? item : item.name}`)
                               this.isCity = ''
                             } else {
@@ -199,7 +197,7 @@ export struct Location {
                             }
                           })
                           .key("city_ah")
-                        if (this.isCity == item.name) {
+                        if (this.isCity === item.name) {
                           List() {
                             ForEach(item.city, (secondCity) => {
                               ListItem() {
@@ -209,7 +207,7 @@ export struct Location {
                                     .height(30)
                                     .fontSize(18)
                                     .margin({ top: 4 })
-                                    .key("region"+(index+1))
+                                    .key("region" + (index + 1))
                                     .onClick(() => {
                                       this.currentLocation = `${item.name}/${secondCity}`
                                     })
@@ -217,6 +215,7 @@ export struct Location {
                               }
                             })
                           }
+                          .height('9%')
                           .width('100%')
                         }
                       })
@@ -228,13 +227,13 @@ export struct Location {
               .width('100%')
               .edgeEffect(EdgeEffect.None)
               .listDirection(Axis.Vertical)
-              .onScrollIndex((firstIndex: number, lastIndex: number) => {
-                this.TabIndex = firstIndex
+              .onScrollIndex((firstIndex: number) => {
+                this.alphabetIndex = firstIndex
               })
             }
 
             Column() {
-              AlphabetIndexer({ arrayValue: this.tabValue, selected: this.TabIndex })
+              AlphabetIndexer({ arrayValue: this.tabValue, selected: this.alphabetIndex })
                 .height('100%')
                 .font({ size: 16 })
                 .popupColor('#FFFFFF') // 弹出框颜色
@@ -259,6 +258,7 @@ export struct Location {
       .backgroundColor('#F1F3F5')
       .borderRadius({ topLeft: 40, topRight: 40 })
     }
-    .dragBar(true).mode(PanelMode.Full)
+    .dragBar(true)
+    .mode(PanelMode.Full)
   }
 }
