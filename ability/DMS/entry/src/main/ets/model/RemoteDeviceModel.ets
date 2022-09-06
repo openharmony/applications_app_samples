@@ -67,44 +67,32 @@ export default class RemoteDeviceModel {
         this.#deviceManager.on('deviceStateChange', (data) => {
             console.info('[dmsDemo] deviceStateChange data=' + JSON.stringify(data));
             switch (data.action) {
-                case 0:
-                    self.deviceList[self.deviceList.length] = data.device;
-                    console.info('[dmsDemo] online, updated device list=' + JSON.stringify(self.deviceList));
-                    self.callback();
-                    if (self.authCallback != null) {
-                        self.authCallback();
-                        self.authCallback = null;
-                    }
-                    break;
-                case 2:
+                case deviceManager.DeviceStateChangeAction.OFFLINE:
                     if (self.deviceList.length > 0) {
                         for (var i = 0; i < self.deviceList.length; i++) {
                             if (self.deviceList[i].deviceId === data.device.deviceId) {
                                 self.deviceList[i] = data.device;
-                                break;
+                                break
                             }
                         }
                     }
-                    console.info('[dmsDemo] change, updated device list=' + JSON.stringify(self.deviceList));
-                    self.callback();
-                    break;
-                case 1:
-                    if (self.deviceList.length > 0) {
-                        var list = [];
-                        for (var i = 0; i < self.deviceList.length; i++) {
-                            if (self.deviceList[i].deviceId != data.device.deviceId) {
-                                list[i] = data.device;
-                            }
-                        }
-                        self.deviceList = list;
+                    console.info('[dmsDemo] change, updated device list=' + JSON.stringify(self.deviceList))
+                    self.callback()
+                    break
+                case deviceManager.DeviceStateChangeAction.READY:
+                    this.discoverList = []
+                    this.deviceList.push(data.device)
+                    this.callback();
+                    let list = this.#deviceManager.getTrustedDeviceListSync()
+                    if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
+                        this.deviceList = list
                     }
-                    console.info('[dmsDemo] offline, updated device list=' + JSON.stringify(data.device));
-                    self.callback();
-                    break;
+                    this.callback()
+                    break
                 default:
-                    break;
+                    break
             }
-        });
+        })
         this.#deviceManager.on('deviceFound', (data) => {
             console.info('[dmsDemo] deviceFound data=' + JSON.stringify(data));
             console.info('[dmsDemo] deviceFound self.deviceList=' + self.deviceList);

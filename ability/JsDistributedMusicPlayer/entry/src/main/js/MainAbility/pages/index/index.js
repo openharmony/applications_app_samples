@@ -335,11 +335,12 @@ export default {
             break;
           }
         }
-        if (name == null) {
+        if (name === null) {
           console.error('MusicPlayer[IndexPage] onRadioChange failed, can not get name from discoverList');
           return;
         }
         console.info('MusicPlayer[IndexPage] onRadioChange name=' + name);
+        this.$element('continueAbilityDialog').close();
 
         this.remoteDeviceModel.authDevice(e.value, () => {
           console.info('MusicPlayer[IndexPage] auth and online finished');

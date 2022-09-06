@@ -66,38 +66,28 @@ export class RemoteDeviceModel {
     this.deviceManager.on('deviceStateChange', (data) => {
       Logger.info(TAG, `deviceStateChange data= ${JSON.stringify(data)}`)
       switch (data.action) {
-        case 0:
-          this.deviceLists[this.deviceLists.length] = data.device
-          Logger.info(TAG, `online, updated device list= ${JSON.stringify(this.deviceLists)}`)
-          this.callback()
-          if (this.authCallback !== null) {
-            this.authCallback()
-            this.authCallback = null
+        case hardware_deviceManager.DeviceStateChangeAction.READY:
+          this.discoverLists = []
+          this.deviceLists.push(data.device)
+          Logger.info(TAG, `reday, updated device list= ${JSON.stringify(this.deviceLists)} `)
+          let list = this.deviceManager.getTrustedDeviceListSync();
+          Logger.info(TAG, `getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`)
+          if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
+            this.deviceLists = list;
           }
+          this.callback()
           break
-        case 1:
+        case hardware_deviceManager.DeviceStateChangeAction.OFFLINE:
           if (this.deviceLists.length > 0) {
-            let list = []
+            let list = [];
             for (let i = 0; i < this.deviceLists.length; i++) {
               if (this.deviceLists[i].deviceId !== data.device.deviceId) {
-                list[i] = data.device
+                list[i] = data.device;
               }
             }
-            this.deviceLists = list
+            this.deviceLists = list;
           }
-          Logger.info(TAG, `offline, updated device list= ${JSON.stringify(data.device)} `)
-          this.callback()
-          break
-        case 2:
-          if (this.deviceLists.length > 0) {
-            for (let i = 0; i < this.deviceLists.length; i++) {
-              if (this.deviceLists[i].deviceId === data.device.deviceId) {
-                this.deviceLists[i] = data.device
-                break
-              }
-            }
-          }
-          Logger.info(TAG, `change, updated device list= ${JSON.stringify(this.deviceLists)}`)
+          Logger.info(TAG, `offline, updated device list= ${JSON.stringify(this.deviceLists)}`)
           this.callback()
           break
         default:

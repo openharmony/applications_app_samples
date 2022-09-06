@@ -230,17 +230,7 @@ export default {
     console.log('Calc[IndexPage] handle input value:' + value);
     this.isPush = false;
     if (isOperator(value)) {
-      if (pressedEqual) {
-        pressedEqual = false;
-      } else {
-        const size = this.expression.length;
-        if (size) {
-          const last = this.expression.charAt(size - 1);
-          if (isOperator(last)) {
-            this.expression = this.expression.substring(0, this.expression.length - 1);
-          }
-        }
-      }
+      this.isPressedEqual()
       if (!this.expression && (value === '*' || value === '/')) {
         return;
       }
@@ -251,7 +241,19 @@ export default {
       }
       this.expression += value;
     }
-
+  },
+  isPressedEqual() {
+    if (pressedEqual) {
+      pressedEqual = false;
+    } else {
+      const size = this.expression.length;
+      if (size) {
+        const last = this.expression.charAt(size - 1);
+        if (isOperator(last)) {
+          this.expression = this.expression.substring(0, this.expression.length - 1);
+        }
+      }
+    }
   },
   handleBackspace() {
     if (pressedEqual) {

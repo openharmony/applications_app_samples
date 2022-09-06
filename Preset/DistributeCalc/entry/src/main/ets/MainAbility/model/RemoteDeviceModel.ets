@@ -47,32 +47,6 @@ export class RemoteDeviceModel {
     Logger.info(TAG, 'deviceManager.createDeviceManager end')
   }
 
-  deviceStateChangeActionOnline(device) {
-    this.deviceList[this.deviceList.length] = device
-    Logger.info(TAG, `online, device list= ${JSON.stringify(this.deviceList)}`)
-    this.callback()
-    if (this.authCallback !== null) {
-      this.authCallback()
-      this.authCallback = null
-    }
-  }
-
-  deviceStateChangeActionReady(device) {
-    if (this.deviceList.length <= 0) {
-      this.callback()
-      return
-    }
-    let list = new Array()
-    for (let i = 0; i < this.deviceList.length; i++) {
-      if (this.deviceList[i].deviceId !== device.deviceId) {
-        list[i] = device
-      }
-    }
-    this.deviceList = list
-    Logger.info(TAG, `ready, device list= ${JSON.stringify(device)}`)
-    this.callback()
-  }
-
   deviceStateChangeActionOffline(device) {
     if (this.deviceList.length <= 0) {
       this.callback()
@@ -110,11 +84,14 @@ export class RemoteDeviceModel {
       }
       Logger.info(TAG, `deviceStateChange data= ${JSON.stringify(data)}`)
       switch (data.action) {
-        case deviceManager.DeviceStateChangeAction.ONLINE:
-          this.deviceStateChangeActionOnline(data.device)
-          break;
         case deviceManager.DeviceStateChangeAction.READY:
-          this.deviceStateChangeActionReady(data.device)
+          this.discoverList = []
+          this.deviceList.push(data.device)
+          let list = this.deviceManager.getTrustedDeviceListSync()
+          if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
+            this.deviceList = list
+          }
+          this.callback()
           break;
         case deviceManager.DeviceStateChangeAction.OFFLINE:
         case deviceManager.DeviceStateChangeAction.CHANGE:
