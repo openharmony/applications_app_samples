@@ -163,6 +163,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .margin({ right: 70 })
         Toggle({ type: ToggleType.Switch, isOn: this.isListener })
+          .key('startUSBMonitorSwitch')
           .selectedColor(0xed6f21)
           .switchPointColor(0xe5ffffff)
           .margin({ left: 70 })

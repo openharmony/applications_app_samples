@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "ohos.sample.myapplication",
+    "bundleName": "ohos.sample.shopping",
     "vendor": "sample",
     "version": {
       "code": 1000000,

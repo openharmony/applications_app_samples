@@ -43,60 +43,16 @@ export default function appTest() {
      * 点击选择，选择动画资源
      */
     it(BUNDLE + 'SelectAnimationAssetFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SelectAnimationAssetFunction_001')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SelectAnimationAssetFunction_001 begin')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'SelectAnimationAssetFunction_001 clickSelectAnimationBtn')
       // 点击请选择，选择动画资源
       await driver.assertComponentExist(BY.key('selectAnimationBtn'))
       let selectAnimation = await driver.findComponent(BY.key('selectAnimationBtn'))
+      await driver.delayMs(1000)
       await selectAnimation.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SelectAnimationAssetFunction_001')
-      // 选择grunt动画
-      await driver.click(460, 695)
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 3')
-      // 点击上面部分播放/暂停按钮暂停动画
-      await driver.assertComponentExist(BY.key('controlAllPlayback'))
-      let controlAllPlayback = await driver.findComponent(BY.key('controlAllPlayback'))
-      await controlAllPlayback.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 4')
-      // 再次点击播放动画
-      await controlAllPlayback.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 5')
-      // 点击下面部分播放/暂停
-      await driver.assertComponentExist(BY.key('controlGruntPlayback'))
-      let controlGruntPlayback = await driver.findComponent(BY.key('controlGruntPlayback'))
-      await controlGruntPlayback.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 6')
-      // 点击销毁动画
-      await driver.assertComponentExist(BY.key('destroyAnimation'))
-      let destroyAnimation = await driver.findComponent(BY.key('destroyAnimation'))
-      await destroyAnimation.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 7')
-      // 点击播放/暂停
-      await controlAllPlayback.click()
-      await driver.delayMs(1000)
-      await controlGruntPlayback.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 8')
-      // 重新选择动画资源
-      await selectAnimation.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 9')
-      // 选择grunt动画
-      await driver.click(460, 695)
-      await driver.delayMs(3000)
-      console.log('Sample_Lottie 10')
-      // 点击下面部分播放暂停
-      await controlGruntPlayback.click()
-      await driver.delayMs(1000)
-      console.log('Sample_Lottie 11')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SelectAnimationAssetFunction_001 end')
     })
   })
 }

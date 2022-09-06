@@ -45,31 +45,11 @@ export default function appTest() {
       await driver.delayMs(3000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept')
       // 点击允许
-      let btnAccept = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnAccept = await driver.findComponent(BY.text('允许'))
       await btnAccept.click()
       await driver.delayMs(3000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 end')
-    })
-    /**
-     * 点击按钮选择连接组网设备
-     */
-    it(BUNDLE + 'ConnectDeviceFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ConnectDeviceFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ConnectDeviceFunction_001 clickRightBtn')
-      // 点击右上角按钮
-      await driver.assertComponentExist(BY.key('rightBtn'))
-      let rightBtn = await driver.findComponent(BY.key('rightBtn'))
-      await rightBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ConnectDeviceFunction_001 clickCancel')
-      // 点击取消
-      await driver.assertComponentExist(BY.key('cancel'))
-      let cancelBtn = await driver.findComponent(BY.key('cancel'))
-      await cancelBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ConnectDeviceFunction_001 end')
     })
     /**
      * 点击添加按钮进入添加界面
@@ -82,8 +62,8 @@ export default function appTest() {
       // 点击添加按钮
       await driver.assertComponentExist(BY.key('addNote'))
       let btnAdd = await driver.findComponent(BY.key('addNote'))
-      await btnAdd.click()
       await driver.delayMs(1000)
+      await btnAdd.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 end')
     })
     /**
@@ -93,30 +73,24 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 begin')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 clickSelectStatusColor')
-      // 点击下拉按钮
-      await driver.assertComponentExist(BY.key('selectStatusColor'))
-      let selectStatusColorBtn = await driver.findComponent(BY.key('selectStatusColor'))
-      await selectStatusColorBtn.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 inputTitle')
       // 输入标题
       await driver.assertComponentExist(BY.key('titleInput'))
       let title = await driver.findComponent(BY.key('titleInput'))
-      await title.inputText('music')
       await driver.delayMs(1000)
+      await title.inputText('music')
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 inputContent')
       // 输入内容
       await driver.assertComponentExist(BY.key('contentInput'))
       let content = await driver.findComponent(BY.key('contentInput'))
-      await content.inputText('this is a folk music')
       await driver.delayMs(1000)
+      await content.inputText('this is a folk music')
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 clickSaveNote')
       // 点击保存
       await driver.assertComponentExist(BY.key('saveNote'))
       let btnSave = await driver.findComponent(BY.key('saveNote'))
-      await btnSave.click()
       await driver.delayMs(1000)
+      await btnSave.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 end')
     })
     /**
@@ -130,8 +104,8 @@ export default function appTest() {
       // 点击清除
       await driver.assertComponentExist(BY.key('clearNote'))
       let btnClear = await driver.findComponent(BY.key('clearNote'))
-      await btnClear.click()
       await driver.delayMs(1000)
+      await btnClear.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClearNoteFunction_001 end')
     })
     /**
@@ -145,8 +119,8 @@ export default function appTest() {
       // 再次点击添加
       await driver.assertComponentExist(BY.key('addNote'))
       let btnAdd = await driver.findComponent(BY.key('addNote'))
-      await btnAdd.click()
       await driver.delayMs(1000)
+      await btnAdd.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddNoteFunction_001 end')
     })
     /**
@@ -156,58 +130,25 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 begin')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 clickSelectStatusColor')
-      // 点击下拉按钮
-      await driver.assertComponentExist(BY.key('selectStatusColor'))
-      let selectStatusColorBtn = await driver.findComponent(BY.key('selectStatusColor'))
-      await selectStatusColorBtn.click()
-      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 inputTitle')
       // 输入标题
       await driver.assertComponentExist(BY.key('titleInput'))
       let title = await driver.findComponent(BY.key('titleInput'))
-      await title.inputText('book')
       await driver.delayMs(1000)
+      await title.inputText('book')
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 inputContent')
       // 输入内容
       await driver.assertComponentExist(BY.key('contentInput'))
       let content = await driver.findComponent(BY.key('contentInput'))
-      await content.inputText('this is a history book')
       await driver.delayMs(1000)
+      await content.inputText('this is a history book')
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 clickSaveNote')
       // 点击保存
       await driver.assertComponentExist(BY.key('saveNote'))
       let btnSave = await driver.findComponent(BY.key('saveNote'))
-      await btnSave.click()
       await driver.delayMs(1000)
+      await btnSave.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 end')
-    })
-    /**
-     * 更新备忘录内容
-     */
-    it(BUNDLE + 'UpdateNoteFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 clickNoteList')
-      // 点击列表项
-      await driver.assertComponentExist(BY.key('noteList'))
-      let noteList = await driver.findComponent(BY.key('noteList'))
-      await noteList.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 inputContent')
-      // 更新内容
-      await driver.assertComponentExist(BY.key('contentInput'))
-      let content = await driver.findComponent(BY.key('contentInput'))
-      await content.inputText('this is a math book')
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 clickSaveNote')
-      // 点击保存
-      await driver.assertComponentExist(BY.key('saveNote'))
-      let btnSave = await driver.findComponent(BY.key('saveNote'))
-      await btnSave.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 end')
     })
   })
 }

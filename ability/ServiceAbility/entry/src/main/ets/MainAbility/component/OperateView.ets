@@ -21,6 +21,7 @@ export struct OperateView {
   build() {
     Column() {
       TextArea({ placeholder: $r('app.string.input_placeholder') })
+        .key('textAreaInput')
         .fontSize(22)
         .width('94%')
         .constraintSize({ minHeight: 50 })

@@ -48,10 +48,10 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ConnectServiceFunction_001 clickConnectServiceBtn')
       // 点击连接服务
-      await driver.assertComponentExist(BY.text('连接服务', MatchPattern.CONTAINS))
-      let btnConnectService = await driver.findComponent(BY.text('连接服务', MatchPattern.CONTAINS))
-      await btnConnectService.click()
+      await driver.assertComponentExist(BY.text('连接服务'))
+      let btnConnectService = await driver.findComponent(BY.text('连接服务'))
       await driver.delayMs(1000)
+      await btnConnectService.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'ConnectServiceFunction_001 end')
     })
     /**
@@ -65,6 +65,7 @@ export default function appTest() {
       // 输入字符串
       await driver.assertComponentExist(BY.key('textAreaInput'))
       let textArea = await driver.findComponent(BY.key('textAreaInput'))
+      await driver.delayMs(1000)
       await textArea.inputText('anghjdek')
       let inputValue = await textArea.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'StringSortFunction_001 inputValue')
@@ -72,10 +73,10 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StringSortFunction_001 clickStringSortBtn')
       // 点击字符串排序
-      await driver.assertComponentExist(BY.text('字符串排序', MatchPattern.CONTAINS))
-      let btnStringSort = await driver.findComponent(BY.text('字符串排序', MatchPattern.CONTAINS))
-      await btnStringSort.click()
+      await driver.assertComponentExist(BY.text('字符串排序'))
+      let btnStringSort = await driver.findComponent(BY.text('字符串排序'))
       await driver.delayMs(1000)
+      await btnStringSort.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'StringSortFunction_001 end')
     })
     /**
@@ -87,10 +88,10 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DisconnectServiceFunction_001 clickDisconnectServiceBtn')
       // 点击断开服务
-      await driver.assertComponentExist(BY.text('断开服务', MatchPattern.CONTAINS))
-      let btnDisconnectService = await driver.findComponent(BY.text('断开服务', MatchPattern.CONTAINS))
-      await btnDisconnectService.click()
+      await driver.assertComponentExist(BY.text('断开服务'))
+      let btnDisconnectService = await driver.findComponent(BY.text('断开服务'))
       await driver.delayMs(1000)
+      await btnDisconnectService.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DisconnectServiceFunction_001 end')
     })
   })

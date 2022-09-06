@@ -152,7 +152,6 @@ struct Index {
           ListItem() {
             NoteItem({ note: item, index: index })
           }
-          .key('noteList')
         }, item => item.title)
       }
       .width('95%')
