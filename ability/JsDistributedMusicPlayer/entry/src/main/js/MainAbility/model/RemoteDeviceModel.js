@@ -30,7 +30,7 @@ export default class RemoteDeviceModel {
   registerDeviceListCallback(callback) {
     if (typeof (this.#deviceManager) === 'undefined') {
       console.log('MusicPlayer[RemoteDeviceModel] deviceManager.createDeviceManager begin');
-      deviceManager.createDeviceManager('com.ohos.distributedmusicplayer', (error, value) => {
+      deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer', (error, value) => {
         if (error) {
           console.error('createDeviceManager failed.');
           return;
@@ -66,33 +66,23 @@ export default class RemoteDeviceModel {
     this.#deviceManager.on('deviceStateChange', (data) => {
       console.info('MusicPlayer[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
       switch (data.action) {
-        case 0:
-          this.deviceList[this.deviceList.length] = data.device;
-          console.info('MusicPlayer[RemoteDeviceModel] online, updated device list=' + JSON.stringify(this.deviceList));
-          this.callback();
-          if (this.authCallback != null) {
-            this.authCallback();
-            this.authCallback = null;
+        case deviceManager.DeviceStateChangeAction.READY:
+          this.discoverList = []
+          this.deviceList.push(data.device)
+          console.info('MusicPlayer[RemoteDeviceModel] ready, updated device list=' + JSON.stringify(this.deviceList));
+          let list = this.deviceManager.getTrustedDeviceListSync();
+          console.info('MusicPlayer[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+          if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
+            this.deviceList = list;
           }
-          break;
-        case 2:
-          if (this.deviceList.length > 0) {
-            for (var i = 0; i < this.deviceList.length; i++) {
-              if (this.deviceList[i].deviceId === data.device.deviceId) {
-                this.deviceList[i] = data.device;
-                break;
-              }
-            }
-          }
-          console.info('MusicPlayer[RemoteDeviceModel] change, updated device list=' + JSON.stringify(this.deviceList));
           this.callback();
           break;
-        case 1:
+        case deviceManager.DeviceStateChangeAction.OFFLINE:
           if (this.deviceList.length > 0) {
-            var list = [];
-            for (var i = 0; i < this.deviceList.length; i++) {
-              if (this.deviceList[i].deviceId != data.device.deviceId) {
-                list[i] = data.device;
+            let list = [];
+            for (let j = 0; j < this.deviceList.length; j++) {
+              if (this.deviceList[j].deviceId !== data.device.deviceId) {
+                list[j] = data.device;
               }
             }
             this.deviceList = list;

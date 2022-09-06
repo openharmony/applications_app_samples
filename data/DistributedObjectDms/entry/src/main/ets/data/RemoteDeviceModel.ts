@@ -51,7 +51,8 @@ export default class RemoteDeviceModel {
   }
 
   deviceStateChangeActionOnline(device) {
-    this.devices[this.devices.length] = device
+    this.devices.push(device)
+    this.deviceManager.getTrustedDeviceListSync()
     Logger.info(TAG, `online device list= ${JSON.stringify(this.devices)}`)
     this.registerCallback()
     if (this.authCallback !== null) {
@@ -114,11 +115,15 @@ export default class RemoteDeviceModel {
       }
       Logger.info(TAG, `deviceStateChange data= ${JSON.stringify(data)}`)
       switch (data.action) {
-        case deviceManager.DeviceStateChangeAction.ONLINE:
-          this.deviceStateChangeActionOnline(data.device)
-          break
         case deviceManager.DeviceStateChangeAction.READY:
-          this.deviceStateChangeActionReady(data.device)
+          this.discovers = []
+          this.devices.push(data.device)
+          this.registerCallback()
+          let list = this.deviceManager.getTrustedDeviceListSync()
+          if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
+            this.devices = list
+          }
+          this.registerCallback()
           break
         case deviceManager.DeviceStateChangeAction.OFFLINE:
           this.deviceStateChangeActionOffline(data.device)
