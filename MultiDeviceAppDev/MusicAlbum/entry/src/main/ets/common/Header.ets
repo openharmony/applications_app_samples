@@ -33,7 +33,6 @@ export default struct Header {
           .padding({ left: 10 })
       }
       .height('100%')
-      .backgroundColor('#e4ecf7')
 
       Blank()
       Image($r("app.media.ic_more"))
