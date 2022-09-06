@@ -1,6 +1,6 @@
 {
   "app": {
-    "vendor": "example",
+    "vendor": "samples",
     "bundleName": "ohos.samples.distributedgraffiti",
     "version": {
       "code": 1000000,
@@ -54,7 +54,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "com.example.entry",
+    "package": "ohos.samples.distributedgraffiti",
     "srcPath": "",
     "name": ".entry",
     "js": [
