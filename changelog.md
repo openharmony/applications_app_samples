@@ -51,3 +51,23 @@
 # 7月8日-7月14日新增Sample（总计28个分类，163个sample）
 
 1.删除[`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](ETSUI/AdaptiveCapabilities)
+
+# 7月14日-9月5日新增Sample（总计28个分类，174个sample）
+1.[`Share`：分享（eTS）（API9）（Full SDK）](Share/Share)
+2.[`WorkScheduler`：延迟任务调度（eTS）（API9）](ResourcesSchedule/WorkScheduler)
+3.[`UpgradePopup`：自定义弹窗（eTS）（API9）](ETSUI/UpgradePopup)
+4.[`Search`：Search组件（eTS）（API9）](ETSUI/Search)
+5.[`TransitionAnimation`：转场动画（eTS）（API9）](ETSUI/TransitionAnimation)
+6.[`Contact`：Contact（eTS）（API8）](Telephony/Contact)
+7.[`ImageShow`：图片显示（eTS）（API9）](media/ImageShow)
+8.[`Image`：图片处理（eTS）（API8）](media/Image)
+9.[`Location`：位置服务（eTS）（API9）](device/Location)
+10.[`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](ability/Launcher)
+11.[`VideoPlayer`：视频播放（eTS）（API9）（Full SDK）](media/VideoPlayer)
+12.[`WindowExtAbility`：窗口扩展（eTS）（API9）（Full SDK）](ability/WindowExtAbility)
+13.[`FaModel`：FA模型（eTS）（API9）](ability/FaModel)
+14.[`StageModel`：Stage模型（eTS）（API9）（Full SDK）](ability/StageModel)
+15.[`GalleryForm`：图库卡片（eTS）（API9）](ability/GalleryForm)
+16.[`Http`：数据请求（eTS）（API9）](Network/Http)
+17.[`AppMarket`：一多应用市场首页（eTS）（API9）](MultiDeviceAppDev/AppMarket)
+18.[`Weather`：一多天气（eTS）（API9）](MultiDeviceAppDev/Weather)
