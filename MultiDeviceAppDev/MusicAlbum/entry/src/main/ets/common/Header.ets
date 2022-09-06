@@ -19,20 +19,17 @@ export default struct Header {
 
   build() {
     Row() {
-      Row() {
-        Image($r('app.media.ic_back'))
-          .width(20)
-          .height(20)
-          .margin({ left: 16 })
-        Text($r('app.string.play_list'))
-          .fontSize(this.fontSize + 4)
-          .fontWeight(500)
-          .fontColor('#556B89')
-          .opacity(0.9)
-          .letterSpacing(2)
-          .padding({ left: 10 })
-      }
-      .height('100%')
+      Image($r('app.media.ic_back'))
+        .width(20)
+        .height(20)
+        .margin({ left: 16 })
+      Text($r('app.string.play_list'))
+        .fontSize(this.fontSize + 4)
+        .fontWeight(500)
+        .fontColor('#556B89')
+        .opacity(0.9)
+        .letterSpacing(2)
+        .padding({ left: 10 })
 
       Blank()
       Image($r("app.media.ic_more"))
