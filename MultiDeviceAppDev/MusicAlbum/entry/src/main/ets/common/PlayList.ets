@@ -98,6 +98,6 @@ export default struct PlayList {
       .backgroundColor('#fff')
       .margin({ top: 50, bottom: this.currentBreakpoint === 'sm' ? this.coverHeight : 0 })
     }
-    .padding({top: 50,bottom: 48})
+    .padding({ top: 50, bottom: 48 })
   }
 }

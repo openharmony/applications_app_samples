@@ -15,7 +15,6 @@
 
 @Component
 export default struct Header {
-  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
   @StorageProp('fontSize') fontSize: number = 0
 
   build() {

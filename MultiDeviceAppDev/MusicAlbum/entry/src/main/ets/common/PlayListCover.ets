@@ -18,7 +18,7 @@ import { optionList } from '../model/SongList'
 @Component
 export default struct PlayListCover {
   @State imgHeight: number = 0
-  @State coverHeight: number = 0
+  @State theCoverHeight: number = 0
   @StorageProp('coverMargin') coverMargin: number = 0
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
   @StorageProp('fontSize') fontSize: number = 0
@@ -112,10 +112,10 @@ export default struct PlayListCover {
       }
       .margin({ left: this.coverMargin, right: this.coverMargin })
       .onAreaChange((oldArea: Area, newArea: Area) => {
-        this.coverHeight = newArea.height as number
+        this.theCoverHeight = newArea.height as number
       })
     }
-    .height(this.currentBreakpoint === 'sm' ? this.coverHeight : '100%')
+    .height(this.currentBreakpoint === 'sm' ? this.theCoverHeight : '100%')
     .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })
   }
 }

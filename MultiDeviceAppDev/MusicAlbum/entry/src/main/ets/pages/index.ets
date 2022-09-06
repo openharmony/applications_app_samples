@@ -23,6 +23,7 @@ import BreakpointSystem from '../model/MediaData'
 struct Index {
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
+
   aboutToAppear() {
     this.breakpointSystem.register()
   }
@@ -30,8 +31,9 @@ struct Index {
   aboutToDisappear() {
     this.breakpointSystem.unregister()
   }
+
   build() {
-    Stack({alignContent: Alignment.Top}) {
+    Stack({ alignContent: Alignment.Top }) {
       Header()
       Content()
       Player()
