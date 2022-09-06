@@ -18,7 +18,6 @@ import { optionList } from '../model/SongList'
 @Component
 export default struct PlayListCover {
   @State imgHeight: number = 0
-  @State theCoverHeight: number = 0
   @StorageProp('coverMargin') coverMargin: number = 0
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
   @StorageProp('fontSize') fontSize: number = 0
@@ -93,29 +92,49 @@ export default struct PlayListCover {
   }
 
   build() {
-    Column() {
-      GridRow() {
-        GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
-          this.CoverImage()
-        }
+    if (this.currentBreakpoint === 'sm') {
+      Column() {
+        GridRow() {
+          GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
+            this.CoverImage()
+          }
 
-        GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
-          this.CoverIntroduction()
-        }
+          GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+            this.CoverIntroduction()
+          }
 
-        GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
-          this.CoverOptions()
-        }.margin({
-          top: this.currentBreakpoint === 'sm' ? 15 : 0,
-          bottom: this.currentBreakpoint === 'sm' ? 15 : 0
-        })
+          GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+            this.CoverOptions()
+          }.margin({
+            top: this.currentBreakpoint === 'sm' ? 15 : 0,
+            bottom: this.currentBreakpoint === 'sm' ? 15 : 0
+          })
+        }
+        .margin({ left: this.coverMargin, right: this.coverMargin })
+        .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })
       }
-      .margin({ left: this.coverMargin, right: this.coverMargin })
-      .onAreaChange((oldArea: Area, newArea: Area) => {
-        this.theCoverHeight = newArea.height as number
-      })
+    } else {
+      Column() {
+        GridRow() {
+          GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
+            this.CoverImage()
+          }
+
+          GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+            this.CoverIntroduction()
+          }
+
+          GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+            this.CoverOptions()
+          }.margin({
+            top: this.currentBreakpoint === 'sm' ? 15 : 0,
+            bottom: this.currentBreakpoint === 'sm' ? 15 : 0
+          })
+        }
+        .margin({ left: this.coverMargin, right: this.coverMargin })
+        .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })
+      }
+      .height('100%')
     }
-    .height(this.currentBreakpoint === 'sm' ? this.theCoverHeight : '100%')
-    .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })
   }
 }

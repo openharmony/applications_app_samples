@@ -96,8 +96,11 @@ export default struct PlayList {
         .lanes(this.currentBreakpoint === 'lg' ? 2 : 1)
       }
       .backgroundColor('#fff')
-      .margin({ top: 50, bottom: this.currentBreakpoint === 'sm' ? this.coverHeight : 0 })
+      .margin({ top: 50 })
     }
-    .padding({ top: 50, bottom: 48 })
+    .padding({
+      top: this.currentBreakpoint === 'sm' ? 0 : 50,
+      bottom: this.currentBreakpoint === 'sm' ? this.coverHeight + 48 : 48
+    })
   }
 }

@@ -19,7 +19,6 @@ import PlayList from '../common/PlayList'
 @Component
 export default struct Content {
   @Provide coverHeight: number = 0
-  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
 
   build() {
     GridRow() {
