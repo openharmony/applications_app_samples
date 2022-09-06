@@ -41,30 +41,14 @@ export default function appTest() {
     })
     
     /**
-     * 取消权限
+     * 进入页面
      */
-    it(BUNDLE + 'CancelPermission_001', 0, async function () {
+    it(BUNDLE + 'CreateFunction_001', 0, async function () {
       // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CancelPermission_001 begin')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
-      // 取消权限
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CancelPermission_001 cancel')
-      await driver.assertComponentExist(BY.text('取消', MatchPattern.CONTAINS))
-      let btnCancel = await driver.findComponent(BY.text('取消', MatchPattern.CONTAINS))
-      await btnCancel.click()
-      await driver.delayMs(1000)
-      // 检查权限
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CancelPermission_001 checkPermission')
-      await driver.assertComponentExist(BY.key('checkPermission'))
-      let btnPermission = await driver.findComponent(BY.key('checkPermission'))
-      await btnPermission.click()
-      await driver.delayMs(1000)
-      // 返回桌面
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CancelPermission_001 pressBack')
-      await driver.pressBack()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CancelPermission_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })
   })
 }

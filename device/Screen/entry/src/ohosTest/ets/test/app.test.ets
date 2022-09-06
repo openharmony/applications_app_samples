@@ -60,59 +60,5 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DeviceInfoFunction_001 end')
     })
-
-    /**
-     * AddScreen
-     */
-    it(BUNDLE + 'AddScreenFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      // addScreen1
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 addScreen1')
-      await driver.assertComponentExist(BY.key('addScreen'))
-      let addScreenBtn = await driver.findComponent(BY.key('addScreen'))
-      await addScreenBtn.click()
-      await driver.delayMs(1000)
-      // addScreen2
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 addScreen2')
-      await addScreenBtn.click()
-      await driver.delayMs(1000)
-      // addScreen3
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 addScreen3')
-      await addScreenBtn.click()
-      await driver.delayMs(1000)
-      // clickSmallRect1
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 clickSmallRect1')
-      await driver.assertComponentExist(BY.key('smallRect1'))
-      let smallRect1 = await driver.findComponent(BY.key('smallRect1'))
-      await smallRect1.click()
-      await driver.delayMs(1000)
-      // deviceInfo
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 deviceInfo')
-      await driver.assertComponentExist(BY.key('deviceInfo'))
-      let deviceInfo = await driver.findComponent(BY.key('deviceInfo'))
-      await deviceInfo.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreenFunction_001 end')
-    })
-
-    /**
-     * RemoveScreen
-     */
-    it(BUNDLE + 'RemoveScreenFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RemoveScreenFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      // removeScreen
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RemoveScreenFunction_001 removeScreen')
-      await driver.assertComponentExist(BY.key('removeScreen'))
-      let removeScreenBtn = await driver.findComponent(BY.key('removeScreen'))
-      await removeScreenBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RemoveScreenFunction_001 end')
-    })
   })
 }
