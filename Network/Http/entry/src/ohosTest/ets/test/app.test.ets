@@ -58,7 +58,7 @@ export default function appTest() {
       await driver.assertComponentExist(BY.key('Key1'))
       let btnSet = await driver.findComponent(BY.key('Key1'))
       await btnSet.inputText('revidx')
-      let valGetTwo = await textGet.getText()
+      let valGetTwo = await btnSet.getText()
       expect('revidx').assertEqual(valGetTwo)
       await driver.delayMs(1000)
       // 参数value1
