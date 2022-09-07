@@ -71,7 +71,6 @@ struct Index {
     }
     .barWidth(this.currentBreakpoint === 'lg' ? 96 : '100%')
     .barHeight(this.currentBreakpoint === 'lg' ? '60%' : 56)
-    .animationDuration(600)
     .vertical(this.currentBreakpoint === 'lg')
     .onChange(this.onTabChange)
     .backgroundColor('#F1F3F5')
