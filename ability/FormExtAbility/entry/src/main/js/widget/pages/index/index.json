@@ -6,8 +6,8 @@
   "actions": {
     "routerEvent": {
       "action": "router",
-      "bundleName": "ohos.samples.FormApplication",
-      "abilityName": "ohos.samples.FormApplication.MainAbility",
+      "bundleName": "ohos.samples.formextability",
+      "abilityName": "ohos.samples.formextability.MainAbility",
       "params": {
         "message": "add detail"
       }
