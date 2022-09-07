@@ -52,35 +52,5 @@ export default function appTest() {
       await btnEnter.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 end')
     })
-
-    /**
-     * 生成并保存二维码
-     */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(2000)
-      // 点击生成二维码
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 createClick')
-      await driver.assertComponentExist(BY.text('生成二维码', MatchPattern.CONTAINS))
-      let btnCreate = await driver.findComponent(BY.text('生成二维码', MatchPattern.CONTAINS))
-      await btnCreate.click()
-      await driver.delayMs(1000)
-      // 输入二维码内容
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 createQRCodeInput')
-      await driver.assertComponentExist(BY.key('createQRCodeInput'))
-      let CreateQRCodeInput = await driver.findComponent(BY.key('createQRCodeInput'))
-      await CreateQRCodeInput.inputText('helloWorld')
-      let val = await CreateQRCodeInput.getText()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 inputValue')
-      expect('helloWorld').assertEqual(val)
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 saveClick')
-      await driver.assertComponentExist(BY.key('save'))
-      let btnSave = await driver.findComponent(BY.key('save'))
-      await btnSave.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
-    })
   })
 }

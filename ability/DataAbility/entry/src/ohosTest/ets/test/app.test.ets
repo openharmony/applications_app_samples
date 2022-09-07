@@ -41,24 +41,14 @@ export default function appTest() {
     })
 
     /**
-     * 进入页面添加内容
+     * 进入页面
      */
-    it(BUNDLE + 'AddFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateFunction_00', 0, async function () {
       // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 begin')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_00 begin')
       let driver = await UiDriver.create()
-      await driver.delayMs(500)
-      // add
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 clickInsert')
-      await driver.assertComponentExist(BY.key('batchInsert'))
-      let btnInsert = await driver.findComponent(BY.key('batchInsert'))
-      await btnInsert.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 clickAdd')
-      await driver.assertComponentExist(BY.key('add'))
-      let btnAdd = await driver.findComponent(BY.key('add'))
-      await btnAdd.click()
-      await driver.delayMs(500)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 end')
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_00 end')
     })
   })
 }
