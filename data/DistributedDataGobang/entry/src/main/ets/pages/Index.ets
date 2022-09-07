@@ -51,6 +51,7 @@ struct Index {
   @State deviceFlag: string = 'A'
   @State isFall: boolean = false
   @State isFlush: boolean = false
+  @State countOnReady: number = 1
 
   dataChange() {
     if (this.deviceFlag !== 'A') {
@@ -219,6 +220,9 @@ struct Index {
       } else if (this.deviceFlag === 'B' && this.distributedData.step % 2 !== 0) {
         this.confirmFall()
       }
+    }
+    if (this.countOnReady++ === 1) {
+      return
     }
     for (let i = 0; i < 15; i++) {
       for (let j = 0; j < 15; j++) {
