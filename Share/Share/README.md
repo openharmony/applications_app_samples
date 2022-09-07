@@ -24,9 +24,9 @@
 
 1.启动Share应用,首页展示分享跳转页面,点击"分享"出现（三方APP的）弹窗;
 
-2.分享文本\链接，选择"Chat"图标，会拉起三方应用[Chat](https://gitee.com/jiangwensai/applications_app_samples/tree/master/AppSample/Chat) ，此时选择[聊天列表](https://gitee.com/jiangwensai/applications_app_samples/blob/master/AppSample/Chat/entry/src/main/ets/MainAbility/pages/Index.ets) 任意朋友进行分享;
+2.分享文本\链接，选择"Chat"图标，会拉起三方应用[Chat](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat) ，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat/entry/src/main/ets/MainAbility/pages/Index.ets) 任意朋友进行分享;
 
-3.分享图片文件，选择"生成海报"图标，此时第一层弹窗消失并出现新的弹窗，点击"截图并分享"，会出现小提示"截图成功，分享加载中...",稍后会拉起三方应用[Chat](https://gitee.com/jiangwensai/applications_app_samples/tree/master/AppSample/Chat) ，此时选择[聊天列表](https://gitee.com/jiangwensai/applications_app_samples/blob/master/AppSample/Chat/entry/src/main/ets/MainAbility/pages/Index.ets) 任意朋友分享。
+3.分享图片文件，选择"生成海报"图标，此时第一层弹窗消失并出现新的弹窗，点击"截图并分享"，会出现小提示"截图成功，分享加载中...",稍后会拉起三方应用[Chat](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat) ，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat/entry/src/main/ets/MainAbility/pages/Index.ets) 任意朋友分享。
 
 ### 效果预览
 
@@ -47,7 +47,7 @@
 
 ### 依赖
 
-依赖于[Chat](https://gitee.com/jiangwensai/applications_app_samples/tree/master/AppSample/Chat)应用，来作为接收方。
+依赖于[Chat](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat)  应用，来作为接收方。
 
 ### 约束与限制
 
