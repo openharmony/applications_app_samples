@@ -15,63 +15,17 @@
 
 import mediaQuery from '@ohos.mediaquery';
 import router from '@ohos.router';
-import { SwiperModel, PhoneTypeModel, ShowImgModel, RecommendDataModel, GoodsInfoModel, ListDataModel
+import {
+  SwiperModel,
+  PhoneTypeModel,
+  ShowImgModel,
+  RecommendDataModel,
+  GoodsInfoModel,
+  ListDataModel
 } from "../../model/detailModel"
 import { swiperData, phoneTypeData, showImgData, recommendData, goodsInfoData, listData } from '../../data/detailData'
 
 let portraitDetail = null
-
-class DataSourceDetail1 implements IDataSource {
-  totalCount(): number {
-    return this.num
-  }
-
-  getData(index: number): any {
-    return index
-  }
-
-  registerDataChangeListener(listener: DataChangeListener) {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener) {
-    const pos = this.listeners.indexOf(listener)
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  num: number = 23
-  listeners: DataChangeListener[] = []
-}
-
-class DataSourceDetail2 implements IDataSource {
-  totalCount(): number {
-    return this.num
-  }
-
-  getData(index: number): any {
-    return index
-  }
-
-  registerDataChangeListener(listener: DataChangeListener) {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener) {
-    const pos = this.listeners.indexOf(listener)
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  num: number = 23
-  listeners: DataChangeListener[] = []
-}
 
 @Entry
 @Component
@@ -79,8 +33,6 @@ struct Detail {
   @State width: number = router.getParams()['num']
   @State ratio: number = router.getParams()['ratio']
   @State active: boolean = false
-  dataSourceDetail1: DataSourceDetail1 = new DataSourceDetail1()
-  dataSourceDetail2: DataSourceDetail2 = new DataSourceDetail2()
   @State swiper: Array<SwiperModel> = swiperData
   @State phoneType: Array<PhoneTypeModel> = phoneTypeData
   @State showImg: Array<ShowImgModel> = showImgData
@@ -88,8 +40,8 @@ struct Detail {
   @State goodsList: Array<GoodsInfoModel> = goodsInfoData
   @State listImg: Array<ListDataModel> = listData
   @State collected: boolean = false
-  @State opacity: number= 1
-  listener= mediaQuery.matchMediaSync('(orientation:landscape)');
+  @State opacity: number = 1
+  listener = mediaQuery.matchMediaSync('(orientation:landscape)');
 
   aboutToAppear() {
     portraitDetail = this.onPortrait.bind(this);
@@ -894,21 +846,6 @@ struct Detail {
             .height('45%')
           }
           .margin({ top: 10 })
-        }
-
-        ListItem() {
-          Column() {
-            List() {
-              LazyForEach(this.dataSourceDetail1, item => {
-                ListItem() {
-                  Image(this.goodsList[item].img)
-                    .width('100%')
-                    .objectFit(ImageFit.Cover)
-                }
-              }, item => item.img.toString())
-            }
-            .width('100%')
-          }
         }
       }
       .padding({ bottom: 10, left: 10, right: 10 })

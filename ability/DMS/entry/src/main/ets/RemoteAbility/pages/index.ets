@@ -387,34 +387,36 @@ struct CustomDialogExample1 {
   confirm: () => void
 
   build() {
-    Column() {
-      List({ space: 10, initialIndex: 0 }) {
-        LazyForEach(discovereDeviceIdList, (item) => {
-          ListItem() {
-            Row() {
-              Text(item)
-                .width('87%')
-                .height(50)
-                .fontSize(15)
-                .textAlign(TextAlign.Center)
-                .borderRadius(10)
-                .backgroundColor(0xFFFFFF)
-                .onClick(() => {
-                  console.log('[dmsDemo] Text Item onClick:' + item);
-                  callFunction(item);
-                  this.controller.close();
-                })
-              Radio({ group: '', value: item })
-                .onChange((isChecked) => {
-                  console.log('[dmsDemo] Radio Item:' + item + ' onChange isChecked:' + isChecked);
-                  callFunction(item);
-                  this.controller.close();
-                }).checked(false)
-            }
-          }.editable(this.editFlag)
-        }, item => item)
-      }
-    }.width('100%').height(200).backgroundColor(0xDCDCDC).padding({ top: 5 })
+    List({ space: 10, initialIndex: 0 }) {
+      LazyForEach(discovereDeviceIdList, (item) => {
+        ListItem() {
+          Row() {
+            Text(item)
+              .width('87%')
+              .height(50)
+              .fontSize(15)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+              .onClick(() => {
+                console.log('[dmsDemo] Text Item onClick:' + item);
+                callFunction(item);
+                this.controller.close();
+              })
+            Radio({ group: '', value: item })
+              .onChange((isChecked) => {
+                console.log('[dmsDemo] Radio Item:' + item + ' onChange isChecked:' + isChecked);
+                callFunction(item);
+                this.controller.close();
+              }).checked(false)
+          }
+        }.editable(this.editFlag)
+      }, item => item)
+    }
+    .width('100%')
+    .height(200)
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
   }
 }
 
@@ -426,34 +428,36 @@ struct CustomDialogExample2 {
   confirm: () => void
 
   build() {
-    Column() {
-      List({ space: 10, initialIndex: 0 }) {
-        LazyForEach(deviceIdList, (item) => {
-          ListItem() {
-            Row() {
-              Text(item)
-                .width('87%')
-                .height(50)
-                .fontSize(10)
-                .textAlign(TextAlign.Center)
-                .borderRadius(10)
-                .backgroundColor(0xFFFFFF)
-                .onClick(() => {
-                  console.log('[dmsDemo] Text Item onClick:' + item);
-                  callFunction(item);
-                  this.controller.close();
-                })
-              Radio({ group: '', value: item })
-                .onChange((isChecked) => {
-                  console.log('[dmsDemo] Radio Item:' + item + ' onChange isChecked:' + isChecked);
-                  callFunction(item);
-                  this.controller.close();
-                }).checked(false)
-            }
-          }.editable(this.editFlag)
-        }, item => item)
-      }
-    }.width('100%').height(200).backgroundColor(0xDCDCDC).padding({ top: 5 })
+    List({ space: 10, initialIndex: 0 }) {
+      LazyForEach(deviceIdList, (item) => {
+        ListItem() {
+          Row() {
+            Text(item)
+              .width('87%')
+              .height(50)
+              .fontSize(10)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+              .onClick(() => {
+                console.log('[dmsDemo] Text Item onClick:' + item);
+                callFunction(item);
+                this.controller.close();
+              })
+            Radio({ group: '', value: item })
+              .onChange((isChecked) => {
+                console.log('[dmsDemo] Radio Item:' + item + ' onChange isChecked:' + isChecked);
+                callFunction(item);
+                this.controller.close();
+              }).checked(false)
+          }
+        }.editable(this.editFlag)
+      }, item => item)
+    }
+    .width('100%')
+    .height(200)
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
   }
 }
 
