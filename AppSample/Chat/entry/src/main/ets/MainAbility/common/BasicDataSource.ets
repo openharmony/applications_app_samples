@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 import fileio from "@ohos.fileio"
-import { MessageBase, EMContact, ChatModel, TextMessage, ImageMessage } from '../pages/MsgBase'
-import dataRdb from '@ohos.data.rdb'
-import ability_featureAbility from '@ohos.ability.featureAbility'
+import { MessageBase, EMContact, ChatModel, TextMessage, ImageMessage } from '../pages/MsgBase';
+import dataRdb from '@ohos.data.rdb';
+import ability_featureAbility from '@ohos.ability.featureAbility';
 
 @Entry
 @Component
@@ -46,8 +46,9 @@ export abstract class BasicDataSource implements IDataSource {
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listeners = Set()
-    this.listeners.add(listener)
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
