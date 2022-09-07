@@ -27,12 +27,39 @@ import { swiperData, phoneTypeData, showImgData, recommendData, goodsInfoData, l
 
 let portraitDetail = null
 
+class DataSourceDetail implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 23
+  listeners: DataChangeListener[] = []
+}
+
 @Entry
 @Component
 struct Detail {
   @State width: number = router.getParams()['num']
   @State ratio: number = router.getParams()['ratio']
   @State active: boolean = false
+  dataSourceDetail: DataSourceDetail = new DataSourceDetail()
   @State swiper: Array<SwiperModel> = swiperData
   @State phoneType: Array<PhoneTypeModel> = phoneTypeData
   @State showImg: Array<ShowImgModel> = showImgData
@@ -847,10 +874,24 @@ struct Detail {
           }
           .margin({ top: 10 })
         }
+
+        ListItem() {
+          Column() {
+            List() {
+              LazyForEach(this.dataSourceDetail, item => {
+                ListItem() {
+                  Image(this.goodsList[item].img)
+                    .width('100%')
+                    .objectFit(ImageFit.Cover)
+                }
+              }, item => item.toString())
+            }
+            .width('100%')
+          }
+        }
       }
       .padding({ bottom: 10, left: 10, right: 10 })
       .width(`${this.width}%`)
-      .height('100%')
       .backgroundColor(Color.White)
     }
     .width('100%')
