@@ -23,9 +23,9 @@ export default struct TabBarItem {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
   @Prop currentIndex: number
   private index: number
-  private icon: string | Resource
-  private iconSelected: string | Resource
-  private title: string | Resource
+  private icon: Resource
+  private iconSelected: Resource
+  private title: Resource
 
   private getIcon() {
     return this.currentIndex === this.index ? this.iconSelected : this.icon

@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import Home from '../common/home'
+import Home from '../common/Home'
 import TabBarItem from '../common/TabBarItem'
-import BreakpointSystem from '../model/MediaData'
+import BreakpointSystem from '../common/BreakpointSystem'
 
 @Entry
 @Component
@@ -67,7 +67,7 @@ struct Index {
 
       TabContent() {
       }
-      .tabBar(this.tabItem(4, $r('app.string.tabBar5'), $r('app.media.ic_mine_normal'), $r('app.media.ic_mine_actived')))
+      .tabBar(this.tabItem(4, $r('app.string.tabBar4'), $r('app.media.ic_mine_normal'), $r('app.media.ic_mine_actived')))
     }
     .barWidth(this.currentBreakpoint === 'lg' ? 96 : '100%')
     .barHeight(this.currentBreakpoint === 'lg' ? '60%' : 56)
