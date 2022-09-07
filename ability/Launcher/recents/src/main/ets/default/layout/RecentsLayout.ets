@@ -111,6 +111,7 @@ export struct RecentsLayout {
         }
         .listDirection(Axis.Horizontal)
         .height('60%')
+        .width('100%')
 
         Image($r("app.media.ic_delete"))
           .width(45)

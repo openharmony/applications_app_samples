@@ -69,7 +69,6 @@ struct NavigationSample {
         }
         .margin({ top: 20 })
         .listDirection(Axis.Vertical)
-        .height(300)
         .margin({ top: 10, left: 18 })
         .width('100%')
         .height('100%')

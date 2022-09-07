@@ -34,36 +34,32 @@ struct ResponsiveLayoutIndex {
       .width('100%')
       .height(100)
 
-      Scroll(this.scroller) {
-        Column() {
-          List({ space: 5, initialIndex: 1 }) {
-            ForEach(responsiveLayout, (item) => {
-              ListItem() {
-                Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
-                  Text(item.title)
-                    .fontSize(20)
-                    .padding({ left: 20 })
-                }
-              }
-              .backgroundColor('#66CCFF')
-              .width('100%')
-              .height(80)
-              .borderRadius(10)
-              .onClick(() => {
-                router.push({
-                  url: item.uri
-                })
-              })
-            }, item => item.uri)
+
+      List({ space: 5, initialIndex: 1 }) {
+        ForEach(responsiveLayout, (item) => {
+          ListItem() {
+            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
+              Text(item.title)
+                .fontSize(20)
+                .padding({ left: 20 })
+            }
           }
-          .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
-          .width('98%')
-        }
-        .width('100%')
+          .backgroundColor('#66CCFF')
+          .width('100%')
+          .height(80)
+          .borderRadius(10)
+          .onClick(() => {
+            router.push({
+              url: item.uri
+            })
+          })
+        }, item => item.uri)
       }
+      .listDirection(Axis.Vertical)
+      .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
+      .width('98%')
       .padding(10)
-      .scrollBar(BarState.Off)
+      .layoutWeight(1)
     }
     .width('100%')
     .height('100%')
