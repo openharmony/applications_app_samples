@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import camera from '@ohos.multimedia.camera'
 import fileio from '@ohos.fileio'
 import image from '@ohos.multimedia.image'
@@ -19,7 +20,6 @@ import media from '@ohos.multimedia.media'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../model/Logger'
 import MediaUtils from '../model/MediaInit'
-
 
 const CameraSize = {
   WIDTH: 1920,
