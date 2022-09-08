@@ -43,12 +43,12 @@ export default function appTest() {
     /**
      * 进入页面
      */
-    it(BUNDLE + 'CreateFunction_00', 0, async function () {
+    it(BUNDLE + 'CreateFunction_001', 0, async function () {
       // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_00 begin')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_00 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })
   })
 }
