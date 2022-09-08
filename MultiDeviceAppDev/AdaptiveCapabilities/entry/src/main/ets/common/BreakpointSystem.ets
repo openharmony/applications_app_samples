@@ -73,9 +73,9 @@ export class BreakpointSystem {
     this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
       let condition
       if (index === this.breakpoints.length - 1) {
-        condition = "(" + breakpoint.size + "vp<=width" + ")"
+        condition = '(' + breakpoint.size + 'vp<=width' + ')'
       } else {
-        condition = "(" + breakpoint.size + "vp<=width<" + this.breakpoints[index + 1].size + "vp)"
+        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
       }
       console.log(condition)
       breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)

@@ -77,6 +77,42 @@
       "value": "栅格布局"
     },
     {
+      "name": "grid_layout1",
+      "value": "栅格布局1"
+    },
+    {
+      "name": "grid_layout2",
+      "value": "栅格布局2"
+    },
+    {
+      "name": "grid_layout3",
+      "value": "栅格布局3"
+    },
+    {
+      "name": "grid_layout4",
+      "value": "栅格布局4"
+    },
+    {
+      "name": "grid_layout5",
+      "value": "栅格布局5"
+    },
+    {
+      "name": "grid_layout6",
+      "value": "栅格布局6"
+    },
+    {
+      "name": "grid_layout7",
+      "value": "栅格布局7"
+    },
+    {
+      "name": "grid_layout8",
+      "value": "栅格布局8"
+    },
+    {
+      "name": "grid_layout9",
+      "value": "栅格布局9"
+    },
+    {
       "name": "typical_scenario",
       "value": "典型场景"
     },
@@ -147,6 +183,10 @@
     {
       "name": "landscape",
       "value": "横屏"
+    },
+    {
+      "name": "recommended",
+      "value": "推荐"
     }
   ]
 }

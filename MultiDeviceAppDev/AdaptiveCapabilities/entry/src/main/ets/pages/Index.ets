@@ -12,15 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router'
 import Logger from '../model/Logger'
-
-const directory = [
-  { title: $r('app.string.resource_qualifier'), uri: "pages/resourceQualifier/ResourceQualifier" },
-  { title: $r('app.string.atomic_capability'), uri: "pages/atomicLayoutCapability/AtomicLayoutCapabilityIndex" },
-  { title: $r('app.string.responsive_layout'), uri: "pages/responsiveLayout/ResponsiveLayoutIndex" },
-  { title: $r('app.string.typical_scenario'), uri: "pages/typicalScene/TypicalSceneIndex" },
-]
+import { directory } from '../model/Data'
 
 @Entry
 @Component
@@ -32,22 +27,17 @@ struct Index {
     Column() {
       Scroll(this.scroller) {
         Column() {
-          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Text($r('app.string.home_title'))
-              .fontSize(24)
-              .fontWeight(FontWeight.Bold)
-          }
-          .width('100%')
-          .height(100)
+          Text($r('app.string.home_title'))
+            .fontSize(24)
+            .fontWeight(FontWeight.Bold)
+            .height(100)
 
           List({ space: 5, initialIndex: 1 }) {
             ForEach(directory, (item) => {
               ListItem() {
-                Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
-                  Text(item.title)
-                    .fontSize(20)
-                    .padding({ left: 20 })
-                }
+                Text(item.title)
+                  .fontSize(20)
+                  .padding({ left: 20 })
               }
               .backgroundColor('#66CCFF')
               .width('100%')
@@ -59,7 +49,7 @@ struct Index {
                   url: item.uri
                 })
               })
-            }, item => item.uri)
+            })
           }
           .listDirection(Axis.Vertical)
           .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })

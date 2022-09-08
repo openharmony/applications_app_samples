@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaquery from '@ohos.mediaquery'
 
 @Entry
@@ -34,15 +35,15 @@ struct MediaQuerySample {
   }
 
   aboutToAppear() {
-    this.listener.on('change', this.onOrientationChange);
+    this.listener.on('change', this.onOrientationChange)
   }
 
   aboutToDisappear() {
-    this.listener.off('change', this.onOrientationChange);
+    this.listener.off('change', this.onOrientationChange)
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Row() {
       if (this.flag) {
         Image($r('app.media.my_image'))
           .width(100)
@@ -54,5 +55,7 @@ struct MediaQuerySample {
     }
     .width('100%')
     .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(VerticalAlign.Center)
   }
 }

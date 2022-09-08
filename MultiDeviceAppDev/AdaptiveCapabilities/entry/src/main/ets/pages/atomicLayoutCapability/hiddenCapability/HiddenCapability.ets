@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct HiddenCapability {
@@ -29,37 +30,37 @@ struct HiddenCapability {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Image($r("app.media.favorite"))
+    Row() {
+      Row() {
+        Image($r('app.media.favorite'))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
           .margin({ left: 12, right: 12 })
           .displayPriority(1)
 
-        Image($r("app.media.down"))
+        Image($r('app.media.down'))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
           .margin({ left: 12, right: 12 })
           .displayPriority(2)
 
-        Image($r("app.media.pause"))
+        Image($r('app.media.pause'))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
           .margin({ left: 12, right: 12 })
           .displayPriority(3)
 
-        Image($r("app.media.next"))
+        Image($r('app.media.next'))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
           .margin({ left: 12, right: 12 })
           .displayPriority(2)
 
-        Image($r("app.media.list"))
+        Image($r('app.media.list'))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
@@ -70,11 +71,15 @@ struct HiddenCapability {
       .height(96)
       .borderRadius(16)
       .backgroundColor('#FFFFFF')
+      .justifyContent(FlexAlign.Center)
 
       this.slider()
     }
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
+
   }
 }

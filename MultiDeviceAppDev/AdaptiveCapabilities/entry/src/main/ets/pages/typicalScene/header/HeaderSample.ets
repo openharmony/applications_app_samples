@@ -22,7 +22,7 @@ export default struct Header {
     GridRow() {
       GridCol({ span: { sm: 12, md: 6, lg: 7 } }) {
         Row() {
-          Text('推荐').fontSize(24)
+          Text($r('app.string.recommended')).fontSize(24)
           Blank()
           Image($r('app.media.ic_public_more'))
             .width(32)
@@ -30,15 +30,18 @@ export default struct Header {
             .objectFit(ImageFit.Contain)
             .visibility(this.needWrap ? Visibility.Visible : Visibility.None)
         }
-        .width('100%').height(40)
+        .width('100%')
+        .height(40)
         .alignItems(VerticalAlign.Center)
       }
 
       GridCol({ span: { sm: 12, md: 6, lg: 5 } }) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+        Row() {
           Search({ placeholder: '猜您喜欢: 万水千山' })
             .placeholderFont({ size: 16 })
             .margin({ top: 4, bottom: 4 })
+            .flexGrow(1)
+            .flexShrink(1)
           Image($r('app.media.audio_fm'))
             .width(32)
             .height(32)
@@ -52,7 +55,7 @@ export default struct Header {
             .flexShrink(0)
             .margin({ left: 12 })
             .visibility(this.needWrap ? Visibility.None : Visibility.Visible)
-        }
+        }.alignItems(VerticalAlign.Center)
       }
     }.onBreakpointChange((breakpoint: string) => {
       if (breakpoint === 'sm') {

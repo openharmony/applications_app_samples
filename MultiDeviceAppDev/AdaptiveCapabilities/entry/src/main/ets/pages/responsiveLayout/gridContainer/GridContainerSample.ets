@@ -12,48 +12,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct GridContainerSample {
   build() {
-    GridContainer() {
-      Row() {
-        Row() {
-          Text($r('app.string.left'))
-            .fontSize(25)
+    Row() {
+      GridRow({ columns: 24 }) {
+        GridCol({ span: { xs: 4, sm: 4, md: 2, lg: 2 }, offset: 0 }) {
+          Row() {
+            Text($r('app.string.left'))
+              .fontSize(25)
+          }
+          .height('100%')
+          .backgroundColor(0x66bbb2cb)
         }
-        .useSizeType({
-          xs: { span: 1, offset: 0 }, sm: { span: 1, offset: 0 },
-          md: { span: 1, offset: 0 }, lg: { span: 2, offset: 0 }
-        })
-        .height('100%')
-        .backgroundColor(0x66bbb2cb)
 
-        Row() {
-          Text($r('app.string.center'))
-            .fontSize(25)
+        GridCol({ span: { xs: 12, sm: 12, md: 15, lg: 15 }, offset: { xs: 2, sm: 2, md: 1, lg: 1 } }) {
+          Row() {
+            Text($r('app.string.center'))
+              .fontSize(25)
+          }
+          .height('100%')
+          .backgroundColor(0x66b6c5d1)
         }
-        .useSizeType({
-          xs: { span: 1, offset: 0 }, sm: { span: 2, offset: 1 },
-          md: { span: 5, offset: 1 }, lg: { span: 7, offset: 2 }
-        })
-        .height("100%")
-        .backgroundColor(0x66b6c5d1)
 
-        Row() {
-          Text($r('app.string.right'))
-            .fontSize(25)
+        GridCol({ span: { xs: 4, sm: 4, md: 5, lg: 5 }, offset: { xs: 2, sm: 2, md: 1, lg: 1 } }) {
+          Row() {
+            Text($r('app.string.right'))
+              .fontSize(25)
+          }
+          .height('100%')
+          .backgroundColor(0x66bbb2cb)
         }
-        .useSizeType({
-          xs: { span: 1, offset: 0 }, sm: { span: 1, offset: 3 },
-          md: { span: 2, offset: 6 }, lg: { span: 3, offset: 9 }
-        })
-        .height("100%")
-        .backgroundColor(0x66bbb2cb)
       }
       .height(200)
+      .backgroundColor(0xf1f3f5)
+      .margin({ top: 10 })
+      .padding({ left: 14, right: 14 })
     }
-    .backgroundColor(0xf1f3f5)
-    .margin({ top: 10 })
+    .padding({ left: 10, right: 10 })
   }
 }

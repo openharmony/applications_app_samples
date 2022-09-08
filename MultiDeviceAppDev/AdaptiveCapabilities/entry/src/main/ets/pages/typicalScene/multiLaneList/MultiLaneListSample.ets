@@ -14,6 +14,7 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { data } from '../../../model/Data'
 
 type ListItemInfo = {
   name: string
@@ -23,20 +24,6 @@ type ListItemInfo = {
 @Entry
 @Component
 struct MultiLaneList {
-  private data: ListItemInfo[] = [
-    { name: '歌单集合1', image: $r('app.media.1') },
-    { name: '歌单集合2', image: $r('app.media.2') },
-    { name: '歌单集合3', image: $r('app.media.3') },
-    { name: '歌单集合4', image: $r('app.media.4') },
-    { name: '歌单集合5', image: $r('app.media.5') },
-    { name: '歌单集合6', image: $r('app.media.6') },
-    { name: '歌单集合7', image: $r('app.media.7') },
-    { name: '歌单集合8', image: $r('app.media.8') },
-    { name: '歌单集合9', image: $r('app.media.9') },
-    { name: '歌单集合10', image: $r('app.media.10') },
-    { name: '歌单集合11', image: $r('app.media.11') },
-    { name: '歌单集合12', image: $r('app.media.12') }
-  ]
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
@@ -50,7 +37,7 @@ struct MultiLaneList {
 
   build() {
     List() {
-      ForEach(this.data, (item: ListItemInfo) => {
+      ForEach(data, (item: ListItemInfo) => {
         ListItem() {
           Column() {
             Image(item.image)

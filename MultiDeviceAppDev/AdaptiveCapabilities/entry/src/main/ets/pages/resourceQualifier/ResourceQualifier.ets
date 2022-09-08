@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct ResourceQualifier {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Column() {
       Text($r('app.string.my_string'))
         .fontSize($r('app.float.my_float'))
         .fontColor($r('app.color.my_color'))
@@ -24,7 +25,9 @@ struct ResourceQualifier {
         .width(100)
         .height(100)
     }
-    .width('100%')
     .height('100%')
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

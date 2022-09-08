@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct ProportionCapability {
@@ -29,18 +30,19 @@ struct ProportionCapability {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Row() {
       Column() {
         Row() {
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image($r("app.media.down"))
+          Column() {
+            Image($r('app.media.down'))
               .width(48)
               .height(48)
           }
           .height(96)
           .width('33%')
+          .justifyContent(FlexAlign.Center)
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Image($r("app.media.pause"))
               .width(48)
               .height(48)
@@ -48,14 +50,16 @@ struct ProportionCapability {
           .height(96)
           .width('34%')
           .backgroundColor('#66F1CCB8')
+          .justifyContent(FlexAlign.Center)
 
-          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
             Image($r("app.media.next"))
               .width(48)
               .height(48)
           }
           .height(96)
           .width('33%')
+          .justifyContent(FlexAlign.Center)
         }
         .width(this.rate * 100 + '%')
         .height(96)
@@ -68,5 +72,7 @@ struct ProportionCapability {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

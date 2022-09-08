@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct FlexibleCapability1 {
@@ -28,32 +29,35 @@ struct FlexibleCapability1 {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Column() {
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Row()
-            .width(150)
-            .height(400)
-            .backgroundColor('#FFFFFF')
-            .flexGrow(0)
-            .flexShrink(1)
-          Image($r("app.media.illustrator"))
-            .width(400)
-            .height(400)
-            .objectFit(ImageFit.Contain)
-            .backgroundColor("#66F1CCB8")
-            .flexGrow(1)
-            .flexShrink(0)
-          Row()
-            .width(150)
-            .height(400)
-            .backgroundColor('#FFFFFF')
-            .flexGrow(0)
-            .flexShrink(1)
-        }.width(this.sliderWidth)
-      }
+    Column() {
+      Row() {
+        Row()
+          .width(150)
+          .height(400)
+          .backgroundColor('#FFFFFF')
+          .flexGrow(0)
+          .flexShrink(1)
+        Image($r('app.media.illustrator'))
+          .width(400)
+          .height(400)
+          .objectFit(ImageFit.Contain)
+          .backgroundColor('#66F1CCB8')
+          .flexGrow(1)
+          .flexShrink(0)
+        Row()
+          .width(150)
+          .height(400)
+          .backgroundColor('#FFFFFF')
+          .flexGrow(0)
+          .flexShrink(1)
+      }.width(this.sliderWidth)
 
       this.slider()
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

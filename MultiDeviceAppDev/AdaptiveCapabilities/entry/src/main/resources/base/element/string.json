@@ -80,6 +80,43 @@
       "name": "grid_layout",
       "value": "Grid layout"
     },
+
+    {
+      "name": "grid_layout1",
+      "value": "Grid layout 1"
+    },
+    {
+      "name": "grid_layout2",
+      "value": "Grid layout 2"
+    },
+    {
+      "name": "grid_layout3",
+      "value": "Grid layout 3"
+    },
+    {
+      "name": "grid_layout4",
+      "value": "Grid layout 4"
+    },
+    {
+      "name": "grid_layout5",
+      "value": "Grid layout 5"
+    },
+    {
+      "name": "grid_layout6",
+      "value": "Grid layout 6"
+    },
+    {
+      "name": "grid_layout7",
+      "value": "Grid layout 7"
+    },
+    {
+      "name": "grid_layout8",
+      "value": "Grid layout 8"
+    },
+    {
+      "name": "grid_layout9",
+      "value": "Grid layout 9"
+    },
     {
       "name": "typical_scenario",
       "value": "Typical scenario"
@@ -155,6 +192,10 @@
     {
       "name": "landscape",
       "value": "Landscape"
+    },
+    {
+      "name": "recommended",
+      "value": "recommended"
     }
   ]
 }

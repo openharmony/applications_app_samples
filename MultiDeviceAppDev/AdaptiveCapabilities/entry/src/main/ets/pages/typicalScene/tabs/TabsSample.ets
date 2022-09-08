@@ -14,6 +14,7 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { tabs } from '../../../model/Data'
 
 type TabBar = {
   name: string
@@ -25,19 +26,6 @@ type TabBar = {
 @Component
 struct Home {
   @State currentIndex: number = 0
-  @State tabs: Array<TabBar> = [{
-                                  name: '首页',
-                                  icon: $r('app.media.ic_music_home'),
-                                  selectIcon: $r('app.media.ic_music_home_selected')
-                                }, {
-                                  name: '排行榜',
-                                  icon: $r('app.media.ic_music_ranking'),
-                                  selectIcon: $r('app.media.ic_music_ranking_selected')
-                                }, {
-                                  name: '我的',
-                                  icon: $r('app.media.ic_music_me_nor'),
-                                  selectIcon: $r('app.media.ic_music_me_selected')
-                                }]
 
   @Builder TabBarBuilder(index: number, tabBar: TabBar) {
     Flex({
@@ -82,7 +70,7 @@ struct Home {
         lg: BarPosition.Start
       }).getValue(this.currentBreakpoint)
     }) {
-      ForEach(this.tabs, (item, index) => {
+      ForEach(tabs, (item, index) => {
         TabContent() {
           Stack() {
             Text(item.name).fontSize(30)

@@ -12,29 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct DiversionSample {
+  @State currentBreakPoint: string = 'sm'
+
   build() {
     Row() {
-      GridContainer() {
-        Flex({
-          direction: FlexDirection.Row,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.Center,
-          wrap: FlexWrap.Wrap
-        }) {
-          Row() {
-            Image($r('app.media.illustrator'))
+      GridRow({ columns: 24 }) {
+        GridCol({ span: { xs: 2, sm: 24, md: 12, lg: 12 } }) {
+          Column() {
+            Row() {
+              Image($r('app.media.illustrator'))
+            }
+            .width('100%')
+            .aspectRatio(1)
           }
-          .aspectRatio(1)
-          .useSizeType({ xs: 2, sm: 4, md: 4, lg: 6 })
+          .width('100%')
+          .height('100%')
+          .justifyContent((this.currentBreakPoint === 'xs' || this.currentBreakPoint === 'sm') ? FlexAlign.End : FlexAlign.Center)
+        }
 
-          Flex({
-            direction: FlexDirection.Column,
-            alignItems: ItemAlign.Center,
-            justifyContent: FlexAlign.Center
-          }) {
+        GridCol({ span: { xs: 2, sm: 24, md: 12, lg: 12 } }) {
+          Column() {
             Text($r('app.string.user_improvement'))
               .textAlign(TextAlign.Center)
               .fontSize(20)
@@ -44,10 +45,14 @@ struct DiversionSample {
               .fontSize(14)
               .fontWeight(FontWeight.Medium)
           }
-          .height(100)
-          .useSizeType({ xs: 2, sm: 4, md: 4, lg: 6 })
+          .padding({ left: 24, right: 24 })
+          .height('100%')
+          .justifyContent((this.currentBreakPoint === 'xs' || this.currentBreakPoint === 'sm') ? FlexAlign.Start : FlexAlign.Center)
         }
       }
+      .onBreakpointChange((breakPoint: string) => {
+        this.currentBreakPoint = breakPoint
+      })
     }
     .height('100%')
     .alignItems((VerticalAlign.Center))

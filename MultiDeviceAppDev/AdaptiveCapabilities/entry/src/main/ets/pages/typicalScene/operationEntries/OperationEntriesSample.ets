@@ -13,28 +13,15 @@
  * limitations under the License.
  */
 
-type OperationItem = {
-  name: string
-  icon: Resource
-}
+import { listData } from '../../../model/Data'
 
 @Entry
 @Component
 export default struct OperationEntries {
-  @State listData: Array<OperationItem> = [
-    { name: '私人FM', icon: $r('app.media.self_fm') },
-    { name: '歌手', icon: $r('app.media.singer') },
-    { name: '歌单', icon: $r('app.media.song_list') },
-    { name: '排行榜', icon: $r('app.media.rank') },
-    { name: '热门', icon: $r('app.media.hot') },
-    { name: '运动音乐', icon: $r('app.media.sport') },
-    { name: '音乐FM', icon: $r('app.media.audio_fm') },
-    { name: '福利', icon: $r('app.media.bonus') }]
-
   build() {
     Scroll() {
       Row() {
-        ForEach(this.listData, item => {
+        ForEach(listData, (item) => {
           Column() {
             Image(item.icon)
               .width(48)

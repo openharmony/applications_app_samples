@@ -14,6 +14,7 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { data } from '../../../model/Data'
 
 type GridItemInfo = {
   name: string
@@ -23,20 +24,6 @@ type GridItemInfo = {
 @Entry
 @Component
 export default struct ResponsiveGrid {
-  private data: GridItemInfo[] = [
-    { name: '歌单集合1', image: $r('app.media.1') },
-    { name: '歌单集合2', image: $r('app.media.2') },
-    { name: '歌单集合3', image: $r('app.media.3') },
-    { name: '歌单集合4', image: $r('app.media.4') },
-    { name: '歌单集合5', image: $r('app.media.5') },
-    { name: '歌单集合6', image: $r('app.media.6') },
-    { name: '歌单集合7', image: $r('app.media.7') },
-    { name: '歌单集合8', image: $r('app.media.8') },
-    { name: '歌单集合9', image: $r('app.media.9') },
-    { name: '歌单集合10', image: $r('app.media.10') },
-    { name: '歌单集合11', image: $r('app.media.11') },
-    { name: '歌单集合12', image: $r('app.media.12') }
-  ]
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
@@ -50,7 +37,7 @@ export default struct ResponsiveGrid {
 
   build() {
     Grid() {
-      ForEach(this.data, (item: GridItemInfo) => {
+      ForEach(data, (item: GridItemInfo) => {
         GridItem() {
           Column() {
             Image(item.image)

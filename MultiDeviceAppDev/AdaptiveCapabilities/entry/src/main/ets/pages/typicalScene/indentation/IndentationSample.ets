@@ -12,23 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct IndentationSample {
   build() {
     Row() {
-      GridContainer() {
-        Column() {
-          ForEach([0, 1, 2, 4], () => {
+      GridRow({ columns: 12 }) {
+        ForEach([0, 1, 2, 4], (item, index) => {
+          GridCol({
+            span: { xs: 10, sm: 10, md: 8, lg: 8 },
+            offset: {
+              xs: index === 0 ? 1 : 2,
+              sm: index === 0 ? 1 : 2,
+              md: index === 0 ? 2 : 4,
+              lg: index === 0 ? 2 : 4,
+            }
+          }) {
             Column() {
               ItemContent()
-            }.useSizeType({ xs: 2, sm: 4, md: 6, lg: 8 })
-          })
-        }
+            }
+          }
+        })
       }
     }
     .height('100%')
     .alignItems((VerticalAlign.Center))
+    .justifyContent(FlexAlign.Center)
     .backgroundColor('#F1F3f5')
   }
 }

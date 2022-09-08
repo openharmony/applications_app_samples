@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct ExtensionCapability1 {
@@ -31,13 +32,13 @@ struct ExtensionCapability1 {
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Row() {
       // implement extension capability through Scroll and Row(or Column) Components.
       Scroll(this.scroller) {
         Row({ space: 10 }) {
           ForEach(this.appList, () => {
             Column() {
-              Image($r("app.media.icon"))
+              Image($r('app.media.icon'))
                 .width(48)
                 .height(48)
                 .margin({ top: 8 })
@@ -64,6 +65,7 @@ struct ExtensionCapability1 {
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

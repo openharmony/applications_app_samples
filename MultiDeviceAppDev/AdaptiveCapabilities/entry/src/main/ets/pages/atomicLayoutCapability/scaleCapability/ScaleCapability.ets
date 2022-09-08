@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct ScaleCapability {
@@ -38,22 +39,26 @@ struct ScaleCapability {
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Row() {
+      Row() {
         Column() {
-          Image($r("app.media.illustrator")).width('100%').height('100%')
+          Image($r('app.media.illustrator')).width('100%').height('100%')
         }
         .aspectRatio(1)
-        .border({ width: 2, color: "#66F1CCB8" })
+        .border({ width: 2, color: '#66F1CCB8' })
       }
-      .backgroundColor("#FFFFFF")
+      .backgroundColor('#FFFFFF')
       .height(this.sliderHeight)
       .width(this.sliderWidth)
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
       this.slider()
     }
-    .width('100%')
     .height('100%')
-    .backgroundColor("#F1F3F5")
+    .width('100%')
+    .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

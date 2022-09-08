@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct FlexibleCapability2 {
@@ -28,31 +29,31 @@ struct FlexibleCapability2 {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Column() {
-        Row() {
-          Text($r('app.string.healthy_use_phone'))
-            .fontSize(16)
-            .width(135)
-            .height(22)
-            .fontWeight(FontWeight.Medium)
-            .lineHeight(22)
-          Blank()
-          Toggle({ type: ToggleType.Switch })
-            .width(36)
-            .height(20)
-        }
-        .height(55)
-        .borderRadius(12)
-        .padding({ left: 13, right: 13 })
-        .backgroundColor('#FFFFFF')
-        .width(this.rate * 100 + '%')
+    Row() {
+      Row() {
+        Text($r('app.string.healthy_use_phone'))
+          .fontSize(16)
+          .width(135)
+          .height(22)
+          .fontWeight(FontWeight.Medium)
+          .lineHeight(22)
+        Blank()
+        Toggle({ type: ToggleType.Switch })
+          .width(36)
+          .height(20)
       }
+      .height(55)
+      .borderRadius(12)
+      .padding({ left: 13, right: 13 })
+      .backgroundColor('#FFFFFF')
+      .width(this.rate * 100 + '%')
 
       this.slider()
     }
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

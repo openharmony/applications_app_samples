@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct EquipartitionCapability {
@@ -30,12 +31,12 @@ struct EquipartitionCapability {
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Row() {
       Column() {
         Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, () => {
             Column() {
-              Image($r("app.media.icon"))
+              Image($r('app.media.icon'))
                 .width(48)
                 .height(48)
                 .margin({ top: 8 })
@@ -54,9 +55,9 @@ struct EquipartitionCapability {
         }
 
         Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, () => {
             Column() {
-              Image($r("app.media.icon"))
+              Image($r('app.media.icon'))
                 .width(48)
                 .height(48)
                 .margin(({ top: 8 }))
@@ -83,5 +84,7 @@ struct EquipartitionCapability {
     .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

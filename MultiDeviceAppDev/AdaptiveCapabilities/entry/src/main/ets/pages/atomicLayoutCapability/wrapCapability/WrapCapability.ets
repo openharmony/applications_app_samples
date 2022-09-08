@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct WrapCapabilitySample {
@@ -37,31 +38,31 @@ struct WrapCapabilitySample {
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.Center, direction: FlexDirection.Column }) {
-      Column() {
-        Flex({
-          direction: FlexDirection.Row,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.Center,
-          wrap: FlexWrap.Wrap
-        }) {
-          ForEach(this.imageList, (item) => {
-            Image(item)
-              .width(px2vp(183))
-              .height(138)
-              .padding(10)
-          })
-        }
-        .backgroundColor('#FFFFFF')
-        .padding(20)
-        .width(this.rate * 100 + '%')
-        .borderRadius(16)
+    Row() {
+      Flex({
+        direction: FlexDirection.Row,
+        alignItems: ItemAlign.Center,
+        justifyContent: FlexAlign.Center,
+        wrap: FlexWrap.Wrap
+      }) {
+        ForEach(this.imageList, (item) => {
+          Image(item)
+            .width(px2vp(183))
+            .height(138)
+            .padding(10)
+        })
       }
-      .width('100%')
+      .backgroundColor('#FFFFFF')
+      .padding(20)
+      .width(this.rate * 100 + '%')
+      .borderRadius(16)
 
       this.slider()
-    }.width('100%')
+    }
+    .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

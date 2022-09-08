@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaquery from '@ohos.mediaquery'
 
 @Entry
@@ -37,45 +38,36 @@ struct RepeatSample {
 
   build() {
     Row() {
-      GridContainer() {
+      GridRow({ columns: 24 }) {
         ForEach([0, 1, 2, 3], () => {
-          Row() {
+          GridCol({ span: { xs: 24, sm: 24, md: 12, lg: 12 } }) {
             Column() {
               RepeatItemContent()
-            }
-            .useSizeType({
-              xs: { span: 2, offset: 0 }, sm: { span: 4, offset: 0 },
-              md: { span: 4, offset: 0 }, lg: { span: 6, offset: 0 }
-            })
-
-            if (this.isWidescreen) {
-              Column() {
+              if (this.isWidescreen) {
                 RepeatItemContent()
               }
-              .useSizeType({
-                md: { span: 4, offset: 4 }, lg: { span: 6, offset: 6 }
-              })
-            }
+            }.padding({ left: 10, right: 10 })
           }
         })
       }
     }
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .padding({ left: 30, right: 30 })
   }
 }
 
 @Component
 struct RepeatItemContent {
   build() {
-    Flex() {
+    Row() {
       Row() {
       }.width(43)
       .height(43)
       .borderRadius(12)
       .backgroundColor('#E4E6E8')
 
-      Flex({ alignItems: ItemAlign.Start, direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceAround }) {
+      Column() {
         Row() {
         }
         .height(10)
@@ -89,7 +81,10 @@ struct RepeatItemContent {
         .backgroundColor('#E4E6E8')
       }
       .flexGrow(1)
+      .height('100%')
       .margin({ left: 13 })
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.SpaceAround)
     }
     .padding({ top: 13, bottom: 13, left: 13, right: 37 })
     .height(69)
