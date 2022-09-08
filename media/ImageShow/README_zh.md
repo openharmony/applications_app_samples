@@ -20,7 +20,7 @@
 
 ### 效果预览
 
-![](screenshots/devices/index.png) ![](screenshots/devices/not_choice.png) ![](screenshots/devices/choice.png) ![](screenshots/devices/show.png)
+![](screenshots/devices/zh/index.png) ![](screenshots/devices/zh/not_choice.png) ![](screenshots/devices/zh/choice.png) ![](screenshots/devices/zh/show.png)
 
 ### 相关权限
 

@@ -18,11 +18,11 @@ Stage模型的设计基于如下三个出发点：
 
   为了支持多种设备形态和更易于实现多种不同的窗口形态，需要组件管理服务和窗口管理服务在架构层面上是解耦的，从而方便裁剪，更有利于定制不同的窗口形态。Stage模型通过重新定义了Ability生命周期定义和设计组件管理服务和窗口管理服务的单向依赖解决这一问题。
 
-  本示例主要展示Stage模型与FA模型的区别，分别从AbilityContext、ServiceExtensionContext、 FormExtensionContext、DataShareExtensionAbility、FA卡片、Bundle、Window、abilityAccessCtrl等模块进行介绍。
+  本示例主要展示Stage模型与FA模型的区别，分别从AbilityContext、ServiceExtensionContext、 FormExtensionContext、DataShareExtensionAbility、FormExtension、Bundle、Window、abilityAccessCtrl等模块进行介绍。
 
-  **ServiceExtensionContext**：生命周期函数onCreate、onRequest、onConnect、onReconnect、onDisconnect、onDestroy。通过AbilityContext中的startAbility启动Service；通过connectAbility连接service；通过disconnectAbility断开service连接；通过rpc进行客户端与服务端通信。
+  **ServiceExtensionAbility**：生命周期函数onCreate、onRequest、onConnect、onReconnect、onDisconnect、onDestroy。通过AbilityContext中的startAbility启动Service；通过connectAbility连接service；通过disconnectAbility断开service连接；通过rpc进行客户端与服务端通信。
 
-  **FA卡片**：生命周期函数onCreate、onCastToNormal、onUpdate、onVisibilityChange、onEvent、onAcquireFormState、onDestroy，通过formBindingData中的createFormBindingData创建卡片。
+  **FormExtension**：生命周期函数onCreate、onCastToNormal、onUpdate、onVisibilityChange、onEvent、onAcquireFormState、onDestroy，通过formBindingData中的createFormBindingData创建卡片。
 
   **AbilityContext**：AbilityContext是Ability的上下文环境，继承自Context。AbilityContext模块提供允许访问特定于ability的资源的能力，包括对Ability的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
@@ -40,23 +40,23 @@ Stage模型的设计基于如下三个出发点：
 
 #### Stage和FA模型的区别
 
-1.在Stage模型主要有module.json5和app.json5，需要时对应的ability须配置在module.json5中的extensionAbilities中，PageAbility单独在abilites；对应FA模型中主要配置文件config.json，需要时将对应的ability配置在config.json中module/abilites。
+1.在Stage模型中主要有module.json5，需要时对应的ServiceExtAbility等须配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中；对应FA模型中主要配置文件config.json，需要时将对应的Ability配置在config.json中module/abilites。
 
 2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
 
 3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) 。
 
-4.Stage模型中DataShareExtensionAbility对应FA模型中DataAbility，具体实现差异详见方法注释。
+4.Stage模型中DataShareExtensionAbility对应FA模型中dataAbility，具体实现差异详见方法注释。
 
-5.Stage模型中ServiceExtAbility对应FA模型中ServiceAbility，具体实现差异详见方法注释。
+5.Stage模型中ServiceExtensionAbility对应FA模型中ServiceAbility，具体实现差异详见方法注释。
 
-6.stage模型DataShareExtensionAbility 对应FA模型中DataAbilityHelper 。
+6.stage模型DataShareHelper对应FA模型中DataAbilityHelper 。
 
 7.Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager ；FA模型通过导入@ohos.resourceManager， 获取应用资源信息。 
 
 #### FA对应Stage接口（FA——>Stage）
 
-**FeatureAbility——>AbilityContext接口：**
+**FeatureAbility——>AbilityContext、dataShare接口：**
 
 [FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWant——>MainAbility：want
 
