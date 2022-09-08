@@ -263,11 +263,10 @@ export struct ScanPage {
             Text($r("app.string.Scan_read_content"))
               .fontSize(25)
               .width('90%')
-            Image($r("app.media.scan_close")).width(50).height(50)
-			 .onClick(() => {
-                this.showPhoto = false
-                this.changeState = false
-              })
+            Image($r("app.media.scan_close")).width(50).height(50).onClick(() => {
+              this.showPhoto = false
+              this.changeState = false
+            })
           }.padding(20)
           .alignItems(VerticalAlign.Center)
           .justifyContent(FlexAlign.SpaceBetween)
@@ -361,10 +360,9 @@ struct PanelInit {
           Text($r("app.string.Scan_result"))
             .fontSize(25)
             .width('90%')
-          Image($r("app.media.scan_close")).width(50).height(50)
-		    .onClick(() => {
-              this.showInit = false
-            })
+          Image($r("app.media.scan_close")).width(50).height(50).onClick(() => {
+            this.showInit = false
+          })
         }.padding(20)
         .alignItems(VerticalAlign.Center)
         .justifyContent(FlexAlign.SpaceBetween)
