@@ -51,11 +51,11 @@ struct Index {
 
   build() {
     Column() {
-      Button("扫一扫").fontSize(25) .onClick(() => {
-          router.push({
-            url: "pages/second"
-          })
-        }).key("btnScan")
+      Button("扫一扫").fontSize(25).onClick(() => {
+        router.push({
+          url: "pages/second"
+        })
+      }).key("btnScan")
     }.width("100%").height("100%").alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
   }
 }
