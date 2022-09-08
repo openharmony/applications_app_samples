@@ -1,7 +1,7 @@
 {
   "app": {
     "vendor": "samples",
-    "bundleName": "ohos.samples.FormApplication",
+    "bundleName": "ohos.samples.formability",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -73,7 +73,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry"
     },
-    "package": "ohos.samples.FormApplication",
+    "package": "ohos.samples.formability",
     "srcPath": "",
     "name": ".entry",
     "js": [

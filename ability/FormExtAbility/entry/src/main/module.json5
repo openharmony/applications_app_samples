@@ -30,7 +30,7 @@
     "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "ohos.samples.FormApplication.MainAbility",
+        "name": "ohos.samples.formextability.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",

@@ -4,7 +4,7 @@
       "name": "widget",
       "description": "This is a service widget.",
       "src": "./js/widget/pages/index/index",
-      "formConfigAbility": "ability://ohos.samples.FormApplication.MainAbility",
+      "formConfigAbility": "ability://ohos.samples.formextability.MainAbility",
       "window": {
         "designWidth": 720,
         "autoDesignWidth": true
