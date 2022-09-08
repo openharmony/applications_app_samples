@@ -264,7 +264,7 @@ export struct ScanPage {
               .fontSize(25)
               .width('90%')
             Image($r("app.media.scan_close")).width(50).height(50)
-			  .onClick(() => {
+			 .onClick(() => {
                 this.showPhoto = false
                 this.changeState = false
               })
