@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import router from '@ohos.router'
 import image from '@ohos.multimedia.image'
 import prompt from '@ohos.prompt'
@@ -31,7 +32,6 @@ interface EventHub {
 
 interface AbilityContext {
   terminateSelf(): Promise<void>
-
   eventHub: EventHub
 }
 
@@ -74,6 +74,7 @@ export struct ScanPage {
       this.resultInit = `解析为:${resultInit.data}`
     }
   }
+  
   getDecodePhoto = async () => {
     let data = this.context.getImageData(0, 0, QRCODE_SIZE, QRCODE_SIZE)
     let resultPhoto = jsQR(data.data, data.width, data.height, { inversionAttempts: "dontInvert" })

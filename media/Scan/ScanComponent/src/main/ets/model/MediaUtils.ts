@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import fileio from '@ohos.fileio'
 import prompt from '@ohos.prompt'
-
 import Logger from '../model/Logger'
 
 const TAG: string = '[MediaUtils]'
