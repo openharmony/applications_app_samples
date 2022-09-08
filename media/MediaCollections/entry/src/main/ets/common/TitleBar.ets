@@ -13,19 +13,11 @@
  * limitations under the License.
  */
 
-@CustomDialog
-export struct LoadingDialog {
-  private controller: CustomDialogController
-
+@Component
+export struct TitleBar {
   build() {
-    Row() {
-      Text($r('app.string.phoneMain_loading')).width('50%').fontSize(14)
-      Image($r('app.media.icon_loading')).width(50).height(50).backgroundColor(Color.White)
-    }
-    .justifyContent(FlexAlign.SpaceAround)
-    .width('66%')
-    .height('12%')
-    .backgroundColor(Color.White)
-    .borderRadius(24)
+    Column() {
+      Image($r('app.media.icon_logo')).width(184).height(48)
+    }.width('16%')
   }
 }

@@ -16,28 +16,14 @@
 import { gridData } from '../model/GridData'
 
 @Component
-export struct GridDataItem {
-  private item: gridData
-  private index: number = -1
-  @State bgrColor: string = '#222324'
-  @Link isBom: boolean
-  @Link isTitle: string | Resource
-  @Link isXComponent: boolean
-  @Link @Watch('clickSetBgrColor') clickIndex: number
-
-  clickSetBgrColor() {
-    if (this.index !== this.clickIndex) {
-      this.bgrColor = '#222324'
-    } else {
-      this.bgrColor = 'rgba(255,255,255,0.1)'
-    }
-  }
+export struct ToolKitItem {
+  private GridData: gridData
 
   build() {
     Column() {
-      Image(this.item.icon).width(40).height(40)
-      Text(this.item.textStr)
-        .margin({ top: 5 })
+      Image(this.GridData.icon).width(40).height(40)
+      Text(this.GridData.textStr)
+        .margin({ top: 6 })
         .fontSize(16)
         .fontColor('rgba(255,255,255,0.90)')
         .fontStyle(FontStyle.Normal)
@@ -47,17 +33,10 @@ export struct GridDataItem {
     }
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .width(95)
-    .height(95)
+    .backgroundColor('rgba(255,255,255,0.10)')
     .borderRadius(12)
-    .backgroundColor(this.bgrColor)
-    .onClick(() => {
-      this.clickIndex = this.index
-      this.isBom = !this.isBom
-      this.isTitle = this.item.textStr
-      if (this.isTitle == $r('app.string.phoneMain_video')) {
-        this.isXComponent = true
-      }
-    })
+    .width(116)
+    .height(116)
+    .margin({ top: 10 })
   }
 }
