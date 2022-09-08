@@ -51,8 +51,7 @@ struct Index {
 
   build() {
     Column() {
-      Button("扫一扫").fontSize(25)
-	    .onClick(() => {
+      Button("扫一扫").fontSize(25) .onClick(() => {
           router.push({
             url: "pages/second"
           })
