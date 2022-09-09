@@ -35,7 +35,6 @@ let request = {
 export default class TestAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, `onCreate, want is: ${JSON.stringify(want)}`)
-    globalThis.lifecycleList.push(['TestAbility_onCreate'])
   }
 
   onWindowStageCreate(windowStage) {
