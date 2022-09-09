@@ -41,10 +41,16 @@ struct Index {
         .padding({ top: 10, left: 8, bottom: 4 })
         .margin({ top: 56, left: 2, bottom: 4 })
 
-
-        List() {
-          ForEach(INFODATA, (item) => {
-            ListItem() {
+        Column() {
+          ForEach(INFODATA, (item, index) => {
+            Column() {
+              if (index !== 0) {
+                Divider()
+                  .height(0.8)
+                  .width('100%')
+                  .color('#33182431')
+                  .padding({ left: 24, right: 28 })
+              }
               Row() {
                 Image(item.image)
                   .width(24)
@@ -72,29 +78,26 @@ struct Index {
               .height(56)
               .borderRadius(24)
               .padding({ left: 24, right: 24 })
+              .onClick(() => {
+                this.info = item.info
+                this.flag = item.index
+                if (!this.isLand) {
+                  router.push({
+                    url: item.uri,
+                    params: {
+                      bool: true
+                    }
+                  })
+                }
+              })
             }
-            .onClick(() => {
-              this.info = item.info
-              this.flag = item.index
-              if (!this.isLand) {
-                router.push({
-                  url: item.uri,
-                  params: {
-                    bool: true
-                  }
-                })
-              }
-            })
           }, item => JSON.stringify(item))
         }
         .width('90%')
-        .height('100%')
         .borderRadius(24)
         .margin({ top: '2%' })
         .backgroundColor(Color.White)
         .padding({ top: 4, bottom: 4 })
-        .divider({ strokeWidth: 0.8, color: '#33182431', startMargin: 24, endMargin: 28 })
-
       }
       .height('100%')
       .width(this.isLand ? '40%' : '100%')

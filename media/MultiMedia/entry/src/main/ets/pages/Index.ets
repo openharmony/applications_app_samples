@@ -45,11 +45,8 @@ struct Index {
   async aboutToAppear() {
     await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
     Logger.info(TAG, 'grantPermission,requestPermissionsFromUser')
-  }
-
-  onPageShow() {
     if (this.albums.length === 0) {
-      this.getAlbums()
+      await this.getAlbums()
       this.mediaUtils.onDateChange(this.getAlbums)
     }
   }

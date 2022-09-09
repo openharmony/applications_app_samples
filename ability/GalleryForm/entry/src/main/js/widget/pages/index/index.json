@@ -5,7 +5,7 @@
   "actions": {
     "routerEvent": {
       "action": "router",
-      "bundleName": "ohos.samples.sportshealthfa",
+      "bundleName": "ohos.samples.galleryform",
       "abilityName": "MainAbility",
       "params": {
         "message": "add detail"

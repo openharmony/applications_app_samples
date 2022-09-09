@@ -39,32 +39,32 @@ export default struct HomeContent {
         columns: { xs: 4, sm: 4, md: 8, lg: this.showSideBar ? 8 : 12 },
         gutter: { x: Style.GRID_GUTTER, y: Style.GRID_GUTTER },
         breakpoints: { reference: BreakpointsReference.WindowSize } }) {
-        GridCol({ span: { xs: 4, sm: 4, md: 8, lg: this.showSideBar ? 8 : 12 } }) {
+        GridCol({ span: { xs: 4, sm: 4, md: 8, lg: this.showSideBar ? 8 : 12 }, order: 0 }) {
           IndexHeader({ headerDate: this.cityListData.header, index: this.index })
             .opacity(this.headerOpacity)
         }
 
-        GridCol({ span: { xs: 4, sm: 4, md: 8, lg: 8 } }) {
+        GridCol({ span: { xs: 4, sm: 4, md: 8, lg: 8 }, order: 1 }) {
           HoursWeather({ hoursData: this.cityListData.hoursData })
         }
 
-        GridCol({ span: 4 }) {
+        GridCol({ span: 4, order: { xs: 2, sm: 2, md: 2, lg: this.showSideBar ? 2 : 3 } },) {
           MultidayWeather({ weekData: this.cityListData.weekData })
         }
 
-        GridCol({ span: 4 }) {
+        GridCol({ span: 4, order: { xs: 3, sm: 3, md: 3, lg: this.showSideBar ? 3 : 2 } }) {
           AirQuality({ airData: this.cityListData.airData, airIndexData: this.cityListData.airIndex })
         }
 
-        GridCol({ span: 4 }) {
+        GridCol({ span: 4, order: 4 }) {
           LifeIndex({ lifeData: this.cityListData.suitDate })
         }
 
-        GridCol({ span: 4 }) {
+        GridCol({ span: 4, order: 5 }) {
           SunCanvas()
         }
 
-        GridCol({ span: { xs: 4, sm: 4, md: 8, lg: this.showSideBar ? 8 : 12 } }) {
+        GridCol({ span: { xs: 4, sm: 4, md: 8, lg: this.showSideBar ? 8 : 12 }, order: 6 }) {
           IndexEnd()
         }
       }
