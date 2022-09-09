@@ -15,7 +15,7 @@ DataAbility：接口createRdbPredicates；通过createRdbPredicates创建DataAbi
 
 ServiceAbility：生命周期函数onStart、onCommand、onConnect、onDisconnect、onStop；通过featureAbility中的startAbility启动Service；通过connectAbility连接service；通过disconnectAbility断开service连接；通过rpc进行客户端与服务端通信。
 
-FA卡片：生命周期函数onCreate、onCastToNormal、onUpdate、onVisibilityChange、onEvent、onDestroy、onAcquireFormState；通过formBindingData中的createFormBindingData创建卡片。
+FormAbility：生命周期函数onCreate、onCastToNormal、onUpdate、onVisibilityChange、onEvent、onDestroy、onAcquireFormState；通过formBindingData中的createFormBindingData创建卡片。
 
 featureAbility： 提供UI设计与用户交互的能力 ， 包括启动新的ability、获取dataAbilityHelper、设置此Page Ability、获取当前Ability对应的窗口，连接服务等 。
 
@@ -27,7 +27,7 @@ PageAbility：应用的界面绘制。
 
 #### FA和Stage模型的区别
 
-1.在FA模型中主要配置文件config.json，需要时将对应的ability配置在config.json中module/abilites；对应Stage模型主要有module.json5和app.json5，需要时对应的ability须配置在module.json5中的extensionAbilities中，PageAbility单独在abilites。
+1.在FA模型中主要配置文件config.json，需要时将对应的ability配置在config.json中module/abilites；对应Stage模型中主要有module.json5，需要时对应的ServiceExtAbility等须配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中。
 
 2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
 
@@ -35,17 +35,17 @@ PageAbility：应用的界面绘制。
 
 FA模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) ；Stage模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) 。
 
-4.FA模型中DataAbility对应Stage模型中DataShareExtensionAbility，具体实现差异详见方法注释。
+4.FA模型中dataAbility对应Stage模型中DataShareExtensionAbility，具体实现差异详见方法注释。
 
-5.FA模型中ServiceAbility对应Stage模型中ServiceExtAbility，具体实现差异详见方法注释。
+5.FA模型中ServiceAbility对应Stage模型中ServiceExtensionAbility，具体实现差异详见方法注释。
 
-6.FA模型中DataAbilityHelper对应stage模型DataShareExtensionAbility 。
+6.FA模型中DataAbilityHelper对应stage模型DataShareHelper。
 
 7.FA模型通过导入@ohos.resourceManager， 获取应用资源信息 ；Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager。
 
 #### FA对应Stage接口（FA-->Stage）
 
-**FeatureAbility——>AbilityContext接口：**
+**FeatureAbility——>AbilityContext、dataShare接口：**
 
 [FeatureAbilityHelper](./entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWant——>MainAbility：want
 

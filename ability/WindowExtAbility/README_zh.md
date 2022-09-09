@@ -14,8 +14,8 @@
 
 ### 效果预览
 
-![](screenshots/device/index.png) ![](screenshots/device/wlan.png)
-![](screenshots/device/bluetooth.png) ![](screenshots/device/mobileData.png)
+![](screenshots/device/zh/index.png) ![](screenshots/device/zh/wlan.png)
+![](screenshots/device/zh/bluetooth.png) ![](screenshots/device/zh/mobileData.png)
 
 ### 相关权限
 
