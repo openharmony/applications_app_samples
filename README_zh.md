@@ -85,6 +85,7 @@
   - [`Scan`：媒体库相机（eTS）（API9）](media/Scan)
   - [`VideoShow`：媒体库视频（eTS）（API9）](media/VideoShow)
   - [`ImageShow`：图片显示（eTS）（API9）](media/ImageShow)
+  - [`MediaCollections`：媒体管理合集（eTS）（API9）（Full SDK）](media/MediaCollections)
 - DFX
   - [`JsDotTest`：测试打点（JS）（API8）](DFX/JsDotTest)
   - [`FaultLogger`：故障日志获取（eTS）（API8）](DFX/FaultLogger)

@@ -24,7 +24,9 @@
 
 ### 效果预览
 
-![](screenshots/devices/index.png)![](screenshots/devices/audio.png)![](screenshots/devices/video.png)![](screenshots/devices/rename.png)
+![](screenshots/devices/index.png)    ![](screenshots/devices/audio.png)    
+
+![](screenshots/devices/video.png)    ![](screenshots/devices/rename.png)
 
 ### 相关权限
 

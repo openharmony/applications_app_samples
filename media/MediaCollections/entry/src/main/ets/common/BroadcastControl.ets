@@ -170,7 +170,7 @@ export struct BroadcastControl {
                 { value: '2.00' },
               ])
                 .selected(1)
-                .value($r('app.string.phoneMain_setSpeed'))
+                .value('倍速')
                 .font({ size: 18 })
                 .fontColor(Color.White)
                 .selectedOptionFont({ size: 18 })
