@@ -108,11 +108,17 @@ struct Index {
     Logger.info(TAG, `usb getDeviceList...`)
     let usbDevices: any [] = usb.getDevices()
     Logger.info(TAG, `usb getDeviceList 000 is : ${JSON.stringify(usbDevices)}`)
+
+    if (CheckEmptyUtils.isEmpty(usbDevices)) {
+      Logger.info(TAG, `usbDevices is null`)
+      return
+    }
     if (CheckEmptyUtils.isEmptyArray(usbDevices)) {
       Logger.info(TAG, `usb getDeviceList is null`)
       this.result = 'device list is empty'
       return
     }
+
     for (let index = 0; index < usbDevices.length; index++) {
       Logger.info(TAG, `usb this.devices ${index} : ${JSON.stringify(this.devices)}`)
       let deviceAttribute = {

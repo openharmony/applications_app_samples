@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('[USBManager]')
+export default new Logger('[Sample_USBManager]')
