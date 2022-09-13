@@ -166,7 +166,7 @@ export struct MediaItem {
     .width('120%')
     .margin({
       left: this.translateLeft,
-      right: this.translateRight
+      right: 110
     })
     .priorityGesture(
     GestureGroup(
