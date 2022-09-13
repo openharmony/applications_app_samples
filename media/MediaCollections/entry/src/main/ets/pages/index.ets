@@ -33,210 +33,210 @@ const TAG: string = 'IndexMain'
 @Entry
 @Component
 struct Index {
-  @State fillIndex: number = -1
-  @State currentTime: number = 0
-  @State isOpacity: number = 0.4
-  @State isSurface: boolean = true
-  @State isVolume: boolean = false
-  @State fillMediaType: number = -1
-  @State isShowMenu: boolean = false
-  @State btnEnabled: boolean = false
-  @State isXComponent: boolean = true
-  @State isStreamShow: boolean = false
-  @State isInformation: boolean = false
-  @State myMedia: myMedia = new myMedia()
-  @State streamBtnText: Resource  = $r('app.string.index_play')
-  @State streamOpacity: number = 0.4
-  @State itemDate: mediaLibrary.FileAsset = undefined
-  @State audioData: Array<mediaLibrary.FileAsset> = []
-  @State videoData: Array<mediaLibrary.FileAsset> = []
-  @State @Watch('onChangeLoop') isLoop: boolean = false
-  @State @Watch('onChangePlay') isPlaying: boolean = false
-  @State streamBackgroundColor: string = '#99B9F8'
-  private renameDialogController: CustomDialogController = null
-  private deleteDialogController: CustomDialogController = null
-  private mXComponentController: XComponentController = new XComponentController()
-  private mainDialogController: CustomDialogController = new CustomDialogController({
-    builder: mainDialog(),
-    autoCancel: false,
-    customStyle: true
-  })
+	@State fillIndex: number = -1
+	@State currentTime: number = 0
+	@State isOpacity: number = 0.4
+	@State isSurface: boolean = true
+	@State isVolume: boolean = false
+	@State fillMediaType: number = -1
+	@State isShowMenu: boolean = false
+	@State btnEnabled: boolean = false
+	@State isXComponent: boolean = true
+	@State isStreamShow: boolean = false
+	@State isInformation: boolean = false
+	@State myMedia: myMedia = new myMedia()
+	@State streamBtnText: Resource = $r('app.string.index_play')
+	@State streamOpacity: number = 0.4
+	@State itemDate: mediaLibrary.FileAsset = undefined
+	@State audioData: Array<mediaLibrary.FileAsset> = []
+	@State videoData: Array<mediaLibrary.FileAsset> = []
+	@State @Watch('onChangeLoop') isLoop: boolean = false
+	@State @Watch('onChangePlay') isPlaying: boolean = false
+	@State streamBackgroundColor: string = '#99B9F8'
+	private renameDialogController: CustomDialogController = null
+	private deleteDialogController: CustomDialogController = null
+	private mXComponentController: XComponentController = new XComponentController()
+	private mainDialogController: CustomDialogController = new CustomDialogController({
+		builder: mainDialog(),
+		autoCancel: false,
+		customStyle: true
+	})
 
-  async aboutToAppear() {
-    await this.getAudioData()
-    await this.getVideoData()
-    this.mainDialogController.open()
-  }
+	async aboutToAppear() {
+		await this.getAudioData()
+		await this.getVideoData()
+		this.mainDialogController.open()
+	}
 
-  onPageShow() {
-    MediaUtils.onDateChange(this.getAudioData, this.getVideoData)
-  }
+	onPageShow() {
+		MediaUtils.onDateChange(this.getAudioData, this.getVideoData)
+	}
 
-  onPageHide() {
-    MediaUtils.offDateChange()
-  }
+	onPageHide() {
+		MediaUtils.offDateChange()
+	}
 
-  async getAudioData() {
-    this.audioData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
-    fileAsset.then(fileList => {
-      Logger.info(TAG, 'getFileList callback')
-      this.audioData = fileList
-      this.myMedia.getAudioData(this.audioData)
-    }).catch(err => {
-      Logger.error(TAG, `getFileList err,err = ${err}`)
-    })
-  }
+	async getAudioData() {
+		this.audioData = []
+		let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
+		fileAsset.then(fileList => {
+			Logger.info(TAG, 'getFileList callback')
+			this.audioData = fileList
+			this.myMedia.getAudioData(this.audioData)
+		}).catch(err => {
+			Logger.error(TAG, `getFileList err,err = ${err}`)
+		})
+	}
 
-  async getVideoData() {
-    this.videoData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
-    fileAsset.then(fileList => {
-      Logger.info(TAG, 'getFileList callback')
-      this.videoData = fileList
-      this.myMedia.getVideoData(this.videoData)
-    }).catch(err => {
-      Logger.error(TAG, `getFileList err,err = ${err}`)
-    })
-  }
+	async getVideoData() {
+		this.videoData = []
+		let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+		fileAsset.then(fileList => {
+			Logger.info(TAG, 'getFileList callback')
+			this.videoData = fileList
+			this.myMedia.getVideoData(this.videoData)
+		}).catch(err => {
+			Logger.error(TAG, `getFileList err,err = ${err}`)
+		})
+	}
 
-  onChangePlay() {
-      this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
-  }
+	onChangePlay() {
+			this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
+	}
 
-  onChangeLoop() {
-    this.myMedia.setIsLoopCallBack(this.isLoop)
-  }
+	onChangeLoop() {
+		this.myMedia.setIsLoopCallBack(this.isLoop)
+	}
 
-  renameDialogShow(index, mediaType) {
-    this.fillIndex = index
-    this.fillMediaType = mediaType
-    let disPlayName
-    let disPlayType
-    if (mediaType == mediaLibrary.MediaType.AUDIO) {
-      disPlayName = this.audioData[index].displayName
-      disPlayType = '音频'
-    } else {
-      disPlayName = this.videoData[index].displayName
-      disPlayType = '视频'
-    }
-    this.renameDialogController = new CustomDialogController({
-      builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
-      autoCancel: true,
-      customStyle: true,
-    })
-    this.renameDialogController.open()
-  }
+	renameDialogShow(index, mediaType) {
+		this.fillIndex = index
+		this.fillMediaType = mediaType
+		let disPlayName
+		let disPlayType
+		if (mediaType == mediaLibrary.MediaType.AUDIO) {
+			disPlayName = this.audioData[index].displayName
+			disPlayType = '音频'
+		} else {
+			disPlayName = this.videoData[index].displayName
+			disPlayType = '视频'
+		}
+		this.renameDialogController = new CustomDialogController({
+			builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
+			autoCancel: true,
+			customStyle: true,
+		})
+		this.renameDialogController.open()
+	}
 
-  setRename(newName) {
-    if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
-      this.audioData[this.fillIndex].displayName = newName
-      this.audioData[this.fillIndex].commitModify((err) => {
-        if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
-          promptShowToast('请输入合法字符')
-          return
-        }
-        this.renameDialogController.close()
-        this.getAudioData()
-      })
-    } else {
-      this.videoData[this.fillIndex].displayName = newName
-      this.videoData[this.fillIndex].commitModify((err) => {
-        if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
-          promptShowToast('请输入合法字符')
-          return
-        }
-        this.renameDialogController.close()
-        this.getVideoData()
-      })
-    }
-  }
+	setRename(newName) {
+		if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
+			this.audioData[this.fillIndex].displayName = newName
+			this.audioData[this.fillIndex].commitModify((err) => {
+				if (err !== undefined) {
+					console.info(`commitModify, err: ${err}`)
+					promptShowToast('请输入合法字符')
+					return
+				}
+				this.renameDialogController.close()
+				this.getAudioData()
+			})
+		} else {
+			this.videoData[this.fillIndex].displayName = newName
+			this.videoData[this.fillIndex].commitModify((err) => {
+				if (err !== undefined) {
+					console.info(`commitModify, err: ${err}`)
+					promptShowToast('请输入合法字符')
+					return
+				}
+				this.renameDialogController.close()
+				this.getVideoData()
+			})
+		}
+	}
 
-  deleteDialogShow(index, mediaType) {
-    let mediaData
-    if (mediaType == mediaLibrary.MediaType.AUDIO) {
-      mediaData = this.audioData
-    } else {
-      mediaData = this.videoData
-    }
-    this.deleteDialogController = new CustomDialogController({
-      builder: DeleteDialog({ index: index, mediaData: mediaData }),
-      autoCancel: true,
-      customStyle: true,
-    })
-    this.deleteDialogController.open()
-  }
+	deleteDialogShow(index, mediaType) {
+		let mediaData
+		if (mediaType == mediaLibrary.MediaType.AUDIO) {
+			mediaData = this.audioData
+		} else {
+			mediaData = this.videoData
+		}
+		this.deleteDialogController = new CustomDialogController({
+			builder: DeleteDialog({ index: index, mediaData: mediaData }),
+			autoCancel: true,
+			customStyle: true,
+		})
+		this.deleteDialogController.open()
+	}
 
-  build() {
-    Column() {
-      Flex({
-        alignItems: ItemAlign.Center,
-        justifyContent: FlexAlign.SpaceBetween
-      }) {
-        TitleBar()
-        StreamingMedia({
-          myMedia: $myMedia,
-          isPlaying: $isPlaying,
-          isShowMenu: $isShowMenu,
-          currentTime: $currentTime,
-          isStreamShow: $isStreamShow,
-          isXComponent: $isXComponent,
-          streamOpacity: $streamOpacity,
-          streamBtnText: $streamBtnText,
-          streamBackgroundColor: $streamBackgroundColor,
-          mXComponentController: this.mXComponentController,
-        })
-      }
-      .height(50)
-      .width('98%')
-      .margin({
-        top: 24,
-        bottom: 24
-      })
+	build() {
+		Column() {
+			Flex({
+				alignItems: ItemAlign.Center,
+				justifyContent: FlexAlign.SpaceBetween
+			}) {
+				TitleBar()
+				StreamingMedia({
+					myMedia: $myMedia,
+					isPlaying: $isPlaying,
+					isShowMenu: $isShowMenu,
+					currentTime: $currentTime,
+					isStreamShow: $isStreamShow,
+					isXComponent: $isXComponent,
+					streamOpacity: $streamOpacity,
+					streamBtnText: $streamBtnText,
+					streamBackgroundColor: $streamBackgroundColor,
+					mXComponentController: this.mXComponentController,
+				})
+			}
+			.height(50)
+			.width('98%')
+			.margin({
+				top: 24,
+				bottom: 24
+			})
 
-      Flex({
-        justifyContent: FlexAlign.SpaceBetween
-      }) {
-        BroadcastControl({
-          isLoop: $isLoop,
-          myMedia: $myMedia,
-          itemData: $itemDate,
-          isSurface: $isSurface,
-          isPlaying: $isPlaying,
-          isOpacity: $isOpacity,
-          btnEnabled: $btnEnabled,
-          isShowMenu: $isShowMenu,
-          currentTime: $currentTime,
-          isXComponent: $isXComponent,
-          mXComponentController: this.mXComponentController
-        })
-        Toolkit({
-          myMedia: $myMedia,
-          itemData: $itemDate,
-          audioData: $audioData,
-          videoData: $videoData,
-          isSurface: $isSurface,
-          isPlaying: $isPlaying,
-          isOpacity: $isOpacity,
-          btnEnabled: $btnEnabled,
-          isShowMenu: $isShowMenu,
-          currentTime: $currentTime,
-          isStreamShow: $isStreamShow,
-          isXComponent: $isXComponent,
-          streamBtnText: $streamBtnText,
-          streamOpacity: $streamOpacity,
-          mXComponentController: this.mXComponentController,
-          deleteDialogShow: this.deleteDialogShow.bind(this),
-          renameDialogShow: this.renameDialogShow.bind(this)
-        })
-      }
-      .width('97%')
-      .height('83%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#222324')
-  }
+			Flex({
+				justifyContent: FlexAlign.SpaceBetween
+			}) {
+				BroadcastControl({
+					isLoop: $isLoop,
+					myMedia: $myMedia,
+					itemData: $itemDate,
+					isSurface: $isSurface,
+					isPlaying: $isPlaying,
+					isOpacity: $isOpacity,
+					btnEnabled: $btnEnabled,
+					isShowMenu: $isShowMenu,
+					currentTime: $currentTime,
+					isXComponent: $isXComponent,
+					mXComponentController: this.mXComponentController
+				})
+				Toolkit({
+					myMedia: $myMedia,
+					itemData: $itemDate,
+					audioData: $audioData,
+					videoData: $videoData,
+					isSurface: $isSurface,
+					isPlaying: $isPlaying,
+					isOpacity: $isOpacity,
+					btnEnabled: $btnEnabled,
+					isShowMenu: $isShowMenu,
+					currentTime: $currentTime,
+					isStreamShow: $isStreamShow,
+					isXComponent: $isXComponent,
+					streamBtnText: $streamBtnText,
+					streamOpacity: $streamOpacity,
+					mXComponentController: this.mXComponentController,
+					deleteDialogShow: this.deleteDialogShow.bind(this),
+					renameDialogShow: this.renameDialogShow.bind(this)
+				})
+			}
+			.width('97%')
+			.height('83%')
+		}
+		.width('100%')
+		.height('100%')
+		.backgroundColor('#222324')
+	}
 }

@@ -29,145 +29,145 @@ const TAG = 'PhoneIndex: '
 @Entry
 @Component
 struct Send {
-  private renameDialogController: CustomDialogController = null
-  private deleteDialogController: CustomDialogController = null
-  private timerOut: number = undefined
-  private mXComponentController: XComponentController = new XComponentController()
-  @State surfaceId: number = -1
-  @State myMedia: myMedia = new myMedia()
-  @State audioData: Array<mediaLibrary.FileAsset> = []
-  @State videoData: Array<mediaLibrary.FileAsset> = []
-  @State fillIndex: number = -1
-  @State fillMediaType: number = -1
-  @State currentTime: number = 0
-  @State @Watch('onChangePlay') isPlaying: boolean = false
-  @State isXComponent: boolean = true
-  @State httpUrl: string = ''
+	private renameDialogController: CustomDialogController = null
+	private deleteDialogController: CustomDialogController = null
+	private timerOut: number = undefined
+	private mXComponentController: XComponentController = new XComponentController()
+	@State surfaceId: number = -1
+	@State myMedia: myMedia = new myMedia()
+	@State audioData: Array<mediaLibrary.FileAsset> = []
+	@State videoData: Array<mediaLibrary.FileAsset> = []
+	@State fillIndex: number = -1
+	@State fillMediaType: number = -1
+	@State currentTime: number = 0
+	@State @Watch('onChangePlay') isPlaying: boolean = false
+	@State isXComponent: boolean = true
+	@State httpUrl: string = ''
 
-  async aboutToAppear() {
-    await this.getAudioData()
-    await this.getVideoData()
-  }
+	async aboutToAppear() {
+		await this.getAudioData()
+		await this.getVideoData()
+	}
 
-  async getAudioData() {
-    this.audioData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
-    fileAsset.then(fileList => {
-      Logger.info(TAG, 'getFileList callback')
-      this.audioData = fileList
-      this.myMedia.getAudioData(this.audioData)
+	async getAudioData() {
+		this.audioData = []
+		let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
+		fileAsset.then(fileList => {
+			Logger.info(TAG, 'getFileList callback')
+			this.audioData = fileList
+			this.myMedia.getAudioData(this.audioData)
 
-    }).catch(err => {
-      Logger.error(TAG, `getFileList err,err = ${err}`)
-    })
-  }
+		}).catch(err => {
+			Logger.error(TAG, `getFileList err,err = ${err}`)
+		})
+	}
 
-  async getVideoData() {
-    this.videoData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
-    fileAsset.then(fileList => {
-      Logger.info(TAG, 'getFileList callback')
-      this.videoData = fileList
-      this.myMedia.getVideoData(this.videoData)
-    }).catch(err => {
-      Logger.error(TAG, `getFileList err,err = ${err}`)
-    })
-  }
+	async getVideoData() {
+		this.videoData = []
+		let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+		fileAsset.then(fileList => {
+			Logger.info(TAG, 'getFileList callback')
+			this.videoData = fileList
+			this.myMedia.getVideoData(this.videoData)
+		}).catch(err => {
+			Logger.error(TAG, `getFileList err,err = ${err}`)
+		})
+	}
 
-  onChangePlay() {
-      this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
-  }
+	onChangePlay() {
+			this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
+	}
 
-  renameDialogShow(index, mediaType) {
-    this.fillIndex = index
-    this.fillMediaType = mediaType
-    let disPlayName
-    let disPlayType
-    if (mediaType == mediaLibrary.MediaType.AUDIO) {
-      disPlayName = this.audioData[index].displayName
-      disPlayType = '音频'
-    } else {
-      disPlayName = this.videoData[index].displayName
-      disPlayType = '视频'
-    }
-    this.renameDialogController = new CustomDialogController({
-      builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
-      autoCancel: true,
-      customStyle: true,
-    })
-    this.renameDialogController.open()
-  }
+	renameDialogShow(index, mediaType) {
+		this.fillIndex = index
+		this.fillMediaType = mediaType
+		let disPlayName
+		let disPlayType
+		if (mediaType == mediaLibrary.MediaType.AUDIO) {
+			disPlayName = this.audioData[index].displayName
+			disPlayType = '音频'
+		} else {
+			disPlayName = this.videoData[index].displayName
+			disPlayType = '视频'
+		}
+		this.renameDialogController = new CustomDialogController({
+			builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
+			autoCancel: true,
+			customStyle: true,
+		})
+		this.renameDialogController.open()
+	}
 
-  setRename(newName) {
-    if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
-      this.audioData[this.fillIndex].displayName = newName
-      this.audioData[this.fillIndex].commitModify((err) => {
-        if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
-          promptShowToast($r('app.string.phoneMain_legitimateStr'))
-          return
-        }
-        this.renameDialogController.close()
-        this.getAudioData()
-      })
-    } else {
-      this.videoData[this.fillIndex].displayName = newName
-      this.videoData[this.fillIndex].commitModify((err) => {
-        if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
-          promptShowToast($r('app.string.phoneMain_legitimateStr'))
-          return
-        }
-        this.renameDialogController.close()
-        this.getVideoData()
-      })
-    }
-  }
+	setRename(newName) {
+		if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
+			this.audioData[this.fillIndex].displayName = newName
+			this.audioData[this.fillIndex].commitModify((err) => {
+				if (err !== undefined) {
+					console.info(`commitModify, err: ${err}`)
+					promptShowToast($r('app.string.phoneMain_legitimateStr'))
+					return
+				}
+				this.renameDialogController.close()
+				this.getAudioData()
+			})
+		} else {
+			this.videoData[this.fillIndex].displayName = newName
+			this.videoData[this.fillIndex].commitModify((err) => {
+				if (err !== undefined) {
+					console.info(`commitModify, err: ${err}`)
+					promptShowToast($r('app.string.phoneMain_legitimateStr'))
+					return
+				}
+				this.renameDialogController.close()
+				this.getVideoData()
+			})
+		}
+	}
 
-  deleteDialogShow(index, mediaType) {
-    let mediaData
-    if (mediaType == mediaLibrary.MediaType.AUDIO) {
-      mediaData = this.audioData
-    } else {
-      mediaData = this.videoData
-    }
-    this.deleteDialogController = new CustomDialogController({
-      builder: DeleteDialog({ index: index, mediaData: mediaData }),
-      autoCancel: true,
-      customStyle: true,
-    })
-    this.deleteDialogController.open()
-  }
+	deleteDialogShow(index, mediaType) {
+		let mediaData
+		if (mediaType == mediaLibrary.MediaType.AUDIO) {
+			mediaData = this.audioData
+		} else {
+			mediaData = this.videoData
+		}
+		this.deleteDialogController = new CustomDialogController({
+			builder: DeleteDialog({ index: index, mediaData: mediaData }),
+			autoCancel: true,
+			customStyle: true,
+		})
+		this.deleteDialogController.open()
+	}
 
-  build() {
-    Column() {
-      TitleBar({
-        myMedia: $myMedia,
-        isPlaying: $isPlaying,
-        currentTime: $currentTime,
-        httpUrl: this.httpUrl,
-        isXComponent: $isXComponent,
-        mXComponentController: this.mXComponentController,
-      })
-      BroadcastControl({
-        myMedia: $myMedia,
-        isXComponent: $isXComponent,
-        surfaceId: $surfaceId,
-        isPlaying: $isPlaying,
-        currentTime: $currentTime,
-        mXComponentController: this.mXComponentController,
-      })
-      Toolkit({
-        myMedia: $myMedia,
-        currentTime: $currentTime,
-        isXComponent: $isXComponent,
-        audioData: $audioData,
-        videoData: $videoData,
-        deleteDialogShow: this.deleteDialogShow.bind(this),
-        renameDialogShow: this.renameDialogShow.bind(this),
-        isPlaying: $isPlaying,
-        surfaceId: $surfaceId
-      })
-    }.height('100%').backgroundColor('#222324')
-  }
+	build() {
+		Column() {
+			TitleBar({
+				myMedia: $myMedia,
+				isPlaying: $isPlaying,
+				currentTime: $currentTime,
+				httpUrl: this.httpUrl,
+				isXComponent: $isXComponent,
+				mXComponentController: this.mXComponentController,
+			})
+			BroadcastControl({
+				myMedia: $myMedia,
+				isXComponent: $isXComponent,
+				surfaceId: $surfaceId,
+				isPlaying: $isPlaying,
+				currentTime: $currentTime,
+				mXComponentController: this.mXComponentController,
+			})
+			Toolkit({
+				myMedia: $myMedia,
+				currentTime: $currentTime,
+				isXComponent: $isXComponent,
+				audioData: $audioData,
+				videoData: $videoData,
+				deleteDialogShow: this.deleteDialogShow.bind(this),
+				renameDialogShow: this.renameDialogShow.bind(this),
+				isPlaying: $isPlaying,
+				surfaceId: $surfaceId
+			})
+		}.height('100%').backgroundColor('#222324')
+	}
 }

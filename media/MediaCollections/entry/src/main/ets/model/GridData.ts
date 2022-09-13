@@ -17,5 +17,5 @@
 
 export class gridData {
 	icon: Resource
-	textStr:  string
+	textStr: string
 }

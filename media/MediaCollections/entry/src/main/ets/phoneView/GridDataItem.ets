@@ -17,47 +17,47 @@ import { gridData } from '../model/GridData'
 
 @Component
 export struct GridDataItem {
-  private item: gridData
-  private index: number = -1
-  @State bgrColor: string = '#222324'
-  @Link isBom: boolean
-  @Link isTitle: string
-  @Link isXComponent: boolean
-  @Link @Watch('clickSetBgrColor') clickIndex: number
+	private item: gridData
+	private index: number = -1
+	@State bgrColor: string = '#222324'
+	@Link isBom: boolean
+	@Link isTitle: string
+	@Link isXComponent: boolean
+	@Link @Watch('clickSetBgrColor') clickIndex: number
 
-  clickSetBgrColor() {
-    if (this.index !== this.clickIndex) {
-      this.bgrColor = '#222324'
-    } else {
-      this.bgrColor = 'rgba(255,255,255,0.1)'
-    }
-  }
+	clickSetBgrColor() {
+		if (this.index !== this.clickIndex) {
+			this.bgrColor = '#222324'
+		} else {
+			this.bgrColor = 'rgba(255,255,255,0.1)'
+		}
+	}
 
-  build() {
-    Column() {
-      Image(this.item.icon).width(40).height(40)
-      Text(this.item.textStr)
-        .margin({ top: 5 })
-        .fontSize(16)
-        .fontColor('rgba(255,255,255,0.90)')
-        .fontStyle(FontStyle.Normal)
-        .fontWeight(400)
-        .textAlign(TextAlign.Center)
-        .fontFamily('HarmonyHeiTi')
-    }
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
-    .width(95)
-    .height(95)
-    .borderRadius(12)
-    .backgroundColor(this.bgrColor)
-    .onClick(() => {
-      this.clickIndex = this.index
-      this.isBom = !this.isBom
-      this.isTitle = this.item.textStr
-      if (this.isTitle == '视频') {
-        this.isXComponent = true
-      }
-    })
-  }
+	build() {
+		Column() {
+			Image(this.item.icon).width(40).height(40)
+			Text(this.item.textStr)
+				.margin({ top: 5 })
+				.fontSize(16)
+				.fontColor('rgba(255,255,255,0.90)')
+				.fontStyle(FontStyle.Normal)
+				.fontWeight(400)
+				.textAlign(TextAlign.Center)
+				.fontFamily('HarmonyHeiTi')
+		}
+		.justifyContent(FlexAlign.Center)
+		.alignItems(HorizontalAlign.Center)
+		.width(95)
+		.height(95)
+		.borderRadius(12)
+		.backgroundColor(this.bgrColor)
+		.onClick(() => {
+			this.clickIndex = this.index
+			this.isBom = !this.isBom
+			this.isTitle = this.item.textStr
+			if (this.isTitle == '视频') {
+				this.isXComponent = true
+			}
+		})
+	}
 }

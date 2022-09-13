@@ -17,26 +17,26 @@ import { gridData } from '../model/GridData'
 
 @Component
 export struct ToolKitItem {
-  private GridData: gridData
+	private GridData: gridData
 
-  build() {
-    Column() {
-      Image(this.GridData.icon).width(40).height(40)
-      Text(this.GridData.textStr)
-        .margin({ top: 6 })
-        .fontSize(16)
-        .fontColor('rgba(255,255,255,0.90)')
-        .fontStyle(FontStyle.Normal)
-        .fontWeight(400)
-        .textAlign(TextAlign.Center)
-        .fontFamily('HarmonyHeiTi')
-    }
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
-    .backgroundColor('rgba(255,255,255,0.10)')
-    .borderRadius(12)
-    .width(116)
-    .height(116)
-    .margin({ top: 10 })
-  }
+	build() {
+		Column() {
+			Image(this.GridData.icon).width(40).height(40)
+			Text(this.GridData.textStr)
+				.margin({ top: 6 })
+				.fontSize(16)
+				.fontColor('rgba(255,255,255,0.90)')
+				.fontStyle(FontStyle.Normal)
+				.fontWeight(400)
+				.textAlign(TextAlign.Center)
+				.fontFamily('HarmonyHeiTi')
+		}
+		.justifyContent(FlexAlign.Center)
+		.alignItems(HorizontalAlign.Center)
+		.backgroundColor('rgba(255,255,255,0.10)')
+		.borderRadius(12)
+		.width(116)
+		.height(116)
+		.margin({ top: 10 })
+	}
 }
