@@ -85,10 +85,10 @@ struct Send {
     let disPlayType
     if (mediaType == mediaLibrary.MediaType.AUDIO) {
       disPlayName = this.audioData[index].displayName
-      disPlayType = $r('app.string.phoneMain_audio')
+      disPlayType = '音频'
     } else {
       disPlayName = this.videoData[index].displayName
-      disPlayType = $r('app.string.phoneMain_video')
+      disPlayType = '视频'
     }
     this.renameDialogController = new CustomDialogController({
       builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),

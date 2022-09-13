@@ -32,7 +32,7 @@ export struct RenameDialog {
 
   build() {
     Column() {
-      Text(this.disPlayType + $r('app.string.renameDialog_title'))
+      Text(`${this.disPlayType}名称`)
         .fontSize(20)
         .fontColor(this.displayWidth > 2500 ? '#FFFFFF' : '#000000')
         .width(this.displayWidth > 2500 ? 280 : 328)

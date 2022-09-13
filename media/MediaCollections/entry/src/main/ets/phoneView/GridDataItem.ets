@@ -21,7 +21,7 @@ export struct GridDataItem {
   private index: number = -1
   @State bgrColor: string = '#222324'
   @Link isBom: boolean
-  @Link isTitle: string | Resource
+  @Link isTitle: string
   @Link isXComponent: boolean
   @Link @Watch('clickSetBgrColor') clickIndex: number
 
@@ -55,7 +55,7 @@ export struct GridDataItem {
       this.clickIndex = this.index
       this.isBom = !this.isBom
       this.isTitle = this.item.textStr
-      if (this.isTitle == $r('app.string.phoneMain_video')) {
+      if (this.isTitle == '视频') {
         this.isXComponent = true
       }
     })

@@ -36,7 +36,7 @@ export struct isInformationDialog {
       }) {
         Text($r('app.string.index_formation'))
           .fontColor('#FFFFFF')
-        Text(`${$r('app.string.index_formation')}${this.isInformation.id}`).fontColor('#FFFFFF')
+        Text($r('app.string.index_formation')+`${this.isInformation.id}`).fontColor('#FFFFFF')
         Text(`${$r('app.string.index_formation_id')}${this.isInformation.uri}`).fontColor('#FFFFFF')
         Text(`${$r('app.string.index_formation_mimeType')}${this.isInformation.mimeType}`).fontColor('#FFFFFF')
         Text(`${$r('app.string.index_formation_mediaType')}${this.isInformation.mediaType}`).fontColor('#FFFFFF')

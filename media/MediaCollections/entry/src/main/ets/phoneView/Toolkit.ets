@@ -26,13 +26,13 @@ export struct Toolkit {
   private deleteDialogShow: (index: number, mediaType) => void
   private renameDialogShow: (index: number, mediaType) => void
   private GridData: gridData[] = [
-    { icon: $r('app.media.icon_color_music'), textStr: $r('app.string.phoneMain_audio') },
-    { icon: $r('app.media.icon_color_video'), textStr: $r('app.string.phoneMain_video')  },
-    { icon: $r('app.media.icon_color_favorite'), textStr: $r('app.string.phoneMain_collection')  },
-    { icon: $r('app.media.icon_color_me'), textStr: $r('app.string.phoneMain_me')  },
+    { icon: $r('app.media.icon_color_music'), textStr: '音频' },
+    { icon: $r('app.media.icon_color_video'), textStr: '视频'  },
+    { icon: $r('app.media.icon_color_favorite'), textStr: '收藏'  },
+    { icon: $r('app.media.icon_color_me'), textStr: '我的'  },
   ]
   @State isBom: boolean = true
-  @State isTitle: Resource = undefined
+  @State isTitle: string = ''
   @State leftSliderIndex: number = -1
   @State clickIndex: number = -1
   @State itemData: mediaLibrary.FileAsset = undefined
@@ -60,11 +60,11 @@ export struct Toolkit {
         }, item => item.textStr)
       }.padding({ top: 10, bottom: 16 })
 
-      if (this.isTitle == $r('app.string.phoneMain_audio') || this.isTitle == $r('app.string.phoneMain_video')) {
+      if (this.isTitle == '音频' || this.isTitle == '视频') {
         Scroll(this.scroller) {
           Column() {
             List({ initialIndex: 0 }) {
-              ForEach(this.isTitle == $r('app.string.phoneMain_audio') ? this.audioData : this.videoData, (item: mediaLibrary.FileAsset, index) => {
+              ForEach(this.isTitle == '音频' ? this.audioData : this.videoData, (item: mediaLibrary.FileAsset, index) => {
                 ListItem() {
                   MediaItem({
                     index: index,
@@ -79,7 +79,7 @@ export struct Toolkit {
                 .onClick(() => {
                   this.isPlaying = true
                   this.itemData = item
-                  if (this.isTitle == $r('app.string.phoneMain_audio')) {
+                  if (this.isTitle == '音频') {
                     this.isXComponent = false
                     this.myMedia.init(this.itemData)
                   } else {
@@ -95,7 +95,7 @@ export struct Toolkit {
             }
             .alignListItem(ListItemAlign.Center)
             .editMode(true)
-          }.height('64%')
+          }.height('57%')
         }
       }
     }.height('100%')
