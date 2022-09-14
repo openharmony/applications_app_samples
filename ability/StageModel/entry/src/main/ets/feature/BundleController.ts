@@ -31,10 +31,10 @@ export default class BundleController {
       .then((data) => {
         Logger.info(TAG, `getApplicationInfo successful. Data: ${JSON.stringify(data)}`)
         prompt.showToast({
-          message: `getApplicationInfo successful. Data: ${JSON.stringify(data)}`
+          message: `getApplicationInfo successful`
         })
       }).catch((error) => {
-      Logger.info(TAG, `getApplicationInfo. Cause: ${JSON.stringify(error)}`)
+      Logger.error(TAG, `getApplicationInfo. Cause: ${JSON.stringify(error)}`)
       prompt.showToast({
         message: `getApplicationInfo. Cause: ${JSON.stringify(error)}`
       })
@@ -44,10 +44,14 @@ export default class BundleController {
   // 指示应用程序的实体类型,对应FA模型中AppContext的getAppType()
   entityType() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      data.entityType
-      Logger.info(TAG, `caller onRelease is called: ${data.entityType}`)
+      let digital = data.entityType
+      if (digital === null || error) {
+        Logger.info(TAG, `caller onRelease is error: ${error}`)
+        return
+      }
+      Logger.info(TAG, `caller onRelease is called: ${digital}`)
       prompt.showToast({
-        message: `caller onRelease is called: ${data.entityType}`
+        message: `caller onRelease is called sucess`
       })
     })
   }
@@ -55,10 +59,14 @@ export default class BundleController {
   // 应用程序的进程，如果用户未设置，则值等于bundleName
   process() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      data.process
-      Logger.info(TAG, `caller onRelease is called: ${data.process}`)
+      let processData = data.process
+      if (processData === null || error) {
+        Logger.info(TAG, `caller onRelease is called error: ${error}`)
+        return
+      }
+      Logger.info(TAG, `caller onRelease is called: ${processData}`)
       prompt.showToast({
-        message: `caller onRelease is called: ${data.process}`
+        message: `caller onRelease is called sucess`
       })
     })
   }
@@ -66,10 +74,14 @@ export default class BundleController {
   // 获取应用程序的本地根目录,对应FA模型的getOrCreateLocalDir()
   entryDir() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      data.entryDir
-      Logger.info(TAG, `codePath: ${data.entryDir}`)
+      let entryDirData = data.entryDir
+      if (entryDirData === null || error) {
+        Logger.info(TAG, `codePath error: ${error}`)
+        return
+      }
+      Logger.info(TAG, `codePath: ${entryDirData}`)
       prompt.showToast({
-        message: `codePath: ${data.entryDir}`
+        message: `codePath: ${entryDirData}`
       })
     })
   }
@@ -79,14 +91,14 @@ export default class BundleController {
     bundle.getDispatcherVersion()
     Logger.info(TAG, `getDispatcherVersion: ${JSON.stringify(bundle.getDispatcherVersion())}`)
     prompt.showToast({
-      message: `getDispatcherVersion: ${JSON.stringify(bundle.getDispatcherVersion())}`
+      message: `getDispatcherVersion success`
     })
   }
 
   // 获取有关当前能力的信息,对应FA模型的getElementName()
   getAbilityInfo() {
     let bundleName = "ohos.samples.stagemodel"
-    let abilityName = "ohos.samples.stagemodel.MainAbility"
+    let abilityName = "TestAbility"
     bundle.getAbilityInfo(bundleName, abilityName)
       .then((data) => {
         Logger.info(TAG, `Operation successful. Data: ${JSON.stringify(data)}`)
@@ -94,7 +106,7 @@ export default class BundleController {
           message: `Operation successful. Data: ${JSON.stringify(data)}`
         })
       }).catch((error) => {
-      Logger.info(TAG, `Operation failed. Cause: ${JSON.stringify(error)}`)
+      Logger.error(TAG, `Operation failed. Cause: ${JSON.stringify(error)}`)
       prompt.showToast({
         message: `Operation failed. Cause: ${JSON.stringify(error)}`
       })

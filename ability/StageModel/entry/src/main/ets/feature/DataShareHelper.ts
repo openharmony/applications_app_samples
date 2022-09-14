@@ -90,21 +90,29 @@ class DataShareHelper {
 
   // 用户给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。对应FA模型的DataAbilityHelper中的normalizeUri
   normalizeUri = () => {
-    this.dataShareHelper.normalizeUri(BASE_URI, (err, data) => {
-      Logger.info(TAG, `normalizeUri: ${err}`)
-      prompt.showToast({
-        message: `normalizeUri: ${err}`
-      })
+    this.dataShareHelper.normalizeUri(BASE_URI, (error, data) => {
+      if(error){
+        Logger.info(TAG, `normalizeUri: ${error}`)
+      }else{
+        Logger.info(TAG, `normalizeUri: ${data}`)
+        prompt.showToast({
+          message: `normalizeUri sucess`
+        })
+      }
     })
   }
 
   // 服务端使用的URI转换为用户传入的初始URI时服务端回调此接口，该方法可以选择性重写。对应FA模型的DataAbilityHelper中的denormalizeUri
   denormalizeUri = () => {
-    this.dataShareHelper.denormalizeUri(BASE_URI, (err, data) => {
-      Logger.info(TAG, `denormalizeUri: ${err}`)
-      prompt.showToast({
-        message: `denormalizeUri: ${err}`
-      })
+    this.dataShareHelper.denormalizeUri(BASE_URI, (error, data) => {
+      if(error){
+        Logger.info(TAG, `denormalizeUri error: ${error}`)
+      } else{
+        Logger.info(TAG, `denormalizeUri: ${data}`)
+        prompt.showToast({
+          message: `denormalizeUri sucess`
+        })
+      }
     })
   }
 
@@ -130,11 +138,15 @@ class DataShareHelper {
 
   // 通知已注册的观察者Uri指定的数据资源的更改。对应FA模型的DataAbilityHelper中的notifyChange
   notifyChange = () => {
-    this.dataShareHelper.notifyChange(BASE_URI, (err) => {
-      Logger.info(TAG, `notifyChange: ${err}`)
-      prompt.showToast({
-        message: `notifyChange: ${err}`
-      })
+    this.dataShareHelper.notifyChange(BASE_URI, (error) => {
+      if(error){
+        Logger.info(TAG, `notifyChange error: ${error}`)
+      }else{
+        Logger.info(TAG, `notifyChange sucess`)
+        prompt.showToast({
+          message: `notifyChange sucess`
+        })
+      }
     })
   }
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Extension from '@ohos.application.DataShareExtensionAbility'
+import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
 import rdb from '@ohos.data.rdb'
 import Logger from '../util/Logger'
 
@@ -24,7 +24,7 @@ const SQL_CREATE_TABLE: string = 'CREATE TABLE IF NOT EXISTS books (id INTEGER P
 let rdbStore: rdb.RdbStore = undefined
 
 // 对应FA的DataAbility下的Data.ts
-export default class DataShareExtAbility extends Extension {
+export default class DataShareExtAbility extends DataShareExtensionAbility {
 
   // 对应FA的onInitialized
   onCreate(want, callback) {
@@ -65,13 +65,13 @@ export default class DataShareExtAbility extends Extension {
     Logger.info(TAG, `delete`)
     try {
       if (rdbStore) {
-        rdbStore.delete(TABLE_NAME, predicates, (err, ret) => {
+        rdbStore.delete(TABLE_NAME, predicates, (error, ret) => {
           Logger.info(TAG, `delete ret: ${ret}`)
-          callback(err, ret)
+          callback(error, ret)
         })
       }
-    } catch (err) {
-      Logger.error(TAG, `delete error: ${JSON.stringify(err)}`)
+    } catch (error) {
+      Logger.error(TAG, `delete error: ${JSON.stringify(error)}`)
     }
   }
 
@@ -108,5 +108,15 @@ export default class DataShareExtAbility extends Extension {
         }
       })
     }
+  }
+
+  // 服务端使用的URI转换为用户传入的初始URI时服务端回调此接口，该方法可以选择性重写。
+  denormalizeUri(uri, callback) {
+    Logger.error(TAG, `denormalizeUri uri: ${JSON.stringify(uri)}`)
+  }
+
+  // 用户给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。
+  normalizeUri(uri, callback) {
+    Logger.error(TAG, `denormalizeUri uri: ${JSON.stringify(uri)}`)
   }
 }

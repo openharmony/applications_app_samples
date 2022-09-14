@@ -42,7 +42,7 @@
     },
     {
       "name": "service_extension_contextPage",
-      "value": "ServiceExtensionContext"
+      "value": "ServiceExtContext"
     },
     {
       "name": "ability_context_page",
@@ -54,7 +54,7 @@
     },
     {
       "name": "form_ext_context_page",
-      "value": "FormExtensionContext"
+      "value": "FormExtContext"
     },
     {
       "name": "bundle_page",
@@ -102,19 +102,19 @@
     },
     {
       "name": "start_service_extension_ability",
-      "value": "startServiceExtensionAbility"
+      "value": "startServiceExtAbility"
     },
     {
       "name": "start_service_extension_ability_with_account",
-      "value": "startServiceExtensionAbilityWithAccount"
+      "value": "startServiceExtAbilityWithAccount"
     },
     {
       "name": "stop_service_extension_ability",
-      "value": "stopServiceExtensionAbility"
+      "value": "stopServiceExtAbility"
     },
     {
       "name": "stop_service_extension_ability_with_account",
-      "value": "stopServiceExtensionAbilityWithAccount"
+      "value": "stopServiceExtAbilityWithAccount"
     },
     {
       "name": "terminate_self",
@@ -239,6 +239,10 @@
     {
       "name": "set_wake_up_screen",
       "value": "setWakeUpScreen"
+    },
+    {
+      "name": "get_top_window",
+      "value": "getTopWindow"
     },
     {
       "name": "entity_type",

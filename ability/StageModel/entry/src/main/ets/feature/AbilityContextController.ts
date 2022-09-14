@@ -68,56 +68,84 @@ export default class AbilityContextController {
 
   // 启动一个Ability并在该Ability帐号销毁时返回执行结果，
   startAbilityForResultWithAccount() {
-    this.context.startAbilityWithAccount(want, accountId, (err, data) => {
-      Logger.info(TAG, `startAbilityWithAccount fail, err: ${JSON.stringify(err)}`)
+    this.context.startAbilityWithAccount(want, accountId, (error, data) => {
+      Logger.info(TAG, `startAbilityWithAccount fail, error: ${JSON.stringify(error)}`)
       Logger.info(TAG, `startAbilityWithAccount success, data: ${JSON.stringify(data)}`)
     })
   }
 
   // 启动一个新的ServiceExtensionAbility，
   startServiceExtensionAbility() {
-    this.context.startServiceExtensionAbility(want, (err) => {
-      Logger.info(TAG, `startServiceExtensionAbility fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'startServiceExtensionAbility success'
+    this.context.startServiceExtensionAbility(want)
+      .then(() => {
+        Logger.info(TAG, `startServiceExtensionAbility success`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbility success'
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `startServiceExtensionAbility fail, error: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbility'
+        })
+      })
   }
 
   // 启动一个新的ServiceExtensionAbility，
   startServiceExtensionAbilityWithAccount() {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err) => {
-      Logger.info(TAG, `startServiceExtensionAbilityWithAccount fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'startServiceExtensionAbilityWithAccount success'
+    this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+      .then(() => {
+        Logger.info(TAG, `startServiceExtensionAbilityWithAccount success`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbilityWithAccount success'
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `startServiceExtensionAbilityWithAccount fail, error: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbilityWithAccount'
+        })
+      })
   }
 
   // 停止同一应用程序内的服务，
   stopServiceExtensionAbility() {
-    this.context.stopServiceExtensionAbility(want, (err) => {
-      Logger.info(TAG, `stopServiceExtensionAbility fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'stopServiceExtensionAbility success'
+    this.context.stopServiceExtensionAbility(want)
+      .then(() => {
+        Logger.info(TAG, `stopServiceExtensionAbility success`)
+        prompt.showToast({
+          message: 'stopServiceExtensionAbility success'
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `stopServiceExtensionAbility fail, error: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'stopServiceExtensionAbility'
+        })
+      })
   }
 
   // 使用帐户停止同一应用程序内的服务，
   stopServiceExtensionAbilityWithAccount() {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err) => {
-      Logger.info(TAG, `stopServiceExtensionAbilityWithAccount fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'stopServiceExtensionAbilityWithAccount success'
+    this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+      .then(() => {
+        Logger.info(TAG, `stopServiceExtensionAbilityWithAccount success`)
+        prompt.showToast({
+          message: 'stopServiceExtensionAbilityWithAccount success'
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `stopServiceExtensionAbilityWithAccount fail, error: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'stopServiceExtensionAbilityWithAccount'
+        })
+      })
   }
 
   // 停止Ability自身，对应FA的terminateSelf
   terminateSelf() {
-    this.context.terminateSelf((err) => {
-      Logger.info(TAG, `terminateSelf result: ${JSON.stringify(err)}`)
+    this.context.terminateSelf((error) => {
+      Logger.info(TAG, `terminateSelf result: ${JSON.stringify(error)}`)
     })
   }
 
@@ -149,9 +177,9 @@ export default class AbilityContextController {
         })
       },
       onFailed(code) {
-        Logger.info(TAG, `onFailed`)
+        Logger.info(TAG, `connectAbility: ${JSON.stringify(code)}`)
         prompt.showToast({
-          message: 'onFailed'
+          message: `connectAbility: ${JSON.stringify(code)}`
         })
       }
     }
@@ -178,9 +206,9 @@ export default class AbilityContextController {
         })
       },
       onFailed(code) {
-        Logger.info(TAG, `onFailed`)
+        Logger.info(TAG, `connectAbilityWithAccount: ${JSON.stringify(code)}`)
         prompt.showToast({
-          message: 'onFailed'
+          message: `connectAbilityWithAccount: ${JSON.stringify(code)}`
         })
       }
     }
@@ -198,27 +226,37 @@ export default class AbilityContextController {
       prompt.showToast({
         message: 'disconnectAbility success'
       })
-    }).catch((err) => {
-      Logger.info(TAG, `disconnectAbility fail, err: ${JSON.stringify(err)}`)
+    }).catch((error) => {
+      Logger.error(TAG, `disconnectAbility fail, error: ${JSON.stringify(error)}`)
       prompt.showToast({
-        message: 'disconnectAbility fail'
+        message: 'disconnectAbility'
       })
     })
   }
 
   // 根据account启动Ability
   startAbilityWithAccount() {
-    this.context.startAbilityWithAccount(want, accountId, (err) => {
-      Logger.info(TAG, `startAbilityWithAccount fail, err: ${JSON.stringify(err)}`)
-    })
+    let options = {
+      windowMode: 0
+    }
+    this.context.startAbilityWithAccount(want, accountId, options)
+      .then(() => {
+        Logger.info(TAG, `startAbilityWithAccount success`)
+        prompt.showToast({
+          message: 'startAbilityWithAccount success'
+        })
+      })
+      .catch((error) => {
+        Logger.error(TAG, `startAbilityWithAccount fail, error: ${JSON.stringify(error)}`)
+      })
   }
 
   // 拉起弹窗请求用户授权，对应FA模型的AppContext中的requestPermissionsFromUser
   requestPermissionsFromUser() {
     this.context.requestPermissionsFromUser(permissions, (result) => {
-      Logger.info(TAG, `requestPermissionsFromUserresult: ${JSON.stringify(result)}`)
+      Logger.info(TAG, `requestPermissionsFromUser: ${JSON.stringify(result)}`)
       prompt.showToast({
-        message: 'requestPermissionsFromUserResult success'
+        message: 'requestPermissionsFromUser success'
       })
     })
   }
@@ -226,9 +264,9 @@ export default class AbilityContextController {
   // 设置ability在任务中显示的名称，
   setMissionLabel() {
     this.context.setMissionLabel('test', (result) => {
-      Logger.info(TAG, `requestPermissionsFromUserresult: ${JSON.stringify(result)}`)
+      Logger.info(TAG, `setMissionLabel: ${JSON.stringify(result)}`)
       prompt.showToast({
-        message: 'requestPermissionsFromUserresult success'
+        message: 'setMissionLabel success'
       })
     })
   }
@@ -236,6 +274,9 @@ export default class AbilityContextController {
   // 查询ability是否在terminating状态。
   isTerminating() {
     const isTerminating = this.context.isTerminating()
+    prompt.showToast({
+      message: 'isTerminating success'
+    })
     Logger.info(TAG, `ability state: ${JSON.stringify(isTerminating)}`)
   }
 }

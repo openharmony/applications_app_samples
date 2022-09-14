@@ -60,9 +60,9 @@ class AppContext {
   // 获取有关当前应用程序的信息，Stage模型中BundleController中的getApplicationInfo
   getApplicationInfo() {
     context.getApplicationInfo((err, data) => {
-      Logger.info(TAG, `requestPermissionsFromUser err = ${JSON.stringify(err)}, data = ${JSON.stringify(data)}`)
+      Logger.info(TAG, `getApplicationInfo err = ${JSON.stringify(err)}, data = ${JSON.stringify(data)}`)
       prompt.showToast({
-        message: `requestPermissionsFromUser success ${JSON.stringify(data)}`
+        message: `getApplicationInfo success ${JSON.stringify(data)}`
       })
     })
   }

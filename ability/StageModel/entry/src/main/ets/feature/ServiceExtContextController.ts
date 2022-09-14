@@ -51,8 +51,8 @@ export default class ServiceExtContextController {
 
   // 启动Ability,对应FA的ParticleAbilityTest中的startAbility()
   startAbility() {
-    this.context.startAbility(wantAccount, (err) => {
-      Logger.info(TAG, `startAbility result: ${JSON.stringify(err)}`)
+    this.context.startAbility(wantAccount, (error) => {
+      Logger.info(TAG, `startAbility result: ${JSON.stringify(error)}`)
     })
   }
 
@@ -65,48 +65,76 @@ export default class ServiceExtContextController {
 
   // 启动一个新的ServiceExtensionAbility
   startServiceExtensionAbility() {
-    this.context.startServiceExtensionAbility(wantAccount, (err) => {
-      Logger.info(TAG, `startServiceExtensionAbility fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'startServiceExtensionAbility fail'
+    this.context.startServiceExtensionAbility(wantAccount)
+      .then((data) => {
+        Logger.info(TAG, `startServiceExtensionAbility success, data: ${JSON.stringify(data)}`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbility success'
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `startServiceExtensionAbility fail, error: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbility'
+        })
+      })
   }
 
   // 启动一个新的ServiceExtensionAbility
   startServiceExtensionAbilityWithAccount() {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err) => {
-      Logger.info(TAG, `startServiceExtensionAbilityWithAccount fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'startServiceExtensionAbilityWithAccount fail'
+    this.context.startServiceExtensionAbilityWithAccount(wantAccount,accountId)
+      .then((data) => {
+        Logger.info(TAG, `startServiceExtensionAbilityWithAccount success: ${JSON.stringify(data)}`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbilityWithAccount success'
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `startServiceExtensionAbilityWithAccount fail, error: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'startServiceExtensionAbilityWithAccount'
+        })
+      })
   }
 
   // 停止同一应用程序内的服务
   stopServiceExtensionAbility() {
-    this.context.stopServiceExtensionAbility(want, (err) => {
-      Logger.info(TAG, `stopServiceExtensionAbility fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'stopServiceExtensionAbility fail'
+    this.context.stopServiceExtensionAbility(wantAccount)
+      .then((data) => {
+        Logger.info(TAG, `stopServiceExtensionAbility ${JSON.stringify(data)}`)
+        prompt.showToast({
+          message: `stopServiceExtensionAbility ${JSON.stringify(data)}`
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `stopServiceExtensionAbility fail, err: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'stopServiceExtensionAbility'
+        })
+      })
   }
 
   // 使用帐户停止同一应用程序内的服务
   stopServiceExtensionAbilityWithAccount() {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err) => {
-      Logger.info(TAG, `stopServiceExtensionAbilityWithAccount fail, err: ${JSON.stringify(err)}`)
-      prompt.showToast({
-        message: 'stopServiceExtensionAbilityWithAccount fail'
+    this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
+      .then((data) => {
+        Logger.info(TAG, `stopServiceExtensionAbilityWithAccount: ${JSON.stringify(data)}`)
+        prompt.showToast({
+          message: `stopServiceExtensionAbilityWithAccount: ${JSON.stringify(data)}`
+        })
       })
-    })
+      .catch((error) => {
+        Logger.error(TAG, `stopServiceExtensionAbilityWithAccount: ${JSON.stringify(error)}`)
+        prompt.showToast({
+          message: 'stopServiceExtensionAbilityWithAccount'
+        })
+      })
   }
 
   // 停止Ability自身。对应FA的ParticleAbilityTest中的terminateSelf()
   terminateSelf() {
-    this.context.terminateSelf((err) => {
-      Logger.info(TAG, `terminateSelf result: ${JSON.stringify(err)}`)
+    this.context.terminateSelf((error) => {
+      Logger.info(TAG, `terminateSelf result: ${JSON.stringify(error)}`)
     })
   }
 
@@ -155,9 +183,9 @@ export default class ServiceExtContextController {
         })
       },
       onFailed(code) {
-        Logger.info(TAG, `connectAbilityWithAccount`)
+        Logger.info(TAG, `connectAbilityWithAccount: ${JSON.stringify(code)}`)
         prompt.showToast({
-          message: 'connectAbilityWithAccount'
+          message: `connectAbilityWithAccount: ${JSON.stringify(code)}`
         })
       }
     }
@@ -170,11 +198,14 @@ export default class ServiceExtContextController {
 
   // 将一个Ability与绑定的服务类型的Ability解绑。对应FA的ParticleAbilityTest中的disconnectAbility
   disconnectAbility() {
-    this.context.disconnectAbility(connection, (err) => {
+    this.context.disconnectAbility(connection, (error) => {
       // connection为connectAbility中的返回值
-      Logger.info(TAG, `disconnectAbility result: ${JSON.stringify(err)}`)
+      if (error) {
+        Logger.info(TAG, `disconnectAbility result error: ${JSON.stringify(error)}`)
+      }
+      Logger.info(TAG, `disconnectAbility result success`)
       prompt.showToast({
-        message: `disconnectAbility result: ${JSON.stringify(err)}`
+        message: `disconnectAbility result success`
       })
     })
   }
@@ -191,10 +222,10 @@ export default class ServiceExtContextController {
       prompt.showToast({
         message: `Caller GetCaller Get:${JSON.stringify(caller)}`
       })
-    }).catch((e) => {
-      Logger.info(TAG, `Caller GetCaller error: ${JSON.stringify(e)}`)
+    }).catch((error) => {
+      Logger.error(TAG, `Caller GetCaller error: ${JSON.stringify(error)}`)
       prompt.showToast({
-        message: `Caller GetCaller error:${JSON.stringify(e)}`
+        message: `Caller GetCaller error:${JSON.stringify(error)}`
       })
     })
   }

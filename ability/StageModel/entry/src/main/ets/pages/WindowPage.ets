@@ -26,17 +26,17 @@ struct WindowPage {
       PublicTitleBar({ textName: $r('app.string.window_page')})
       Scroll() {
         Column() {
-          Button($r('app.string.set_preferred_orientation'))
-            .fancy(() => {
-              this.windows.setPreferredOrientation()
-            })
-
           Button($r('app.string.set_wake_up_screen'))
             .fancy(() => {
               this.windows.setWakeUpScreen(getContext(this))
             })
 
-          Button($r('app.string.set_wake_up_screen'))
+          Button($r('app.string.set_preferred_orientation'))
+            .fancy(() => {
+              this.windows.setPreferredOrientation()
+            })
+
+          Button($r('app.string.get_top_window'))
             .fancy(() => {
               this.windows.getTopWindow(getContext(this))
             })
