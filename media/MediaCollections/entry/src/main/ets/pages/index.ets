@@ -121,7 +121,11 @@ struct Index {
 			disPlayType = '视频'
 		}
 		this.renameDialogController = new CustomDialogController({
-			builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
+			builder: RenameDialog({
+				title: disPlayName,
+				disPlayType: disPlayType,
+				setRename: this.setRename.bind(this)
+			}),
 			autoCancel: true,
 			customStyle: true,
 		})
