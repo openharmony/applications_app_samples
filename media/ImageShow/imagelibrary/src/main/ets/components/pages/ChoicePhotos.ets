@@ -96,9 +96,9 @@ export struct ChoicePhotos {
 
   getMaxHeight() {
     if (!this.isLand && this.isChoice) {
-      return { maxHeight: '65.9%' }
+      return { maxHeight: '64%' }
     } else if (!this.isLand && !this.isChoice) {
-      return { maxHeight: '77%' }
+      return { maxHeight: '75.5%' }
     } else if (this.isLand && this.isChoice) {
       return { maxHeight: '60%' }
     } else if (this.isLand && !this.isChoice) {

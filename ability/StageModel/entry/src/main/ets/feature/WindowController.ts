@@ -36,9 +36,9 @@ export default class WindowController {
       windowClass = data
       const wakeUp = true
       windowClass.setWakeUpScreen(wakeUp)
-      Logger.info(TAG, `Succeeded in obtaining the top window. Data: ${JSON.stringify(data)}`)
+      Logger.info(TAG, `Succeeded in setWakeUpScreen. Data: ${JSON.stringify(data)}`)
       prompt.showToast({
-        message: `Succeeded in obtaining the top window. Data: ${JSON.stringify(data)}`
+        message: `Succeeded in setWakeUpScreen`
       })
     })
   }
@@ -55,7 +55,7 @@ export default class WindowController {
       }
       Logger.info(TAG, `Succeeded in obtaining the top window. Data: ${JSON.stringify(data)}`)
       prompt.showToast({
-        message: `Succeeded in obtaining the top window. Data: ${JSON.stringify(data)}`
+        message: `Succeeded in obtaining the top window`
       })
     })
   }
@@ -63,14 +63,17 @@ export default class WindowController {
   // 设置当前能力的显示方向,对应FA模型的setDisplayOrientation()
   setPreferredOrientation() {
     let orientation = window.Orientation.AUTO_ROTATION
+    if (windowClass === null) {
+      return
+    }
     let promise = windowClass.setPreferredOrientation(orientation)
     promise.then((data) => {
       Logger.info(TAG, `Succeeded in setting the window orientation. Data: ${JSON.stringify(data)}`)
       prompt.showToast({
-        message: `Succeeded in setting the window orientation. Data: ${JSON.stringify(data)}`
+        message: `Succeeded in setting the window orientation`
       })
     }).catch((error) => {
-      Logger.info(TAG, `Failed to set the window orientation. Cause: ${JSON.stringify(error)}`)
+      Logger.error(TAG, `Failed to set the window orientation. Cause: ${JSON.stringify(error)}`)
       prompt.showToast({
         message: `Failed to set the window orientation. Cause: ${JSON.stringify(error)}`
       })

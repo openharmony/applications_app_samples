@@ -44,7 +44,7 @@ export default class FormExtContextController {
         message: 'FormExtensionContext success'
       })
     }).catch((error) => {
-      Logger.info(TAG, `StartAbility failed: ${error}`)
+      Logger.error(TAG, `StartAbility failed: ${error}`)
       prompt.showToast({
         message: `StartAbility failed: ${error}`
       })
