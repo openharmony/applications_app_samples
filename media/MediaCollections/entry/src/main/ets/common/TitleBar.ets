@@ -15,9 +15,9 @@
 
 @Component
 export struct TitleBar {
-	build() {
-		Column() {
-			Image($r('app.media.icon_logo')).width(184).height(48)
-		}.width('16%')
-	}
+  build() {
+    Column() {
+      Image($r('app.media.icon_logo')).width(184).height(48)
+    }.width('16%')
+  }
 }

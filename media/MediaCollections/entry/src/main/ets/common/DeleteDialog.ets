@@ -20,60 +20,61 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 @CustomDialog
 export struct DeleteDialog {
-	private index: number
-	private mediaData: Array<mediaLibrary.FileAsset> = []
-	private controller: CustomDialogController
-	@State displayWidth: number = undefined
+  @State displayWidth: number = undefined
+  private index: number
+  private mediaData: Array<mediaLibrary.FileAsset> = []
+  private controller: CustomDialogController
 
-	async aboutToAppear() {
-		let abilityDisplay = await display.getDefaultDisplay()
-		this.displayWidth = abilityDisplay.width
-	}
+  async aboutToAppear() {
+    let abilityDisplay = await display.getDefaultDisplay()
+    this.displayWidth = abilityDisplay.width
+  }
 
-	build() {
-		Column() {
-			Text($r('app.string.index_del'))
-				.fontSize(18)
-				.fontColor(this.displayWidth > 2500 ? Color.White : Color.Black)
-				.margin({ top: 10 })
-			Row() {
-				Button() {
-					Text($r('app.string.index_cel'))
-						.fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7')
-						.fontSize(17)
-				}
-				.layoutWeight(5)
-				.backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
-				.onClick(() => {
-					promptShowToast($r('app.string.index_celOk'))
-					this.controller.close()
-				})
+  build() {
+    Column() {
+      Text($r('app.string.index_del'))
+        .fontSize(18)
+        .fontColor(this.displayWidth > 2500 ? Color.White : Color.Black)
+        .margin({ top: 10 })
+      Row() {
+        Button() {
+          Text($r('app.string.index_cel'))
+            .fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7')
+            .fontSize(17)
+        }
+        .layoutWeight(5)
+        .backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
+        .onClick(() => {
+          promptShowToast($r('app.string.index_celOk'))
+          this.controller.close()
+        })
 
-				Text()
-					.width(1).height(30)
-					.backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
+        Text()
+          .width(1)
+          .height(30)
+          .backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
 
-				Button() {
-					Text($r('app.string.index_sure'))
-						.fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7')
-						.fontSize(17)
-				}
-				.layoutWeight(5)
-				.backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
-				.onClick(() => {
-					MediaUtils.deleteFile(this.mediaData[this.index])
-					this.mediaData.splice(this.index, 1)
-					this.controller.close()
-					promptShowToast($r('app.string.index_deleteOk'))
-				})
-			}
-			.justifyContent(FlexAlign.SpaceAround)
-			.width('100%')
-			.margin({ top: '5%' })
-		}
-		.width(this.displayWidth > 2500 ? '26%' : '80%')
-		.padding('3%')
-		.borderRadius(24)
-		.backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
-	}
+        Button() {
+          Text($r('app.string.index_sure'))
+            .fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7')
+            .fontSize(17)
+        }
+        .layoutWeight(5)
+        .backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
+        .onClick(() => {
+          MediaUtils.deleteFile(this.mediaData[this.index])
+          this.mediaData.splice(this.index, 1)
+          this.controller.close()
+          promptShowToast($r('app.string.index_deleteOk'))
+        })
+      }
+      .justifyContent(FlexAlign.SpaceAround)
+      .width('100%')
+      .margin({ top: '5%' })
+    }
+    .width(this.displayWidth > 2500 ? '26%' : '80%')
+    .padding('3%')
+    .borderRadius(24)
+    .backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
+  }
 }

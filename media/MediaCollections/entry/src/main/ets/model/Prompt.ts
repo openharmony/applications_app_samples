@@ -16,8 +16,8 @@
 import prompt from '@ohos.prompt'
 
 export function promptShowToast(message) {
-	prompt.showToast({
-		message: message,
-		duration: 2000
-	})
+  prompt.showToast({
+    message: message,
+    duration: 2000
+  })
 }

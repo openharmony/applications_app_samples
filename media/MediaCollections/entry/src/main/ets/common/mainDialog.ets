@@ -15,39 +15,34 @@
 
 @CustomDialog
 export struct mainDialog {
-	private controller: CustomDialogController
+  private controller: CustomDialogController
 
-	build() {
-		Column() {
-			Text($r('app.string.mainDialog_inputText'))
-				.fontSize(16)
-				.fontFamily('HarmonyHeiTi')
-				.fontColor(Color.White)
-			Row() {
-				Button({ stateEffect: false }) {
-					Text($r('app.string.mainDialog_know'))
-						.fontColor('#5291FF')
-						.fontSize(17)
-				}
-				.layoutWeight(7)
-				.backgroundColor('#2F2F30')
-				.margin(5)
-				.onClick(() => {
-					this.controller.close()
-				})
+  build() {
+    Column() {
+      Text($r('app.string.mainDialog_inputText'))
+        .fontSize(16)
+        .fontFamily('HarmonyHeiTi')
+        .fontColor(Color.White)
+      Row() {
+        Button({ stateEffect: false }) {
+          Text($r('app.string.mainDialog_know'))
+            .fontColor('#5291FF')
+            .fontSize(17)
+        }
+        .layoutWeight(7)
+        .backgroundColor('#2F2F30')
+        .margin(5)
+        .onClick(() => {
+          this.controller.close()
+        })
 
-			}
-			.width('100%')
-			.margin({ top: '2%' })
-		}
-		.width('26%')
-		.padding({
-			top: '3%',
-			left: '2%',
-			right: '2%',
-			bottom: '2%'
-		})
-		.borderRadius(24)
-		.backgroundColor('#2F2F30')
-	}
+      }
+      .width('100%')
+      .margin({ top: '2%' })
+    }
+    .width('26%')
+    .padding({ top: '3%', left: '2%', right: '2%', bottom: '2%' })
+    .borderRadius(24)
+    .backgroundColor('#2F2F30')
+  }
 }

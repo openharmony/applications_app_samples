@@ -30,12 +30,8 @@ export struct isInformationDialog {
 
 	build() {
 		Scroll(this.scroller) {
-			Flex({
-				direction: FlexDirection.Column,
-				justifyContent: FlexAlign.SpaceEvenly
-			}) {
-				Text($r('app.string.index_formation'))
-					.fontColor('#FFFFFF')
+			Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceEvenly }) {
+				Text($r('app.string.index_formation')).fontColor('#FFFFFF')
 				Text(`文件资源编号：${this.isInformation.id}`).fontColor('#FFFFFF')
 				Text(`文件资源uri：${this.isInformation.uri}`).fontColor('#FFFFFF')
 				Text(`文件扩展属性：${this.isInformation.mimeType}`).fontColor('#FFFFFF')
@@ -57,9 +53,7 @@ export struct isInformationDialog {
 				Text(`文件所归属的相册编号：${this.isInformation.albumId}`).fontColor('#FFFFFF')
 				Text(`文件所归属相册uri：${this.isInformation.albumUri}`).fontColor('#FFFFFF')
 				Text(`文件所归属相册名称： ${this.isInformation.albumName}`).fontColor('#FFFFFF')
-			}
-			.width('100%')
-			.height('100%')
+			}.width('100%').height('100%')
 		}
 		.scrollBar(BarState.Off)
 		.scrollBarColor(Color.White)
