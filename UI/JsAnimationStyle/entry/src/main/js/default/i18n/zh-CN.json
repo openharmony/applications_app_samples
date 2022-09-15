@@ -20,16 +20,6 @@
     "remove": "MAIN TITLE",
     "detail": "我是详情页",
     "sharedjump": "跳转目标页",
-    "sharedpaget": "我是目标页",
-
-    "customfontstyle": "自定义字体样式",
-    "txt_default": "系统默认字体",
-    "txt_bold": "自定义字体_bold",
-    "txt_extraLight": "自定义字体_extraLight",
-    "txt_heavy": "自定义字体_Heavy",
-    "txt_medium": "自定义字体_Medium",
-    "txt_normal": "自定义字体_Normal",
-    "txt_regular": "自定义字体_Regular",
-    "clickback": "点击返回"
+    "sharedpaget": "我是目标页"
   }
 }
