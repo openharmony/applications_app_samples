@@ -88,7 +88,7 @@ export struct HomeView {
               checkItem: this.checkItem.bind(this)
             })
           }
-	  .key('audioItem' + (index + 1))
+          .key('audioItem' + (index + 1))
         }, item => item.title + item.isCheck)
       }
       .layoutWeight(1)
