@@ -20,7 +20,7 @@ import Logger from '../model/Logger'
 class MediaUtils {
   private tag: string = 'MediaUtils'
   private mediaList: Array<mediaLibrary.FileAsset> = []
-  private mediaLib: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
+  public mediaLib: mediaLibrary.MediaLibrary = undefined
 
   async queryFile(id) {
     Logger.info(this.tag, `queryFile,id = ${id}`)

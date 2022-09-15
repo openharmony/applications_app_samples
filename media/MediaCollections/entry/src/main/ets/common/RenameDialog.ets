@@ -23,16 +23,14 @@ export struct RenameDialog {
   private disPlayType: string
   private setRename: (newName: string) => void
   private controller: CustomDialogController
-
   async aboutToAppear() {
     this.suffix = this.title.substring(this.title.lastIndexOf('.'))
     let abilityDisplay = await display.getDefaultDisplay()
     this.displayWidth = abilityDisplay.width
   }
-
   build() {
     Column() {
-      Text(`${this.disPlayType}名称`)
+      Text(`${this.disPlayType}`)
         .fontSize(20)
         .fontColor(this.displayWidth > 2500 ? '#FFFFFF' : '#000000')
         .width(this.displayWidth > 2500 ? 280 : 328)
@@ -57,15 +55,15 @@ export struct RenameDialog {
         .backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
       Row() {
         Button() {
-          Text('取消').fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7').fontSize(17)
+          Text($r('app.string.index_cel')).fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7').fontSize(17)
         }.layoutWeight(5).backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF').onClick(() => {
-          promptShowToast('已取消')
+          promptShowToast($r('app.string.index_celOk'))
           this.controller.close()
         })
 
         Text().width(1).height(30).backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
         Button() {
-          Text('确定').fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7').fontSize(17)
+          Text($r('app.string.index_sure')).fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7').fontSize(17)
         }.layoutWeight(5).backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF').onClick(() => {
           if (this.title == this.suffix) {
             promptShowToast($r('app.string.renameDialog_inputName'))

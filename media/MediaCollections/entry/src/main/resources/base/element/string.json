@@ -21,6 +21,14 @@
       "value": "音频"
     },
     {
+      "name": "phoneMain_audioTitle",
+      "value": "音频名称"
+    },
+    {
+      "name": "phoneMain_videoTitle",
+      "value": "视频名称"
+    },
+    {
       "name": "phoneMain_video",
       "value": "视频"
     },

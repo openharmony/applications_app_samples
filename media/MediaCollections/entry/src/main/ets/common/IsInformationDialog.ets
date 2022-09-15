@@ -22,37 +22,83 @@ export struct isInformationDialog {
   private controller: CustomDialogController
   private scroller: Scroller = new Scroller()
   private isInformation: mediaLibrary.FileAsset = null
-
+  private context: any
+  @State isInformation_id: string = ''
+  @State isInformation_uri: string = ''
+  @State isInformation_mimeType: string = ''
+  @State isInformation_mediaType: string = ''
+  @State isInformation_displayName: string = ''
+  @State isInformation_title: string = ''
+  @State isInformation_relativePath: string = ''
+  @State isInformation_parent: string = ''
+  @State isInformation_size: string = ''
+  @State isInformation_dateAdded: string = ''
+  @State isInformation_dateModified: string = ''
+  @State isInformation_dateTaken: string = ''
+  @State isInformation_artist: string = ''
+  @State isInformation_audioAlbum: string = ''
+  @State isInformation_width: string = ''
+  @State isInformation_height: string = ''
+  @State isInformation_orientation: string = ''
+  @State isInformation_duration: string = ''
+  @State isInformation_albumId: string = ''
+  @State isInformation_albumUri: string = ''
+  @State isInformation_albumName: string = ''
   async aboutToAppear() {
     this.myMedia.getPause()
     this.isInformation = this.myMedia.getResourceAddress()
-  }
+    this.isInformation_id = await this.convertResourceToString($r('app.string.index_formation_id'))
+    this.isInformation_uri = await this.convertResourceToString($r('app.string.index_formation_uri'))
+    this.isInformation_mimeType = await this.convertResourceToString($r('app.string.index_formation_mimeType'))
+    this.isInformation_mediaType = await this.convertResourceToString($r('app.string.index_formation_mediaType'))
+    this.isInformation_displayName = await this.convertResourceToString($r('app.string.index_formation_displayName'))
+    this.isInformation_title = await this.convertResourceToString($r('app.string.index_formation_title'))
+    this.isInformation_relativePath = await this.convertResourceToString($r('app.string.index_formation_relativePath'))
+    this.isInformation_parent = await this.convertResourceToString($r('app.string.index_formation_parent'))
+    this.isInformation_size = await this.convertResourceToString($r('app.string.index_formation_size'))
+    this.isInformation_dateAdded = await this.convertResourceToString($r('app.string.index_formation_dateAdded'))
+    this.isInformation_dateModified = await this.convertResourceToString($r('app.string.index_formation_dateModified'))
+    this.isInformation_dateTaken = await this.convertResourceToString($r('app.string.index_formation_dateTaken'))
+    this.isInformation_artist = await this.convertResourceToString($r('app.string.index_formation_artist'))
+    this.isInformation_audioAlbum = await this.convertResourceToString($r('app.string.index_formation_audioAlbum'))
+    this.isInformation_width = await this.convertResourceToString($r('app.string.index_formation_width'))
+    this.isInformation_height = await this.convertResourceToString($r('app.string.index_formation_height'))
+    this.isInformation_orientation = await this.convertResourceToString($r('app.string.index_formation_orientation'))
+    this.isInformation_duration = await this.convertResourceToString($r('app.string.index_formation_duration'))
+    this.isInformation_albumId = await this.convertResourceToString($r('app.string.index_formation_albumId'))
+    this.isInformation_albumUri = await this.convertResourceToString($r('app.string.index_formation_albumUri'))
+    this.isInformation_albumName = await this.convertResourceToString($r('app.string.index_formation_albumName'))
 
+
+  }
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
   build() {
     Scroll(this.scroller) {
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceEvenly }) {
         Text($r('app.string.index_formation')).fontColor('#FFFFFF')
-        Text(`文件资源编号：${this.isInformation.id}`).fontColor('#FFFFFF')
-        Text(`文件资源uri：${this.isInformation.uri}`).fontColor('#FFFFFF')
-        Text(`文件扩展属性：${this.isInformation.mimeType}`).fontColor('#FFFFFF')
-        Text(`媒体类型：${this.isInformation.mediaType}`).fontColor('#FFFFFF')
-        Text(`文件名：${this.isInformation.displayName}`).fontColor('#FFFFFF')
-        Text(`文件标题：${this.isInformation.title}`).fontColor('#FFFFFF')
-        Text(`相对公共目录路径：${this.isInformation.relativePath}`).fontColor('#FFFFFF')
-        Text(`父目录id：${this.isInformation.parent}`).fontColor('#FFFFFF')
-        Text(`文件大小：${filterSize(this.isInformation.size)}`).fontColor('#FFFFFF')
-        Text(`添加日期：${getDateTime(this.isInformation.dateAdded)}`).fontColor('#FFFFFF')
-        Text(`修改日期：${getDateTime(this.isInformation.dateModified)}`).fontColor('#FFFFFF')
-        Text(`拍摄日期：${getDateTime(this.isInformation.dateTaken)}`).fontColor('#FFFFFF')
-        Text(`作者：${this.isInformation.artist}`).fontColor('#FFFFFF')
-        Text(`专辑：${this.isInformation.audioAlbum}`).fontColor('#FFFFFF')
-        Text(`图片宽度：${this.isInformation.width}`).fontColor('#FFFFFF')
-        Text(`图片高度：${this.isInformation.height}`).fontColor('#FFFFFF')
-        Text(`图片显示方向：${this.isInformation.orientation}`).fontColor('#FFFFFF')
-        Text(`持续时间：${getTimeString(this.isInformation.duration)}`).fontColor('#FFFFFF')
-        Text(`文件所归属的相册编号：${this.isInformation.albumId}`).fontColor('#FFFFFF')
-        Text(`文件所归属相册uri：${this.isInformation.albumUri}`).fontColor('#FFFFFF')
-        Text(`文件所归属相册名称： ${this.isInformation.albumName}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_id + this.isInformation.id}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_uri + this.isInformation.uri}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_mimeType + this.isInformation.mimeType}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_mediaType + this.isInformation.mediaType}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_displayName + this.isInformation.displayName}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_title + this.isInformation.title}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_relativePath + this.isInformation.relativePath}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_parent + this.isInformation.parent}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_size + filterSize(this.isInformation.size)}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_dateAdded + getDateTime(this.isInformation.dateAdded)}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_dateModified + getDateTime(this.isInformation.dateModified)}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_dateTaken + getDateTime(this.isInformation.dateTaken)}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_artist + this.isInformation.artist}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_audioAlbum  + this.isInformation.audioAlbum}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_width + this.isInformation.width}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_height + this.isInformation.height}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_orientation + this.isInformation.orientation}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_duration + getTimeString(this.isInformation.duration)}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_albumId + this.isInformation.albumId}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_albumUri + this.isInformation.albumUri}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_albumName + this.isInformation.albumName}`).fontColor('#FFFFFF')
       }.width('100%').height('100%')
     }
     .scrollBar(BarState.Off)

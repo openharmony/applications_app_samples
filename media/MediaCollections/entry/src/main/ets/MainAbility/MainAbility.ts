@@ -19,15 +19,7 @@ import display from '@ohos.display'
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
-    globalThis.abilityWant = want;
-    globalThis.abilityContext = this.context
-
-    const PERMISSIONS: Array<string> = [
-      'ohos.permission.WRITE_MEDIA',
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.INTERNET'
-    ]
-    await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
+    globalThis.abilityWant = want
   }
 
   onDestroy() {

@@ -43,7 +43,16 @@ export struct Toolkit {
     { icon: $r('app.media.icon_color_favorite'), textStr: '收藏' },
     { icon: $r('app.media.icon_color_me'), textStr: '我的' },
   ]
-
+  private context: any
+  @State audioText: string = ''
+  @State videoText: string = ''
+  async aboutToAppear(){
+    this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'))
+    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
+  }
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
   build() {
 
     Flex({ direction: FlexDirection.Column }) {
@@ -55,16 +64,17 @@ export struct Toolkit {
             clickIndex: $clickIndex,
             isBom: $isBom,
             isTitle: $isTitle,
+            context: this.context,
             isXComponent: $isXComponent
           })
         }, item => item.textStr)
       }.padding({ top: 10, bottom: 16 })
 
-      if (this.isTitle == '音频' || this.isTitle == '视频') {
+      if (this.isTitle == this.audioText || this.isTitle == this.videoText) {
         Scroll(this.scroller) {
           Column() {
             List({ initialIndex: 0 }) {
-              ForEach(this.isTitle == '音频' ? this.audioData : this.videoData, (item: mediaLibrary.FileAsset, index) => {
+              ForEach(this.isTitle == this.audioText ? this.audioData : this.videoData, (item: mediaLibrary.FileAsset, index) => {
                 ListItem() {
                   MediaItem({
                     index: index,
@@ -79,7 +89,7 @@ export struct Toolkit {
                 .onClick(() => {
                   this.isPlaying = true
                   this.itemData = item
-                  if (this.isTitle == '音频') {
+                  if (this.isTitle == this.audioText) {
                     this.isXComponent = false
                     this.myMedia.init(this.itemData)
                   } else {

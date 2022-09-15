@@ -1,4 +1,6 @@
 // @ts-nocheck
+
+
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -46,6 +48,10 @@ export struct Toolkit {
   private mXComponentController: XComponentController
   private deleteDialogShow: (index: number, mediaType) => void
   private renameDialogShow: (index: number, mediaType) => void
+  private context: any
+  @State audioText: string = ''
+  @State videoText: string = ''
+
   private GridData: gridData[] = [
     { icon: $r('app.media.icon_color_music'), textStr: '音频' },
     { icon: $r('app.media.icon_color_video'), textStr: '视频' },
@@ -54,14 +60,19 @@ export struct Toolkit {
     { icon: $r('app.media.icon_color_me'), textStr: '我的' },
     { icon: $r('app.media.icon_color_setting'), textStr: '设置' }
   ]
-
   clearVideoPlayer() {
     this.currentTime = 0
     clearInterval(this.timer)
     this.myMedia.stop()
     this.myMedia.release()
   }
-
+  async aboutToAppear(){
+    this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'))
+    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
+  }
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
   build() {
     Flex({ direction: FlexDirection.Column }) {
       if (!this.isBom) {
@@ -105,7 +116,7 @@ export struct Toolkit {
           .layoutWeight(1)
           .padding(2)
         }
-        if (this.isTitle == '音频') {
+        if (this.isTitle == this.audioText) {
           Column() {
             List({ initialIndex: 0 }) {
               ForEach(this.audioData, (item: mediaLibrary.FileAsset, index) => {
@@ -143,7 +154,7 @@ export struct Toolkit {
           }
           .height('100%')
         }
-        if (this.isTitle == '视频') {
+        if (this.isTitle == this.videoText) {
           Column() {
             List({ initialIndex: 0 }) {
               ForEach(this.videoData, (item: mediaLibrary.FileAsset, index) => {

@@ -36,7 +36,7 @@ export class myMedia {
   private videoData: Array<mediaLibrary.FileAsset>
   private fileIndex: number = 0
   private mediaDataLen: number
-
+  private uri:string = undefined
   getAudioData(audioData) {
     this.audioData = audioData
   }
@@ -88,6 +88,7 @@ export class myMedia {
   }
 
   async httpInit(url, surfaceId?) {
+    this.uri = url
     if (surfaceId) {
       this.surfaceId = surfaceId.toString()
       Logger.info(TAG, `surfaceId success: ${surfaceId}`)
@@ -165,7 +166,9 @@ export class myMedia {
     audioPlayer.on('finish', () => {
       Logger.info(TAG, `AUDIO case finish called`)
       this.release()
-      this.next()
+      if(this.resourceAddress && this.resourceAddress.mediaType){
+        this.next()
+      }
     })
     audioPlayer.on('error', (err) => {
       Logger.info(TAG, ` AUDIO audioPlayer error called : ${err}`)
@@ -193,7 +196,9 @@ export class myMedia {
     videoPlayer.on('playbackCompleted', () => {
       Logger.info(TAG, `VIDEO playbackCompleted finish`)
       this.release()
-      this.next()
+      if(this.resourceAddress && this.resourceAddress.mediaType){
+        this.next()
+      }
     })
 
   }

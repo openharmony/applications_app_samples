@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +14,7 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
+
 
 import audio from '@ohos.multimedia.audio'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
@@ -44,7 +45,8 @@ export struct BroadcastControl {
   private scroller: Scroller = new Scroller()
   private mXComponentController: XComponentController
   private dialogController: CustomDialogController = null
-
+  private context: any
+  @State selectText: string = ''
   clearVideoPlayer() {
     this.currentTime = 0
     clearInterval(this.timer)
@@ -61,8 +63,11 @@ export struct BroadcastControl {
 
   async aboutToAppear() {
     this.mediaVolumeValue = await audioManager.getVolume(audio.AudioVolumeType.MEDIA)
+    this.selectText = await this.convertResourceToString($r('app.string.phoneMain_setSpeed'))
   }
-
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
   build() {
     Stack({ alignContent: Alignment.Center }) {
       if (this.isShowMenu) {
@@ -169,8 +174,7 @@ export struct BroadcastControl {
                 { value: '1.75' },
                 { value: '2.00' },
               ])
-                .selected(1)
-                .value('倍速')
+                .value(this.selectText)
                 .font({ size: 18 })
                 .fontColor(Color.White)
                 .selectedOptionFont({ size: 18 })
@@ -194,7 +198,7 @@ export struct BroadcastControl {
                   if (this.isInformation) {
                     if (this.myMedia.getResourceAddress()) {
                       this.dialogController = new CustomDialogController({
-                        builder: isInformationDialog({ myMedia: $myMedia }),
+                        builder: isInformationDialog({ myMedia: $myMedia , context: this.context }),
                         autoCancel: true,
                         cancel: () => {
                           this.myMedia.getPlay()
