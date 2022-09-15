@@ -14,7 +14,8 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import hilog from '@ohos.hilog';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import hilog from '@ohos.hilog'
 
 const BUNDLE = 'WebSocket'
 const TAG = '[Sample_WebSocket]'
@@ -29,10 +30,12 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
       hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
       let want = {
-        bundleName: "ohos.samples.websocket",
-        abilityName: "MainAbility"
+        bundleName: 'ohos.samples.websocket',
+        abilityName: 'MainAbility'
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(want, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
         expect(0).assertEqual(err.code)
         done()

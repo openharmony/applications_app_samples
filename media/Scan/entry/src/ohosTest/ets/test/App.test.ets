@@ -14,9 +14,10 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import hilog from '@ohos.hilog';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import hilog from '@ohos.hilog'
 
-const BUNDLE = "Scan"
+const BUNDLE = 'Scan'
 const TAG = '[Sample_Scan]'
 const DOMAIN = 0xF811
 
@@ -25,24 +26,26 @@ export default function appTest() {
     it(BUNDLE + '_startAbility', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + "_startAbility start")
       let want = {
-        bundleName: "com.example.scan",
-        abilityName: "MainAbility"
+        bundleName: 'com.example.scan',
+        abilityName: 'MainAbility'
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + "_startAbility get err " + JSON.stringify(err))
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(want, (err, data) => {
+        hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
         expect(0).assertEqual(err.code)
         done()
-        hilog.info(DOMAIN, TAG, BUNDLE + "_startAbility end")
+        hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility end')
       })
     })
     // 证明拉起白屏
     it(BUNDLE + '_IndexPage_btnAgree', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_BtnAgree start")
+      hilog.info(DOMAIN, TAG, BUNDLE + '_IndexPage_BtnAgree start')
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
       await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_BtnAgree end")
+      hilog.info(DOMAIN, TAG, BUNDLE + '_IndexPage_BtnAgree end')
     })
   })
 }
