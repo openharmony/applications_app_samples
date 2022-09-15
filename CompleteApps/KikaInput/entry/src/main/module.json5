@@ -24,7 +24,8 @@
         "name": "ServiceExtAbility",
         "label": "$string:MainAbility_label",
         "description": "$string:extension_ability_descripter",
-        "type": "service"
+        "type": "inputMethod",
+        "visible": true
       }
     ]
   }

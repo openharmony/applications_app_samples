@@ -132,9 +132,6 @@ export class KeyboardController {
         win.resetSize(dWidth, keyHeight).then(() => {
           win.moveTo(0, dHeight - keyHeight - navigationbar_height).then(() => {
             this.inputHandle.addLog('resizeWindow-moveTo success');
-            win.loadContent('pages/index').then(() => {
-              this.inputHandle.addLog('loadContent finished')
-            })
           })
 
         })
@@ -353,7 +350,11 @@ export class InputHandler {
     globalThis.mTextInputClient = textInputClient;
     globalThis.mEditorAttribute = globalThis.mTextInputClient.getEditorAttribute();
     this.addLog("onInputStart mEditorAttribute = " + globalThis.mEditorAttribute);
-    this.setInputInfo("EditorInfo：enterKeyType = " + globalThis.mEditorAttribute.enterKeyType + ";inputPattern = " + globalThis.mEditorAttribute.inputPattern);
+    globalThis.mEditorAttribute.then(res => {
+      globalThis.enterKeyType = res.enterKeyType;
+      globalThis.inputPattern = res.inputPattern;
+      this.setInputInfo("EditorInfo：enterKeyType = " + globalThis.enterKeyType + ";inputPattern = " + globalThis.inputPattern);
+    })
   }
 
   public hideKeyboardSelf() {
@@ -363,7 +364,7 @@ export class InputHandler {
 
   public sendKeyFunction() {
     this.addLog('sendKeyFunction')
-    globalThis.mTextInputClient.sendKeyFunction(globalThis.mEditorAttribute.enterKeyType);
+    globalThis.mTextInputClient.sendKeyFunction(globalThis.enterKeyType);
   }
 
   public deleteBackward(length: number) {
