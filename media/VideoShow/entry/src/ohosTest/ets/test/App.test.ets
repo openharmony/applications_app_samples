@@ -14,7 +14,8 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import hilog from '@ohos.hilog';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import hilog from '@ohos.hilog'
 
 const BUNDLE = 'VideoShow'
 const TAG = '[Sample_VideoShow]'
@@ -30,10 +31,12 @@ export default function appTest() {
       let driver = await UiDriver.create()
       await driver.delayMs(1000)
       let want = {
-        bundleName: "com.example.videoshow",
-        abilityName: "MainAbility"
+        bundleName: 'com.example.videoshow',
+        abilityName: 'MainAbility'
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(want, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
         expect(0).assertEqual(err.code)
         done()

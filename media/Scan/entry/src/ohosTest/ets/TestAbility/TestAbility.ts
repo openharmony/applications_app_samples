@@ -30,12 +30,12 @@ export default class TestAbility extends Ability {
     console.log('TestAbility onWindowStageCreate')
     windowStage.loadContent("TestAbility/pages/index", (err, data) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err))
         return;
       }
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
     });
-    globalThis.abilityContext = this.context;
+    globalThis.abilityContext = this.context
     var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments: any

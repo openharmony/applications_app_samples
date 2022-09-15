@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import hilog from '@ohos.hilog';
 
@@ -28,10 +29,12 @@ export default function appTest() {
     it(BUNDLE + '_startAbility', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
       let want = {
-        bundleName: "ohos.samples.distributeddatagobang",
-        abilityName: "MainAbility"
+        bundleName: 'ohos.samples.distributeddatagobang',
+        abilityName: 'MainAbility'
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(want, (err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
         expect(0).assertEqual(err.code)
         done()
