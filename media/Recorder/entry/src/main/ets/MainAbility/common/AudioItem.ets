@@ -18,7 +18,7 @@ import Logger from '../model/Logger'
 import { Record } from '../model/Record'
 
 const TAG = '[Recorder.AudioItem]'
-const TRANSLATE: number = -130
+const TRANSLATE: number = -125
 
 @Component
 export struct AudioItem {
@@ -98,7 +98,7 @@ export struct AudioItem {
       }
       .width('79%')
       .padding({ top: 10, bottom: 10, left: 10, right: 10 })
-      .margin({ left: 15, top: 15, right: 5 })
+      .margin({ top: 15 })
       .backgroundColor('#FFFFFF')
       .borderRadius(20)
 

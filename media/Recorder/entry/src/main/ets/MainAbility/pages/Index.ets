@@ -128,8 +128,9 @@ struct Index {
 
   aboutToAppear() {
     let context = featureAbility.getContext()
-    context.requestPermissionsFromUser(['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.READ_MEDIA'], 3,  (result) => {
+    context.requestPermissionsFromUser(['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.READ_MEDIA'], 3, (result) => {
       Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
+      this.getAudios()
     })
     this.listener.on('change', this.onPortrait.bind(this))
     MediaManager.onAudioChange(this.getAudios)

@@ -17,14 +17,15 @@ import media from '@ohos.multimedia.media'
 import Logger from '../model/Logger'
 
 const TAG: string = '[Recorder.RecordModel]'
+
 let audioConfig = {
-  audioSourceType: 1,
-  audioEncoder: 3,
-  audioEncodeBitRate: 22050,
-  audioSampleRate: 22050,
-  numberOfChannels: 2,
-  format: 6,
-  uri: ''
+  audioEncodeBitRate : 22050,
+  audioSampleRate : 22050,
+  numberOfChannels : 2,
+  uri :'',
+  location : { latitude : 30, longitude : 130},
+  audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
 }
 
 export class RecordModel {
