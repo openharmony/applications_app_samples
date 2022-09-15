@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import Ability from '@ohos.application.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
@@ -38,7 +38,6 @@ export default class TestAbility extends Ability {
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
     });
 
-    globalThis.abilityContext = this.context;
     var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments: any

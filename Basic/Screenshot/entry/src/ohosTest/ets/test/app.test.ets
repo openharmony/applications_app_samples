@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import hilog from '@ohos.hilog'
 
@@ -29,7 +30,9 @@ export default function appTest() {
         bundleName: "ohos.samples.screenshot",
         abilityName: "MainAbility"
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      abilityDelegator.startAbility(want, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()

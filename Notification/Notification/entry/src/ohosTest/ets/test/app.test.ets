@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import hilog from '@ohos.hilog'
 
@@ -29,7 +30,9 @@ export default function appTest() {
         bundleName: "ohos.samples.notification",
         abilityName: "ohos.samples.notification.MainAbility"
       }
-      globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      abilityDelegator.startAbility(want, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()
@@ -59,14 +62,14 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'SubscribeNotificationFunction_001 subscribeNotification')
       // 订阅通知
-      await driver.assertComponentExist(BY.text('订阅通知', MatchPattern.CONTAINS))
-      let subBtn = await driver.findComponent(BY.text('订阅通知', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('订阅通知'))
+      let subBtn = await driver.findComponent(BY.text('订阅通知'))
       await driver.delayMs(1000)
       await subBtn.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'SubscribeNotificationFunction_001 cancelSubscribe')
       // 取消订阅
-      await driver.assertComponentExist(BY.text('取消订阅', MatchPattern.CONTAINS))
-      let cancel = await driver.findComponent(BY.text('取消订阅', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('取消订阅'))
+      let cancel = await driver.findComponent(BY.text('取消订阅'))
       await driver.delayMs(1000)
       await cancel.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'SubscribeNotificationFunction_001 end')
