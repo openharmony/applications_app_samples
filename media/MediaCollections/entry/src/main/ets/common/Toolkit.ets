@@ -1,4 +1,6 @@
 // @ts-nocheck
+
+
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,22 +22,9 @@ import { gridData } from '../model/GridData'
 import { myMedia } from '../model/myMedia'
 import { MediaItem } from './MediaItem'
 import { ToolKitItem } from '../common/ToolkitItem'
+
 @Component
 export struct Toolkit {
-  private timer: number = undefined
-  private timerOut: number = undefined
-  private scroller: Scroller = new Scroller()
-  private mXComponentController: XComponentController
-  private deleteDialogShow: (index: number, mediaType) => void
-  private renameDialogShow: (index: number, mediaType) => void
-  private GridData: gridData[] = [
-    { icon: $r('app.media.icon_color_music'), textStr: '音频' },
-    { icon: $r('app.media.icon_color_video'), textStr: '视频' },
-    { icon: $r('app.media.icon_color_search'), textStr: '搜索' },
-    { icon: $r('app.media.icon_color_favorite'), textStr: '收藏' },
-    { icon: $r('app.media.icon_color_me'), textStr: '我的' },
-    { icon: $r('app.media.icon_color_setting'), textStr: '设置'}
-  ]
   @State isBom: boolean = true
   @State leftSliderIndex: number = -1
   @Link myMedia: myMedia
@@ -53,14 +42,37 @@ export struct Toolkit {
   @Link itemData: mediaLibrary.FileAsset
   @Link audioData: Array<mediaLibrary.FileAsset>
   @Link videoData: Array<mediaLibrary.FileAsset>
+  private timer: number = undefined
+  private timerOut: number = undefined
+  private scroller: Scroller = new Scroller()
+  private mXComponentController: XComponentController
+  private deleteDialogShow: (index: number, mediaType) => void
+  private renameDialogShow: (index: number, mediaType) => void
+  private context: any
+  @State audioText: string = ''
+  @State videoText: string = ''
 
+  private GridData: gridData[] = [
+    { icon: $r('app.media.icon_color_music'), textStr: '音频' },
+    { icon: $r('app.media.icon_color_video'), textStr: '视频' },
+    { icon: $r('app.media.icon_color_search'), textStr: '搜索' },
+    { icon: $r('app.media.icon_color_favorite'), textStr: '收藏' },
+    { icon: $r('app.media.icon_color_me'), textStr: '我的' },
+    { icon: $r('app.media.icon_color_setting'), textStr: '设置' }
+  ]
   clearVideoPlayer() {
     this.currentTime = 0
     clearInterval(this.timer)
     this.myMedia.stop()
     this.myMedia.release()
   }
-
+  async aboutToAppear(){
+    this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'))
+    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
+  }
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
   build() {
     Flex({ direction: FlexDirection.Column }) {
       if (!this.isBom) {
@@ -104,7 +116,7 @@ export struct Toolkit {
           .layoutWeight(1)
           .padding(2)
         }
-        if (this.isTitle == '音频') {
+        if (this.isTitle == this.audioText) {
           Column() {
             List({ initialIndex: 0 }) {
               ForEach(this.audioData, (item: mediaLibrary.FileAsset, index) => {
@@ -142,7 +154,7 @@ export struct Toolkit {
           }
           .height('100%')
         }
-        if (this.isTitle == '视频') {
+        if (this.isTitle == this.videoText) {
           Column() {
             List({ initialIndex: 0 }) {
               ForEach(this.videoData, (item: mediaLibrary.FileAsset, index) => {

@@ -19,15 +19,15 @@ import { getTimeString } from '../model/TimeTools'
 
 @Component
 export struct BroadcastControl {
-  private timer: number = undefined
-  private mXComponentController: XComponentController
-  private dialogController: CustomDialogController = null
   @State isInformation: boolean = false
   @Link myMedia: myMedia
   @Link isXComponent: boolean
   @Link surfaceId: number
   @Link isPlaying: boolean
   @Link currentTime: number
+  private timer: number = undefined
+  private mXComponentController: XComponentController
+  private dialogController: CustomDialogController = null
 
   build() {
     Column() {

@@ -17,57 +17,49 @@ import Ability from '@ohos.application.Ability'
 import display from '@ohos.display'
 
 export default class MainAbility extends Ability {
-	async onCreate(want, launchParam) {
-		console.log("[Demo] MainAbility onCreate")
-		globalThis.abilityWant = want;
-		globalThis.abilityContext = this.context
+  async onCreate(want, launchParam) {
+    console.log("[Demo] MainAbility onCreate")
+    globalThis.abilityWant = want
+  }
 
-		const PERMISSIONS: Array<string> = [
-			'ohos.permission.WRITE_MEDIA',
-			'ohos.permission.READ_MEDIA',
-			'ohos.permission.INTERNET'
-		]
-		await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
-	}
+  onDestroy() {
+    console.log("[Demo] MainAbility onDestroy")
+  }
 
-	onDestroy() {
-		console.log("[Demo] MainAbility onDestroy")
-	}
+  async onWindowStageCreate(windowStage) {
+    console.log("[Demo] MainAbility onWindowStageCreate")
+    let abilityDisplay = await display.getDefaultDisplay()
+    let abilityDisplayWidth = abilityDisplay.width
+    const displayWidth: number = 2500
+    if (abilityDisplayWidth > displayWidth) {
+      windowStage.loadContent("pages/index", (err, data) => {
+        if (err.code) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      });
+    } else {
+      windowStage.loadContent("pages/phoneMain", (err, data) => {
+        if (err.code) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      });
+    }
 
-	async onWindowStageCreate(windowStage) {
-		console.log("[Demo] MainAbility onWindowStageCreate")
-		let abilityDisplay = await display.getDefaultDisplay()
-		let abilityDisplayWidth = abilityDisplay.width
-		const displayWidth: number = 2500
-		if (abilityDisplayWidth > displayWidth) {
-			windowStage.loadContent("pages/index", (err, data) => {
-				if (err.code) {
-					console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-					return;
-				}
-				console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-			});
-		} else {
-			windowStage.loadContent("pages/phoneMain", (err, data) => {
-				if (err.code) {
-					console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-					return;
-				}
-				console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-			});
-		}
+  }
 
-	}
+  onWindowStageDestroy() {
+    console.log("[Demo] MainAbility onWindowStageDestroy")
+  }
 
-	onWindowStageDestroy() {
-		console.log("[Demo] MainAbility onWindowStageDestroy")
-	}
+  onForeground() {
+    console.log("[Demo] MainAbility onForeground")
+  }
 
-	onForeground() {
-		console.log("[Demo] MainAbility onForeground")
-	}
-
-	onBackground() {
-		console.log("[Demo] MainAbility onBackground")
-	}
+  onBackground() {
+    console.log("[Demo] MainAbility onBackground")
+  }
 }

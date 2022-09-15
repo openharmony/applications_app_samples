@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,9 +19,6 @@ import { myMedia } from '../model/myMedia'
 
 @Component
 export struct StreamingMedia {
-  private timer: number = undefined
-  private timerOut: number = undefined
-  private mXComponentController: XComponentController
   @State httpUrl: string = ''
   @State isEnabled: boolean = false
   @Link streamOpacity: number
@@ -34,6 +30,9 @@ export struct StreamingMedia {
   @Link streamBtnText: string | Resource
   @Link isStreamShow: boolean
   @Link currentTime: number
+  private timer: number = undefined
+  private timerOut: number = undefined
+  private mXComponentController: XComponentController
 
   build() {
     Row() {

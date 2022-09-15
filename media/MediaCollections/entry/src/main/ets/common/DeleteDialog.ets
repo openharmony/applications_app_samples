@@ -20,10 +20,10 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 @CustomDialog
 export struct DeleteDialog {
+  @State displayWidth: number = undefined
   private index: number
   private mediaData: Array<mediaLibrary.FileAsset> = []
   private controller: CustomDialogController
-  @State displayWidth: number = undefined
 
   async aboutToAppear() {
     let abilityDisplay = await display.getDefaultDisplay()
@@ -50,7 +50,8 @@ export struct DeleteDialog {
         })
 
         Text()
-          .width(1).height(30)
+          .width(1)
+          .height(30)
           .backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
 
         Button() {

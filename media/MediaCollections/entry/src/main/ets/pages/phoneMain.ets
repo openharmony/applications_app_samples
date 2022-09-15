@@ -29,10 +29,6 @@ const TAG = 'PhoneIndex: '
 @Entry
 @Component
 struct Send {
-  private renameDialogController: CustomDialogController = null
-  private deleteDialogController: CustomDialogController = null
-  private timerOut: number = undefined
-  private mXComponentController: XComponentController = new XComponentController()
   @State surfaceId: number = -1
   @State myMedia: myMedia = new myMedia()
   @State audioData: Array<mediaLibrary.FileAsset> = []
@@ -43,8 +39,20 @@ struct Send {
   @State @Watch('onChangePlay') isPlaying: boolean = false
   @State isXComponent: boolean = true
   @State httpUrl: string = ''
+  private renameDialogController: CustomDialogController = null
+  private deleteDialogController: CustomDialogController = null
+  private timerOut: number = undefined
+  private mXComponentController: XComponentController = new XComponentController()
+  private context: any = getContext(this)
 
   async aboutToAppear() {
+    MediaUtils.mediaLib = await mediaLibrary.getMediaLibrary(this.context)
+    const PERMISSIONS: Array<string> = [
+      'ohos.permission.WRITE_MEDIA',
+      'ohos.permission.READ_MEDIA',
+      'ohos.permission.INTERNET'
+    ]
+    await this.context.requestPermissionsFromUser(PERMISSIONS)
     await this.getAudioData()
     await this.getVideoData()
   }
@@ -77,18 +85,22 @@ struct Send {
   onChangePlay() {
       this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
   }
-
-  renameDialogShow(index, mediaType) {
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
+  async renameDialogShow(index, mediaType) {
     this.fillIndex = index
     this.fillMediaType = mediaType
     let disPlayName
     let disPlayType
     if (mediaType == mediaLibrary.MediaType.AUDIO) {
       disPlayName = this.audioData[index].displayName
-      disPlayType = $r('app.string.phoneMain_audio')
+      let audio = await this.convertResourceToString($r('app.string.phoneMain_audioTitle'))
+      disPlayType = audio
     } else {
       disPlayName = this.videoData[index].displayName
-      disPlayType = $r('app.string.phoneMain_video')
+      let video = await this.convertResourceToString($r('app.string.phoneMain_videoTitle'))
+      disPlayType = video
     }
     this.renameDialogController = new CustomDialogController({
       builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
@@ -166,7 +178,8 @@ struct Send {
         deleteDialogShow: this.deleteDialogShow.bind(this),
         renameDialogShow: this.renameDialogShow.bind(this),
         isPlaying: $isPlaying,
-        surfaceId: $surfaceId
+        surfaceId: $surfaceId,
+        context: this.context
       })
     }.height('100%').backgroundColor('#222324')
   }

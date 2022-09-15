@@ -16,6 +16,6 @@
 // @ts-nocheck
 
 export class gridData {
-	icon: Resource
-	textStr:  string | Resource
+  icon: Resource
+  textStr: string
 }

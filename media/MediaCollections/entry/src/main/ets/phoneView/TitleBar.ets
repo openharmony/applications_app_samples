@@ -23,10 +23,14 @@ const TAG = 'InputDialog: '
 
 @Component
 export struct TitleBar {
-  private timer: number = undefined
   @Link isPlaying: $isPlaying
   @Link currentTime: number
   @Link myMedia: myMedia
+  @Prop httpUrl: string
+  @Link isXComponent: boolean
+  @State search: boolean = true
+  @State isInputBg: string = 'rgba(255,255,255,1)'
+  private timer: number = undefined
   private mXComponentController: XComponentController
   private LoadingDialog: CustomDialogController = new CustomDialogController({
     builder: LoadingDialog(),
@@ -34,10 +38,6 @@ export struct TitleBar {
     alignment: DialogAlignment.Center,
     customStyle: true
   })
-  @Prop httpUrl: string
-  @Link isXComponent: boolean
-  @State search: boolean = true
-  @State isInputBg: string = 'rgba(255,255,255,1)'
 
   build() {
     Row() {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +29,7 @@ import { BroadcastControl } from '../common/BroadcastControl'
 import { Toolkit } from '../common/Toolkit'
 import { StreamingMedia } from '../common/StreamingMedia'
 
+
 const TAG: string = 'IndexMain'
 
 @Entry
@@ -45,7 +47,7 @@ struct Index {
   @State isStreamShow: boolean = false
   @State isInformation: boolean = false
   @State myMedia: myMedia = new myMedia()
-  @State streamBtnText: Resource  = $r('app.string.index_play')
+  @State streamBtnText: Resource = $r('app.string.index_play')
   @State streamOpacity: number = 0.4
   @State itemDate: mediaLibrary.FileAsset = undefined
   @State audioData: Array<mediaLibrary.FileAsset> = []
@@ -62,12 +64,23 @@ struct Index {
     customStyle: true
   })
 
+  private context: any = getContext(this)
+
   async aboutToAppear() {
+    MediaUtils.mediaLib = await mediaLibrary.getMediaLibrary(this.context)
+    const PERMISSIONS: Array<string> = [
+      'ohos.permission.WRITE_MEDIA',
+      'ohos.permission.READ_MEDIA',
+      'ohos.permission.INTERNET'
+    ]
+    await this.context.requestPermissionsFromUser(PERMISSIONS)
     await this.getAudioData()
     await this.getVideoData()
     this.mainDialogController.open()
   }
-
+  async convertResourceToString(resource: Resource){
+    return await this.context.resourceManager.getString(resource)
+  }
   onPageShow() {
     MediaUtils.onDateChange(this.getAudioData, this.getVideoData)
   }
@@ -108,20 +121,26 @@ struct Index {
     this.myMedia.setIsLoopCallBack(this.isLoop)
   }
 
-  renameDialogShow(index, mediaType) {
+  async renameDialogShow(index, mediaType) {
     this.fillIndex = index
     this.fillMediaType = mediaType
     let disPlayName
     let disPlayType
     if (mediaType == mediaLibrary.MediaType.AUDIO) {
       disPlayName = this.audioData[index].displayName
-      disPlayType = '音频'
+      let audio = await this.convertResourceToString($r('app.string.phoneMain_audioTitle'))
+      disPlayType = audio
     } else {
       disPlayName = this.videoData[index].displayName
-      disPlayType = '视频'
+      let video = await this.convertResourceToString($r('app.string.phoneMain_videoTitle'))
+      disPlayType = video
     }
     this.renameDialogController = new CustomDialogController({
-      builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, setRename: this.setRename.bind(this) }),
+      builder: RenameDialog({
+        title: disPlayName,
+        disPlayType: disPlayType,
+        setRename: this.setRename.bind(this)
+      }),
       autoCancel: true,
       customStyle: true,
     })
@@ -134,7 +153,7 @@ struct Index {
       this.audioData[this.fillIndex].commitModify((err) => {
         if (err !== undefined) {
           console.info(`commitModify, err: ${err}`)
-          promptShowToast('请输入合法字符')
+          promptShowToast($r('app.string.phoneMain_legitimateStr'))
           return
         }
         this.renameDialogController.close()
@@ -145,7 +164,7 @@ struct Index {
       this.videoData[this.fillIndex].commitModify((err) => {
         if (err !== undefined) {
           console.info(`commitModify, err: ${err}`)
-          promptShowToast('请输入合法字符')
+          promptShowToast($r('app.string.phoneMain_legitimateStr'))
           return
         }
         this.renameDialogController.close()
@@ -210,11 +229,13 @@ struct Index {
           isShowMenu: $isShowMenu,
           currentTime: $currentTime,
           isXComponent: $isXComponent,
+          context:this.context,
           mXComponentController: this.mXComponentController
         })
         Toolkit({
           myMedia: $myMedia,
           itemData: $itemDate,
+          context:this.context,
           audioData: $audioData,
           videoData: $videoData,
           isSurface: $isSurface,

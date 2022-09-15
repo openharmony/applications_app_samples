@@ -23,14 +23,14 @@ const TAG: string = 'MediaItem:'
 
 @Component
 export struct MediaItem {
-  private index: number = -1
-  private deleteDialogShow: (index: number, mediaType) => void
-  private renameDialogShow: (index: number, mediaType) => void
   @State translateLeft: number = 0
   @State translateRight: number = TRANSLATE
   @State pixelMap: iaImage.PixelMap = undefined
   @State mediaItem: mediaLibrary.FileAsset = undefined
   @Link @Watch('leftSliderChange') leftSliderIndex: number
+  private index: number = -1
+  private deleteDialogShow: (index: number, mediaType) => void
+  private renameDialogShow: (index: number, mediaType) => void
 
   leftSliderChange() {
     animateTo({ duration: 500, curve: Curve.Linear }, () => {
@@ -166,7 +166,7 @@ export struct MediaItem {
     .width('120%')
     .margin({
       left: this.translateLeft,
-      right: this.translateRight
+      right: 110
     })
     .priorityGesture(
     GestureGroup(

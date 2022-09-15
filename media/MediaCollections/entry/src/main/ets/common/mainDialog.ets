@@ -41,12 +41,7 @@ export struct mainDialog {
       .margin({ top: '2%' })
     }
     .width('26%')
-    .padding({
-      top: '3%',
-      left: '2%',
-      right: '2%',
-      bottom: '2%'
-    })
+    .padding({ top: '3%', left: '2%', right: '2%', bottom: '2%' })
     .borderRadius(24)
     .backgroundColor('#2F2F30')
   }
