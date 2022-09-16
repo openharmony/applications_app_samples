@@ -12,27 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ServiceExtension from '@ohos.application.ServiceExtensionAbility'
+import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 import Log from '../model/Log'
 
 let TAG: string = 'service->'
 
-class ServiceExtAbility extends ServiceExtension {
+class ServiceExtAbility extends InputMethodExtensionAbility {
   onCreate(want) {
     Log.showInfo(TAG, 'onCreate want: ' + want.abilityName);
-  }
-
-  onRequest(want, startId) {
-    Log.showInfo(TAG, 'onRequest want: ' + want.abilityName + ',startId: ' + startId);
-  }
-
-  onConnect(want) {
-    Log.showInfo(TAG, 'onConnect want: ' + want.abilityName);
-    return null;
-  }
-
-  onDisconnect(want) {
-    Log.showInfo(TAG, 'onDisconnect want: ' + want.abilityName);
   }
 
   onDestroy() {

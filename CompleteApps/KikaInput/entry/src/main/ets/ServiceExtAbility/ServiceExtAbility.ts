@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ServiceExtension from '@ohos.application.ServiceExtensionAbility'
+import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 import rpc from '@ohos.rpc'
 import { KeyboardController } from '../model/KeyboardController.ets'
 import Log from '../model/Log'
@@ -68,26 +68,13 @@ class StubTest extends rpc.RemoteObject {
   }
 }
 
-class ServiceExtAbility extends ServiceExtension {
+class ServiceExtAbility extends InputMethodExtensionAbility {
   keyboardController: any;
 
   onCreate(want) {
     this.addLog('onCreate want: ' + want.abilityName);
     this.keyboardController = new KeyboardController(this.context);
     this.keyboardController.onCreate();
-  }
-
-  onRequest(want: any, startId: any) {
-    this.addLog('onRequest want: ' + want.abilityName + ',startId: ' + startId);
-  }
-
-  onConnect(want: Want) {
-    this.addLog('onConnect want: ' + want.abilityName);
-    return new StubTest('test');
-  }
-
-  onDisconnect(want: any) {
-    this.addLog('onDisconnect want: ' + want.abilityName);
   }
 
   onDestroy() {
