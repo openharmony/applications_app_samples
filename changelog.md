@@ -71,3 +71,17 @@
 16.[`Http`：数据请求（eTS）（API9）](Network/Http)
 17.[`AppMarket`：一多应用市场首页（eTS）（API9）](MultiDeviceAppDev/AppMarket)
 18.[`Weather`：一多天气（eTS）（API9）](MultiDeviceAppDev/Weather)
+
+# 9月5日-9月16日新增Sample（总计28个分类，170个sample）
+
+新增Sample：
+1.[`HealthyDiet`：健康饮食（eTS）（API9）](ETSUI/HealthyDiet)
+2.[`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](MultiDeviceAppDev/MusicAlbum)
+
+删除Sample：
+1.[`JsRecorder`：录音机（eTS）（API8）（Full SDK）](media/JsRecorder)
+2.[`FlashLight`：手电筒（eTS）（API8）（Full SDK）](Preset/FlashLight) 
+3.[`AirQuality`：空气质量（eTS）（API9）](Preset/AirQuality) 
+4.[`ECG`：心率检测（JS）（API8）](common/ECG) 
+5.[`Flashlight`：手电筒（JS）（API8）](common/Flashlight) 
+6.[`AirQuality`：空气质量（JS）（API8）](common/AirQuality) 
