@@ -487,7 +487,7 @@ void AIPlay()
 static napi_value winVictoryValue()
 {
     ClearData();
-	result = USER_WIN; // 获胜
+    result = USER_WIN; // 获胜
     napi_value returnValue = nullptr;
     napi_create_int32(env, result, &returnValue);
     return returnValue;
