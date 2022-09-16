@@ -14,27 +14,28 @@
  */
 
 type OperationItem = {
-  name: string
+  name: Resource,
   icon: Resource
 }
 
 @Entry
 @Component
 export default struct OperationEntries {
-  @State listData: Array<OperationItem> = [
-    { name: '私人FM', icon: $r('app.media.self_fm') },
-    { name: '歌手', icon: $r('app.media.singer') },
-    { name: '歌单', icon: $r('app.media.song_list') },
-    { name: '排行榜', icon: $r('app.media.rank') },
-    { name: '热门', icon: $r('app.media.hot') },
-    { name: '运动音乐', icon: $r('app.media.sport') },
-    { name: '音乐FM', icon: $r('app.media.audio_fm') },
-    { name: '福利', icon: $r('app.media.bonus') }]
+  private listData: Array<OperationItem> = [
+    { name: $r('app.string.operation1'), icon: $r('app.media.self_fm') },
+    { name: $r('app.string.operation2'), icon: $r('app.media.singer') },
+    { name: $r('app.string.operation3'), icon: $r('app.media.song_list') },
+    { name: $r('app.string.operation4'), icon: $r('app.media.rank') },
+    { name: $r('app.string.operation5'), icon: $r('app.media.hot') },
+    { name: $r('app.string.operation6'), icon: $r('app.media.sport') },
+    { name: $r('app.string.operation7'), icon: $r('app.media.audio_fm') },
+    { name: $r('app.string.operation8'), icon: $r('app.media.bonus') }
+  ]
 
   build() {
     Scroll() {
       Row() {
-        ForEach(this.listData, item => {
+        ForEach(this.listData, (item) => {
           Column() {
             Image(item.icon)
               .width(48)

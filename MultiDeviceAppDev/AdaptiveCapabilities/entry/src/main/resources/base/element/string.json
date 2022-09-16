@@ -81,6 +81,42 @@
       "value": "Grid layout"
     },
     {
+      "name": "grid_layout1",
+      "value": "Grid layout 1"
+    },
+    {
+      "name": "grid_layout2",
+      "value": "Grid layout 2"
+    },
+    {
+      "name": "grid_layout3",
+      "value": "Grid layout 3"
+    },
+    {
+      "name": "grid_layout4",
+      "value": "Grid layout 4"
+    },
+    {
+      "name": "grid_layout5",
+      "value": "Grid layout 5"
+    },
+    {
+      "name": "grid_layout6",
+      "value": "Grid layout 6"
+    },
+    {
+      "name": "grid_layout7",
+      "value": "Grid layout 7"
+    },
+    {
+      "name": "grid_layout8",
+      "value": "Grid layout 8"
+    },
+    {
+      "name": "grid_layout9",
+      "value": "Grid layout 9"
+    },
+    {
       "name": "typical_scenario",
       "value": "Typical scenario"
     },
@@ -125,6 +161,10 @@
       "value": "grid layout"
     },
     {
+      "name": "aside",
+      "value": "aside"
+    },
+    {
       "name": "user_improvement",
       "value": "User Experience Improvement Program"
     },
@@ -155,6 +195,63 @@
     {
       "name": "landscape",
       "value": "Landscape"
+    },
+    {
+      "name": "recommended",
+      "value": "recommended"
+    },
+    {
+      "name": "operation1",
+      "value": "Private FM"
+    },
+    {
+      "name": "operation2",
+      "value": "Singer"
+    },
+    {
+      "name": "operation3",
+      "value": "Playlist"
+    },
+    {
+      "name": "operation4",
+      "value": "Ranking List"
+    },
+    {
+      "name": "operation5",
+      "value": "Hot"
+    },
+    {
+      "name": "operation6",
+      "value": "Sports Music"
+    },
+    {
+      "name": "operation7",
+      "value": "Music FM"
+    },
+    {
+      "name": "operation8",
+      "value": "Welfare"
+    },
+    {
+      "name": "playlist_collection",
+      "value": "Playlist Collection"
+    },
+    {
+      "name": "tabBar1",
+      "value": "Home"
+    },
+    {
+      "name": "tabBar2",
+      "value": "Ranking List"
+    },
+    {
+      "name": "tabBar3",
+      "value": "My"
+    },
+    {
+      "name": "breakpoint",
+      "value": "breakpoint"
     }
+
   ]
 }

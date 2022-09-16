@@ -15,7 +15,7 @@
 
 {
   "app": {
-    "bundleName": "ohos.samples.etsadaptivecapabilities",
+    "bundleName": "ohos.samples.AdaptiveCapabilities",
     "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",

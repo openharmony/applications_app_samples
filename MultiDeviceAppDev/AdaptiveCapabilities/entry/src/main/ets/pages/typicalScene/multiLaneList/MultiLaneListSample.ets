@@ -16,26 +16,26 @@
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
 
 type ListItemInfo = {
-  name: string
+  name: Resource,
   image: Resource
 }
 
 @Entry
 @Component
 struct MultiLaneList {
-  private data: ListItemInfo[] = [
-    { name: '歌单集合1', image: $r('app.media.1') },
-    { name: '歌单集合2', image: $r('app.media.2') },
-    { name: '歌单集合3', image: $r('app.media.3') },
-    { name: '歌单集合4', image: $r('app.media.4') },
-    { name: '歌单集合5', image: $r('app.media.5') },
-    { name: '歌单集合6', image: $r('app.media.6') },
-    { name: '歌单集合7', image: $r('app.media.7') },
-    { name: '歌单集合8', image: $r('app.media.8') },
-    { name: '歌单集合9', image: $r('app.media.9') },
-    { name: '歌单集合10', image: $r('app.media.10') },
-    { name: '歌单集合11', image: $r('app.media.11') },
-    { name: '歌单集合12', image: $r('app.media.12') }
+  private data: Array<ListItemInfo> = [
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.1') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.2') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.3') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.4') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.5') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.6') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.7') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.8') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.9') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.10') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.11') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.12') }
   ]
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
@@ -50,13 +50,18 @@ struct MultiLaneList {
 
   build() {
     List() {
-      ForEach(this.data, (item: ListItemInfo) => {
+      ForEach(this.data, (item: ListItemInfo, index: number) => {
         ListItem() {
           Column() {
             Image(item.image)
-            Text(item.name)
-              .margin({ top: 8 })
-              .fontSize(20)
+            Row() {
+              Text(item.name)
+                .margin({ top: 8 })
+                .fontSize(20)
+              Text(`${index}`)
+                .margin({ top: 8 })
+                .fontSize(20)
+            }
           }.padding(4)
         }
       })

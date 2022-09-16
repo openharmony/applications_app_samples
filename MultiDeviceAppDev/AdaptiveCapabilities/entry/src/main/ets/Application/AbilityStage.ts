@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityStage from "@ohos.application.AbilityStage"
+
+import AbilityStage from '@ohos.application.AbilityStage'
 import Logger from '../model/Logger'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    Logger.info('[MyAbilityStage]', 'MyAbilityStage onCreate')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'MyAbilityStage onCreate')
   }
 }

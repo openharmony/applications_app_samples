@@ -16,7 +16,7 @@
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
 
 type TabBar = {
-  name: string
+  name: Resource
   icon: Resource
   selectIcon: Resource
 }
@@ -24,20 +24,22 @@ type TabBar = {
 @Entry
 @Component
 struct Home {
+  private tabs: Array<TabBar> = [
+    {
+      name: $r('app.string.tabBar1'),
+      icon: $r('app.media.ic_music_home'),
+      selectIcon: $r('app.media.ic_music_home_selected')
+    }, {
+      name: $r('app.string.tabBar2'),
+      icon: $r('app.media.ic_music_ranking'),
+      selectIcon: $r('app.media.ic_music_ranking_selected')
+    }, {
+      name: $r('app.string.tabBar3'),
+      icon: $r('app.media.ic_music_me_nor'),
+      selectIcon: $r('app.media.ic_music_me_selected')
+    }
+  ]
   @State currentIndex: number = 0
-  @State tabs: Array<TabBar> = [{
-                                  name: '首页',
-                                  icon: $r('app.media.ic_music_home'),
-                                  selectIcon: $r('app.media.ic_music_home_selected')
-                                }, {
-                                  name: '排行榜',
-                                  icon: $r('app.media.ic_music_ranking'),
-                                  selectIcon: $r('app.media.ic_music_ranking_selected')
-                                }, {
-                                  name: '我的',
-                                  icon: $r('app.media.ic_music_me_nor'),
-                                  selectIcon: $r('app.media.ic_music_me_selected')
-                                }]
 
   @Builder TabBarBuilder(index: number, tabBar: TabBar) {
     Flex({

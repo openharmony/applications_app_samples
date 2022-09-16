@@ -12,37 +12,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.application.Ability'
 import Logger from '../model/Logger'
+import window from '@ohos.window'
 
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
-    Logger.info('[MainAbility]', 'MainAbility onCreate')
-    globalThis.abilityWant = want;
+    Logger.info('[Sample_AdaptiveCapabilities]', 'MainAbility onCreate')
   }
 
   onDestroy() {
-    Logger.info('[MainAbility]', 'MainAbility onDestroy')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'MainAbility onDestroy')
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Logger.info('[MainAbility]', 'onWindowStageCreate')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'onWindowStageCreate')
     windowStage.setUIContent(this.context, "pages/Index", null)
+    window.getTopWindow(this.context)
+      .then(windowObj => {
+        AppStorage.SetOrCreate('windowObj', windowObj)
+      })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info('[MainAbility]', 'onWindowStageDestroy')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'onWindowStageDestroy')
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info('[MainAbility]', 'onForeground')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'onForeground')
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info('[MainAbility]', 'onBackground')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'onBackground')
   }
-};
+}

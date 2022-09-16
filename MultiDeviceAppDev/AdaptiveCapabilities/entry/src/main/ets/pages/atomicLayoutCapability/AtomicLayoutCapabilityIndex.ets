@@ -12,84 +12,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
 
-const atomicLayoutCapability = [
-  {
-    title: $r('app.string.flex_capability_first'),
-    uri: "pages/atomicLayoutCapability/flexibleCapability/FlexibleCapability1"
-  },
-  {
-    title: $r('app.string.flex_capability_second'),
-    uri: "pages/atomicLayoutCapability/flexibleCapability/FlexibleCapability2"
-  },
-  { title: $r('app.string.scaling_capability'), uri: "pages/atomicLayoutCapability/scaleCapability/ScaleCapability" },
-  { title: $r('app.string.hidden_capability'), uri: "pages/atomicLayoutCapability/hiddenCapability/HiddenCapability" },
-  { title: $r('app.string.wrap_capability'), uri: "pages/atomicLayoutCapability/wrapCapability/WrapCapability" },
-  {
-    title: $r('app.string.equally_capability'),
-    uri: "pages/atomicLayoutCapability/equipartitionCapability/EquipartitionCapability"
-  },
-  {
-    title: $r('app.string.percentage_capability'),
-    uri: "pages/atomicLayoutCapability/proportionCapability/ProportionCapability"
-  },
-  {
-    title: $r('app.string.extension_capability_first'),
-    uri: "pages/atomicLayoutCapability/extensionCapability/ExtensionCapability1"
-  },
-  {
-    title: $r('app.string.extension_capability_second'),
-    uri: "pages/atomicLayoutCapability/extensionCapability/ExtensionCapability2"
-  },
-]
+import { DirectoryItem, DirectoryList } from '../../common/DirectoryList'
 
 @Entry
 @Component
 struct AtomicLayoutCapabilityIndex {
-  private scroller: Scroller = new Scroller()
+  private atomicLayoutCapability: DirectoryItem[] = [
+    {
+      title: $r('app.string.flex_capability_first'),
+      uri: 'pages/atomicLayoutCapability/flexibleCapability/FlexibleCapability1'
+    },
+    {
+      title: $r('app.string.flex_capability_second'),
+      uri: 'pages/atomicLayoutCapability/flexibleCapability/FlexibleCapability2'
+    },
+    { title: $r('app.string.scaling_capability'), uri: 'pages/atomicLayoutCapability/scaleCapability/ScaleCapability' },
+    {
+      title: $r('app.string.hidden_capability'),
+      uri: 'pages/atomicLayoutCapability/hiddenCapability/HiddenCapability'
+    },
+    { title: $r('app.string.wrap_capability'), uri: 'pages/atomicLayoutCapability/wrapCapability/WrapCapability' },
+    {
+      title: $r('app.string.equally_capability'),
+      uri: 'pages/atomicLayoutCapability/equipartitionCapability/EquipartitionCapability'
+    },
+    {
+      title: $r('app.string.percentage_capability'),
+      uri: 'pages/atomicLayoutCapability/proportionCapability/ProportionCapability'
+    },
+    {
+      title: $r('app.string.extension_capability_first'),
+      uri: 'pages/atomicLayoutCapability/extensionCapability/ExtensionCapability1'
+    },
+    {
+      title: $r('app.string.extension_capability_second'),
+      uri: 'pages/atomicLayoutCapability/extensionCapability/ExtensionCapability2'
+    }
+  ]
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Text($r('app.string.atomic_capability'))
-          .fontSize(24)
-          .fontWeight(FontWeight.Bold)
-      }.width('100%').height(100)
-
-      Scroll(this.scroller) {
-        Column() {
-          List({ space: 5, initialIndex: 1 }) {
-            ForEach(atomicLayoutCapability, (item) => {
-              ListItem() {
-                Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
-                  Text(item.title)
-                    .fontSize(20)
-                    .padding({ left: 20 })
-                }
-              }
-              .backgroundColor('#66CCFF')
-              .width('100%')
-              .height(80)
-              .borderRadius(10)
-              .onClick(() => {
-                router.push({
-                  url: item.uri
-                })
-              })
-            }, item => item.uri)
-          }
-          .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
-          .width('98%')
-          .height('100%')
-        }
-        .width('100%')
-      }
-      .padding(10)
-      .scrollBar(BarState.Off)
+    Column() {
+      DirectoryList({ title: $r('app.string.atomic_capability'), directory: this.atomicLayoutCapability })
     }
-    .width('100%')
-    .height('100%')
   }
 }

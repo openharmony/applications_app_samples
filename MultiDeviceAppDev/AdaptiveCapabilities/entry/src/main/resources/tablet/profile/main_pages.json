@@ -10,7 +10,7 @@
     "pages/atomicLayoutCapability/scaleCapability/ScaleCapability",
     "pages/atomicLayoutCapability/wrapCapability/WrapCapability",
     "pages/resourceQualifier/ResourceQualifier",
-    "pages/responsiveLayout/gridContainer/GridContainerSample",
+    "pages/gridRow/gridRow/GridContainerSample",
     "pages/responsiveLayout/mediaQuery/MediaQuerySample",
     "pages/responsiveLayout/typicalScene/diversion/DiversionSample"
   ]

@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct ExtensionCapability1 {
-  scroller: Scroller = new Scroller()
   @State rate: number = 0.60
   private appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 8, max: 60, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 8, max: 60 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -31,13 +31,13 @@ struct ExtensionCapability1 {
   }
 
   build() {
-    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Row() {
       // implement extension capability through Scroll and Row(or Column) Components.
-      Scroll(this.scroller) {
+      Scroll() {
         Row({ space: 10 }) {
           ForEach(this.appList, () => {
             Column() {
-              Image($r("app.media.icon"))
+              Image($r('app.media.icon'))
                 .width(48)
                 .height(48)
                 .margin({ top: 8 })
@@ -64,6 +64,7 @@ struct ExtensionCapability1 {
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }

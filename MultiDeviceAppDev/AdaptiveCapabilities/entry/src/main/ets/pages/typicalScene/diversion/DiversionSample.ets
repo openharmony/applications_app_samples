@@ -12,29 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct DiversionSample {
+  @State currentBreakpoint: string = 'md'
+  @State imgHeight: number = 0
+  @State textHeight: number = 0
+
   build() {
     Row() {
-      GridContainer() {
-        Flex({
-          direction: FlexDirection.Row,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.Center,
-          wrap: FlexWrap.Wrap
-        }) {
-          Row() {
-            Image($r('app.media.illustrator'))
+      GridRow() {
+        GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
+          Column() {
+            Row() {
+              Image($r('app.media.illustrator'))
+            }
+            .width('100%')
+            .aspectRatio(1)
           }
-          .aspectRatio(1)
-          .useSizeType({ xs: 2, sm: 4, md: 4, lg: 6 })
+          .width('100%')
+          .justifyContent(FlexAlign.Center)
+        }
+        .onAreaChange((oldArea: Area, newArea: Area) => {
+          this.imgHeight = newArea.height as number
+        })
 
-          Flex({
-            direction: FlexDirection.Column,
-            alignItems: ItemAlign.Center,
-            justifyContent: FlexAlign.Center
-          }) {
+        GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
+          Column() {
             Text($r('app.string.user_improvement'))
               .textAlign(TextAlign.Center)
               .fontSize(20)
@@ -44,13 +49,19 @@ struct DiversionSample {
               .fontSize(14)
               .fontWeight(FontWeight.Medium)
           }
-          .height(100)
-          .useSizeType({ xs: 2, sm: 4, md: 4, lg: 6 })
+          .onAreaChange((oldArea: Area, newArea: Area) => {
+            this.textHeight = newArea.height as number
+          })
+          .padding({ left: 24, right: 24 })
+          .justifyContent(FlexAlign.Center)
         }
+        .padding({ top: this.currentBreakpoint === 'sm' ? 0 : (this.imgHeight - this.textHeight) / 2 })
       }
+      .onBreakpointChange((breakPoint: string) => {
+        this.currentBreakpoint = breakPoint
+      })
     }
     .height('100%')
-    .alignItems((VerticalAlign.Center))
     .backgroundColor('#F1F3f5')
   }
 }

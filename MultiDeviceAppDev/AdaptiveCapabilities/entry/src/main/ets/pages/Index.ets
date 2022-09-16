@@ -12,64 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
-import Logger from '../model/Logger'
 
-const directory = [
-  { title: $r('app.string.resource_qualifier'), uri: "pages/resourceQualifier/ResourceQualifier" },
-  { title: $r('app.string.atomic_capability'), uri: "pages/atomicLayoutCapability/AtomicLayoutCapabilityIndex" },
-  { title: $r('app.string.responsive_layout'), uri: "pages/responsiveLayout/ResponsiveLayoutIndex" },
-  { title: $r('app.string.typical_scenario'), uri: "pages/typicalScene/TypicalSceneIndex" },
-]
+import { DirectoryItem, DirectoryList } from '../common/DirectoryList'
 
 @Entry
 @Component
 struct Index {
-  private scroller: Scroller = new Scroller()
+  private directory: DirectoryItem[] = [
+    { title: $r('app.string.atomic_capability'), uri: 'pages/atomicLayoutCapability/AtomicLayoutCapabilityIndex' },
+    { title: $r('app.string.responsive_layout'), uri: 'pages/responsiveLayout/ResponsiveLayoutIndex' },
+    { title: $r('app.string.typical_scenario'), uri: 'pages/typicalScene/TypicalSceneIndex' },
+    { title: $r('app.string.resource_qualifier'), uri: 'pages/resourceQualifier/ResourceQualifier' }
+  ]
   @State inSetValue: number = 40
 
   build() {
     Column() {
-      Scroll(this.scroller) {
-        Column() {
-          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Text($r('app.string.home_title'))
-              .fontSize(24)
-              .fontWeight(FontWeight.Bold)
-          }
-          .width('100%')
-          .height(100)
-
-          List({ space: 5, initialIndex: 1 }) {
-            ForEach(directory, (item) => {
-              ListItem() {
-                Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
-                  Text(item.title)
-                    .fontSize(20)
-                    .padding({ left: 20 })
-                }
-              }
-              .backgroundColor('#66CCFF')
-              .width('100%')
-              .height(80)
-              .borderRadius(10)
-              .onClick(() => {
-                Logger.info('[Index]', `${item.uri}`)
-                router.push({
-                  url: item.uri
-                })
-              })
-            }, item => item.uri)
-          }
-          .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
-          .width('98%')
-          .height('100%')
-        }
-        .width('100%')
-      }
-      .padding(10)
-      .scrollBar(BarState.Off)
-    }.width('100%').height('100%')
+      DirectoryList({ title: $r('app.string.home_title'), directory: this.directory })
+    }
   }
 }

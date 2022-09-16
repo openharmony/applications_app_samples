@@ -12,47 +12,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaquery from '@ohos.mediaquery'
+
+import { BreakpointSystem, BreakPointType } from '../../../common/BreakpointSystem'
 
 @Entry
 @Component
 struct MediaQuerySample {
-  @State color: string = '#DB7093'
-  @State text: Resource = $r('app.string.portrait')
-  @State flag: boolean = false
-  private listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)')
-  onOrientationChange = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.color = '#FFD700'
-      this.text = $r('app.string.landscape')
-      this.flag = true
-    } else {
-      this.color = '#DB7093'
-      this.text = $r('app.string.portrait')
-      this.flag = false
-    }
-  }
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
   aboutToAppear() {
-    this.listener.on('change', this.onOrientationChange);
+    this.breakpointSystem.register()
   }
 
   aboutToDisappear() {
-    this.listener.off('change', this.onOrientationChange);
+    this.breakpointSystem.unregister()
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      if (this.flag) {
-        Image($r('app.media.my_image'))
-          .width(100)
-          .height(100)
-      }
-      Text(this.text)
+    Column() {
+      Image(new BreakPointType({
+        sm: $r('app.media.sm'),
+        md: $r('app.media.md'),
+        lg: $r('app.media.lg')
+      }).getValue(this.currentBreakpoint))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+
+      Text(this.currentBreakpoint)
         .fontSize(24)
-        .fontColor(this.color)
+        .margin(10)
     }
     .width('100%')
     .height('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
