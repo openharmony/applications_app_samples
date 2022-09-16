@@ -13,6 +13,10 @@
       "value": "eTSAdaptiveCapabilities"
     },
     {
+      "name": "my_string",
+      "value": "手机"
+    },
+    {
       "name": "home_title",
       "value": "页面开发一多能力"
     },
@@ -86,7 +90,7 @@
     },
     {
       "name": "grid_layout3",
-      "value": "间隔控住"
+      "value": "间隔控制"
     },
     {
       "name": "grid_layout4",
@@ -167,6 +171,10 @@
     {
       "name": "user_improvement_tips",
       "value": "用户体验改进计划通过系统、应用分析、故障诊断、提升华为的产品和服务质量。"
+    },
+    {
+      "name": "show_app_name",
+      "value": "应用名称"
     },
     {
       "name": "left",

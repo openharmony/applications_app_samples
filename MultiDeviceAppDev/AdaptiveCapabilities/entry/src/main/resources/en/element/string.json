@@ -13,6 +13,10 @@
       "value": "eTSAdaptiveCapabilities"
     },
     {
+      "name": "my_string",
+      "value": "phone"
+    },
+    {
       "name": "home_title",
       "value": "Page development-Adaptive Capabilities"
     },
@@ -78,39 +82,39 @@
     },
     {
       "name": "grid_layout1",
-      "value": "Grid layout 1"
+      "value": "Breakpoints window"
     },
     {
       "name": "grid_layout2",
-      "value": "Grid layout 2"
+      "value": "Component breakpoint"
     },
     {
       "name": "grid_layout3",
-      "value": "Grid layout 3"
+      "value": "Gutter control"
     },
     {
       "name": "grid_layout4",
-      "value": "Grid layout 4"
+      "value": "Position control"
     },
     {
       "name": "grid_layout5",
-      "value": "Grid layout 5"
+      "value": "Span control"
     },
     {
       "name": "grid_layout6",
-      "value": "Grid layout 6"
+      "value": "Offset control"
     },
     {
       "name": "grid_layout7",
-      "value": "Grid layout 7"
+      "value": "Order control"
     },
     {
       "name": "grid_layout8",
-      "value": "Grid layout 8"
+      "value": "Breakpoint extend"
     },
     {
       "name": "grid_layout9",
-      "value": "Grid layout 9"
+      "value": "Grid to paraphrase"
     },
     {
       "name": "typical_scenario",
@@ -167,6 +171,10 @@
     {
       "name": "user_improvement_tips",
       "value": "The User Experience Improvement Program improves huawei's product and service quality through system, application analysis, and fault diagnosis."
+    },
+    {
+      "name": "show_app_name",
+      "value": "App name"
     },
     {
       "name": "left",
