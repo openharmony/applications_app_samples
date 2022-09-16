@@ -47,7 +47,6 @@ public:
     void OnShowNative();
     void OnHideNative();
     void OnDestroyNative();
-    /*********************************************************************/
 
     /******************************声明式范式******************************/
     /**                      JS Page : Lifecycle                        **/
@@ -57,7 +56,6 @@ public:
     static napi_value NapiAboutToDisappear(napi_env env, napi_callback_info info);
     void OnPageShowNative();
     void OnPageHideNative();
-    /*************************************************************************/
 
     OH_NativeXComponent* GetNativeXComponent(std::string& id);
     void SetNativeXComponent(std::string& id, OH_NativeXComponent* nativeXComponent);

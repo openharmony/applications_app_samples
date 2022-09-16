@@ -21,7 +21,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr};
 
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_valuetype valuetype0;
     napi_typeof(env, args[0], &valuetype0);
@@ -37,9 +37,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
     napi_value sum;
     napi_create_double(env, value0 + value1, &sum);
-
     return sum;
-
 }
 
 EXTERN_C_START

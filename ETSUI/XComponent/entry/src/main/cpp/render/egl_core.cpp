@@ -81,7 +81,7 @@ void EGLCore::GLContextInit(void* window, int w, int h)
         return;
     }
 
-    mEGLConfig = getConfig(3, mEGLDisplay);
+    mEGLConfig = getConfig(3, mEGLDisplay); // 获取的目标值为3
     if (mEGLConfig == nullptr) {
         LOGE("EGLCore::GLContextInit config ERROR");
         return;
@@ -102,9 +102,7 @@ void EGLCore::GLContextInit(void* window, int w, int h)
         EGL_CONTEXT_CLIENT_VERSION, 2,
         EGL_NONE
     };
-
     mEGLContext = eglCreateContext(mEGLDisplay, mEGLConfig, mSharedEGLContext, attrib3_list);
-
     if (!eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext)) {
         LOGE("EGLCore::eglMakeCurrent error = %{public}d", eglGetError());
     }
@@ -133,10 +131,10 @@ void EGLCore::DrawTriangle()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(mProgramHandle);
     GLint positionHandle = glGetAttribLocation(mProgramHandle, "a_position");
-    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3); // 三角形边数为3
     glDisableVertexAttribArray(positionHandle);
 
     glFlush();
@@ -165,10 +163,10 @@ void EGLCore::ChangeShape()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(mProgramHandle);
     GLint positionHandle = glGetAttribLocation(mProgramHandle, "a_position");
-    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3); // 三角形边数为3
     glDisableVertexAttribArray(positionHandle);
 
     Update();
@@ -195,7 +193,7 @@ void EGLCore::ChangeColor()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(mProgramHandle);
     GLint positionHandle = glGetAttribLocation(mProgramHandle, "a_position");
-    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -232,7 +230,6 @@ GLuint EGLCore::LoadShader(GLenum type, const char *shaderSrc)
         if (infoLen > 1) {
             char *infoLog = (char*)malloc(sizeof(char) * infoLen);
             glGetShaderInfoLog(shader, infoLen, nullptr, infoLog);
-            LOGE("Error compiling shader:\n%s\n",infoLog);
             free(infoLog);
         }
         glDeleteShader(shader);
@@ -281,7 +278,6 @@ GLuint EGLCore::CreateProgram(const char *vertexShader, const char *fragShader)
         if (infoLen > 1) {
             char *infoLog = (char *)malloc(sizeof(char) * infoLen);
             glGetProgramInfoLog(program, infoLen, nullptr, infoLog);
-            LOGE("Error linking program:\n%s\n",infoLog);
             free(infoLog);
         }
         glDeleteShader(vertex);
