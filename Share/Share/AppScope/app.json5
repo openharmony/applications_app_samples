@@ -14,8 +14,8 @@
  */
 {
   "app": {
-    "bundleName": "com.sample.share",
-    "vendor": "example",
+    "bundleName": "ohos.samples.share",
+    "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
