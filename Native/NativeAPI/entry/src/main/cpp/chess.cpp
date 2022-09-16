@@ -484,6 +484,15 @@ void AIPlay()
     chessBoard[result[1]][result[INDEX_NUM]] = AI_CHESS;
 }
 
+static napi_value winVictoryValue()
+{
+	ClearData();
+	result = USER_WIN; // 获胜
+	napi_value returnValue = nullptr;
+	napi_create_int32(env, result, &returnValue);
+	return returnValue;
+}
+
 static napi_value Put(napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -518,44 +527,20 @@ static napi_value Put(napi_env env, napi_callback_info info)
 
     int result = 0;
     // 判断同一直线上位置是否有五子
-    int numHorizontal = GetNumHorizontal(x1, y1, USER_CHESS);
-    if (numHorizontal >= WIN_NUM - 1) {
-        LOGD("PUT 获胜");
-        ClearData();
-        result = USER_WIN; // 获胜
-        napi_value returnValue = nullptr;
-        napi_create_int32(env, result, &returnValue);
-        return returnValue;
+    if (GetNumHorizontal(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
+        return winVictoryValue();
     }
     // 判断同一竖线上位置是否有五子
-    int numVertical = GetNumVertical(x1, y1, USER_CHESS);
-    if (numVertical >= WIN_NUM - 1) {
-        LOGD("PUT 获胜");
-        ClearData();
-        result = USER_WIN; // 获胜
-        napi_value returnValue = nullptr;
-        napi_create_int32(env, result, &returnValue);
-        return returnValue;
+    if (GetNumVertical(x1, y1, USER_CHESS >= WIN_NUM - 1) {
+        return winVictoryValue();
     }
     // 判断左斜线是否有五子
-    int numLeftSlash = GetNumLeftSlash(x1, y1, USER_CHESS);
-    if (numLeftSlash >= WIN_NUM - 1) {
-        LOGD("PUT 获胜");
-        ClearData();
-        result = USER_WIN; // 获胜
-        napi_value returnValue = nullptr;
-        napi_create_int32(env, result, &returnValue);
-        return returnValue;
+    if (GetNumLeftSlash(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
+		return winVictoryValue();
     }
     // 判断右斜线是否有五子;
-    int numRightSlash = GetNumRightSlash(x1, y1, USER_CHESS);
-    if (numRightSlash >= WIN_NUM - 1) {
-        LOGD("PUT 获胜");
-        ClearData();
-        result = USER_WIN; // 获胜
-        napi_value returnValue = nullptr;
-        napi_create_int32(env, result, &returnValue);
-        return returnValue;
+    if (GetNumRightSlash(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
+		return winVictoryValue();
     }
     napi_value returnValue = nullptr;
     napi_create_int32(env, result, &returnValue);
