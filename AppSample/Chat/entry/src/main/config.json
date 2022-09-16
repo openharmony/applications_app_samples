@@ -79,6 +79,11 @@
           "autoDesignWidth": false
         }
       }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      }
     ]
   }
 }
