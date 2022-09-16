@@ -78,39 +78,39 @@
     },
     {
       "name": "grid_layout1",
-      "value": "栅格布局1"
+      "value": "窗口断点"
     },
     {
       "name": "grid_layout2",
-      "value": "栅格布局2"
+      "value": "父组件断点"
     },
     {
       "name": "grid_layout3",
-      "value": "栅格布局3"
+      "value": "间隔控住"
     },
     {
       "name": "grid_layout4",
-      "value": "栅格布局4"
+      "value": "位置控制"
     },
     {
       "name": "grid_layout5",
-      "value": "栅格布局5"
+      "value": "占比控制"
     },
     {
       "name": "grid_layout6",
-      "value": "栅格布局6"
+      "value": "偏移控制"
     },
     {
       "name": "grid_layout7",
-      "value": "栅格布局7"
+      "value": "排序控制"
     },
     {
       "name": "grid_layout8",
-      "value": "栅格布局8"
+      "value": "断点继承"
     },
     {
       "name": "grid_layout9",
-      "value": "栅格布局9"
+      "value": "栅格套用"
     },
     {
       "name": "typical_scenario",

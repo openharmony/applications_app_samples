@@ -30,7 +30,7 @@ struct GridRowSample7 {
       ForEach(this.elements, (item) => {
         GridCol({ span: { sm: 6, md: 4, lg: 3 }, order: { lg: (6 - item.index) } }) {
           Row() {
-            Text('' + item.index).fontSize(24)
+            Text(`${item.index}`).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
           .backgroundColor(item.color)

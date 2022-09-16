@@ -25,7 +25,7 @@ struct GridRowSample4 {
       GridRow() {
         GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
           Row() {
-            Text("padding")
+            Text('padding')
               .fontSize(24)
               .fontWeight(FontWeight.Medium)
           }
@@ -53,7 +53,7 @@ struct GridRowSample4 {
       GridRow() {
         GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
           Row() {
-            Text("margin")
+            Text('margin')
               .fontSize(24)
               .fontWeight(FontWeight.Medium)
           }

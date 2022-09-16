@@ -31,7 +31,7 @@ struct GridRowSample8 {
         GridCol({ span: { sm: 4, lg: 3 }, offset: { sm: 2, lg: 1 },
           order: { sm: (6 - item.index), lg: item.index } }) {
           Row() {
-            Text('' + item.index).fontSize(24)
+            Text(`${item.index}`).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
           .backgroundColor(item.color)
