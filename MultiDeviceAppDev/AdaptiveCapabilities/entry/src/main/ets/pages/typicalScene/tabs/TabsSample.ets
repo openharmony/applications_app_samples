@@ -14,10 +14,9 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
-import { tabs } from '../../../model/Data'
 
 type TabBar = {
-  name: string
+  name: Resource
   icon: Resource
   selectIcon: Resource
 }
@@ -25,6 +24,21 @@ type TabBar = {
 @Entry
 @Component
 struct Home {
+  private tabs: Array<TabBar> = [
+    {
+      name: $r('app.string.tabBar1'),
+      icon: $r('app.media.ic_music_home'),
+      selectIcon: $r('app.media.ic_music_home_selected')
+    }, {
+      name: $r('app.string.tabBar2'),
+      icon: $r('app.media.ic_music_ranking'),
+      selectIcon: $r('app.media.ic_music_ranking_selected')
+    }, {
+      name: $r('app.string.tabBar3'),
+      icon: $r('app.media.ic_music_me_nor'),
+      selectIcon: $r('app.media.ic_music_me_selected')
+    }
+  ]
   @State currentIndex: number = 0
 
   @Builder TabBarBuilder(index: number, tabBar: TabBar) {
@@ -70,7 +84,7 @@ struct Home {
         lg: BarPosition.Start
       }).getValue(this.currentBreakpoint)
     }) {
-      ForEach(tabs, (item, index) => {
+      ForEach(this.tabs, (item, index) => {
         TabContent() {
           Stack() {
             Text(item.name).fontSize(30)

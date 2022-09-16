@@ -16,12 +16,11 @@
 @Entry
 @Component
 struct ExtensionCapability2 {
-  scroller: Scroller = new Scroller()
   @State rate: number = 0.60
   private appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 8, max: 60, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 8, max: 60 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)

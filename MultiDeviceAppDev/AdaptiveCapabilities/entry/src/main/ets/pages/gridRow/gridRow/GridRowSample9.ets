@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct GridRowSample5 {
+struct GridRowSample9 {
   private elements: Object[] = [
     { 'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1') },
     { 'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2') },
@@ -27,15 +27,22 @@ struct GridRowSample5 {
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item) => {
-        GridCol({ span: { sm: 6, md: item.index % 3 === 0 ? 0 : 4, lg: 3 } }) {
-          Row() {
-            Text('' + item.index).fontSize(24)
-          }
-          .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+      GridCol({ span: { sm: 12, md: 10, lg: 8 }, offset: { sm: 0, md: 1, lg: 2 } }) {
+        GridRow() {
+          ForEach(this.elements, (item) => {
+            GridCol({ span: { sm: 6, md: 4, lg: 3 } }) {
+              Row() {
+                Text('' + item.index).fontSize(24)
+              }
+              .justifyContent(FlexAlign.Center)
+              .backgroundColor(item.color)
+              .height(30)
+            }
+          })
         }
-      })
+        .backgroundColor('#19000000')
+        .height('100%')
+      }
     }
   }
 }

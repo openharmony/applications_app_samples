@@ -19,7 +19,7 @@ struct ProportionCapability {
   @State rate: number = 0.5
 
   @Builder slider() {
-    Slider({ value: 100, min: 25, max: 50, style: SliderStyle.OutSet })
+    Slider({ value: 100, min: 25, max: 50 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -31,41 +31,39 @@ struct ProportionCapability {
 
   build() {
     Row() {
-      Column() {
-        Row() {
-          Column() {
-            Image($r('app.media.down'))
-              .width(48)
-              .height(48)
-          }
-          .height(96)
-          .width('33%')
-          .justifyContent(FlexAlign.Center)
-
-          Column() {
-            Image($r("app.media.pause"))
-              .width(48)
-              .height(48)
-          }
-          .height(96)
-          .width('34%')
-          .backgroundColor('#66F1CCB8')
-          .justifyContent(FlexAlign.Center)
-
-          Column() {
-            Image($r("app.media.next"))
-              .width(48)
-              .height(48)
-          }
-          .height(96)
-          .width('33%')
-          .justifyContent(FlexAlign.Center)
+      Row() {
+        Column() {
+          Image($r('app.media.down'))
+            .width(48)
+            .height(48)
         }
-        .width(this.rate * 100 + '%')
         .height(96)
-        .borderRadius(16)
-        .backgroundColor('#FFFFFF')
+        .width('33%')
+        .justifyContent(FlexAlign.Center)
+
+        Column() {
+          Image($r("app.media.pause"))
+            .width(48)
+            .height(48)
+        }
+        .height(96)
+        .width('34%')
+        .backgroundColor('#66F1CCB8')
+        .justifyContent(FlexAlign.Center)
+
+        Column() {
+          Image($r("app.media.next"))
+            .width(48)
+            .height(48)
+        }
+        .height(96)
+        .width('33%')
+        .justifyContent(FlexAlign.Center)
       }
+      .width(this.rate * 100 + '%')
+      .height(96)
+      .borderRadius(16)
+      .backgroundColor('#FFFFFF')
 
       this.slider()
     }

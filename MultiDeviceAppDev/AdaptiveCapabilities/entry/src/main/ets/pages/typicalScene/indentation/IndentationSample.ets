@@ -18,15 +18,14 @@
 struct IndentationSample {
   build() {
     Row() {
-      GridRow({ columns: 12 }) {
+      GridRow() {
         ForEach([0, 1, 2, 4], (item, index) => {
           GridCol({
-            span: { xs: 10, sm: 10, md: 8, lg: 8 },
+            span: { sm: 10, md: 8, lg: 8 },
             offset: {
-              xs: index === 0 ? 1 : 2,
               sm: index === 0 ? 1 : 2,
               md: index === 0 ? 2 : 4,
-              lg: index === 0 ? 2 : 4,
+              lg: index === 0 ? 2 : 4
             }
           }) {
             Column() {
@@ -58,7 +57,9 @@ struct ItemContent {
 
         Row() {
         }
-        .width('30%').height(20).borderRadius(4)
+        .width('30%')
+        .height(20)
+        .borderRadius(4)
         .backgroundColor('#E4E6E8')
       }.width('100%').height(28)
 

@@ -36,7 +36,7 @@ export default struct Header {
       }
 
       GridCol({ span: { sm: 12, md: 6, lg: 5 } }) {
-        Row() {
+        Flex({ alignItems: ItemAlign.Center }) {
           Search({ placeholder: '猜您喜欢: 万水千山' })
             .placeholderFont({ size: 16 })
             .margin({ top: 4, bottom: 4 })
@@ -55,7 +55,7 @@ export default struct Header {
             .flexShrink(0)
             .margin({ left: 12 })
             .visibility(this.needWrap ? Visibility.None : Visibility.Visible)
-        }.alignItems(VerticalAlign.Center)
+        }
       }
     }.onBreakpointChange((breakpoint: string) => {
       if (breakpoint === 'sm') {

@@ -19,7 +19,7 @@ struct HiddenCapability {
   @State rate: number = 0.45
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 10, max: 45, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 10, max: 45 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -80,6 +80,5 @@ struct HiddenCapability {
     .backgroundColor('#F1F3F5')
     .alignItems(VerticalAlign.Center)
     .justifyContent(FlexAlign.Center)
-
   }
 }

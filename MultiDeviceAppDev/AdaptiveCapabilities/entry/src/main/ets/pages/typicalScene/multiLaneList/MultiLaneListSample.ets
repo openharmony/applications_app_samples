@@ -14,16 +14,29 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
-import { data } from '../../../model/Data'
 
 type ListItemInfo = {
-  name: string
+  name: Resource,
   image: Resource
 }
 
 @Entry
 @Component
 struct MultiLaneList {
+  private data: Array<ListItemInfo> = [
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.1') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.2') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.3') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.4') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.5') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.6') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.7') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.8') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.9') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.10') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.11') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.12') }
+  ]
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
@@ -37,18 +50,24 @@ struct MultiLaneList {
 
   build() {
     List() {
-      ForEach(data, (item: ListItemInfo) => {
+      ForEach(this.data, (item: ListItemInfo, index: number) => {
         ListItem() {
           Column() {
             Image(item.image)
-            Text(item.name)
-              .margin({ top: 8 })
-              .fontSize(20)
+            Row() {
+              Text(item.name)
+                .margin({ top: 8 })
+                .fontSize(20)
+              Text(`${index}`)
+                .margin({ top: 8 })
+                .fontSize(20)
+            }
           }.padding(4)
         }
       })
     }
     .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).getValue(this.currentBreakpoint))
     .width('100%')
+    .height('100%')
   }
 }

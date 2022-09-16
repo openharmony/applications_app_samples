@@ -19,7 +19,7 @@ struct FlexibleCapability2 {
   @State rate: number = 0.8
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 30, max: 80, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 30, max: 80 })
       .blockColor(Color.White)
       .width('60%')
       .onChange((value: number) => {

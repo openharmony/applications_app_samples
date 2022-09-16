@@ -19,7 +19,7 @@ struct FlexibleCapability1 {
   @State sliderWidth: number = 1000
 
   @Builder slider() {
-    Slider({ value: this.sliderWidth, min: 402, max: 1000, style: SliderStyle.OutSet })
+    Slider({ value: this.sliderWidth, min: 402, max: 1000 })
       .blockColor(Color.White)
       .width('60%')
       .onChange((value: number) => {
@@ -30,7 +30,7 @@ struct FlexibleCapability1 {
 
   build() {
     Column() {
-      Row() {
+      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
         Row()
           .width(150)
           .height(400)

@@ -14,12 +14,18 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
-import { bannerArr } from '../../../model/Data'
 
 @Entry
 @Component
 export default struct Banner {
-  //  private data: Array<Resource> =
+  private bannerArr: Array<Resource> = [
+    $r('app.media.banner1'),
+    $r('app.media.banner2'),
+    $r('app.media.banner3'),
+    $r('app.media.banner4'),
+    $r('app.media.banner5'),
+    $r('app.media.banner6')
+  ]
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
@@ -33,7 +39,7 @@ export default struct Banner {
 
   build() {
     Swiper() {
-      ForEach(bannerArr, (item) => {
+      ForEach(this.bannerArr, (item) => {
         Image(item)
           .size({ width: '100%', height: 200 })
           .borderRadius(12)

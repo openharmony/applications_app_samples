@@ -16,12 +16,14 @@
 @Entry
 @Component
 struct GridRowSample2 {
-  @State private currentBreakpoint: string = 'unknown'
+  @State currentBreakpoint: string = 'md'
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       Column() {
-      }.width('100%').backgroundColor('#19000000')
+      }
+      .width('100%')
+      .backgroundColor('#19000000')
 
       GridRow({ breakpoints: { value: ['100vp', '200vp', '300vp', '400vp', '500vp'],
         reference: BreakpointsReference.ComponentSize } }) {
@@ -36,7 +38,9 @@ struct GridRowSample2 {
           }
         }) {
           Row() {
-            Text(this.currentBreakpoint).fontSize(50).fontWeight(FontWeight.Bolder)
+            Text(this.currentBreakpoint)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bolder)
           }
           .width('100%')
           .height('100%')

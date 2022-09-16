@@ -17,11 +17,10 @@
 @Preview
 @Component
 struct GridRowSample1 {
-  @State private currentBreakpoint: string = 'unknown'
+  @State currentBreakpoint: string = 'md'
 
   build() {
-    GridRow({ breakpoints: { value: ['600vp', '700vp', '800vp', '900vp', '1000vp'],
-      reference: BreakpointsReference.WindowSize } }) {
+    GridRow({ breakpoints: { value: ['600vp', '700vp', '800vp', '900vp', '1000vp'] } }) {
       GridCol({
         span: {
           xs: 12,
@@ -33,15 +32,18 @@ struct GridRowSample1 {
         }
       }) {
         Row() {
-          Text(this.currentBreakpoint).fontSize(100).fontWeight(FontWeight.Bolder)
+          Text(this.currentBreakpoint)
+            .fontSize(100)
+            .fontWeight(FontWeight.Bolder)
         }
         .width('100%')
         .height('100%')
         .alignItems(VerticalAlign.Center)
         .justifyContent(FlexAlign.Center)
       }
-    }.onBreakpointChange((currentBreakpoint: string) => {
-      this.currentBreakpoint = currentBreakpoint
+    }
+    .onBreakpointChange((breakPoint: string) => {
+      this.currentBreakpoint = breakPoint
     })
   }
 }

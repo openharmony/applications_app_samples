@@ -13,54 +13,28 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { typicalScene } from '../../model/Data'
-
+import { DirectoryItem, DirectoryList } from '../../common/DirectoryList'
 
 @Entry
 @Component
 struct TypicalSceneIndex {
-  private scroller: Scroller = new Scroller()
+  private typicalScene: Array<DirectoryItem> = [
+    { title: $r('app.string.diversion_layout'), uri: 'pages/typicalScene/diversion/DiversionSample' },
+    { title: $r('app.string.repeat_layout'), uri: 'pages/typicalScene/repeat/RepeatSample' },
+    { title: $r('app.string.indentation_layout'), uri: 'pages/typicalScene/indentation/IndentationSample' },
+    { title: $r('app.string.header'), uri: 'pages/typicalScene/header/HeaderSample' },
+    { title: $r('app.string.banner'), uri: 'pages/typicalScene/banner/BannerSample' },
+    { title: $r('app.string.operationEntries'), uri: 'pages/typicalScene/operationEntries/OperationEntriesSample' },
+    { title: $r('app.string.tabs'), uri: 'pages/typicalScene/tabs/TabsSample' },
+    { title: $r('app.string.bigImage'), uri: 'pages/typicalScene/bigImage/BigImageSample' },
+    { title: $r('app.string.multiLaneList'), uri: 'pages/typicalScene/multiLaneList/MultiLaneListSample' },
+    { title: $r('app.string.grid'), uri: 'pages/typicalScene/responsiveGrid/ResponsiveGridSample' },
+    { title: $r('app.string.aside'), uri: 'pages/typicalScene/sidebar/SidebarSample' }
+  ]
 
   build() {
     Column() {
-      Row() {
-        Text($r('app.string.typical_scenario'))
-          .fontSize(24)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-      .height(100)
-      .justifyContent(FlexAlign.Center)
-
-      Scroll(this.scroller) {
-        Column() {
-          List({ space: 5, initialIndex: 1 }) {
-            ForEach(typicalScene, (item) => {
-              ListItem() {
-                Text(item.title).fontSize(20).padding({ left: 20 })
-              }
-              .backgroundColor('#66CCFF')
-              .width('100%')
-              .height(80)
-              .borderRadius(10)
-              .onClick(() => {
-                router.push({
-                  url: item.uri
-                })
-              })
-            }, item => item.uri)
-          }
-          .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
-          .width('98%')
-          .height('100%')
-        }
-        .width('100%')
-      }
-      .padding(10)
-      .scrollBar(BarState.Off)
-      .margin({ bottom: 100 })
-    }.width('100%').height('100%')
+      DirectoryList({ title: $r('app.string.typical_scenario'), directory: this.typicalScene })
+    }
   }
 }

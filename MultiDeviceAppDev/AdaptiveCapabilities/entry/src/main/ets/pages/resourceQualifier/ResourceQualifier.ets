@@ -19,9 +19,9 @@ struct ResourceQualifier {
   build() {
     Column() {
       Text($r('app.string.my_string'))
-        .fontSize($r('app.float.my_float'))
+        .fontSize(60)
         .fontColor($r('app.color.my_color'))
-      Image($r('app.media.my_image'))
+      Image($r("app.media.my_image"))
         .width(100)
         .height(100)
     }

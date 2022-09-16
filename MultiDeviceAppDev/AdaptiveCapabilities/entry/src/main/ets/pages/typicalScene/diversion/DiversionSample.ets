@@ -16,12 +16,14 @@
 @Entry
 @Component
 struct DiversionSample {
-  @State currentBreakPoint: string = 'sm'
+  @State currentBreakpoint: string = 'md'
+  @State imgHeight: number = 0
+  @State textHeight: number = 0
 
   build() {
     Row() {
-      GridRow({ columns: 24 }) {
-        GridCol({ span: { xs: 2, sm: 24, md: 12, lg: 12 } }) {
+      GridRow() {
+        GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
           Column() {
             Row() {
               Image($r('app.media.illustrator'))
@@ -30,11 +32,13 @@ struct DiversionSample {
             .aspectRatio(1)
           }
           .width('100%')
-          .height('100%')
-          .justifyContent((this.currentBreakPoint === 'xs' || this.currentBreakPoint === 'sm') ? FlexAlign.End : FlexAlign.Center)
+          .justifyContent(FlexAlign.Center)
         }
+        .onAreaChange((oldArea: Area, newArea: Area) => {
+          this.imgHeight = newArea.height as number
+        })
 
-        GridCol({ span: { xs: 2, sm: 24, md: 12, lg: 12 } }) {
+        GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
           Column() {
             Text($r('app.string.user_improvement'))
               .textAlign(TextAlign.Center)
@@ -45,17 +49,19 @@ struct DiversionSample {
               .fontSize(14)
               .fontWeight(FontWeight.Medium)
           }
+          .onAreaChange((oldArea: Area, newArea: Area) => {
+            this.textHeight = newArea.height as number
+          })
           .padding({ left: 24, right: 24 })
-          .height('100%')
-          .justifyContent((this.currentBreakPoint === 'xs' || this.currentBreakPoint === 'sm') ? FlexAlign.Start : FlexAlign.Center)
+          .justifyContent(FlexAlign.Center)
         }
+        .padding({ top: this.currentBreakpoint === 'sm' ? 0 : (this.imgHeight - this.textHeight) / 2 })
       }
       .onBreakpointChange((breakPoint: string) => {
-        this.currentBreakPoint = breakPoint
+        this.currentBreakpoint = breakPoint
       })
     }
     .height('100%')
-    .alignItems((VerticalAlign.Center))
     .backgroundColor('#F1F3f5')
   }
 }

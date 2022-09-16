@@ -18,11 +18,11 @@
     },
     {
       "name": "resource_qualifier",
-      "value": "资源限定词"
+      "value": "资源文件使用"
     },
     {
       "name": "atomic_capability",
-      "value": "原子布局能力"
+      "value": "自适应布局"
     },
     {
       "name": "responsive_layout",
@@ -114,7 +114,7 @@
     },
     {
       "name": "typical_scenario",
-      "value": "典型场景"
+      "value": "典型布局场景"
     },
     {
       "name": "diversion_layout",
@@ -157,6 +157,10 @@
       "value": "网格视图"
     },
     {
+      "name": "aside",
+      "value": "侧边栏"
+    },
+    {
       "name": "user_improvement",
       "value": "用户体验改进计划"
     },
@@ -187,6 +191,58 @@
     {
       "name": "recommended",
       "value": "推荐"
+    },
+    {
+      "name": "operation1",
+      "value": "私人FM"
+    },
+    {
+      "name": "operation2",
+      "value": "歌手"
+    },
+    {
+      "name": "operation3",
+      "value": "歌单"
+    },
+    {
+      "name": "operation4",
+      "value": "排行榜"
+    },
+    {
+      "name": "operation5",
+      "value": "热门"
+    },
+    {
+      "name": "operation6",
+      "value": "运动音乐"
+    },
+    {
+      "name": "operation7",
+      "value": "音乐FM"
+    },
+    {
+      "name": "operation8",
+      "value": "福利"
+    },
+    {
+      "name": "playlist_collection",
+      "value": "歌单集合"
+    },
+    {
+      "name": "tabBar1",
+      "value": "首页"
+    },
+    {
+      "name": "tabBar2",
+      "value": "排行榜"
+    },
+    {
+      "name": "tabBar3",
+      "value": "我的"
+    },
+    {
+      "name": "breakpoint",
+      "value": "断点"
     }
   ]
 }

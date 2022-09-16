@@ -16,12 +16,11 @@
 @Entry
 @Component
 struct ExtensionCapability1 {
-  scroller: Scroller = new Scroller()
   @State rate: number = 0.60
   private appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 8, max: 60, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 8, max: 60 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -34,7 +33,7 @@ struct ExtensionCapability1 {
   build() {
     Row() {
       // implement extension capability through Scroll and Row(or Column) Components.
-      Scroll(this.scroller) {
+      Scroll() {
         Row({ space: 10 }) {
           ForEach(this.appList, () => {
             Column() {

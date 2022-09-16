@@ -13,15 +13,29 @@
  * limitations under the License.
  */
 
-import { listData } from '../../../model/Data'
+type OperationItem = {
+  name: Resource,
+  icon: Resource
+}
 
 @Entry
 @Component
 export default struct OperationEntries {
+  private listData: Array<OperationItem> = [
+    { name: $r('app.string.operation1'), icon: $r('app.media.self_fm') },
+    { name: $r('app.string.operation2'), icon: $r('app.media.singer') },
+    { name: $r('app.string.operation3'), icon: $r('app.media.song_list') },
+    { name: $r('app.string.operation4'), icon: $r('app.media.rank') },
+    { name: $r('app.string.operation5'), icon: $r('app.media.hot') },
+    { name: $r('app.string.operation6'), icon: $r('app.media.sport') },
+    { name: $r('app.string.operation7'), icon: $r('app.media.audio_fm') },
+    { name: $r('app.string.operation8'), icon: $r('app.media.bonus') }
+  ]
+
   build() {
     Scroll() {
       Row() {
-        ForEach(listData, (item) => {
+        ForEach(this.listData, (item) => {
           Column() {
             Image(item.icon)
               .width(48)

@@ -23,7 +23,8 @@
     {
       "name": "atomic_capability",
       "value": "Atomic layout capability"
-    },    {
+    },
+    {
       "name": "responsive_layout",
       "value": "Responsive layout"
     },
@@ -75,7 +76,6 @@
       "name": "grid_layout",
       "value": "Grid layout"
     },
-
     {
       "name": "grid_layout1",
       "value": "Grid layout 1"
@@ -157,6 +157,10 @@
       "value": "grid layout"
     },
     {
+      "name": "aside",
+      "value": "aside"
+    },
+    {
       "name": "user_improvement",
       "value": "User Experience Improvement Program"
     },
@@ -186,7 +190,59 @@
     },
     {
       "name": "recommended",
-      "value": "recommended"
+      "value": "Recommended"
+    },
+    {
+      "name": "operation1",
+      "value": "Private FM"
+    },
+    {
+      "name": "operation2",
+      "value": "Singer"
+    },
+    {
+      "name": "operation3",
+      "value": "Playlist"
+    },
+    {
+      "name": "operation4",
+      "value": "Ranking List"
+    },
+    {
+      "name": "operation5",
+      "value": "Hot"
+    },
+    {
+      "name": "operation6",
+      "value": "Sports Music"
+    },
+    {
+      "name": "operation7",
+      "value": "Music FM"
+    },
+    {
+      "name": "operation8",
+      "value": "Welfare"
+    },
+    {
+      "name": "playlist_collection",
+      "value": "Playlist Collection"
+    },
+    {
+      "name": "tabBar1",
+      "value": "Home"
+    },
+    {
+      "name": "tabBar2",
+      "value": "Ranking List"
+    },
+    {
+      "name": "tabBar3",
+      "value": "My"
+    },
+    {
+      "name": "breakpoint",
+      "value": "breakpoint"
     }
   ]
 }

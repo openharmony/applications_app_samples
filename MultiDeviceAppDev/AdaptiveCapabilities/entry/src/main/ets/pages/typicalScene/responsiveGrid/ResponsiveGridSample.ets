@@ -14,16 +14,29 @@
  */
 
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
-import { data } from '../../../model/Data'
 
 type GridItemInfo = {
-  name: string
+  name: Resource
   image: Resource
 }
 
 @Entry
 @Component
 export default struct ResponsiveGrid {
+  private data: Array<GridItemInfo> = [
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.1') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.2') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.3') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.4') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.5') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.6') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.7') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.8') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.9') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.10') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.11') },
+    { name: $r('app.string.playlist_collection'), image: $r('app.media.12') }
+  ]
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
 
@@ -37,14 +50,19 @@ export default struct ResponsiveGrid {
 
   build() {
     Grid() {
-      ForEach(data, (item: GridItemInfo) => {
+      ForEach(this.data, (item: GridItemInfo, index: number) => {
         GridItem() {
           Column() {
             Image(item.image)
               .aspectRatio(1.8)
-            Text(item.name)
-              .margin({ top: 8 })
-              .fontSize(20)
+            Row() {
+              Text(item.name)
+                .margin({ top: 8 })
+                .fontSize(20)
+              Text(`${index}`)
+                .margin({ top: 8 })
+                .fontSize(20)
+            }
           }.padding(4)
         }
       })

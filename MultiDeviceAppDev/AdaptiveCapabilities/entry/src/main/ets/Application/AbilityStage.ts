@@ -18,6 +18,6 @@ import Logger from '../model/Logger'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    Logger.info('[Sample_etsadaptivecapabilities]', 'MyAbilityStage onCreate')
+    Logger.info('[Sample_AdaptiveCapabilities]', 'MyAbilityStage onCreate')
   }
 }

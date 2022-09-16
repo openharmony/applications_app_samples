@@ -17,7 +17,7 @@
 @Component
 struct WrapCapabilitySample {
   @State rate: number = 0.7
-  @State imageList: Resource [] = [
+  private imageList: Resource [] = [
     $r('app.media.flexWrap1'),
     $r('app.media.flexWrap2'),
     $r('app.media.flexWrap3'),
@@ -27,7 +27,7 @@ struct WrapCapabilitySample {
   ]
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 50, max: 70, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 50, max: 70 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -40,14 +40,13 @@ struct WrapCapabilitySample {
   build() {
     Row() {
       Flex({
-        direction: FlexDirection.Row,
         alignItems: ItemAlign.Center,
         justifyContent: FlexAlign.Center,
         wrap: FlexWrap.Wrap
       }) {
         ForEach(this.imageList, (item) => {
           Image(item)
-            .width(px2vp(183))
+            .width(72)
             .height(138)
             .padding(10)
         })

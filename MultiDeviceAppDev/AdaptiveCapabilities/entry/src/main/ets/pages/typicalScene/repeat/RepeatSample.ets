@@ -19,6 +19,7 @@ import mediaquery from '@ohos.mediaquery'
 @Component
 struct RepeatSample {
   @State isWidescreen: boolean = false
+  @State currentBreakpoint: string = 'sm'
   private listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(width>1200)')
   onWidthChange = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
@@ -38,18 +39,23 @@ struct RepeatSample {
 
   build() {
     Row() {
-      GridRow({ columns: 24 }) {
-        ForEach([0, 1, 2, 3], () => {
-          GridCol({ span: { xs: 24, sm: 24, md: 12, lg: 12 } }) {
-            Column() {
-              RepeatItemContent()
-              if (this.isWidescreen) {
+      Scroll() {
+        GridRow() {
+          ForEach([0, 1, 2, 3, 4, 5, 6, 7], () => {
+            GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
+              Column() {
                 RepeatItemContent()
               }
-            }.padding({ left: 10, right: 10 })
-          }
+              .padding({ left: 10, right: 10 })
+            }
+          })
+        }
+        .onBreakpointChange((breakpoint: string) => {
+          this.currentBreakpoint = breakpoint
         })
       }
+      .height(this.currentBreakpoint === 'sm' ? 320 : '100%')
+      .scrollBar(BarState.Off)
     }
     .height('100%')
     .backgroundColor('#F1F3F5')
@@ -60,7 +66,7 @@ struct RepeatSample {
 @Component
 struct RepeatItemContent {
   build() {
-    Row() {
+    Flex() {
       Row() {
       }.width(43)
       .height(43)
@@ -87,7 +93,7 @@ struct RepeatItemContent {
       .justifyContent(FlexAlign.SpaceAround)
     }
     .padding({ top: 13, bottom: 13, left: 13, right: 37 })
-    .height(69)
+    .height(70)
     .backgroundColor('#FFFFFF')
     .margin({ bottom: 12 })
     .borderRadius(24)

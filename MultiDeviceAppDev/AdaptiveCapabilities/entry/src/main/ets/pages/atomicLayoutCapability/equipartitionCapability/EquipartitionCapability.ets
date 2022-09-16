@@ -16,11 +16,11 @@
 @Entry
 @Component
 struct EquipartitionCapability {
-  @State list: number [] = [0, 1, 2, 3]
+  private list: number [] = [0, 1, 2, 3]
   @State rate: number = 0.6
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 30, max: 60, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 30, max: 60 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -30,48 +30,37 @@ struct EquipartitionCapability {
       .position({ x: '20%', y: '80%' })
   }
 
+  @Builder Item() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(48)
+        .height(48)
+        .margin(({ top: 8 }))
+      Text($r('app.string.show_app_name'))
+        .width(64)
+        .height(30)
+        .lineHeight(15)
+        .fontSize(12)
+        .textAlign(TextAlign.Center)
+        .margin({ top: 8 })
+        .padding({ bottom: 15 })
+    }.width(80).height(102)
+  }
+
   build() {
     Row() {
       Column() {
-        Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+        Row() {
           ForEach(this.list, () => {
-            Column() {
-              Image($r('app.media.icon'))
-                .width(48)
-                .height(48)
-                .margin({ top: 8 })
-              Text($r('app.string.show_app_name'))
-                .width(64)
-                .height(30)
-                .lineHeight(15)
-                .fontSize(12)
-                .textAlign(TextAlign.Center)
-                .margin({ top: 8 })
-                .padding({ bottom: 15 })
-            }
-            .width(80)
-            .height(102)
+            this.Item()
           })
-        }
+        }.justifyContent(FlexAlign.SpaceEvenly)
 
-        Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+        Row() {
           ForEach(this.list, () => {
-            Column() {
-              Image($r('app.media.icon'))
-                .width(48)
-                .height(48)
-                .margin(({ top: 8 }))
-              Text($r('app.string.show_app_name'))
-                .width(64)
-                .height(30)
-                .lineHeight(15)
-                .fontSize(12)
-                .textAlign(TextAlign.Center)
-                .margin({ top: 8 })
-                .padding({ bottom: 15 })
-            }.width(80).height(102)
+            this.Item()
           })
-        }
+        }.justifyContent(FlexAlign.SpaceEvenly)
       }
       .width(this.rate * 100 + '%')
       .height(222)

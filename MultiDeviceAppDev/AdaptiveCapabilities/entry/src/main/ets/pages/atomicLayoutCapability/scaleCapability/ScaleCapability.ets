@@ -20,7 +20,7 @@ struct ScaleCapability {
   @State sliderHeight: number = 400
 
   @Builder slider() {
-    Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
+    Slider({ value: this.sliderWidth, min: 100, max: 400 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -28,7 +28,7 @@ struct ScaleCapability {
         this.sliderWidth = value
       })
       .position({ x: '20%', y: '80%' })
-    Slider({ value: this.sliderHeight, min: 100, max: 400, style: SliderStyle.OutSet })
+    Slider({ value: this.sliderHeight, min: 100, max: 400 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)

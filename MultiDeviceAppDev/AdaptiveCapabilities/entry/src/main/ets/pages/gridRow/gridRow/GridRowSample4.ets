@@ -16,14 +16,14 @@
 @Entry
 @Component
 struct GridRowSample4 {
-  @State private gridMargin: number = 0
+  @State gridMargin: number = 0
 
   build() {
     Column() {
       Row().width('100%').height(30)
 
       GridRow() {
-        GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+        GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
           Row() {
             Text("padding")
               .fontSize(24)
@@ -51,7 +51,7 @@ struct GridRowSample4 {
       Row().width('100%').height(30)
 
       GridRow() {
-        GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+        GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
           Row() {
             Text("margin")
               .fontSize(24)
