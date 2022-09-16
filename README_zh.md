@@ -79,7 +79,6 @@
   - [`Recorder`：录音机（eTS）（API8）（Full SDK）](media/Recorder)
   - [`MultiMedia`：相机和媒体库（eTS）（API9）（Full SDK）](media/MultiMedia)
   - [`VideoPlayer`：视频播放（eTS）（API9）（Full SDK）](media/VideoPlayer)
-  - [`JsRecorder`：录音机（JS）（API8）](media/JSRecorder)
   - [`Image`：图片处理（eTS）（API8）](media/Image)
   - [`GamePuzzle`：拼图（eTS）（API9）](media/GamePuzzle)
   - [`Scan`：媒体库相机（eTS）（API9）](media/Scan)
@@ -131,6 +130,7 @@
   - [`Search`：Search组件（eTS）（API9）](ETSUI/Search)
   - [`QRCode`：二维码（eTS）（API9）（Full SDK）](ETSUI/QRCode)
   - [`UpgradePopup`：自定义弹窗（eTS）（API9）](ETSUI/UpgradePopup)
+  - [`HealthyDiet`：健康饮食（eTS）（API9）](ETSUI/HealthyDiet)
 - FileManager
   - [`FileIo`：文件管理（eTS）（API8）](FileManager/FileIo)
 - Native
@@ -208,6 +208,7 @@
   - [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](MultiDeviceAppDev/JsAdaptiveCapabilities)
   - [`AppMarket`：一多应用市场首页（eTS）（API9）](MultiDeviceAppDev/AppMarket)
   - [`Weather`：一多天气（eTS）（API9）](MultiDeviceAppDev/Weather)
+  - [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](MultiDeviceAppDev/MusicAlbum)
 - Share
   - [`Share`：分享（eTS）（API9）（Full SDK）](Share/Share)
 
