@@ -38,7 +38,7 @@
     },
     {
       "name": "srcImg",
-      "value": "https://gitee.com/wangjixing/applications_app_samples/tree/master/AppSample/Chat/entry/src/main/resources/base/media/phone.png"
+      "value": "https://gitee.com/openharmony/applications_app_samples/raw/master/AppSample/Chat/entry/src/main/resources/base/media/phone.png"
     },
     {
       "name": "startChatFail",
