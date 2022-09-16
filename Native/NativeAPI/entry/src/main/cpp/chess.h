@@ -24,6 +24,7 @@ const int MAX_SIZE = 4; // 4为最大数组数
 const int LINE_THREE_PIECE = 3; // 3为水平棋子数
 const int VERTICAL_THREE_PIECE = 3; // 3为竖直棋子数
 const int RIGHT_OBLIQUE_PIECE = 3; // 3为右斜棋子数
+const int INDEX_NUM = 2 // 2为循环索引
 int chessBoard[SIZE][SIZE] = { // 五子棋棋盘，默认0为空位置，1为用户落子，2为AI落子
 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },

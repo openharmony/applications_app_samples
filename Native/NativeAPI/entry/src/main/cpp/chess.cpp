@@ -58,7 +58,7 @@ void ClearData()
     }
     result[0] = NO_WIN;
     result[1] = SIZE + 1;
-    result[2] = SIZE + 1;
+    result[INDEX_NUM] = SIZE + 1;
     aiCoiledNum = 0;
 }
 
@@ -204,7 +204,7 @@ void AIPlay()
                 chessBoard[i][j] = AI_CHESS;
                 result[0] = AI_WIN;
                 result[1] = i;
-                result[2] = j;
+                result[INDEX_NUM] = j;
                 return;
             }
         }
@@ -242,29 +242,29 @@ void AIPlay()
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = 0;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
-                    } else if (numDirection1 == LINE_THREE_PIECE - 1) { 
+                    } else if (numDirection1 == LINE_THREE_PIECE - 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
-                    }else if (numDirection1 == 1) {
+                    } else if (numDirection1 == 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
-                    }else if (numDirection1 == 0) {
+                    } else if (numDirection1 == 0) {
                         if (j + num < SIZE) {
                             if (chessBoard[i][j + num + 1] == NO_CHESS) {
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
@@ -289,21 +289,21 @@ void AIPlay()
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
-                    }else if (numDirection2 == VERTICAL_THREE_PIECE - 1) {
+                    } else if (numDirection2 == VERTICAL_THREE_PIECE - 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
                     } else if (numDirection2 == 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
                     } else if (numDirection2 == 0) {
                         if (i + num < SIZE - 1) {
@@ -311,7 +311,7 @@ void AIPlay()
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
@@ -336,29 +336,29 @@ void AIPlay()
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
-                    }else if (numDirection3 == VERTICAL_THREE_PIECE - 1) {
+                    } else if (numDirection3 == VERTICAL_THREE_PIECE - 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
-                    }else if (numDirection3 == 1) {
+                    } else if (numDirection3 == 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
-                    }else if (numDirection3 == 0) {
+                    } else if (numDirection3 == 0) {
                         if (i + num < SIZE - 1 && j + num < SIZE - 1) {
                             if (chessBoard[i + num + 1][j + num + 1] == NO_CHESS) {
                                 chessBoard[i][j] = 2; // 执行棋子方向为2
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
@@ -384,23 +384,23 @@ void AIPlay()
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
-                    }else if (numDirection4 == RIGHT_OBLIQUE_PIECE -1) {
+                    } else if (numDirection4 == RIGHT_OBLIQUE_PIECE -1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
-                    }else if (numDirection4 == 1) {
+                    } else if (numDirection4 == 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
-                        result[2] = j;
+                        result[INDEX_NUM] = j;
                         return;
-                    }else if (numDirection4 == 0) {
+                    } else if (numDirection4 == 0) {
                         if (i + num < SIZE - 1 && j - num >
                             0)
                         {
@@ -408,7 +408,7 @@ void AIPlay()
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
                                 result[1] = i;
-                                result[2] = j;
+                                result[INDEX_NUM] = j;
                                 return;
                             }
                         }
@@ -420,7 +420,7 @@ void AIPlay()
                 chessBoard[i][j] = AI_CHESS;
                 result[0] = NO_WIN;
                 result[1] = i;
-                result[2] = j;
+                result[INDEX_NUM] = j;
                 return;
             }
         }
@@ -444,7 +444,7 @@ void AIPlay()
     if (emptyNum == 0) { // 没有位置了
         result[0] = NO_WIN;
         result[1] = SIZE + 1;
-        result[2] = SIZE + 1;
+        result[INDEX_NUM] = SIZE + 1;
         return;
     }
 
@@ -453,7 +453,7 @@ void AIPlay()
         chessBoard[7][7] = AI_CHESS; // 7为循环后的索引
         result[0] = NO_WIN;
         result[1] = 7; // 第一次落子后的赋值为7
-        result[2] = 7;
+        result[INDEX_NUM] = 7;
         return;
     }
 
@@ -471,17 +471,17 @@ void AIPlay()
                 chessBoard[i][j] = AI_CHESS;
                 result[0] = NO_WIN;
                 result[1] = i;
-                result[2] = j;
+                result[INDEX_NUM] = j;
                 aiCoiledNum = maxNum;
                 return;
             } else if (maxNum >= 1) {
                 result[0] = NO_WIN;
                 result[1] = i;
-                result[2] = j;
+                result[INDEX_NUM] = j;
             }
         }
     }
-    chessBoard[result[1]][result[2]] = AI_CHESS;
+    chessBoard[result[1]][result[INDEX_NUM]] = AI_CHESS;
 }
 
 static napi_value Put(napi_env env, napi_callback_info info)
