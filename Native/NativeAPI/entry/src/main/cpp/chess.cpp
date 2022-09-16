@@ -486,11 +486,11 @@ void AIPlay()
 
 static napi_value winVictoryValue()
 {
-	ClearData();
+    ClearData();
 	result = USER_WIN; // 获胜
-	napi_value returnValue = nullptr;
-	napi_create_int32(env, result, &returnValue);
-	return returnValue;
+    napi_value returnValue = nullptr;
+    napi_create_int32(env, result, &returnValue);
+    return returnValue;
 }
 
 static napi_value Put(napi_env env, napi_callback_info info)
@@ -536,11 +536,11 @@ static napi_value Put(napi_env env, napi_callback_info info)
     }
     // 判断左斜线是否有五子
     if (GetNumLeftSlash(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
-		return winVictoryValue();
+        return winVictoryValue();
     }
     // 判断右斜线是否有五子;
     if (GetNumRightSlash(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
-		return winVictoryValue();
+        return winVictoryValue();
     }
     napi_value returnValue = nullptr;
     napi_create_int32(env, result, &returnValue);
