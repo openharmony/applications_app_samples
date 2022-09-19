@@ -12,56 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
 
-const responsiveLayout = [
-  { title: $r('app.string.media_query'), uri: "pages/responsiveLayout/mediaQuery/MediaQuerySample" },
-  { title: $r('app.string.grid_layout'), uri: "pages/responsiveLayout/gridContainer/GridContainerSample" },
-]
+import { DirectoryItem, DirectoryList } from '../../common/DirectoryList'
 
 @Entry
 @Component
 struct ResponsiveLayoutIndex {
-  private scroller: Scroller = new Scroller()
+  private responsiveLayout: DirectoryItem[] = [
+    { title: $r('app.string.breakpoint'), uri: 'pages/responsiveLayout/breakpoint/BreakpointSample' },
+    { title: $r('app.string.media_query'), uri: 'pages/responsiveLayout/mediaQuery/MediaQuerySample' },
+    { title: $r('app.string.grid_layout'), uri: 'pages/gridRow/GridRowLayoutIndex' }
+  ]
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Text($r('app.string.responsive_layout'))
-          .fontSize(24)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-      .height(100)
-
-
-      List({ space: 5, initialIndex: 1 }) {
-        ForEach(responsiveLayout, (item) => {
-          ListItem() {
-            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
-              Text(item.title)
-                .fontSize(20)
-                .padding({ left: 20 })
-            }
-          }
-          .backgroundColor('#66CCFF')
-          .width('100%')
-          .height(80)
-          .borderRadius(10)
-          .onClick(() => {
-            router.push({
-              url: item.uri
-            })
-          })
-        }, item => item.uri)
-      }
-      .listDirection(Axis.Vertical)
-      .divider({ strokeWidth: 1, color: Color.White, startMargin: 10 })
-      .width('98%')
-      .padding(10)
-      .layoutWeight(1)
+    Column() {
+      DirectoryList({ title: $r('app.string.responsive_layout'), directory: this.responsiveLayout })
     }
-    .width('100%')
-    .height('100%')
   }
 }

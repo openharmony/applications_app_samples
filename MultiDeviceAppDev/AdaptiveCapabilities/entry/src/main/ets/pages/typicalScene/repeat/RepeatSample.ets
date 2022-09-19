@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import mediaquery from '@ohos.mediaquery'
 
 @Entry
 @Component
 struct RepeatSample {
   @State isWidescreen: boolean = false
+  @State currentBreakpoint: string = 'sm'
   private listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(width>1200)')
   onWidthChange = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
@@ -37,31 +39,27 @@ struct RepeatSample {
 
   build() {
     Row() {
-      GridContainer() {
-        ForEach([0, 1, 2, 3], () => {
-          Row() {
-            Column() {
-              RepeatItemContent()
-            }
-            .useSizeType({
-              xs: { span: 2, offset: 0 }, sm: { span: 4, offset: 0 },
-              md: { span: 4, offset: 0 }, lg: { span: 6, offset: 0 }
-            })
-
-            if (this.isWidescreen) {
+      Scroll() {
+        GridRow() {
+          ForEach([0, 1, 2, 3, 4, 5, 6, 7], () => {
+            GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
               Column() {
                 RepeatItemContent()
               }
-              .useSizeType({
-                md: { span: 4, offset: 4 }, lg: { span: 6, offset: 6 }
-              })
+              .padding({ left: 10, right: 10 })
             }
-          }
+          })
+        }
+        .onBreakpointChange((breakpoint: string) => {
+          this.currentBreakpoint = breakpoint
         })
       }
+      .height(this.currentBreakpoint === 'sm' ? 320 : '100%')
+      .scrollBar(BarState.Off)
     }
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .padding({ left: 30, right: 30 })
   }
 }
 
@@ -75,7 +73,7 @@ struct RepeatItemContent {
       .borderRadius(12)
       .backgroundColor('#E4E6E8')
 
-      Flex({ alignItems: ItemAlign.Start, direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceAround }) {
+      Column() {
         Row() {
         }
         .height(10)
@@ -89,10 +87,13 @@ struct RepeatItemContent {
         .backgroundColor('#E4E6E8')
       }
       .flexGrow(1)
+      .height('100%')
       .margin({ left: 13 })
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.SpaceAround)
     }
     .padding({ top: 13, bottom: 13, left: 13, right: 37 })
-    .height(69)
+    .height(70)
     .backgroundColor('#FFFFFF')
     .margin({ bottom: 12 })
     .borderRadius(24)

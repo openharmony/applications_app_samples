@@ -47,7 +47,9 @@
               "action.system.home"
             ]
           }
-        ]
+        ],
+        "minWindowWidth": 320,
+        "minWindowHeight": 240
       }
     ]
   }

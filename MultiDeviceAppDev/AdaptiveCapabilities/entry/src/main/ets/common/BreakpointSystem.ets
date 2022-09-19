@@ -58,8 +58,10 @@ type Breakpoint = {
 
 export class BreakpointSystem {
   private currentBreakpoint: string = 'md'
-  private breakpoints: Breakpoint[] = [{ name: 'xs', size: 0 }, { name: 'sm', size: 320 },
-                                       { name: 'md', size: 520 }, { name: 'lg', size: 840 }]
+  private breakpoints: Breakpoint[] = [
+    { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
+    { name: 'md', size: 520 }, { name: 'lg', size: 840 }
+  ]
 
   private updateCurrentBreakpoint(breakpoint: string) {
     if (this.currentBreakpoint !== breakpoint) {
@@ -73,9 +75,9 @@ export class BreakpointSystem {
     this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
       let condition
       if (index === this.breakpoints.length - 1) {
-        condition = "(" + breakpoint.size + "vp<=width" + ")"
+        condition = '(' + breakpoint.size + 'vp<=width' + ')'
       } else {
-        condition = "(" + breakpoint.size + "vp<=width<" + this.breakpoints[index + 1].size + "vp)"
+        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
       }
       console.log(condition)
       breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)

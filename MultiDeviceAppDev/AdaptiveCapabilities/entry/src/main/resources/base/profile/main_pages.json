@@ -12,8 +12,18 @@
     "pages/atomicLayoutCapability/scaleCapability/ScaleCapability",
     "pages/atomicLayoutCapability/wrapCapability/WrapCapability",
     "pages/resourceQualifier/ResourceQualifier",
-    "pages/responsiveLayout/gridContainer/GridContainerSample",
+    "pages/gridRow/GridRowLayoutIndex",
+    "pages/gridRow/gridRow/GridRowSample1",
+    "pages/gridRow/gridRow/GridRowSample2",
+    "pages/gridRow/gridRow/GridRowSample3",
+    "pages/gridRow/gridRow/GridRowSample4",
+    "pages/gridRow/gridRow/GridRowSample5",
+    "pages/gridRow/gridRow/GridRowSample6",
+    "pages/gridRow/gridRow/GridRowSample7",
+    "pages/gridRow/gridRow/GridRowSample8",
+    "pages/gridRow/gridRow/GridRowSample9",
     "pages/responsiveLayout/ResponsiveLayoutIndex",
+    "pages/responsiveLayout/breakpoint/BreakpointSample",
     "pages/responsiveLayout/mediaQuery/MediaQuerySample",
     "pages/typicalScene/TypicalSceneIndex",
     "pages/typicalScene/indentation/IndentationSample",
@@ -25,6 +35,7 @@
     "pages/typicalScene/tabs/TabsSample",
     "pages/typicalScene/multiLaneList/MultiLaneListSample",
     "pages/typicalScene/responsiveGrid/ResponsiveGridSample",
+    "pages/typicalScene/sidebar/SidebarSample",
     "pages/typicalScene/bigImage/BigImageSample"
   ]
 }

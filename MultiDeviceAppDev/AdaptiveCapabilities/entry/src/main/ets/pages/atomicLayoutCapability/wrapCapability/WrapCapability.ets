@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct WrapCapabilitySample {
   @State rate: number = 0.7
-  @State imageList: Resource [] = [
+  private imageList: Resource [] = [
     $r('app.media.flexWrap1'),
     $r('app.media.flexWrap2'),
     $r('app.media.flexWrap3'),
@@ -26,7 +27,7 @@ struct WrapCapabilitySample {
   ]
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 50, max: 70, style: SliderStyle.OutSet })
+    Slider({ value: this.rate * 100, min: 50, max: 70 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -37,31 +38,30 @@ struct WrapCapabilitySample {
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.Center, direction: FlexDirection.Column }) {
-      Column() {
-        Flex({
-          direction: FlexDirection.Row,
-          alignItems: ItemAlign.Center,
-          justifyContent: FlexAlign.Center,
-          wrap: FlexWrap.Wrap
-        }) {
-          ForEach(this.imageList, (item) => {
-            Image(item)
-              .width(px2vp(183))
-              .height(138)
-              .padding(10)
-          })
-        }
-        .backgroundColor('#FFFFFF')
-        .padding(20)
-        .width(this.rate * 100 + '%')
-        .borderRadius(16)
+    Row() {
+      Flex({
+        alignItems: ItemAlign.Center,
+        justifyContent: FlexAlign.Center,
+        wrap: FlexWrap.Wrap
+      }) {
+        ForEach(this.imageList, (item) => {
+          Image(item)
+            .width(72)
+            .height(138)
+            .padding(10)
+        })
       }
-      .width('100%')
+      .backgroundColor('#FFFFFF')
+      .padding(20)
+      .width(this.rate * 100 + '%')
+      .borderRadius(16)
 
       this.slider()
-    }.width('100%')
+    }
+    .width('100%')
     .height('100%')
     .backgroundColor('#F1F3F5')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }
