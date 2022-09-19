@@ -14,7 +14,7 @@ querySelfFaultLog：获取当前进程故障信息，该方法通过回调方式
 
 ### 相关权限
 
-获取包名信息权限：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+不涉及。
 
 ### 使用说明
 
