@@ -35,7 +35,6 @@ const TAG: string = 'Index'
 @Component
 struct Index {
   private intervalId: number = undefined
-  //  @State contacts: Array<Contact> = []
   private contacts: ContactDataSource = new ContactDataSource()
   @State isMultiCheck: boolean = false
   @State isSelectedAll: boolean = false
@@ -222,24 +221,21 @@ struct Index {
           }
         }.width('100%')
 
-        Column() {
-          SearchBar()
-          List() {
-            LazyForEach(this.contacts, (item, index) => {
-              ListItem() {
-                ContactItem({ contact: item, isMultiCheck: $isMultiCheck })
-              }
-              .onClick(() => {
-                this.handleClickContact(item, index)
-              })
-            }, item => item.name)
-          }
-          .width('80%')
-          .height(150)
-          .margin({ bottom: 130 })
-          .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
+        SearchBar()
+        List() {
+          LazyForEach(this.contacts, (item, index) => {
+            ListItem() {
+              ContactItem({ contact: item, isMultiCheck: $isMultiCheck })
+            }
+            .onClick(() => {
+              this.handleClickContact(item, index)
+            })
+          }, item => item.id.toString())
         }
+        .width('100%')
+        .layoutWeight(1)
         .padding({ left: 10, right: 10 })
+        .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
       }
       .width('100%')
       .height('100%')

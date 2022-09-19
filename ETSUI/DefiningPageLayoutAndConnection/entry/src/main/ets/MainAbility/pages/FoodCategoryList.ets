@@ -104,15 +104,17 @@ struct FoodListItem {
         Text(this.foodItem.name)
           .fontSize(14)
           .flexGrow(1)
+        Blank()
         Text(this.foodItem.calories + ' kcal')
           .fontSize(14)
       }
       .alignItems(VerticalAlign.Center)
-      .justifyContent(FlexAlign.Start)
       .height(64)
+      .width('100%')
     }
+    .width('100%')
     .params({ foodId: this.foodItem })
-    .margin({ right: 24, left: 32 })
+    .padding({ right: 24, left: 24 })
   }
 }
 
@@ -131,6 +133,7 @@ struct FoodList {
       .alignItems(VerticalAlign.Center)
       .justifyContent(FlexAlign.Start)
       .height('7%')
+      .width('100%')
       .backgroundColor('#FFf1f3f5')
 
       List() {
@@ -144,6 +147,7 @@ struct FoodList {
       .width('100%')
       .height('93%')
     }
+    .width('100%')
   }
 }
 
@@ -221,36 +225,35 @@ struct FoodCategory {
   private foodItems: FoodData[]
 
   build() {
-    Stack() {
-      Tabs() {
-        TabContent() {
-          FoodGrid({ foodItems: this.foodItems })
-        }.tabBar('All')
+    Tabs() {
+      TabContent() {
+        FoodGrid({ foodItems: this.foodItems })
+      }.tabBar('All')
 
-        TabContent() {
-          FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Vegetable)) })
-        }.tabBar('Vegetable')
+      TabContent() {
+        FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Vegetable)) })
+      }.tabBar('Vegetable')
 
-        TabContent() {
-          FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Fruit)) })
-        }.tabBar('Fruit')
+      TabContent() {
+        FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Fruit)) })
+      }.tabBar('Fruit')
 
-        TabContent() {
-          FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Nut)) })
-        }.tabBar('Nut')
+      TabContent() {
+        FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Nut)) })
+      }.tabBar('Nut')
 
-        TabContent() {
-          FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Seafood)) })
-        }.tabBar('Seafood')
+      TabContent() {
+        FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Seafood)) })
+      }.tabBar('Seafood')
 
-        TabContent() {
-          FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
-        }.tabBar('Dessert')
-      }
-      .barWidth('80%')
-      .barHeight(70)
-      .barMode(BarMode.Scrollable)
+      TabContent() {
+        FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
+      }.tabBar('Dessert')
     }
+    .width('100%')
+    .barWidth('80%')
+    .barHeight(70)
+    .barMode(BarMode.Scrollable)
   }
 }
 
@@ -269,14 +272,17 @@ struct FoodCategoryList {
           FoodCategory({ foodItems: this.foodItems })
         }
         Image($r('app.media.Switch'))
-          .height(24)
+          .height(40)
           .width(24)
+          .objectFit(ImageFit.Contain)
           .key('switch')
           .margin({ top: 15, right: 10 })
           .onClick(() => {
             this.showList = !this.showList
           })
       }
-    }.height('100%')
+    }
+    .width('100%')
+    .height('100%')
   }
 }
