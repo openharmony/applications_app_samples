@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import featureAbility from '@ohos.ability.featureAbility'
 import hilog from '@ohos.hilog'
@@ -29,7 +30,9 @@ export default function appTest() {
         bundleName: "ohos.samples.gamepuzzle",
         abilityName: "MainAbility"
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      abilityDelegator.startAbility(want, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()
@@ -46,8 +49,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 点击允许进入
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 enter')
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnCreate = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(BY.text('允许'))
+      let btnCreate = await driver.findComponent(BY.text('允许'))
       await btnCreate.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')

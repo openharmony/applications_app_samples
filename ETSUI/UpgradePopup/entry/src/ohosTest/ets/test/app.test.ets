@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import featureAbility from '@ohos.ability.featureAbility'
 import hilog from '@ohos.hilog'
@@ -30,7 +31,9 @@ export default function appTest() {
         bundleName: "ohos.samples.upgradePopup",
         abilityName: "MainAbility"
       }
-      await globalThis.abilityContext.startAbility(want, (err, data) => {
+      var abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      abilityDelegator.startAbility(want, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()
@@ -55,7 +58,7 @@ export default function appTest() {
       // click cancel
       hilog.info(DOMAIN, TAG, BUNDLE + 'PopupFunction_001 ClickCancel')
       await driver.assertComponentExist(BY.key('cancel'))
-      let btnCancel= await driver.findComponent(BY.key('cancel'))
+      let btnCancel = await driver.findComponent(BY.key('cancel'))
       await btnCancel.click()
       await driver.delayMs(1000)
     })
