@@ -15,82 +15,16 @@
 import router from '@ohos.router';
 import dataAbility from '@ohos.data.dataAbility'
 import { BASE_URI, COLUMNS, DA_HELPER } from '../model/DaHelperConst'
-import { BookModel, getListFromResultSet } from '../model/BookDataModel'
+import { getListFromResultSet } from '../model/BookDataModel'
 import { BookView } from '../component/BookView'
-
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
+import { BookDataSource } from '../model/BookDataSource'
 
 const TAG = 'DataAbility.Query'
 
 @Entry
 @Component
 struct Query {
-  @State bookList: Array<BookModel> = []
+  @State bookList: BookDataSource = new BookDataSource()
 
   query(queryStr) {
     let predicates = new dataAbility.DataAbilityPredicates()
@@ -98,7 +32,8 @@ struct Query {
       .or()
       .contains('introduction', queryStr)
     DA_HELPER.query(BASE_URI, COLUMNS, predicates, (err, resultSet) => {
-      this.bookList = getListFromResultSet(resultSet)
+      this.bookList['dataArray'] = getListFromResultSet(resultSet)
+      this.bookList.notifyDataReload()
     })
   }
   aboutToAppear() {
@@ -134,7 +69,8 @@ struct Query {
             if (value !== '') {
               this.query(value)
             }else{
-              this.bookList = []
+              this.bookList['dataArray'] = []
+              this.bookList.notifyDataReload()
             }
           })
         Image($r('app.media.search_gray'))
@@ -146,14 +82,12 @@ struct Query {
       .backgroundColor('#F5F5F5')
 
       List() {
-        LazyForEach(new MyDataSource(this.bookList), item => {
+        LazyForEach(this.bookList, item => {
           ListItem() {
             BookView({ book: item, deleteCallback: null })
           }
-        }, item => JSON.stringify(item))
+        }, item => item.id.toString())
       }
-      .height('100%')
-      .padding({bottom:'8%'})
       .width('100%')
       .layoutWeight(1)
       .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 10, endMargin: 10 })
