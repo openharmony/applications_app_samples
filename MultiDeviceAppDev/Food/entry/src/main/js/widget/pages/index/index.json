@@ -1,0 +1,13 @@
+{
+  "actions": {
+    "jump": {
+      "action": "router",
+      "bundleName": "com.example.food",
+      "abilityName": "MainAbility"
+    }
+  },
+  "data": {
+    "title": "Default",
+    "stars": "***"
+  }
+}
