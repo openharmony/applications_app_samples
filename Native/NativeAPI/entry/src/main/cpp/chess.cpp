@@ -388,7 +388,7 @@ void AIPlay()
                                 return;
                             }
                         }
-                    } else if (numDirection4 == RIGHT_OBLIQUE_PIECE -1) {
+                    } else if (numDirection4 == RIGHT_OBLIQUE_PIECE - 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
                         result[1] = i;
