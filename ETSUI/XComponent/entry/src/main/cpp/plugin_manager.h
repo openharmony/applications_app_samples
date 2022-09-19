@@ -61,9 +61,12 @@ public:
     void SetNativeXComponent(std::string& id, OH_NativeXComponent* nativeXComponent);
     PluginRender* GetRender(std::string& id);
 
-public:
     // Napi export
     bool Export(napi_env env, napi_value exports);
+    napi_env mainEnv_ = nullptr;
+    uv_loop_t* mainLoop_ = nullptr;
+    uv_async_t mainOnMessageSignal_ {};
+
 private:
     static void MainOnMessage(const uv_async_t* req);
     static PluginManager manager_;
@@ -71,11 +74,6 @@ private:
     std::string id_;
     std::unordered_map<std::string, OH_NativeXComponent*> nativeXComponentMap_;
     std::unordered_map<std::string, PluginRender*> pluginRenderMap_;
-
-public:
-    napi_env mainEnv_ = nullptr;
-    uv_loop_t* mainLoop_ = nullptr;
-    uv_async_t mainOnMessageSignal_ {};
 };
 
 #endif // _PLUGIN_MANAGER_H_

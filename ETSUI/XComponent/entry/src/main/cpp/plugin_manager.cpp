@@ -15,12 +15,11 @@
 
 #include <cstdint>
 #include <string>
-#include <csdio>
 
 #include <ace/xcomponent/native_interface_xcomponent.h>
 
-#include "plugin_manager.h"
 #include "plugin_common.h"
+#include "plugin_manager.h"
 
 enum ContextType {
     APP_LIFECYCLE = 0,

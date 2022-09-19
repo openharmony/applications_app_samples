@@ -15,9 +15,9 @@
 
 #include <cstdint>
 
-#include "plugin_render.h"
 #include "plugin_common.h"
 #include "plugin_manager.h"
+#include "plugin_render.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -138,7 +138,7 @@ void PluginRender::DispatchTouchEvent(OH_NativeXComponent* component, void* wind
 {
     int32_t ret = OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent_);
     if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-        for (int i=0; i<touchEvent_.numPoints; i++) {
+        for (int i = 0; i < touchEvent_.numPoints; i++) {
         }
     } else {
         LOGE("Touch fail");
