@@ -26,22 +26,9 @@ struct Index {
   private patternLockController: PatternLockController = new PatternLockController()
   @State message: Resource = $r('app.string.message_input')
   @State isReset: boolean = false
-  @State password: Number[] = []
+  @State password: Array<number> = []
   @State isHasPass: boolean = true
   @State isShowSetting: boolean = false
-
-  aboutToAppear() {
-    this.password = []
-    PreferencesUtils.getPassword().then((password) => {
-      this.defaultPassword = <string> password
-      Logger.info(TAG, `get passworld ${this.defaultPassword}`)
-      if (this.defaultPassword === 'null') {
-        this.isHasPass = false
-      } else {
-        this.isHasPass = true
-      }
-    })
-  }
 
   build() {
     Column() {
@@ -57,6 +44,8 @@ struct Index {
             .onClick(() => {
               this.isReset = true
               this.message = $r('app.string.message_input_old')
+              this.password = []
+              this.patternLockController.reset()
             })
         }
         Text(this.message)
@@ -115,15 +104,7 @@ struct Index {
             .margin(30)
             .width('60%')
             .onClick(() => {
-              Logger.info(TAG, `set passWorld`)
-              this.defaultPassword = this.password.toString()
-              PreferencesUtils.setPassword(this.password.toString())
-              this.message = $r('app.string.message_set_success')
-              this.isShowSetting = false
-              this.isHasPass = true
-              this.patternLockController.reset()
-              this.password = []
-              this.isReset = false
+              this.setPassword()
             })
         }
       }
@@ -135,5 +116,26 @@ struct Index {
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
     .opacity(0.7)
+  }
+
+  async aboutToAppear() {
+    this.password = []
+    this.defaultPassword = <string> await PreferencesUtils.getPassword(getContext(this))
+    if (this.defaultPassword === 'null') {
+      this.isHasPass = false
+    } else {
+      this.isHasPass = true
+    }
+  }
+
+  async setPassword() {
+    this.defaultPassword = this.password.toString()
+    await PreferencesUtils.setPassword(this.defaultPassword, getContext(this))
+    this.message = $r('app.string.message_set_success')
+    this.isShowSetting = false
+    this.isHasPass = true
+    this.password = []
+    this.patternLockController.reset()
+    this.isReset = false
   }
 }

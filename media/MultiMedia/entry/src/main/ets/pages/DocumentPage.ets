@@ -23,7 +23,7 @@ import TitleBar from '../view/TitleBar'
 @Component
 struct DocumentPage {
   private tag: string = 'DocumentPage'
-  private mediaUtils: MediaUtils = MediaUtils.getInstance()
+  private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
   @State fileContent: string = ''
 
   async saveFile() {

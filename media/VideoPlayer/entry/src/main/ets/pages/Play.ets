@@ -18,6 +18,7 @@ import MediaUtils from '../model/MediaUtils'
 import Logger from '../model/Logger'
 import PlayButton from '../common/PlayButton'
 import PlayTitle from '../common/PlayTitle'
+import PlayAbility from '../PlayAbility/PlayAbility'
 import VideoPlayerUtils from '../model/VideoPlayerUtils'
 import { getTimeString } from '../model/TimeUtils'
 
@@ -26,13 +27,14 @@ const TAG: string = 'Play'
 @Entry
 @Component
 struct Play {
-  private fileId: number = -1
+  @StorageLink('fileId') fileId: number = 0
   private fileAsset: mediaLibrary.FileAsset = undefined
   private fd: number = undefined
   private intervalId: number = undefined
   private mXComponentController: XComponentController = new XComponentController()
   private videoPlayer: VideoPlayerUtils = new VideoPlayerUtils()
   private surfaceId: number = 0
+  private mediaUtil: MediaUtils = new MediaUtils(getContext(this) as any)
   @State currentTime: number = 0
   @State displayName: string = ''
   @State isShowMenu: boolean = false
@@ -40,9 +42,7 @@ struct Play {
   @State ratio: number = 1.0
 
   aboutToAppear() {
-    let want = globalThis.abilityWant
-    this.fileId = want.parameters.fileId
-    Logger.info(TAG, `aboutToAppear, fileId =${this.fileId}`)
+    Logger.info(TAG, `aboutToAppear, fileId =${this.fileId }`)
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     this.videoPlayer.setFinishCallBack(() => {
       this.isPlaying = false
@@ -57,8 +57,9 @@ struct Play {
 
   async playVideo() {
     Logger.info(TAG, 'playVideo')
-    await globalThis.abilityContext.requestPermissionsFromUser(['ohos.permission.READ_MEDIA'])
-    this.fileAsset = await MediaUtils.queryFile(this.fileId)
+    let context = getContext(this) as any
+    await context.requestPermissionsFromUser(['ohos.permission.READ_MEDIA'])
+    this.fileAsset = await this.mediaUtil.queryFile(this.fileId)
     this.displayName = this.fileAsset.displayName
     this.ratio = this.fileAsset.width / this.fileAsset.height
     this.mXComponentController.setXComponentSurfaceSize({

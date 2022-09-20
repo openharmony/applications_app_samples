@@ -29,107 +29,21 @@ const TAG: string = 'Player'
 @Entry
 @Component
 struct Player {
-  private params = <{
-    fileId: number,
-    displayName: string
-  }> router.getParams()
   private currentIndex: number = -1
   private fileAsset: mediaLibrary.FileAsset = undefined
-  private fileId: number = this.params.fileId
+  private fileId: number = router.getParams()['fileId']
   private fd: number = undefined
   private intervalId: number = undefined
   private mediaList: Array<mediaLibrary.FileAsset> = []
   private videoPlayer: VideoPlayerUtils = new VideoPlayerUtils()
   private mXComponentController: XComponentController = new XComponentController()
   private surfaceId: number = 0
+  private mediaUtil: MediaUtils = new MediaUtils(getContext(this) as any)
   @State currentTime: number = 0
-  @State displayName: string = this.params.displayName
+  @State displayName: string = router.getParams()['displayName']
   @State isShowMenu: boolean = false
   @State @Watch('playStateChange') isPlaying: boolean = false
   @State ratio: number = 1.0
-
-  aboutToAppear() {
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
-    Logger.info(TAG, `aboutToAppear,surfaceId=${this.surfaceId}`)
-    this.videoPlayer.setFinishCallBack(() => {
-      this.isPlaying = false
-      this.currentTime = 0
-    })
-    this.intervalId = setInterval(() => {
-      if (this.isPlaying) {
-        this.currentTime = this.videoPlayer.getCurrentTime()
-      }
-    }, 1000)
-  }
-
-  async getMediaList() {
-    Logger.info(TAG, `aboutToAppear,id=${this.fileId}`)
-    this.mediaList = await MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
-    this.mediaList.forEach((file, index) => {
-      Logger.info(TAG, `file.id=${file.id}`)
-      if (file.id === this.fileId) {
-        this.fileAsset = file
-        this.currentIndex = index
-      }
-    })
-  }
-
-  playStateChange() {
-    if (this.isPlaying) {
-      this.videoPlayer.play()
-    } else {
-      this.videoPlayer.pause()
-    }
-  }
-
-  handleBack = () => {
-    router.back()
-    this.clearVideoPlayer()
-  }
-  handlePrevClick = () => {
-    if (this.currentIndex > 0) {
-      this.currentIndex -= 1
-      this.resetVideo()
-    } else {
-      prompt.showToast({ message: '当前视频是第一个', duration: 1000 })
-    }
-  }
-  handleNextClick = () => {
-    if (this.currentIndex < this.mediaList.length - 1) {
-      this.currentIndex += 1
-      this.resetVideo()
-    } else {
-      prompt.showToast({ message: '当前视频是最后一个', duration: 1000 })
-    }
-  }
-
-  async resetVideo() {
-    await this.fileAsset.close(this.fd)
-    this.fileAsset = this.mediaList[this.currentIndex]
-    this.displayName = this.fileAsset.displayName
-    let fdPath = await this.prepareVideo()
-    await this.videoPlayer.reset(fdPath)
-    this.isPlaying = true
-  }
-
-  async prepareVideo() {
-    this.ratio = this.fileAsset.width / this.fileAsset.height
-    this.mXComponentController.setXComponentSurfaceSize({
-      surfaceWidth: this.fileAsset.width,
-      surfaceHeight: this.fileAsset.height
-    })
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
-    this.fd = await this.fileAsset.open('Rw')
-    return 'fd://' + this.fd
-  }
-
-  async playVideo() {
-    Logger.info(TAG, 'playVideo')
-    await this.getMediaList()
-    let fdPath = await this.prepareVideo()
-    await this.videoPlayer.initVideoPlayer(fdPath, this.surfaceId)
-    this.isPlaying = true
-  }
 
   build() {
     Stack({ alignContent: Alignment.Center }) {
@@ -192,17 +106,110 @@ struct Player {
     })
   }
 
+  aboutToAppear() {
+    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+    Logger.info(TAG, `aboutToAppear,surfaceId=${this.surfaceId}`)
+    Logger.info(TAG, `fileId=${this.fileId},displayName=${this.displayName}`)
+    this.videoPlayer.setFinishCallBack(() => {
+      this.isPlaying = false
+      this.currentTime = 0
+    })
+    this.intervalId = setInterval(() => {
+      if (this.isPlaying) {
+        this.currentTime = this.videoPlayer.getCurrentTime()
+      }
+    }, 1000)
+  }
+
+  async getMediaList() {
+    Logger.info(TAG, `getMediaList,id=${this.fileId}`)
+    this.mediaList = await this.mediaUtil.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+    this.mediaList.forEach((file, index) => {
+      Logger.info(TAG, `file.id=${file.id}`)
+      if (file.id === this.fileId) {
+        this.fileAsset = file
+        this.currentIndex = index
+      }
+    })
+  }
+
+  playStateChange() {
+    if (this.isPlaying) {
+      this.videoPlayer.play()
+    } else {
+      this.videoPlayer.pause()
+    }
+  }
+
+  handleBack = () => {
+    router.back()
+    this.clearVideoPlayer()
+  }
+  handlePrevClick = () => {
+    if (this.currentIndex > 0) {
+      this.currentIndex -= 1
+      this.resetVideo()
+    } else {
+      prompt.showToast({ message: '当前视频是第一个', duration: 1000 })
+    }
+  }
+  handleNextClick = () => {
+    if (this.currentIndex < this.mediaList.length - 1) {
+      this.currentIndex += 1
+      this.resetVideo()
+    } else {
+      prompt.showToast({ message: '当前视频是最后一个', duration: 1000 })
+    }
+  }
+
+  async resetVideo() {
+    await this.fileAsset.close(this.fd)
+    this.fileAsset = this.mediaList[this.currentIndex]
+    this.displayName = this.fileAsset.displayName
+    let fdPath = await this.prepareVideo()
+    await this.videoPlayer.reset(fdPath)
+    this.isPlaying = true
+  }
+
+  async prepareVideo() {
+    this.ratio = this.fileAsset.width / this.fileAsset.height
+    this.mXComponentController.setXComponentSurfaceSize({
+      surfaceWidth: this.fileAsset.width,
+      surfaceHeight: this.fileAsset.height
+    })
+    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+    this.fd = await this.fileAsset.open('Rw')
+    Logger.info(TAG, `fd://' ${this.fd} `)
+    return 'fd://' + this.fd
+  }
+
+  async playVideo() {
+    Logger.info(TAG, 'playVideo')
+    try{
+      await this.getMediaList()
+      let fdPath = await this.prepareVideo()
+      await this.videoPlayer.initVideoPlayer(fdPath, this.surfaceId)
+      this.isPlaying = true
+    }catch(error) {
+      Logger.info(TAG, `playVideo error ${JSON.stringify(error)}`)
+    }
+  }
+
   onPageHide() {
     this.clearVideoPlayer()
     router.replace({
-      url:'pages/Index'
+      url: 'pages/Index'
     })
   }
 
   clearVideoPlayer() {
     clearInterval(this.intervalId)
-    this.videoPlayer.stop()
-    this.videoPlayer.release()
-    this.fileAsset.close(this.fd)
+    if (this.videoPlayer) {
+      this.videoPlayer.stop()
+      this.videoPlayer.release()
+    }
+    if (this.fileAsset) {
+      this.fileAsset.close(this.fd)
+    }
   }
 }

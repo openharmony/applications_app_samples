@@ -21,9 +21,13 @@ import Logger from '../model/Logger'
 
 const TAG: string = '[MediaUtils]'
 
-class MediaUtils {
+export default class MediaUtils {
   private tag: string = 'MediaUtils'
-  private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
+  private mediaTest: mediaLibrary.MediaLibrary = undefined
+
+  constructor(context: any) {
+    this.mediaTest = mediaLibrary.getMediaLibrary(context)
+  }
 
   async createAndGetFile() {
     let info = {
@@ -58,6 +62,7 @@ class MediaUtils {
       let imageResource = await image.createImageSource(fd)
       let pixelMap = await imageResource.createPixelMap()
       await imageResource.release()
+      await file.close(fd)
       return pixelMap
     }
     return null
@@ -81,5 +86,3 @@ class MediaUtils {
     })
   }
 }
-
-export default new MediaUtils()

@@ -21,6 +21,7 @@ class BasicDataSource implements IDataSource {
   public totalCount(): number {
     return 0
   }
+
   public getData(index: number): any {
     return undefined
   }
@@ -31,6 +32,7 @@ class BasicDataSource implements IDataSource {
       this.listeners.push(listener)
     }
   }
+
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -44,21 +46,25 @@ class BasicDataSource implements IDataSource {
       listener.onDataReloaded()
     })
   }
+
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index)
     })
   }
+
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index)
     })
   }
+
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index)
     })
   }
+
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to)
@@ -72,6 +78,7 @@ export default class MediaDataSource extends BasicDataSource {
   public totalCount(): number {
     return this.dataArray.length
   }
+
   public getData(index: number): mediaLibrary.FileAsset {
     return this.dataArray[index]
   }
@@ -80,6 +87,7 @@ export default class MediaDataSource extends BasicDataSource {
     this.dataArray.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
+
   public pushData(data: mediaLibrary.FileAsset): void {
     this.dataArray.push(data)
     this.notifyDataAdd(this.dataArray.length - 1)

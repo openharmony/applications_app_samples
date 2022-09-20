@@ -13,23 +13,11 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
-import Logger from '../model/Logger'
 import TitleBar from '../common/TitleBar'
-
-const PERMISSIONS: Array<string> = [
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.CAPTURE_SCREEN']
-const TAG: string = '[Index]'
 
 @Entry
 @Component
 struct Index {
-  async aboutToAppear() {
-    await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
-    Logger.info(TAG, 'grantPermission,requestPermissionsFromUser')
-  }
-
   @Builder
   OperationBtn(text: Resource, handleClick: () => void) {
     Button({ type: ButtonType.Capsule }) {

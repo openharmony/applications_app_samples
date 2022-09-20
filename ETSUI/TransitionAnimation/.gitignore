@@ -1,0 +1,6 @@
+/.idea
+**/build
+/.hvigor
+**/package-lock.json
+**/node_modules
+**/local.properties

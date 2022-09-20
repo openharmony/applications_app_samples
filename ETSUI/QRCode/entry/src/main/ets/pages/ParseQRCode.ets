@@ -28,6 +28,7 @@ struct ParseQRCode {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private defaultQrcodeImage: ImageBitmap = new ImageBitmap("common/media/qrcode.png")
+  private mediaUitl: MediaUtils = new MediaUtils(getContext(this))
   @State result: string = ''
   @State uploadQrcodeImage: image.PixelMap | undefined = undefined
   getDecode = async () => {
@@ -79,29 +80,8 @@ struct ParseQRCode {
             .width('90%')
             .margin({ top: 40, bottom: 40 })
           this.OperationBtn($r('app.string.check_qrcode_file'), () => {
-            // 3.2 beta分支abilityName使用com.ohos.filepicker.MainAbility
-            globalThis.abilityContext.startAbilityForResult({
-              bundleName: "com.ohos.filepicker",
-              abilityName: "com.ohos.filepicker.MainAbility",
-              parameters: {
-                startMode: 'choose'
-              }
-            }
-            ).then(async (data) => {
-              this.result = ''
-              let result = data.want.parameters.result
-              let images = result.split(';')
-              Logger.info(TAG, `this.images = ${JSON.stringify(images)}`)
-              this.uploadQrcodeImage = await MediaUtils.getPixelMap(images[0])
-              if (this.uploadQrcodeImage === null) {
-                prompt.showToast({ message: '所选文件不是图片', duration: 1000 })
-                return
-              }
-              this.context.clearRect(0, 0, QRCODE_SIZE, QRCODE_SIZE)
-              this.context.drawImage(this.uploadQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
-            })
-            // 主干master分支abilityName使用MainAbility
-            globalThis.abilityContext.startAbilityForResult({
+            let mContext = getContext(this) as any
+            mContext.startAbilityForResult({
               bundleName: "com.ohos.filepicker",
               abilityName: "MainAbility",
               parameters: {
@@ -113,7 +93,7 @@ struct ParseQRCode {
               let result = data.want.parameters.result
               let images = result.split(';')
               Logger.info(TAG, `this.images = ${JSON.stringify(images)}`)
-              this.uploadQrcodeImage = await MediaUtils.getPixelMap(images[0])
+              this.uploadQrcodeImage = await this.mediaUitl.getPixelMap(images[0])
               if (this.uploadQrcodeImage === null) {
                 prompt.showToast({ message: '所选文件不是图片', duration: 1000 })
                 return
@@ -122,6 +102,7 @@ struct ParseQRCode {
               this.context.drawImage(this.uploadQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
             })
           })
+
           this.OperationBtn($r('app.string.parse_qrcode'), () => {
             Logger.info(TAG, `paras`)
             this.result = '解析中，请等待'

@@ -28,6 +28,7 @@ const QRCODE_TOP: number = vp2px(100) // 二维码保存时图片顶部距离屏
 @Component
 struct CreateQRCode {
   private rectLeft: number = 0
+  private mediaUitl: MediaUtils = new MediaUtils(getContext(this) as any)
   @State codeStr: string = ''
   getScreen = () => {
     console.info(`${TAG} getScreen,isFullScreen`)
@@ -51,7 +52,7 @@ struct CreateQRCode {
         Logger.info(TAG, `Failed to save the screenshot. Error:${JSON.stringify(err)}`)
       }
       Logger.info(TAG, 'save callback')
-      MediaUtils.savePicture(data)
+      this.mediaUitl.savePicture(data)
     })
   }
 

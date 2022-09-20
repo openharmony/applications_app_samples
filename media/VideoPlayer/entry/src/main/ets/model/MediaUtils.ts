@@ -15,70 +15,72 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../model/Logger'
 
-class MediaUtils {
-    private tag: string = 'MediaUtils'
-    private mediaList: Array<mediaLibrary.FileAsset> = []
-    private mediaLib: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
+export default class MediaUtils {
+  private tag: string = 'MediaUtils'
+  private mediaList: Array<mediaLibrary.FileAsset> = []
+  private mediaLib: mediaLibrary.MediaLibrary = undefined
 
-    async queryFile(id) {
-        Logger.info(this.tag, `queryFile,id = ${id}`)
-        let fileKeyObj = mediaLibrary.FileKey
-        if (!id) {
-            return
-        }
-        let args = id.toString()
-        let fetchOp = {
-            selections: `${fileKeyObj.ID}=?`,
-            selectionArgs: [args],
-        }
-        const fetchFileResult = await this.mediaLib.getFileAssets(fetchOp)
-        Logger.info(this.tag, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`)
-        const fileAsset = await fetchFileResult.getAllObject()
-        return fileAsset[0]
+  constructor(context: any) {
+    this.mediaLib = mediaLibrary.getMediaLibrary(context)
+  }
 
+  async queryFile(id) {
+    Logger.info(this.tag, `queryFile,id = ${id}`)
+    let fileKeyObj = mediaLibrary.FileKey
+    if (!id) {
+      return
     }
-
-    getMediaList() {
-        return this.mediaList
+    let args = id.toString()
+    let fetchOp = {
+      selections: `${fileKeyObj.ID}=?`,
+      selectionArgs: [args],
     }
+    const fetchFileResult = await this.mediaLib.getFileAssets(fetchOp)
+    Logger.info(this.tag, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`)
+    const fileAsset = await fetchFileResult.getAllObject()
+    return fileAsset[0]
 
-    async getFdPath(fileAsset: any) {
-        let fd = await fileAsset.open('Rw')
-        Logger.info(this.tag, `fd = ${fd}`)
-        return fd
-    }
+  }
 
-    async getFileAssetsFromType(mediaType: number) {
-        Logger.info(this.tag, `getFileAssetsFromType,mediaType = ${mediaType}`)
-        let fileKeyObj = mediaLibrary.FileKey
-        let fetchOp = {
-            selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-            selectionArgs: [`${mediaType}`],
-        }
-        let fetchFileResult = await this.mediaLib.getFileAssets(fetchOp)
-        Logger.info(this.tag, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`)
-        if (fetchFileResult.getCount() > 0) {
-            this.mediaList = await fetchFileResult.getAllObject()
-        }
-        return this.mediaList
-    }
+  getMediaList() {
+    return this.mediaList
+  }
 
-    deleteFile(media: any) {
-        let uri = media.uri
-        Logger.info(this.tag, `deleteFile,uri = ${uri}`)
-        return this.mediaLib.deleteAsset(uri)
-    }
+  async getFdPath(fileAsset: any) {
+    let fd = await fileAsset.open('Rw')
+    Logger.info(this.tag, `fd = ${fd}`)
+    return fd
+  }
 
-    onDateChange(callback: () => void) {
-        this.mediaLib.on('videoChange', () => {
-            Logger.info(this.tag, 'videoChange called')
-            callback()
-        })
+  async getFileAssetsFromType(mediaType: number) {
+    Logger.info(this.tag, `getFileAssetsFromType,mediaType = ${mediaType}`)
+    let fileKeyObj = mediaLibrary.FileKey
+    let fetchOp = {
+      selections: `${fileKeyObj.MEDIA_TYPE}=?`,
+      selectionArgs: [`${mediaType}`],
     }
+    let fetchFileResult = await this.mediaLib.getFileAssets(fetchOp)
+    Logger.info(this.tag, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`)
+    if (fetchFileResult.getCount() > 0) {
+      this.mediaList = await fetchFileResult.getAllObject()
+    }
+    return this.mediaList
+  }
 
-    offDateChange() {
-        this.mediaLib.off('videoChange')
-    }
+  deleteFile(media: any) {
+    let uri = media.uri
+    Logger.info(this.tag, `deleteFile,uri = ${uri}`)
+    return this.mediaLib.deleteAsset(uri)
+  }
+
+  onDateChange(callback: () => void) {
+    this.mediaLib.on('videoChange', () => {
+      Logger.info(this.tag, 'videoChange called')
+      callback()
+    })
+  }
+
+  offDateChange() {
+    this.mediaLib.off('videoChange')
+  }
 }
-
-export default new MediaUtils()

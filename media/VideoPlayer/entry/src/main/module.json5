@@ -64,6 +64,9 @@
     ],
     "requestPermissions": [
       {
+        "name": "ohos.permission.WRITE_MEDIA"
+      },
+      {
         "name": "ohos.permission.READ_MEDIA"
       }
     ]

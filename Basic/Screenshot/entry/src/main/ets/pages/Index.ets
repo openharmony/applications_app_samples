@@ -19,10 +19,6 @@ import MediaUtils from '../model/MediaUtils'
 import Logger from '../model/Logger'
 
 const TAG = '[Screenshot]'
-const PERMISSIONS: Array<string> = [
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.CAPTURE_SCREEN']
 
 @Entry
 @Component
@@ -44,12 +40,8 @@ struct Index {
         Logger.info(TAG, `Failed to save the screenshot. Error:${JSON.stringify(err)}`)
       }
       Logger.info(TAG, 'save callback')
-      MediaUtils.savePicture(data)
+      MediaUtils.savePicture(data, getContext(this) as any)
     })
-  }
-
-  aboutToAppear() {
-    globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
   }
 
   @Builder

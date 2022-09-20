@@ -19,44 +19,44 @@ import Logger from '../model/Logger'
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        Logger.info(TAG, 'MainAbility onCreate')
-        globalThis.abilityWant = want
-        globalThis.abilityContext = this.context
-        globalThis.sessionId = globalThis.abilityWant.parameters.sessionId ? globalThis.abilityWant.parameters.sessionId : ''
-        globalThis.objectModel = new DistributedObjectModel()
-    }
+  onCreate(want, launchParam) {
+    Logger.info(TAG, 'MainAbility onCreate')
+    this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
+    let sessionId = want.parameters.sessionId ? want.parameters.sessionId : ''
+    AppStorage.SetOrCreate('sessionId', sessionId)
+    AppStorage.SetOrCreate('objectModel', new DistributedObjectModel())
+  }
 
-    onDestroy() {
-        Logger.info(TAG, 'MainAbility onDestroy')
-    }
+  onDestroy() {
+    Logger.info(TAG, 'MainAbility onDestroy')
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        Logger.info(TAG, 'MainAbility onWindowStageCreate')
-        windowStage.setUIContent(this.context, "pages/Index", null)
-    }
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    Logger.info(TAG, 'MainAbility onWindowStageCreate')
+    windowStage.setUIContent(this.context, "pages/Index", null)
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        Logger.info(TAG, 'MainAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    Logger.info(TAG, 'MainAbility onWindowStageDestroy')
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        Logger.info(TAG, 'MainAbility onForeground')
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    Logger.info(TAG, 'MainAbility onForeground')
+  }
 
-    onBackground() {
-        // Ability has back to background
-        Logger.info(TAG, 'MainAbility onBackground')
-    }
+  onBackground() {
+    // Ability has back to background
+    Logger.info(TAG, 'MainAbility onBackground')
+  }
 
-    onNewWant(want) {
-        Logger.info(TAG, 'onNewWant')
-        globalThis.abilityWant = want
-        globalThis.sessionId = globalThis.abilityWant.parameters.sessionId
-        globalThis.objectModel.off()
-        globalThis.objectModel = new DistributedObjectModel()
-    }
+  onNewWant(want) {
+    Logger.info(TAG, 'onNewWant')
+    AppStorage.SetOrCreate('sessionId', want.parameters.sessionId)
+    let objectModel = <DistributedObjectModel> AppStorage.Get('objectModel')
+    objectModel.off()
+    AppStorage.SetOrCreate('objectModel', new DistributedObjectModel())
+  }
 }

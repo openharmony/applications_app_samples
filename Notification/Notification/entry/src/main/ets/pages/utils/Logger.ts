@@ -12,23 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import hilog from '@ohos.hilog'
 
-const TAG: string = "[Notification]"
+class Logger {
+  private domain: number
+  private prefix: string
+  private format: string = "%{public}s, %{public}s"
 
-export default class Logger {
-  public static log(tag: string, log: string) {
-    console.log(`${TAG}.${tag}: ${log}`);
+  constructor(prefix: string) {
+    this.prefix = prefix
+    this.domain = 0xFF00
   }
 
-  public static info(tag: string, message: string) {
-    console.info(`${TAG}.${tag}: ${message}`);
+  debug(...args: any[]) {
+    hilog.debug(this.domain, this.prefix, this.format, args)
   }
 
-  public static debug(tag: string, debug: string) {
-    console.debug(`${TAG}.${tag}: ${debug}`);
+  info(...args: any[]) {
+    hilog.info(this.domain, this.prefix, this.format, args)
   }
 
-  public static error(tag: string, error: string) {
-    console.error(`${TAG}.${tag}: ${error}`);
+  warn(...args: any[]) {
+    hilog.warn(this.domain, this.prefix, this.format, args)
+  }
+
+  error(...args: any[]) {
+    hilog.error(this.domain, this.prefix, this.format, args)
   }
 }
+
+export default new Logger('[Notification]')

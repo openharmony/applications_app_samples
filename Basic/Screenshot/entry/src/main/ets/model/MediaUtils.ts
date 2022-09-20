@@ -22,29 +22,27 @@ import Logger from '../model/Logger'
 const TAG: string = '[MediaUtils]'
 
 class MediaUtils {
-  private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
-
-  async createAndGetFile() {
-    this.mediaTest = mediaLibrary.getMediaLibrary()
+  async createAndGetFile(context: any) {
+    let mediaTest = mediaLibrary.getMediaLibrary(context)
     let info = {
       prefix: 'IMG_', suffix: '.jpg', directory: mediaLibrary.DirectoryType.DIR_IMAGE
     }
     let dateTimeUtil = new DateTimeUtil()
     let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`
     let displayName = `${info.prefix}${name}${info.suffix}`
-    let publicPath = await this.mediaTest.getPublicDirectory(info.directory)
+    let publicPath = await mediaTest.getPublicDirectory(info.directory)
     Logger.info(TAG, `publicPath = ${publicPath}`)
-    return await this.mediaTest.createAsset(mediaLibrary.MediaType.IMAGE, displayName, publicPath)
+    return await mediaTest.createAsset(mediaLibrary.MediaType.IMAGE, displayName, publicPath)
   }
 
-  async savePicture(data: image.PixelMap) {
+  async savePicture(data: image.PixelMap, context: any) {
     Logger.info(TAG, `savePicture`)
     let packOpts: image.PackingOption = {
       format: "image/jpeg", quality: 100
     }
     let imagePackerApi = image.createImagePacker()
     let arrayBuffer = await imagePackerApi.packing(data, packOpts)
-    let fileAsset = await this.createAndGetFile()
+    let fileAsset = await this.createAndGetFile(context)
     let fd = await fileAsset.open('Rw')
     imagePackerApi.release()
     await fileio.write(fd, arrayBuffer)

@@ -16,7 +16,7 @@
 import notify from '@ohos.notification';
 import wantAgent from '@ohos.wantAgent';
 import prompt from '@ohos.prompt';
-import Logger from './utils/logger'
+import Logger from './utils/Logger'
 
 const TAG: string = "[Notification]"
 
