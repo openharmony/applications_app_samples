@@ -24,7 +24,7 @@
 
 class EGLCore {
 public:
-    EGLCore(std::string& id) : id_(id) {};
+    explicit EGLCore(std::string& id) : id_(id) {};
     void GLContextInit(void* window, int w, int h);
     void ChangeShape();
     void DrawTriangle();
@@ -40,7 +40,7 @@ private:
     bool checkGlError(const char* op);
     GLuint LoadShader(GLenum type, const char *shaderSrc);
     GLuint CreateProgram(const char *vertexShader, const char *fragShader);
-
+    GLuint CreateProgramError(const char *vertexShader, const char *fragShader);
     EGLNativeWindowType mEglWindow;
     EGLDisplay mEGLDisplay = EGL_NO_DISPLAY;
     EGLConfig mEGLConfig = nullptr;

@@ -26,7 +26,7 @@
 
 class PluginRender {
 public:
-    PluginRender(std::string& id);
+    explicit PluginRender(std::string& id);
     static PluginRender* GetInstance(std::string& id);
     static OH_NativeXComponent_Callback* GetNXComponentCallback();
 
