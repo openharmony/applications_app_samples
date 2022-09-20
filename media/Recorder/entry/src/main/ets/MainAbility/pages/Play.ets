@@ -24,12 +24,22 @@ import { AudioModel } from '../model/AudioModel'
 struct Play {
   private fileId: number = router.getParams()['fileId']
   private audioModel: AudioModel = new AudioModel()
+  @StorageLink('playState') playState: boolean = true
   @State record: Record = undefined
 
   async aboutToAppear() {
     this.record = await MediaManager.queryFile(this.fileId)
     if (this.record) {
       this.audioModel.initAudioPlayer(this.record.fileAsset, true)
+    }
+  }
+
+  onPageShow() {
+    if(this.playState === true) {
+      this.audioModel.play(()=> {
+        this.playState = true
+        AppStorage.SetOrCreate('playState', true)
+      })
     }
   }
 
@@ -44,7 +54,16 @@ struct Play {
     .backgroundColor('#F0F0F0')
   }
 
-  onPageHide() {
+  aboutToDisappear() {
     this.audioModel.finish()
+  }
+
+  onPageHide() {
+    if(this.playState === true) {
+      this.audioModel.pause(() => {
+        this.playState = false
+        AppStorage.SetOrCreate('playState', false)
+      })
+    }
   }
 }

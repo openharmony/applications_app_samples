@@ -26,7 +26,7 @@ export struct AnimateView {
   @State timeAdd: number = 0
   @State translateImage: string = '-0.2%'
   @State translateText: string = '-1%'
-  @Prop @Watch('onPlayChange') isPlay: boolean
+  @StorageLink('playState') @Watch('onPlayChange') playState: boolean = true
 
   onPlayChange() {
     Logger.info(TAG, `onPlayChange`)
@@ -34,8 +34,8 @@ export struct AnimateView {
   }
 
   animator() {
-    Logger.info(TAG, `animator,isPlay=${this.isPlay}`)
-    if (this.isPlay) {
+    Logger.info(TAG, `animator,isPlay=${this.playState}`)
+    if (this.playState) {
       this.intervalId = setInterval(() => {
         this.updateTimeStr()
         this.translateImage = '16.3%'
