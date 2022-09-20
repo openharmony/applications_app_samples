@@ -1,0 +1,13 @@
+{
+  "actions": {
+    "jump": {
+      "action": "router",
+      "bundleName": "ohos.samples.vegetable",
+      "abilityName": "MainAbility"
+    }
+  },
+  "data": {
+    "title": "Default",
+    "stars": "***"
+  }
+}
