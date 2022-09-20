@@ -30,7 +30,7 @@ export default {
         title: this.$t("strings.media_query"), uri: "pages/responsiveLayout/mediaQuery/mediaQuery"
       },
       {
-        title: this.$t("strings.typical_scenario"), uri: "pages/responsiveLayout/typicalScene/index/index"
+        title: this.$t("strings.typical_scenario"), uri: "pages/responsiveLayout/typicalScene/index/typicalScene"
       }
     ]
   },

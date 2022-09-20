@@ -26,7 +26,7 @@ export struct PlayView {
   private millisecond: number = 0
   private duration: string = ''
   @State time: string = '00:00'
-  @State isPlay: boolean = false
+  @StorageLink('playState') playState: boolean = true
   @State @Watch('onFileChange') fileName: string = ''
 
   aboutToAppear() {
@@ -42,15 +42,15 @@ export struct PlayView {
   initAudioPlayer() {
     if (this.fileName !== '') {
       this.audioModel.play(() => {
-        this.isPlay = true
+        this.playState = true
         this.reset()
       })
       this.audioModel.onFinish(() => {
-        this.isPlay = false
+        this.playState = false
         this.reset()
       })
     } else {
-      this.isPlay = false
+      this.playState = false
       this.reset()
     }
   }
@@ -67,16 +67,18 @@ export struct PlayView {
 
   handleChangePlayState = () => {
     if (this.fileName !== '') {
-      Logger.info(TAG, `handleChangePlayState this.isPlay= ${this.isPlay}`)
-      if (!this.isPlay) {
+      Logger.info(TAG, `handleChangePlayState this.isPlay= ${this.playState}`)
+      if (!this.playState) {
         this.audioModel.play(() => {
           Logger.info(TAG, `handleChangePlayState play success`)
-          this.isPlay = !this.isPlay
+          this.playState = !this.playState
+          AppStorage.SetOrCreate('playState', this.playState)
         })
       } else {
         this.audioModel.pause(() => {
           Logger.info(TAG, `handleChangePlayState pause success`)
-          this.isPlay = !this.isPlay
+          this.playState = !this.playState
+          AppStorage.SetOrCreate('playState', this.playState)
         })
       }
     }
@@ -84,7 +86,7 @@ export struct PlayView {
 
   build() {
     Column() {
-      AnimateView({ isPlay: this.isPlay, updateTimeStr: this.updateTimeStr.bind(this) })
+      AnimateView({ updateTimeStr: this.updateTimeStr.bind(this) })
       Image($r('app.media.bg_play'))
         .width('100%')
         .height('30%')
@@ -99,7 +101,7 @@ export struct PlayView {
       }
 
       Button() {
-        Image(this.isPlay ? $r('app.media.pause') : $r('app.media.play'))
+        Image(this.playState ? $r('app.media.pause') : $r('app.media.play'))
           .objectFit(ImageFit.Contain)
           .size({ width: 70, height: 70 })
           .key('playItem')

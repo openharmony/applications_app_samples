@@ -30,14 +30,15 @@ struct RecordPage {
   private recordModel: RecordModel = new RecordModel()
   private millisecond: number = 0
   @State fileAsset: mediaLibrary.FileAsset = undefined
-  @State isRecording: boolean = false
+  @StorageLink('playState') playState: boolean = true
   @State duration: string = '00:00'
 
   finish() {
     MediaManager.saveFileDuration(this.fileAsset.title, this.duration)
-    this.recordModel.finish(function(){
-      this.isRecording = false
-    }.bind(this))
+    this.recordModel.finish(() => {
+      this.playState = false
+      AppStorage.SetOrCreate('playState', this.playState)
+    })
   }
 
   async aboutToAppear() {
@@ -47,7 +48,7 @@ struct RecordPage {
     this.recordModel.startRecorder(`fd://${fd}`, () => {
       Logger.info(TAG, 'startRecorder callback success')
       this.millisecond = 0
-      this.isRecording = true
+      this.playState = true
     })
   }
 
@@ -62,7 +63,7 @@ struct RecordPage {
         TitleBar({ title: this.fileAsset.title })
       }
       Column() {
-        AnimateView({ isPlay: this.isRecording, updateTimeStr: this.updateTimeStr.bind(this) })
+        AnimateView({ updateTimeStr: this.updateTimeStr.bind(this) })
         Image($r('app.media.bg_record'))
           .width('100%')
           .height('40%')
@@ -79,13 +80,12 @@ struct RecordPage {
           .size({ width: 70, height: 70 })
           .backgroundColor('#FFFFFF')
           .onClick(() => {
-            this.finish()
             router.back()
           })
 
           Blank().layoutWeight(2)
           Button({ type: ButtonType.Circle, stateEffect: true }) {
-            Image(this.isRecording ? $r('app.media.ic_pause') : $r('app.media.ic_play'))
+            Image(this.playState ? $r('app.media.ic_pause') : $r('app.media.ic_play'))
               .objectFit(ImageFit.Contain)
               .size({ width: 55, height: 55 })
               .key('playImg')
@@ -94,9 +94,10 @@ struct RecordPage {
           .backgroundColor('#FFFFFF')
           .onClick(() => {
             let callback = function(){
-              this.isRecording = !this.isRecording
+              this.playState = !this.playState
+              AppStorage.SetOrCreate('playState', this.playState)
             }.bind(this)
-            if (this.isRecording) {
+            if (this.playState) {
               this.recordModel.pause(callback)
             } else {
               this.recordModel.resume(callback)
