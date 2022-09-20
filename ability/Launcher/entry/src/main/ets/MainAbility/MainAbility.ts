@@ -23,7 +23,6 @@ export default class MainAbility extends ServiceExtensionAbility {
 
   onCreate(want) {
     Logger.info('[MainAbility]', 'onCreate')
-    globalThis.abilityWant = want
     this.initLauncher()
   }
 

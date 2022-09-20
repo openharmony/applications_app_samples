@@ -28,9 +28,9 @@ struct AlbumPage {
   private tag: string = 'AlbumPage'
   private albumName: string = <string> router.getParams()['albumName']
   private mediaType: number = <number> router.getParams()['mediaType']
-  private mediaUtils: MediaUtils = MediaUtils.getInstance()
+  private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
   private renameDialogController: CustomDialogController = null
-//  @State mediaList: Array<mediaLibrary.FileAsset> = []
+  //  @State mediaList: Array<mediaLibrary.FileAsset> = []
   private mediaDataSource: MediaDataSource = new MediaDataSource()
   @State selectMedia: mediaLibrary.FileAsset = undefined
 
@@ -121,16 +121,17 @@ struct AlbumPage {
           .onClick(() => {
             if (item.mediaType === mediaLibrary.MediaType.VIDEO) {
               Logger.info(this.tag, `onClick,item.id=${item.id}`)
-              globalThis.abilityContext.startAbility({
-                  bundleName: 'ohos.samples.videoplayer',
-                  abilityName: 'PlayAbility',
-                  deviceId: "",
-                  parameters: {
-                    fileId: item.id
-                  }
-                }, (error) => {
-                  Logger.info(this.tag, `error.code = ${error.code}`)
+              let context = getContext(this) as any
+              context.startAbility({
+                bundleName: 'ohos.samples.videoplayer',
+                abilityName: 'PlayAbility',
+                deviceId: "",
+                parameters: {
+                  fileId: item.id
                 }
+              }, (error) => {
+                Logger.info(this.tag, `error.code = ${error.code}`)
+              }
               )
             }
           })

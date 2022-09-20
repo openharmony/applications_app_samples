@@ -14,6 +14,7 @@
  */
 import router from '@ohos.router'
 import { MARKS } from '../model/Const'
+import DistributedObjectModel from '../model/DistributedObjectModel'
 import Note from '../model/Note'
 import TitleBar from '../common/TitleBar'
 
@@ -22,14 +23,8 @@ import TitleBar from '../common/TitleBar'
 struct Edit {
   @State note: Note = router.getParams()['note']
   private isAdd: boolean = router.getParams()['isAdd']
-  private index: number = 0
   @State imageShow: boolean = false
-
-  aboutToAppear() {
-    if (!this.isAdd) {
-      this.index = router.getParams()['index']
-    }
-  }
+  @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel()
 
   build() {
     Column() {
@@ -90,9 +85,9 @@ struct Edit {
         .onClick(() => {
           if (!this.isAdd) {
             let index = router.getParams()['index']
-            globalThis.objectModel.update(index, this.note.title, this.note.content, this.note.mark)
+            this.globalObject.update(index, this.note.title, this.note.content, this.note.mark)
           } else {
-            globalThis.objectModel.add(this.note.title, this.note.content, this.note.mark)
+            this.globalObject.add(this.note.title, this.note.content, this.note.mark)
           }
           router.back()
         })

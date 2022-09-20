@@ -35,6 +35,7 @@ const SYSTEM_APPLICATIONS: string = 'com.ohos.launcher,ohos.samples.launcher,com
 const KEY_NAME = 'name'
 
 export class DesktopLayoutModel {
+  private static layoutInfoModel: DesktopLayoutModel = undefined
   private layoutInfo: Array<Array<GridLayoutItemInfo>> = []
   private readonly mSystemApplicationName = SYSTEM_APPLICATIONS.split(',')
   private mLauncherAbilityManager: LauncherAbilityManager = undefined
@@ -66,10 +67,10 @@ export class DesktopLayoutModel {
   * @return {object} application data model singleton
   */
   static getInstance(context): DesktopLayoutModel {
-    if (globalThis.LayoutInfoModel == null) {
-      globalThis.LayoutInfoModel = new DesktopLayoutModel(context)
+    if (this.layoutInfoModel == null || this.layoutInfoModel === undefined) {
+      this.layoutInfoModel = new DesktopLayoutModel(context)
     }
-    return globalThis.LayoutInfoModel
+    return this.layoutInfoModel
   }
 
   private removeItemByBundle(bundleName: string) {

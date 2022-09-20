@@ -194,4 +194,4 @@ class RdbManagerModel {
   }
 }
 
-export let  RdbManager =  new RdbManagerModel()
+export let RdbManager = new RdbManagerModel()

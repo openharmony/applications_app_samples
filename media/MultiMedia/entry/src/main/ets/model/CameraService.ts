@@ -32,10 +32,10 @@ const CameraSize = {
   HEIGHT: 1080
 }
 
-class CameraService {
+export default class CameraService {
   private tag: string = 'CameraService'
-  private static instance: CameraService = new CameraService()
-  private mediaUtil = MediaUtils.getInstance()
+  private context: any = undefined
+  private mediaUtil: MediaUtils = undefined
   private cameraManager: camera.CameraManager = undefined
   private cameras: Array<camera.Camera> = undefined
   private cameraId: string = ''
@@ -69,12 +69,16 @@ class CameraService {
     },
     url: '',
     orientationHint: 0,
-    location: { latitude: 30, longitude: 130 },
+    location: {
+      latitude: 30, longitude: 130
+    },
     maxSize: 10000,
     maxDuration: 10000
   }
 
-  constructor() {
+  constructor(context: any) {
+    this.context = context
+    this.mediaUtil = MediaUtils.getInstance(context)
     this.mReceiver = image.createImageReceiver(CameraSize.WIDTH, CameraSize.HEIGHT, 4, 8)
     Logger.info(this.tag, 'createImageReceiver')
     this.mReceiver.on('imageArrival', () => {
@@ -130,7 +134,7 @@ class CameraService {
     } else {
       this.videoConfig.videoSourceType = 0
     }
-    this.cameraManager = await camera.getCameraManager(globalThis.abilityContext)
+    this.cameraManager = await camera.getCameraManager(this.context)
     Logger.info(this.tag, 'getCameraManager')
     this.cameras = await this.cameraManager.getCameras()
     Logger.info(this.tag, `get cameras ${this.cameras.length}`)
@@ -145,7 +149,7 @@ class CameraService {
     Logger.info(this.tag, 'createPreviewOutput')
     let mSurfaceId = await this.mReceiver.getReceivingSurfaceId()
     this.photoOutPut = await camera.createPhotoOutput(mSurfaceId)
-    this.captureSession = await camera.createCaptureSession(globalThis.abilityContext)
+    this.captureSession = await camera.createCaptureSession(this.context)
     Logger.info(this.tag, 'createCaptureSession')
     await this.captureSession.beginConfig()
     Logger.info(this.tag, 'beginConfig')
@@ -235,5 +239,3 @@ class CameraService {
     }
   }
 }
-
-export default new CameraService()

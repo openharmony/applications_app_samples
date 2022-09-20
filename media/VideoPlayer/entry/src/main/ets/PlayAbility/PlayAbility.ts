@@ -18,34 +18,33 @@ import Logger from '../model/Logger'
 const TAG: string = 'PlayAbility'
 
 export default class PlayAbility extends Ability {
-    onCreate(want, launchParam) {
-        Logger.info(TAG, 'PlayAbility onCreate')
-        globalThis.abilityWant = want
-        globalThis.abilityContext = this.context
-    }
+  onCreate(want, launchParam) {
+    Logger.info(TAG, 'PlayAbility onCreate')
+    AppStorage.SetOrCreate('fileId', want.parameters.fileId)
+  }
 
-    onDestroy() {
-        Logger.info(TAG, 'PlayAbility onDestroy')
-    }
+  onDestroy() {
+    Logger.info(TAG, 'PlayAbility onDestroy')
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        Logger.info(TAG, 'PlayAbility onWindowStageCreate')
-        windowStage.setUIContent(this.context, "pages/Play", null)
-    }
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    Logger.info(TAG, 'PlayAbility onWindowStageCreate')
+    windowStage.setUIContent(this.context, "pages/Play", null)
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        Logger.info(TAG, 'PlayAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    Logger.info(TAG, 'PlayAbility onWindowStageDestroy')
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        Logger.info(TAG, 'PlayAbility onForeground')
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    Logger.info(TAG, 'PlayAbility onForeground')
+  }
 
-    onBackground() {
-        // Ability has back to background
-        Logger.info(TAG, 'PlayAbility onBackground')
-    }
+  onBackground() {
+    // Ability has back to background
+    Logger.info(TAG, 'PlayAbility onBackground')
+  }
 };

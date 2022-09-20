@@ -64,7 +64,7 @@ export struct MediaItem {
           .width('100%')
           .fontSize(22)
           .margin({ top: 10 })
-        if(this.media.mediaType ===  mediaLibrary.MediaType.VIDEO) {
+        if (this.media.mediaType === mediaLibrary.MediaType.VIDEO) {
           Text(getDurationString(this.media.duration))
             .width('100%')
             .fontSize(22)

@@ -27,7 +27,8 @@ const CameraMode = {
 struct CameraPage {
   private tag: string = 'CameraPage'
   private mXComponentController: XComponentController = new XComponentController()
-  private surfaceId: number
+  private surfaceId: number = -1
+  private cameraService: CameraService = new CameraService(getContext(this))
   @State imgThumbnail: string = ''
   @State videoThumbnail: Resource | undefined = undefined
   @State curModel: number = CameraMode.MODE_PHOTO
@@ -36,7 +37,7 @@ struct CameraPage {
   aboutToAppear() {
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     Logger.info(this.tag, `aboutToAppear,surfaceId=${this.surfaceId}`)
-    CameraService.setTakePictureCallback(this.handleTakePicture.bind(this))
+    this.cameraService.setTakePictureCallback(this.handleTakePicture.bind(this))
   }
 
   getCameraIcon() {
@@ -54,12 +55,12 @@ struct CameraPage {
   refreshVideoState() {
     if (this.isRecording) {
       Logger.info(this.tag, 'stopVideo begin')
-      CameraService.stopVideo()
+      this.cameraService.stopVideo()
       this.isRecording = false
       this.videoThumbnail = $r('app.media.video_poster')
     } else {
       Logger.info(this.tag, 'startVideo begin')
-      CameraService.startVideo()
+      this.cameraService.startVideo()
       this.isRecording = true
     }
   }
@@ -84,7 +85,7 @@ struct CameraPage {
             this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
             Logger.info(this.tag, `onLoad surfaceId: ${this.surfaceId}`)
             this.curModel = CameraMode.MODE_PHOTO
-            CameraService.initCamera(this.surfaceId)
+            this.cameraService.initCamera(this.surfaceId)
           })
           .height('100%')
           .width('100%')
@@ -98,12 +99,12 @@ struct CameraPage {
                 if (this.curModel === CameraMode.MODE_VIDEO) {
                   prompt.showToast({ message: '切换中...', duration: 1000 })
                   if (this.isRecording) {
-                    CameraService.stopVideo()
+                    this.cameraService.stopVideo()
                     this.isRecording = false
                   }
                   this.curModel = CameraMode.MODE_PHOTO
                   setTimeout(() => {
-                    CameraService.initCamera(this.surfaceId)
+                    this.cameraService.initCamera(this.surfaceId)
                   }, 500)
                   this.videoThumbnail = undefined
                 }
@@ -116,7 +117,7 @@ struct CameraPage {
                 if (this.curModel === CameraMode.MODE_PHOTO) {
                   prompt.showToast({ message: '切换中...', duration: 1000 })
                   this.curModel = CameraMode.MODE_VIDEO
-                  CameraService.initCamera(this.surfaceId)
+                  this.cameraService.initCamera(this.surfaceId)
                 }
               })
           }
@@ -149,7 +150,7 @@ struct CameraPage {
                 if (this.curModel === CameraMode.MODE_PHOTO) {
                   Logger.info(this.tag, 'takePicture begin')
                   prompt.showToast({ message: '拍照中...', duration: 1000 })
-                  CameraService.takePicture()
+                  this.cameraService.takePicture()
                 } else if (this.curModel === CameraMode.MODE_VIDEO) {
                   this.refreshVideoState()
                 }
@@ -174,8 +175,8 @@ struct CameraPage {
 
   async aboutToDisappear() {
     if (this.isRecording) {
-      await CameraService.stopVideo()
+      await this.cameraService.stopVideo()
     }
-    await CameraService.releaseCamera()
+    await this.cameraService.releaseCamera()
   }
 }

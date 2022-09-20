@@ -64,7 +64,7 @@ struct Clock {
 
     // 绘制背景
     var grad = this.context.createRadialGradient(this.radius, this.radius, this.radius - 35, this.radius,
-      this.radius, this.radius)
+    this.radius, this.radius)
     grad.addColorStop(0.0, 'white')
     grad.addColorStop(0.9, '#eee')
     grad.addColorStop(1.0, 'white')

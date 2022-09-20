@@ -14,11 +14,15 @@
  */
 import Ability from '@ohos.application.Ability'
 
+const PERMISSIONS: Array<string> = [
+  'ohos.permission.READ_MEDIA',
+  'ohos.permission.WRITE_MEDIA',
+  'ohos.permission.CAPTURE_SCREEN']
+
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
-    globalThis.abilityWant = want
-    globalThis.abilityContext = this.context
+    this.context.requestPermissionsFromUser(PERMISSIONS)
   }
 
   onDestroy() {

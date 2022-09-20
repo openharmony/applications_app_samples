@@ -20,29 +20,24 @@ const PREFERENCES_NAME: string = 'myPreferences'
 const PASSWORD_KEY: string = 'password'
 
 class PreferencesUtils {
-  private preferences: preferences.Preferences | undefined = undefined
+  private mPreferences: preferences.Preferences | undefined = undefined
 
-  constructor() {
-    this.preferences = undefined
-    Logger.info(TAG, `constructor`)
-  }
-
-  async getPassword() {
+  async getPassword(context: any) {
     Logger.info(TAG, `get passworld`)
-    if (this.preferences === undefined) {
-      this.preferences = await preferences.getPreferences(globalThis.abilityContext, PREFERENCES_NAME)
+    if (this.mPreferences === undefined) {
+      this.mPreferences = await preferences.getPreferences(context, PREFERENCES_NAME)
     }
-    return await this.preferences.get(PASSWORD_KEY, 'null')
+    return await this.mPreferences.get(PASSWORD_KEY, 'null')
   }
 
-  async setPassword(passWorld: string) {
+  async setPassword(passWorld: string, context: any) {
     Logger.info(TAG, `set passworld`)
-    if (this.preferences === undefined) {
-      this.preferences = await preferences.getPreferences(globalThis.abilityContext, PREFERENCES_NAME)
+    if (this.mPreferences === undefined) {
+      this.mPreferences = await preferences.getPreferences(context, PREFERENCES_NAME)
     }
-    await this.preferences.put(PASSWORD_KEY, passWorld)
-    await this.preferences.flush()
+    await this.mPreferences.put(PASSWORD_KEY, passWorld)
+    await this.mPreferences.flush()
+    Logger.info(TAG, `setPassword end`)
   }
 }
-
 export default new PreferencesUtils()

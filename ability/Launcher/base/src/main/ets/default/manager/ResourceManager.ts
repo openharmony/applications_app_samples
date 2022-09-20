@@ -25,6 +25,7 @@ const TAG: string = 'ResourceManager'
  * Wrapper class for resourceManager interfaces.
  */
 export class ResourceManager {
+  private static resourceManager: ResourceManager = undefined
   private readonly memoryCache = new LruCache()
   private context: any = undefined
 
@@ -33,15 +34,15 @@ export class ResourceManager {
   }
 
   /**
-  * Get the application data model object.
-  *
-  * @return {object} application data model singleton
-  */
+   * Get the application data model object.
+   *
+   * @return {object} application data model singleton
+   */
   static getInstance(context): ResourceManager {
-    if (globalThis.resourceManager === null || globalThis.resourceManager === undefined) {
-      globalThis.resourceManager = new ResourceManager(context)
+    if (this.resourceManager === null || this.resourceManager === undefined) {
+      this.resourceManager = new ResourceManager(context)
     }
-    return globalThis.resourceManager
+    return this.resourceManager
   }
 
   private getCacheFromMemory(cacheKey: string, cacheType: string) {
@@ -147,7 +148,7 @@ export class ResourceManager {
         return appName
       }
       const bundleContext = this.context.createBundleContext(bundleName)
-      let resMgrName  = await bundleContext.resourceManager.getString(labelId)
+      let resMgrName = await bundleContext.resourceManager.getString(labelId)
       Logger.info(TAG, `getAppNameSync resMgrName: ${resMgrName}`)
       if (resMgrName != null) {
         return resMgrName
@@ -191,11 +192,11 @@ export class ResourceManager {
   }
 
   /**
-     * Get app resource cache.
-     *
-     * @param {string} cacheKey
-     * @param {string} cacheType
-     */
+   * Get app resource cache.
+   *
+   * @param {string} cacheKey
+   * @param {string} cacheType
+   */
   getAppResourceCache(cacheKey, cacheType) {
     return this.getCacheFromMemory(cacheKey, cacheType)
   }

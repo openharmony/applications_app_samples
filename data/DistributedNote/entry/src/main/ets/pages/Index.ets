@@ -32,34 +32,31 @@ struct Index {
   private dialogController?: CustomDialogController
   private selectedIndex: number = 0
   private sessionId: string = ''
+  @StorageLink('sessionId') globalSessionId: string = ''
+  @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel()
   @State devices: Array<deviceManager.DeviceInfo> = []
   @State isOnline: boolean = false
   @State notes: Array<Note> = []
   private noteDataSource : NoteDataSource = new NoteDataSource()
 
-  aboutToAppear() {
-    Logger.info(TAG, 'aboutToAppear')
-    globalThis.abilityContext.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
-  }
-
   onPageShow() {
-    this.noteDataSource['dataArray'] = globalThis.objectModel.distributedObject.documents
+    this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents
     this.noteDataSource.notifyDataReload()
     Logger.info(TAG, `this.sessionId = ${this.sessionId}`)
-    Logger.info(TAG, `globalThis.sessionId = ${globalThis.sessionId}`)
-    if (this.sessionId !== globalThis.sessionId) {
-      this.sessionId = globalThis.sessionId
+    Logger.info(TAG, `globalSessionId = ${this.globalSessionId}`)
+    if (this.sessionId !== this.globalSessionId) {
+      this.sessionId = this.globalSessionId
       this.share()
     }
   }
 
   share() {
     Logger.info(TAG, `sessionId = ${this.sessionId}`)
-    globalThis.objectModel.setChangeCallback(() => {
-      this.noteDataSource['dataArray'] = globalThis.objectModel.distributedObject.documents
+    this.globalObject.setChangeCallback(() => {
+      this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents
       this.noteDataSource.notifyDataReload()
     })
-    globalThis.objectModel.setStatusCallback((session, networkId, status) => {
+    this.globalObject.setStatusCallback((session, networkId, status) => {
       Logger.info(TAG, `StatusCallback,${status}`)
       if (status === 'online') {
         this.isOnline = true
@@ -67,7 +64,8 @@ struct Index {
         this.isOnline = false
       }
     })
-    globalThis.objectModel.distributedObject.setSessionId(this.sessionId)
+    this.globalObject.distributedObject.setSessionId(this.sessionId)
+    AppStorage.SetOrCreate('objectModel', this.globalObject)
   }
 
   clearSelectState() {
@@ -95,15 +93,16 @@ struct Index {
   }
 
   startAbility(deviceId) {
-    globalThis.objectModel = new DistributedObjectModel()
-    this.sessionId = globalThis.objectModel.genSessionId()
-    globalThis.sessionId = this.sessionId
+    this.globalObject = new DistributedObjectModel()
+    this.sessionId = this.globalObject.genSessionId()
+    AppStorage.SetOrCreate('sessionId', this.sessionId)
     this.noteDataSource['dataArray'] = []
     this.noteDataSource.notifyDataReload()
-    globalThis.objectModel.off()
+    this.globalObject.off()
     this.share()
     Logger.info(TAG, `startAbility deviceId:${deviceId}`)
-    globalThis.abilityContext.startAbility({
+    let context = getContext(this) as any
+    context.startAbility({
       bundleName: BUNDLE,
       abilityName: ABILITY,
       deviceId: deviceId,
@@ -171,7 +170,8 @@ struct Index {
           Logger.info(TAG, 'clear notes')
           this.noteDataSource['dataArray'] = []
           this.noteDataSource.notifyDataReload()
-          globalThis.objectModel.clear()
+          this.globalObject.clear()
+          AppStorage.SetOrCreate('sessionId', this.sessionId)
         })
 
         Column() {

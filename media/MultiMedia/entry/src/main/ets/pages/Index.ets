@@ -34,7 +34,7 @@ const TAG: string = 'Index'
 @Entry
 @Component
 struct Index {
-  private mediaUtils: MediaUtils = MediaUtils.getInstance()
+  private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
   @State albums: Array<Album> = []
   @State selectIndex: number = 0
   @State operateVisible: boolean = false
@@ -43,7 +43,8 @@ struct Index {
   }
 
   async aboutToAppear() {
-    await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
+    let context = getContext(this) as any
+    await context.requestPermissionsFromUser(PERMISSIONS)
     Logger.info(TAG, 'grantPermission,requestPermissionsFromUser')
     if (this.albums.length === 0) {
       await this.getAlbums()

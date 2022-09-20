@@ -27,26 +27,22 @@ const TAG: string = 'Index'
 @Component
 struct Index {
   private scroller: Scroller = new Scroller()
-//  @State mediaList: Array<mediaLibrary.FileAsset> = []
   private mediaDataSource:MediaDataSource = new MediaDataSource([])
+  private mediaUtil: MediaUtils = new MediaUtils(getContext(this) as any)
 
   async aboutToAppear() {
     router.clear()
     Logger.info(TAG, 'aboutToAppear')
-    await globalThis.abilityContext.requestPermissionsFromUser(['ohos.permission.READ_MEDIA'])
+    let context = getContext(this) as any
+    await context.requestPermissionsFromUser(['ohos.permission.READ_MEDIA'])
     await this.getData()
   }
 
   async getData() {
     this.mediaDataSource['dataArray'] = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
-    fileAsset.then(fileList => {
-      Logger.info(TAG, 'getFileList callback')
-      this.mediaDataSource['dataArray'] = fileList
-      this.mediaDataSource.notifyDataReload()
-    }).catch(err => {
-      Logger.error(TAG, `getFileList err,err = ${err}`)
-    })
+    let fileList = await this.mediaUtil.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+    this.mediaDataSource['dataArray'] = fileList
+    this.mediaDataSource.notifyDataReload()
   }
 
   build() {

@@ -24,7 +24,7 @@ import TitleBar from '../view/TitleBar'
 struct Record {
   private recordModel: RecordModel = new RecordModel()
   private isStartRecord: boolean = false
-  private mediaUtils: MediaUtils = MediaUtils.getInstance()
+  private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
   private intervalId: number = null
   @State format: string = 'hh:mm:ss.ms'
   @State isRecording: boolean = false

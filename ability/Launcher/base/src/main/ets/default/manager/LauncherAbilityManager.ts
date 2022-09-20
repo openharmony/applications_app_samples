@@ -30,6 +30,7 @@ const TAG: string = 'LauncherAbilityManager'
  */
 export class LauncherAbilityManager {
   private static readonly BUNDLE_STATUS_CHANGE_KEY = 'BundleStatusChange'
+  private static launcherAbilityManager: LauncherAbilityManager = undefined
   private readonly mAppMap = new Map<string, AppItemInfo>()
   private mResourceManager: ResourceManager = undefined
   private readonly mLauncherAbilityChangeListeners: any[] = []
@@ -47,21 +48,21 @@ export class LauncherAbilityManager {
   }
 
   /**
-  * Get the application data model object.
-  *
-  * @return {object} application data model singleton
-  */
+   * Get the application data model object.
+   *
+   * @return {object} application data model singleton
+   */
   static getInstance(context): LauncherAbilityManager {
-    if (globalThis.launcherAbilityManager === null || globalThis.launcherAbilityManager === undefined) {
-      globalThis.launcherAbilityManager = new LauncherAbilityManager(context)
+    if (this.launcherAbilityManager === null || this.launcherAbilityManager  === undefined) {
+      this.launcherAbilityManager  = new LauncherAbilityManager(context)
     }
-    return globalThis.launcherAbilityManager
+    return this.launcherAbilityManager
   }
 
   /**
    * get all app List info from BMS
    *
-   *  @return 应用的入口Ability信息列表
+   * @return 应用的入口Ability信息列表
    */
   async getLauncherAbilityList(): Promise<AppItemInfo[]> {
     Logger.info(TAG, 'getLauncherAbilityList begin')
@@ -108,7 +109,7 @@ export class LauncherAbilityManager {
   private async transToAppItemInfo(info): Promise<AppItemInfo> {
     const appItemInfo = new AppItemInfo()
     appItemInfo.appName = await this.mResourceManager.getAppNameSync(
-      info.labelId, info.elementName.bundleName, info.applicationInfo.label
+    info.labelId, info.elementName.bundleName, info.applicationInfo.label
     )
     appItemInfo.isSystemApp = info.applicationInfo.systemApp
     appItemInfo.isUninstallAble = info.applicationInfo.removable
@@ -141,11 +142,11 @@ export class LauncherAbilityManager {
   }
 
   /**
- * 卸载应用
- *
- * @params bundleName 应用包名
- * @params callback 卸载回调
- */
+   * 卸载应用
+   *
+   * @params bundleName 应用包名
+   * @params callback 卸载回调
+   */
   async uninstallLauncherAbility(bundleName: string, callback): Promise<void> {
     Logger.info(TAG, `uninstallLauncherAbility bundleName: ${bundleName}`)
     const bundlerInstaller = await bundleMgr.getBundleInstaller()
@@ -173,10 +174,10 @@ export class LauncherAbilityManager {
   }
 
   /**
-    * 开始监听系统应用状态.
-    *
-    * @params listener 监听对象
-    */
+   * 开始监听系统应用状态.
+   *
+   * @params listener 监听对象
+   */
   registerLauncherAbilityChangeListener(listener: any): void {
     if (!CheckEmptyUtils.isEmpty(listener)) {
       if (this.mLauncherAbilityChangeListeners.length == 0) {

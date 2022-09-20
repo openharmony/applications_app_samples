@@ -19,9 +19,9 @@ import Note from '../model/Note'
 const TAG: string = 'DistributedObjectModel'
 
 export default class DistributedObjectModel {
-    private distributedObject?: any
-    private changeCallback?: () => void
-    private statusCallback?: () => void
+    public distributedObject?: any
+    public changeCallback?: () => void
+    public statusCallback?: (sessionId: string, networkId: string, status: 'online' | 'offline') => void
 
     constructor() {
         this.distributedObject = distributedObject.createDistributedObject({
@@ -48,7 +48,7 @@ export default class DistributedObjectModel {
         this.distributedObject.on('change', this.changeCallback)
     }
 
-    setStatusCallback(callback: () => void) {
+    setStatusCallback(callback: (sessionId: string, networkId: string, status: 'online' | 'offline') => void) {
         if (this.statusCallback === callback) {
             Logger.info(TAG, 'same callback')
             return
