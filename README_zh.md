@@ -1,18 +1,14 @@
+# app_samples部件<a name="ZH-CN_TOPIC_0000001115464207"></a>
+
+## 简介<a name="section1470103520301"></a>
+
 【示例贡献温馨提示】感谢您关注OpenHarmony，如果您希望提交代码样例/示例/Demo，请参考知识体系的[《如何共建开发样例》](https://gitee.com/openharmony-sig/knowledge/blob/master/docs/co-construct_demos/README_zh.md)，首先提交到SIG（兴趣组）仓，知识体系SIG仓中的提交也是有效贡献。再次感谢您的关注！
 
-# 应用示例<a name="ZH-CN_TOPIC_0000001115464207"></a>
-
--   [概要简介](#section1470103520301)
--   [目录](#sectionMenu)
--   [使用说明](#section17988202503116)
--   [约束与限制](#section18841871178)
--   [Sample提交规范](CodeCommitChecklist.md)
-
-## 概要简介<a name="section1470103520301"></a>
+### 内容简介
 
 为帮助开发者快速熟悉OpenHarmony SDK所提供的API和应用开发流程，我们提供了一系列的应用示例，即Sample。每一个应用示例都是一个独立的DevEco Studio工程项目，开发者可以将工程导入到DevEco Studio开发工具，通过浏览代码、编译工程、安装和运行应用示例来了解应用示例中涉及API的使用方法。
 
-## 目录<a name="sectionMenu"></a>
+### 架构组成
 - Basic
   - [`Container`：线性容器ArrayList（eTS）（API8）](Basic/Container)
   - [`Screenshot`：屏幕截图（eTS）（API9）（Full SDK）](Basic/Screenshot)
@@ -115,7 +111,6 @@
   - [`BuildCommonView`：创建简单视图（eTS）（API8）](ETSUI/BuildCommonView)
   - [`DefiningPageLayoutAndConnection`：页面布局和连接（eTS）（API8）](ETSUI/DefiningPageLayoutAndConnection)
   - [`Drag`：拖拽事件（eTS）（API8）](ETSUI/Drag)
-  - [`Component`：eTS组件测试Demo（eTS）（API8）](ETSUI/Component)
   - [`ArkUIAnimation`：动画（eTS）（API8）](ETSUI/ArkUIAnimation)
   - [`MediaQuery`：媒体查询（eTS）（API8）](ETSUI/MediaQuery)
   - [`XComponent`：XComponent（eTS）（API9）](ETSUI/XComponent)
@@ -212,13 +207,61 @@
 - Share
   - [`Share`：分享（eTS）（API9）（Full SDK）](Share/Share)
 
+## 目录<a name="sectionMenu"></a>
 
-## 使用说明<a name="section17988202503116"></a>
+Sample仓下所展示的组件能力：
+
+```
+app_samples
+|---ability                # 页面能力
+|---Account                # 账号管理
+|---AppSample              # 示例应用
+|---Basic                  # 基础组件
+|---common                 # 公共能力
+|---Communication          # 通信与连接
+|---CompleteApps           # 完整应用
+|---data                   # 数据管理
+|---device                 # 设备管理
+|---DFX                    # 日志打印
+|---EngineeringCapability  # 工程能力
+|---ETSUI                  # eTS UI能力
+|---FileManager            # 文件管理
+|---Graphics               # 图像绘制
+|---media                  # 媒体
+|---MultiDeviceAppDev      # 一多应用
+|---Native                 # 调用C++能力
+|---Network                # 网络连接
+|---Notification           # 消息通知
+|---PackageManagement      # 包管理
+|---Preset                 # 预设应用
+|---ResourcesSchedule      # 资源调度
+|---Safety                 # 安全
+|---Share                  # 分享
+|---Telephony              # 电话功能
+|---thread                 # 线程操作
+|---UI                     # Js UI能力
+|---Util                   # 基础工具类
+```
+
+
+
+## 约束<a name="section18841871178"></a>
+
+安装应用示例之前，请先查看"README_zh.md"文件来确认应用示例是否为stage模型，若为Stage模型需要查看entry/src/main路径下的module.json5文件中的"deviceType"字段来确认该应用支持的设备类型；否则为FA模型，查看entry/src/main路径下的config.json文件中的"deviceType"字段来确认该应用示例支持的设备类型，两种模型都可尝试通过修改该字段使其可以在相应类型的设备上运行。
+
+
+## 使用方法<a name="section17988202503116"></a>
 
 1.  将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
 2.  部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
 3.  安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
 
-## 约束与限制<a name="section18841871178"></a>
+## Changlog<a name="section17988202503117"></a>
 
-安装应用示例之前，请先查看"README_zh.md"文件来确认应用示例是否为stage模型，若为Stage模型需要查看entry/src/main路径下的module.json5文件中的"deviceType"字段来确认该应用支持的设备类型；否则为FA模型，查看entry/src/main路径下的config.json文件中的"deviceType"字段来确认该应用示例支持的设备类型，两种模型都可尝试通过修改该字段使其可以在相应类型的设备上运行。
+应用修改记录：[Changlog](Changelog)
+
+## 相关仓<a name="section17988202503118"></a>
+
+1. [app_sample](https://gitee.com/openharmony/app_samples)
+2. [application_app_sample](https://gitee.com/openharmony/application_app_samples)
+
