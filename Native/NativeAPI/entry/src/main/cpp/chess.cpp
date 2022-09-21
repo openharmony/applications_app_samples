@@ -488,21 +488,21 @@ static bool IsCheckNull(napi_env env, napi_value argo, napi_value arg1)
     napi_status;
     status = napi_typeof(env, agr0, &valuetype);
     if (status != napi_ok) {
-        retuen true;
+        return true;
     }
     if (status != napi_number) {
         napi_throw_type_error(env, NULL, "Wrong arguments");
-        retuen true;
+        return true;
     }
     status = napi_typeof(env, agr1, &valuetype);
     if (status != napi_ok) {
-        retuen true;
+        return true;
     }
     if (status != napi_number) {
         napi_throw_type_error(env, NULL, "Wrong arguments");
-        retuen true;
+        return true;
     }
-        retuen false;
+        return false;
 }
 
 static napi_value Put(napi_env env, napi_callback_info info)
