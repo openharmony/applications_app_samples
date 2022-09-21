@@ -237,16 +237,15 @@ void AIPlay()
                     }
                     if (numDirection1 == LINE_THREE_PIECE) {
                         if (j - num - 1 < 0) {
-                           
                         } else {
-							 if (chessBoard[i][j - num - 1] == NO_CHESS) {
+                            if (chessBoard[i][j - num - 1] == NO_CHESS) {
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = 0;
                                 result[1] = i;
                                 result[INDEX_NUM] = j;
                                 return;
                             }
-						}
+                        }
                     } else if (numDirection1 == LINE_THREE_PIECE - 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
@@ -486,24 +485,24 @@ void AIPlay()
 static bool IsCheckNull(napi_env env, napi_value argo, napi_value arg1)
 {
     napi_valuetype valuetype;
-	napi_status;
-	status = napi_typeof(env, agr0, &valuetype);
-	if (status != napi_ok) {
-		retuen true;
-	}
-	if (status != napi_number) {
-		napi_throw_type_error(env, NULL, "Wrong arguments");
-		retuen true;
-	}
-	status = napi_typeof(env, agr1, &valuetype);
-	if (status != napi_ok) {
-		retuen true;
-	}
-	if (status != napi_number) {
-		napi_throw_type_error(env, NULL, "Wrong arguments");
-		retuen true;
-	}
-	retuen false;
+    napi_status;
+    status = napi_typeof(env, agr0, &valuetype);
+    if (status != napi_ok) {
+        retuen true;
+    }
+    if (status != napi_number) {
+        napi_throw_type_error(env, NULL, "Wrong arguments");
+        retuen true;
+    }
+    status = napi_typeof(env, agr1, &valuetype);
+    if (status != napi_ok) {
+        retuen true;
+    }
+    if (status != napi_number) {
+        napi_throw_type_error(env, NULL, "Wrong arguments");
+        retuen true;
+    }
+        retuen false;
 }
 
 static napi_value Put(napi_env env, napi_callback_info info)
@@ -513,20 +512,20 @@ static napi_value Put(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2];
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-   if(IsCheckNull(env, agr[0], agrs[1])) {
-	   return nullptr
+    if (IsCheckNull(env, agr[0], agrs[1])) {
+        return nullptr
    }
     int x1;
     napi_get_value_int32(env, args[0], &x1);
     int y1;
     napi_get_value_int32(env, args[1], &y1);
     chessBoard[x1][y1] = USER_CHESS;
-	int result = 0;
+    int result = 0;
     int numHorizontal = GetNumHorizontal(x1, y1, USER_CHESS);
         if (numHorizontal >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; //获胜
+            result = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
             napi_create_int32(env, result, &returnValue);
             return returnValue;
@@ -535,7 +534,7 @@ static napi_value Put(napi_env env, napi_callback_info info)
         if (numVertical >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; //获胜
+            result = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
             napi_create_int32(env, result, &returnValue);
             return returnValue;
@@ -544,7 +543,7 @@ static napi_value Put(napi_env env, napi_callback_info info)
         if (numLeftSlash >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; //获胜
+            result = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
             napi_create_int32(env, result, &returnValue);
             return returnValue;
@@ -553,7 +552,7 @@ static napi_value Put(napi_env env, napi_callback_info info)
         if (numRightSlash >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; //获胜
+            result = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
             napi_create_int32(env, result, &returnValue);
             return returnValue;
