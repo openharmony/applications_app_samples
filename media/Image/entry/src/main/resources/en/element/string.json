@@ -39,6 +39,14 @@
     {
       "name": "media_read_permission",
       "value": "Allows applications to read media files from external storage"
+    },
+    {
+      "name": "media_write_permission",
+      "value": "allow applications can read and write media files stored in external storage"
+    },
+    {
+      "name": "media_location_permission",
+      "value": "allows applications to access location information in user media files"
     }
   ]
 }

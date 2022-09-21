@@ -67,6 +67,10 @@ struct Index {
     }
     if (value === '') { // 当用户点击删除按钮，表达式删除上一次的输入，重新运算表达式
       this.expression = this.expression.substr(0, this.expression.length - 1)
+      if (this.isOperator(this.expression.substr(this.expression.length - 1, this.expression.length))) {
+        this.result = ''
+        return
+      }
       this.result = JSON.stringify(MATH.evaluate(this.expression))
       return
     }

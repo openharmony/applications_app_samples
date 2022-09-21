@@ -124,9 +124,6 @@ export struct UpdateDialog {
                 .margin({left:10})
                 .onClick(() => {
                   this.customDialogController.close()
-                  setTimeout(()=>{
-                    this.customDialogController.open()
-                  },2000)
                 })
                 .key("Now")
             }

@@ -21,7 +21,7 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     logger.info(TAG, `[Demo] MainAbility onCreate`)
-    this.context.requestPermissionsFromUser(['ohos.permission.READ_MEDIA'])
+    this.context.requestPermissionsFromUser(['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION'])
   }
 
   onDestroy() {
