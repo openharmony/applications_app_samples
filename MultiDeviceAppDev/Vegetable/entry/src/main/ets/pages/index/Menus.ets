@@ -13,15 +13,11 @@
  * limitations under the License.
  */
 
-//import { Dialog } from './Dialog'
 
 @Preview
 @Component
 export struct Menus {
   gridNum: number = 1
-//  diaController: CustomDialogController = new CustomDialogController({
-//    builder: Dialog()
-//  })
 
   @Styles pressedStyles() {
     .backgroundColor('#2d099999')
@@ -47,9 +43,6 @@ export struct Menus {
       GridCol({ span: { xs: 12, sm: 12, md: 3 } }) {
         Text('About').textAlign(TextAlign.Start).width('100%')
           .stateStyles({ pressed: this.pressedStyles })
-//          .onClick(() => {
-//            this.diaController.open()
-//          })
       }.borderWidth(1).borderColor(0xAFEEEE)
     }
   }
