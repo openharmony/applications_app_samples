@@ -21,6 +21,7 @@ import { TitleBar } from '../common/TitleBar'
 
 const TAG: string = 'Index'
 const NUMMAX: number = 10
+
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
@@ -65,7 +66,7 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
+  public dataArray: Mission[] = []
 
   constructor(ele) {
     super()
@@ -126,7 +127,8 @@ struct Index {
         missionInfos = data.map((item) => {
           return item
         })
-        this.missionInfos = new MyDataSource(missionInfos)
+        this.missionInfos['dataArray'] = missionInfos
+        this.missionInfos.notifyDataReload()
         Logger.info(TAG, `getMissionInfos missionInfos= ${JSON.stringify(this.missionInfos)}`)
       }, 1000)
     })
@@ -166,7 +168,7 @@ struct Index {
         .width('100%')
         .height('90%')
       }
-      .width('95%')
+      .width('100%')
       .onRefreshing(this.handlerRefresh)
     }
     .width('100%')

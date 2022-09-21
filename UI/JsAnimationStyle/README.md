@@ -10,7 +10,6 @@ This sample shows how to use animation styles, gradient styles, transition style
 
 3. Transition styles: shared-element, custom, and card
 
-4. Custom font styles: implemented by referencing the .otf font file \(The same rule applies to the TTF font.\)
 
 ### Usage<a name="section111mcpsimp"></a>
 

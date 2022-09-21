@@ -166,6 +166,8 @@ struct Shopping {
 
   cartDialog(cartNum: number) {
     this.cartNum = cartNum
+    this.dialogController.close()
+    this.dialogController.open()
   }
 
   build() {

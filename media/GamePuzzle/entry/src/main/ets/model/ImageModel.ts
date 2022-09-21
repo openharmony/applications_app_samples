@@ -20,15 +20,20 @@ import PictureItem from '../model/PictureItem'
 const TAG = '[ImageModel]'
 const SPLIT_COUNT: number = 3 // 图片横竖切割的份数
 export default class ImageModel {
+  private media: mediaLibrary.MediaLibrary = undefined
+
+  constructor(context: any) {
+    this.media = mediaLibrary.getMediaLibrary(context)
+  }
+
   async getAllImg() {
-    let media = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
     let fileKeyObj = mediaLibrary.FileKey
     let fetchOp = {
       selections: fileKeyObj.MEDIA_TYPE + '=?',
       selectionArgs: [`${mediaLibrary.MediaType.IMAGE}`],
     }
     let mediaList: Array<mediaLibrary.FileAsset> = []
-    const fetchFileResult = await media.getFileAssets(fetchOp)
+    const fetchFileResult = await this.media.getFileAssets(fetchOp)
     Logger.info(TAG, `queryFile getFileAssetsFromType fetchFileResult.count = ${fetchFileResult.getCount()}`)
     if (fetchFileResult.getCount() > 0) {
       mediaList = await fetchFileResult.getAllObject()
@@ -39,7 +44,6 @@ export default class ImageModel {
   async splitPic(index: number) {
     let imagePixelMap: PictureItem[] = []
     let imgDatas: Array<mediaLibrary.FileAsset> = await this.getAllImg()
-    let media = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
     let imagePackerApi = image.createImagePacker()
     let fd = await imgDatas[index].open('r')
     let imageSource = image.createImageSource(fd)
@@ -69,7 +73,6 @@ export default class ImageModel {
       }
     }
     imagePackerApi.release()
-    await media.release()
     await imgDatas[index].close(fd)
     return imagePixelMap
   }

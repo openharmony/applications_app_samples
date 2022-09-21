@@ -26,7 +26,7 @@ enum gameStatus {
   over = 0
 }
 
-const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA']
+const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA', ohos.permission.MEDIA_LOCATION, 'ohos.permission.MEDIA_LOCATION']
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'
@@ -35,7 +35,7 @@ const TAG: string = 'Index'
 @Component
 struct Index {
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
-  private ImageModel: ImageModel = new ImageModel()
+  private ImageModel: ImageModel = new ImageModel(getContext(this))
   private game: GameRules = new GameRules()
   private timer: number = -1
   private isRefresh: boolean = false
@@ -51,7 +51,8 @@ struct Index {
 
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
-    await globalThis.abilityContext.requestPermissionsFromUser(PERMISSIONS)
+    let context = getContext(this) as any
+    await context.requestPermissionsFromUser(PERMISSIONS)
     this.imgDatas = await this.ImageModel.getAllImg()
     Logger.info(TAG, `images = ${this.imgDatas.length}`)
     this.numArray = await this.ImageModel.splitPic(this.index)
@@ -113,111 +114,76 @@ struct Index {
     gridCount: 12
   })
 
+  @Builder
+  ImageShow() {
+    Image(this.imgDatas[this.index].uri)
+      .width(IMAGE_SIZE)
+      .height(vp2px(197))
+      .objectFit(ImageFit.Fill)
+      .onClick(async () => {
+        if (this.isRefresh) {
+          return
+        }
+        this.imgDatas = await this.ImageModel.getAllImg()
+        setTimeout(() => {
+          this.dialogController.open()
+        }, 200)
+      })
+  }
+
+  @Builder
+  ImageGrid(leftMargin: number, topMargin: number) {
+    Grid() {
+      ForEach(this.numArray, (item, index) => {
+        GridItem() {
+          Image(item.pixelMap)
+            .width('99%')
+            .objectFit(ImageFit.Fill)
+            .height(vp2px(65))
+        }
+        .backgroundColor(item.pixelMap === undefined ? "#f5f5f5" : "#ffdead")
+        .onClick(() => {
+          if (this.isRefresh) {
+            return
+          }
+          if (this.game.gameStatus === gameStatus.running) {
+            this.isRefresh = true
+            this.numArray = this.game.gameInit(index, this.numArray)
+            this.gameOver()
+            this.isRefresh = false
+          }
+        })
+      })
+    }
+    .columnsTemplate('1fr 1fr 1fr')
+    .columnsGap(2)
+    .rowsGap(2)
+    .width(IMAGE_SIZE)
+    .height(vp2px(197))
+    .margin({ left: leftMargin, top: topMargin })
+  }
+
   build() {
     Column() {
-      if (this.isLand) {
-        Row() {
-          if (this.imgDatas.length > 0) {
-            Image(this.imgDatas[this.index].uri)
-              .width(IMAGE_SIZE)
-              .height(vp2px(197))
-              .margin({ top: 20 })
-              .objectFit(ImageFit.Fill)
-              .onClick(async () => {
-                if (this.isRefresh) {
-                  return
-                }
-                this.imgDatas = await this.ImageModel.getAllImg()
-                setTimeout(() => {
-                  this.dialogController.open()
-                }, 200)
-              })
+      Row() {
+        Text(`Time:0${Math.floor(this.gameTime / 60)}:${this.gameTime % 60 < 10 ? '0' + this.gameTime % 60 : this.gameTime % 60}`)
+          .margin({ top: 5, bottom: 5 })
+      }
+
+      if (this.imgDatas.length > 0) {
+        if (this.isLand) {
+          Row() {
+            this.ImageShow()
+            this.ImageGrid(10, 0)
           }
+          .margin({ top: 5 })
+        } else {
           Column() {
-            Row() {
-              Text(`Time:0${Math.floor(this.gameTime / 60)}:${this.gameTime % 60 < 10 ? '0' + this.gameTime % 60 : this.gameTime % 60}`)
-                .margin({ top: 5, bottom: 5 })
-            }
-
-            Grid() {
-              ForEach(this.numArray, (item, index) => {
-                GridItem() {
-                  Image(item.pixelMap)
-                    .width('99%')
-                    .objectFit(ImageFit.Fill)
-                    .height(vp2px(65))
-                }
-                .backgroundColor(item.pixelMap === undefined ? "#f5f5f5" : "#ffdead")
-                .onClick(() => {
-                  if (this.isRefresh) {
-                    return
-                  }
-                  if (this.game.gameStatus === gameStatus.running) {
-                    this.isRefresh = true
-                    this.numArray = this.game.gameInit(index, this.numArray)
-                    this.gameOver()
-                    this.isRefresh = false
-                  }
-                })
-              })
-            }
-            .columnsTemplate('1fr 1fr 1fr')
-            .columnsGap(2)
-            .rowsGap(2)
-            .width(IMAGE_SIZE)
-            .height(vp2px(200))
+            this.ImageShow()
+            this.ImageGrid(0, 5)
           }
+          .margin({ top: 5 })
         }
-      } else {
-        if (this.imgDatas.length > 0) {
-          Image(this.imgDatas[this.index].uri)
-            .width(IMAGE_SIZE)
-            .height(vp2px(210))
-            .margin({ top: 5 })
-            .objectFit(ImageFit.Fill)
-            .onClick(async () => {
-              if (this.isRefresh) {
-                return
-              }
-              this.imgDatas = await this.ImageModel.getAllImg()
-              setTimeout(() => {
-                this.dialogController.open()
-              }, 200)
-            })
-        }
-
-        Row() {
-          Text(`Time:0${Math.floor(this.gameTime / 60)}:${this.gameTime % 60 < 10 ? '0' + this.gameTime % 60 : this.gameTime % 60}`)
-            .margin({ top: 5, bottom: 5 })
-        }
-
-        Grid() {
-          ForEach(this.numArray, (item, index) => {
-            GridItem() {
-              Image(item.pixelMap)
-                .width('99%')
-                .objectFit(ImageFit.Fill)
-                .height(vp2px(65))
-            }
-            .backgroundColor(item.pixelMap === undefined ? "#f5f5f5" : "#ffdead")
-            .onClick(() => {
-              if (this.isRefresh) {
-                return
-              }
-              if (this.game.gameStatus === gameStatus.running) {
-                this.isRefresh = true
-                this.numArray = this.game.gameInit(index, this.numArray)
-                this.gameOver()
-                this.isRefresh = false
-              }
-            })
-          })
-        }
-        .columnsTemplate('1fr 1fr 1fr')
-        .columnsGap(2)
-        .rowsGap(2)
-        .width(IMAGE_SIZE)
-        .height(vp2px(200))
       }
       Button($r('app.string.start'), { type: ButtonType.Capsule, stateEffect: true })
         .height(50)

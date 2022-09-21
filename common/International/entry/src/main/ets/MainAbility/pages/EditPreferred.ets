@@ -15,79 +15,14 @@
 import i18n from '@ohos.i18n'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: [string, string]): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
+import LazyDataSource from '../model/LazyDataSource'
 
 const TAG: string = 'EditPreferred'
 
 @Entry
 @Component
 struct EditPreferred {
-  @State preferredLanguages: MyDataSource = new MyDataSource([])
+  @State preferredLanguages: LazyDataSource = new LazyDataSource()
   private localLanguage: string = router.getParams()['language']
   private deletePreferredLanguages: Array<number> = []
 
@@ -100,45 +35,51 @@ struct EditPreferred {
         i18n.getDisplayLanguage(id, id),
         i18n.getDisplayLanguage(id, this.localLanguage)
       ])
-      this.preferredLanguages = new MyDataSource(preferredLanguages)
     })
+    this.preferredLanguages['dataArray'] = preferredLanguages
+    this.preferredLanguages.notifyDataReload()
   }
 
   @Builder
   PreferredItem(preferred, index) {
-    if (index !== 0) {
-      Divider()
-        .color(Color.Gray)
-        .width('100%')
-        .strokeWidth(1)
-        .margin({ top: 10, bottom: 10 })
-    }
-    Row() {
-      Column() {
-        Text(preferred[0])
-          .fontColor(preferred[0] === preferred[1] ? Color.Blue : Color.Black)
-          .fontSize(22)
+    Column() {
+      if (index !== 0) {
+        Divider()
+          .color(Color.Gray)
+          .width('100%')
+          .strokeWidth(1)
           .margin({ top: 10, bottom: 10 })
-        if (preferred[0] !== preferred[1]) {
-          Text(preferred[1])
-            .fontColor(Color.Gray)
+      }
+      Row() {
+        Column() {
+          Text(preferred[0])
+            .fontColor(preferred[0] === preferred[1] ? Color.Blue : Color.Black)
             .fontSize(22)
             .margin({ top: 10, bottom: 10 })
+          if (preferred[0] !== preferred[1]) {
+            Text(preferred[1])
+              .fontColor(Color.Gray)
+              .fontSize(22)
+              .margin({ top: 10, bottom: 10 })
+          }
+        }
+        .alignItems(HorizontalAlign.Start)
+
+        Blank()
+        if (preferred[0] !== preferred[1]) {
+          Image($r('app.media.delete'))
+            .size({ width: 40, height: 40 })
+            .objectFit(ImageFit.Contain)
+            .onClick(() => {
+              this.deletePreferredLanguages.push(index)
+              this.preferredLanguages['dataArray'].splice(index, 1)
+              this.preferredLanguages.notifyDataReload()
+            })
         }
       }
-      .layoutWeight(1)
-      .alignItems(HorizontalAlign.Start)
-
-      if (preferred[0] !== preferred[1]) {
-        Image($r('app.media.delete'))
-          .size({ width: 40, height: 40 })
-          .objectFit(ImageFit.Contain)
-          .onClick(() => {
-            this.deletePreferredLanguages.push(index)
-            this.preferredLanguages.unregisterDataChangeListener(index)
-          })
-      }
+      .width('100%')
     }
+    .width('100%')
   }
 
   @Builder
@@ -146,7 +87,7 @@ struct EditPreferred {
     Column() {
       LazyForEach(this.preferredLanguages, (item, index) => {
         this.PreferredItem(item, index)
-      }, item => item[1])
+      }, item => item[0])
     }
     .width('95%')
     .padding(10)

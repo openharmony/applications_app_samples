@@ -18,6 +18,7 @@ import prompt from '@ohos.prompt'
 import router from '@ohos.router'
 import TitleBar from '../view/TitleBar'
 import Logger from '../model/Logger'
+import LazyDataSource from '../model/LazyDataSource'
 import OperationView from '../view/OperationView'
 import ResourceUtil from '../model/ResourceUtil'
 
@@ -29,79 +30,13 @@ class LanguageInfo {
   country: string
 }
 
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: LanguageInfo): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
 
 @Entry
 @Component
 struct Language {
   private languageSwitchTips: string = ''
   @State localLanguage: string = ''
-  @State preferredLanguages: MyDataSource = new MyDataSource([])
+  @State preferredLanguages: LazyDataSource = new LazyDataSource()
   @State currentRegion: string = ''
 
   async aboutToAppear() {
@@ -126,8 +61,9 @@ struct Language {
         language: i18n.getDisplayLanguage(id, id),
         country: i18n.getDisplayLanguage(id, this.localLanguage)
       })
-      this.preferredLanguages = new MyDataSource(preferredLanguages)
     })
+    this.preferredLanguages['dataArray'] = preferredLanguages
+    this.preferredLanguages.notifyDataReload()
   }
 
   @Builder
@@ -142,13 +78,10 @@ struct Language {
       }
       Row() {
         Column() {
-          Row() {
-            Text(languageInfo.language)
-              .fontSize(22)
-              .margin({ top: 10, bottom: 10 })
-              .fontColor(languageInfo.id === this.localLanguage ? Color.Blue : Color.Black)
-              .layoutWeight(1)
-          }
+          Text(languageInfo.language)
+            .fontSize(22)
+            .margin({ top: 10, bottom: 10 })
+            .fontColor(languageInfo.id === this.localLanguage ? Color.Blue : Color.Black)
 
           if (languageInfo.id !== this.localLanguage) {
             Text(languageInfo.country)
@@ -157,8 +90,10 @@ struct Language {
               .width('100%')
               .margin({ top: 10, bottom: 10 })
           }
-        }.layoutWeight(1)
+        }
+        .alignItems(HorizontalAlign.Start)
 
+        Blank()
         if (languageInfo.id === this.localLanguage) {
           Image($r('app.media.check'))
             .size({ width: 35, height: 35 })

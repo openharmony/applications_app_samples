@@ -62,12 +62,12 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
+  public dataArray: ArrayList<Information> = new ArrayList()
 
   constructor(ele) {
     super()
     for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
+      this.dataArray.add(ele[index])
     }
   }
 
@@ -80,7 +80,7 @@ class MyDataSource extends BasicDataSource {
   }
 
   public addData(index: number, data: Information): void {
-    this.dataArray.splice(index, 0)
+    this.dataArray.removeByIndex(index)
     this.notifyDataAdd(index)
   }
 }
@@ -101,7 +101,7 @@ struct Index {
         if (!isInserted) {
           return;
         }
-        if (this.informations.isEmpty()) {
+        if (this.informations.length === 0) {
           writeInformation.id = 0
           Logger.info(TAG, `writeInformation.id= ${writeInformation.id}`)
         } else {
@@ -109,7 +109,8 @@ struct Index {
           Logger.info(TAG, `writeInformation.id= ${writeInformation.id}`)
         }
         this.informations.add(writeInformation)
-        this.list = new MyDataSource(this.informations.convertToArray())
+        this.list['dataArray'] = this.informations
+        this.list.notifyDataReload()
         Logger.info(TAG, `this.list= ${this.list}`)
       }
     }),
@@ -150,9 +151,8 @@ struct Index {
             Row() {
               Image($r('app.media.contact'))
                 .width('20%')
-                .margin({ left: 10 })
                 .objectFit(ImageFit.Contain)
-              Flex({ direction: FlexDirection.Column }) {
+              Column() {
                 Row() {
                   Text($r("app.string.contact_name"))
                     .fontSize(24)
@@ -161,6 +161,7 @@ struct Index {
                     .fontColor(Color.Black)
                     .fontSize(24)
                 }
+                .width('100%')
                 .margin({ top: 5 })
 
                 Row() {
@@ -171,6 +172,7 @@ struct Index {
                     .fontColor(Color.Black)
                     .fontSize(24)
                 }
+                .width('100%')
                 .margin({ top: 5 })
 
                 Row() {
@@ -181,11 +183,14 @@ struct Index {
                     .fontColor(Color.Black)
                     .fontSize(24)
                 }
+                .width('100%')
                 .margin({ top: 5 })
               }
               .width('55%')
               .margin({ left: 10 })
+              .justifyContent(FlexAlign.Start)
 
+              Blank()
               Button() {
                 Text($r('app.string.button_delete'))
                   .key('delContact')
@@ -196,22 +201,25 @@ struct Index {
               }
               .type(ButtonType.Capsule)
               .backgroundColor('#F5F5F5')
+              .height(40)
               .onClick(() => {
-                this.informations.remove(this.informations[index])
-                this.list = new MyDataSource(this.informations.convertToArray())
+                this.informations.removeByIndex(index)
+                this.list['dataArray'] = this.informations
+                this.list.notifyDataReload()
               })
             }
             .width('100%')
+            .padding(10)
             .align(Alignment.Center)
             .borderRadius(20)
             .backgroundColor('#FFFFFF')
           }
-        })
+        }, item => item.name)
       }
-      .padding({bottom:100})
+      .padding({ left: 10, right: 10, top: 10 })
       .width('100%')
-      .height('100%')
-      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
+      .layoutWeight(1)
+      .divider({ strokeWidth: 2, color: 0xF1F3F5, startMargin: 10, endMargin: 10 })
     }
     .width('100%')
     .height('100%')
