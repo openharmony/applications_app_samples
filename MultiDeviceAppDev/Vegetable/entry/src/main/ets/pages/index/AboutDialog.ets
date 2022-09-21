@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+@Preview
 @CustomDialog
 export struct AboutDialog {
   controller: CustomDialogController
