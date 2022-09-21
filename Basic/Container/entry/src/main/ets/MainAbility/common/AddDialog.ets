@@ -150,6 +150,7 @@ export struct AddDialog {
           this.controller.close()
         })
       }
+      .margin({ top: '3%' })
     }
     .padding('3%')
   }

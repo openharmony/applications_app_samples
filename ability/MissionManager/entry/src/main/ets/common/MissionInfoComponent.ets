@@ -25,7 +25,6 @@ export struct MissionInfoComponent {
   @State missionSnapshot: image.PixelMap | undefined = undefined
   @State isOn: boolean = undefined
   @State translateLeft: number = 0
-  @State translateRight: number = -400
   @State panDirection: PanDirection = PanDirection.Left
   private mission: Mission
   private handlerRefresh: () => void
@@ -68,6 +67,8 @@ export struct MissionInfoComponent {
         .height(40)
         .fontSize(16)
         .textAlign(TextAlign.Center)
+        .maxLines(1)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
     }
   }
 
@@ -124,8 +125,8 @@ export struct MissionInfoComponent {
         .alignItems(HorizontalAlign.Start)
         .justifyContent(FlexAlign.Center)
       }
-      .width('98%')
-      .margin({ right: 20 })
+      .width('100%')
+      .padding(10)
       .backgroundColor('#f5f5f5')
       .borderRadius(20)
 
@@ -149,20 +150,18 @@ export struct MissionInfoComponent {
       .margin({ left: 20 })
     }
     .width('100%')
-    .padding(10)
-    .margin({ left: this.translateLeft, right: this.translateRight })
+    .padding({ left: 10, right: 10 })
+    .margin({ left: this.translateLeft })
     .gesture(
     PanGesture({ fingers: 1, direction: this.panDirection, distance: 20 })
       .onActionStart(() => {
         Logger.info(TAG, `PanGesture onActionStart`)
         if (this.panDirection === PanDirection.Left) {
           this.panDirection = PanDirection.Right
-          this.translateLeft = -400
-          this.translateRight = 0
+          this.translateLeft = -380
         } else {
           this.panDirection = PanDirection.Left
           this.translateLeft = 0
-          this.translateRight = -400
         }
       })
     )

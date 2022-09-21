@@ -19,72 +19,6 @@ import TitleBar from '../view/TitleBar'
 import OperationView from '../view/OperationView'
 import ResourceUtil from '../model/ResourceUtil'
 
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
 
 const TAG: string = 'Index'
 const operationUrls: Array<string> = ['pages/Language', 'pages/DateAndTime', 'pages/Examples']
@@ -97,7 +31,7 @@ const REQUEST_CODE: number = 3 // 要传递给PermissionRequestResult的请求�
 @Entry
 @Component
 struct Index {
-  @State operations: MyDataSource = new MyDataSource([])
+  @State operations: Array<string> = []
 
   aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
@@ -108,22 +42,21 @@ struct Index {
   }
 
   async getOperation() {
-    var operations = await ResourceUtil.getStringArray($r('app.strarray.operation_arr').id)
-    this.operations = new MyDataSource(operations)
+    this.operations = await ResourceUtil.getStringArray($r('app.strarray.operation_arr').id)
   }
 
   build() {
     Column() {
       TitleBar()
-      LazyForEach(this.operations, (item, index) => {
-        Row(){
+      ForEach(this.operations, (item, index) => {
+        Row() {
           OperationView({ mKey: item, value: '', handleClick: () => {
             router.push({
               url: operationUrls[index]
             })
           } })
         }
-      }, item => JSON.stringify(item))
+      }, item => item)
     }
     .width('100%')
     .height('100%')

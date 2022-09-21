@@ -16,72 +16,6 @@ import i18n from '@ohos.i18n'
 import IntlUtil from '../model/IntlUtil'
 import TitleBar from '../view/TitleBar'
 import ResourceUtil from '../model/ResourceUtil'
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
 
 @Entry
 @Component
@@ -90,14 +24,14 @@ struct Examples {
   @State date: string = ''
   @State time: string = ''
   @State language: string = ''
-  @State numberFormat: MyDataSource = new MyDataSource([])
+  @State numberFormat: Array<string> = []
   @State pluralFormat: string = ''
   @State mDirection: string = ''
 
   aboutToAppear() {
     this.getLanguage()
     this.getTimeDisplay()
-    this.numberFormat = new MyDataSource(IntlUtil.getNumberFormatString())
+    this.numberFormat = IntlUtil.getNumberFormatString()
     this.getPluralFormat()
   }
 
@@ -133,7 +67,7 @@ struct Examples {
       Column() {
         this.TextView(this.date)
         this.TextView(this.time)
-        LazyForEach(this.numberFormat, (item, index) => {
+        ForEach(this.numberFormat, (item, index) => {
           this.TextView(item)
         }, item => item)
         this.TextView(this.pluralFormat)
