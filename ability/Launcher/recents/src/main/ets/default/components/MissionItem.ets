@@ -95,7 +95,7 @@ export default struct MissionItem {
     .gesture(
     SwipeGesture({ fingers: 1, direction: SwipeDirection.Vertical })
       .onAction((event: GestureEvent) => {
-        Logger.info(TAG, `SwipeGesture event.angle=${event.angle}`)
+        Logger.debug(TAG, `SwipeGesture event.angle=${event.angle}`)
         if (event.angle > 5) {
           this.operateMission(this.index, MISSION_OPERATE.CHANGE_LOCK)
         } else if (event.angle < -5) {

@@ -157,7 +157,7 @@ struct Index {
 
   getMouseLocation(row, col) {
     if (row === this.hoverIndex && col === this.hoverSecond) {
-      HiLog.log(TAG, ` getMouseLocation this.hoverIndex= ${this.hoverIndex}  this.hoverSecond= ${this.hoverSecond}`)
+      HiLog.debug(TAG, ` getMouseLocation this.hoverIndex= ${this.hoverIndex}  this.hoverSecond= ${this.hoverSecond}`)
       return 0.5
     } else {
       return 1

@@ -80,19 +80,7 @@ struct Login {
         this.receiveMsg = str
         this.confirmDialog = true
       }
-      //      else if (str !== '' && str !== 'ok') {
-      //        this.receiveMsg = str
-      //        this.confirmDialog = true
-      //      }
     })
-  }
-
-  aboutToAppear() {
-    //    while (!this.ipDialog) {
-    //      console.log('[fengzi]OboutToAppear 2')
-    //      this.bindOption()
-    //      console.log('[fengzi]OboutToAppear 3')
-    //    }
   }
 
   build() {
@@ -216,9 +204,9 @@ struct Login {
               } else {
                 this.bindOption()
                 this.ipDialog = false
-                Logger.info(TAG, `对端ip=${oppositeAddr.address}`)
-                Logger.info(TAG, `对端port=${oppositeAddr.port}`)
-                Logger.info(TAG, `本端port=${localAddr.port}`)
+                Logger.debug(TAG, `peer ip=${oppositeAddr.address}`)
+                Logger.debug(TAG, `peer port=${oppositeAddr.port}`)
+                Logger.debug(TAG, `peer port=${localAddr.port}`)
               }
             })
             .backgroundColor(0xffffff)

@@ -44,7 +44,7 @@
   </stack>
   <dialog id="deleteDialog" class="dialog-delete" oncancel="cancelDeleteDialog">
     <div class="dialog-container">
-      <text class="dialog-text-delete">{{ $t('strings.delete_tips') }}</text>
+      <text class="text-delete">{{ $t('strings.delete_text') }}</text>
       <div class="text-container">
         <input class="dialog-btn-cancel" type="button" value="{{ $t('strings.delete') }}"
                onclick="onDeleteSure"></input>

@@ -46,4 +46,4 @@ export class Logger {
   }
 }
 
-export default new Logger('[Location]')
+export default new Logger('[Sample_Share]')

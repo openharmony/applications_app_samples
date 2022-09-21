@@ -37,7 +37,7 @@ class PreferencesUtils {
     }
     await this.mPreferences.put(PASSWORD_KEY, passWorld)
     await this.mPreferences.flush()
-    Logger.info(TAG, `setPassword end`)
+    Logger.debug(TAG, `setPassword end`)
   }
 }
 export default new PreferencesUtils()

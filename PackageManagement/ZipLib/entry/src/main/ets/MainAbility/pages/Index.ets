@@ -74,11 +74,11 @@ struct Index {
 
   zipHandler(path: string, fileName: string) {
     let zipFile = `${path}/${fileName}`
-    Logger.info(TAG, `zipFile = ${zipFile}`)
+    Logger.debug(TAG, `zipFile = ${zipFile}`)
     let tempName = fileName.split('.')
     let newName = `${tempName[0]}.zip`
     let zipOutFile = `${this.path}/${newName}`
-    Logger.info(TAG, `zipOutFile = ${zipOutFile}`)
+    Logger.debug(TAG, `zipOutFile = ${zipOutFile}`)
 
     let options = {
       level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
@@ -110,11 +110,11 @@ struct Index {
 
   unzipHandler(path: string, fileName: string) {
     let zipFile = `${path}/${fileName}`
-    Logger.info(TAG, `zipFile = ${zipFile}`)
+    Logger.debug(TAG, `zipFile = ${zipFile}`)
     let tempName = fileName.split('.')
     let newName = tempName[0]
     let zipOutFile = `${this.path}/${newName}`
-    Logger.info(TAG, `zipOutFile = ${zipOutFile}`)
+    Logger.debug(TAG, `zipOutFile = ${zipOutFile}`)
     if (this.files['fileData'].includes(newName)) {
       prompt.showToast({
         message: '已存在同名压缩文件，解压失败'

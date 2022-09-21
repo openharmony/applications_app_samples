@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('[Zip]')
+export default new Logger('[Sample_ZipLib]')

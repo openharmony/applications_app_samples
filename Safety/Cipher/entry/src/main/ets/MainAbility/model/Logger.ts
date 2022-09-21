@@ -50,4 +50,4 @@ class Logger {
   }
 }
 
-export default new Logger('[Cipher]')
+export default new Logger('[Sample_Cipher]')

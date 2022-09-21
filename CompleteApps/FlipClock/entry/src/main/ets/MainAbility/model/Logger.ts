@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('[FlipClock]')
+export default new Logger('[Sample_FlipClock]')
