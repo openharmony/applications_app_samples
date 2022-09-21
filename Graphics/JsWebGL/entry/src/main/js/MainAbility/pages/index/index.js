@@ -386,7 +386,7 @@ function initRectangleVertexBuffers(gl) {
   //获取着色器中attribute变量a_Position的地址
   let a_Position = gl.getAttribLocation(gl.program, 'a_Position');
   if (a_Position < 0) {
-    console.log(TAG + 'Failed to get the storage location of a_Position');
+    console.debug(TAG + 'Failed to get the storage location of a_Position');
     return -1;
   }
   //将缓冲区对象分配给a_Postion变量
@@ -430,7 +430,7 @@ function initPentagramVertexBuffers(gl) {
   //获取着色器中attribute变量a_Position的地址
   let a_Position = gl.getAttribLocation(gl.program, 'a_Position');
   if (a_Position < 0) {
-    console.log(TAG + 'Failed to get the storage location of a_Position');
+    console.debug(TAG + 'Failed to get the storage location of a_Position');
     return -1;
   }
   // 将缓冲区对象分配给a_Position变量

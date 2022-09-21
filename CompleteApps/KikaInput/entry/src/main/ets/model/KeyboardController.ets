@@ -150,9 +150,9 @@ export class KeyboardController {
       this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
-    InputMethodEngine.on('inputStop', (imeId) => {
-      this.inputHandle.addLog('keyboard inputStop: ' + JSON.stringify(imeId));
-      if (imeId == "com.example.kikakeyboard/ServiceExtAbility") {
+    InputMethodEngine.on('inputStop', (data) => {
+      this.inputHandle.addLog('keyboard inputStop: ' + JSON.stringify(data));
+      if (data == "com.example.kikakeyboard/ServiceExtAbility") {
         this.onDestroy();
       }
     });

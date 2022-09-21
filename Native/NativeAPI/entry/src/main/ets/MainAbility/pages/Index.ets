@@ -71,7 +71,7 @@ struct Index {
   }
 
   aiPlay() {
-    Logger.info(TAG, 'aiPlay')
+    Logger.debug(TAG, 'aiPlay')
     if (this.message === $r('app.string.wait')) {
       return
     }

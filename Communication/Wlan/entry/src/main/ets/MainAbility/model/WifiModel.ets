@@ -47,7 +47,7 @@ export class WifiModel {
 
   connectNetwork(scanInfo, psw) {
     prompt.showToast({ message: 'connecting' })
-    Logger.log(TAG, `connectNetwork bssid=${scanInfo.bssid}`)
+    Logger.debug(TAG, `connectNetwork bssid=${scanInfo.bssid}`)
     let deviceConfig: any = {
       ssid: scanInfo.ssid,
       bssid: scanInfo.bssid,

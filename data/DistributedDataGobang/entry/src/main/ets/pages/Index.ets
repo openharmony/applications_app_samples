@@ -202,7 +202,7 @@ struct Index {
     }
     this.distributedData.fallLocation[0] = dx
     this.distributedData.fallLocation[1] = dy
-    logger.info(TAG, `fallChress,${this.distributedData.fallLocation}`)
+    logger.debug(TAG, `fallChress,${this.distributedData.fallLocation}`)
     if (!this.isFall) {
       return
     }
@@ -282,7 +282,7 @@ struct Index {
   }
 
   private confirmFall() {
-    logger.info(TAG, `[BBB],${this.distributedData.fallLocation}`)
+    logger.debug(TAG, `[BBB],${this.distributedData.fallLocation}`)
     this.context.beginPath()
     this.context.arc(this.distributedData.fallLocation[0], this.distributedData.fallLocation[1], this.chessSize / 2 * 0.8, 0, Math.PI * 2, false)
     this.context.stroke()

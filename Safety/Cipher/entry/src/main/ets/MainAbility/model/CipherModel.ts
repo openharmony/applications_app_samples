@@ -54,7 +54,7 @@ export class CipherModel {
       },
       fail: (data, code) => {
         result = 'Error!'
-        Logger.info(TAG, `cipher.rsa encrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
+        Logger.debug(TAG, `cipher.rsa encrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
         callback(result)
       },
       complete: () => {
@@ -79,7 +79,7 @@ export class CipherModel {
       },
       fail: (data, code) => {
         result = 'Error!'
-        Logger.info(TAG, `cipher.rsa decrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
+        Logger.debug(TAG, `cipher.rsa decrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
         callback(result)
       },
       complete: () => {
@@ -107,7 +107,7 @@ export class CipherModel {
       },
       fail: (data, code) => {
         result = 'Error!'
-        Logger.info(TAG, `cipher.aes encrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
+        Logger.debug(TAG, `cipher.aes encrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
         callback(result)
       },
       complete: () => {
@@ -135,7 +135,7 @@ export class CipherModel {
       },
       fail: (data, code) => {
         result = 'Error!'
-        Logger.info(TAG, `cipher.aes encrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
+        Logger.debug(TAG, `cipher.aes encrypt fail ${JSON.stringify(code)}: ${JSON.stringify(data)}`)
         callback(result)
       },
       complete: () => {

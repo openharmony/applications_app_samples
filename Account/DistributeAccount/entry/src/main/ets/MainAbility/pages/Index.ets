@@ -31,7 +31,7 @@ struct Index {
   async onLoginClick() {
     HiLog.info(TAG, `this.user = ${JSON.stringify(this.user)}`)
     HiLog.info(TAG, `this.user.name = ${this.user.userName}`)
-    HiLog.info(TAG, `this.user.pwd = ${this.user.password}`)
+    HiLog.debug(TAG, `this.user.pwd = ${this.user.password}`)
     prompt.showToast({ message: 'userName' + this.user.userName + ',password:' + this.user.password, duration: 2000 })
     const accountAbility = account_distributedAccount.getDistributedAccountAbility()
     let accountInfo = { id: this.user.password, name: this.user.userName, event: 'Ohos.account.event.LOGIN' }

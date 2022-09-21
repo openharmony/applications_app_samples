@@ -70,7 +70,7 @@ export struct Location {
     this.latitude = location.latitude
     this.longitude = location.longitude
     if (this.latitude !== 0 && this.longitude !== 0) {
-      Logger.info(TAG, `latitude = ${this.latitude}, longitude = ${this.longitude}`)
+      Logger.debug(TAG, `latitude = ${this.latitude}, longitude = ${this.longitude}`)
       await this.requestResponse()
     }
   }
