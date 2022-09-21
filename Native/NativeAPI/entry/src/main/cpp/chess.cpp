@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "napi/native_api.h"
+#include "common/plugin_common.h"
 #include <js_native_api_types.h>
 #include <node_api.h>
 #include <sstream>
-#include <cstring>
-#include <cstring>
+#include <string.h>
 #include <thread>
-#include "napi/native_api.h"
-#include "common/plugin_common.h"
 
 
 #include "uv.h"
@@ -182,7 +181,7 @@ void PutInt2Char(char * charData, int beginIndex, int endIndex, int intValue)
         charData[endIndex] = intValue + '0';
     } else { // 当int数值>=10时,char数组第一个位置值为1转换为char，第二个位置是int数值减10后的数值转换为char
         charData[beginIndex] = 1 + '0';
-        charData[endIndex] = (intValue - 10) + '0';
+        charData[endIndex] = (intValue - 10) + '0'; // int数值减少10
     }
 }
 
@@ -237,15 +236,17 @@ void AIPlay()
                         numDirection1++;
                     }
                     if (numDirection1 == LINE_THREE_PIECE) {
-                        if (j - num - 1 >= 0) {
-                            if (chessBoard[i][j - num - 1] == NO_CHESS) {
+                        if (j - num - 1 < 0) {
+                           
+                        } else {
+							 if (chessBoard[i][j - num - 1] == NO_CHESS) {
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = 0;
                                 result[1] = i;
                                 result[INDEX_NUM] = j;
                                 return;
                             }
-                        }
+						}
                     } else if (numDirection1 == LINE_THREE_PIECE - 1) {
                         chessBoard[i][j] = AI_CHESS;
                         result[0] = NO_WIN;
@@ -401,9 +402,7 @@ void AIPlay()
                         result[INDEX_NUM] = j;
                         return;
                     } else if (numDirection4 == 0) {
-                        if (i + num < SIZE - 1 && j - num >
-                            0)
-                        {
+                        if (i + num < SIZE - 1 && j - num > 0) {
                             if (chessBoard[i + num + 1][j - num - 1] == NO_CHESS) {
                                 chessBoard[i][j] = AI_CHESS;
                                 result[0] = NO_WIN;
@@ -484,13 +483,27 @@ void AIPlay()
     chessBoard[result[1]][result[INDEX_NUM]] = AI_CHESS;
 }
 
-static napi_value winVictoryValue()
+static bool IsCheckNull(napi_env env, napi_value argo, napi_value arg1)
 {
-    ClearData();
-    result = USER_WIN; // 获胜
-    napi_value returnValue = nullptr;
-    napi_create_int32(env, result, &returnValue);
-    return returnValue;
+    napi_valuetype valuetype;
+	napi_status;
+	status = napi_typeof(env, agr0, &valuetype);
+	if (status != napi_ok) {
+		retuen true;
+	}
+	if (status != napi_number) {
+		napi_throw_type_error(env, NULL, "Wrong arguments");
+		retuen true;
+	}
+	status = napi_typeof(env, agr1, &valuetype);
+	if (status != napi_ok) {
+		retuen true;
+	}
+	if (status != napi_number) {
+		napi_throw_type_error(env, NULL, "Wrong arguments");
+		retuen true;
+	}
+	retuen false;
 }
 
 static napi_value Put(napi_env env, napi_callback_info info)
@@ -500,51 +513,51 @@ static napi_value Put(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2];
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    napi_valuetype valuetype;
-    status = napi_typeof(env, args[0], &valuetype);
-    if (status != napi_ok) {
-        return nullptr;
-    }
-    if (valuetype != napi_number) {
-        napi_throw_type_error(env, NULL, "Wrong arguments");
-        return nullptr;
-    }
-    status = napi_typeof(env, args[1], &valuetype);
-    if (status != napi_ok) {
-        return nullptr;
-    }
-    if (valuetype != napi_number) {
-        napi_throw_type_error(env, NULL, "Wrong arguments");
-        return nullptr;
-    }
-
+   if(IsCheckNull(env, agr[0], agrs[1])) {
+	   return nullptr
+   }
     int x1;
     napi_get_value_int32(env, args[0], &x1);
     int y1;
     napi_get_value_int32(env, args[1], &y1);
-
     chessBoard[x1][y1] = USER_CHESS;
-
-    int result = 0;
-    // 判断同一直线上位置是否有五子
-    if (GetNumHorizontal(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
-        return winVictoryValue();
-    }
-    // 判断同一竖线上位置是否有五子
-    if (GetNumVertical(x1, y1, USER_CHESS >= WIN_NUM - 1) {
-        return winVictoryValue();
-    }
-    // 判断左斜线是否有五子
-    if (GetNumLeftSlash(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
-        return winVictoryValue();
-    }
-    // 判断右斜线是否有五子;
-    if (GetNumRightSlash(x1, y1, USER_CHESS) >= WIN_NUM - 1) {
-        return winVictoryValue();
-    }
-    napi_value returnValue = nullptr;
-    napi_create_int32(env, result, &returnValue);
-    return returnValue;
+	int result = 0;
+    int numHorizontal = GetNumHorizontal(x1, y1, USER_CHESS);
+        if (numHorizontal >= WIN_NUM - 1) {
+            LOGD("PUT 获胜");
+            ClearData();
+            result = USER_WIN; //获胜
+            napi_value returnValue = nullptr;
+            napi_create_int32(env, result, &returnValue);
+            return returnValue;
+        }
+        int numVertical = GetNumVertical(x1, y1, USER_CHESS);
+        if (numVertical >= WIN_NUM - 1) {
+            LOGD("PUT 获胜");
+            ClearData();
+            result = USER_WIN; //获胜
+            napi_value returnValue = nullptr;
+            napi_create_int32(env, result, &returnValue);
+            return returnValue;
+        }
+        int numLeftSlash = GetNumLeftSlash(x1, y1, USER_CHESS);
+        if (numLeftSlash >= WIN_NUM - 1) {
+            LOGD("PUT 获胜");
+            ClearData();
+            result = USER_WIN; //获胜
+            napi_value returnValue = nullptr;
+            napi_create_int32(env, result, &returnValue);
+            return returnValue;
+        }
+        int numRightSlash = GetNumRightSlash(x1, y1, USER_CHESS);
+        if (numRightSlash >= WIN_NUM - 1) {
+            LOGD("PUT 获胜");
+            ClearData();
+            result = USER_WIN; //获胜
+            napi_value returnValue = nullptr;
+            napi_create_int32(env, result, &returnValue);
+            return returnValue;
+        }
 }
 
 struct CallbackContext {
@@ -589,7 +602,7 @@ static napi_value Deal(napi_env env, napi_callback_info info)
                 asyncContext1->retData[0] = result[0] + '0';
                 PutInt2Char(asyncContext1->retData, 2, 3, result[1]); // 回调第一次过后落子执行次数为2，移动为3
                 PutInt2Char(asyncContext1->retData, 5, 6, result[2]); // 回调第二次过后落子执行次数为5，移动为6
-                if (result[0] == 2) {
+                if (result[0] == INDEX_NUM) {
                     ClearData();
                 }
                 asyncContext1->status = 1;
@@ -604,7 +617,7 @@ static napi_value Deal(napi_env env, napi_callback_info info)
                     napi_value callback = nullptr;
                     napi_get_reference_value(asyncContext2->env, asyncContext2->callbackRef, &callback);
                     napi_value retArg;
-                    napi_create_string_utf8(asyncContext2->env, asyncContext2->retData, 7, &retArg);
+                    napi_create_string_utf8(asyncContext2->env, asyncContext2->retData, 7, &retArg); // 回调执行后传入的棋子数为7
                     napi_value ret;
                     napi_call_function(asyncContext2->env, nullptr, callback, 1, &retArg, &ret);
                     napi_delete_reference(env, asyncContext2->callbackRef);
