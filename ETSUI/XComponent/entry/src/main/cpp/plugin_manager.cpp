@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-#include <stdint.h>
+#include <cstdint>
 #include <string>
-#include <stdio.h>
 
 #include <ace/xcomponent/native_interface_xcomponent.h>
 
-#include "plugin_manager.h"
 #include "plugin_common.h"
+#include "plugin_manager.h"
 
 enum ContextType {
     APP_LIFECYCLE = 0,
@@ -84,7 +83,6 @@ napi_value PluginManager::GetContext(napi_env env, napi_callback_info info)
                     DECLARE_NAPI_FUNCTION("onPageHide", PluginManager::NapiOnPageHide),
                 };
                 NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
-
             }
             break;
         default:

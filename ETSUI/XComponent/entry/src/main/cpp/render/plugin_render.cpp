@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-#include <stdint.h>
+#include <cstdint>
 
-#include "plugin_render.h"
 #include "plugin_common.h"
 #include "plugin_manager.h"
+#include "plugin_render.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,7 +37,6 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return;
     }
-
     std::string id(idStr);
     auto render = PluginRender::GetInstance(id);
     render->OnSurfaceCreated(component, window);
@@ -52,7 +51,6 @@ void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return;
     }
-
     std::string id(idStr);
     auto render = PluginRender::GetInstance(id);
     render->OnSurfaceChanged(component, window);
@@ -67,7 +65,6 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return;
     }
-
     std::string id(idStr);
     auto render = PluginRender::GetInstance(id);
     render->OnSurfaceDestroyed(component, window);
@@ -83,11 +80,9 @@ void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return;
     }
-
     std::string id(idStr);
     auto render = PluginRender::GetInstance(id);
     render->DispatchTouchEvent(component, window);
-
 }
 
 PluginRender::PluginRender(std::string& id) : id_(id), component_(nullptr)
@@ -125,7 +120,7 @@ void PluginRender::SetNativeXComponent(OH_NativeXComponent* component)
 void PluginRender::OnSurfaceCreated(OH_NativeXComponent* component, void* window)
 {
     LOGD("PluginRender::OnSurfaceCreated");
-    int32_t ret=OH_NativeXComponent_GetXComponentSize(component, window, &width_, &height_);
+    int32_t ret = OH_NativeXComponent_GetXComponentSize(component, window, &width_, &height_);
     if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         eglCore_->GLContextInit(window, width_, height_);
     }
@@ -142,18 +137,12 @@ void PluginRender::OnSurfaceDestroyed(OH_NativeXComponent* component, void* wind
 void PluginRender::DispatchTouchEvent(OH_NativeXComponent* component, void* window)
 {
     int32_t ret = OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent_);
-
     if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-        LOGD("Touch Info : x = %{public}f, y = %{public}f screenx = %{public}f, screeny = %{public}f", touchEvent_.x, touchEvent_.y, touchEvent_.screenX, touchEvent_.screenY);
-        for (int i=0;i<touchEvent_.numPoints;i++) {
-            LOGE("Touch Info : dots[%{public}d] id %{public}d x = %{public}f, y = %{public}f", i, touchEvent_.touchPoints[i].id, touchEvent_.touchPoints[i].x, touchEvent_.touchPoints[i].y);
-            LOGE("Touch Info : screenx = %{public}f, screeny = %{public}f", touchEvent_.touchPoints[i].screenX, touchEvent_.touchPoints[i].screenY);
-            LOGE("vtimeStamp = %{public}llu, isPressed = %{public}d", touchEvent_.touchPoints[i].timeStamp, touchEvent_.touchPoints[i].isPressed);
+        for (int i = 0; i < touchEvent_.numPoints; i++) {
         }
     } else {
         LOGE("Touch fail");
     }
-
 }
 
 napi_value PluginRender::Export(napi_env env, napi_value exports)
@@ -181,7 +170,6 @@ napi_value PluginRender::NapiChangeShape(napi_env env, napi_callback_info info)
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
 
-    // napi_value thisArg;
     NAPI_CALL(env, napi_get_cb_info(env, info, NULL, NULL, &thisArg, NULL));
 
     status = napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
@@ -219,7 +207,6 @@ napi_value PluginRender::NapiDrawTriangle(napi_env env, napi_callback_info info)
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
 
-    // napi_value thisArg;
     NAPI_CALL(env, napi_get_cb_info(env, info, NULL, NULL, &thisArg, NULL));
 
     status = napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
@@ -257,7 +244,6 @@ napi_value PluginRender::NapiChangeColor(napi_env env, napi_callback_info info)
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
 
-    // napi_value thisArg;
     NAPI_CALL(env, napi_get_cb_info(env, info, NULL, NULL, &thisArg, NULL));
 
     status = napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);

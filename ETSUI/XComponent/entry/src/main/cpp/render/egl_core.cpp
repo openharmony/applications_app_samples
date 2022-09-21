@@ -15,12 +15,13 @@
 
 #include "egl_core.h"
 
-#include "plugin_common.h"
-#include "plugin_render.h"
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
+#include "plugin_common.h"
+#include "plugin_render.h"
 
-EGLConfig getConfig(int version, EGLDisplay eglDisplay) {
+static EGLConfig getConfig(int version, EGLDisplay eglDisplay) 
+{
     int attribList[] = {
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_RED_SIZE, 8,
@@ -81,7 +82,7 @@ void EGLCore::GLContextInit(void* window, int w, int h)
         return;
     }
 
-    mEGLConfig = getConfig(3, mEGLDisplay);
+    mEGLConfig = getConfig(3, mEGLDisplay); // 获取的目标值为3
     if (mEGLConfig == nullptr) {
         LOGE("EGLCore::GLContextInit config ERROR");
         return;
@@ -102,9 +103,7 @@ void EGLCore::GLContextInit(void* window, int w, int h)
         EGL_CONTEXT_CLIENT_VERSION, 2,
         EGL_NONE
     };
-
     mEGLContext = eglCreateContext(mEGLDisplay, mEGLConfig, mSharedEGLContext, attrib3_list);
-
     if (!eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext)) {
         LOGE("EGLCore::eglMakeCurrent error = %{public}d", eglGetError());
     }
@@ -133,10 +132,10 @@ void EGLCore::DrawTriangle()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(mProgramHandle);
     GLint positionHandle = glGetAttribLocation(mProgramHandle, "a_position");
-    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3); // 三角形边数为3
     glDisableVertexAttribArray(positionHandle);
 
     glFlush();
@@ -165,10 +164,10 @@ void EGLCore::ChangeShape()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(mProgramHandle);
     GLint positionHandle = glGetAttribLocation(mProgramHandle, "a_position");
-    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3); // 三角形边数为3
     glDisableVertexAttribArray(positionHandle);
 
     Update();
@@ -195,7 +194,7 @@ void EGLCore::ChangeColor()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(mProgramHandle);
     GLint positionHandle = glGetAttribLocation(mProgramHandle, "a_position");
-    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -211,37 +210,79 @@ void EGLCore::Update()
 
 GLuint EGLCore::LoadShader(GLenum type, const char *shaderSrc)
 {
-    GLuint shader;
-    GLint compiled;
+    GLuint shader_;
+    GLint compiled_;
 
-    shader = glCreateShader(type);
-    if (shader == 0) {
-        LOGE("LoadShader shader error");
+    shader_ = glCreateShader(type);
+    LOGE(" Create the shader object");
+    if (shader_ == 0) {
+        LOGE("LoadShader shader_ error");
         return 0;
     }
-
-    glShaderSource(shader, 1, &shaderSrc, nullptr);
-    glCompileShader(shader);
-
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-
-    if (!compiled) {
+    glShaderSource(shader_, 1, &shaderSrc, nullptr);
+    LOGE("Load the shader source success");
+    glCompileShader(shader_);
+    LOGE("Compile the shader success");
+    glGetShaderiv(shader_, GL_COMPILE_STATUS, &compiled_);
+    LOGE("Check the  Compile status success");
+    if (!compiled_) {
+        LOGE("the  Compile is null");
         GLint infoLen = 0;
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
-
+        glGetShaderiv(shader_, GL_INFO_LOG_LENGTH, &infoLen);
         if (infoLen > 1) {
             char *infoLog = (char*)malloc(sizeof(char) * infoLen);
-            glGetShaderInfoLog(shader, infoLen, nullptr, infoLog);
-            LOGE("Error compiling shader:\n%s\n",infoLog);
+            glGetShaderInfoLog(shader_, infoLen, nullptr, infoLog);
+            LOGE("glGetShaderInfoLog success");
             free(infoLog);
         }
-        glDeleteShader(shader);
+        glDeleteShader(shader_);
         return 0;
     }
-    return shader;
+    return shader_;
 }
 
 GLuint EGLCore::CreateProgram(const char *vertexShader, const char *fragShader)
+{
+    GLuint vertex_;
+    GLuint fragment_;
+    GLuint program_;
+    GLint linked_;
+    vertex_ = LoadShader(GL_VERTEX_SHADER, vertexShader);
+    fragment_ = LoadShader(GL_FRAGMENT_SHADER, fragShader);
+    program_ = glCreateProgram();
+    if (vertex_ == 0 || fragment_ == 0 || program_ == 0) {
+        CreateProgramError(vertexShader, fragShader);
+        return 0;
+    }
+    glAttachShader(program_, vertex_);
+    LOGE("glAttachShader  success");
+    glAttachShader(program_, fragment_);
+    LOGE("glAttachShader2  success");
+    glLinkProgram(program_);
+    LOGE("glLinkProgram  success");
+    glGetProgramiv(program_, GL_LINK_STATUS, &linked_);
+    LOGE("glGetProgramiv  success");
+    if (!linked_) {
+        LOGE("CreateProgram linked error");
+        GLint infoLen = 0;
+        glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &infoLen);
+        if (infoLen > 1) {
+            char *infoLog = (char *)malloc(sizeof(char) * infoLen);
+            glGetProgramInfoLog(program_, infoLen, nullptr, infoLog);
+            free(infoLog);
+        }
+        glDeleteShader(vertex_);
+        glDeleteShader(fragment_);
+        glDeleteProgram(program_);
+        return 0;
+    }
+    glDeleteShader(vertex_);
+    glDeleteShader(fragment_);
+
+    return program_;
+}
+
+GLuint EGLCore::CreateProgramError(const char *vertexShader, const char *fragShader)
 {
     GLuint vertex;
     GLuint fragment;
@@ -268,38 +309,13 @@ GLuint EGLCore::CreateProgram(const char *vertexShader, const char *fragShader)
         glDeleteShader(fragment);
         return 0;
     }
-
-    glAttachShader(program, vertex);
-    glAttachShader(program, fragment);
-    glLinkProgram(program);
-    glGetProgramiv(program, GL_LINK_STATUS, &linked);
-
-    if (!linked) {
-        LOGE("CreateProgram linked error");
-        GLint infoLen = 0;
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLen);
-        if (infoLen > 1) {
-            char *infoLog = (char *)malloc(sizeof(char) * infoLen);
-            glGetProgramInfoLog(program, infoLen, nullptr, infoLog);
-            LOGE("Error linking program:\n%s\n",infoLog);
-            free(infoLog);
-        }
-        glDeleteShader(vertex);
-        glDeleteShader(fragment);
-        glDeleteProgram(program);
-        return 0;
-    }
-    glDeleteShader(vertex);
-    glDeleteShader(fragment);
-
-    return program;
+    return 0;
 }
 
 bool EGLCore::checkGlError(const char* op)
 {
     LOGE("EGL ERROR CODE = %{public}x", eglGetError());
-    GLint error;
-    for (error = glGetError(); error; error = glGetError()) {
+    for (GLint error = glGetError(); error; error = glGetError()) {
         LOGE("ERROR: %{public}s, ERROR CODE = %{public}x", op, error);
         return true;
     }
