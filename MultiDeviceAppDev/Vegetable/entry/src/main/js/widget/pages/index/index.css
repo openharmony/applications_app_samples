@@ -13,16 +13,16 @@
 }
 
 #text1 {
-    height: 45px;
-    width: 150px;
-    font-size: 16px;
+    height: 45vp;
+    width: 150vp;
+    font-size: 16vp;
     text-align: center;
 }
 
 #text2 {
-    height: 20px;
-    width: 150px;
-    font-size: 10px;
+    height: 20vp;
+    width: 150vp;
+    font-size: 10vp;
     text-align: center;
 }
 
