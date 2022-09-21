@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { AboutDialog } from './AboutDialog'
+import { Dialog } from './Dialog'
 
 @Preview
 @Component
 export struct Menus {
   gridNum: number = 1
   diaController: CustomDialogController = new CustomDialogController({
-    builder: AboutDialog()
+    builder: Dialog()
   })
 
   @Styles pressedStyles() {

@@ -15,7 +15,7 @@
 
 @Preview
 @CustomDialog
-export struct AboutDialog {
+export struct Dialog {
   controller: CustomDialogController
 
   build() {
