@@ -106,6 +106,7 @@ struct Index {
 
   getDeviceList() {
     Logger.info(TAG, `usb getDeviceList...`)
+    this.devices = []
     let usbDevices: any [] = usb.getDevices()
     Logger.info(TAG, `usb getDeviceList 000 is : ${JSON.stringify(usbDevices)}`)
 
@@ -133,7 +134,9 @@ struct Index {
         clazz: usbDevices[index].clazz,
         deviceAddress: usbDevices[index].devAddress
       }
-      this.devices.push(deviceAttribute)
+      if(this.devices.indexOf(deviceAttribute) === -1){
+        this.devices.push(deviceAttribute)
+      }
       Logger.info(TAG, `usb this.devices : ${JSON.stringify(this.devices)}`)
     }
   }
