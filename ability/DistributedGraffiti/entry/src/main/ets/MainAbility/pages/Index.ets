@@ -124,7 +124,7 @@ function startRemoteAbility() {
   let params;
   let wantValue = {
     bundleName: 'ohos.samples.distributedgraffiti',
-    abilityName: 'com.example.entry.MainAbility',
+    abilityName: 'ohos.samples.distributedgraffiti.MainAbility',
     deviceId: remoteDeviceId,
     parameters: params
   };
@@ -162,7 +162,7 @@ function connectLocalAbility() {
     {
       deviceId: "",
       bundleName: "ohos.samples.distributedgraffiti",
-      abilityName: "com.example.entry.ServiceAbility",
+      abilityName: "ohos.samples.distributedgraffiti.ServiceAbility",
     },
     {
       onConnect: onConnectCallback,
@@ -195,7 +195,7 @@ function connectRemoteAbility() {
     {
       deviceId: remoteDeviceId,
       bundleName: "ohos.samples.distributedgraffiti",
-      abilityName: "com.example.entry.ServiceAbility",
+      abilityName: "ohos.samples.distributedgraffiti.ServiceAbility",
     },
     {
       onConnect: onConnectCallback,

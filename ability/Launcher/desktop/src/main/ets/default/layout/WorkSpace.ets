@@ -62,6 +62,9 @@ export struct WorkSpace {
   aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
     this.getData()
+    setInterval(()=>{
+      this.getData()
+    },3000)
   }
 
   refreshWorkSpace() {

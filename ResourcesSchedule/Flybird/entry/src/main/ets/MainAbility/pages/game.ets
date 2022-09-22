@@ -47,6 +47,7 @@ struct Game {
   private fgFive: ImageBitmap = new ImageBitmap("images_five/fg.png")
   private bird: ImageBitmap = new ImageBitmap("images/bird.png");
   private sleep: number = 90;
+  private timeId: number = -1
   @State i: number = 0;
   @State gap: number = 105;
   @State constant: number = 0;
@@ -71,50 +72,52 @@ struct Game {
   @State pipeLength: number = 125;
   @State isChange: boolean = false;
   draw = () => {
-    let id = router.getParams()['id']
-    let fg
-    let pipeNorth
-    let pipeSouth
-    let bg
-    switch (id) {
-      case 1:
-        fg = this.bgOne
-        pipeNorth = this.pipeNorthOne
-        pipeSouth = this.pipeSouthOne
-        bg = this.bgOne
-        break
-      case 2:
-        fg = this.bgTwo
-        pipeNorth = this.pipeNorthTwo
-        pipeSouth = this.pipeSouthTwo
-        bg = this.bgTwo
-        this.sleep = 70
-        break
-      case 3:
-        fg = this.bgThree
-        pipeNorth = this.pipeNorthThree
-        pipeSouth = this.pipeSouthThree
-        bg = this.bgThree
-        this.sleep = 50
-        break
-      case 4:
-        fg = this.bgFour
-        pipeNorth = this.pipeNorthFour
-        pipeSouth = this.pipeSouthFour
-        bg = this.bgFour
-        this.sleep = 30
-        break
-      case 5:
-        fg = this.bgFive
-        pipeNorth = this.pipeNorthFive
-        pipeSouth = this.pipeSouthFive
-        bg = this.bgFive
-        this.sleep = 10
-        break
-      default:
-        break
+    if (router.getParams() && router.getParams()['id']) {
+      let id = router.getParams()['id']
+      let fg
+      let pipeNorth
+      let pipeSouth
+      let bg
+      switch (id) {
+        case 1:
+          fg = this.bgOne
+          pipeNorth = this.pipeNorthOne
+          pipeSouth = this.pipeSouthOne
+          bg = this.bgOne
+          break
+        case 2:
+          fg = this.bgTwo
+          pipeNorth = this.pipeNorthTwo
+          pipeSouth = this.pipeSouthTwo
+          bg = this.bgTwo
+          this.sleep = 70
+          break
+        case 3:
+          fg = this.bgThree
+          pipeNorth = this.pipeNorthThree
+          pipeSouth = this.pipeSouthThree
+          bg = this.bgThree
+          this.sleep = 50
+          break
+        case 4:
+          fg = this.bgFour
+          pipeNorth = this.pipeNorthFour
+          pipeSouth = this.pipeSouthFour
+          bg = this.bgFour
+          this.sleep = 30
+          break
+        case 5:
+          fg = this.bgFive
+          pipeNorth = this.pipeNorthFive
+          pipeSouth = this.pipeSouthFive
+          bg = this.bgFive
+          this.sleep = 10
+          break
+        default:
+          break
+      }
+      this.realDraw(fg, pipeNorth, pipeSouth, bg);
     }
-    this.realDraw(fg, pipeNorth, pipeSouth, bg);
   }
 
   realDraw(fg: ImageBitmap, pipeNorth: ImageBitmap, pipeSouth: ImageBitmap, bg: ImageBitmap) {
@@ -144,11 +147,9 @@ struct Game {
     else {
       ctx.fillText(`historyTime : 0 min 0 s`, 10, this.cvsHeigth - 10);
     }
-    if (this.isChange == true) {
-      clearTimeout(timeId);
+    if(this.timeId !== -1) {
+      this.timeId = setTimeout(this.draw, this.sleep);
     }
-
-    setTimeout(this.draw, this.sleep);
   }
 
   drawPipe(ctx: CanvasRenderingContext2D, fg: ImageBitmap, pipeNorth: ImageBitmap, pipeSouth: ImageBitmap) {
@@ -183,7 +184,8 @@ struct Game {
           ctx.fillText(`historyTime : 0 min 0 s`, 10, this.cvsHeigth - 10);
         }
         this.restart();
-        clearTimeout(timeId);
+        clearTimeout(this.timeId);
+        this.timeId = -1
       }
       if (this.pipe[i].x === 5) {
         this.score++;
@@ -201,8 +203,7 @@ struct Game {
         value: '重新一次',
         action: () => {
           this.restart();
-          var draw_func = this.draw;
-          var timeId = setTimeout(draw_func, this.sleep);
+          this.timeId = setTimeout( this.draw, this.sleep);
         }
       },
       secondaryButton: {
@@ -213,8 +214,7 @@ struct Game {
       },
       cancel: () => {
         this.restart();
-        var draw_func = this.draw();
-        var timeId = setTimeout(draw_func, this.sleep);
+        this.timeId = setTimeout( this.draw, this.sleep);
       }
     })
   }
@@ -274,8 +274,7 @@ struct Game {
             y: 0,
           }
           this.showHistoryScore();
-          var draw_func = this.draw();
-          let timeId = setTimeout(draw_func, this.sleep);
+          this.timeId = setTimeout(this.draw, this.sleep);
         })
         .onClick((event: ClickEvent) => {
           this.moveUp()

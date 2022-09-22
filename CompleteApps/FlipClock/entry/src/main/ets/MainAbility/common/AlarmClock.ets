@@ -90,9 +90,10 @@ export struct AlarmClock {
                   .fontSize('30vp')
                 Button($r('app.string.delete'))
                   .margin({ left: '20%' })
-                  .onClick(() => {
-                    this.storage.deleteSync(item.key)
-                    this.listItems.deleteData(index)
+                  .onClick(async () => {
+                    await this.storage.deleteSync(item.key)
+                    this.listItems['dataArray'].splice(index, 1)
+                    this.listItems.notifyDataReload()
                     reminderAgent.cancelReminder(item.reminderId, () => {
                     })
                   })
