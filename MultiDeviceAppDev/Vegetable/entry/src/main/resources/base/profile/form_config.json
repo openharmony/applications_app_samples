@@ -1,0 +1,25 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "description": "This is a service widget.",
+      "src": "./js/widget/pages/index/index",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": false
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "08:15",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ]
+    }
+  ]
+}

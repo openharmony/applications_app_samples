@@ -1,0 +1,8 @@
+<div>
+    <div id="wrapper">
+        <div id="div1">
+            <text id="text1" onclick="jump">{{ title }}</text>
+            <text id="text2">({{ stars }})</text>
+        </div>
+    </div>
+</div>
