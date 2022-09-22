@@ -482,23 +482,23 @@ void AIPlay()
     chessBoard[result[1]][result[INDEX_NUM]] = AI_CHESS;
 }
 
-static bool IsCheckNull(napi_env env, napi_value argo, napi_value arg1)
+static bool IsCheckNull(napi_env env, napi_value args0, napi_value args1)
 {
     napi_valuetype valuetype;
-    napi_status;
-    status = napi_typeof(env, agr0, &valuetype);
+    napi_status status;
+    status = napi_typeof(env, args0, &valuetype);
     if (status != napi_ok) {
         return true;
     }
-    if (status != napi_number) {
+    if (valuetype != napi_number) {
         napi_throw_type_error(env, NULL, "Wrong arguments");
         return true;
     }
-    status = napi_typeof(env, agr1, &valuetype);
+    status = napi_typeof(env, args1, &valuetype);
     if (status != napi_ok) {
         return true;
     }
-    if (status != napi_number) {
+    if (valuetype != napi_number) {
         napi_throw_type_error(env, NULL, "Wrong arguments");
         return true;
     }
@@ -512,8 +512,8 @@ static napi_value Put(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2];
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    if (IsCheckNull(env, agr[0], agrs[1])) {
-        return nullptr
+    if (IsCheckNull(env, args[0], args[1])) {
+        return nullptr;
    }
     int x1;
     napi_get_value_int32(env, args[0], &x1);
