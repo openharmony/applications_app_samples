@@ -73,7 +73,8 @@ struct Index {
   }
 
   async getPreferencesFromStorage() {
-    preferenceTheme = await preferences.getPreferences(globalThis.abilityContext, PREFERENCES_NAME)
+    let context = getContext(this) as any
+    preferenceTheme = await preferences.getPreferences(context, PREFERENCES_NAME)
   }
 
   async putPreference(data: string) {

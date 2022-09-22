@@ -45,6 +45,8 @@ struct Index {
   @State offlineText: string = ''
   @State onlineText: string = ''
   @State allCompleteText: string = ''
+  @StorageLink('deviceId') deviceId: string = ''
+  @StorageLink('isFA') isFA: string = ''
   private deviceTag: number = 0
   private deleteDevices: Array<deviceManager.DeviceInfo> = []
   private countCallBack: number = 0
@@ -150,8 +152,8 @@ struct Index {
   }
 
   async convertResourceToString(resource: Resource) {
-    Logger.info(TAG, `result = ${JSON.stringify(await globalThis.abilityContext.resourceManager.getString(resource))}`)
-    return await globalThis.abilityContext.resourceManager.getString(resource)
+    let context = getContext(this) as any
+    return await context.resourceManager.getString(resource)
   }
 
   changeDevices() {
@@ -187,19 +189,18 @@ struct Index {
 
   async aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear start')
-    await globalThis.abilityContext.requestPermissionsFromUser([dmsConst.PERMISSION_NAME], dmsConst.REQUEST_CODE)
     this.deviceText = await this.convertResourceToString($r('app.string.device_id'))
     this.screenSizeText = await this.convertResourceToString($r('app.string.record_screen_size'))
     this.offlineText = await this.convertResourceToString($r('app.string.offline'))
     this.onlineText = await this.convertResourceToString($r('app.string.online'))
     this.allCompleteText = await this.convertResourceToString($r('app.string.all_device_complete'))
     await this.onInit()
-    if (globalThis.isFA === 'isFA') {
+    if (this.isFA === 'isFA') {
       this.imageTranslate = 0
       this.isStart = true
       Logger.info(TAG, `aboutToAppear setTimeout ${this.duration} ${this.screenWidth}`)
       animateTo({ duration: this.duration, curve: Curve.Linear, onFinish: () => {
-        this.add(globalThis.deviceId, `${fp2px(this.screenWidth)} * ${this.screenHeight}`)
+        this.add(this.deviceId , `${fp2px(this.screenWidth)} * ${this.screenHeight}`)
       } }, () => {
         Logger.info(TAG, 'setTimeout translates')
         this.imageTranslate = this.screenWidth
@@ -281,7 +282,8 @@ struct Index {
    */
   async startAbility(deviceId) {
     Logger.info(TAG, `startAbility deviceId: ${deviceId}`)
-    await globalThis.abilityContext.startAbility({
+    let context = getContext(this) as any
+    await context.startAbility({
       bundleName: dmsConst.BUNDLE_NAME,
       abilityName: dmsConst.ABILITY_NAME,
       deviceId: deviceId,

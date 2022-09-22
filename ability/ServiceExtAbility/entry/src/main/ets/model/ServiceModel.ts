@@ -29,8 +29,8 @@ export default class ServiceModel {
   context = null;
   options = null;
 
-  constructor() {
-    this.context = globalThis.mainAbilityContext;
+  constructor(context) {
+    this.context = context
     this.options = {
       outObj: this,
       onConnect: function (elementName, proxy) {

@@ -18,12 +18,14 @@ import Ability from '@ohos.application.Ability'
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  async onCreate(want, launchParam) {
     logger.info(TAG, `[Demo] MainAbility onCreate`)
-    globalThis.abilityWant = want
-    globalThis.abilityContext = this.context
-    globalThis.deviceFlag = globalThis.abilityWant.parameters.isB
-    logger.info(TAG, `globalThis.deviceFlag = ${globalThis.deviceFlag}`)
+    await this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
+    let deviceFlag = want.parameters.isB
+    if(deviceFlag){
+      AppStorage.SetOrCreate('deviceFlag', deviceFlag)
+    }
+    logger.info(TAG, `deviceFlag = ${deviceFlag}`)
   }
 
   onDestroy() {
