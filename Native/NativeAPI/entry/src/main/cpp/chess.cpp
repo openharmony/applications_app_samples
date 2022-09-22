@@ -514,7 +514,7 @@ static napi_value Put(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (IsCheckNull(env, args[0], args[1])) {
         return nullptr;
-   }
+    }
     int x1;
     napi_get_value_int32(env, args[0], &x1);
     int y1;
