@@ -19,7 +19,6 @@ import Logger from '../model/Logger'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.log(`MainAbility onCreate`)
-    globalThis.abilityWant = want;
   }
 
   onDestroy() {
@@ -29,7 +28,6 @@ export default class MainAbility extends Ability {
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     Logger.log(`MainAbility onWindowStageCreate`);
-    globalThis.mainAbilityContext = this.context;
     windowStage.setUIContent(this.context, "pages/index", null)
   }
 

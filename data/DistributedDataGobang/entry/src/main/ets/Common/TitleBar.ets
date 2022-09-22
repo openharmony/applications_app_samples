@@ -29,7 +29,7 @@ export struct TitleBar {
   private remoteDeviceModel: RemoteDeviceModel | null = null
   @Link isDistributed: boolean
   @Link dialogShow: boolean
-  private deviceFlag: string = 'A'
+  @StorageLink('deviceFlag') deviceFlag: string = 'A'
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: DeviceDialog({ deviceList: this.deviceList, selectedIndex: $selectedIndex }),
     autoCancel: true,
@@ -80,7 +80,8 @@ export struct TitleBar {
 
   startAbility(deviceId) {
     logger.info(TAG, `[TitleBar] startAbility deviceId: ${deviceId}`)
-    globalThis.abilityContext.startAbility({
+    let context = getContext(this) as any
+    context.startAbility({
       bundleName: 'ohos.samples.distributeddatagobang',
       abilityName: 'MainAbility',
       deviceId: deviceId,
@@ -121,7 +122,8 @@ export struct TitleBar {
         .width(32)
         .objectFit(ImageFit.Contain)
         .onClick(() => {
-          globalThis.abilityContext.terminateSelf()
+          let context = getContext(this) as any
+          context.terminateSelf()
         })
       Blank().layoutWeight(1)
       if (this.deviceFlag === 'A') {

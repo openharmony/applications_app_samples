@@ -48,7 +48,7 @@ struct Index {
   @State isDistributed: boolean = false
   @State dialogShow: boolean = false
   @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
-  @State deviceFlag: string = 'A'
+  @StorageLink('deviceFlag') deviceFlag: string = 'A'
   @State isFall: boolean = false
   @State isFlush: boolean = false
   @State countOnReady: number = 1
@@ -74,14 +74,12 @@ struct Index {
 
   async aboutToAppear() {
     logger.info(TAG, `enter aboutToAppear`)
-    await globalThis.abilityContext.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
     this.distributedData.init()
     let context = getContext(this)
-    if (globalThis.deviceFlag) {
+    if (AppStorage.Get('deviceFlag')) {
       this.isDistributed = true
     }
-    logger.info(TAG, `[GameGobang] globalThis.deviceFlag = ${JSON.stringify(globalThis.deviceFlag)}, isDistributed = ${this.isDistributed}`)
-    if (globalThis.deviceFlag === 'B') {
+    if (this.deviceFlag === 'B') {
       this.deviceFlag = 'B'
     }
     if (this.deviceFlag === 'B') {
@@ -202,7 +200,7 @@ struct Index {
     }
     this.distributedData.fallLocation[0] = dx
     this.distributedData.fallLocation[1] = dy
-    logger.debug(TAG, `fallChress,${this.distributedData.fallLocation}`)
+    logger.info(TAG, `fallChress,${this.distributedData.fallLocation}`)
     if (!this.isFall) {
       return
     }
@@ -282,7 +280,7 @@ struct Index {
   }
 
   private confirmFall() {
-    logger.debug(TAG, `[BBB],${this.distributedData.fallLocation}`)
+    logger.info(TAG, `[BBB],${this.distributedData.fallLocation}`)
     this.context.beginPath()
     this.context.arc(this.distributedData.fallLocation[0], this.distributedData.fallLocation[1], this.chessSize / 2 * 0.8, 0, Math.PI * 2, false)
     this.context.stroke()
@@ -317,7 +315,6 @@ struct Index {
         remoteDeviceModel: this.remoteDeviceModel,
         isDistributed: $isDistributed,
         dialogShow: $dialogShow,
-        deviceFlag: this.deviceFlag
       })
 
       Text(`${this.deviceFlag}-${this.distributedData.step}-${this.distributedData.clickCount}`)

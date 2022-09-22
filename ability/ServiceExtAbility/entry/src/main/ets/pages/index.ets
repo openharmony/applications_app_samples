@@ -21,7 +21,8 @@ const SUCCESS_CODE = 1;
 @Component
 struct Index {
   fontColor: string = '#000000'
-  private serviceModel = new ServiceModel()
+  private context:any = getContext(this)
+  private serviceModel = new ServiceModel(this.context)
   @State message: Resource = $r("app.string.entry_desc")
   @State localFir: number = 0
   @State localSec: number = 0

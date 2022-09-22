@@ -21,8 +21,6 @@ const TAG: string = '[MainAbility]'
 export default class MainAbility extends Ability {
     onCreate(want) {
         Logger.info(TAG, 'MainAbility onCreate is called')
-        globalThis.abilityWant = want;
-        globalThis.abilityContext = this.context;
     }
 
     onDestroy() {

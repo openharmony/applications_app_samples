@@ -18,10 +18,9 @@ import logger from '../Model/Logger'
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  async onCreate(want, launchParam) {
     logger.info(TAG, `[Demo] MainAbility onCreate`)
-    globalThis.abilityWant = want;
-    globalThis.abilityContext = this.context
+    await this.context.requestPermissionsFromUser(['ohos.permission.USE_BLUETOOTH', 'ohos.permission.DISCOVER_BLUETOOTH', 'ohos.permission.LOCATION', 'ohos.permission.MANAGE_BLUETOOTH'])
   }
 
   onDestroy() {

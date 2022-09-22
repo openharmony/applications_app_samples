@@ -15,16 +15,23 @@
 
 import Ability from '@ohos.application.Ability'
 import Logger from '../data/Logger'
+import { dmsConst } from '../data/DmsConst'
 
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  async onCreate(want, launchParam) {
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    globalThis.abilityWant = want
-    globalThis.abilityContext = this.context
-    globalThis.isFA = globalThis.abilityWant.parameters.isFA
-    globalThis.deviceId = globalThis.abilityWant.deviceId
+    await this.context.requestPermissionsFromUser([dmsConst.PERMISSION_NAME])
+    let isFA = want.parameters.isFA
+    let deviceId = want.deviceId
+    Logger.info(`isFA =${isFA}, deviceId=${deviceId}`)
+    if(isFA){
+      AppStorage.SetOrCreate('isFA', isFA)
+    }
+    if(deviceId){
+      AppStorage.SetOrCreate('deviceId', deviceId)
+    }
   }
 
   onDestroy() {

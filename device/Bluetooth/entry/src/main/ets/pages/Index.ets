@@ -30,7 +30,8 @@ struct Index {
   private pinDialogController: CustomDialogController | null = null
   private intervalId: number = -1
   handlerClickButton = () => {
-    globalThis.abilityContext.terminateSelf()
+    let context = getContext(this) as any
+    context.terminateSelf()
   }
 
   foundDevices() {
@@ -53,9 +54,6 @@ struct Index {
   }
 
   async aboutToAppear() {
-    await globalThis.abilityContext.requestPermissionsFromUser(['ohos.permission.USE_BLUETOOTH', 'ohos.permission.DISCOVER_BLUETOOTH', 'ohos.permission.LOCATION', 'ohos.permission.MANAGE_BLUETOOTH'])
-    logger.info(TAG, `grantPermission,requestPermissionsFromUser,PermissionRequestResult`)
-
     let state = bluetooth.getState()
     if (state === bluetooth.BluetoothState.STATE_ON) {
       this.isOn = true

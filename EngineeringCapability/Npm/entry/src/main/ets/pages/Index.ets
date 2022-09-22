@@ -24,7 +24,8 @@ const math: MathJsStatic = create(all)
 struct Index {
   @State value: string = ''
   onClickButton = () => {
-    globalThis.abilityContext.terminateSelf()
+    let context = getContext(this) as any
+    context.terminateSelf()
   }
 
   build() {

@@ -40,7 +40,8 @@ export default struct TitleBar {
         .onClick(() => {
           Logger.info(TAG, `onClick app exit`)
           distributedDataModel.distributedObject.setSessionId()
-          globalThis.abilityContext.terminateSelf()
+          let context = getContext(this) as any
+          context.terminateSelf()
         }
         )
       Text($r('app.string.MainAbility_label'))

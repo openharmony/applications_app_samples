@@ -19,20 +19,9 @@ import Logger from '../util/Logger'
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  async onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
-    globalThis.requestPermission = async () => {
-      let array: Array<string> = [
-        'ohos.permission.INTERNET'
-      ]
-      try {
-        await this.context.requestPermissionsFromUser(array)
-      } catch (err) {
-        Logger.info(TAG, '[request] is fail')
-      }
-    }
-    globalThis.requestPermission()
-
+	await this.context.requestPermissionsFromUser(['ohos.permission.INTERNET'])
     const that = this
     this.context.eventHub.on('getAbilityData', (data) => {
       data.context = that.context

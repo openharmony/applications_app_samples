@@ -18,8 +18,6 @@ import Logger from '../model/Logger'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info('[MainAbility]', 'onCreate')
-    globalThis.abilityWant = want
-    globalThis.abilityContext = this.context
   }
 
   onDestroy() {
