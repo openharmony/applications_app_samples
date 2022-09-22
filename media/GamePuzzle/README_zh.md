@@ -14,7 +14,9 @@ ImagePacker：图片打包器类，用于图片压缩和打包。在调用ImageP
 
 ### 相关权限
 
-读取公共媒体文件权限：ohos.permission.READ_MEDIA
+读取公共媒体文件权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+
+读取用户媒体文件中的地理位置信息 ：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
 ### 使用说明
 

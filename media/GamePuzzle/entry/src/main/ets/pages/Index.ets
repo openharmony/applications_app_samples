@@ -26,7 +26,7 @@ enum gameStatus {
   over = 0
 }
 
-const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA', ohos.permission.MEDIA_LOCATION, 'ohos.permission.MEDIA_LOCATION']
+const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA', 'ohos.permission.MEDIA_LOCATION']
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'
