@@ -520,41 +520,41 @@ static napi_value Put(napi_env env, napi_callback_info info)
     int y1;
     napi_get_value_int32(env, args[1], &y1);
     chessBoard[x1][y1] = USER_CHESS;
-    int result = 0;
+    int resultStatus = 0;
     int numHorizontal = GetNumHorizontal(x1, y1, USER_CHESS);
         if (numHorizontal >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; // 获胜
+            resultStatus = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
-            napi_create_int32(env, result, &returnValue);
+            napi_create_int32(env, resultStatus, &returnValue);
             return returnValue;
         }
         int numVertical = GetNumVertical(x1, y1, USER_CHESS);
         if (numVertical >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; // 获胜
+            resultStatus = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
-            napi_create_int32(env, result, &returnValue);
+            napi_create_int32(env, resultStatus, &returnValue);
             return returnValue;
         }
         int numLeftSlash = GetNumLeftSlash(x1, y1, USER_CHESS);
         if (numLeftSlash >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; // 获胜
+            resultStatus = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
-            napi_create_int32(env, result, &returnValue);
+            napi_create_int32(env, resultStatus, &returnValue);
             return returnValue;
         }
         int numRightSlash = GetNumRightSlash(x1, y1, USER_CHESS);
         if (numRightSlash >= WIN_NUM - 1) {
             LOGD("PUT 获胜");
             ClearData();
-            result = USER_WIN; // 获胜
+            resultStatus = USER_WIN; // 获胜
             napi_value returnValue = nullptr;
-            napi_create_int32(env, result, &returnValue);
+            napi_create_int32(env, resultStatus, &returnValue);
             return returnValue;
         }
 }
