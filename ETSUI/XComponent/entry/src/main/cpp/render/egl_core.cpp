@@ -197,7 +197,7 @@ void EGLCore::ChangeColor()
     glVertexAttribPointer(positionHandle, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices); // 位置索引从2开始
     glEnableVertexAttribArray(positionHandle);
     glVertexAttrib4fv(1, color);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3); // 绘制三角形边数为3
     glDisableVertexAttribArray(positionHandle);
 
     Update();
