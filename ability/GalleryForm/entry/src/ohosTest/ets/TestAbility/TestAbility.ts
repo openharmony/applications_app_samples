@@ -39,8 +39,6 @@ export default class TestAbility extends Ability {
       }
       Logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
     })
-
-    globalThis.abilityContext = this.context
     var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments: any
