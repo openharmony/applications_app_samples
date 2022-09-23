@@ -55,12 +55,7 @@ export default function appTest() {
       let btnClick = await driver.findComponent(BY.key('Now'))
       await btnClick.click()
       await driver.delayMs(2000)
-      // click cancel
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PopupFunction_001 ClickCancel')
-      await driver.assertComponentExist(BY.key('cancel'))
-      let btnCancel = await driver.findComponent(BY.key('cancel'))
-      await btnCancel.click()
-      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PopupFunction_001 end')
     })
   })
 }
