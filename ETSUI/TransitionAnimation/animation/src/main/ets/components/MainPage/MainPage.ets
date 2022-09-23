@@ -52,12 +52,12 @@ export struct TransitionsAnimation {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       if (this.pageCountDown > SKIP_COUNTDOWN) {
-        Image($r('app.media.enterApp'))
+        Image($r('app.media.enter_app'))
           .objectFit(ImageFit.Contain)
       } else if (this.pageCountDown <= SKIP_COUNTDOWN) {
         Column() {
           Row() {
-            Image($r('app.media.enterAppAnimation'))
+            Image($r('app.media.enter_app_animation'))
               .objectFit(ImageFit.Contain)
               .width(this.isLand ? '60%' : '80%')
               .aspectRatio(1.4)

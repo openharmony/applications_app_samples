@@ -314,6 +314,7 @@ struct ChatItemView {
                  Image((this.msg.msgBody as ImgTextMessage).img)
                   .width((this.msg.msgBody as ImgTextMessage).width)
                   .height((this.msg.msgBody as ImgTextMessage).height)
+                  .objectFit(ImageFit.Contain)
               }
               .margin({ left: "40%" })
               .padding({ left: "2%", right: "2%", bottom: "2%" })

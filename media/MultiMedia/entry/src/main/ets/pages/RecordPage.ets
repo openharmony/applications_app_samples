@@ -119,6 +119,7 @@ struct Record {
       }
       .width('100%')
       .layoutWeight(1)
+
       Blank()
     }
     .height('100%')
@@ -126,7 +127,13 @@ struct Record {
     .backgroundColor('#F5F5F5')
   }
 
-  aboutToDisappear() {
+  onPageHide() {
+    if (this.isStartRecord) {
+      this.recordModel.pause()
+    }
+  }
+
+  aboutToDisappear(){
     this.recordModel.finish()
   }
 }
