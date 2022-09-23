@@ -94,8 +94,8 @@ struct Index {
   @State imageDatas: MyDataSource = new MyDataSource([])
 
   async aboutToAppear() {
-    await globalThis.abilityContext.requestPermissionsFromUser(GalleryFormConst.PERMISSIONS, GalleryFormConst.permissionState)
-    var imageDatas = await ImageData.getAllImage()
+    let context = getContext(this) as any
+    var imageDatas = await ImageData.getAllImage(context)
     this.imageDatas = new MyDataSource(imageDatas)
     Logger.info(TAG, `this image number = ${this.imageDatas.totalCount} uri = ${this.imageDatas[0].uri}`)
 

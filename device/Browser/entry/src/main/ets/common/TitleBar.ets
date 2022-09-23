@@ -214,7 +214,7 @@ export struct WebTab {
     },
     searchWord: (word: string) => {
       Logger.info(`search word= ${word}`)
-      let code = globalThis.encodeURI(word)
+      let code = encodeURI(word)
       this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
         url: `https://www.bing.com/search?q=${code}`
       })

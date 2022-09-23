@@ -127,7 +127,7 @@ struct Index {
         isPlaying: false
       }
     }
-    Logger.info(TAG, `globalThis.abilityConText.startAbility deviceId= ${deviceId}`)
+    Logger.info(TAG, `context.startAbility deviceId= ${deviceId}`)
     let wantValue = {
       bundleName: 'ohos.samples.etsdistributedmusicplayer',
       abilityName: 'MainAbility',
@@ -136,7 +136,7 @@ struct Index {
     }
     let timerId = setTimeout(() => {
       Logger.info(TAG, 'onMessageReceiveTimeout, terminateSelf')
-      globalThis.abilityConText.terminateSelf((error) => {
+      this.context.terminateSelf((error) => {
         Logger.info(TAG, `terminateSelf finished, error= ${error}`)
       })
     }, 3000)
@@ -148,18 +148,18 @@ struct Index {
         Logger.info(TAG, `terminateSelf finished, error= ${error}`)
       })
     })
-    Logger.info(TAG, `globalThis.abilityConText.startAbility start`)
+    Logger.info(TAG, `context.startAbility start`)
     this.context.startAbility(wantValue).then((data) => {
-      Logger.info(TAG, `globalThis.abilityConText.startAbility finished ${JSON.stringify(data)}`)
+      Logger.info(TAG, `context.startAbility finished ${JSON.stringify(data)}`)
     })
     this.clearSelectState()
-    Logger.info(TAG, `globalThis.abilityConText.startAbility want= ${JSON.stringify(wantValue)}`)
-    Logger.info(TAG, 'globalThis.abilityConText.startAbility end')
+    Logger.info(TAG, `context.startAbility want= ${JSON.stringify(wantValue)}`)
+    Logger.info(TAG, 'context.startAbility end')
   }
 
   selectedIndexChange = (selectedIndex) => {
     if (selectedIndex === 0) {
-      globalThis.abilityConText.startAbility({ bundleName: 'ohos.samples.etsdistributedmusicplayer',
+      this.context.startAbility({ bundleName: 'ohos.samples.etsdistributedmusicplayer',
         abilityName: 'MainAbility',
         deviceId: this.deviceLists[selectedIndex].deviceId,
         parameters: {
@@ -306,7 +306,7 @@ struct Index {
 
   restoreFromWant() {
     Logger.info(TAG, 'restoreFromWant')
-    let status = globalThis.abilityWant.parameters
+    let status:any = AppStorage.Get('status')
     if (status !== null && status.uri !== null) {
       KvStoreModel.broadcastMessage(this.context, REMOTE_ABILITY_STARTED)
       Logger.info(TAG, 'restorePlayingStatus')

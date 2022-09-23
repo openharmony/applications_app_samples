@@ -21,7 +21,6 @@ const TAG = '[MainAbility]'
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         Logger.info(TAG, `MainAbility onCreate`)
-        globalThis.abilityWant = want;
     }
 
     onDestroy() {

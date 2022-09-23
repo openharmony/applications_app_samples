@@ -18,8 +18,9 @@ import Logger from '../model/Logger'
 
 const TAG: string = '[ButtonClickModel]'
 
-let context = globalThis.mainAbilityContext
-let dmClass = globalThis.dmClass
+let dmClass = AppStorage.Get('dmClass') as any
+let context = AppStorage.Get('context') as any
+
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 
 function getRemoteDeviceId() {
