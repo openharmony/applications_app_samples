@@ -62,10 +62,10 @@ export class DesktopLayoutModel {
 
 
   /**
-  * Get the application data model object.
-  *
-  * @return {object} application data model singleton
-  */
+   * Get the application data model object.
+   *
+   * @return {object} application data model singleton
+   */
   static getInstance(context): DesktopLayoutModel {
     if (this.layoutInfoModel == null || this.layoutInfoModel === undefined) {
       this.layoutInfoModel = new DesktopLayoutModel(context)
@@ -175,7 +175,7 @@ export class DesktopLayoutModel {
    * jump to form manager
    * @param formInfo
 
-  * */
+   * */
   jumpToFormManagerView(formInfo: GridLayoutItemInfo) {
     router.push({
       url: 'pages/FormPage',
@@ -263,7 +263,7 @@ export class DesktopLayoutModel {
       // 加载完数据库中的后，剩余的app
       if (plusApps.length > 0) {
         Logger.info(TAG, `加载完数据库中的后，剩余的app`)
-        for (let k = 0;k < infos.length; k++) {
+        for (let k = 0;k < plusApps.length; k++) {
           let item = plusApps[k]
           if (item) {
             this.addAppToDesktop(item, false)
@@ -278,6 +278,15 @@ export class DesktopLayoutModel {
   private async addAppToDesktop(appInfo: AppItemInfo, isRefresh: boolean) {
     if (CheckEmptyUtils.isEmpty(appInfo)) {
       return
+    }
+    let pageInfos = this.layoutInfo
+    for (let i = 0;i < pageInfos.length; i++) {
+      Logger.info(TAG, `removeCardFromDeskTop pageInfos${i}`)
+      for (let j = 0;j < pageInfos[i].length; j++) {
+        if (pageInfos[i][j].bundleName === appInfo.bundleName && pageInfos[i][j].abilityName === appInfo.abilityName) {
+          return
+        }
+      }
     }
     let gridItem: GridLayoutItemInfo = this.covertAppItemToGridItem(appInfo, 0, 0, 0)
     let page = this.layoutInfo.length

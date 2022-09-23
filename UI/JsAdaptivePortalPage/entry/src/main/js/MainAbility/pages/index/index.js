@@ -21,10 +21,10 @@ export default {
     listOne: Array(5).fill(0).map((_, index) => ({
       uri: "", title: "item", id: "item_" + index
     })),
-    listTwo: Array(16).fill(0).map((_, index) => ({
+    listTwo: Array(8).fill(0).map((_, index) => ({
       uri: "", title: "item " + index, id: "item_" + index
     })),
-    listThree: Array(16).fill(0).map((_, index) => ({
+    listThree: Array(3).fill(0).map((_, index) => ({
       msg1: "The End Of The World", msg2: "Justin Timberland", id: "item_" + index
     })),
     tabBars: [

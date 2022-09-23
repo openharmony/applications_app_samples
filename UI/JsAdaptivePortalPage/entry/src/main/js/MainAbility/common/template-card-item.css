@@ -14,9 +14,9 @@
  */
 
 .div-list-item-three {
+    width: 300vp;
     flex-direction: row;
     align-items: center;
-    width: 100%;
     margin-top: 2px;
     height: 33%;
     border-radius: 10px;

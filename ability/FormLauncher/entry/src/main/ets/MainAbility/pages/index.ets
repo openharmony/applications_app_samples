@@ -21,7 +21,7 @@ import prompt from '@ohos.prompt';
 @Component
 struct Index {
   @State formId: number = 0;
-  @State bundleName: string = "ohos.samples.FormApplication";
+  @State bundleName: string = "ohos.samples.formability";
   @State abilityName: string = "FormAbility";
   @State moduleName: string = "entry";
   @State formName: string = "widget";
