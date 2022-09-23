@@ -62,7 +62,7 @@ class ShareUtils {
       Logger.info(TAG, `savePicture`)
       // 处理图片的格式
       let packOpts: image.PackingOption = {
-        format: "image/jpeg", quality: 100
+        format: "image/jpeg", quality: 70
       }
       // 创建图片打包
       let imgPackerApi = image.createImagePacker()
@@ -127,15 +127,15 @@ class ShareUtils {
     let data: image.PixelMap
     let screenShotHeight: number
     let screenShotWeight: number
-    let QRCODE_SIZE: number = isPhone ? 300 : 300 // 生成截图的大小
-    let QRCODE_PADDING: number = isPhone ? 80 : 80 // 截图保存时图片边距
+    let QRCODE_SIZE: number = 300 // 生成截图的大小
+    let QRCODE_PADDING: number = 80 // 截图保存时图片边距
     let fdImg: number
     try {
       // 截屏图片
       Logger.info(`${TAG} getScreen,isFullScreen`)
       screenShotWeight = QRCODE_SIZE + 1.1 * QRCODE_PADDING
       screenShotHeight = QRCODE_SIZE + 6 * QRCODE_PADDING
-      let screenshotOptions: screenshot.ScreenshotOptions = {
+      let smScreenshotOptions: screenshot.ScreenshotOptions = {
         screenRect: { // 表示截取图像的区域，不传值默认为全屏。以下参数仅支持number
           left: 160,
           top: 180, // 二维码保存时图片顶部距离屏幕顶部边缘距离
@@ -149,7 +149,25 @@ class ShareUtils {
         rotation: 0,
         displayId: 0
       }
-      data = await screenshot.save(screenshotOptions)
+      let lgScreenshotOptions: screenshot.ScreenshotOptions = {
+        screenRect: { // 表示截取图像的区域，不传值默认为全屏。以下参数仅支持number
+          left: 550,
+          top: 300, // 二维码保存时图片顶部距离屏幕顶部边缘距离
+          width: 1450,
+          height: 880
+        },
+        imageSize: { // 表示截取图像的大小，不传值默认为全屏。
+          width: 1450,
+          height: 880
+        },
+        rotation: 0,
+        displayId: 0
+      }
+      if (isPhone) {
+        data = await screenshot.save(smScreenshotOptions)
+      } else {
+        data = await screenshot.save(lgScreenshotOptions)
+      }
     } catch (error) {
       Logger.error(TAG, "getScreen----" + error)
     }

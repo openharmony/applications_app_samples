@@ -64,7 +64,8 @@ struct ShareDialogBuilder {
           bottom: $r("app.float.margin_bottom_10")
         })
 
-      Image(this.srcImg)
+//      Image(this.srcImg)
+      Image($r('app.media.phone'))
         .width("100%")
         .height("66%")
         .objectFit(ImageFit.Contain)
