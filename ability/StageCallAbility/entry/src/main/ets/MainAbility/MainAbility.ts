@@ -30,14 +30,14 @@ function getDm() {
             return;
         }
         Logger.log(TAG, 'getDm success')
-        globalThis.dmClass = dm
+        AppStorage.SetOrCreate('dmClass', dm)
     });
 }
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         Logger.log(TAG, 'onCreate')
-        globalThis.mainAbilityContext = this.context
+        AppStorage.SetOrCreate('context', this.context)
         getDm()
     }
 

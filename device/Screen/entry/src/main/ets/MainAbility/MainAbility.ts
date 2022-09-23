@@ -22,7 +22,6 @@ const TAG: string = '[MainAbility]'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    globalThis.abilityWant = want;
   }
 
   onDestroy() {
@@ -35,7 +34,7 @@ export default class MainAbility extends Ability {
     // Main window is created, set main page for this ability
     Logger.info(TAG, `[Demo] MainAbility onWindowStageCreate`)
 
-    windowStage.setUIContent(this.context, "pages/Index", null)
+    windowStage.setUIContent(this.context, 'pages/Index', null)
   }
 
   onWindowStageDestroy() {
@@ -52,4 +51,4 @@ export default class MainAbility extends Ability {
     // Ability has back to background
     Logger.info(TAG, `[Demo] MainAbility onBackground`)
   }
-};
+}

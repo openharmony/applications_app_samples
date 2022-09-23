@@ -19,8 +19,8 @@ import Logger from './Logger'
 const TAG: string = 'ImageData'
 
 export class ImageData {
-  async getAllImage() {
-    let media = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
+  async getAllImage(context:any) {
+    let media = mediaLibrary.getMediaLibrary(context)
     let fileKey = mediaLibrary.FileKey
     let mediaFetchOptions = {
       selections: `${fileKey.MEDIA_TYPE}=?`,
@@ -35,22 +35,6 @@ export class ImageData {
     }
     await media.release()
     return fileAssets
-  }
-
-  async getImageFd(uri: string) {
-    Logger.info(TAG, `getImageFd uri = ${uri}`)
-    let media = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
-    let fetchOp = {
-      selections: '',
-      selectionArgs: [],
-      uri: uri
-    }
-    let fetchFileResult = await media.getFileAssets(fetchOp)
-    Logger.info(TAG, `getImageFd fetchFileResult.getCount() = ${fetchFileResult.getCount()}`)
-    let fileAsset = await fetchFileResult.getFirstObject()
-    Logger.info(TAG, `getImageFd fileAsset.uri = ${fileAsset.uri}`)
-    await media.release()
-    return await fileAsset.open('r')
   }
 }
 

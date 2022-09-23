@@ -15,14 +15,14 @@
 
 import Ability from '@ohos.application.Ability'
 import Logger from '../data/Logger'
+import GalleryFormConst from '../data/GalleryFormConst'
 
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  async onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
-    globalThis.abilityWant = want
-    globalThis.abilityContext = this.context
+    await this.context.requestPermissionsFromUser(GalleryFormConst.PERMISSIONS)
   }
 
   onDestroy() {

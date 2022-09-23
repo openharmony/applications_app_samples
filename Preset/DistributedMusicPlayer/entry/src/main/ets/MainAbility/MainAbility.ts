@@ -20,8 +20,8 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
-    globalThis.abilityWant = want;
-    globalThis.abilityConText = this.context
+    let status = want.parameters
+    AppStorage.SetOrCreate('status',status)
   }
 
   onDestroy() {
