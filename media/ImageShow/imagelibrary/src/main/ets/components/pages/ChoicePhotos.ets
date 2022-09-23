@@ -70,7 +70,7 @@ export struct ChoicePhotos {
 
   async getFileAssetsFromType(mediaType: mediaLibrary.MediaType) {
     Logger.info(TAG, `getFileAssetsFromType`)
-    let mediaLibraryInstance = mediaLibrary.getMediaLibrary(getContext(this))
+    let mediaLibraryInstance = mediaLibrary.getMediaLibrary(getContext(this) as any)
     Logger.info(TAG, `mediaLibraryInstance = ${JSON.stringify(mediaLibraryInstance)}`)
     let fileKeyObj = mediaLibrary.FileKey
     let fetchOp = {

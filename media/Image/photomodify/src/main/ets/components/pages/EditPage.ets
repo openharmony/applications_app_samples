@@ -45,7 +45,7 @@ export struct EditPage {
   @State scaleSliderValue: number = 0
   @State selectIndex: number = 0
   @State isLand: boolean = false
-  private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this))
+  private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this) as any)
 
 
   flushPage() {
