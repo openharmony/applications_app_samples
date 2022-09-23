@@ -19,14 +19,18 @@ import Logger from '../model/Logger'
 
 export default class MediaUtils {
     private tag: string = 'MediaUtils'
-    private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
-    private static instance: MediaUtils = new MediaUtils()
+    private mediaTest: mediaLibrary.MediaLibrary = undefined
+    private static instance: MediaUtils = undefined
 
-    public static getInstance() {
+    public static getInstance(context:any) {
         if (this.instance === undefined) {
-            this.instance = new MediaUtils()
+            this.instance = new MediaUtils(context)
         }
         return this.instance
+    }
+
+    constructor(context:any){
+        this.mediaTest = mediaLibrary.getMediaLibrary(context)
     }
 
     async createAndGetUri(mediaType: number) {

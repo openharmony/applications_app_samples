@@ -18,8 +18,6 @@ import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
-        globalThis.abilityWant = want;
-        globalThis.abilityContext = this.context
 
         const that = this
         this.context.eventHub.on("getAbilityData", (data) => {

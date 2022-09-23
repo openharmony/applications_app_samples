@@ -24,7 +24,7 @@ import MediaUtils from '../../model/MediaUtils'
 import mediaquery from '@ohos.mediaquery';
 
 const TAG: string = '[ParasQRCode]'
-const QRCODE_SIZE: number = px2vp(250) // 二维码的大小
+const QRCODE_SIZE: number = px2vp(300) // 二维码的大小
 
 interface EventHub {
   emit(event: string, ...args: Object[]): void
@@ -40,7 +40,9 @@ interface AbilityContext {
 export struct ScanPage {
   private tag: string = 'CameraPage'
   private mXComponentController: XComponentController = new XComponentController()
-  private surfaceId: number
+  private surfaceId: number = -1
+  private cameraService:CameraService = new CameraService(getContext(this))
+  private mediaUitl:MediaUtils = new MediaUtils(getContext(this))
   @State imgThumbnail: string = ''
   @State isRecording: boolean = false
   @State showPhoto: boolean = false
@@ -103,12 +105,12 @@ export struct ScanPage {
     this.onPortrait(this.listenerIsPhone)
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     Logger.info(this.tag, `aboutToAppear,surfaceId=${this.surfaceId}`)
-    CameraService.setTakePictureCallback(this.handleTakePicture.bind(this))
+    this.cameraService.setTakePictureCallback(this.handleTakePicture.bind(this))
   }
 
   scanInit = async () => {
     setInterval(() => {
-      CameraService.takePicture()
+      this.cameraService.takePicture()
       prompt.showToast({ message: $r("app.string.Scan_seconds"), duration: 1000 })
     }, 3000)
     this.uploadQrcodeImage = await MediaUtils.getPixelMap(this.imgThumbnail)
@@ -130,7 +132,7 @@ export struct ScanPage {
         .onLoad(() => {
           this.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
           this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
-          CameraService.initCamera(this.surfaceId)
+          this.cameraService.initCamera(this.surfaceId)
         })
         .height('100%')
         .width('100%')
@@ -172,49 +174,34 @@ export struct ScanPage {
         Row({ space: 16 * this.multiples }) {
           this.OperationBtn($r("app.media.scan_photo"), () => {
             this.changeState = true
-            // 3.2 beta分支abilityName使用com.ohos.filepicker.MainAbility
-            this.contextCaller.startAbilityForResult({
-              bundleName: "com.ohos.filepicker",
-              abilityName: "com.ohos.filepicker.MainAbility",
-              parameters: {
-                startMode: 'choose'
-              }
-            }
-            ).then(async (data) => {
-              let result = data.want.parameters.result
-              let images = result.split(';')
-              Logger.info(TAG, `this.images = ${JSON.stringify(images)}`)
-              this.uploadQrcodeImage = await MediaUtils.getPixelMap(images[0])
-              if (this.uploadQrcodeImage === null) {
-                prompt.showToast({ message: $r("app.string.Scan_file"), duration: 1000 })
-                return
-              }
-              this.context.clearRect(0, 0, QRCODE_SIZE, QRCODE_SIZE)
-              this.context.drawImage(this.uploadQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
-              this.showPhoto = true
-              this.getDecodePhoto()
-            })
             // 主干master分支abilityName使用MainAbility
             this.contextCaller.startAbilityForResult({
-              bundleName: "com.ohos.filepicker",
-              abilityName: "MainAbility",
+              bundleName: "com.ohos.photos",
+              abilityName: "com.ohos.photos.MainAbility",
               parameters: {
-                startMode: 'choose'
+                uri: "singleselect"
               }
             }
             ).then(async (data) => {
-              let result = data.want.parameters.result
-              let images = result.split(';')
-              Logger.info(TAG, `this.images = ${JSON.stringify(images)}`)
-              this.uploadQrcodeImage = await MediaUtils.getPixelMap(images[0])
-              if (this.uploadQrcodeImage === null) {
-                prompt.showToast({ message: $r("app.string.Scan_file"), duration: 1000 })
-                return
+              let want = data['want'];
+              if (want != null && want != undefined) {
+                let param = want['parameters'];
+                if (param != null && param != undefined) {
+                  let result = param['select-item-list'];
+                  let images = result.split(';')
+                  Logger.info(TAG, `this.images = ${JSON.stringify(images)}`)
+                  this.uploadQrcodeImage = await this.mediaUitl.getPixelMap(images[0])
+                  if (this.uploadQrcodeImage === null) {
+                    prompt.showToast({ message: $r("app.string.Scan_file"), duration: 1000 })
+                    return
+                  }
+                  this.context.clearRect(0, 0, QRCODE_SIZE, QRCODE_SIZE)
+                  this.context.drawImage(this.uploadQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
+                  this.showPhoto = true
+                  this.getDecodePhoto()
+                }
               }
-              this.context.clearRect(0, 0, QRCODE_SIZE, QRCODE_SIZE)
-              this.context.drawImage(this.uploadQrcodeImage, 0, 0, QRCODE_SIZE, QRCODE_SIZE)
-              this.showPhoto = true
-              this.getDecodePhoto()
+
             })
           })
 
@@ -234,8 +221,8 @@ export struct ScanPage {
           .height(40 * this.multiples)
           .onClick(async () => {
             prompt.showToast({ message: $r("app.string.Scan_take_Photo"), duration: 1000 })
-            CameraService.takePicture()
-            this.uploadQrcodeImage = await MediaUtils.getPixelMap(this.imgThumbnail)
+            this.cameraService.takePicture()
+            this.uploadQrcodeImage = await this.mediaUitl.getPixelMap(this.imgThumbnail)
             if (this.uploadQrcodeImage === null) {
               prompt.showToast({ message: $r("app.string.Scan_file"), duration: 1000 })
               return

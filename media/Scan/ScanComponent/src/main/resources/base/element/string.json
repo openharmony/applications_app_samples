@@ -38,7 +38,7 @@
     },
     {
       "name": "Scan_text",
-      "value": "将二维码放入框中,即可自动扫描"
+      "value": "将二维码放入框中,即可点击扫描"
     },
     {
       "name": "Scan_seconds",
