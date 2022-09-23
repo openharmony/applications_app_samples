@@ -34,7 +34,7 @@ export struct ChoicePhoto {
   @State isChoice: boolean = false
   @State nextText: string = ''
   @State isLand: boolean = false
-  private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this))
+  private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this) as any)
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
   onLand = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
@@ -70,7 +70,8 @@ export struct ChoicePhoto {
 
   async getFileAssetsFromType(mediaType: mediaLibrary.MediaType) {
     logger.info(TAG, `getFileAssetsFromType`)
-    let mediaLibraryInstance = mediaLibrary.getMediaLibrary(getContext(this))
+    let context = getContext(this) as any
+    let mediaLibraryInstance = mediaLibrary.getMediaLibrary(context)
     if (!mediaLibraryInstance) {
       return
     }
