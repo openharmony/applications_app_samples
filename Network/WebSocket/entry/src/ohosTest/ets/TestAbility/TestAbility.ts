@@ -34,7 +34,7 @@ export default class TestAbility extends Ability {
         return;
       }
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-    });
+    })
     var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments: any
