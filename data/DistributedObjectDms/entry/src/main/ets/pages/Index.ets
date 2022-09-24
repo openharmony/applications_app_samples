@@ -253,7 +253,7 @@ struct Index {
       this.screenHeight = defaultDisplay.height
       this.duration = this.screenWidth / dmsConst.PLAY_SPEED * dmsConst.CONVERT_MILLISECOND // 匀速播放时长
       Logger.info(TAG, `setFullScreen width = ${this.width}`)
-      const topWindow = await window.getTopWindow(getContext(this) as any)
+      const topWindow = await window.getTopWindow()
       await topWindow.setFullScreen(true)
       await topWindow.setKeepScreenOn(true)
     } catch (err) {

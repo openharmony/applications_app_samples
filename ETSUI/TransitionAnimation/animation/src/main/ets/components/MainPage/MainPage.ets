@@ -34,13 +34,13 @@ export struct TransitionsAnimation {
 
   aboutToAppear() {
     this.listener.on('change', this.onPortrait.bind(this))
-    window.getTopWindow(getContext(this)).then(result => {
+    window.getTopWindow().then(result => {
       result.setFullScreen(true)
     })
     let timer = setInterval(() => {
       this.pageCountDown--
       if (this.pageCountDown == 0) {
-        window.getTopWindow(getContext(this)).then(result => {
+        window.getTopWindow().then(result => {
           result.setFullScreen(false)
         })
         this.gotoNav() // 6秒后执行gotoNav函数跳转到首页
@@ -92,7 +92,7 @@ export struct TransitionsAnimation {
         .backgroundColor('rgba(0,0,0,0.3)')
         .borderRadius('18vp')
         .onClick(() => {
-          window.getTopWindow(getContext(this)).then(result => {
+          window.getTopWindow().then(result => {
             result.setFullScreen(false)
           })
           this.pageCountDown = 0
