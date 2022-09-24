@@ -482,82 +482,70 @@ void AIPlay()
     chessBoard[result[1]][result[INDEX_NUM]] = AI_CHESS;
 }
 
-static bool IsCheckNull(napi_env env, napi_value args0, napi_value args1)
+static int CheckWin(int x1, int y1) // 落子并判断胜负
 {
-    napi_valuetype valuetype;
-    napi_status status;
-    status = napi_typeof(env, args0, &valuetype);
-    if (status != napi_ok) {
-        return true;
+    chessBoard[x1][y1] = USER_CHESS;
+    int numHorizontal = GetNumHorizontal(x1, y1, USER_CHESS);
+    int winResult = 0;
+    if (numHorizontal >= WIN_NUM - 1) {
+        LOGD("PUT 获胜");
+        ClearData();
+        winResult = USER_WIN; // 获胜
     }
-    if (valuetype != napi_number) {
-        napi_throw_type_error(env, NULL, "Wrong arguments");
-        return true;
+    int numVertical = GetNumVertical(x1, y1, USER_CHESS);
+    if (numVertical >= WIN_NUM - 1) {
+        LOGD("PUT 获胜");
+        ClearData();
+        winResult = USER_WIN; // 获胜
     }
-    status = napi_typeof(env, args1, &valuetype);
-    if (status != napi_ok) {
-        return true;
+    int numLeftSlash = GetNumLeftSlash(x1, y1, USER_CHESS);
+    if (numLeftSlash >= WIN_NUM - 1) {
+        LOGD("PUT 获胜");
+        ClearData();
+        winResult = USER_WIN; // 获胜
     }
-    if (valuetype != napi_number) {
-        napi_throw_type_error(env, NULL, "Wrong arguments");
-        return true;
+    int numRightSlash = GetNumRightSlash(x1, y1, USER_CHESS);
+    if (numRightSlash >= WIN_NUM - 1) {
+        LOGD("PUT 获胜");
+        ClearData();
+        winResult = USER_WIN; // 获胜
     }
-        return false;
+    return winResult;
 }
 
-static napi_value Put(napi_env env, napi_callback_info info)
+static napi_value Put(napi_env env, napi_callback_info info) // 用户落子
 {
     napi_status status;
     size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2];
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    if (IsCheckNull(env, args[0], args[1])) {
+    napi_valuetype valuetype;
+    status = napi_typeof(env, args[0], &valuetype);
+    if (status != napi_ok) {
+        return nullptr;
+    }
+    if (valuetype != napi_number) {
+        napi_throw_type_error(env, NULL, "Wrong arguments");
+        return nullptr;
+    }
+    status = napi_typeof(env, args[1], &valuetype);
+    if (status != napi_ok) {
+        return nullptr;
+    }
+    if (valuetype != napi_number) {
+        napi_throw_type_error(env, NULL, "Wrong arguments");
         return nullptr;
     }
     int x1;
     napi_get_value_int32(env, args[0], &x1);
     int y1;
     napi_get_value_int32(env, args[1], &y1);
-    chessBoard[x1][y1] = USER_CHESS;
-    int resultStatus = 0;
-    int numHorizontal = GetNumHorizontal(x1, y1, USER_CHESS);
-        if (numHorizontal >= WIN_NUM - 1) {
-            LOGD("PUT 获胜");
-            ClearData();
-            resultStatus = USER_WIN; // 获胜
-            napi_value returnValue = nullptr;
-            napi_create_int32(env, resultStatus, &returnValue);
-            return returnValue;
-        }
-        int numVertical = GetNumVertical(x1, y1, USER_CHESS);
-        if (numVertical >= WIN_NUM - 1) {
-            LOGD("PUT 获胜");
-            ClearData();
-            resultStatus = USER_WIN; // 获胜
-            napi_value returnValue = nullptr;
-            napi_create_int32(env, resultStatus, &returnValue);
-            return returnValue;
-        }
-        int numLeftSlash = GetNumLeftSlash(x1, y1, USER_CHESS);
-        if (numLeftSlash >= WIN_NUM - 1) {
-            LOGD("PUT 获胜");
-            ClearData();
-            resultStatus = USER_WIN; // 获胜
-            napi_value returnValue = nullptr;
-            napi_create_int32(env, resultStatus, &returnValue);
-            return returnValue;
-        }
-        int numRightSlash = GetNumRightSlash(x1, y1, USER_CHESS);
-        if (numRightSlash >= WIN_NUM - 1) {
-            LOGD("PUT 获胜");
-            ClearData();
-            resultStatus = USER_WIN; // 获胜
-            napi_value returnValue = nullptr;
-            napi_create_int32(env, resultStatus, &returnValue);
-            return returnValue;
-        }
-}
+    int checkResult = CheckWin(x1, y1);
+    napi_value returnValue = nullptr;
+    napi_create_int32(env, checkResult, &returnValue);
+    return returnValue;
+};
 
 struct CallbackContext {
     napi_env env = nullptr;
