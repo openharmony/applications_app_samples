@@ -90,7 +90,7 @@ export default class WindowManager {
  * @param width 窗口高度
  */
   async setWindowSize(width: number, height: number): Promise<void> {
-    const abilityWindow = await Window.getTopWindow(this.context)
+    const abilityWindow = await Window.getTopWindow()
     void abilityWindow.resetSize(width, height)
   }
 
