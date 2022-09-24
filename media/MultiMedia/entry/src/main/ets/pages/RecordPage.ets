@@ -26,15 +26,21 @@ struct Record {
   private isStartRecord: boolean = false
   private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
   private intervalId: number = null
+  private fileAsset: mediaLibrary.FileAsset = undefined
+  private fd: number = -1
   @State format: string = 'hh:mm:ss.ms'
   @State isRecording: boolean = false
   @State millisecond: number = 0
 
   async startRecord() {
-    let fd = await this.mediaUtils.createFile(mediaLibrary.MediaType.AUDIO)
-    let fdPath = "fd://" + fd
-    this.recordModel.startRecorder(fdPath)
-    this.isStartRecord = true
+    let dataUri = await this.mediaUtils.createAndGetUri(mediaLibrary.MediaType.AUDIO)
+    if (dataUri) {
+      this.fileAsset = await this.mediaUtils.queryFile(dataUri)
+      this.fd = await this.mediaUtils.getFdPath(this.fileAsset)
+      let fdPath = "fd://" + this.fd
+      this.recordModel.startRecorder(fdPath)
+      this.isStartRecord = true
+    }
   }
 
   getTime() {
@@ -128,12 +134,18 @@ struct Record {
   }
 
   onPageHide() {
-    if (this.isStartRecord) {
+    if (this.isRecording) {
       this.recordModel.pause()
     }
   }
 
-  aboutToDisappear(){
+  async aboutToDisappear() {
     this.recordModel.finish()
+    if (this.fileAsset && this.millisecond < 1000) {
+      if (this.fd !== -1) {
+        this.fileAsset.close(this.fd)
+      }
+      await this.mediaUtils.deleteFile(this.fileAsset)
+    }
   }
 }

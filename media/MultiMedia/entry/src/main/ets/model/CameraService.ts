@@ -192,11 +192,16 @@ export default class CameraService {
       this.curMode = CameraMode.MODE_VIDEO
       if (this.photoOutPut) {
         await this.captureSession.removeOutput(this.photoOutPut)
+        this.photoOutPut.release()
       }
     } else {
       if (this.videoOutput) {
         await this.captureSession.removeOutput(this.videoOutput)
       }
+    }
+    if (this.videoOutput) {
+      await this.captureSession.removeOutput(this.videoOutput)
+      await this.videoOutput.release()
     }
     this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.VIDEO)
     this.fd = await this.mediaUtil.getFdPath(this.fileAsset)
@@ -217,6 +222,7 @@ export default class CameraService {
     Logger.info(this.tag, 'stopVideo called')
     await this.videoRecorder.stop()
     await this.videoOutput.stop()
+    await this.videoRecorder.release()
     await this.fileAsset.close(this.fd)
   }
 

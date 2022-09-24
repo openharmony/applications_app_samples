@@ -56,6 +56,7 @@ export default class PlayerModel {
     });
     this.#player.on('finish', () => {
       console.log('MusicPlayer[PlayerModel] finish() callback is called');
+      this.seek(0)
       this.notifyPlayingStatus(false);
     });
     this.#player.on('timeUpdate', () => {
@@ -151,7 +152,6 @@ export default class PlayerModel {
       return 0;
     }
     this.index = index;
-
     let uri = this.playlist.audioFiles[index].fileUri
     fileIo.open(uri, (err, fdNumber) => {
       let fdPath = 'fd://'

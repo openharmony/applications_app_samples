@@ -41,7 +41,7 @@
         "description": "$string:mainability_description",
         "label": "$string:entry_MainAbility",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "singleton"
       }
     ],
     "js": [
