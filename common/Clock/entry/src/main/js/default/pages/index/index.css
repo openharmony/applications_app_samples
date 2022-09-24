@@ -47,3 +47,11 @@
     height: 65%;
     object-fit: contain;
 }
+
+@media screen and (max-aspect-ratio: 0.5) {
+    .clock-hand {
+        width: 15%;
+        height: 40%;
+        object-fit: contain;
+    }
+}

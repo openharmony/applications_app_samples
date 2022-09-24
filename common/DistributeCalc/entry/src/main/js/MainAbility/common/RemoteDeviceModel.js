@@ -54,7 +54,7 @@ export default class RemoteDeviceModel {
 
     console.info('Calc[RemoteDeviceModel] getTrustedDeviceListSync begin');
     let list = this.deviceManager.getTrustedDeviceListSync();
-    console.info('Calc[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+    console.debug('Calc[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
     if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
       this.deviceList = list;
     }
@@ -62,14 +62,14 @@ export default class RemoteDeviceModel {
     console.info('Calc[RemoteDeviceModel] callback finished');
 
     this.deviceManager.on('deviceStateChange', (data) => {
-      console.info('Calc[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
+      console.debug('Calc[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
       switch (data.action) {
         case deviceManager.DeviceStateChangeAction.READY:
           this.discoverList = []
           this.deviceList.push(data.device)
-          console.info('Calc[RemoteDeviceModel] ready, updated device list=' + JSON.stringify(this.deviceList));
+          console.debug('Calc[RemoteDeviceModel] ready, updated device list=' + JSON.stringify(this.deviceList));
           let list = this.deviceManager.getTrustedDeviceListSync();
-          console.info('Calc[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+          console.debug('Calc[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
           if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
             this.deviceList = list;
           }
@@ -85,7 +85,7 @@ export default class RemoteDeviceModel {
             }
             this.deviceList = list;
           }
-          console.info('Calc[RemoteDeviceModel] offline, updated device list=' + JSON.stringify(data.device));
+          console.debug('Calc[RemoteDeviceModel] offline, updated device list=' + JSON.stringify(data.device));
           this.callback();
           break;
         default:
@@ -93,8 +93,8 @@ export default class RemoteDeviceModel {
       }
     });
     this.deviceManager.on('deviceFound', (data) => {
-      console.info('Calc[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data));
-      console.info('Calc[RemoteDeviceModel] deviceFound this.discoverList=' + this.discoverList);
+      console.debug('Calc[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data));
+      console.debug('Calc[RemoteDeviceModel] deviceFound this.discoverList=' + this.discoverList);
       for (let i = 0;i < this.discoverList.length; i++) {
         if (this.discoverList[i].deviceId === data.device.deviceId) {
           console.info('Calc[RemoteDeviceModel] device founded ignored');
@@ -102,7 +102,7 @@ export default class RemoteDeviceModel {
         }
       }
       this.discoverList[this.discoverList.length] = data.device;
-      console.info('Calc[RemoteDeviceModel] deviceFound this.discoverList=' + this.discoverList);
+      console.debug('Calc[RemoteDeviceModel] deviceFound this.discoverList=' + this.discoverList);
       this.callback();
     });
     this.deviceManager.on('discoverFail', (data) => {
@@ -110,7 +110,7 @@ export default class RemoteDeviceModel {
         message: 'discoverFail reason=' + data.reason,
         duration: 3000,
       });
-      console.info('Calc[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data));
+      console.debug('Calc[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data));
     });
     this.deviceManager.on('serviceDie', () => {
       prompt.showToast({
@@ -130,12 +130,12 @@ export default class RemoteDeviceModel {
       isWakeRemote: true,
       capability: 0
     };
-    console.info('Calc[RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID);
+    console.debug('Calc[RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID);
     this.deviceManager.startDeviceDiscovery(info);
   }
 
   unregisterDeviceListCallback() {
-    console.info('Calc[RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID);
+    console.debug('Calc[RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID);
     if (this.deviceManager === undefined) {
       return
     }
@@ -148,7 +148,7 @@ export default class RemoteDeviceModel {
   }
 
   authenticateDevice(device, callBack) {
-    console.info('Calc[RemoteDeviceModel] authenticateDevice ' + JSON.stringify(device));
+    console.debug('Calc[RemoteDeviceModel] authenticateDevice ' + JSON.stringify(device));
     for (let i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId === device.deviceId) {
         let extraInfo = {
@@ -166,11 +166,11 @@ export default class RemoteDeviceModel {
         }
         this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
           if (err) {
-            console.info('Calc[RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err));
+            console.error('Calc[RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err));
             this.authCallback = null;
             return;
           }
-          console.info('Calc[RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data));
+          console.debug('Calc[RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data));
           this.authCallback = callBack;
         })
       }

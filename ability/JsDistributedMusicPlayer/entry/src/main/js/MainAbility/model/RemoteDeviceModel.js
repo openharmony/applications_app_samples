@@ -56,7 +56,7 @@ export default class RemoteDeviceModel {
 
     console.info('MusicPlayer[RemoteDeviceModel] getTrustedDeviceListSync begin');
     var list = this.#deviceManager.getTrustedDeviceListSync();
-    console.info('MusicPlayer[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+    console.debug('MusicPlayer[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
     if (typeof (list) != 'undefined' && typeof (list.length) != 'undefined') {
       this.deviceList = list;
     }
@@ -64,14 +64,14 @@ export default class RemoteDeviceModel {
     console.info('MusicPlayer[RemoteDeviceModel] callback finished');
 
     this.#deviceManager.on('deviceStateChange', (data) => {
-      console.info('MusicPlayer[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
+      console.debug('MusicPlayer[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
       switch (data.action) {
         case deviceManager.DeviceStateChangeAction.READY:
           this.discoverList = []
           this.deviceList.push(data.device)
-          console.info('MusicPlayer[RemoteDeviceModel] ready, updated device list=' + JSON.stringify(this.deviceList));
+          console.debug('MusicPlayer[RemoteDeviceModel] ready, updated device list=' + JSON.stringify(this.deviceList));
           let list = this.deviceManager.getTrustedDeviceListSync();
-          console.info('MusicPlayer[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+          console.debug('MusicPlayer[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
           if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
             this.deviceList = list;
           }
@@ -87,7 +87,7 @@ export default class RemoteDeviceModel {
             }
             this.deviceList = list;
           }
-          console.info('MusicPlayer[RemoteDeviceModel] offline, updated device list=' + JSON.stringify(data.device));
+          console.debug('MusicPlayer[RemoteDeviceModel] offline, updated device list=' + JSON.stringify(data.device));
           this.callback();
           break;
         default:
@@ -95,9 +95,9 @@ export default class RemoteDeviceModel {
       }
     });
     this.#deviceManager.on('deviceFound', (data) => {
-      console.info('MusicPlayer[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data));
-      console.info('MusicPlayer[RemoteDeviceModel] deviceFound this.deviceList=' + this.deviceList);
-      console.info('MusicPlayer[RemoteDeviceModel] deviceFound this.deviceList.length=' + this.deviceList.length);
+      console.debug('MusicPlayer[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data));
+      console.debug('MusicPlayer[RemoteDeviceModel] deviceFound this.deviceList=' + this.deviceList);
+      console.debug('MusicPlayer[RemoteDeviceModel] deviceFound this.deviceList.length=' + this.deviceList.length);
       for (var i = 0; i < this.discoverList.length; i++) {
         if (this.discoverList[i].deviceId === data.device.deviceId) {
           console.info('MusicPlayer[RemoteDeviceModel] device founded, ignored');
@@ -108,7 +108,7 @@ export default class RemoteDeviceModel {
       this.callback();
     });
     this.#deviceManager.on('discoverFail', (data) => {
-      console.info('MusicPlayer[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data));
+      console.debug('MusicPlayer[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data));
     });
     this.#deviceManager.on('serviceDie', () => {
       console.error('MusicPlayer[RemoteDeviceModel] serviceDie');
@@ -124,12 +124,12 @@ export default class RemoteDeviceModel {
       isWakeRemote: true,
       capability: 0
     };
-    console.info('MusicPlayer[RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID);
+    console.debug('MusicPlayer[RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID);
     this.#deviceManager.startDeviceDiscovery(info);
   }
 
   authDevice(deviceId, callback) {
-    console.info('MusicPlayer[RemoteDeviceModel] authDevice ' + deviceId);
+    console.debug('MusicPlayer[RemoteDeviceModel] authDevice ' + deviceId);
     for (var i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId === deviceId) {
         console.info('MusicPlayer[RemoteDeviceModel] device founded, ignored');
@@ -145,13 +145,13 @@ export default class RemoteDeviceModel {
           "appThumbnail": '',
           "extraInfo": extraInfo
         };
-        console.info('MusicPlayer[RemoteDeviceModel] authenticateDevice ' + JSON.stringify(this.discoverList[i]));
+        console.debug('MusicPlayer[RemoteDeviceModel] authenticateDevice ' + JSON.stringify(this.discoverList[i]));
         this.#deviceManager.authenticateDevice(this.discoverList[i], authParam, (err, data) => {
           if (err) {
-            console.info('MusicPlayer[RemoteDeviceModel] authenticateDevice failed, err=' + JSON.stringify(err));
+            console.error('MusicPlayer[RemoteDeviceModel] authenticateDevice failed, err=' + JSON.stringify(err));
             this.authCallback = null;
           } else {
-            console.info('MusicPlayer[RemoteDeviceModel] authenticateDevice succeed, data=' + JSON.stringify(data));
+            console.debug('MusicPlayer[RemoteDeviceModel] authenticateDevice succeed, data=' + JSON.stringify(data));
             this.authCallback = callback;
           }
         });
@@ -160,7 +160,7 @@ export default class RemoteDeviceModel {
   }
 
   unregisterDeviceListCallback() {
-    console.info('MusicPlayer[RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID);
+    console.debug('MusicPlayer[RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID);
     if (typeof (this.#deviceManager) === 'undefined') {
       return
     }
