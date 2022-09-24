@@ -30,6 +30,7 @@ struct RecordPage {
   private recordModel: RecordModel = new RecordModel()
   private millisecond: number = 0
   @State fileAsset: mediaLibrary.FileAsset = undefined
+  private fd: number = undefined
   @StorageLink('playState') playState: boolean = true
   @State duration: string = '00:00'
 
@@ -44,8 +45,8 @@ struct RecordPage {
   async aboutToAppear() {
     this.recordModel.initAudioRecorder()
     this.fileAsset = await MediaManager.createAudioFile()
-    let fd = await this.fileAsset.open('Rw')
-    this.recordModel.startRecorder(`fd://${fd}`, () => {
+    this.fd = await this.fileAsset.open('Rw')
+    this.recordModel.startRecorder(`fd://${this.fd}`, () => {
       Logger.info(TAG, 'startRecorder callback success')
       this.millisecond = 0
       this.playState = true
@@ -114,7 +115,16 @@ struct RecordPage {
     .backgroundColor('#F5F5F5')
   }
 
-  onPageHide() {
-    this.finish()
+  async onPageHide() {
+    if (this.millisecond > 1000) {
+      this.finish()
+    } else {
+      if(this.fileAsset){
+        if(this.fd){
+          this.fileAsset.close(this.fd)
+        }
+        await MediaManager.deleteFile(this.fileAsset.uri)
+      }
+    }
   }
 }

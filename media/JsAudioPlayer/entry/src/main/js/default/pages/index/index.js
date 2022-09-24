@@ -31,6 +31,9 @@ export default {
     this.audioUrl = 'common/images/pause.png';
     this.playerModel.setOnStatusChangedListener((isPlaying) => {
       console.info('MusicPlayer[IndexPage] on player status changed, isPlaying=' + isPlaying + ', refresh ui');
+      this.playerModel.setOnPlayingProgressListener(() => {
+        console.info('MusicPlayer[IndexPage] setOnPlayingProgressListener');
+      });
       if (isPlaying) {
         this.audioUrl = 'common/images/play.png';
       } else {
@@ -43,6 +46,20 @@ export default {
     this.title = this.playerModel.playlist.audioFiles[this.index].name;
     this.audioManager = audio.getAudioManager();
   },
+
+  getShownTimer(ms) {
+    var seconds = Math.floor(ms / 1000);
+    var sec = seconds % 60;
+    var min = (seconds - sec) / 60;
+    if (sec < 10) {
+      sec = '0' + sec;
+    }
+    if (min < 10) {
+      min = '0' + min;
+    }
+    return min + ':' + sec;
+  },
+
   onPlayClick() {
     if (this.isSwitching) {
       console.info('MusicPlayer[IndexPage] onPlayClick ignored, isSwitching');
@@ -95,6 +112,7 @@ export default {
     });
     this.title = this.playerModel.playlist.audioFiles[this.index].name;
   },
+
   media(e) {
     this.volume = e.value
     this.audioManager.setVolume(audio.AudioVolumeType.MEDIA, this.volume).then(() => {
