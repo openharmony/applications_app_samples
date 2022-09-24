@@ -63,7 +63,7 @@ export default {
     this.grantPermission()
     console.info("MusicPlayer[IndexPage] getDefaultDisplay begin");
     display.getDefaultDisplay().then(dis => {
-      console.info("MusicPlayer[IndexPage] getDefaultDisplay dis=" + JSON.stringify(dis));
+      console.debug("MusicPlayer[IndexPage] getDefaultDisplay dis=" + JSON.stringify(dis));
       var proportion = DESIGN_WIDTH / dis.width;
       var screenWidth = DESIGN_WIDTH;
       var screenHeight = (dis.height - SYSTEM_UI_HEIGHT) * proportion;
@@ -78,7 +78,7 @@ export default {
         this.rish = screenHeight / this.riscale;
       }
       this.hasInitialized = true;
-      console.info("MusicPlayer[IndexPage] proportion=" + proportion + ", screenWidth="
+      console.debug("MusicPlayer[IndexPage] proportion=" + proportion + ", screenWidth="
       + screenWidth + ", screenHeight=" + screenHeight + ", riscale=" + this.riscale
       + ", risw=" + this.risw + ", rish=" + this.rish);
     });
@@ -91,7 +91,7 @@ export default {
 
     this.currentTimeText = getShownTimer(0);
     this.playerModel.setOnStatusChangedListener((isPlaying) => {
-      console.info('MusicPlayer[IndexPage] on player status changed, isPlaying=' + isPlaying + ', refresh ui');
+      console.debug('MusicPlayer[IndexPage] on player status changed, isPlaying=' + isPlaying + ', refresh ui');
       this.playerModel.setOnPlayingProgressListener((currentTimeMs) => {
         this.currentTimeText = getShownTimer(currentTimeMs);
         this.currentProgress = Math.floor(currentTimeMs / this.totalMs * 100);
@@ -112,18 +112,18 @@ export default {
     console.info('MusicPlayer[IndexPage] grantPermission')
     let context = featureAbility.getContext()
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-      console.info(`MusicPlayer[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result.requestCode}`)
+      console.debug(`MusicPlayer[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result.requestCode}`)
     })
   },
   restoreFromWant() {
     featureAbility.getWant((error, want) => {
-      console.info('MusicPlayer[IndexPage] featureAbility.getWant=' + JSON.stringify(want));
+      console.debug('MusicPlayer[IndexPage] featureAbility.getWant=' + JSON.stringify(want));
       var status = want.parameters;
       if (status != null && status.uri != null) {
         this.kvStoreModel.broadcastMessage(REMOTE_ABILITY_STARTED);
         console.info('MusicPlayer[IndexPage] restorePlayingStatus');
         this.playerModel.restorePlayingStatus(status, (index) => {
-          console.info('MusicPlayer[IndexPage] restorePlayingStatus finished, index=' + index);
+          console.debug('MusicPlayer[IndexPage] restorePlayingStatus finished, index=' + index);
           if (index >= 0) {
             this.refreshSongInfo(index);
           } else {
@@ -146,7 +146,7 @@ export default {
     this.restoreFromWant();
   },
   onBackPress() {
-    console.info('MusicPlayer[IndexPage] onBackPress isDialogShowing=' + this.isDialogShowing);
+    console.debug('MusicPlayer[IndexPage] onBackPress isDialogShowing=' + this.isDialogShowing);
     if (this.isDialogShowing === true) {
       this.dismissDialog();
       return true;
@@ -163,7 +163,7 @@ export default {
     console.info('MusicPlayer[IndexPage] onDestroy end');
   },
   refreshSongInfo(index) {
-    console.info('MusicPlayer[IndexPage] refreshSongInfo ' + index + '/'
+    console.debug('MusicPlayer[IndexPage] refreshSongInfo ' + index + '/'
     + this.playerModel.playlist.audioFiles.length);
     if (index >= this.playerModel.playlist.audioFiles.length) {
       console.warn('MusicPlayer[IndexPage] refreshSongInfo ignored');
@@ -177,22 +177,23 @@ export default {
     this.totalMs = this.playerModel.getDuration();
     this.totalTimeText = getShownTimer(this.totalMs);
     this.currentTimeText = getShownTimer(this.playerModel.getCurrentMs());
+    this.currentProgress = Math.floor(this.playerModel.getCurrentMs() / this.totalMs * 100);
 
-    console.info('MusicPlayer[IndexPage] refreshSongInfo this.title=' + this.title + ' this.totalMs='
+    console.debug('MusicPlayer[IndexPage] refreshSongInfo this.title=' + this.title + ' this.totalMs='
     + this.totalMs + ' this.totalTimeText=' + this.totalTimeText + ' this.currentTimeText=' + this.currentTimeText);
   },
   setProgress(e) {
-    console.info('MusicPlayer[IndexPage] setProgress ' + e.mode + ', ' + e.value);
+    console.debug('MusicPlayer[IndexPage] setProgress ' + e.mode + ', ' + e.value);
     this.currentProgress = e.value;
     if (isNaN(this.totalMs)) {
       this.currentProgress = 0;
-      console.info('MusicPlayer[IndexPage] setProgress ignored, totalMs=' + this.totalMs);
+      console.debug('MusicPlayer[IndexPage] setProgress ignored, totalMs=' + this.totalMs);
       return;
     }
     var currentMs = this.currentProgress / 100 * this.totalMs;
     this.currentTimeText = getShownTimer(currentMs);
     if (e.mode === 'end' || e.mode === 'click') {
-      console.info('MusicPlayer[IndexPage] player.seek ' + currentMs);
+      console.debug('MusicPlayer[IndexPage] player.seek ' + currentMs);
       this.playerModel.seek(currentMs);
     }
   },
@@ -237,7 +238,7 @@ export default {
       console.info('MusicPlayer[IndexPage] onPlayClick ignored, isSwitching');
       return;
     }
-    console.info('MusicPlayer[IndexPage] onPlayClick, isPlaying=' + this.playerModel.isPlaying);
+    console.debug('MusicPlayer[IndexPage] onPlayClick, isPlaying=' + this.playerModel.isPlaying);
     if (this.playerModel.isPlaying) {
       this.playerModel.pause();
     } else {
@@ -258,9 +259,9 @@ export default {
       } else {
         deviceList = this.remoteDeviceModel.deviceList;
       }
-      console.info('MusicPlayer[IndexPage] on remote device updated, count=' + deviceList.length);
+      console.debug('MusicPlayer[IndexPage] on remote device updated, count=' + deviceList.length);
       for (var i = 0; i < deviceList.length; i++) {
-        console.info('MusicPlayer[IndexPage] device ' + i + '/' + deviceList.length + ' deviceId='
+        console.debug('MusicPlayer[IndexPage] device ' + i + '/' + deviceList.length + ' deviceId='
         + deviceList[i].deviceId + ' deviceName=' + deviceList[i].deviceName + ' deviceType='
         + deviceList[i].deviceType);
         list[i + 1] = {
@@ -290,7 +291,7 @@ export default {
         isPlaying: false
       };
     }
-    console.info('MusicPlayer[IndexPage] featureAbility.startAbility deviceId=' + deviceId
+    console.debug('MusicPlayer[IndexPage] featureAbility.startAbility deviceId=' + deviceId
     + ' deviceName=' + deviceName);
     var wantValue = {
       bundleName: 'ohos.samples.distributedmusicplayer',
@@ -301,26 +302,26 @@ export default {
     var timerId = setTimeout(() => {
       console.info('MusicPlayer[IndexPage] onMessageReceiveTimeout, terminateSelf');
       featureAbility.terminateSelf((error) => {
-        console.info('MusicPlayer[IndexPage] terminateSelf finished, error=' + error);
+        console.error('MusicPlayer[IndexPage] terminateSelf finished, error=' + error);
       });
     }, 3000);
     this.kvStoreModel.setOnMessageReceivedListener(REMOTE_ABILITY_STARTED, () => {
       console.info('MusicPlayer[IndexPage] OnMessageReceived, terminateSelf');
       clearTimeout(timerId);
       featureAbility.terminateSelf((error) => {
-        console.info('MusicPlayer[IndexPage] terminateSelf finished, error=' + error);
+        console.error('MusicPlayer[IndexPage] terminateSelf finished, error=' + error);
       });
     });
     featureAbility.startAbility({
       want: wantValue
     }).then((data) => {
-      console.info('MusicPlayer[IndexPage] featureAbility.startAbility finished, ' + JSON.stringify(data));
+      console.debug('MusicPlayer[IndexPage] featureAbility.startAbility finished, ' + JSON.stringify(data));
     });
-    console.info('MusicPlayer[IndexPage] featureAbility.startAbility want=' + JSON.stringify(wantValue));
+    console.debug('MusicPlayer[IndexPage] featureAbility.startAbility want=' + JSON.stringify(wantValue));
     console.info('MusicPlayer[IndexPage] featureAbility.startAbility end');
   },
   onRadioChange(inputValue, e) {
-    console.info('MusicPlayer[IndexPage] onRadioChange ' + inputValue + ', ' + e.value);
+    console.debug('MusicPlayer[IndexPage] onRadioChange ' + inputValue + ', ' + e.value);
     if (inputValue === e.value) {
       if (e.value === 'localhost') {
         this.$element('continueAbilityDialog').close();
@@ -339,7 +340,7 @@ export default {
           console.error('MusicPlayer[IndexPage] onRadioChange failed, can not get name from discoverList');
           return;
         }
-        console.info('MusicPlayer[IndexPage] onRadioChange name=' + name);
+        console.debug('MusicPlayer[IndexPage] onRadioChange name=' + name);
         this.$element('continueAbilityDialog').close();
 
         this.remoteDeviceModel.authDevice(e.value, () => {

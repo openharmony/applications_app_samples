@@ -46,7 +46,7 @@ export default class PlayerModel {
   constructor() {
     this.#player = media.createAudioPlayer();
     this.initAudioPlayer()
-    console.info('MusicPlayer[PlayerModel] createAudioPlayer=' + this.#player);
+    console.debug('MusicPlayer[PlayerModel] createAudioPlayer=' + this.#player);
   }
 
   initAudioPlayer() {
@@ -76,10 +76,10 @@ export default class PlayerModel {
   }
 
   restorePlayingStatus(status, callback) {
-    console.info('MusicPlayer[PlayerModel] restorePlayingStatus ' + JSON.stringify(status));
+    console.debug('MusicPlayer[PlayerModel] restorePlayingStatus ' + JSON.stringify(status));
     for (var i = 0; i < this.playlist.audioFiles.length; i++) {
       if (this.playlist.audioFiles[i].fileUri === status.uri) {
-        console.info('MusicPlayer[PlayerModel] restore to index ' + i);
+        console.debug('MusicPlayer[PlayerModel] restore to index ' + i);
         this.preLoad(i, () => {
           this.play(status.seekTo, status.isPlaying);
           console.info('MusicPlayer[PlayerModel] restore play status');
@@ -147,7 +147,7 @@ export default class PlayerModel {
   }
 
   preLoad(index, callback) {
-    console.info('MusicPlayer[PlayerModel] preLoad ' + index + "/" + this.playlist.audioFiles.length);
+    console.debug('MusicPlayer[PlayerModel] preLoad ' + index + "/" + this.playlist.audioFiles.length);
     if (index < 0 || index >= this.playlist.audioFiles.length) {
       console.error('MusicPlayer[PlayerModel] preLoad ignored');
       return 0;
@@ -157,13 +157,13 @@ export default class PlayerModel {
     fileIO.open(uri, function(err, fdNumber){
       let fdPath = 'fd://'
       let source = fdPath + fdNumber
-      console.info('MusicPlayer[PlayerModel] preLoad source' + source)
+      console.debug('MusicPlayer[PlayerModel] preLoad source' + source)
       if (typeof (source) === 'undefined') {
         console.error('MusicPlayer[PlayerModel] preLoad ignored, source=' + source);
         return;
       }
-      console.info('MusicPlayer[PlayerModel] preLoad ' + source + ' begin');
-      console.info('MusicPlayer[PlayerModel] state=' + this.#player.state);
+      console.debug('MusicPlayer[PlayerModel] preLoad ' + source + ' begin');
+      console.debug('MusicPlayer[PlayerModel] state=' + this.#player.state);
       let self = this;
       if (source === this.#player.src && this.#player.state != 'idle') {
         console.info('MusicPlayer[PlayerModel] preLoad finished. src not changed');
@@ -173,26 +173,26 @@ export default class PlayerModel {
         this.cancelTimer();
         console.info('MusicPlayer[PlayerModel] player.reset');
         self.#player.reset();
-        console.info('MusicPlayer[PlayerModel] player.reset done, state=' + self.#player.state);
+        console.debug('MusicPlayer[PlayerModel] player.reset done, state=' + self.#player.state);
         self.#player.on('dataLoad', () => {
-          console.info('MusicPlayer[PlayerModel] dataLoad callback, state=' + self.#player.state);
+          console.debug('MusicPlayer[PlayerModel] dataLoad callback, state=' + self.#player.state);
           callback();
         });
-        console.info('MusicPlayer[PlayerModel] player.src=' + source);
+        console.debug('MusicPlayer[PlayerModel] player.src=' + source);
         self.#player.src = source;
       }
-      console.info('MusicPlayer[PlayerModel] preLoad ' + source + ' end');
+      console.debug('MusicPlayer[PlayerModel] preLoad ' + source + ' end');
     }.bind(this))
   }
 
   getDuration() {
-    console.info('MusicPlayer[PlayerModel] getDuration index=' + this.index);
+    console.debug('MusicPlayer[PlayerModel] getDuration index=' + this.index);
     if (this.playlist.audioFiles[this.index].duration > 0) {
       return this.playlist.audioFiles[this.index].duration;
     }
-    console.info('MusicPlayer[PlayerModel] getDuration state=' + this.#player.state);
+    console.debug('MusicPlayer[PlayerModel] getDuration state=' + this.#player.state);
     this.playlist.audioFiles[this.index].duration = Math.min(this.#player.duration, 97615);
-    console.info('MusicPlayer[PlayerModel] getDuration player.src=' + this.#player.src + ", player.duration=" + this.playlist.audioFiles[this.index].duration);
+    console.debug('MusicPlayer[PlayerModel] getDuration player.src=' + this.#player.src + ", player.duration=" + this.playlist.audioFiles[this.index].duration);
     return this.playlist.audioFiles[this.index].duration;
   }
 
@@ -201,11 +201,11 @@ export default class PlayerModel {
   }
 
   play(seekTo, startPlay) {
-    console.info('MusicPlayer[PlayerModel] play seekTo=' + seekTo + ', startPlay=' + startPlay);
+    console.debug('MusicPlayer[PlayerModel] play seekTo=' + seekTo + ', startPlay=' + startPlay);
     this.notifyPlayingStatus(startPlay);
     if (startPlay) {
       if (seekTo < 0 && this.#currentTimeMs > 0) {
-        console.info('MusicPlayer[PlayerModel] pop seekTo=' + this.#currentTimeMs);
+        console.debug('MusicPlayer[PlayerModel] pop seekTo=' + this.#currentTimeMs);
         seekTo = this.#currentTimeMs;
       }
       let self = this;
@@ -221,43 +221,43 @@ export default class PlayerModel {
       });
       console.info('MusicPlayer[PlayerModel] call player.play');
       this.#player.play();
-      console.info('MusicPlayer[PlayerModel] player.play called player.state=' + this.#player.state);
+      console.debug('MusicPlayer[PlayerModel] player.play called player.state=' + this.#player.state);
     } else if (seekTo > 0) {
       this.#playingProgressListener(seekTo);
       this.#currentTimeMs = seekTo;
-      console.info('MusicPlayer[PlayerModel] stash seekTo=' + this.#currentTimeMs);
+      console.debug('MusicPlayer[PlayerModel] stash seekTo=' + this.#currentTimeMs);
     }
   }
 
   pause() {
     if (!this.isPlaying) {
-      console.info('MusicPlayer[PlayerModel] pause ignored, isPlaying=' + this.isPlaying);
+      console.debug('MusicPlayer[PlayerModel] pause ignored, isPlaying=' + this.isPlaying);
       return;
     }
     this.notifyPlayingStatus(false);
     console.info('MusicPlayer[PlayerModel] call player.pause');
     this.#player.pause();
-    console.info('MusicPlayer[PlayerModel] player.pause called, player.state=' + this.#player.state);
+    console.debug('MusicPlayer[PlayerModel] player.pause called, player.state=' + this.#player.state);
   }
 
   seek(ms) {
     this.#currentTimeMs = ms;
     if (this.isPlaying) {
-      console.log('MusicPlayer[PlayerModel] player.seek ' + ms);
+      console.debug('MusicPlayer[PlayerModel] player.seek ' + ms);
       this.#player.seek(ms);
     } else {
-      console.log('MusicPlayer[PlayerModel] stash seekTo=' + ms);
+      console.debug('MusicPlayer[PlayerModel] stash seekTo=' + ms);
     }
   }
 
   stop() {
     if (!this.isPlaying) {
-      console.info('MusicPlayer[PlayerModel] stop ignored, isPlaying=' + this.isPlaying);
+      console.debug('MusicPlayer[PlayerModel] stop ignored, isPlaying=' + this.isPlaying);
       return;
     }
     this.notifyPlayingStatus(false);
     console.info('MusicPlayer[PlayerModel] call player.stop');
     this.#player.stop();
-    console.info('MusicPlayer[PlayerModel] player.stop called, player.state=' + this.#player.state);
+    console.debug('MusicPlayer[PlayerModel] player.stop called, player.state=' + this.#player.state);
   }
 }

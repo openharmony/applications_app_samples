@@ -37,7 +37,7 @@ export class KvStoreModel {
     };
     console.info('[KvStoreModel] createKVManager begin');
     distributedData.createKVManager(config).then((manager) => {
-      console.info('[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager));
+      console.debug('[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager));
       this.kvManager = manager;
       let options = {
         createIfMissing: true,
@@ -49,7 +49,7 @@ export class KvStoreModel {
       };
       console.info('[KvStoreModel] kvManager.getKVStore begin');
       this.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        console.info('[KvStoreModel] getKVStore success, kvStore=' + store);
+        console.debug('[KvStoreModel] getKVStore success, kvStore=' + store);
         this.kvStore = store;
         callback();
       });
@@ -59,9 +59,9 @@ export class KvStoreModel {
   }
 
   put(key, value) {
-    console.info('[KvStoreModel] kvStore.put ' + key + '=' + value);
+    console.debug('[KvStoreModel] kvStore.put ' + key + '=' + value);
     this.kvStore.put(key, value + 'end').then((data) => {
-      console.info('[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data));
+      console.debug('[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data));
     }).catch((err) => {
       console.error('[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err));
     });
@@ -74,12 +74,12 @@ export class KvStoreModel {
   }
 
   setOnMessageReceivedListener(msg, refreshdata) {
-    console.info('[KvStoreModel] setOnMessageReceivedListener ' + msg);
+    console.debug('[KvStoreModel] setOnMessageReceivedListener ' + msg);
     this.createKvStore(() => {
       console.info('[KvStoreModel] kvStore.on(dataChange) begin');
       this.kvStore.on('dataChange', 1, (data) => {
-        console.info('[KvStoreModel] dataChange, ' + JSON.stringify(data));
-        console.info('[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
+        console.debug('[KvStoreModel] dataChange, ' + JSON.stringify(data));
+        console.debug('[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
         + data.updateEntries.length);
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
         this.simplify(entries, msg, refreshdata)
@@ -92,9 +92,9 @@ export class KvStoreModel {
     for (let i = 0; i < entries.length; i++) {
       if (entries[i].key === msg) {
         let value = entries[i].value.value;
-        console.info('[KvStoreModel] Entries receive ' + msg + '=' + value);
+        console.debug('[KvStoreModel] Entries receive ' + msg + '=' + value);
         let valueResult = value.substring(0, value.lastIndexOf('end'));
-        console.info('[KvStoreModel] Entries receive valueResult = ' + valueResult);
+        console.debug('[KvStoreModel] Entries receive valueResult = ' + valueResult);
         refreshdata(valueResult);
         return;
       }
