@@ -75,7 +75,7 @@
   - [`Recorder`：录音机（eTS）（API8）（Full SDK）](media/Recorder)
   - [`MultiMedia`：相机和媒体库（eTS）（API9）（Full SDK）](media/MultiMedia)
   - [`VideoPlayer`：视频播放（eTS）（API9）（Full SDK）](media/VideoPlayer)
-  - [`Image`：图片处理（eTS）（API8）](media/Image)
+  - [`Image`：图片处理（eTS）（API9）](media/Image)
   - [`GamePuzzle`：拼图（eTS）（API9）](media/GamePuzzle)
   - [`Scan`：媒体库相机（eTS）（API9）](media/Scan)
   - [`VideoShow`：媒体库视频（eTS）（API9）](media/VideoShow)
@@ -260,8 +260,12 @@ app_samples
 
 应用修改记录：[Changlog](Changelog)
 
+## releasenote
+
+应用发布版本分支说明：[releasenote](releasenote)
+
 ## 相关仓<a name="section17988202503118"></a>
 
-1. [app_sample](https://gitee.com/openharmony/app_samples)
+1. [app_sample](https://gitee.com/openharmony/app_samples) 已废弃
 2. [application_app_sample](https://gitee.com/openharmony/application_app_samples)
 
