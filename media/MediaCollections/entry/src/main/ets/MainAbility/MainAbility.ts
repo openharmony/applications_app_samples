@@ -19,7 +19,6 @@ import display from '@ohos.display'
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
-    globalThis.abilityWant = want
   }
 
   onDestroy() {
