@@ -91,9 +91,9 @@ class DataShareHelper {
   // 用户给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。对应FA模型的DataAbilityHelper中的normalizeUri
   normalizeUri = () => {
     this.dataShareHelper.normalizeUri(BASE_URI, (error, data) => {
-      if(error){
+      if (error) {
         Logger.info(TAG, `normalizeUri: ${error}`)
-      }else{
+      } else {
         Logger.info(TAG, `normalizeUri: ${data}`)
         prompt.showToast({
           message: `normalizeUri sucess`
@@ -104,49 +104,51 @@ class DataShareHelper {
 
   // 服务端使用的URI转换为用户传入的初始URI时服务端回调此接口，该方法可以选择性重写。对应FA模型的DataAbilityHelper中的denormalizeUri
   denormalizeUri = () => {
-    this.dataShareHelper.denormalizeUri(BASE_URI, (error, data) => {
-      if(error){
-        Logger.info(TAG, `denormalizeUri error: ${error}`)
-      } else{
-        Logger.info(TAG, `denormalizeUri: ${data}`)
-        prompt.showToast({
-          message: `denormalizeUri sucess`
-        })
-      }
+    this.dataShareHelper.denormalizeUri(BASE_URI, (err, data) => {
+      Logger.info(TAG, `denormalizeUri: ${err}`)
+      prompt.showToast({
+        message: `denormalizeUri: ${data}`
+      })
     })
   }
 
-  // 注册观察者以观察给定uri指定的数据。对应FA模型的DataAbilityHelper中的on
+  // 订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知。
+  // 对应FA模型的DataAbilityHelper中的on
   on = async () => {
     Logger.info(TAG, `on start`)
-    await this.dataShareHelper.on('dataChange', BASE_URI)
-    Logger.info(TAG, `on end`)
-      prompt.showToast({
-        message: `on success`
-    })
+    try {
+      await this.dataShareHelper.on('dataChange', BASE_URI, () => {
+        Logger.info(TAG, `on end`)
+        prompt.showToast({
+          message: `on success`
+        })
+      })
+    } catch (err) {
+      Logger.info(TAG, `[ttt] [DataAbilityTest] Observer on catch(err)====>:${err}`)
+    }
   }
 
-  // 注销用于监视给定uri指定的数据的观察者。对应FA模型的DataAbilityHelper中的off
+  // 取消订阅指定URI对应的数据资源的变更通知。对应FA模型的DataAbilityHelper中的off
   off = async () => {
     Logger.info(TAG, `off start`)
-    await this.dataShareHelper.off('dataChange', BASE_URI)
-    Logger.info(TAG, `off end`)
+    try {
+      await this.dataShareHelper.off('dataChange', BASE_URI)
       prompt.showToast({
         message: `off success`
-    })
+      })
+      Logger.info(TAG, `off end`)
+    } catch (err) {
+      Logger.info(TAG, `[ttt] [DataAbilityTest] Observer off catch(err)====>:${err}`)
+    }
   }
 
   // 通知已注册的观察者Uri指定的数据资源的更改。对应FA模型的DataAbilityHelper中的notifyChange
   notifyChange = () => {
-    this.dataShareHelper.notifyChange(BASE_URI, (error) => {
-      if(error){
-        Logger.info(TAG, `notifyChange error: ${error}`)
-      }else{
-        Logger.info(TAG, `notifyChange sucess`)
-        prompt.showToast({
-          message: `notifyChange sucess`
-        })
-      }
+    this.dataShareHelper.notifyChange(BASE_URI, (err) => {
+      Logger.info(TAG, `notifyChange: ${err}`)
+      prompt.showToast({
+        message: `notifyChange`
+      })
     })
   }
 }

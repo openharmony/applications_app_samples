@@ -36,7 +36,6 @@ struct Index {
   @State url: string = ''
   @State browses: string[] = []
   @State webTitle: string = '主页'
-  @State newProgress: number = 0
   @State isWebError: boolean = false
   @State webState: boolean = false
   @State backToHome: boolean = true
@@ -89,7 +88,6 @@ struct Index {
                 isLoading: $isLoading,
                 isWebError: $isWebError,
                 isHttpError: $isHttpError,
-                newProgress: $newProgress,
                 controller: this.controller,
               })
             }
@@ -113,12 +111,6 @@ struct Index {
         .width('100%')
         .height('93%')
         .backgroundColor('#e5e5e5')
-
-        if (this.isLoading && this.newProgress !== 0) {
-          Progress({ value: this.newProgress, total: 100, type: ProgressType.Linear })
-            .width('90%')
-            .color(Color.Grey)
-        }
         BottomBar({
           url: $url,
           webTitle: $webTitle,
