@@ -114,14 +114,14 @@ export default class GameRules {
 
   gameBegin(pictures: PictureItem[]) {
     this.gameStatus = gameStatus.running
-    let l = pictures.length
+    let len = pictures.length
     let index, temp
-    while (l > 0) {
-      index = Math.floor(Math.random() * l)
-      temp = pictures[l-1]
-      pictures[l-1] = pictures[index]
+    while (len > 0) {
+      index = Math.floor(Math.random() * len)
+      temp = pictures[len-1]
+      pictures[len-1] = pictures[index]
       pictures[index] = temp
-      l--
+      len--
     }
     return pictures
   }

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import prompt from '@ohos.prompt'
 import bundle from '@ohos.bundle'
 import Logger from '../../MainAbility/model/Logger'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
@@ -49,7 +50,7 @@ struct Index {
         value: $r('app.string.cancel'),
         fontColor: Color.Red,
         action: () => {
-          featureAbility.terminateSelf()
+          Logger.info(TAG, `grantUserPermissions cancel`)
         }
       },
       secondaryButton: {
@@ -58,7 +59,7 @@ struct Index {
         action: () => {
           let permissionFlag = 2 // 授权选项，表示允许后不在提醒
           this.atManager.grantUserGrantedPermission(this.tokenID, grantPermissions, permissionFlag, () => {
-            featureAbility.terminateSelf()
+            Logger.info(TAG, `grantUserPermissions confirm`)
           })
         }
       }
@@ -68,6 +69,27 @@ struct Index {
   build() {
     Row() {
       Column() {
+        Button($r('app.string.button'))
+          .key('checkPermission')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let bundleFlag = 0 // 返回的应用信息对象中包含信息的标记,默认值：0
+            bundle.getApplicationInfo('ohos.samples.abilityaccessctrl', bundleFlag).then((data) => {
+              let appInfo = data
+              let tokenID = appInfo.accessTokenId
+              Logger.info(TAG, `test AccessTokenTest accessTokenId = ${appInfo.accessTokenId}, name = ${appInfo.name}`)
+              this.atManager = abilityAccessCtrl.createAtManager()
+              this.atManager.verifyAccessToken(tokenID, "ohos.permission.MICROPHONE").then((data) => {
+                Logger.info(TAG, `test grantUserGrantedPermission = ${JSON.stringify(data)}`)
+                if (data === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+                  prompt.showToast({ message: '权限已被授予' })
+                } else {
+                  prompt.showToast({ message: '权限授予失败' })
+                }
+              })
+            })
+          })
       }
       .width('100%')
     }

@@ -16,7 +16,7 @@
 import Logger from '../model/Logger'
 import { WebError, HttpError } from '../model/Error'
 
-const TAG : string = '[WebComponent]'
+const TAG: string = '[WebComponent]'
 
 @Component
 export struct WebComponent {
@@ -25,15 +25,14 @@ export struct WebComponent {
   @Link url: string
   @Link webTitle: string
   @Link browses: string[]
-  @Link newProgress: number
   @Link webError: WebError
   @Link httpError: HttpError
   @Link isLoading: boolean
   @Link isWebError: boolean
   @Link isHttpError: boolean
 
-  aboutToAppear(){
-    Logger.info(TAG,`this.url=${this.url}`)
+  aboutToAppear() {
+    Logger.info(TAG, `this.url=${this.url}`)
   }
 
   build() {
@@ -85,22 +84,27 @@ export struct WebComponent {
           this.httpError.mimeType = event.response.getResponseMimeType()
           this.isHttpError = true
         })
-        .onTitleReceive((event?: { title: string }) => {
-          this.webTitle = event.title
-          if (this.webTitle.length > 10) {
-            this.webTitle = this.webTitle.substr(0, 10) + '...'
+        .onTitleReceive((event: { title: string }) => {
+          if(event && event.title){
+            this.webTitle = event.title
+            if (this.webTitle.length > 10) {
+              this.webTitle = this.webTitle.substr(0, 10) + '...'
+            }
           }
         })
-        .onProgressChange((event?: { newProgress: number }) => {
-          this.newProgress = event.newProgress
+        .onProgressChange((event: { newProgress: number }) => {
+          if(event && event.newProgress){
+            Logger.info(TAG, `onProgressChange newProgress = ${event.newProgress}`)
+          }
         })
-        .onPageBegin(e => {
+        .onPageBegin((event) => {
           this.isLoading = true
+          this.isWebError = false
           if (this.browses.indexOf(this.url, 0) !== -1) {
             this.browses.splice(this.browses.indexOf(this.url, 0), 1)
           }
           this.browses.unshift(this.url)
-          Logger.info(TAG,`this.browses = ${JSON.stringify(this.browses)}`)
+          Logger.info(TAG, `this.browses = ${JSON.stringify(this.browses)}`)
         })
         .onPageEnd(e => {
           this.isLoading = false

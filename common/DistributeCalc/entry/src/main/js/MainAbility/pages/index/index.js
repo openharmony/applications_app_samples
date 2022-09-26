@@ -124,40 +124,43 @@ export default {
     remoteDeviceModel = undefined
   },
   showDialog() {
-    this.isShow = true
     console.info('Calc[IndexPage] showDialog start');
-    this.deviceList = [];
-    if (remoteDeviceModel === undefined) {
-      remoteDeviceModel = new RemoteDeviceModel()
-    }
-    remoteDeviceModel.registerDeviceListCallback(() => {
+    this.isShow = true
+    setTimeout(()=>{
+      this.deviceList = [];
+      if (remoteDeviceModel === undefined) {
+        remoteDeviceModel = new RemoteDeviceModel()
+      }
+      console.debug(`Calc[IndexPage] showdialog = ${typeof (this.$element('showDialog'))}`)
       console.debug('Calc[IndexPage] registerDeviceListCallback on remote device updated, count='
       + remoteDeviceModel.deviceList.length);
-      let list = [];
-      list.push({
-        deviceId: '0',
-        deviceName: 'Local device',
-        deviceType: 0,
-        networkId: '',
-        checked: this.selectedIndex === 0
-      });
-      let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList;
-      for (let i = 0; i < tempList.length; i++) {
-        console.debug('Calc[IndexPage] device ' + i + '/' + tempList.length
-        + ' deviceId=' + tempList[i].deviceId + ' deviceName=' + tempList[i].deviceName
-        + ' deviceType=' + tempList[i].deviceType);
+      remoteDeviceModel.registerDeviceListCallback(() => {
+        let list = [];
         list.push({
-          deviceId: tempList[i].deviceId,
-          deviceName: tempList[i].deviceName,
-          deviceType: tempList[i].deviceType,
-          networkId: tempList[i].networkId,
-          checked: this.selectedIndex === (i + 1)
+          deviceId: '0',
+          deviceName: 'Local device',
+          deviceType: 0,
+          networkId: '',
+          checked: this.selectedIndex === 0
         });
-      }
-      this.deviceList = list;
-      this.$element('showDialog').close();
-      this.$element('showDialog').show();
-    });
+        let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList;
+        for (let i = 0; i < tempList.length; i++) {
+          console.debug('Calc[IndexPage] device ' + i + '/' + tempList.length
+          + ' deviceId=' + tempList[i].deviceId + ' deviceName=' + tempList[i].deviceName
+          + ' deviceType=' + tempList[i].deviceType);
+          list.push({
+            deviceId: tempList[i].deviceId,
+            deviceName: tempList[i].deviceName,
+            deviceType: tempList[i].deviceType,
+            networkId: tempList[i].networkId,
+            checked: this.selectedIndex === (i + 1)
+          });
+        }
+        this.deviceList = list;
+        this.$element('showDialog').close();
+        this.$element('showDialog').show();
+      });
+    },200)
   },
   cancelDialog() {
     this.$element('showDialog').close();

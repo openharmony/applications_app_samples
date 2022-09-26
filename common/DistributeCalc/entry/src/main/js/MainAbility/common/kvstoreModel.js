@@ -35,9 +35,9 @@ export class KvStoreModel {
         userType: 0
       }
     };
-    console.info('[KvStoreModel] createKVManager begin');
+    console.info('Calc[KvStoreModel] createKVManager begin');
     distributedData.createKVManager(config).then((manager) => {
-      console.debug('[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager));
+      console.debug('calc[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager));
       this.kvManager = manager;
       let options = {
         createIfMissing: true,
@@ -47,23 +47,23 @@ export class KvStoreModel {
         kvStoreType: 1,
         securityLevel: 1,
       };
-      console.info('[KvStoreModel] kvManager.getKVStore begin');
+      console.info('Calc[KvStoreModel] kvManager.getKVStore begin');
       this.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        console.debug('[KvStoreModel] getKVStore success, kvStore=' + store);
+        console.debug('Calc[KvStoreModel] getKVStore success, kvStore=' + store);
         this.kvStore = store;
         callback();
       });
-      console.info('[KvStoreModel] kvManager.getKVStore end');
+      console.info('Calc[KvStoreModel] kvManager.getKVStore end');
     });
-    console.info('[KvStoreModel] createKVManager end');
+    console.info('Calc[KvStoreModel] createKVManager end');
   }
 
   put(key, value) {
-    console.debug('[KvStoreModel] kvStore.put ' + key + '=' + value);
+    console.debug('Calc[KvStoreModel] kvStore.put ' + key + '=' + value);
     this.kvStore.put(key, value + 'end').then((data) => {
-      console.debug('[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data));
+      console.debug('Calc[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data));
     }).catch((err) => {
-      console.error('[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err));
+      console.error('Calc[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err));
     });
   }
 
@@ -74,17 +74,17 @@ export class KvStoreModel {
   }
 
   setOnMessageReceivedListener(msg, refreshdata) {
-    console.debug('[KvStoreModel] setOnMessageReceivedListener ' + msg);
+    console.debug('Calc[KvStoreModel] setOnMessageReceivedListener ' + msg);
     this.createKvStore(() => {
-      console.info('[KvStoreModel] kvStore.on(dataChange) begin');
+      console.info('Calc[KvStoreModel] kvStore.on(dataChange) begin');
       this.kvStore.on('dataChange', 1, (data) => {
-        console.debug('[KvStoreModel] dataChange, ' + JSON.stringify(data));
-        console.debug('[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
+        console.debug('Calc[KvStoreModel] dataChange, ' + JSON.stringify(data));
+        console.debug('Calc[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
         + data.updateEntries.length);
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
         this.simplify(entries, msg, refreshdata)
       });
-      console.info('[KvStoreModel] kvStore.on(dataChange) end');
+      console.info('Calc[KvStoreModel] kvStore.on(dataChange) end');
     });
   }
 
@@ -92,9 +92,9 @@ export class KvStoreModel {
     for (let i = 0; i < entries.length; i++) {
       if (entries[i].key === msg) {
         let value = entries[i].value.value;
-        console.debug('[KvStoreModel] Entries receive ' + msg + '=' + value);
+        console.debug('Calc[KvStoreModel] Entries receive ' + msg + '=' + value);
         let valueResult = value.substring(0, value.lastIndexOf('end'));
-        console.debug('[KvStoreModel] Entries receive valueResult = ' + valueResult);
+        console.debug('Calc[KvStoreModel] Entries receive valueResult = ' + valueResult);
         refreshdata(valueResult);
         return;
       }

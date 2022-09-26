@@ -17,7 +17,7 @@ export function initRound(context: CanvasRenderingContext2D, air) {
   let width = context.width
   let height = context.height
   // 百分比转换
-  let a = +air.airQuality * 2 / 100 + 0.5
+  let percent = +air.airQuality * 2 / 100 + 0.5
   // 背景
   context.save()
   context.beginPath()
@@ -41,7 +41,7 @@ export function initRound(context: CanvasRenderingContext2D, air) {
   color.addColorStop(1, '#82CD61')
   context.strokeStyle = color
 
-  context.arc(width / 2, width / 2, width / 2 - 10, Math.PI * 0.7, Math.PI * a, false)
+  context.arc(width / 2, width / 2, width / 2 - 10, Math.PI * 0.7, Math.PI * percent, false)
   context.stroke()
   context.closePath()
   context.restore()
