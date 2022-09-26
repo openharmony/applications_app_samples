@@ -101,7 +101,7 @@ export struct ScanPage {
       launchWant: null
     }
     this.contexts.eventHub.emit("getAbilityData", data)
-    this.contextCaller = data.context // 拿到全局的context，即类似globalThis.mainAbilityContext
+    this.contextCaller = data.context
     this.onPortrait(this.listenerIsPhone)
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     Logger.info(this.tag, `aboutToAppear,surfaceId=${this.surfaceId}`)
