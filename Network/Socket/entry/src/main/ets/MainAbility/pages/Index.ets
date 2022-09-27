@@ -101,9 +101,9 @@ struct Index {
           Logger.info(TAG, 'receive udp exit 3')
         } else {
           Logger.info(TAG, `receive in Chat sucess`)
-          let date = new Date().getMonth() + '.' + new Date().getDay() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
+          let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
           Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats["chatsArray"])}`)
-          this.chats[this.chats["chatsArray"].length] = new ChatBox(false, str, date)
+          this.chats.pushData(new ChatBox(false, str, date))
           Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats["chatsArray"])}`)
         }
         str = ''
@@ -216,55 +216,54 @@ struct Index {
         }
       ])
 
+      Scroll() {
+        Column() {
+          LazyForEach(this.chats, (item, index) => {
+            if (item.isSend) {
+              Row() {
+                Column() {
+                  Text(item.date)
+                    .fontSize(15) //时间
+                    .width('100%')
+                    .textAlign(TextAlign.End)
+                  Text(item.message)
+                    .maxLines(5)
+                    .padding(10)
+                    .fontSize(20)
+                    .borderRadius(10)
+                    .alignSelf(ItemAlign.End)
+                    .backgroundColor('#ff78dd4d')
+                }.width('70%').margin({ right: 5 })
 
-      Column() {
-        Scroll() {
-          Column() {
-            LazyForEach(this.chats, (item, index) => {
-              if (item.isSend) {
-                Row() {
-                  Column() {
-                    Text(item.date)
-                      .fontSize(15) //时间
-                      .width('100%')
-                      .textAlign(TextAlign.End)
-                    Text(item.message)
-                      .maxLines(5)
-                      .padding(10)
-                      .fontSize(20)
-                      .borderRadius(10)
-                      .alignSelf(ItemAlign.End)
-                      .backgroundColor('#ff78dd4d')
-                  }.width('70%').margin({ right: 5 })
-
-                  Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
-                }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.End)
-              } else {
-                Row() {
-                  Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
-                  Column() {
-                    Text(item.date).width('100%').textAlign(TextAlign.Start).fontSize(15) //时间
-                    Text(item.message)
-                      .fontSize(20)
-                      .maxLines(5)
-                      .padding(10)
-                      .borderRadius(10)
-                      .alignSelf(ItemAlign.Start)
-                      .backgroundColor('#ff78dd4d')
-                  }.width('70%').margin({ left: 5 })
-                }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.Start)
-              }
-
-            }, item => item.message)
-          }.width('100%').height('100%').backgroundColor(Color.White).padding(5)
+                Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
+              }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.End)
+            } else {
+              Row() {
+                Image(item.isSend ? this.userImg : this.otherImg).width(50).height(50).objectFit(ImageFit.Fill)
+                Column() {
+                  Text(item.date).width('100%').textAlign(TextAlign.Start).fontSize(15) //时间
+                  Text(item.message)
+                    .fontSize(20)
+                    .maxLines(5)
+                    .padding(10)
+                    .borderRadius(10)
+                    .alignSelf(ItemAlign.Start)
+                    .backgroundColor('#ff78dd4d')
+                }.width('70%').margin({ left: 5 })
+              }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.Start)
+            }
+          }, item => item.message)
         }
-        .scrollable(ScrollDirection.Vertical)
-        .scrollBar(BarState.Auto)
-        .scrollBarColor(Color.Gray)
-        .scrollBarWidth(30)
         .width('100%')
-        .height('100%')
-      }.width('100%').layoutWeight(1)
+        .padding(5)
+      }
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.Auto)
+      .scrollBarColor(Color.Gray)
+      .backgroundColor(Color.White)
+      .scrollBarWidth(5)
+      .width('100%')
+      .layoutWeight(1)
 
       Row() {
         TextInput({ placeholder: this.message, text: this.message })
@@ -288,7 +287,7 @@ struct Index {
         .margin({ left: 2, right: 2 })
         .backgroundColor('#ffadf58e')
         .onClick(() => {
-          let date = new Date().getMonth() + '.' + new Date().getDay() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
+          let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes()
           let sendMessage = new ChatBox(true, this.message, date)
           this.chats["chatsArray"][this.chats["chatsArray"].length] = sendMessage
           if (this.message !== '' && this.loginState && this.onlineState) {

@@ -67,6 +67,7 @@ export struct Location {
   }
 
   locationChange = async (location) => {
+    Logger.info(TAG, `locationChange location =${JSON.stringify(location)}`)
     this.latitude = location.latitude
     this.longitude = location.longitude
     if (this.latitude !== 0 && this.longitude !== 0) {
@@ -76,14 +77,17 @@ export struct Location {
   }
 
   async getLocation() {
+    Logger.info(TAG, `enter getLocation`)
     let requestInfo: geolocation.LocationRequest = {
-      priority: geolocation.LocationRequestPriority.FIRST_FIX, // 快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段
-      scenario: geolocation.LocationRequestScenario.UNSET, // 未设置场景信息
+      priority: 0x203, // 快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段
+      scenario: 0x300, // 未设置场景信息
       timeInterval: 0, // 上报位置信息的时间间隔
       distanceInterval: 100, // 上报位置信息的距离间隔
       maxAccuracy: 100 // 精度信息
     }
+    Logger.info(TAG, `on locationChange before`)
     geolocation.on('locationChange', requestInfo, this.locationChange)
+    Logger.info(TAG, `on locationChange end`)
   }
 
   build() {
@@ -129,6 +133,7 @@ export struct Location {
         .borderWidth(1)
         .borderColor('#E92F4F')
         .onClick(async () => {
+          Logger.info(TAG, `enter getLocation onClick`)
           await this.getLocation()
         })
 

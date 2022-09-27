@@ -21,6 +21,6 @@ export class ChatBox {
   constructor(isSend: boolean, message: string, date: string) {
     this.isSend = isSend
     this.message = message
-    this.date = this.date
+    this.date = date
   }
 }
