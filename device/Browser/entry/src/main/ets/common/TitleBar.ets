@@ -259,6 +259,31 @@ export struct WebTab {
                 this.browser.hideProgress = false
               }
             })
+            .onSslErrorEventReceive((event) => {
+              AlertDialog.show({
+                title: '当前网络的安全证书已过期或不可信，可能存在安全风险。是否继续访问？',
+                alignment: DialogAlignment.Bottom,
+                offset: { dx: 0, dy: -20 },
+                primaryButton: {
+                  value: '取消',
+                  fontColor: ($r('sys.color.ohos_id_color_text_primary_activated')),
+                  action: () => {
+                    event.handler.handleCancel();
+                  }
+                },
+                secondaryButton: {
+                  value: '继续访问',
+                  fontColor: ($r('sys.color.ohos_id_color_warning')),
+                  action: () => {
+                    event.handler.handleConfirm();
+                  }
+                },
+                cancel: () => {
+                  event.handler.handleCancel();
+                }
+              })
+              return true;
+            })
         }
       }, item => item.timestamp.toString())
     }
