@@ -10,14 +10,7 @@
 
 2.使用[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)实现侧边栏功能。
 
-3.本示例主要使用[栅格容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)实现界面内容的分割和展示，其中对于设备类型和断点的对应关系如下：
-
-| 水平宽度 (vp) | SizeType类型 | Columns数量 | 默认Margin | 默认Gutter | 典型设备                 |
-| ------------- | ------------ | ----------- | ---------- | ---------- | ------------------------ |
-| [0, 320)      | XS           | 2           | 12vp       | 12vp       | 智能穿戴                 |
-| [320, 600)    | SM           | 4           | 24vp       | 24vp       | 默认设备                 |
-| [600, 840)    | MD           | 8           | 32vp       | 24vp       | 智慧屏、竖屏状态的平板等 |
-| [840, +∞)     | LG           | 12          | 48vp       | 24vp       | 车机、横屏状态的平板等   |
+3.使用[栅格容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)实现界面内容的分割和展示。
 
 4.使用Canvas和CanvasRenderingContext2D完成空气质量和日出月落图的曲线绘制。
 

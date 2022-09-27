@@ -10,14 +10,7 @@ This sample demonstrates one-time development for multi-device deployment by sho
 
 2. Use [SideBarContainer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md) to implement the sidebar.
 
-3. Use [GridRow](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-gridrow.md) to implement content split and display. The following table shows the mapping between device types and breakpoints.
-
-| Horizontal Width (vp)| Size Type| Number of Columns| Default Margin| Default Gutter| Typical Devices                |
-| ------------- | ------------ | ----------- | ---------- | ---------- | ------------------------ |
-| [0, 320)      | XS           | 2           | 12vp       | 12vp       | Wearable                |
-| [320, 600)    | SM           | 4           | 24vp       | 24vp       | Default device                |
-| [600, 840)    | MD           | 8           | 32vp       | 24vp       | Smart TV and tablet in portrait mode|
-| [840, +∞)     | LG           | 12          | 48vp       | 24vp       | Head unit and tablet in landscape mode  |
+3. Use [GridRow](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-gridrow.md) to implement content split and display.
 
 4. Use **Canvas** and **CanvasRenderingContext2D** to draw curves that show the air quality and sunrise and sunset.
 
