@@ -93,13 +93,12 @@ enum Operation {
   ContinueAbilityOperation,
   ConnectRemoteServiceOperation,
 }
-
 let connectedAbility;
 let localDeviceId = "";
 let mRemote;
 let remoteDeviceModel = new RemoteDeviceModel;
-let discovereDeviceIdList = new MyDataSource([]);
-let deviceIdList = new MyDataSource([]);
+let discovereDeviceIdList = [];
+let deviceIdList = [];
 let mOperation = Operation.AuthDeviceOperation;
 
 function RegisterDeviceListCallback() {
@@ -110,16 +109,14 @@ function RegisterDeviceListCallback() {
     let deviceSize = remoteDeviceModel.deviceList.length;
     console.info('[dmsDemo] discoveredDeviceSize =' + discoveredDeviceSize);
     console.info('[dmsDemo] deviceSize =' + deviceSize);
-    let discovereDeviceIdStagingList = [];
+    discovereDeviceIdList = [];
     for (let i = 0; i < discoveredDeviceSize; i++) {
-      discovereDeviceIdStagingList.push(remoteDeviceModel.discoverList[i].deviceId);
+      discovereDeviceIdList.push(remoteDeviceModel.discoverList[i].deviceId);
     }
-    discovereDeviceIdList = new MyDataSource(discovereDeviceIdStagingList)
-    let deviceIdStagingList = [];
+    deviceIdList = [];
     for (let i = 0; i < deviceSize; i++) {
-      deviceIdStagingList.push(remoteDeviceModel.deviceList[i].deviceId);
+      deviceIdList.push(remoteDeviceModel.deviceList[i].deviceId);
     }
-    deviceIdList = new MyDataSource(deviceIdStagingList)
     console.info('[dmsDemo] RegisterDeviceListCallback on remote device updated, count=' + deviceSize);
     if (deviceSize === 0) {
       if (discoveredDeviceSize > 0) {
@@ -388,7 +385,7 @@ struct CustomDialogExample1 {
 
   build() {
     List({ space: 10, initialIndex: 0 }) {
-      LazyForEach(discovereDeviceIdList, (item) => {
+      ForEach(discovereDeviceIdList, (item) => {
         ListItem() {
           Row() {
             Text(item)
@@ -429,7 +426,7 @@ struct CustomDialogExample2 {
 
   build() {
     List({ space: 10, initialIndex: 0 }) {
-      LazyForEach(deviceIdList, (item) => {
+      ForEach(deviceIdList, (item) => {
         ListItem() {
           Row() {
             Text(item)
@@ -524,8 +521,8 @@ struct Index {
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         mOperation = Operation.AuthDeviceOperation;
-        console.log('[dmsDemo] discovereDeviceIdList length:' + discovereDeviceIdList.totalCount());
-        if (discovereDeviceIdList !== new MyDataSource([])) {
+        console.log('[dmsDemo] discovereDeviceIdList length:' + discovereDeviceIdList.length);
+        if (discovereDeviceIdList.length>0) {
           this.dialogController1.open();
         } else {
           prompt.showToast({ message: 'already Authed or no discovereDevice ' })
@@ -562,7 +559,7 @@ struct Index {
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         mOperation = Operation.StartRemoteAbilityOperation;
-        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.totalCount());
+        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.length);
         this.dialogController2.open();
       })
       .width('90%')
@@ -596,7 +593,7 @@ struct Index {
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         mOperation = Operation.ConnectRemoteServiceOperation;
-        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.totalCount());
+        console.log('[dmsDemo] deviceIdList length:' + deviceIdList.length);
         this.dialogController2.open();
       })
       .width('90%')

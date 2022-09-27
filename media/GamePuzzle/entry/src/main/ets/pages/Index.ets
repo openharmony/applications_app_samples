@@ -26,7 +26,7 @@ enum gameStatus {
   over = 0
 }
 
-const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA', 'ohos.permission.MEDIA_LOCATION']
+const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION']
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'
@@ -118,7 +118,7 @@ struct Index {
   ImageShow() {
     Image(this.imgDatas[this.index].uri)
       .width(IMAGE_SIZE)
-      .height(vp2px(197))
+      .height(290)
       .objectFit(ImageFit.Fill)
       .onClick(async () => {
         if (this.isRefresh) {
@@ -159,7 +159,7 @@ struct Index {
     .columnsGap(2)
     .rowsGap(2)
     .width(IMAGE_SIZE)
-    .height(vp2px(197))
+    .height(290)
     .margin({ left: leftMargin, top: topMargin })
   }
 
