@@ -160,7 +160,7 @@ export class LauncherAbilityManager {
     })
   }
 
-  mBundleStatusCallback: BundleStatusCallback = {
+  mBundleStatusCallback: launcherBundleMgr.BundleStatusCallback = {
     add: (bundleName, userId) => {
       Logger.debug(TAG, `mBundleStatusCallback add bundleName: ${bundleName}, userId: ${userId}, mUserId ${this.mUserId}`)
       this.mUserId == userId && this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_ADDED, bundleName, userId)
