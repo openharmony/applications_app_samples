@@ -80,6 +80,16 @@
           ],
           "when": "inuse"
         }
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:fuzzy_location_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }

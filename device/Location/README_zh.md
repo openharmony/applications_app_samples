@@ -25,6 +25,8 @@
 
 允许应用在后台运行时获取位置信息：[ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
+允许应用获取设备模糊位置信息:[ohos.permission.APPROXIMATELY_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+
 ### 依赖
 
 不涉及。

@@ -21,7 +21,7 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    await this.context.requestPermissionsFromUser(['ohos.permission.INTERNET','ohos.permission.LOCATION','ohos.permission.LOCATION_IN_BACKGROUND'])
+    await this.context.requestPermissionsFromUser(['ohos.permission.INTERNET','ohos.permission.LOCATION','ohos.permission.LOCATION_IN_BACKGROUND','ohos.permission.APPROXIMATELY_LOCATION'])
   }
 
   onDestroy() {
