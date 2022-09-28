@@ -26,9 +26,9 @@
 }
 
 .calc-icon {
-    width: 75%;
-    height: 50%;
-    object-fit: contain;
+    width: 45%;
+    height: 35%;
+    object-fit: cover;
 }
 
 .content {
@@ -218,4 +218,12 @@
 .calc-select-device-item-right {
     width: 40px;
     height: 40px;
+}
+
+@media screen and (min-aspect-ratio: 1.5) {
+    .calc-icon {
+        width: 40%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
