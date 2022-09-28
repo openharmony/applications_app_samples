@@ -104,7 +104,7 @@ export default struct SideContent {
     .width('100%')
     .height('100%')
     .padding(Style.NORMAL_PADDING)
-    .backgroundColor('#116ACD')
+    .backgroundColor('#55000000')
   }
 
   cityListChange() {
