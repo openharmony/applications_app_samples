@@ -14,16 +14,14 @@
 */
 
 import mediaQuery from '@ohos.mediaquery';
-import fileio from '@ohos.fileio'
 import prompt from '@ohos.prompt'
-import screenshot from '@ohos.screenshot'
 import image from '@ohos.multimedia.image'
 import { RequestRes, RequestResContent } from "../model/HttpModel"
 import { httpRequest } from "../net/HttpRequest"
 import { dialogData } from "../mock/ShareData"
 import { DialogDataModel } from "../model/ShareModel"
 import Logger from "../model/Logger"
-import ShareUtils from "../feature/ShareUtils"
+import { ShareUtils } from "../feature/ShareUtils"
 
 interface EventHub {
   emit(event: string, ...args: Object[]): void
@@ -35,8 +33,7 @@ interface AbilityContext {
   eventHub: EventHub
 }
 
-let portraitFunc = null
-let isPhone: boolean = false
+let isPhone: boolean = true
 const TAG: string = "[Sample_ShareComponent]"
 
 // 弹窗,后期功能优化
@@ -49,6 +46,7 @@ struct ShareDialogBuilder {
   title: string
   srcImg: string
   confirm: () => void
+  shareUtils: ShareUtils = new ShareUtils(getContext(this))
   @State _pixelMap: image.PixelMap = undefined
 
   build() {
@@ -64,7 +62,7 @@ struct ShareDialogBuilder {
           bottom: $r("app.float.margin_bottom_10")
         })
 
-//      Image(this.srcImg)
+      //      Image(this.srcImg)
       Image($r('app.media.phone'))
         .width("100%")
         .height("66%")
@@ -111,7 +109,7 @@ struct ShareDialogBuilder {
           .fontColor(Color.Black)
         Button($r("app.string.shot"))
           .onClick(() => {
-            ShareUtils.getScreen(isPhone, this.contextCaller)
+            this.shareUtils.getScreen(isPhone, this.contextCaller)
             Logger.info(TAG, "getScreen-------- success")
             this.controller.close()
           })
@@ -139,20 +137,11 @@ export struct ButtonDialogBuilder {
   title: string
   srcImg: string
   shareDialogController: CustomDialogController
+  shareUtils: ShareUtils = new ShareUtils(getContext(this))
   private context: AbilityContext
   contextCaller: any
   @State dialogData: Array<DialogDataModel> = dialogData
-  @State _isPhone: boolean = false
   listenerIsPhone = mediaQuery.matchMediaSync('(orientation:landscape)');
-
-  onPortrait(mediaQueryResult) {
-    if (mediaQueryResult.matches) {
-      this._isPhone = false
-    } else {
-      this._isPhone = true
-    }
-    isPhone = this._isPhone
-  }
 
   // 分享图片文件
   shareImage = () => {
@@ -164,7 +153,7 @@ export struct ButtonDialogBuilder {
   onShareFriend() {
     // 拉起三方应用操作
     Logger.info(TAG, `onShareChat:  ${JSON.stringify(this)}`)
-    ShareUtils.startAbility(this.contextCaller, this.title, this.srcImg)
+    this.shareUtils.startAbility(this.contextCaller, this.title, this.srcImg)
   }
 
   openDialog = () => {
@@ -190,7 +179,10 @@ export struct ButtonDialogBuilder {
     Logger.info(TAG, `openDialog: ${JSON.stringify(this)}`)
   }
   shareVideo = () => {
-    ShareUtils.getFileData(this.contextCaller)
+    this.shareUtils.getFileData(this.contextCaller)
+  }
+  onPortrait = (mediaQueryResult) => {
+    isPhone = !mediaQueryResult.matches
   }
 
   async aboutToAppear() {
@@ -203,7 +195,7 @@ export struct ButtonDialogBuilder {
     Logger.info(TAG, 'aboutToAppear');
     this.context.eventHub.emit("getAbilityData", data)
     Logger.info(TAG, 'aboutToAppear  ' + JSON.stringify(data.context) + ' want:' + JSON.stringify(data.launchWant))
-    this.contextCaller = data.context // 拿到全局的context，即类似globalThis.mainAbilityContext
+    this.contextCaller = this.context // 拿到全局的context
     Logger.info(TAG, JSON.stringify(this.contextCaller))
     httpRequest("http://123.60.114.86:8090/goods/detail?id=1", "get", "", (data) => {
       let requestRes: RequestRes = JSON.parse(data.result)
@@ -213,10 +205,12 @@ export struct ButtonDialogBuilder {
       this.title = requestResContent.title
       this.detail1 = requestResContent.price
       this.srcImg = requestResContent.urls[1]
-      Logger.info(TAG, "1111")
     })
-    portraitFunc = this.onPortrait.bind(this) // bind current js instance
-    this.listenerIsPhone.on("change", portraitFunc)
+    this.listenerIsPhone.on("change", this.onPortrait)
+  }
+
+  aboutToDisappear() {
+    this.listenerIsPhone.off('change')
   }
 
   teminate() {
@@ -311,7 +305,7 @@ struct DialogLayoutComponent {
               this.controller.close();
             } else if (item.index == 2) { // 图库文件分享的入口
               // Todo
-              // ShareUtils.getFileData(this.contextCalle
+              // this.shareUtils.getFileData(this.contextCalle
               prompt.showToast({
                 message: this.convertResourceToString($r("app.string.toDO")),
                 duration: 3000,

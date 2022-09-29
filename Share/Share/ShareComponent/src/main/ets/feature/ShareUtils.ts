@@ -22,11 +22,16 @@ import Logger from "../model/Logger"
 import MediaUtils from '../feature/MediaUtils'
 
 const TAG: string = "[Sample_ShareComponent]"
-let context: any = getContext(this)
 
-class ShareUtils {
+export class ShareUtils {
+  private context: any
+
+  constructor(context) {
+    this.context = context
+  }
+
   convertResourceToString(resource: Resource) {
-    return context.resourceManager.getStringSync(resource.id)
+    return this.context.resourceManager.getStringSync(resource.id)
   }
 
   // 分享图片、链接
@@ -221,15 +226,13 @@ class ShareUtils {
 
   async getFileData(contextCaller) {
     let mediaList: Array<mediaLibrary.FileAsset> = []
-    let fileAssets = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+    let fileAssets = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO, this.context)
     let fileAssetName: string = "video_4.mp4"
     let fdVideo
-    mediaList = await MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+    mediaList = await MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO, this.context)
     Logger.info(TAG, `getFileData: getFileData------mediaList ${mediaList}`)
     fdVideo = await this.queryMedia(mediaList, fileAssetName)
     Logger.info(TAG, `getFileData: getFileData------fd ${fdVideo}`)
     await this.startApp(fdVideo, fileAssetName, contextCaller)
   }
 }
-
-export default new ShareUtils()

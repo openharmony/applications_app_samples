@@ -18,9 +18,9 @@ import Logger from '../model/Logger'
 const TAG: string = 'MediaUtils'
 
 class MediaUtils {
-  async getFileAssetsFromType(mediaType: number) {
+  async getFileAssetsFromType(mediaType: number, context: any) {
     let mediaList: Array<mediaLibrary.FileAsset> = []
-    let mediaLib: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
+    let mediaLib: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context)
     Logger.info(TAG, `getFileAssetsFromType,mediaType = ${mediaType}`)
     let fileKeyObj = mediaLibrary.FileKey
 
