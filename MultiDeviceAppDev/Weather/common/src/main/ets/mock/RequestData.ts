@@ -195,25 +195,13 @@ function getSideBg(weatherType: string) {
 
 
 // 根据天气类型 获取背景图片
-function getBg(weatherType: string, isShowSide: boolean) {
+function getBg(weatherType: string) {
   if (weatherType === '晴') {
-    if (isShowSide) {
-      return $r('app.media.sunny_port')
-    } else {
-      return $r('app.media.sunny_bg')
-    }
+    return $r('app.media.sunny_bg')
   } else if (weatherType.includes('雨')) {
-    if (isShowSide) {
-      return $r('app.media.rain_port')
-    } else {
-      return $r('app.media.rain_bg')
-    }
+    return $r('app.media.rain_bg')
   } else {
-    if (isShowSide) {
-      return $r('app.media.yin_port')
-    } else {
-      return $r('app.media.yin_bg')
-    }
+    return $r('app.media.yin_bg')
   }
 }
 
