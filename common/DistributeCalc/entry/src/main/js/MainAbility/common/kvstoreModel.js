@@ -77,7 +77,7 @@ export class KvStoreModel {
     console.debug('Calc[KvStoreModel] setOnMessageReceivedListener ' + msg);
     this.createKvStore(() => {
       console.info('Calc[KvStoreModel] kvStore.on(dataChange) begin');
-      this.kvStore.on('dataChange', 1, (data) => {
+      this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
         console.debug('Calc[KvStoreModel] dataChange, ' + JSON.stringify(data));
         console.debug('Calc[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
         + data.updateEntries.length);
