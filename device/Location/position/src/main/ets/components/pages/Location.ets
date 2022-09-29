@@ -25,27 +25,24 @@ const TAG: string = '[Location]'
 @Entry
 @Component
 export struct Location {
-  @State ratio: number = 1
   @State alphabetIndex: number = 0
   @State location: boolean = true
   @State isCity: string = ''
   @State currentLocation: string = ''
-  @State latitude: number = 0
-  @State longitude: number = 0
+  @State @Watch('positionChange') latitude: number = 0
+  @State @Watch('positionChange') longitude: number = 0
   @State city: string = ''
   @State isShow: boolean = true
   private controller: TabsController = new TabsController()
   private tabValue: string[] = ['A', 'B', 'C', 'F', 'G', 'H', 'J', 'L', 'N', 'Q', 'S', 'T', 'X', 'Y', 'Z']
   private scroller: Scroller = new Scroller()
 
+  async positionChange() {
+    Logger.info(TAG, `latitude = ${this.latitude}, longitude = ${this.longitude}`)
+    await this.requestResponse()
+  }
+
   async aboutToAppear() {
-    let defaultDisplay = await display.getDefaultDisplay()
-    if (defaultDisplay) {
-      let aspect = defaultDisplay.width / defaultDisplay.height
-      if (aspect === 0.5625) {
-        this.ratio = 1.4
-      }
-    }
     await this.requestResponse()
   }
 
@@ -70,10 +67,6 @@ export struct Location {
     Logger.info(TAG, `locationChange location =${JSON.stringify(location)}`)
     this.latitude = location.latitude
     this.longitude = location.longitude
-    if (this.latitude !== 0 && this.longitude !== 0) {
-      Logger.info(TAG, `latitude = ${this.latitude}, longitude = ${this.longitude}`)
-      await this.requestResponse()
-    }
   }
 
   async getLocation() {
