@@ -14,37 +14,25 @@
  */
 
 import Ability from '@ohos.application.Ability'
-import Logger from '../model/Logger'
+import Logger from "../model/Logger"
 
-interface EventHub {
-  emit(event: string, ...args: Object[]): void
-}
+const PERMISSIONS: Array<string> = [
+  'ohos.permission.CAPTURE_SCREEN',
+  'ohos.permission.READ_MEDIA',
+  'ohos.permission.WRITE_MEDIA'
+]
 
-interface AbilityContext {
-  terminateSelf(): Promise<void>
-  eventHub: EventHub
-}
+
+const TAG: string = "[Sample_ShareComponent]"
 
 export default class MainAbility extends Ability {
-  private TAG: string = "[Sample_ShareComponent]"
   onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
-    globalThis.abilityWant = want;
-    globalThis.abilityContext = this.context
-    let requestPermission = async () => {
-      let array: Array<string> = [
-        'ohos.permission.READ_MEDIA',
-        'ohos.permission.WRITE_MEDIA',
-        'ohos.permission.CAPTURE_SCREEN'
-      ];
-      try {
-        await this.context.requestPermissionsFromUser(array)
-        console.info("wjx:requestPermission-----success")
-      } catch (err) {
-        console.log("[request] is fail")
-      }
-    }
-    requestPermission()
+    AppStorage.SetOrCreate('context', this.context)
+    this.context.requestPermissionsFromUser(PERMISSIONS, (err, data) => {
+      Logger.info(TAG, 'request data: ' + JSON.stringify(data))
+      Logger.info(TAG, 'request error code: ' + JSON.stringify(err.code))
+    })
     const that = this
     this.context.eventHub.on("getAbilityData", (data) => {
       data.context = that.context
