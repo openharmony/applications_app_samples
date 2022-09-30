@@ -29,7 +29,6 @@ struct ContactEdit {
   private params: any = router.getParams()
   private isInsert: boolean = <boolean> this.params.isInsert
   @State contact: Contact = <Contact> this.params.contact
-  @State handleSelect: boolean = false
 
   @Builder InputText(icon, placeHolder, key, text, filter, maxLength, onChange) {
     Row() {
@@ -54,14 +53,13 @@ struct ContactEdit {
     .borderRadius(16)
   }
 
-  @Builder popupBuilder() {
+  @Builder menuBuilder() {
     Column({ space: 2 }) {
       Text($r('app.string.male'))
         .fontSize(25)
         .width('100%')
         .padding(5)
         .onClick(() => {
-          this.handleSelect = !this.handleSelect
           this.contact.gender = 0
         })
       Divider().color(Color.Black).height(1)
@@ -70,7 +68,6 @@ struct ContactEdit {
         .width('100%')
         .padding(5)
         .onClick(() => {
-          this.handleSelect = !this.handleSelect
           this.contact.gender = 1
         })
     }
@@ -110,15 +107,12 @@ struct ContactEdit {
   build() {
     Column() {
       TitleBar({ hasBackPress: true, rightBtn: $r('app.media.submit'), handleRightBtn: this.handleSubmit })
-      Scroll(){
-        Column(){
+      Scroll() {
+        Column() {
           Image($r('app.media.contact_photo'))
             .width('30%')
             .aspectRatio(1)
             .objectFit(ImageFit.Fill)
-            .onClick(() => {
-              router.back()
-            })
           Row() {
             Text($r('app.string.gender'))
               .fontSize(25)
@@ -129,16 +123,7 @@ struct ContactEdit {
               .padding(5)
               .margin({ left: 5 })
               .textAlign(TextAlign.Center)
-              .bindPopup(this.handleSelect, {
-                builder: this.popupBuilder,
-                placement: Placement.Bottom,
-                maskColor: 0x33000000,
-                popupColor: Color.White,
-                enableArrow: false
-              })
-              .onClick(() => {
-                this.handleSelect = !this.handleSelect
-              })
+              .bindMenu(this.menuBuilder)
           }
 
           this.InputText($r('app.media.ic_contact'), $r('app.string.name'), 'Name', this.contact.name, '', 20, (value: string) => {

@@ -411,9 +411,9 @@ struct Index {
             Logger.info(TAG, `setProgress ignored, totalMs= ${this.totalMs}`)
             return
           }
-          var currentMs = this.currentProgress / ONE_HUNDRED * this.totalMs
+          let currentMs = this.currentProgress / ONE_HUNDRED * this.totalMs
           this.currentTimeText = this.getShownTimer(currentMs)
-          if (mode === SliderChangeMode.End || mode === SliderChangeMode.Click) {
+          if (mode === SliderChangeMode.End || mode === 3) {
             Logger.info(TAG, `player.seek= ${currentMs}`)
             PlayerModel.seek(currentMs)
           }
