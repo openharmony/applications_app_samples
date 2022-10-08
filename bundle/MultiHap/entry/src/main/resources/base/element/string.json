@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "main_ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "main_ability_label",
+      "value": "MultiHap"
+    }
+  ]
+}
