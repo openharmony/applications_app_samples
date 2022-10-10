@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import Logger  from '../util/Logger'
+import Logger from '../util/Logger'
 import { updateData } from '../mock/DialogData'
 import { dialogFeature } from '../feature/DialogFeature'
 import { AbilityContext } from '../model/DialogDataModel'
-import {RequestResponseContent} from '../net/RequestResponse'
+import { RequestResponseContent } from '../net/RequestResponse'
 
 const TAG: string = 'UpdateDialog'
 
@@ -106,28 +106,28 @@ export struct UpdateDialog {
               Button($r('app.string.cancel'))
                 .commonButtonStyle()
                 .fontSize(20)
-                .margin({left:10})
+                .margin({ left: 10 })
                 .fontColor('#E92F4F')
                 .backgroundColor('rgba(0,0,0,0.05)')
-                .margin({right:10})
+                .margin({ right: 10 })
                 .onClick(() => {
                   this.customDialogController.close()
                 })
-               .key("cancel")
+                .key("cancel")
 
               Button($r('app.string.update_now'))
                 .commonButtonStyle()
                 .fontSize(20)
-                .margin({right:10})
+                .margin({ right: 10 })
                 .fontColor('#FFFFFF')
                 .backgroundColor('#E92F4F')
-                .margin({left:10})
+                .margin({ left: 10 })
                 .onClick(() => {
                   this.customDialogController.close()
                 })
                 .key("Now")
             }
-            .margin({ top: 30})
+            .margin({ top: 30 })
           }
           .width('100%')
           .padding({ left: 25, right: 25 })
@@ -138,8 +138,8 @@ export struct UpdateDialog {
         .backgroundImage($r('app.media.update'), ImageRepeat.NoRepeat)
         .backgroundImageSize(ImageSize.Contain)
       }
-      .width(504)
-      .padding({left: 16, right: 16 })
+      .width(480)
+      .padding({ left: 16, right: 16 })
     }
     .width('100%')
     .height('100%')
