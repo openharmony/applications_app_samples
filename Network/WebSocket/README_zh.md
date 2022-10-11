@@ -1,22 +1,14 @@
 # WebSocket
 
-### 简介
+### 介绍
 
-本示例展示了WebSocket的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。实现效果如下：
-
-![](screenshots/device/disconnect.png)
-
-### 相关概念
+本示例展示了WebSocket的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。
 
 WebSocket连接：使用WebSocket建立服务器与客户端的双向连接，需要先通过createWebSocket方法创建WebSocket对象，然后通过connect方法连接到服务器。
 当连接成功后，客户端会收到open事件的回调，之后客户端就可以通过send方法与服务器进行通信。 当服务器发信息给客户端时，客户端会收到message事件的回调。
 当客户端不要此连接时，可以通过调用close方法主动断开连接，之后客户端会收到close事件的回调。
 
-### 相关权限
-
-网络使用权限：ohos.permission.INTERNET
-
-### 使用说明
+使用方法：
 
 1.输入服务器IP地址，点击**绑定服务器IP地址**按钮，即可绑定该IP并退出弹框，如果要解绑IP，重启应用即可。
 
@@ -25,6 +17,17 @@ WebSocket连接：使用WebSocket建立服务器与客户端的双向连接，�
 3.在底部消息输入框输入消息，点击**发送**按钮，即可收到来自服务端的消息回馈。
 
 4.再次点击顶部栏的**连接**按钮，按钮颜色从绿色重新变成灰色，即可与服务器断开连接，接收不到服务器发来的消息。
+
+### 效果预览
+
+![](screenshots/device/disconnect.png)
+
+### 相关权限
+
+网络使用权限：ohos.permission.INTERNET
+
+### 依赖
+依赖于[WebSocketServer](https://gitee.com/adslk/application_server/tree/master/WebSocketServer)服务器才能实现相关功能。
 
 ### 约束与限制
 
