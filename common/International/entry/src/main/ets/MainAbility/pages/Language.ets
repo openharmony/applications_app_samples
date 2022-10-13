@@ -111,7 +111,11 @@ struct Language {
       LazyForEach(this.preferredLanguages, (item, index) => {
         this.LanguageItem(item, index, () => {
           if (item.id !== this.localLanguage) {
-            i18n.setSystemLanguage(item.id)
+            try {
+              i18n.setSystemLanguage(item.id)
+            } catch (err) {
+              Logger.error(`setSystemLanguage failed, code is ${err.code}, message is ${err.message}`)
+            }
             this.refreshData()
             prompt.showToast({
               message: this.languageSwitchTips

@@ -2,7 +2,7 @@
 
 ### Introduction
 
- This sample shows how to use the screenshot APIs to take screenshots in the eTS project.
+This sample shows how to use the screenshot APIs to take screenshots in the eTS project.
 
 ### Usage
 

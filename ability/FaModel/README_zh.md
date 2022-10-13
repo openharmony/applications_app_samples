@@ -21,7 +21,7 @@ featureAbility： 提供UI设计与用户交互的能力 ， 包括启动新的a
 
 particleAbility： 提供Service类型Ability的能力，包括启动、停止指定的particleAbility，获取dataAbilityHelper，连接、断开当前Ability与指定ServiceAbility等 。
 
-context： 提供ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。 
+context： 提供ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
 
 PageAbility：应用的界面绘制。
 
@@ -119,17 +119,17 @@ FA模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob
 
 
 
- **ParticleAbility ——>ServiceExtensionContext、dataShare接口：**
+**ParticleAbility ——>ServiceExtensionContext、dataShare接口：**
 
- [ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
+[ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
 
- [ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
+[ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
 
- [ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
+[ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
 
- [ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
+[ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
 
- [ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper 
+[ParticleAbilityHelper](./entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
 
 #### 使用说明
 

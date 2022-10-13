@@ -38,12 +38,22 @@ struct Region {
 
   aboutToAppear() {
     Logger.info(TAG, `this.country = ${this.country}`)
-    this.countryIds = i18n.getSystemCountries(this.localLanguage)
+    try {
+      this.countryIds = i18n.getSystemCountries(this.localLanguage)
+    } catch (err) {
+      Logger.error(`getSystemCountries failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(TAG, `systemCountryIds = ${JSON.stringify(this.countryIds)}`)
     this.countryIds.forEach(id => {
       let country = i18n.getDisplayCountry(id, this.localLanguage)
       this.countries.push({ key: country, value: '' })
-      if (i18n.isSuggested(this.localLanguage, id)) {
+      let isSuggested: boolean
+      try {
+        isSuggested = i18n.isSuggested(this.localLanguage, id)
+      } catch (err) {
+        Logger.error(`isSuggested failed, code is ${err.code}, message is ${err.message}`)
+      }
+      if (isSuggested) {
         this.suggestIds.push(id)
         this.suggestCounties.push({ key: country, value: '' })
       }
@@ -52,13 +62,23 @@ struct Region {
 
   setSuggestRegion = (index) => {
     let region = this.suggestIds[index]
-    let result = i18n.setSystemRegion(region)
+    let result: boolean
+    try {
+      result = i18n.setSystemRegion(region)
+    } catch (err) {
+      Logger.error(`setSystemRegion failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(TAG, `setSystemRegion = ${result}`)
     router.back()
   }
   setRegion = (index) => {
     let region = this.countryIds[index]
-    let result = i18n.setSystemRegion(region)
+    let result: boolean
+    try {
+      result = i18n.setSystemRegion(region)
+    } catch (err) {
+      Logger.error(`setSystemRegion failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(TAG, `setSystemRegion = ${result}`)
     router.back()
   }

@@ -45,7 +45,11 @@ class MediaUtils {
     let fileAsset = await this.createAndGetFile(context)
     let fd = await fileAsset.open('Rw')
     imagePackerApi.release()
-    await fileio.write(fd, arrayBuffer)
+    try {
+      await fileio.write(fd, arrayBuffer)
+    } catch (err) {
+      Logger.error(`write failed, code is ${err.code}, message is ${err.message}`)
+    }
     await fileAsset.close(fd)
     Logger.info(TAG, `write done`)
     prompt.showToast({
