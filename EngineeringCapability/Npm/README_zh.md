@@ -20,7 +20,7 @@ npm：npm引用第三方js类库和本地库。
 
     npm install dayjs --save
 
-3.在对应的ets文件中直接引入。
+3.命令执行完成后在需要应用dayjs库的ets文件中引入该库。
 
     import dayjs from 'dayjs'
 
@@ -52,7 +52,7 @@ npm：npm引用第三方js类库和本地库。
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例仅支持已经开源纯逻辑第三方库的导入，dayjs中format方法暂不支持使用。
+2.本示例仅支持已经开源纯逻辑第三方库的导入。
 
 3.本示例为Stage模型，从API version 9开始支持。
 
