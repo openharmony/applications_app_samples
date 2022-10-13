@@ -2,7 +2,7 @@
 
 ### 简介
 
- 此Demo展示eTS项目中如何使用screenshot接口获取屏幕截图。实现效果如下：
+此Demo展示eTS项目中如何使用screenshot接口获取屏幕截图。实现效果如下：
 
 ![image](screenshots/device/image.png)
 

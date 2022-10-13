@@ -28,7 +28,11 @@ let counts: number = 0
 
 export default class FormAbility extends FormExtension {
   getPreferences(context, key) {
-    return preferences.getPreferences(context, key)
+    try {
+      return preferences.getPreferences(context, key)
+    } catch (err) {
+      Logger.error(`getPreferences failed, code is ${err.code}, message is ${err.message}`)
+    }
   }
 
   // 从图库获取图片uri
@@ -52,7 +56,12 @@ export default class FormAbility extends FormExtension {
     Logger.info(TAG, `refreshData`)
     let fileAssets = await this.getImageUri(this.context)
     let preferences = await this.getPreferences(this.context, 'preferences')
-    let preferencesValue = <number> await preferences.get('count', -1)
+    let preferencesValue
+    try {
+      preferencesValue = <number> await preferences.get('count', -1)
+    } catch (err) {
+      Logger.error(`refreshData failed, code is ${err.code}, message is ${err.message}`)
+    }
     if (preferencesValue !== -1) {
       counts = preferencesValue
     }
@@ -80,9 +89,14 @@ export default class FormAbility extends FormExtension {
         }
       }
       Logger.info(TAG, `formBindingDataObj = ${JSON.stringify(formBindingDataObj)}`)
-      await formProvider.updateForm(formId, formBindingData.createFormBindingData(formBindingDataObj))
-      await preferences.put('count', ++counts)
-      await preferences.flush()
+      try {
+        let tempFormBindingData = formBindingData.createFormBindingData(formBindingDataObj)
+        await formProvider.updateForm(formId, tempFormBindingData)
+        await preferences.put('count', ++counts)
+        await preferences.flush()
+      } catch (err) {
+        Logger.error(`createFormBindingData failed, code is ${err.code}, message is ${err.message}`)
+      }
       Logger.info(TAG, `update finish, COUNT = ${preferences.get('count', 'NA')}`)
       formProvider.setFormNextRefreshTime(formId, 5, () => {
         Logger.info(TAG, `setFormNextRefreshTime ${counts} end`)
@@ -93,7 +107,12 @@ export default class FormAbility extends FormExtension {
   onCreate(want) {
     Logger.info(TAG, `onCreate`)
     let formId = want.parameters[GalleryFormConst.FORM_PARAM_IDENTITY_KEY]
-    let fd = fileio.openSync('/data/storage/el1/bundle/entry/resources/base/media/poster.png') // 本地图片路径
+    let fd: number
+    try {
+      fd = fileio.openSync('/data/storage/el1/bundle/entry/resources/base/media/poster.png') // 本地图片路径
+    } catch (err) {
+      Logger.error(`openSync failed, code is ${err.code}, message is ${err.message}`)
+    }
     let formBindingDataObj = {
       'jsonImage': 'memory://iamge',
       'formImages': {

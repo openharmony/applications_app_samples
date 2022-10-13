@@ -24,81 +24,85 @@ const BUNDLE_NAME = "ohos.samples.CallApplication"
 const PERMISSION_REJECT = -1
 
 function getDm() {
+  try {
     DeviceManager.createDeviceManager(BUNDLE_NAME, (error, dm) => {
-        if (error) {
-            Logger.error(TAG, `getDm failed with ${error.code}`)
-            return;
-        }
-        Logger.log(TAG, 'getDm success')
-        AppStorage.SetOrCreate('dmClass', dm)
-    });
+      if (error) {
+        Logger.error(TAG, `getDm failed with ${error.code}`)
+        return
+      }
+      Logger.log(TAG, 'getDm success')
+      AppStorage.SetOrCreate('dmClass', dm)
+    })
+  } catch (err) {
+    Logger.error(`createDeviceManager failed, code is ${err.code}, message is ${err.message}`)
+  }
 }
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        Logger.log(TAG, 'onCreate')
-        AppStorage.SetOrCreate('context', this.context)
-        getDm()
-    }
+  onCreate(want, launchParam) {
+    Logger.log(TAG, 'onCreate')
+    AppStorage.SetOrCreate('context', this.context)
+    getDm()
+  }
 
-    onDestroy() {
-        Logger.log(TAG, 'onDestroy')
-    }
+  onDestroy() {
+    Logger.log(TAG, 'onDestroy')
+  }
 
-    requestPermissions = async () => {
-        let permissions: Array<string> = [
-            "ohos.permission.DISTRIBUTED_DATASYNC"
-        ];
-        let needGrantPermission = false
-        let accessManger = AccessControl.createAtManager()
-        Logger.log(TAG, 'app permission get bundle info')
-        let bundleInfo = await Bundle.getApplicationInfo(BUNDLE_NAME, 0, 100)
-        Logger.log(TAG, `app permission query permission ${bundleInfo.accessTokenId.toString()}`)
-        for (const permission of permissions) {
-            Logger.log(TAG, `app permission query grant status ${permission}`)
-            try {
-                let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
-                if (grantStatus === PERMISSION_REJECT) {
-                    needGrantPermission = true
-                    break;
-                }
-            } catch (err) {
-                Logger.log(TAG, `app permission query grant status error ${permission} ${JSON.stringify(err)}`)
-                needGrantPermission = true
-                break;
-            }
+  requestPermissions = async () => {
+    let permissions: Array<string> = [
+      "ohos.permission.DISTRIBUTED_DATASYNC"
+    ]
+    let needGrantPermission = false
+    let accessManger = AccessControl.createAtManager()
+    Logger.log(TAG, 'app permission get bundle info')
+    let bundleInfo = await Bundle.getApplicationInfo(BUNDLE_NAME, 0, 100)
+    Logger.log(TAG, `app permission query permission ${bundleInfo.accessTokenId.toString()}`)
+    for (const permission of permissions) {
+      Logger.log(TAG, `app permission query grant status ${permission}`)
+      try {
+        let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
+        if (grantStatus === PERMISSION_REJECT) {
+          needGrantPermission = true
+          break
         }
-        if (needGrantPermission) {
-            Logger.log(TAG, 'app permission needGrantPermission')
-            try {
-                await this.context.requestPermissionsFromUser(permissions)
-            } catch (err) {
-                Logger.log(TAG, `app permission ${JSON.stringify(err)}`)
-            }
-        } else {
-            Logger.log(TAG, 'app permission already granted')
-        }
+      } catch (err) {
+        Logger.log(TAG, `app permission query grant status error ${permission} ${JSON.stringify(err)}`)
+        needGrantPermission = true
+        break
+      }
     }
+    if (needGrantPermission) {
+      Logger.log(TAG, 'app permission needGrantPermission')
+      try {
+        await this.context.requestPermissionsFromUser(permissions)
+      } catch (err) {
+        Logger.log(TAG, `app permission ${JSON.stringify(err)}`)
+      }
+    } else {
+      Logger.log(TAG, 'app permission already granted')
+    }
+  }
 
-    onWindowStageCreate(windowStage) {
-        Logger.log(TAG, 'onWindowStageCreate')
-        this.requestPermissions()
-        windowStage.loadContent("pages/index").then((data) => {
-            Logger.info(TAG, `load content succeed with data ${JSON.stringify(data)}`)
-        }).catch((error) => {
-            Logger.error(TAG, `load content failed with error ${JSON.stringify(error)}`)
-        })
-    }
+  onWindowStageCreate(windowStage) {
+    Logger.log(TAG, 'onWindowStageCreate')
+    this.requestPermissions()
+    windowStage.loadContent("pages/index").then((data) => {
+      Logger.info(TAG, `load content succeed with data ${JSON.stringify(data)}`)
+    }).catch((error) => {
+      Logger.error(TAG, `load content failed with error ${JSON.stringify(error)}`)
+    })
+  }
 
-    onWindowStageDestroy() {
-        Logger.log(TAG, 'onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    Logger.log(TAG, 'onWindowStageDestroy')
+  }
 
-    onForeground() {
-        Logger.log(TAG, 'onForeground')
-    }
+  onForeground() {
+    Logger.log(TAG, 'onForeground')
+  }
 
-    onBackground() {
-        Logger.error(TAG, 'onBackground')
-    }
-};
+  onBackground() {
+    Logger.error(TAG, 'onBackground')
+  }
+}

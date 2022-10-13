@@ -14,6 +14,7 @@
  */
 import dataStorage from '@ohos.data.storage';
 import featureAbility from '@ohos.ability.featureAbility';
+import { Logger } from '../components/Logger'
 
 @Entry
 @Component
@@ -25,7 +26,12 @@ struct SwitchControl {
 export function readFile(key) {
   let context = featureAbility.getContext()
   return context.getFilesDir().then((path) => {
-    let promise = dataStorage.getStorage(`${path}/mystore`)
+    let promise
+    try {
+      promise = dataStorage.getStorage(`${path}/mystore`)
+    } catch (err) {
+      Logger.error(`getStorage failed, code is ${err.code}, message is ${err.message}`)
+    }
     return promise.then((storage) => {
       let readText = storage.get(key, 'default')
       return readText.then((value) => {
@@ -42,7 +48,12 @@ export function writeFile({ key="", val="" }) {
   let context = featureAbility.getContext()
   context.getFilesDir().then((path) => {
     // 获取实例
-    let storage = dataStorage.getStorageSync(`${path}/mystore`)
+    let storage
+    try {
+      storage = dataStorage.getStorageSync(`${path}/mystore`)
+    } catch (err) {
+      Logger.error(`getStorageSync failed, code is ${err.code}, message is ${err.message}`)
+    }
     // 将数据写入
     storage.putSync(key, val)
     // 持久化储存

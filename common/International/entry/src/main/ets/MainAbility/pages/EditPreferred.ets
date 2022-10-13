@@ -115,7 +115,11 @@ struct EditPreferred {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             this.deletePreferredLanguages.forEach((item: number) => {
-              i18n.removePreferredLanguage(item)
+              try {
+                i18n.removePreferredLanguage(item)
+              } catch (err) {
+                Logger.error(`removePreferredLanguage failed, code is ${err.code}, message is ${err.message}`)
+              }
             })
             router.back()
           })

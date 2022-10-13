@@ -14,6 +14,7 @@
  */
 
 import rpc from "@ohos.rpc"
+import { Logger } from '../common/Logger'
 
 let TAG = '[eTSRPC.ReceivedData]'
 let resultList: Array<number> = Array.from({ length: 4 }, () => 0)
@@ -33,12 +34,16 @@ let priceList: Map<string, number> = new Map([
 ])
 
 class ReceivedData extends rpc.RemoteObject {
-
   onRemoteRequest(code: number, data: any, reply: any, option: any) {
     console.log(`${TAG} called`)
     if (code === 1) {
       let result = 0
-      let readIntArr = data.readStringArray()
+      let readIntArr
+      try {
+        readIntArr = data.readStringArray()
+      } catch (err) {
+        Logger.error(`readStringArray failed, code is ${err.code}, message is ${err.message}`)
+      }
       console.log(`${TAG} readIntArr= ${readIntArr}`)
       for (let i = 0; i < 4; i++) {
         if (readIntArr[i] === '0') {
@@ -49,7 +54,11 @@ class ReceivedData extends rpc.RemoteObject {
         console.log(`${TAG}, this.resultList= ${resultList}`)
         result += resultList[i]
       }
-      reply.writeInt(result)
+      try {
+        reply.writeInt(result)
+      } catch (err) {
+        Logger.error(`writeInt failed, code is ${err.code}, message is ${err.message}`)
+      }
       console.log(`${TAG} result= ${result}`)
     } else {
       console.log(`${TAG} unknown request code`)

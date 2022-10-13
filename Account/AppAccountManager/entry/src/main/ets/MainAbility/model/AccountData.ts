@@ -35,7 +35,11 @@ export class AccountData {
     const context = featureAbility.getContext()
     let path = await context.getOrCreateLocalDir()
     Logger.info(TAG, `Path is ${path}`)
-    this.storage = await dataStorage.getStorage(`${path}/files/${url}`)
+    try {
+      this.storage = await dataStorage.getStorage(`${path}/files/${url}`)
+    } catch (err) {
+      Logger.error(`getStorage failed, code is ${err.code}, message is ${err.message}`)
+    }
     if (this.storage === null) {
       Logger.info(TAG, `Create stroage is fail.`)
     }
@@ -51,33 +55,47 @@ export class AccountData {
     this.storage = await this.getStorage(url)
     try {
       await this.storage.put(key, value)
+      await this.storage.flush()
       Logger.info(TAG, `put key && value success`)
     } catch (err) {
       Logger.info(TAG, `aaaaaa put failed`)
     }
-    await this.storage.flush()
     return
   }
 
   async hasStorageValue(key: string, url: string) {
     this.storage = await this.getStorage(url)
-    let result = await this.storage.has(key)
+    let result
+    try {
+      result = await this.storage.has(key)
+    } catch (err) {
+      Logger.error(`hasStorageValue failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(TAG, `hasStorageValue success result is ${result}`)
     return result
   }
 
   async getStorageValue(key: string, url: string) {
     this.storage = await this.getStorage(url)
-    let getValue = await this.storage.get(key, 'null')
+    let getValue
+    try {
+      getValue = await this.storage.get(key, 'null')
+    } catch (err) {
+      Logger.error(`getStorageValue failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(TAG, `getStorageValue success`)
     return getValue
   }
 
   async deleteStorageValue(key: string, url: string) {
     this.storage = await this.getStorage(url)
-    await this.storage.delete(key)
+    try {
+      await this.storage.delete(key)
+      await this.storage.flush()
+    } catch (err) {
+      Logger.error(`deleteStorageValue failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(TAG, `delete success`)
-    await this.storage.flush()
     return
   }
 }

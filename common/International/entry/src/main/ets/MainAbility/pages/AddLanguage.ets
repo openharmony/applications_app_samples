@@ -58,7 +58,11 @@ struct AddLanguage {
   addLanguage = (index) => {
     let language = this.languageIds[index]
     Logger.info(TAG, `addPreferredLanguage = ${language}`)
-    i18n.addPreferredLanguage(language)
+    try {
+      i18n.addPreferredLanguage(language)
+    } catch (err) {
+      Logger.error(`addPreferredLanguage failed, code is ${err.code}, message is ${err.message}`)
+    }
     router.back()
   }
 

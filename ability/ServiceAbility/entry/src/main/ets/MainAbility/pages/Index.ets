@@ -17,6 +17,7 @@ import rpc from "@ohos.rpc"
 import { TitleBar } from '../component/TitleBar'
 import { OperateView } from '../component/OperateView'
 import { ServiceModel } from '../model/ServiceModel'
+import { Logger } from '../component/Logger'
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
@@ -114,7 +115,11 @@ struct Index {
     let data: rpc.MessageParcel = rpc.MessageParcel.create()
     let reply: rpc.MessageParcel = rpc.MessageParcel.create()
     data.writeString(this.beforeSortString)
-    await mRemote.sendRequest(1, data, reply, option)
+    try {
+      await mRemote.sendRequest(1, data, reply, option)
+    } catch (err) {
+      Logger.error(`sendRequest failed, code is ${err.code}, message is ${err.message}`)
+    }
     let msg = reply.readString()
     this.afterSortString = msg
   }

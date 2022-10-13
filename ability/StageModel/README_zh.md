@@ -2,7 +2,7 @@
 
 ### 介绍
 
-[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md)的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。 
+[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md)的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
 
 Stage模型的设计基于如下三个出发点：
 
@@ -26,17 +26,17 @@ Stage模型的设计基于如下三个出发点：
 
   **AbilityContext**：AbilityContext是Ability的上下文环境，继承自Context。AbilityContext模块提供允许访问特定于ability的资源的能力，包括对Ability的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
-  **ServiceExtensionContext**：ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。 在使用ServiceExtensionContext的功能前，需要通过ServiceExtensionAbility子类实例获取。 
-  
-  **FormExtensionContext**：FormExtensionContext模块是FormExtension的上下文环境，继承自ExtensionContext。FormExtensionContext模块提供FormExtension具有的接口和能力。 在使用FormExtensionContext的功能前，需要通过FormExtension获取。 
-  
-  **DataShareExtensionAbility**： DataShareExtensionAbility基于ExtensionAbility框架，提供支持数据共享业务的能力，本模块接口仅可在Stage模型下使用。 
-  
+  **ServiceExtensionContext**：ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。 在使用ServiceExtensionContext的功能前，需要通过ServiceExtensionAbility子类实例获取。
+
+  **FormExtensionContext**：FormExtensionContext模块是FormExtension的上下文环境，继承自ExtensionContext。FormExtensionContext模块提供FormExtension具有的接口和能力。 在使用FormExtensionContext的功能前，需要通过FormExtension获取。
+
+  **DataShareExtensionAbility**： DataShareExtensionAbility基于ExtensionAbility框架，提供支持数据共享业务的能力，本模块接口仅可在Stage模型下使用。
+
   **Bundle**：本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility、应用状态等信息的查询 。
-  
-  **Window**：窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置，以及对各窗口间的管理调度。 
-  
-  **abilityAccessCtrl**：程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。 
+
+  **Window**：窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置，以及对各窗口间的管理调度。
+
+  **abilityAccessCtrl**：程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
 #### Stage和FA模型的区别
 
@@ -52,7 +52,7 @@ Stage模型的设计基于如下三个出发点：
 
 6.stage模型DataShareHelper对应FA模型中DataAbilityHelper 。
 
-7.Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager ；FA模型通过导入@ohos.resourceManager， 获取应用资源信息。 
+7.Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager ；FA模型通过导入@ohos.resourceManager， 获取应用资源信息。
 
 #### FA对应Stage接口（FA——>Stage）
 
@@ -126,30 +126,30 @@ Stage模型的设计基于如下三个出发点：
 
 [AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：printDrawnCompleted——>Stage模型不支持
 
- **particleAbility ——>ServiceExtensionContext、dataShare接口：**
+**particleAbility ——>ServiceExtensionContext、dataShare接口：**
 
 
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
+[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
 
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
+[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
 
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
+[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
 
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
+[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
 
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
+[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
 
 #### 使用说明：
 
 1.点击**DataShareExtAbility**按钮，跳转到DataShareExtAbility页面；
 
-   点击**+**，向rdb数据库中添加单个数据，界面显示添加的数据内容；
+点击**+**，向rdb数据库中添加单个数据，界面显示添加的数据内容；
 
-   点击**删除**按钮删除指定数据；
+点击**删除**按钮删除指定数据；
 
-   点击数据列表，弹出dialog框，可对数据进行修改，点击**确认**按钮确认修改；
+点击数据列表，弹出dialog框，可对数据进行修改，点击**确认**按钮确认修改；
 
-   点击返回键，返回首页。
+点击返回键，返回首页。
 
 2.点击各个功能按钮测试各个接口。
 
@@ -161,7 +161,7 @@ Stage模型的设计基于如下三个出发点：
 
 不涉及。
 
-### 依赖 
+### 依赖
 
 FaModel升级StageModel，对应的FaModel参考[FaModel](../FaModel)。
 

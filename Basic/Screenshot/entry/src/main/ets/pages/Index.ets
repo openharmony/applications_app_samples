@@ -35,13 +35,17 @@ struct Index {
         rotation: 0
       }
     }
-    screenshot.save(screenshotOptions, (err, data: image.PixelMap) => {
-      if (err) {
-        Logger.info(TAG, `Failed to save the screenshot. Error:${JSON.stringify(err)}`)
-      }
-      Logger.info(TAG, 'save callback')
-      MediaUtils.savePicture(data, getContext(this) as any)
-    })
+    try {
+      screenshot.save(screenshotOptions, (err, data: image.PixelMap) => {
+        if (err) {
+          Logger.info(TAG, `Failed to save the screenshot. Error:${JSON.stringify(err)}`)
+        }
+        Logger.info(TAG, 'save callback')
+        MediaUtils.savePicture(data, getContext(this) as any)
+      })
+    } catch (err) {
+      Logger.error(`save failed, code is ${err.code}, message is ${err.message}`)
+    }
   }
 
   @Builder

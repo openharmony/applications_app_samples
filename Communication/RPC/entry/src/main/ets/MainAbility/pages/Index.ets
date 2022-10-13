@@ -18,6 +18,7 @@ import { TitleBar } from '../common/TitleBar'
 import { FlexList } from '../common/FlexList'
 import ReceivedData from '../model/ReceivedData'
 import { ProcessData } from '../model/ProcessData'
+import { Logger } from '../common/Logger'
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
@@ -127,10 +128,14 @@ struct Index {
     let data: rpc.MessageParcel = rpc.MessageParcel.create()
     let reply: rpc.MessageParcel = rpc.MessageParcel.create()
     console.log(`${TAG} getCallingUid: ${ReceivedData.getCallingUid()}  getCallingPid: ${ReceivedData.getCallingPid()}`)
-    data.writeStringArray(sendData)
-    await ReceivedData.sendRequest(REQUEST_CODE, data, reply, option)
-    this.result = reply.readInt()
-    reply.reclaim()
+    try {
+      data.writeStringArray(sendData)
+      await ReceivedData.sendRequest(REQUEST_CODE, data, reply, option)
+      this.result = reply.readInt()
+      reply.reclaim()
+    } catch (err) {
+      Logger.error(`sortString failed, code is ${err.code}, message is ${err.message}`)
+    }
   }
 
   build() {
@@ -138,7 +143,7 @@ struct Index {
       Column() {
         TitleBar()
         LazyForEach(new MyDataSource(this.options), (item, index) => {
-          Row(){
+          Row() {
             FlexList({
               category: item.category,
               menu: item.subcategory,
