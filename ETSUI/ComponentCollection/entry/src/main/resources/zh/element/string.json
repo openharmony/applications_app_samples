@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "组件集合"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ArkUI各组件、通用属性、通用方法等分类及描述应用"
+    },
+    {
+      "name": "animation",
+      "value": "动画"
+    },
+    {
+      "name": "component",
+      "value": "组件"
+    },
+    {
+      "name": "universal",
+      "value": "通用"
+    },
+    {
+      "name": "global_method",
+      "value": "全局方法"
+    }
+  ]
+}

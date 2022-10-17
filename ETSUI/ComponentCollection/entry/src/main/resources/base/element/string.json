@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Component Collection"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ArkUI components, common attributes, common methods, etc. to classify and describe applications"
+    },
+    {
+      "name": "animation",
+      "value": "Animation"
+    },
+    {
+      "name": "component",
+      "value": "Component"
+    },
+    {
+      "name": "universal",
+      "value": "Universal"
+    },
+    {
+      "name": "global_method",
+      "value": "Global Method"
+    }
+  ]
+}
