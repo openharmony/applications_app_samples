@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_descc",
+      "value": "橘子购物"
+    },
+    {
+      "name": "MainAbility_descc",
+      "value": "橘子购物"
+    },
+    {
+      "name": "MainAbility_name",
+      "value": "橘子购物"
+    },
+    {
+      "name": "WorkSchedulerExtensionAbility_label",
+      "value": "WorkSchedulerExtensionAbility"
+    },
+    {
+      "name": "WorkSchedulerExtensionAbility_desc",
+      "value": "system schedules the task execution time"
+    }
+  ]
+}
