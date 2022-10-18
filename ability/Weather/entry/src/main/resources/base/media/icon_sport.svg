@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_sport</title>
+    <g id="icon_sport" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="椭圆形" stroke="#FFFFFF" stroke-width="1.5" fill-rule="nonzero" transform="translate(12.000000, 12.000000) rotate(-315.000000) translate(-12.000000, -12.000000) " cx="12" cy="12" r="10.25"></circle>
+        <path d="M12,1.75 C14.6913392,1.75 17.1403913,2.7872855 18.968783,4.48409306 C17.2708238,6.52123521 16.25,9.1413957 16.25,12 C16.25,14.8589161 17.27106,17.479337 18.9677431,19.5166689 C17.1398907,21.2129416 14.6910532,22.25 12,22.25 C9.30866085,22.25 6.85960874,21.2127145 5.03121695,19.5159069 C6.72917624,17.4787648 7.75,14.8586043 7.75,12 C7.75,9.1410839 6.72894002,6.52066304 5.03225695,4.48333106 C6.86010927,2.78705842 9.30894685,1.75 12,1.75 Z" id="合并形状" stroke="#FFFFFF" stroke-width="1.5" fill-rule="nonzero" transform="translate(12.000000, 12.000000) rotate(-315.000000) translate(-12.000000, -12.000000) "></path>
+        <line x1="12.1767767" y1="1.54918027" x2="12.1767767" y2="22.1982233" id="直线-9" stroke="#FFFFFF" stroke-width="1.5" fill-rule="nonzero" transform="translate(12.176777, 11.823223) rotate(-315.000000) translate(-12.176777, -11.823223) "></line>
+    </g>
+</svg>
