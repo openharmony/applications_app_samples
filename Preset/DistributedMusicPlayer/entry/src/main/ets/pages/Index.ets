@@ -68,9 +68,10 @@ struct Index {
       this.deviceLists = []
       this.deviceLists.push({
         deviceId: '0',
-        deviceName: '本机',
-        deviceType: 0,
-        networkId: ''
+        deviceName: 'local device',
+        deviceType: hardware_deviceManager.DeviceType.UNKNOWN_TYPE,
+        networkId: '',
+        range: ONE_THOUSAND
       })
       let deviceTempList = this.remoteDeviceModel.discoverLists.length > 0 ? this.remoteDeviceModel.discoverLists : this.remoteDeviceModel.deviceLists
       for (let i = 0; i < deviceTempList.length; i++) {

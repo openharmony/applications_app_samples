@@ -20,6 +20,7 @@ import { DeviceDialog } from '../Common/DeviceDialog'
 const DEVICE_A: string = 'deviceA'
 const EXIT: string = 'exit'
 const TAG: string = 'TitleBar'
+const DEVICE_RANGE: number = 1000
 
 @Component
 export struct TitleBar {
@@ -102,9 +103,10 @@ export struct TitleBar {
       logger.info(TAG, `[TitleBar] registerDeviceListCallback, callback entered`)
       this.deviceList.push({
         deviceId: '0',
-        deviceName: '本机(结束协同)',
-        deviceType: 0,
-        networkId: ''
+        deviceName: 'local device',
+        deviceType: deviceManager.DeviceType.UNKNOWN_TYPE,
+        networkId: '',
+        range: DEVICE_RANGE
       })
       let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTempList.length; i++) {

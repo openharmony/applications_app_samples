@@ -27,7 +27,7 @@ export struct StreamingMedia {
   @Link isXComponent: boolean
   @Link isPlaying: boolean
   @Link isShowMenu: boolean
-  @Link streamBtnText: string | Resource
+  @Link streamBtnText: Resource
   @Link isStreamShow: boolean
   @Link currentTime: number
   private timer: number = undefined

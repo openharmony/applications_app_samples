@@ -105,7 +105,7 @@ struct ShareDialogBuilder {
             this.controller.close()
             Logger.info(TAG, "ShareDialogBuilder-------- onCancel")
           })
-          .backgroundColor($r("app.color.color_0xffffff"))
+          .backgroundColor($r("app.color.color_FFFFFF"))
           .fontColor(Color.Black)
         Button($r("app.string.shot"))
           .onClick(() => {
@@ -113,7 +113,7 @@ struct ShareDialogBuilder {
             Logger.info(TAG, "getScreen-------- success")
             this.controller.close()
           })
-          .backgroundColor($r("app.color.color_0xffffff"))
+          .backgroundColor($r("app.color.color_FFFFFF"))
           .fontColor(Color.Black)
       }
       .margin({
@@ -187,7 +187,7 @@ export struct ButtonDialogBuilder {
 
   async aboutToAppear() {
     Logger.info(TAG, "get Component's aboutToAppear success")
-    this.context = getContext(this) as AbilityContext
+    this.context = getContext(this) as any
     let data = {
       context: null,
       launchWant: null

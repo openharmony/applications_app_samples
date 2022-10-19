@@ -118,6 +118,10 @@ struct Index {
     Logger.info(TAG, `onMissionIconUpdatedCallback icon has changed`)
   }
 
+  onMissionClosed() {
+    Logger.info(TAG, `onMissionClose closed`)
+  }
+
   handlerRefresh = () => {
     Logger.info(TAG, `clickCallback start`)
     this.isShow = false
@@ -140,7 +144,8 @@ struct Index {
       onMissionDestroyed: this.onMissionDestroyedCallback,
       onMissionSnapshotChanged: this.onMissionSnapshotChangedCallback,
       onMissionMovedToFront: this.onMissionMovedToFrontCallback,
-      onMissionIconUpdated: this.onMissionIconUpdatedCallback
+      onMissionIconUpdated: this.onMissionIconUpdatedCallback,
+      onMissionClosed: this.onMissionClosed
     }
 
     this.listenerId = missionManager.registerMissionListener(listener)

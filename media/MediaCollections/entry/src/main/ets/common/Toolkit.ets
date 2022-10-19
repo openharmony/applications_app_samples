@@ -37,7 +37,7 @@ export struct Toolkit {
   @Link isShowMenu: boolean
   @Link isXComponent: boolean
   @Link isStreamShow: boolean
-  @Link streamBtnText: string | Resource
+  @Link streamBtnText: Resource
   @State isTitle: string = ''
   @Link itemData: mediaLibrary.FileAsset
   @Link audioData: Array<mediaLibrary.FileAsset>
