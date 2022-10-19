@@ -1,0 +1,20 @@
+{
+  "color": {
+    "index_font_color_selected": "#1296db",
+    "index_font_color_unselected": "#565353"
+  },
+  "strings": {
+    "tab_arr": [
+      "component",
+      "universal",
+      "animation",
+      "globalMethod"
+    ],
+    "component_category": [],
+    "universal_category": [],
+    "animation_category": [],
+    "global_method_category": []
+  },
+  "Files": {
+  }
+}
