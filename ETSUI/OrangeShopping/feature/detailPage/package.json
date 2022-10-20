@@ -1,0 +1,17 @@
+{
+  "license": "ISC",
+  "types": "",
+  "devDependencies": {},
+  "name": "detailPage",
+  "description": "a npm package which contains arkUI2.0 page",
+  "ohos": {
+    "org": ""
+  },
+  "main": "src/main/ets/components/MainPage/MainPage.ets",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/video-component": "file:../../libs/ohos-video-component-1.0.4.tgz",
+    "@ohos/sharecomponent": "file:../../libs/ohos-sharecomponent-1.0.1.tgz"
+  }
+}
