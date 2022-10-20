@@ -39,7 +39,7 @@ struct Index {
   contextCaller: any
 
   async aboutToAppear() {
-    this.contexts = getContext(this) as AbilityContext
+    this.contexts = getContext(this) as any
     let data = {
       context: null,
       launchWant: null

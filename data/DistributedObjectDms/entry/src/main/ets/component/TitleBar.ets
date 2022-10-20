@@ -109,9 +109,10 @@ export default struct TitleBar {
       Logger.info(TAG, 'registerDeviceCallback, callback entered')
       this.devices.push({
         deviceId: '0',
-        deviceName: '本机(结束协同)',
+        deviceName: 'local device',
         deviceType: dmsConst.ZERO,
-        networkId: ''
+        networkId: '',
+        range: dmsConst.DEVICE_RANGE
       })
       Logger.info(TAG, `registerDeviceCallback discovers: ${JSON.stringify(this.remoteDeviceModel.discovers)}`)
       Logger.info(TAG, `registerDeviceCallback devices: ${JSON.stringify(this.remoteDeviceModel.devices)}`)

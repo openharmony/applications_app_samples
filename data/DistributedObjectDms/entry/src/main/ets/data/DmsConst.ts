@@ -19,6 +19,7 @@ class DmsConst {
   ABILITY_NAME: string = 'MainAbility'
   PLAY_SPEED: number = 100
   CONVERT_MILLISECOND: number = 1000
+  DEVICE_RANGE: number = 1000
   REQUEST_CODE: number = 3
   SUBSCRIBE_NUMBER: number = 65536
   TWO: number = 2

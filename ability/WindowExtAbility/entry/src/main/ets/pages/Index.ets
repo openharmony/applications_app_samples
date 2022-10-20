@@ -129,8 +129,10 @@ struct Index {
   // 拉起WindowExtAbility
   @Builder Component(info: string) {
     AbilityComponent({
-      abilityName: info,
-      bundleName: 'ohos.samples.windowextability'
+      want:{
+        abilityName: info,
+        bundleName: 'ohos.samples.windowextability'
+      }
     })
       .width(767)
       .height(805)
