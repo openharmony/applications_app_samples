@@ -30,7 +30,7 @@
     },
     {
       "name": "distributed_permission",
-      "value": "distributedPermission"
+      "value": "allows data exchange between different devices"
     }
   ]
 }

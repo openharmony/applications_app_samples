@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import deviceManager from '@ohos.distributedHardware.deviceManager'
-import logger from '../Model/Logger'
+import Logger from '../util/Logger'
 
 const TAG: string = 'DeviceDialog'
 
@@ -37,17 +38,17 @@ export struct DeviceDialog {
             Row() {
               Text(item.deviceName)
                 .fontSize(21)
-                .width('90%')
+                .width(350)
                 .fontColor(Color.Black)
               Image(index === this.selectedIndex ? $r('app.media.checked') : $r('app.media.uncheck'))
-                .width('8%')
+                .width(35)
                 .objectFit(ImageFit.Contain)
             }
             .height(55)
             .onClick(() => {
-              logger.info(TAG, `[Dialog] select device: ${item.deviceId}`)
+              Logger.info(TAG, `select device: ${item.deviceId}`)
               if (index === this.selectedIndex) {
-                logger.info(TAG, `[Dialog] index === this.selectedIndex`)
+                Logger.info(TAG, `index === this.selectedIndex`)
                 return
               }
               this.selectedIndex = index
@@ -55,12 +56,12 @@ export struct DeviceDialog {
           }
         }, item => item.deviceName)
       }
-      .width('80%')
+      .width('100%')
       .height(150)
 
       Button() {
         Text($r('app.string.cancel'))
-          .width('90%')
+          .width(300)
           .fontSize(21)
           .fontColor('#0D9FFB')
           .textAlign(TextAlign.Center)

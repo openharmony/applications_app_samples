@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import distributedData from '@ohos.data.distributedData'
-import logger from '../Model/Logger'
 
-const STORE_ID: string = 'game_game'
+import distributedData from '@ohos.data.distributedData'
+import Logger from '../util/Logger'
+import { GobangConst } from '../util/GobangConst'
+
 const TAG: string = 'KvStoreModel'
 
 export class KvStoreModel {
@@ -30,63 +31,70 @@ export class KvStoreModel {
       callback()
       return
     }
-    var config = {
+    let config = {
       bundleName: 'ohos.samples.distributeddatagobang',
       userInfo: {
         userId: '0',
-        userType: 0
+        userType: distributedData.UserType.SAME_USER_ID
       },
       context: context
     }
-    logger.info(TAG, `[KvStoreModel] createKVManager begin`)
-    distributedData.createKVManager(config).then((manager) => {
-      logger.info(TAG, `[KvStoreModel] createKVManager success, kvManager= ${JSON.stringify(manager)}`)
-      this.kvManager = manager
-      let options = {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: true,
-        kvStoreType: 1,
-        securityLevel: 1
-      }
-      logger.info(TAG, `[KvStoreModel] kvManager.getKVStore begin`)
-      this.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        logger.info(TAG, `[KvStoreModel] getKVStore success, kvStore= ${store}`)
-        this.kvStore = store
-        callback()
+    Logger.info(TAG, `createKVManager begin`)
+    try {
+      distributedData.createKVManager(config).then((manager) => {
+        Logger.info(TAG, `createKVManager success, kvManager= ${JSON.stringify(manager)}`)
+        this.kvManager = manager
+        let options = {
+          createIfMissing: true,
+          encrypt: false,
+          backup: false,
+          autoSync: true,
+          kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+          securityLevel: distributedData.SecurityLevel.S0
+        }
+        Logger.info(TAG, `kvManager.getKVStore begin`)
+        this.kvManager.getKVStore(GobangConst.STORE_ID, options).then((store) => {
+          Logger.info(TAG, `getKVStore success, kvStore= ${store}`)
+          this.kvStore = store
+          callback()
+        })
       })
-      logger.info(TAG, `[KvStoreModel] kvManager.getKVStore end`)
-    })
-    logger.info(TAG, `[KvStoreModel] createKVManager end`)
+    } catch (err) {
+      Logger.error(`createKVManager failed, code is ${err.code}, message is ${err.message}`)
+    }
+    Logger.info(TAG, `[KvStoreModel] createKVManager end`)
   }
 
   put(key, value) {
-    logger.info(TAG, `[KvStoreModel] kvStore.put ${key} = ${value}`)
-    this.kvStore.put(key, value).then((data) => {
-      logger.info(TAG, `[KvStoreModel] kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
-    }).catch((err) => {
-      logger.info(TAG, `[KvStoreModel] kvStore.put  ${key} failed, ${JSON.stringify(err)}`)
-    })
+    Logger.info(TAG, `kvStore.put ${key} = ${value}`)
+    try {
+      this.kvStore.put(key, value).then((data) => {
+        Logger.info(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `kvStore.put  ${key} failed, ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.error(TAG, `kvStore.put failed, code is ${err.code}, message is ${err.message}`)
+    }
   }
 
   setOnMessageReceivedListener(context, msg, callback) {
-    logger.info(TAG, `[KvStoreModel] setOnMessageReceivedListener: ${msg}`)
+    Logger.info(TAG, `setOnMessageReceivedListener: ${msg}`)
     this.createKvStore(context, () => {
-      logger.info(TAG, `[KvStoreModel] kvStore.on(dataChange) begin`)
+      Logger.info(TAG, `kvStore.on(dataChange) begin`)
       this.kvStore.on('dataChange', 1, (data) => {
-        logger.info(TAG, `[KvStoreModelDate] dataChange, ${JSON.stringify(data)}`)
+        Logger.info(TAG, `dataChange, ${JSON.stringify(data)}`)
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
         for (let i = 0; i < entries.length; i++) {
           if (entries[i].key === msg) {
             let value = entries[i].value.value
-            logger.info(TAG, `[KvStoreModel] Entries receive, ${msg} = ${value}`)
+            Logger.info(TAG, `Entries receive, ${msg} = ${value}`)
             callback(value)
             return
           }
         }
       })
-      logger.info(TAG, `[KvStoreModel] kvStore.on(dataChange) end`)
+      Logger.info(TAG, `kvStore.on(dataChange) end`)
     })
   }
 }

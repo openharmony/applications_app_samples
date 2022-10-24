@@ -30,7 +30,27 @@
     },
     {
       "name": "distributed_permission",
-      "value": "distributedPermission"
+      "value": "allows data exchange between different devices"
+    },
+    {
+      "name": "total",
+      "value": "total"
+    },
+    {
+      "name": "round",
+      "value": "round"
+    },
+    {
+      "name": "black_chess",
+      "value": "black chess"
+    },
+    {
+      "name": "white_chess",
+      "value": "white chess"
+    },
+    {
+      "name": "win",
+      "value": "win！"
     }
   ]
 }

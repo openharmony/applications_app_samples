@@ -12,27 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import logger from '../Model/Logger'
-import { TitleBar } from '../Common/TitleBar'
-import { KvStoreModel } from '../Model/KvStoreModel'
-import { RemoteDeviceModel } from '../Model/RemoteDeviceModel'
-import { DistributedDataModel } from '../Model/DistributedDataModel'
 
-let kvStoreModel: KvStoreModel = new KvStoreModel()
-const DEVICE_A: string = 'deviceA'
-const DEVICE_B: string = 'deviceB'
-const EXIT: string = 'exit'
+import Logger from '../util/Logger'
+import { GobangConst } from '../util/GobangConst'
+import { TitleBar } from './Titlebar'
+import { KvStoreModel } from '../model/KvStoreModel'
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
+import { DistributedDataModel } from '../model/DistributedDataModel'
+
 const TAG: string = 'Index'
-const CHESS_COLOR: Array<string> = ['black', 'white']
-const WITH: number = 720
-const HEIGHT: number = 1280
-const SIZE: number = 16
-const CHECK_MODE: [number, number][] = [
-  [1, 0],
-  [0, 1],
-  [1, 1],
-  [1, -1]
-]
 
 @Entry
 @Component
@@ -40,24 +28,29 @@ struct Index {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
+  private kvStoreModel: KvStoreModel = new KvStoreModel()
+  private totalText = ''
+  private winText = ''
+  private roundText = ''
+  private blackChessText = ''
+  private whiteChessText = ''
   @State chessMapArr: Array<Array<string>> = []
-  @State screenWidth: number = WITH
-  @State screenHeight: number = HEIGHT
+  @State screenWidth: number = GobangConst.WIDTH
+  @State screenHeight: number = GobangConst.HEIGHT
   @State dpiBi: number = vp2px(this.screenWidth) / this.screenWidth
-  @State chessSize: number = this.screenWidth / this.dpiBi / SIZE
+  @State chessSize: number = this.screenWidth / this.dpiBi / GobangConst.SIZE
   @State isDistributed: boolean = false
   @State dialogShow: boolean = false
-  @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
-  @StorageLink('deviceFlag') deviceFlag: string = 'A'
   @State isFall: boolean = false
   @State isFlush: boolean = false
   @State countOnReady: number = 1
+  @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
+  @StorageLink('deviceFlag') deviceFlag: string = 'A'
 
   dataChange() {
     if (this.deviceFlag !== 'A') {
       return
     }
-
     let gameDataA = {
       isOver: this.distributedData.isOver,
       step: this.distributedData.step,
@@ -67,24 +60,36 @@ struct Index {
       clickCount: this.distributedData.clickCount,
       fallLocation: this.distributedData.fallLocation
     }
-    logger.info(TAG, `dataChange,${JSON.stringify(gameDataA)}`)
-    kvStoreModel.put(DEVICE_A, JSON.stringify(gameDataA))
-    logger.info(TAG, `[AAA] put ${this.deviceFlag}`)
+    try {
+      this.kvStoreModel.put(GobangConst.DEVICE_A, JSON.stringify(gameDataA))
+    } catch (err) {
+      Logger.error(TAG, `dataChange failed, code is ${err.code}, message is ${err.message}`)
+    }
+    Logger.info(TAG, `put ${this.deviceFlag},${JSON.stringify(gameDataA)}`)
+  }
+
+  convertResourceToString(context: any, resource: Resource) {
+    return context.resourceManager.getStringSync(resource)
   }
 
   async aboutToAppear() {
-    logger.info(TAG, `enter aboutToAppear`)
+    Logger.info(TAG, `enter aboutToAppear`)
     this.distributedData.init()
-    let context = getContext(this)
+    let context = getContext(this) as any
+    this.totalText = this.convertResourceToString(context, $r('app.string.total'))
+    this.roundText = this.convertResourceToString(context, $r('app.string.round'))
+    this.blackChessText = this.convertResourceToString(context, $r('app.string.black_chess'))
+    this.whiteChessText = this.convertResourceToString(context, $r('app.string.white_chess'))
+    this.winText = this.convertResourceToString(context, $r('app.string.win'))
     if (AppStorage.Get('deviceFlag')) {
       this.isDistributed = true
     }
-    if (this.deviceFlag === 'B') {
+    if (AppStorage.Get('deviceFlag') === 'B') {
       this.deviceFlag = 'B'
     }
     if (this.deviceFlag === 'B') {
-      logger.info(TAG, `enter this.deviceFlag === 'B'`)
-      kvStoreModel.setOnMessageReceivedListener(context, DEVICE_A, (value) => {
+      Logger.info(TAG, `enter deviceFlag B`)
+      this.kvStoreModel.setOnMessageReceivedListener(context, GobangConst.DEVICE_A, (value) => {
         let gameDataA = JSON.parse(value)
         this.distributedData.step = gameDataA.step
         this.distributedData.clickCount = gameDataA.clickCount
@@ -100,20 +105,28 @@ struct Index {
         }
       })
     } else if (this.deviceFlag === 'A') {
-      logger.info(TAG, `enter this.deviceFlag === 'A'`)
-      kvStoreModel.setOnMessageReceivedListener(context, DEVICE_B, (value) => {
+      Logger.info(TAG, `enter deviceFlag A`)
+      this.kvStoreModel.setOnMessageReceivedListener(context, GobangConst.DEVICE_B, (value) => {
         let gameDataB = JSON.parse(value)
-        this.fallChressInner(gameDataB.x, gameDataB.y)
+        this.fallChessInner(gameDataB.x, gameDataB.y)
       })
     }
   }
 
   startAbilityCallBack = (key: string) => {
-    if (DEVICE_A === key) {
-      kvStoreModel.put(DEVICE_A, this.distributedData)
+    if (GobangConst.DEVICE_A === key) {
+      try {
+        this.kvStoreModel.put(GobangConst.DEVICE_A, this.distributedData)
+      } catch (err) {
+        Logger.error(`startAbilityCallBack failed, code is ${err.code}, message is ${err.message}`)
+      }
     }
-    if (EXIT === key) {
-      kvStoreModel.put(DEVICE_A, EXIT)
+    if (GobangConst.EXIT === key) {
+      try {
+        this.kvStoreModel.put(GobangConst.DEVICE_A, GobangConst.EXIT)
+      } catch (err) {
+        Logger.error(`startAbilityCallBack failed, code is ${err.code}, message is ${err.message}`)
+      }
     }
   }
 
@@ -164,9 +177,8 @@ struct Index {
     }
   }
 
-  private fallChressInner(x: number, y: number) {
-    logger.info(TAG, `enter fallChressInner`)
-    logger.info(TAG, `this.deviceFlag = ${this.deviceFlag}`)
+  private fallChessInner(x: number, y: number) {
+    Logger.info(TAG, `enter fallChessInner, this.deviceFlag = ${this.deviceFlag}`)
     if (x < 0 || x > 14 || y < 0 || y > 14) {
       return
     }
@@ -176,19 +188,27 @@ struct Index {
           x: x,
           y: y,
         }
-        kvStoreModel.put(DEVICE_B, JSON.stringify(gameDateB))
-        logger.info(TAG, `kvStoreModel.put, deviceB = ${JSON.stringify(gameDateB)}`)
+        try {
+          this.kvStoreModel.put(GobangConst.DEVICE_B, JSON.stringify(gameDateB))
+        } catch (err) {
+          Logger.error(TAG, `deviceB put failed,code is ${err.code}, message is ${err.message}`)
+        }
+        Logger.info(TAG, `kvStoreModel.put, deviceB = ${JSON.stringify(gameDateB)}`)
       } else {
-        this.distributedData.fallChess(x, y, CHESS_COLOR[this.distributedData.step % 2])
+        this.distributedData.fallChess(x, y, GobangConst.CHESS_COLOR[this.distributedData.step % 2])
         this.distributedData.step++
-        logger.info(TAG, `[AAA] fall chess success`)
+        Logger.info(TAG, `fall chess success`)
       }
     }
   }
 
-  private fallChress(event) {
+  constructorMessage() {
+    return `${this.totalText}${Math.ceil(this.distributedData.step / 2)}${this.roundText},${this.distributedData.step % 2 === 0 ? this.whiteChessText : this.blackChessText}${this.winText}`
+  }
+
+  private fallChess(event) {
     if (this.distributedData.isOver) {
-      message:`共计${Math.ceil(this.distributedData.step / 2)}回合,${CHESS_COLOR[this.distributedData.step % 2] === 'black' ? '白子' : '黑子'}胜！`
+      message:this.constructorMessage()
       return
     }
     let clickX = event.x
@@ -200,14 +220,13 @@ struct Index {
     }
     this.distributedData.fallLocation[0] = dx
     this.distributedData.fallLocation[1] = dy
-    logger.info(TAG, `fallChress,${this.distributedData.fallLocation}`)
+    Logger.info(TAG, `fallChess,${this.distributedData.fallLocation},${clickX},${clickY}`)
     if (!this.isFall) {
       return
     }
-    logger.info(TAG, `[AAA] fall ${clickX},${clickY}`)
     let x = dx / this.chessSize - 1
     let y = dy / this.chessSize - 1
-    this.fallChressInner(x, y)
+    this.fallChessInner(x, y)
     this.isFall = false
   }
 
@@ -235,7 +254,7 @@ struct Index {
   }
 
   private checkWin(x, y, color, mode) {
-    logger.info(TAG, `checkWin x = ${x}, y = ${y}`)
+    Logger.info(TAG, `checkWin x = ${x}, y = ${y}`)
     var count = 1
     for (let i = 1; i < 5; i++) {
       if (this.distributedData.chessMapArr[x + i * mode[0]]) {
@@ -255,12 +274,12 @@ struct Index {
         }
       }
     }
-    logger.info(TAG, `checkWin count = ${count}`)
+    Logger.info(TAG, `checkWin count = ${count}`)
     if (count >= 5) {
       setTimeout(() => {
-        logger.info(TAG, `AlertDialog`)
+        Logger.info(TAG, `AlertDialog`)
         AlertDialog.show({
-          message: `共计${Math.ceil(this.distributedData.step / 2)}回合,${CHESS_COLOR[this.distributedData.step % 2] === 'black' ? '白子' : '黑子'}胜！`
+          message: this.constructorMessage()
         })
       }, 100)
       this.distributedData.isOver = true
@@ -274,13 +293,13 @@ struct Index {
       this.context.shadowColor = '#FFFF00'
       this.context.shadowBlur = 20
       this.context.closePath()
-      this.context.fillStyle = CHESS_COLOR[(this.distributedData.step + 1) % 2]
+      this.context.fillStyle = GobangConst.CHESS_COLOR[(this.distributedData.step + 1) % 2]
       this.context.fill()
     }
   }
 
   private confirmFall() {
-    logger.info(TAG, `[BBB],${this.distributedData.fallLocation}`)
+    Logger.info(TAG, `${this.distributedData.fallLocation}`)
     this.context.beginPath()
     this.context.arc(this.distributedData.fallLocation[0], this.distributedData.fallLocation[1], this.chessSize / 2 * 0.8, 0, Math.PI * 2, false)
     this.context.stroke()
@@ -293,16 +312,16 @@ struct Index {
     this.drawAll()
     if (this.distributedData.isOver === false) {
       for (var i = 0; i < 4; i++) {
-        logger.info(TAG, `[111] check ${this.distributedData.chessX},${this.distributedData.chessY}`)
+        Logger.info(TAG, `check ${this.distributedData.chessX},${this.distributedData.chessY}`)
         let x = this.distributedData.chessX
         let y = this.distributedData.chessY
         if (x < 0 || x > 14 || y < 0 || y > 14) {
           continue
         }
         let color = this.distributedData.chessMapArr[x][y]
-        logger.info(TAG, `[111] check ${x},${y},${color}`)
-        this.checkWin(x, y, color, CHECK_MODE[i])
-        logger.info(TAG, `end Canvas onReady`)
+        Logger.info(TAG, `check ${x},${y},${color}`)
+        this.checkWin(x, y, color, GobangConst.CHECK_MODE[i])
+        Logger.info(TAG, `end Canvas onReady`)
       }
     }
     this.fallFlag()
@@ -325,7 +344,7 @@ struct Index {
           .height(this.screenWidth / this.dpiBi)
           .backgroundColor('RGB(222,184,135)')
           .onReady(() => {
-            logger.info(TAG, `enter Canvas onReady`)
+            Logger.info(TAG, `enter Canvas onReady`)
             this.flushData()
           })
           .border({ width: 1, color: 'red' })
@@ -333,9 +352,9 @@ struct Index {
       .margin({ bottom: 10 })
       .onClick((event) => {
         if (this.deviceFlag === 'A' && this.distributedData.step % 2 === 0) {
-          this.fallChress(event)
+          this.fallChess(event)
         } else if (this.deviceFlag === 'B' && this.distributedData.step % 2 !== 0) {
-          this.fallChress(event)
+          this.fallChess(event)
         }
         this.distributedData.clickCount++
       })
@@ -344,11 +363,11 @@ struct Index {
         if (this.deviceFlag === 'A') {
           Row() {
             Button($r('app.string.restart'), { stateEffect: true })
-              .backgroundColor('RGB(210,105,30)')
               .width(this.chessSize * 3)
               .height(45)
               .fontSize(20 / this.dpiBi)
               .margin({ right: 20 })
+              .backgroundColor('RGB(210,105,30)')
               .onClick(() => {
                 this.distributedData.init()
                 this.distributedData.isOver = false
@@ -363,13 +382,16 @@ struct Index {
               .margin({ left: 20 })
               .fontSize(20 / this.dpiBi)
               .onClick(() => {
-                this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
-                this.distributedData.fallGather.shift()
-                this.distributedData.step--
+                if (this.distributedData.step > 0) {
+                  this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
+                  this.distributedData.fallGather.shift()
+                  this.distributedData.step--
+                }
               })
           }
         }
-      }.width('50%')
+      }
+      .width(210)
     }
     .justifyContent(FlexAlign.Center)
     .backgroundImage($r('app.media.bg'))
