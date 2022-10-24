@@ -20,6 +20,8 @@
 
 蓝牙管理权限：ohos.permission.MANAGE_BLUETOOTH
 
+允许应用获取设备模糊位置信息权限：ohos.permission.APPROXIMATELY_LOCATION
+
 ### 使用说明
 
 1.启动应用，若蓝牙本来就打开的，系统会直接搜索周围可配对的设备，若蓝牙未打开，打开开关。
