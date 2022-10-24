@@ -40,6 +40,7 @@
   - [`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](ability/Launcher)
   - [`FaModel`：FA模型（eTS）（API9）](ability/FaModel)
   - [`StageModel`：Stage模型（eTS）（API9）（Full SDK）](ability/StageModel)
+  - [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（eTS）（API9）（Full SDK）](ability/AbilityConnectServiceExtension)
   - [`WindowExtAbility`：窗口扩展（eTS）（API9）（Full SDK）](ability/WindowExtAbility)
 - common
   - [`Clock`：时钟（JS）（API8）](common/Clock)
@@ -129,6 +130,8 @@
   - [`QRCode`：二维码（eTS）（API9）（Full SDK）](ETSUI/QRCode)
   - [`UpgradePopup`：自定义弹窗（eTS）（API9）](ETSUI/UpgradePopup)
   - [`HealthyDiet`：健康饮食（eTS）（API9）](ETSUI/HealthyDiet)
+  - [`OrangeShopping`：购物示例应用（eTS）（API9）](ETSUI/OrangeShopping)
+  - [`ComponentCollection`：组件集合（eTS）（API9）](ETSUI/ComponentCollection)
 - FileManager
   - [`FileIo`：文件管理（eTS）（API8）](FileManager/FileIo)
 - Native
@@ -138,6 +141,7 @@
   - [`Emitter`：处理进程内事件（eTS）（API8）](Notification/Emitter)
   - [`AlarmClock`：后台代理提醒（eTS）（API8）](Notification/AlarmClock)
   - [`Notification`：订阅、发送通知（eTS）（API9）（Full SDK）](Notification/Notification)
+  - [`CustomNotification`：自定义通知（eTS）（API9）](Notification/CustomNotification)
 - Network
   - [`Http`：数据请求（eTS）（API9）](Network/Http)
   - [`Socket`：Socket 连接（eTS）（API8）](Network/Socket)
@@ -192,11 +196,12 @@
   - [`JsUserRegistration`：用户注册（JS）（API8）](UI/JsUserRegistration)
   - [`JsAdaptiveServiceWidget`：多设备自适应服务卡片（JS）（API8）](UI/JsAdaptiveServiceWidget)
   - [`JsAnimator`：动画（JS）（API8）](UI/JsAnimator)
+  - [`JsComponentCollection`：组件集合（JS）（API9）](UI/JsComponentCollection)
 - Util
   - [`UtilBase64Codec`：Base64编解码（eTS）（API8）](Util/UtilBase64Codec)
   - [`UtilScope`：范围判断（eTS）（API8）](Util/UtilScope)
   - [`UtilStringCodec`：字符串编解码（eTS）（API8）](Util/UtilStringCodec)
-  - [`UtilLruBuffer`：缓冲区（eTS）（API8）](Util/UtilLruBuffer)
+  - [`UtilLruBuffer`：缓冲区（eTS）（API9）](Util/UtilLruBuffer)
   - [`UtilRationalNumber`：有理数（eTS）（API8）](Util/UtilRationalNumber)
   - [`UtilTypeCheck`：内置对象类型检查（eTS）（API8）](Util/UtilTypeCheck)
   - [`UtilUrlString`：URL字符串解析（eTS）（API8）](Util/UtilUrlString)
