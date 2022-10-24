@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "shot",
+      "value": "截图并分享"
+    },
+    {
+      "name": "toShare",
+      "value": "分享到"
+    },
+    {
+      "name": "share_video",
+      "value": "(分享视频模块, 点这里)"
+    },
+    {
+      "name": "video_share",
+      "value": "视频分享"
+    },
+    {
+      "name": "copy_line",
+      "value": "复制链接"
+    },
+    {
+      "name": "img_share",
+      "value": "生成海报"
+    },
+    {
+      "name": "todo",
+      "value": "功能开发中"
+    },
+    {
+      "name": "symbol",
+      "value": "￥"
+    },
+    {
+      "name": "shot_prompt",
+      "value": "截图成功!   分享加载中..."
+    },
+    {
+      "name": "start_chat_fail",
+      "value": "分享失败，请先安装一个chat应用！"
+    },
+    {
+      "name": "chat",
+      "value": "Chat"
+    },
+    {
+      "name": "video_sharing",
+      "value": "视频分享"
+    },
+    {
+      "name": "copy_link",
+      "value": "复制链接"
+    },
+    {
+      "name": "generate_poster",
+      "value": "生成海报"
+    }
+  ]
+}
