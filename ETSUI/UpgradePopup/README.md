@@ -4,13 +4,13 @@
 
 This sample demonstrates a custom dialog box used in upgrade scenarios.
 
-In this sample, the [**\<CustomDialogController>**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) component is used to implement the custom dialog box, which provides upgrade information for users; the [**\<RichText>**](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-richtext.md) component is used to display the upgrade information.
+In this sample, [**\<CustomDialogController>**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) is used to implement a custom dialog box; the [**\<RichText>**](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-richtext.md) component is used to display the upgrade information in the custom dialog box.
 
 ### Usage
 
-1. When you start the sample app, an upgrade dialog box is displayed.
+1. When you start the sample app, the upgrade dialog box is displayed.
 
-2. You can touch **Cancel** or **Upgrade Now**. The dialog box will be closed.
+2. You can touch **cancel** or **update now**. The dialog box will be closed.
 
 ### Display Effect
 
