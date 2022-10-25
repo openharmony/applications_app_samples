@@ -23,6 +23,70 @@
     {
       "name": "global_method",
       "value": "Global Method"
+    },
+    {
+      "name": "auxiliary",
+      "value": "Auxiliary"
+    },
+    {
+      "name": "common_properties",
+      "value": "Common properties"
+    },
+    {
+      "name": "prop_background",
+      "value": "Background"
+    },
+    {
+      "name": "prop_border",
+      "value": "Border"
+    },
+    {
+      "name": "prop_font",
+      "value": "Font"
+    },
+    {
+      "name": "prop_size",
+      "value": "Size"
+    },
+    {
+      "name": "graphic_transformation",
+      "value": "Graphics Transform"
+    },
+    {
+      "name": "common_events",
+      "value": "Common events"
+    },
+    {
+      "name": "click_event",
+      "value": "Click event"
+    },
+    {
+      "name": "transition_animation",
+      "value": "Transition animation"
+    },
+    {
+      "name": "interpolation_calculation",
+      "value": "Interpolation calculation"
+    },
+    {
+      "name": "popup_window",
+      "value": "Pop-up window"
+    },
+    {
+      "name": "button_and_selection",
+      "value": "Button and Selection"
+    },
+    {
+      "name": "information_presentation_and_dynamic_effects",
+      "value": "Information presentation and dynamic effects"
+    },
+    {
+      "name": "blank_and_divider",
+      "value": "Blank and divider"
+    },
+    {
+      "name": "text_and_input",
+      "value": "Text and input"
     }
   ]
 }

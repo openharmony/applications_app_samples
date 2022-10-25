@@ -13,7 +13,43 @@
  * limitations under the License.
  */
 
-import { SecondLevelCategory } from '../../model/CategoricalDataType'
+import { SecondLevelCategory, ThirdLevelCategory } from '../../model/CategoricalDataType'
 
-// Universal categorizes
-export const UNIVERSAL_CATEGORIES: SecondLevelCategory[] = []
+const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
+  [
+    {
+      image: $r('app.media.ic_prop_background'),
+      title: $r('app.string.prop_background')
+    },
+    {
+      image: $r('app.media.ic_prop_border'),
+      title: $r('app.string.prop_border')
+    },
+    {
+      image: $r('app.media.ic_prop_font'),
+      title: $r('app.string.prop_font')
+    },
+    {
+      image: $r('app.media.ic_prop_size'),
+      title: $r('app.string.prop_size')
+    },
+    {
+      image: $r('app.media.ic_graphic_transformation'),
+      title: $r('app.string.graphic_transformation')
+    }
+  ]
+
+const COMMON_EVENT: ThirdLevelCategory[] =
+  [
+    {
+      image: $r('app.media.ic_click_event'),
+      title: $r('app.string.click_event')
+    }
+  ]
+
+// Generic categorical data, second menu data
+export const UNIVERSAL_CATEGORIES: SecondLevelCategory[] =
+  [
+    { title: $r('app.string.common_events'), childNodes: COMMON_EVENT },
+    { title: $r('app.string.common_properties'), childNodes: GRAPHIC_TRANSFORMATION }
+  ]

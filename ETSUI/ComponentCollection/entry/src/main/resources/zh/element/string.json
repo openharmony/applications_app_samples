@@ -23,6 +23,70 @@
     {
       "name": "global_method",
       "value": "全局方法"
+    },
+    {
+      "name": "auxiliary",
+      "value": "辅助"
+    },
+    {
+      "name": "common_properties",
+      "value": "通用属性"
+    },
+    {
+      "name": "prop_background",
+      "value": "背景"
+    },
+    {
+      "name": "prop_border",
+      "value": "边框"
+    },
+    {
+      "name": "prop_font",
+      "value": "字体"
+    },
+    {
+      "name": "prop_size",
+      "value": "尺寸"
+    },
+    {
+      "name": "graphic_transformation",
+      "value": "图形变换"
+    },
+    {
+      "name": "common_events",
+      "value": "通用事件"
+    },
+    {
+      "name": "click_event",
+      "value": "点击事件"
+    },
+    {
+      "name": "transition_animation",
+      "value": "转场动画"
+    },
+    {
+      "name": "interpolation_calculation",
+      "value": "插值计算"
+    },
+    {
+      "name": "popup_window",
+      "value": "弹窗"
+    },
+    {
+      "name": "button_and_selection",
+      "value": "按钮与选择"
+    },
+    {
+      "name": "information_presentation_and_dynamic_effects",
+      "value": "信息展示与动效"
+    },
+    {
+      "name": "blank_and_divider",
+      "value": "空白与分隔"
+    },
+    {
+      "name": "text_and_input",
+      "value": "文本与输入"
     }
   ]
 }

@@ -5,8 +5,8 @@
       "value": "#FFFFFF"
     },
     {
-      "name": "background",
-      "value": "#F1F3F5"
+      "name": "bottom_title_divider",
+      "value": "#99838388"
     },
     {
       "name": "tab_bar_divider",
@@ -21,12 +21,40 @@
       "value": "#000000"
     },
     {
-      "name": "check_color",
+      "name": "tab_bar_select",
       "value": "#007DFF"
     },
     {
-      "name": "uncheck_color",
+      "name": "tab_bar_unselect",
       "value": "#66182431"
+    },
+    {
+      "name": "background_shallow_grey",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "background_grey",
+      "value": "#0d000000"
+    },
+    {
+      "name": "background_orange",
+      "value": "#E6A23C"
+    },
+    {
+      "name": "background_pink",
+      "value": "#F56C6C"
+    },
+    {
+      "name": "background_blue",
+      "value": "#409EFF"
+    },
+    {
+      "name": "background_green",
+      "value": "#67C23A"
+    },
+    {
+      "name": "pop_up_background",
+      "value": "#0D182431"
     }
   ]
 }

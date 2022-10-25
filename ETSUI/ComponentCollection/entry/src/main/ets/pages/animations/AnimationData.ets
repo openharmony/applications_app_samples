@@ -15,5 +15,17 @@
 
 import { ThirdLevelCategory } from '../../model/CategoricalDataType'
 
-// Animated categorizes
-export const ANIMATION_CATEGORIES: ThirdLevelCategory[] = []
+const TRANSITION_ANIMATION: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_transition_animation'),
+    title: $r('app.string.transition_animation')
+  }
+
+const INTERPOLATION_CALCULATION: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_interpolation_calculation'),
+    title: $r('app.string.interpolation_calculation')
+  }
+
+// Animated classification data, second menu data
+export const ANIMATION_CATEGORIES: ThirdLevelCategory[] = [TRANSITION_ANIMATION, INTERPOLATION_CALCULATION]
