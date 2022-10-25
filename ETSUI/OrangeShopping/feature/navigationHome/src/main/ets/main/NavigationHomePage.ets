@@ -16,7 +16,7 @@
 import { TAB_TITLE_DATA } from '../mock/ProductsData'
 import { MainPage } from '../components/home/MainPage'
 import { NewProduct } from '../components/home/NewProduct'
-import { ShopCart } from '../components/home/shopCart'
+import { ShopCart } from '../components/home/ShopCart'
 import { User } from '../components/user/User'
 
 AppStorage.Link('isUpdateDialogOpen') || AppStorage.SetOrCreate('isUpdateDialogOpen', false)

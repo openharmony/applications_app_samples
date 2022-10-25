@@ -17,7 +17,7 @@ import router from '@ohos.router'
 import { FAVOR_LIVE_LIST_DATA } from '../../mock/ProductsData'
 import { MyOrderComponent } from '../user/MyOrders'
 import { RewardSectionComponent } from '../user/RrewardSection'
-import { ServiceSectionComponent } from '../user/serviceSection'
+import { ServiceSectionComponent } from '../user/ServiceSection'
 
 @Component
 export struct User {
