@@ -22,7 +22,7 @@ import { WifiModel } from '../model/WifiModel'
 
 const TAG = 'Index'
 const PERMISSION_NAME: string = 'ohos.permission.LOCATION'
-
+const DIMPERMISSION_NAME: string = 'ohos.permission.APPROXIMATELY_LOCATION'
 @Entry
 @Component
 struct Index {
@@ -89,7 +89,7 @@ struct Index {
 
   aboutToAppear() {
     let context = featureAbility.getContext()
-    context.requestPermissionsFromUser([PERMISSION_NAME], 3, function (result) {
+    context.requestPermissionsFromUser([PERMISSION_NAME,DIMPERMISSION_NAME], 3, function (result) {
       Logger.log(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode: ${result}`)
     })
     if (wifi.isWifiActive()) {

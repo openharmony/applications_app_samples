@@ -20,6 +20,8 @@ ohos.permission.DISCOVER_BLUETOOTH
 
 ohos.permission.MANAGE_BLUETOOTH
 
+ohos.permission.APPROXIMATELY_LOCATION
+
 ### Usage
 
 1. Start the app. If Bluetooth is enabled, the system searches for nearby devices that can be paired. If Bluetooth is not enabled, enable it.

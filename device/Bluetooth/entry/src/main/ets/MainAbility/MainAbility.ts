@@ -20,7 +20,7 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     logger.info(TAG, `[Demo] MainAbility onCreate`)
-    await this.context.requestPermissionsFromUser(['ohos.permission.USE_BLUETOOTH', 'ohos.permission.DISCOVER_BLUETOOTH', 'ohos.permission.LOCATION', 'ohos.permission.MANAGE_BLUETOOTH'])
+    await this.context.requestPermissionsFromUser(['ohos.permission.USE_BLUETOOTH', 'ohos.permission.DISCOVER_BLUETOOTH', 'ohos.permission.LOCATION', 'ohos.permission.MANAGE_BLUETOOTH','ohos.permission.APPROXIMATELY_LOCATION'])
   }
 
   onDestroy() {

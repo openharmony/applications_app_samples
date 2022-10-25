@@ -18,6 +18,7 @@ WLAN：提供API实现wlan激活、扫描和连接WIFI等功能。
 获取WLAN配置信息权限：ohos.permission.GET_WIFI_CONFIG
 允许配置WLAN配置权限：ohos.permission.SET_WIFI_CONFIG
 允许控制WLAN连接状态权限：ohos.permission.MANAGE_WIFI_CONNECTION
+允许应用获取设备模糊位置信息权限：ohos.permission.APPROXIMATELY_LOCATION
 
 ### 使用说明
 

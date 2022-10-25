@@ -104,6 +104,10 @@
       {
         "name": "ohos.permission.LOCATION",
         "reason": "request permission"
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "request permission"
       }
     ]
   }
