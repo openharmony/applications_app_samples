@@ -50,7 +50,14 @@
     "js": [
       {
         "pages": [
-          "pages/index/index"
+          "pages/index/index",
+          "pages/animations/PageTransitionSample/PageTransitionSample",
+          "pages/animations/PageTransitionSampleFromTop/PageTransitionSampleFromTop",
+          "pages/animations/PageTransitionSampleFromBottom/PageTransitionSampleFromBottom",
+          "pages/animations/PageTransitionSampleFromLeft/PageTransitionSampleFromLeft",
+          "pages/animations/PageTransitionSampleFromRight/PageTransitionSampleFromRight",
+          "pages/animations/PageTransitionSampleWithScale/PageTransitionSampleWithScale",
+          "pages/animations/PageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
         ],
         "name": ".MainAbility",
         "window": {

@@ -13,7 +13,36 @@
     "component_category": [],
     "universal_category": [],
     "animation_category": [],
-    "global_method_category": []
+    "global_method_category": [],
+    "page_transition_title": "page transition",
+    "page_transition_back": "return to the interpage transition page",
+    "page_transition_introduce": "PAGE TRANSITIONS",
+    "page_transition_handlers": [
+      {
+        "name": "top enter/bottom exit",
+        "url": "pages/animations/PageTransitionSampleFromTop/PageTransitionSampleFromTop"
+      },
+      {
+        "name": "bottom enter/bottom exit",
+        "url": "pages/animations/PageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
+      },
+      {
+        "name": "left enter/bottom exit",
+        "url": "pages/animations/PageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
+      },
+      {
+        "name": "roight enter/bottom exit",
+        "url": "pages/animations/PageTransitionSampleFromRight/PageTransitionSampleFromRight"
+      },
+      {
+        "name": "scale enter/bottom exit",
+        "url": "pages/animations/PageTransitionSampleWithScale/PageTransitionSampleWithScale"
+      },
+      {
+        "name": "rotate enter/bottom exit",
+        "url": "pages/animations/PageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
+      }
+    ]
   },
   "Files": {
   }

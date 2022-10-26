@@ -13,7 +13,36 @@
     "component_category": [],
     "universal_category": [],
     "animation_category": [],
-    "global_method_category": []
+    "global_method_category": [],
+    "page_transition_title": "页面间转场",
+    "page_transition_back": "返回页面间转场页面",
+    "page_transition_introduce": "PAGE TRANSITIONS",
+    "page_transition_handlers": [
+      {
+        "name": "顶部进场/底部退场",
+        "url": "pages/animations/PageTransitionSampleFromTop/PageTransitionSampleFromTop"
+      },
+      {
+        "name": "底部进场/底部退场",
+        "url": "pages/animations/PageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
+      },
+      {
+        "name": "左侧进场/底部退场",
+        "url": "pages/animations/PageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
+      },
+      {
+        "name": "右侧进场/底部退场",
+        "url": "pages/animations/PageTransitionSampleFromRight/PageTransitionSampleFromRight"
+      },
+      {
+        "name": "缩放进场/底部退场",
+        "url": "pages/animations/PageTransitionSampleWithScale/PageTransitionSampleWithScale"
+      },
+      {
+        "name": "旋转进场/底部退场",
+        "url": "pages/animations/PageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
+      }
+    ]
   },
   "Files": {
   }
