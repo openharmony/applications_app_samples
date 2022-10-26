@@ -187,8 +187,10 @@ struct Game {
         clearTimeout(this.timeId);
         this.timeId = -1
       }
-      if (this.pipe[i].x === 5) {
-        this.score++;
+      if (this.pipe[i] && this.pipe[i].x) {
+        if (this.pipe[i].x === 5) {
+          this.score++;
+        }
       }
       if (this.pipe.length % 4 === 0) {
         this.pipe.shift();

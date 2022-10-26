@@ -31,6 +31,8 @@ export default {
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info(TAG + " Request suspension delay will time out.");
     });
-    logger.info(TAG + " delayInfo: " + delayInfo.requestId);
+    if (delayInfo && delayInfo.requestId) {
+      logger.info(TAG + " delayInfo: " + delayInfo.requestId);
+    }
   }
 }
