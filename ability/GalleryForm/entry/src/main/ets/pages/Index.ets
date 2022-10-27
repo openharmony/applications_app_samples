@@ -95,7 +95,8 @@ struct Index {
 
   async aboutToAppear() {
     let context = getContext(this) as any
-    var imageDatas = await ImageData.getAllImage(context)
+    await context.requestPermissionsFromUser(GalleryFormConst.PERMISSIONS)
+    let imageDatas = await ImageData.getAllImage(context)
     this.imageDatas = new MyDataSource(imageDatas)
     Logger.info(TAG, `this image number = ${this.imageDatas.totalCount} uri = ${this.imageDatas[0].uri}`)
 
@@ -106,7 +107,7 @@ struct Index {
       Column() {
         TitleBar()
         Grid() {
-          if ( this.imageDatas != new MyDataSource([])) {
+          if (this.imageDatas != new MyDataSource([])) {
             LazyForEach(this.imageDatas, item => {
               GridItem() {
                 Image(item.uri)
