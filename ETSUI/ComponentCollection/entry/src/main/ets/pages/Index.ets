@@ -34,7 +34,7 @@ struct Index {
     .barHeight(56)
     .barWidth('100%')
     .vertical(false)
-    .backgroundColor($r('app.color.background'))
+    .backgroundColor($r('app.color.background_shallow_grey'))
     .onChange((index: number) => {
       this.tabsIndex = index
     })
@@ -50,7 +50,7 @@ struct Index {
       Text(tabBarName)
         .fontSize(10)
         .fontFamily('HarmonyHeiTi-Medium')
-        .fontColor(this.tabsIndex === index ? $r('app.color.check_color') : $r('app.color.uncheck_color'))
+        .fontColor(this.tabsIndex === index ? $r('app.color.tab_bar_select') : $r('app.color.tab_bar_unselect'))
     }
     .width('100%')
     .padding({ top: 6, bottom: 6 })

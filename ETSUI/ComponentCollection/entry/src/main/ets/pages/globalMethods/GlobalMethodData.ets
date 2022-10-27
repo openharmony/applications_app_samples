@@ -15,5 +15,11 @@
 
 import { ThirdLevelCategory } from '../../model/CategoricalDataType'
 
-// The global method categorizes
-export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = []
+const POPUP: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_popup_window'),
+    title: $r('app.string.popup_window')
+  }
+
+// The global method categorizes data, second menu data
+export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [POPUP]

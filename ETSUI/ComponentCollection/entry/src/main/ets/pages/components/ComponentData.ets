@@ -15,5 +15,42 @@
 
 import { ThirdLevelCategory } from '../../model/CategoricalDataType'
 
-// Component categorizes
-export const COMPONENT_CATEGORIES: ThirdLevelCategory[] = []
+const AUXILIARY: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_auxiliary'),
+    title: $r('app.string.auxiliary')
+  }
+
+const BUTTON_AND_SELECTION: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_button_and_selection'),
+    title: $r('app.string.button_and_selection')
+  }
+
+const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_information_presentation_and_dynamic_effects'),
+    title: $r('app.string.information_presentation_and_dynamic_effects')
+  }
+
+const BLANK_AND_DIVIDER: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_blank_and_divider'),
+    title: $r('app.string.blank_and_divider')
+  }
+
+const TEXT_AND_INPUT: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_text_and_input'),
+    title: $r('app.string.text_and_input')
+  }
+
+// Component classification data, second menu data
+export const COMPONENT_CATEGORIES: ThirdLevelCategory[] =
+  [
+    BLANK_AND_DIVIDER,
+    BUTTON_AND_SELECTION,
+    INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS,
+    TEXT_AND_INPUT,
+    AUXILIARY
+  ]
