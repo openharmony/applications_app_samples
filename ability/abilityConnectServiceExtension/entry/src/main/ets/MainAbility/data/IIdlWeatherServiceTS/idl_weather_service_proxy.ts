@@ -24,7 +24,7 @@ export default class IdlWeatherServiceProxy implements IIdlWeatherService {
   }
 
   updateWeather(data: number, callback: updateWeatherCallback): void {
-    let _option = new rpc.MessageOption(rpc.MessageOption.TF_SYNC)
+    let _option = new rpc.MessageOption(0)
     let _data = new rpc.MessageParcel()
     let _reply = new rpc.MessageParcel()
     _data.writeInt(data)

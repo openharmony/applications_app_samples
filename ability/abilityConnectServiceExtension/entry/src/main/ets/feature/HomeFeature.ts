@@ -16,7 +16,7 @@
 import Logger from '../util/Logger'
 import IdlWeatherServiceProxy from '../MainAbility/data/IIdlWeatherServiceTS/idl_weather_service_proxy'
 
-const BUNDLE_NAME = "com.example.weather"
+const BUNDLE_NAME = "com.example.abilityconnectserviceextension"
 const SERVICE_EXTENSION_ABILITY_NAME = "ServiceExtAbility"
 const ERROR_CODE = -1 // 失败
 const SUCCESS_CODE = 0 // 成功
