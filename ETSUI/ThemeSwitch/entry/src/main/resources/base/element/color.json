@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "custom_main_color",
+      "value": "#160742"
+    },
+    {
+      "name": "custom_status_color",
+      "value": "#00a2ff"
+    },
+    {
+      "name": "custom_background_color",
+      "value": "#212121"
+    },
+    {
+      "name": "detail_main_color",
+      "value": "#E92F4F"
+    },
+    {
+      "name": "divider_color",
+      "value": "#a9a9a9"
+    }
+  ]
+}
