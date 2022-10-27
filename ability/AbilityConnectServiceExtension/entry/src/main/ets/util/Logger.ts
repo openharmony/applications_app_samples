@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('[Sample_abilityConnectServiceExtension]')
+export default new Logger('[Sample_AbilityConnectServiceExtension]')
