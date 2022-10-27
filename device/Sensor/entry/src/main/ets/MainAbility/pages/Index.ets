@@ -15,8 +15,9 @@
 
 import sensor from '@ohos.sensor'
 import mediaQuery from '@ohos.mediaquery'
+import Logger from '../util/Logger'
 
-const TAG = '[sensor]'
+const TAG = 'Index'
 
 @Entry
 @Component
@@ -26,7 +27,7 @@ struct Index {
   @State isLand: boolean = false
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
   onLand = (mediaQueryResult) => {
-    console.info(`${TAG} onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
+    Logger.info(TAG, ` onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
       this.isLand = true
     } else {
@@ -36,14 +37,19 @@ struct Index {
 
   aboutToAppear() {
     this.listener.on('change', this.onLand)
-    sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data){
-      console.info(`${TAG} component: on`)
-      console.info(`${TAG} X-coordinate component: ${data.beta}`)
-      console.info(`${TAG} Y-coordinate component: ${data.gamma}`)
-      console.info(`${TAG} Z-coordinate component: ${data.alpha}`)
-      this.angle = Math.round(data.alpha)
-      this.angleTest = this.angle + '°'
-    }.bind(this), { interval: 10000000 })
+    try {
+      sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data){
+        Logger.info(TAG, ` component: on`)
+        Logger.info(TAG, ` X-coordinate component: ${data.beta}`)
+        Logger.info(TAG, ` Y-coordinate component: ${data.gamma}`)
+        Logger.info(TAG, ` Z-coordinate component: ${data.alpha}`)
+        this.angle = Math.round(data.alpha)
+        this.angleTest = this.angle + '°'
+      }.bind(this), { interval: 10000000 })
+    } catch (err) {
+      Logger.error(TAG, `Failed to load sensor :  ${JSON.stringify(err)}`)
+    }
+
   }
 
   build() {
