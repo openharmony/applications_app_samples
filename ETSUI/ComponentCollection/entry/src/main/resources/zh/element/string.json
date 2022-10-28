@@ -69,7 +69,7 @@
       "value": "插值计算"
     },
     {
-      "name": "popup_window",
+      "name": "dialog",
       "value": "弹窗"
     },
     {
@@ -89,6 +89,106 @@
       "value": "文本与输入"
     },
     // AlertDialog
+    {
+      "name": "alert_dialog",
+      "value": "警告弹窗"
+    },
+    {
+      "name": "alert_dialog_type_one",
+      "value": "单按钮弹窗"
+    },
+    {
+      "name": "alert_dialog_type_two",
+      "value": "双按钮弹窗"
+    },
+    {
+      "name": "alert_dialog_type_two_button_one",
+      "value": "这是第一个按钮"
+    },
+    {
+      "name": "alert_dialog_type_two_button_two",
+      "value": "这是第二个按钮"
+    },
+    {
+      "name": "alert_dialog_prompt",
+      "value": "提示"
+    },
+    {
+      "name": "alert_dialog_warning",
+      "value": "警告"
+    },
+    {
+      "name": "alert_dialog_info",
+      "value": "您正在执行操作"
+    },
+    {
+      "name": "alert_dialog_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "alert_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "alert_dialog_type",
+      "value": "弹窗类型"
+    },
+    {
+      "name": "alert_dialog_location",
+      "value": "弹窗位置"
+    },
+    {
+      "name": "alert_dialog_auto_cancel",
+      "value": "点击遮罩层是否关闭弹窗"
+    },
+    {
+      "name": "alert_dialog_true",
+      "value": "可关闭"
+    },
+    {
+      "name": "alert_dialog_false",
+      "value": "不可关闭"
+    },
+    {
+      "name": "alert_dialog_top",
+      "value": "垂直顶部"
+    },
+    {
+      "name": "alert_dialog_center",
+      "value": "垂直居中"
+    },
+    {
+      "name": "alert_dialog_bottom",
+      "value": "垂直底部"
+    },
+    {
+      "name": "alert_dialog_offset",
+      "value": "相对位置偏移弹窗"
+    },
+    {
+      "name": "alert_dialog_left",
+      "value": "左上偏移"
+    },
+    {
+      "name": "alert_dialog_right",
+      "value": "右下偏移"
+    },
+    {
+      "name": "alert_dialog_grid",
+      "value": "不同栅格宽度弹窗"
+    },
+    {
+      "name": "alert_dialog_grid_two",
+      "value": "2栅格宽度"
+    },
+    {
+      "name": "alert_dialog_grid_three",
+      "value": "3栅格宽度"
+    },
+    {
+      "name": "alert_dialog_grid_four",
+      "value": "4栅格宽度"
+    },
     // Background
     {
       "name": "background_color",
@@ -215,7 +315,79 @@
       "value": "获取点击位置信息"
     },
     // CustomDialog
+    {
+      "name": "custom_dialog",
+      "value": "自定义弹窗"
+    },
+    {
+      "name": "custom_dialog_style_custom",
+      "value": "弹窗样式是否自定义"
+    },
+    {
+      "name": "custom_dialog_style_custom_true",
+      "value": "自定义"
+    },
+    {
+      "name": "custom_dialog_style_custom_false",
+      "value": "非自定义"
+    },
+    {
+      "name": "custom_dialog_title",
+      "value": "组件集合申请开启以下权限"
+    },
+    {
+      "name": "custom_dialog_permission_microphone",
+      "value": "麦克风权限"
+    },
+    {
+      "name": "custom_dialog_permission_microphone_info",
+      "value": "语音通话时需要麦克风权限"
+    },
+    {
+      "name": "custom_dialog_permission_location",
+      "value": "位置权限"
+    },
+    {
+      "name": "custom_dialog_permission_location_info",
+      "value": "导航时需要位置权限"
+    },
+    {
+      "name": "custom_dialog_start",
+      "value": "一键开启"
+    },
     // DatePickerDialog
+    {
+      "name": "date_picker_dialog",
+      "value": "日期及时间选择弹窗"
+    },
+    {
+      "name": "date_picker_dialog_date",
+      "value": "显示日期弹窗"
+    },
+    {
+      "name": "date_picker_dialog_time",
+      "value": "显示时间弹窗"
+    },
+    {
+      "name": "date_picker_dialog_date_lunar",
+      "value": "农历日期："
+    },
+    {
+      "name": "date_picker_dialog_date_gregorian",
+      "value": "公历日期："
+    },
+    {
+      "name": "date_picker_dialog_24_hour",
+      "value": "24小时："
+    },
+    {
+      "name": "date_picker_dialog_12_hour",
+      "value": "12小时："
+    },
+    {
+      "name": "date_picker_dialog_cancel",
+      "value": "取消"
+    },
     // DatePicker
     // Divider
     // Font
@@ -234,7 +406,7 @@
     {
       "name": "radio_has_response_region",
       "value": "添加热区(点击按钮所在行生效)"
-    }
+    },
     // Rotate
     // Shareelement Transition
     // Size

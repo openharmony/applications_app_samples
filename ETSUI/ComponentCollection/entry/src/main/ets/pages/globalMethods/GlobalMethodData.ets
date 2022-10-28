@@ -15,11 +15,25 @@
 
 import { ThirdLevelCategory } from '../../model/CategoricalDataType'
 
-const POPUP: ThirdLevelCategory =
+const DIALOG: ThirdLevelCategory =
   {
-    image: $r('app.media.ic_popup_window'),
-    title: $r('app.string.popup_window')
+    image: $r('app.media.ic_dialog'),
+    title: $r('app.string.dialog'),
+    childNodes: [
+      {
+        title: $r('app.string.alert_dialog'),
+        url: 'pages/globalMethods/dialogs/dateDialogSample/DateDialogSample'
+      },
+      {
+        title: $r('app.string.custom_dialog'),
+        url: 'pages/globalMethods/dialogs/customDialogSample/CustomDialogSample'
+      },
+      {
+        title: $r('app.string.date_picker_dialog'),
+        url: 'pages/globalMethods/dialogs/dateDialogSample/DateDialogSample'
+      }
+    ]
   }
 
 // The global method categorizes data, second menu data
-export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [POPUP]
+export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [DIALOG]

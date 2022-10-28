@@ -69,8 +69,8 @@
       "value": "Interpolation calculation"
     },
     {
-      "name": "popup_window",
-      "value": "Pop-up window"
+      "name": "dialog",
+      "value": "Dialog"
     },
     {
       "name": "button_and_selection",
@@ -89,6 +89,106 @@
       "value": "Text and input"
     },
     // AlertDialog
+    {
+      "name": "alert_dialog",
+      "value": "Alert dialog"
+    },
+    {
+      "name": "alert_dialog_type_one",
+      "value": "One button alert dialog"
+    },
+    {
+      "name": "alert_dialog_type_two",
+      "value": "Two button alert dialog"
+    },
+    {
+      "name": "alert_dialog_type_two_button_one",
+      "value": "This is button one"
+    },
+    {
+      "name": "alert_dialog_type_two_button_two",
+      "value": "This is button two"
+    },
+    {
+      "name": "alert_dialog_prompt",
+      "value": "Hint"
+    },
+    {
+      "name": "alert_dialog_warning",
+      "value": "Warning"
+    },
+    {
+      "name": "alert_dialog_info",
+      "value": "You are performing an action"
+    },
+    {
+      "name": "alert_dialog_confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "alert_dialog_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "alert_dialog_type",
+      "value": "Dialog type"
+    },
+    {
+      "name": "alert_dialog_location",
+      "value": "Dialog position"
+    },
+    {
+      "name": "alert_dialog_auto_cancel",
+      "value": "Click on the mask layer to close the dialog"
+    },
+    {
+      "name": "alert_dialog_true",
+      "value": "Closeable"
+    },
+    {
+      "name": "alert_dialog_false",
+      "value": "Non-closing"
+    },
+    {
+      "name": "alert_dialog_top",
+      "value": "Vertical top"
+    },
+    {
+      "name": "alert_dialog_center",
+      "value": "Vertical center"
+    },
+    {
+      "name": "alert_dialog_bottom",
+      "value": "Vertical bottom"
+    },
+    {
+      "name": "alert_dialog_offset",
+      "value": "Relative position offset dialog"
+    },
+    {
+      "name": "alert_dialog_left",
+      "value": "Upper left offset"
+    },
+    {
+      "name": "alert_dialog_right",
+      "value": "Lower right offset"
+    },
+    {
+      "name": "alert_dialog_grid",
+      "value": "Different grid width dialog"
+    },
+    {
+      "name": "alert_dialog_grid_two",
+      "value": "2 grid width"
+    },
+    {
+      "name": "alert_dialog_grid_three",
+      "value": "3 grid width"
+    },
+    {
+      "name": "alert_dialog_grid_four",
+      "value": "4 grid width"
+    },
     // Background
     {
       "name": "background_color",
@@ -215,7 +315,79 @@
       "value": "Get click location information"
     },
     // CustomDialog
+    {
+      "name": "custom_dialog",
+      "value": "Custom dialog"
+    },
+    {
+      "name": "custom_dialog_style_custom",
+      "value": "Whether the dialog style is customized"
+    },
+    {
+      "name": "custom_dialog_style_custom_true",
+      "value": "Custom"
+    },
+    {
+      "name": "custom_dialog_style_custom_false",
+      "value": "Non-custom"
+    },
+    {
+      "name": "custom_dialog_title",
+      "value": "The component collection requests to enable the following permissions"
+    },
+    {
+      "name": "custom_dialog_permission_microphone",
+      "value": "Microphone permission"
+    },
+    {
+      "name": "custom_dialog_permission_microphone_info",
+      "value": "Microphone permission is required for voice calls"
+    },
+    {
+      "name": "custom_dialog_permission_location",
+      "value": "Location permissions"
+    },
+    {
+      "name": "custom_dialog_permission_location_info",
+      "value": "Location permission is required for navigation"
+    },
+    {
+      "name": "custom_dialog_start",
+      "value": "One-click opening"
+    },
     // DatePickerDialog
+    {
+      "name": "date_picker_dialog",
+      "value": "Date and time selection dialog"
+    },
+    {
+      "name": "date_picker_dialog_date",
+      "value": "Show date dialog"
+    },
+    {
+      "name": "date_picker_dialog_time",
+      "value": "Show time dialog"
+    },
+    {
+      "name": "date_picker_dialog_date_lunar",
+      "value": "Lunar date:"
+    },
+    {
+      "name": "date_picker_dialog_date_gregorian",
+      "value": "Gregorian calendar date:"
+    },
+    {
+      "name": "date_picker_dialog_24_hour",
+      "value": "24 hours:"
+    },
+    {
+      "name": "date_picker_dialog_12_hour",
+      "value": "12 hours:"
+    },
+    {
+      "name": "date_picker_dialog_cancel",
+      "value": "Cancel"
+    },
     // DatePicker
     // Divider
     // Font
