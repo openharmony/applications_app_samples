@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import detailData from '../../../common/detailData'
+
 export default {
   props: ['bannerdata'],
   data() {
     return {
-      bannerData: this.bannerdata,
+      bannerData: detailData.goodsimgs,
       currIndex: 0,
       currentTime: 0,
     }
