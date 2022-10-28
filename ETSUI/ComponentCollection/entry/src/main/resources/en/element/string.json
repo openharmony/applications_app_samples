@@ -88,6 +88,7 @@
       "name": "text_and_input",
       "value": "Text and input"
     },
+    // AlertDialog
     // Background
     {
       "name": "background_color",
@@ -129,6 +130,7 @@
       "name": "background_image_offset",
       "value": "Picture position offset to the right and down"
     },
+    // Badge
     // Border
     {
       "name": "border_type",
@@ -202,6 +204,7 @@
       "name": "border_radius_right_bottom",
       "value": "Bottom right border"
     },
+    // Button
     // Click Event
     {
       "name": "click_action_tips",
@@ -210,6 +213,52 @@
     {
       "name": "get_click_event_detail",
       "value": "Get click location information"
+    },
+    // CustomDialog
+    // DatePickerDialog
+    // DatePicker
+    // Divider
+    // Font
+    // Interpolation Calculation
+    // Page Transition
+    // QRCode
+    // Radio
+    {
+      "name": "radio_title",
+      "value": "Radio"
+    },
+    {
+      "name": "radio_no_response_region",
+      "value": "Not add response region(take effect when click the button)"
+    },
+    {
+      "name": "radio_has_response_region",
+      "value": "Add response region (click row of button take effect)"
+    }
+    // Rotate
+    // Shareelement Transition
+    // Size
+    // Slider
+    // Span
+    // Text
+    // TextInput
+    // Toggle
+    // Translate,
+    {
+      "name": "radio_beijing",
+      "value": "Beijing"
+    },
+    {
+      "name": "radio_shanghai",
+      "value": "Shanghai"
+    },
+    {
+      "name": "radio_shenzhen",
+      "value": "Shenzhen"
+    },
+    {
+      "name": "radio_guangzhou",
+      "value": "Guangzhou"
     }
   ]
 }

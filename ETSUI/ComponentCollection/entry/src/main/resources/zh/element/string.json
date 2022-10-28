@@ -88,6 +88,7 @@
       "name": "text_and_input",
       "value": "文本与输入"
     },
+    // AlertDialog
     // Background
     {
       "name": "background_color",
@@ -129,6 +130,7 @@
       "name": "background_image_offset",
       "value": "图片位置向右下偏移"
     },
+    // Badge
     // Border
     {
       "name": "border_type",
@@ -202,6 +204,7 @@
       "name": "border_radius_right_bottom",
       "value": "右下边框"
     },
+    // Button
     // Click Event
     {
       "name": "click_action_tips",
@@ -210,6 +213,61 @@
     {
       "name": "get_click_event_detail",
       "value": "获取点击位置信息"
+    },
+    // CustomDialog
+    // DatePickerDialog
+    // DatePicker
+    // Divider
+    // Font
+    // Interpolation Calculation
+    // Page Transition
+    // QRCode
+    // Radio
+    {
+      "name": "radio_title",
+      "value": "Radio 单选按钮"
+    },
+    {
+      "name": "radio_no_response_region",
+      "value": "不添加热区(只有点击按钮才生效)"
+    },
+    {
+      "name": "radio_has_response_region",
+      "value": "添加热区(点击按钮所在行生效)"
+    }
+    // Rotate
+    // Shareelement Transition
+    // Size
+    // Slider
+    // Span
+    // Text
+    // TextInput
+    // Toggle
+    // Translate
+    // Rotate
+    // Shareelement Transition
+    // Size
+    // Slider
+    // Span
+    // Text
+    // TextInput
+    // Toggle
+    // Translate,
+    {
+      "name": "radio_beijing",
+      "value": "北京"
+    },
+    {
+      "name": "radio_shanghai",
+      "value": "上海"
+    },
+    {
+      "name": "radio_shenzhen",
+      "value": "深圳"
+    },
+    {
+      "name": "radio_guangzhou",
+      "value": "广州"
     }
   ]
 }

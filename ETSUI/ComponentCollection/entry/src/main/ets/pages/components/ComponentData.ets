@@ -24,7 +24,13 @@ const AUXILIARY: ThirdLevelCategory =
 const BUTTON_AND_SELECTION: ThirdLevelCategory =
   {
     image: $r('app.media.ic_button_and_selection'),
-    title: $r('app.string.button_and_selection')
+    title: $r('app.string.button_and_selection'),
+    childNodes: [
+      {
+        title: $r('app.string.radio_title'),
+        url: 'pages/components/buttonAndSelection/radioSample/RadioSample'
+      }
+    ]
   }
 
 const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =

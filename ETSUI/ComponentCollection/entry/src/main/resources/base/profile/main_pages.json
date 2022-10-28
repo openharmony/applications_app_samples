@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/universal/properties/backgroundSample/BackgroundSample",
     "pages/universal/properties/borderSample/BorderSample",
-    "pages/universal/events/clickEventSample/ClickEventSample"
+    "pages/universal/events/clickEventSample/ClickEventSample",
+    "pages/components/buttonAndSelection/radioSample/RadioSample"
   ]
 }
