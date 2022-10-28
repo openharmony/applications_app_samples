@@ -87,6 +87,129 @@
     {
       "name": "text_and_input",
       "value": "Text and input"
+    },
+    // Background
+    {
+      "name": "background_color",
+      "value": "Set background color"
+    },
+    {
+      "name": "background_gradient",
+      "value": "Set background gradient"
+    },
+    {
+      "name": "background_gradient_linear",
+      "value": "linear gradient"
+    },
+    {
+      "name": "background_gradient_sweep",
+      "value": "angle gradient"
+    },
+    {
+      "name": "background_gradient_radial",
+      "value": "Radial gradient"
+    },
+    {
+      "name": "background_image",
+      "value": "Set background image"
+    },
+    {
+      "name": "background_image_default",
+      "value": "default"
+    },
+    {
+      "name": "background_image_repeat",
+      "value": "XY axis repeat plot"
+    },
+    {
+      "name": "background_image_size",
+      "value": "Image size 50% wide and 100% high"
+    },
+    {
+      "name": "background_image_offset",
+      "value": "Picture position offset to the right and down"
+    },
+    // Border
+    {
+      "name": "border_type",
+      "value": "Border type"
+    },
+    {
+      "name": "border_type_dashed",
+      "value": "Dotted line"
+    },
+    {
+      "name": "border_type_dotted",
+      "value": "Dot"
+    },
+    {
+      "name": "border_type_solid",
+      "value": "Solid line"
+    },
+    {
+      "name": "border_border_style",
+      "value": "Border width, color, rounded corners"
+    },
+    {
+      "name": "border_border_width",
+      "value": "Width"
+    },
+    {
+      "name": "border_border_color",
+      "value": "Color"
+    },
+    {
+      "name": "border_border_radius",
+      "value": "Rounded corners"
+    },
+    {
+      "name": "border_edge_style",
+      "value": "Set the border and style and properties separately"
+    },
+    {
+      "name": "border_style_top",
+      "value": "Top border"
+    },
+    {
+      "name": "border_style_bottom",
+      "value": "Bottom border"
+    },
+    {
+      "name": "border_style_left",
+      "value": "Left border"
+    },
+    {
+      "name": "border_style_right",
+      "value": "Right border"
+    },
+    {
+      "name": "border_radius",
+      "value": "Set the rounded corners of each of the four corners"
+    },
+    {
+      "name": "border_radius_left_top",
+      "value": "Top left border"
+    },
+    {
+      "name": "border_radius_left_bottom",
+      "value": "Bottom left border"
+    },
+    {
+      "name": "border_radius_right_top",
+      "value": "Top right border"
+    },
+    {
+      "name": "border_radius_right_bottom",
+      "value": "Bottom right border"
+    },
+    // Click Event
+    {
+      "name": "click_action_tips",
+      "value": "Click the gray area to change the crosshair position"
+    },
+    {
+      "name": "get_click_event_detail",
+      "value": "Get click location information"
     }
   ]
 }

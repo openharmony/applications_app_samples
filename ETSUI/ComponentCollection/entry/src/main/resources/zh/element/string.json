@@ -87,6 +87,129 @@
     {
       "name": "text_and_input",
       "value": "文本与输入"
+    },
+    // Background
+    {
+      "name": "background_color",
+      "value": "背景颜色"
+    },
+    {
+      "name": "background_gradient",
+      "value": "背景渐变"
+    },
+    {
+      "name": "background_gradient_linear",
+      "value": "线性渐变"
+    },
+    {
+      "name": "background_gradient_sweep",
+      "value": "角度渐变"
+    },
+    {
+      "name": "background_gradient_radial",
+      "value": "径向渐变"
+    },
+    {
+      "name": "background_image",
+      "value": "背景图片"
+    },
+    {
+      "name": "background_image_default",
+      "value": "默认"
+    },
+    {
+      "name": "background_image_repeat",
+      "value": "XY轴重复绘制"
+    },
+    {
+      "name": "background_image_size",
+      "value": "图片大小宽50%，高100%"
+    },
+    {
+      "name": "background_image_offset",
+      "value": "图片位置向右下偏移"
+    },
+    // Border
+    {
+      "name": "border_type",
+      "value": "边框类型"
+    },
+    {
+      "name": "border_type_dashed",
+      "value": "虚线"
+    },
+    {
+      "name": "border_type_dotted",
+      "value": "圆点"
+    },
+    {
+      "name": "border_type_solid",
+      "value": "实线"
+    },
+    {
+      "name": "border_border_style",
+      "value": "边框宽度、颜色、圆角"
+    },
+    {
+      "name": "border_border_width",
+      "value": "宽度"
+    },
+    {
+      "name": "border_border_color",
+      "value": "颜色"
+    },
+    {
+      "name": "border_border_radius",
+      "value": "圆角"
+    },
+    {
+      "name": "border_edge_style",
+      "value": "分别设置边框以及样式和属性"
+    },
+    {
+      "name": "border_style_top",
+      "value": "上边框"
+    },
+    {
+      "name": "border_style_bottom",
+      "value": "下边框"
+    },
+    {
+      "name": "border_style_left",
+      "value": "左边框"
+    },
+    {
+      "name": "border_style_right",
+      "value": "右边框"
+    },
+    {
+      "name": "border_radius",
+      "value": "分别设置四个角的圆角"
+    },
+    {
+      "name": "border_radius_left_top",
+      "value": "左上边框"
+    },
+    {
+      "name": "border_radius_left_bottom",
+      "value": "左下边框"
+    },
+    {
+      "name": "border_radius_right_top",
+      "value": "右上边框"
+    },
+    {
+      "name": "border_radius_right_bottom",
+      "value": "右下边框"
+    },
+    // Click Event
+    {
+      "name": "click_action_tips",
+      "value": "点击灰色区域，更改准星位置"
+    },
+    {
+      "name": "get_click_event_detail",
+      "value": "获取点击位置信息"
     }
   ]
 }
