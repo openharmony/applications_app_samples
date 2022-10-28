@@ -1,7 +1,11 @@
 {
   "color": {
-    "index_font_color_selected": "#1296db",
-    "index_font_color_unselected": "#565353"
+    "index_font_color_selected": "#1296DB",
+    "index_font_color_unselected": "#565353",
+    "white": "#FFFFFF",
+    "badge_color": "red",
+    "text_badge_color": "red",
+    "black": "#000000"
   },
   "strings": {
     "tab_arr": [
@@ -10,6 +14,8 @@
       "动画",
       "全局方法"
     ],
+    "common_confirm": "确定",
+    "common_cancle": "取消",
     "component_category": [],
     "universal_category": [],
     "animation_category": [],
