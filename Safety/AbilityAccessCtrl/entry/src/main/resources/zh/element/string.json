@@ -35,6 +35,14 @@
     {
       "name": "button",
       "value": "检测权限"
+    },
+    {
+      "name": "authorization",
+      "value": "权限已被授予"
+    },
+    {
+      "name": "unauthorization",
+      "value": "权限未被授予"
     }
   ]
 }
