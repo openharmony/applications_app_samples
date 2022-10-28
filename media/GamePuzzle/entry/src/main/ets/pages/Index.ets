@@ -159,7 +159,7 @@ struct Index {
     .columnsGap(2)
     .rowsGap(2)
     .width(IMAGE_SIZE)
-    .height(290)
+    .height(390)
     .margin({ left: leftMargin, top: topMargin })
   }
 
