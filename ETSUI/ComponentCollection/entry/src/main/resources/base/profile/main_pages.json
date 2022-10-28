@@ -1,5 +1,8 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/universal/properties/backgroundSample/BackgroundSample",
+    "pages/universal/properties/borderSample/BorderSample",
+    "pages/universal/events/clickEventSample/ClickEventSample"
   ]
 }

@@ -19,11 +19,13 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
   [
     {
       image: $r('app.media.ic_prop_background'),
-      title: $r('app.string.prop_background')
+      title: $r('app.string.prop_background'),
+      url: 'pages/universal/properties/backgroundSample/BackgroundSample'
     },
     {
       image: $r('app.media.ic_prop_border'),
-      title: $r('app.string.prop_border')
+      title: $r('app.string.prop_border'),
+      url: 'pages/universal/properties/borderSample/BorderSample'
     },
     {
       image: $r('app.media.ic_prop_font'),
@@ -43,7 +45,8 @@ const COMMON_EVENT: ThirdLevelCategory[] =
   [
     {
       image: $r('app.media.ic_click_event'),
-      title: $r('app.string.click_event')
+      title: $r('app.string.click_event'),
+      url: 'pages/universal/events/clickEventSample/ClickEventSample'
     }
   ]
 
