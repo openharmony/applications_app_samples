@@ -17,18 +17,18 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { ShowToast } from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
+@Extend(Row) function rowStyle () {
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+  .size({ width: '100%', height: 70 })
+}
+
 @Entry
 @Component
 struct ToggleSample {
   @State isNormalSelect: boolean = false
   @State isCustomSelect: boolean = true
-
-  @Styles backgroundStyle() {
-    .size({ width: '100%', height: 70 })
-    .padding(12)
-    .backgroundColor(Color.White)
-    .borderRadius(24)
-  }
 
   build() {
     Column() {
@@ -49,7 +49,7 @@ struct ToggleSample {
                 ShowToast.longToast(`isOn: ${isOn}`)
               })
           }
-          .backgroundStyle()
+          .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
 
           IntroductionTitle({ introduction: $r('app.string.toggle_type_checkbox') })
@@ -59,7 +59,7 @@ struct ToggleSample {
                 .onChange((isOn: boolean) => {
                   ShowToast.longToast(`isOn: ${isOn}`)
                 })
-              Text($r('app.string.beijing'))
+              Text($r('app.string.radio_beijing'))
             }
 
             Row() {
@@ -68,10 +68,10 @@ struct ToggleSample {
                 .onChange((isOn: boolean) => {
                   ShowToast.longToast(`isOn: ${isOn}`)
                 })
-              Text($r('app.string.shanghai'))
+              Text($r('app.string.radio_shanghai'))
             }
           }
-          .backgroundStyle()
+          .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
 
           IntroductionTitle({ introduction: $r('app.string.toggle_type_button') })
@@ -96,7 +96,7 @@ struct ToggleSample {
               this.isCustomSelect = isOn
             })
           }
-          .backgroundStyle()
+          .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
           .margin({ bottom: 80 })
         }

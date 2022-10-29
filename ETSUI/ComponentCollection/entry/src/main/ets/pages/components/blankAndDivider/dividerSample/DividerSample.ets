@@ -17,19 +17,26 @@ import { ChangePanel } from './ChangePanel'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
+@Extend(Row) function rowStyle () {
+  .width('100%')
+  .padding(16)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
+@Extend(Column) function columnStyle () {
+  .width('100%')
+  .padding(16)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
 @Entry
 @Component
 struct DividerSample {
   @State strokeWidth: number = 8
   @State lineColor: ResourceColor = $r('app.color.background_blue')
   @State lineCapStyle: LineCapStyle = LineCapStyle.Butt
-
-  @Styles backgroundStyle() {
-    .width('100%')
-    .padding(16)
-    .borderRadius(24)
-    .backgroundColor(Color.White)
-  }
 
   build() {
     Column() {
@@ -44,23 +51,23 @@ struct DividerSample {
             this.Block()
           }
           .height(150)
-          .backgroundStyle()
+          .columnStyle()
 
           IntroductionTitle({ introduction: $r('app.string.divider_vertical') })
           // vertical divider
           Row() {
-            Text($r('app.string.beijing'))
+            Text($r('app.string.radio_beijing'))
             Divider()
               .vertical(true) // if true, divider is vertical
               .height(26)
-            Text($r('app.string.shanghai'))
+            Text($r('app.string.radio_shanghai'))
             Divider()
               .vertical(true)
               .height(26)
-            Text($r('app.string.guangzhou'))
+            Text($r('app.string.radio_guangzhou'))
           }
           .height(60)
-          .backgroundStyle()
+          .rowStyle()
           .justifyContent(FlexAlign.SpaceEvenly)
 
           IntroductionTitle({ introduction: $r('app.string.divider_attribute') })
@@ -79,14 +86,14 @@ struct DividerSample {
             })
           }
           .height(280)
+          .columnStyle()
           .margin({ bottom: 80 })
-          .backgroundStyle()
         }
         .constraintSize({ minHeight: '100%' }) // Let the minHeight of the component cover screen
       }
       .padding({ left: 12, right: 12 })
     }
-    .backgroundColor($r('app.color.background'))
+    .backgroundColor($r('app.color.background_shallow_grey'))
   }
 
   @Builder Block() {

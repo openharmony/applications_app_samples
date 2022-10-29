@@ -18,6 +18,20 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { ShowToast } from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
+@Extend(Row) function rowStyle () {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
+@Extend(Column) function columnStyle () {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
 @Entry
 @Component
 struct SliderSample {
@@ -29,13 +43,6 @@ struct SliderSample {
   @State trackColor: string = '#19000000'
   @State trackThickness: number = 5
   private changeModes: string[] = ['Begin', 'Moving', 'End', 'Click']
-
-  @Styles backgroundStyle() {
-    .width('100%')
-    .padding(12)
-    .borderRadius(24)
-    .backgroundColor(Color.White)
-  }
 
   build() {
     Column() {
@@ -56,7 +63,7 @@ struct SliderSample {
               })
             Text(`${Math.trunc(this.minOrMaxValue)}`)
           }
-          .backgroundStyle()
+          .rowStyle()
 
           IntroductionTitle({ introduction: $r('app.string.slider_events') })
           Column() {
@@ -71,7 +78,7 @@ struct SliderSample {
                 this.eventValue = value
               })
           }
-          .backgroundStyle()
+          .columnStyle()
           .justifyContent(FlexAlign.Center)
 
           IntroductionTitle({ introduction: $r('app.string.slider_step_tip') })
@@ -86,7 +93,7 @@ struct SliderSample {
               .showTips(true)
               .showSteps(true)
           }
-          .backgroundStyle()
+          .columnStyle()
 
           IntroductionTitle({ introduction: $r('app.string.slider_attributes') })
           Column() {
@@ -105,7 +112,7 @@ struct SliderSample {
               trackThickness: $trackThickness
             })
           }
-          .backgroundStyle()
+          .columnStyle()
           .justifyContent(FlexAlign.Center)
 
           IntroductionTitle({ introduction: $r('app.string.slider_vertical_reverse') })
@@ -132,8 +139,8 @@ struct SliderSample {
               Text($r('app.string.slider_reverse'))
             }
           }
+          .rowStyle()
           .height(240)
-          .backgroundStyle()
           .justifyContent(FlexAlign.SpaceAround)
           .margin({ bottom: 80 })
         }
@@ -142,6 +149,6 @@ struct SliderSample {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    .backgroundColor($r('app.color.background'))
+    .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

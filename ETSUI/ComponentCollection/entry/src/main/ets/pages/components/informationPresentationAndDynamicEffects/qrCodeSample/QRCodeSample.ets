@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-import { CommonItemInput, CommonItemSelect } from '../../common/AttributeModificationTool'
+import { CommonItemInput, CommonItemSelect } from '../../../../common/AttributeModificationTool'
 import { TitleBar } from '../../../../common/TitleBar'
+
+@Extend(Column) function backgroundStyle () {
+  .padding(12)
+  .borderRadius(24)
+  .margin({ top: 12 })
+  .layoutWeight(4)
+  .backgroundColor(Color.White)
+}
 
 @Entry
 @Component
 struct QRCodeSample {
   @State qrCodeContent: string = ''
   @State qrCodeColor: Color = Color.Black
-
-  @Styles backgroundStyle() {
-    .padding(12)
-    .borderRadius(24)
-    .margin({ top: 12 })
-    .layoutWeight(4)
-    .backgroundColor(Color.White)
-  }
 
   build() {
     Column() {
@@ -71,7 +71,7 @@ struct QRCodeSample {
           })
         }
       }
-      .margin({ top: 12, left: 12, right: 12  })
+      .margin({ top: 12, left: 12, right: 12 })
       .layoutWeight(6)
     }
     .justifyContent(FlexAlign.Center)

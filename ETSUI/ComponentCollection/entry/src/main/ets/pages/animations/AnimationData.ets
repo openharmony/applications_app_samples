@@ -33,7 +33,7 @@ const TRANSITION_ANIMATION: ThirdLevelCategory =
 
 const INTERPOLATION_CALCULATION: ThirdLevelCategory =
   {
-    image: $r('app.media.ic_calculation'),
+    image: $r('app.media.ic_interpolation_calculation'),
     title: $r('app.string.interpolation_calculation'),
     url: 'pages/animations/interpolationCalculationSample/InterpolationCalculationSample',
   }

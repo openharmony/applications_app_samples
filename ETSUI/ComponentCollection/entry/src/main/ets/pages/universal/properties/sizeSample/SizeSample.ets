@@ -29,7 +29,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct Size {
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.size') })
+      TitleBar({ title: $r('app.string.prop_size') })
       IntroductionTitle({ introduction: $r('app.string.size_width') })
       Row() {
         Row() {

@@ -13,10 +13,17 @@
  * limitations under the License.
  */
 
-import { CommonItemSelect } from '../../common/AttributeModificationTool'
+import { CommonItemSelect } from '../../../../common/AttributeModificationTool'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { ShowToast } from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
+
+@Extend(Column) function backgroundStyle () {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
 
 @Entry
 @Component
@@ -29,13 +36,6 @@ struct TextInputSample {
   @State typePlaceholder: ResourceStr = $r('app.string.text_input_normal_type')
   private inputController: TextInputController = new TextInputController()
   private maxLength: number = 12
-
-  @Styles backgroundStyle() {
-    .width('100%')
-    .padding(12)
-    .borderRadius(24)
-    .backgroundColor(Color.White)
-  }
 
   build() {
     Column() {
@@ -75,7 +75,7 @@ struct TextInputSample {
                 }
               }
             })
-            .margin({ top: 12 })
+              .margin({ top: 12 })
 
             if (this.inputType === InputType.Password) {
               CommonItemSelect({

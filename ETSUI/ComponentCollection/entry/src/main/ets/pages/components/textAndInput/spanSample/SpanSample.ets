@@ -14,7 +14,6 @@
  */
 
 import { ChangePanel } from './ChangePanel'
-import { CommonItemSelect } from '../../common/Common'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
@@ -86,6 +85,6 @@ struct SpanSample {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    .backgroundColor($r('app.color.background'))
+    .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

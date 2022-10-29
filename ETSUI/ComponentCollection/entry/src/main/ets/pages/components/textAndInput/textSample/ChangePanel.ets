@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorInput } from '../../common/AttributeModificationTool'
+import { CommonItemSlider, CommonItemSelect, CommonItemColorInput } from '../../../../common/AttributeModificationTool'
 import { ShowToast } from '../../../../util/ShowToast'
 
 @Component
@@ -93,7 +93,7 @@ export struct ChangeTextAttribute {
       })
 
       CommonItemSelect({
-        name: $r('app.string.text_over_flow_none'),
+        name: $r('app.string.text_none_type'),
         selects: [
           $r('app.string.text_none_type'),
           $r('app.string.text_text_over_flow_clip'),

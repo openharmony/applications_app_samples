@@ -61,6 +61,6 @@ struct DatePickerSample {
       .alignItems(HorizontalAlign.Start)
     }
     .height('100%')
-    .backgroundColor($r('app.color.background'))
+    .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

@@ -60,14 +60,14 @@ struct PageTransitionSampleTo {
 
   pageTransition() {
     // Entry animation
-    PageTransitionEnter({ duration: 5000, curve: Curve.Linear })
+    PageTransitionEnter({ duration: 500, curve: Curve.Linear })
       .slide(this.transitionType)
       .onEnter((type: RouteType, progress: number) => {
         this.progress = progress
       })
 
     // Exit animation
-    PageTransitionExit({ duration: 5000, curve: Curve.Ease })
+    PageTransitionExit({ duration: 500, curve: Curve.Ease })
       .slide(this.transitionType)
       .onExit((type: RouteType, progress: number) => {
         this.progress = progress
