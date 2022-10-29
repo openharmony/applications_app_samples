@@ -22,7 +22,7 @@ const DIALOG: ThirdLevelCategory =
     childNodes: [
       {
         title: $r('app.string.alert_dialog'),
-        url: 'pages/globalMethods/dialogs/dateDialogSample/DateDialogSample'
+        url: 'pages/globalMethods/dialogs/alertDialogSample/AlertDialogSample'
       },
       {
         title: $r('app.string.custom_dialog'),
