@@ -56,6 +56,27 @@
       "name": "pop_up_background",
       "value": "#0D182431"
     },
+    // Interpolation Calculation
+    {
+      "name": "curve_normal",
+      "value": "#3F56EA"
+    },
+    {
+      "name": "curve_bezier",
+      "value": "#00BFC9"
+    },
+    {
+      "name": "curve_spring",
+      "value": "#BCD600"
+    },
+    {
+      "name": "curve_init",
+      "value": "#E40078"
+    },
+    {
+      "name": "curve_steps",
+      "value": "#FF7500"
+    },
     // Radio
     {
       "name": "radio_response_region_color",
