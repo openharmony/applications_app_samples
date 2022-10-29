@@ -53,7 +53,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct Background {
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.prop_background_color') })
+      TitleBar({ title: $r('app.string.prop_background') })
       IntroductionTitle({ introduction: $r('app.string.background_color') })
       Row() {
         Text('Brand')
