@@ -29,15 +29,27 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
     },
     {
       image: $r('app.media.ic_prop_font'),
-      title: $r('app.string.prop_font')
+      title: $r('app.string.prop_font'),
+      url: 'pages/universal/properties/fontSample/FontSample'
     },
     {
       image: $r('app.media.ic_prop_size'),
-      title: $r('app.string.prop_size')
+      title: $r('app.string.prop_size'),
+      url: 'pages/universal/properties/sizeSample/SizeSample'
     },
     {
       image: $r('app.media.ic_graphic_transformation'),
-      title: $r('app.string.graphic_transformation')
+      title: $r('app.string.graphic_transformation'),
+      childNodes: [
+        {
+          title: $r('app.string.graphic_transformation_rotate'),
+          url: 'pages/universal/properties/rotateSample/RotateSample'
+        },
+        {
+          title: $r('app.string.graphic_transformation_translate'),
+          url: 'pages/universal/properties/translateSample/TranslateSample'
+        }
+      ]
     }
   ]
 

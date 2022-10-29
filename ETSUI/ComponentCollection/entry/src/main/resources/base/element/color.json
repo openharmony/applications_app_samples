@@ -56,6 +56,20 @@
       "name": "pop_up_background",
       "value": "#0D182431"
     },
+    // Button
+    {
+      "name": "button_custom_color",
+      "value": "#80FF7500"
+    },
+    {
+      "name": "button_default_bg_color",
+      "value": "#007DFF"
+    },
+    // Divider
+    {
+      "name": "divider_block_color",
+      "value": "#1A838388"
+    },
     // Interpolation Calculation
     {
       "name": "curve_normal",
@@ -81,6 +95,20 @@
     {
       "name": "radio_response_region_color",
       "value": "#66ffc0cb"
+    },
+    // Select
+    {
+      "name": "select_option_bg_color",
+      "value": "#33007DFF"
+    },
+    {
+      "name": "select_option_font_color",
+      "value": "#FF007DFF"
+    },
+    // Toggle
+    {
+      "name": "toggle_selected_color",
+      "value": "#4D00BFC9"
     }
   ]
 }
