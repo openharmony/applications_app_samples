@@ -21,13 +21,13 @@
     <div class="white-background-color">
 
       <!-- Background color start -->
-      <div class="left-box" style="background-color: #409EFF;">
+      <div class="rect-box" style="background-color: #409EFF;">
         <text>{{ $t('strings.background_brand') }}</text>
       </div>
-      <div class="center-box" style="background-color: #E6A23C;">
+      <div class="rect-box" style="background-color: #E6A23C;">
         <text>{{ $t('strings.background_warning') }}</text>
       </div>
-      <div class="right-box" style="background-color: #F56C6C;">
+      <div class="rect-box" style="background-color: #F56C6C;">
         <text>{{ $t('strings.background_danger') }}</text>
       </div>
     <!-- Background color end -->
@@ -40,13 +40,13 @@
     <div class="white-background-color">
 
       <!-- Background gradient start -->
-      <div class="left-box smallFontSize" style="background: linear-gradient(#409EFF, #67C23A);">
+      <div class="rect-box smallFontSize" style="background: linear-gradient(#409EFF, #67C23A);">
         <text>{{ $t('strings.background_default_up_to_down') }}</text>
       </div>
-      <div class="center-box smallFontSize" style="background: linear-gradient(45deg, #409EFF, #67C23A);">
+      <div class="rect-box smallFontSize" style="background: linear-gradient(45deg, #409EFF, #67C23A);">
         <text>{{ $t('strings.background_angle_gradient') }}</text>
       </div>
-      <div class="right-box smallFontSize" style="background: repeating-linear-gradient(#409EFF 30vp, #67C23A 60vp);">
+      <div class="rect-box smallFontSize" style="background: repeating-linear-gradient(#409EFF 30vp, #67C23A 60vp);">
         <text>{{ $t('strings.background_repeat_gradient') }}</text>
       </div>
       <!-- Background gradient end -->
