@@ -13,12 +13,387 @@
       "animation",
       "globalMethod"
     ],
-    "common_confirm": "Confirm",
-    "common_cancle": "Cancle",
-    "component_category": [],
-    "universal_category": [],
-    "animation_category": [],
-    "global_method_category": [],
+    "component_category": [
+      {
+        "name": "Auxiliary",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_auxiliary.png",
+        "values": [
+          {
+            "name": "Badge",
+            "url": "pages/components/badgeSample/badgeSample"
+          }
+        ]
+      },
+      {
+        "name": "Blank And Divider",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_blank_divider.png",
+        "values": [
+          {
+            "name": "Divider",
+            "url": "pages/components/basic/dividerSample/dividerSample"
+          }
+        ]
+      },
+      {
+        "name": "InformationPresentationDynamicEffects",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_information_presentation_and_dynamic_effects.png",
+        "values": [
+          {
+            "name": "QRCode",
+            "url": "pages/components/basic/qrcodeSample/qrcodeSample"
+          }
+        ]
+      },
+      {
+        "name": "Text And Input",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_text_and_input.png",
+        "values": [
+          {
+            "name": "Text",
+            "url": "pages/components/basic/textSample/textSample"
+          },
+          {
+            "name": "Input",
+            "url": "pages/components/basic/inputSample/inputSample"
+          },
+          {
+            "name": "Span",
+            "url": "pages/components/basic/spanSample/spanSample"
+          }
+        ]
+      },
+      {
+        "name": "Button And Selection",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_button_selection.png",
+        "values": [
+          {
+            "name": "DatePicker",
+            "url": "pages/components/basic/datePickerSample/datePickerSample"
+          },
+          {
+            "name": "Radio",
+            "url": "pages/components/basic/radioSample/radioSample"
+          },
+          {
+            "name": "Slider",
+            "url": "pages/components/basic/sliderSample/sliderSample"
+          },
+          {
+            "name": "Button",
+            "url": "pages/components/basic/buttonSample/buttonSample"
+          },
+          {
+            "name": "Select",
+            "url": "pages/components/basic/selectSample/selectSample"
+          },
+          {
+            "name": "Switch",
+            "url": "pages/components/basic/switchSample/switchSample"
+          }
+        ]
+      }
+    ],
+    "universal_category": [
+      {
+        "name": "Universal Events",
+        "values": [
+          {
+            "name": "点击事件",
+            "isUnfold": "false",
+            "icon_url": "common/image/ic_click_event.png",
+            "values": [
+              {
+                "name": "Click Events",
+                "url": "pages/universals/events/clickSample/clickSample"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Universal Property",
+        "values": [
+          {
+            "name": "Background",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/backgroundSample/backgroundSample",
+            "icon_url": "common/image/ic_props_background.png",
+            "values": []
+          },
+          {
+            "name": "Border",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/borderSample/borderSample",
+            "icon_url": "common/image/ic_props_border.png",
+            "values": []
+          },
+          {
+            "name": "Font",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/fontSample/fontSample",
+            "icon_url": "common/image/ic_props_font.png",
+            "values": []
+          },
+          {
+            "name": "Size",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/sizeSample/sizeSample",
+            "icon_url": "common/image/ic_props_size.png",
+            "values": []
+          },
+          {
+            "name": "Graphic Transformation",
+            "isUnfold": "false",
+            "icon_url": "common/image/ic_graphic_transformation.png",
+            "values": [
+              {
+                "name": "Rotate",
+                "url": "pages/universals/properties/RotateSample/RotateSample"
+              },
+              {
+                "name": "Translate",
+                "url": "pages/universals/properties/TranslateSample/TranslateSample"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "animation_category": [
+      {
+        "name": "Transition Animation",
+        "isUnfold": "false",
+        "icon_url": "common/image/transition_animation.png",
+        "values": [
+          {
+            "name": "Page Transition",
+            "url": "pages/animations/PageTransitionSample/PageTransitionSample"
+          },
+          {
+            "name": "Share Element Transition",
+            "url": "pages/animations/ShareElementTransitionSample/ShareElementTransitionSample"
+          }
+        ]
+      }
+    ],
+    "global_method_category": [
+      {
+        "name": "Dialog",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_popup_window.png",
+        "values": [
+          {
+            "name": "Custom Dialog",
+            "url": "pages/globalMethods/popups/DialogSample/DialogSample"
+          }
+        ]
+      }
+    ],
+
+    "background_title": "Background",
+    "background_set_color": "set background color",
+    "background_set_gradient": "set background gradient",
+    "background_default_up_to_down": "default up to down",
+    "background_angle_gradient": "gradient of 45 degrees",
+    "background_repeat_gradient": "repeat gradient",
+    "background_brand": "Brand",
+    "background_warning": "Warning",
+    "background_danger": "Danger",
+    "background_set_image": "set background image",
+    "background_default": "default",
+    "background_no_repeat": "don't spread no-repeat",
+    "background_image_size": "image size width50% height100%",
+    "background_image_position": "image position render from the top right",
+
+    "badge_title": "Badge",
+    "badge_type": "Badge Type",
+    "badge_number": "Number Badge",
+    "badge_text": "Text Badge",
+    "badge_max_message_num": "Max Message Number",
+    "badge_normal_message_num": "Number of normal messages",
+    "badge_beyond_message_num": "Beyond the Max Message Number",
+    "badge_position": "Badge Position",
+    "badge_left": "Left Badge",
+    "badge_right_top": "Right Top Badge",
+    "badge_right": "Right Badge",
+    "badge_style": "Badge Style",
+    "badge_blue_big": "Blue Big Badge",
+    "badge_green_small": "Green Small Badge",
+
+    "border_title": "Border 边框样式",
+    "border_style": "边框类型",
+    "border_dotted_line": "虚线",
+    "border_dot": "圆点",
+    "border_solid_line": "实线",
+    "border_width_color_corner": "边框宽度、颜色、圆角",
+    "border_width": "宽度",
+    "border_color": "颜色",
+    "border_corner": "圆角",
+    "border_style_attribute": "分别设置边框以及样式和属性",
+    "border_top": "上边框",
+    "border_left": "左边框",
+    "border_bottom": "下边框",
+    "border_right": "右边框",
+    "border_four_angle": "分别设置四个角的圆角",
+    "border_left_top": "左上",
+    "border_left_bottom": "左下",
+    "border_right_bottom": "右下",
+    "border_right_top": "右上",
+
+    "button_title": "Button",
+    "button_type_title": "Type",
+    "button_confirm": "confirm",
+    "button_type_message": "click events",
+    "button_capsule": "capsule",
+    "button_general": "general",
+    "button_circle": "circle",
+    "button_status_result": "status result",
+    "button_click_result": "click result",
+    "button_click_no_result": "click no result ",
+    "button_disabled": "disabled",
+    "button_custom_style": "custom style",
+    "button_circle_rect": "circle rect button",
+    "button_icon": "icon button",
+    "button_custom_color": "custom color button",
+
+    "click_events_title": "Click",
+    "click_start_events_bubble_up": "Events are not prevented from bubbling",
+    "click_stop_events_bubble_up": "Stop events from bubbling",
+    "click_start_bubble_up": "effervescence",
+    "click_stop_bubble_up": "Not effervescence",
+    "click_stop_bubble_up_description": "When a child element is clicked, the child element consumes the click event and does not trigger the click event of the parent element",
+    "click_start_bubble_up_description": "When a child element is clicked, the child element does not consume the click event and triggers the click event of the parent element",
+
+    "date_picker_title": "DatePicker",
+
+    "dialog_title": "Dialog custom dialog",
+    "dialog_whether_drag": "whether drag is supported",
+    "dialog_can_drag": "can drag",
+    "dialog_cannot_drag": "cannot drag",
+    "dialog_request_permission": "the following permissions must be enabled for component collection application",
+    "dialog_video_permission": "video permission",
+    "dialog_video_introduce": "microphone permission is required for voice calls",
+    "dialog_location_introduce": "location permissions are required for navigation",
+    "dialog_location_permission": "location permission",
+    "dialog_key_open": "key open",
+
+    "divider_title": "Divider",
+    "divider_transverse": "Transverse",
+    "divider_vertical": "Vertical",
+    "divider_property": "Property",
+    "divider_width_message": "Line width",
+    "divider_color_left_text": "Divider color",
+    "divider_cap_style_left_text": "Divider cap style",
+    "divider_vertical_options": [
+      "Beijing",
+      "Shanghai",
+      "Guangzhou"
+    ],
+    "divider_cap_style_options": [
+      {
+        "name": "Butt",
+        "value": "butt"
+      },
+      {
+        "name": "Round",
+        "value": "round"
+      },
+      {
+        "name": "Square",
+        "value": "square"
+      }
+    ],
+    "divider_color_options": [
+      {
+        "name": "Blue",
+        "value": "#409EFF"
+      },
+      {
+        "name": "Green",
+        "value": "#67C23A"
+      },
+      {
+        "name": "Orange",
+        "value": "#E6A23C"
+      },
+      {
+        "name": "Pink",
+        "value": "#F56C6C"
+      }
+    ],
+
+    "font_title": "Font",
+    "font_color": "color",
+    "font_blue_color": "#409EFF",
+    "font_brown_color": "#E6A23C",
+    "font_red_color": "#F56C6C",
+    "font_size": "size",
+    "font_fourteen_vp": "14vp",
+    "font_eighteen_vp": "18vp",
+    "font_twenty_six_vp": "26vp",
+    "font_thickness": "thickness",
+    "font_style": "style",
+    "font_normal": "normal",
+    "font_italic": "italic",
+    "font_family": "font family",
+    "font_family_sans": "sans-serif",
+    "font_family_h_y_q_i_hei": "HYQiHei-65S",
+
+    "input_title": "Input",
+    "input_type_title": "Type",
+    "input_type_placeholder": "Numbers, letters, underscores, spaces, special characters",
+    "input_now_type": "Now type",
+    "input_events":"Events",
+    "input_password_icon": "password icon",
+    "input_placeholder_style_title": "Placeholder style title",
+    "input_placeholder_style_message": "Placeholder style message",
+    "input_placeholder_events_message": "The text selection pop-up window will appear translate, share, search",
+    "input_regular_expression": "Regular expression",
+    "input_regular_expression_description": "Only English can be entered",
+    "input_limit_length_title": "Limit the input character length",
+    "input_limit_length_placeholder": "The current maximum input is 12 characters",
+    "input_type_options": [
+      {
+        "value": "text",
+        "name": "Normal"
+      },
+      {
+        "value": "password",
+        "name": "Password"
+      },
+      {
+        "value": "email",
+        "name": "Email"
+      },
+      {
+        "value": "number",
+        "name": "Number"
+      },
+      {
+        "value": "date",
+        "name": "Date"
+      },
+      {
+        "value": "time",
+        "name": "Time"
+      }
+    ],
+    "input_password_icon_options": [
+      {
+        "name": "show",
+        "value": "true"
+      },
+      {
+        "name": "hidden",
+        "value": "false"
+      }
+    ],
+
     "page_transition_title": "page transition",
     "page_transition_back": "return to the interpage transition page",
     "page_transition_introduce": "PAGE TRANSITIONS",
@@ -47,7 +422,315 @@
         "name": "rotate enter/bottom exit",
         "url": "pages/animations/PageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
       }
-    ]
+    ],
+
+    "qrcode_title": "QRCode",
+    "qrcode_value_left": "content",
+    "qrcode_value_right": "Enter to change the QR code content",
+    "qrcode_color_left": "color",
+    "qrcode_shape_left": "shape",
+    "qrcode_color_list": [
+      {
+        "value": "#000000",
+        "name": "Black"
+      },
+      {
+        "value": "#FA2A2D",
+        "name": "Red"
+      },
+      {
+        "value": "#FF9800",
+        "name": "Orange"
+      }
+    ],
+    "qrcode_shape_list": [
+      {
+        "value": "rect",
+        "name": "Rect"
+      },
+      {
+        "value": "circle",
+        "name": "Circle"
+      }
+    ],
+
+    "radio_title": "Radio",
+    "radio_second_title": "No hot zones (only takes effect when the button is clicked)",
+    "radio_second_hot_title": "Add hot zones (clicking on the text area also takes effect)",
+    "radio_city": [
+      {
+        "name": "Beijing",
+        "value": "beijing"
+      },
+      {
+        "name": "Shanghai",
+        "value": "shanghai"
+      },
+      {
+        "name": "Guangzhou",
+        "value": "guangzhou"
+      },
+      {
+        "name": "Shenzhen",
+        "value": "shenzhen"
+      }
+    ],
+
+    "rotate_title": "rotate",
+    "rotate_image": "image rotate",
+    "rotate_container": "container rotate",
+    "rotate_container_text": "ArkUI",
+    "rotate_angles": [
+      {
+        "angle": 0,
+        "info": "origin"
+      },
+      {
+        "angle": 15,
+        "info": "rotate 15°"
+      }
+    ],
+    "rotate_component_angles": [
+      {
+        "angle": 0,
+        "info": "component"
+      },
+      {
+        "angle": 15,
+        "info": "rotate 15°"
+      }
+    ],
+
+    "select_title": "Select select menu",
+    "select_elements": [
+      {
+        "isSelect": false,
+        "icon": "common/image/ic_select_one.png",
+        "name": "image"
+      },
+      {
+        "isSelect": true,
+        "icon": "common/image/ic_select_two.png",
+        "name": "restore"
+      },
+      {
+        "isSelect": false,
+        "icon": "common/image/ic_select_three.png",
+        "name": "gesture"
+      }
+    ],
+    "select_cities": [
+      {
+        "isSelect": false,
+        "fontSize": "25vp",
+        "name": "beijing"
+      },
+      {
+        "isSelect": true,
+        "fontSize": "30vp",
+        "name": "shanghai"
+      },
+      {
+        "isSelect": false,
+        "fontSize": "25vp",
+        "name": "shenzhen"
+      }
+    ],
+    "unselect_cities": [
+      {
+        "isSelect": false,
+        "fontSize": "30vp",
+        "name": "beijing"
+      },
+      {
+        "isSelect": true,
+        "fontSize": "25vp",
+        "name": "shanghai"
+      },
+      {
+        "isSelect": false,
+        "fontSize": "30vp",
+        "name": "shenzhen"
+      }
+    ],
+    "select_include_image": "include image",
+    "select_image": "image",
+    "select_restore": "restore",
+    "select_gesture": "gesture",
+    "select_beijing": "beijing",
+    "select_shanghai": "shanghai",
+    "select_shenzhen": "shenzhen",
+    "select_choice_font_style": "select the back landscape and text style",
+    "select_unchoice_font_style": "unselected landscape and text styles",
+    "select_thirty_five_vp": "35vp",
+    "select_thirty_vp": "30vp",
+    "select_resources": [
+      "common/image/ic_select_one.png",
+      "common/image/ic_select_two.png",
+      "common/image/ic_select_three.png"
+    ],
+
+    "share_element_title": "shared element transitions",
+    "share_element_resources": [
+      {
+        "url": "common/image/ic_scenery1.png",
+        "id": 1
+      },
+      {
+        "url": "common/image/ic_scenery2.png",
+        "id": 2
+      },
+      {
+        "url": "common/image/ic_scenery3.png",
+        "id": 3
+      },
+      {
+        "url": "common/image/ic_scenery4.png",
+        "id": 4
+      },
+      {
+        "url": "common/image/ic_scenery1.png",
+        "id": 5
+      },
+      {
+        "url": "common/image/ic_scenery2.png",
+        "id": 6
+      },
+      {
+        "url": "common/image/ic_scenery3.png",
+        "id": 7
+      },
+      {
+        "url": "common/image/ic_scenery4.png",
+        "id": 8
+      }
+    ],
+
+    "size_title": "Size 尺寸",
+    "size_width_title": "宽度",
+    "size_width_designate_description": "宽度为100vp",
+    "size_width_percentage_description": "宽度为60%",
+    "size_height_title": "高度",
+    "size_height_designate_description": "高度为100vp",
+    "size_height_percentage_description": "高度为80%",
+    "size_border_style_title": "边框类型",
+    "size_box_sizing_content_description": "标准盒子模型,设置的width和height只包含内容的宽和高，不包含边框（border）和内边距（padding）",
+    "size_box_sizing_border_description": "设置的width和height包含内容,边框（border）和内边距（padding）,即：组件内容区的实际宽度 = width - (border + padding) ",
+    "size_content_box": "content-box",
+    "size_border_box": "border-box",
+
+    "slider_title": "Slider",
+    "slider_show": "Display current value (min. 50/max. 130)",
+    "slider_events":"Events",
+    "slider_step_tip": "Step size and cues (step size is 10)",
+    "slider_custom_property": "Custom property",
+    "slider_block_color": "Slide color",
+    "slider_selected_color": "Colors are slided",
+    "slider_unselected_color": "The color is not sliding",
+
+    "span_title": "Span inline text component",
+    "span_set_properties": "configure different text attributes",
+    "span_decorative_characte": "decorative lines and text styles",
+    "span_first_part": "steel is tempered by fire and rapid cooling，",
+    "span_second_part": "is that why it's hard and not afraid of anything。",
+    "span_third_part": "in the same way, our generation has been trained in struggle and terrible trials，",
+    "span_fourth_part": "learn not to give in to life。",
+    "span_decorative_sample_text": "decorative line sample text",
+    "span_characters_sample_text": "  character style sample text",
+    "span_between_characters": "between characters",
+    "span_decorative_style": "decorative style",
+    "span_decorative_color": "decorative color",
+    "span_line_through": "line-through",
+    "span_under_line": "underline",
+    "span_decorative_none": "none",
+
+    "switch_title": "switch Switch components",
+    "switch_font_size": "the font size can be set",
+    "switch_font_color": "the font color can be set",
+    "switch_font_weight": "the font weight can be set",
+    "switch_on": "switch on",
+    "switch_off": "switch off",
+    "switch_turn_on": "turn on switch",
+    "switch_turn_off": "turn off switch",
+
+    "text_title": "Text",
+    "text_content": "Steel is tempered in fire and rapid cooling, so it can be hard and afraid of nothing. Our generation, too, tempered in struggles and terrible trials, learned not to succumb to life.",
+    "text_change_letter_spacing": "Change letter spacing",
+    "text_change_line_height": "Change line height",
+    "text_change_alignment_type": "Change alignment type",
+    "text_change_font_color": "Font color",
+    "text_change_display_mode": "Extra-long display mode",
+    "text_change_text_case": "Change text case",
+    "text_content_en": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life.",
+    "text_change_decorative_thread": "Decorative thread",
+    "text_underscore": "underscore",
+    "text_delete": "strikethrough",
+    "text_over_line": "standard",
+    "text_case": "case",
+    "text_default": "default",
+    "text_case_options": [
+      {
+        "value": "none",
+        "name": "Normal"
+      },
+      {
+        "value": "toUpperCase",
+        "name": "UpperCase"
+      },
+      {
+        "value": "toLowerCase",
+        "name": "LowerCase"
+      }
+    ],
+    "text_decorative_thread_options": [
+      {
+        "value": "none",
+        "name": "Normal"
+      },
+      {
+        "value": "underline",
+        "name": "Underline"
+      },
+      {
+        "value": "line-through",
+        "name": "Line through"
+      }
+    ],
+    "text_display_mode_options": [
+      {
+        "value": "normal",
+        "name": "Normal"
+      },
+      {
+        "value": "clip",
+        "name": "Clip"
+      },
+      {
+        "value": "ellipsis",
+        "name": "Ellipsis"
+      }
+    ],
+    "text_alignment_type_options": [
+      {
+        "name": "Start",
+        "value": "start"
+      },
+      {
+        "name": "Center",
+        "value": "center"
+      },
+      {
+        "name": "End",
+        "value": "end"
+      }
+    ],
+
+    "translate_title": "translate",
+    "translate_image": "image translate",
+    "translate_container": "component translate",
+    "translate_component_text": "ArkUI",
+    "translate_x_axis": "X axis:",
+    "translate_y_axis": "Y axis:"
   },
   "Files": {
   }
