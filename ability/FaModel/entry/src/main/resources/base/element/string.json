@@ -279,6 +279,34 @@
     {
       "name": "disconnect_ability",
       "value": "disconnect Ability"
+    },
+    {
+      "name": "connect_success",
+      "value": "connect success"
+    },
+    {
+      "name": "not_connect_yet",
+      "value": "not connect yet"
+    },
+    {
+      "name": "disconnect_success",
+      "value": "disconnect success"
+    },
+    {
+      "name": "connect_fail",
+      "value": "connect fail"
+    },
+    {
+      "name": "set_orientation_success",
+      "value": "setDisplayOrientation success"
+    },
+    {
+      "name": "call_success",
+      "value": "call success"
+    },
+    {
+      "name": "call_fail",
+      "value": "call fail"
     }
   ]
 }

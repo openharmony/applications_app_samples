@@ -22,7 +22,7 @@ import { BASE_URI, BUNDLE_NAME, SERVICE_ABILITY_NAME, TAST_ABILITY_NAME } from '
 const TAG: string = 'FeatureAbilityHelper'
 const localDeviceId: string = ''
 let rpcRemote: rpc.IRemoteObject = null
-let connection: number = -1
+let connectId: number = -1
 
 class FeatureAbilityHelper {
 
@@ -149,38 +149,48 @@ class FeatureAbilityHelper {
 
   // 连接service,对应stage模型connectService
   connectService() {
-    Logger.info(TAG, `CconnectService begin`)
+    Logger.info(TAG, `connectService begin`)
 
     // 对应stage模型Options
-    let ConnectOptions = {
+    let connectOptions = {
       onConnect: this.connectCallback,
       onDisconnect: this.disconnectCallback,
       onFailed: this.failedCallback
     }
-    connection = featureAbility.connectAbility(
+    connectId = featureAbility.connectAbility(
       {
         deviceId: localDeviceId,
         bundleName: BUNDLE_NAME,
         abilityName: SERVICE_ABILITY_NAME
       },
-      ConnectOptions
+      connectOptions
     )
+    Logger.info(TAG, `connectService connectId = ${connectId}`)
+    if (connectId >= 0) {
+      prompt.showToast({
+        message: $r('app.string.connect_success')
+      })
+    } else {
+      prompt.showToast({
+        message: $r('app.string.connect_fail')
+      })
+    }
   }
 
   // 断开service连接,对应stage模型disconnectService
   disconnectService() {
-    Logger.info(TAG, `DisconnectService begin`)
+    Logger.info(TAG, `disconnectService begin`)
     rpcRemote = null
-    if (connection === -1) {
+    if (connectId === -1) {
       prompt.showToast({
-        message: 'DisconnectService not connected yet'
+        message: $r('app.string.not_connect_yet')
       })
       return
     }
-    featureAbility.disconnectAbility(connection)
-    connection = -1
+    featureAbility.disconnectAbility(connectId)
+    connectId = -1
     prompt.showToast({
-      message: 'DisconnectService disconnect done'
+      message: $r('app.string.disconnect_success')
     })
   }
 }

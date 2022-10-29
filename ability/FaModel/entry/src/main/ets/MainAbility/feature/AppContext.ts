@@ -88,12 +88,18 @@ class AppContext {
   }
 
   // 设置当前能力的显示方向，Stage模型中window的setPreferredOrientation
-  setDisplayOrientation() {
-    context.setDisplayOrientation(bundle.DisplayOrientation.LANDSCAPE, (err, data) => {
-      Logger.info(TAG, `setDisplayOrientation err = ${JSON.stringify(err)}, data = ${JSON.stringify(data)}`)
-      prompt.showToast({
-        message: `setDisplayOrientation success ${JSON.stringify(data)}`
-      })
+  async setDisplayOrientation() {
+    let initialOrientation: bundle.DisplayOrientation = await context.getDisplayOrientation()
+    Logger.info(TAG, `await getDisplayOrientation orientation = ${JSON.stringify(initialOrientation)}`)
+    if (initialOrientation === bundle.DisplayOrientation.LANDSCAPE) {
+      initialOrientation = bundle.DisplayOrientation.PORTRAIT
+    } else {
+      initialOrientation = bundle.DisplayOrientation.LANDSCAPE
+    }
+    await context.setDisplayOrientation(initialOrientation)
+    Logger.info(TAG, `await setDisplayOrientation`)
+    prompt.showToast({
+      message: $r('app.string.set_orientation_success')
     })
   }
 

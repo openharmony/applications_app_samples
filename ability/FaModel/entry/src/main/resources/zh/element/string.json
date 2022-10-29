@@ -211,6 +211,30 @@
     {
       "name": "disconnect_ability",
       "value": "断开Ability"
+    },
+    {
+      "name": "connect_success",
+      "value": "连接成功"
+    },
+    {
+      "name": "disconnect_success",
+      "value": "断开连接成功"
+    },
+    {
+      "name": "connect_fail",
+      "value": "连接失败"
+    },
+    {
+      "name": "set_orientation_success",
+      "value": "设置显示方向成功"
+    },
+    {
+      "name": "call_success",
+      "value": "调用成功"
+    },
+    {
+      "name": "call_fail",
+      "value": "调用失败"
     }
   ]
 }
