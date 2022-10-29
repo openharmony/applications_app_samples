@@ -38,7 +38,7 @@ export default class MainAbility extends Ability {
   onWindowStageCreate(windowStage) {
     this.subWindow = windowStage
     WindowManger.initMainWindow(windowStage)
-    windowStage.loadContent("pages/index")
+    windowStage.loadContent("pages/Index")
   }
 
   onWindowStageDestroy() {
