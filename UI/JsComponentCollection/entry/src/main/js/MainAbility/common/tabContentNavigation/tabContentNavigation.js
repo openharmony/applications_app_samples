@@ -18,7 +18,7 @@ import router from '@ohos.router'
 export default {
   props: {
     itemType: {
-      default: 'unHaveSecondTitle'
+      default: 'notHaveSecondTitle'
     },
     tabIndex: {
       default: '0'

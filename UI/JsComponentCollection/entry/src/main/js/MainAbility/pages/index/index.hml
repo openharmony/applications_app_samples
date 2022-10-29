@@ -22,7 +22,7 @@
 
     <!-- Start component-->
       <div class="item-content">
-        <itemContent item-type="{{ unHaveSecondTitle }}" tab-index="0">
+        <itemContent item-type="{{ notHaveSecondTitle }}" tab-index="0">
         </itemContent>
       </div>
     <!-- End component-->
@@ -36,14 +36,14 @@
 
     <!-- Start animation-->
       <div class="item-content">
-        <itemContent item-type="{{ unHaveSecondTitle }}" tab-index="2">
+        <itemContent item-type="{{ notHaveSecondTitle }}" tab-index="2">
         </itemContent>
       </div>
     <!-- End animation-->
 
     <!-- Start globalMethod-->
       <div class="item-content">
-        <itemContent item-type="{{ haveSecondTitle }}" tab-index="3">
+        <itemContent item-type="{{ notHaveSecondTitle }}" tab-index="3">
         </itemContent>
       </div>
     <!-- End globalMethod-->
