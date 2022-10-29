@@ -22,20 +22,20 @@ export default {
     tabArr: [],
     iconArr:[
       {
-        unselect: 'common/image/ic_component.png',
-        select: 'common/image/ic_component_select.png'
+        unselect: 'common/image/ic_unselect_component.png',
+        select: 'common/image/ic_select_component.png'
       },
       {
-        unselect: 'common/image/ic_universal.png',
-        select: 'common/image/ic_universal_select.png'
+        unselect: 'common/image/ic_unselect_universal.png',
+        select: 'common/image/ic_select_universal.png'
       },
       {
-        unselect: 'common/image/ic_animation.png',
-        select: 'common/image/ic_animation_select.png'
+        unselect: 'common/image/ic_unselect_animation.png',
+        select: 'common/image/ic_select_animation.png'
       },
       {
-        unselect: 'common/image/ic_global.png',
-        select: 'common/image/ic_global_select.png'
+        unselect: 'common/image/ic_unselect_global.png',
+        select: 'common/image/ic_select_global.png'
       }
     ]
   },

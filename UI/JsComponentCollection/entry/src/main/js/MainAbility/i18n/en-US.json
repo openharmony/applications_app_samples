@@ -1,7 +1,10 @@
 {
   "color": {
     "index_font_color_selected": "#1296db",
-    "index_font_color_unselected": "#565353"
+    "index_font_color_unselected": "#565353",
+    "white": "#fff",
+    "badge_color": "red",
+    "text_badge_color": "#1e90ff"
   },
   "strings": {
     "tab_arr": [
@@ -10,6 +13,8 @@
       "animation",
       "globalMethod"
     ],
+    "common_confirm": "Confirm",
+    "common_cancle": "Cancle",
     "component_category": [],
     "universal_category": [],
     "animation_category": [],

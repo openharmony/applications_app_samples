@@ -18,12 +18,12 @@
       <image class="second-level-category-icon" src="{{ list.icon_url }}"></image>
       <text class="second-level-category-name">{{ list.name }}</text>
       <image class="icon-arrow"
-             src="{{ list.isUnfold === 'false' ? '/common/image/ic_right.png' : '/common/image/ic_down.png' }}"></image>
+             src="{{ list.isUnfold === 'false' ? '/common/image/ic_right_arrow.png' : '/common/image/ic_down_arrow.png' }}"></image>
     </div>
     <div class="third-level-category" for="{{ item in list.values }}"
          onclick="handlerOnClick(item)" if="{{ list.isUnfold === 'true' }}">
       <text class="third-level-category-name">{{ item.name }}</text>
-      <image class="icon-arrow" src="/common/image/ic_right.png"></image>
+      <image class="icon-arrow" src="/common/image/ic_right_arrow.png"></image>
     </div>
   </div>
 
@@ -37,14 +37,13 @@
           <image class="second-level-category-icon" src="{{ listChild.icon_url }}"></image>
           <text class="second-level-category-name">{{ listChild.name }}</text>
           <image class="icon-arrow"
-                 src="{{ listChild.isUnfold === 'false' ? '/common/image/ic_right.png' : '/common/image/ic_down.png'
-                         }}">
+                 src="{{ listChild.isUnfold === 'false' ? '/common/image/ic_right_arrow.png' : '/common/image/ic_down_arrow.png' }}">
           </image>
         </div>
         <div class="third-level-category" for="{{ item in listChild.values }}"
              onclick="handlerOnClick(item)" if="{{ listChild.isUnfold === 'true' }}">
           <text class="third-level-category-name">{{ item.name }}</text>
-          <image class="icon-arrow" src="/common/image/ic_right.png"></image>
+          <image class="icon-arrow" src="/common/image/ic_right_arrow.png"></image>
         </div>
       </div>
     </div>

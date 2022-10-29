@@ -21,7 +21,6 @@
   width: 100%;
   height: 54vp;
   padding-left: 32vp;
-  margin-bottom: 8vp;
   border:1vp solid #dcdcdc;
 }
 
@@ -34,7 +33,7 @@
 .title {
   height: 100%;
   margin-left: 8vp;
-  font-size: 22vp;
+  font-size: 20vp;
 }
 
 @media screen and (min-aspect-ratio: 1.5) {

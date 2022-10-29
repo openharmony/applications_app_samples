@@ -52,17 +52,18 @@ export default {
     }
   },
 
-  listCategoryOnClick(item) {
-    if (item.values.length === 0 && item.url) {
+  listCategoryOnClick(listChild) {
+    if (listChild.values.length === 0 && listChild.url) {
       router.push({
-        url: item.url
+        url: listChild.url
       })
+    } else {
+      if (listChild.isUnfold === 'false') {
+        listChild.isUnfold = 'true'
+        return
+      }
+      listChild.isUnfold = 'false'
     }
-    if (item.isUnfold === 'false') {
-      item.isUnfold = 'true'
-      return
-    }
-    item.isUnfold = 'false'
   },
 
   handlerOnClick(item) {
