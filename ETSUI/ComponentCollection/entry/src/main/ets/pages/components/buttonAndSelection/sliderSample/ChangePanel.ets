@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorInput } from '../../common/AttributeModificationTool'
+import { CommonItemSlider, CommonItemColorInput } from '../../../../common/AttributeModificationTool'
 
 @Component
 export struct ChangePanel {
@@ -25,7 +25,7 @@ export struct ChangePanel {
   build() {
     Column() {
       CommonItemSlider({
-        title: $r('app.string.slider_track_thickness'),
+        name: $r('app.string.slider_track_thickness'),
         changeValue: $trackThickness,
         min: 4,
         max: 9
@@ -33,19 +33,19 @@ export struct ChangePanel {
 
       // CommonItemColorInput will parse color 'FFFFFFFF' -> '#FFFFFFFF'
       CommonItemColorInput({
-        title: $r('app.string.slider_block_color'),
+        name: $r('app.string.slider_block_color'),
         color: $blockColor,
         defaultColor: 'FFFFFFFF'
       })
 
       CommonItemColorInput({
-        title: $r('app.string.slider_select_color'),
+        name: $r('app.string.slider_select_color'),
         color: $selectColor,
         defaultColor: 'FF0A59F7'
       })
 
       CommonItemColorInput({
-        title: $r('app.string.slider_track_color'),
+        name: $r('app.string.slider_track_color'),
         color: $trackColor,
         defaultColor: '19000000'
       })

@@ -31,7 +31,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct Font {
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.font') })
+      TitleBar({ title: $r('app.string.prop_font') })
       IntroductionTitle({ introduction: $r('app.string.font_color') })
       Row() {
         Text('#409EFF')
@@ -82,7 +82,7 @@ struct Font {
       }
       .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.font') })
+      IntroductionTitle({ introduction: $r('app.string.prop_size') })
       Row() {
         Text('sans-serif')
           .fontSize(20)

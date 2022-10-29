@@ -17,6 +17,13 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { ShowToast } from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
+@Extend(Column) function columnStyle () {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
 @Entry
 @Component
 struct RadioSample {
@@ -28,13 +35,6 @@ struct RadioSample {
     $r('app.string.radio_shanghai'),
     $r('app.string.radio_guangzhou'),
     $r('app.string.radio_shenzhen')]
-
-  @Styles backgroundStyle() {
-    .width('100%')
-    .padding(12)
-    .borderRadius(24)
-    .backgroundColor(Color.White)
-  }
 
   build() {
     Column() {
@@ -56,7 +56,7 @@ struct RadioSample {
               }
             })
           }
-          .backgroundStyle()
+          .columnStyle()
           .alignItems(HorizontalAlign.Start)
 
           IntroductionTitle({ introduction: $r("app.string.radio_has_response_region") })
@@ -88,7 +88,7 @@ struct RadioSample {
               })
             })
           }
-          .backgroundStyle()
+          .columnStyle()
           .alignItems(HorizontalAlign.Start)
           .margin({ bottom: 70 })
         }

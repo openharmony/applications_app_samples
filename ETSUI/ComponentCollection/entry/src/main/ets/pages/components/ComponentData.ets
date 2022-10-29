@@ -19,7 +19,12 @@ const AUXILIARY: ThirdLevelCategory =
   {
     image: $r('app.media.ic_auxiliary'),
     title: $r('app.string.auxiliary'),
-    url: 'pages/components/auxiliary/badgeSample/BadgeSample'
+    childNodes: [
+      {
+        title: $r('app.string.auxiliary_badge'),
+        url: 'pages/components/auxiliary/badgeSample/BadgeSample'
+      }
+    ]
   }
 
 const BUTTON_AND_SELECTION: ThirdLevelCategory =
@@ -50,21 +55,13 @@ const BUTTON_AND_SELECTION: ThirdLevelCategory =
       {
         title: $r('app.string.toggle_title'),
         url: 'pages/components/buttonAndSelection/toggleSample/ToggleSample'
-      },
-      {
-        title: $r('app.string.date_picker_title'),
-        url: 'pages/components/buttonAndSelection/datePickerSample/DatePickerSample'
-      },
-      {
-        title: $r('app.string.slider_title'),
-        url: 'pages/components/buttonAndSelection/sliderSample/SliderSample'
       }
     ]
   }
 
 const BLANK_AND_DIVIDER: ThirdLevelCategory =
   {
-    image: $r('app.media.ic_blank_divider'),
+    image: $r('app.media.ic_blank_and_divider'),
     title: $r('app.string.blank_and_divider'),
     childNodes: [
       {

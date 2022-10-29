@@ -14,7 +14,7 @@
  */
 
 
-import { CommonItemSlider, CommonItemSelect } from '../../common/Common'
+import { CommonItemSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool'
 
 @Component
 export struct ChangePanel {
@@ -25,11 +25,11 @@ export struct ChangePanel {
   build() {
     Column() {
       // Slid to change stroke width
-      CommonItemSlider({ value: $strokeWidth, min: 1, max: 25, title: $r('app.string.divider_stroke_width') })
+      CommonItemSlider({ changeValue: $strokeWidth, min: 1, max: 25, name: $r('app.string.divider_stroke_width') })
 
       // Select line color
       CommonItemSelect({
-        title: $r('app.string.divider_line_color'),
+        name: $r('app.string.divider_line_color'),
         selects: ['Blue', 'Green', 'Orange', 'Pink'],
         callback: (index) => {
           switch (index) {
@@ -50,7 +50,7 @@ export struct ChangePanel {
 
       // Select lineCapStyle
       CommonItemSelect({
-        title: $r('app.string.divider_line_cap'),
+        name: $r('app.string.divider_line_cap'),
         selects: ['Butt', 'Round', 'Square'],
         callback: (index) => {
           switch (index) {

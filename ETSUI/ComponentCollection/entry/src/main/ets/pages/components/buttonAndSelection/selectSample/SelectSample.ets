@@ -26,9 +26,9 @@ struct SelectSample {
     $r('app.media.ic_select_option_collection'),
     $r('app.media.ic_select_option_gesture')]
   private cityNames:SelectOption[] =[
-    { value: $r('app.string.beijing') },
-    { value: $r('app.string.shanghai') },
-    { value: $r('app.string.shenzhen') }]
+    { value: $r('app.string.radio_beijing') },
+    { value: $r('app.string.radio_shanghai') },
+    { value: $r('app.string.radio_shenzhen') }]
 
   @Styles itemBorder() {
     .height(60)

@@ -43,7 +43,7 @@ struct TranslateSample {
 
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.graphic_transformation_pan') })
+      TitleBar({ title: $r('app.string.graphic_transformation_translate') })
       IntroductionTitle({ introduction: $r('app.string.translate_image') })
       // Image translate
       Column() {

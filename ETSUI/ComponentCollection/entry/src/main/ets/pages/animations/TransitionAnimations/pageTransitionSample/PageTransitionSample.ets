@@ -106,7 +106,7 @@ struct PageTransitionSample {
 
   pageTransition() {
     // Entry animation
-    PageTransitionEnter({ duration: 5000, curve: Curve.Linear })
+    PageTransitionEnter({ duration: 500, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         this.topY = (-progress + 1) * this.topY
         this.bottomY = (-progress + 1) * this.bottomY
@@ -115,7 +115,7 @@ struct PageTransitionSample {
       })
 
     // Exit animation
-    PageTransitionExit({ duration: 5000, curve: Curve.Ease })
+    PageTransitionExit({ duration: 500, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         this.topY = -600 * progress
         this.bottomY = 600 * progress

@@ -17,21 +17,28 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { ShowToast } from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
+@Extend(Column) function columnStyle () {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
+@Extend(Row) function rowStyle () {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+}
+
 @Entry
 @Component
 struct ButtonSample {
-  @Styles backgroundStyle() {
-    .width('100%')
-    .padding(12)
-    .borderRadius(24)
-    .backgroundColor(Color.White)
-  }
-
   @Styles buttonDefaultStyle() {
     .height(40)
     .layoutWeight(1)
-    .margin({left: 8, right:8})
-    .backgroundColor($r('app.color.button_sample_color'))
+    .margin({ left: 8, right: 8 })
+    .backgroundColor($r('app.color.button_default_bg_color'))
   }
 
   build() {
@@ -75,7 +82,7 @@ struct ButtonSample {
             .margin({ top: 12 })
             .justifyContent(FlexAlign.SpaceAround)
           }
-          .backgroundStyle()
+          .columnStyle()
 
           // State effect default is ture
           IntroductionTitle({ introduction: $r('app.string.button_state_effect') })
@@ -105,7 +112,7 @@ struct ButtonSample {
                 ShowToast.longToast('disable !')
               })
           }
-          .backgroundStyle()
+          .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
 
           IntroductionTitle({ introduction: $r('app.string.button_custom_style') })
@@ -135,7 +142,7 @@ struct ButtonSample {
             .buttonDefaultStyle()
             .backgroundColor($r('app.color.button_custom_color'))
           }
-          .backgroundStyle()
+          .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
         }
         .constraintSize({ minHeight: '100%' }) // Let the minHeight of the component cover screen at least

@@ -14,7 +14,7 @@
  */
 
 
-import { CommonItemSlider, CommonItemSelect } from '../../common/AttributeModificationTool'
+import { CommonItemSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool'
 
 @Component
 export struct ChangePanel {
@@ -25,14 +25,14 @@ export struct ChangePanel {
   build() {
     Column() {
       CommonItemSlider({
-        value: $letterSpacing,
+        changeValue: $letterSpacing,
         min: 0,
         max: 12,
-        title: $r('app.string.span_letter_spacing')
+        name: $r('app.string.span_letter_spacing')
       })
 
       CommonItemSelect({
-        title: $r('app.string.span_decoration_type'),
+        name: $r('app.string.span_decoration_type'),
         selects: ['None', 'LineThrough', 'Underline', 'Overline'],
         callback: (index) => {
           switch (index) {
@@ -52,7 +52,7 @@ export struct ChangePanel {
       })
 
       CommonItemSelect({
-        title: $r('app.string.span_decoration_color'),
+        name: $r('app.string.span_decoration_color'),
         selects: ['Red', 'Yellow', 'Green'],
         callback: (index) => {
           switch (index) {
