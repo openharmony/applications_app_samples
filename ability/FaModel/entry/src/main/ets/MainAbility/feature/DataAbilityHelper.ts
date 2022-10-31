@@ -17,10 +17,9 @@ import dataAbility from '@ohos.data.dataAbility'
 import featureAbility from '@ohos.ability.featureAbility'
 import prompt from '@ohos.prompt'
 import Logger from '../util/Logger'
-import { BASE_URI, COLUMNS } from '../model/DaHelperConst'
+import { DA_HELPER, BASE_URI, COLUMNS } from '../model/DaHelperConst'
 
 const TAG: string = 'DataAbilityHelper'
-const DA_HELPER = featureAbility.acquireDataAbilityHelper(BASE_URI)
 
 // 对应Stage模型DataShareHelper
 class DataAbilityHelper {
@@ -107,11 +106,17 @@ class DataAbilityHelper {
   }
 
   // 调用DataAbility的扩展接口
-  call() {
-    DA_HELPER.call(BASE_URI, 'method', 'arg', { 'key1': 'value1' }, (err, data) => {
-      Logger.info(TAG, `call success err = ${JSON.stringify(err)}, data = ${JSON.stringify(data)}`)
+  async call() {
+    Logger.info(TAG, `call success err`)
+    await DA_HELPER.call(BASE_URI, 'insert', BASE_URI, { 'key1': 'value1' }).then((data) => {
+      Logger.info(TAG, `call success = ${JSON.stringify(data)}`)
       prompt.showToast({
-        message: 'call success'
+        message:  $r('app.string.call_success')
+      })
+    }).catch((err) => {
+      Logger.error(TAG, `call err = ${err}`)
+      prompt.showToast({
+        message:  $r('app.string.call_fail')
       })
     })
   }

@@ -21,8 +21,30 @@ import { BUNDLE_NAME, SERVICE_ABILITY_NAME, TAST_ABILITY_NAME } from '../model/D
 
 const TAG: string = 'ParticleAbilityHelper'
 
+let faConnect: any = {
+  onConnect: function (element, remote) {
+    Logger.info(TAG, `ConnectAbility onConnect remote is proxy: ${remote instanceof rpc.RemoteProxy}`)
+    prompt.showToast({
+      message: $r('app.string.connect_success')
+    })
+  },
+  onDisconnect: function (element) {
+    Logger.info(TAG, `ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
+    prompt.showToast({
+      message: $r('app.string.disconnect_success')
+    })
+  },
+  onFailed: function (code) {
+    Logger.info(TAG, `particleAbilityTest ConnectAbility onFailed errCode : ${code}`)
+    prompt.showToast({
+      message: $r('app.string.connect_fail')
+    })
+  }
+}
+
+let connId: number = -1
+
 class ParticleAbilityHelper {
-  private connId: number = -1
 
   // 启动指定的particleAbility，Stage模型ServiceExtContextController的startAbility
   startAbility() {
@@ -58,43 +80,17 @@ class ParticleAbilityHelper {
     })
   }
 
-  onConnectCallback(element, remote) {
-    Logger.info(TAG, `ConnectAbility onConnect remote is proxy: ${remote instanceof rpc.RemoteProxy}`)
-    prompt.showToast({
-      message: 'particleAbility connectAbility success'
-    })
-  }
-
-  onDisconnectCallback(element) {
-    Logger.info(TAG, `ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
-    prompt.showToast({
-      message: 'particleAbility disconnectAbility success'
-    })
-  }
-
-  onFailedCallback(code) {
-    Logger.info(TAG, `particleAbilityTest ConnectAbility onFailed errCode : ${code}`)
-    prompt.showToast({
-      message: `particleAbility Failed ${code}`
-    })
-  }
-
   // 将当前ability连接到指定ServiceAbility，Stage模型ServiceExtContextController的connectAbility
   connectAbility() {
-    this.connId = particleAbility.connectAbility({
+    connId = particleAbility.connectAbility({
       bundleName: BUNDLE_NAME,
       abilityName: SERVICE_ABILITY_NAME,
-    },
-      {
-        onConnect: this.onConnectCallback,
-        onDisconnect: this.onDisconnectCallback,
-        onFailed: this.onFailedCallback,
-      })
+    }, faConnect)
   }
 
   // 将功能与服务功能断开连接，Stage模型ServiceExtContextController的disconnectAbility
   disconnectAbility() {
-    particleAbility.disconnectAbility(this.connId, () => {
+    particleAbility.disconnectAbility(connId, () => {
       Logger.info(TAG, 'disconnectAbility success')
     })
   }

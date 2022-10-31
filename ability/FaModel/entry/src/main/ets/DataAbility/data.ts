@@ -73,5 +73,9 @@ export default {
       let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
       rdbStore.delete(rdbPredicates, callback)
     }
+  },
+
+  call(method, arg, extras, callback) {
+    Logger.info(TAG, `call start`)
   }
 }

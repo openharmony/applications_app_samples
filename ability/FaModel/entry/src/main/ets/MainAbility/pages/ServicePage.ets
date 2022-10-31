@@ -65,18 +65,13 @@ struct ServicePage {
             if (!this.isConnectService) {
               FeatureAbilityHelper.connectService()
               this.isConnectService = true
-            } else {
-              FeatureAbilityHelper.disconnectService()
-              this.isConnectService = false
             }
           })
         Button($r('app.string.disconnect_service'))
           .width('60%')
           .margin({ top: 30 })
           .onClick(() => {
-            if (!this.isConnectService) {
-              return
-            } else {
+            if (this.isConnectService) {
               FeatureAbilityHelper.disconnectService()
               this.isConnectService = false
             }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-
+import featureAbility from '@ohos.ability.featureAbility'
 import rdb from '@ohos.data.rdb'
 
 export const BASE_URI: string = 'dataability:///ohos.samples.famodel.DataAbility'
@@ -31,3 +31,5 @@ export const BUNDLE_NAME: string = 'ohos.samples.famodel'
 export const SERVICE_ABILITY_NAME: string = 'ohos.samples.famodel.ServiceAbility'
 
 export const TAST_ABILITY_NAME: string = 'ohos.samples.famodel.TestAbility'
+
+export const DA_HELPER = featureAbility.acquireDataAbilityHelper(BASE_URI)
