@@ -16,7 +16,7 @@
 import { TitleBarModel } from '../../models/HomeModel'
 import { titleBarData } from '../../mocks/HomeData'
 import { getTheme } from '../../utils/ThemeGet'
-import { GoodsList } from './Goodslist'
+import { GoodsList } from './GoodsList'
 import { SwiperComponent } from './Swiper'
 
 const OPACITY: number = 0.6 // 透明度
