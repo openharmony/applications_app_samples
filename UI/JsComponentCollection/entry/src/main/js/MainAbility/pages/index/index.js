@@ -16,7 +16,7 @@ import { logger } from '../../common/logger/logger'
 
 export default {
   data: {
-    unHaveSecondTitle: 'unHaveSecondTitle',
+    notHaveSecondTitle: 'notHaveSecondTitle',
     haveSecondTitle: 'haveSecondTitle',
     tabIndex: 0,
     tabArr: [],

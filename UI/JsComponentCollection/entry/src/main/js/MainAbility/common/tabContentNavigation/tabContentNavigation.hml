@@ -13,7 +13,7 @@
  limitations under the License.
  -->
 <div class="container">
-  <div class="second-level-category" for="list in listCategory" if="{{ itemType === 'unHaveSecondTitle' }}">
+  <div class="second-level-category" for="list in listCategory" if="{{ itemType === 'notHaveSecondTitle' }}">
     <div class="second-level-category-title" onclick="listCategoryOnClick(list)">
       <image class="second-level-category-icon" src="{{ list.icon_url }}"></image>
       <text class="second-level-category-name">{{ list.name }}</text>
