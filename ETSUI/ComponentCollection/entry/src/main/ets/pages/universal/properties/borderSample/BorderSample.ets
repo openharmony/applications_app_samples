@@ -18,7 +18,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 
 @Extend(Row) function rowStyle () {
   .padding(8)
-  .height(120)
+  .height(100)
   .borderRadius(24)
   .backgroundColor(Color.White)
   .margin({ left: 12, right: 12 })

@@ -15,7 +15,7 @@
 
 import { ChangePanel } from './ChangePanel'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import { ShowToast } from '../../../../util/ShowToast'
+import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
 @Extend(Row) function rowStyle () {

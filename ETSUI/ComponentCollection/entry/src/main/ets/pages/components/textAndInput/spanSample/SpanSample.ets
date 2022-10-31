@@ -61,13 +61,13 @@ struct SpanSample {
               Span($r('app.string.span_text_decoration'))
                 .fontSize(20)
                 .decoration({
-                  type: this.decoration, // decoration type
-                  color: this.decorationColor // line color
+                  type: this.decoration, // Decoration type
+                  color: this.decorationColor // Line color
                 })
 
               Span($r('app.string.span_text_spacing'))
                 .fontSize(20)
-                .letterSpacing(this.letterSpacing) // letter spacing
+                .letterSpacing(this.letterSpacing) // Letter spacing
             }
             .height(50)
 

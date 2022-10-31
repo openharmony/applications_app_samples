@@ -15,7 +15,7 @@
 
 import prompt from '@ohos.prompt'
 
-class ShowToastModel {
+class ShowToast {
   private longToastTime: number = 3000
   private shortToastTime: number = 1000
 
@@ -32,4 +32,4 @@ class ShowToastModel {
   }
 }
 
-export const ShowToast = new ShowToastModel()
+export default new ShowToast()

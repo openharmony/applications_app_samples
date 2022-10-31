@@ -15,7 +15,7 @@
 
 import { CommonItemSelect } from '../../../../common/AttributeModificationTool'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import { ShowToast } from '../../../../util/ShowToast'
+import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
 @Extend(Column) function backgroundStyle () {
@@ -33,6 +33,7 @@ struct TextInputSample {
   @State hasFilterError: boolean = false
   @State showPasswordIcon: boolean = true
   @State inputType: InputType = InputType.Normal
+  @State inputContent: string = ''
   @State typePlaceholder: ResourceStr = $r('app.string.text_input_normal_type')
   private inputController: TextInputController = new TextInputController()
   private maxLength: number = 12
@@ -163,6 +164,7 @@ struct TextInputSample {
               .layoutWeight(1)
               .onChange((value: string) => {
                 this.caretIndex = value.length
+                this.inputContent = value
                 this.inputController.caretPosition(this.caretIndex)
               })
             Counter() {
@@ -170,11 +172,13 @@ struct TextInputSample {
             }
             .margin({ left: 12 })
             .onInc(() => {
-              this.inputController.caretPosition(this.caretIndex++)
+              if (this.caretIndex >= 0 && this.caretIndex < this.inputContent.length) {
+                this.inputController.caretPosition(++this.caretIndex)
+              }
             })
             .onDec(() => {
               if (this.caretIndex > 0) {
-                this.inputController.caretPosition(this.caretIndex--)
+                this.inputController.caretPosition(--this.caretIndex)
               }
             })
           }
