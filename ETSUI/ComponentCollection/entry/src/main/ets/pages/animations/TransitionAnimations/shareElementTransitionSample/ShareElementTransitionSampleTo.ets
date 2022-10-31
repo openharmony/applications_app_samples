@@ -30,6 +30,7 @@ struct ShareElementTransitionSampleTo {
           router.back()
         })
     }
+    .padding(12)
     .backgroundColor(Color.Black)
     .justifyContent(FlexAlign.Center)
   }

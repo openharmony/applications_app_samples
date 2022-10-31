@@ -58,6 +58,7 @@ struct DatePickerSample {
       }
       .itemBorder()
       .padding({ left: 12, right: 12 })
+      .margin({ top: 12, left: 12, right: 12 })
       .alignItems(HorizontalAlign.Start)
     }
     .height('100%')

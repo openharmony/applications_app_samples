@@ -14,7 +14,7 @@
  */
 
 import { CommonItemSlider, CommonItemSelect, CommonItemColorInput } from '../../../../common/AttributeModificationTool'
-import { ShowToast } from '../../../../util/ShowToast'
+import ShowToast from '../../../../util/ShowToast'
 
 @Component
 export struct ChangeTextCase {

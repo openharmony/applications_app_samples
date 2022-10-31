@@ -148,7 +148,7 @@ struct Background {
       }
       .rowsGap(8)
       .padding(8)
-      .height(300)
+      .height(250)
       .columnsGap(8)
       .borderRadius(24)
       .rowsTemplate('1fr 1fr')

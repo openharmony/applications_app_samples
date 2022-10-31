@@ -44,7 +44,7 @@ struct DividerSample {
       Scroll() {
         Column() {
           IntroductionTitle({ introduction: $r('app.string.divider_horizontal') })
-          // horizontal divider
+          // Horizontal divider
           Column() {
             this.Block()
             Divider()
@@ -54,11 +54,11 @@ struct DividerSample {
           .columnStyle()
 
           IntroductionTitle({ introduction: $r('app.string.divider_vertical') })
-          // vertical divider
+          // Vertical divider
           Row() {
             Text($r('app.string.radio_beijing'))
             Divider()
-              .vertical(true) // if true, divider is vertical
+              .vertical(true) // If true, divider is vertical
               .height(26)
             Text($r('app.string.radio_shanghai'))
             Divider()
@@ -74,9 +74,9 @@ struct DividerSample {
           Column() {
             this.Block()
             Divider()
-              .color(this.lineColor) // divider color
-              .strokeWidth(this.strokeWidth) // divider stroke width
-              .lineCap(this.lineCapStyle) // divider line cap style
+              .color(this.lineColor) // Divider color
+              .strokeWidth(this.strokeWidth) // Divider stroke width
+              .lineCap(this.lineCapStyle) // Divider line cap style
             this.Block()
 
             ChangePanel({
