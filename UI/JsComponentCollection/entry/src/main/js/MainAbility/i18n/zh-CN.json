@@ -24,7 +24,7 @@
         "values": [
           {
             "name": "Badge 标记组件",
-            "url": "pages/components/badgeSample/badgeSample"
+            "url": "pages/components/badgeSample/BadgeSample"
           }
         ]
       },
@@ -35,7 +35,7 @@
         "values": [
           {
             "name": "Divider 分隔组件",
-            "url": "pages/components/basic/dividerSample/dividerSample"
+            "url": "pages/components/basic/dividerSample/DividerSample"
           }
         ]
       },
@@ -46,7 +46,7 @@
         "values": [
           {
             "name": "QRCode 二维码组件",
-            "url": "pages/components/basic/qrcodeSample/qrcodeSample"
+            "url": "pages/components/basic/qrCodeSample/QRCodeSample"
           }
         ]
       },
@@ -57,15 +57,15 @@
         "values": [
           {
             "name": "Text 文本组件",
-            "url": "pages/components/basic/textSample/textSample"
+            "url": "pages/components/basic/textSample/TextSample"
           },
           {
             "name": "Input 文本输入组件",
-            "url": "pages/components/basic/inputSample/inputSample"
+            "url": "pages/components/basic/inputSample/InputSample"
           },
           {
             "name": "Span 行内文本组件",
-            "url": "pages/components/basic/spanSample/spanSample"
+            "url": "pages/components/basic/spanSample/SpanSample"
           }
         ]
       },
@@ -76,27 +76,27 @@
         "values": [
           {
             "name": "DatePicker 时间选择器",
-            "url": "pages/components/basic/datePickerSample/datePickerSample"
+            "url": "pages/components/basic/datePickerSample/DatePickerSample"
           },
           {
             "name": "Radio 单选按钮",
-            "url": "pages/components/basic/radioSample/radioSample"
+            "url": "pages/components/basic/radioSample/RadioSample"
           },
           {
             "name": "Slider 滑动条组件",
-            "url": "pages/components/basic/sliderSample/sliderSample"
+            "url": "pages/components/basic/sliderSample/SliderSample"
           },
           {
             "name": "Button 按钮组件",
-            "url": "pages/components/basic/buttonSample/buttonSample"
+            "url": "pages/components/basic/buttonSample/ButtonSample"
           },
           {
             "name": "Select 选择组件",
-            "url": "pages/components/basic/selectSample/selectSample"
+            "url": "pages/components/basic/selectSample/SelectSample"
           },
           {
             "name": "Switch 切换组件",
-            "url": "pages/components/basic/switchSample/switchSample"
+            "url": "pages/components/basic/switchSample/SwitchSample"
           }
         ]
       }
@@ -112,7 +112,7 @@
             "values": [
               {
                 "name": "Click Events 点击事件",
-                "url": "pages/universals/events/clickSample/clickSample"
+                "url": "pages/universals/events/clickSample/ClickSample"
               }
             ]
           }
@@ -124,28 +124,28 @@
           {
             "name": "背景",
             "isUnfold": "false",
-            "url": "pages/universals/properties/backgroundSample/backgroundSample",
+            "url": "pages/universals/properties/backgroundSample/BackgroundSample",
             "icon_url": "common/image/ic_props_background.png",
             "values": []
           },
           {
             "name": "边框",
             "isUnfold": "false",
-            "url": "pages/universals/properties/borderSample/borderSample",
+            "url": "pages/universals/properties/borderSample/BorderSample",
             "icon_url": "common/image/ic_props_border.png",
             "values": []
           },
           {
             "name": "字体",
             "isUnfold": "false",
-            "url": "pages/universals/properties/fontSample/fontSample",
+            "url": "pages/universals/properties/fontSample/FontSample",
             "icon_url": "common/image/ic_props_font.png",
             "values": []
           },
           {
             "name": "尺寸",
             "isUnfold": "false",
-            "url": "pages/universals/properties/sizeSample/sizeSample",
+            "url": "pages/universals/properties/sizeSample/SizeSample",
             "icon_url": "common/image/ic_props_size.png",
             "values": []
           },
@@ -156,11 +156,11 @@
             "values": [
               {
                 "name": "Rotate 旋转",
-                "url": "pages/universals/properties/RotateSample/RotateSample"
+                "url": "pages/universals/properties/rotateSample/RotateSample"
               },
               {
                 "name": "Translate 平移",
-                "url": "pages/universals/properties/TranslateSample/TranslateSample"
+                "url": "pages/universals/properties/translateSample/TranslateSample"
               }
             ]
           }
@@ -175,11 +175,11 @@
         "values": [
           {
             "name": "页面转场",
-            "url": "pages/animations/PageTransitionSample/PageTransitionSample"
+            "url": "pages/animations/pageTransitionSample/PageTransitionSample"
           },
           {
             "name": "共享元素转场",
-            "url": "pages/animations/ShareElementTransitionSample/ShareElementTransitionSample"
+            "url": "pages/animations/shareElementTransitionSample/ShareElementTransitionSample"
           }
         ]
       }
@@ -192,7 +192,7 @@
         "values": [
           {
             "name": "Dialog 自定义弹窗",
-            "url": "pages/globalMethods/popups/DialogSample/DialogSample"
+            "url": "pages/globalMethods/popups/dialogSample/DialogSample"
           }
         ]
       }
@@ -355,7 +355,7 @@
     "input_password_icon": "密码图标",
     "input_placeholder_style_title": "提示文字样式",
     "input_placeholder_style_message": "提示文字",
-    "input_placeholder_events_message": "文本选择弹窗会出现翻译，分享，搜索",
+    "input_placeholder_events_message": "文本选择弹窗会出现翻译",
     "input_regular_expression": "正则表达式",
     "input_regular_expression_description": "只能输入英文",
     "input_limit_length_title": "限制输入字符长度",
@@ -403,27 +403,27 @@
     "page_transition_handlers": [
       {
         "name": "顶部进场/底部退场",
-        "url": "pages/animations/PageTransitionSampleFromTop/PageTransitionSampleFromTop"
+        "url": "pages/animations/pageTransitionSampleFromTop/PageTransitionSampleFromTop"
       },
       {
         "name": "底部进场/底部退场",
-        "url": "pages/animations/PageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
+        "url": "pages/animations/pageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
       },
       {
         "name": "左侧进场/底部退场",
-        "url": "pages/animations/PageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
+        "url": "pages/animations/pageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
       },
       {
         "name": "右侧进场/底部退场",
-        "url": "pages/animations/PageTransitionSampleFromRight/PageTransitionSampleFromRight"
+        "url": "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight"
       },
       {
         "name": "缩放进场/底部退场",
-        "url": "pages/animations/PageTransitionSampleWithScale/PageTransitionSampleWithScale"
+        "url": "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale"
       },
       {
         "name": "旋转进场/底部退场",
-        "url": "pages/animations/PageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
+        "url": "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
       }
     ],
 

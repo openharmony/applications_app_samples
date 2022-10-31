@@ -21,7 +21,7 @@
         "values": [
           {
             "name": "Badge",
-            "url": "pages/components/badgeSample/badgeSample"
+            "url": "pages/components/badgeSample/BadgeSample"
           }
         ]
       },
@@ -32,7 +32,7 @@
         "values": [
           {
             "name": "Divider",
-            "url": "pages/components/basic/dividerSample/dividerSample"
+            "url": "pages/components/basic/dividerSample/DividerSample"
           }
         ]
       },
@@ -43,7 +43,7 @@
         "values": [
           {
             "name": "QRCode",
-            "url": "pages/components/basic/qrcodeSample/qrcodeSample"
+            "url": "pages/components/basic/qrCodeSample/QRCodeSample"
           }
         ]
       },
@@ -54,15 +54,15 @@
         "values": [
           {
             "name": "Text",
-            "url": "pages/components/basic/textSample/textSample"
+            "url": "pages/components/basic/textSample/TextSample"
           },
           {
             "name": "Input",
-            "url": "pages/components/basic/inputSample/inputSample"
+            "url": "pages/components/basic/inputSample/InputSample"
           },
           {
             "name": "Span",
-            "url": "pages/components/basic/spanSample/spanSample"
+            "url": "pages/components/basic/spanSample/SpanSample"
           }
         ]
       },
@@ -73,27 +73,27 @@
         "values": [
           {
             "name": "DatePicker",
-            "url": "pages/components/basic/datePickerSample/datePickerSample"
+            "url": "pages/components/basic/datePickerSample/DatePickerSample"
           },
           {
             "name": "Radio",
-            "url": "pages/components/basic/radioSample/radioSample"
+            "url": "pages/components/basic/radioSample/RadioSample"
           },
           {
             "name": "Slider",
-            "url": "pages/components/basic/sliderSample/sliderSample"
+            "url": "pages/components/basic/sliderSample/SliderSample"
           },
           {
             "name": "Button",
-            "url": "pages/components/basic/buttonSample/buttonSample"
+            "url": "pages/components/basic/buttonSample/ButtonSample"
           },
           {
             "name": "Select",
-            "url": "pages/components/basic/selectSample/selectSample"
+            "url": "pages/components/basic/selectSample/SelectSample"
           },
           {
             "name": "Switch",
-            "url": "pages/components/basic/switchSample/switchSample"
+            "url": "pages/components/basic/switchSample/SwitchSample"
           }
         ]
       }
@@ -109,7 +109,7 @@
             "values": [
               {
                 "name": "Click Events",
-                "url": "pages/universals/events/clickSample/clickSample"
+                "url": "pages/universals/events/clickSample/ClickSample"
               }
             ]
           }
@@ -121,28 +121,28 @@
           {
             "name": "Background",
             "isUnfold": "false",
-            "url": "pages/universals/properties/backgroundSample/backgroundSample",
+            "url": "pages/universals/properties/backgroundSample/BackgroundSample",
             "icon_url": "common/image/ic_props_background.png",
             "values": []
           },
           {
             "name": "Border",
             "isUnfold": "false",
-            "url": "pages/universals/properties/borderSample/borderSample",
+            "url": "pages/universals/properties/borderSample/BorderSample",
             "icon_url": "common/image/ic_props_border.png",
             "values": []
           },
           {
             "name": "Font",
             "isUnfold": "false",
-            "url": "pages/universals/properties/fontSample/fontSample",
+            "url": "pages/universals/properties/fontSample/FontSample",
             "icon_url": "common/image/ic_props_font.png",
             "values": []
           },
           {
             "name": "Size",
             "isUnfold": "false",
-            "url": "pages/universals/properties/sizeSample/sizeSample",
+            "url": "pages/universals/properties/sizeSample/SizeSample",
             "icon_url": "common/image/ic_props_size.png",
             "values": []
           },
@@ -153,11 +153,11 @@
             "values": [
               {
                 "name": "Rotate",
-                "url": "pages/universals/properties/RotateSample/RotateSample"
+                "url": "pages/universals/properties/rotateSample/RotateSample"
               },
               {
                 "name": "Translate",
-                "url": "pages/universals/properties/TranslateSample/TranslateSample"
+                "url": "pages/universals/properties/translateSample/TranslateSample"
               }
             ]
           }
@@ -172,11 +172,11 @@
         "values": [
           {
             "name": "Page Transition",
-            "url": "pages/animations/PageTransitionSample/PageTransitionSample"
+            "url": "pages/animations/pageTransitionSample/PageTransitionSample"
           },
           {
             "name": "Share Element Transition",
-            "url": "pages/animations/ShareElementTransitionSample/ShareElementTransitionSample"
+            "url": "pages/animations/shareElementTransitionSample/ShareElementTransitionSample"
           }
         ]
       }
@@ -189,7 +189,7 @@
         "values": [
           {
             "name": "Custom Dialog",
-            "url": "pages/globalMethods/popups/DialogSample/DialogSample"
+            "url": "pages/globalMethods/popups/dialogSample/DialogSample"
           }
         ]
       }
@@ -352,7 +352,7 @@
     "input_password_icon": "password icon",
     "input_placeholder_style_title": "Placeholder style title",
     "input_placeholder_style_message": "Placeholder style message",
-    "input_placeholder_events_message": "The text selection pop-up window will appear translate, share, search",
+    "input_placeholder_events_message": "The text selection pop-up window will appear translate",
     "input_regular_expression": "Regular expression",
     "input_regular_expression_description": "Only English can be entered",
     "input_limit_length_title": "Limit the input character length",
@@ -400,27 +400,27 @@
     "page_transition_handlers": [
       {
         "name": "top enter/bottom exit",
-        "url": "pages/animations/PageTransitionSampleFromTop/PageTransitionSampleFromTop"
+        "url": "pages/animations/pageTransitionSampleFromTop/PageTransitionSampleFromTop"
       },
       {
         "name": "bottom enter/bottom exit",
-        "url": "pages/animations/PageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
+        "url": "pages/animations/pageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
       },
       {
         "name": "left enter/bottom exit",
-        "url": "pages/animations/PageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
+        "url": "pages/animations/pageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
       },
       {
         "name": "roight enter/bottom exit",
-        "url": "pages/animations/PageTransitionSampleFromRight/PageTransitionSampleFromRight"
+        "url": "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight"
       },
       {
         "name": "scale enter/bottom exit",
-        "url": "pages/animations/PageTransitionSampleWithScale/PageTransitionSampleWithScale"
+        "url": "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale"
       },
       {
         "name": "rotate enter/bottom exit",
-        "url": "pages/animations/PageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
+        "url": "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
       }
     ],
 
