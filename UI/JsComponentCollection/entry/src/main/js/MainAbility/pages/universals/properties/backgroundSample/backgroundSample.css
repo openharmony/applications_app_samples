@@ -38,10 +38,11 @@
   width: 100%;
   height: 140vp;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-content: center;
   border-radius: 24vp;
   background-color: white;
-  padding: 0vp 24vp;
+  padding: 0vp 20vp;
 }
 
 .white-background-color-column {
@@ -57,8 +58,8 @@
   color: #99000000;
 }
 
-.left-box {
-  width: 100vp;
+.rect-box {
+  flex-weight: 1;
   height: 80vp;
   display: flex;
   flex-direction: column;
@@ -66,30 +67,8 @@
   align-items: center;
   color: #FFFFFF;
   border-radius: 5vp;
-}
-
-.center-box {
-  width: 100vp;
-  height: 80vp;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 20vp;
-  color: #FFFFFF;
-  border-radius: 5vp;
-}
-
-.right-box {
-  width: 100vp;
-  height: 80vp;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 20vp;
-  color: #FFFFFF;
-  border-radius: 5vp;
+  margin-left: 5vp;
+  margin-right: 5vp;
 }
 
 .smallFontSize {
@@ -105,11 +84,11 @@
 
 .background-img-box {
   display: flex;
-  width: 50%;
+  flex-weight: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20vp;
+  padding: 20vp;
 }
 
 .align-center {
@@ -117,8 +96,8 @@
 }
 
 .background-img-url {
-  width: 100vp;
-  height: 80vp;
+  width: 100%;
+  height: 120vp;
   display: flex;
   flex-direction: column;
   justify-content: center;

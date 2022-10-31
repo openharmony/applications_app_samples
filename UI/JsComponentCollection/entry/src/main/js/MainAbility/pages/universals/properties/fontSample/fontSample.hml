@@ -95,10 +95,10 @@
 
       <!-- Font family start -->
       <div class="font-box">
-        <text style="font-family: sans-serif;">{{ $t('strings.family_sans') }}</text>
+        <text style="font-family: sans-serif;">{{ $t('strings.font_family_sans') }}</text>
       </div>
       <div class="font-box bottom-margin">
-        <text style="font-family: HYQiHei-65S;">{{ $t('strings.family_h_y_q_i_hei') }}</text>
+        <text style="font-family: HYQiHei-65S;">{{ $t('strings.font_family_h_y_q_i_hei') }}</text>
       </div>
       <!-- Font family end -->
 
