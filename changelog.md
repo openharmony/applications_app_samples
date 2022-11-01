@@ -77,6 +77,8 @@
 新增Sample：
 1.[`HealthyDiet`：健康饮食（eTS）（API9）](ETSUI/HealthyDiet)
 2.[`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](MultiDeviceAppDev/MusicAlbum)
+3.[`Vegetable`：一多蔬菜百科主页（eTS）（API9）](MultiDeviceAppDev/Vegetable)
+4.[`MediaCollections`：媒体管理合集（eTS）（API9）（Full SDK）](media/MediaCollections)
 
 删除Sample：
 1.[`JsRecorder`：录音机（eTS）（API8）（Full SDK）](media/JsRecorder)
@@ -85,3 +87,10 @@
 4.[`ECG`：心率检测（JS）（API8）](common/ECG) 
 5.[`Flashlight`：手电筒（JS）（API8）](common/Flashlight) 
 6.[`AirQuality`：空气质量（JS）（API8）](common/AirQuality) 
+
+# 9月16日-10月21日新增Sample（总计28个分类，175个sample）
+1.[`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（eTS）（API9）（Full SDK）](ability/AbilityConnectServiceExtension)
+2.[`CustomNotification`：自定义通知（eTS）（API9）](Notification/CustomNotification)
+3.[`OrangeShopping`：购物示例应用（eTS）（API9）](ETSUI/OrangeShopping)
+4.[`ComponentCollection`：组件集合（eTS）（API9）](ETSUI/ComponentCollection)
+5.[`JsComponentCollection`：组件集合（JS）（API9）](UI/JsComponentCollection)
