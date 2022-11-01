@@ -18,7 +18,7 @@ import Logger from '../model/Logger'
 import { Record } from '../model/Record'
 
 const TAG = '[Recorder.AudioItem]'
-const TRANSLATE: number = -125
+const TRANSLATE: number = -145
 
 @Component
 export struct AudioItem {
@@ -96,9 +96,9 @@ export struct AudioItem {
         .width('20%')
         .justifyContent(FlexAlign.End)
       }
-      .width('79%')
+      .width('100%')
       .padding({ top: 10, bottom: 10, left: 10, right: 10 })
-      .margin({ top: 15 })
+      .margin({ top: 15,right: 15 })
       .backgroundColor('#FFFFFF')
       .borderRadius(20)
 
@@ -132,11 +132,10 @@ export struct AudioItem {
           this.leftSliderIndex = -1
         })
       }
-      .width('21%')
       .padding({ right: 10 })
       .margin({ left: 15, right: 15 })
     }
-    .width('120%')
+    .width('100%')
     .height('15%')
     .constraintSize({ minHeight: 100 })
     .margin({ left: this.translateLeft, right: this.translateRight })
