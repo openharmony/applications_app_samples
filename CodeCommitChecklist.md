@@ -5,13 +5,13 @@
 3. 新增Sample的工程推荐使用Stage模型编写；
 4. 新增Sample的工程中需要包含UI自动化用例（ohosTest工程模块），覆盖基本的功能场景；
 5. 新增Sample需要遵循[代码提交规范](#section1)、[工程结构规范](#section2)、[PR提交格式规范](#section3)、[ReadMe编写规范](#section4)和[UI自动化用例编写规范](#section5)；
-6. 新增Sample的UX涉及需要符合[一多规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/Readme-CN.md)；
+6. 新增Sample的UX设计需要符合[一多规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/Readme-CN.md)；
 7. 新增Sample推荐使用当前最新版本IDE和SDK版本；
 8. 工程合入时，需要提供测试用例报告，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
 
 ## 代码提交规范<a name="section1"></a>
 
-1. 所有文件，包括自动生成的编译文件package.json都要格式化；
+1. 所有文件，包括自动生成的编译文件package.json都要格式化（IDE快捷键Ctrl+Alt+L）；
 2. 函数命名，C++大驼峰，TS、JS小驼峰，函数命名注意动宾结构；
 3. 变量和参数命名，静态常量需使用全大写，函数的参数、全局变量和局部变量都使用小驼峰；
 4. 函数参数命名，要规范化，见名知意；
