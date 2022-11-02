@@ -12,40 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import logger from '../Model/Logger'
+
 import Ability from '@ohos.application.Ability'
+import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
-    logger.info(TAG, `[Demo] MainAbility onCreate`)
+    Logger.info(TAG, `MainAbility onCreate`)
     await this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
     let deviceFlag = want.parameters.isB
-    if(deviceFlag){
+    if (deviceFlag) {
       AppStorage.SetOrCreate('deviceFlag', deviceFlag)
     }
-    logger.info(TAG, `deviceFlag = ${deviceFlag}`)
+    Logger.info(TAG, `deviceFlag = ${deviceFlag}`)
   }
 
   onDestroy() {
-    logger.info(TAG, `[Demo] MainAbility onDestroy`)
+    Logger.info(TAG, `MainAbility onDestroy`)
   }
 
   onWindowStageCreate(windowStage) {
-    logger.info(TAG, `[Demo] MainAbility onWindowStageCreate`)
+    Logger.info(TAG, `MainAbility onWindowStageCreate`)
     windowStage.setUIContent(this.context, 'pages/Index', null)
   }
 
   onWindowStageDestroy() {
-    logger.info(TAG, `[Demo] MainAbility onWindowStageDestroy`)
+    Logger.info(TAG, `MainAbility onWindowStageDestroy`)
   }
 
   onForeground() {
-    logger.info(TAG, `[Demo] MainAbility onForeground`)
+    Logger.info(TAG, `MainAbility onForeground`)
   }
 
   onBackground() {
-    logger.info(TAG, `[Demo] MainAbility onBackground`)
+    Logger.info(TAG, `MainAbility onBackground`)
   }
 }

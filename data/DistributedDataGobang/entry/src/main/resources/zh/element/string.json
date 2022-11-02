@@ -30,7 +30,27 @@
     },
     {
       "name": "distributed_permission",
-      "value": "分布式权限"
+      "value": "允许不同设备间的数据交换"
+    },
+    {
+      "name": "total",
+      "value": "共计"
+    },
+    {
+      "name": "round",
+      "value": "回合"
+    },
+    {
+      "name": "black_chess",
+      "value": "黑子"
+    },
+    {
+      "name": "white_chess",
+      "value": "白子"
+    },
+    {
+      "name": "win",
+      "value": "胜！"
     }
   ]
 }

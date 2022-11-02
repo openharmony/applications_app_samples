@@ -12,66 +12,64 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import logger from '../Model/Logger'
-import { RemoteDeviceModel } from '../Model/RemoteDeviceModel'
-import { DeviceDialog } from '../Common/DeviceDialog'
 
-const DEVICE_A: string = 'deviceA'
-const EXIT: string = 'exit'
+import deviceManager from '@ohos.distributedHardware.deviceManager'
+import Logger from '../util/Logger'
+import { GobangConst } from '../util/GobangConst'
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
+import { DeviceDialog } from './Devicedialog'
+
 const TAG: string = 'TitleBar'
-const DEVICE_RANGE: number = 1000
 
 @Component
 export struct TitleBar {
   @State @Watch('selectedIndexChange') selectedIndex: number = 0
-  @State deviceList: Array<deviceManager.DeviceInfo> = []
-  private startAbilityCallBack: (key: string) => void
-  private remoteDeviceModel: RemoteDeviceModel | null = null
+  @State devices: Array<deviceManager.DeviceInfo> = []
   @Link isDistributed: boolean
   @Link dialogShow: boolean
   @StorageLink('deviceFlag') deviceFlag: string = 'A'
+  private startAbilityCallBack: (key: string) => void
+  private remoteDeviceModel: RemoteDeviceModel | null = null
   private dialogController: CustomDialogController = new CustomDialogController({
-    builder: DeviceDialog({ deviceList: this.deviceList, selectedIndex: $selectedIndex }),
+    builder: DeviceDialog({ deviceList: this.devices, selectedIndex: $selectedIndex }),
     autoCancel: true,
     alignment: DialogAlignment.Center
   })
 
   clearSelectState() {
-    this.deviceList = []
+    this.devices = []
     this.dialogShow = false
     this.dialogController.close()
   }
 
   selectDevice() {
-    logger.info(TAG, `[TitleBar] start ability ......`)
+    Logger.info(TAG, `start ability`)
     this.isDistributed = true
     if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverList.length <= 0) {
-      logger.info(TAG, `[TitleBar] continue unauthed device: ${JSON.stringify(this.deviceList)}`)
-      this.startAbility(this.deviceList[this.selectedIndex].deviceId)
+      Logger.info(TAG, `continue unauthed device: ${JSON.stringify(this.devices)}`)
+      this.startAbility(this.devices[this.selectedIndex].deviceId)
       this.clearSelectState()
       return
     }
-    logger.info(TAG, `[TitleBar] start ability1, needAuth`)
-    this.remoteDeviceModel.authenticateDevice(this.deviceList[this.selectedIndex], () => {
-      logger.info(TAG, `[TitleBar] auth and online finished`)
+    Logger.info(TAG, `start ability, needAuth`)
+    this.remoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], () => {
+      Logger.info(TAG, `auth and online finished`)
       for (let i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
-        if (this.remoteDeviceModel.deviceList[i].deviceName === this.deviceList[this.selectedIndex].deviceName) {
+        if (this.remoteDeviceModel.deviceList[i].deviceName === this.devices[this.selectedIndex].deviceName) {
           this.startAbility(this.remoteDeviceModel.deviceList[i].deviceId)
         }
       }
     })
-    logger.info(TAG, `[TitleBar] start ability2 ......`)
     this.clearSelectState()
   }
 
   selectedIndexChange() {
-    logger.info(TAG, `[TitleBar] selectedIndexChange`)
+    Logger.info(TAG, `selectedIndexChange`)
     if (this.selectedIndex === 0) {
-      logger.info(TAG, `[TitleBar] stop ability`)
-      this.startAbilityCallBack(EXIT)
+      Logger.info(TAG, `stop ability`)
+      this.startAbilityCallBack(GobangConst.EXIT)
       this.isDistributed = false
-      this.deviceList = []
+      this.devices = []
       this.dialogController.close()
       this.dialogShow = false
       return
@@ -80,37 +78,36 @@ export struct TitleBar {
   }
 
   startAbility(deviceId) {
-    logger.info(TAG, `[TitleBar] startAbility deviceId: ${deviceId}`)
+    Logger.info(TAG, `startAbility deviceId: ${deviceId}`)
     let context = getContext(this) as any
     context.startAbility({
       bundleName: 'ohos.samples.distributeddatagobang',
       abilityName: 'MainAbility',
       deviceId: deviceId,
       parameters: {
-        isB: 'B',
-        isA: 'A'
+        isB: 'B'
       }
     }).then((data) => {
-      logger.info(TAG, `[TitleBar] start ability finished: ${JSON.stringify(data)}`)
-      this.startAbilityCallBack(DEVICE_A)
+      Logger.info(TAG, `start ability finished: ${JSON.stringify(data)}`)
+      this.startAbilityCallBack(GobangConst.DEVICE_A)
     })
   }
 
   showDialog() {
     this.dialogShow = true
-    this.deviceList = []
+    this.devices = []
     this.remoteDeviceModel.registerDeviceListCallback(() => {
-      logger.info(TAG, `[TitleBar] registerDeviceListCallback, callback entered`)
-      this.deviceList.push({
+      Logger.info(TAG, `registerDeviceListCallback, callback entered`)
+      this.devices.push({
         deviceId: '0',
-        deviceName: 'local device',
-        deviceType: deviceManager.DeviceType.UNKNOWN_TYPE,
+        deviceName: 'Local device',
+        deviceType: GobangConst.DEVICE_TYPE_NUMBER,
         networkId: '',
-        range: DEVICE_RANGE
+        range: GobangConst.RANGE_NUMBER
       })
-      let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
-      for (let i = 0; i < deviceTempList.length; i++) {
-        this.deviceList.push(deviceTempList[i])
+      let deviceTemps = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
+      for (let i = 0; i < deviceTemps.length; i++) {
+        this.devices.push(deviceTemps[i])
       }
     })
     this.dialogController.open()
@@ -119,20 +116,21 @@ export struct TitleBar {
   build() {
     Row() {
       Image($r('app.media.ic_back'))
-        .height('80%')
-        .margin({ left: 32 })
-        .width(32)
+        .width(40)
+        .height(30)
+        .margin({ left: 15 })
         .objectFit(ImageFit.Contain)
         .onClick(() => {
           let context = getContext(this) as any
           context.terminateSelf()
         })
-      Blank().layoutWeight(1)
+      Blank()
+        .layoutWeight(1)
       if (this.deviceFlag === 'A') {
         Image($r('app.media.ic_hop'))
-          .height('80%')
-          .margin({ right: 32 })
-          .width(32)
+          .width(40)
+          .height(40)
+          .margin({ right: 15 })
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             this.showDialog()
@@ -140,7 +138,7 @@ export struct TitleBar {
       }
     }
     .width('100%')
-    .height('8%')
+    .height(50)
     .constraintSize({ minHeight: 50 })
     .alignItems(VerticalAlign.Center)
     .position({ x: 0, y: 0 })
