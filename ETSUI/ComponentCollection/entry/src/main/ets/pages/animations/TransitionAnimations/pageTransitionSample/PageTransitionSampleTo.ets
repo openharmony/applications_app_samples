@@ -15,11 +15,18 @@
 
 import router from '@ohos.router'
 
+const ANIMATION_TIME: number = 1000
+const ANIMATION_PROGRESS: number = -600
+
 @Entry
 @Component
 struct PageTransitionSampleTo {
+  @State topY: number = 0
   @State zoom: number = 0
   @State angle: number = 1
+  @State leftX: number = 0
+  @State rightX: number = 0
+  @State bottomY: number = 0
   @State progress: number = 0
   @State transitionType: SlideEffect = SlideEffect.Left
 
@@ -60,16 +67,24 @@ struct PageTransitionSampleTo {
 
   pageTransition() {
     // Entry animation
-    PageTransitionEnter({ duration: 500, curve: Curve.Linear })
+    PageTransitionEnter({ duration: ANIMATION_TIME, curve: Curve.Linear })
       .slide(this.transitionType)
       .onEnter((type: RouteType, progress: number) => {
+        this.topY = (-progress + 1) * this.topY
+        this.bottomY = (-progress + 1) * this.bottomY
+        this.leftX = (-progress + 1) * this.leftX
+        this.rightX = (-progress + 1) * this.rightX
         this.progress = progress
       })
 
     // Exit animation
-    PageTransitionExit({ duration: 500, curve: Curve.Ease })
+    PageTransitionExit({ duration: ANIMATION_TIME, curve: Curve.Ease })
       .slide(this.transitionType)
       .onExit((type: RouteType, progress: number) => {
+        this.topY = -ANIMATION_PROGRESS * progress
+        this.bottomY = ANIMATION_PROGRESS * progress
+        this.leftX = -ANIMATION_PROGRESS * progress
+        this.rightX = ANIMATION_PROGRESS * progress
         this.progress = progress
       })
   }

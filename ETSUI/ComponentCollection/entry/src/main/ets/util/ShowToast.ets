@@ -19,8 +19,8 @@ class ShowToast {
   private longToastTime: number = 3000
   private shortToastTime: number = 1000
 
-  showToast(message:ResourceStr, duration:number) {
-    prompt.showToast({message: message, duration: duration})
+  showToast(message: ResourceStr, duration: number) {
+    prompt.showToast({ message: message, duration: duration })
   }
 
   shortToast(message: ResourceStr) {

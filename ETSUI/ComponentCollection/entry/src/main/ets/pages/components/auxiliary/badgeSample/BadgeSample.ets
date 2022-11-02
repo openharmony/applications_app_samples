@@ -21,11 +21,11 @@ import { TitleBar } from '../../../../common/TitleBar'
   .width('100%')
   .borderRadius(14)
   .padding({ left: 12, right: 12 })
+  .justifyContent(FlexAlign.SpaceBetween)
 }
 
 @Extend(Badge) function badgeStyle () {
-  .width(120)
-  .height(50)
+  .layoutWeight(1)
   .borderRadius(20)
   .margin({ left: 12, right: 12 })
   .backgroundColor($r('app.color.tab_bar_divider'))
@@ -37,121 +37,139 @@ struct BadgeSample {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.auxiliary_badge') })
-      IntroductionTitle({ introduction: $r('app.string.badge_type') })
-      Row() {
+      Scroll() {
         Column() {
-          Badge({
-            count: 1,
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_number'))
-          }
-          .badgeStyle()
-        }
+          IntroductionTitle({ introduction: $r('app.string.badge_type') })
+          Row() {
+            Badge({
+              count: 1,
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_number'))
+            }
+            .badgeStyle()
 
-        Column() {
-          Badge({
-            value: 'new',
-            style: { color: 0xFFFFFF, fontSize: 14, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_string'))
+            Badge({
+              value: 'new',
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 14,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_string'))
+            }
+            .badgeStyle()
           }
-          .badgeStyle()
+          .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.badge_max') })
+          Row() {
+            Badge({
+              count: 10,
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_number_normal'))
+            }
+            .badgeStyle()
+
+            Badge({
+              count: 100,
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_number_max'))
+            }
+            .badgeStyle()
+          }
+          .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.badge_location') })
+          Row() {
+            Badge({
+              count: 1,
+              position: BadgePosition.Left,
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_left'))
+            }
+            .badgeStyle()
+
+            Badge({
+              count: 1,
+              position: BadgePosition.RightTop,
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_top'))
+            }
+            .badgeStyle()
+
+            Badge({
+              count: 1,
+              position: BadgePosition.Right,
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 20,
+                badgeColor: Color.Red }
+            }) {
+              this.RowContainer($r('app.string.badge_right'))
+            }
+            .badgeStyle()
+          }
+          .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.badge_style') })
+          Row() {
+            Badge({
+              value: ' ',
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 24,
+                badgeColor: Color.Blue }
+            }) {
+              this.RowContainer($r('app.string.badge_blue'))
+            }
+            .badgeStyle()
+
+            Badge({
+              value: ' ',
+              style: {
+                color: 0xFFFFFF,
+                fontSize: 16,
+                badgeSize: 14,
+                badgeColor: Color.Green }
+            }) {
+              this.RowContainer($r('app.string.badge_green'))
+            }
+            .badgeStyle()
+          }
+          .rowStyle()
         }
+        .constraintSize({ minHeight: '100%' })
       }
-      .rowStyle()
-      .justifyContent(FlexAlign.SpaceBetween)
-
-      IntroductionTitle({ introduction: $r('app.string.badge_max') })
-      Row() {
-        Column() {
-          Badge({
-            count: 10,
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_number_normal'))
-          }
-          .badgeStyle()
-        }
-
-        Column() {
-          Badge({
-            count: 100,
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_number_max'))
-          }
-          .badgeStyle()
-        }
-      }
-      .rowStyle()
-      .justifyContent(FlexAlign.SpaceBetween)
-
-      IntroductionTitle({ introduction: $r('app.string.badge_location') })
-      Row() {
-        Column() {
-          Badge({
-            count: 1,
-            position: BadgePosition.Left,
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_left'))
-          }
-          .badgeStyle()
-        }
-
-        Column() {
-          Badge({
-            count: 1,
-            position: BadgePosition.RightTop,
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_top'))
-          }
-          .badgeStyle()
-        }
-
-        Column() {
-          Badge({
-            count: 1,
-            position: BadgePosition.Right,
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-          }) {
-            this.RowContainer($r('app.string.badge_right'))
-          }
-          .badgeStyle()
-        }
-      }
-      .rowStyle()
-      .justifyContent(FlexAlign.SpaceBetween)
-
-      IntroductionTitle({ introduction: $r('app.string.badge_style') })
-      Row() {
-        Column() {
-          Badge({
-            value: ' ',
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 24, badgeColor: Color.Blue }
-          }) {
-            this.RowContainer($r('app.string.badge_blue'))
-          }
-          .badgeStyle()
-        }
-
-        Column() {
-          Badge({
-            value: ' ',
-            style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 14, badgeColor: Color.Green }
-          }) {
-            this.RowContainer($r('app.string.badge_green'))
-          }
-          .badgeStyle()
-        }
-      }
-      .rowStyle()
-      .justifyContent(FlexAlign.SpaceBetween)
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 
@@ -163,9 +181,7 @@ struct BadgeSample {
         .fontColor($r('app.color.font_color_shallow'))
         .textAlign(TextAlign.Center)
     }
-    .padding(2)
-    .width('100%')
-    .height('100%')
+    .padding(8)
     .alignSelf(ItemAlign.Center)
     .justifyContent(FlexAlign.Center)
   }

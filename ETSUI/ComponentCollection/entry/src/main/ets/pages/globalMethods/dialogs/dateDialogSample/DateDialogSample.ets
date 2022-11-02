@@ -36,135 +36,103 @@ import { TitleBar } from '../../../../common/TitleBar'
 
 @Entry
 @Component
-struct DataPopupSample {
-  @State fullTime: string = `12:00:00`
-  @State halfTime: string = `12:00:00`
+struct DataDialogSample {
   @State lunarDate: string = '2022-10-01'
   @State gregorianDate: string = '2022-10-01'
+  private context: any = getContext(this)
   private selectedDate: Date = new Date('2022-10-01')
-  private selectTime: Date = new Date('10/01/2022 12:00:00')
 
   build() {
     Column() {
       TitleBar({ title: $r('app.string.date_picker_dialog') })
-      IntroductionTitle({ introduction: $r('app.string.date_picker_dialog_date') })
-      Row({ space: 16 }) {
-        Text($r('app.string.date_picker_dialog_date_lunar'))
-          .fontSize(20)
-        Text(this.lunarDate)
-          .textStyle()
-          .onClick(() => {
-            DatePickerDialog.show({
-              start: new Date('1970-1-1'),
-              end: new Date('2100-12-31'),
-              selected: this.selectedDate,
-              lunar: true,
-              onAccept: (value: DatePickerResult) => {
-                this.setDate(true, value)
-              },
-              onCancel: () => {
-                ShowToast.showToast($r('app.string.date_picker_dialog_cancel'), 300)
-              },
-              onChange: (value: DatePickerResult) => {
-                ShowToast.showToast(JSON.stringify(value), 300)
-              }
-            })
-          })
-      }
-      .rowStyle()
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.date_picker_dialog_date') })
+          Row({ space: 16 }) {
+            Text($r('app.string.date_picker_dialog_date_lunar'))
+              .fontSize(20)
+            Text(this.lunarDate)
+              .textStyle()
+              .onClick(() => {
+                DatePickerDialog.show({
+                  start: new Date('1970-1-1'),
+                  end: new Date('2100-12-31'),
+                  selected: this.selectedDate,
+                  lunar: true,
+                  onAccept: (value: DatePickerResult) => {
+                    this.setDate(true, value)
+                  },
+                  onCancel: () => {
+                    ShowToast.shortToast($r('app.string.date_picker_dialog_cancel'))
+                  },
+                  onChange: (value: DatePickerResult) => {
+                    this.ShowToastDate(value)
+                  }
+                })
+              })
+          }
+          .rowStyle()
 
-      Row({ space: 16 }) {
-        Text($r('app.string.date_picker_dialog_date_gregorian'))
-          .fontSize(20)
-        Text(this.gregorianDate)
-          .textStyle()
-          .onClick(() => {
-            DatePickerDialog.show({
-              start: new Date('1970-1-1'),
-              end: new Date('2100-12-31'),
-              selected: this.selectedDate,
-              lunar: false,
-              onAccept: (value: DatePickerResult) => {
-                this.setDate(false, value)
-              },
-              onCancel: () => {
-                ShowToast.showToast($r('app.string.date_picker_dialog_cancel'), 300)
-              },
-              onChange: (value: DatePickerResult) => {
-                ShowToast.showToast(JSON.stringify(value), 300)
-              }
-            })
-          })
+          Row({ space: 16 }) {
+            Text($r('app.string.date_picker_dialog_date_gregorian'))
+              .fontSize(20)
+            Text(this.gregorianDate)
+              .textStyle()
+              .onClick(() => {
+                DatePickerDialog.show({
+                  start: new Date('1970-1-1'),
+                  end: new Date('2100-12-31'),
+                  selected: this.selectedDate,
+                  lunar: false,
+                  onAccept: (value: DatePickerResult) => {
+                    this.setDate(false, value)
+                  },
+                  onCancel: () => {
+                    ShowToast.shortToast($r('app.string.date_picker_dialog_cancel'))
+                  },
+                  onChange: (value: DatePickerResult) => {
+                    this.ShowToastDate(value)
+                  }
+                })
+              })
+          }
+          .rowStyle()
+        }
+        .constraintSize({ minHeight: '100%' })
       }
-      .rowStyle()
-
-      IntroductionTitle({ introduction: $r('app.string.date_picker_dialog_time') })
-      Row({ space: 16 }) {
-        Text($r('app.string.date_picker_dialog_24_hour'))
-          .fontSize(20)
-        Text(this.fullTime)
-          .textStyle()
-          .onClick(() => {
-            TimePickerDialog.show({
-              selected: this.selectTime,
-              useMilitaryTime: true,
-              onAccept: (value: TimePickerResult) => {
-                this.setTime(true, value)
-              },
-              onCancel: () => {
-                ShowToast.showToast($r('app.string.date_picker_dialog_cancel'), 300)
-              },
-              onChange: (value: TimePickerResult) => {
-                ShowToast.showToast(JSON.stringify(value), 300)
-              }
-            })
-          })
-      }
-      .rowStyle()
-
-      Row({ space: 16 }) {
-        Text($r('app.string.date_picker_dialog_12_hour'))
-          .fontSize(20)
-        Text(this.halfTime)
-          .textStyle()
-          .onClick(() => {
-            TimePickerDialog.show({
-              selected: this.selectTime,
-              useMilitaryTime: false,
-              onAccept: (value: TimePickerResult) => {
-                this.setTime(false, value)
-              },
-              onCancel: () => {
-                ShowToast.showToast($r('app.string.date_picker_dialog_cancel'), 300)
-              },
-              onChange: (value: TimePickerResult) => {
-                ShowToast.showToast(JSON.stringify(value), 300)
-              }
-            })
-          })
-      }
-      .rowStyle()
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 
   setDate(isLunar: boolean, value: DatePickerResult) {
     this.selectedDate.setFullYear(value.year, value.month, value.day)
+    let month: string = `${value.month + 1}`
+    let day: string = `${value.day}`
+    if (value.month < 9) {
+      month = `0${value.month + 1}`
+    }
+    if (value.day < 10) {
+      day = `0${value.day}`
+    }
     if (isLunar) {
-      this.lunarDate = `${value.year}-${value.month + 1}-${value.day}`
+      this.lunarDate = `${value.year}-${month}-${day}`
     } else {
-      this.gregorianDate = `${value.year}-${value.month + 1}-${value.day}`
+      this.gregorianDate = `${value.year}-${month}-${day}`
     }
   }
 
-  setTime(isUseMilitaryTime: boolean, value: TimePickerResult) {
-    this.selectTime.setHours(value.hour, value.minute)
-    if (isUseMilitaryTime) {
-      this.fullTime = `${value.hour}:${value.minute}:00`
-    } else {
-      this.halfTime = `${value.hour}:${value.minute}:00`
+  ShowToastDate(value: DatePickerResult) {
+    let month: string = `${value.month + 1}`
+    let day: string = `${value.day}`
+    if (value.month < 9) {
+      month = `0${value.month + 1}`
     }
+    if (value.day < 10) {
+      day = `0${value.day}`
+    }
+    ShowToast.shortToast(
+      this.context.resourceManager.getStringSync($r('app.string.date_picker_toast_date').id) + value.year + '-' +
+      month + '-' + day)
   }
 }

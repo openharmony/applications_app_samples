@@ -21,11 +21,14 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Component
 struct SelectSample {
   @State selectIndex: number = 0
+  private context: any = getContext(this)
+  private indexTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_index').id)
+  private valueTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_value').id)
   private selectIcon: ResourceStr[] = [
     $r('app.media.ic_select_option_picture'),
     $r('app.media.ic_select_option_collection'),
     $r('app.media.ic_select_option_gesture')]
-  private cityNames:SelectOption[] =[
+  private cityNames: SelectOption[] = [
     { value: $r('app.string.radio_beijing') },
     { value: $r('app.string.radio_shanghai') },
     { value: $r('app.string.radio_shenzhen') }]
@@ -54,7 +57,7 @@ struct SelectSample {
               .font({ size: 20, weight: FontWeight.Normal })
               .selected(this.selectIndex)
               .onSelect((index: number, value: string) => {
-                ShowToast.longToast(`index: ${index} value: ${value}`)
+                ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
                 this.selectIndex = index
               })
           }
@@ -70,7 +73,7 @@ struct SelectSample {
               .selectedOptionFontColor($r('app.color.select_option_font_color'))
               .selectedOptionFont({ size: 25, weight: FontWeight.Medium })
               .onSelect((index: number, value: string) => {
-                ShowToast.longToast(`index: ${index} value: ${value}`)
+                ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
               })
           }
           .itemBorder()
@@ -85,7 +88,7 @@ struct SelectSample {
               .optionFontColor(Color.White)
               .optionFont({ size: 25, weight: FontWeight.Normal })
               .onSelect((index: number, value: string) => {
-                ShowToast.longToast(`index: ${index} value: ${value}`)
+                ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
               })
           }
           .itemBorder()
@@ -98,7 +101,7 @@ struct SelectSample {
               .font({ size: 20, weight: FontWeight.Normal })
               .fontColor(Color.Black)
               .onSelect((index: number, value: string) => {
-                ShowToast.longToast(`index: ${index} value: ${value}`)
+                ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
               })
           }
           .itemBorder()

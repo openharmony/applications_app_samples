@@ -17,6 +17,7 @@
     "pages/globalMethods/dialogs/alertDialogSample/AlertDialogSample",
     "pages/globalMethods/dialogs/customDialogSample/CustomDialogSample",
     "pages/globalMethods/dialogs/dateDialogSample/DateDialogSample",
+    "pages/globalMethods/dialogs/timeDialogSample/TimeDialogSample",
     "pages/universal/events/clickEventSample/ClickEventSample",
     "pages/universal/properties/backgroundSample/BackgroundSample",
     "pages/universal/properties/borderSample/BorderSample",

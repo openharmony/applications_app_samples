@@ -29,6 +29,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct ToggleSample {
   @State isNormalSelect: boolean = false
   @State isCustomSelect: boolean = true
+  private context: any = getContext(this)
+  private toggleState: string = this.context.resourceManager.getStringSync($r('app.string.toggle_state').id)
 
   build() {
     Column() {
@@ -39,14 +41,14 @@ struct ToggleSample {
           Row() {
             Toggle({ type: ToggleType.Switch, isOn: false })
               .onChange((isOn: boolean) => {
-                ShowToast.longToast(`isOn: ${isOn}`)
+                ShowToast.longToast(`${this.toggleState}${isOn}`)
               })
 
             Toggle({ type: ToggleType.Switch, isOn: true })
               .switchPointColor($r('app.color.background_blue'))
               .selectedColor($r('app.color.toggle_selected_color'))
               .onChange((isOn: boolean) => {
-                ShowToast.longToast(`isOn: ${isOn}`)
+                ShowToast.longToast(`${this.toggleState}${isOn}`)
               })
           }
           .rowStyle()
@@ -57,7 +59,7 @@ struct ToggleSample {
             Row() {
               Toggle({ type: ToggleType.Checkbox, isOn: false })
                 .onChange((isOn: boolean) => {
-                  ShowToast.longToast(`isOn: ${isOn}`)
+                  ShowToast.longToast(`${this.toggleState}${isOn}`)
                 })
               Text($r('app.string.radio_beijing'))
             }
@@ -66,7 +68,7 @@ struct ToggleSample {
               Toggle({ type: ToggleType.Checkbox, isOn: true })
                 .selectedColor($r('app.color.toggle_selected_color'))
                 .onChange((isOn: boolean) => {
-                  ShowToast.longToast(`isOn: ${isOn}`)
+                  ShowToast.longToast(`${this.toggleState}${isOn}`)
                 })
               Text($r('app.string.radio_shanghai'))
             }
@@ -83,7 +85,7 @@ struct ToggleSample {
             .size({ width: 90, height: 35 })
             .onChange((isOn: boolean) => {
               this.isNormalSelect = isOn
-              ShowToast.longToast(`isOn: ${isOn}`)
+              ShowToast.longToast(`${this.toggleState}${isOn}`)
             })
 
             Toggle({ type: ToggleType.Button, isOn: this.isCustomSelect }) {
@@ -94,6 +96,7 @@ struct ToggleSample {
             .selectedColor($r('app.color.toggle_selected_color'))
             .onChange((isOn: boolean) => {
               this.isCustomSelect = isOn
+              ShowToast.longToast(`${this.toggleState}${isOn}`)
             })
           }
           .rowStyle()

@@ -14,7 +14,7 @@
  */
 
 
-import { CommonItemSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool'
+import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool'
 
 @Component
 export struct ChangePanel {
@@ -51,21 +51,9 @@ export struct ChangePanel {
         }
       })
 
-      CommonItemSelect({
+      CommonItemColorSelect({
         name: $r('app.string.span_decoration_color'),
-        selects: ['Red', 'Yellow', 'Green'],
-        callback: (index) => {
-          switch (index) {
-            case 1:
-              this.decorationColor = Color.Yellow
-              break
-            case 2:
-              this.decorationColor = Color.Green
-              break
-            default:
-              this.decorationColor = Color.Red
-          }
-        }
+        selectColor: $decorationColor
       })
     }
   }

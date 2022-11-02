@@ -22,7 +22,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .borderRadius(24)
   .backgroundColor(Color.White)
   .margin({ left: 12, right: 12 })
-  .justifyContent(FlexAlign.SpaceBetween)
+  .justifyContent(FlexAlign.SpaceAround)
   .padding({ left: 20, right: 20, top: 24, bottom: 24 })
 }
 
@@ -32,69 +32,73 @@ struct Font {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.prop_font') })
-      IntroductionTitle({ introduction: $r('app.string.font_color') })
-      Row() {
-        Text('#409EFF')
-          .fontSize(20)
-          .fontColor($r('app.color.background_blue'))
-        Text('#E6A23C')
-          .fontSize(20)
-          .fontColor($r('app.color.background_orange'))
-        Text('#F56C6C')
-          .fontSize(20)
-          .fontColor($r('app.color.background_pink'))
-      }
-      .rowStyle()
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.font_color') })
+          Row() {
+            Text('#409EFF')
+              .fontSize(20)
+              .fontColor($r('app.color.background_blue'))
+            Text('#E6A23C')
+              .fontSize(20)
+              .fontColor($r('app.color.background_orange'))
+            Text('#F56C6C')
+              .fontSize(20)
+              .fontColor($r('app.color.background_pink'))
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.font_size') })
-      Row() {
-        Text('14vp')
-          .fontSize(14)
-        Text('18vp')
-          .fontSize(18)
-        Text('26vp')
-          .fontSize(26)
-      }
-      .rowStyle()
+          IntroductionTitle({ introduction: $r('app.string.font_size') })
+          Row() {
+            Text('14vp')
+              .fontSize(14)
+            Text('18vp')
+              .fontSize(18)
+            Text('26vp')
+              .fontSize(26)
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.font_thickness') })
-      Row() {
-        Text('300')
-          .fontSize(18)
-          .fontWeight(300)
-        Text('500')
-          .fontSize(18)
-          .fontWeight(500)
-        Text('800')
-          .fontSize(18)
-          .fontWeight(800)
-      }
-      .rowStyle()
+          IntroductionTitle({ introduction: $r('app.string.font_thickness') })
+          Row() {
+            Text('300')
+              .fontSize(18)
+              .fontWeight(300)
+            Text('500')
+              .fontSize(18)
+              .fontWeight(500)
+            Text('800')
+              .fontSize(18)
+              .fontWeight(800)
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.font_style') })
-      Row() {
-        Text('normal')
-          .fontSize(20)
-          .fontStyle(FontStyle.Normal)
-        Text('italic')
-          .fontSize(20)
-          .fontStyle(FontStyle.Italic)
-      }
-      .rowStyle()
+          IntroductionTitle({ introduction: $r('app.string.font_style') })
+          Row() {
+            Text('normal')
+              .fontSize(20)
+              .fontStyle(FontStyle.Normal)
+            Text('italic')
+              .fontSize(20)
+              .fontStyle(FontStyle.Italic)
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.prop_size') })
-      Row() {
-        Text('sans-serif')
-          .fontSize(20)
-          .fontFamily('sans-serif')
-        Text('HYQiHei-65S')
-          .fontSize(20)
-          .fontFamily('HYQiHei-65S')
+          IntroductionTitle({ introduction: $r('app.string.prop_size') })
+          Row() {
+            Text('sans-serif')
+              .fontSize(20)
+              .fontFamily('sans-serif')
+            Text('HYQiHei-65S')
+              .fontSize(20)
+              .fontFamily('HYQiHei-65S')
+          }
+          .rowStyle()
+        }
+        .constraintSize({ minHeight: '100%' })
       }
-      .rowStyle()
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

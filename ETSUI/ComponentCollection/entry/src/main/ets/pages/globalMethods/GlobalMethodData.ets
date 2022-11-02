@@ -31,6 +31,10 @@ const DIALOG: ThirdLevelCategory =
       {
         title: $r('app.string.date_picker_dialog'),
         url: 'pages/globalMethods/dialogs/dateDialogSample/DateDialogSample'
+      },
+      {
+        title: $r('app.string.time_picker_dialog'),
+        url: 'pages/globalMethods/dialogs/timeDialogSample/TimeDialogSample'
       }
     ]
   }

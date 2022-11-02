@@ -428,7 +428,7 @@
     },
     {
       "name": "get_click_event_detail",
-      "value": "Get click location information"
+      "value": "Click location information"
     },
     // CustomDialog
     {
@@ -474,15 +474,11 @@
     // DatePickerDialog
     {
       "name": "date_picker_dialog",
-      "value": "Date and time selection dialog"
+      "value": "DatePickerDialog"
     },
     {
       "name": "date_picker_dialog_date",
       "value": "Show date dialog"
-    },
-    {
-      "name": "date_picker_dialog_time",
-      "value": "Show time dialog"
     },
     {
       "name": "date_picker_dialog_date_lunar",
@@ -493,16 +489,12 @@
       "value": "Gregorian calendar date:"
     },
     {
-      "name": "date_picker_dialog_24_hour",
-      "value": "24 hours:"
-    },
-    {
-      "name": "date_picker_dialog_12_hour",
-      "value": "12 hours:"
-    },
-    {
       "name": "date_picker_dialog_cancel",
       "value": "Cancel"
+    },
+    {
+      "name": "date_picker_toast_date",
+      "value": "Selected time:"
     },
     // DatePicker
     {
@@ -541,6 +533,34 @@
     {
       "name": "divider_attribute",
       "value": "Divider"
+    },
+    {
+      "name": "divider_color_blue",
+      "value": "Blue"
+    },
+    {
+      "name": "divider_color_green",
+      "value": "Green"
+    },
+    {
+      "name": "divider_color_orange",
+      "value": "Orange"
+    },
+    {
+      "name": "divider_color_pink",
+      "value": "Pink"
+    },
+    {
+      "name": "divider_line_type_butt",
+      "value": "Butt"
+    },
+    {
+      "name": "divider_line_type_round",
+      "value": "Round"
+    },
+    {
+      "name": "divider_line_type_square",
+      "value": "Square"
     },
     // Font
     {
@@ -713,6 +733,14 @@
       "name": "select_gesture",
       "value": "Gesture"
     },
+    {
+      "name": "select_index",
+      "value": "Select option index:"
+    },
+    {
+      "name": "select_value",
+      "value": "The value of the selected option:"
+    },
     // Shareelement Transition
     {
       "name": "share_element_transition",
@@ -791,6 +819,26 @@
     {
       "name": "slider_track_thickness",
       "value": "Track thickness"
+    },
+    {
+      "name": "slider_event_begin",
+      "value": "Start dragging the slider"
+    },
+    {
+      "name": "slider_event_moving",
+      "value": "In the process of dragging the slider"
+    },
+    {
+      "name": "slider_event_end",
+      "value": "End drag slider"
+    },
+    {
+      "name": "slider_event_click",
+      "value": "Click the slider to move the slider position"
+    },
+    {
+      "name": "slider_title_value",
+      "value": "Slider slide as a percentage of the total length:"
     },
     // Span
     {
@@ -895,7 +943,11 @@
       "value": "Letter spacing"
     },
     {
-      "name": "text_none_type",
+      "name": "text_overflow",
+      "value": "Text overflow"
+    },
+    {
+      "name": "text_none",
       "value": "None"
     },
     {
@@ -1015,6 +1067,51 @@
       "name": "text_input_placeholder_max_length",
       "value": "12 characters max"
     },
+    {
+      "name": "text_input_toast_paste",
+      "value": "Pasted text is:"
+    },
+    {
+      "name": "text_input_toast_cut",
+      "value": "Cut text is:"
+    },
+    {
+      "name": "text_input_toast_copy",
+      "value": "The copied text is:"
+    },
+    {
+      "name": "text_input_toast_submit",
+      "value": "The submitted text is:"
+    },
+    {
+      "name": "text_input_toast_edit",
+      "value": "The edited text is:"
+    },
+    // TimePickerDialog
+    {
+      "name": "time_picker_dialog",
+      "value": "TimePickerDialog"
+    },
+    {
+      "name": "time_picker_dialog_time",
+      "value": "Show time dialog"
+    },
+    {
+      "name": "time_picker_dialog_24_hour",
+      "value": "24 hours:"
+    },
+    {
+      "name": "time_picker_dialog_12_hour",
+      "value": "12 hours:"
+    },
+    {
+      "name": "time_picker_dialog_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "time_picker_toast_time",
+      "value": "Selected time:"
+    },
     // Toggle
     {
       "name": "toggle_title",
@@ -1039,6 +1136,10 @@
     {
       "name": "toggle_type_button",
       "value": "Button"
+    },
+    {
+      "name": "toggle_state",
+      "value": "Checked: "
     },
     // Translate
     {

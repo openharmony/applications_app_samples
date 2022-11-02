@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemInput, CommonItemSelect } from '../../../../common/AttributeModificationTool'
+import { CommonItemInput, CommonItemColorSelect } from '../../../../common/AttributeModificationTool'
 import { TitleBar } from '../../../../common/TitleBar'
 
 @Extend(Column) function backgroundStyle () {
@@ -49,25 +49,10 @@ struct QRCodeSample {
           })
 
           // QR code color
-          CommonItemSelect({
+          CommonItemColorSelect({
             name: $r('app.string.qrcode_color'),
-            selects: ['Black', 'Green', 'Yellow', 'Red'],
             isItemStyle: false,
-            callback: (index) => {
-              switch (index) {
-                case 1:
-                  this.qrCodeColor = Color.Green
-                  break
-                case 2:
-                  this.qrCodeColor = Color.Yellow
-                  break
-                case 3:
-                  this.qrCodeColor = Color.Red
-                  break
-                default:
-                  this.qrCodeColor = Color.Black
-              }
-            }
+            selectColor: $qrCodeColor
           })
         }
       }

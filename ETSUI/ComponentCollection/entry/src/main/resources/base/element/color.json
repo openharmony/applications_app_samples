@@ -33,6 +33,10 @@
       "value": "#F1F3F5"
     },
     {
+      "name": "background_dark",
+      "value": "#FF000000"
+    },
+    {
       "name": "background_grey",
       "value": "#0d000000"
     },
