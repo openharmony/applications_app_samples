@@ -45,7 +45,7 @@ export default class BundleController {
   entityType() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
       let digital = data.entityType
-      if (digital === null || error) {
+      if (digital === null || error.code != 0) {
         Logger.info(TAG, `caller onRelease is error: ${error}`)
         return
       }
@@ -60,7 +60,7 @@ export default class BundleController {
   process() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
       let processData = data.process
-      if (processData === null || error) {
+      if (processData === null || error.code != 0) {
         Logger.info(TAG, `caller onRelease is called error: ${error}`)
         return
       }
@@ -75,7 +75,7 @@ export default class BundleController {
   entryDir() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
       let entryDirData = data.entryDir
-      if (entryDirData === null || error) {
+      if (entryDirData === null || error.code != 0) {
         Logger.info(TAG, `codePath error: ${error}`)
         return
       }
