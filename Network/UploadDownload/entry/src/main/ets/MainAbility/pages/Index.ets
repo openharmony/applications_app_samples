@@ -106,34 +106,52 @@ struct Index {
                   item.split('//')[1].split('/')[1]}`
                   logger.info(TAG, `downloadConfig.filePath = ${JSON.stringify(this.downloadConfig.filePath)}`)
                   request.download(this.downloadConfig, (err, downloadTask) => {
-                    logger.info(TAG, `enter download`)
+                    logger.info(TAG, `download enter`)
                     if (err) {
-                      logger.info(TAG, `err = ${JSON.stringify(err)}`)
+                      logger.info(TAG, `download err = ${JSON.stringify(err)}`)
                       return
                     }
-                    logger.info(TAG, `data = ${JSON.stringify(downloadTask)}`)
+                    logger.info(TAG, `download data = ${JSON.stringify(downloadTask)}`)
 
-                    downloadTask.on("progress", (receivedSize, totalSize) => {
+                    downloadTask.on('progress', (receivedSize, totalSize) => {
                       this.receivedSize = receivedSize
                       this.totalSize = totalSize
                       logger.info(TAG, `download receivedSize: ${receivedSize} , totalSize: ${totalSize}`)
                     })
 
                     downloadTask.on('complete', async () => {
+                      logger.info(TAG, `download complete start ${this.files.length}`)
                       await this.files.splice(index, 1)
+                      logger.info(TAG, `download complete splice`)
                       await this.uploads.push(item)
+                      logger.info(TAG, `download complete push`)
                       AlertDialog.show({
                         message: `${item}${downloadSuccess}`,
                         confirm: {
                           value: $r('app.string.confirm'),
                           action: () => {
                             downloadTask.off('progress')
+                            downloadTask.off('complete')
+                            logger.info(TAG, `download complete off`)
+                            downloadTask.remove((err, result) => {
+                              if(err) {
+                                logger.error(TAG, `Failed to remove the download task`)
+                                return
+                              }
+                              if (result) {
+                                logger.info(TAG, `Download task removed`)
+                              } else {
+                                logger.error(TAG, `Failed to remove the download task`)
+                              }
+                            })
                           }
                         }
                       })
+                      logger.info(TAG, `download complete end`)
                     })
 
                     downloadTask.on('fail', (err) => {
+                      logger.info(TAG, `download fail err = ${err}`)
                       downloadTask.query((error, data) => {
                         logger.info(TAG, `query ${JSON.stringify(data)}`)
                         if (error) {
@@ -152,6 +170,7 @@ struct Index {
                         }
                       })
                     })
+                    logger.info(TAG, `download end`)
                   })
                 })
             }
