@@ -214,7 +214,7 @@
   - [`Weather`：一多天气（eTS）（API9）](MultiDeviceAppDev/Weather)
   - [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](MultiDeviceAppDev/MusicAlbum)
 - Share
-  - [`Share`：分享（eTS）（API9）（Full SDK）](Share/Share)
+  - [`CustomShare`：自定义分享（eTS）（API9）（Full SDK）](Share/CustomShare)
 
 ## 目录<a name="sectionMenu"></a>
 
