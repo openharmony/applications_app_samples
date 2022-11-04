@@ -47,7 +47,7 @@ export struct FlexList {
     Column() {
       Row() {
         Text(this.category)
-          .width('25%')
+          .layoutWeight(1)
           .height(50)
           .padding(10)
           .fontSize(24)
@@ -55,7 +55,7 @@ export struct FlexList {
           .textOverflow({ overflow: TextOverflow.None })
 
         Text(this.select)
-          .width('35%')
+          .layoutWeight(1)
           .height(50)
           .padding(12)
           .fontSize(20)
@@ -101,7 +101,7 @@ export struct FlexList {
         }
       }
       .justifyContent(FlexAlign.SpaceAround)
-      .margin({ top: 30 })
+      .margin({ top: 30, right: 30 })
       .width('100%')
       .height(50)
     }
