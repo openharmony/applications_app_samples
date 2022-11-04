@@ -99,7 +99,7 @@ export struct CommentPage {
       Row() {
         Image($r('app.media.live_shopping')) // 购物图标
           .width(52).height(52)
-        TextInput({ placeholder: $r("app.string.talk_something") }) // TextInput输入框
+        TextInput({ placeholder: $r('app.string.talk_something'), text: this.text }) // TextInput输入框
           .backgroundColor('rgba(0,0,0,0.20)')
           .placeholderColor("rgb(255,255,255)")
           .padding({ left: 20 })
