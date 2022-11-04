@@ -5,7 +5,7 @@
     "male": "男",
     "female": "女",
     "userName": "用户名",
-    "userNamePrompt": "用户名长度大于6个且小于20个字符",
+    "userNamePrompt": "长度大于6个且小于20个字符",
     "date": "出生日期",
     "education": "学历",
     "graduated": "高中毕业",
