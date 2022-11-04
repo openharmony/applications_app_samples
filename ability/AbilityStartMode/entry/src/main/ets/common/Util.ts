@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Logger from './logger'
+import Logger from './Logger'
 
 const TAG = '[Sample_StartMode]'
 let contextCaller, want
