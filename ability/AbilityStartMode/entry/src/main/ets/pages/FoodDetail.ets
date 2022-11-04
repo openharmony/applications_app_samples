@@ -14,9 +14,9 @@
  */
 
 import emitter from '@ohos.events.emitter'
-import { FoodInfo, CategoryId } from '../model/datamodels'
-import Logger from '../common/logger'
-import { getContextData, startMode, totast } from '../common/util'
+import { FoodInfo, CategoryId } from '../model/DataModels'
+import Logger from '../common/Logger'
+import { getContextData, startMode, totast } from '../common/Util'
 import { getFoodsData } from '../model/DataUtil'
 
 const TAG = '[Sample_StartMode]'
