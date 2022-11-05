@@ -27,6 +27,7 @@ export struct AnimateView {
   @State translateImage: string = '-0.2%'
   @State translateText: string = '-1%'
   @StorageLink('playState') @Watch('onPlayChange') playState: boolean = true
+  @Link @Watch('onResetChange') resetAnimation: boolean
 
   onPlayChange() {
     Logger.info(TAG, `onPlayChange`)
