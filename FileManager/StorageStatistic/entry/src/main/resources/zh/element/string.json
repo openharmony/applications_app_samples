@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "存储空间统计"
+    },
+    {
+      "name": "storage_statistics_desc",
+      "value": "统计各类文件与应用的存储空间"
+    },
+    {
+      "name": "storage_statistics_label",
+      "value": "存储空间统计"
+    },
+    {
+      "name": "storage_manager_permission",
+      "value": "用于获取存储信息"
+    },
+    {
+      "name": "get_bundle_info_permission",
+      "value": "用于获取已安装应用的信息"
+    },
+    {
+      "name": "main_storage_stats",
+      "value": "存储空间统计"
+    },
+    {
+      "name": "common_please_wait",
+      "value": "请稍候"
+    },
+    {
+      "name": "storage_list_user_data",
+      "value": "用户数据"
+    },
+    {
+      "name": "storage_list_used",
+      "value": "已使用:"
+    },
+    {
+      "name": "query_data_application",
+      "value": "应用"
+    },
+    {
+      "name": "query_data_audio",
+      "value": "音频"
+    },
+    {
+      "name": "query_data_video",
+      "value": "视频"
+    },
+    {
+      "name": "query_data_image",
+      "value": "图片"
+    },
+    {
+      "name": "query_data_file",
+      "value": "文件"
+    },
+    {
+      "name": "query_data_system",
+      "value": "系统"
+    },
+    {
+      "name": "app_info_app_storage_information",
+      "value": "应用存储信息"
+    },
+    {
+      "name": "app_info_application",
+      "value": "应用"
+    },
+    {
+      "name": "app_info_data",
+      "value": "数据"
+    },
+    {
+      "name": "app_info_cache",
+      "value": "缓存"
+    },
+    {
+      "name": "storage_list_available_information",
+      "value": "查看可用卷信息"
+    },
+    {
+      "name": "volume_list_available_information",
+      "value": "可用卷信息"
+    },
+    {
+      "name": "volume_list_volume",
+      "value": "可用卷"
+    }
+  ]
+}
