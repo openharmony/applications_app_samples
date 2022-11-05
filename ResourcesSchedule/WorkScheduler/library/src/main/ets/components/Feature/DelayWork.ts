@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
+import prompt from '@ohos.prompt'
 import workScheduler from '@ohos.workScheduler'
-import { Logger }  from '@ohos/notification'
+import { Logger } from '@ohos/notification'
 
 const TAG: string = 'DelayWork'
 
@@ -29,8 +30,15 @@ export default class DelayWork {
   startWork(bundleName: string, abilityName: string) {
     this.workInfo.bundleName = bundleName
     this.workInfo.abilityName = abilityName
-    let work = workScheduler.startWork(this.workInfo)
-    Logger.info(TAG, `startWork: ${work}`)
+    try {
+      let work = workScheduler.startWork(this.workInfo)
+      Logger.info(TAG, `startWork: ${work}`)
+    } catch (error) {
+      Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
+      prompt.showToast({
+        message: `${error.message}`
+      })
+    }
   }
 
   // 停止延迟调度任务
