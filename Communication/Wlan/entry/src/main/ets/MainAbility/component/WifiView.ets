@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 
+import Logger from '../model/Logger'
+
+const TAG:string = 'WifiView'
+
 @Component
 export struct WifiView {
   private wifi: any = null
@@ -20,18 +24,27 @@ export struct WifiView {
   @State isLock: boolean = true
 
   aboutToAppear() {
-    if (this.wifi.securityType === 0 || this.wifi.securityType === 1) {
-      this.securityString = $r('app.string.open')
-      this.isLock = false
+    Logger.debug(TAG, `aboutToAppear ${JSON.stringify(this.wifi)}`)
+    if (this.wifi) {
+      if (this.wifi.securityType) {
+        if (this.wifi.securityType === 0 || this.wifi.securityType === 1) {
+          this.securityString = $r('app.string.open')
+          this.isLock = false
+        }
+      }
     }
   }
 
   build() {
     Row() {
       Column() {
-        Text(this.wifi.ssid)
-          .fontSize(20)
-          .width('100%')
+        if (this.wifi) {
+          if (this.wifi.ssid) {
+            Text(this.wifi.ssid)
+              .fontSize(20)
+              .width('100%')
+          }
+        }
         Text(this.securityString)
           .fontSize(18)
           .fontColor(Color.Gray)
@@ -44,7 +57,7 @@ export struct WifiView {
           .height(30).width(30)
           .objectFit(ImageFit.Contain)
         if (this.isLock) {
-          Image($r("app.media.lock"))
+          Image($r('app.media.lock'))
             .objectFit(ImageFit.Contain)
             .width(15).height(15)
         }
