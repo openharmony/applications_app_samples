@@ -17,7 +17,7 @@ import prompt from '@ohos.prompt'
 import wifi from '@ohos.wifi'
 import Logger from '../model/Logger'
 
-const TAG = 'WiFiModel'
+const TAG: string = 'WiFiModel'
 
 export class WifiModel {
   getScanInfos(callback) {
@@ -56,10 +56,10 @@ export class WifiModel {
       securityType: scanInfo.securityType
     }
     if (wifi.connectToDevice(deviceConfig)) {
-      prompt.showToast({ message: 'connect success' })
+      Logger.debug(TAG, `connectToDevice success`)
       wifi.addDeviceConfig(deviceConfig)
     } else {
-      prompt.showToast({ message: 'connect fail' })
+      Logger.debug(TAG, `connectToDevice fail`)
     }
   }
 

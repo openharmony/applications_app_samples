@@ -37,4 +37,4 @@ class Logger {
     }
 }
 
-export default new Logger('Multimedia')
+export default new Logger('[Sample_Wlan]')
