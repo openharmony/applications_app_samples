@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import animator from '@ohos.animator';
-import mediaQuery from '@system.mediaquery';
-import Logger from '../../common/Logger';
+import animator from '@ohos.animator'
+import mediaQuery from '@system.mediaquery'
+import Logger from '../../common/Logger'
 
-const TAG = '[index]'
+const TAG = 'index'
 
 export default {
   data: {
@@ -25,7 +25,10 @@ export default {
     sunBottom: 0,
     divLeft: 600,
     divBottom: 0,
+    state: 0, // 0:finish, can start, 1: pause, 2: playing
     isPlay: false,
+    isSunFinish: false,
+    isMoonFinish: false,
     heightScale: 3.2
   },
   sunAnimator: null,
@@ -33,7 +36,7 @@ export default {
 
   onInit() {
     this.sunAnimator = animator.createAnimator({
-      duration: 5000,
+      duration: 3000,
       delay: 0,
       easing: 'cubic-bezier(0.5,0.8,0.5,0.2)',
       fill: 'none',
@@ -41,11 +44,11 @@ export default {
       iterations: 1,
       begin: 0.0,
       end: 600.0
-    });
+    })
 
     this.moonAnimator = animator.createAnimator({
-      duration: 5000,
-      delay: 5000,
+      duration: 3000,
+      delay: 3000,
       easing: 'cubic-bezier(0.5,0.8,0.5,0.2)',
       fill: 'none',
       direction: 'normal',
@@ -53,6 +56,32 @@ export default {
       begin: 600.0,
       end: 0.0
     })
+    this.sunAnimator.onframe = (value) => {
+      if (value > 300) {
+        this.sunBottom = (600 - value) / this.heightScale
+      } else {
+        this.sunBottom = value / this.heightScale
+      }
+      this.sunLeft = value
+    };
+    this.moonAnimator.onframe = (value) => {
+      if (parseInt(value) < 300) {
+        this.divBottom = -value / this.heightScale
+      } else {
+        this.divBottom = (value - 600) / this.heightScale
+      }
+      this.divLeft = value
+    }
+    this.sunAnimator.onfinish = () => {
+      Logger.info(TAG, `sun finish`)
+      this.isSunFinish = true
+    }
+    this.moonAnimator.onfinish = () => {
+      Logger.info(TAG, `moon finish`)
+      this.isMoonFinish = true
+      this.state = 0 // moon finishes, means the whole animation finished
+      this.isPlay = false
+    }
     let mMediaQueryList = mediaQuery.matchMedia('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
     mMediaQueryList.addListener(this.orientationMatch);
   },
@@ -64,69 +93,60 @@ export default {
     }
   },
   rise() {
-    Logger.info(TAG, `rise onclick the rise`)
-    this.sunAnimator.onframe = (value) => {
-      if (value > 300) {
-        this.sunBottom = (600 - value) / this.heightScale
-      } else {
-        this.sunBottom = value / this.heightScale
-      }
-      this.sunLeft = value
-    };
-    this.sunAnimator.play();
-    Logger.info(TAG, `rais play`)
+    this.sunAnimator.play()
+    Logger.info(TAG, `rise play`)
   },
   fall() {
-    Logger.info(TAG, `onclick the fall`)
-    this.moonAnimator.onframe = (value) => {
-      if (parseInt(value) < 300) {
-        this.divBottom = -value / this.heightScale
-      } else {
-        this.divBottom = (value - 600) / this.heightScale
-      }
-      this.divLeft = value
-    }
     this.moonAnimator.play()
     Logger.info(TAG, `fall play`)
   },
 
   start() {
-    Logger.info(TAG, `this.isPlay=${this.isPlay}`)
-    if (!this.isPlay) {
-      this.isPlay = true
+    Logger.info(TAG, `in start, this.state=${this.state}`)
+    if (this.state === 0) { // can start
+      this.isSunFinish = false // clear the flag
+      this.isMoonFinish = false
       this.rise()
       this.fall()
+    } else if (this.state === 1) { // means the state is pause
+      if (!this.isSunFinish) {
+        this.rise()
+        this.fall()
+      } else {
+        this.fall()
+      }
     }
-    this.moonAnimator.onfinish = () => {
-      this.isPlay = false
-    }
+    this.isPlay = true
+    this.state = 2
+
   },
 
   pause() {
-    if (this.isPlay) {
-      this.sunAnimator.pause()
-      Logger.info(TAG, `isPlay=${this.isPlay}`)
-      this.moonAnimator.pause()
+    Logger.info(TAG, `in pause, this.state=${this.state}`)
+    if (this.state === 2) { // means the state is running
+      this.state = 1
       this.isPlay = false
+      if (!this.isSunFinish) {
+        this.sunAnimator.pause()
+      }
+      if (!this.isMoonFinish) {
+        this.moonAnimator.pause()
+      }
     }
   },
 
   stop() {
-    if (this.isPlay) {
-      this.sunAnimator.finish()
-      this.moonAnimator.finish()
-      this.isPlay = false
-    }
+    this.sunAnimator.finish()
+    this.moonAnimator.finish() // finish will call the finish callback of moonAnimator, so the state will be 0
   },
 
   reverse() {
-    this.sunAnimator.reverse()
-    this.moonAnimator.reverse()
-    this.sunAnimator.play()
-    this.moonAnimator.play()
-    this.isPlay = true
-    this.moonAnimator.onfinish = () => {
-      this.isPlay = false
+    Logger.info(TAG, `in reverse, this.state=${this.state}`)
+    if (this.state === 0) {
+      this.state = 2
+      this.isPlay = true
+      this.sunAnimator.reverse() // reverse will start the animator
+      this.moonAnimator.reverse()
     }
   }
 }

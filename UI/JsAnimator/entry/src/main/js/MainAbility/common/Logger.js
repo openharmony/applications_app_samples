@@ -37,4 +37,4 @@ class Logger {
   }
 }
 
-export default new Logger('[JsAnimator]')
+export default new Logger('[Sample_JsAnimator]')
