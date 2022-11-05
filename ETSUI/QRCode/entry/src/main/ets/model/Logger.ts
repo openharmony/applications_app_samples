@@ -41,4 +41,4 @@ class Logger {
   }
 }
 
-export default new Logger('[QRCode]')
+export default new Logger('[Sample_QRCode]')
