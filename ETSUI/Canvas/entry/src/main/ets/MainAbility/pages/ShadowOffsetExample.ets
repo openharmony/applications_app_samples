@@ -25,7 +25,10 @@ struct ShadowOffsetExample {
     Row() {
       Column() {
         Canvas(this.context)
-          .width(600).height('40%').backgroundColor('#00ffff')
+          .width('100%')
+          .height('40%')
+          .backgroundColor('#00ffff')
+        .padding({left: 12, right: 12})
         Row() {
           Button('shadowOffsetY')
             .width(130).height(45)

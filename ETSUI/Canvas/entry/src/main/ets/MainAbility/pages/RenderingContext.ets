@@ -23,11 +23,15 @@ struct IndexExample {
 
   build() {
     Column() {
-      Canvas(this.context).width(600).height(300).backgroundColor('#00ffff')
+      Canvas(this.context)
+        .width('100%')
+        .height(300)
+        .padding({ left: 12, right: 12 })
+        .backgroundColor('#00ffff')
       Row() {
         Button('arc')
           .width(130).height(45)
-	  .key('arc')
+          .key('arc')
           .onClick(() => {
             this.context.beginPath();
             this.context.arc(185, 140, 50, 0, 6.28);
@@ -36,7 +40,7 @@ struct IndexExample {
           })
         Button('strokeText')
           .width(130).height(45)
-	  .key('strokeText')
+          .key('strokeText')
           .onClick(() => {
             this.context.font = '100px sans-serif';
             this.context.strokeText("hello World!", 50, 150);
@@ -49,7 +53,7 @@ struct IndexExample {
       Row() {
         Button('closePath')
           .width(130).height(45)
-	  .key('closePath')
+          .key('closePath')
           .onClick(() => {
             this.context.beginPath();
             this.context.lineWidth = 2;
@@ -61,7 +65,7 @@ struct IndexExample {
           })
         Button('quadraticCurveTo')
           .width(130).height(45)
-	  .key('quadraticCurveTo')
+          .key('quadraticCurveTo')
           .onClick(() => {
             this.context.beginPath();
             this.context.moveTo(20, 20);
@@ -75,7 +79,7 @@ struct IndexExample {
       Row() {
         Button('textBaseline')
           .width(130).height(45)
-	  .key('textBaseline')
+          .key('textBaseline')
           .onClick(() => {
             this.context.moveTo(50, 260);
             this.context.lineTo(290, 260);
@@ -93,7 +97,7 @@ struct IndexExample {
 
         Button('delete')
           .width(130).height(45)
-	  .key('delete')
+          .key('delete')
           .onClick(() => {
             this.context.clearRect(0, 0, 950, 950)
           })
@@ -103,8 +107,10 @@ struct IndexExample {
 
       Row() {
         Button('back')
-	  .key('back')
-          .width(130).height(45).backgroundColor(Color.Orange)
+          .key('back')
+          .width(130)
+          .height(45)
+          .backgroundColor(Color.Orange)
           .onClick(() => {
             router.back()
           })

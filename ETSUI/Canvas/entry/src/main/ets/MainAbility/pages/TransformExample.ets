@@ -24,7 +24,10 @@ struct TransformExample {
   build() {
     Column() {
       Canvas(this.context)
-        .width(600).height('50%').backgroundColor('#00ffff')
+        .width('100%')
+        .height('50%')
+        .backgroundColor('#00ffff')
+        .padding({left: 12, right: 12})
       Row() {
         Button('translate')
           .width(130).height(45)
