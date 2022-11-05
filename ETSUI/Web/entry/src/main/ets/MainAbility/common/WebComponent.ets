@@ -16,11 +16,10 @@
 import Logger from '../model/Logger'
 import { WebError, HttpError } from '../model/Error'
 
-const TAG: string = '[WebComponent]'
+const TAG: string = 'WebComponent'
 
 @Component
 export struct WebComponent {
-  private tag: string = 'WebComponent'
   private controller: WebController = null
   @Link url: string
   @Link webTitle: string
@@ -47,22 +46,27 @@ export struct WebComponent {
           mimetype: string,
           contentLength: number
         }) => {
-          let message = `URL:${event.url}\n媒体资源类型:${event.mimetype}\n文件长度:${event.contentLength}`
-          AlertDialog.show(
-            {
-              title: `userAgent:${event.userAgent}`,
-              message: message,
-              confirm: {
-                value: $r('app.string.sure'),
-                action: () => {
-                  Logger.log(this.tag, 'Button-clicking callback')
+          if (event) {
+            if (event.url || event.mimetype || event.contentLength) {
+              AlertDialog.show(
+                {
+                  title: `userAgent:${event.userAgent}`,
+                  message: `url:${event.url}\n mimetype:${event.mimetype}\n contentLength:${event.contentLength}`,
+                  confirm: {
+                    value: $r('app.string.sure'),
+                    action: () => {
+                      Logger.log(TAG, 'Button-clicking callback')
+                    }
+                  },
+                  cancel: () => {
+                    Logger.log(TAG, 'Closed callbacks')
+                  }
                 }
-              },
-              cancel: () => {
-                Logger.log(this.tag, 'Closed callbacks')
-              }
+              )
             }
-          )
+          } else {
+            Logger.error(TAG, 'onDownloadStart event error')
+          }
         })
         .onErrorReceive((event?: {
           request: WebResourceRequest,
@@ -70,31 +74,46 @@ export struct WebComponent {
         }) => {
           this.webError.errCode = event.error.getErrorCode()
           this.webError.errInfo = event.error.getErrorInfo()
-          this.isWebError = true
         })
         .onHttpErrorReceive((event?: {
           request: WebResourceRequest,
           response: WebResourceResponse
         }) => {
-          this.httpError.message = event.response.getReasonMessage()
-          this.httpError.code = event.response.getResponseCode()
-          this.httpError.data = event.response.getResponseData()
-          this.httpError.enCoding = event.response.getResponseEncoding()
-          this.httpError.header = JSON.stringify(event.response.getResponseHeader())
-          this.httpError.mimeType = event.response.getResponseMimeType()
-          this.isHttpError = true
+          if (event) {
+            if (event.response) {
+              this.httpError.message = event.response.getReasonMessage()
+              this.httpError.code = event.response.getResponseCode()
+              this.httpError.data = event.response.getResponseData()
+              this.httpError.enCoding = event.response.getResponseEncoding()
+              this.httpError.header = JSON.stringify(event.response.getResponseHeader())
+              this.httpError.mimeType = event.response.getResponseMimeType()
+              this.isHttpError = true
+            }
+          } else {
+            Logger.error(TAG, 'onHttpErrorReceive event error')
+          }
         })
         .onTitleReceive((event: { title: string }) => {
-          if(event && event.title){
-            this.webTitle = event.title
-            if (this.webTitle.length > 10) {
-              this.webTitle = this.webTitle.substr(0, 10) + '...'
+          if (event) {
+            if (event.title) {
+              this.webTitle = event.title
+              if (this.webTitle) {
+                if (this.webTitle.length > 10) {
+                  this.webTitle = this.webTitle.substr(0, 10) + '...'
+                }
+              }
             }
+          } else {
+            Logger.error(TAG, 'onTitleReceive event error')
           }
         })
         .onProgressChange((event: { newProgress: number }) => {
-          if(event && event.newProgress){
-            Logger.info(TAG, `onProgressChange newProgress = ${event.newProgress}`)
+          if (event) {
+            if (event.newProgress) {
+              Logger.info(TAG, `onProgressChange newProgress = ${event.newProgress}`)
+            }
+          } else {
+            Logger.error(TAG, 'onProgressChange event error')
           }
         })
         .onPageBegin((event) => {
@@ -106,8 +125,12 @@ export struct WebComponent {
           this.browses.unshift(this.url)
           Logger.info(TAG, `this.browses = ${JSON.stringify(this.browses)}`)
         })
-        .onPageEnd(e => {
-          this.isLoading = false
+        .onPageEnd((event) => {
+          if (event) {
+            this.isLoading = false
+          } else {
+            Logger.error(TAG, 'onPageEnd event error')
+          }
         })
     }
   }

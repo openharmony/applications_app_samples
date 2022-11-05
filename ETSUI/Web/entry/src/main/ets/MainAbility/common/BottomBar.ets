@@ -25,15 +25,19 @@ class BasicDataSource implements IDataSource {
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
+    if (this.listeners) {
+      if (this.listeners.indexOf(listener) < 0) {
+        this.listeners.push(listener)
+      }
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
+    if (this.listeners) {
+      const pos = this.listeners.indexOf(listener)
+      if (pos >= 0) {
+        this.listeners.splice(pos, 1)
+      }
     }
   }
 
