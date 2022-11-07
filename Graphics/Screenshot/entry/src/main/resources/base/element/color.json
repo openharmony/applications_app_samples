@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "selected_color",
+      "value": "#39a2db"
+    },
+    {
+      "name": "switch_point_color",
+      "value": "#e5FFFF"
+    }
+  ]
+}
