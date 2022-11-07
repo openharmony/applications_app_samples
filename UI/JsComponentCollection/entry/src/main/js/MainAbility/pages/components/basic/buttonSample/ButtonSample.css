@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    justify-content: space-between;
     padding-left: 12vp;
     padding-right: 12vp;
 }
@@ -52,8 +53,10 @@
 }
 
 .button-type {
-    width:120vp;
+    width: 100%;
     height: 40vp;
+    margin-right: 12vp;
+    margin-left: 12vp;
     background-color: #007DFF;
     font-size: 16vp;
 }

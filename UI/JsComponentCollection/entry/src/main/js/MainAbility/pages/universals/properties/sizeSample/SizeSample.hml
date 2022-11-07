@@ -41,7 +41,7 @@
         <text>{{ $t('strings.size_height_designate_description') }}</text>
       </div>
       <div class="height-percentage">
-        <text class="height-percentage-text" style="height: 80%;">{{ $t('strings.size_height_percentage_description') }}</text>
+        <text class="height-percentage-text" style="height: 60%;">{{ $t('strings.size_height_percentage_description') }}</text>
       </div>
       <!-- Height end -->
 
@@ -59,12 +59,11 @@
       <text class="box-sizing-description">{{ $t('strings.size_box_sizing_content_description') }}</text>
     </div>
     <div class="box-sizing-box">
-      <div class="box-sizing-border" style="box-sizing: border-box; margin : 10vp;">
+      <div class="box-sizing-border" style="box-sizing: border-box; margin: 10vp;">
         <text>{{ $t('strings.size_border_box') }}</text>
       </div>
       <text class="box-sizing-description">{{ $t('strings.size_box_sizing_border_description') }}</text>
     </div>
     <!-- Box sizing end -->
-
   </div>
 </div>

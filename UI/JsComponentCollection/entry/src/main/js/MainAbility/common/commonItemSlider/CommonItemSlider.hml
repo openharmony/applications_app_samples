@@ -22,5 +22,5 @@
     class="slider-center"
     onchange="setValue">
   </slider>
-  <text class="slider-right">{{ sliderValue }}</text>
+  <text class="slider-right">{{ sliderValue + 'vp' }}</text>
 </div>

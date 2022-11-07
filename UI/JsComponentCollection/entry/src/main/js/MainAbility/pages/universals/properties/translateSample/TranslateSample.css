@@ -25,17 +25,19 @@
   min-height: 100%;
   background-color: #f1f3f5;
   overflow: scroll;
+  padding-bottom: 110vp;
 }
 .image-class {
-  width : 100%;
-  height : 130vp;
+  width: 160vp;
+  height: 120vp;
   margin-right: 80vp;
   margin-left: 80vp;
+  object-fit: contain;
 }
 
 .image-border-div {
   width: 100%;
-  min-height: 230vp;
+  height: 180vp;
   margin-left: 12vp;
   margin-right: 12vp;
   background-color: white;
@@ -45,20 +47,17 @@
 }
 
 .container-div{
-  flex-direction : column;
-  width : 100%;
-  min-height: 90vp;
-  margin-right: 140vp;
-  margin-left: 140vp;
-  justify-content : center;
-  align-items : center;
-  background-color : #0d000000;
+  flex-direction: column;
+  font-size: 18vp;
+  padding: 20vp;
+  justify-content: center;
+  align-items: center;
+  background-color: #0d000000;
 }
 
 .container-border-div {
   flex-direction: column;
   width: 100%;
-  min-height: 180vp;
   background-color: white;
   border-radius: 20vp;
   margin: 0vp 12vp 10vp;

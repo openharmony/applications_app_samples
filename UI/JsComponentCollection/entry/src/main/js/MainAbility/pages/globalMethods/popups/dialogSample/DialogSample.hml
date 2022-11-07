@@ -32,7 +32,7 @@
         </text>
       </div>
       <div class="video-div">
-        <div class="image-div" style="width : 60vp; height : 50vp;">
+        <div class="image-div" style="width: 60vp; height: 50vp;">
           <image class="image-class" src="common/image/ic_voice.png"></image>
         </div>
         <div class="text-div">
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="video-div">
-        <image src="common/image/ic_location.png" style="width : 60vp; height : 50vp;"></image>
+        <image src="common/image/ic_location.png" style="width: 60vp; height: 50vp;"></image>
         <div class="text-div">
           <text class="permission-class">{{ $t('strings.dialog_location_permission') }}</text>
           <text class="introduce-class">{{ $t('strings.dialog_location_introduce') }}</text>
@@ -58,7 +58,7 @@
         </text>
       </div>
       <div class="video-div">
-        <div class="image-div" style="width : 60vp; height : 50vp;">
+        <div class="image-div" style="width: 60vp; height: 50vp;">
           <image class="image-class" src="common/image/ic_voice.png"></image>
         </div>
         <div class="text-div">
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="video-div">
-        <image src="common/image/ic_location.png" style="width : 60vp; height : 50vp;"></image>
+        <image src="common/image/ic_location.png" style="width: 60vp; height: 50vp;"></image>
         <div class="text-div">
           <text class="permission-class">{{ $t('strings.dialog_location_permission') }}</text>
           <text class="introduce-class">{{ $t('strings.dialog_location_introduce') }}</text>

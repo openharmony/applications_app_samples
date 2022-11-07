@@ -57,9 +57,9 @@
 }
 
 .width-percentage {
-  width: 70%;
   height: 100vp;
   display: flex;
+  flex-weight: 1;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -71,6 +71,7 @@
 
 .width-percentage-text {
   height:100vp;
+  width: 70%;
   background-color: #67C23A;
   text-align: center;
   border-radius: 5vp;
@@ -92,7 +93,7 @@
 }
 
 .height-designate {
-  width: 120vp;
+  width: 100vp;
   height: 100vp;
   display: flex;
   flex-direction: column;
@@ -104,9 +105,9 @@
 }
 
 .height-percentage {
-  width: 120vp;
   height: 100vp;
   display: flex;
+  flex-weight: 1;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;

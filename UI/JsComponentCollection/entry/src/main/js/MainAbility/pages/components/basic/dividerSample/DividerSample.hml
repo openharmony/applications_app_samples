@@ -23,9 +23,9 @@
     <div class="divider-row-container">
       <text class="divider-row-container-text"></text>
 
-      <!-- Divider row start -->
+    <!-- Divider row start -->
       <divider class="divider-row-container-divider"></divider>
-      <!-- Divider row end -->
+    <!-- Divider row end -->
 
       <text class="divider-row-container-text"></text>
     </div>
@@ -36,15 +36,15 @@
     <div class="divider-column-container">
       <text class="divider-column-container-text">{{ $t('strings.divider_vertical_options')[0] }}</text>
 
-      <!-- Divider column start -->
+    <!-- Divider column start -->
       <divider class="divider-column-container-divider" vertical="true"></divider>
-      <!-- Divider column end -->
+    <!-- Divider column end -->
 
       <text class="divider-column-container-text">{{ $t('strings.divider_vertical_options')[1] }}</text>
 
-      <!-- Divider column start -->
+    <!-- Divider column start -->
       <divider class="divider-column-container-divider" vertical="true"></divider>
-      <!-- Divider column end -->
+    <!-- Divider column end -->
 
       <text class="divider-column-container-text">{{ $t('strings.divider_vertical_options')[2] }}</text>
     </div>
@@ -55,14 +55,14 @@
     <div class="divider-custom-container">
       <text class="divider-custom-container-text"></text>
 
-      <!-- Divider property start -->
+    <!-- Divider property start -->
       <divider class="divider-custom-container-divider"
                style="color: {{ dividerColor }};
-               stroke-width: {{ customDividerValue }};
-               line-cap: {{ dividerCapStyle }}">
+                 stroke-width: {{ customDividerValue }};
+                 line-cap: {{ dividerCapStyle }}">
       </divider>
-      <!-- Divider property start -->
 
+    <!-- Divider property start -->
       <text class="divider-custom-container-text"></text>
       <sliderBox @slider-value="setDividerWidthValue"
                  left-text="{{ dividerWidthMessage }}"

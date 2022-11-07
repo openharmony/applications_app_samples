@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import prompt from '@ohos.prompt'
+
 export default {
   data() {
     return {
@@ -23,5 +25,12 @@ export default {
   onInit() {
     this.radioTitle = this.$t('strings.radio_title')
     this.radioCity = this.$t('strings.radio_city')
+  },
+
+  ClickRadio(resultStatus){
+    prompt.showToast({
+      message: `${resultStatus}`,
+      duration: 3000
+    })
   }
 }

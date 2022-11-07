@@ -21,7 +21,6 @@ export default {
     textAlign: 'start',
     lineHeight: '24',
     textOverflow: '',
-    textInputPlaceholder: 'FF000000',
     textChangeFontColor: '',
     maxLines: '-1',
     textContentEn: '',
@@ -41,7 +40,8 @@ export default {
     textFontColorOptions: [],
     textDisplayModeOptions: [],
     textDecorativeThreadOptions: [],
-    textCaseOptions: []
+    textCaseOptions: [],
+    textInputColorOptions: []
   },
   onInit() {
     this.textTitle = this.$t('strings.text_title')
@@ -59,6 +59,7 @@ export default {
     this.textDisplayModeOptions = this.$t('strings.text_display_mode_options')
     this.textDecorativeThreadOptions = this.$t('strings.text_decorative_thread_options')
     this.textCaseOptions = this.$t('strings.text_case_options')
+    this.textInputColorOptions = this.$t('strings.divider_color_options')
   },
 
   setLetterSpacingValue(letterSpacingValueObj) {

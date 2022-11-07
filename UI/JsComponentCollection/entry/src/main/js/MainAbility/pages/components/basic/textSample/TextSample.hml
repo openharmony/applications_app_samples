@@ -16,26 +16,25 @@
 <element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
 <element name="sliderBox" src="../../../../common/commonItemSlider/CommonItemSlider.hml"></element>
 <element name="selectBox" src="../../../../common/commonItemSelect/CommonItemSelect.hml"></element>
-<element name="inputBox" src="../../../../common/commonItemInput/CommonItemInput.hml"></element>
 <div class="container">
   <titleBar title="{{ textTitle }}"></titleBar>
   <div class="container-top">
 
-    <!-- text start -->
+  <!-- text start -->
     <text class="container-top-text-content"
           style="color: {{ fontColor }};
-                text-align: {{ textAlign }};
-                line-height: {{ lineHeight + 'vp' }};
-                text-decoration: {{ textDecoration }};
-                text-overflow: {{ textOverflow }};
-                max-lines: {{ maxLines }};
-                letter-spacing: {{ letterSpacing }};
-                min-font-size: 14vp;
-                max-font-size: 20vp;">
+            text-align: {{ textAlign }};
+            line-height: {{ lineHeight + 'vp' }};
+            text-decoration: {{ textDecoration }};
+            text-overflow: {{ textOverflow }};
+            max-lines: {{ maxLines }};
+            letter-spacing: {{ letterSpacing }};
+            min-font-size: 14vp;
+            max-font-size: 20vp;">
       {{ $t('strings.text_content') }}
     </text>
-    <!-- text end -->
 
+  <!-- text end -->
     <sliderBox @slider-value="setLetterSpacingValue"
                left-text="{{ textChangeLetterSpacing }}"
                value="{{ letterSpacing }}"
@@ -60,10 +59,10 @@
                left-text="{{ textChangeDecorativeThread }}"
                select-options="{{ textDecorativeThreadOptions }}">
     </selectBox>
-    <inputBox @input-value="setFontColorValue"
-              left-text="{{ textChangeFontColor }}"
-              placeholder="{{ textInputPlaceholder }}">
-    </inputBox>
+    <selectBox @select-value="setFontColorValue"
+               left-text="{{ textChangeFontColor }}"
+               select-options="{{ textInputColorOptions }}">
+    </selectBox>
   </div>
 
   <div class="container-bottom bottom-margin">

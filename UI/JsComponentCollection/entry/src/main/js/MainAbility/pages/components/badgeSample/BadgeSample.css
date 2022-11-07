@@ -23,6 +23,7 @@
   min-height: 100%;
   background-color: #F1F3F5;
   overflow: scroll;
+  padding-bottom: 140vp;
 }
 
 .badge-type-box {
@@ -45,18 +46,20 @@
 .badge-box {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .badge-text {
   font-size: 18vp;
-  margin-top: 4vp;
+  width: 100%;
+  padding: 8vp;
+  max-lines: 1;
   color: #99000000;
   text-align: center;
 }
 
 .badge {
-  width: 120vp; /* Ensure the uniformity of the display effect */
-  height: 50vp;
+  height: 40vp;
   border-radius: 20vp;
   background-color: #33182431;
   margin: 0vp 12vp;

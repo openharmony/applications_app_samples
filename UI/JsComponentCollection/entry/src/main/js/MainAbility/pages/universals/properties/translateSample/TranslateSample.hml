@@ -19,27 +19,28 @@
   <text class="introduce">{{ $t('strings.translate_image') }}</text>
   <div class="image-border-div">
     <image class="image-class" src="common/image/ic_scenery1.png"
-           style="transform : translateX({{ imageXTranslate }}) translateY({{ imageYTranslate }});">
+           style="transform: translateX({{ imageXTranslate }}) translateY({{ imageYTranslate }})">
     </image>
   </div>
   <div class="slider-div">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_x_axis') }}</text>
     <slider min="-50" max="50" value="{{ imageXTranslate }}" onchange="setImageXTranslateValue"
-            style="padding: 0;flex-weight: 1;">
+            style="padding: 0; flex-weight: 1;">
     </slider>
-    <text>{{ $t('strings.translate_x_axis') }}</text>
-    <text>{{ imageXTranslate }}</text>
+    <text style="font-size: 24vp;">{{ imageXTranslate + 'vp' }}</text>
   </div>
 
   <div class="slider-div">
-    <slider min="-50" max="50" value="{{ imageYTranslate }}" onchange="setImageYTranslateValue"
-            style="padding: 0;flex-weight: 1;">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_y_axis') }}</text>
+    <slider min="-20" max="20" value="{{ imageYTranslate }}" onchange="setImageYTranslateValue"
+            style="padding: 0; flex-weight: 1;">
     </slider>
-    <text>{{ $t('strings.translate_y_axis') }}</text>
-    <text>{{ imageYTranslate }}</text>
+    <text style="font-size: 24vp;">{{ imageYTranslate + 'vp' }}</text>
   </div>
   <text class="introduce">{{ $t('strings.translate_container') }}</text>
   <div class="container-border-div">
-    <div class="container-div" style="transform : translateX({{ containerXTranslate }}) translateY({{ containerYTranslate }});">
+    <div class="container-div"
+         style="transform: translateX({{ containerXTranslate }}) translateY({{ containerYTranslate }});">
       <text>{{ $t('strings.translate_container_text') }}</text>
       <text>{{ $t('strings.translate_container_text') }}</text>
       <text>{{ $t('strings.translate_container_text') }}</text>
@@ -47,16 +48,16 @@
   </div>
 
   <div class="slider-div">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_x_axis') }}</text>
     <slider min="-50" max="50" value="{{ containerXTranslate }}" onchange="setContainerXTranslateValue"
-            style="padding: 0;flex-weight: 1;"></slider>
-    <text>{{ $t('strings.translate_x_axis') }}</text>
-    <text>{{ containerXTranslate }}</text>
+            style="padding: 0; flex-weight: 1;"></slider>
+    <text style="font-size: 24vp;">{{ containerXTranslate + 'vp' }}</text>
   </div>
 
   <div class="slider-div">
-    <slider min="-50" max="50" value="{{ containerYTranslate }}" onchange="setContainerYTranslateValue"
-            style="padding: 0;flex-weight: 1;"></slider>
-    <text>{{ $t('strings.translate_y_axis') }}</text>
-    <text>{{ containerYTranslate }}</text>
+    <text style="font-size: 20vp;">{{ $t('strings.translate_y_axis') }}</text>
+    <slider min="-20" max="20" value="{{ containerYTranslate }}" onchange="setContainerYTranslateValue"
+            style="padding: 0; flex-weight: 1;"></slider>
+    <text style="font-size: 24vp;">{{ containerYTranslate + 'vp' }}</text>
   </div>
 </div>

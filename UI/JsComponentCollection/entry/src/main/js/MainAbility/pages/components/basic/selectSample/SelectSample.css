@@ -21,17 +21,19 @@
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #F1F3F5;
+  padding-bottom: 310vp;
 }
 
 .border-div {
-  width: 450vp;
+  width: 100%;
   height: 80vp;
   align-items: center;
   justify-content: center;
   background-color: white;
   border-radius: 20vp;
   margin-top: 20vp;
-  margin-left: 15vp;
+  margin-left: 12vp;
+  margin-right: 12vp;
 }

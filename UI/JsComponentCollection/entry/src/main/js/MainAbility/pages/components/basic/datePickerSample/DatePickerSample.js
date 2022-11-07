@@ -28,7 +28,16 @@ export default {
 
   changeDate(dateObj) {
     if (dateObj) {
-      this.dateValue = dateObj.year + "-" + (Number(dateObj.month) + 1) + "-" + dateObj.day
+      var month = `${Number(dateObj.month + 1)}`
+      var day = `${Number(dateObj.day)}`
+      if (Number(dateObj.month) < 9) {
+        month = `0${Number(dateObj.month) + 1}`
+      }
+      if (Number(dateObj.day) < 10) {
+        day = `0${Number(dateObj.day)}`
+      }
+      if (dateObj.month)
+      this.dateValue = dateObj.year + "-" + month + "-" + day
     }
   },
 }

@@ -19,7 +19,7 @@
   <text class="introduce">{{ $t('strings.rotate_image') }}</text>
   <div class="image-border-div">
     <div class="outer-div" for="{{ rotateAngles }}">
-      <image class="image-class" src="common/image/ic_scenery1.png" style="transform : rotate({{ $item.angle }});"></image>
+      <image class="image-class" src="common/image/ic_scenery1.png" style="transform: rotate({{ $item.angle }});"></image>
       <text class="text-class">{{ $item.info }}</text>
     </div>
 
@@ -27,7 +27,7 @@
   <text class="introduce">{{ $t('strings.rotate_container') }}</text>
   <div class="container-border-div bottom-margin">
     <div for="{{ componentAngles }}" class="outer-div">
-      <div class="container-div" style="transform : rotate({{ $item.angle }});">
+      <div class="container-div" style="transform: rotate({{ $item.angle }});">
         <text class="container-text">{{ $t('strings.rotate_container_text') }}</text>
         <text class="container-text">{{ $t('strings.rotate_container_text') }}</text>
         <text class="container-text">{{ $t('strings.rotate_container_text') }}</text>
