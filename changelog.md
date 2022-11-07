@@ -85,3 +85,7 @@
 4.[`ECG`：心率检测（JS）（API8）](common/ECG) 
 5.[`Flashlight`：手电筒（JS）（API8）](common/Flashlight) 
 6.[`AirQuality`：空气质量（JS）（API8）](common/AirQuality) 
+
+#11月7日删除Sample（总计27个分类，173个sample）
+1.[`NativeAPI`：NativeAPI（eTS）（API8）](Native/NativeAPI)
+2.[`XComponent`：XComponent（eTS）（API9）](ETSUI/XComponent)

@@ -116,7 +116,6 @@
   - [`Drag`：拖拽事件（eTS）（API8）](ETSUI/Drag)
   - [`ArkUIAnimation`：动画（eTS）（API8）](ETSUI/ArkUIAnimation)
   - [`MediaQuery`：媒体查询（eTS）（API8）](ETSUI/MediaQuery)
-  - [`XComponent`：XComponent（eTS）（API9）](ETSUI/XComponent)
   - [`MouseEvent`：鼠标事件（eTS）（API8）](ETSUI/MouseEvent)
   - [`Web`：Web（eTS）（API8）](ETSUI/Web)
   - [`Gallery`：组件集合（eTS）（API8）](ETSUI/Gallery)
@@ -131,8 +130,6 @@
   - [`HealthyDiet`：健康饮食（eTS）（API9）](ETSUI/HealthyDiet)
 - FileManager
   - [`FileIo`：文件管理（eTS）（API8）](FileManager/FileIo)
-- Native
-  - [`NativeAPI`：NativeAPI（eTS）（API8）](Native/NativeAPI)
 - Notification
   - [`CommonEvent`：订阅公共事件（eTS）（API8）](Notification/CommonEvent)
   - [`Emitter`：处理进程内事件（eTS）（API8）](Notification/Emitter)
@@ -234,7 +231,6 @@ app_samples
 |---media                  # 媒体
 |---MultiDeviceAppDev      # 一多应用
 |---Native                 # 调用C++能力
-|---Network                # 网络连接
 |---Notification           # 消息通知
 |---PackageManagement      # 包管理
 |---Preset                 # 预设应用
