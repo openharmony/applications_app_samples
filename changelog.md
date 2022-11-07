@@ -94,3 +94,7 @@
 3.[`OrangeShopping`：购物示例应用（eTS）（API9）](ETSUI/OrangeShopping)
 4.[`ComponentCollection`：组件集合（eTS）（API9）](ETSUI/ComponentCollection)
 5.[`JsComponentCollection`：组件集合（JS）（API9）](UI/JsComponentCollection)
+
+#11月7日删除Sample（总计27个分类，173个sample）
+1.[`NativeAPI`：NativeAPI（eTS）（API8）](Native/NativeAPI)
+2.[`XComponent`：XComponent（eTS）（API9）](ETSUI/XComponent)
