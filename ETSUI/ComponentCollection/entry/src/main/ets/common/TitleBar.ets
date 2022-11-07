@@ -33,7 +33,9 @@ export struct TitleBar {
           })
         Text(this.title)
           .fontSize(20)
+          .layoutWeight(1)
           .margin({ left: 16 })
+          .align(Alignment.Start)
         Blank()
       }
       .height(56)

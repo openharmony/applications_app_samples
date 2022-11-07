@@ -22,53 +22,54 @@ struct ClickEventSample {
   @State showClickEventInfo: string = ''
   @State crosshairPositionX: number = 200
   @State crosshairPositionY: number = 100
-  private clickEventInfo: string
 
   build() {
     Column() {
       TitleBar({ title: $r('app.string.click_event') })
-      IntroductionTitle({ introduction: $r('app.string.click_action_tips') })
-      // Click event effect display
-      Column() {
-        Row() {
-          Text('+')
-            .fontSize(18)
-            .position({ x: this.crosshairPositionX, y: this.crosshairPositionY })
-        }
-        .height(200)
-        .width('100%')
-        .backgroundColor($r('app.color.background_shallow_grey'))
-        .onClick((event: ClickEvent) => {
-          this.crosshairPositionX = event.x
-          this.crosshairPositionY = event.y
-          // Get click location information
-          this.clickEventInfo = 'Click Point: ' + '\n  screenX: ' + event.screenX + '\n  screenY: ' + event.screenY
-          + '\n  x: ' + event.x + '\n  y: ' + event.y + '\ntarget: ' + '\n  component globalPos: ('
-          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width: '
-          + event.target.area.width + 'vp' + '\n  height: ' + event.target.area.height + 'vp' + '\ntimestamp: ' + event.timestamp
-        })
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.click_action_tips') })
+          // Click event effect display
+          Column() {
+            Row() {
+              Text('+')
+                .fontSize(18)
+                .position({ x: this.crosshairPositionX, y: this.crosshairPositionY })
+            }
+            .height(200)
+            .width('100%')
+            .backgroundColor($r('app.color.background_shallow_grey'))
+            .onClick((event: ClickEvent) => {
+              this.crosshairPositionX = event.x
+              this.crosshairPositionY = event.y
+              // Get click location information
+              this.showClickEventInfo = 'Click Point: ' + '\n  screenX: ' + event.screenX + '\n  screenY: ' + event.screenY
+              + '\n  x: ' + event.x + '\n  y: ' + event.y + '\ntarget: ' + '\n  component globalPos: ('
+              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width: '
+              + event.target.area.width + 'vp' + '\n  height: ' + event.target.area.height + 'vp' + '\ntimestamp: ' + event.timestamp
+            })
+          }
+          .padding(12)
+          .borderRadius(24)
+          .backgroundColor(Color.White)
 
-        Button($r('app.string.get_click_event_detail'))
-          .fontSize(16)
-          .borderRadius(14)
-          .margin({ top: 12 })
-          .padding({ top: 10, bottom: 10, left: 16, right: 16 })
-          .onClick((event: ClickEvent) => {
-            this.showClickEventInfo = this.clickEventInfo
-          })
+          Text($r('app.string.get_click_event_detail'))
+            .fontSize(18)
+            .width('100%')
+            .textAlign(TextAlign.Start)
+            .padding({ left: 18, top: 12 })
+
+          // Click location information
+          Text(this.showClickEventInfo)
+            .fontSize(18)
+            .width('100%')
+            .textAlign(TextAlign.Start)
+            .padding({ left: 18, top: 12 })
+        }
+        .constraintSize({ minHeight: '100%' })
       }
-      .padding(12)
-      .borderRadius(24)
-      .backgroundColor(Color.White)
-      // Click location information
-      Text(this.showClickEventInfo)
-        .fontSize(18)
-        .width('100%')
-        .textAlign(TextAlign.Start)
-        .padding({ left: 18, top: 12 })
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

@@ -69,6 +69,7 @@ export struct TabContentNavigation {
         }
       }
       .width('100%')
+      .layoutWeight(1)
       .padding({ left: 16, right: 16, top: 4 })
 
       Blank()
@@ -105,10 +106,12 @@ struct ThirdLevelNavigation {
 
         Blank()
 
-        Image(this.isUnfold ? $r('app.media.ic_down_arrow') : $r('app.media.ic_right_arrow'))
-          .width(this.isUnfold ? 24 : 12)
-          .height(this.isUnfold ? 12 : 24)
-          .margin({ right: this.isUnfold ? 0 : 6 })
+        if (this.thirdLevelCategory.childNodes) {
+          Image(this.isUnfold ? $r('app.media.ic_down_arrow') : $r('app.media.ic_right_arrow'))
+            .width(this.isUnfold ? 24 : 12)
+            .height(this.isUnfold ? 12 : 24)
+            .margin({ right: this.isUnfold ? 0 : 6 })
+        }
       }
       .height(56)
       .width('100%')
@@ -149,16 +152,12 @@ struct FourthLevelNavigation {
     Row() {
       Text(this.fourthLevelCategory.title)
         .fontSize(16)
+        .layoutWeight(1)
         .margin({ left: 42 })
+        .align(Alignment.Start)
         .fontFamily('HarmonyHeiTi-Medium')
         .fontColor($r('app.color.font_color_dark'))
-
       Blank()
-
-      Image($r('app.media.ic_right_arrow'))
-        .width(12)
-        .height(24)
-        .margin({ right: 6 })
     }
     .height(48)
     .width('100%')

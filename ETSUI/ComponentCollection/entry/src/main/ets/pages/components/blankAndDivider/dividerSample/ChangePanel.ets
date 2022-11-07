@@ -14,7 +14,7 @@
  */
 
 
-import { CommonItemSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool'
+import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool'
 
 @Component
 export struct ChangePanel {
@@ -28,30 +28,16 @@ export struct ChangePanel {
       CommonItemSlider({ changeValue: $strokeWidth, min: 1, max: 25, name: $r('app.string.divider_stroke_width') })
 
       // Select line color
-      CommonItemSelect({
+      CommonItemColorSelect({
         name: $r('app.string.divider_line_color'),
-        selects: ['Blue', 'Green', 'Orange', 'Pink'],
-        callback: (index) => {
-          switch (index) {
-            case 1:
-              this.lineColor = $r('app.color.background_green')
-              break
-            case 2:
-              this.lineColor = $r('app.color.background_orange')
-              break
-            case 3:
-              this.lineColor = $r('app.color.background_pink')
-              break
-            default:
-              this.lineColor = $r('app.color.background_blue')
-          }
-        }
+        selectColor: $lineColor
       })
 
       // Select lineCapStyle
       CommonItemSelect({
         name: $r('app.string.divider_line_cap'),
-        selects: ['Butt', 'Round', 'Square'],
+        selects: [$r('app.string.divider_line_type_butt'), $r('app.string.divider_line_type_round'),
+        $r('app.string.divider_line_type_square')],
         callback: (index) => {
           switch (index) {
             case 1:

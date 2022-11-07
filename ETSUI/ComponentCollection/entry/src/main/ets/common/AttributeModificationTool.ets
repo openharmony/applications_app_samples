@@ -39,7 +39,7 @@ export struct CommonItemSlider {
         .onChange((value: number) => {
           this.changeValue = value
         })
-      Text(`${Math.trunc(this.changeValue)}`)
+      Text(`${Math.trunc(this.changeValue)}vp`)
     }
     .width('100%')
     .height(40)
@@ -72,12 +72,13 @@ export struct CommonItemSelect {
         .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
       Blank()
       Select(this.selectOption)
-        .size(TOOL_WIDTH)
         .backgroundColor($r("app.color.background_shallow_grey"))
         .borderRadius(19)
+        .constraintSize({ minWidth: 150 })
         .selected(this.selectIndex)
         .font(this.fontSize)
         .optionFont(this.fontSize)
+        .padding({ left: 20, right: 20, top: 8, bottom: 8 })
         .onSelect((index, value) => {
           this.callback(index, value)
           this.selectIndex = index
@@ -91,35 +92,58 @@ export struct CommonItemSelect {
 }
 
 /**
- * Color input in item style, provide multiple choices based on menuList
+ * Select Color
  *
  * @param color change color
  */
 @Component
-export struct CommonItemColorInput {
-  @Link color: string
-  private colorIdentifier: string = '#'
-  private name: ResourceStr
-  private defaultColor: string
-  private inputColor: string
+export struct CommonItemColorSelect {
+  @Link selectColor: Resource
+  @State selectIndex: number = 0
+  private name: Resource
+  private isItemStyle: boolean = true
+  private colorNames: Array<{ value: Resource }> =
+    [{ value: $r('app.string.divider_color_blue') }, { value: $r('app.string.divider_color_green') },
+     { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
 
   build() {
     Row() {
       Text(this.name)
+        .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
       Blank()
-      Text(this.colorIdentifier)
-        .fontSize(18)
-        .fontColor($r('app.color.font_color_shallow'))
-      TextInput({ text: this.inputColor, placeholder: this.defaultColor })
-        .size(TOOL_WIDTH)
-        .maxLength(8)
-        .inputFilter('[0-9a-fA-f]')
-        .onChange((color: string) => {
-          this.inputColor = color.toUpperCase()
-          this.color = color.length < 1 ? this.colorIdentifier + this.defaultColor : this.colorIdentifier + color
+      Select(this.colorNames)
+        .borderRadius(19)
+        .font({ size: 20 })
+        .optionFont({ size: 20 })
+        .constraintSize({ minWidth: 150 })
+        .selected(this.selectIndex)
+        .selectedOptionFont({ size: 20 })
+        .backgroundColor($r("app.color.background_shallow_grey"))
+        .padding({ left: 20, right: 20, top: 8, bottom: 8 })
+        .onSelect((index) => {
+          this.selectIndex = index
+          switch (index) {
+            case 0:
+              this.selectColor = $r('app.color.background_blue')
+              break
+            case 1:
+              this.selectColor = $r('app.color.background_green')
+              break
+            case 2:
+              this.selectColor = $r('app.color.background_orange')
+              break
+            case 3:
+              this.selectColor = $r('app.color.background_pink')
+              break
+            default:
+              this.selectColor = $r('app.color.background_dark')
+          }
         })
     }
-    .size({ width: '100%', height: 42 })
+    .borderRadius(this.isItemStyle ? 0 : 24)
+    .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
+    .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
+    .backgroundColor(this.isItemStyle ? Color.Transparent : Color.White)
   }
 }
 

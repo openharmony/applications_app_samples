@@ -16,7 +16,6 @@
 import router from '@ohos.router'
 import { TitleBar } from '../../../../common/TitleBar'
 
-const ZOOM_FACTOR: number = 2
 const ANIMATION_URL: string = 'pages/animations/TransitionAnimations/pageTransitionSample/PageTransitionSampleTo'
 
 @Extend(Text) function textStyle () {
@@ -34,93 +33,68 @@ const ANIMATION_URL: string = 'pages/animations/TransitionAnimations/pageTransit
 @Entry
 @Component
 struct PageTransitionSample {
-  @State topY: number = 0
-  @State leftX: number = 0
-  @State rightX: number = 0
-  @State bottomY: number = 0
+  @State zoom: number = 2
   @State angle: number = 360
 
   build() {
     Column() {
       TitleBar({ title: $r('app.string.page_transition') })
-      Text($r('app.string.page_transition_top'))
-        .textStyle()
-        .margin({ top: 50 })
-        .translate({ x: 0, y: this.topY })
-        .onClick(() => {
-          router.push({
-            url: ANIMATION_URL,
-            params: { type: SlideEffect.Top }
-          })
-        })
-      Text($r('app.string.page_transition_bottom'))
-        .translate({ x: 0, y: this.bottomY })
-        .textStyle()
-        .onClick(() => {
-          router.push({
-            url: ANIMATION_URL,
-            params: { type: SlideEffect.Bottom }
-          })
-        })
-      Text($r('app.string.page_transition_left'))
-        .translate({ x: this.leftX, y: 0 })
-        .textStyle()
-        .onClick(() => {
-          router.push({
-            url: ANIMATION_URL,
-            params: { type: SlideEffect.Left }
-          })
-        })
-      Text($r('app.string.page_transition_right'))
-        .translate({ x: this.rightX, y: 0 })
-        .textStyle()
-        .onClick(() => {
-          router.push({
-            url: ANIMATION_URL,
-            params: { type: SlideEffect.Right }
-          })
-        })
-      Text($r('app.string.page_transition_scale'))
-        .translate({ x: this.leftX, y: this.topY })
-        .textStyle()
-        .onClick(() => {
-          router.push({
-            url: ANIMATION_URL,
-            params: { type: SlideEffect.Bottom, zoom: ZOOM_FACTOR }
-          })
-        })
-      Text($r('app.string.page_transition_rotate'))
-        .translate({ x: this.rightX, y: this.bottomY })
-        .textStyle()
-        .onClick(() => {
-          router.push({
-            url: ANIMATION_URL,
-            params: { type: SlideEffect.Bottom, angle: this.angle }
-          })
-        })
+      Scroll() {
+        Column() {
+          Text($r('app.string.page_transition_top'))
+            .textStyle()
+            .margin({ top: 50 })
+            .onClick(() => {
+              router.push({
+                url: ANIMATION_URL,
+                params: { type: SlideEffect.Top }
+              })
+            })
+          Text($r('app.string.page_transition_bottom'))
+            .textStyle()
+            .onClick(() => {
+              router.push({
+                url: ANIMATION_URL,
+                params: { type: SlideEffect.Bottom }
+              })
+            })
+          Text($r('app.string.page_transition_left'))
+            .textStyle()
+            .onClick(() => {
+              router.push({
+                url: ANIMATION_URL,
+                params: { type: SlideEffect.Left }
+              })
+            })
+          Text($r('app.string.page_transition_right'))
+            .textStyle()
+            .onClick(() => {
+              router.push({
+                url: ANIMATION_URL,
+                params: { type: SlideEffect.Right }
+              })
+            })
+          Text($r('app.string.page_transition_scale'))
+            .textStyle()
+            .onClick(() => {
+              router.push({
+                url: ANIMATION_URL,
+                params: { type: SlideEffect.Bottom, zoom: this.zoom }
+              })
+            })
+          Text($r('app.string.page_transition_rotate'))
+            .textStyle()
+            .onClick(() => {
+              router.push({
+                url: ANIMATION_URL,
+                params: { type: SlideEffect.Bottom, angle: this.angle }
+              })
+            })
+        }
+        .constraintSize({ minHeight: '100%' })
+      }
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
-  }
-
-  pageTransition() {
-    // Entry animation
-    PageTransitionEnter({ duration: 500, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
-        this.topY = (-progress + 1) * this.topY
-        this.bottomY = (-progress + 1) * this.bottomY
-        this.leftX = (-progress + 1) * this.leftX
-        this.rightX = (-progress + 1) * this.rightX
-      })
-
-    // Exit animation
-    PageTransitionExit({ duration: 500, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.topY = -600 * progress
-        this.bottomY = 600 * progress
-        this.leftX = -600 * progress
-        this.rightX = 600 * progress
-      })
   }
 }

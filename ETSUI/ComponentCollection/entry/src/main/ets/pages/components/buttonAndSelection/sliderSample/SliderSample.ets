@@ -35,14 +35,16 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct SliderSample {
-  @State minOrMaxValue: number = 60
   @State eventValue: number = 10
-  @State sliderChangeMode: SliderChangeMode = SliderChangeMode.End
+  @State sliderChange: number = 2
+  @State minOrMaxValue: number = 60
   @State blockColor: string = '#FFFFFFFF'
   @State selectColor: string = '#FF0A59F7'
   @State trackColor: string = '#19000000'
   @State trackThickness: number = 5
-  private changeModes: string[] = ['Begin', 'Moving', 'End', 'Click']
+  private steps: string[] = ['10', '20', '30', '40', '50', '60', '70', '80', '90']
+  private changeModes: Resource[] = [$r('app.string.slider_event_begin'), $r('app.string.slider_event_moving'),
+  $r('app.string.slider_event_end'), $r('app.string.slider_event_click')]
 
   build() {
     Column() {
@@ -67,14 +69,28 @@ struct SliderSample {
 
           IntroductionTitle({ introduction: $r('app.string.slider_events') })
           Column() {
-            Text(this.changeModes[this.sliderChangeMode])
+            Text(this.changeModes[this.sliderChange])
             Slider({
               value: this.eventValue,
               style: SliderStyle.OutSet
             })
               .onChange((value: number, mode: SliderChangeMode) => {
-                ShowToast.shortToast(`value: ${value}`)
-                this.sliderChangeMode = mode
+                switch (mode) {
+                  case SliderChangeMode.Begin:
+                    this.sliderChange = 0
+                    break
+                  case SliderChangeMode.Moving:
+                    this.sliderChange = 1
+                    break
+                  case SliderChangeMode.End:
+                    this.sliderChange = 2
+                    break
+                  case SliderChangeMode.Click:
+                    this.sliderChange = 3
+                    break
+                  default:
+                    this.sliderChange = 2
+                }
                 this.eventValue = value
               })
           }
@@ -86,12 +102,27 @@ struct SliderSample {
             Slider({
               value: 10,
               step: 10,
-              min: 0,
-              max: 100,
+              min: 10,
+              max: 90,
               style: SliderStyle.OutSet
             })
+              .width('100%')
               .showTips(true)
               .showSteps(true)
+              .padding({ left: 12, right: 12 })
+
+            Row() {
+              ForEach(this.steps, (item) => {
+                Text(item)
+                  .fontSize(18)
+                  .textAlign(TextAlign.Center)
+                  .constraintSize({ maxWidth: 30 })
+              })
+            }
+            .height(20)
+            .width('100%')
+            .padding({ left: 12, right: 12 })
+            .justifyContent(FlexAlign.SpaceBetween)
           }
           .columnStyle()
 

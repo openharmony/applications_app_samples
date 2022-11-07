@@ -34,6 +34,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct ButtonSample {
+  private context: any = getContext(this)
+
   @Styles buttonDefaultStyle() {
     .height(40)
     .layoutWeight(1)
@@ -53,13 +55,17 @@ struct ButtonSample {
               Button($r('app.string.button_confirm'))
                 .buttonDefaultStyle()
                 .onClick(() => {
-                  ShowToast.longToast($r('app.string.button_click'))
+                  ShowToast.longToast(
+                    '' + this.context.resourceManager.getStringSync($r('app.string.button_type_capsule').id) +
+                    this.context.resourceManager.getStringSync($r('app.string.button_click').id))
                 })
               // Set button type as parameter
               Button($r('app.string.button_confirm'), { type: ButtonType.Normal })
                 .buttonDefaultStyle()
                 .onClick(() => {
-                  ShowToast.longToast($r('app.string.button_click'))
+                  ShowToast.longToast(
+                    '' + this.context.resourceManager.getStringSync($r('app.string.button_type_normal').id) +
+                    this.context.resourceManager.getStringSync($r('app.string.button_click').id))
                 })
               Button() {
                 Image($r('app.media.ic_button_circle_add'))
@@ -67,7 +73,9 @@ struct ButtonSample {
               .buttonDefaultStyle()
               .type(ButtonType.Circle) // Set button type as attribute
               .onClick(() => {
-                ShowToast.longToast($r('app.string.button_click'))
+                ShowToast.longToast(
+                  '' + this.context.resourceManager.getStringSync($r('app.string.button_type_circle').id) +
+                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
               })
             }
             .width('100%')
@@ -91,7 +99,9 @@ struct ButtonSample {
             Button($r('app.string.button_state_effect_true'), { stateEffect: true })
               .buttonDefaultStyle()
               .onClick(() => {
-                ShowToast.longToast('State effect is true')
+                ShowToast.longToast(
+                  '' + this.context.resourceManager.getStringSync($r('app.string.button_state_effect_true').id) +
+                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
               })
 
             // No effect but response onClick event
@@ -99,7 +109,9 @@ struct ButtonSample {
               .buttonDefaultStyle()
               .stateEffect(false) // Set button type as attribute
               .onClick(() => {
-                ShowToast.longToast('State effect is false')
+                ShowToast.longToast(
+                  '' + this.context.resourceManager.getStringSync($r('app.string.button_state_effect_false').id) +
+                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
               })
 
             // Disable this button
@@ -109,7 +121,9 @@ struct ButtonSample {
               .opacity(0.4) // Opacity if disable
               .onClick(() => {
                 // onClick event will not response
-                ShowToast.longToast('disable !')
+                ShowToast.longToast(
+                  '' + this.context.resourceManager.getStringSync($r('app.string.button_disable_style').id) +
+                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
               })
           }
           .rowStyle()
@@ -121,6 +135,12 @@ struct ButtonSample {
               .type(ButtonType.Normal)
               .borderRadius(6)
               .buttonDefaultStyle()
+              .onClick(() => {
+                // onClick event will not response
+                ShowToast.longToast(
+                  '' + this.context.resourceManager.getStringSync($r('app.string.button_border_radius').id) +
+                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+              })
 
             Button() {
               Row() {
@@ -133,6 +153,12 @@ struct ButtonSample {
               }
             }
             .buttonDefaultStyle()
+            .onClick(() => {
+              // onClick event will not response
+              ShowToast.longToast(
+                '' + this.context.resourceManager.getStringSync($r('app.string.button_border_radius').id) +
+                this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+            })
 
             Button() {
               Text($r('app.string.button_custom_bg_color'))
@@ -141,6 +167,12 @@ struct ButtonSample {
             }
             .buttonDefaultStyle()
             .backgroundColor($r('app.color.button_custom_color'))
+            .onClick(() => {
+              // onClick event will not response
+              ShowToast.longToast(
+                '' + this.context.resourceManager.getStringSync($r('app.string.button_custom_bg_color').id) +
+                this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+            })
           }
           .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)

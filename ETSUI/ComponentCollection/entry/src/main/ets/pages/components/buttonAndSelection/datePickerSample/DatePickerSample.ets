@@ -45,7 +45,15 @@ struct DatePickerSample {
           .lunar(this.isLunar)
           .onChange((date: DatePickerResult) => {
             // Get date from value
-            this.selectDate = `${date.year}-${date.month + 1}-${date.day}`
+            let month: string = `${date.month + 1}`
+            let day: string = `${date.day}`
+            if (date.month < 9) {
+              month = `0${date.month + 1}`
+            }
+            if (date.day < 10) {
+              day = `0${date.day}`
+            }
+            this.selectDate = `${date.year}-${month}-${day}`
           })
         Row() {
           Checkbox()

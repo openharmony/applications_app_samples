@@ -41,7 +41,12 @@ struct ShareElementTransitionSample {
             curve: Curve.FastOutLinearIn,
             type: SharedTransitionEffectType.Exchange,
             // Motion path information, Path is the motion path of the bit movement drawing, using the svg path string
-            motionPath: { path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y', from: 0.0, to: 1.0, rotatable: true }
+            motionPath: {
+              path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y',
+              from: 0.0,
+              to: 1.0,
+              rotatable: true
+            }
           })
           .onClick(() => {
             router.push({
@@ -54,6 +59,7 @@ struct ShareElementTransitionSample {
       .padding(12)
       .rowsGap(20)
       .columnsGap(20)
+      .layoutWeight(1)
       .columnsTemplate('1fr 1fr 1fr')
     }
     .width('100%')

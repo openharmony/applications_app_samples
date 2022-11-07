@@ -35,8 +35,9 @@ struct TextInputSample {
   @State inputType: InputType = InputType.Normal
   @State inputContent: string = ''
   @State typePlaceholder: ResourceStr = $r('app.string.text_input_normal_type')
-  private inputController: TextInputController = new TextInputController()
   private maxLength: number = 12
+  private context: any = getContext(this)
+  private inputController: TextInputController = new TextInputController()
 
   build() {
     Column() {
@@ -101,19 +102,24 @@ struct TextInputSample {
             .type(InputType.Email)
             .enterKeyType(EnterKeyType.Search)
             .onPaste(value => {
-              ShowToast.longToast(`onPaste: ${value}`)
+              ShowToast.longToast(
+                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_paste').id)}${value}`)
             })
             .onCut(value => {
-              ShowToast.longToast(`onCut: ${value}`)
+              ShowToast.longToast(
+                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_cut').id)}${value}`)
             })
             .onCopy(value => {
-              ShowToast.longToast(`onCopy: ${value}`)
+              ShowToast.longToast(
+                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_copy').id)}${value}`)
             })
             .onSubmit(keyType => {
-              ShowToast.longToast(`onSubmit: ${keyType}`)
+              ShowToast.longToast(
+                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_submit').id)}${keyType}`)
             })
             .onEditChange(isEditing => {
-              ShowToast.longToast(`onEditChange: ${isEditing}`)
+              ShowToast.longToast(
+                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_edit').id)}${isEditing}`)
             })
 
           IntroductionTitle({ introduction: $r('app.string.text_input_placeholder_style') })

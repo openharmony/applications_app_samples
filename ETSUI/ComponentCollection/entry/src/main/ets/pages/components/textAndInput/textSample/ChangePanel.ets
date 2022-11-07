@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorInput } from '../../../../common/AttributeModificationTool'
-import ShowToast from '../../../../util/ShowToast'
+import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool'
 
 @Component
 export struct ChangeTextCase {
@@ -41,7 +40,7 @@ export struct ChangeTextCase {
           }
         }
       })
-      .margin({ top: 12 })
+        .margin({ top: 12 })
     }
   }
 }
@@ -93,23 +92,21 @@ export struct ChangeTextAttribute {
       })
 
       CommonItemSelect({
-        name: $r('app.string.text_none_type'),
+        name: $r('app.string.text_overflow'),
         selects: [
-          $r('app.string.text_none_type'),
+          $r('app.string.text_none'),
           $r('app.string.text_text_over_flow_clip'),
           $r('app.string.text_text_over_flow_ellipsis')],
         callback: (index) => {
           switch (index) {
             case 1:
               this.textMaxLines = 3
-              // Clip is default type
+            // Clip is default type
               this.textOverFlow = TextOverflow.Clip
-              ShowToast.longToast(`max lines: ${this.textMaxLines}`)
               break
             case 2:
               this.textMaxLines = 3
               this.textOverFlow = TextOverflow.Ellipsis
-              ShowToast.longToast(`max lines: ${this.textMaxLines}`)
               break
             default:
               this.textMaxLines = -1
@@ -121,7 +118,7 @@ export struct ChangeTextAttribute {
       CommonItemSelect({
         name: $r('app.string.text_decoration_type'),
         selects: [
-          $r('app.string.text_none_type'),
+          $r('app.string.text_none'),
           $r('app.string.text_decoration_type_line_through'),
           $r('app.string.text_decoration_type_over_line'),
           $r('app.string.text_decoration_type_under_line')],
@@ -143,10 +140,9 @@ export struct ChangeTextAttribute {
       })
 
       // CommonItemColorInput will parse color 'FF000000' -> '#FF000000'
-      CommonItemColorInput({
+      CommonItemColorSelect({
         name: $r('app.string.text_font_color'),
-        color: $fontColor,
-        defaultColor: 'FF000000'
+        selectColor: $fontColor
       })
     }
   }

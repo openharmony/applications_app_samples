@@ -30,70 +30,73 @@ struct Size {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.prop_size') })
-      IntroductionTitle({ introduction: $r('app.string.size_width') })
-      Row() {
-        Row() {
-          Text($r('app.string.size_width_fixed_100vp'))
-            .fontSize(18)
-            .fontColor(Color.White)
-        }
-        .width(100)
-        .height(100)
-        .borderRadius(5)
-        .justifyContent(FlexAlign.Center)
-        .backgroundColor($r('app.color.background_green'))
-
-        Row() {
-          Text($r('app.string.size_width_percent'))
-            .fontSize(18)
-            .width('60%')
-            .height('100%')
-            .fontColor(Color.White)
-            .textAlign(TextAlign.Center)
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.size_width') })
+          Row() {
+            Row() {
+              Text($r('app.string.size_width_fixed_100vp'))
+                .fontSize(18)
+                .fontColor(Color.White)
+            }
+            .width(100)
+            .height(100)
+            .borderRadius(5)
+            .justifyContent(FlexAlign.Center)
             .backgroundColor($r('app.color.background_green'))
-        }
-        .height(100)
-        .width('70%')
-        .layoutWeight(1)
-        .borderRadius(5)
-        .margin({ left: 20 })
-        .justifyContent(FlexAlign.Start)
-        .backgroundColor($r('app.color.background_blue'))
-      }
-      .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.size_height') })
-      Row() {
-        Row() {
-          Text($r('app.string.size_height_fixed_100vp'))
-            .fontSize(18)
-            .fontColor(Color.White)
-        }
-        .height(100)
-        .borderRadius(5)
-        .justifyContent(FlexAlign.Center)
-        .backgroundColor($r('app.color.background_blue'))
+            Row() {
+              Text($r('app.string.size_width_percent'))
+                .fontSize(18)
+                .width('60%')
+                .height('100%')
+                .fontColor(Color.White)
+                .textAlign(TextAlign.Center)
+                .backgroundColor($r('app.color.background_green'))
+            }
+            .height(100)
+            .layoutWeight(1)
+            .borderRadius(5)
+            .margin({ left: 20 })
+            .justifyContent(FlexAlign.Start)
+            .backgroundColor($r('app.color.background_blue'))
+          }
+          .rowStyle()
 
-        Row() {
-          Text($r('app.string.size_height_percent'))
-            .fontSize(18)
-            .width('100%')
-            .height('60%')
-            .fontColor(Color.White)
-            .textAlign(TextAlign.Center)
-            .backgroundColor($r('app.color.background_green'))
+          IntroductionTitle({ introduction: $r('app.string.size_height') })
+          Row() {
+            Row() {
+              Text($r('app.string.size_height_fixed_100vp'))
+                .fontSize(18)
+                .fontColor(Color.White)
+            }
+            .height(100)
+            .borderRadius(5)
+            .justifyContent(FlexAlign.Center)
+            .backgroundColor($r('app.color.background_blue'))
+
+            Row() {
+              Text($r('app.string.size_height_percent'))
+                .fontSize(18)
+                .width('100%')
+                .height('60%')
+                .fontColor(Color.White)
+                .textAlign(TextAlign.Center)
+                .backgroundColor($r('app.color.background_green'))
+            }
+            .height(100)
+            .layoutWeight(1)
+            .borderRadius(5)
+            .margin({ left: 20 })
+            .alignItems(VerticalAlign.Top)
+            .backgroundColor($r('app.color.background_blue'))
+          }
+          .rowStyle()
         }
-        .height(100)
-        .layoutWeight(1)
-        .borderRadius(5)
-        .margin({ left: 20 })
-        .alignItems(VerticalAlign.Top)
-        .backgroundColor($r('app.color.background_blue'))
+        .constraintSize({ minHeight: '100%' })
       }
-      .rowStyle()
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

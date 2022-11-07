@@ -33,24 +33,24 @@ const BUTTON_AND_SELECTION: ThirdLevelCategory =
     title: $r('app.string.button_and_selection'),
     childNodes: [
       {
-        title: $r('app.string.radio_title'),
-        url: 'pages/components/buttonAndSelection/radioSample/RadioSample'
+        title: $r('app.string.button_title'),
+        url: 'pages/components/buttonAndSelection/buttonSample/ButtonSample'
       },
       {
         title: $r('app.string.date_picker_title'),
         url: 'pages/components/buttonAndSelection/datePickerSample/DatePickerSample'
       },
       {
-        title: $r('app.string.slider_title'),
-        url: 'pages/components/buttonAndSelection/sliderSample/SliderSample'
-      },
-      {
-        title: $r('app.string.button_title'),
-        url: 'pages/components/buttonAndSelection/buttonSample/ButtonSample'
+        title: $r('app.string.radio_title'),
+        url: 'pages/components/buttonAndSelection/radioSample/RadioSample'
       },
       {
         title: $r('app.string.select_title'),
         url: 'pages/components/buttonAndSelection/selectSample/SelectSample'
+      },
+      {
+        title: $r('app.string.slider_title'),
+        url: 'pages/components/buttonAndSelection/sliderSample/SliderSample'
       },
       {
         title: $r('app.string.toggle_title'),

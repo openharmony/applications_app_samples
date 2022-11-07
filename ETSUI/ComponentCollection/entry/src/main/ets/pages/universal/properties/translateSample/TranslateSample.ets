@@ -44,66 +44,70 @@ struct TranslateSample {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.graphic_transformation_translate') })
-      IntroductionTitle({ introduction: $r('app.string.translate_image') })
-      // Image translate
-      Column() {
-        Image($r('app.media.ic_scenery1'))
-          .width(160)
-          .height(120)
-          .translate({ x: this.imageTranslateX, y: this.imageTranslateY })
-      }
-      .height(180)
-      .padding(12)
-      .width('100%')
-      .borderRadius(24)
-      .backgroundColor(Color.White)
-      .justifyContent(FlexAlign.Center)
-
-      ForEach(this.imageSliders, (item) => {
-        Row() {
-          if (item.isXAxis) {
-            CommonItemSlider({ changeValue: $imageTranslateX, min: -20, max: 20, name: item.axisName })
-          } else {
-            CommonItemSlider({ changeValue: $imageTranslateY, min: -20, max: 20, name: item.axisName })
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.translate_image') })
+          // Image translate
+          Column() {
+            Image($r('app.media.ic_scenery1'))
+              .width(160)
+              .height(120)
+              .translate({ x: this.imageTranslateX, y: this.imageTranslateY })
           }
-        }
-        .padding(4)
-        .margin({ left: 10, right: 10 })
-        .justifyContent(FlexAlign.Center)
-      })
-      IntroductionTitle({ introduction: $r('app.string.translate_container') })
-      // Container translate
-      Column() {
-        Column(){
-          this.TextInfo()
-          this.TextInfo()
-          this.TextInfo()
-        }
-        .margin({ top: 20, bottom: 20 })
-        .backgroundColor($r('app.color.background_grey'))
-        .translate({ x: this.containerTranslateX, y: this.containerTranslateY })
-        .justifyContent(FlexAlign.Center)
-      }
-      .width('100%')
-      .borderRadius(24)
-      .backgroundColor(Color.White)
-      .padding({ top: 4, bottom: 4})
+          .height(180)
+          .padding(12)
+          .width('100%')
+          .borderRadius(24)
+          .backgroundColor(Color.White)
+          .justifyContent(FlexAlign.Center)
 
-      ForEach(this.componentSliders, (item) => {
-        Row() {
-          if (item.isXAxis) {
-            CommonItemSlider({ changeValue: $containerTranslateX, min: -20, max: 20, name: item.axisName })
-          } else {
-            CommonItemSlider({ changeValue: $containerTranslateY, min: -20, max: 20, name: item.axisName })
+          ForEach(this.imageSliders, (item) => {
+            Row() {
+              if (item.isXAxis) {
+                CommonItemSlider({ changeValue: $imageTranslateX, min: -20, max: 20, name: item.axisName })
+              } else {
+                CommonItemSlider({ changeValue: $imageTranslateY, min: -20, max: 20, name: item.axisName })
+              }
+            }
+            .padding(4)
+            .margin({ left: 10, right: 10 })
+            .justifyContent(FlexAlign.Center)
+          })
+          IntroductionTitle({ introduction: $r('app.string.translate_container') })
+          // Container translate
+          Column() {
+            Column() {
+              this.TextInfo()
+              this.TextInfo()
+              this.TextInfo()
+            }
+            .margin({ top: 20, bottom: 20 })
+            .backgroundColor($r('app.color.background_grey'))
+            .translate({ x: this.containerTranslateX, y: this.containerTranslateY })
+            .justifyContent(FlexAlign.Center)
           }
+          .width('100%')
+          .borderRadius(24)
+          .backgroundColor(Color.White)
+          .padding({ top: 4, bottom: 4 })
+
+          ForEach(this.componentSliders, (item) => {
+            Row() {
+              if (item.isXAxis) {
+                CommonItemSlider({ changeValue: $containerTranslateX, min: -20, max: 20, name: item.axisName })
+              } else {
+                CommonItemSlider({ changeValue: $containerTranslateY, min: -20, max: 20, name: item.axisName })
+              }
+            }
+            .padding(4)
+            .margin({ left: 10, right: 10 })
+            .justifyContent(FlexAlign.Center)
+          })
         }
-        .padding(4)
-        .margin({ left: 10, right: 10 })
-        .justifyContent(FlexAlign.Center)
-      })
+        .constraintSize({ minHeight: '100%' })
+      }
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 

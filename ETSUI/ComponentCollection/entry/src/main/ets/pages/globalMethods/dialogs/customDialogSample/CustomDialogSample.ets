@@ -26,7 +26,7 @@ import { UpgradeDialog } from './CustomDialog'
 
 @Entry
 @Component
-struct CustomPopupSample {
+struct CustomDialogSample {
   private autoCloseDialog: CustomDialogController = new CustomDialogController({
     builder: UpgradeDialog(),
     autoCancel: true
@@ -69,44 +69,49 @@ struct CustomPopupSample {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.custom_dialog') })
-      IntroductionTitle({ introduction: $r('app.string.alert_dialog_auto_cancel') })
-      Row() {
-        this.DialogButton($r('app.string.alert_dialog_true'), this.autoCloseDialog)
-        this.DialogButton($r('app.string.alert_dialog_false'), this.manualCloseDialog)
-      }
-      .rowStyle()
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.alert_dialog_auto_cancel') })
+          Row() {
+            this.DialogButton($r('app.string.alert_dialog_true'), this.autoCloseDialog)
+            this.DialogButton($r('app.string.alert_dialog_false'), this.manualCloseDialog)
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.alert_dialog_location') })
-      Row() {
-        this.DialogButton($r('app.string.alert_dialog_top'), this.topDialog)
-        this.DialogButton($r('app.string.alert_dialog_center'), this.centerDialog)
-        this.DialogButton($r('app.string.alert_dialog_bottom'), this.bottomDialog)
-      }
-      .rowStyle()
+          IntroductionTitle({ introduction: $r('app.string.alert_dialog_location') })
+          Row() {
+            this.DialogButton($r('app.string.alert_dialog_top'), this.topDialog)
+            this.DialogButton($r('app.string.alert_dialog_center'), this.centerDialog)
+            this.DialogButton($r('app.string.alert_dialog_bottom'), this.bottomDialog)
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.alert_dialog_offset') })
-      Row() {
-        this.DialogButton($r('app.string.alert_dialog_left'), this.leftDialog)
-        this.DialogButton($r('app.string.alert_dialog_right'), this.rightDialog)
-      }
-      .rowStyle()
+          IntroductionTitle({ introduction: $r('app.string.alert_dialog_offset') })
+          Row() {
+            this.DialogButton($r('app.string.alert_dialog_left'), this.leftDialog)
+            this.DialogButton($r('app.string.alert_dialog_right'), this.rightDialog)
+          }
+          .rowStyle()
 
-      IntroductionTitle({ introduction: $r('app.string.custom_dialog_style_custom') })
-      Row() {
-        this.DialogButton($r('app.string.custom_dialog_style_custom_true'), this.customDialog)
-        this.DialogButton($r('app.string.custom_dialog_style_custom_false'), this.unCustomDialog)
+          IntroductionTitle({ introduction: $r('app.string.custom_dialog_style_custom') })
+          Row() {
+            this.DialogButton($r('app.string.custom_dialog_style_custom_true'), this.customDialog)
+            this.DialogButton($r('app.string.custom_dialog_style_custom_false'), this.unCustomDialog)
+          }
+          .rowStyle()
+        }
+        .constraintSize({ minHeight: '100%' })
       }
-      .rowStyle()
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 
   @Builder DialogButton(dialogName: Resource, dialog: CustomDialogController) {
     Button(dialogName)
       .margin(8)
-      .fontSize(18)
+      .fontSize(16)
+      .layoutWeight(1)
       .fontColor($r('app.color.background_blue'))
       .backgroundColor($r('app.color.background_grey'))
       .padding({ left: 12, right: 12, top: 8, bottom: 8 })

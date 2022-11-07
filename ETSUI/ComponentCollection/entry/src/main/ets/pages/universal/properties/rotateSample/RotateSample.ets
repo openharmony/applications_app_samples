@@ -47,63 +47,67 @@ struct RotateSample {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.graphic_transformation_rotate') })
-      IntroductionTitle({ introduction: $r('app.string.rotate_photo') })
-      // Image rotation
-      Row() {
-        ForEach(this.rotateAngele, (item) => {
-          Column() {
-            Image($r('app.media.ic_scenery1'))
-              .width(150)
-              .height(100)
-              .objectFit(ImageFit.Fill)
-              .margin({ bottom: 24 })
-              .rotate({
-                x: 0,
-                y: 0,
-                z: 1,
-                centerX: '50%',
-                centerY: '50%',
-                angle: item.angle
-              })
-            Text(item.rotateInfo)
-              .fontSize(18)
-          }
-          .margin({ left: 20, right: 20, top: 12, bottom: 12 })
-        })
-      }
-      .rowStyle()
-
-      IntroductionTitle({ introduction: $r('app.string.rotate_container') })
-      // Container rotation
-      Row() {
-        ForEach(this.componentAngele, (item) => {
-          Column() {
-            Column() {
-              this.TextInfo()
-              this.TextInfo()
-              this.TextInfo()
-            }
-            .margin({ bottom: 24 })
-            .backgroundColor($r('app.color.background_grey'))
-            .rotate({
-              x: 0,
-              y: 0,
-              z: 1,
-              centerX: '50%',
-              centerY: '50%',
-              angle: item.angle
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.rotate_photo') })
+          // Image rotation
+          Row() {
+            ForEach(this.rotateAngele, (item) => {
+              Column() {
+                Image($r('app.media.ic_scenery1'))
+                  .width(150)
+                  .height(100)
+                  .objectFit(ImageFit.Fill)
+                  .margin({ bottom: 24 })
+                  .rotate({
+                    x: 0,
+                    y: 0,
+                    z: 1,
+                    centerX: '50%',
+                    centerY: '50%',
+                    angle: item.angle
+                  })
+                Text(item.rotateInfo)
+                  .fontSize(18)
+              }
+              .margin({ left: 20, right: 20, top: 12, bottom: 12 })
             })
-
-            Text(item.rotateInfo)
-              .fontSize(18)
           }
-          .margin({ left: 20, right: 20, top: 12, bottom: 12 })
-        })
+          .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.rotate_container') })
+          // Container rotation
+          Row() {
+            ForEach(this.componentAngele, (item) => {
+              Column() {
+                Column() {
+                  this.TextInfo()
+                  this.TextInfo()
+                  this.TextInfo()
+                }
+                .margin({ bottom: 24 })
+                .backgroundColor($r('app.color.background_grey'))
+                .rotate({
+                  x: 0,
+                  y: 0,
+                  z: 1,
+                  centerX: '50%',
+                  centerY: '50%',
+                  angle: item.angle
+                })
+
+                Text(item.rotateInfo)
+                  .fontSize(18)
+              }
+              .margin({ left: 20, right: 20, top: 12, bottom: 12 })
+            })
+          }
+          .rowStyle()
+        }
+        .constraintSize({ minHeight: '100%' })
       }
-      .rowStyle()
     }
     .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 

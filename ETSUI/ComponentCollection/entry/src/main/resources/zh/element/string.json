@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "entry_desc",
-      "value": "组件集合"
+      "value": "ArkTS组件库"
     },
     {
       "name": "MainAbility_desc",
@@ -34,19 +34,19 @@
     },
     {
       "name": "prop_background",
-      "value": "背景"
+      "value": "background 背景"
     },
     {
       "name": "prop_border",
-      "value": "边框"
+      "value": "border 边框"
     },
     {
       "name": "prop_font",
-      "value": "字体"
+      "value": "font 字体"
     },
     {
       "name": "prop_size",
-      "value": "尺寸"
+      "value": "size 尺寸"
     },
     {
       "name": "graphic_transformation",
@@ -58,7 +58,7 @@
     },
     {
       "name": "click_event",
-      "value": "点击事件"
+      "value": "onClick 点击事件"
     },
     {
       "name": "transition_animation",
@@ -66,7 +66,7 @@
     },
     {
       "name": "interpolation_calculation",
-      "value": "插值计算"
+      "value": "Interpolation Calculation 插值计算"
     },
     {
       "name": "dialog",
@@ -91,7 +91,7 @@
     // AlertDialog
     {
       "name": "alert_dialog",
-      "value": "警告弹窗"
+      "value": "AlertDialog 警告弹窗"
     },
     {
       "name": "alert_dialog_type_one",
@@ -233,7 +233,7 @@
     // Badge
     {
       "name": "auxiliary_badge",
-      "value": "Badge 标记组件"
+      "value": "Badge 标记"
     },
     {
       "name": "badge_type",
@@ -363,7 +363,7 @@
     // Button
     {
       "name": "button_title",
-      "value": "Button 按钮组件"
+      "value": "Button 按钮"
     },
     {
       "name": "button_type",
@@ -375,15 +375,15 @@
     },
     {
       "name": "button_type_capsule",
-      "value": "胶囊"
+      "value": "胶囊按钮"
     },
     {
       "name": "button_type_normal",
-      "value": "普通"
+      "value": "普通按钮"
     },
     {
       "name": "button_type_circle",
-      "value": "圆形"
+      "value": "圆形按钮"
     },
     {
       "name": "button_state_effect",
@@ -391,11 +391,11 @@
     },
     {
       "name": "button_state_effect_true",
-      "value": "按下有效果"
+      "value": "有按下效果"
     },
     {
       "name": "button_state_effect_false",
-      "value": "按下无效果"
+      "value": "无按下效果"
     },
     {
       "name": "button_disable_style",
@@ -419,7 +419,7 @@
     },
     {
       "name": "button_click",
-      "value": "按钮被点击了！"
+      "value": "被点击了！"
     },
     // Click Event
     {
@@ -428,12 +428,12 @@
     },
     {
       "name": "get_click_event_detail",
-      "value": "获取点击位置信息"
+      "value": "点击事件详细信息"
     },
     // CustomDialog
     {
       "name": "custom_dialog",
-      "value": "自定义弹窗"
+      "value": "CustomDialog 自定义弹窗"
     },
     {
       "name": "custom_dialog_style_custom",
@@ -474,15 +474,11 @@
     // DatePickerDialog
     {
       "name": "date_picker_dialog",
-      "value": "日期及时间选择弹窗"
+      "value": "DatePickerDialog 日期选择弹窗"
     },
     {
       "name": "date_picker_dialog_date",
       "value": "显示日期弹窗"
-    },
-    {
-      "name": "date_picker_dialog_time",
-      "value": "显示时间弹窗"
     },
     {
       "name": "date_picker_dialog_date_lunar",
@@ -493,16 +489,12 @@
       "value": "公历日期："
     },
     {
-      "name": "date_picker_dialog_24_hour",
-      "value": "24小时："
-    },
-    {
-      "name": "date_picker_dialog_12_hour",
-      "value": "12小时："
-    },
-    {
       "name": "date_picker_dialog_cancel",
       "value": "取消"
+    },
+    {
+      "name": "date_picker_toast_date",
+      "value": "选中的时间为："
     },
     // DatePicker
     {
@@ -516,7 +508,7 @@
     // Divider
     {
       "name": "divider_title",
-      "value": "Divider 分隔器组件"
+      "value": "Divider 分隔器"
     },
     {
       "name": "divider_stroke_width",
@@ -579,7 +571,7 @@
     // Page Transition
     {
       "name": "page_transition",
-      "value": "页面间转场"
+      "value": "pageTransition 页面间转场"
     },
     {
       "name": "page_transition_left",
@@ -612,7 +604,7 @@
     // QRCode
     {
       "name": "qrcode_title",
-      "value": "QRCode 二维码组件"
+      "value": "QRCode 二维码"
     },
     {
       "name": "qrcode_content",
@@ -658,7 +650,7 @@
     // Rotate
     {
       "name": "graphic_transformation_rotate",
-      "value": "旋转"
+      "value": "rotate 旋转"
     },
     {
       "name": "rotate_photo",
@@ -713,10 +705,18 @@
       "name": "select_gesture",
       "value": "手势"
     },
+    {
+      "name": "select_index",
+      "value": "选中选项索引："
+    },
+    {
+      "name": "select_value",
+      "value": "选中选项的值："
+    },
     // Shareelement Transition
     {
       "name": "share_element_transition",
-      "value": "共享元素转场"
+      "value": "sharedTransition 共享元素转场"
     },
     // Size
     {
@@ -792,10 +792,30 @@
       "name": "slider_select_color",
       "value": "已滑动颜色"
     },
+    {
+      "name": "slider_event_begin",
+      "value": "开始拖动滑块"
+    },
+    {
+      "name": "slider_event_moving",
+      "value": "正在拖动滑块过程中"
+    },
+    {
+      "name": "slider_event_end",
+      "value": "结束拖动滑块"
+    },
+    {
+      "name": "slider_event_click",
+      "value": "点击滑动条更改滑块位置"
+    },
+    {
+      "name": "slider_title_value",
+      "value": "滑块滑动在总长中占比："
+    },
     // Span
     {
       "name": "span_title",
-      "value": "Span 行内文本组件"
+      "value": "Span 行内文本"
     },
     {
       "name": "span_attribute",
@@ -848,7 +868,7 @@
     // Text
     {
       "name": "text_title",
-      "value": "Text 文本组件"
+      "value": "Text 文本"
     },
     {
       "name": "text_content",
@@ -891,7 +911,11 @@
       "value": "字符间距"
     },
     {
-      "name": "text_none_type",
+      "name": "text_overflow",
+      "value": "超长文本显示方式"
+    },
+    {
+      "name": "text_none",
       "value": "无"
     },
     {
@@ -933,7 +957,7 @@
     // TextInput
     {
       "name": "text_input_title",
-      "value": "TextInput 文本输入组件"
+      "value": "TextInput 文本输入"
     },
     {
       "name": "text_input_normal_type",
@@ -1011,10 +1035,55 @@
       "name": "text_input_placeholder_max_length",
       "value": "当前最大输入12字符"
     },
+    {
+      "name": "text_input_toast_paste",
+      "value": "粘贴的文本为："
+    },
+    {
+      "name": "text_input_toast_cut",
+      "value": "剪切的文本为："
+    },
+    {
+      "name": "text_input_toast_copy",
+      "value": "复制的文本为："
+    },
+    {
+      "name": "text_input_toast_submit",
+      "value": "提交的文本为："
+    },
+    {
+      "name": "text_input_toast_edit",
+      "value": "编辑的文本为："
+    },
+    // TimePickerDialog
+    {
+      "name": "time_picker_dialog",
+      "value": "TimePickerDialog 时间选择弹窗"
+    },
+    {
+      "name": "time_picker_dialog_time",
+      "value": "显示时间弹窗"
+    },
+    {
+      "name": "time_picker_dialog_24_hour",
+      "value": "24小时："
+    },
+    {
+      "name": "time_picker_dialog_12_hour",
+      "value": "12小时："
+    },
+    {
+      "name": "time_picker_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "time_picker_toast_time",
+      "value": "选中的时间为："
+    },
     // Toggle
     {
       "name": "toggle_title",
-      "value": "Toggle 切换组件"
+      "value": "Toggle 切换按钮"
     },
     {
       "name": "toggle_select",
@@ -1036,10 +1105,14 @@
       "name": "toggle_type_button",
       "value": "状态按钮(选中色可配置)"
     },
+    {
+      "name": "toggle_state",
+      "value": "是否选中："
+    },
     // Translate
     {
       "name": "graphic_transformation_translate",
-      "value": "平移"
+      "value": "translate 平移"
     },
     {
       "name": "translate_image",
