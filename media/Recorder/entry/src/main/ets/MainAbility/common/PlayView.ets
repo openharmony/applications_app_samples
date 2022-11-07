@@ -28,6 +28,7 @@ export struct PlayView {
   @State time: string = '00:00'
   @StorageLink('playState') playState: boolean = true
   @State @Watch('onFileChange') fileName: string = ''
+  @State resetAnimation: boolean = false
 
   aboutToAppear() {
     console.info(`${TAG} aboutToAppear`)
@@ -58,6 +59,7 @@ export struct PlayView {
   reset() {
     this.time = '00:00'
     this.millisecond = 0
+    this.resetAnimation = !this.resetAnimation
   }
 
   updateTimeStr() {
@@ -86,7 +88,7 @@ export struct PlayView {
 
   build() {
     Column() {
-      AnimateView({ updateTimeStr: this.updateTimeStr.bind(this) })
+      AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr.bind(this) })
       Image($r('app.media.bg_play'))
         .width('100%')
         .height('30%')

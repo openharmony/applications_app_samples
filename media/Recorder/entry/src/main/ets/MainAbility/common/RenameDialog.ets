@@ -57,9 +57,6 @@ export struct RenameDialog {
           }
         })
 
-        Text()
-          .width(1).height(35)
-          .backgroundColor('#8F8F8F')
         Button() {
           Text($r('app.string.cancel'))
             .fontColor(Color.Red)

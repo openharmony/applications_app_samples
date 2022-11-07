@@ -98,7 +98,7 @@ export struct AudioItem {
       }
       .width('100%')
       .padding({ top: 10, bottom: 10, left: 10, right: 10 })
-      .margin({ top: 15,right: 15 })
+      .margin({ top: 15, right: 15 })
       .backgroundColor('#FFFFFF')
       .borderRadius(20)
 

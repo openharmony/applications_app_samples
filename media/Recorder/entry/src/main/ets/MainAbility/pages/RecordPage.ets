@@ -33,12 +33,14 @@ struct RecordPage {
   private fd: number = undefined
   @StorageLink('playState') playState: boolean = true
   @State duration: string = '00:00'
+  @State resetAnimation: boolean = false
 
   finish() {
     MediaManager.saveFileDuration(this.fileAsset.title, this.duration)
     this.recordModel.finish(() => {
       this.playState = false
       AppStorage.SetOrCreate('playState', this.playState)
+      router.back()
     })
   }
 
@@ -64,7 +66,7 @@ struct RecordPage {
         TitleBar({ title: this.fileAsset.title })
       }
       Column() {
-        AnimateView({ updateTimeStr: this.updateTimeStr.bind(this) })
+        AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr.bind(this) })
         Image($r('app.media.bg_record'))
           .width('100%')
           .height('40%')
@@ -81,7 +83,7 @@ struct RecordPage {
           .size({ width: 70, height: 70 })
           .backgroundColor('#FFFFFF')
           .onClick(() => {
-            router.back()
+            this.finish()
           })
 
           Blank().layoutWeight(2)
@@ -119,8 +121,8 @@ struct RecordPage {
     if (this.millisecond > 1000) {
       this.finish()
     } else {
-      if(this.fileAsset){
-        if(this.fd){
+      if (this.fileAsset) {
+        if (this.fd) {
           this.fileAsset.close(this.fd)
         }
         await MediaManager.deleteFile(this.fileAsset.uri)
