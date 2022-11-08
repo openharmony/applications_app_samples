@@ -50,8 +50,7 @@ export struct AudioItem {
   }
 
   getTimeString() {
-    let date = new Date()
-    date.setMilliseconds(this.record.fileAsset.dateAdded)
+    let date = new Date(this.record.fileAsset.dateAdded * 1000)
     let dateTimeUtil = new DateTimeUtil()
     return `${date.getFullYear()}/${dateTimeUtil.fill(date.getMonth() + 1)}/${dateTimeUtil.fill(date.getDate())}`
   }
