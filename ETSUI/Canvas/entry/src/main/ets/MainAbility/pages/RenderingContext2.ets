@@ -24,7 +24,10 @@ struct RenderingExample {
   build() {
     Column() {
       Canvas(this.context)
-        .width(600).height('50%').backgroundColor('#00ffff')
+        .width('100%')
+        .height('50%')
+        .padding({ left: 12, right: 12 })
+        .backgroundColor('#00ffff')
         .onReady(() => {
         })
       Row() {

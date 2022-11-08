@@ -24,8 +24,8 @@ struct GradientExample {
   build() {
     Column() {
       Canvas(this.context)
-        .width(600)
-        .height('40%')
+        .width('100%')
+        .height(500)
         .backgroundColor('#00ffff')
       Row() {
         Button('createRadialGradient').width(130).height(45)

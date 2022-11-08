@@ -25,11 +25,14 @@ struct BitmapExample {
   build() {
     Column() {
       Canvas(this.context)
-        .width(600).height('40%').backgroundColor(Color.Pink)
+        .width('100%')
+        .height(500)
+        .backgroundColor(Color.Pink)
         .onReady(() => {
           this.context.imageSmoothingEnabled = false
           this.context.drawImage(this.img, 60, 50, 200, 200)
         })
+        .padding({ left: 12, right: 12 })
       Button('back')
         .width(130)
         .height(45)

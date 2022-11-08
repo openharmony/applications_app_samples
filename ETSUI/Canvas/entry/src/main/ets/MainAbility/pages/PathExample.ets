@@ -29,7 +29,7 @@ struct PathExample {
   build() {
     Column() {
       Canvas(this.context)
-        .width('90%')
+        .width('100%')
         .height(300)
         .backgroundColor('#00ffff')
 
