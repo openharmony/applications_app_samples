@@ -13,129 +13,122 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedHardware.deviceManager'
+import { logger } from './Logger'
 
-let SUBSCRIBE_ID = 100;
+let SUBSCRIBE_ID = 100
+let TAG = 'RemoteDeviceModel'
 
 export default class RemoteDeviceModel {
-  deviceList = [];
-  discoverList = [];
-  callback;
-  authCallback;
-  deviceManager = undefined;
+  deviceList = []
+  discoverList = []
+  callback
+  authCallback
+  deviceManager = undefined
 
   registerDeviceListCallback(callback) {
     if (typeof (this.deviceManager) === 'undefined') {
-      console.log("Calc[RemoteDeviceModel] deviceManager.createDeviceManager begin");
+      logger.info(TAG, `deviceManager.createDeviceManager begin`)
       try {
         deviceManager.createDeviceManager("ohos.samples.distributedcalc", (error, value) => {
           if (error) {
-            console.error("Calc[RemoteDeviceModel] createDeviceManager failed.");
-            return;
+            logger.error(TAG, `createDeviceManager failed.`)
+            return
           }
-          this.deviceManager = value;
-          this.registerDeviceListCallback_(callback);
-          console.log("Calc[RemoteDeviceModel] createDeviceManager callback returned, error=" + error + " value=" + value);
-        });
+          this.deviceManager = value
+          this.registerDeviceListCallback_(callback)
+          logger.info(TAG, `createDeviceManager callback returned, error=${error} value=${value}`)
+        })
       } catch (error) {
-        console.error('Calc[RemoteDeviceModel] createDeviceManager throw error,  error.code=' + JSON.stringify(error))
+        logger.error(TAG, `createDeviceManager throw error,  error.code=${JSON.stringify(error)}`)
       }
-      console.log("Calc[RemoteDeviceModel] deviceManager.createDeviceManager end");
+      logger.info(TAG, `deviceManager.createDeviceManager end`)
     } else {
-      this.registerDeviceListCallback_(callback);
+      this.registerDeviceListCallback_(callback)
     }
   }
 
   registerDeviceListCallback_(callback) {
-    console.info('Calc[RemoteDeviceModel] registerDeviceListCallback');
-    this.callback = callback;
+    logger.info(TAG, `registerDeviceListCallback`)
+    this.callback = callback
     if (this.deviceManager === undefined) {
-      console.error('Calc[RemoteDeviceModel] deviceManager has not initialized');
-      this.callback();
-      return;
+      logger.error(TAG, `deviceManager has not initialized`)
+      this.callback()
+      return
     }
 
-    console.info('Calc[RemoteDeviceModel] getTrustedDeviceListSync begin');
+    logger.info(TAG, `getTrustedDeviceListSync begin`)
     try {
-      let list = this.deviceManager.getTrustedDeviceListSync();
-      console.debug('Calc[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+      let list = this.deviceManager.getTrustedDeviceListSync()
+      logger.debug(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
       if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
-        this.deviceList = list;
+        this.deviceList = list
       }
     } catch (error) {
-      console.error('Calc[RemoteDeviceModel] getTrustedDeviceListSync throw error,  error.code=' + JSON.stringify(error))
+      logger.error(TAG, `getTrustedDeviceListSync throw error,  error.code=${JSON.stringify(error)}`)
     }
     this.callback()
-    console.info('Calc[RemoteDeviceModel] callback finished');
+    logger.info(TAG, `callback finished`)
     try {
       this.deviceManager.on('deviceStateChange', (data) => {
-        console.debug('Calc[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
+        logger.debug(TAG, `deviceStateChange data=${JSON.stringify(data)}`)
         switch (data.action) {
           case deviceManager.DeviceStateChangeAction.READY:
             this.discoverList = []
             this.deviceList.push(data.device)
-            console.debug('Calc[RemoteDeviceModel] ready, updated device list=' + JSON.stringify(this.deviceList));
+            logger.debug(TAG, `ready, updated device list=${JSON.stringify(this.deviceList)}`)
             try {
-              let list = this.deviceManager.getTrustedDeviceListSync();
-              console.debug('Calc[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list));
+              let list = this.deviceManager.getTrustedDeviceListSync()
+              logger.debug(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
               if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
-                this.deviceList = list;
+                this.deviceList = list
               }
             } catch (error) {
-              console.error('Calc[RemoteDeviceModel] getTrustedDeviceListSync throw error,  error.code=' + JSON.stringify(error))
+              logger.error(TAG, `getTrustedDeviceListSync throw error,  error.code=${JSON.stringify(error)}`)
             }
-            this.callback();
-            break;
+            this.callback()
+            break
           case deviceManager.DeviceStateChangeAction.OFFLINE:
             if (this.deviceList.length > 0) {
-              let list = [];
+              let list = []
               for (let j = 0; j < this.deviceList.length; j++) {
                 if (this.deviceList[j].deviceId !== data.device.deviceId) {
-                  list[j] = data.device;
+                  list[j] = data.device
                 }
               }
-              this.deviceList = list;
+              this.deviceList = list
             }
-            console.debug('Calc[RemoteDeviceModel] offline, updated device list=' + JSON.stringify(data.device));
-            this.callback();
-            break;
+            logger.debug(TAG, `offline, updated device list=${JSON.stringify(data.device)}`)
+            this.callback()
+            break
           default:
-            break;
+            break
         }
-      });
+      })
       this.deviceManager.on('deviceFound', (data) => {
-        console.debug('Calc[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data));
-        console.debug('Calc[RemoteDeviceModel] deviceFound this.discoverList=' + this.discoverList);
-        for (let i = 0;i < this.discoverList.length; i++) {
+        logger.debug(TAG, `deviceFound data=${JSON.stringify(data)}`)
+        logger.debug(TAG, `deviceFound this.discoverList=${this.discoverList}`)
+        for (let i = 0; i < this.discoverList.length; i++) {
           if (this.discoverList[i].deviceId === data.device.deviceId) {
-            console.info('Calc[RemoteDeviceModel] device founded ignored');
-            return;
+            logger.info(TAG, `device founded ignored`)
+            return
           }
         }
-        this.discoverList[this.discoverList.length] = data.device;
-        console.debug('Calc[RemoteDeviceModel] deviceFound this.discoverList=' + this.discoverList);
-        this.callback();
-      });
+        this.discoverList[this.discoverList.length] = data.device
+        logger.debug(TAG, `deviceFound this.discoverList=${this.discoverList}`)
+        this.callback()
+      })
       this.deviceManager.on('discoverFail', (data) => {
-        prompt.showToast({
-          message: 'discoverFail reason=' + data.reason,
-          duration: 3000,
-        });
-        console.debug('Calc[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data));
-      });
+        logger.debug(TAG, `discoverFail data=${JSON.stringify(data)}`)
+      })
       this.deviceManager.on('serviceDie', () => {
-        prompt.showToast({
-          message: 'serviceDie',
-          duration: 3000,
-        });
-        console.error('Calc[RemoteDeviceModel] serviceDie');
-      });
+        logger.error(TAG, `serviceDie`)
+      })
     } catch (error) {
-      console.error('Calc[RemoteDeviceModel] on throw error,  error.code=' + JSON.stringify(error))
+      logger.error(TAG,`on throw error,  error.code=${JSON.stringify(error)}`)
     }
 
-    SUBSCRIBE_ID = Math.floor(65536 * Math.random()); // Generate a random number
+    SUBSCRIBE_ID = Math.floor(65536 * Math.random()) // Generate a random number
     let info = {
       subscribeId: SUBSCRIBE_ID,
       mode: 0xAA,
@@ -144,34 +137,34 @@ export default class RemoteDeviceModel {
       isSameAccount: false,
       isWakeRemote: true,
       capability: 0
-    };
-    console.debug('Calc[RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID);
+    }
+    logger.debug(TAG, `startDeviceDiscovery ${SUBSCRIBE_ID}`)
     try {
-      this.deviceManager.startDeviceDiscovery(info);
+      this.deviceManager.startDeviceDiscovery(info)
     } catch (error) {
-      console.error('Calc[RemoteDeviceModel] startDeviceDiscovery throw error,  error.code=' + JSON.stringify(error))
+      logger.error(TAG, `startDeviceDiscovery throw error,  error.code=${JSON.stringify(error)}`)
     }
   }
 
   unregisterDeviceListCallback() {
-    console.debug('Calc[RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID);
+    logger.debug(TAG, `stopDeviceDiscovery ${SUBSCRIBE_ID}`)
     if (this.deviceManager === undefined) {
       return
     }
     try {
-      this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID);
-      this.deviceManager.off('deviceStateChange');
-      this.deviceManager.off('deviceFound');
-      this.deviceManager.off('discoverFail');
-      this.deviceManager.off('serviceDie');
-      this.deviceList = [];
+      this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID)
+      this.deviceManager.off('deviceStateChange')
+      this.deviceManager.off('deviceFound')
+      this.deviceManager.off('discoverFail')
+      this.deviceManager.off('serviceDie')
+      this.deviceList = []
     } catch (error) {
-      console.error('Calc[RemoteDeviceModel] throw error, error.code=' + JSON.stringify(error.code))
+      logger.error(TAG, `throw error, error.code=${JSON.stringify(error.code)}`)
     }
   }
 
   authenticateDevice(device, callBack) {
-    console.debug('Calc[RemoteDeviceModel] authenticateDevice ' + JSON.stringify(device));
+    logger.debug(TAG, `authenticateDevice ${JSON.stringify(device)}`)
     for (let i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId === device.deviceId) {
         let extraInfo = {
@@ -179,26 +172,26 @@ export default class RemoteDeviceModel {
           'appName': 'Distributed Calc',
           'appDescription': 'Distributed Calc',
           'business': '0'
-        };
+        }
         let authParam = {
           'authType': 1,
           'extraInfo': extraInfo
-        };
+        }
         if (this.deviceManager === undefined) {
           return
         }
         try {
           this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
             if (err) {
-              console.error('Calc[RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err));
-              this.authCallback = null;
-              return;
+              logger.error(TAG, `authenticateDevice error:${JSON.stringify(err)}`)
+              this.authCallback = null
+              return
             }
-            console.debug('Calc[RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data));
-            this.authCallback = callBack;
+            logger.debug(TAG, `authenticateDevice succeed:${JSON.stringify(data)}`)
+            this.authCallback = callBack
           })
         } catch (error) {
-          console.error('Calc[RemoteDeviceModel] authenticateDevice throw error:' + JSON.stringify(error))
+          logger.error(TAG, `authenticateDevice throw error:${JSON.stringify(error)}`)
         }
       }
     }
