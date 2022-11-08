@@ -30,8 +30,7 @@ struct DataShareExtAbilityPage {
   build() {
     Column() {
       TitleBar({ books: $books })
-      Stack({ alignContent: Alignment.BottomEnd }) {
-        List() {
+      List() {
           ForEach(this.books, item => {
             ListItem() {
               BookView({ book: item, books: $books })
@@ -59,9 +58,6 @@ struct DataShareExtAbilityPage {
         .margin({ bottom: 100 })
         .constraintSize({ minHeight: '100%' })
         .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 10, endMargin: 10 })
-      }
-      .width('100%')
-      .height('100%')
     }
     .width('100%')
     .height('100%')
