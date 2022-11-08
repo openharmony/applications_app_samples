@@ -61,6 +61,132 @@
       "value": "onClick 点击事件"
     },
     {
+      "name": "touch_event",
+      "value": "触摸事件"
+    },
+    {
+      "name": "show_hide_event",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "key_event",
+      "value": "按键事件"
+    },
+    {
+      "name": "focus_event",
+      "value": "焦点事件"
+    },
+    {
+      "name": "mouse_event",
+      "value": "鼠标事件"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "组件区域变化事件"
+    },
+    {
+      "name": "gesture_processing",
+      "value": "手势处理"
+    },
+    {
+      "name": "basic_gestures",
+      "value": "基础手势"
+    },
+    {
+      "name": "tap_gesture",
+      "value": "TapGesture"
+    },
+    {
+      "name": "long_press_gesture",
+      "value": "LongPressGesture"
+    },
+    {
+      "name": "pan_gesture",
+      "value": "PanGesture"
+    },
+    {
+      "name": "pinch_gesture",
+      "value": "PinchGesture"
+    },
+    {
+      "name": "rotation_gesture",
+      "value": "RotationGesture"
+    },
+    {
+      "name": "swipe_gesture",
+      "value": "SwipeGesture"
+    },    {
+      "name": "combined_gestures",
+      "value": "组合手势"
+    },
+    {
+      "name": "touch_event",
+      "value": "触摸事件"
+    },
+    {
+      "name": "show_hide_event",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "key_event",
+      "value": "按键事件"
+    },
+    {
+      "name": "focus_event",
+      "value": "焦点事件"
+    },
+    {
+      "name": "mouse_event",
+      "value": "鼠标事件"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "组件区域变化事件"
+    },
+    {
+      "name": "gesture_processing",
+      "value": "手势处理"
+    },
+    {
+      "name": "basic_gestures",
+      "value": "基础手势"
+    },
+    {
+      "name": "tap_gesture",
+      "value": "TapGesture"
+    },
+    {
+      "name": "long_press_gesture",
+      "value": "LongPressGesture"
+    },
+    {
+      "name": "pan_gesture",
+      "value": "PanGesture"
+    },
+    {
+      "name": "pinch_gesture",
+      "value": "PinchGesture"
+    },
+    {
+      "name": "rotation_gesture",
+      "value": "RotationGesture"
+    },
+    {
+      "name": "swipe_gesture",
+      "value": "SwipeGesture"
+    },    {
+      "name": "combined_gestures",
+      "value": "组合手势"
+    },
+    {
       "name": "transition_animation",
       "value": "转场动画"
     },
@@ -425,6 +551,14 @@
     {
       "name": "click_action_tips",
       "value": "点击灰色区域，更改准星位置"
+    },
+    {
+      "name": "touch_action_tips",
+      "value": "在灰色区域触摸滑动实时改变准星位置"
+    },
+    {
+      "name": "component_area_change_action_tips",
+      "value": "滑动进度条控制小球运动区域"
     },
     {
       "name": "get_click_event_detail",

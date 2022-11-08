@@ -53,18 +53,28 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
     }
   ]
 
-const COMMON_EVENT: ThirdLevelCategory[] =
+const COMMON_EVENTS: ThirdLevelCategory[] =
   [
     {
       image: $r('app.media.ic_click_event'),
       title: $r('app.string.click_event'),
       url: 'pages/universal/events/clickEventSample/ClickEventSample'
+    },
+    {
+      image: $r('app.media.ic_event_touch'),
+      title: $r('app.string.touch_event'),
+      url: 'pages/universal/events/touchEventSample/TouchEventSample'
+    },
+    {
+      image: $r('app.media.ic_event_area_change'),
+      title: $r('app.string.component_area_change_event'),
+      url: 'pages/universal/events/areaChangeEventSample/AreaChangeEventSample'
     }
   ]
 
 // Generic categorical data, second menu data
 export const UNIVERSAL_CATEGORIES: SecondLevelCategory[] =
   [
-    { title: $r('app.string.common_events'), childNodes: COMMON_EVENT },
+    { title: $r('app.string.common_events'), childNodes: COMMON_EVENTS },
     { title: $r('app.string.common_properties'), childNodes: GRAPHIC_TRANSFORMATION }
   ]

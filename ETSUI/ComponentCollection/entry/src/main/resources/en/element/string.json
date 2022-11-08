@@ -61,6 +61,69 @@
       "value": "Click event"
     },
     {
+      "name": "touch_event",
+      "value": "Touch event"
+    },
+    {
+      "name": "show_hide_event",
+      "value": "Show/Hide Event"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "Drag/Drop Event"
+    },
+    {
+      "name": "key_event",
+      "value": "Key Event"
+    },
+    {
+      "name": "focus_event",
+      "value": "Focus Event"
+    },
+    {
+      "name": "mouse_event",
+      "value": "Mouse Event"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "Component Area Change Event"
+    },
+    {
+      "name": "gesture_processing",
+      "value": "Gesture Processing"
+    },
+    {
+      "name": "basic_gestures",
+      "value": "Basic Gestures"
+    },
+    {
+      "name": "tap_gesture",
+      "value": "TapGesture"
+    },
+    {
+      "name": "long_press_gesture",
+      "value": "LongPressGesture"
+    },
+    {
+      "name": "pan_gesture",
+      "value": "PanGesture"
+    },
+    {
+      "name": "pinch_gesture",
+      "value": "PinchGesture"
+    },
+    {
+      "name": "rotation_gesture",
+      "value": "RotationGesture"
+    },
+    {
+      "name": "swipe_gesture",
+      "value": "SwipeGesture"
+    },    {
+      "name": "combined_gestures",
+      "value": "Combined Gestures"
+    },
+    {
       "name": "transition_animation",
       "value": "Transition animation"
     },
@@ -425,6 +488,14 @@
     {
       "name": "click_action_tips",
       "value": "Click the gray area to change the crosshair position"
+    },
+    {
+      "name": "touch_action_tips",
+      "value": "Touch the gray area and move to change the crosshair position"
+    },
+    {
+      "name": "component_area_change_action_tips",
+      "value": "Slide to change the gray area size or position for controlling the ball motion area"
     },
     {
       "name": "get_click_event_detail",
