@@ -91,11 +91,10 @@ struct Index {
                 controller: this.controller,
               })
             }
-          }
-          else {
+          } else {
             if (this.backToHome === true) {
               HomePage({ homeWebs: $homeWebs, url: $url, webState: $webState, backToHome: $backToHome })
-            } else if(this.browses.length !== 0){
+            } else if (this.browses.length !== 0) {
               BrowseHistory({
                 url: $url,
                 browses: $browses,
@@ -111,6 +110,7 @@ struct Index {
         .width('100%')
         .height('93%')
         .backgroundColor('#e5e5e5')
+
         BottomBar({
           url: $url,
           webTitle: $webTitle,
