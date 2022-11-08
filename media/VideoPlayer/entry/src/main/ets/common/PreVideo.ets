@@ -29,7 +29,7 @@ export default struct PreVideo {
     }
     .size({ width: 60, height: 60 })
     .backgroundColor('#88000000')
-    .margin({ right: '30%' })
+    .margin({ right: '20%' })
     .onClick(this.handleClick)
   }
 }
