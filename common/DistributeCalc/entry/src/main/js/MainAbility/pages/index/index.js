@@ -13,20 +13,22 @@
  * limitations under the License.
  */
 
-import { calc, isOperator } from '../../common/calculator.js';
-import app from '@system.app';
-import RemoteDeviceModel from '../../common/RemoteDeviceModel.js';
-import featureAbility from '@ohos.ability.featureAbility';
-import { KvStoreModel } from '../../common/kvstoreModel.js';
+import { calc, isOperator } from '../../common/calculator.js'
+import app from '@system.app'
+import RemoteDeviceModel from '../../common/RemoteDeviceModel.js'
+import featureAbility from '@ohos.ability.featureAbility'
+import { KvStoreModel } from '../../common/kvstoreModel.js'
+import { logger } from '../../common/Logger'
 
-let pressedEqual = false;
-let kvStoreModel = new KvStoreModel();
+let pressedEqual = false
+let kvStoreModel = new KvStoreModel()
 let remoteDeviceModel = new RemoteDeviceModel()
 let timerId = 0
+const TAG = 'Index'
 
 export default {
   data: {
-    title: '计算器',
+    title: '',
     expression: '',
     result: '',
     selectedIndex: 0,
@@ -37,78 +39,79 @@ export default {
     deviceList: []
   },
   onInit() {
+    this.title = this.$t('strings.title')
     this.grantPermission()
   },
   onShow() {
     this.$watch('expression', (value) => {
       if (value !== '') {
-        console.debug('Calc[IndexPage] value  ' + value);
-        this.result = calc(value);
-        console.debug('Calc[IndexPage] result =  ' + this.result);
-        console.log('Calc[IndexPage] put key start');
-        this.dataChange('expression', value);
+        logger.debug(TAG, `value  ${value}`)
+        this.result = calc(value)
+        logger.debug(TAG, `result =  ${this.result}`)
+        logger.info(TAG, `put key start`)
+        this.dataChange('expression', value)
       }
-    });
-    this.initKVManager();
+    })
+    this.initKVManager()
     featureAbility.getWant((error, want) => {
-      console.debug('Calc[IndexPage] featureAbility.getWant =' + JSON.stringify(want.parameters));
+      logger.debug(TAG, `featureAbility.getWant =${JSON.stringify(want.parameters)}`)
       if (want.parameters.isFA === 'FA') {
-        this.isFA = true;
-        this.isDistributed = true;
+        this.isFA = true
+        this.isDistributed = true
       }
-    });
+    })
   },
   grantPermission() {
-    console.info('Calc[IndexPage] grantPermission')
+    logger.info(TAG, `grantPermission`)
     let context = featureAbility.getContext()
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-      console.debug(`Calc[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
+      logger.debug(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
     })
   },
   dataChange(key, value) {
-    console.log('Calc[IndexPage] dataChange isDistributed = ' + this.isDistributed);
+    logger.info(TAG, `dataChange isDistributed = ${this.isDistributed}`)
     if (this.isDistributed && kvStoreModel != null) {
-      kvStoreModel.put(key, value);
+      kvStoreModel.put(key, value)
     }
   },
   initKVManager() {
     if (kvStoreModel !== null) {
       kvStoreModel.setOnMessageReceivedListener('expression', (value) => {
-        console.log('Calc[IndexPage] data changed:' + value);
+        logger.info(TAG, `data changed:${value}`)
         if (value === 'exit') {
-          console.info('Calc[CalcPage] app exit!');
-          app.terminate();
-          return;
+          logger.info('Calc[CalcPage] app exit!')
+          app.terminate()
+          return
         }
         if (value === 'clear') {
-          console.log('Calc[IndexPage] data expression:clear');
-          this.expression = '';
-          this.result = '';
-          return;
+          logger.info(TAG, `data expression:clear`)
+          this.expression = ''
+          this.result = ''
+          return
         }
         if (value === 'equal') {
           if (this.result !== '') {
-            console.log('Calc[IndexPage] data expression:equal');
-            this.expression = this.result;
-            this.result = '';
-            pressedEqual = true;
+            logger.info(TAG, `data expression:equal`)
+            this.expression = this.result
+            this.result = ''
+            pressedEqual = true
           }
-          return;
+          return
         }
-        this.expression = value;
-        pressedEqual = false;
-        console.log('Calc[IndexPage] data expression:' + this.expression);
-      });
+        this.expression = value
+        pressedEqual = false
+        logger.info(TAG, `data expression:${this.expression}`)
+      })
     }
     timerId = setInterval(() => {
       if (this.isDistributed) {
-        let temp = this.expression;
-        this.expression = temp;
+        let temp = this.expression
+        this.expression = temp
       }
-    }, 200);
+    }, 200)
   },
   stopDataListener() {
-    console.log('Calc[IndexPage] stopDataListener');
+    logger.info(TAG, `stopDataListener`)
     if (kvStoreModel === null || kvStoreModel === undefined) {
       return
     }
@@ -118,101 +121,98 @@ export default {
     if (remoteDeviceModel === undefined) {
       return
     }
-    remoteDeviceModel.unregisterDeviceListCallback();
+    remoteDeviceModel.unregisterDeviceListCallback()
     if (this.isDistributed && kvStoreModel != null) {
-      this.stopDataListener();
-      this.isDistributed = false;
+      this.stopDataListener()
+      this.isDistributed = false
     }
     clearInterval(timerId)
     kvStoreModel = null
     remoteDeviceModel = undefined
   },
   showDialog() {
-    console.info('Calc[IndexPage] showDialog start');
+    logger.info(TAG, `showDialog start`)
     this.isShow = true
     setTimeout(()=>{
-      this.deviceList = [];
+      this.deviceList = []
       if (remoteDeviceModel === undefined) {
         remoteDeviceModel = new RemoteDeviceModel()
       }
-      console.debug(`Calc[IndexPage] showdialog = ${typeof (this.$element('showDialog'))}`)
-      console.debug('Calc[IndexPage] registerDeviceListCallback on remote device updated, count='
-      + remoteDeviceModel.deviceList.length);
+      logger.debug(TAG, `showdialog = ${typeof (this.$element('showDialog'))}`)
+      logger.debug(TAG, `registerDeviceListCallback on remote device updated, count=${remoteDeviceModel.deviceList.length}`)
       remoteDeviceModel.registerDeviceListCallback(() => {
-        let list = [];
+        let list = []
         list.push({
           deviceId: '0',
           deviceName: 'Local device',
           deviceType: 0,
           networkId: '',
           checked: this.selectedIndex === 0
-        });
-        let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList;
+        })
+        let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList
         for (let i = 0; i < tempList.length; i++) {
-          console.debug('Calc[IndexPage] device ' + i + '/' + tempList.length
-          + ' deviceId=' + tempList[i].deviceId + ' deviceName=' + tempList[i].deviceName
-          + ' deviceType=' + tempList[i].deviceType);
+          logger.debug(`device ${i}/${tempList.length} deviceId=${tempList[i].deviceId} deviceName=${tempList[i].deviceName} deviceType=${tempList[i].deviceType}`)
           list.push({
             deviceId: tempList[i].deviceId,
             deviceName: tempList[i].deviceName,
             deviceType: tempList[i].deviceType,
             networkId: tempList[i].networkId,
             checked: this.selectedIndex === (i + 1)
-          });
+          })
         }
-        this.deviceList = list;
-        this.$element('showDialog').close();
-        this.$element('showDialog').show();
-      });
+        this.deviceList = list
+        this.$element('showDialog').close()
+        this.$element('showDialog').show()
+      })
     },200)
   },
   cancelDialog() {
-    this.$element('showDialog').close();
+    this.$element('showDialog').close()
     if (remoteDeviceModel === undefined) {
-      return;
+      return
     }
-    remoteDeviceModel.unregisterDeviceListCallback();
+    remoteDeviceModel.unregisterDeviceListCallback()
   },
 
   selectDevice(item) {
-    let index = this.deviceList.indexOf(item);
-    console.log('Calc[IndexPage] select index:' + index);
-    console.log('Calc[IndexPage] select selectedIndex:' + this.selectedIndex);
+    let index = this.deviceList.indexOf(item)
+    logger.info(TAG, `select index:${index}`)
+    logger.info(TAG, `select selectedIndex:${this.selectedIndex}`)
     if (index === this.selectedIndex) {
-      console.log('Calc[IndexPage] index === this.selectedIndex');
-      return;
+      logger.info(TAG, `index === this.selectedIndex`)
+      return
     }
-    this.selectedIndex = index;
+    this.selectedIndex = index
     if (index === 0) {
-      console.log('Calc[IndexPage] stop ability');
-      this.dataChange('expression', 'exit');
-      this.isDistributed = false;
-      this.stopDataListener();
-      this.clearSelectState();
-      return;
+      logger.info(TAG, `stop ability`)
+      this.dataChange('expression', 'exit')
+      this.isDistributed = false
+      this.stopDataListener()
+      this.clearSelectState()
+      return
     }
-    console.log('Calc[IndexPage] start ability ......');
-    this.isDistributed = true;
+    logger.info(TAG, `start ability ......`)
+    this.isDistributed = true
     if (remoteDeviceModel === undefined || remoteDeviceModel.discoverList.length <= 0) {
-      console.log('Calc[IndexPage] continue device:' + JSON.stringify(this.deviceList));
-      this.startAbility(this.deviceList[index].deviceId);
-      this.clearSelectState();
-      return;
+      logger.info(TAG, `continue device:${JSON.stringify(this.deviceList)}`)
+      this.startAbility(this.deviceList[index].deviceId)
+      this.clearSelectState()
+      return
     }
-    console.log('Calc[IndexPage] start ability1, needAuth');
+    logger.info(TAG, `start ability1, needAuth`)
     remoteDeviceModel.authenticateDevice(this.deviceList[index], () => {
-      console.log('Calc[IndexPage] auth and online finished');
-      this.startAbility(this.deviceList[index].deviceId);
-    });
-    this.clearSelectState();
-    console.log('Calc[IndexPage] start ability end....');
+      logger.info(TAG, ` auth and online finished`)
+      this.startAbility(this.deviceList[index].deviceId)
+    })
+    this.clearSelectState()
+    logger.info(TAG, ` start ability end....`)
   },
   clearSelectState() {
-    this.deviceList = [];
-    this.$element('showDialog').close();
+    this.deviceList = []
+    this.$element('showDialog').close()
   },
   async startAbility(deviceId) {
-    console.debug('Calc[IndexPage] startAbility deviceId:' + deviceId);
+    logger.debug(TAG, ` startAbility deviceId: ${deviceId}`)
     await featureAbility.startAbility({
       want: {
         bundleName: 'ohos.samples.distributedcalc',
@@ -223,74 +223,74 @@ export default {
         }
       }
     })
-    console.log('Calc[IndexPage] start ability finished');
-    this.dataChange('expression', this.expression);
-    console.log('Calc[IndexPage] startAbility end');
+    logger.info(TAG, ` start ability finished`)
+    this.dataChange('expression', this.expression)
+    logger.info(TAG, ` startAbility end`)
   },
   handleClear() {
-    this.expression = '';
-    this.result = '';
-    console.log('Calc[IndexPage] handleClear');
-    this.dataChange('expression', 'clear');
+    this.expression = ''
+    this.result = ''
+    logger.info(TAG, ` handleClear`)
+    this.dataChange('expression', 'clear')
   },
   handleInput(value) {
-    console.log('Calc[IndexPage] handle input value:' + value);
-    this.isPush = false;
+    logger.info(TAG, ` handle input value:${value}`)
+    this.isPush = false
     if (isOperator(value)) {
       this.isPressedEqual()
       if (!this.expression && (value === '*' || value === '/')) {
-        return;
+        return
       }
-      this.expression += value;
+      this.expression += value
     } else {
       if (pressedEqual) {
-        pressedEqual = false;
+        pressedEqual = false
       }
-      this.expression += value;
+      this.expression += value
     }
   },
   isPressedEqual() {
     if (pressedEqual) {
-      pressedEqual = false;
+      pressedEqual = false
     } else {
-      const size = this.expression.length;
+      const size = this.expression.length
       if (size) {
-        const last = this.expression.charAt(size - 1);
+        const last = this.expression.charAt(size - 1)
         if (isOperator(last)) {
-          this.expression = this.expression.substring(0, this.expression.length - 1);
+          this.expression = this.expression.substring(0, this.expression.length - 1)
         }
       }
     }
   },
   handleBackspace() {
     if (pressedEqual) {
-      this.expression = '';
-      this.result = '';
-      pressedEqual = false;
-      console.log('Calc[IndexPage] handleBackspace1');
-      this.dataChange('expression', 'clear');
+      this.expression = ''
+      this.result = ''
+      pressedEqual = false
+      logger.info(TAG, `handleBackspace1`)
+      this.dataChange('expression', 'clear')
     } else {
-      this.isPush = false;
-      this.expression = this.expression.substring(0, this.expression.length - 1);
+      this.isPush = false
+      this.expression = this.expression.substring(0, this.expression.length - 1)
       if (!this.expression.length) {
-        this.result = '';
-        console.log('Calc[IndexPage] handleBackspace2');
-        this.dataChange('expression', 'clear');
+        this.result = ''
+        logger.info(TAG, ` handleBackspace2`)
+        this.dataChange('expression', 'clear')
       }
     }
   },
   handleEqual() {
     if (this.result !== '') {
-      this.isPush = true;
-      this.expression = this.result;
-      this.result = '';
-      pressedEqual = true;
-      console.log('Calc[IndexPage] handleEqual');
-      this.dataChange('expression', 'equal');
+      this.isPush = true
+      this.expression = this.result
+      this.result = ''
+      pressedEqual = true
+      logger.info(TAG, ` handleEqual`)
+      this.dataChange('expression', 'equal')
     }
   },
   handleExist() {
-    console.log('Calc[IndexPage] handleExist');
-    app.terminate();
+    logger.info(TAG, `handleExist`)
+    app.terminate()
   }
-};
+}
