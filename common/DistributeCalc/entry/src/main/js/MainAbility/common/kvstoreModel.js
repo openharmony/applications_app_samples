@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 import distributedData from '@ohos.data.distributedData'
+import { logger } from './Logger'
 
 const STORE_ID = 'distributedcalc'
+const TAG = 'KvStoreModel'
 
 export class KvStoreModel {
   kvManager
@@ -31,9 +33,9 @@ export class KvStoreModel {
         userType: 0
       }
     }
-    console.info('Calc[KvStoreModel] createKVManager begin')
+    logger.info(TAG, `createKVManager begin`)
     distributedData.createKVManager(config).then((manager) => {
-      console.debug('calc[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager))
+      logger.debug(`createKVManager success, kvManager=${JSON.stringify(manager)}`)
       this.kvManager = manager
       let options = {
         createIfMissing: true,
@@ -43,27 +45,27 @@ export class KvStoreModel {
         kvStoreType: 1,
         securityLevel: 1,
       }
-      console.info('Calc[KvStoreModel] kvManager.getKVStore begin')
+      logger.info(TAG, `kvManager.getKVStore begin`)
       this.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        console.debug('Calc[KvStoreModel] getKVStore success, kvStore=' + store)
+        logger.debug(TAG, `getKVStore success, kvStore=${store}`)
         this.kvStore = store
         callback()
       })
-      console.info('Calc[KvStoreModel] kvManager.getKVStore end')
+      logger.info(TAG, `kvManager.getKVStore end`)
     })
-    console.info('Calc[KvStoreModel] createKVManager end')
+    logger.info(TAG, `createKVManager end`)
   }
 
   put(key, value) {
-    console.debug('Calc[KvStoreModel] kvStore.put ' + key + '=' + value)
+    logger.debug(TAG, `kvStore.put ${key}=${value}`)
     try {
       this.kvStore.put(key, value + 'end').then((data) => {
-        console.debug('Calc[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data))
+        logger.debug(TAG, `kvStore.put ${key}  finished, data=${JSON.stringify(data)}`)
       }).catch((err) => {
-        console.error('Calc[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err))
+        logger.error(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
       })
     } catch(error) {
-      console.error('Calc[KvStoreModel] kvStore.put code' + JSON.stringify(error.code))
+      logger.error(TAG, `kvStore.put code ${JSON.stringify(error.code)}`)
     }
   }
 
@@ -72,27 +74,26 @@ export class KvStoreModel {
       try {
         this.kvStore.off('dataChange')
       } catch(error) {
-        console.error('Calc[KvStoreModel] kvStore.off code' + JSON.stringify(error.code))
+        logger.error(TAG, `kvStore.off code ${JSON.stringify(error.code)}`)
       }
     }
   }
 
   setOnMessageReceivedListener(msg, refreshdata) {
-    console.debug('Calc[KvStoreModel] setOnMessageReceivedListener ' + msg)
+    logger.debug(TAG, `setOnMessageReceivedListener ${msg}`)
     this.createKvStore(() => {
-      console.info('Calc[KvStoreModel] kvStore.on(dataChange) begin')
+      logger.info(TAG, `kvStore.on(dataChange) begin`)
       try {
       this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
-        console.debug('Calc[KvStoreModel] dataChange, ' + JSON.stringify(data))
-        console.debug('Calc[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
-        + data.updateEntries.length)
+        logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`)
+        logger.debug(TAG, `dataChange, insert ${data.insertEntries.length} update ${data.updateEntries.length}`)
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
         this.simplify(entries, msg, refreshdata)
       })
       } catch(error) {
-        console.error(`Calc[KvStoreModel] kvStore.on(dataChange) code is ${JSON.stringify(error.code)}, message is ${JSON.stringify(error.message)}`)
+        logger.error(TAG, `kvStore.on(dataChange) code is ${JSON.stringify(error.code)}, message is ${JSON.stringify(error.message)}`)
       }
-      console.info('Calc[KvStoreModel] kvStore.on(dataChange) end')
+      logger.info(TAG, `kvStore.on(dataChange) end`)
     })
   }
 
@@ -100,9 +101,9 @@ export class KvStoreModel {
     for (let i = 0; i < entries.length; i++) {
       if (entries[i].key === msg) {
         let value = entries[i].value.value
-        console.debug('Calc[KvStoreModel] Entries receive ' + msg + '=' + value)
+        logger.debug(TAG, `Entries receive ${msg}=${value}`)
         let valueResult = value.substring(0, value.lastIndexOf('end'))
-        console.debug('Calc[KvStoreModel] Entries receive valueResult = ' + valueResult)
+        logger.debug(TAG, `Entries receive valueResult = ${valueResult}`)
         refreshdata(valueResult)
         return
       }
