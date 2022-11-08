@@ -28,16 +28,9 @@ export default {
     this.buttonTitle = this.$t('strings.button_title')
   },
 
-  clickButtonType() {
-    prompt.showToast({
-      message: this.$t('strings.button_type_message'),
-      duration: 3000
-    })
-  },
-
   clickStatusResult(resultStatus) {
     prompt.showToast({
-      message: `State effect is ${resultStatus}`,
+      message: `${resultStatus}${this.$t('strings.button_click')}`,
       duration: 3000
     })
   }

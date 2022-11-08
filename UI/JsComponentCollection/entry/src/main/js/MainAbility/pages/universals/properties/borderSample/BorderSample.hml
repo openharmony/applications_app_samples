@@ -68,7 +68,7 @@
       <div class="border-universal" style="border-bottom: 10vp solid #000000;">
         <text>{{ $t('strings.border_bottom') }}</text>
       </div>
-      <div class="border-universal" style="border-right: 2vp solid #000000; border-radius : 20vp;">
+      <div class="border-universal" style="border-right: 2vp solid #000000; border-radius: 20vp;">
         <text>{{ $t('strings.border_right') }}</text>
       </div>
       <!-- Border style attribute end -->

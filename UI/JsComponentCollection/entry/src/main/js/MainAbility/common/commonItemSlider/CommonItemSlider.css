@@ -22,7 +22,7 @@
 }
 
 .slider-left {
-  width: 45%;
+  width: 200vp;
   font-size: 20vp;
 }
 
@@ -31,6 +31,6 @@
 }
 
 .slider-right {
-  width: 40vp;
+  width: 80vp;
   font-size: 20vp;
 }

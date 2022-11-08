@@ -20,7 +20,7 @@
     <text class="introduce">{{ $t('strings.background_set_color') }}</text>
     <div class="white-background-color">
 
-      <!-- Background color start -->
+    <!-- Background color start -->
       <div class="rect-box" style="background-color: #409EFF;">
         <text>{{ $t('strings.background_brand') }}</text>
       </div>
@@ -39,18 +39,18 @@
     <text class="introduce">{{ $t('strings.background_set_gradient') }}</text>
     <div class="white-background-color">
 
-      <!-- Background gradient start -->
+    <!-- Background gradient start -->
       <div class="rect-box smallFontSize" style="background: linear-gradient(#409EFF, #67C23A);">
         <text>{{ $t('strings.background_default_up_to_down') }}</text>
       </div>
       <div class="rect-box smallFontSize" style="background: linear-gradient(45deg, #409EFF, #67C23A);">
         <text>{{ $t('strings.background_angle_gradient') }}</text>
       </div>
-      <div class="rect-box smallFontSize" style="background: repeating-linear-gradient(#409EFF 30vp, #67C23A 60vp);">
+      <div class="rect-box smallFontSize" style="background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30px,rgba(0, 0, 255, .5) 60px);">
         <text>{{ $t('strings.background_repeat_gradient') }}</text>
       </div>
-      <!-- Background gradient end -->
 
+    <!-- Background gradient end -->
     </div>
   </div>
 
@@ -61,46 +61,46 @@
         <div class="background-img-box">
           <text class="align-center">{{ $t('strings.background_default') }}</text>
 
-          <!-- Background img start -->
+        <!-- Background img start -->
           <div class="background-img-url"
-               style="background-image: url('common/image/background_img.png');">
+               style="background-image: url('common/image/ic_scenery1.png');  background-size: cover;">
           </div>
-          <!-- Background img end -->
+        <!-- Background img end -->
 
         </div>
         <div class="background-img-box">
           <text class="align-center">{{ $t('strings.background_no_repeat') }}</text>
 
-          <!-- Background img start -->
+        <!-- Background img start -->
           <div class="background-img-url"
-               style="background-image: url('common/image/background_img.png');
-                       background-repeat: no-repeat;">
+               style="background-image: url('common/image/ic_scenery1.png'); background-size: 100vp;
+                 background-size: contain; background-repeat: no-repeat;">
           </div>
-          <!-- Background img end -->
 
+        <!-- Background img end -->
         </div>
       </div>
       <div class="background-img">
         <div class="background-img-box">
           <text class="align-center">{{ $t('strings.background_image_size') }}</text>
 
-          <!-- Background img start -->
+        <!-- Background img start -->
           <div class="background-img-url"
-               style="background-image: url('common/image/background_img.png');
-                       background-size: 50% 100%;">
+               style="background-image: url('common/image/ic_scenery1.png');
+                 background-size: 50% 100%">
           </div>
-          <!-- Background img end -->
+        <!-- Background img end -->
 
         </div>
         <div class="background-img-box">
           <text class="align-center">{{ $t('strings.background_image_position') }}</text>
 
-          <!-- Background img start -->
+        <!-- Background img start -->
           <div class="background-img-url"
-               style="background-image: url('common/image/background_img.png');
-                       background-position: right top;">
+               style="background-image: url('common/image/ic_scenery1.png');background-size: 100vp;background-size: cover;
+                 background-position: right top">
           </div>
-          <!-- Background img end -->
+        <!-- Background img end -->
 
         </div>
       </div>

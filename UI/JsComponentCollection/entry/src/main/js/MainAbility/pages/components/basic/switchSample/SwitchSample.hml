@@ -19,30 +19,30 @@
   <text class="introduce">{{ $t('strings.switch_font_size') }}</text>
   <div class="border-div">
     <switch showtext="true" texton="{{ $t('strings.switch_on') }}" textoff="{{ $t('strings.switch_off') }}"
-            checked="true" @change="changeSwitch" style="font-size : 25vp; width : 250vp; height : 60vp;">
+            checked="true" @change="changeSwitch" style="font-size: 25vp; width: 250vp; height: 60vp;">
     </switch>
     <switch showtext="true" texton="{{ $t('strings.switch_on') }}" textoff="{{ $t('strings.switch_off') }}"
-            checked="false" @change="changeSwitch" style="font-size : 20vp; width : 250vp; height : 60vp;">
+            checked="false" @change="changeSwitch" style="font-size: 20vp; width: 250vp; height: 60vp;">
     </switch>
   </div>
   <text class="introduce">{{ $t('strings.switch_font_color') }}</text>
   <div class="border-div">
     <switch showtext="true" texton="{{ $t('strings.switch_on') }}" textoff="{{ $t('strings.switch_off') }}"
-            checked="true" @change="changeSwitch" style="font-size : 25vp; width : 250vp; height : 60vp;">
+            checked="true" @change="changeSwitch" style="font-size: 25vp; width: 250vp; height: 60vp;">
     </switch>
     <switch showtext="true" texton="{{ $t('strings.switch_on') }}" textoff="{{ $t('strings.switch_off') }}"
-            checked="false" @change="changeSwitch" style="font-size : 25vp; texton-color : #67C23A; textoff-color : #409EFF; width : 250vp;
-                    height : 60vp;">
+            checked="false" @change="changeSwitch" style="font-size: 25vp; texton-color: #67C23A; textoff-color: #409EFF; width: 250vp;
+                    height: 60vp;">
     </switch>
   </div>
 
   <text class="introduce">{{ $t('strings.switch_font_weight') }}</text>
   <div class="border-div bottom-margin">
     <switch showtext="true" texton="{{ $t('strings.switch_on') }}" textoff="{{ $t('strings.switch_off') }}"
-            checked="true" @change="changeSwitch" style="font-size : 25vp; width : 250vp; height : 60vp;">
+            checked="true" @change="changeSwitch" style="font-size: 25vp; width: 250vp; height: 60vp;">
     </switch>
     <switch showtext="true" texton="{{ $t('strings.switch_on') }}" textoff="{{ $t('strings.switch_off') }}"
-            checked="false" @change="changeSwitch" style="font-weight : 900; font-size : 25vp; width : 250vp; height : 60vp;">
+            checked="false" @change="changeSwitch" style="font-weight: 900; font-size: 25vp; width: 250vp; height: 60vp;">
     </switch>
   </div>
 </div>

@@ -29,17 +29,20 @@
 
 .outer-div {
   width: 100%;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top: 20vp;
+  margin-left: 12vp;
+  margin-right: 12vp;
 }
 
 .drag-div {
-  min-height: 50vp;
+  min-height: 40vp;
   justify-content: center;
   align-items: center;
   padding: 10vp;
-  margin-left: 80vp;
   border-radius: 40vp;
+  flex-weight: 1;
+  margin-right: 12vp;
   background-color: #0D182431;
 }
 
@@ -75,36 +78,39 @@
 }
 
 .permission-class {
-  font-size: 23vp;
+  font-size: 20vp;
   font-weight: bolder;
 }
 
 .introduce-class {
   color: #99000000;
   margin-top: 5vp;
+  font-size: 18vp;
 }
 
-.button-class{
-  width : 100%;
+.button-class {
+  width: 100%;
   margin-left: 150vp;
   margin-right: 150vp;
-  min-height : 50vp;
-  font-size : 25vp;
-  margin-top : 30vp;
+  min-height: 50vp;
+  font-size: 25vp;
+  margin-top: 30vp;
 }
 
 .not_drag-div {
-  min-height: 50vp;
+  min-height: 40vp;
   justify-content: center;
   align-items: center;
   padding: 10vp;
-  margin-left: 160vp;
+  flex-weight: 1;
+  margin-left: 12vp;
   border-radius: 40vp;
   background-color: #0D182431;
 }
 
 .button-text {
   color: #007DFF;
+  font-size: 20vp;
 }
 
 

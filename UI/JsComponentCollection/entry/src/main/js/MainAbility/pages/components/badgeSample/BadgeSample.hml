@@ -20,7 +20,7 @@
     <text class="introduce">{{ $t('strings.badge_type') }}</text>
     <div class="badge-type-box">
 
-      <!-- Badge type start -->
+    <!-- Badge type start -->
       <div class="badge-type-box-center">
         <div class="badge-box">
           <badge class="badge"
@@ -28,21 +28,19 @@
                  visible="true"
                  count="1"
                  maxcount="99">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_number') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_number') }}</text>
         </div>
         <div class="badge-box">
           <badge class="badge"
                  config="{{ textBadgeConfig }}"
                  visible="true"
                  label="{{ newLabel }}">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_text') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_text') }}</text>
         </div>
       </div>
-      <!-- Badge type end -->
+    <!-- Badge type end -->
 
     </div>
   </div>
@@ -51,7 +49,7 @@
     <text class="introduce">{{ $t('strings.badge_max_message_num') }}</text>
     <div class="badge-type-box">
 
-      <!-- Badge max num start -->
+    <!-- Badge max num start -->
       <div class="badge-type-box-center">
         <div class="badge-box">
           <badge class="badge"
@@ -59,9 +57,8 @@
                  visible="true"
                  count="10"
                  maxcount="99">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_normal_message_num') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_normal_message_num') }}</text>
         </div>
         <div class="badge-box">
           <badge class="badge"
@@ -69,12 +66,11 @@
                  visible="true"
                  count="100"
                  maxcount="99">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_beyond_message_num') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_beyond_message_num') }}</text>
         </div>
       </div>
-      <!-- Badge max num end -->
+    <!-- Badge max num end -->
 
     </div>
   </div>
@@ -83,31 +79,28 @@
     <text class="introduce">{{ $t('strings.badge_position') }}</text>
     <div class="badge-type-box">
 
-      <!-- Badge position start -->
+    <!-- Badge position start -->
       <div class="badge-type-box-center">
         <div class="badge-box">
           <badge class="badge" config="{{ numberBadgeConfig }}" visible="true" count="1"
                  placement="left" maxcount="99">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_left') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_left') }}</text>
         </div>
         <div class="badge-box">
           <badge class="badge" config="{{ numberBadgeConfig }}" visible="true" count="1"
                  placement="rightTop" maxcount="99">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_right_top') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_right_top')}}</text>
         </div>
         <div class="badge-box">
           <badge class="badge" config="{{ numberBadgeConfig }}" visible="true" count="1"
                  placement="right" maxcount="99">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_right') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_right') }}</text>
         </div>
       </div>
-      <!-- Badge position end -->
+    <!-- Badge position end -->
 
     </div>
   </div>
@@ -116,22 +109,20 @@
     <text class="introduce">{{ $t('strings.badge_style') }}</text>
     <div class="badge-type-box">
 
-      <!-- Badge style start -->
+    <!-- Badge style start -->
       <div class="badge-type-box-center">
         <div class="badge-box">
           <badge class="badge" config="{{ blueBigBadgeConfig }}" visible="true" count="0" label=" ">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_blue_big') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_blue_big') }}</text>
         </div>
         <div class="badge-box">
           <badge class="badge" config="{{ greenSmallBadgeConfig }}" visible="true" count="0" label=" ">
-            <text></text>
+            <text class="badge-text">{{ $t('strings.badge_green_small') }}</text>
           </badge>
-          <text class="badge-text">{{ $t('strings.badge_green_small') }}</text>
         </div>
       </div>
-      <!-- Badge style end -->
+    <!-- Badge style end -->
 
     </div>
   </div>

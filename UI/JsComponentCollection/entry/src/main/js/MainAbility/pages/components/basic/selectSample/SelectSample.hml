@@ -18,26 +18,26 @@
   <titleBar title="{{ $t('strings.select_title') }}"></titleBar>
   <text class="introduce">{{ $t('strings.select_include_image') }}</text>
   <div class="border-div">
-    <image src="{{ currentResource }}" style="width : 40vp; height : 30vp;"></image>
-    <select @change="changeCity" style="width : 100vp; height : 60vp; font-size : 25vp;">
+    <image src="{{ currentResource }}" style="width: 40vp; height: 40vp;object-fit: contain;"></image>
+    <select @change="changeCity" style="font-size: 24vp;">
       <option for="{{ selectElements }}" selected="{{ $item.isSelect }}" icon="{{ $item.icon }}"
-              value="{{ $item.name }}" style="font-size : 25vp;">{{ $item.name }}</option>
+              value="{{ $item.name }}" style="font-size: 25vp;">{{ $item.name }}</option>
     </select>
   </div>
 
   <text class="introduce">{{ $t('strings.select_choice_font_style') }}</text>
   <div class="border-div">
-    <select @change="changeChoiceFont" style="width : 100vp; height : 60vp; font-size : 25vp;">
+    <select @change="changeChoiceFont" style="font-size: 24vp;">
       <option for="{{ selectCities }}" selected="{{ $item.isSelect }}" value="{{ $item.name }}"
-              style="font-size : {{ $item.fontSize }};">{{ $item.name }}</option>
+              style="font-size: {{ $item.fontSize }};">{{ $item.name }}</option>
     </select>
   </div>
 
   <text class="introduce">{{ $t('strings.select_unchoice_font_style') }}</text>
   <div class="border-div">
-    <select @change="changeUnchoiceFont" style="width : 100vp; height : 60vp; font-size : 25vp;">
+    <select @change="changeUnchoiceFont" style="font-size: 24vp;">
       <option for="{{ unSelectCities }}" selected="{{ $item.isSelect }}" value="{{ $item.name }}"
-              style="font-size : {{ $item.fontSize }};">{{ $item.name }}</option>
+              style="font-size: {{ $item.fontSize }};">{{ $item.name }}</option>
     </select>
   </div>
 </div>

@@ -31,14 +31,14 @@
   <div class="decorative-border-div">
     <div style="margin-top: 25vp;">
       <text>
-        <span style="text-decoration : {{ textDecoration }};"> {{ $t('strings.span_decorative_sample_text') }}</span>
+        <span style="text-decoration: {{ textDecoration }};"> {{ $t('strings.span_decorative_sample_text') }}</span>
         <span style="font-style: italic;">{{ $t('strings.span_characters_sample_text') }}</span>
       </text>
     </div>
 
-    <div style="width: 100%; margin-top: 25vp; margin-left: 10vp;">
+    <div style="width: 100%; margin-top: 20vp; margin-left: 10vp; font-size: 24vp">
       <text style="flex-weight: 1;">{{ $t('strings.span_decorative_style') }}</text>
-      <select @change="changeLineType" style="font-size: 20vp;">
+      <select @change="changeLineType" style="font-size: 24vp;width: 150vp;height: 40vp;">
         <option selected="true" value="{{ $t('strings.span_decorative_none') }}">{{ $t('strings.span_decorative_none')
           }}</option>
         <option value="{{ $t('strings.span_line_through') }}">{{ $t('strings.span_line_through') }}</option>

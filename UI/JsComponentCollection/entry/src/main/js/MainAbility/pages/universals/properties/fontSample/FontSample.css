@@ -24,6 +24,7 @@
   font-size: 20vp;
   background-color: #F1F3F5;
   overflow: scroll;
+  padding-bottom: 80;
 }
 
 .content {
@@ -36,14 +37,15 @@
 
 .white-background-color {
   width: 100%;
-  height: 80vp;
+  height: 60vp;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #FFFFFF;
   border-radius: 24vp;
-  padding: 0vp 24vp;
+  padding-left: 12vp;
+  padding-right: 12vp;
 }
 
 .font-box {

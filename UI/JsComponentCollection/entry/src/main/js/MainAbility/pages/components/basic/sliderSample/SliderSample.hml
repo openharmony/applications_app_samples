@@ -15,23 +15,24 @@
 
 <element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
 <element name="inputBox" src="../../../../common/commonItemInput/CommonItemInput.hml"></element>
+<element name="selectBox" src="../../../../common/commonItemSelect/CommonItemSelect.hml"></element>
 <div class="container">
   <titleBar title="{{ sliderTitle }}"></titleBar>
   <div class="slider-box">
     <text class="introduce">{{ $t('strings.slider_show') }}</text>
     <div class="white-background-color-row space-between">
 
-      <!-- Normal slider start -->
+    <!-- Normal slider start -->
       <slider
-              class="padding-margin-none"
-              min="50"
-              max="130"
-              value="{{ sliderValue }}"
-              onchange="setNormalSliderValue">
+        class="padding-margin-none"
+        min="50"
+        max="130"
+        value="{{ sliderValue }}"
+        onchange="setNormalSliderValue">
       </slider>
-      <!-- Normal slider end -->
+    <!-- Normal slider end -->
 
-      <label class="slider-normal-label">{{ sliderValue }}</label>
+      <label class="slider-normal-label">{{ sliderValue + 'vp' }}</label>
     </div>
   </div>
 
@@ -40,15 +41,15 @@
     <div class="white-background-color-column space-between">
       <text class="events-status">{{ sliderStatus }}</text>
 
-      <!-- Slider events start -->
+    <!-- Slider events start -->
       <slider
-              class="padding-margin-none"
-              min="50"
-              max="130"
-              value="{{ sliderStatusValue }}"
-              onchange="setSliderEventsValue">
+        class="padding-margin-none"
+        min="50"
+        max="130"
+        value="{{ sliderStatusValue }}"
+        onchange="setSliderEventsValue">
       </slider>
-      <!-- Slider events end -->
+    <!-- Slider events end -->
 
     </div>
   </div>
@@ -57,16 +58,24 @@
     <text class="introduce">{{ $t('strings.slider_step_tip') }}</text>
     <div class="white-background-color-column space-between">
 
-      <!-- Slider step tip start -->
+    <!-- Slider step tip start -->
       <slider
-              class="padding-margin-none"
-              step="10"
-              min="0"
-              max="100"
-              showsteps="true"
-              showtips="true"
-              value="{{ sliderStepTipValue }}"></slider>
-      <!-- Slider step tip end -->
+        class="padding-margin-none"
+        step="10"
+        min="10"
+        max="90"
+        showsteps="true"
+        showtips="true"
+        value="{{ sliderStepTipValue }}"></slider>
+
+      <div  style="height: 20vp; width: 100%; justify-content: space-between; padding-left: 12vp;
+        padding-right: 12vp; flex-direction: row;">
+        <div for="item in stepInfo" style="display:flex;flex-direction: row;height: 100%;justify-content: space-between; padding-left: 12vp;
+          padding-right: 12vp;">
+            <text>{{ item }}</text>
+        </div>
+      </div>
+    <!-- Slider step tip end -->
 
     </div>
   </div>
@@ -75,30 +84,29 @@
     <text class="introduce">{{ $t('strings.slider_custom_property') }}</text>
     <div class="white-background-color-column space-between padding">
 
-      <!-- Slider custom property start -->
+    <!-- Slider custom property start -->
       <slider class="padding-margin-none"
               min="50"
               max="130"
-              style="
-              block-color: {{ blockColor }};
-              selected-color: {{ selectedColor }};
-              color: {{ unselectColor }};"
+              style="block-color: {{ blockColor }};
+                selected-color: {{ selectedColor }};
+                color: {{ unselectColor }};"
               value="{{ sliderColorValue }}">
       </slider>
-      <!-- Slider custom property end -->
 
-      <inputBox @input-value="setSliderColor"
-                left-text="{{ sliderBlockColor }}"
-                placeholder="{{ sliderColorPlaceholder }}">
-      </inputBox>
-      <inputBox @input-value="setSliderSelected"
-                left-text="{{ sliderSelectedColor }}"
-                placeholder="{{ sliderSelectedPlaceholder }}">
-      </inputBox>
-      <inputBox @input-value="setSliderUnselected"
-                left-text="{{ sliderUnselectedColor }}"
-                placeholder="{{ sliderUnselectedPlaceholder }}">
-      </inputBox>
+    <!-- Slider custom property end -->
+      <selectBox @select-value="setSliderColor"
+                 left-text="{{ sliderBlockColor }}"
+                 select-options="{{ sliderColorOptions }}">
+      </selectBox>
+      <selectBox @select-value="setSliderSelected"
+                 left-text="{{ sliderSelectedColor }}"
+                 select-options="{{ sliderColorOptions }}">
+      </selectBox>
+      <selectBox @select-value="setSliderUnselected"
+                 left-text="{{ sliderUnselectedColor }}"
+                 select-options="{{ sliderColorOptions }}">
+      </selectBox>
     </div>
   </div>
 </div>

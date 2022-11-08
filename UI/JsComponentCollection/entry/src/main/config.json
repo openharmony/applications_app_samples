@@ -34,7 +34,7 @@
         "icon": "$media:icon",
         "description": "$string:MainAbility_desc",
         "formsEnabled": false,
-        "label": "$string:MainAbility_label",
+        "label": "$string:entry_desc",
         "type": "page",
         "launchType": "singleton"
       }
@@ -58,8 +58,6 @@
           "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight",
           "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale",
           "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate",
-          "pages/animations/shareElementTransitionSample/ShareElementTransitionSample",
-          "pages/animations/shareElementTransitionTarget/ShareElementTransitionTarget",
           "pages/components/badgeSample/BadgeSample",
           "pages/components/basic/buttonSample/ButtonSample",
           "pages/components/basic/datePickerSample/DatePickerSample",

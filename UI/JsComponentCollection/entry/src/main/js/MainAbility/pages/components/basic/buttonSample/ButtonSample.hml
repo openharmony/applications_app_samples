@@ -21,25 +21,33 @@
     <div class="white-background-color">
       <div class="button-text-box">
 
-        <!-- Button type capsule start -->
-        <button class="button-type" onclick="clickButtonType" type="capsule" value="{{ $t('strings.button_confirm') }}"></button>
-        <!-- Button type end -->
+      <!-- Button type capsule start -->
+        <button class="button-type" onclick="clickStatusResult($t('strings.button_capsule'))" type="capsule"
+                value="{{ $t('strings.button_confirm') }}">
+        </button>
+
+      <!-- Button type end -->
 
         <text class="button-type-description">{{ $t('strings.button_capsule') }}</text>
       </div>
       <div class="button-text-box">
 
-        <!-- Button type general start -->
-        <button class="button-type general" onclick="clickButtonType" value="{{ $t('strings.button_confirm') }}"></button>
-        <!-- Button type general end -->
+      <!-- Button type general start -->
+        <button class="button-type general" onclick="clickStatusResult($t('strings.button_general'))"
+                value="{{ $t('strings.button_confirm') }}">
+        </button>
+
+      <!-- Button type general end -->
 
         <text class="button-type-description">{{ $t('strings.button_general') }}</text>
       </div>
       <div class="button-text-box">
 
-        <!-- Button type circle start -->
-        <button class="button-type" onclick="clickButtonType" type="circle" icon="common/image/ic_button_circle_add.png"></button>
-        <!-- Button type circle end -->
+      <!-- Button type circle start -->
+        <button class="button-type" onclick="clickStatusResult($t('strings.button_circle'))" type="circle"
+                icon="common/image/ic_button_circle_add.png"></button>
+
+      <!-- Button type circle end -->
 
         <text class="button-type-description">{{ $t('strings.button_circle') }}</text>
       </div>
@@ -50,12 +58,14 @@
     <text class="introduce">{{ $t('strings.button_status_result') }}</text>
     <div class="white-background-color">
 
-      <!-- Button status result  start -->
-      <button class="button-type" type="capsule" onclick="clickStatusResult('true')"
+    <!-- Button status result  start -->
+      <button class="button-type" type="capsule" onclick="clickStatusResult($t('strings.button_click_result'))"
               value="{{ $t('strings.button_click_result') }}"></button>
-      <button class="button-type" type="capsule" onclick="clickStatusResult('false')" value="{{ $t('strings.button_click_not_result') }}"></button>
+      <button class="button-type" type="capsule" onclick="clickStatusResult($t('strings.button_click_not_result'))"
+              value="{{ $t('strings.button_click_not_result') }}"></button>
       <button class="button-type" type="capsule" disabled="true" value="{{ $t('strings.button_disabled') }}"></button>
-      <!-- Button status result end -->
+
+    <!-- Button status result end -->
 
     </div>
   </div>
@@ -64,11 +74,14 @@
     <text class="introduce">{{ $t('strings.button_custom_style') }}</text>
     <div class="white-background-color bottom-margin">
 
-      <!-- Button custom style  start -->
-      <button class="button-type circle-rect" value="{{ $t('strings.button_circle_rect') }}"></button>
-      <button class="button-type" placement="start" icon="common/image/ic_button_loading.png" value="{{ $t('strings.button_icon') }}"></button>
-      <button class="button-type custom-color" type="capsule" value="{{ $t('strings.button_custom_color') }}"></button>
-      <!-- Button custom style  end -->
+    <!-- Button custom style  start -->
+      <button class="button-type circle-rect" onclick="clickStatusResult($t('strings.button_circle_rect'))"
+              value="{{ $t('strings.button_circle_rect') }}"></button>
+      <button class="button-type" onclick="clickStatusResult($t('strings.button_icon'))" placement="start"
+              icon="common/image/ic_button_loading.png" value="{{ $t('strings.button_icon') }}"></button>
+      <button class="button-type custom-color" onclick="clickStatusResult($t('strings.button_custom_color'))"
+              type="capsule" value="{{ $t('strings.button_custom_color') }}"></button>
+    <!-- Button custom style  end -->
 
     </div>
   </div>

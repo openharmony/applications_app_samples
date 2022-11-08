@@ -27,7 +27,7 @@ export default {
 
   changeSwitch(switchValue) {
     prompt.showToast({
-      message: switchValue.checked ? this.turnOnSwitch : this.turnOffSwitch
+      message: switchValue.checked ? this.turnOnSwitch: this.turnOffSwitch
     })
   }
 }

@@ -33,18 +33,26 @@
   padding-right: 12vp;
 }
 
+.step_box {
+  height: 20vp;
+  width: 100%;
+  padding: 0vp 12vp;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
 .space-between {
   justify-content: space-between;
 }
 
 .slider-normal-label {
-  width:40vp;
+  width: 80vp;
   text-align: center;
 }
 
 .padding-margin-none {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 
 .padding {

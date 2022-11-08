@@ -24,6 +24,7 @@
   font-size: 18vp;
   background-color: #F1F3F5;
   overflow: scroll;
+  padding-bottom: 110vp;
 }
 
 .border-box {
@@ -36,7 +37,7 @@
 
 .white-background-color {
   width: 100%;
-  height: 100vp;
+  height: 80vp;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,7 +49,7 @@
 
 .border-universal {
   width: 25%; /* The evenly distributed width is too small */
-  height: 66vp;
+  height: 60vp;
   display: flex;
   flex-direction: column;
   justify-content: center;

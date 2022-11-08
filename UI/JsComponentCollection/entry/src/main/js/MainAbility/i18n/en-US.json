@@ -15,17 +15,6 @@
     ],
     "component_category": [
       {
-        "name": "Auxiliary",
-        "isUnfold": "false",
-        "icon_url": "common/image/ic_auxiliary.png",
-        "values": [
-          {
-            "name": "Badge",
-            "url": "pages/components/badgeSample/BadgeSample"
-          }
-        ]
-      },
-      {
         "name": "Blank And Divider",
         "isUnfold": "false",
         "icon_url": "common/image/ic_blank_divider.png",
@@ -33,6 +22,37 @@
           {
             "name": "Divider",
             "url": "pages/components/basic/dividerSample/DividerSample"
+          }
+        ]
+      },
+      {
+        "name": "Button And Selection",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_button_selection.png",
+        "values": [
+          {
+            "name": "Button",
+            "url": "pages/components/basic/buttonSample/ButtonSample"
+          },
+          {
+            "name": "DatePicker",
+            "url": "pages/components/basic/datePickerSample/DatePickerSample"
+          },
+          {
+            "name": "Radio",
+            "url": "pages/components/basic/radioSample/RadioSample"
+          },
+          {
+            "name": "Select",
+            "url": "pages/components/basic/selectSample/SelectSample"
+          },
+          {
+            "name": "Slider",
+            "url": "pages/components/basic/sliderSample/SliderSample"
+          },
+          {
+            "name": "Switch",
+            "url": "pages/components/basic/switchSample/SwitchSample"
           }
         ]
       },
@@ -53,47 +73,27 @@
         "icon_url": "common/image/ic_text_and_input.png",
         "values": [
           {
-            "name": "Text",
-            "url": "pages/components/basic/textSample/TextSample"
+            "name": "Span",
+            "url": "pages/components/basic/spanSample/SpanSample"
           },
           {
             "name": "Input",
             "url": "pages/components/basic/inputSample/InputSample"
           },
           {
-            "name": "Span",
-            "url": "pages/components/basic/spanSample/SpanSample"
+            "name": "Text",
+            "url": "pages/components/basic/textSample/TextSample"
           }
         ]
       },
       {
-        "name": "Button And Selection",
+        "name": "Auxiliary",
         "isUnfold": "false",
-        "icon_url": "common/image/ic_button_selection.png",
+        "icon_url": "common/image/ic_auxiliary.png",
         "values": [
           {
-            "name": "DatePicker",
-            "url": "pages/components/basic/datePickerSample/DatePickerSample"
-          },
-          {
-            "name": "Radio",
-            "url": "pages/components/basic/radioSample/RadioSample"
-          },
-          {
-            "name": "Slider",
-            "url": "pages/components/basic/sliderSample/SliderSample"
-          },
-          {
-            "name": "Button",
-            "url": "pages/components/basic/buttonSample/ButtonSample"
-          },
-          {
-            "name": "Select",
-            "url": "pages/components/basic/selectSample/SelectSample"
-          },
-          {
-            "name": "Switch",
-            "url": "pages/components/basic/switchSample/SwitchSample"
+            "name": "Badge",
+            "url": "pages/components/badgeSample/BadgeSample"
           }
         ]
       }
@@ -103,15 +103,11 @@
         "name": "Universal Events",
         "values": [
           {
-            "name": "点击事件",
+            "name": "Click Event",
             "isUnfold": "false",
+            "url": "pages/universals/events/clickSample/ClickSample",
             "icon_url": "common/image/ic_click_event.png",
-            "values": [
-              {
-                "name": "Click Events",
-                "url": "pages/universals/events/clickSample/ClickSample"
-              }
-            ]
+            "values": []
           }
         ]
       },
@@ -173,10 +169,6 @@
           {
             "name": "Page Transition",
             "url": "pages/animations/pageTransitionSample/PageTransitionSample"
-          },
-          {
-            "name": "Share Element Transition",
-            "url": "pages/animations/shareElementTransitionSample/ShareElementTransitionSample"
           }
         ]
       }
@@ -194,7 +186,6 @@
         ]
       }
     ],
-
     "background_title": "Background",
     "background_set_color": "set background color",
     "background_set_gradient": "set background gradient",
@@ -209,7 +200,6 @@
     "background_no_repeat": "don't spread no-repeat",
     "background_image_size": "image size width50% height100%",
     "background_image_position": "image position render from the top right",
-
     "badge_title": "Badge",
     "badge_type": "Badge Type",
     "badge_number": "Number Badge",
@@ -224,27 +214,25 @@
     "badge_style": "Badge Style",
     "badge_blue_big": "Blue Big Badge",
     "badge_green_small": "Green Small Badge",
-
-    "border_title": "Border 边框样式",
-    "border_style": "边框类型",
-    "border_dotted_line": "虚线",
-    "border_dot": "圆点",
-    "border_solid_line": "实线",
-    "border_width_color_corner": "边框宽度、颜色、圆角",
-    "border_width": "宽度",
-    "border_color": "颜色",
-    "border_corner": "圆角",
-    "border_style_attribute": "分别设置边框以及样式和属性",
-    "border_top": "上边框",
-    "border_left": "左边框",
-    "border_bottom": "下边框",
-    "border_right": "右边框",
-    "border_four_angle": "分别设置四个角的圆角",
-    "border_left_top": "左上",
-    "border_left_bottom": "左下",
-    "border_right_bottom": "右下",
-    "border_right_top": "右上",
-
+    "border_title": "Border border style",
+    "border_style": "Border type",
+    "border_dotted_line": "Dotted line",
+    "border_dot": "Dot",
+    "border_solid_line": "Solid line",
+    "border_width_color_corner": "Border width, color, rounded corners",
+    "border_width": "Width",
+    "border_color": "Color",
+    "border_corner": "Rounded corners",
+    "border_style_attribute": "Set borders and styles and properties separately",
+    "border_top": "Border",
+    "border_left": "Left border",
+    "border_bottom": "Lower border",
+    "border_right": "Right border",
+    "border_four_angle": "Set the rounded corners of each of the four corners",
+    "border_left_top": "Top left",
+    "border_left_bottom": "Bottom left",
+    "border_right_bottom": "Bottom right",
+    "border_right_top": "Top right",
     "button_title": "Button",
     "button_type_title": "Type",
     "button_confirm": "confirm",
@@ -260,17 +248,17 @@
     "button_circle_rect": "circle rect button",
     "button_icon": "icon button",
     "button_custom_color": "custom color button",
-
+    "button_click": "button click",
     "click_events_title": "Click",
     "click_start_events_bubble_up": "Events are not prevented from bubbling",
     "click_stop_events_bubble_up": "Stop events from bubbling",
     "click_start_bubble_up": "effervescence",
     "click_stop_bubble_up": "Not effervescence",
+    "click_event_child": "child element",
+    "click_event_parent": "parent element",
     "click_stop_bubble_up_description": "When a child element is clicked, the child element consumes the click event and does not trigger the click event of the parent element",
     "click_start_bubble_up_description": "When a child element is clicked, the child element does not consume the click event and triggers the click event of the parent element",
-
     "date_picker_title": "DatePicker",
-
     "dialog_title": "Dialog custom dialog",
     "dialog_whether_drag": "whether drag is supported",
     "dialog_can_drag": "can drag",
@@ -281,7 +269,6 @@
     "dialog_location_introduce": "location permissions are required for navigation",
     "dialog_location_permission": "location permission",
     "dialog_key_open": "key open",
-
     "divider_title": "Divider",
     "divider_transverse": "Transverse",
     "divider_vertical": "Vertical",
@@ -326,7 +313,6 @@
         "value": "#F56C6C"
       }
     ],
-
     "font_title": "Font",
     "font_color": "color",
     "font_blue_color": "#409EFF",
@@ -343,12 +329,11 @@
     "font_family": "font family",
     "font_family_sans": "sans-serif",
     "font_family_h_y_q_i_hei": "HYQiHei-65S",
-
     "input_title": "Input",
     "input_type_title": "Type",
     "input_type_placeholder": "Numbers, letters, underscores, spaces, special characters",
     "input_now_type": "Now type",
-    "input_events":"Events",
+    "input_events": "Events",
     "input_password_icon": "password icon",
     "input_placeholder_style_title": "Placeholder style title",
     "input_placeholder_style_message": "Placeholder style message",
@@ -393,7 +378,6 @@
         "value": "false"
       }
     ],
-
     "page_transition_title": "page transition",
     "page_transition_back": "return to the interpage transition page",
     "page_transition_introduce": "PAGE TRANSITIONS",
@@ -423,7 +407,6 @@
         "url": "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
       }
     ],
-
     "qrcode_title": "QRCode",
     "qrcode_value_left": "content",
     "qrcode_value_right": "Enter to change the QR code content",
@@ -453,7 +436,6 @@
         "name": "Circle"
       }
     ],
-
     "radio_title": "Radio",
     "radio_second_title": "No hot zones (only takes effect when the button is clicked)",
     "radio_second_hot_title": "Add hot zones (clicking on the text area also takes effect)",
@@ -475,7 +457,6 @@
         "value": "shenzhen"
       }
     ],
-
     "rotate_title": "rotate",
     "rotate_image": "image rotate",
     "rotate_container": "container rotate",
@@ -500,7 +481,6 @@
         "info": "rotate 15°"
       }
     ],
-
     "select_title": "Select select menu",
     "select_elements": [
       {
@@ -569,65 +549,26 @@
       "common/image/ic_select_two.png",
       "common/image/ic_select_three.png"
     ],
-
-    "share_element_title": "shared element transitions",
-    "share_element_resources": [
-      {
-        "url": "common/image/ic_scenery1.png",
-        "id": 1
-      },
-      {
-        "url": "common/image/ic_scenery2.png",
-        "id": 2
-      },
-      {
-        "url": "common/image/ic_scenery3.png",
-        "id": 3
-      },
-      {
-        "url": "common/image/ic_scenery4.png",
-        "id": 4
-      },
-      {
-        "url": "common/image/ic_scenery1.png",
-        "id": 5
-      },
-      {
-        "url": "common/image/ic_scenery2.png",
-        "id": 6
-      },
-      {
-        "url": "common/image/ic_scenery3.png",
-        "id": 7
-      },
-      {
-        "url": "common/image/ic_scenery4.png",
-        "id": 8
-      }
-    ],
-
-    "size_title": "Size 尺寸",
-    "size_width_title": "宽度",
-    "size_width_designate_description": "宽度为100vp",
-    "size_width_percentage_description": "宽度为60%",
-    "size_height_title": "高度",
-    "size_height_designate_description": "高度为100vp",
-    "size_height_percentage_description": "高度为80%",
-    "size_border_style_title": "边框类型",
-    "size_box_sizing_content_description": "标准盒子模型,设置的width和height只包含内容的宽和高，不包含边框（border）和内边距（padding）",
-    "size_box_sizing_border_description": "设置的width和height包含内容,边框（border）和内边距（padding）,即：组件内容区的实际宽度 = width - (border + padding) ",
+    "size_title": "Size",
+    "size_width_title": "Width",
+    "size_width_designate_description": "Width is 100vp",
+    "size_width_percentage_description": "Width is 60%",
+    "size_height_title": "Height",
+    "size_height_designate_description": "Height is 100vp",
+    "size_height_percentage_description": "Height is 60%",
+    "size_border_style_title": "Border type",
+    "size_box_sizing_content_description": "Standard box model, set width and height only contain the width and height of the content, not the border and padding",
+    "size_box_sizing_border_description": "Set width and height to contain content, border and padding, i.e., the actual width of the component content area = width - (border + padding)",
     "size_content_box": "content-box",
     "size_border_box": "border-box",
-
     "slider_title": "Slider",
     "slider_show": "Display current value (min. 50/max. 130)",
-    "slider_events":"Events",
+    "slider_events": "Events",
     "slider_step_tip": "Step size and cues (step size is 10)",
     "slider_custom_property": "Custom property",
     "slider_block_color": "Slide color",
     "slider_selected_color": "Colors are slided",
     "slider_unselected_color": "The color is not sliding",
-
     "span_title": "Span inline text component",
     "span_set_properties": "configure different text attributes",
     "span_decorative_characte": "decorative lines and text styles",
@@ -643,7 +584,6 @@
     "span_line_through": "line-through",
     "span_under_line": "underline",
     "span_decorative_none": "none",
-
     "switch_title": "switch Switch components",
     "switch_font_size": "the font size can be set",
     "switch_font_color": "the font color can be set",
@@ -652,7 +592,6 @@
     "switch_off": "switch off",
     "switch_turn_on": "turn on switch",
     "switch_turn_off": "turn off switch",
-
     "text_title": "Text",
     "text_content": "Steel is tempered in fire and rapid cooling, so it can be hard and afraid of nothing. Our generation, too, tempered in struggles and terrible trials, learned not to succumb to life.",
     "text_change_letter_spacing": "Change letter spacing",
@@ -724,7 +663,6 @@
         "value": "end"
       }
     ],
-
     "translate_title": "translate",
     "translate_image": "image translate",
     "translate_container": "component translate",

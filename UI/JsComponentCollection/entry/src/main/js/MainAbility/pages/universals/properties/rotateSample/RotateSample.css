@@ -28,21 +28,24 @@
 
 .image-border-div {
   width: 100%;
-  min-height: 200vp;
   background-color: white;
   border-radius: 20vp;
-  margin-left: 40vp;
-  margin-right: 40vp;
-  margin-top: 10vp;
+  margin-left: 20vp;
+  margin-right: 20vp;
+  margin-top: 12vp;
+  margin-bottom: 12vp;
   padding: 20vp;
+  justify-content: space-around;
   align-items: center;
 }
 
 .container-border-div {
   width: 100%;
-  min-height: 230vp;
+  justify-content: space-around;
   margin-right: 40vp;
   margin-left: 40vp;
+  margin-left: 20vp;
+  margin-right: 20vp;
   padding: 20vp;
   background-color: white;
   border-radius: 20vp;
@@ -50,38 +53,38 @@
 }
 
 .image-class {
-  width: 100%;
+  width: 150vp;
   margin-left: 20vp;
   margin-right: 20vp;
-  height: 120vp;
+  height: 100vp;
+  object-fit: fill;
 }
 
 .container-div {
-  width: 100%;
   flex-direction: column;
   background-color: #0d000000;
   margin-left: 40vp;
   margin-right: 40vp;
   justify-content: center;
-  margin-top: 20vp;
+  margin-top: 12vp;
 }
 
 .container-text {
-  width: 100%;
+  font-size: 20vp;
   text-align: center;
-  margin-top: 10vp;
+  padding: 8vp;
 }
 
 .text-class {
   margin-top: 20vp;
+  font-size: 20vp;
 }
 
 .outer-div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  padding-top: 20vp;
+  padding: 12vp;
 }
 
 .bottom-margin {

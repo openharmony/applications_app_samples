@@ -24,7 +24,7 @@
         <!-- Not hot radio start -->
         <input type="radio"
                name="radioCity"
-               value="{{ item.value }}"></input>
+               value="{{ item.value }}"onclick="ClickRadio(item.name)"></input>
         <label>{{ item.name }}</label>
         <!-- Not hot radio end -->
 
@@ -42,7 +42,7 @@
                type="radio"
                name="radioCityHot"
                id="{{ item.value }}"
-               value="{{ item.value }}">
+               value="{{ item.value }}"onclick="ClickRadio(item.name)">
         </input>
         <label target="{{ item.value }}" class="radio-group-label">{{ item.name }}</label>
         <!-- Hot radio end -->

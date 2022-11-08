@@ -35,16 +35,14 @@
 
 .effervescence-text {
     color: #409EFF;
-    width: 100vp;
-    height: 30vp;
+    padding: 8vp 12vp;
     text-align: center;
     background-color: #FFFFFF;
     border-radius: 24vp;
 }
 .not-effervescence-button {
-    width:100vp;
-    height:30vp;
     color: #409EFF;
+    padding: 8vp 12vp;
     background-color: #FFFFFF;
 }
 

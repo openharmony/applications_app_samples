@@ -26,21 +26,22 @@ export default {
   },
 
   stopBubbleUpParentClick() {
-    this.stopBubbleUpParentMessage = 'Parent'
+    this.stopBubbleUpParentMessage = this.$t('strings.click_event_parent')
   },
 
   stopBubbleUpChildClick() {
-    this.stopBubbleUpParentMessage = 'Child '
+    this.stopBubbleUpParentMessage = this.$t('strings.click_event_child')
   },
 
   startBubbleUpParentClick() {
-    if (this.startBubbleUpParentMessage === 'Child Parent' || this.startBubbleUpParentMessage === 'Parent') {
+    if (this.startBubbleUpParentMessage === this.$t('strings.click_event_parent') + this.$t('strings.click_event_child')
+    || this.startBubbleUpParentMessage === this.$t('strings.click_event_parent')) {
       this.startBubbleUpParentMessage = ''
     }
-    this.startBubbleUpParentMessage = this.startBubbleUpParentMessage + 'Parent'
+    this.startBubbleUpParentMessage = this.startBubbleUpParentMessage + this.$t('strings.click_event_parent')
   },
 
   startBubbleUpChildClick() {
-    this.startBubbleUpParentMessage = 'Child '
+    this.startBubbleUpParentMessage = this.$t('strings.click_event_child')
   }
 }

@@ -55,7 +55,7 @@
         <image class="tab-bar-icon" src="{{ getIcon(index) }}"></image>
       </div>
       <div class="tab-bar-text-box">
-        <text class="tab-bar-text" style="color : {{ getFontColor(index) }}; opacity : {{ getTabTextOpcity(index) }}">
+        <text class="tab-bar-text" style="color: {{ getFontColor(index) }}; opacity: {{ getTabTextOpcity(index) }}">
           {{ tabArr[index] }}</text>
       </div>
     </div>

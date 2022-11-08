@@ -20,24 +20,25 @@ export default {
     sliderTitle: '',
     sliderValue: '60',
     sliderColorValue: '60',
-    sliderStatus: 'End',
+    sliderStatus: '',
     sliderStatusValue: '60',
     sliderStepTipValue: '10',
     sliderBlockColor: '',
+    stepInfo: ['10', '20', '30', '40', '50', '60', '70', '80', '90'],
     sliderSelectedColor: '',
     sliderUnselectedColor: '',
     blockColor: '#FFFFFF',
-    sliderColorPlaceholder: 'FFFFFFFF',
+    sliderColorOptions: [],
     selectedColor: '#FF007DFF',
-    sliderSelectedPlaceholder:'FF007DFF',
     unselectColor: '#19000000',
-    sliderUnselectedPlaceholder: '19000000'
   },
 
   onInit() {
+    this.sliderStatus = this.$t('strings.slider_event_end')
     this.sliderTitle = this.$t('strings.slider_title')
     this.sliderBlockColor = this.$t('strings.slider_block_color')
     this.sliderSelectedColor = this.$t('strings.slider_selected_color')
+    this.sliderColorOptions = this.$t('strings.divider_color_options')
     this.sliderUnselectedColor = this.$t('strings.slider_unselected_color')
   },
 
@@ -48,16 +49,19 @@ export default {
   setSliderEventsValue(sliderEvents) {
     switch (sliderEvents.mode) {
       case 'start':
-        this.sliderStatus = 'Begin'
+        this.sliderStatus = this.$t('strings.slider_event_begin')
         break
       case 'move':
-        this.sliderStatus = 'Move'
+        this.sliderStatus = this.$t('strings.slider_event_moving')
         break
       case 'end':
-        this.sliderStatus = 'End'
+        this.sliderStatus = this.$t('strings.slider_event_end')
+        break
+      case 'click':
+        this.sliderStatus = this.$t('strings.slider_event_click')
         break
       default:
-        this.sliderStatus = 'Click'
+        this.sliderStatus = this.$t('strings.slider_event_end')
         break
     }
     prompt.showToast({
