@@ -47,7 +47,7 @@ export default function appTest() {
     it(BUNDLE + 'EnterFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 begin')
       let driver = await UiDriver.create()
-      await driver.delayMs(1000)
+      await driver.delayMs(3000)
       // enter
       hilog.info(DOMAIN, TAG, BUNDLE + 'EnterFunction_001 enter')
       await driver.assertComponentExist(BY.text('允许'))
