@@ -118,7 +118,7 @@ struct Index {
   ImageShow() {
     Image(this.imgDatas[this.index].uri)
       .width(IMAGE_SIZE)
-      .height(290)
+      .height(270)
       .objectFit(ImageFit.Fill)
       .onClick(async () => {
         if (this.isRefresh) {
@@ -139,7 +139,7 @@ struct Index {
           Image(item.pixelMap)
             .width('99%')
             .objectFit(ImageFit.Fill)
-            .height(vp2px(65))
+            .height(95)
         }
         .backgroundColor(item.pixelMap === undefined ? "#f5f5f5" : "#ffdead")
         .onClick(() => {
@@ -159,7 +159,7 @@ struct Index {
     .columnsGap(2)
     .rowsGap(2)
     .width(IMAGE_SIZE)
-    .height(390)
+    .height(270)
     .margin({ left: leftMargin, top: topMargin })
   }
 
