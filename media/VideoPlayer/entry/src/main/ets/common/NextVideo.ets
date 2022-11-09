@@ -29,7 +29,7 @@ export default struct NextVideo {
     }
     .size({ width: 60, height: 60 })
     .backgroundColor('#88000000')
-    .margin({ left: '30%' })
+    .margin({ left: '20%' })
     .onClick(this.handleClick)
   }
 }
