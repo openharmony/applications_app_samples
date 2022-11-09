@@ -34,15 +34,19 @@ export class RemoteDeviceModel {
     }
     console.log('[RemoteDeviceModel] deviceManager.createDeviceManager begin')
     let self = this
-    deviceManager.createDeviceManager("ohos.samples.etskvstore", (error, value) => {
-      if (error) {
-        console.error('[RemoteDeviceModel] createDeviceManager failed.')
-        return;
-      }
-      self.deviceManager = value
-      self.registerDeviceListCallbackImplement(callback)
-      console.log('[RemoteDeviceModel] createDeviceManager callback returned, error=' + error + ' value=' + value)
-    });
+    try {
+      deviceManager.createDeviceManager("ohos.samples.etskvstore", (error, value) => {
+        if (error) {
+          console.error('[RemoteDeviceModel] createDeviceManager failed.')
+          return;
+        }
+        self.deviceManager = value
+        self.registerDeviceListCallbackImplement(callback)
+        console.log('[RemoteDeviceModel] createDeviceManager callback returned, error=' + error + ' value=' + value)
+      });
+    } catch (error) {
+      Logger.error(TAG, `createDeviceManager throw error, code=${error.code} message=${error.message}`)
+    }
     console.log('[RemoteDeviceModel] deviceManager.createDeviceManager end')
   }
 
@@ -96,47 +100,55 @@ export class RemoteDeviceModel {
       return
     }
     console.info('[RemoteDeviceModel] getTrustedDeviceListSync begin')
-    let list = this.deviceManager.getTrustedDeviceListSync()
-    console.info('[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list))
-    if (typeof (list) != 'undefined' && typeof (list.length) != 'undefined') {
-      this.deviceList = list
+    try {
+      let list = this.deviceManager.getTrustedDeviceListSync()
+      console.info('[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list))
+      if (typeof (list) != 'undefined' && typeof (list.length) != 'undefined') {
+        this.deviceList = list
+      }
+    } catch (error) {
+      Logger.error(TAG, `getTrustedDeviceListSync throw error, code=${error.code} message=${error.message}`)
     }
     this.callback()
     console.info('[RemoteDeviceModel] callback finished');
     let self = this;
-    this.deviceManager.on('deviceStateChange', (data) => {
-      if (data == null) {
-        return
-      }
-      console.info('[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data))
-      switch (data.action) {
-        case deviceManager.DeviceStateChangeAction.ONLINE:
-          self.deviceStateChangeActionOnline(data.device)
-          break;
-        case deviceManager.DeviceStateChangeAction.READY:
-          self.deviceStateChangeActionReady(data.device)
-          break;
-        case deviceManager.DeviceStateChangeAction.OFFLINE:
-        case deviceManager.DeviceStateChangeAction.CHANGE:
-          self.deviceStateChangeActionOffline(data.device)
-          break
-        default:
-          break
-      }
-    });
-    this.deviceManager.on('deviceFound', (data) => {
-      if (data == null) {
-        return
-      }
-      console.info('[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data))
-      self.deviceFound(data)
-    });
-    this.deviceManager.on('discoverFail', (data) => {
-      console.info('[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data))
-    });
-    this.deviceManager.on('serviceDie', () => {
-      console.error('[RemoteDeviceModel] serviceDie')
-    });
+    try {
+      this.deviceManager.on('deviceStateChange', (data) => {
+        if (data == null) {
+          return
+        }
+        console.info('[RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data))
+        switch (data.action) {
+          case deviceManager.DeviceStateChangeAction.ONLINE:
+            self.deviceStateChangeActionOnline(data.device)
+            break;
+          case deviceManager.DeviceStateChangeAction.READY:
+            self.deviceStateChangeActionReady(data.device)
+            break;
+          case deviceManager.DeviceStateChangeAction.OFFLINE:
+          case deviceManager.DeviceStateChangeAction.CHANGE:
+            self.deviceStateChangeActionOffline(data.device)
+            break
+          default:
+            break
+        }
+      });
+      this.deviceManager.on('deviceFound', (data) => {
+        if (data == null) {
+          return
+        }
+        console.info('[RemoteDeviceModel] deviceFound data=' + JSON.stringify(data))
+        self.deviceFound(data)
+      });
+      this.deviceManager.on('discoverFail', (data) => {
+        console.info('[RemoteDeviceModel] discoverFail data=' + JSON.stringify(data))
+      });
+      this.deviceManager.on('serviceDie', () => {
+        console.error('[RemoteDeviceModel] serviceDie')
+      });
+    } catch (error) {
+      Logger.error(TAG, `on throw error, code=${error.code} message=${error.message}`)
+    }
     this.startDeviceDiscovery()
   }
 
@@ -164,18 +176,26 @@ export class RemoteDeviceModel {
       capability: 0
     };
     console.info('[RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID)
-    this.deviceManager.startDeviceDiscovery(info)
+    try {
+      this.deviceManager.startDeviceDiscovery(info)
+    } catch (error) {
+      Logger.error(TAG, `startDeviceDiscovery throw error, code=${error.code} message=${error.message}`)
+    }
   }
 
   unregisterDeviceListCallback() {
     console.info('[RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID)
-    this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID);
-    this.deviceManager.off('deviceStateChange')
-    this.deviceManager.off('deviceFound')
-    this.deviceManager.off('discoverFail')
-    this.deviceManager.off('serviceDie')
-    this.deviceList = []
-    this.discoverList = []
+    try {
+      this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID);
+      this.deviceManager.off('deviceStateChange')
+      this.deviceManager.off('deviceFound')
+      this.deviceManager.off('discoverFail')
+      this.deviceManager.off('serviceDie')
+      this.deviceList = []
+      this.discoverList = []
+    } catch (error) {
+      Logger.error(TAG, `off throw error, code=${error.code} message=${error.message}`)
+    }
   }
 
   authenticateDevice(device, callBack) {
@@ -196,15 +216,19 @@ export class RemoteDeviceModel {
         'appThumbnail': '',
         'extraInfo': extraInfo
       }
-      this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
-        if (err) {
-          console.info('[RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err))
-          this.authCallback = null
-          return
-        }
-        console.info('[RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data))
-        this.authCallback = callBack
-      })
+      try {
+        this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
+          if (err) {
+            console.info('[RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err))
+            this.authCallback = null
+            return
+          }
+          console.info('[RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data))
+          this.authCallback = callBack
+        })
+      } catch (error) {
+        Logger.error(TAG, `authenticateDevice throw error, code=${error.code} message=${error.message}`)
+      }
     }
   }
 }
