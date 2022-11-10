@@ -54,7 +54,7 @@ struct Index {
 
   isOperator(operator) {
     return (
-      operator === '+' || operator === '-' || operator === '*' || operator === '/'
+      operator === '+' || operator === '-' || operator === '*' || operator === '/' || operator === '.' || operator === '%'
     )
   }
 
@@ -75,6 +75,11 @@ struct Index {
       return
     }
     if (this.isOperator(value)) { // 当用户输入的是运算符
+      if (value === '*' || value === '/' || value === '%' || value === '.') {
+        if (this.expression.length === 0) {
+          return
+        }
+      }
       // 判断表达式最后一个字符是运算符则覆盖上一个运算符，否则表达式直接拼接
       if (this.isOperator(this.expression.substr(this.expression.length - 1, this.expression.length))) {
         this.expression = this.expression.substr(0, this.expression.length - 1)
@@ -106,7 +111,10 @@ struct Index {
     })
     this.listener.on('change', this.onLand)
     featureAbility.getWant((error, want) => {
-      Logger.error(TAG, `featureAbility.getWant error = ${JSON.stringify(error)}`)
+      if (error) {
+        Logger.error(TAG, `featureAbility.getWant error = ${JSON.stringify(error)}`)
+        return
+      }
       Logger.info(TAG, `featureAbility.getWant = ${JSON.stringify(want.parameters)}`)
       if (want.parameters.isFA === 'FA') {
         this.isDistributed = true
