@@ -32,7 +32,7 @@ export struct TitleBar {
         })
 
       Text($r('app.string.title'))
-        .fontSize(24)
+        .fontSize(16)
 
       Image($r('app.media.add'))
         .width(40)
