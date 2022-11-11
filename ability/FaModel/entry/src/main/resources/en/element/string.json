@@ -303,6 +303,26 @@
     {
       "name": "call_fail",
       "value": "call fail"
+    },
+    {
+      "name": "start_ability_success",
+      "value": "startAbility success"
+    },
+    {
+      "name": "connect_ability_success",
+      "value": "connectAbility success"
+    },
+    {
+      "name": "disconnect_ability_success",
+      "value": "disconnectAbility success"
+    },
+    {
+      "name": "acquire_data_ability_helper_success",
+      "value": "acquireDataAbilityHelper succes"
+    },
+    {
+      "name": "terminate_self_success",
+      "value": "terminateSelf success"
     }
   ]
 }

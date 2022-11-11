@@ -45,7 +45,7 @@ class DataAbilityHelper {
     })
   }
 
-  // 注消观察者以停止观察给定uri指定的数据
+  // 注销观察者以停止观察给定uri指定的数据
   off() {
     DA_HELPER.off('dataChange', BASE_URI, () => {
       Logger.info(TAG, `off dataChange`)

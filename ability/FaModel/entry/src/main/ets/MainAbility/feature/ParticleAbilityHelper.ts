@@ -13,85 +13,44 @@
  * limitations under the License.
  */
 
-import particleAbility from '@ohos.ability.particleAbility'
-import rpc from '@ohos.rpc'
-import prompt from '@ohos.prompt'
+import CommonEvent from '@ohos.commonEvent'
 import Logger from '../util/Logger'
-import { BUNDLE_NAME, SERVICE_ABILITY_NAME, TAST_ABILITY_NAME } from '../model/DaHelperConst'
 
 const TAG: string = 'ParticleAbilityHelper'
 
-let faConnect: any = {
-  onConnect: function (element, remote) {
-    Logger.info(TAG, `ConnectAbility onConnect remote is proxy: ${remote instanceof rpc.RemoteProxy}`)
-    prompt.showToast({
-      message: $r('app.string.connect_success')
-    })
-  },
-  onDisconnect: function (element) {
-    Logger.info(TAG, `ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
-    prompt.showToast({
-      message: $r('app.string.disconnect_success')
-    })
-  },
-  onFailed: function (code) {
-    Logger.info(TAG, `particleAbilityTest ConnectAbility onFailed errCode : ${code}`)
-    prompt.showToast({
-      message: $r('app.string.connect_fail')
-    })
-  }
-}
-
-let connId: number = -1
-
 class ParticleAbilityHelper {
-
-  // 启动指定的particleAbility，Stage模型ServiceExtContextController的startAbility
-  startAbility() {
-    particleAbility.startAbility({
-      want: {
-        bundleName: BUNDLE_NAME,
-        abilityName: TAST_ABILITY_NAME
-      }
-    }, () => {
-      Logger.info(TAG, 'startAbility success')
-      prompt.showToast({
-        message: 'particleAbility startAbility success'
-      })
+  // 发布启动Ability事件
+  publishStartAbility = () => {
+    CommonEvent.publish('startAbility', () => {
+      Logger.info(TAG, `publish startAbility`)
     })
   }
 
-  // 终止particleAbility，Stage模型ServiceExtContextController的terminateSelf
-  terminateSelf() {
-    particleAbility.terminateSelf(() => {
-      Logger.info(TAG, 'terminateSelf success')
-      prompt.showToast({
-        message: 'particleAbility terminateSelf success'
-      })
+  // 发布连接Ability事件
+  publishConnectAbility = () => {
+    CommonEvent.publish('connectAbility', () => {
+      Logger.info(TAG, `publish connectAbility`)
     })
   }
 
-  // 获取dataAbilityHelper
-  acquireDataAbilityHelper() {
-    particleAbility.acquireDataAbilityHelper('')
-    Logger.info(TAG, 'terminateSelf success')
-    prompt.showToast({
-      message: 'particleAbility acquireDataAbilityHelper success'
+  // 发布断开连接Ability事件
+  publishDisconnectAbility = () => {
+    CommonEvent.publish('disconnectAbility', () => {
+      Logger.info(TAG, `publish disconnectAbility`)
     })
   }
 
-  // 将当前ability连接到指定ServiceAbility，Stage模型ServiceExtContextController的connectAbility
-  connectAbility() {
-    connId = particleAbility.connectAbility({
-      bundleName: BUNDLE_NAME,
-      abilityName: SERVICE_ABILITY_NAME,
-    }, faConnect)
+  // 发布获取dataAbilityHelper事件
+  publishAcquireDataAbilityHelper = () => {
+    CommonEvent.publish('acquireDataAbilityHelper', () => {
+      Logger.info(TAG, `publish acquireDataAbilityHelper`)
+    })
   }
 
-  // 将功能与服务功能断开连接，Stage模型ServiceExtContextController的disconnectAbility
-  disconnectAbility() {
-    particleAbility.disconnectAbility(connId, () => {
-      Logger.info(TAG, 'disconnectAbility success')
+  // 发布终止Ability事件
+  publishTerminateSelf = () => {
+    CommonEvent.publish('terminateSelf', () => {
+      Logger.info(TAG, `publish terminateSelf`)
     })
   }
 }
