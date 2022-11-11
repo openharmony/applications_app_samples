@@ -20,6 +20,8 @@ const TAG = 'DeviceDialog'
 
 @CustomDialog
 export struct DeviceDialog {
+  @State listWidth: number = 0
+  @State imageWidth: number = 0
   controller: CustomDialogController
   private deviceList: Array<deviceManager.DeviceInfo> = []
   private selectedIndex: number = 0
@@ -39,10 +41,10 @@ export struct DeviceDialog {
             Row() {
               Text(item.deviceName)
                 .fontSize(21)
-                .width('90%')
+                .width(this.listWidth)
                 .fontColor(Color.Black)
               Image(index === this.selectedIndex ? $r('app.media.checked') : $r('app.media.uncheck'))
-                .width('8%')
+                .width(this.imageWidth)
                 .objectFit(ImageFit.Contain)
             }
             .height(55)
@@ -64,7 +66,7 @@ export struct DeviceDialog {
 
       Button() {
         Text($r('app.string.cancel'))
-          .width('90%')
+          .width(this.listWidth)
           .fontSize(21)
           .fontColor('#0D9FFB')
           .textAlign(TextAlign.Center)
@@ -81,5 +83,9 @@ export struct DeviceDialog {
     .padding({ left: 32, right: 32, top: 13, bottom: 33 })
     .backgroundColor(Color.White)
     .border({ color: Color.White, radius: 20 })
+    .onAreaChange((oldArea: Area, newArea: Area) => {
+      this.listWidth = (newArea.width) as number * 0.5 // percentage
+      this.imageWidth = (newArea.width) as number * 0.1
+    })
   }
 }
