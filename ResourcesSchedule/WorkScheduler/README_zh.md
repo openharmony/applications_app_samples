@@ -4,7 +4,7 @@
 
 本示例展示了延迟任务注册、取消能力的使用，使用**workScheduler**接口实现一个延迟任务调度。 
 
-本示例使用[延迟任务调度接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-workScheduler.md)，让开发者在开发应用时，通过调用延迟任务注册接口，注册对实时性要求不高的延迟任务，该任务默认由系统安排，在系统空闲时根据性能、功耗、热等情况进行调度执行。
+本示例使用[延迟任务调度接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md)，让开发者在开发应用时，通过调用延迟任务注册接口，注册对实时性要求不高的延迟任务，该任务默认由系统安排，在系统空闲时根据性能、功耗、热等情况进行调度执行。
 
 使用说明：
 
