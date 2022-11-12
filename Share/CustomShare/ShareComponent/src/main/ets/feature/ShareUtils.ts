@@ -15,6 +15,7 @@
 
 import prompt from '@ohos.prompt'
 import fileio from '@ohos.fileio'
+import display from '@ohos.display'
 import screenshot from '@ohos.screenshot'
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
@@ -131,18 +132,22 @@ export class ShareUtils {
 
   async getScreen(isLand: boolean, contextCaller) {
     let data: image.PixelMap
+
     let screenShotHeight: number
     let screenShotWeight: number
     let fdImg: number
     try {
       // 截屏图片
+      let defaultDisplay = await display.getDefaultDisplay()
       Logger.info(TAG, `getScreen,isFullScreen`)
-      screenShotWeight = ShareConst.QRCODE_SIZE + 1.1 * ShareConst.QRCODE_PADDING
-      screenShotHeight = ShareConst.QRCODE_SIZE + 6 * ShareConst.QRCODE_PADDING
+      screenShotWeight = defaultDisplay.width * 0.6
+      screenShotHeight = defaultDisplay.height * 0.75
+      let screenShotRectLeft = (defaultDisplay.width - screenShotWeight) / 2
+      let screenShotTop = (defaultDisplay.height - screenShotHeight) / 2 + ShareConst.TITLE_HEIGHT
       let smScreenshotOptions: screenshot.ScreenshotOptions = {
         screenRect: { // 表示截取图像的区域，不传值默认为全屏。以下参数仅支持number
-          left: ShareConst.LEFT,
-          top: ShareConst.TOP, // 二维码保存时图片顶部距离屏幕顶部边缘距离
+          left: screenShotRectLeft,
+          top: screenShotTop, // 二维码保存时图片顶部距离屏幕顶部边缘距离
           width: screenShotWeight,
           height: screenShotHeight
         },

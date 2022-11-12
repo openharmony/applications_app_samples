@@ -33,8 +33,7 @@ export class ShareConst {
   static readonly TOP_NUMBER: number = 300
   static readonly WIDTH: number = 1450
   static readonly HEIGHT: number = 880
-  static readonly QRCODE_SIZE: number = 300 // 生成截图的大小
-  static readonly QRCODE_PADDING: number = 80 // 截图保存时图片边距
+  static readonly TITLE_HEIGHT: number = 50
   static readonly TIMEOUT_NUMBER: number = 60000
   static readonly REQUEST: string = 'http://123.60.114.86:8090/goods/detail?id=1'
   static readonly METHOD: string = 'GET'
