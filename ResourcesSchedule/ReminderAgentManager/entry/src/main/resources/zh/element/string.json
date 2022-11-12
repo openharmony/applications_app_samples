@@ -1,0 +1,152 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "使用闹钟、日历、计时器创建定时提醒"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "SystemCapability.Notification.ReminderAgent"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "后台代理提醒"
+    },
+    {
+      "name": "permission_reason",
+      "value": "允许该应用使用后台代理提醒"
+    },
+    {
+      "name": "permission_vibrate",
+      "value": "允许应用控制马达振动"
+    },
+    {
+      "name": "permission_media",
+      "value": "允许应用读取用户外部存储中的媒体文件信息"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "alarm_clock",
+      "value": "闹钟"
+    },
+    {
+      "name": "alarm_clock_close",
+      "value": "关闭闹钟"
+    },
+    {
+      "name": "alarm_clock_postpone",
+      "value": "推迟闹钟"
+    },
+    {
+      "name": "alarm_clock_reach",
+      "value": "闹钟时间已到"
+    },
+    {
+      "name": "alarm_clock_existence",
+      "value": "闹钟已存在"
+    },
+    {
+      "name": "alarm_clock_one",
+      "value": "一"
+    },
+    {
+      "name": "alarm_clock_two",
+      "value": "二"
+    },
+    {
+      "name": "alarm_clock_three",
+      "value": "三"
+    },
+    {
+      "name": "alarm_clock_four",
+      "value": "四"
+    },
+    {
+      "name": "alarm_clock_five",
+      "value": "五"
+    },
+    {
+      "name": "alarm_clock_six",
+      "value": "六"
+    },
+    {
+      "name": "alarm_clock_seven",
+      "value": "七"
+    },
+    {
+      "name": "alarm_clock_remind_day",
+      "value": "设置提醒天数"
+    },
+    {
+      "name": "alarm_clock_snooze",
+      "value": "设置间隔次数"
+    },
+    {
+      "name": "alarm_clock_interval",
+      "value": "设置间隔时长"
+    },
+    {
+      "name": "calendar",
+      "value": "日历"
+    },
+    {
+      "name": "calendar_close",
+      "value": "关闭日历提醒"
+    },
+    {
+      "name": "calendar_reach",
+      "value": "日历提醒时间到了"
+    },
+    {
+      "name": "calendar_existence",
+      "value": "日历提醒已存在"
+    },
+    {
+      "name": "calendar_time",
+      "value": "设置提醒时间"
+    },
+    {
+      "name": "timer",
+      "value": "计时器"
+    },
+    {
+      "name": "countdown_close",
+      "value": "计时器已结束"
+    },
+    {
+      "name": "countdown_hour",
+      "value": "时"
+    },
+    {
+      "name": "countdown_minute",
+      "value": "分"
+    },
+    {
+      "name": "countdown_second",
+      "value": "秒"
+    },
+    {
+      "name": "is_vibrator",
+      "value": "是否设置震动"
+    },
+    {
+      "name": "setting_ringtone",
+      "value": "设置铃声"
+    }
+  ]
+}
