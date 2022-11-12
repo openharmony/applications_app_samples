@@ -21,6 +21,7 @@ struct Index {
   build() {
     Column() {
       Text(this.message)
+        .height('100%')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }

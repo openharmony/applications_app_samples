@@ -142,7 +142,7 @@
     },
     {
       "name": "off",
-      "value": "注消观察者"
+      "value": "注销观察者"
     },
     {
       "name": "get_type",
@@ -178,7 +178,7 @@
     },
     {
       "name": "start_ability",
-      "value": "启动一个ability"
+      "value": "启动Ability"
     },
     {
       "name": "acquire_data_ability_helper",
@@ -194,7 +194,7 @@
     },
     {
       "name": "terminate_self",
-      "value": "销毁ability"
+      "value": "销毁Ability"
     },
     {
       "name": "get_window",
@@ -210,7 +210,7 @@
     },
     {
       "name": "disconnect_ability",
-      "value": "断开Ability"
+      "value": "断开连接Ability"
     },
     {
       "name": "connect_success",
@@ -235,6 +235,26 @@
     {
       "name": "call_fail",
       "value": "调用失败"
+    },
+    {
+      "name": "start_ability_success",
+      "value": "启动Ability成功"
+    },
+    {
+      "name": "connect_ability_success",
+      "value": "连接Ability成功"
+    },
+    {
+      "name": "disconnect_ability_success",
+      "value": "断开连接Ability成功"
+    },
+    {
+      "name": "acquire_data_ability_helper_success",
+      "value": "获取DataAbilityHelper成功"
+    },
+    {
+      "name": "terminate_self_success",
+      "value": "销毁Ability成功"
     }
   ]
 }

@@ -22,7 +22,7 @@ import DataAbilityHelper from '../feature/DataAbilityHelper'
 @Entry
 @Component
 struct DataPage {
-  @State books: Array<BookModel> = []
+  @State books: Array<BookModel> = [new BookModel(1, 'book111', 'indedefef')]
   private dialogController: CustomDialogController = null
 
   build() {

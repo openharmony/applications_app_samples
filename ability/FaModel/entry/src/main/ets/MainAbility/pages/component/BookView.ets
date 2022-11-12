@@ -34,12 +34,12 @@ export struct BookView {
         if (this.book) {
           Text(this.book.name)
             .fontColor(Color.Black)
-            .fontSize(22)
+            .fontSize(18)
             .margin({ top: 14 })
             .fontWeight(FontWeight.Bold)
           Text(this.book.introduction)
             .fontColor(Color.Grey)
-            .fontSize(20)
+            .fontSize(18)
             .margin({ top: 10 })
         }
       }

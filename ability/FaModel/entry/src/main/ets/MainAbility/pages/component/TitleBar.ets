@@ -29,14 +29,14 @@ export struct TitleBar {
       Image($r('app.media.back'))
         .width(32)
         .height(32)
-        .margin({ left: 32, right: 32 })
+        .margin({ left: 26 })
         .onClick(() => {
           router.back()
         })
 
       Text($r('app.string.title'))
         .fontColor(Color.Black)
-        .fontSize(30)
+        .fontSize(24)
         .fontWeight(500)
         .layoutWeight(1)
 
@@ -47,7 +47,7 @@ export struct TitleBar {
       .width(40)
       .height(40)
       .layoutWeight(1)
-      .margin({ left: 60 })
+      .margin({ left: 70 })
       .backgroundColor('#f1f3f5')
       .onClick(() => {
         this.heard()
@@ -55,7 +55,6 @@ export struct TitleBar {
     }
     .height('8%')
     .width('100%')
-    .padding({ left: 16, right: 16 })
   }
 
   async heard() {
