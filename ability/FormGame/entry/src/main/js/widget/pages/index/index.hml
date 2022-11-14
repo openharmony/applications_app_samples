@@ -1,0 +1,52 @@
+<div>
+  <div id="wrapper">
+    <div id="box_title">
+      <div id="box_line_title">
+        <div id="one_box_title">
+          <text id="word_title">成</text>
+        </div>
+        <div id="one_box_title">
+          <text id="word_title">语</text>
+        </div>
+        <div id="one_box_title">
+          <text id="word_title">接</text>
+        </div>
+        <div id="one_box_title">
+          <text id="word_title">龙</text>
+        </div>
+      </div>
+    </div>
+    <div id="box_rect">
+      <div id="box_line">
+        <div id="one_box" onclick="sourceEvent1" click-effect="spring-small">
+          <text id="word_s">{{source_1}}</text>
+        </div>
+        <div id="one_box" onclick="sourceEvent2" click-effect="spring-small">
+          <text id="word_s">{{source_2}}</text>
+        </div>
+      </div>
+      <div id="box_line">
+        <div id="one_box" onclick="sourceEvent3" click-effect="spring-small">
+          <text id="word_s">{{source_3}}</text>
+        </div>
+        <div id="one_box" onclick="sourceEvent4" click-effect="spring-small">
+          <text id="word_s">{{source_4}}</text>
+        </div>
+      </div>
+    </div>
+    <div id="box_line_t">
+      <div id="one_box_t" onclick="targetEvent1" click-effect="spring-small">
+        <text id="word_t">{{target_1}}</text>
+      </div>
+      <div id="one_box_t" onclick="targetEvent2" click-effect="spring-small">
+        <text id="word_t">{{target_2}}</text>
+      </div>
+      <div id="one_box_t" onclick="targetEvent3" click-effect="spring-small">
+        <text id="word_t">{{target_3}}</text>
+      </div>
+      <div id="one_box_t" onclick="targetEvent4" click-effect="spring-small">
+        <text id="word_t">{{target_4}}</text>
+      </div>
+    </div>
+  </div>
+</div>
