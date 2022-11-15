@@ -27,7 +27,7 @@ const CameraMode = {
 struct CameraPage {
   private tag: string = 'CameraPage'
   private mXComponentController: XComponentController = new XComponentController()
-  private surfaceId: number = -1
+  private surfaceId: string = '-1'
   private cameraService: CameraService = new CameraService(getContext(this))
   @State imgThumbnail: string = ''
   @State videoThumbnail: Resource | undefined = undefined

@@ -123,7 +123,7 @@ export default class CameraService {
     }
   }
 
-  async initCamera(surfaceId: number) {
+  async initCamera(surfaceId: string) {
     Logger.info(this.tag, 'initCamera')
     if (this.curMode === CameraMode.MODE_VIDEO) {
       await this.releaseCamera()

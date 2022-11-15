@@ -33,7 +33,7 @@ struct Play {
   private intervalId: number = undefined
   private mXComponentController: XComponentController = new XComponentController()
   private videoPlayer: VideoPlayerUtils = new VideoPlayerUtils()
-  private surfaceId: number = 0
+  private surfaceId: string = ''
   private mediaUtil: MediaUtils = new MediaUtils(getContext(this) as any)
   @State currentTime: number = 0
   @State displayName: string = ''
