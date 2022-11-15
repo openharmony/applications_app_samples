@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import want from '@ohos.application.Want';
+import context from '@ohos.application.context'
 import Logger from '../util/Logger'
 
 const TAG: string = 'Index'
@@ -22,14 +22,10 @@ const BUNDLE_NAME: string = 'com.samples.multihap'
 const AUDIO_ABILITY_NAME: string = "AudioAbility"
 const VIDEO_ABILITY_NAME: string = "VideoAbility"
 
-interface AbilityContext {
-  startAbility(want): Promise<void>
-}
-
 @Entry
 @Component
 struct Index {
-  private context: AbilityContext = null
+  private context: context.AbilityContext = null
 
   build() {
     Row() {
@@ -68,6 +64,6 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as AbilityContext
+    this.context = getContext(this) as context.AbilityContext
   }
 }
