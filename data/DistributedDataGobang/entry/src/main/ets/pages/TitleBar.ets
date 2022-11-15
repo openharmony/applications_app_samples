@@ -16,8 +16,8 @@
 import deviceManager from '@ohos.distributedHardware.deviceManager'
 import Logger from '../util/Logger'
 import { GobangConst } from '../util/GobangConst'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
-import { DeviceDialog } from './Devicedialog'
+import { RemoteDeviceModel } from '../Model/RemoteDeviceModel'
+import { DeviceDialog } from './DeviceDialog'
 
 const TAG: string = 'TitleBar'
 

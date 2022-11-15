@@ -15,10 +15,10 @@
 
 import Logger from '../util/Logger'
 import { GobangConst } from '../util/GobangConst'
-import { TitleBar } from './Titlebar'
-import { KvStoreModel } from '../model/KvStoreModel'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
-import { DistributedDataModel } from '../model/DistributedDataModel'
+import { TitleBar } from './TitleBar'
+import { KvStoreModel } from '../Model/KvStoreModel'
+import { RemoteDeviceModel } from '../Model/RemoteDeviceModel'
+import { DistributedDataModel } from '../Model/DistributedDataModel'
 
 const TAG: string = 'Index'
 
