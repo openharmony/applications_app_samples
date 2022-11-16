@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "screenshot"
+    },
+    {
+      "name": "shot_full_screen",
+      "value": "截屏"
+    },
+    {
+      "name": "shot_part_screen",
+      "value": "局部截屏"
+    },
+    {
+      "name": "shot_screen",
+      "value": "屏幕截图"
+    },
+    {
+      "name": "private_window",
+      "value": "隐私窗口"
+    },
+    {
+      "name": "private_toast",
+      "value": "隐私窗口不能截屏"
+    },
+    {
+      "name": "finish",
+      "value": "完成"
+    }
+  ]
+}
