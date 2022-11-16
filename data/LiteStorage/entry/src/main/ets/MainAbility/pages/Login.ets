@@ -14,8 +14,8 @@
  */
 
 import { Goods } from '../common/goods'
-import {MyDataSource} from '../util/DataSource'
-import { Good, deleteGood, clearGoodShop, GoodInit, getShopCartFromStorage, getShopCart } from '../model/product'
+import { MyDataSource } from '../util/DataSource'
+import { clearGoodShop, deleteGood, getShopCart, getShopCartFromStorage, Good, GoodInit } from '../model/product'
 
 @CustomDialog
 struct CartDialog {
@@ -92,7 +92,7 @@ struct CartDialog {
             Row() {
               if (this.editFlag) {
                 Image($r('app.media.delete'))
-                  .key('cartDel' + (index+1))
+                  .key('cartDel' + (index + 1))
                   .width(20)
                   .height(20)
                   .margin({ left: 20 })
@@ -186,7 +186,7 @@ struct Shopping {
           position: 0,
           style: { color: Color.Black, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
         }) {
-          Button('message') {
+          Button({ type: ButtonType.Normal, stateEffect: true }) {
             Image(this.cartNum >= 5 ? $r('app.media.cartfull') : $r('app.media.cartnone')).width(40).height(40)
           }
           .key('cart')

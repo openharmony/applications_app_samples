@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router'
-import systemParameter from '@ohos.systemParameter';
+import systemParameter from '@ohos.systemparameter';
 
 let self = null
 
