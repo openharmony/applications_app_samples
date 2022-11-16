@@ -37,7 +37,7 @@ struct Player {
   private mediaList: Array<mediaLibrary.FileAsset> = []
   private videoPlayer: VideoPlayerUtils = new VideoPlayerUtils()
   private mXComponentController: XComponentController = new XComponentController()
-  private surfaceId: number = 0
+  private surfaceId: string = ''
   private mediaUtil: MediaUtils = new MediaUtils(getContext(this) as any)
   @State currentTime: number = 0
   @State displayName: string = router.getParams()['displayName']
