@@ -29,7 +29,6 @@
   - [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API8）（Full SDK）](ability/JsDistributedMusicPlayer)
   - [`DataAbility`：DataAbility的创建与访问（eTS）（API8）](ability/DataAbility)
   - [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](ability/ServiceAbility)
-  - [`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）（Full SDK）](ability/StageCallAbility)
   - [`FormAbility`：FA模型卡片（eTS）（API8）](ability/FormAbility)
   - [`FormExtAbility`：Stage模型卡片（eTS）（API9）](ability/FormExtAbility)
   - [`FormLauncher`：卡片使用方（eTS）（API8）（Full SDK）](ability/FormLauncher)
@@ -45,7 +44,6 @@
 - common
   - [`Clock`：时钟（JS）（API8）](common/Clock)
   - [`DistributeCalc`：分布式计算器（JS）（API8）（Full SDK）](common/DistributeCalc)
-  - [`Notification`：通知（eTS）（API8）](common/Notification)
   - [`ResourceManager`：资源管理器（eTS）（API8）](common/ResourceManager)
   - [`Runninglock`：运行锁（eTS）（API8）](common/Runninglock)
   - [`JsHelloWorld`：你好世界（JS）（API8）](common/JsHelloWorld)
