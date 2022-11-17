@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
-@Preview
+import { ProductDataModel } from '../../model/GoodsModel'
+import { PRODUCT_DATA } from '../../mock/ProductsData'
+
 @Component
 export struct Cart {
   @StorageProp('curBp') curBp: string = 'sm'
+  @Link shoppingCartGoodsListToCart: ProductDataModel[]
 
   build() {
     Column() {
@@ -38,58 +41,60 @@ export struct Cart {
       }
       .width('100%')
 
-      Row() {
-        Toggle({ type: ToggleType.Checkbox })
-          .width(20)
-          .selectedColor($r('app.color.red'))
-          .aspectRatio(1)
-        Image($r('app.media.product005'))
-          .width(70)
-          .height(80)
-          .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 16 })
+      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], item => {
+        Row() {
+          Toggle({ type: ToggleType.Checkbox })
+            .width(20)
+            .selectedColor($r('app.color.red'))
+            .aspectRatio(1)
+          Image(PRODUCT_DATA[item].uri)
+            .width(70)
+            .height(80)
+            .objectFit(ImageFit.Contain)
+            .margin({ left: 12, right: 16 })
 
-        Column() {
-          Text($r('app.string.phone_name'))
-            .fontSize(14)
-            .fontWeight(400)
-            .width('100%')
+          Column() {
+            Text(PRODUCT_DATA[item].title)
+              .fontSize(14)
+              .fontWeight(400)
+              .width('100%')
 
-          Text($r('app.string.phone_size'))
-            .width('100%')
-            .fontSize(12)
-            .opacity(0.6)
-            .margin({ top: 12 })
+            Text(PRODUCT_DATA[item].info)
+              .width('100%')
+              .fontSize(12)
+              .opacity(0.6)
+              .margin({ top: 12 })
 
-          Row() {
-            Text($r('app.string.phone_price'))
-              .fontSize(16)
-              .fontColor($r('app.color.red2'))
-              .fontWeight(FontWeight.Medium)
-            Blank()
             Row() {
-              Image($r('app.media.reduce'))
-                .width(24)
-                .height(24)
-                .objectFit(ImageFit.Contain)
-              Text(`${1}`)
-                .margin({ left: 10, right: 10 })
-                .fontSize(12)
-              Image($r('app.media.add'))
-                .width(24)
-                .height(24)
-                .objectFit(ImageFit.Contain)
+              Text(PRODUCT_DATA[item].price)
+                .fontSize(16)
+                .fontColor($r('app.color.red2'))
+                .fontWeight(FontWeight.Medium)
+              Blank()
+              Row() {
+                Image($r('app.media.reduce'))
+                  .width(24)
+                  .height(24)
+                  .objectFit(ImageFit.Contain)
+                Text(`${1}`)
+                  .margin({ left: 10, right: 10 })
+                  .fontSize(12)
+                Image($r('app.media.add'))
+                  .width(24)
+                  .height(24)
+                  .objectFit(ImageFit.Contain)
+              }
+              .margin({ right: 12 })
             }
-            .margin({ right: 12 })
+            .width('100%')
+            .margin({ top: 12 })
           }
-          .width('100%')
-          .margin({ top: 12 })
+          .flexGrow(1)
+          .flexShrink(1)
+          .margin({ top: 20 })
         }
-        .flexGrow(1)
-        .flexShrink(1)
-        .margin({ top: 20 })
-      }
-      .width('100%')
+        .width('100%')
+      })
     }
     .width('100%')
     .backgroundColor($r('app.color.white'))

@@ -27,3 +27,14 @@ export class CommentModel {
     this.text = text
   }
 }
+
+export class ProductDataModel {
+  constructor(public id: number, public uri: Resource, public title: Resource, public info: Resource, public labels: Resource, public price: Resource) {
+    this.id = id
+    this.uri = uri
+    this.info = info
+    this.title = title
+    this.labels = labels
+    this.price = price
+  }
+}

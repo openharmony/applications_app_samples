@@ -1,6 +1,10 @@
 {
   "string": [
     {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
       "name": "broadcast",
       "value": "直播中"
     },
@@ -15,6 +19,10 @@
     {
       "name": "collection",
       "value": "收藏"
+    },
+    {
+      "name": "shopping",
+      "value": "桔子购物"
     },
     {
       "name": "price_reduction_notice",
@@ -123,6 +131,10 @@
     {
       "name": "reduction_notice",
       "value": "您订阅的产品已降价，请前往查看。"
+    },
+    {
+      "name": "shopping_advertising",
+      "value": "低价为先, 为您省钱"
     }
   ]
 }

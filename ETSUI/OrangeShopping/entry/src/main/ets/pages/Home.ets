@@ -17,6 +17,8 @@ import mediaquery from '@ohos.mediaquery'
 import window from '@ohos.window'
 import { NavigationHomePage } from '@ohos/navigation-component'
 import { UpdateDialog } from '@ohos/updatedialog'
+import { EventsDialog } from '@ohos/details-page-component'
+import { EmitterClass } from '@ohos/emitter'
 
 @Entry
 @Component
@@ -27,6 +29,14 @@ struct HomePage {
   private smListener: any
   private mdListener: any
   private lgListener: any
+  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: { data: { id: number } }[] = []
+  private emitterClass: EmitterClass = new EmitterClass()
+
+  EventsDialogController: CustomDialogController = new CustomDialogController({
+    builder: EventsDialog(),
+    customStyle: true
+  })
+
   UpdateDialogController: CustomDialogController = new CustomDialogController({
     builder: UpdateDialog(),
     customStyle: true
@@ -39,6 +49,18 @@ struct HomePage {
   }
 
   aboutToAppear() {
+    if(AppStorage.Get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0){
+      this.UpdateDialogController.open()
+    }
+    this.emitterClass.showEventsDialog(()=>{
+      if(AppStorage.Get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0){
+        this.EventsDialogController.open()
+      }
+    })
+    this.emitterClass.setShoppingCartGoodsList((eventData)=>{
+      this.shoppingCartGoodsList.push(eventData.data.id)
+      AppStorage.SetOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList)
+    })
     this.smListener = mediaquery.matchMediaSync('(320vp<=width<520vp)')
     this.smListener.on('change', this.isBreakpointSM)
     this.mdListener = mediaquery.matchMediaSync('(520vp<=width<840vp)')
@@ -48,7 +70,6 @@ struct HomePage {
     window.getTopWindow({ stageMode: true }).then(result => {
       result.setFullScreen(false)
     })
-    this.UpdateDialogController.open()
   }
 
   aboutToDisappear() {

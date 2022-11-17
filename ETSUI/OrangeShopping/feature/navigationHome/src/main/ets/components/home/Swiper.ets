@@ -22,13 +22,11 @@ export struct SwiperComponent {
   build() {
     Swiper() {
       ForEach(INDEX_DATA, item => {
-        Navigator() {
-          Image(item.img)
-            .objectFit(ImageFit.Cover)
-            .width('100%')
-            .height('100%')
-            .borderRadius(16)
-        }
+        Image(item.img)
+          .objectFit(ImageFit.Cover)
+          .width('100%')
+          .height('100%')
+          .borderRadius(16)
       })
     }
     .padding({ left: 12, right: 12 })
