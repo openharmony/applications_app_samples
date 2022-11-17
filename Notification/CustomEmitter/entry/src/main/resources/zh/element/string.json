@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "事件通知"
+    },
+    {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "事件通知"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "事件通知"
+    },
+    {
+      "name": "guess_you_like",
+      "value": "猜你喜欢"
+    },
+    {
+      "name": "shop_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "depicted",
+      "value": "和描述相符很喜欢，做工细致，颜色好看，原装正品"
+    },
+    {
+      "name": "shopping",
+      "value": "桔子购物"
+    },
+    {
+      "name": "shopping_advertising",
+      "value": "低价为先, 为您省钱"
+    },
+    {
+      "name": "shopping_self_support",
+      "value": "商城自营"
+    },
+    {
+      "name": "tab_title_data_home",
+      "value": "首页"
+    },
+    {
+      "name": "tab_title_data_new_product",
+      "value": "新品"
+    },
+    {
+      "name": "tab_title_data_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "tab_title_data_mine",
+      "value": "我的"
+    },
+    {
+      "name": "product_data_title_device",
+      "value": "XX设备 新品优惠！"
+    },
+    {
+      "name": "product_data_label_new_product",
+      "value": "新品"
+    },
+    {
+      "name": "product_data_price",
+      "value": "￥4122"
+    },
+    {
+      "name": "broadcast",
+      "value": "直播中"
+    },
+    {
+      "name": "selected",
+      "value": "已选"
+    },
+    {
+      "name": "home_page",
+      "value": "首页"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "add_to_cart",
+      "value": "加入购物车"
+    },
+    {
+      "name": "buy_now",
+      "value": "立即购买"
+    },
+    {
+      "name": "evaluate",
+      "value": "用户评价 (2万+)"
+    },
+    {
+      "name": "ninety_nine_percent",
+      "value": "99%"
+    },
+    {
+      "name": "praise",
+      "value": "好评"
+    },
+    {
+      "name": "select_configuration",
+      "value": "仲夏紫.8GB+128GB.4G全网通.官网标配.x1 4G全网通官网标配.x1 "
+    },
+    {
+      "name": "address",
+      "value": "请选择您的收获地址"
+    },
+    {
+      "name": "recommend",
+      "value": "推荐一个好物给你请查收"
+    },
+    {
+      "name": "commodity",
+      "value": "HUAWEI P50 Pocket 超光谱摄影系统 创新双屏操作体验 120Hz高刷 8GB+256GB"
+    }
+  ]
+}
