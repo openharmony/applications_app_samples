@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "dataUser_desc",
+      "value": "联系人助手"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "联系人助手"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "联系人助手"
+    },
+    {
+      "name": "title",
+      "value": "联系人助手"
+    },
+    {
+      "name": "contact",
+      "value": "联系人"
+    },
+    {
+      "name": "settings",
+      "value": "设置"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "delete_alert_message",
+      "value": "是否删除此联系人?"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    },
+    {
+      "name": "sync_contacts",
+      "value": "同步联系人"
+    },
+    {
+      "name": "local_contacts_empty_tips",
+      "value": "本地联系人为空，正在从联系人应用同步数据。"
+    },
+    {
+      "name": "contacts_data_empty_tips",
+      "value": "The contact data is also empty, and you can add contacts in this app or the Contacts app."
+    },
+    {
+      "name": "yes",
+      "value": "确定"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "deduplication",
+      "value": "去重"
+    },
+    {
+      "name": "overwrite_contact",
+      "value": "联系人助手覆盖联系人"
+    },
+    {
+      "name": "overwrite_contact_assistant",
+      "value": "联系人覆盖联系人助手"
+    },
+    {
+      "name": "synchronization_policy",
+      "value": "同步策略"
+    },
+    {
+      "name": "deduplication_instruction",
+      "value": "联系人助手和联系人数据中有姓名相同的联系人时，合并重复的联系人。"
+    },
+    {
+      "name": "overwrite_contact_instruction",
+      "value": "联系人中的数据会被联系人助手全部覆盖。"
+    },
+    {
+      "name": "overwrite_contact_assistant_instruction",
+      "value": "联系人助手中的数据会被联系人全部覆盖。"
+    },
+    {
+      "name": "update_contact_introduction",
+      "value": "修改联系人时会同步修改到联系人中"
+    },
+    {
+      "name": "empty_tips",
+      "value": "姓名和电话不能为空"
+    },
+    {
+      "name": "phone_length_tips",
+      "value": "手机号长度不能小于8位"
+    },
+    {
+      "name": "create_contact",
+      "value": "创建联系人"
+    },
+    {
+      "name": "edit_contact",
+      "value": "编辑联系人"
+    }
+  ]
+}
