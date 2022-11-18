@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "save_to_phone",
+      "value": "Save to phone"
+    },
+    {
+      "name": "contact_name",
+      "value": "name"
+    },
+    {
+      "name": "contact_phone",
+      "value": "phone"
+    },
+    {
+      "name": "contact_address",
+      "value": "address"
+    },
+    {
+      "name": "contact_email",
+      "value": "email"
+    },
+    {
+      "name": "contact_remark",
+      "value": "note"
+    },
+    {
+      "name": "default",
+      "value": "default"
+    },
+    {
+      "name": "phone_ring",
+      "value": "phone ringing"
+    }
+  ]
+}
