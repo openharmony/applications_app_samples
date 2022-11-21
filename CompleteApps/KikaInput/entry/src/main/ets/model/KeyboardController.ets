@@ -70,17 +70,26 @@ export class KeyboardController {
       var keyHeightRate = 0.43;
       AppStorage.SetOrCreate<number>('windowWidth', dis.width)
       AppStorage.SetOrCreate<number>('windowHeight', dis.height)
+      if (dis.width > dis.height) {
+        AppStorage.SetOrCreate('isLandscape', true)
+      } else {
+        AppStorage.SetOrCreate('isLandscape', false)
+      }
       if (dWidth == 1080 && dHeight == 2376) {
         navigationbar_height = 105
         keyHeightRate = 35 / 99
       } else if(dWidth == 720 && dHeight == 1280) {
         navigationbar_height = 72
+        AppStorage.SetOrCreate('isRkDevice', true)
       } else if (dWidth == 2376 && dHeight == 1080) {
         navigationbar_height = 90
         keyHeightRate = 0.63
-      }else if (dWidth == 2560 && dHeight == 1600) {
+      } else if (dWidth == 2560 && dHeight == 1600) {
         navigationbar_height = 88
         keyHeightRate = 0.5
+      } else if (dWidth == 1600 && dHeight == 2560) {
+        navigationbar_height = 88
+        keyHeightRate = 0.34
       }
       var keyHeight = dHeight * keyHeightRate;
       this.barPosition = dHeight - keyHeight - navigationbar_height
@@ -113,6 +122,11 @@ export class KeyboardController {
       var keyHeightRate = 0.47;
       AppStorage.SetOrCreate<number>('windowWidth', dis.width)
       AppStorage.SetOrCreate<number>('windowHeight', dis.height)
+      if (dis.width > dis.height) {
+        AppStorage.Set('isLandscape', true)
+      } else {
+        AppStorage.Set('isLandscape', false)
+      }
       if (dWidth == 1080 && dHeight == 2376) {
         navigationbar_height = 105
         keyHeightRate = 35 / 99
@@ -121,9 +135,12 @@ export class KeyboardController {
       } else if (dWidth == 2376 && dHeight == 1080) {
         navigationbar_height = 90
         keyHeightRate = 0.63
-      }else if (dWidth == 2560 && dHeight == 1600) {
+      } else if (dWidth == 2560 && dHeight == 1600) {
         navigationbar_height = 88
         keyHeightRate = 0.5
+      } else if (dWidth == 1600 && dHeight == 2560) {
+        navigationbar_height = 88
+        keyHeightRate = 0.34
       }
       var keyHeight = dHeight * keyHeightRate;
       this.inputHandle.addLog("resizeWindow-dWidth = " + dWidth + ";dHeight = " + dHeight + ";keyboard height = " + keyHeight + ";navibar height = " + navigationbar_height);
@@ -150,11 +167,9 @@ export class KeyboardController {
       this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
-    InputMethodEngine.on('inputStop', (data) => {
-      this.inputHandle.addLog('keyboard inputStop: ' + JSON.stringify(data));
-      if (data == "com.example.kikakeyboard/ServiceExtAbility") {
+    InputMethodEngine.on('inputStop', () => {
+      this.inputHandle.addLog('keyboard inputStop');
         this.onDestroy();
-      }
     });
     InputMethodEngine.on('keyboardShow', () => {
       this.inputHandle.addLog('keyboard show');
@@ -288,6 +303,7 @@ export class KeyboardController {
 
     this.mKeyboardDelegate.off('keyUp');
 
+    AppStorage.staticClear()
     if (isDebug) {
       this.mKeyboardDelegate.off('cursorContextChange');
 
@@ -302,7 +318,6 @@ export class KeyboardController {
       this.getValue('settings.display.navigationbar_status')
     } catch (err) {
       Log.showError(TAG, "get value failed" + err)
-      return
     }
     Log.showInfo(TAG, 'current navigation state is' + this.getValueRes)
     this.inputHandle.addLog('showWindow');
@@ -359,17 +374,29 @@ export class InputHandler {
 
   public hideKeyboardSelf() {
     this.addLog('hideKeyboardSelf')
-    globalThis.mKbController.hideKeyboard();
+    if (globalThis.mKbController != undefined) {
+      globalThis.mKbController.hideKeyboard();
+    } else {
+      this.addLog('hideKeyboardSelf globalThis.mKbController is undefined')
+    }
   }
 
   public sendKeyFunction() {
     this.addLog('sendKeyFunction')
-    globalThis.mTextInputClient.sendKeyFunction(globalThis.enterKeyType);
+    if (globalThis.mTextInputClient != undefined) {
+      globalThis.mTextInputClient.sendKeyFunction(globalThis.enterKeyType);
+    } else {
+      this.addLog('sendKeyFunction globalThis.mTextInputClient is undefined')
+    }
   }
 
   public deleteBackward(length: number) {
     this.addLog('deleteBackward')
-    globalThis.mTextInputClient.deleteBackward(length);
+    if (globalThis.mTextInputClient != undefined) {
+      globalThis.mTextInputClient.deleteBackward(length);
+    } else {
+      this.addLog('deleteBackward globalThis.mTextInputClient is undefined')
+    }
     if (isDebug) {
       this.refreshInfo();
     }
@@ -377,7 +404,11 @@ export class InputHandler {
 
   public deleteForward(length: number) {
     this.addLog('deleteForward')
-    globalThis.mTextInputClient.deleteForward(length);
+    if (globalThis.mTextInputClient != undefined) {
+      globalThis.mTextInputClient.deleteForward(length);
+    } else {
+      this.addLog('deleteForward globalThis.mTextInputClient is undefined')
+    }
     if (isDebug) {
       this.refreshInfo();
     }
@@ -385,7 +416,11 @@ export class InputHandler {
 
   public insertText(text: string) {
     this.addLog('insertText')
-    globalThis.mTextInputClient.insertText(text);
+    if (globalThis.mTextInputClient != undefined) {
+      globalThis.mTextInputClient.insertText(text);
+    } else {
+      this.addLog('insertText globalThis.mTextInputClient is undefined')
+    }
     if (isDebug) {
       this.refreshInfo();
     }
