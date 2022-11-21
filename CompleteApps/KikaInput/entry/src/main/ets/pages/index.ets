@@ -17,13 +17,15 @@ import { keySourceListData, numberSourceListData, symbolSourceListData, keySourc
 import { InputHandler } from '../model/KeyboardController'
 import styleConfiguration from '../common/styleConfiguration'
 import Log from '../model/Log'
+import deviceInfo from '@ohos.deviceInfo'
 
-let inputStyle: any = styleConfiguration.getInputStyle()
+let deviceType = deviceInfo.deviceType
 let TAG: string = 'index->'
 //有大小写的按键组件
 @Component
 struct keyItemNumber {
   private keyValue: keySourceListType
+  @Link inputStyle: any
   @Link upper: number
 
   @Styles pressedStyles() {
@@ -36,25 +38,40 @@ struct keyItemNumber {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text(this.keyValue.title)
-        .fontSize(inputStyle.litterNumberFontSize)
-        .fontColor(0x606060)
-        .fontWeight(FontWeight.Lighter)
-      if (this.upper === 0) {
-        Text(this.keyValue.content)
-          .fontSize(inputStyle.en_fontSize)
-          .fontColor('#000')
-          .fontWeight(FontWeight.Regular)
+      if (this.inputStyle.deviceType == 'phone_landSpace') {
+        Stack({ alignContent: Alignment.TopEnd }) {
+          Text(this.upper === 0 ? this.keyValue.content : this.keyValue.upperContent)
+            .fontSize(this.inputStyle.en_fontSize)
+            .fontColor('#000')
+            .fontWeight(FontWeight.Regular)
+            .width('100%')
+            .height('100%')
+            .textAlign(TextAlign.Center)
+          Text(this.keyValue.title)
+            .fontSize(this.inputStyle.litterNumberFontSize)
+            .fontColor('#000')
+            .fontWeight(FontWeight.Regular)
+            .width('12vp')
+            .height('12vp')
+            .textAlign(TextAlign.Center)
+            .margin({ top: 1, right: 1 })
+        }
+        .width('100%')
+        .height('100%')
       } else {
-        Text(this.keyValue.upperContent)
-          .fontSize(inputStyle.en_fontSize)
+        Text(this.keyValue.title)
+          .fontSize(this.inputStyle.litterNumberFontSize)
+          .fontColor('#606060')
+          .fontWeight(FontWeight.Regular)
+          .margin({ top: 4 })
+        Text(this.upper === 0 ? this.keyValue.content : this.keyValue.upperContent)
+          .fontSize(this.inputStyle.en_fontSize)
           .fontColor('#000')
           .fontWeight(FontWeight.Regular)
       }
     }
     .backgroundColor('#ffffff')
     .borderRadius(4)
-    .padding({ top: '5%', bottom: '5%' })
     .onClick(() => {
       if (this.upper === 0) {
         InputHandler.getInstance().insertText(this.keyValue.content);
@@ -65,8 +82,8 @@ struct keyItemNumber {
         InputHandler.getInstance().insertText(this.keyValue.upperContent);
       }
     })
-    .width(inputStyle.basicButtonWidth)
-    .height(inputStyle.basicButtonHeight)
+    .width(this.inputStyle.basicButtonWidth)
+    .height('100%')
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
     .stateStyles({
       normal: this.normalStyles, pressed: this.pressedStyles
@@ -79,7 +96,7 @@ struct keyItemNumber {
 struct keyItem {
   private keyValue: keySourceListType
   private color: string
-
+  @Link inputStyle: any
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
   }
@@ -91,13 +108,13 @@ struct keyItem {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.keyValue.content)
-        .fontSize(inputStyle.en_fontSize)
-        .fontColor('black')
+        .fontSize(this.inputStyle.symbol_fontSize)
+        .fontColor('#000')
     }
     .backgroundColor('#fff')
     .borderRadius(4)
-    .width(inputStyle.basicButtonWidth)
-    .height(inputStyle.basicButtonHeight)
+    .width(this.inputStyle.basicButtonWidth)
+    .height('100%')
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
     .padding({ top: '5%', bottom: '5%' })
     .onClick(() => {
@@ -113,6 +130,7 @@ struct keyItem {
 @Component
 struct keyItemGray {
   private keyValue: string
+  @Link inputStyle: any
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -125,7 +143,7 @@ struct keyItemGray {
 
   build() {
     Stack() {
-      Text(this.keyValue).fontSize(inputStyle.switchNumberFontSize).fontColor('black')
+      Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
     }
     .backgroundColor('#a8abb7')
     .borderRadius(4)
@@ -138,8 +156,8 @@ struct keyItemGray {
         this.menuType = 0
       }
     })
-    .height(inputStyle.basicButtonHeight)
-    .width(inputStyle.switchButtonWidth)
+    .height('100%')
+    .width(this.inputStyle.switchButtonWidth)
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
     .stateStyles({
       normal: this.normalStyles, pressed: this.pressedStyles
@@ -150,6 +168,7 @@ struct keyItemGray {
 //删除组件
 @Component
 struct deleteItem {
+  @Link inputStyle: any
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
   }
@@ -161,16 +180,16 @@ struct deleteItem {
   build() {
     Stack() {
       Image($rawfile('delete.svg'))
-        .width(inputStyle.featurePicSize)
-        .height(inputStyle.featurePicSize)
+        .width(this.inputStyle.featurePicSize)
+        .height(this.inputStyle.featurePicSize)
     }
     .backgroundColor('#a8abb7')
     .borderRadius(4)
     .onClick(() => {
       InputHandler.getInstance().deleteForward(1);
     })
-    .width(inputStyle.switchButtonWidth)
-    .height(inputStyle.basicButtonHeight)
+    .width(this.inputStyle.switchButtonWidth)
+    .height('100%')
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
     .stateStyles({
       normal: this.normalStyles, pressed: this.pressedStyles
@@ -182,7 +201,7 @@ struct deleteItem {
 @Component
 struct returnItem {
   private returnWidth: any
-
+  @Link inputStyle: any
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
   }
@@ -194,13 +213,13 @@ struct returnItem {
   build() {
     Stack() {
       Image($rawfile('return.svg'))
-        .width(inputStyle.returnPicSize)
-        .height(inputStyle.returnPicSize)
+        .width(this.inputStyle.returnPicSize)
+        .height(this.inputStyle.returnPicSize)
     }
     .backgroundColor('#a8abb7')
     .width(this.returnWidth)
     .borderRadius(4)
-    .height(inputStyle.basicButtonHeight)
+    .height('100%')
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
     .onClick(() => {
       InputHandler.getInstance().sendKeyFunction();
@@ -215,7 +234,7 @@ struct returnItem {
 @Component
 struct spaceItem {
   private spaceWith: any
-
+  @Link inputStyle: any
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
   }
@@ -227,13 +246,13 @@ struct spaceItem {
   build() {
     Stack() {
       Text('space')
-        .fontSize(inputStyle.en_fontSize)
+        .fontSize(this.inputStyle.symbol_fontSize)
         .fontColor('black')
     }
     .backgroundColor('#ffffff')
     .width(this.spaceWith)
     .borderRadius(4)
-    .height(inputStyle.basicButtonHeight)
+    .height('100%')
     .onClick(() => {
       InputHandler.getInstance().insertText(' ');
     })
@@ -248,7 +267,8 @@ struct spaceItem {
 @Component
 struct keyMenu {
   private keyList: keySourceListType[]
-  @State public upper: number= 0
+  @Link inputStyle: any
+  @State public upper: number = 0
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -263,32 +283,32 @@ struct keyMenu {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.keyList.slice(0, 10), (item: keySourceListType) => {
-          keyItemNumber({ keyValue: item, upper: $upper })
+          keyItemNumber({ keyValue: item, upper: $upper, inputStyle: $inputStyle })
         }, (item: keySourceListType) => item.content)
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Stack() {
         }.width('4%').height(0)
 
         ForEach(this.keyList.slice(10, 19), (item: keySourceListType) => {
-          keyItemNumber({ keyValue: item, upper: $upper })
+          keyItemNumber({ keyValue: item, upper: $upper, inputStyle: $inputStyle })
         }, (item: keySourceListType) => item.content)
         Stack() {
         }.width('4%').height(0)
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Stack() {
           Image($rawfile(this.upper === 1 ? 'shift light.svg' : this.upper === 2 ? 'shift light long.svg' : 'shift.svg'))
-            .width(inputStyle.featurePicSize)
-            .height(inputStyle.featurePicSize)
+            .width(this.inputStyle.featurePicSize)
+            .height(this.inputStyle.featurePicSize)
         }
         .backgroundColor('#a8abb7')
         .borderRadius(4)
@@ -301,8 +321,8 @@ struct keyMenu {
             this.upper = 0
           }
         })
-        .height(inputStyle.basicButtonHeight)
-        .width(inputStyle.switchButtonWidth)
+        .height('100%')
+        .width(this.inputStyle.switchButtonWidth)
         .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
         .stateStyles({
           normal: this.normalStyles, pressed: this.pressedStyles
@@ -310,32 +330,40 @@ struct keyMenu {
 
 
         ForEach(this.keyList.slice(19), (item: keySourceListType) => {
-          keyItemNumber({ keyValue: item, upper: $upper })
+          keyItemNumber({ keyValue: item, upper: $upper, inputStyle: $inputStyle })
         }, (item: keySourceListType) => item.content)
-        deleteItem()
+        deleteItem({ inputStyle: $inputStyle })
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        keyItemGray({ keyValue: '?123', menuType: $menuType })
-        keyItem({ keyValue: { content: ',', title: ',', upperContent: ',' }, color: '#a8abb7' })
-        spaceItem({ spaceWith: inputStyle.spaceButtonWidth_1 })
+        keyItemGray({ keyValue: '?123', menuType: $menuType, inputStyle: $inputStyle })
+        keyItem({
+          keyValue: { content: ',', title: ',', upperContent: ',' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
+        })
+        spaceItem({ spaceWith: this.inputStyle.spaceButtonWidth_1, inputStyle: $inputStyle })
 
-        keyItem({ keyValue: { content: '.', title: '.', upperContent: '.' }, color: '#a8abb7' })
-        returnItem({ returnWidth: inputStyle.returnButtonWidthType_1 })
+        keyItem({
+          keyValue: { content: '.', title: '.', upperContent: '.' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
+        })
+        returnItem({ returnWidth: this.inputStyle.returnButtonWidthType_1, inputStyle: $inputStyle })
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
     }
     .width('100%')
     .height('100%')
     .padding({
-      left: inputStyle.paddingLeftRight,
-      right: inputStyle.paddingLeftRight
+      left: this.inputStyle.paddingLeftRight,
+      right: this.inputStyle.paddingLeftRight
     })
   }
 }
@@ -344,6 +372,7 @@ struct keyMenu {
 @Component
 struct numberMenu {
   private numberList: sourceListType[]
+  @Link inputStyle: any
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -360,68 +389,71 @@ struct numberMenu {
         ForEach(this.numberList.slice(0, 10), (item: sourceListType) => {
           keyItem({
             keyValue: { content: item.content, title: item.content, upperContent: item.content },
-            color: '#ffffff'
+            color: '#ffffff',
+            inputStyle: $inputStyle
           })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.numberList.slice(10, 20), (item: sourceListType) => {
           keyItem({
             keyValue: { content: item.content, title: item.content, upperContent: item.content },
-            color: '#ffffff'
+            color: '#ffffff',
+            inputStyle: $inputStyle
           })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        keyItemGray({ keyValue: '=/\<', menuType: $menuType })
+        keyItemGray({ keyValue: '=/\<', menuType: $menuType, inputStyle: $inputStyle })
         ForEach(this.numberList.slice(20), (item: sourceListType) => {
           keyItem({
             keyValue: { content: item.content, title: item.content, upperContent: item.content },
-            color: '#ffffff'
+            color: '#ffffff',
+            inputStyle: $inputStyle
           })
         }, (item: sourceListType) => item.content)
-        deleteItem()
+        deleteItem({ inputStyle: $inputStyle })
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        keyItemGray({ keyValue: 'ABC', menuType: $menuType })
-        keyItem({ keyValue: { content: '_', title: '_', upperContent: '_' }, color: '#a8abb7' })
-        keyItem({ keyValue: { content: ',', title: ',', upperContent: ',' }, color: '#a8abb7' })
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Text('12').fontSize(inputStyle.number1234ontFSize).fontColor('black')
-          Text('34').fontSize(inputStyle.number1234ontFSize).fontColor('black')
-        }
-        .backgroundColor('#fff')
-        .borderRadius(4)
-        .width(inputStyle.basicButtonWidth)
-        .height(inputStyle.basicButtonHeight)
-        .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
-        .stateStyles({
-          normal: this.normalStyles, pressed: this.pressedStyles
+        keyItemGray({ keyValue: 'ABC', menuType: $menuType, inputStyle: $inputStyle })
+        keyItem({
+          keyValue: { content: '_', title: '_', upperContent: '_' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
+        })
+        keyItem({
+          keyValue: { content: ',', title: ',', upperContent: ',' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
         })
 
-        spaceItem({ spaceWith: inputStyle.spaceButtonWidth_2 })
-        keyItem({ keyValue: { content: '.', title: '.', upperContent: '.' }, color: '#a8abb7' })
-        returnItem({ returnWidth: inputStyle.returnButtonWidthType_2 })
+        spaceItem({ spaceWith: this.inputStyle.spaceButtonWidth_2, inputStyle: $inputStyle })
+        keyItem({
+          keyValue: { content: '.', title: '.', upperContent: '.' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
+        })
+        returnItem({ returnWidth: this.inputStyle.returnButtonWidthType_2, inputStyle: $inputStyle })
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
     }
     .padding({
-      left: inputStyle.paddingLeftRight,
-      right: inputStyle.paddingLeftRight
+      left: this.inputStyle.paddingLeftRight,
+      right: this.inputStyle.paddingLeftRight
     })
   }
 }
@@ -430,6 +462,7 @@ struct numberMenu {
 @Component
 struct symbolMenu {
   private symbolList: sourceListType[]
+  @Link inputStyle: any
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -446,69 +479,68 @@ struct symbolMenu {
         ForEach(this.symbolList.slice(0, 10), (item: sourceListType) => {
           keyItem({
             keyValue: { content: item.content, title: item.content, upperContent: item.content },
-            color: '#ffffff'
+            color: '#ffffff', inputStyle: $inputStyle
           })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.symbolList.slice(10, 20), (item: sourceListType) => {
           keyItem({
             keyValue: { content: item.content, title: item.content, upperContent: item.content },
-            color: '#ffffff'
+            color: '#ffffff', inputStyle: $inputStyle
           })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        keyItemGray({ keyValue: '?123', menuType: $menuType })
+        keyItemGray({ keyValue: '?123', menuType: $menuType, inputStyle: $inputStyle })
         ForEach(this.symbolList.slice(20), (item: sourceListType) => {
           keyItem({
             keyValue: { content: item.content, title: item.content, upperContent: item.content },
-            color: '#ffffff'
+            color: '#ffffff', inputStyle: $inputStyle
           })
         }, (item: sourceListType) => item.content)
-        deleteItem()
+        deleteItem({ inputStyle: $inputStyle })
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
 
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        keyItemGray({ keyValue: 'ABC', menuType: $menuType })
-        keyItem({ keyValue: { content: '<', title: '<', upperContent: '<' }, color: '#a8abb7' })
-        keyItem({ keyValue: { content: '>', title: '>', upperContent: '>' }, color: '#a8abb7' })
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Text('12').fontSize(inputStyle.number1234ontFSize).fontColor('black')
-          Text('34').fontSize(inputStyle.number1234ontFSize).fontColor('black')
-        }
-        .backgroundColor('#fff')
-        .borderRadius(4)
-        .width(inputStyle.basicButtonWidth)
-        .height(inputStyle.basicButtonHeight)
-        .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
-        .stateStyles({
-          normal: this.normalStyles, pressed: this.pressedStyles
+        keyItemGray({ keyValue: 'ABC', menuType: $menuType, inputStyle: $inputStyle })
+        keyItem({
+          keyValue: { content: '<', title: '<', upperContent: '<' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
         })
-
-        spaceItem({ spaceWith: inputStyle.spaceButtonWidth_2 })
-        keyItem({ keyValue: { content: '.', title: '.', upperContent: '.' }, color: '#a8abb7' })
-        returnItem({ returnWidth: inputStyle.returnButtonWidthType_2 })
+        keyItem({
+          keyValue: { content: '>', title: '>', upperContent: '>' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
+        })
+        spaceItem({ spaceWith: this.inputStyle.spaceButtonWidth_2, inputStyle: $inputStyle })
+        keyItem({
+          keyValue: { content: '.', title: '.', upperContent: '.' },
+          color: '#a8abb7',
+          inputStyle: $inputStyle
+        })
+        returnItem({ returnWidth: this.inputStyle.returnButtonWidthType_2, inputStyle: $inputStyle })
       }
       .width('100%')
-      .height(inputStyle.basicButtonHeight)
-      .margin({ top: inputStyle.paddingTop })
+      .height(this.inputStyle.basicButtonHeight)
+      .margin({ top: this.inputStyle.paddingTop })
     }
     .padding({
-      left: inputStyle.paddingLeftRight,
-      right: inputStyle.paddingLeftRight
+      left: this.inputStyle.paddingLeftRight,
+      right: this.inputStyle.paddingLeftRight
     })
   }
 }
@@ -516,25 +548,26 @@ struct symbolMenu {
 //下拉按钮
 @Component
 struct downMenu {
+  @Link inputStyle: any
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
       Stack() {
         Image($rawfile('down.svg'))
-          .width(inputStyle.downMenuPicWidth)
-          .height(inputStyle.downMenuPicHeight)
+          .width(this.inputStyle.downMenuPicWidth)
+          .height(this.inputStyle.downMenuPicHeight)
           .onClick(() => {
             InputHandler.getInstance().hideKeyboardSelf();
           })
       }
-      .width(inputStyle.downMenuWidth)
+      .width(this.inputStyle.downMenuWidth)
       .borderRadius(4)
       .height('100%')
     }
     .width('100%')
-    .height(inputStyle.downMenuHeight)
+    .height(this.inputStyle.downMenuHeight)
     .padding(1)
     .backgroundColor('#ffffff')
-    .borderColor('#000000CC')
+    .borderColor('#33000000')
     .borderWidth(0.5)
   }
 }
@@ -546,28 +579,43 @@ struct Index {
   private numberList: sourceListType[]= numberSourceListData
   private symbolList: sourceListType[]= symbolSourceListData
   @State menuType: number= 0
-
+  @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false
+  @StorageLink('isRkDevice') isRkDevice: boolean = false;
+  @StorageLink('inputStyle')  inputStyle: any = styleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType);
   onBackPress(): boolean{
     Log.showInfo(TAG, 'kikaInput onBackPress');
     InputHandler.getInstance().hideKeyboardSelf();
     return true;
   }
 
+  change() {
+    AppStorage.Set('inputStyle', styleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType))
+  }
   build() {
     Stack() {
       Column() {
-        downMenu()
+        downMenu({ inputStyle: $inputStyle })
         Column() {
           if (this.menuType === 0) {
-            keyMenu({ keyList: this.keyList, menuType: $menuType })
+            keyMenu({
+              keyList: this.keyList,
+              menuType: $menuType,
+              inputStyle: $inputStyle
+            })
           } else if (this.menuType === 1) {
-            numberMenu({ numberList: this.numberList, menuType: $menuType })
+            numberMenu({
+              numberList: this.numberList,
+              menuType: $menuType,
+              inputStyle: $inputStyle })
           } else {
-            symbolMenu({ symbolList: this.symbolList, menuType: $menuType })
+            symbolMenu({
+              symbolList: this.symbolList,
+              menuType: $menuType,
+              inputStyle: $inputStyle })
           }
 
         }.width('100%')
-        .height(inputStyle.keyboardHeight)
+        .height(this.inputStyle.keyboardHeight)
         .backgroundColor('#D5D7DD')
       }.height('100%')
     }
