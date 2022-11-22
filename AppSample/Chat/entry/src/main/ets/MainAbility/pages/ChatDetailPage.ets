@@ -49,6 +49,7 @@ struct ChatDetailPage {
   @State contextCaller: any = undefined
   @State user1Name: string = undefined
   @State user2Name: string = undefined
+  @State listHeight : number = 0
 
   build() {
     Column() {
@@ -82,67 +83,68 @@ struct ChatDetailPage {
       .padding({ left: 0, right: 10 })
       .justifyContent(FlexAlign.SpaceBetween)
 
-      Stack({ alignContent: Alignment.BottomStart }) {
-        List({ scroller: this.scroller, initialIndex: this.msgLength }) {
-          LazyForEach(this.chatDetailData, (msg: MessageBase) => {
-            ListItem() {
-              ChatItemView({ msg: msg, imgFile: $imgFile })
-            }
-          }, (msg: MessageBase) => msg.msgId)
-        }
-        .listDirection(Axis.Vertical)
-        .divider({ strokeWidth: 2, color: "#f3f3f3" })
-        .margin({ bottom: 60 })
-        .padding({ left: 10, right: 10, bottom: 60 })
-        .height('100%')
-        .width('100%')
-        //底部输入框
-        Row({ space: 5 }) {
-          Image($r('app.media.chatting_setmode_voice'))
-            .height(20)
-            .width(20)
-          TextInput({ placeholder: "", text: "" })
-            .key('bottomTextInput')
-            .height(40)
-            .width('80%')
-            .enterKeyType(EnterKeyType.Send)
-            .onChange((value: string) => {
-              this.keyboartStr = value
-            })
-            .onSubmit((enterKey) => {
-              this.tdate = new Date()
-              let msg = new TextMessage(this.keyboartStr)
-              let msgBody = new MessageBase(this.chatDetailData.totalCount()
-                .toString(), this.user1, this.user2, msg, 1, this.tdate.getSeconds())
-              this.chatDetailData.pushData(msgBody)
-              this.msgLength = this.chatDetailData.totalCount()
-              this.scroller.scrollToIndex(this.msgLength)
-            })
-          Image($r('app.media.chatting_expression'))
-            .key('chatExpression')
-            .height(20)
-            .width(20)
-            .onClick(() => {
-              let imagestr = `/resources/images/photo${((router.getParams().chatId) % 50)}.jpg`
-              let msg = new ImageMessage(40, 50, imagestr)
-              let msgBody = new MessageBase(this.chatDetailData.totalCount().toString(), this.user1, this.user2, msg, 2)
-              this.chatDetailData.pushData(msgBody)
-              this.msgLength = this.chatDetailData.totalCount()
-              this.scroller.scrollToIndex(this.msgLength)
-            })
-          Image($r('app.media.type_select'))
-            .height(20)
-            .width(20)
-            .margin({ right: 10 })
-        }
-        .backgroundColor("#e3e3e3")
-        .width("100%")
-        .padding(10)
+      List({ scroller: this.scroller, initialIndex: this.msgLength }) {
+        LazyForEach(this.chatDetailData, (msg: MessageBase) => {
+          ListItem() {
+            ChatItemView({ msg: msg, imgFile: $imgFile })
+          }
+        }, (msg: MessageBase) => msg.msgId)
       }
+      .listDirection(Axis.Vertical)
+      .divider({ strokeWidth: 2, color: "#f3f3f3" })
+      .margin({ bottom: 60 })
+      .padding({ left: 10, right: 10, bottom: 60 })
+      .height(this.listHeight)
+      .width('100%')
+      //底部输入框
+      Row({ space: 5 }) {
+        Image($r('app.media.chatting_setmode_voice'))
+          .height(20)
+          .width(20)
+        TextInput({ placeholder: "", text: "" })
+          .key('bottomTextInput')
+          .height(40)
+          .width('80%')
+          .enterKeyType(EnterKeyType.Send)
+          .onChange((value: string) => {
+            this.keyboartStr = value
+          })
+          .onSubmit((enterKey) => {
+            this.tdate = new Date()
+            let msg = new TextMessage(this.keyboartStr)
+            let msgBody = new MessageBase(this.chatDetailData.totalCount()
+              .toString(), this.user1, this.user2, msg, 1, this.tdate.getSeconds())
+            this.chatDetailData.pushData(msgBody)
+            this.msgLength = this.chatDetailData.totalCount()
+            this.scroller.scrollToIndex(this.msgLength)
+          })
+        Image($r('app.media.chatting_expression'))
+          .key('chatExpression')
+          .height(20)
+          .width(20)
+          .onClick(() => {
+            let imagestr = `/resources/images/photo${((router.getParams().chatId) % 50)}.jpg`
+            let msg = new ImageMessage(40, 50, imagestr)
+            let msgBody = new MessageBase(this.chatDetailData.totalCount().toString(), this.user1, this.user2, msg, 2)
+            this.chatDetailData.pushData(msgBody)
+            this.msgLength = this.chatDetailData.totalCount()
+            this.scroller.scrollToIndex(this.msgLength)
+          })
+        Image($r('app.media.type_select'))
+          .height(20)
+          .width(20)
+          .margin({ right: 10 })
+      }
+      .backgroundColor("#e3e3e3")
+      .width("100%")
+      .padding(10)
     }
     .backgroundColor("#f3f3f3")
     .height("100%")
     .padding({ bottom: 60 })
+    .onAreaChange((oldArea:Area,newArea:Area) =>{
+      this.listHeight = (newArea.height) as number * 0.75 // percentage
+    })
   }
 
   async convertResourceToString(resource: Resource) {
