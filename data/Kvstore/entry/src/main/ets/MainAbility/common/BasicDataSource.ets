@@ -14,7 +14,7 @@
  */
 
 import { NoteModel } from '../model/NoteDataModel'
-
+import Logger from '../util/Logger'
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
@@ -27,14 +27,14 @@ class BasicDataSource implements IDataSource {
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
+      Logger.info('add listener')
       this.listeners.push(listener)
     }
   }
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
+      Logger.info('remove listener')
       this.listeners.splice(pos, 1)
     }
   }

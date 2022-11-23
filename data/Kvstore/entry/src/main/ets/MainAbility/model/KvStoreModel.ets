@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import distributedData from '@ohos.data.distributedData'
-
+import Logger from '../util/Logger'
 const STORE_ID = 'etskvstore'
 
 export class KvStoreModel {
@@ -35,9 +35,9 @@ export class KvStoreModel {
         userType: 0
       }
     }
-    console.info('[KvStoreModel] createKVManager begin')
+    Logger.info('[KvStoreModel] createKVManager begin')
     this.kvManager = await distributedData.createKVManager(config)
-    console.info('kvstore[KvStoreModel] createKVManager end')
+    Logger.info('kvstore[KvStoreModel] createKVManager end')
     let options = {
       createIfMissing: true,
       encrypt: false,
@@ -46,41 +46,41 @@ export class KvStoreModel {
       kvStoreType: 1,
       securityLevel: 1,
     }
-    console.info('[KvStoreModel] kvManager.getKVStore begin')
+    Logger.info('[KvStoreModel] kvManager.getKVStore begin')
     this.kvStore = await this.kvManager.getKVStore(STORE_ID, options)
-    console.info('kvstore[KvStoreModel] kvManager.getKVStore end')
+    Logger.info('kvstore[KvStoreModel] kvManager.getKVStore end')
     callback()
   }
 
   put(key, value) {
-    console.info('[KvStoreModel] kvStore.put ' + key + '=' + value)
+    Logger.info('[KvStoreModel] kvStore.put ' + key + '=' + value)
     this.kvStore.put(key, value).then((data) => {
-      console.info('[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data))
+      Logger.info('[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data))
     }).catch((err) => {
-      console.error('[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err))
+      Logger.error('[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err))
     });
   }
 
   setOnMessageReceivedListener(msg, callback) {
-    console.info('[KvStoreModel] setOnMessageReceivedListener ' + msg)
+    Logger.info('[KvStoreModel] setOnMessageReceivedListener ' + msg)
     let self = this
     this.createKvStore(() => {
-      console.info('[KvStoreModel] kvStore.on(dataChange) begin')
+      Logger.info('[KvStoreModel] kvStore.on(dataChange) begin')
       self.kvStore.on('dataChange', 1, (data) => {
-        console.info('[KvStoreModel] dataChange, ' + JSON.stringify(data));
-        console.info('[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
+        Logger.info('[KvStoreModel] dataChange, ' + JSON.stringify(data));
+        Logger.info('[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
         + data.updateEntries.length)
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
         for (let i = 0; i < entries.length; i++) {
           if (entries[i].key === msg) {
             let value = entries[i].value.value
-            console.info('[KvStoreModel] Entries receive ' + msg + '=' + value)
+            Logger.info('[KvStoreModel] Entries receive ' + msg + '=' + value)
             callback(value)
             return;
           }
         }
       });
-      console.info('[KvStoreModel] kvStore.on(dataChange) end')
+      Logger.info('[KvStoreModel] kvStore.on(dataChange) end')
     })
   }
 }

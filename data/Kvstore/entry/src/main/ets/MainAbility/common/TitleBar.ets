@@ -16,7 +16,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 import { DeviceDialog } from '../common/Dialog'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { DeviceDataModel } from '../model/DeviceDataModel'
-
+import Logger from '../util/Logger'
 const NOTES_CHANGE = 'notesChange'
 const EXIT = 'exit'
 
@@ -37,32 +37,32 @@ export struct TitleBar {
   }
 
   selectDevice() {
-    console.log('KvStore[IndexPage] start ability ......')
+    Logger.info('KvStore[IndexPage] start ability ......')
     this.isDistributed = true
     if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverList.length <= 0) {
-      console.log('KvStore[IndexPage] continue unauthed device:' + JSON.stringify(this.deviceList))
+      Logger.info('KvStore[IndexPage] continue unauthed device:' + JSON.stringify(this.deviceList))
       this.startAbility(this.deviceList[this.selectedIndex].deviceId)
       this.clearSelectState()
       return
     }
-    console.log('KvStore[IndexPage] start ability1, needAuth：')
+    Logger.info('KvStore[IndexPage] start ability1, needAuth：')
     this.remoteDeviceModel.authenticateDevice(this.deviceList[this.selectedIndex], () => {
-      console.log("KvStore[IndexPage] auth and online finished")
+      Logger.info("KvStore[IndexPage] auth and online finished")
       for (var i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
         if (this.remoteDeviceModel.deviceList[i].deviceName === this.deviceList[this.selectedIndex].deviceName) {
           this.startAbility(this.remoteDeviceModel.deviceList[i].deviceId)
         }
       }
     })
-    console.log('KvStore[IndexPage] start ability2 ......')
+    Logger.info('KvStore[IndexPage] start ability2 ......')
     this.clearSelectState()
   }
 
   handleSelectDevice = (index) => {
-    console.log('KvStore[IndexPage] selectedIndexChange')
+    Logger.info('KvStore[IndexPage] selectedIndexChange')
     this.selectedIndex = index
     if (this.selectedIndex == 0) {
-      console.log("KvStore[IndexPage] stop ability")
+      Logger.info("KvStore[IndexPage] stop ability")
       this.dialogController.close()
       this.startAbilityCallBack(EXIT)
       this.isDistributed = false
@@ -74,7 +74,7 @@ export struct TitleBar {
   }
 
   startAbility(deviceId) {
-    console.log('KvStore[IndexPage] startAbility deviceId:' + deviceId)
+    Logger.info('KvStore[IndexPage] startAbility deviceId:' + deviceId)
     featureAbility.startAbility({
       want: {
         bundleName: 'ohos.samples.etskvstore',
@@ -85,7 +85,7 @@ export struct TitleBar {
         }
       }
     }).then((data) => {
-      console.log('KvStore[IndexPage] start ability finished:' + JSON.stringify(data))
+      Logger.info('KvStore[IndexPage] start ability finished:' + JSON.stringify(data))
     })
     setTimeout(() => {
       this.startAbilityCallBack(NOTES_CHANGE)
@@ -96,7 +96,7 @@ export struct TitleBar {
     this.dialogShow = true
     this.remoteDeviceModel.registerDeviceListCallback(() => {
       this.deviceList = []
-      console.info('KvStore[IndexPage] registerDeviceListCallback, callback entered')
+      Logger.info('KvStore[IndexPage] registerDeviceListCallback, callback entered')
       this.deviceList.push({
         deviceId: '0',
         deviceName: 'Local device',
@@ -105,7 +105,7 @@ export struct TitleBar {
       })
       var deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList;
       for (var i = 0; i < deviceTempList.length; i++) {
-        console.info('KvStore[IndexPage] device ' + i + '/' + deviceTempList.length +
+        Logger.info('KvStore[IndexPage] device ' + i + '/' + deviceTempList.length +
         ' deviceId=' + deviceTempList[i].deviceId + ' deviceName=' + deviceTempList[i].deviceName
         + ' deviceType=' + deviceTempList[i].deviceType)
         this.deviceList.push({
@@ -157,7 +157,7 @@ export struct TitleBar {
       .type(ButtonType.Normal)
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        console.info('KvStore[IndexPage] showDialog start')
+        Logger.info('KvStore[IndexPage] showDialog start')
         this.showDialog()
       })
     }
