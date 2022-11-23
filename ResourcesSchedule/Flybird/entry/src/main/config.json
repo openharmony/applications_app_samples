@@ -11,7 +11,8 @@
   "module": {
     "mainAbility": "com.samples.flybird.MainAbility",
     "deviceType": [
-      "default"
+      "default",
+      "tablet"
     ],
     "abilities": [
       {
