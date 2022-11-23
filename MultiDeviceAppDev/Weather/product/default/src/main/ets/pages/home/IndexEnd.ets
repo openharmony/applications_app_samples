@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Style from '../../util/Style'
+import { Style } from '@ohos/common'
 
 @Preview
 @Component

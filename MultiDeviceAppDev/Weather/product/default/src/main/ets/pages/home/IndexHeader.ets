@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import Style from '../../util/Style'
-import { getHeaderDate, HeaderData } from '@ohos/common'
+import { getHeaderDate, HeaderData, Style } from '@ohos/common'
 
 @Preview
 @Component

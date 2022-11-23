@@ -13,30 +13,11 @@
  * limitations under the License.
  */
 
-export {
-  getUpdateTimes,
-  getMenuInfo,
-  getHeaderDate,
-  getCityList,
-  addCity,
-  getCityListWeatherData,
-  getHoursData,
-  getWeekWeatherData,
-  getAirIndexData,
-  getLifeData,
-  getSideBg,
-  getBg
-} from './src/main/ets/mock/RequestData'
+import AbilityStage from "@ohos.application.AbilityStage"
+import { Logger } from '@ohos/common'
 
-export { MyDataSource } from './src/main/ets/model/BasicDataSource'
-
-export {
-  HeaderData,
-  CityListData,
-  Forecast,
-  AirIndex,
-  SuitData,
-  WeekWeather,
-  AirData,
-  City
-} from './src/main/ets/model/Main'
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    Logger.info('[MyAbilityStage]', 'MyAbilityStage onCreate')
+  }
+}

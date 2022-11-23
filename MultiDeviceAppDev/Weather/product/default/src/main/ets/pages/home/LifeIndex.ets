@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import Style from '../../util/Style'
-import { getLifeData, MyDataSource, SuitData } from '@ohos/common'
+import { getLifeData, MyDataSource, SuitData, Style } from '@ohos/common'
 
 @Preview
 @Component

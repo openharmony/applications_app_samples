@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-export default class Style {
+export class Style {
   /**
   * Grid item card height.
   */

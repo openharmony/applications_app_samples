@@ -14,13 +14,42 @@
  */
 
 import router from '@ohos.router'
-import Style from '../../util/Style'
-import { addCity, City, getCityList, MyDataSource } from '@ohos/common'
+import { addCity, City, getCityList, MyDataSource, Style } from '@ohos/common'
 
-
-@Preview
+@Entry
 @Component
-export default struct CityGrid {
+struct AddCity {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.icon_back'))
+          .width(24)
+          .margin({ left: 26 })
+          .objectFit(ImageFit.Contain)
+          .onClick(() => {
+            router.back()
+          })
+        Text($r('app.string.add_city'))
+          .fontSize(20)
+          .margin({ left: Style.NORMAL_MARGIN })
+      }
+      .width('100%')
+      .height(56)
+
+      Scroll() {
+        CityGrid()
+      }
+      .layoutWeight(1)
+      .margin({ top: 18 })
+      .scrollBar(BarState.Off)
+    }
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+  }
+}
+
+@Component
+export struct CityGrid {
   @StorageLink('cityList') cities: Array<City> = []
   private cityList: MyDataSource = new MyDataSource(getCityList())
 

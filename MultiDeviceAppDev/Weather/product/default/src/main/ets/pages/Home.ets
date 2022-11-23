@@ -14,11 +14,10 @@
  */
 
 import mediaquery from '@ohos.mediaquery'
-import HomeContent from './home/HomeContent'
-import IndexTitleBar from './home/IndexTitleBar'
-import Logger from '../util/Logger'
-import SideContent from './home/SideContent'
-import { CityListData, getCityListWeatherData, getBg } from '@ohos/common'
+import HomeContent from './home/homecontent'
+import IndexTitleBar from './home/indextitlebar'
+import SideContent from './home/sidecontent'
+import { CityListData, getCityListWeatherData, getBg, Logger } from '@ohos/common'
 
 const TAG: string = 'Home'
 
@@ -31,9 +30,9 @@ struct Home {
   @State cityListWeatherData: CityListData[] = getCityListWeatherData()
   @State popupState: boolean = false
   @State showSideBar: boolean = false
-  private smListener: any
-  private mdListener: any
-  private lgListener: any
+  private smListener: mediaquery.MediaQueryListener
+  private mdListener: mediaquery.MediaQueryListener
+  private lgListener: mediaquery.MediaQueryListener
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
@@ -73,9 +72,9 @@ struct Home {
   }
 
   aboutToAppear() {
-    this.smListener = mediaquery.matchMediaSync('(320vp<width<520vp)')
+    this.smListener = mediaquery.matchMediaSync('(320vp<width<=520vp)')
     this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync('(520vp<width<840vp)')
+    this.mdListener = mediaquery.matchMediaSync('(520vp<width<=840vp)')
     this.mdListener.on("change", this.isBreakpointMD)
     this.lgListener = mediaquery.matchMediaSync('(840vp<width)')
     this.lgListener.on("change", this.isBreakpointLG)
@@ -95,6 +94,7 @@ struct Home {
     }
     Logger.info(TAG, `this.curBp = ${this.curBp}`)
   }
+
   isBreakpointMD = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.curBp = 'md'
@@ -103,6 +103,7 @@ struct Home {
     }
     Logger.info(TAG, `this.curBp = ${this.curBp}`)
   }
+
   isBreakpointLG = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       if (this.curBp !== 'lg') {

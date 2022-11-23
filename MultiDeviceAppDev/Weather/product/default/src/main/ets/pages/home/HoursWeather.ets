@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import Style from '../../util/Style'
-import { Forecast, getHoursData, MyDataSource } from '@ohos/common'
+import { Forecast, getHoursData, MyDataSource, Style } from '@ohos/common'
 
 @Preview
 @Component
@@ -23,38 +22,43 @@ export default struct HoursWeather {
   @StorageLink('curBp') curBp: string = 'lg'
   @State hoursDataResource: MyDataSource = new MyDataSource(this.hoursData)
 
+  @Builder HoursWeatherItem(hoursItem, itemWidth) {
+    Column() {
+      Text(`${hoursItem.desc}${hoursItem.date}`)
+        .fontSize(12)
+        .fontColor(Color.White)
+      Row() {
+        Image(hoursItem.icon)
+          .width(28)
+          .height(28)
+          .objectFit(ImageFit.Contain)
+      }
+      .margin({ top: 25 })
+      .justifyContent(FlexAlign.Center)
+
+      Text(hoursItem.degree)
+        .fontSize(14)
+        .fontColor(Color.White)
+        .margin({ top: 16 })
+      Text(hoursItem.win)
+        .fontSize(12)
+        .fontColor(Color.White)
+        .margin({ top: 16 })
+      Text(hoursItem.winSpeed)
+        .fontSize(12)
+        .fontColor(Color.White)
+        .margin({ top: 5 })
+    }
+    .width(itemWidth)
+    .padding({ top: 18, bottom: 18 })
+  }
+
   build() {
     List() {
       LazyForEach(this.hoursDataResource, (hoursItem) => {
         ListItem() {
-          Column() {
-            Text(`${hoursItem.desc}${hoursItem.date}`)
-              .fontSize(12)
-              .fontColor(Color.White)
-            Row() {
-              Image(hoursItem.icon)
-                .width(28)
-                .height(28)
-                .objectFit(ImageFit.Contain)
-            }
-            .margin({ top: 25 })
-            .justifyContent(FlexAlign.Center)
-
-            Text(hoursItem.degree)
-              .fontSize(14)
-              .fontColor(Color.White)
-              .margin({ top: 16 })
-            Text(hoursItem.win)
-              .fontSize(12)
-              .fontColor(Color.White)
-              .margin({ top: 16 })
-            Text(hoursItem.winSpeed)
-              .fontSize(12)
-              .fontColor(Color.White)
-              .margin({ top: 5 })
-          }
-          .width(this.curBp === 'lg' ? Style.WEATHER_ITEM_WIDTH + 2 : Style.WEATHER_ITEM_WIDTH)
-          .padding({ top: 18, bottom: 18 })
+          this.HoursWeatherItem(hoursItem,
+            this.curBp === 'lg' ? Style.WEATHER_ITEM_WIDTH + 2 : Style.WEATHER_ITEM_WIDTH)
         }
       }, item => `${item.desc}${item.date}:00`)
     }

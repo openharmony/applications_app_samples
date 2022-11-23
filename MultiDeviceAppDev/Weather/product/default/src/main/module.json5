@@ -15,15 +15,14 @@
 
 {
   "module": {
-    "name": "product",
+    "name": "default",
     "type": "entry",
     "srcEntrance": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
       "default",
-      "tablet",
-      "car"
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,

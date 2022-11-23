@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import Style from '../../util/Style'
-import { getUpdateTimes } from '@ohos/common'
+import { getUpdateTimes, Style } from '@ohos/common'
 
 @Preview
 @CustomDialog
@@ -39,17 +38,7 @@ export default struct UpdateTimeDialog {
             List() {
               ForEach(this.updateTimes, (item, index) => {
                 ListItem() {
-                  Row() {
-                    Text(item)
-                      .fontSize(16)
-                    Blank()
-                    Radio({ group: 'time', value: item })
-                      .width(20)
-                      .height(20)
-                  }
-                  .width('100%')
-                  .height(Style.TIME_LIST_HEIGHT)
-                  .padding(this.curBp === 'lg' ? (index % 2 === 0 ? { right: 10 } : { left: 10 }) : 0)
+                  UpdateTimeItem({index: index, updateTime: item})
                 }
               }, item => item)
             }
@@ -91,5 +80,25 @@ export default struct UpdateTimeDialog {
     } else {
       return Style.TIME_LIST_HEIGHT * this.updateTimes.length + Style.TIME_LIST_MARGIN
     }
+  }
+}
+
+@Component
+struct UpdateTimeItem {
+  private index: number = 0
+  private updateTime: string = ''
+  @StorageLink('curBp') curBp: string = 'md'
+  build() {
+    Row() {
+      Text(this.updateTime)
+        .fontSize(16)
+      Blank()
+      Radio({ group: 'time', value: this.updateTime })
+        .width(20)
+        .height(20)
+    }
+    .width('100%')
+    .height(Style.TIME_LIST_HEIGHT)
+    .padding(this.curBp === 'lg' ? (this.index % 2 === 0 ? { right: 10 } : { left: 10 }) : 0)
   }
 }

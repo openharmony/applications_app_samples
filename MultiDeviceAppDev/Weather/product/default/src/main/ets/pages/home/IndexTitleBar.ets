@@ -14,9 +14,8 @@
  */
 
 import router from '@ohos.router'
-import UpdateTimeDialog from './UpdateTimeDialog'
-import Style from '../../util/Style'
-import { getMenuInfo } from '@ohos/common'
+import UpdateTimeDialog from './updatetimedialog'
+import { getMenuInfo, Style } from '@ohos/common'
 
 @Component
 export default struct IndexTitleBar {
