@@ -43,7 +43,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
         Button() {
           Text('订阅通知')
-            .fontSize(20)
+            .fontSize(16)
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
@@ -57,7 +57,7 @@ struct Index {
 
         Button() {
           Text('取消订阅')
-            .fontSize(20)
+            .fontSize(16)
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
@@ -71,7 +71,7 @@ struct Index {
 
         Button() {
           Text('发布通知(普通文本)')
-            .fontSize(20)
+            .fontSize(16)
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
@@ -85,7 +85,7 @@ struct Index {
 
         Button() {
           Text('发布通知(wantAgent)')
-            .fontSize(20)
+            .fontSize(16)
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
@@ -99,7 +99,7 @@ struct Index {
 
         Button() {
           Text('取消通知')
-            .fontSize(20)
+            .fontSize(16)
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
