@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import Style from '../../util/Style'
-import { initSun, initMoon } from '../../feature/SunCanvasFeature'
+import { Style } from '@ohos/common'
+import { initSun, initMoon } from '../../feature/suncanvasfeature'
 
 @Preview
 @Component

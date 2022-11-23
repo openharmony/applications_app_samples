@@ -14,7 +14,7 @@
  */
 
 import Ability from '@ohos.application.Ability'
-import Logger from '../util/Logger'
+import { Logger } from '@ohos/common'
 
 const TAG: string = 'MainAbility'
 

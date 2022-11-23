@@ -7,7 +7,7 @@
   "ohos": {
     "org": ""
   },
-  "main": "./index.ets",
+  "main": "./index.ts",
   "repository": {},
   "version": "1.0.0",
   "dependencies": {}

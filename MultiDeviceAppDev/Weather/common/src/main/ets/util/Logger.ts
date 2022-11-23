@@ -15,31 +15,24 @@
 
 import hilog from '@ohos.hilog'
 
-class Logger {
-  private domain: number
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
+export class Logger {
+  static PREFIX: string = '[Sample_Weather]'
+  static DOMAIN: number = 0xFF00
+  static FORMAT: string = '%{public}s, %{public}s'
 
-  constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xFF00
+  static debug(...args: any[]) {
+    hilog.debug(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 
-  debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+  static info(...args: any[]) {
+    hilog.info(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 
-  info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+  static warn(...args: any[]) {
+    hilog.warn(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 
-  warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
-  }
-
-  error(...args: any[]) {
-    hilog.error(this.domain, this.prefix, this.format, args)
+  static error(...args: any[]) {
+    hilog.error(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 }
-
-export default new Logger('[Sample_AdaptivePage]')
