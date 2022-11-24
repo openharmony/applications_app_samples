@@ -37,6 +37,10 @@
       "value": "允许应用读写用户外部存储中的媒体文件信息"
     },
     {
+      "name": "start_abilities_form_background_permission",
+      "value": "允许在后台启动Ability"
+    },
+    {
       "name": "form_FormAbility_desc",
       "value": "form_description"
     },
