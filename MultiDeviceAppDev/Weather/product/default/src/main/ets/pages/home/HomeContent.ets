@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import AirQuality from './airquality'
-import HoursWeather from './hoursweather'
-import IndexHeader from './indexheader'
-import IndexEnd from './indexend'
-import LifeIndex from './lifeindex'
-import MultidayWeather from './multidayweather'
-import SunCanvas from './suncanvas'
+import AirQuality from './AirQuality'
+import HoursWeather from './HoursWeather'
+import IndexHeader from './IndexHeader'
+import IndexEnd from './IndexEnd'
+import LifeIndex from './LifeIndex'
+import MultidayWeather from './MultidayWeather'
+import SunCanvas from './SunCanvas'
 import { CityListData, Style } from '@ohos/common'
 
 @Component

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { AirIndex, AirData, getHeaderDate, getAirIndexData, Style } from '@ohos/common'
-import { initRound } from '../../feature/airqualityfeature'
+import { AirData, AirIndex, getAirIndexData, getHeaderDate, Style } from '@ohos/common'
+import { initRound } from '../../feature/AirQualityFeature'
 
 
 @Preview
