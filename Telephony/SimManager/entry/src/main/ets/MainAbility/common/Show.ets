@@ -59,15 +59,14 @@ export struct Show {
         }
         .margin(10)
         .padding(5)
-        .layoutWeight(1)
+
+        Blank()
 
         Image($r('app.media.right'))
           .width(20)
           .height(20)
-          .layoutWeight(1)
-          .margin({ left: '5%' })
+          .margin({ right: 8 })
           .objectFit(ImageFit.Contain)
-
       }
       .margin(8)
       .width('95%')

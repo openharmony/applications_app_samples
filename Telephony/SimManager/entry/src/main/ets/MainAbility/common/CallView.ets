@@ -20,8 +20,9 @@ export struct CallView {
       Row() {
         Text($r('app.string.data'))
           .fontSize(20)
-          .layoutWeight(1)
           .fontColor(Color.Gray)
+
+        Blank()
 
         Text($r('app.string.sim1_id'))
           .fontSize(20)
@@ -34,6 +35,7 @@ export struct CallView {
           .height(20)
           .objectFit(ImageFit.Contain)
       }
+      .width('100%')
       .margin({ bottom: 5 })
 
       Divider()
@@ -41,16 +43,22 @@ export struct CallView {
         .backgroundColor(Color.Black)
 
       Column() {
-        Text($r('app.string.call'))
-          .fontSize(20)
-          .margin({ top: 5 })
-          .fontColor(Color.Gray)
+        Row() {
+          Text($r('app.string.call'))
+            .fontSize(20)
+            .margin({ top: 5 })
+            .fontColor(Color.Gray)
+
+          Blank()
+        }
+        .width('100%')
 
         Row() {
           Text($r('app.string.calling'))
             .fontSize(14)
-            .layoutWeight(1)
             .fontColor(Color.Gray)
+
+          Blank()
 
           Image($r('app.media.right'))
             .width(20)
@@ -58,6 +66,7 @@ export struct CallView {
             .margin({ left: '20%' })
             .objectFit(ImageFit.Contain)
         }
+        .width('100%')
       }
       .alignItems(HorizontalAlign.Start)
     }

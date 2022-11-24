@@ -50,8 +50,8 @@ export struct SimView {
       Row() {
         Text($r('app.string.voice'))
           .fontSize(20)
-          .layoutWeight(1)
           .fontColor(Color.Gray)
+        Blank()
         Row() {
           Button() {
             Text($r('app.string.sim1_id'))
