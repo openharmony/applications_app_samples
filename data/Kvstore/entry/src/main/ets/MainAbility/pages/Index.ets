@@ -20,7 +20,7 @@ import { TitleBar } from '../common/TitleBar'
 import { KvStoreModel } from '../model/KvStoreModel'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { transStrToNoteModel } from '../model/NoteDataModel'
-
+import Logger from '../util/Logger'
 const NOTES_CHANGE = 'notesChange'
 const EXIT = 'exit'
 let kvStoreModel: KvStoreModel = new KvStoreModel()
@@ -36,21 +36,21 @@ struct Index {
   aboutToAppear() {
     featureAbility.getContext()
       .requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 3, function (result) {
-        console.info(`KvStore[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
+        Logger.info(`KvStore[IndexPage] grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
       })
     featureAbility.getWant((error, want) => {
-      console.info('KvStore[IndexPage] featureAbility.getWant =' + JSON.stringify(want.parameters));
+      Logger.info('KvStore[IndexPage] featureAbility.getWant =' + JSON.stringify(want.parameters));
       if (want.parameters.isFA === 'FA') {
         this.isDistributed = true
       }
     })
     kvStoreModel.setOnMessageReceivedListener(NOTES_CHANGE, (value) => {
-      console.info('kvstore[IndexPage] NOTES_CHANGE' + value)
+      Logger.info('kvstore[IndexPage] NOTES_CHANGE' + value)
       if (this.isDistributed) {
         if (value.search(EXIT) != -1) {
-          console.info('[json]EXIT' + EXIT)
+          Logger.info('[json]EXIT' + EXIT)
           featureAbility.terminateSelf((error) => {
-            console.info('kvstore[IndexPage] terminateSelf finished, error=' + error)
+            Logger.info('kvstore[IndexPage] terminateSelf finished, error=' + error)
           })
         } else {
           var str = value.substring(0, value.lastIndexOf('}]') + 2)
@@ -64,7 +64,7 @@ struct Index {
   }
 
   deleteNoteCallBack = (item) => {
-    console.log('KvStore[IndexPage] deleteNote' + item);
+    Logger.info('KvStore[IndexPage] deleteNote' + item);
     var index = this.noteDataSource['dataArray'].indexOf(item)
     this.noteDataSource['dataArray'].splice(index, 1)
     this.noteDataSource.notifyDataReload()
@@ -72,7 +72,7 @@ struct Index {
   }
 
   startAbilityCallBack = (key) => {
-    console.log('KvStore[IndexPage] startAbilityCallBack' + key);
+    Logger.info('KvStore[IndexPage] startAbilityCallBack' + key);
     if (NOTES_CHANGE === key) {
       kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource['dataArray']) + 'numBegin' + notesNum + 'numEnd')
     }
@@ -98,7 +98,7 @@ struct Index {
             })
           }
           .onClick(() => {
-            console.info('KvStore[IndexPage] GridItem.click' + item.title);
+            Logger.info('KvStore[IndexPage] GridItem.click' + item.title);
             if (item.title === '' && item.content === '') {
               notesNum += 1
               this.noteDataSource['dataArray'][this.noteDataSource['dataArray'].length-1] = { title: '笔记' + notesNum, content: '笔记内容' }

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Logger from '../util/Logger'
 export class NoteModel {
   title: string
   content: string
@@ -25,7 +26,7 @@ export class NoteModel {
 export function transStrToNoteModel(str: string): Array<NoteModel> {
   let noteList: Array<NoteModel> = []
   var notes = JSON.parse(str)
-  console.info('[NoteModel]notes.length = ' + notes.length)
+  Logger.info('[NoteModel]notes.length = ' + notes.length)
   for (var note in notes) {
     noteList.push({ title: notes[note].title, content: notes[note].content })
   }
