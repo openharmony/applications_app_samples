@@ -14,10 +14,10 @@
  */
 
 import mediaquery from '@ohos.mediaquery'
-import HomeContent from './home/homecontent'
-import IndexTitleBar from './home/indextitlebar'
-import SideContent from './home/sidecontent'
-import { CityListData, getCityListWeatherData, getBg, Logger } from '@ohos/common'
+import HomeContent from './home/HomeContent'
+import IndexTitleBar from './home/IndexTitleBar'
+import SideContent from './home/SideContent'
+import { CityListData, getBg, getCityListWeatherData, Logger } from '@ohos/common'
 
 const TAG: string = 'Home'
 
@@ -94,7 +94,6 @@ struct Home {
     }
     Logger.info(TAG, `this.curBp = ${this.curBp}`)
   }
-
   isBreakpointMD = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.curBp = 'md'
@@ -103,7 +102,6 @@ struct Home {
     }
     Logger.info(TAG, `this.curBp = ${this.curBp}`)
   }
-
   isBreakpointLG = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       if (this.curBp !== 'lg') {

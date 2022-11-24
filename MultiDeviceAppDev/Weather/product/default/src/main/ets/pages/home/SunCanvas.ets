@@ -14,7 +14,7 @@
  */
 
 import { Style } from '@ohos/common'
-import { initSun, initMoon } from '../../feature/suncanvasfeature'
+import { initMoon, initSun } from '../../feature/SunCanvasFeature'
 
 @Preview
 @Component

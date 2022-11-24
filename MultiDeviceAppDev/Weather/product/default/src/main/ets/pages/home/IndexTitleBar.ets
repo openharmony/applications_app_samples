@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router'
-import UpdateTimeDialog from './updatetimedialog'
+import UpdateTimeDialog from './UpdateTimeDialog'
 import { getMenuInfo, Style } from '@ohos/common'
 
 @Component
