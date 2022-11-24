@@ -95,6 +95,16 @@
           ],
           "when": "inuse"
         }
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "reason": "$string:start_abilities_form_background_permission",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }
