@@ -28,6 +28,7 @@ export struct PanelView {
   @State panelName: string[] = []
   @State panelValue: number[] = []
   @State totalTime: number = 0
+  @State panelViewHeight: number = 0
 
   aboutToAppear() {
     this.getTime()
@@ -75,21 +76,23 @@ export struct PanelView {
         DataPanel({ values: this.panelValue, max: this.totalTime, type: DataPanelType.Circle })
           .width(200)
           .height(200)
-        Column() {
-          ForEach(this.panelName, (item) => {
-            Text(item)
-              .fontSize(20)
-              .margin({ top: 5 })
-          }, item => item)
-        }
-        .height('80%')
-        .margin({ top: '10%', left: 35 })
       }
       .height(250)
       .margin({ top: 10 })
       .alignSelf(ItemAlign.Center)
+
+      Column() {
+        ForEach(this.panelName, (item) => {
+          Text(item)
+            .fontSize(20)
+            .margin({ top: 5 })
+        }, item => item)
+      }
+      .margin({ top: 10, left: 35 })
     }
-    .height('30%')
     .width('100%')
+    .onAreaChange((oldArea: Area, newArea: Area) => {
+      this.panelViewHeight = (newArea.height) as number * 0.3 // percentage
+    })
   }
 }
