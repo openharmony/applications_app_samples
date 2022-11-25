@@ -21,7 +21,8 @@
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
-      "default"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
