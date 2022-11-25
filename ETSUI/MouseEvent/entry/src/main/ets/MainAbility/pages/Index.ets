@@ -109,6 +109,8 @@ struct Index {
   @State hoverSecond: number = -1
   @State signs: Array<Array<string>> = this.initialize.initArray(SIZE, '')
   @State colors: Array<Array<string>> = this.initialize.initArray(SIZE, GRAY)
+  @State boardWidth: number = 0
+
   failDialogController: CustomDialogController = new CustomDialogController({
     builder: GameOverDialog({ confirm: this.onAccept }),
     autoCancel: false
@@ -192,8 +194,8 @@ struct Index {
           Row() {
             LazyForEach(new MyDataSource(this.board[row]), (item, col) => {
               Text(this.signs[row][col])
-                .width(70)
-                .height(70)
+                .width(this.boardWidth)
+                .height(this.boardWidth)
                 .border({ width: 1 })
                 .fontSize(24)
                 .backgroundColor(this.colors[row][col])
@@ -284,5 +286,8 @@ struct Index {
     }
     .width('100%')
     .height('100%')
+    .onAreaChange((oldArea:Area,newArea:Area)=>{
+      this.boardWidth = (newArea.width  > newArea.height ? newArea.height :newArea.width) as number * 0.1
+    })
   }
 }
