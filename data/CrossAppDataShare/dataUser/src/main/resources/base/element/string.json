@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "dataUser_desc",
+      "value": "Contact assistant"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Contact assistant"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Contact assistant"
+    },
+    {
+      "name": "title",
+      "value": "Contact assistant"
+    },
+    {
+      "name": "contact",
+      "value": "Contact"
+    },
+    {
+      "name": "delete",
+      "value": "Delete"
+    },
+    {
+      "name": "delete_alert_message",
+      "value": "Whether to delete this contact?"
+    },
+    {
+      "name": "edit",
+      "value": "Edit"
+    },
+    {
+      "name": "settings",
+      "value": "Settings"
+    },
+    {
+      "name": "sync_contacts",
+      "value": "Sync contacts"
+    },
+    {
+      "name": "local_contacts_empty_tips",
+      "value": "Local contacts are empty，Syncing data from the Contacts app."
+    },
+    {
+      "name": "contacts_data_empty_tips",
+      "value": "The contact data is also empty, and you can add contacts in this app or the Contacts app."
+    },
+    {
+      "name": "yes",
+      "value": "Yes"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "deduplication",
+      "value": "Deduplication"
+    },
+    {
+      "name": "overwrite_contact",
+      "value": "Overwrite contact"
+    },
+    {
+      "name": "overwrite_contact_assistant",
+      "value": "Overwrite contact assistant"
+    },
+    {
+      "name": "synchronization_policy",
+      "value": " Synchronization policy"
+    },
+    {
+      "name": "deduplication_instruction",
+      "value": "When there are contacts with the same name in the contact assistant and the contact data, merge duplicate contacts."
+    },
+    {
+      "name": "overwrite_contact_instruction",
+      "value": "The data in the contact is completely overwritten by the contact assistant."
+    },
+    {
+      "name": "overwrite_contact_assistant_instruction",
+      "value": "The data in the contact assistant is completely overwritten by the contact assistant."
+    },
+    {
+      "name": "update_contact_introduction",
+      "value": "When you edit a contact, the modification is synchronized to the contact。"
+    },
+    {
+      "name": "empty_tips",
+      "value": "Name and phone number cannot be empty"
+    },
+    {
+      "name": "phone_length_tips",
+      "value": "The length of the phone number cannot be less than 8"
+    },
+    {
+      "name": "create_contact",
+      "value": "Create contact"
+    },
+    {
+      "name": "edit_contact",
+      "value": "Edit contact"
+    }
+  ]
+}
