@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "说明"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "说明"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "屏幕信息"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "屏幕检测"
+    },
+    {
+      "name": "entry_ScreenInfo",
+      "value": "屏幕信息"
+    },
+    {
+      "name": "screenRect",
+      "value": "屏幕宽高[像素]"
+    },
+    {
+      "name": "screenDimensions",
+      "value": "宽高尺寸[DPI]"
+    },
+    {
+      "name": "screenDPI",
+      "value": "宽高DPI"
+    },
+    {
+      "name": "refreshRate",
+      "value": "刷新频率"
+    },
+    {
+      "name": "densityRatio",
+      "value": "密度比例"
+    },
+    {
+      "name": "densityDPI",
+      "value": "密度DPI"
+    },
+    {
+      "name": "screenInches",
+      "value": "宽高[英寸]"
+    },
+    {
+      "name": "screenCM",
+      "value": "宽高[厘米]"
+    },
+    {
+      "name": "diagonalInches",
+      "value": "对角线[英寸]"
+    },
+    {
+      "name": "diagonalCM",
+      "value": "对角线[厘米]"
+    },
+    {
+      "name": "pixelsPerInch",
+      "value": "每英寸像素"
+    },
+    {
+      "name": "warning",
+      "value": "警告!!!"
+    },
+    {
+      "name": "add_screen",
+      "value": " + "
+    },
+    {
+      "name": "remove_screen",
+      "value": " - "
+    },
+    {
+      "name": "err_max_screen",
+      "value": "虚拟屏幕的数量不能多于:"
+    },
+    {
+      "name": "err_min_screen",
+      "value": "虚拟屏幕的数量不能少于:"
+    }
+  ]
+}
