@@ -35,6 +35,6 @@ export { contactDataShareUtil } from './src/main/ets/data/ContactDataShareUtil'
 
 export { ContactInfo } from './src/main/ets/components/ContactInfo'
 
-export { ContactDetail } from './src/main/ets/components/ContactDetail'
+export { ContactDetailInfo } from './src/main/ets/components/ContactDetailInfo'
 
 export { TitleBar } from './src/main/ets/components/TitleBar'
