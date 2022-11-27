@@ -186,6 +186,7 @@ export struct Contact {
     let resource = await resourceManager.getResourceManager()
     this.position = await resource.getString($r('app.string.contacts').id)
     this.contacts = await contact.queryContacts()
+    Logger.info(TAG,`this contact is ${JSON.stringify(this.contacts)}`)
     this.contactNumber = this.contacts.length
     // 对获取到的联系人数组根据姓名首字母排序
     let sortContact = this.contacts.map(function (a, b) {

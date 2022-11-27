@@ -69,7 +69,7 @@ struct EditContact {
                 postalAddresses: [{ postalAddress: this.postalAddress }]
               }
               await contact.updateContact(contacts)
-              router.push({
+              router.replace({
                 url: 'pages/Index'
               })
             } else {
@@ -100,13 +100,19 @@ struct EditContact {
 
   aboutToAppear() {
     this.contact.name.fullName === '' ? this.name = '' : this.name = this.contact.name.fullName
-    this.contact.phoneNumbers[0].phoneNumber === '' ? this.phoneNumber = '' : this.phoneNumber = this.contact.phoneNumbers[0].phoneNumber
-    try{
+    try {
       this.nickName = this.contact.nickName.nickName
-    } catch(err) {
+    } catch (err) {
       this.nickName = ''
     }
-    this.contact.emails[0].email === '' ? this.email = '' : this.email = this.contact.emails[0].email
-    this.contact.postalAddresses[0].postalAddress === '' ? this.postalAddress = '' : this.postalAddress = this.contact.postalAddresses[0].postalAddress
+    if (this.contact.phoneNumbers !== undefined) {
+      this.phoneNumber = this.contact.phoneNumbers[0].phoneNumber === '' ? '' : this.contact.phoneNumbers[0].phoneNumber
+    }
+    if (this.contact.emails !== undefined) {
+      this.email = this.contact.emails[0].email === '' ? '' : this.contact.emails[0].email
+    }
+    if (this.contact.postalAddresses !== undefined) {
+      this.postalAddress = this.contact.postalAddresses[0].postalAddress === '' ? '' : this.contact.postalAddresses[0].postalAddress
+    }
   }
 }
