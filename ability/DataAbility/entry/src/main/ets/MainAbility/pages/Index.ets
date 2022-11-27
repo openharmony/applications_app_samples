@@ -28,6 +28,7 @@ const TAG = '[DataAbility].Index'
 @Component
 struct Index {
   @State bookList: BookDataSource = new BookDataSource()
+  @State listHeight: number = 0
 
   onPageShow() {
     this.queryAll()
@@ -100,9 +101,13 @@ struct Index {
           valuesBuckets = null
         })
       }
+      .margin({top: this.listHeight})
       .width('100%')
       .height('92%')
     }
     .width('100%').height('100%')
+    .onAreaChange(( oldValue: Area, newValue: Area) => {
+      this.listHeight = Number(newValue.height) * 0.08
+    })
   }
 }
