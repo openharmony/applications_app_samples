@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import data_rdb from '@ohos.data.rdb'
+
 import prompt from '@ohos.prompt'
 import router from '@ohos.router'
+import faultLogger from '@ohos.faultLogger'
 
 @Preview
 @CustomDialog
@@ -35,9 +36,12 @@ export struct FaultDialog {
       case 1:
         prompt.showToast({ message: '异常构造中,完成后应用会自动退出，请重新进入应用抓取异常信息' })
         setTimeout(() => {
-          data_rdb.getRdbStore(null, { name: null }, 1)
+          // 此处是为了构造cpp_crash，故意写的有问题的接口调用，因此添加了@ts-ignore
+          let module = "ohos.samples.faultlogger";
+          // @ts-ignore
+          faultLogger.addFaultLog(0, faultLogger.FaultType.CPP_CRASH, module, "faultloggertestsummary02 ")
           router.back()
-        }, 500)
+        }, 100)
         break
       case 2:
         prompt.showToast({ message: '异常构造中,会出现冻屏，请退出应用后重新进入应用抓取异常信息' })
@@ -47,7 +51,7 @@ export struct FaultDialog {
             index++
             this.selectIndex = index % 2
           }
-        }, 500)
+        }, 100)
         break
       default:
         break
