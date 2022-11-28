@@ -19,15 +19,12 @@
   </div>
   <text class="info-text">{{ $t('strings.results') }}: {{ results }}</text>
   <div class="button-row">
-    <input class="info-button" type="button" value="setKey" onclick="setKey"></input>
     <input class="info-button" type="button" value="getKey" onclick="getKey"></input>
   </div>
   <div class="button-row">
-    <input class="info-button" type="button" value="setSync" onclick="setSync"></input>
     <input class="info-button" type="button" value="getSync" onclick="getSync"></input>
   </div>
   <div class="button-row">
-    <input class="info-button" type="button" value="setASyncCallback" onclick="setASyncCallback"></input>
     <input class="info-button" type="button" value="getAsyncCallback" onclick="getAsyncCallback"></input>
   </div>
   <div class="button-row">
