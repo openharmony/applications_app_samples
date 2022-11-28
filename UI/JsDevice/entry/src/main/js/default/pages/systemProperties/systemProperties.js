@@ -25,21 +25,6 @@ export default {
   onInit() {
     self = this
   },
-  setKey() {
-    try {
-      var promise = systemParameter.set("test.parameter.key", "testValue");
-      promise.then(function (data) {
-        self.results = "setKey pass";
-        console.log("set test.parameter.key success" + data);
-      }).catch(function (err) {
-        self.results = "set test.parameter.key error" + err.code;
-        console.log("set test.parameter.key error" + err.code);
-      });
-    } catch (e) {
-      self.results = "set unexpected error:" + e;
-      console.log("set unexpected error:" + e);
-    }
-  },
   getKey() {
     try {
       var promise = systemParameter.get("test.parameter.key", "default");
@@ -55,15 +40,6 @@ export default {
       console.log("get unexpected error:" + e);
     }
   },
-  setSync() {
-    try {
-      systemParameter.setSync("test.parameter.key", "testValue");
-      this.results = "setSync pass";
-    } catch (e) {
-      this.results = "setSync unexpected error:" + e;
-      console.log("setSync unexpected error:" + e);
-    }
-  },
   getSync() {
     try {
       var getSync = systemParameter.getSync("test.parameter.key", "default");
@@ -72,22 +48,6 @@ export default {
     } catch (e) {
       this.results = "getSync unexpected error:" + e;
       console.log("getSync unexpected error");
-    }
-  },
-  setASyncCallback() {
-    try {
-      systemParameter.set("test.parameter.key", "testValue", function (err, data) {
-        if (err == undefined) {
-          self.results = "setASyncCallback pass"
-          console.log("set test.parameter.key value success:" + data);
-        } else {
-          self.results = "set test.parameter.key value err:" + err.code;
-          console.log("set test.parameter.key value err:" + err.code);
-        }
-      });
-    } catch (e) {
-      self.results = "set unexpected error:" + e;
-      console.log("set unexpected error:" + e);
     }
   },
   getAsyncCallback() {
