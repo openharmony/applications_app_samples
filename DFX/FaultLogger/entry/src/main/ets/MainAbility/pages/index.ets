@@ -39,7 +39,7 @@ struct Index {
       this.message = `faultLogger num:${len} `
       for (let i = 0; i < len; i++) {
         this.message += `${DIVIDER}Log pid: ${value[i].pid}\nLog type:${value[i].type}\n Log reason: ${value[i].reason}\n` +
-        `Log module: ${value[i].module}\nLog text:\n ${value[i].fullLog} `
+        `Log module: ${value[i].module}\nLog text:\n ${value[i].fullLog.substring(0, 200)}`
       }
     }
   }
