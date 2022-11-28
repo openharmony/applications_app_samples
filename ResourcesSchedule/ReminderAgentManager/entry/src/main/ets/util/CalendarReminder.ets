@@ -30,8 +30,10 @@ class CalendarReminder {
   public calendarReminders: Reminder[] = []
 
   async setCalendar(date: DatePickerResult) {
+    let month = date.month < 9 ? `0${date.month + 1}` : date.month
+    let day = date.day < 10 ? `0${date.day}` : date.day
     let context: any = getContext(this)
-    let selectCalendar: string = `${date.year}-${date.month + 1}-${date.day}`
+    let selectCalendar: string = `${date.year}-${month}-${day}`
     let isExistName = this.calendarReminders.find(element => element.reminderName === selectCalendar) !== undefined
     if (!isExistName) {
       let reminder: Reminder = {
@@ -82,7 +84,7 @@ class CalendarReminder {
 
   async setToggle(isOn: boolean, index: number) {
     this.calendarReminders[index].isStart = isOn
-    if (this.calendarReminders[index].isStart) {
+    if (isOn) {
       let reminderId = await reminderAgent.publishReminder(this.calendarReminders[index].reminderRequestCalendar)
       this.calendarReminders[index].reminderId = reminderId
       let audioIndex: number = await AudioPlayer.getAudioID(
@@ -122,13 +124,13 @@ class CalendarReminder {
     }
   }
 
-  async openDialog(dialogController: CustomDialogController, index: number) {
+  async openDialog(dialog: CustomDialogController, index: number) {
     try {
       await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId)
     } catch (err) {
       Logger.error(TAG, `openDialog this cancelReminder is not exist,err is ${JSON.stringify(err)}`)
     }
-    dialogController.open()
+    dialog.open()
   }
 
   async deleteCalendar(index: number) {

@@ -14,10 +14,10 @@
  */
 
 import AlarmClockReminder from '../../util/AlarmClockReminder'
+import PreferencesDataManager from '../../util/PreferencesDataManager'
 
 @CustomDialog
 export struct AlarmClockSetting {
-  @State alarmDay: number[] = []
   @State snoozeTimes: number = 0
   @State timeInterval: number = 0
   @State selectName: string = 'Demo'
@@ -27,21 +27,12 @@ export struct AlarmClockSetting {
     isSelect: boolean
   }> =
     [
-      { name: $r('app.string.alarm_clock_one'), value: 1, isSelect: false }, {
-        name: $r('app.string.alarm_clock_two'),
-        value: 2,
-        isSelect: false
-      },
-      { name: $r('app.string.alarm_clock_three'), value: 3, isSelect: false }, {
-        name: $r('app.string.alarm_clock_four'),
-        value: 4,
-        isSelect: false
-      },
-      { name: $r('app.string.alarm_clock_five'), value: 5, isSelect: false }, {
-        name: $r('app.string.alarm_clock_six'),
-        value: 6,
-        isSelect: false
-      },
+      { name: $r('app.string.alarm_clock_one'), value: 1, isSelect: false },
+      { name: $r('app.string.alarm_clock_two'), value: 2, isSelect: false },
+      { name: $r('app.string.alarm_clock_three'), value: 3, isSelect: false },
+      { name: $r('app.string.alarm_clock_four'), value: 4, isSelect: false },
+      { name: $r('app.string.alarm_clock_five'), value: 5, isSelect: false },
+      { name: $r('app.string.alarm_clock_six'), value: 6, isSelect: false },
       { name: $r('app.string.alarm_clock_seven'), value: 7, isSelect: false }
     ]
   private selectAlarmClockIndex: number = 0
@@ -63,7 +54,7 @@ export struct AlarmClockSetting {
               .margin(2)
               .fontSize(18)
             Checkbox({ name: item.name, group: 'days' })
-              .select(false)
+              .select(item.isSelect)
               .selectedColor(0x39a2db)
               .onChange((value: boolean) => {
                 item.isSelect = value
@@ -80,13 +71,13 @@ export struct AlarmClockSetting {
           .fontSize(20)
         Blank()
         Counter() {
-          Text(this.snoozeTimes.toString())
+          Text(`${JSON.stringify(this.snoozeTimes)}`)
         }
         .onInc(() => {
           this.snoozeTimes++
         })
         .onDec(() => {
-          this.snoozeTimes = this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--
+          this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--
         })
       }
       .width('100%')
@@ -98,13 +89,13 @@ export struct AlarmClockSetting {
           .fontSize(20)
         Blank()
         Counter() {
-          Text(this.timeInterval.toString())
+          Text(`${JSON.stringify(this.timeInterval)}`)
         }
         .onInc(() => {
           this.timeInterval++
         })
         .onDec(() => {
-          this.timeInterval = this.timeInterval <= 0 ? 0 : this.timeInterval--
+          this.timeInterval <= 0 ? 0 : this.timeInterval--
         })
       }
       .width('100%')
@@ -156,15 +147,17 @@ export struct AlarmClockSetting {
         Button($r('app.string.confirm'))
           .fontSize(24)
           .margin({ left: 12 })
-          .onClick(() => {
+          .onClick(async () => {
+            let selectDays: number[] = []
             for (let i = 0; i < this.days.length; i++) {
               if (this.days[i].isSelect) {
-                this.alarmDay.push(this.days[i].value)
+                selectDays.push(this.days[i].value)
               }
             }
-            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.daysOfWeek = this.alarmDay
             AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.snoozeTimes = this.snoozeTimes
             AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.timeInterval = this.timeInterval
+            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.daysOfWeek = selectDays
+            await PreferencesDataManager.putData('alarmClock', AlarmClockReminder.alarmClockReminders)
             this.controller.close()
           })
       }
@@ -172,6 +165,22 @@ export struct AlarmClockSetting {
       .width('100%')
       .margin({ top: 8, bottom: 8 })
       .justifyContent(FlexAlign.Center)
+    }
+  }
+
+  aboutToAppear() {
+    // Read the data of the settings and display it
+    this.snoozeTimes = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.snoozeTimes
+    this.timeInterval = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.timeInterval
+    this.selectName = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic'
+    let selectDays = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.daysOfWeek
+    for (let i = 0; i < this.days.length; i++) {
+      for (let j = 0; j < selectDays.length; j++) {
+        if (this.days[i].value === selectDays[j]) {
+          this.days[i].isSelect = true
+          break
+        }
+      }
     }
   }
 }

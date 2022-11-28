@@ -14,11 +14,10 @@
  */
 
 import CalendarsReminder from '../../util/CalendarReminder'
+import PreferencesDataManager from '../../util/PreferencesDataManager'
 
 @CustomDialog
 export struct CalendarSetting {
-  @State calendarHour: number = 0
-  @State calendarMinute: number = 0
   @State selectName: string = 'Demo'
   @State calendarTime: string = '0:0'
   private selectIndex: number
@@ -41,10 +40,12 @@ export struct CalendarSetting {
             TimePickerDialog.show({
               selected: new Date,
               useMilitaryTime: true,
-              onAccept: async (value: TimePickerResult) => {
-                this.calendarHour = value.hour
-                this.calendarMinute = value.minute
-                this.calendarTime = `${value.hour}:${value.minute}`
+              onAccept: (value: TimePickerResult) => {
+                CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour = value.hour
+                CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute = value.minute
+                let hour = value.hour < 10 ? `0${value.hour}` : value.hour
+                let minute = value.minute < 10 ? `0${value.minute}` : value.minute
+                this.calendarTime = `${hour}:${minute}`
               }
             })
           })
@@ -97,8 +98,7 @@ export struct CalendarSetting {
           .fontSize(24)
           .margin({ left: 12 })
           .onClick(async () => {
-            CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour = this.calendarHour
-            CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute = this.calendarMinute
+            await PreferencesDataManager.putData('Calendar', CalendarsReminder.calendarReminders)
             this.controller.close()
           })
       }
@@ -108,5 +108,12 @@ export struct CalendarSetting {
       .justifyContent(FlexAlign.Center)
     }
     .padding({ top: 12 })
+  }
+
+  aboutToAppear() {
+    // Read the data of the settings and display it
+    this.calendarTime = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour
+    + ':' + CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute
+    this.selectName = CalendarsReminder.calendarReminders[this.selectIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic'
   }
 }
