@@ -72,6 +72,7 @@ struct AddContact {
               router.replace({
                 url: 'pages/Index'
               })
+              router.clear()
             } else {
               prompt.showToast({
                 message: 'Please input phone number.',

@@ -161,6 +161,7 @@ export struct ContactInfo {
                   router.replace({
                     url: 'pages/Index'
                   })
+                  router.clear()
                 }
               },
               secondaryButton: {
