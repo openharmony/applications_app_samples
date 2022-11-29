@@ -41,7 +41,7 @@ export default {
 
   changeRegular(regularObj) {
     if (regularObj.value) {
-      this.inputRegularValue= ''
+      this.inputRegularValue= regularObj.value
       this.inputRegularValue = regularObj.value.replace(/[^\a-\z\A-\Z]/g, '')
     }
   },
