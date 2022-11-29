@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
-import distributedData from '@ohos.data.distributedData';
+import distributedData from '@ohos.data.distributedData'
+import { logger } from '../model/Logger'
 
-const STORE_ID = 'musicplayer_kvstore';
+const STORE_ID = 'musicplayer_kvstore'
+const TAG = 'KvStoreModel'
 
 export default class KvStoreModel {
-  kvManager;
-  kvStore;
+  kvManager
+  kvStore
 
   constructor() {
   }
@@ -32,12 +34,12 @@ export default class KvStoreModel {
           userId: '0',
           userType: 0
         }
-      };
-      let self = this;
-      console.info('MusicPlayer[KvStoreModel] createKVManager begin');
+      }
+      let self = this
+      logger.info(TAG, `createKVManager begin`)
       distributedData.createKVManager(config).then((manager) => {
-        console.debug('MusicPlayer[KvStoreModel] createKVManager success, kvManager=' + JSON.stringify(manager));
-        self.kvManager = manager;
+        logger.debug(TAG, `createKVManager success, kvManager=${JSON.stringify(manager)}`)
+        self.kvManager = manager
         var options = {
           createIfMissing: true,
           encrypt: false,
@@ -46,69 +48,65 @@ export default class KvStoreModel {
           kvStoreType: 1,
           schema: '',
           securityLevel: 3,
-        };
-        console.info('MusicPlayer[KvStoreModel] kvManager.getKVStore begin');
+        }
+        logger.info(TAG, `kvManager.getKVStore begin`)
         self.kvManager.getKVStore(STORE_ID, options).then((store) => {
-          console.debug('MusicPlayer[KvStoreModel] getKVStore success, kvStore=' + store);
-          self.kvStore = store;
-          callback();
-        });
-        console.info('MusicPlayer[KvStoreModel] kvManager.getKVStore end');
-      });
-      console.info('MusicPlayer[KvStoreModel] createKVManager end');
+          logger.debug(TAG, `getKVStore success, kvStore=${store}`)
+          self.kvStore = store
+          callback()
+        })
+        logger.info(TAG, `kvManager.getKVStore end`)
+      })
+      logger.info(TAG, `createKVManager end`)
     } else {
-      callback();
+      callback()
     }
   }
 
   broadcastMessage(msg) {
-    console.debug('MusicPlayer[KvStoreModel] broadcastMessage ' + msg);
-    var num = Math.random();
-    let self = this;
+    logger.debug(TAG, `broadcastMessage ${msg}`)
+    var num = Math.random()
+    let self = this
     this.createKvStore(() => {
-      self.put(msg, num);
-    });
+      self.put(msg, num)
+    })
   }
 
   put(key, value) {
-    console.debug('MusicPlayer[KvStoreModel] kvStore.put ' + key + '=' + value);
+    logger.debug(TAG, `kvStore.put ${key}=${value}`)
     this.kvStore.put(key, value).then((data) => {
       this.kvStore.get(key).then((data) => {
-        console.debug('MusicPlayer[KvStoreModel] kvStore.get ' + key + '=' + JSON.stringify(data));
-      });
-      console.debug('MusicPlayer[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data));
+        logger.debug(TAG, `kvStore.get ${key}=${JSON.stringify(data)}`)
+      })
+      logger.debug(TAG, `kvStore.put ${key}  finished, data= ${JSON.stringify(data)}`)
     }).catch((err) => {
-      console.error('MusicPlayer[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err));
-    });
+      logger.error(TAG, `kvStore.put  ${key} failed, ${JSON.stringify(err)}`)
+    })
   }
 
   setOnMessageReceivedListener(msg, callback) {
-    console.debug('MusicPlayer[KvStoreModel] setOnMessageReceivedListener ' + msg);
-    let self = this;
+    logger.debug(TAG, `setOnMessageReceivedListener ${msg}`)
+    let self = this
     this.createKvStore(() => {
-      console.info('MusicPlayer[KvStoreModel] kvStore.on(dataChange) begin');
+      logger.info(TAG, `kvStore.on(dataChange) begin`)
       self.kvStore.on('dataChange', 1, (data) => {
-        console.debug('MusicPlayer[KvStoreModel] dataChange, ' + JSON.stringify(data));
-        console.debug('MusicPlayer[KvStoreModel] dataChange, insert ' + data.insertEntries.length + ' udpate '
-        + data.updateEntries.length);
+        logger.debug(TAG, `dataChange ${JSON.stringify(data)} insert ${data.insertEntries.length} update ${data.updateEntries.length}`)
         for (var i = 0; i < data.insertEntries.length; i++) {
           if (data.insertEntries[i].key === msg) {
-            console.debug('MusicPlayer[KvStoreModel] insertEntries receive ' + msg + '='
-            + JSON.stringify(data.insertEntries[i].value));
-            callback();
-            return;
+            logger.debug(TAG, `insertEntries receive ${msg}=${JSON.stringify(data.insertEntries[i].value)}`)
+            callback()
+            return
           }
         }
         for (i = 0; i < data.updateEntries.length; i++) {
           if (data.updateEntries[i].key === msg) {
-            console.debug('MusicPlayer[KvStoreModel] updateEntries receive ' + msg + '='
-            + JSON.stringify(data.updateEntries[i].value));
-            callback();
-            return;
+            logger.debug(TAG, `updateEntries receive ${msg}=${JSON.stringify(data.updateEntries[i].value)}`)
+            callback()
+            return
           }
         }
-      });
-      console.info('MusicPlayer[KvStoreModel] kvStore.on(dataChange) end');
-    });
+      })
+      logger.info(TAG, `kvStore.on(dataChange) end`)
+    })
   }
 }
