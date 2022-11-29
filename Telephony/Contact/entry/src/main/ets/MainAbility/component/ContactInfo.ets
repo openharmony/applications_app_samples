@@ -45,10 +45,17 @@ export struct ContactInfo {
 
         Column() {
           Row() {
-            Text(this.contact.phoneNumbers[0].phoneNumber)
-              .width('50%')
-              .fontSize(22)
-              .margin({ left: 16 })
+            if (this.contact.phoneNumbers !== undefined) {
+              Text(this.contact.phoneNumbers[0].phoneNumber)
+                .width('50%')
+                .fontSize(22)
+                .margin({ left: 16 })
+            } else {
+              Text()
+                .width('50%')
+                .fontSize(22)
+                .margin({ left: 16 })
+            }
 
             Blank()
 
