@@ -224,8 +224,8 @@ struct Index {
     if (!this.isFall) {
       return
     }
-    let x = dx / this.chessSize - 1
-    let y = dy / this.chessSize - 1
+    let x = Math.round(dx / this.chessSize - 1)
+    let y = Math.round(dy / this.chessSize - 1)
     this.fallChessInner(x, y)
     this.isFall = false
   }
@@ -361,34 +361,33 @@ struct Index {
 
       Row() {
         if (this.deviceFlag === 'A') {
-          Row() {
-            Button($r('app.string.restart'), { stateEffect: true })
-              .width(this.chessSize * 3)
-              .height(45)
-              .fontSize(20 / this.dpiBi)
-              .margin({ right: 20 })
-              .backgroundColor('RGB(210,105,30)')
-              .onClick(() => {
-                this.distributedData.init()
-                this.distributedData.isOver = false
-                this.distributedData.step = 0
-                this.distributedData.clickCount = 0
-                this.distributedData.fallLocation = []
-              })
-            Button($r('app.string.repentance_chess'), { stateEffect: true })
-              .backgroundColor('RGB(210,105,30)')
-              .width(this.chessSize * 3)
-              .height(45)
-              .margin({ left: 20 })
-              .fontSize(20 / this.dpiBi)
-              .onClick(() => {
-                if (this.distributedData.step > 0) {
-                  this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
-                  this.distributedData.fallGather.shift()
-                  this.distributedData.step--
-                }
-              })
-          }
+          Button($r('app.string.restart'), { stateEffect: true })
+            .height(40)
+            .fontSize(24 / this.dpiBi)
+            .margin({ left: 20 })
+            .padding({ left: 10, right: 10 })
+            .backgroundColor('RGB(210,105,30)')
+            .onClick(() => {
+              this.distributedData.init()
+              this.distributedData.isOver = false
+              this.distributedData.step = 0
+              this.distributedData.clickCount = 0
+              this.distributedData.fallLocation = []
+            })
+          Blank()
+          Button($r('app.string.repentance_chess'), { stateEffect: true })
+            .backgroundColor('RGB(210,105,30)')
+            .height(40)
+            .margin({ right: 20 })
+            .padding({ left: 10, right: 10 })
+            .fontSize(24 / this.dpiBi)
+            .onClick(() => {
+              if (this.distributedData.step > 0) {
+                this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
+                this.distributedData.fallGather.shift()
+                this.distributedData.step--
+              }
+            })
         }
       }
       .width(210)
