@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import emitter from '@ohos.events.emitter'
 import router from '@ohos.router'
 import Http from '@ohos/http'
 import { GoodResponse, ShopCartItemDataModel } from '../../model/GoodsModel'

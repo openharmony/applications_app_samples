@@ -238,7 +238,7 @@ export const TITLE_BAR_DATA: Array<TitleBarModel> = [
 
 export const PRODUCT_DATA: Array<ProductDataModel> = [
   {
-    id: 1,
+    id: 0,
     uri: $r('app.media.product001'),
     title: $r('app.string.product_data_title_device'),
     info: $r('app.string.product_data_title_device'),
@@ -254,7 +254,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 2,
     uri: $r('app.media.product003'),
     title: $r('app.string.product_data_title_device'),
     info: $r('app.string.product_data_title_device'),
@@ -262,7 +262,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 3,
     uri: $r('app.media.product004'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -270,7 +270,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 4,
     uri: $r('app.media.product005'),
     title: $r('app.string.product_data_title_device'),
     info: $r('app.string.product_data_title_device'),
@@ -278,7 +278,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 5,
     uri: $r('app.media.product006'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -286,7 +286,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 6,
     uri: $r('app.media.product007'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -294,7 +294,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 7,
     uri: $r('app.media.product008'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -302,7 +302,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 8,
     uri: $r('app.media.product001'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -310,7 +310,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 9,
     uri: $r('app.media.product002'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -318,7 +318,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 10,
     uri: $r('app.media.product003'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -326,7 +326,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 11,
     uri: $r('app.media.product004'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -334,7 +334,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 12,
     uri: $r('app.media.product005'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -342,7 +342,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 13,
     uri: $r('app.media.product006'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -350,7 +350,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 14,
     uri: $r('app.media.product007'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,
@@ -358,7 +358,7 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
     price: $r('app.string.product_data_price')
   },
   {
-    id: 1,
+    id: 15,
     uri: $r('app.media.product008'),
     title: $r('app.string.product_data_title_device'),
     info: undefined,

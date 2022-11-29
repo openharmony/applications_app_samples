@@ -15,12 +15,14 @@
 
 import { Cart } from '../shoppingCart/Cart'
 import { FavorGoodList } from '../shoppingCart/FavorGoodlist'
+import { ProductDataModel } from '../../model/GoodsModel'
 
 @Preview
 @Component
 export struct ShopCart {
   private url: string
   @StorageLink('goodsListHeight') goodsListHeight: number = 100
+  @State shoppingCartGoodsList: ProductDataModel[] = AppStorage.Get('shoppingCartGoodsList')
 
   build() {
     Column() {
@@ -43,7 +45,7 @@ export struct ShopCart {
             .width('100%')
             .margin({ top: 16, bottom: 12 })
 
-            Cart()
+            Cart({ shoppingCartGoodsListToCart: $shoppingCartGoodsList })
           }
           .width('100%')
           .backgroundColor($r('app.color.divider'))

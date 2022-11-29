@@ -1,6 +1,10 @@
 {
   "string": [
     {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
       "name": "broadcast",
       "value": "live"
     },
@@ -15,6 +19,10 @@
     {
       "name": "collection",
       "value": "collect"
+    },
+    {
+      "name": "shopping",
+      "value": "orange shopping"
     },
     {
       "name": "price_reduction_notice",
@@ -123,6 +131,10 @@
     {
       "name": "reduction_notice",
       "value": "The price of the product you are subscribed to has been reduced, please go to check it out."
+    },
+    {
+      "name": "shopping_advertising",
+      "value": "Low prices are prioritized to save you money"
     }
   ]
 }

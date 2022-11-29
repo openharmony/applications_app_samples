@@ -24,7 +24,7 @@ AppStorage.Link('isUpdateDialogOpen') || AppStorage.SetOrCreate('isUpdateDialogO
 @Entry
 @Component
 export struct NavigationHomePage {
-  @State tabsIndex: number = 0
+  @State tabsIndex: number = AppStorage.Get('nowIndex') || 0
   @StorageProp('curBp') curBp: string = 'sm'
   private url: string
   private controller: TabsController = new TabsController()

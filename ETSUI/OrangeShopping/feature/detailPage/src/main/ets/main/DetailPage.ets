@@ -30,7 +30,7 @@ const SRC_IMG = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/gbom/694
 export struct DetailPage {
   @State sOpacity: number = 1
   @State isPanel: boolean = false
-  @State data: any[] = router.getParams()['goodItem']
+  @State goodDetailData: any[] = router.getParams()['goodItem']
   @State currentLocation: string = ''
   @State recommend: string = ''
   @State commodity: string = ''
@@ -55,14 +55,14 @@ export struct DetailPage {
               VideoPage({ isStart: $openFirst })
               ForEach(SWIPER_PICTURE_DATA, item => {
                 Column() {
-                  Image(this.data['uri'])
+                  Image(this.goodDetailData['uri'])
                     .width('100%')
                     .aspectRatio(1)
                 }
                 .width('100%')
               })
             }
-            .height('100%')
+            .height(300)
             .index(this.swiperIndex)
             .indicator(false)
             .onChange((index: number) => {
@@ -82,7 +82,7 @@ export struct DetailPage {
             .margin({ right: 16, bottom: 16 })
           }
           .width('100%')
-          .height(330)
+          .height(300)
           .backgroundColor($r('app.color.white'))
 
           Column() {
@@ -117,7 +117,7 @@ export struct DetailPage {
         }
       })
 
-      BottomNavigation()
+      BottomNavigation({ goodItemData: $goodDetailData })
         .position({ x: 0, y: '100%' })
         .translate({ x: 0, y: '-100%' })
       SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })

@@ -14,10 +14,15 @@
 */
 
 import router from '@ohos.router'
+import prompt from '@ohos.prompt'
+import { EmitterClass } from '@ohos/emitter'
+import { ProductDataModel } from '../model/DetailMode'
 
 @Component
 export struct BottomNavigation {
   @StorageProp('curBp') curBp: string = 'md'
+  @Link goodItemData: ProductDataModel
+  private emitterClass: EmitterClass = new EmitterClass()
 
   build() {
     Row() {
@@ -34,8 +39,9 @@ export struct BottomNavigation {
         }
         .width(74)
         .onClick(() => {
+          AppStorage.SetOrCreate('nowIndex',0)
           router.push({
-            url: 'page/Home'
+            url: 'pages/Home'
           })
         })
 
@@ -51,8 +57,9 @@ export struct BottomNavigation {
         }
         .width(74)
         .onClick(() => {
+          AppStorage.SetOrCreate('nowIndex',2)
           router.push({
-            url: 'page/Home'
+            url: 'pages/Home'
           })
         })
       }
@@ -67,6 +74,9 @@ export struct BottomNavigation {
         }
         .alignItems(VerticalAlign.Center)
         .padding({ left: 20, right: 20 })
+        .onClick(()=>{
+          this.emitterClass.addGoods(this.goodItemData.id)
+        })
 
         Row() {
           Text($r('app.string.buy_now'))

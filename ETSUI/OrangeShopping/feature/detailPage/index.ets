@@ -15,4 +15,6 @@
 
 export { DetailPage } from './src/main/ets/main/DetailPage'
 
+export { EventsDialog } from './src/main/ets/components/EventsDialog'
+
 export { logger } from './src/main/ets/utils/Logger'

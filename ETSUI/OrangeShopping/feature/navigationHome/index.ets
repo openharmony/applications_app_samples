@@ -14,3 +14,5 @@
  */
 
 export { NavigationHomePage } from './src/main/ets/main/NavigationHomePage'
+
+export { ProductDataModel } from './src/main/ets/model/GoodsModel'

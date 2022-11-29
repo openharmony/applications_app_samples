@@ -92,6 +92,7 @@ export class TitleBarModel {
     this.content = content
   }
 }
+
 export class ProductDataModel {
   constructor(public id: number, public uri: Resource, public title: Resource, public info: Resource, public labels: Resource, public price: Resource) {
     this.id = id
