@@ -125,6 +125,7 @@ export default function appTest() {
       await btnAdd.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickGroupChat')
       // 点击发起群聊
+      await driver.delayMs(1000)
       await driver.assertComponentExist(BY.text('发起群聊', MatchPattern.CONTAINS))
       let groupChat = await driver.findComponent(BY.text('发起群聊', MatchPattern.CONTAINS))
       await groupChat.click()
