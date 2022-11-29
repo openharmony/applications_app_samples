@@ -1,84 +1,160 @@
 {
   "float": [
     {
-      "name": "basic_button_width",
+      "name": "landSpace_basic_button_width",
       "value": "112vp"
     },
     {
-      "name": "basic_button_height",
+      "name": "landSpace_basic_button_height",
       "value": "66vp"
     },
     {
-      "name": "feature_picSize",
+      "name": "landSpace_feature_picSize",
       "value": "32vp"
     },
     {
-      "name": "switch_button_width",
-      "value": "167vp"
+      "name": "landSpace_switch_button_width",
+      "value": "166vp"
     },
     {
-      "name": "return_picSize",
+      "name": "landSpace_return_picSize",
       "value": "32vp"
     },
     {
-      "name": "return_button_widthType_1",
+      "name": "landSpace_return_button_widthType_1",
       "value": "292vp"
     },
     {
-      "name": "return_button_widthType_2",
-      "value": "167vp"
+      "name": "landSpace_return_button_widthType_2",
+      "value": "166vp"
     },
     {
-      "name": "space_button_width_1",
+      "name": "landSpace_space_button_width_1",
       "value": "490vp"
     },
     {
-      "name": "space_button_width_2",
-      "value": "362vp"
+      "name": "landSpace_space_button_width_2",
+      "value": "490vp"
     },
     {
-      "name": "padding_top",
+      "name": "landSpace_padding_top",
       "value": "16vp"
     },
     {
-      "name": "padding_left_right",
-      "value": "26vp"
+      "name": "landSpace_padding_left_right",
+      "value": "27vp"
     },
     {
-      "name": "downMenu_height",
+      "name": "landSpace_downMenu_height",
       "value": "62vp"
     },
     {
-      "name": "downMenu_pic_width",
+      "name": "landSpace_downMenu_pic_width",
       "value": "32vp"
     },
     {
-      "name": "downMenu_pic_height",
+      "name": "landSpace_downMenu_pic_height",
       "value": "16vp"
     },
     {
-      "name": "downMenu_width",
+      "name": "landSpace_downMenu_width",
       "value": "62vp"
     },
     {
-      "name": "litter_number_fontSize",
+      "name": "landSpace_litter_number_fontSize",
       "value": "10fp"
     },
     {
-      "name": "en_fontSize",
+      "name": "landSpace_en_fontSize",
       "value": "32fp"
     },
     {
-      "name": "switch_number_fontSize",
+      "name": "landSpace_symbol_fontSize",
+      "value": "27fp"
+    },
+    {
+      "name": "landSpace_switch_number_fontSize",
       "value": "24fp"
     },
     {
-      "name": "number_1234_fontSize",
-      "value": "21fp"
+      "name": "landSpace_keyboard_height",
+      "value": "338vp"
     },
     {
-      "name": "keyboard_height",
-      "value": "338vp"
+      "name": "portrait_basic_button_width",
+      "value": "70vp"
+    },
+    {
+      "name": "portrait_basic_button_height",
+      "value": "64vp"
+    },
+    {
+      "name": "portrait_feature_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "portrait_switch_button_width",
+      "value": "104vp"
+    },
+    {
+      "name": "portrait_return_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "portrait_return_button_widthType_1",
+      "value": "182vp"
+    },
+    {
+      "name": "portrait_return_button_widthType_2",
+      "value": "182vp"
+    },
+    {
+      "name": "portrait_space_button_width_1",
+      "value": "310vp"
+    },
+    {
+      "name": "portrait_space_button_width_2",
+      "value": "230vp"
+    },
+    {
+      "name": "portrait_padding_top",
+      "value": "24vp"
+    },
+    {
+      "name": "portrait_padding_left_right",
+      "value": "12vp"
+    },
+    {
+      "name": "portrait_downMenu_height",
+      "value": "62vp"
+    },
+    {
+      "name": "portrait_downMenu_pic_width",
+      "value": "32vp"
+    },
+    {
+      "name": "portrait_downMenu_pic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "portrait_downMenu_width",
+      "value": "62vp"
+    },
+    {
+      "name": "portrait_litter_number_fontSize",
+      "value": "10fp"
+    },
+    {
+      "name": "portrait_en_fontSize",
+      "value": "32fp"
+    },
+    {
+      "name": "portrait_switch_number_fontSize",
+      "value": "24fp"
+    },
+    {
+      "name": "portrait_keyboard_height",
+      "value": "376vp"
     },
     {
       "name": "rk_basic_button_width",
@@ -114,7 +190,7 @@
     },
     {
       "name": "rk_space_button_width_2",
-      "value": "88.26vp"
+      "value": "136.26vp"
     },
     {
       "name": "rk_padding_top",
@@ -159,6 +235,41 @@
     {
       "name": "rk_keyboard_height",
       "value": "316vp"
+    },{
+      "name": "downMenu_height",
+      "value": "62vp"
+    },
+    {
+      "name": "downMenu_pic_width",
+      "value": "32vp"
+    },
+    {
+      "name": "downMenu_pic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "downMenu_width",
+      "value": "62vp"
+    },
+    {
+      "name": "litter_number_fontSize",
+      "value": "10fp"
+    },
+    {
+      "name": "en_fontSize",
+      "value": "32fp"
+    },
+    {
+      "name": "switch_number_fontSize",
+      "value": "24fp"
+    },
+    {
+      "name": "number_1234_fontSize",
+      "value": "21fp"
+    },
+    {
+      "name": "keyboard_height",
+      "value": "338vp"
     }
   ]
 }
