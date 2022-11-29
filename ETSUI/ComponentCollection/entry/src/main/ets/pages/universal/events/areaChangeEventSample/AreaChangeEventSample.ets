@@ -76,7 +76,7 @@ struct AreaChangeEventSample {
 
   isSideReached(): boolean {
     if ((this.ballPositionX > 0) && (this.ballPositionX < this.areaRight - BALL_SIZE)
-        && (this.ballPositionY > 0) && (this.ballPositionY < this.areaBottom - BALL_SIZE)) {
+    && (this.ballPositionY > 0) && (this.ballPositionY < this.areaBottom - BALL_SIZE)) {
       return false
     }
     return true
@@ -150,58 +150,63 @@ struct AreaChangeEventSample {
   build() {
     Column() {
       TitleBar({ title: $r('app.string.component_area_change_event') })
-      IntroductionTitle({ introduction: $r('app.string.component_area_change_action_tips') })
-      Column() {
-        // slider for controlling the area width
-        CommonItemSlider({
-          changeValue: $areaCurrentWidthPercent,
-          min: 30,
-          max: 100,
-          name: $r('app.string.size_width')
-        })
-        // slider for controlling the area height
-        CommonItemSlider({
-          changeValue: $areaCurrentHeightPercent,
-          min: 30,
-          max: 100,
-          name: $r('app.string.size_height')
-        })
-      }.padding(12)
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.component_area_change_action_tips') })
+          Column() {
+            // slider for controlling the area width
+            CommonItemSlider({
+              changeValue: $areaCurrentWidthPercent,
+              min: 30,
+              max: 100,
+              name: $r('app.string.size_width')
+            })
+            // slider for controlling the area height
+            CommonItemSlider({
+              changeValue: $areaCurrentHeightPercent,
+              min: 30,
+              max: 100,
+              name: $r('app.string.size_height')
+            })
+          }
 
-      Column() {
-        Row() {
-          Button({ type: ButtonType.Circle, stateEffect: false })
-            .width(BALL_SIZE)
-            .height(BALL_SIZE)
-            .backgroundColor(0x317aff)
-            .position({ x: this.ballPositionX, y: this.ballPositionY })
-        }
-        .height(this.areaCurrentHeightPercent.toString() + '%')
-        .width(this.areaCurrentWidthPercent.toString() + '%')
-        .backgroundColor($r('app.color.background_shallow_grey'))
-        .onAreaChange((oldValue: Area, newValue: Area) => {
-          this.areaRight = newValue.width as number
-          this.areaBottom = newValue.height as number
-          console.error("ROW area: " + JSON.stringify(newValue))
-          this.areaChangedInfo
+          Column() {
+            Row() {
+              Button({ type: ButtonType.Circle, stateEffect: false })
+                .width(BALL_SIZE)
+                .height(BALL_SIZE)
+                .backgroundColor(0x317aff)
+                .position({ x: this.ballPositionX, y: this.ballPositionY })
+            }
+            .height(this.areaCurrentHeightPercent.toString() + '%')
+            .width(this.areaCurrentWidthPercent.toString() + '%')
+            .backgroundColor($r('app.color.background_shallow_grey'))
+            .onAreaChange((oldValue: Area, newValue: Area) => {
+              this.areaRight = newValue.width as number
+              this.areaBottom = newValue.height as number
+              console.error("ROW area: " + JSON.stringify(newValue))
+              this.areaChangedInfo
               = 'Area Info:\n' + '  globalPos:\n    x: ' + newValue.globalPosition.x + '\n    y: '
               + newValue.globalPosition.y + '\n' + '  width: ' + newValue.width + '\n  height: ' + newValue.height
-          this.startMotionControlling()
-        })
-      }
-      .padding(12)
-      .borderRadius(24)
-      .backgroundColor(Color.White)
+              this.startMotionControlling()
+            })
+          }
+          .padding(12)
+          .borderRadius(24)
+          .backgroundColor(Color.White)
 
-      // touch location information
-      Text(this.areaChangedInfo)
-        .fontSize(18)
-        .width('100%')
-        .textAlign(TextAlign.Start)
-        .padding({ left: 18, top: 30 })
+          // touch location information
+          Text(this.areaChangedInfo)
+            .fontSize(18)
+            .width('100%')
+            .textAlign(TextAlign.Start)
+            .padding({ left: 18, top: 30 })
+            .margin({ bottom: 70 })
+        }
+        .padding({ left: 12, right: 12 })
+        .constraintSize({ minHeight: '100%' })
+      }
     }
-    .width('100%')
-    .height('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }

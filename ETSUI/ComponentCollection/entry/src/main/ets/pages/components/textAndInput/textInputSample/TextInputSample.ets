@@ -118,8 +118,7 @@ struct TextInputSample {
                 `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_submit').id)}${keyType}`)
             })
             .onEditChange(isEditing => {
-              ShowToast.longToast(
-                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_edit').id)}${isEditing}`)
+              // You can get edit status by isEditing
             })
 
           IntroductionTitle({ introduction: $r('app.string.text_input_placeholder_style') })
