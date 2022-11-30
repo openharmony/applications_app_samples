@@ -22,8 +22,6 @@ import { EMContact, MessageBase, FriendMoment } from './MsgBase'
 struct FriendsMomentsPage {
   @State itemLength: number = 0
   private momentData = new FriendMomentsData()
-  private id: string
-  private imageList = [$r('app.media.personality1'), $r('app.media.personality1'), $r('app.media.personality1'), $r('app.media.personality1')]
 
   build() {
     Column() {
@@ -68,6 +66,7 @@ struct FriendsMomentsPage {
                     .width(50)
                 }.margin({ top: -25 })
               }
+              .margin({ bottom: 20 })
 
               .alignItems(HorizontalAlign.End)
               .height('40%')
