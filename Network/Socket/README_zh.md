@@ -31,6 +31,8 @@ UDP Socket是面向非连接的协议，它不与对方建立连接，而是直�
 
 ### 约束与限制
 
-1.本示例仅支持在标准系统上运行。
+1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+2. 本示例为Stage模型，仅支持API9版本SDK，版本号：3.2.7.5。
+
+3. 本示例需要使用DevEco Studio 3.0 Release (Build Version: 3.0.0.993, built on September 4, 2022)才可编译运行。

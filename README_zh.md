@@ -139,7 +139,7 @@
   - [`CustomNotification`：自定义通知（eTS）（API9）](Notification/CustomNotification)
 - Network
   - [`Http`：数据请求（eTS）（API9）](Network/Http)
-  - [`Socket`：Socket 连接（eTS）（API8）](Network/Socket)
+  - [`Socket`：Socket 连接（eTS）（API9）](Network/Socket)
   - [`WebSocket`：WebSocket（eTS）（API9）](Network/WebSocket)
   - [`UploadDownload`：上传下载（eTS）（API8）](Network/UploadDownload)
 - Preset

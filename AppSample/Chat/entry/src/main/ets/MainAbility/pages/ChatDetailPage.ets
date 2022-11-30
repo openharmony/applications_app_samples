@@ -49,7 +49,7 @@ struct ChatDetailPage {
   @State contextCaller: any = undefined
   @State user1Name: string = undefined
   @State user2Name: string = undefined
-  @State listHeight : number = 0
+  @State listHeight: number = 0
 
   build() {
     Column() {
@@ -92,9 +92,8 @@ struct ChatDetailPage {
       }
       .listDirection(Axis.Vertical)
       .divider({ strokeWidth: 2, color: "#f3f3f3" })
-      .margin({ bottom: 60 })
-      .padding({ left: 10, right: 10, bottom: 60 })
-      .height(this.listHeight)
+      .padding({ left: 10, right: 10, bottom: 10 })
+      .layoutWeight(1)
       .width('100%')
       //底部输入框
       Row({ space: 5 }) {
@@ -141,10 +140,6 @@ struct ChatDetailPage {
     }
     .backgroundColor("#f3f3f3")
     .height("100%")
-    .padding({ bottom: 60 })
-    .onAreaChange((oldArea:Area,newArea:Area) =>{
-      this.listHeight = (newArea.height) as number * 0.75 // percentage
-    })
   }
 
   async convertResourceToString(resource: Resource) {
@@ -190,9 +185,9 @@ struct ChatDetailPage {
     console.info(TAG + `aboutToAppear: wantFileParams--- ${JSON.stringify(this.wantFileParams)}`)
     await this.fdTransformPixelMap()
     // 对分享来的数据分类处理
-    let user1 = new EMContact("1",this.user1Name)
+    let user1 = new EMContact("1", this.user1Name)
     let user2 = new EMContact("2", `${this.user2Name}${router.getParams().chatId.toString()}`, `/resources/images/photo${(parseInt(
-      router.getParams()
+    router.getParams()
       .chatId) % 50).toString()}.jpg`)
     let content
     let msg
@@ -217,7 +212,7 @@ struct ChatDetailPage {
     let tdate = new Date()
     let user1 = new EMContact("1", "自己")
     let user2 = new EMContact("2", `朋友${router.getParams().chatId.toString()}`, `/resources/images/photo${(parseInt(
-      router.getParams()
+    router.getParams()
       .chatId) % 50).toString()}.jpg`)
     let sum = 0
     for (let i = 0; i < 1000; i++) {
@@ -313,7 +308,7 @@ struct ChatItemView {
                   .borderRadius(5)
                   .padding(10)
                 // Image($r("app.media.phone"))
-                 Image((this.msg.msgBody as ImgTextMessage).img)
+                Image((this.msg.msgBody as ImgTextMessage).img)
                   .width((this.msg.msgBody as ImgTextMessage).width)
                   .height((this.msg.msgBody as ImgTextMessage).height)
                   .objectFit(ImageFit.Contain)
@@ -329,7 +324,7 @@ struct ChatItemView {
             }
           }
           .alignItems(HorizontalAlign.Start)
-          .margin({ left: 5 })
+          .margin({ right: 5 })
         }
         .alignItems(VerticalAlign.Top)
         .width("100%")
