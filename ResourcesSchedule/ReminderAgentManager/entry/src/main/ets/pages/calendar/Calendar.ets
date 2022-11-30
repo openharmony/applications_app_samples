@@ -87,6 +87,7 @@ export struct ReminderCalendar {
           )
           .onClick(async () => {
             this.selectCalendar = index
+            CalendarReminder.calendarReminders[index].isStart = false
             await CalendarReminder.openDialog(this.calendarSetting, index)
           })
         })

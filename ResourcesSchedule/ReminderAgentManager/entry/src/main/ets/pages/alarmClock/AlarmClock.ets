@@ -93,6 +93,7 @@ export struct AlarmClock {
           )
           .onClick(async () => {
             this.selectAlarmClockIndex = index
+            AlarmClockReminder.alarmClockReminders[index].isStart = false
             await AlarmClockReminder.openDialog(this.alarmClockSetting, index)
           })
         })
@@ -122,8 +123,8 @@ export struct AlarmClock {
     .width('100%')
     .height('100%')
     .onAreaChange((oldValue: Area, newValue: Area) => {
-      this.canvasWidth = px2vp(newValue.width < newValue.height
-        ? Number(newValue.height) * 0.5 : Number(newValue.width) * 0.3)
+      let size = newValue.width < newValue.height ? newValue.width : Number(newValue.height) * 0.8
+      this.canvasWidth = Number(size) * 0.5
       this.canvasRadius = this.canvasWidth / 2
     })
   }

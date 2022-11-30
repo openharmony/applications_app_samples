@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('{Sample_ReminderAgentManager}')
+export default new Logger('[Sample_ReminderAgentManager]')

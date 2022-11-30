@@ -30,8 +30,10 @@ class AlarmClockReminder {
   public alarmClockReminders: Reminder[] = []
 
   async setAlarmReminder(time: TimePickerResult) {
+    let hour = time.hour < 10 ? `0${time.hour}` : time.hour
+    let minute = time.minute < 10 ? `0${time.minute}` : time.minute
     let context: any = getContext(this)
-    let selectTime: string = `${time.hour}:${time.minute}`
+    let selectTime: string = `${hour}:${minute}`
     let isExistName = this.alarmClockReminders.find(element => element.reminderName === selectTime) !== undefined
     if (!isExistName) {
       let reminder: Reminder = {
@@ -66,6 +68,9 @@ class AlarmClockReminder {
         wantAgent: { pkgName: 'ohos.samples.reminderagentmanager', abilityName: 'MainAbility' },
         title: context.resourceManager.getStringSync($r('app.string.alarm_clock').id),
         content: context.resourceManager.getStringSync($r('app.string.alarm_clock_reach').id),
+        snoozeTimes: 0,
+        timeInterval: 0,
+        daysOfWeek: []
       }
       Logger.info(TAG, `this alarm clock is ${JSON.stringify(alarm)}`)
       reminder.reminderRequestAlarm = alarm
@@ -83,7 +88,7 @@ class AlarmClockReminder {
 
   async setToggle(isOn: boolean, index: number) {
     this.alarmClockReminders[index].isStart = isOn
-    if (this.alarmClockReminders[index].isStart) {
+    if (isOn) {
       await reminderAgent.addNotificationSlot({ type: notification.SlotType.SOCIAL_COMMUNICATION })
       let reminderId = await reminderAgent.publishReminder(this.alarmClockReminders[index].reminderRequestAlarm)
       this.alarmClockReminders[index].reminderId = reminderId
@@ -116,13 +121,13 @@ class AlarmClockReminder {
     }
   }
 
-  async openDialog(dialogController: CustomDialogController, index: number) {
+  async openDialog(dialog: CustomDialogController, index: number) {
     try {
       await reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId)
     } catch (err) {
       Logger.error(TAG, `openDialog this cancelReminder is not exist,err is ${JSON.stringify(err)}`)
     }
-    dialogController.open()
+    dialog.open()
   }
 
   async deleteAlarmReminder(index: number) {
