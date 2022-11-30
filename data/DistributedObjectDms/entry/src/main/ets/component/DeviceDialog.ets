@@ -24,6 +24,7 @@ export default struct DeviceDialog {
   private devices: Array<deviceManager.DeviceInfo> = []
   private selectedIndex: number = 0
   private onSelectedIndexChange: (selectedIndex) => void
+  @State deviceDialogWidth: number = 0
 
   build() {
     Column() {
@@ -77,7 +78,9 @@ export default struct DeviceDialog {
         this.customDialogController.close()
       })
     }
-    .width(448)
+    .onAreaChange((oldArea: Area, newArea: Area) => {
+      this.deviceDialogWidth = (newArea.width > newArea.height ? newArea.height : newArea.width) as number * 0.1 //percentage
+    })
     .height(290)
     .backgroundColor(Color.White)
     .padding({ left: 32, right: 32, top: 12, bottom: 32 })
