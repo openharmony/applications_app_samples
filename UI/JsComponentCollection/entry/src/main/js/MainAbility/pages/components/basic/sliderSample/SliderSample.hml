@@ -70,8 +70,8 @@
 
       <div  style="height: 20vp; width: 100%; justify-content: space-between; padding-left: 12vp;
         padding-right: 12vp; flex-direction: row;">
-        <div for="item in stepInfo" style="display:flex;flex-direction: row;height: 100%;justify-content: space-between; padding-left: 12vp;
-          padding-right: 12vp;">
+        <div for="item in stepInfo" style="display:flex;flex-direction: row;height: 100%;justify-content: space-between; padding-left: 1vp;
+          padding-right: 1vp;">
             <text>{{ item }}</text>
         </div>
       </div>
