@@ -45,6 +45,10 @@
     {
       "name": "detailPage",
       "srcPath": "./feature/detailPage"
+    },
+    {
+      "name": "emitter",
+      "srcPath": "./feature/emitter"
     }
   ]
 }
