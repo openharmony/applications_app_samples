@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "emitter"
+    },
+    {
+      "name": "guess_you_like",
+      "value": "you may also like"
+    },
+    {
+      "name": "shop_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "back",
+      "value": "back"
+    },
+    {
+      "name": "depicted",
+      "value": "I like it as described, the workmanship is meticulous, the color is good, and the original is genuine"
+    },
+    {
+      "name": "shopping",
+      "value": "orange shopping"
+    },
+    {
+      "name": "shopping_advertising",
+      "value": "Low prices are prioritized to save you money"
+    },
+    {
+      "name": "shopping_self_support",
+      "value": "mall self-operated"
+    },
+    {
+      "name": "tab_title_data_home",
+      "value": "Front page"
+    },
+    {
+      "name": "tab_title_data_new_product",
+      "value": "new"
+    },
+    {
+      "name": "tab_title_data_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "tab_title_data_mine",
+      "value": "mine"
+    },
+    {
+      "name": "product_data_title_device",
+      "value": "XX equipment new product discount!"
+    },
+    {
+      "name": "product_data_label_new_product",
+      "value": "new"
+    },
+    {
+      "name": "product_data_price",
+      "value": "￥4122"
+    },
+    {
+      "name": "broadcast",
+      "value": "live"
+    },
+    {
+      "name": "selected",
+      "value": "selected"
+    },
+    {
+      "name": "home_page",
+      "value": "front page"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "add_to_cart",
+      "value": "add to Shopping Cart"
+    },
+    {
+      "name": "buy_now",
+      "value": "buy now"
+    },
+    {
+      "name": "evaluate",
+      "value": "User Reviews (20,000+)"
+    },
+    {
+      "name": "ninety_nine_percent",
+      "value": "99%"
+    },
+    {
+      "name": "praise",
+      "value": "Praise"
+    },
+    {
+      "name": "select_configuration",
+      "value": "Midsummer Purple.8GB+128GB.4G full Netcom. Official website standard.x1 4G full Netcom official website standard.x1"
+    },
+    {
+      "name": "address",
+      "value": "Please select your harvesting address"
+    },
+    {
+      "name": "recommend",
+      "value": "Recommend a good thing for you, please check"
+    },
+    {
+      "name": "commodity",
+      "value": "HUAWEI P50 Pocket Hyperspectral Photography System Innovative dual-screen operation experience 120Hz high refresh rate 8GB+256GB"
+    }
+  ]
+}
