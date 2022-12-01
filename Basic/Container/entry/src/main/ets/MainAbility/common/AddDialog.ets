@@ -66,17 +66,16 @@ export struct AddDialog {
           .margin({ left: 10 })
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Medium)
-        TextInput({ placeholder: $r('app.string.input_age'), text: this.writeInformation.age.toString() })
+        TextInput({ placeholder: $r('app.string.input_age') })
           .key('inputAge')
           .layoutWeight(1)
           .type(InputType.Number)
-          .inputFilter('^[1-9][0-9]*')
           .placeholderColor(Color.Gray)
           .fontSize(19)
           .maxLength(3)
           .margin({ right: 10 })
           .onChange((value: string) => {
-            this.writeInformation.age = +value
+            this.writeInformation.age = Number(value)
           })
       }
       .margin({ top: '3%' })
@@ -93,7 +92,6 @@ export struct AddDialog {
           .key('inputPhone')
           .layoutWeight(1)
           .type(InputType.Number)
-          .inputFilter('^1[0-9]*')
           .placeholderColor(Color.Gray)
           .fontSize(19)
           .maxLength(11)
