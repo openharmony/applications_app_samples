@@ -15,11 +15,12 @@
 import deviceManager from '@ohos.distributedHardware.deviceManager'
 import Logger from '../model/Logger'
 import { DeviceDialog } from '../common/DeviceDialog'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
+import { RemoteDeviceModel, BUNDLE_NAME } from '../model/RemoteDeviceModel'
 
 const TAG: string = 'TitleBar'
 const DATA_CHANGE: string = 'dataChange'
 const EXIT: string = 'exit'
+const DEVICE_DISCOVERY_RANGE: number = 1000
 
 @Component
 export struct TitleBarComponent {
@@ -27,9 +28,10 @@ export struct TitleBarComponent {
   @State selectedIndex: number = 0
   @State deviceList: Array<deviceManager.DeviceInfo> = []
   @Link isDistributed: boolean
+  private isShow: boolean = false
   private startAbilityCallBack: (key) => void
-  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   private dialogController: CustomDialogController = null
+  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   onSelectedIndexChange = async (index: number) => {
     Logger.info(TAG, `selectedIndexChange`)
     this.selectedIndex = index
@@ -43,7 +45,6 @@ export struct TitleBarComponent {
     }
     this.selectDevice()
   }
-  private isShow: boolean = false
 
   clearSelectState() {
     this.deviceList = []
@@ -82,7 +83,7 @@ export struct TitleBarComponent {
     let context = getContext(this) as any
     context.startAbility(
       {
-        bundleName: 'ohos.samples.etsdistributedcalc',
+        bundleName: BUNDLE_NAME,
         abilityName: 'MainAbility',
         deviceId: deviceId,
         parameters: {
@@ -104,7 +105,7 @@ export struct TitleBarComponent {
         deviceName: getContext(this).resourceManager.getStringSync($r('app.string.localhost').id),
         deviceType: 0,
         networkId: '',
-        range: 1000
+        range: DEVICE_DISCOVERY_RANGE
       })
       let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTempList.length; i++) {
@@ -115,14 +116,10 @@ export struct TitleBarComponent {
           deviceName: deviceTempList[i].deviceName,
           deviceType: deviceTempList[i].deviceType,
           networkId: deviceTempList[i].networkId,
-          range: 1000
+          range: DEVICE_DISCOVERY_RANGE
         })
       }
     })
-    let alignments = DialogAlignment.Bottom
-    if (this.isLand) {
-      alignments = DialogAlignment.Center
-    }
     if (this.dialogController === null) {
       this.dialogController = new CustomDialogController({
         builder: DeviceDialog({
@@ -134,7 +131,7 @@ export struct TitleBarComponent {
           this.clearSelectState()
         },
         autoCancel: true,
-        alignment: alignments,
+        alignment: this.isLand ? DialogAlignment.Bottom : DialogAlignment.Center
       })
     }
     this.dialogController.open()

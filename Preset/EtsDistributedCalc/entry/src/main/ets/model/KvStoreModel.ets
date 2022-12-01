@@ -14,6 +14,7 @@
  */
 import distributedData from '@ohos.data.distributedData'
 import Logger from '../model/Logger'
+import { BUNDLE_NAME } from './RemoteDeviceModel'
 
 const TAG: string = 'KvStoreModel'
 const STORE_ID: string = 'distributedcalc'
@@ -28,7 +29,7 @@ export class KvStoreModel {
       return
     }
     let config = {
-      bundleName: 'ohos.samples.etsdistributedcalc',
+      bundleName: BUNDLE_NAME,
       userInfo: {
         userId: '0',
         userType: 0

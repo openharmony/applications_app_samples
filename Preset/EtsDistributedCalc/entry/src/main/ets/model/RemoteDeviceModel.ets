@@ -18,6 +18,8 @@ import Logger from '../model/Logger'
 const TAG: string = 'RemoteDeviceModel'
 let SUBSCRIBE_ID: number = 100
 
+export const BUNDLE_NAME: string = 'ohos.samples.etsdistributedcalc'
+
 export class RemoteDeviceModel {
   public deviceList: Array<deviceManager.DeviceInfo> = []
   public discoverList: Array<deviceManager.DeviceInfo> = []
@@ -32,7 +34,7 @@ export class RemoteDeviceModel {
     }
     Logger.info(TAG, 'deviceManager.createDeviceManager begin')
     try {
-      deviceManager.createDeviceManager("ohos.samples.etsdistributedcalc", (error, value) => {
+      deviceManager.createDeviceManager(BUNDLE_NAME, (error, value) => {
         if (error) {
           Logger.error(TAG, `createDeviceManager failed.${error}`)
           return
@@ -47,7 +49,7 @@ export class RemoteDeviceModel {
     Logger.info(TAG, 'deviceManager.createDeviceManager end')
   }
 
-  deviceStateChangeActionOnline(device) {
+  changeStateOnline(device) {
     this.deviceList[this.deviceList.length] = device
     Logger.debug(TAG, `online, device list= ${JSON.stringify(this.deviceList)}`)
     this.callback()
@@ -57,35 +59,31 @@ export class RemoteDeviceModel {
     }
   }
 
-  deviceStateChangeActionReady(device) {
+  changeState(device, state) {
     if (this.deviceList.length <= 0) {
       this.callback()
       return
     }
-    let list = new Array()
-    for (let i = 0; i < this.deviceList.length; i++) {
-      if (this.deviceList[i].deviceId !== device.deviceId) {
-        list[i] = device
+    if (state === deviceManager.DeviceStateChangeAction.READY) {
+      let list = new Array()
+      for (let i = 0; i < this.deviceList.length; i++) {
+        if (this.deviceList[i].deviceId !== device.deviceId) {
+          list[i] = device
+        }
       }
-    }
-    this.deviceList = list
-    Logger.debug(TAG, `ready, device list= ${JSON.stringify(device)}`)
-    this.callback()
-  }
-
-  deviceStateChangeActionOffline(device) {
-    if (this.deviceList.length <= 0) {
+      this.deviceList = list
+      Logger.debug(TAG, `ready, device list= ${JSON.stringify(device)}`)
       this.callback()
-      return
-    }
-    for (let j = 0; j < this.deviceList.length; j++) {
-      if (this.deviceList[j ].deviceId === device.deviceId) {
-        this.deviceList[j] = device
-        break
+    } else {
+      for (let j = 0; j < this.deviceList.length; j++) {
+        if (this.deviceList[j ].deviceId === device.deviceId) {
+          this.deviceList[j] = device
+          break
+        }
       }
+      Logger.debug(TAG, `offline, device list= ${JSON.stringify(this.deviceList)}`)
+      this.callback()
     }
-    Logger.debug(TAG, `offline, device list= ${JSON.stringify(this.deviceList)}`)
-    this.callback()
   }
 
   registerDeviceListCallbackImplement(callback) {
@@ -116,13 +114,13 @@ export class RemoteDeviceModel {
         Logger.debug(TAG, `deviceStateChange data= ${JSON.stringify(data)}`)
         switch (data.action) {
           case deviceManager.DeviceStateChangeAction.ONLINE:
-            this.deviceStateChangeActionOnline(data.device)
+            this.changeStateOnline(data.device)
             break;
           case deviceManager.DeviceStateChangeAction.READY:
-            this.deviceStateChangeActionReady(data.device)
+            this.changeState(data.device, deviceManager.DeviceStateChangeAction.READY)
             break;
           case deviceManager.DeviceStateChangeAction.CHANGE:
-            this.deviceStateChangeActionOffline(data.device)
+            this.changeState(data.device, deviceManager.DeviceStateChangeAction.CHANGE)
             break
           default:
             break
@@ -207,7 +205,7 @@ export class RemoteDeviceModel {
         continue
       }
       let extraInfo = {
-        'targetPkgName': 'ohos.samples.etsdistributedcalc',
+        'targetPkgName': BUNDLE_NAME,
         'appName': 'Distributed distributecalc',
         'appDescription': 'Distributed distributecalc',
         'business': '0'
