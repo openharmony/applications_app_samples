@@ -163,7 +163,7 @@
   - [`JsAnimation`：动效示例应用（JS）（API8）](UI/JsAnimation)
   - [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](UI/JsAnimationStyle)
   - [`JsBasicComponents`：基础组件（JS）（API8）](UI/JsBasicComponents)
-  - [`JsBrightness`：设置屏幕亮度（JS）（API8）](UI/JsBrightness)
+  - [`JsBrightness`：设置屏幕亮度（JS）（API8）（Full SDK）](UI/JsBrightness)
   - [`JsCanvas`：画布组件（JS）（API8）](UI/JsCanvas)
   - [`JsDevice`：设备信息（JS）（API8）](UI/JsDevice)
   - [`JsDialog`：页面弹窗（JS）（API8）](UI/JsDialog)
