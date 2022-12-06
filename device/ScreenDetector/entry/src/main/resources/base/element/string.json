@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Screen Info"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "Screen Detector"
+    },
+    {
+      "name": "entry_ScreenInfo",
+      "value": "Screen Info"
+    },
+    {
+      "name": "screenRect",
+      "value": "screen size[pixel]"
+    },
+    {
+      "name": "screenDimensions",
+      "value": "screen dimensions[DPI]"
+    },
+    {
+      "name": "screenDPI",
+      "value": "screen DPI"
+    },
+    {
+      "name": "refreshRate",
+      "value": "refresh rate"
+    },
+    {
+      "name": "densityRatio",
+      "value": "density ratio"
+    },
+    {
+      "name": "densityDPI",
+      "value": "density DPI"
+    },
+    {
+      "name": "screenInches",
+      "value": "screen size[inch]"
+    },
+    {
+      "name": "screenCM",
+      "value": "screen size[cm]"
+    },
+    {
+      "name": "diagonalInches",
+      "value": "diagonal[inch]"
+    },
+    {
+      "name": "diagonalCM",
+      "value": "diagonal[cm]"
+    },
+    {
+      "name": "pixelsPerInch",
+      "value": "pixels[inch]"
+    },
+    {
+      "name": "warning",
+      "value": "Warning!!!"
+    },
+    {
+      "name": "add_screen",
+      "value": " + "
+    },
+    {
+      "name": "remove_screen",
+      "value": " - "
+    },
+    {
+      "name": "err_max_screen",
+      "value": "The number of screens cannot been more than:"
+    },
+    {
+      "name": "err_min_screen",
+      "value": "The number of screens cannot been less than:"
+    }
+  ]
+}
