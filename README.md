@@ -143,7 +143,7 @@ We provide a series of app samples to help you quickly get familiar with the API
   - [`JsAnimation`：Animation（JS）（API8）](UI/JsAnimation)
   - [`JsAnimationStyle`：Animation Style（JS）（API8）](UI/JsAnimationStyle)
   - [`JsBasicComponents`：Basic Components（JS）（API8）](UI/JsBasicComponents)
-  - [`JsBrightness`：Brightness（JS）（API8）](UI/JsBrightness)
+  - [`JsBrightness`：Brightness（JS）（API8）（Full SDK）](UI/JsBrightness)
   - [`JsCanvas`：Canvas（JS）（API8）](UI/JsCanvas)
   - [`JsDevice`：Device Info（JS）（API8）](UI/JsDevice)
   - [`JsDialog`：Dialog（JS）（API8）](UI/JsDialog)
