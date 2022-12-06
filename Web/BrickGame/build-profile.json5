@@ -1,0 +1,40 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_BrickGame_com.example.brickgame.cer",
+          "storePassword": "0000001BC3ADC92D6CC44B1120EE1512CBAAB687F6A04B11F20599BAF1F16FDE6D5E68813477FAC3DB5AD2",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B7329E2E257C7E95F7AB3A5D1D7986835265C41555CB035EBF78260053EE3F0A7ECFB591F31D224",
+          "profile": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_BrickGame_com.example.brickgame.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_BrickGame_com.example.brickgame.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
