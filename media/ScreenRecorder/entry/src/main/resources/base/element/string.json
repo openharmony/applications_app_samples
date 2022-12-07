@@ -1,0 +1,31 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "ScreenRecorder"
+    },
+    {
+      "name": "title",
+      "value": "Screen Recorder"
+    },
+    {
+      "name": "recorder_desc",
+      "value": "Screen Recorder Controller"
+    },    {
+      "name": "start_rec",
+      "value": "start"
+    },
+    {
+      "name": "stop_rec",
+      "value": "stop"
+    }
+  ]
+}
