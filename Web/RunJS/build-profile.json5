@@ -1,0 +1,40 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_RunJS_com.example.runjs.cer",
+          "storePassword": "0000001B93EAC6637209311EB3791E235B46937DD0843BF6D9EF3D646BDF14BDFF79239F7EE493C7D49FB7",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BC000114C9604695750C6F5BF87B96D9A74C58F2205EBD1C3FA6EC13985C3DF41D866EEFB7F459D",
+          "profile": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_RunJS_com.example.runjs.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_RunJS_com.example.runjs.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
