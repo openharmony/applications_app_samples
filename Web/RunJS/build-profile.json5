@@ -1,19 +1,21 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_RunJS_com.example.runjs.cer",
-          "storePassword": "0000001B93EAC6637209311EB3791E235B46937DD0843BF6D9EF3D646BDF14BDFF79239F7EE493C7D49FB7",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BC000114C9604695750C6F5BF87B96D9A74C58F2205EBD1C3FA6EC13985C3DF41D866EEFB7F459D",
-          "profile": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_RunJS_com.example.runjs.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Pumpking\\.ohos\\config\\openharmony\\auto_ohos_default_RunJS_com.example.runjs.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
