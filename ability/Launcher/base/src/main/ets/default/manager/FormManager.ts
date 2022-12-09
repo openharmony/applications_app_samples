@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import formManagerAbility from '@ohos.application.formHost'
+import formManagerAbility from '@ohos.app.form.formHost'
 import { CardItemInfo } from '../bean/CardItemInfo'
 import { CommonConstants } from '../constants/CommonConstants'
 import { Logger } from '../utils/Logger'

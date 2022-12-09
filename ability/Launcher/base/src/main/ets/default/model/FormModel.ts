@@ -58,7 +58,6 @@ class FormDataModel {
       .catch(err => {
         Logger.debug(TAG, `getFormsInfoByBundleName err: ${JSON.stringify(err)}`)
       })
-    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo)
     return currentBundleFormsInfo
   }
 
