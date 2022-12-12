@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router'
-import { Contact, ContactDetailInfo, contactDataShareUtil, dialogUtil, OPERATE_STATUS } from '@ohos/common'
+import { Contact, contactDataShareUtil, ContactDetailInfo, dialogUtil, OPERATE_STATUS } from '@ohos/common'
 
 @Entry
 @Component
