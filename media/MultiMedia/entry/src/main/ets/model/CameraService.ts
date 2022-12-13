@@ -37,7 +37,7 @@ export default class CameraService {
   private context: any = undefined
   private mediaUtil: MediaUtils = undefined
   private cameraManager: camera.CameraManager = undefined
-  private cameras: Array<camera.Camera> = undefined
+  private cameras: Array<camera.CameraDevice> = undefined
   private cameraId: string = ''
   private cameraInput: camera.CameraInput = undefined
   private previewOutput: camera.PreviewOutput = undefined
@@ -51,6 +51,7 @@ export default class CameraService {
   private videoRecorder: media.VideoRecorder = undefined
   private videoOutput: camera.VideoOutput = undefined
   private handleTakePicture: (photoUri: string) => void = undefined
+  private cameraOutputCapability: camera.CameraOutputCapability = undefined
   private videoConfig: any = {
     audioSourceType: 1,
     videoSourceType: 0,
@@ -136,20 +137,25 @@ export default class CameraService {
     }
     this.cameraManager = await camera.getCameraManager(this.context)
     Logger.info(this.tag, 'getCameraManager')
-    this.cameras = await this.cameraManager.getCameras()
+    this.cameras = await this.cameraManager.getSupportedCameras()
     Logger.info(this.tag, `get cameras ${this.cameras.length}`)
     if (this.cameras.length === 0) {
       Logger.info(this.tag, 'cannot get cameras')
       return
     }
-    this.cameraId = this.cameras[0].cameraId
-    this.cameraInput = await this.cameraManager.createCameraInput(this.cameraId)
+
+    let cameraDevice = this.cameras[0]
+    this.cameraInput = await this.cameraManager.createCameraInput(cameraDevice)
+    this.cameraInput.open()
     Logger.info(this.tag, 'createCameraInput')
-    this.previewOutput = await camera.createPreviewOutput(surfaceId.toString())
+    this.cameraOutputCapability = await this.cameraManager.getSupportedOutputCapability(cameraDevice)
+    let previewProfile = this.cameraOutputCapability.previewProfiles[0]
+    this.previewOutput = await this.cameraManager.createPreviewOutput(previewProfile, surfaceId)
     Logger.info(this.tag, 'createPreviewOutput')
     let mSurfaceId = await this.mReceiver.getReceivingSurfaceId()
-    this.photoOutPut = await camera.createPhotoOutput(mSurfaceId)
-    this.captureSession = await camera.createCaptureSession(this.context)
+    let photoProfile = this.cameraOutputCapability.photoProfiles[0]
+    this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, mSurfaceId)
+    this.captureSession = await this.cameraManager.createCaptureSession()
     Logger.info(this.tag, 'createCaptureSession')
     await this.captureSession.beginConfig()
     Logger.info(this.tag, 'beginConfig')
@@ -209,7 +215,8 @@ export default class CameraService {
     this.videoConfig.url = `fd://${this.fd}`
     await this.videoRecorder.prepare(this.videoConfig)
     let videoId = await this.videoRecorder.getInputSurface()
-    this.videoOutput = await camera.createVideoOutput(videoId)
+    let videoProfile = this.cameraOutputCapability.videoProfiles[0];
+    this.videoOutput = await this.cameraManager.createVideoOutput(videoProfile, videoId)
     await this.captureSession.addOutput(this.videoOutput)
     await this.captureSession.commitConfig()
     await this.captureSession.start()
