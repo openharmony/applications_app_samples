@@ -4,7 +4,7 @@
 
 拼图Demo是基于Grid组件进行开发，通过image (图片处理)和medialibrary (媒体库管理)接口实现获取图片，以及图片裁剪分割。实现效果如下：
 
-![running](screenshot/devices/change.png)
+![running](screenshot/devices/change.jpeg)
 
 ### 相关概念
 

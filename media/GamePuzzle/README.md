@@ -4,7 +4,7 @@
 
 This puzzle game app is developed based on the **\<Grid>** component. It uses the `Image` and `MediaLibrary` APIs to obtain and crop images. Below shows the sample app.
 
-![running](screenshot/devices/change.png)
+![running](screenshot/devices/change.jpeg)
 
 ### Concepts
 
