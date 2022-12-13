@@ -43,7 +43,7 @@ struct AddLanguage {
         }
       )
     })
-    this.languageIds = i18n.getSystemLanguages()
+    this.languageIds = i18n.System.getSystemLanguages()
     Logger.info(TAG, `this.languageIds = ${JSON.stringify(this.languageIds)}`)
     this.languageIds.forEach(id => {
       this.languages.push(

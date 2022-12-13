@@ -112,7 +112,7 @@ struct Language {
         this.LanguageItem(item, index, () => {
           if (item.id !== this.localLanguage) {
             try {
-              i18n.setSystemLanguage(item.id)
+              i18n.System.setSystemLanguage(item.id)
             } catch (err) {
               Logger.error(`setSystemLanguage failed, code is ${err.code}, message is ${err.message}`)
             }
