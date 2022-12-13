@@ -52,8 +52,6 @@
 
 [数据请求](https://gitee.com/openharmony/app_samples/tree/master/Network/Http) 本示例的网络配置服务依赖此示例。
 
-[扫一扫](https://gitee.com/openharmony/app_samples/tree/master/media/Scan) 本示例详情页中的扫一扫功能依赖此示例。
-
 [位置服务](https://gitee.com/openharmony/app_samples/tree/master/device/Location) 本示例的详情页中的位置服务功能依赖此示例。
 
 [自定义弹窗](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/UpgradePopup) 本示例的升级弹窗功能依赖此示例。
@@ -71,7 +69,7 @@
 
 3.本示例需要使用DevEco Studio 3.0 Release (Build Version: 3.0.0.993, built on September 4, 2022)才可编译运行。
 
-4.本示例需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
 5.本示例需联网运行。
 
