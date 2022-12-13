@@ -16,7 +16,7 @@
 
 ### 相关概念
 
-1.**使用 innerBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework）**，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
+1.**使用 launcherBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework）**，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
 
 2.**使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework）**，调用uninstall接口实现应用卸载功能。
 

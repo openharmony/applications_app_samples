@@ -296,6 +296,7 @@ export class DesktopLayoutModel {
     }
     this.layoutInfo[gridItem.page].push(gridItem)
     Logger.debug(TAG, `addAppToDesktop item ${JSON.stringify(gridItem)}`)
+    await RdbManager.initRdbConfig(this.context)
     await RdbManager.insertItem(gridItem)
     if (isRefresh) {
       AppStorage.SetOrCreate('isRefresh', true)
@@ -410,6 +411,7 @@ export class DesktopLayoutModel {
       this.layoutInfo.push([])
     }
     this.layoutInfo[gridItem.page].push(gridItem)
+    await RdbManager.initRdbConfig(this.context)
     await RdbManager.insertItem(gridItem)
     Logger.info(TAG, `createCardToDeskTop gridItem2 =  ${JSON.stringify(gridItem)}`)
     AppStorage.SetOrCreate('isRefresh', true)

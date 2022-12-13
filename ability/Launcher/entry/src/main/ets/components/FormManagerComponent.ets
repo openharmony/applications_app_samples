@@ -14,7 +14,13 @@
  */
 
 import router from '@ohos.router'
-import { CheckEmptyUtils,CommonConstants,FormModel,Logger } from '@ohos/base'
+import {
+  CheckEmptyUtils,
+  CommonConstants,
+  FormModel,
+  Logger,
+  CardItemInfo
+} from '@ohos/base'
 import { DesktopLayoutModel } from '@ohos/desktop'
 
 
@@ -125,7 +131,8 @@ export default struct FormManagerComponent {
    * Get current form information by bundle name.
    */
   private async getCurrentFormInfo() {
-    FormModel.getFormsInfoByBundleName(this.formAppInfo.bundleName)
+    let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(this.formAppInfo.bundleName)
+    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo)
   }
 
   getSelectedFormInfo() {

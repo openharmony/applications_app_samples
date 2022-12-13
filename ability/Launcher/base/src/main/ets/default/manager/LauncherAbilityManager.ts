@@ -14,7 +14,8 @@
  */
 
 import bundleMgr from '@ohos.bundle'
-import launcherBundleMgr from '@ohos.bundle.innerBundleManager'
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import osAccount from '@ohos.account.osAccount'
 import { AppItemInfo } from '../bean/AppItemInfo'
 import { CheckEmptyUtils } from '../utils/CheckEmptyUtils'
@@ -29,7 +30,8 @@ const TAG: string = 'LauncherAbilityManager'
  * Wrapper class for innerBundleManager and formManager interfaces.
  */
 export class LauncherAbilityManager {
-  private static readonly BUNDLE_STATUS_CHANGE_KEY = 'BundleStatusChange'
+  private static readonly BUNDLE_STATUS_CHANGE_KEY_REMOVE = 'remove'
+  private static readonly BUNDLE_STATUS_CHANGE_KEY_ADD = 'add'
   private static launcherAbilityManager: LauncherAbilityManager = undefined
   private readonly mAppMap = new Map<string, AppItemInfo>()
   private mResourceManager: ResourceManager = undefined
@@ -53,8 +55,8 @@ export class LauncherAbilityManager {
    * @return {object} application data model singleton
    */
   static getInstance(context): LauncherAbilityManager {
-    if (this.launcherAbilityManager === null || this.launcherAbilityManager  === undefined) {
-      this.launcherAbilityManager  = new LauncherAbilityManager(context)
+    if (this.launcherAbilityManager === null || this.launcherAbilityManager === undefined) {
+      this.launcherAbilityManager = new LauncherAbilityManager(context)
     }
     return this.launcherAbilityManager
   }
@@ -66,7 +68,7 @@ export class LauncherAbilityManager {
    */
   async getLauncherAbilityList(): Promise<AppItemInfo[]> {
     Logger.info(TAG, 'getLauncherAbilityList begin')
-    let abilityList = await launcherBundleMgr.getAllLauncherAbilityInfos(this.mUserId)
+    let abilityList = await launcherBundleManager.getAllLauncherAbilityInfo(this.mUserId)
     const appItemInfoList = new Array<AppItemInfo>()
     if (CheckEmptyUtils.isEmpty(abilityList)) {
       Logger.info(TAG, 'getLauncherAbilityList Empty')
@@ -95,7 +97,7 @@ export class LauncherAbilityManager {
       return appItemInfo
     }
     // get from system
-    let abilityInfos = await launcherBundleMgr.getLauncherAbilityInfos(bundleName, this.mUserId)
+    let abilityInfos = await launcherBundleManager.getLauncherAbilityInfo(bundleName, this.mUserId)
     if (abilityInfos == undefined || abilityInfos.length == 0) {
       Logger.info(TAG, `${bundleName} has no launcher ability`)
       return undefined
@@ -160,19 +162,6 @@ export class LauncherAbilityManager {
     })
   }
 
-  mBundleStatusCallback: launcherBundleMgr.BundleStatusCallback = {
-    add: (bundleName, userId) => {
-      Logger.debug(TAG, `mBundleStatusCallback add bundleName: ${bundleName}, userId: ${userId}, mUserId ${this.mUserId}`)
-      this.mUserId == userId && this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_ADDED, bundleName, userId)
-    },
-    remove: (bundleName, userId) => {
-      Logger.debug(TAG, `mBundleStatusCallbackremove bundleName: ${bundleName}, userId: ${userId}, mUserId ${this.mUserId}`)
-      this.mUserId == userId && this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_REMOVED, bundleName, userId)
-    },
-    update: (bundleName, userId) => {
-    }
-  }
-
   /**
    * 开始监听系统应用状态.
    *
@@ -181,10 +170,21 @@ export class LauncherAbilityManager {
   registerLauncherAbilityChangeListener(listener: any): void {
     if (!CheckEmptyUtils.isEmpty(listener)) {
       if (this.mLauncherAbilityChangeListeners.length == 0) {
-        launcherBundleMgr.on(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY, this.mBundleStatusCallback).then(data => {
-          Logger.info(TAG, `registerCallback success: ${JSON.stringify(data)}`)
-        }).catch(err => {
-          Logger.error(TAG, `registerCallback fail: ${JSON.stringify(err)}`)
+        bundleMonitor.on(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY_ADD, (bundleChangeInfo) => {
+          Logger.debug(TAG, `mBundleStatusCallback add bundleName: ${bundleChangeInfo.bundleName},
+            userId: ${bundleChangeInfo.userId}, mUserId ${this.mUserId}`)
+          if (this.mUserId === bundleChangeInfo.userId) {
+            this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_ADDED,
+              bundleChangeInfo.bundleName, bundleChangeInfo.userId)
+          }
+        })
+        bundleMonitor.on(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY_REMOVE, (bundleChangeInfo) => {
+          Logger.debug(TAG, `mBundleStatusCallback remove bundleName: ${bundleChangeInfo.bundleName},
+            userId: ${bundleChangeInfo.userId}, mUserId ${this.mUserId}`)
+          if (this.mUserId === bundleChangeInfo.userId) {
+            this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_REMOVED,
+              bundleChangeInfo.bundleName, bundleChangeInfo.userId)
+          }
         })
       }
       const index = this.mLauncherAbilityChangeListeners.indexOf(listener)
@@ -206,11 +206,8 @@ export class LauncherAbilityManager {
         this.mLauncherAbilityChangeListeners.splice(index, 1)
       }
       if (this.mLauncherAbilityChangeListeners.length == 0) {
-        launcherBundleMgr.off(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY).then(data => {
-          Logger.info(TAG, 'unregisterCallback success')
-        }).catch(err => {
-          Logger.error(TAG, `unregisterCallback fail: ${JSON.stringify(err)}`)
-        })
+        bundleMonitor.off(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY_ADD)
+        bundleMonitor.off(LauncherAbilityManager.BUNDLE_STATUS_CHANGE_KEY_REMOVE)
       }
     }
   }
