@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.app.ability.missionManager'
 import Logger from '../modle/Logger'
 import Mission from '../modle/Mission'
 import { MissionInfoComponent } from '../common/MissionInfoComponent'
@@ -114,6 +114,10 @@ struct Index {
     Logger.info(TAG, `onMissionMovedToFrontCallback moved to fornt`)
   }
 
+  onMissionLabelUpdatedCallback() {
+    Logger.info(TAG, `onMissionLabelUpdatedCallback label has changed`)
+  }
+
   onMissionIconUpdatedCallback() {
     Logger.info(TAG, `onMissionIconUpdatedCallback icon has changed`)
   }
@@ -139,21 +143,22 @@ struct Index {
   }
 
   aboutToAppear() {
-    let listener = {
+    let listener: missionManager.MissionListener = {
       onMissionCreated: this.onMissionCreatedCallback,
       onMissionDestroyed: this.onMissionDestroyedCallback,
       onMissionSnapshotChanged: this.onMissionSnapshotChangedCallback,
       onMissionMovedToFront: this.onMissionMovedToFrontCallback,
+      onMissionLabelUpdated: this.onMissionLabelUpdatedCallback,
       onMissionIconUpdated: this.onMissionIconUpdatedCallback,
       onMissionClosed: this.onMissionClosed
     }
 
-    this.listenerId = missionManager.registerMissionListener(listener)
+    this.listenerId = missionManager.on("mission", listener)
     Logger.info(TAG, `aboutToAppear ${this.listenerId}`)
   }
 
   aboutToDisappear() {
-    missionManager.unregisterMissionListener(this.listenerId)
+    missionManager.off("mission", this.listenerId)
   }
 
   build() {
