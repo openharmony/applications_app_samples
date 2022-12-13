@@ -21,4 +21,4 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include
                     )
 add_library(infoutil SHARED native_module.cpp napi_info_util.cpp)
-target_link_libraries(infoutil PUBLIC libace_napi.z.so libhilog_ndk.z.so libc.a)
+target_link_libraries(infoutil PUBLIC libace_napi.z.so libhilog_ndk.z.so)
