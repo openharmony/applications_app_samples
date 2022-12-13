@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import bundle from '@ohos.bundle'
+import bundle from '@ohos.bundle.bundleManager'
 import storageStatistics from '@ohos.storageStatistics'
 import { AppData } from '../model/AppData'
 import CheckEmptyUtils from '../utils/CheckEmptyUtils'
@@ -69,11 +69,12 @@ export class QueryStorageData {
 
   private async initAppDataList() {
     this.appDataList = []
+    let bundleFlags = bundle.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT | bundle.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION | bundle.ApplicationFlag.GET_APPLICATION_INFO_WITH_METADATA | bundle.ApplicationFlag.GET_APPLICATION_INFO_WITH_DISABLE;
     let applicationInfo: bundle.ApplicationInfo[] =
-      await bundle.getAllApplicationInfo(bundle.BundleFlag.GET_ALL_APPLICATION_INFO)
+      await bundle.getAllApplicationInfo(bundleFlags)
     for (let i = 0; i < applicationInfo.length; i++) {
       let info: bundle.ApplicationInfo = applicationInfo[i]
-      let appName: string = await this.getAppNameSync(info.labelIndex, info.name, info.label)
+      let appName: string = await this.getAppNameSync(info.labelId, info.name, info.label)
       this.appDataList.push({
         appName: appName,
         bundleName: info.name,
