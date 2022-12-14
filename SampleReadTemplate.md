@@ -35,6 +35,8 @@
 
 ### 约束与限制
 
+描述一些设备、SDK版本、IDE版本、接口限制、签名等约束和限制，示例如下：
+
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
 2. 本示例仅支持API9版本SDK，版本号：3.2.7.5，本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
 3. 本示例需要使用DevEco Studio 3.0 Release (Build Version: 3.0.0.993)才可编译运行；
