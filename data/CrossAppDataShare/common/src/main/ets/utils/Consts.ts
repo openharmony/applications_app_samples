@@ -19,7 +19,7 @@ import rdb from '@ohos.data.rdb'
 export const TABLE_NAME: string = 'contact'
 
 // table config
-export const STORE_CONFIG: rdb.StoreConfig = { name: 'contact.db' }
+export const STORE_CONFIG: rdb.StoreConfigV9 = { name: 'contact.db', securityLevel: rdb.SecurityLevel.S1 }
 
 // create table sql
 export const SQL_CREATE_TABLE: string = 'CREATE TABLE IF NOT EXISTS contact (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, phone TEXT NOT NULL, email TEXT NOT NULL, address TEXT NOT NULL, remark TEXT NOT NULL, UNIQUE(name))'

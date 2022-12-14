@@ -15,16 +15,16 @@
 
 import rdb from '@ohos.data.rdb'
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
-import { logger, STORE_CONFIG, SQL_CREATE_TABLE, TABLE_NAME } from '@ohos/common'
+import { logger, SQL_CREATE_TABLE, STORE_CONFIG, TABLE_NAME } from '@ohos/common'
 
 const TAG: string = 'DataShareAbility'
-let rdbStore: rdb.RdbStore = undefined
+let rdbStore: rdb.RdbStoreV9 = undefined
 
 export default class DataShareAbility extends DataShareExtensionAbility {
   onCreate(want, callback) {
     logger.info(TAG, 'onCreate')
     try {
-      rdb.getRdbStore(this.context, STORE_CONFIG, 1, (error, data) => {
+      rdb.getRdbStoreV9(this.context, STORE_CONFIG, 1, (error, data) => {
         logger.info(TAG, `DataShareExtAbility getRdbStore done`)
         rdbStore = data
         rdbStore.executeSql(SQL_CREATE_TABLE, [], () => {
