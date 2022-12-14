@@ -71,22 +71,38 @@ class Logger {
 
 ## 工程结构规范<a name="section2"></a>
 
-Sample工程，应该区分开UI、业务逻辑、数据模块，工程示例结构如下：
+Sample工程，应该区分开场景业务逻辑和特性相关封装接口，规则如下：
+
+1. 包名命名规则为"com.samples.特性名"，工程名命名规则为特性名称，与Readme标题保持一致；
+2. 特性接口封装放在Feature模块下，能够独立编译成har包复用；
+3. 场景业务逻辑，展示Feature模块中特性接口的使用，放在entry目录中；
+4. entry/src/main/ets/目录下的pages目录中，只放一个Index.ets，作为入口页面；
+5. entry/src/main/ets/目录下创建场景业务目录，存放该场景相关的业务逻辑和页面代码；
+6. Feature/src/main/ets/目录下创建特性目录，目录下包括components（对外开放的控件目录）、feature（特性封装逻辑目录）、Feature.ts（对外开放的特性接口）等；
+
+以FileManager特性为例，工程示例结构如下：
 
 ```
-main
-|---Application // 应用级逻辑
-|---MainAbility // 元能力组件
-|---feature // 业务功能
-|   |---IndexFeature.ts // Index的业务逻辑代码
-|---pages // UI页面
-|   |---Index.ets // Index的UI界面代码
-|---model // 数据
-|   |---IndexData.ts // Index数据模型
-|---mock // Mock数据
-|   |---MockIndexData.ts // IndexData的mock数据
-|---net // 网络
-|   |---IndexApi.ts // 网络接口
+entry/src/main/ets/ 		// 场景业务逻辑放在entry目录下
+|---Application 			// 应用级逻辑
+|---MainAbility 			// 元能力组件
+|---filemanager 			// 场景业务功能（如果存在多个场景，则放在同级目录下）
+|   |---data 				// 场景业务逻辑相关类或数据
+|   |---pages 				// 场景业务逻辑相关页面
+|---pages 					// UI页面
+|   |---Index.ets 			// pages下只保留一个Index.ets，作为入口页面
+|---utils 					// 共用的工具类或者模块
+Feature/src/main/ets/ 		// 特性接口封装放在Feature模块下，能够独立编译成har包复用
+|---filemanager 			// 特性相关封装类
+|   |---components 			// 特性相关UI控件类，需要对外开放（部分特性涉及对外提供复用UI控件）
+|   |   |---FileImage.ets
+|   |---fileio 				// 封装了特性相关接口，如果存在多个模块，放在多个目录下如fileio、medialibrary、userfilemanager，不对外开放
+|   |   |---FileIoManager.ts
+|   |---medialibrary
+|   |---userfilemanager
+|   |---FileManager.ts 		// 对外开放的特性接口，无具体实现（实现在fileio、medialibrary等模块中）
+|---mock 					// 模拟数据
+|---utils 					// 特性相关工具类
 ```
 
 ## PR提交格式规范<a name="section3"></a>
