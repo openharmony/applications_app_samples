@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import bundle from '@ohos.bundle'
-import prompt from '@ohos.prompt'
+import bundle from '@ohos.bundle.bundleManager'
+import prompt from '@ohos.promptAction'
 import Logger from '../util/Logger'
 
 const TAG: string = 'BundleController'
@@ -44,7 +44,7 @@ export default class BundleController {
   // 指示应用程序的实体类型,对应FA模型中AppContext的getAppType()
   entityType() {
     bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      let digital = data.entityType
+      let digital = data.description
       if (digital === null || error.code != 0) {
         Logger.info(TAG, `caller onRelease is error: ${error}`)
         return
@@ -88,28 +88,53 @@ export default class BundleController {
 
   // 获取应用的版本信息,对应FA模型的getAppVersionInfo()
   getDispatcherVersion() {
-    bundle.getDispatcherVersion()
-    Logger.info(TAG, `getDispatcherVersion: ${JSON.stringify(bundle.getDispatcherVersion())}`)
-    prompt.showToast({
-      message: `getDispatcherVersion success`
-    })
+    let bundleName = "ohos.samples.stagemodel"
+    let bundleFlags = bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
+
+    try {
+      bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
+        if (err) {
+          Logger.error(TAG, `getDispatcherVersion() failed. Cause: ${JSON.stringify(err.message)}`)
+          prompt.showToast({
+            message: `Operation failed. Cause: ${JSON.stringify(err)}`
+          })
+        } else {
+          prompt.showToast({
+            message: `Operation successful. Data: ${JSON.stringify(data.targetVersion)}`
+          })
+        }
+      })
+    } catch (err) {
+      Logger.error(TAG, `getDispatcherVersion() failed. Cause: ${JSON.stringify(err.message)}`)
+      prompt.showToast({
+        message: `Operation failed. Cause: ${JSON.stringify(err)}`
+      })
+    }
   }
 
   // 获取有关当前能力的信息,对应FA模型的getElementName()
   getAbilityInfo() {
     let bundleName = "ohos.samples.stagemodel"
-    let abilityName = "TestAbility"
-    bundle.getAbilityInfo(bundleName, abilityName)
-      .then((data) => {
-        Logger.info(TAG, `Operation successful. Data: ${JSON.stringify(data)}`)
-        prompt.showToast({
-          message: `Operation successful. Data: ${JSON.stringify(data)}`
-        })
-      }).catch((error) => {
-      Logger.error(TAG, `Operation failed. Cause: ${JSON.stringify(error)}`)
-      prompt.showToast({
-        message: `Operation failed. Cause: ${JSON.stringify(error)}`
+    let bundleFlags = bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
+
+    try {
+      bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
+        if (err) {
+          Logger.error(TAG, `getAbilityInfo() failed. Cause: ${JSON.stringify(err.message)}`)
+          prompt.showToast({
+            message: `Operation failed. Cause: ${JSON.stringify(err)}`
+          })
+        } else {
+          prompt.showToast({
+            message: `Operation successful. Data: ${JSON.stringify(data)}`
+          })
+        }
       })
-    })
+    } catch (err) {
+      Logger.error(TAG, `getAbilityInfo() failed. Cause: ${JSON.stringify(err.message)}`)
+      prompt.showToast({
+        message: `Operation failed. Cause: ${JSON.stringify(err)}`
+      })
+    }
   }
 }
