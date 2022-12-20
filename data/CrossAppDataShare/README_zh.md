@@ -44,4 +44,4 @@
 
 4. 本示例需要使用@ohos.data.dataShare，@ohos.data.dataSharePredicates，@ohos.data.ValuesBucket系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEcoStudio中替换，具体操作可参考 [替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md) 。
 
-5. 本示例使用了DataShareExtensionAbility，安装需要手动配置签名，具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。
+5. 本示例使用了DataShareExtensionAbility，安装需要手动配置签名，具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)。
