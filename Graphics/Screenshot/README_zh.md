@@ -27,5 +27,5 @@
    ；
 3. 本示例需要使用 DevEco Studio 3.0 Release (Build Version: 3.0.0.993, built on September 06, 2022)才可编译运行。
 4. 本示例所配置的权限 ohos.permission.CAPTURE_SCREEN 为 system_core 级别(
-   相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))；
+   相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))；
 5. 本示例需要设置为系统应用才可使用接口 hasPrivacyWindow 判断隐私窗口,签名文件中修改 app-feature 为 hos_system_app。

@@ -56,7 +56,7 @@ This sample demonstrates a simple home screen app that provides the following fu
 
 3. DevEco Studio 3.0 Beta4 (Build version: 3.0.0.992, built on July 14, 2022) must be used.
 
-4. The permissions configured in this sample are at the system_basic or system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465).
+4. The permissions configured in this sample are at the system_basic or system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/security/hapsigntool-overview.md/).
 
 5. This sample uses system APIs, and the Full SDK must be used for compilation. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/full-sdk-switch-guide.md).
 
