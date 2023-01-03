@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import featureAbility from '@ohos.ability.featureAbility'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
 
 const TAG = '[Sample_AppAccountManager]'
@@ -26,29 +26,16 @@ export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let parameter = {
-        "want": {
-          bundleName: "ohos.samples.etsappaccountmanager",
-          abilityName: "ohos.samples.etsappaccountmanager.MainAbility"
-        }
-      }
-      await featureAbility.startAbility(parameter, (err, data) => {
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility({
+        bundleName: "ohos.samples.etsappaccountmanager",
+        abilityName: "EntryAbility"
+      }, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
       })
-    })
-
-    /**
-     * 进入页面
-     */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })
   })
 }

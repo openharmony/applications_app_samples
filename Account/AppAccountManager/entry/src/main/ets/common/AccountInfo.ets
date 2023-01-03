@@ -115,7 +115,7 @@ export struct AccountInfo {
                 primaryButton: {
                   value: $r('app.string.confirm'),
                   action: () => {
-                    this.storage.deleteStorageValue(this.username, this.bundleName)
+                    this.storage.deleteStorageValue(getContext(), this.username, this.bundleName)
                     router.replace({
                       url: 'pages/Login',
                       params: {

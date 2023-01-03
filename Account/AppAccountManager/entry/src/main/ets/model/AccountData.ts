@@ -14,15 +14,15 @@
  */
 
 import Logger from '../model/Logger'
-import dataStorage from '@ohos.data.storage'
-import featureAbility from '@ohos.ability.featureAbility'
+import appContext from '@ohos.application.context'
+import preferences from '@ohos.data.preferences'
+
 
 const TAG: string = '[AccountData]'
 
 export class AccountData {
   static instance: AccountData = null
-  private storage: dataStorage.Storage = null
-  private accountData = []
+  private storage: preferences.Preferences = null
 
   public static getInstance() {
     if (this.instance === null) {
@@ -31,12 +31,11 @@ export class AccountData {
     return this.instance
   }
 
-  async getFromStorage(url: string) {
-    const context = featureAbility.getContext()
-    let path = await context.getOrCreateLocalDir()
-    Logger.info(TAG, `Path is ${path}`)
+  async getFromStorage(context: appContext.Context, url: string) {
+    let name = url
+    Logger.info(TAG, `Name is ${name}`)
     try {
-      this.storage = await dataStorage.getStorage(`${path}/files/${url}`)
+      this.storage = await preferences.getPreferences(context, `${name}`)
     } catch (err) {
       Logger.error(`getStorage failed, code is ${err.code}, message is ${err.message}`)
     }
@@ -45,14 +44,14 @@ export class AccountData {
     }
   }
 
-  async getStorage(url: string) {
+  async getStorage(context: appContext.Context, url: string) {
     this.storage = null
-    await this.getFromStorage(url)
+    await this.getFromStorage(context, url)
     return this.storage
   }
 
-  async putStorageValue(key: string, value: string, url: string) {
-    this.storage = await this.getStorage(url)
+  async putStorageValue(context: appContext.Context, key: string, value: string, url: string) {
+    this.storage = await this.getStorage(context, url)
     try {
       await this.storage.put(key, value)
       await this.storage.flush()
@@ -63,8 +62,8 @@ export class AccountData {
     return
   }
 
-  async hasStorageValue(key: string, url: string) {
-    this.storage = await this.getStorage(url)
+  async hasStorageValue(context: appContext.Context, key: string, url: string) {
+    this.storage = await this.getStorage(context, url)
     let result
     try {
       result = await this.storage.has(key)
@@ -75,8 +74,8 @@ export class AccountData {
     return result
   }
 
-  async getStorageValue(key: string, url: string) {
-    this.storage = await this.getStorage(url)
+  async getStorageValue(context: appContext.Context, key: string, url: string) {
+    this.storage = await this.getStorage(context, url)
     let getValue
     try {
       getValue = await this.storage.get(key, 'null')
@@ -87,8 +86,8 @@ export class AccountData {
     return getValue
   }
 
-  async deleteStorageValue(key: string, url: string) {
-    this.storage = await this.getStorage(url)
+  async deleteStorageValue(context: appContext.Context, key: string, url: string) {
+    this.storage = await this.getStorage(context, url)
     try {
       await this.storage.delete(key)
       await this.storage.flush()

@@ -238,7 +238,7 @@ export struct RegisterInfo {
         .type(ButtonType.Capsule)
         .onClick(async () => {
           let res = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
-          let result = await this.storage.hasStorageValue(this.username, this.bundleName)
+          let result = await this.storage.hasStorageValue(getContext(), this.username, this.bundleName)
           Logger.info(TAG, `This result is ${result}`)
           if (this.username === '') {
             AlertDialog.show(
@@ -335,8 +335,8 @@ export struct RegisterInfo {
               await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
             }
             await this.accountModel.setAssociatedData(`${this.username}_${this.bundleName}`, `key_${this.bundleName}`, this.passWord)
-            await this.storage.putStorageValue(this.username, this.passWord, this.bundleName)
-            await this.storage.putStorageValue(this.bundleName, 'true', `${this.username}_${this.bundleName}`)
+            await this.storage.putStorageValue(getContext(), this.username, this.passWord, this.bundleName)
+            await this.storage.putStorageValue(getContext(), this.bundleName, 'true', `${this.username}_${this.bundleName}`)
             AlertDialog.show(
               {
                 message: $r('app.string.register_info'),
