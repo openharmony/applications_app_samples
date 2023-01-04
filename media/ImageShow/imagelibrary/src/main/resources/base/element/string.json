@@ -40,6 +40,10 @@
     {
       "name": "choice_number",
       "value": "最多选择六张图片"
+    },
+    {
+      "name": "user_tip",
+      "value": "功能开发中"
     }
   ]
 }

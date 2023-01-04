@@ -177,9 +177,8 @@ export struct ChoicePhotos {
                   if (index == 0) {
                     this.getFileAssetsFromType(mediaLibrary.MediaType.IMAGE)
                   } else {
+                    prompt.showDialog({ message: $r('app.string.user_tip') })
                     this.choiceMedias = []
-                    this.isShowChoices = new Array(this.medias.length).fill(false)
-                    this.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
                   }
                 })
               if (this.whichShow[index]) {
