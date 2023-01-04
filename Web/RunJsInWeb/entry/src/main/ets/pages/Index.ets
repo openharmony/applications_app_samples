@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import web_webview from '@ohos.web.webview'
+import Logger from '../model/Logger'
 
+const TAG: string = '[Index]'
 @Entry
 @Component
 struct Index {
@@ -32,7 +34,7 @@ struct Index {
             try {
               this.controller.loadUrl("javascript:" + this.gameStart)
             } catch (error) {
-              console.error("error: " + error);
+              Logger.info(TAG, `loadUrl gameStart fail: ${JSON.stringify(error)}`)
             }
           })
         Button('L', { type: ButtonType.Capsule })
@@ -44,7 +46,7 @@ struct Index {
                 try {
                   this.controller.loadUrl("javascript:" + this.gameLeft)
                 } catch (error) {
-                  console.error("error: " + error);
+                  Logger.info(TAG, `loadUrl gameLeft fail: ${JSON.stringify(error)}`)
                 }
               }
             })
@@ -64,7 +66,7 @@ struct Index {
             try {
               this.controller.loadUrl("javascript:" + this.removeDesc)
             } catch (error) {
-              console.error("error: " + error);
+              Logger.info(TAG, `loadUrl removeDesc fail: ${JSON.stringify(error)}`)
             }
           })
       }.width('80%')
@@ -74,7 +76,7 @@ struct Index {
             try {
               this.controller.loadUrl("javascript:" + this.gameReset)
             } catch (error) {
-              console.error("error: " + error);
+              Logger.info(TAG, `loadUrl gameReset fail: ${JSON.stringify(error)}`)
             }
           })
         Button('R', { type: ButtonType.Capsule })
@@ -86,7 +88,7 @@ struct Index {
                 try {
                   this.controller.loadUrl("javascript:" + this.gameRight)
                 } catch (error) {
-                  console.error("error: " + error);
+                  Logger.info(TAG, `loadUrl gameRight fail: ${JSON.stringify(error)}`)
                 }
               }
             })
