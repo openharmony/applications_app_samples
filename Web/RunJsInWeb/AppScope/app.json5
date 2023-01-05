@@ -15,8 +15,8 @@
 
 {
   "app": {
-    "bundleName": "com.example.runjsinweb",
-    "vendor": "example",
+    "bundleName": "com.samples.runjsinweb",
+    "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
