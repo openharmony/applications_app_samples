@@ -14,7 +14,7 @@
  */
 
 import prompt from '@ohos.prompt'
-import workScheduler from '@ohos.workScheduler'
+import workScheduler from '@ohos.resourceschedule.workScheduler'
 import { Logger } from '@ohos/notification'
 
 const TAG: string = 'DelayWork'
@@ -31,8 +31,8 @@ export default class DelayWork {
     this.workInfo.bundleName = bundleName
     this.workInfo.abilityName = abilityName
     try {
-      let work = workScheduler.startWork(this.workInfo)
-      Logger.info(TAG, `startWork: ${work}`)
+      workScheduler.startWork(this.workInfo)
+      Logger.info(TAG, `startWork success`)
     } catch (error) {
       Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
       prompt.showToast({
