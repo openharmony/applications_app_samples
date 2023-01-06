@@ -1,0 +1,164 @@
+{
+  "string": [
+    {
+      "name": "enabled",
+      "value": "已开启"
+    },
+    {
+      "name": "disabled",
+      "value": "已关闭"
+    },
+    {
+      "name": "settings",
+      "value": "设置"
+    },
+    {
+      "name": "searchHint",
+      "value": "搜索设置项"
+    },
+    {
+      "name": "wifiTab",
+      "value": "WLAN"
+    },
+    {
+      "name": "wifiTipConnectedWLAN",
+      "value": "已连接WLAN"
+    },
+    {
+      "name": "wifiTipValidWLAN",
+      "value": "可用WLAN"
+    },
+    {
+      "name": "wifiInfoTitleFrequency",
+      "value": "频率"
+    },
+    {
+      "name": "wifiSummaryConnected",
+      "value": "已连接"
+    },
+    {
+      "name": "wifiSummaryConnecting",
+      "value": "连接中..."
+    },
+    {
+      "name": "wifiSummarySaveEncrypted",
+      "value": "已保存，加密"
+    },
+    {
+      "name": "wifiSummarySaveOpen",
+      "value": "已保存，开放"
+    },
+    {
+      "name": "wifiSummaryEncrypted",
+      "value": "加密"
+    },
+    {
+      "name": "wifiSummaryOpen",
+      "value": "开放"
+    },
+    {
+      "name": "brightnessTab",
+      "value": "显示与亮度"
+    },
+    {
+      "name": "applyTab",
+      "value": "应用"
+    },
+    {
+      "name": "aboutTab",
+      "value": "关于设备"
+    },
+    {
+      "name": "volumeControlTab",
+      "value": "声音"
+    },
+    {
+      "name": "wifiList",
+      "value": "可用WLAN列表"
+    },
+    {
+      "name": "usersAccountsTab",
+      "value": "用户和帐户"
+    },
+    {
+      "name": "systemTab",
+      "value": "系统"
+    },
+    {
+      "name": "privacy",
+      "value": "隐私"
+    },
+    {
+      "name": "permissionManager",
+      "value": "权限管理"
+    },
+    {
+      "name": "storageTab",
+      "value": "存储"
+    },
+    {
+      "name": "security",
+      "value": "安全"
+    },
+    {
+      "name": "privacyTab",
+      "value": "隐私"
+    },
+    {
+      "name": "biometricsAndPassword",
+      "value": "生物识别和密码"
+    },
+    {
+      "name": "moreConnectionsTab",
+      "value": "更多连接"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    },
+    {
+      "name": "nfcTips",
+      "value": "若要进行移动支付、钥匙验证、碰一碰等操作，可将本设备背部触碰其他终端 NFC 感应区。"
+    },
+    {
+      "name": "bluetoothTab",
+      "value": "蓝牙"
+    },
+    {
+      "name": "mobileData",
+      "value": "移动数据"
+    },
+    {
+      "name": "moreWlanSettings",
+      "value": "更多WLAN设置"
+    },
+    {
+      "name": "wlanPlus",
+      "value": "WLAN+"
+    },
+    {
+      "name": "wlanPlusTip",
+      "value": "提升网络智能连接体验"
+    },
+    {
+      "name": "wlanDirect",
+      "value": "WLAN直连"
+    },
+    {
+      "name": "wlanSecurityCheck",
+      "value": "WLAN安全检测"
+    },
+    {
+      "name": "wlanSecurityCheckTip",
+      "value": "通过管家对已经连接的热点进行联网安全检测，并暂停自动连接存在安全风险的热点"
+    },
+    {
+      "name": "savedWlan",
+      "value": "已保存的网络"
+    },
+    {
+      "name": "installCertificates",
+      "value": "安装证书"
+    }
+  ]
+}
