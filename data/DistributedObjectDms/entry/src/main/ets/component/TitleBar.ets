@@ -104,9 +104,9 @@ export default struct TitleBar {
 
   showDialogInfo() {
     this.dialogShow = true
-    this.devices = []
     this.remoteDeviceModel.registerDeviceCallback(() => {
       Logger.info(TAG, 'registerDeviceCallback, callback entered')
+      this.devices = []
       this.devices.push({
         deviceId: '0',
         deviceName: 'local device',

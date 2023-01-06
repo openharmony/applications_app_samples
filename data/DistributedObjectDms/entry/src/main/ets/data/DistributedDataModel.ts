@@ -22,11 +22,11 @@ const TAG: string = 'DistributedDataModel'
 class DistributedDataModel {
   public documents: Array<DataModel> = []
   public distributedObject?: any
-  public changeCallback?: () => void = null
-  public statusCallback?: () => void = null
+  public changeCallback?: () => void = undefined
+  public statusCallback?: () => void = undefined
 
-  constructor() {
-    this.distributedObject = distributedObject.createDistributedObject({
+  async init(context) {
+    this.distributedObject = distributedObject.create(context, {
       documents: this.documents
     })
     this.share()
