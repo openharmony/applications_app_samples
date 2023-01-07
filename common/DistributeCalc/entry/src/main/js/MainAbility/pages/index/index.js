@@ -133,7 +133,7 @@ export default {
   showDialog() {
     logger.info(TAG, `showDialog start`)
     this.isShow = true
-    setTimeout(()=>{
+    setTimeout(() => {
       this.deviceList = []
       if (remoteDeviceModel === undefined) {
         remoteDeviceModel = new RemoteDeviceModel()
@@ -150,6 +150,8 @@ export default {
           checked: this.selectedIndex === 0
         })
         let tempList = remoteDeviceModel.discoverList.length > 0 ? remoteDeviceModel.discoverList : remoteDeviceModel.deviceList
+        logger.info(TAG, `callback this.discoverList=${JSON.stringify(remoteDeviceModel.discoverList)}`)
+        logger.info(TAG, `callback this.deviceList=${JSON.stringify(remoteDeviceModel.deviceList)}`)
         for (let i = 0; i < tempList.length; i++) {
           logger.debug(`device ${i}/${tempList.length} deviceId=${tempList[i].deviceId} deviceName=${tempList[i].deviceName} deviceType=${tempList[i].deviceType}`)
           list.push({
@@ -164,7 +166,7 @@ export default {
         this.$element('showDialog').close()
         this.$element('showDialog').show()
       })
-    },200)
+    }, 200)
   },
   cancelDialog() {
     this.$element('showDialog').close()

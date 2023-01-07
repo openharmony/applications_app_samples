@@ -27,7 +27,9 @@ export default class RemoteDeviceModel {
   deviceManager = undefined
 
   registerDeviceListCallback(callback) {
-    if (typeof (this.deviceManager) === 'undefined') {
+    logger.info(TAG, `deviceManager type =${typeof (this.deviceManager)} ,${JSON.stringify(this.deviceManager)} ,${JSON.stringify(this.deviceManager) === '{}'}`)
+    if (typeof (this.deviceManager) === 'undefined' || JSON.stringify(this.deviceManager) === '{}') {
+      logger.info(TAG, `deviceManager is null begin`)
       logger.info(TAG, `deviceManager.createDeviceManager begin`)
       try {
         deviceManager.createDeviceManager("ohos.samples.distributedcalc", (error, value) => {
@@ -37,13 +39,14 @@ export default class RemoteDeviceModel {
           }
           this.deviceManager = value
           this.registerDeviceListCallback_(callback)
-          logger.info(TAG, `createDeviceManager callback returned, error=${error} value=${value}`)
+          logger.info(TAG, `createDeviceManager callback returned, error=${JSON.stringify(error.code)} , errorMessage=${error.message} value=${value}`)
         })
       } catch (error) {
-        logger.error(TAG, `createDeviceManager throw error,  error.code=${JSON.stringify(error)}`)
+        logger.error(TAG, `createDeviceManager throw error,  error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
       }
       logger.info(TAG, `deviceManager.createDeviceManager end`)
     } else {
+      logger.info(TAG, `deviceManager not null begin`)
       this.registerDeviceListCallback_(callback)
     }
   }
@@ -60,31 +63,32 @@ export default class RemoteDeviceModel {
     logger.info(TAG, `getTrustedDeviceListSync begin`)
     try {
       let list = this.deviceManager.getTrustedDeviceListSync()
-      logger.debug(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
-      if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
+      logger.info(TAG, `getTrustedDeviceListSync end, list=${JSON.stringify(list)}`)
+      if (typeof (list) !== 'undefined' && JSON.stringify(list) !== '[]') {
         this.deviceList = list
       }
+      logger.info(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
     } catch (error) {
-      logger.error(TAG, `getTrustedDeviceListSync throw error,  error.code=${JSON.stringify(error)}`)
+      logger.error(TAG, `getTrustedDeviceListSync throw error,  error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
     }
     this.callback()
-    logger.info(TAG, `callback finished`)
+    logger.info(TAG, `getTrustedDeviceListSync end, callback finished`)
     try {
       this.deviceManager.on('deviceStateChange', (data) => {
-        logger.debug(TAG, `deviceStateChange data=${JSON.stringify(data)}`)
+        logger.info(TAG, `deviceStateChange data=${JSON.stringify(data)}`)
         switch (data.action) {
           case deviceManager.DeviceStateChangeAction.READY:
             this.discoverList = []
             this.deviceList.push(data.device)
-            logger.debug(TAG, `ready, updated device list=${JSON.stringify(this.deviceList)}`)
+            logger.info(TAG, `ready, updated device list=${JSON.stringify(this.deviceList)}`)
             try {
               let list = this.deviceManager.getTrustedDeviceListSync()
-              logger.debug(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
+              logger.info(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
               if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
                 this.deviceList = list
               }
             } catch (error) {
-              logger.error(TAG, `getTrustedDeviceListSync throw error,  error.code=${JSON.stringify(error)}`)
+              logger.error(TAG, `deviceStateChange throw error,  error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
             }
             this.callback()
             break
@@ -98,7 +102,7 @@ export default class RemoteDeviceModel {
               }
               this.deviceList = list
             }
-            logger.debug(TAG, `offline, updated device list=${JSON.stringify(data.device)}`)
+            logger.info(TAG, `offline, updated device list=${JSON.stringify(data.device)}`)
             this.callback()
             break
           default:
@@ -106,8 +110,8 @@ export default class RemoteDeviceModel {
         }
       })
       this.deviceManager.on('deviceFound', (data) => {
-        logger.debug(TAG, `deviceFound data=${JSON.stringify(data)}`)
-        logger.debug(TAG, `deviceFound this.discoverList=${this.discoverList}`)
+        logger.info(TAG, `deviceFound data=${JSON.stringify(data)}`)
+        logger.info(TAG, `deviceFound this.discoverList=${this.discoverList}`)
         for (let i = 0; i < this.discoverList.length; i++) {
           if (this.discoverList[i].deviceId === data.device.deviceId) {
             logger.info(TAG, `device founded ignored`)
@@ -115,17 +119,17 @@ export default class RemoteDeviceModel {
           }
         }
         this.discoverList[this.discoverList.length] = data.device
-        logger.debug(TAG, `deviceFound this.discoverList=${this.discoverList}`)
+        logger.info(TAG, `deviceFound this.discoverList=${this.discoverList}`)
         this.callback()
       })
       this.deviceManager.on('discoverFail', (data) => {
-        logger.debug(TAG, `discoverFail data=${JSON.stringify(data)}`)
+        logger.info(TAG, `discoverFail data=${JSON.stringify(data)}`)
       })
       this.deviceManager.on('serviceDie', () => {
         logger.error(TAG, `serviceDie`)
       })
     } catch (error) {
-      logger.error(TAG,`on throw error,  error.code=${JSON.stringify(error)}`)
+      logger.error(TAG, `on throw error,  error.code=${JSON.stringify(error)}`)
     }
 
     SUBSCRIBE_ID = Math.floor(65536 * Math.random()) // Generate a random number
@@ -142,7 +146,7 @@ export default class RemoteDeviceModel {
     try {
       this.deviceManager.startDeviceDiscovery(info)
     } catch (error) {
-      logger.error(TAG, `startDeviceDiscovery throw error,  error.code=${JSON.stringify(error)}`)
+      logger.error(TAG, `startDeviceDiscovery throw error,  error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
     }
   }
 
@@ -159,7 +163,7 @@ export default class RemoteDeviceModel {
       this.deviceManager.off('serviceDie')
       this.deviceList = []
     } catch (error) {
-      logger.error(TAG, `throw error, error.code=${JSON.stringify(error.code)}`)
+      logger.error(TAG, `throw error, error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
     }
   }
 
@@ -183,15 +187,15 @@ export default class RemoteDeviceModel {
         try {
           this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
             if (err) {
-              logger.error(TAG, `authenticateDevice error:${JSON.stringify(err)}`)
+              logger.error(TAG, `authenticateDevice error.code=${JSON.stringify(err.code)} , errorMessage=${err.message}`)
               this.authCallback = null
               return
             }
-            logger.debug(TAG, `authenticateDevice succeed:${JSON.stringify(data)}`)
+            logger.info(TAG, `authenticateDevice succeed:${JSON.stringify(data)}`)
             this.authCallback = callBack
           })
         } catch (error) {
-          logger.error(TAG, `authenticateDevice throw error:${JSON.stringify(error)}`)
+          logger.error(TAG, `authenticateDevice throw error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
         }
       }
     }
