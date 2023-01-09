@@ -126,9 +126,7 @@ export default class CameraService {
 
   async initCamera(surfaceId: string) {
     Logger.info(this.tag, 'initCamera')
-    if (this.curMode === CameraMode.MODE_VIDEO) {
-      await this.releaseCamera()
-    }
+    await this.releaseCamera()
     Logger.info(this.tag, `deviceInfo.deviceType = ${deviceInfo.deviceType}`)
     if (deviceInfo.deviceType === 'default') {
       this.videoConfig.videoSourceType = 1
