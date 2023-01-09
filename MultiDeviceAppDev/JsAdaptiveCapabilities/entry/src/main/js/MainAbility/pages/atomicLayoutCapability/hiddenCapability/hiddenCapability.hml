@@ -25,5 +25,5 @@
       <image class="list" src="common/image/list.png"></image>
     </div>
   </div>
-  <slider class="slider" min="10" max="45" value="{{ value }}" onchange="setValue"></slider>
+  <slider class="slider" min="10" max="65" value="{{ value }}" onchange="setValue"></slider>
 </div>
