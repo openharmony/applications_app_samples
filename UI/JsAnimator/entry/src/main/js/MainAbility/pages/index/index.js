@@ -143,6 +143,8 @@ export default {
   reverse() {
     Logger.info(TAG, `in reverse, this.state=${this.state}`)
     if (this.state === 0) {
+      this.isSunFinish = false // clear the flag
+      this.isMoonFinish = false
       this.state = 2
       this.isPlay = true
       this.sunAnimator.reverse() // reverse will start the animator
