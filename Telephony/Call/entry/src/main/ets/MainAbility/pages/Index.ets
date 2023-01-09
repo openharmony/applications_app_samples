@@ -44,7 +44,6 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .fontFamily("cursive")
               .maxLength(11)
-              .inputFilter('^1[0-9]*$')
               .margin({ left: 20, right: 20, top: 20, bottom: 20 })
               .onChange((value: string) => {
                 this.input = value
