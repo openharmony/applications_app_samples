@@ -112,8 +112,8 @@ export struct LoginInfo {
         .fontColor(Color.White)
         .type(ButtonType.Capsule)
         .onClick(async () => {
-          let result = await this.storage.getStorageValue(this.name, this.bundleName)
-          let effect = await this.storage.getStorageValue(this.bundleName, `${this.name}_${this.bundleName}`)
+          let result = await this.storage.getStorageValue(getContext(), this.name, this.bundleName)
+          let effect = await this.storage.getStorageValue(getContext(), this.bundleName, `${this.name}_${this.bundleName}`)
           if (this.name === '') {
             AlertDialog.show(
               {

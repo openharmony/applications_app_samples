@@ -251,7 +251,7 @@ export struct ModifyInfo {
             await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
           }
           let res = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
-          let userPassWord = await this.storage.getStorageValue(this.username, this.bundleName)
+          let userPassWord = await this.storage.getStorageValue(getContext(), this.username, this.bundleName)
           if (this.emailInfo !== '' && !res.test(this.emailInfo)) {
             AlertDialog.show(
               {
@@ -309,7 +309,7 @@ export struct ModifyInfo {
                 }
               })
           } else if (this.passWord !== '' && this.confirmPassword !== '') {
-            await this.storage.putStorageValue(this.username, this.passWord, this.bundleName)
+            await this.storage.putStorageValue(getContext(), this.username, this.passWord, this.bundleName)
             let email = await this.getInfo('null', `${this.username}_${this.bundleName}`, `email_${this.bundleName}`)
             let signature = await this.getInfo('null', `${this.username}_${this.bundleName}`, `signature_${this.bundleName}`)
             AlertDialog.show(
