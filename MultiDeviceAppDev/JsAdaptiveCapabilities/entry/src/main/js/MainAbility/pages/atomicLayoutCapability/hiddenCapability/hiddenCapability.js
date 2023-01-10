@@ -16,8 +16,8 @@
 export default {
   data: {
     title: "",
-    rate: "45%",
-    value: 45
+    rate: "65%",
+    value: 65
   },
   onInit() {
     this.title = this.$t("strings.hidden_capability");
