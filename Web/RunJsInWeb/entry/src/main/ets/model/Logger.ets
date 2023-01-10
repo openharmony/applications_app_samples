@@ -45,4 +45,4 @@ export class Logger {
   }
 }
 
-export default new Logger('[RunJsInWeb]')
+export default new Logger('[Samples_RunJsInWeb]')
