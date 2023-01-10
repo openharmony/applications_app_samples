@@ -61,7 +61,6 @@ export struct AddDialog {
           .placeholderColor(Color.Gray)
           .fontSize(19)
           .margin({ left: 10 })
-          .inputFilter('^1[0-9]*$')
           .onChange((value: string) => {
             this.editContact.destinationHost = value
           })
