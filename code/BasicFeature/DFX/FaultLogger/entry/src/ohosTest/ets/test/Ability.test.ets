@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,39 +15,28 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import featureAbility from '@ohos.ability.featureAbility'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
 
 const TAG = '[Sample_FaultLogger]'
 const DOMAIN = 0xF811
 const BUNDLE = 'FaultLogger_'
 
-export default function appTest() {
+export default function abilityTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let parameter = {
-        "want": {
-          bundleName: "ohos.samples.faultlogger",
-          abilityName: "ohos.samples.faultlogger.MainAbility"
-        }
-      }
-      await featureAbility.startAbility(parameter, (err, data) => {
+      let abilityDelegator: any
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility({
+        bundleName: "ohos.samples.faultlogger",
+        abilityName: "EntryAbility"
+      }, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
       })
-    })
-
-    /**
-     * 进入页面
-     */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })
   })
 }

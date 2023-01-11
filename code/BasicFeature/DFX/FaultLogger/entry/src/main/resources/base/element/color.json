@@ -1,8 +1,12 @@
 {
   "color": [
     {
-      "name": "white",
+      "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "title_background",
+      "value": "#0D9FFB"
     }
   ]
 }

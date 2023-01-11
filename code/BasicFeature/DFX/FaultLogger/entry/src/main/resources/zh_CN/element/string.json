@@ -1,15 +1,15 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
       "value": "FaultLogger"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "EntryAbility_desc",
       "value": "description"
     },
     {
-      "name": "MainAbility_label",
+      "name": "EntryAbility_label",
       "value": "FaultLogger"
     },
     {
@@ -43,6 +43,18 @@
     {
       "name": "catch_all_fault",
       "value": "获取NO_SPECIFIC异常"
+    },
+    {
+      "name": "js_crash_building",
+      "value": "异常构造中..."
+    },
+    {
+      "name": "cpp_crash_building",
+      "value": "异常构造中,完成后应用会自动退出，请重新进入应用抓取异常信息"
+    },
+    {
+      "name": "app_freeze_building",
+      "value": "异常构造中,会出现冻屏，请退出应用后重新进入应用抓取异常信息"
     }
   ]
 }

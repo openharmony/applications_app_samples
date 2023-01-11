@@ -1,15 +1,15 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
       "value": "FaultLogger"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "EntryAbility_desc",
       "value": "description"
     },
     {
-      "name": "MainAbility_label",
+      "name": "EntryAbility_label",
       "value": "FaultLogger"
     },
     {
@@ -43,6 +43,18 @@
     {
       "name": "catch_all_fault",
       "value": "Catch NO_SPECIFIC info"
+    },
+    {
+      "name": "js_crash_building",
+      "value": "Abnormal structure"
+    },
+    {
+      "name": "cpp_crash_building",
+      "value": "During exception construction, the application will automatically exit after completion. Please re-enter the application to grab exception information"
+    },
+    {
+      "name": "app_freeze_building",
+      "value": "In the abnormal structure, a freeze screen will appear. Please exit the application and re-enter the application to grab the abnormal information"
     }
   ]
 }

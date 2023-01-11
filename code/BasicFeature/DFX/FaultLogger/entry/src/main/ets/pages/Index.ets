@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import faultLogger from '@ohos.faultLogger'
 import Logger from '../model/Logger'
 import { TitleBar } from '../common/TitleBar'
@@ -29,17 +30,18 @@ struct Index {
   private faultDialogController: CustomDialogController = null
 
   async catchFaultLog(faultType) {
-    let value = await faultLogger.querySelfFaultLog(faultType)
+    let value = await faultLogger.query(faultType)
     if (value) {
-      let len = value.length;
+      let len = value.length
+      // 未获取到异常日志
       if (len === 0) {
-        this.message = '未获取到异常日志'
+        this.message = 'No exception log was obtained'
         return
       }
       this.message = `faultLogger num:${len} `
       for (let i = 0; i < len; i++) {
-        this.message += `${DIVIDER}Log pid: ${value[i].pid}\nLog type:${value[i].type}\n Log reason: ${value[i].reason}\n` +
-        `Log module: ${value[i].module}\nLog text:\n ${value[i].fullLog.substring(0, 200)}`
+        this.message += `${DIVIDER}Log pid: ${value[i].pid}\nLog type:${value[i].type}\n Log reason: ${value[i].reason}\n`
+        + `Log module: ${value[i].module}\nLog text:\n ${value[i].fullLog.substring(0, 200)}`
       }
     }
   }
@@ -78,6 +80,7 @@ struct Index {
   build() {
     Column() {
       TitleBar()
+
       Scroll() {
         Text(this.message)
           .textAlign(TextAlign.Start)
