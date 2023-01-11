@@ -30,7 +30,7 @@ struct ContactEdit {
   private isInsert: boolean = <boolean> this.params.isInsert
   @State contact: Contact = <Contact> this.params.contact
 
-  @Builder InputText(icon, placeHolder, key, text, filter, maxLength, onChange) {
+  @Builder InputText(icon, placeHolder, key, text, maxLength, onChange) {
     Row() {
       Image(icon)
         .height(30).width(30)
@@ -41,7 +41,6 @@ struct ContactEdit {
         .fontSize(25)
         .placeholderFont({ size: 25 })
         .height(50)
-        .inputFilter(filter)
         .maxLength(maxLength)
         .backgroundColor(Color.White)
         .onChange(onChange)
@@ -126,13 +125,13 @@ struct ContactEdit {
               .bindMenu(this.menuBuilder)
           }
 
-          this.InputText($r('app.media.ic_contact'), $r('app.string.name'), 'Name', this.contact.name, '', 20, (value: string) => {
+          this.InputText($r('app.media.ic_contact'), $r('app.string.name'), 'Name', this.contact.name, 20, (value: string) => {
             this.contact.name = value
           })
-          this.InputText($r('app.media.ic_telephone'), $r('app.string.phone'), 'Phone', this.contact.phone, '^1[0-9]*$', 11, (value: string) => {
+          this.InputText($r('app.media.ic_telephone'), $r('app.string.phone'), 'Phone', this.contact.phone, 11, (value: string) => {
             this.contact.phone = value
           })
-          this.InputText($r('app.media.ic_remark'), $r('app.string.remark'), 'Remark', this.contact.remark, '', 50, (value: string) => {
+          this.InputText($r('app.media.ic_remark'), $r('app.string.remark'), 'Remark', this.contact.remark, 50, (value: string) => {
             this.contact.remark = value
           })
         }
