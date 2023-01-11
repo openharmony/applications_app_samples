@@ -16,7 +16,12 @@
 
 ### 效果预览
 
-![component](screenshots/devices/component.png)
+|绑定|通用|动画|全局方法|
+|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+|![image](screenshots/devices/component.png)|![image](screenshots/devices/general.png)|![image](screenshots/devices/animation.png)|![image](screenshots/devices/global.png)|
+|<center>Button 按钮</center>|<center>onClick 点击事件</center>|<center>页面间转场</center>|<center>自定义弹窗</center>|
+|![image](screenshots/devices/button.png)|![image](screenshots/devices/click.png)|![image](screenshots/devices/pageTransitionOne.png)|![image](screenshots/devices/dialog.png)|
+
 
 ### 相关权限
 

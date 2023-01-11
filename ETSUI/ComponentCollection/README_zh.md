@@ -16,7 +16,12 @@
 
 ### 效果预览
 
-![component](screenshots/devices/component.png) 
+|绑定|通用|动画|全局方法|
+|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+|![image](screenshots/devices/component.png)|![image](screenshots/devices/general.png)|![image](screenshots/devices/animation.png)|![image](screenshots/devices/global.png)|
+|<center>Button 按钮</center>|<center>onClick 点击事件</center>|<center>元素共享转场</center>|<center>警告弹窗</center>|
+|![image](screenshots/devices/button_zh.png)|![image](screenshots/devices/click_event_zh.png)|![image](screenshots/devices/share_element_transition_zh.png)|![image](screenshots/devices/warning_popup_zh.png)|
+
 
 ### 相关权限
 
