@@ -1,16 +1,16 @@
 {
   "string": [
     {
-      "name": "MainAbility_label",
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "入口详情"
+    },
+    {
+      "name": "EntryAbility_label",
       "value": "Base64编解码"
-    },
-    {
-      "name": "entry_desc",
-      "value": "description"
-    },
-    {
-      "name": "MainAbility_desc",
-      "value": "description"
     },
     {
       "name": "change_str",

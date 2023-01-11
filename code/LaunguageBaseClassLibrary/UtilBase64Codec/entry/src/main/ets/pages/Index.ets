@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import util from '@ohos.util';
+import util from '@ohos.util'
 
 @Entry
 @Component
@@ -33,6 +33,7 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
             .textAlign(TextAlign.End)
+
           Text(this.input)
             .width('50%')
             .fontSize(20)
@@ -68,8 +69,8 @@ struct Index {
           for (let i = 0;i < this.input.length; i++) {
             this.strToAscii.push(this.input.charCodeAt(i))
           }
-          let that = new util.Base64();
-          let encodeNum = new Uint8Array(this.strToAscii);
+          let that = new util.Base64Helper()
+          let encodeNum = new Uint8Array(this.strToAscii)
           this.resultEncode = that.encodeToStringSync(encodeNum)
         })
 
@@ -96,8 +97,8 @@ struct Index {
         })
         .backgroundColor('#0D9FFB')
         .onClick(() => {
-          let that = new util.Base64();
-          let decodeNum = that.decodeSync(this.resultEncode);
+          let that = new util.Base64Helper()
+          let decodeNum = that.decodeSync(this.resultEncode)
           for (let i = 0; i < decodeNum.length; i++) {
             this.asciiToStr += String.fromCharCode(decodeNum[i])
           }
