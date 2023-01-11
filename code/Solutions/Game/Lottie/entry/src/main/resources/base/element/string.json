@@ -1,15 +1,15 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
+      "value": "Lottie"
+    },
+    {
+      "name": "EntryAbility_desc",
       "value": "description"
     },
     {
-      "name": "MainAbility_desc",
-      "value": "description"
-    },
-    {
-      "name": "MainAbility_label",
+      "name": "EntryAbility_label",
       "value": "lottie"
     },
     {
@@ -123,6 +123,18 @@
     {
       "name": "listen",
       "value": "侦听事件"
+    },
+    {
+      "name": "select_please",
+      "value": "请选择"
+    },
+    {
+      "name": "forward",
+      "value": "正向"
+    },
+    {
+      "name": "reverse",
+      "value": "反向"
     }
   ]
 }
