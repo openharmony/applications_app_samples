@@ -89,7 +89,7 @@ export struct MediaItem {
           .fontColor('#FFFFFF')
           .position({
             x: '5',
-            y: '72%'
+            y: '42%'
           })
           .zIndex(2)
 

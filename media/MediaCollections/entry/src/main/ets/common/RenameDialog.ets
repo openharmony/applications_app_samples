@@ -75,7 +75,7 @@ export struct RenameDialog {
         })
       }.justifyContent(FlexAlign.SpaceAround).width('100%').margin({ top: '5%' })
     }
-    .width(this.displayWidth > 2500 ? '26%' : '80%')
+    .width(this.displayWidth > 2500 ? '26%' : '90%')
     .padding('3%')
     .borderRadius(24)
     .backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
