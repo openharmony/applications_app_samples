@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +19,6 @@ const TAG: string = '[Initialize]'
 const MINE = 9
 
 export class initialize {
-
   initArray(size, value) {
     return Array.from({ length: size }, () => Array.from({ length: size }, () => value))
   }
@@ -30,7 +29,7 @@ export class initialize {
     while (count < maxCount) {
       let row = Math.floor(Math.random() * 6)
       let col = Math.floor(Math.random() * 6)
-      HiLog.log(TAG, ' row=' + row + ', col=' + col)
+      HiLog.log(TAG, `row=${row}, col=${col}`)
       if (map[row][col] != MINE) {
         map[row][col] = MINE
         for (let i = row - 1;i < row + 2; i++) {

@@ -13,16 +13,18 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
+import router from '@ohos.router'
+
+const DIVIDER_COLOR = '#999999'
 
 @CustomDialog
-export struct WinningGameDialog {
+export struct GameOverDialog {
   controller: CustomDialogController
   confirm: () => void
 
   build() {
     Column() {
-      Text($r('app.string.win'))
+      Text($r('app.string.game_over'))
         .fontSize(36)
         .margin({ top: 20, bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
@@ -33,7 +35,10 @@ export struct WinningGameDialog {
             this.confirm()
           }).backgroundColor(0xffffff).fontColor(Color.Black)
 
-        Divider().height(30).vertical(true).strokeWidth(2).color('#999999')
+        Divider().height(30)
+          .vertical(true)
+          .strokeWidth(2)
+          .color(DIVIDER_COLOR)
 
         Button($r('app.string.exit'))
           .fontSize(24)

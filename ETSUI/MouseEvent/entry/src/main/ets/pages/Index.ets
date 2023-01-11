@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -160,9 +160,9 @@ struct Index {
   getMouseLocation(row, col) {
     if (row === this.hoverIndex && col === this.hoverSecond) {
       HiLog.debug(TAG, ` getMouseLocation this.hoverIndex= ${this.hoverIndex}  this.hoverSecond= ${this.hoverSecond}`)
-      return 0.5
+      return 0.5 // opacity为0.5
     } else {
-      return 1
+      return 1 // opacity为1
     }
   }
 
