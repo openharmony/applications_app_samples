@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@
 export struct TitleBar {
   build() {
     Row() {
-      Text($r('app.string.entry_MainAbility'))
+      Text($r('app.string.EntryAbility_label'))
         .fontSize(25)
         .layoutWeight(1)
         .fontColor(Color.White)
@@ -25,7 +25,7 @@ export struct TitleBar {
     .width('100%')
     .height(50)
     .padding({ left: 15 })
-    .backgroundColor('#0D9FFB')
+    .backgroundColor($r('app.color.main_background'))
     .constraintSize({ minHeight: 50 })
   }
 }

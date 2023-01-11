@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import Logger from '../model/Logger'
 import { TitleBar } from '../common/TitleBar'
 import { AddDialog } from '../common/AddDialog'
 import { grantPermission } from '../model/PermissionUtils'
-import {ContactSource} from "../model/DataSource"
+import { ContactSource } from '../model/DataSource'
 
 const TAG: string = '[Index]'
 
@@ -98,7 +98,7 @@ struct Index {
           .key('newContact')
           .height(40)
           .type(ButtonType.Capsule)
-          .backgroundColor('#0D9FFB')
+          .backgroundColor($r('app.color.main_background'))
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
             this.editContact = new Contact('', '')
@@ -113,7 +113,7 @@ struct Index {
           .key('manage')
           .height(40)
           .type(ButtonType.Capsule)
-          .backgroundColor('#0D9FFB')
+          .backgroundColor($r('app.color.main_background'))
           .margin({ top: 10, bottom: 10, left: 10 })
           .onClick(() => {
             this.editable = !this.editable
@@ -157,7 +157,7 @@ struct Index {
                     .objectFit(ImageFit.Contain)
                     .onClick(() => {
                       Logger.info(`${TAG}, onClick-sms ${item.name} ${item.destinationHost}`)
-                      router.push({
+                      router.pushUrl({
                         url: 'pages/SendMessage',
                         params: {
                           contact: item
@@ -175,7 +175,7 @@ struct Index {
           .listDirection(Axis.Vertical)
           .chainAnimation(false) // 联动特效关闭
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
-          .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
+          .divider({ strokeWidth: 2, color: $r('app.color.start_window_background'), startMargin: 20, endMargin: 20 })
           .onItemDelete((index: number) => {
             this.contacts['contactData'].splice(index, 1)
             this.contacts.notifyDataReload()
@@ -183,7 +183,7 @@ struct Index {
             return true
           })
           .width('90%')
-          .height("100%")
+          .height('100%')
         }
         .width('100%')
         .height('80%')

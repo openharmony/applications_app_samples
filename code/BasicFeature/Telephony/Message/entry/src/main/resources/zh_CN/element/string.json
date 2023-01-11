@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
-      "value": "eTSMessage"
+      "name": "module_desc",
+      "value": "模块描述"
     },
     {
-      "name": "description_mainability",
-      "value": "ETS_Empty Ability"
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "message"
     },
     {
       "name": "contact",

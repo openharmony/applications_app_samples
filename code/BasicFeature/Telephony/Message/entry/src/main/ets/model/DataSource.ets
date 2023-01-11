@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 
 import Contact from './Contact'
 import Message from './Message'
+
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
@@ -34,7 +35,7 @@ class BasicDataSource implements IDataSource {
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
+    const pos = this.listeners.indexOf(listener)
     if (pos >= 0) {
       console.info('remove listener')
       this.listeners.splice(pos, 1)
@@ -98,6 +99,7 @@ export class ContactSource extends BasicDataSource {
     this.notifyDataAdd(this.contactData.length - 1)
   }
 }
+
 export class MessageSource extends BasicDataSource {
   public MessageData: Array<Message>
 

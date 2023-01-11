@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,12 +30,14 @@ export struct AddDialog {
         .fontSize(20)
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Bold)
+
       Row() {
         Text($r('app.string.full_name'))
           .width(65)
           .fontSize(20)
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Medium)
+
         TextInput({ placeholder: 'input name', text: this.editContact.name })
           .layoutWeight(1)
           .type(InputType.Normal)
@@ -46,7 +48,8 @@ export struct AddDialog {
             this.editContact.name = value
           })
           .key('nameInput')
-      }.margin({ top: '3%' })
+      }
+      .margin({ top: 10 })
 
       Row() {
         Text($r('app.string.telephone'))
@@ -54,6 +57,7 @@ export struct AddDialog {
           .width(65)
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Medium)
+
         TextInput({ placeholder: 'input phone', text: this.editContact.destinationHost })
           .layoutWeight(1)
           .maxLength(11)
@@ -65,7 +69,8 @@ export struct AddDialog {
             this.editContact.destinationHost = value
           })
           .key('telInput')
-      }.margin({ top: '3%' })
+      }
+      .margin({ top: 10 })
 
       Row() {
         Button() {
@@ -84,6 +89,7 @@ export struct AddDialog {
         Text()
           .width(1).height(35)
           .backgroundColor('#8F8F8F')
+
         Button() {
           Text($r('app.string.determine'))
             .fontColor(Color.Blue)
@@ -118,8 +124,8 @@ export struct AddDialog {
         })
       }
       .width('100%')
-      .margin({ top: '3%' })
+      .margin({ top: 10 })
     }
-    .padding('3%')
+    .padding(10)
   }
 }
