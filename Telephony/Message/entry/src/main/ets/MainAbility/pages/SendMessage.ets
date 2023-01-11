@@ -178,6 +178,8 @@ struct SendMessage {
             }
           }, item => item.content)
         }
+        .width('100%')
+        .alignItems(HorizontalAlign.End)
       }
       .height('70%')
       .width('100%')
