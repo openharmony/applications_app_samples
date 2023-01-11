@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
-import { logger, contactDataShareUtil } from '@ohos/common'
+import { contactDataShareUtil, logger } from '@ohos/common'
 
 const TAG: string = 'MainAbility'
 
