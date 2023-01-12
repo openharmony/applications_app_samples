@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import lock from '@ohos.runningLock'
+import runningLock from '@ohos.runningLock'
 import Logger from '../util/Logger'
 
 const TAG: string = 'RunningLock'
@@ -28,25 +28,26 @@ export struct LockSwitch {
     Row() {
       Text($r('app.string.sleepLockSwitch'))
         .fontSize(20)
-        .fontColor('#0D9FFB')
+        .fontColor($r('app.color.main_background'))
         .width('30%')
-        .margin({ left: '22%' })
+        .margin({ left: '20%' })
         .fontWeight(FontWeight.Bold)
+
       Toggle({ type: ToggleType.Switch, isOn: this.isLock })
         .width(70)
         .height(30)
-        .margin({ left: '20%', right: 10 })
+        .margin({ left: '20%' })
         .onChange(() => {
-          this.isLock = !(this.isLock)
-          lock.createRunningLock('running_lock_test', lock.RunningLockType.BACKGROUND)
-            .then(lock => {
-              lock.isUsed()
+          this.isLock = !this.isLock
+          runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
+            .then((lock: runningLock.RunningLock) => {
+              lock.isHolding()
               if (this.isLock === true) {
                 this.output = $r('app.string.stopSleep')
                 this.isDelayTime = false
-                lock.lock(1000);
+                lock.hold(1000)
               } else {
-                lock.unlock()
+                lock.unhold()
                 this.output = $r('app.string.turnSleep')
                 this.isDelayTime = true
               }
