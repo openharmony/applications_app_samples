@@ -97,10 +97,10 @@ struct Index {
   }
 
   async aboutToAppear() {
+    this.listener.on('change', this.onLand)
     let context = getContext(this) as any
     await context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
     Logger.info(TAG, `grantPermission,requestPermissionsFromUser`)
-    this.listener.on('change', this.onLand)
     if (AppStorage.Get('isRemote') === 'isRemote') {
       this.isDistributed = true
       this.isShow = true
