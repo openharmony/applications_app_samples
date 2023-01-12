@@ -43,6 +43,8 @@ struct Index {
   @State dialogShow: boolean = false
   @State isFall: boolean = false
   @State isFlush: boolean = false
+  @State isRetract: boolean = false
+  @State isClick: boolean = true
   @State countOnReady: number = 1
   @State @Watch('dataChange') distributedData: DistributedDataModel = new DistributedDataModel(false)
   @StorageLink('deviceFlag') deviceFlag: string = 'A'
@@ -228,6 +230,7 @@ struct Index {
     let y = Math.round(dy / this.chessSize - 1)
     this.fallChessInner(x, y)
     this.isFall = false
+    this.isClick = true
   }
 
   private drawAll() {
@@ -324,7 +327,21 @@ struct Index {
         Logger.info(TAG, `end Canvas onReady`)
       }
     }
-    this.fallFlag()
+    // 给当前棋子填充颜色
+    // 如果悔棋，A盘当前子颜色变为‘’，B盘当前子消失
+    // 如果不悔棋,A盘落子颜色正常，B盘落子颜色正常
+    if (!this.isRetract) {
+      if (this.deviceFlag === 'A' && this.distributedData.step % 2 === 0) {
+        // 在A盘，且步长是偶数，表示B下的棋子会在A盘显示，绘制确定好的棋子
+        this.fallFlag()
+        Logger.info(TAG, `AfallFlag,isRetract=${this.isRetract}`)
+      } else if (this.deviceFlag === 'B' && this.distributedData.step % 2 !== 0) {
+        // 在B盘，且步长是奇数，表示A下的棋子会在B盘显示，绘制确定好的棋子
+        // 如果A盘重开(isRestart=true)，那B盘就要清空棋子;不重开(isRestart=false)时，B盘正常显示
+        this.fallFlag()
+        Logger.info(TAG, `BfallFlag,isRetract=${this.isRetract}`)
+      }
+    }
   }
 
   build() {
@@ -381,11 +398,14 @@ struct Index {
             .margin({ right: 20 })
             .padding({ left: 10, right: 10 })
             .fontSize(24 / this.dpiBi)
+            .enabled(this.isClick)
             .onClick(() => {
               if (this.distributedData.step > 0) {
                 this.distributedData.chessMapArr[this.distributedData.fallGather[0][0]][this.distributedData.fallGather[0][1]] = ''
                 this.distributedData.fallGather.shift()
                 this.distributedData.step--
+                this.isRetract = true
+                this.isClick = false
               }
             })
         }
