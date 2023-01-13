@@ -117,7 +117,8 @@ export struct MainPage {
         Column() {
           SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })
         }
-        .position({ x: '64%', y: '42%' })
+        .width('100%')
+        .alignItems(HorizontalAlign.End)
 
         // 直播按键
         Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
