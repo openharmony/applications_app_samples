@@ -1,15 +1,15 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
       "value": "USB Manager"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "EntryAbility_desc",
       "value": "USB Manager"
     },
     {
-      "name": "MainAbility_label",
+      "name": "EntryAbility_label",
       "value": "USB Manager"
     },
     {
@@ -63,6 +63,22 @@
     {
       "name": "device_class",
       "value": "device class"
+    },
+    {
+      "name": "toast_start_listening",
+      "value": "Start listening"
+    },
+    {
+      "name": "toast_inserted",
+      "value": "USB inserted"
+    },
+    {
+      "name": "toast_removed",
+      "value": "Device removed"
+    },
+    {
+      "name": "toast_listening_cancel",
+      "value": "Cancel listening"
     }
   ]
 }
