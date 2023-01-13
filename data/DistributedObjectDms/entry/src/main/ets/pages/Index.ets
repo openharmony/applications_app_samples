@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import window from '@ohos.window'
 import display from '@ohos.display'
 import deviceManager from '@ohos.distributedHardware.deviceManager'
@@ -49,7 +49,6 @@ struct Index {
   @StorageLink('isFA') isFA: string = ''
   private deviceTag: number = 0
   private deleteDevices: Array<deviceManager.DeviceInfo> = []
-  private countCallBack: number = 0
   private tempDocuments: Array<DataModel> = []
 
   @Builder statusBuild(resource: Resource) {
@@ -163,20 +162,15 @@ struct Index {
   }
 
   dataChangeCallback = () => {
-    this.countCallBack++
-    Logger.info(TAG, `this.countCallBack = ${this.countCallBack}`)
-    if (this.countCallBack % dmsConst.TWO === dmsConst.ONE) {
-      return
-    }
     Logger.info(TAG, `dataChangeCallback distributedObject = ${JSON.stringify(distributedDataModel.distributedObject)}`)
     this.tempDocuments = distributedDataModel.distributedObject.documents
-    if (this.tempDocuments.length > 0) {
-      this.documents.push(this.tempDocuments[dmsConst.ZERO])
+    if (this.tempDocuments.length == 0) {
+      return
     }
+    this.documents.push(this.tempDocuments[dmsConst.ZERO])
     if (this.status.length > this.deviceTag) {
       this.status[this.deviceTag] = true
     }
-    Logger.info(TAG, `dataChangeCallback this.deviceTag = ${this.deviceTag}`)
     if (this.deviceTag < this.devices.length - dmsConst.ONE) {
       this.startAbility(this.devices[++this.deviceTag].deviceId)
     } else if (this.deviceTag === (this.devices.length - dmsConst.ONE) && this.isShowDialog) {
@@ -194,6 +188,8 @@ struct Index {
     this.offlineText = await this.convertResourceToString($r('app.string.offline'))
     this.onlineText = await this.convertResourceToString($r('app.string.online'))
     this.allCompleteText = await this.convertResourceToString($r('app.string.all_device_complete'))
+    let context = getContext(this) as any
+    await distributedDataModel.init(context)
     await this.onInit()
     if (this.isFA === 'isFA') {
       this.imageTranslate = 0
@@ -226,7 +222,6 @@ struct Index {
   aboutToDisappear() {
     distributedDataModel.clearCallback()
     this.deviceTag = 0
-    this.countCallBack = 0
   }
 
   /**
