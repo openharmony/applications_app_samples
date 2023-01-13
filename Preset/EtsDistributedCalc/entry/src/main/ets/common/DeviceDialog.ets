@@ -23,6 +23,7 @@ export struct DeviceDialog {
   private deviceList: Array<deviceManager.DeviceInfo> = []
   private selectedIndex: number = 0
   private onSelectedIndexChange: (selectedIndex) => void
+  @State deviceDialogWidth: number = 0
 
   build() {
     Column() {
@@ -61,6 +62,7 @@ export struct DeviceDialog {
       }
       .width('100%')
       .layoutWeight(1)
+
       Button() {
         Text($r('app.string.cancel'))
           .width('90%')
@@ -75,7 +77,9 @@ export struct DeviceDialog {
         this.controller.close()
       })
     }
-    .width(448)
+    .onAreaChange((oldArea: Area, newArea: Area) => {
+      this.deviceDialogWidth = (newArea.width > newArea.height ? newArea.height : newArea.width) as number * 0.1 //percentage
+    })
     .height(290)
     .padding({ left: 32, right: 32, top: 13, bottom: 33 })
     .backgroundColor(Color.White)
