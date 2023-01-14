@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 import Log from '../model/Log'
 
 let TAG: string = 'service->'
