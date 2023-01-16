@@ -36,13 +36,10 @@ export struct Location {
   private controller: TabsController = new TabsController()
   private tabValue: string[] = ['A', 'B', 'C', 'F', 'G', 'H', 'J', 'L', 'N', 'Q', 'S', 'T', 'X', 'Y', 'Z']
   private scroller: Scroller = new Scroller()
+  private mockUrl = 'https://gitee.com/openharmony/applications_app_samples/raw/OpenHarmony_4.X_Dev/DataMock/LocationCity/mock.json'
 
   async positionChange() {
     Logger.info(TAG, `latitude = ${this.latitude}, longitude = ${this.longitude}`)
-    await this.requestResponse()
-  }
-
-  async aboutToAppear() {
     await this.requestResponse()
   }
 
@@ -53,7 +50,7 @@ export struct Location {
   async requestResponse() {
     Logger.info(TAG, `enter requestResponse`)
     try {
-      let httpResponse = await httpRequestResponse.httpRequest('http://123.60.114.86:8090/address/home', this.latitude, this.longitude)
+      let httpResponse = await httpRequestResponse.httpRequest(this.mockUrl, this.latitude, this.longitude)
       Logger.info(TAG, `http response = ${JSON.stringify(httpResponse)}`)
       let requestResponse = JSON.parse(httpResponse.result.toString())
       this.city = requestResponse.data
