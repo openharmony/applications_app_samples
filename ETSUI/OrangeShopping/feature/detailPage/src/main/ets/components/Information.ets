@@ -14,8 +14,8 @@
 */
 
 import router from '@ohos.router'
-import prompt from '@ohos.prompt'
-import workScheduler from '@ohos.workScheduler'
+import prompt from '@ohos.promptAction'
+import workScheduler from '@ohos.resourceschedule.workScheduler'
 import { logger } from '../utils/Logger'
 import { ButtonDialogBuilder } from '@ohos/sharecomponent'
 
