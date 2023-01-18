@@ -142,9 +142,12 @@ export class Logger {
     this.loggerModel = new LoggerModel(`${configure.defaults.appenders}`)
     if (configure.cheese.types.includes('file')) {
       this.strategies.set('file', new FileLoggerStrategy(configure))
-    } else if (configure.cheese.types.includes('hilog')) {
+    }
+    if (configure.cheese.types.includes('hilog')) {
       this.strategies.set('hilog', new HilogLoggerStrategy(configure))
-    } else {
+    }
+
+    if (configure.cheese.types.includes('console') || this.strategies.size <= 0) {
       this.strategies.set('console', new ConsoleLoggerStrategy(configure))
     }
   }
