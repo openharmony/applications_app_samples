@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { GetHardKeyValue } from './HardKeyUtils.ets'
-import inputMethodEngine from '@ohos.inputmethodengine'
+import inputMethodEngine from '@ohos.inputMethodEngine'
 import settings from '@ohos.settings';
 import display from '@ohos.display'
 import windowManager from '@ohos.window'

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 import rpc from '@ohos.rpc'
 import { KeyboardController } from '../model/KeyboardController.ets'
 import Log from '../model/Log'
