@@ -1,15 +1,15 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
       "value": "eTSDistributedRdb"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "EntryAbility_desc",
       "value": "DistributedRdb"
     },
     {
-      "name": "MainAbility_label",
+      "name": "EntryAbility_label",
       "value": "DistributedRdb"
     },
     {
@@ -83,6 +83,14 @@
     {
       "name": "delete_contact",
       "value": "Delete the selected contacts?"
+    },
+    {
+      "name": "name_validate",
+      "value": "姓名不能为空"
+    },
+    {
+      "name": "phone_validate",
+      "value": "手机不能为空"
     }
   ]
 }
