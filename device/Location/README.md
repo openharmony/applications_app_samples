@@ -10,7 +10,7 @@ How to Use
 
 1. Go to the home page and touch a popular city in the popular city list. The delivery address will be updated to the selected city. Alternatively, touch the alphabetic index bar on the right to quickly locate the desired city. If the city is divided into districts, you can click the desired district to update the delivery address to that district.
 
-2. If your test device supports the GPS function, you can touch the location icon above the popular city list to locate the city where you settle. The city next to the location icon will be updated accordingly.
+2. If your test device supports the GPS function, you can touch the location icon above the popular city list to locate the city where you settle. The city next to the location icon will be updated accordingly. Current city data is analog data.
 
 
 ### Preview
