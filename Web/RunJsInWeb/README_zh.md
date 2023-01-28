@@ -4,7 +4,7 @@
 
 本示例基于H5游戏，通过arkui的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。
 
-> 本例的H5游戏页面，由https://yangyunhe369.github.io/h5-game-blockBreaker/提供
+> 本例的H5游戏页面，由[https://yangyunhe369.github.io/h5-game-blockBreaker/](https://yangyunhe369.github.io/h5-game-blockBreaker/)提供
 
 ![](screenshots/device/main.jpg)
 
