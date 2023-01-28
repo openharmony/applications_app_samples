@@ -209,6 +209,8 @@
   - [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](MultiDeviceAppDev/MusicAlbum)
 - Share
   - [`CustomShare`：自定义分享（eTS）（API9）（Full SDK）](Share/CustomShare)
+- Checkout
+  - [`CustomCheckout`：设备测试基本功能应用（eTS）（API9）（Full SDK）](Checkout/CustomCheckout)
 
 ## 目录<a name="sectionMenu"></a>
 
