@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Accessibility_label",
+      "value": "accessibility label"
+    },
+    {
+      "name": "Accessibility_desc",
+      "value": "accessibility description"
+    },
+    {
+      "name": "accessibility_test",
+      "value": "Accessibility test"
+    },
+    {
+      "name": "current_state",
+      "value": "Current state"
+    },
+    {
+      "name": "state_unconnected",
+      "value": "Unconnected"
+    },
+    {
+      "name": "state_connected",
+      "value": "Connected"
+    },
+    {
+      "name": "accessibility_focus",
+      "value": "Focus"
+    },
+    {
+      "name": "accessibility_not_clicked",
+      "value": "Clicked"
+    },
+    {
+      "name": "accessibility_clicked",
+      "value": "Not clicked"
+    }
+  ]
+}
