@@ -95,10 +95,19 @@
 4.[`ComponentCollection`：组件集合（eTS）（API9）](ETSUI/ComponentCollection)
 5.[`JsComponentCollection`：组件集合（JS）（API9）](UI/JsComponentCollection)
 
-#11月7日删除Sample（总计27个分类，173个sample）
+# 11月7日删除Sample（总计27个分类，173个sample）
 1.[`NativeAPI`：NativeAPI（eTS）（API8）](Native/NativeAPI)
 2.[`XComponent`：XComponent（eTS）（API9）](ETSUI/XComponent)
 
-#11月11日删除sample（总计27个分类，171个sample）
+# 11月11日删除sample（总计27个分类，171个sample）
 1.[`Notification`：通知（eTS）（API8）](common/Notification)
 2.[`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）（Full SDK）](ability/StageCallAbility)
+
+# 12月到1月新增Sample（总计27个分类，178个sample）
+1.[`FormGame`：Stage模型卡片JS与C++通信（eTS）（API9）](ability/FormGame)
+2.[`ScreenDetector`：屏幕探测（eTS）（API9）](device/ScreenDetector)
+3.[`ScreenRecorder`：录屏（eTS）（API9）（Full SDK）](media/ScreenRecorder)
+4.[`FileManager`：文件管理（eTS）（API9）（Full SDK）](FileManager/FileManager)
+5.[`Settings`：一多设置典型页面（eTS）（API9）](MultiDeviceAppDev/Settings)
+6.[`QRCodeScan`：二维码扫描（eTS）（API9）（Full SDK）](media/QRCodeScan)
+7.[`RunJsInWeb`：JS注入与执行（eTS）（API8）（Full SDK）](Web/RunJsInWeb)
