@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "静态订阅"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "静态订阅"
+    },
+    {
+      "name": "StaticSubscriber_desc",
+      "value": "静态订阅"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "静态订阅"
+    },
+    {
+      "name": "StaticSubscriber_label",
+      "value": "静态订阅"
+    }
+  ]
+}
