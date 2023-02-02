@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "publish_desc",
+      "value": "Publish"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Publish"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Publish"
+    },
+    {
+      "name": "publish",
+      "value": "Publish"
+    },
+    {
+      "name": "publish_data",
+      "value": "send common event data"
+    }
+  ]
+}
