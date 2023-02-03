@@ -2,13 +2,9 @@
 
 ### 介绍
 
-本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能;
-
-使用说明：
-1. 在主界面，可以点击图片、视频、文档、音频等按钮进入对应目录的文件列表浏览界面；
-2. 在文件列表浏览界面，点击“+”按钮，可以添加文件；
-3. 在文件列表浏览界面，长按列表项会出现删除图片，点击删除图标可以删除文件；
-4. 在图片文件列表界面，点击图片可以进入图片预览界面；
+本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md) 
+、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md) 
+等接口，实现了增添文件、删除文件、查找指定类型文件文件和预览图片的功能;
 
 ### 效果预览
 
@@ -16,6 +12,69 @@
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
 |![image](screenshots/main.png)|![image](screenshots/image_file_list.png)|![image](screenshots/image_preview.png)|![image](screenshots/document_list.png)|
 
+使用说明：
+1. 在主界面，可以点击图片、视频、文档、音频等按钮进入对应目录的文件列表浏览界面；
+2. 在文件列表浏览界面，点击“+”按钮，可以添加文件；
+3. 在文件列表浏览界面，长按列表项会出现删除图片，点击删除图标可以删除文件；
+4. 在图片文件列表界面，点击图片可以进入图片预览界面。
+
+### 具体实现：
+
+* 增添文件、删除文件、查找指定类型文件文件和预览图片的功能接口封装在MediaLibraryManager，源码参考：[MediaLibraryManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/medialibrary/MediaLibraryManager.ts)
+   * 使用mediaLibrary.getMediaLibrary来获取MediaLibrary对象;
+   * 读取每个文件的数据：使用MediaLibrary.getFileAssets读取满足条件的文件集合FetchFileResult，然后调用FetchFileResult.getFirstObject();
+   * 创建模拟文件：使用MediaLibrary.getPublicDirectory()获取系统预定的目录，然后使用MediaLibrary.createAsset();
+   * 删除指定路径的文件：使用MediaLibrary.deleteAsset();
+   * 获取预览图：使用image.createImageSource()创建指定的文件资源ImageSource，然后调用ImageSource.createPixelMap()，接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md) 。
+
+
+* 在Library模块中通过封装FileManager向外提供功能接口，如MediaLibraryManager.getPixelMapByFileAsset()，源码参考：[FileManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/FileManager.ts)
+   * 如效果预览中的**图片列表**，读取指定类型的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+     中调用FileManager.getFileAssets()；
+   * 创建模拟文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+     中调用FileManager.createTxtFileAsset()；
+   * 删除指定路径的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+     中调用FileManager.deleteFileAsset()；
+   * 获取缩略图：在[ThumbnailImage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
+   * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|---filemanager
+|   |---data
+|   |   |---FileDataSource.ets             // 懒加载数据格式
+|   |---pages
+|   |   |---audio
+|   |   |   |---AudioFileList.ets          // 音频列表页面
+|   |   |---common
+|   |   |   |---FileList.ets               // 同类型文件列表展示页面，接收文件类型，展示特定类型的文件列表
+|   |   |---document
+|   |   |   |---DocumentFileList.ets       // 文档列表页面
+|   |   |---image
+|   |   |   |---ImageFileList.ets          // 图片列表页面
+|   |   |   |---ImagePreview.ets           // 图片预览页面
+|   |   |---video
+|   |   |   |---VideoFileList.ets          // 视频列表页面
+|   |   |---FileManagerHome.ets            // 首页主体内容
+|---MainAbility
+|---pages
+|   |---index.ets                          // 首页
+Library/src/main/ets/
+|---filemanager
+|   |---components
+|   |   |---ThumbnailImage.ets             // 缩略图组件
+|   |---fileio
+|   |   |---FileIoManager.ts               // 文件管理，待开发
+|   |---medialibrary
+|   |   |---MediaLibraryManager.ts         // 主要封装了mediaLibrary库相关的接口，实现相关功能，如：对文件的增、删、查和图片预览功能
+|   |---userfilemanager
+|   |   |---UserFileManager.ts             // 封装userFileManager库相关的接口
+|   |---FileManager.ts                     // 文件管理接口，统一封装了各模块对外提供的功能接口
+|---mock                                   // 本地数据
+|---utils                                  // 日志工具
+```
 ### 相关权限
 
 [ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
