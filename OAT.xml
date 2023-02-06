@@ -69,7 +69,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="Provided by ETSUI/TransitionAnimation"/>
                 <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="Provided by Network/Http"/>
                 <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="Provided by Notification/CustomNotification"/>
-                <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-scan-component-1.0.0.tgz" desc="Provided by media/Scan"/>
+                <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="Provided by media/QRCodeScan"/>
                 <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-sharecomponent-1.0.1.tgz" desc="Provided by Share/Share"/>
                 <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="Provided by ETSUI/UpgradePopup"/>
                 <filteritem type="filepath" name="ETSUI/OrangeShopping/libs/ohos-video-component-1.0.4.tgz" desc="Provided by media/VideoShow"/>

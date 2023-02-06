@@ -62,6 +62,8 @@
 
 [事件通知](https://gitee.com/openharmony/applications_app_samples/tree/master/Ntification/CustomNotification) 本示例详情页中的降价通知功能依赖此示例。
 
+[扫一扫](https://gitee.com/openharmony/applications_app_samples/tree/master/media/QRCodeScan) 本示首页中的扫码功能依赖此示例。
+
 ### 约束与限制
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
