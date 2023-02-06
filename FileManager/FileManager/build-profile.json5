@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 {
   "app": {
     "compileSdkVersion": 9,
@@ -38,8 +37,8 @@
       ]
     },
     {
-      "name": "Feature",
-      "srcPath": "./Feature"
+      "name": "Library",
+      "srcPath": "./Library"
     }
   ]
 }
