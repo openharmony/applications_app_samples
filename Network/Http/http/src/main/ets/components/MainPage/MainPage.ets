@@ -47,7 +47,7 @@ export struct setting {
         Divider().height(1)
       }, item => item.name.toString())
     }
-    .width('60%')
+    .width('180vp')
   }
 
   aboutToAppear() {
@@ -77,7 +77,6 @@ export struct setting {
             TextInput({ placeholder: $r('app.string.web') })
               .width('75%')
               .margin({ left: 4, right: 2 })
-              .placeholderFont({ size: 25, weight: 500, family: 'cursive', style: FontStyle.Normal })
               .onChange((value: string) => {
                 this.url = value
               })
