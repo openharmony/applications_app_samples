@@ -28,6 +28,12 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
