@@ -51,7 +51,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td height="270" align="center" rowspan="18" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
-  <td x:str><a href="ability/FaModel">Fa模型</a></td>
+  <td x:str><a href="ability/FaModel">FA模型</a></td>
   <td x:str><a href="ability/StageModel">Stage模型</a></td>
   <td x:str><a href="ability/AbilityStartMode">Ability的启动方式</a></td>
   <td x:str><a href="Share/CustomShare">使用want分享数据</a></td>
