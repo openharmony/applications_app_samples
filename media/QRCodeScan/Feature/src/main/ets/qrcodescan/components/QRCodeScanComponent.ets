@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 import router from '@ohos.router'
 import image from '@ohos.multimedia.image'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import context from '@ohos.application.context'
 import { CameraService } from '../CameraService'
 import { QRCodeScanConst } from '../QRCodeScanConst'
@@ -32,8 +32,7 @@ export default struct QRCodeScanComponent {
   private canvasContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(new RenderingContextSettings(true))
   @StorageProp('qrCodeParseResult') @Watch('showQrCodeResult') qrCodeParseResult: string = ''
   @State qrCodeImage: image.PixelMap | undefined = undefined
-  // 如果适配设备需要处理
-  @State animationOrdinate: number = 0
+  @State animationOrdinate: number = QRCodeScanConst.SCAN_TO_TOP_HEIGHT
   @State hasCameraPermission: boolean = false
   @State isQRCodeScanStopped: boolean = false
   // 每当应用切换回来都重新打开相机
@@ -79,24 +78,33 @@ export default struct QRCodeScanComponent {
               this.surFaceId = this.xComponentController.getXComponentSurfaceId()
               this.cameraService.createCamera(this.surFaceId)
             })
+            .onDestroy(() => {
+              this.cameraService.releaseCamera()
+            })
             .height('100%')
             .width('100%')
         }
         Column() {
-          Column()
-            .width(260)
-            .height(2)
-            .backgroundColor(Color.White)
-            .position({ x: 0, y: this.animationOrdinate })
-            .margin({ left: 110 })
+          Column() {
+            Image($r('app.media.scan_border'))
+              .width('100%')
+              .height('100%')
+              .margin({ top: QRCodeScanConst.SCAN_TO_TOP_HEIGHT })
+              .onAreaChange((oldValue: Area, newValue: Area) => {
+                this.animationOrdinate = (newValue.position.y as number) + 10
+              })
 
-          Image($r('app.media.scan_border'))
-            .width(280)
-            .height(280)
-            .margin({ top: 120 })
-            .onAreaChange((oldValue: Area, newValue: Area) => {
-              this.animationOrdinate = (newValue.position.y as number) + 10
-            })
+            Divider()
+              .strokeWidth(1)
+              .height(4)
+              .width('100%')
+              .color(Color.White)
+              .width('100%')
+              .position({ x: 0, y: 0 })
+              .translate({ x: 0, y: this.animationOrdinate })
+          }
+          .width(280)
+          .height(280)
 
           Text($r('app.string.putTheQRCodeToScan'))
             .fontSize(18)
@@ -115,7 +123,7 @@ export default struct QRCodeScanComponent {
                 return
               }
               this.canvasContext.drawImage(this.qrCodeImage, 0, 0,
-                QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
+              QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
             })
         }
         .width('100%')
@@ -188,10 +196,10 @@ export default struct QRCodeScanComponent {
             .fontSize(20)
             .fontColor(Color.White)
             .margin({ top: 4 })
-        }.margin({ top: 350 })
 
-        // 扫一扫 文本翻译 字体设置
-        NotSupportComponent()
+          // 扫一扫 文本翻译 字体设置
+          NotSupportComponent()
+        }.margin({ top: 350 })
       }
       .width('100%')
       .height('100%')
@@ -254,7 +262,6 @@ struct NotSupportComponent {
           prompt.showToast({ message: $r('app.string.notSupportCurrent'), duration: 1000 })
         })
     }
-    .position({ x: px2vp(320), y: px2vp(900) })
     .margin({ top: 30, left: 20 })
   }
 }

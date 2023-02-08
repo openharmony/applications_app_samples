@@ -17,6 +17,8 @@
  * 二维码扫描解析常量
  */
 export class QRCodeScanConst {
+  // 扫描框距离头部高度
+  static readonly SCAN_TO_TOP_HEIGHT: number = 120
   // 相机是否已开启标记
   static readonly HAS_CAMERA_PERMISSION: string = 'hasCameraPermission'
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ class CameraService {
   constructor(imgReceiver?: image.ImageReceiver) {
     if (imgReceiver === undefined) {
       this.imageReceiver = image.createImageReceiver(QRCodeScanConst.IMG_DEFAULT_SIZE.WIDTH,
-        QRCodeScanConst.IMG_DEFAULT_SIZE.HEIGHT, image.ImageFormat.JPEG, QRCodeScanConst.MAX_IMAGE_CAPACITY)
+      QRCodeScanConst.IMG_DEFAULT_SIZE.HEIGHT, image.ImageFormat.JPEG, QRCodeScanConst.MAX_IMAGE_CAPACITY)
     } else {
       this.imageReceiver = image.createImageReceiver(imgReceiver.size.width, imgReceiver.size.height,
       imgReceiver.format, imgReceiver.capacity)
@@ -90,6 +90,17 @@ class CameraService {
     // 开始捕获会话
     await this.captureSession.start()
     Logger.info("createCamera end")
+  }
+
+  /**
+   * 创建相机
+   */
+  async releaseCamera() {
+    await this.captureSession.release()
+    await this.cameraInput.release()
+    await this.photoOutput.release()
+    await this.previewOutput.release()
+    await this.imageReceiver.release()
   }
 }
 
