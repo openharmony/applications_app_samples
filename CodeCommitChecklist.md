@@ -9,7 +9,7 @@
 7. 新增Sample推荐使用当前最新版本IDE和SDK版本；
 8. 工程合入时，需要提供测试用例报告，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
 
-## 代码提交规范<a name="section1"></a>
+## 代码规范<a name="section1"></a>
 
 1. 所有文件，包括自动生成的编译文件package.json都要格式化（IDE快捷键Ctrl+Alt+L）；
 2. 函数命名，C++大驼峰，TS、JS小驼峰，函数命名注意动宾结构；
@@ -68,64 +68,7 @@ class Logger {
 25. 代码中避免出现中文字符，要使用资源代替，符合国际化开发标准；
 26. 应用包名统一使用“com.samples.xxx”，“xxx”为特性名称；
 
-
-## 工程结构规范<a name="section2"></a>
-
-Sample工程，应该区分开场景业务逻辑和特性相关封装接口，规则如下：
-
-1. 包名命名规则为"com.samples.特性名"，工程名命名规则为特性名称，与Readme标题保持一致；
-2. 特性接口封装放在Feature模块下，能够独立编译成har包复用；
-3. 场景业务逻辑，展示Feature模块中特性接口的使用，放在entry目录中；
-4. entry/src/main/ets/目录下的pages目录中，只放一个Index.ets，作为入口页面；
-5. entry/src/main/ets/目录下创建场景业务目录，存放该场景相关的业务逻辑和页面代码；
-6. Feature/src/main/ets/目录下创建特性目录，目录下包括components（对外开放的控件目录）、feature（特性封装逻辑目录）、Feature.ts（对外开放的特性接口）等；
-
-以FileManager特性为例，工程示例结构如下：
-
-```
-entry/src/main/ets/ 		// 场景业务逻辑放在entry目录下
-|---Application 			// 应用级逻辑
-|---MainAbility 			// 元能力组件
-|---filemanager 			// 场景业务功能（如果存在多个场景，则放在同级目录下）
-|   |---data 				// 场景业务逻辑相关类或数据
-|   |---pages 				// 场景业务逻辑相关页面
-|---pages 					// UI页面
-|   |---Index.ets 			// pages下只保留一个Index.ets，作为入口页面
-|---utils 					// 共用的工具类或者模块
-Feature/src/main/ets/ 		// 特性接口封装放在Feature模块下，能够独立编译成har包复用
-|---filemanager 			// 特性相关封装类
-|   |---components 			// 特性相关UI控件类，需要对外开放（部分特性涉及对外提供复用UI控件）
-|   |   |---FileImage.ets
-|   |---fileio 				// 封装了特性相关接口，如果存在多个模块，放在多个目录下如fileio、medialibrary、userfilemanager，不对外开放
-|   |   |---FileIoManager.ts
-|   |---medialibrary
-|   |---userfilemanager
-|   |---FileManager.ts 		// 对外开放的特性接口，无具体实现（实现在fileio、medialibrary等模块中）
-|---mock 					// 模拟数据
-|---utils 					// 特性相关工具类
-```
-
-## PR提交格式规范<a name="section3"></a>
-
-示例如下：
-
-```
-IssueNo: #I56EH7:关联问题
-Description: 描述问题.
-Sig: sig-systemapplications
-Feature or Bugfix: Bugfix
-Binary Source: No
-
-Signed-off-by: jiangwensai <jiangwensai@huawei.com>
-```
-
-1. IssueNo管理issue信息；
-2. Description描述修改变更内容；
-3. Sig统一使用SIG_Sample；
-4. Feature or Bugfix，如果是需求选择Feature，问题选择Bugfix；
-5. Signed-off-by，注明开发者账号和邮箱；
-	
-## ReadMe编写规范<a name="section4"></a>
+## README编写规范<a name="section4"></a>
 
 1. 标题：以特性名称命名；
 2. 介绍：
@@ -156,8 +99,45 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
 	6.4 高等级APL特殊签名说明，示例如下：
 
 		本示例涉及[相关权限]为system_basic(或者system_core)级别（相关权限级别可通过[权限定义列表]查看），需要配置高权限签名，可参考[特殊权限配置方法]；
-		
-[ReadMe模板链接](SampleReadTemplate.md)
+	
+
+[README模板链接](SampleReadTemplate.md)
+
+## 工程结构规范<a name="section2"></a>
+
+Sample工程，应该区分开场景业务逻辑和特性相关封装接口，规则如下：
+
+1. 包名命名规则为"com.samples.特性名"，工程名命名规则为特性名称，与Readme标题保持一致；
+2. 特性接口封装放在Library模块下，能够独立编译成har包复用；
+3. 场景业务逻辑，展示Library模块中特性接口的使用，放在entry目录中；
+4. entry/src/main/ets/目录下的pages目录中，只放一个Index.ets，作为入口页面；
+5. entry/src/main/ets/目录下创建场景业务目录，存放该场景相关的业务逻辑和页面代码；
+6. Library/src/main/ets/目录下创建特性目录，目录下包括components（对外开放的控件目录）、feature（特性封装逻辑目录）、Feature.ts（对外开放的特性接口）等；
+
+以FileManager特性为例，工程示例结构如下：
+
+```
+entry/src/main/ets/ 		// 场景业务逻辑放在entry目录下
+|---Application 			// 应用级逻辑
+|---MainAbility 			// 元能力组件
+|---filemanager 			// 场景业务功能（如果存在多个场景，则放在同级目录下）
+|   |---data 				// 场景业务逻辑相关类或数据
+|   |---pages 				// 场景业务逻辑相关页面
+|---pages 					// UI页面
+|   |---Index.ets 			// pages下只保留一个Index.ets，作为入口页面
+|---utils 					// 共用的工具类或者模块
+Library/src/main/ets/ 		// 特性接口封装放在Library模块下，能够独立编译成har包复用
+|---filemanager 			// 特性相关封装类
+|   |---components 			// 特性相关UI控件类，需要对外开放（部分特性涉及对外提供复用UI控件）
+|   |   |---FileImage.ets
+|   |---fileio 				// 封装了特性相关接口，如果存在多个模块，放在多个目录下如fileio、medialibrary、userfilemanager，不对外开放
+|   |   |---FileIoManager.ts
+|   |---medialibrary
+|   |---userfilemanager
+|   |---FileManager.ts 		// 对外开放的特性接口，无具体实现（实现在fileio、medialibrary等模块中）
+|---mock 					// 模拟数据
+|---utils 					// 特性相关工具类
+```
 
 ## UI自动化用例编写规范<a name="section5"></a>
 
@@ -188,3 +168,23 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
     hilog.info(DOMAIN, TAG, BUNDLE + "StartAbility_001, end")
   })
 ```
+
+## PR提交格式规范<a name="section3"></a>
+
+示例如下：
+
+```
+IssueNo: #I56EH7:关联问题
+Description: 描述问题.
+Sig: sig-systemapplications
+Feature or Bugfix: Bugfix
+Binary Source: No
+
+Signed-off-by: jiangwensai <jiangwensai@huawei.com>
+```
+
+1. IssueNo管理issue信息；
+2. Description描述修改变更内容；
+3. Sig统一使用SIG_Sample；
+4. Feature or Bugfix，如果是需求选择Feature，问题选择Bugfix；
+5. Signed-off-by，注明开发者账号和邮箱；
