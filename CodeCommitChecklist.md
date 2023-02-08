@@ -1,7 +1,7 @@
 ## 社区共建Sample合入要求
 
 1. 新增Sample功能不能重复于当前已有Sample的功能；
-2. 新增Sample的工程推荐使用eTS语言编写；
+2. 新增Sample的工程推荐使用ArkTS语言编写；
 3. 新增Sample的工程推荐使用Stage模型编写；
 4. 新增Sample的工程中需要包含UI自动化用例（ohosTest工程模块），覆盖基本的功能场景；
 5. 新增Sample需要遵循[代码提交规范](#section1)、[工程结构规范](#section2)、[PR提交格式规范](#section3)、[ReadMe编写规范](#section4)和[UI自动化用例编写规范](#section5)；
