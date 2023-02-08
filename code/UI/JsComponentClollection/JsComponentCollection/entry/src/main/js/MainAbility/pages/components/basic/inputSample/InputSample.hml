@@ -1,0 +1,91 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<element name='selectBox' src='../../../../common/commonItemSelect/CommonItemSelect.hml'></element>
+<div class="container">
+  <titleBar title="{{ inputTitle }}"></titleBar>
+  <div class="input-box">
+    <text class="introduce">{{ $t('strings.input_type_title') }}</text>
+    <div class="white-background-color-column space-between">
+
+      <!-- Input type start -->
+      <input class="input-type-input"
+             type="{{ inputType }}"
+             showpasswordicon="{{ passwordIconValue }}"
+             placeholder="{{ $t('strings.input_type_placeholder') }}">
+      </input>
+      <!-- Input type end -->
+
+      <selectBox @select-value="setInputType" left-text="{{ $t('strings.input_now_type') }}"
+                 select-options="{{ $t('strings.input_type_options') }}"></selectBox>
+      <selectBox if="{{ inputType === 'password' }}" @select-value="setPasswordIconValue"
+                 left-text="{{ $t('strings.input_password_icon') }}"
+                 select-options="{{ $t('strings.input_password_icon_options') }}"></selectBox>
+    </div>
+  </div>
+
+  <div class="input-box">
+    <text class="introduce">{{ $t('strings.input_events') }}</text>
+
+    <!-- Input events start -->
+    <input class="input-type-input"
+           type="text"
+           ontranslate="translateInput"
+           placeholder="{{ $t('strings.input_placeholder_events_message') }}">
+    </input>
+    <!-- Input events end -->
+
+  </div>
+
+  <div class="input-box">
+    <text class="introduce">{{ $t('strings.input_placeholder_style_title') }}</text>
+
+    <!-- Input placeholder style start -->
+    <input class="input-type-input"
+           type="text"
+           style="placeholder-color: red"
+           placeholder="{{ $t('strings.input_placeholder_style_message') }}">
+    </input>
+    <!-- Input placeholder style end -->
+
+  </div>
+
+  <div class="input-box">
+    <text class="introduce">{{ $t('strings.input_regular_expression') }}</text>
+
+    <!-- Input regular expression start -->
+    <input class="input-type-input"
+           value="{{ inputRegularValue }}"
+           onchange="changeRegular"
+           type="text"
+           placeholder="{{ $t('strings.input_regular_expression_description') }}"></input>
+    <!-- Input regular expression end -->
+
+  </div>
+
+  <div class="input-box">
+    <text class="introduce">{{ $t('strings.input_limit_length_title') }}</text>
+
+    <!-- Input limit length start -->
+    <input class="input-type-input"
+           type="text"
+           maxlength="12"
+           showcounter="true"
+           placeholder="{{ $t('strings.input_limit_length_placeholder') }}"></input>
+    <!-- Input limit length end -->
+
+  </div>
+</div>

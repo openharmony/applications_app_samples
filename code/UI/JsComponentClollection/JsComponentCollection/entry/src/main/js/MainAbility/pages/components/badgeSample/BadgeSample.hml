@@ -1,0 +1,129 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ badgeTitle }}"></titleBar>
+  <div class="badge-box">
+    <text class="introduce">{{ $t('strings.badge_type') }}</text>
+    <div class="badge-type-box">
+
+    <!-- Badge type start -->
+      <div class="badge-type-box-center">
+        <div class="badge-box">
+          <badge class="badge"
+                 config="{{ numberBadgeConfig }}"
+                 visible="true"
+                 count="1"
+                 maxcount="99">
+            <text class="badge-text">{{ $t('strings.badge_number') }}</text>
+          </badge>
+        </div>
+        <div class="badge-box">
+          <badge class="badge"
+                 config="{{ textBadgeConfig }}"
+                 visible="true"
+                 label="{{ newLabel }}">
+            <text class="badge-text">{{ $t('strings.badge_text') }}</text>
+          </badge>
+        </div>
+      </div>
+    <!-- Badge type end -->
+
+    </div>
+  </div>
+
+  <div class="badge-box">
+    <text class="introduce">{{ $t('strings.badge_max_message_num') }}</text>
+    <div class="badge-type-box">
+
+    <!-- Badge max num start -->
+      <div class="badge-type-box-center">
+        <div class="badge-box">
+          <badge class="badge"
+                 config="{{ numberBadgeConfig }}"
+                 visible="true"
+                 count="10"
+                 maxcount="99">
+            <text class="badge-text">{{ $t('strings.badge_normal_message_num') }}</text>
+          </badge>
+        </div>
+        <div class="badge-box">
+          <badge class="badge"
+                 config="{{ numberBadgeConfig }}"
+                 visible="true"
+                 count="100"
+                 maxcount="99">
+            <text class="badge-text">{{ $t('strings.badge_beyond_message_num') }}</text>
+          </badge>
+        </div>
+      </div>
+    <!-- Badge max num end -->
+
+    </div>
+  </div>
+
+  <div class="badge-box">
+    <text class="introduce">{{ $t('strings.badge_position') }}</text>
+    <div class="badge-type-box">
+
+    <!-- Badge position start -->
+      <div class="badge-type-box-center">
+        <div class="badge-box">
+          <badge class="badge" config="{{ numberBadgeConfig }}" visible="true" count="1"
+                 placement="left" maxcount="99">
+            <text class="badge-text">{{ $t('strings.badge_left') }}</text>
+          </badge>
+        </div>
+        <div class="badge-box">
+          <badge class="badge" config="{{ numberBadgeConfig }}" visible="true" count="1"
+                 placement="rightTop" maxcount="99">
+            <text class="badge-text">{{ $t('strings.badge_right_top') }}</text>
+          </badge>
+        </div>
+        <div class="badge-box">
+          <badge class="badge" config="{{ numberBadgeConfig }}" visible="true" count="1"
+                 placement="right" maxcount="99">
+            <text class="badge-text">{{ $t('strings.badge_right') }}</text>
+          </badge>
+        </div>
+      </div>
+    <!-- Badge position end -->
+
+    </div>
+  </div>
+
+  <div class="badge-box bottom-margin">
+    <text class="introduce">{{ $t('strings.badge_style') }}</text>
+    <div class="badge-type-box">
+
+    <!-- Badge style start -->
+      <div class="badge-type-box-center">
+        <div class="badge-box">
+          <badge class="badge" config="{{ blueBigBadgeConfig }}" visible="true" count="0" label=" ">
+            <text class="badge-text">{{ $t('strings.badge_blue_big') }}</text>
+          </badge>
+        </div>
+        <div class="badge-box">
+          <badge class="badge" config="{{ greenSmallBadgeConfig }}" visible="true" count="0" label=" ">
+            <text class="badge-text">{{ $t('strings.badge_green_small') }}</text>
+          </badge>
+        </div>
+      </div>
+    <!-- Badge style end -->
+
+    </div>
+  </div>
+</div>

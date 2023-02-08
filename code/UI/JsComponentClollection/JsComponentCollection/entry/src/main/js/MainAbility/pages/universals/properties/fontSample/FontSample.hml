@@ -1,0 +1,107 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ fontTitle }}"></titleBar>
+  <div class="content">
+    <text class="introduce">{{ $t('strings.font_color') }}</text>
+    <div class="white-background-color">
+
+      <!-- Font color start -->
+      <div class="font-box">
+        <text style="color: #409EFF;">{{ $t('strings.font_blue_color') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="color: #E6A23C;">{{ $t('strings.font_brown_color') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="color: #F56C6C;">{{ $t('strings.font_red_color') }}</text>
+      </div>
+      <!-- Font color end -->
+
+    </div>
+  </div>
+
+  <div class="content">
+    <text class="introduce">{{ $t('strings.font_size') }}</text>
+    <div class="white-background-color">
+
+      <!-- Font size start -->
+      <div class="font-box">
+        <text style="font-size: 14vp;">{{ $t('strings.font_fourteen_vp') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="font-size: 18vp;">{{ $t('strings.font_eighteen_vp') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="font-size: 26vp;">{{ $t('strings.font_twenty_six_vp') }}</text>
+      </div>
+      <!-- Font size end -->
+
+    </div>
+  </div>
+
+  <div class="content">
+    <text class="introduce">{{ $t('strings.font_thickness') }}</text>
+    <div class="white-background-color">
+
+      <!-- Font thickness start -->
+      <div class="font-box">
+        <text style="font-size: 14vp;font-weight: 300;">{{ $t('strings.font_fourteen_vp') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="font-size: 18vp;font-weight: 500;">{{ $t('strings.font_eighteen_vp') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="font-size: 26vp;font-weight: 800;">{{ $t('strings.font_twenty_six_vp') }}</text>
+      </div>
+      <!-- Font thickness end -->
+
+    </div>
+  </div>
+
+  <div class="content">
+    <text class="introduce">{{ $t('strings.font_style') }}</text>
+    <div class="white-background-color">
+
+      <!-- Font style start -->
+      <div class="font-box">
+        <text style="font-style: normal;">{{$t('strings.font_normal') }}</text>
+      </div>
+      <div class="font-box">
+        <text style="font-style: italic;">{{ $t('strings.font_italic') }}</text>
+      </div>
+      <!-- Font style end -->
+
+    </div>
+  </div>
+
+  <div class="content bottom-margin">
+    <text class="introduce">{{ $t('strings.font_family') }}</text>
+    <div class="white-background-color">
+
+      <!-- Font family start -->
+      <div class="font-box">
+        <text style="font-family: sans-serif;">{{ $t('strings.font_family_sans') }}</text>
+      </div>
+      <div class="font-box bottom-margin">
+        <text style="font-family: HYQiHei-65S;">{{ $t('strings.font_family_h_y_q_i_hei') }}</text>
+      </div>
+      <!-- Font family end -->
+
+    </div>
+  </div>
+</div>

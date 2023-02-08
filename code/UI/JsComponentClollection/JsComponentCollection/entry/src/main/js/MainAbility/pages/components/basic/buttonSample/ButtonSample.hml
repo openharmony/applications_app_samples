@@ -1,0 +1,88 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ buttonTitle }}"></titleBar>
+  <div class="button-box">
+    <text class="introduce">{{ $t('strings.button_type_title') }}</text>
+    <div class="white-background-color">
+      <div class="button-text-box">
+
+      <!-- Button type capsule start -->
+        <button class="button-type" onclick="clickStatusResult($t('strings.button_capsule'))" type="capsule"
+                value="{{ $t('strings.button_confirm') }}">
+        </button>
+
+      <!-- Button type end -->
+
+        <text class="button-type-description">{{ $t('strings.button_capsule') }}</text>
+      </div>
+      <div class="button-text-box">
+
+      <!-- Button type general start -->
+        <button class="button-type general" onclick="clickStatusResult($t('strings.button_general'))"
+                value="{{ $t('strings.button_confirm') }}">
+        </button>
+
+      <!-- Button type general end -->
+
+        <text class="button-type-description">{{ $t('strings.button_general') }}</text>
+      </div>
+      <div class="button-text-box">
+
+      <!-- Button type circle start -->
+        <button class="button-type" onclick="clickStatusResult($t('strings.button_circle'))" type="circle"
+                icon="common/image/ic_button_circle_add.png"></button>
+
+      <!-- Button type circle end -->
+
+        <text class="button-type-description">{{ $t('strings.button_circle') }}</text>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-box">
+    <text class="introduce">{{ $t('strings.button_status_result') }}</text>
+    <div class="white-background-color">
+
+    <!-- Button status result  start -->
+      <button class="button-type" type="capsule" onclick="clickStatusResult($t('strings.button_click_result'))"
+              value="{{ $t('strings.button_click_result') }}"></button>
+      <button class="button-type" type="capsule" onclick="clickStatusResult($t('strings.button_click_not_result'))"
+              value="{{ $t('strings.button_click_not_result') }}"></button>
+      <button class="button-type" type="capsule" disabled="true" value="{{ $t('strings.button_disabled') }}"></button>
+
+    <!-- Button status result end -->
+
+    </div>
+  </div>
+
+  <div class="button-box">
+    <text class="introduce">{{ $t('strings.button_custom_style') }}</text>
+    <div class="white-background-color bottom-margin">
+
+    <!-- Button custom style  start -->
+      <button class="button-type circle-rect" onclick="clickStatusResult($t('strings.button_circle_rect'))"
+              value="{{ $t('strings.button_circle_rect') }}"></button>
+      <button class="button-type" onclick="clickStatusResult($t('strings.button_icon'))" placement="start"
+              icon="common/image/ic_button_loading.png" value="{{ $t('strings.button_icon') }}"></button>
+      <button class="button-type custom-color" onclick="clickStatusResult($t('strings.button_custom_color'))"
+              type="capsule" value="{{ $t('strings.button_custom_color') }}"></button>
+    <!-- Button custom style  end -->
+
+    </div>
+  </div>
+</div>

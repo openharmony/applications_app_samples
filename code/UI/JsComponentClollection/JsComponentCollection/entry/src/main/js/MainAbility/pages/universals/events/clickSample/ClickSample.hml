@@ -1,0 +1,48 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ clickEventsTitle }}"></titleBar>
+  <div class="click-events-box">
+    <text class="introduce">{{ $t('strings.click_stop_events_bubble_up') }}</text>
+    <div class="white-background-color-column">
+      <div class="parent-box" onclick="stopBubbleUpParentClick">
+
+        <!-- Click stop bubble up start -->
+        <text class="effervescence-text" grab:click.bubble="stopBubbleUpChildClick">{{ $t('strings.click_stop_bubble_up') }}</text>
+        <!-- Click stop bubble up end -->
+
+      </div>
+      <text class="click-events-description">{{ stopBubbleUpParentMessage }}</text>
+      <text class="click-events-description">{{ $t('strings.click_stop_bubble_up_description') }}</text>
+    </div>
+  </div>
+
+  <div class="click-events-box bottom-margin">
+    <text class="introduce">{{ $t('strings.click_start_events_bubble_up') }}</text>
+    <div class="white-background-color-column">
+      <div class="parent-box" onclick="startBubbleUpParentClick">
+
+        <!-- Click start bubble up start -->
+        <button class="not-effervescence-button" type="text" onclick="startBubbleUpChildClick">{{ $t('strings.click_start_bubble_up') }}</button>
+        <!-- Click start bubble up end -->
+
+      </div>
+      <text class="click-events-description">{{ startBubbleUpParentMessage }}</text>
+      <text class="click-events-description">{{ $t('strings.click_start_bubble_up_description') }}</text>
+    </div>
+  </div>
+</div>

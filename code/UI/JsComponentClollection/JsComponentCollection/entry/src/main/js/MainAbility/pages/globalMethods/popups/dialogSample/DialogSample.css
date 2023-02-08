@@ -1,0 +1,139 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import '../../../../common/css/common.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  min-height: 100%;
+  background-color: #F1F3F5;
+  overflow: scroll;
+}
+
+.outer-div {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 20vp;
+  margin-left: 12vp;
+  margin-right: 12vp;
+}
+
+.drag-div {
+  min-height: 40vp;
+  justify-content: center;
+  align-items: center;
+  padding: 10vp;
+  border-radius: 40vp;
+  flex-weight: 1;
+  margin-right: 12vp;
+  background-color: #0D182431;
+}
+
+.dialog-class {
+  min-height: 330vp;
+  width: 100%;
+  margin-left: 20vp;
+  margin-right: 20vp;
+}
+
+.dialog-div {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30vp 0vp;
+}
+
+.title-class {
+  width: 100%;
+  justify-content: center;
+}
+
+.title-text {
+  width: 100%;
+  text-align: center;
+  font-size: 26vp;
+}
+
+.text-div {
+  flex-direction: column;
+  min-height: 60vp;
+  margin-left: 10vp;
+}
+
+.permission-class {
+  font-size: 20vp;
+  font-weight: bolder;
+}
+
+.introduce-class {
+  color: #99000000;
+  margin-top: 5vp;
+  font-size: 18vp;
+}
+
+.button-class {
+  width: 100%;
+  margin-left: 150vp;
+  margin-right: 150vp;
+  min-height: 50vp;
+  font-size: 25vp;
+  margin-top: 30vp;
+}
+
+.not_drag-div {
+  min-height: 40vp;
+  justify-content: center;
+  align-items: center;
+  padding: 10vp;
+  flex-weight: 1;
+  margin-left: 12vp;
+  border-radius: 40vp;
+  background-color: #0D182431;
+}
+
+.button-text {
+  color: #007DFF;
+  font-size: 20vp;
+}
+
+
+.border-div {
+  width: 100%;
+  height: 80vp;
+  margin-left: 40vp;
+  margin-right: 40vp;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20vp;
+  margin-top: 20vp;
+}
+
+.video-div {
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 30vp;
+  margin-left: 60vp;
+}
+
+.bottom-margin {
+  margin-bottom: 666vp;
+}
