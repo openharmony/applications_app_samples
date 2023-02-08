@@ -16,6 +16,7 @@
 import Ability from '@ohos.application.Ability'
 import { logger } from '@ohos/details-page-component'
 import { notificationUtil } from '@ohos/notification'
+import { QRCodeScanConst } from '@ohos/scan-component'
 
 const TAG: string = 'MainAbility'
 const PERMISSIONS: Array<string> = [
@@ -36,10 +37,17 @@ export default class MainAbility extends Ability {
       data.launchWant = want
     })
     this.requestPermission()
+    AppStorage.SetOrCreate('context', this.context)
   }
 
   requestPermission = async () => {
-    await this.context.requestPermissionsFromUser(PERMISSIONS)
+    let permissionRequestResult = await this.context.requestPermissionsFromUser(PERMISSIONS)
+    // 如果权限列表中有-1，说明用户拒绝了授权
+    if (permissionRequestResult.authResults[0] === 0) {
+      // 控制相机是否打开
+      AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
+      logger.info('MainAbility permissionRequestResult success')
+    }
     await notificationUtil.enableNotification()
   }
 
@@ -62,6 +70,7 @@ export default class MainAbility extends Ability {
   onForeground() {
     // Ability has brought to foreground
     logger.info(TAG, 'MainAbility onForeground')
+    AppStorage.SetOrCreate('cameraStatus', !AppStorage.Get('cameraStatus'))
   }
 
   onBackground() {
