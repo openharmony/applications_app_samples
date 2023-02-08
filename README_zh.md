@@ -49,7 +49,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="18" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="19" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="ability/FaModel">Fa模型</a></td>
   <td x:str><a href="ability/StageModel">Stage模型</a></td>
@@ -94,6 +94,13 @@
   <td x:str><strong>安全</strong></td>
   <td x:str><a href="Safety/Cipher">加解密</a></td>
   <td ><a href="Account/AppAccountManager">应用账号管理</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>网络与连接</strong></td>
+  <td x:str><a href="Network/Http">Http</a></td>
+  <td x:str><a href="Communication/RPC">RPC通信</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -335,9 +342,14 @@
   <td x:str><a href="ETSUI/Process">进程信息</a></td>
  </tr>
  <tr>
+ <![if supportMisalignedColumns]>
+   <tr height="18" style="display:none;">
+   </tr>
+  <![endif]>
 </table>
 
-##  目录<a name="sectionMenu"></a>
+
+## 目录<a name="sectionMenu"></a>
 
 Sample仓下所展示的组件能力：
 
@@ -353,6 +365,7 @@ code
   |---Web                          # Web
   |---Media                        # 媒体
   |---Security                     # 安全
+  |---Connectivity                 # 网络与连接
   |---DataManagement               # 数据管理
   |---FileManagement               # 文件管理
   |---Telephony                    # 电话服务
