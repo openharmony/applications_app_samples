@@ -1,0 +1,256 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "eTSAdaptiveCapabilities"
+    },
+    {
+      "name": "my_string",
+      "value": "phone"
+    },
+    {
+      "name": "home_title",
+      "value": "Page development-Adaptive Capabilities"
+    },
+    {
+      "name": "resource_qualifier",
+      "value": "Resource qualifier"
+    },
+    {
+      "name": "atomic_capability",
+      "value": "Atomic layout capability"
+    },
+    {
+      "name": "responsive_layout",
+      "value": "Responsive layout"
+    },
+    {
+      "name": "flex_capability_first",
+      "value": "Flexible capability first"
+    },
+    {
+      "name": "flex_capability_second",
+      "value": "Flexible capability second"
+    },
+    {
+      "name": "scaling_capability",
+      "value": "Scaling capability"
+    },
+    {
+      "name": "hidden_capability",
+      "value": "Hidden capability"
+    },
+    {
+      "name": "wrap_capability",
+      "value": "Wrap capability"
+    },
+    {
+      "name": "equally_capability",
+      "value": "Equally capability"
+    },
+    {
+      "name": "percentage_capability",
+      "value": "Percentage capability"
+    },
+    {
+      "name": "extension_capability_first",
+      "value": "Extension capacity first"
+    },
+    {
+      "name": "extension_capability_second",
+      "value": "Extension capacity second"
+    },
+    {
+      "name": "healthy_use_phone",
+      "value": "Healthy use of phone"
+    },
+    {
+      "name": "media_query",
+      "value": "Media query"
+    },
+    {
+      "name": "grid_layout",
+      "value": "Grid layout"
+    },
+    {
+      "name": "grid_layout1",
+      "value": "Grid breakpoint 1"
+    },
+    {
+      "name": "grid_layout2",
+      "value": "Grid breakpoint 2"
+    },
+    {
+      "name": "grid_layout3",
+      "value": "Grid columns and gutter"
+    },
+    {
+      "name": "grid_layout4",
+      "value": "Grid margin"
+    },
+    {
+      "name": "grid_layout5",
+      "value": "Grid span"
+    },
+    {
+      "name": "grid_layout6",
+      "value": "Grid offset"
+    },
+    {
+      "name": "grid_layout7",
+      "value": "Grid order"
+    },
+    {
+      "name": "grid_layout8",
+      "value": "Grid inheritance of span/offset/order"
+    },
+    {
+      "name": "grid_layout9",
+      "value": "Grid nested"
+    },
+    {
+      "name": "typical_scenario",
+      "value": "Typical scenario"
+    },
+    {
+      "name": "diversion_layout",
+      "value": "Diversion layout"
+    },
+    {
+      "name": "repeat_layout",
+      "value": "Repeat layout"
+    },
+    {
+      "name": "indentation_layout",
+      "value": "Indentation layout"
+    },
+    {
+      "name": "header",
+      "value": "header"
+    },
+    {
+      "name": "banner",
+      "value": "banner"
+    },
+    {
+      "name": "operationEntries",
+      "value": "operation entries"
+    },
+    {
+      "name": "tabs",
+      "value": "tabs layout"
+    },
+    {
+      "name": "bigImage",
+      "value": "big image"
+    },
+    {
+      "name": "multiLaneList",
+      "value": "multi lane list"
+    },
+    {
+      "name": "grid",
+      "value": "grid layout"
+    },
+    {
+      "name": "aside",
+      "value": "aside"
+    },
+    {
+      "name": "user_improvement",
+      "value": "User Experience Improvement Program"
+    },
+    {
+      "name": "user_improvement_tips",
+      "value": "The User Experience Improvement Program improves huawei's product and service quality through system, application analysis, and fault diagnosis."
+    },
+    {
+      "name": "show_app_name",
+      "value": "App name"
+    },
+    {
+      "name": "left",
+      "value": "Left"
+    },
+    {
+      "name": "center",
+      "value": "Center"
+    },
+    {
+      "name": "right",
+      "value": "Right"
+    },
+    {
+      "name": "portrait",
+      "value": "Portrait"
+    },
+    {
+      "name": "landscape",
+      "value": "Landscape"
+    },
+    {
+      "name": "recommended",
+      "value": "recommended"
+    },
+    {
+      "name": "operation1",
+      "value": "Private FM"
+    },
+    {
+      "name": "operation2",
+      "value": "Singer"
+    },
+    {
+      "name": "operation3",
+      "value": "Playlist"
+    },
+    {
+      "name": "operation4",
+      "value": "Ranking List"
+    },
+    {
+      "name": "operation5",
+      "value": "Hot"
+    },
+    {
+      "name": "operation6",
+      "value": "Sports Music"
+    },
+    {
+      "name": "operation7",
+      "value": "Music FM"
+    },
+    {
+      "name": "operation8",
+      "value": "Welfare"
+    },
+    {
+      "name": "playlist_collection",
+      "value": "Playlist Collection"
+    },
+    {
+      "name": "tabBar1",
+      "value": "Home"
+    },
+    {
+      "name": "tabBar2",
+      "value": "Ranking List"
+    },
+    {
+      "name": "tabBar3",
+      "value": "My"
+    },
+    {
+      "name": "breakpoint",
+      "value": "breakpoint"
+    }
+  ]
+}

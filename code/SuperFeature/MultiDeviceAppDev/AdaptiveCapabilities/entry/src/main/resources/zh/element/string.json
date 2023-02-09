@@ -1,0 +1,256 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "eTSAdaptiveCapabilities"
+    },
+    {
+      "name": "my_string",
+      "value": "手机"
+    },
+    {
+      "name": "home_title",
+      "value": "页面开发一多能力"
+    },
+    {
+      "name": "resource_qualifier",
+      "value": "资源文件使用"
+    },
+    {
+      "name": "atomic_capability",
+      "value": "自适应布局"
+    },
+    {
+      "name": "responsive_layout",
+      "value": "响应式布局"
+    },
+    {
+      "name": "flex_capability_first",
+      "value": "拉伸能力1"
+    },
+    {
+      "name": "flex_capability_second",
+      "value": "拉伸能力2"
+    },
+    {
+      "name": "scaling_capability",
+      "value": "缩放能力"
+    },
+    {
+      "name": "hidden_capability",
+      "value": "隐藏能力"
+    },
+    {
+      "name": "wrap_capability",
+      "value": "折行能力"
+    },
+    {
+      "name": "equally_capability",
+      "value": "均分能力"
+    },
+    {
+      "name": "percentage_capability",
+      "value": "占比能力"
+    },
+    {
+      "name": "extension_capability_first",
+      "value": "延伸能力1"
+    },
+    {
+      "name": "extension_capability_second",
+      "value": "延伸能力2"
+    },
+    {
+      "name": "healthy_use_phone",
+      "value": "健康使用手机"
+    },
+    {
+      "name": "media_query",
+      "value": "媒体查询"
+    },
+    {
+      "name": "grid_layout",
+      "value": "栅格布局"
+    },
+    {
+      "name": "grid_layout1",
+      "value": "栅格断点1"
+    },
+    {
+      "name": "grid_layout2",
+      "value": "栅格断点2"
+    },
+    {
+      "name": "grid_layout3",
+      "value": "栅格columns和gutter"
+    },
+    {
+      "name": "grid_layout4",
+      "value": "栅格margin"
+    },
+    {
+      "name": "grid_layout5",
+      "value": "栅格span"
+    },
+    {
+      "name": "grid_layout6",
+      "value": "栅格offset"
+    },
+    {
+      "name": "grid_layout7",
+      "value": "栅格order"
+    },
+    {
+      "name": "grid_layout8",
+      "value": "栅格span/offset/order继承性"
+    },
+    {
+      "name": "grid_layout9",
+      "value": "栅格嵌套"
+    },
+    {
+      "name": "typical_scenario",
+      "value": "典型布局场景"
+    },
+    {
+      "name": "diversion_layout",
+      "value": "挪移布局"
+    },
+    {
+      "name": "repeat_layout",
+      "value": "重复布局"
+    },
+    {
+      "name": "indentation_layout",
+      "value": "缩进布局"
+    },
+    {
+      "name": "header",
+      "value": "顶部布局"
+    },
+    {
+      "name": "banner",
+      "value": "广告栏"
+    },
+    {
+      "name": "operationEntries",
+      "value": "操作入口"
+    },
+    {
+      "name": "tabs",
+      "value": "页签布局"
+    },
+    {
+      "name": "bigImage",
+      "value": "大图浏览"
+    },
+    {
+      "name": "multiLaneList",
+      "value": "多列列表"
+    },
+    {
+      "name": "grid",
+      "value": "网格视图"
+    },
+    {
+      "name": "aside",
+      "value": "侧边栏"
+    },
+    {
+      "name": "user_improvement",
+      "value": "用户体验改进计划"
+    },
+    {
+      "name": "user_improvement_tips",
+      "value": "用户体验改进计划通过系统、应用分析、故障诊断、提升华为的产品和服务质量。"
+    },
+    {
+      "name": "show_app_name",
+      "value": "应用名称"
+    },
+    {
+      "name": "left",
+      "value": "左"
+    },
+    {
+      "name": "center",
+      "value": "中"
+    },
+    {
+      "name": "right",
+      "value": "右"
+    },
+    {
+      "name": "portrait",
+      "value": "竖屏"
+    },
+    {
+      "name": "landscape",
+      "value": "横屏"
+    },
+    {
+      "name": "recommended",
+      "value": "推荐"
+    },
+    {
+      "name": "operation1",
+      "value": "私人FM"
+    },
+    {
+      "name": "operation2",
+      "value": "歌手"
+    },
+    {
+      "name": "operation3",
+      "value": "歌单"
+    },
+    {
+      "name": "operation4",
+      "value": "排行榜"
+    },
+    {
+      "name": "operation5",
+      "value": "热门"
+    },
+    {
+      "name": "operation6",
+      "value": "运动音乐"
+    },
+    {
+      "name": "operation7",
+      "value": "音乐FM"
+    },
+    {
+      "name": "operation8",
+      "value": "福利"
+    },
+    {
+      "name": "playlist_collection",
+      "value": "歌单集合"
+    },
+    {
+      "name": "tabBar1",
+      "value": "首页"
+    },
+    {
+      "name": "tabBar2",
+      "value": "排行榜"
+    },
+    {
+      "name": "tabBar3",
+      "value": "我的"
+    },
+    {
+      "name": "breakpoint",
+      "value": "断点"
+    }
+  ]
+}

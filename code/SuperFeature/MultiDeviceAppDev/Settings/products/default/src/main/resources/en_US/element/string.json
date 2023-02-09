@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "mainability_description",
+      "value": "sample application"
+    },
+    {
+      "name": "mainability_label",
+      "value": "Settings"
+    }
+  ]
+}
