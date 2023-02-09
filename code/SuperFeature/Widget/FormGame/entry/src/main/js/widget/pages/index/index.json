@@ -1,0 +1,70 @@
+{
+  "data": {
+    "source_1": "天",
+    "source_2": "天",
+    "source_3": "向",
+    "source_4": "上",
+    "target_1": "",
+    "target_2": "",
+    "target_3": "",
+    "target_4": ""
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "bundleName": "com.aafwk.myform",
+      "abilityName": "MainAbility",
+      "params": {
+        "message": "detail"
+      }
+    },
+    "sourceEvent1": {
+      "action": "message",
+      "params": {
+        "message": "0sourceEvent"
+      }
+    },
+    "sourceEvent2": {
+      "action": "message",
+      "params": {
+        "message": "1sourceEvent"
+      }
+    },
+    "sourceEvent3": {
+      "action": "message",
+      "params": {
+        "message": "2sourceEvent"
+      }
+    },
+    "sourceEvent4": {
+      "action": "message",
+      "params": {
+        "message": "3sourceEvent"
+      }
+    },
+    "targetEvent1": {
+      "action": "message",
+      "params": {
+        "message": "4targetEvent"
+      }
+    },
+    "targetEvent2": {
+      "action": "message",
+      "params": {
+        "message": "5targetEvent"
+      }
+    },
+    "targetEvent3": {
+      "action": "message",
+      "params": {
+        "message": "6targetEvent"
+      }
+    },
+    "targetEvent4": {
+      "action": "message",
+      "params": {
+        "message": "7targetEvent"
+      }
+    }
+  }
+}
