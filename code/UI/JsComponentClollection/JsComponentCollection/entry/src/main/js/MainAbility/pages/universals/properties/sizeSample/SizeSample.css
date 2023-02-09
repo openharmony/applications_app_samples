@@ -1,0 +1,179 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import '../../../../common/css/common.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  font-size: 18vp;
+  background-color: #F1F3F5;
+  overflow: scroll;
+}
+
+.width-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-right: 30vp;
+  padding-left: 30vp;
+}
+
+.white-background-color {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border-radius: 24vp;
+  padding: 20vp 24vp;
+}
+
+.width-designate {
+  height: 100vp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #409EFF;
+  color: #FFFFFF;
+  border-radius: 5vp;
+}
+
+.width-percentage {
+  height: 100vp;
+  display: flex;
+  flex-weight: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20vp;
+  background-color: #409EFF;
+  color: #FFFFFF;
+  border-radius: 5vp;
+}
+
+.width-percentage-text {
+  height:100vp;
+  width: 70%;
+  background-color: #67C23A;
+  text-align: center;
+  border-radius: 5vp;
+}
+
+.height-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-right: 30vp;
+  padding-left: 30vp;
+}
+
+.height-box-div {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 24vp;
+  padding: 20vp;
+}
+
+.height-designate {
+  width: 100vp;
+  height: 100vp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #409EFF;
+  color: #FFFFFF;
+  border-radius: 5vp;
+}
+
+.height-percentage {
+  height: 100vp;
+  display: flex;
+  flex-weight: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 20vp;
+  background-color: #409EFF;
+  color: #FFFFFF;
+  border-radius: 5vp;
+}
+
+.height-percentage-text {
+  width: 100%;
+  background-color: #67C23A;
+  border-radius: 5vp;
+  text-align: center;
+}
+
+.box-sizing {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-right: 30vp;
+  padding-left: 30vp;
+}
+
+.box-sizing-box {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 24vp;
+  padding: 10vp 20vp 0;
+  margin-bottom: 10vp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-sizing-content {
+  width: 120vp;
+  height: 100vp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 5vp;
+  border-width: 10vp;
+}
+
+.box-sizing-description {
+  height:140vp;
+}
+
+.box-sizing-border {
+  width: 120vp;
+  height: 100vp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 5vp;
+  border-width: 10vp;
+}
+
+.bottom-margin {
+  margin-bottom: 10vp;
+}

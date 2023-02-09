@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "ArkJS Components"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ArkUI components, common attributes, common methods, etc. to classify and describe application"
+    }
+  ]
+}

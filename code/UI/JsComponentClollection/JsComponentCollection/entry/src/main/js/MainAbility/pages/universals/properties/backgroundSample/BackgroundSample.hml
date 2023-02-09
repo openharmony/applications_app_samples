@@ -1,0 +1,109 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ backgroundTitle }}"></titleBar>
+  <div class="background-box">
+    <text class="introduce">{{ $t('strings.background_set_color') }}</text>
+    <div class="white-background-color">
+
+    <!-- Background color start -->
+      <div class="rect-box" style="background-color: #409EFF;">
+        <text>{{ $t('strings.background_brand') }}</text>
+      </div>
+      <div class="rect-box" style="background-color: #E6A23C;">
+        <text>{{ $t('strings.background_warning') }}</text>
+      </div>
+      <div class="rect-box" style="background-color: #F56C6C;">
+        <text>{{ $t('strings.background_danger') }}</text>
+      </div>
+    <!-- Background color end -->
+
+    </div>
+  </div>
+
+  <div class="background-box">
+    <text class="introduce">{{ $t('strings.background_set_gradient') }}</text>
+    <div class="white-background-color">
+
+    <!-- Background gradient start -->
+      <div class="rect-box smallFontSize" style="background: linear-gradient(#409EFF, #67C23A);">
+        <text>{{ $t('strings.background_default_up_to_down') }}</text>
+      </div>
+      <div class="rect-box smallFontSize" style="background: linear-gradient(45deg, #409EFF, #67C23A);">
+        <text>{{ $t('strings.background_angle_gradient') }}</text>
+      </div>
+      <div class="rect-box smallFontSize" style="background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30px,rgba(0, 0, 255, .5) 60px);">
+        <text>{{ $t('strings.background_repeat_gradient') }}</text>
+      </div>
+
+    <!-- Background gradient end -->
+    </div>
+  </div>
+
+  <div class="background-box bottom-margin">
+    <text class="introduce">{{ $t('strings.background_set_image') }}</text>
+    <div class="white-background-color-column">
+      <div class="background-img">
+        <div class="background-img-box">
+          <text class="align-center">{{ $t('strings.background_default') }}</text>
+
+        <!-- Background img start -->
+          <div class="background-img-url"
+               style="background-image: url('common/image/ic_scenery1.png');  background-size: cover;">
+          </div>
+        <!-- Background img end -->
+
+        </div>
+        <div class="background-img-box">
+          <text class="align-center">{{ $t('strings.background_no_repeat') }}</text>
+
+        <!-- Background img start -->
+          <div class="background-img-url"
+               style="background-image: url('common/image/ic_scenery1.png'); background-size: 100vp;
+                 background-size: contain; background-repeat: no-repeat;">
+          </div>
+
+        <!-- Background img end -->
+        </div>
+      </div>
+      <div class="background-img">
+        <div class="background-img-box">
+          <text class="align-center">{{ $t('strings.background_image_size') }}</text>
+
+        <!-- Background img start -->
+          <div class="background-img-url"
+               style="background-image: url('common/image/ic_scenery1.png');
+                 background-size: 50% 100%">
+          </div>
+        <!-- Background img end -->
+
+        </div>
+        <div class="background-img-box">
+          <text class="align-center">{{ $t('strings.background_image_position') }}</text>
+
+        <!-- Background img start -->
+          <div class="background-img-url"
+               style="background-image: url('common/image/ic_scenery1.png');background-size: 100vp;background-size: cover;
+                 background-position: right top">
+          </div>
+        <!-- Background img end -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ $t('strings.span_title') }}"></titleBar>
+
+  <text class="introduce">{{ $t('strings.span_set_properties') }}</text>
+  <div class="border-div">
+    <text style="font-size: 21vp;">
+      <span>{{ $t('strings.span_first_part') }}</span>
+      <span style="color: red;">{{ $t('strings.span_second_part') }}</span>
+      <span>{{ $t('strings.span_third_part') }}</span>
+      <span style="font-size: 24vp; font-weight: bolder;">{{ $t('strings.span_fourth_part') }}</span>
+    </text>
+  </div>
+
+  <text class="introduce">{{ $t('strings.span_decorative_characte') }}</text>
+  <div class="decorative-border-div">
+    <div style="margin-top: 25vp;">
+      <text>
+        <span style="text-decoration: {{ textDecoration }};"> {{ $t('strings.span_decorative_sample_text') }}</span>
+        <span style="font-style: italic;">{{ $t('strings.span_characters_sample_text') }}</span>
+      </text>
+    </div>
+
+    <div style="width: 100%; margin-top: 20vp; margin-left: 10vp; font-size: 24vp">
+      <text style="flex-weight: 1;">{{ $t('strings.span_decorative_style') }}</text>
+      <select @change="changeLineType" style="font-size: 24vp;width: 150vp;height: 40vp;">
+        <option selected="true" value="{{ $t('strings.span_decorative_none') }}">{{ $t('strings.span_decorative_none')
+          }}</option>
+        <option value="{{ $t('strings.span_line_through') }}">{{ $t('strings.span_line_through') }}</option>
+        <option value="{{ $t('strings.span_under_line') }}">{{ $t('strings.span_under_line') }}</option>
+      </select>
+    </div>
+  </div>
+</div>

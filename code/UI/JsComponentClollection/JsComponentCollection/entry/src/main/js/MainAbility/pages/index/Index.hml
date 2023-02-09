@@ -1,0 +1,63 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name="itemContent"
+         src="../../common/tabContentNavigation/TabContentNavigation.hml">
+</element>
+<div class="container">
+  <tabs class="tabs" index="{{ tabIndex }}" vertical="false" onchange="tabsChange">
+    <tab-content class="tab-content" scrollable="true">
+
+    <!-- Start component-->
+      <div class="item-content">
+        <itemContent item-type="{{ notHaveSecondTitle }}" tab-index="0">
+        </itemContent>
+      </div>
+    <!-- End component-->
+
+    <!-- Start universal-->
+      <div class="item-content">
+        <itemContent item-type="{{ haveSecondTitle }}" tab-index="1">
+        </itemContent>
+      </div>
+    <!-- End universal-->
+
+    <!-- Start animation-->
+      <div class="item-content">
+        <itemContent item-type="{{ notHaveSecondTitle }}" tab-index="2">
+        </itemContent>
+      </div>
+    <!-- End animation-->
+
+    <!-- Start globalMethod-->
+      <div class="item-content">
+        <itemContent item-type="{{ notHaveSecondTitle }}" tab-index="3">
+        </itemContent>
+      </div>
+    <!-- End globalMethod-->
+    </tab-content>
+  </tabs>
+  <div class="tab-bar">
+    <div class="tab-bar-box" for="(index, item) in tabArr" onclick="tabBarChange(index)">
+      <div class="tab-bar-icon-box">
+        <image class="tab-bar-icon" src="{{ getIcon(index) }}"></image>
+      </div>
+      <div class="tab-bar-text-box">
+        <text class="tab-bar-text" style="color: {{ getFontColor(index) }}; opacity: {{ getTabTextOpcity(index) }}">
+          {{ tabArr[index] }}</text>
+      </div>
+    </div>
+  </div>
+</div>

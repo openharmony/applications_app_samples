@@ -1,0 +1,79 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ $t('strings.dialog_title') }}"></titleBar>
+  <text class="introduce">{{ $t('strings.dialog_whether_drag') }}</text>
+  <div class="outer-div bottom-margin">
+    <div class="drag-div" onclick="showDragDialog">
+      <text class="button-text">{{ $t('strings.dialog_can_drag') }}</text>
+    </div>
+    <div class="not_drag-div" onclick="showNotDragDialog">
+      <text class="button-text">{{ $t('strings.dialog_cannot_drag') }}</text>
+    </div>
+  </div>
+  <dialog id="dragdialog" dragable="true" oncancel="cancelDialog" class="dialog-class">
+    <div class="dialog-div">
+      <div class="title-class">
+        <text class="title-text">{{ $t('strings.dialog_request_permission') }}
+        </text>
+      </div>
+      <div class="video-div">
+        <div class="image-div" style="width: 60vp; height: 50vp;">
+          <image class="image-class" src="common/image/ic_voice.png"></image>
+        </div>
+        <div class="text-div">
+          <text class="permission-class">{{ $t('strings.dialog_video_permission') }}</text>
+          <text class="introduce-class">{{ $t('strings.dialog_video_introduce') }}</text>
+        </div>
+      </div>
+      <div class="video-div">
+        <image src="common/image/ic_location.png" style="width: 60vp; height: 50vp;"></image>
+        <div class="text-div">
+          <text class="permission-class">{{ $t('strings.dialog_location_permission') }}</text>
+          <text class="introduce-class">{{ $t('strings.dialog_location_introduce') }}</text>
+        </div>
+      </div>
+      <button class="button-class" onclick="closeDragDialog">{{ $t('strings.dialog_key_open') }}</button>
+    </div>
+  </dialog>
+
+  <dialog id="notdragdialog" dragable="false" oncancel="cancelDialog" class="dialog-class">
+    <div class="dialog-div">
+      <div class="title-class">
+        <text class="title-text">{{ $t('strings.dialog_request_permission') }}
+        </text>
+      </div>
+      <div class="video-div">
+        <div class="image-div" style="width: 60vp; height: 50vp;">
+          <image class="image-class" src="common/image/ic_voice.png"></image>
+        </div>
+        <div class="text-div">
+          <text class="permission-class">{{ $t('strings.dialog_video_permission') }}</text>
+          <text class="introduce-class">{{ $t('strings.dialog_video_introduce') }}</text>
+        </div>
+      </div>
+      <div class="video-div">
+        <image src="common/image/ic_location.png" style="width: 60vp; height: 50vp;"></image>
+        <div class="text-div">
+          <text class="permission-class">{{ $t('strings.dialog_location_permission') }}</text>
+          <text class="introduce-class">{{ $t('strings.dialog_location_introduce') }}</text>
+        </div>
+      </div>
+      <button class="button-class" onclick="closeDragDialog">{{ $t('strings.dialog_key_open') }}</button>
+    </div>
+  </dialog>
+</div>
