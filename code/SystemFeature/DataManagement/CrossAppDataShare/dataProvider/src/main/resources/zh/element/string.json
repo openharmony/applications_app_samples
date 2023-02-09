@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "联系人"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "联系人"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "联系人"
+    },
+    {
+      "name": "DataShareAbility_desc",
+      "value": "联系人数据"
+    },
+    {
+      "name": "DataShareAbility_label",
+      "value": "联系人数据"
+    },
+    {
+      "name": "sub_title",
+      "value": "个联系人"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "select_all",
+      "value": "全选"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "搜索联系人"
+    },
+    {
+      "name": "create_contact",
+      "value": "创建联系人"
+    },
+    {
+      "name": "edit_contact",
+      "value": "编辑联系人"
+    },
+    {
+      "name": "save_to_phone",
+      "value": "保存至：手机"
+    },
+    {
+      "name": "empty_tips",
+      "value": "姓名和电话不能为空"
+    },
+    {
+      "name": "phone_length_tips",
+      "value": "手机号长度不能小于8位"
+    },
+    {
+      "name": "search_empty",
+      "value": "没有匹配的联系人"
+    },
+    {
+      "name": "search_find",
+      "value": "找到"
+    },
+    {
+      "name": "search_contacts",
+      "value": "联系人"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    },
+    {
+      "name": "delete_alert_message",
+      "value": "是否删除此联系人?"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    }
+  ]
+}

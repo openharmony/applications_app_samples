@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "主能力描述"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "设备管理"
+    },
+    {
+      "name": "extension_header",
+      "value": "企业设备管理ExtensionAbility测试"
+    },
+    {
+      "name": "enable_admin",
+      "value": "激活设备管理器"
+    },
+    {
+      "name": "disable_admin",
+      "value": "去激活设备管理器"
+    },
+    {
+      "name": "subscribe_app_install_uninstall_event",
+      "value": "订阅应用安装卸载事件"
+    },
+    {
+      "name": "unsubscribe_app_install_uninstall_event",
+      "value": "取消订阅应用安装卸载事件"
+    }
+  ]
+}

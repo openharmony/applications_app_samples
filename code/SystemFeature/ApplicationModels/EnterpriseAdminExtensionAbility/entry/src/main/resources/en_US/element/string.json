@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "extension_header",
+      "value": "enterprise device management extensionAbility test"
+    },
+    {
+      "name": "enable_admin",
+      "value": "enable admin"
+    },
+    {
+      "name": "disable_admin",
+      "value": "disable admin"
+    },
+    {
+      "name": "subscribe_app_install_uninstall_event",
+      "value": "subscribe to app install and uninstall events"
+    },
+    {
+      "name": "unsubscribe_app_install_uninstall_event",
+      "value": "unsubscribe to app install and uninstall events"
+    }
+  ]
+}

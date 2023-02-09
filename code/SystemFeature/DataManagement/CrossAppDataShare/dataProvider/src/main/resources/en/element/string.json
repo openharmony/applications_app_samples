@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Contact"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Contact"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Contact"
+    },
+    {
+      "name": "DataShareAbility_desc",
+      "value": "Contact data"
+    },
+    {
+      "name": "DataShareAbility_label",
+      "value": "Contact data"
+    },
+    {
+      "name": "sub_title",
+      "value": "contacts"
+    },
+    {
+      "name": "delete",
+      "value": "Delete"
+    },
+    {
+      "name": "select_all",
+      "value": "Select all"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "Search for contacts"
+    },
+    {
+      "name": "create_contact",
+      "value": "Create contact"
+    },
+    {
+      "name": "edit_contact",
+      "value": "Edit contact"
+    },
+    {
+      "name": "save_to_phone",
+      "value": "Save to phone"
+    },
+    {
+      "name": "empty_tips",
+      "value": "Name and phone number cannot be empty"
+    },
+    {
+      "name": "phone_length_tips",
+      "value": "The length of the phone number cannot be less than 8"
+    },
+    {
+      "name": "search_empty",
+      "value": "There are no matching results"
+    },
+    {
+      "name": "search_find",
+      "value": "Find"
+    },
+    {
+      "name": "search_contacts",
+      "value": "contacts"
+    },
+    {
+      "name": "edit",
+      "value": "Edit"
+    },
+    {
+      "name": "delete_alert_message",
+      "value": "Whether to delete this contact?"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    }
+  ]
+}
