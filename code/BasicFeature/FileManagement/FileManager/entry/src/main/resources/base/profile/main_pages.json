@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "filemanager/pages/image/ImageFileList",
+    "filemanager/pages/image/ImagePreview",
+    "filemanager/pages/video/VideoFileList",
+    "filemanager/pages/document/DocumentFileList",
+    "filemanager/pages/audio/AudioFileList"
+  ]
+}

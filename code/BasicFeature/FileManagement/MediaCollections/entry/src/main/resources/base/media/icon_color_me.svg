@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_color_me</title>
+    <g id="icon_color_me" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="我的">
+            <rect id="矩形备份-4" fill="#FFFFFF" opacity="0" x="0" y="0" width="40" height="40"></rect>
+            <g id="编组-2" transform="translate(2.500000, 1.000000)">
+                <path d="M17.5,37.9406211 C27.1649831,37.9406211 35,39.225917 35,29.8368574 C35,20.4477978 27.1649831,12.8364611 17.5,12.8364611 C7.83501688,12.8364611 0,20.4477978 0,29.8368574 C0,39.225917 7.83501688,37.9406211 17.5,37.9406211 Z" id="椭圆形备份" fill="#44D7B6" opacity="0.6"></path>
+                <circle id="椭圆形" fill-opacity="0.8" fill="#44D7B6" cx="18" cy="9" r="9"></circle>
+                <path d="M14,10 C14,12.209139 15.790861,14 18,14 C20.209139,14 22,12.209139 22,10 L14,10 Z" id="路径" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

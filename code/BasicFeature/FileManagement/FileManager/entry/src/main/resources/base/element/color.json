@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "white_pressed",
+      "value": "#FFE3E3E3"
+    },
+    {
+      "name": "item_pressed",
+      "value": "#4DE3E3E3"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "font_gray",
+      "value": "#FF838383"
+    },
+    {
+      "name": "background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "divider",
+      "value": "#FFCBCBCB"
+    }
+  ]
+}
