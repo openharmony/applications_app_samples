@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "一多天气"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "一多天气MainAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "天气"
+    },
+    {
+      "name": "midnight",
+      "value": "半夜"
+    },
+    {
+      "name": "early_morning",
+      "value": "清晨"
+    },
+    {
+      "name": "morning",
+      "value": "早上"
+    },
+    {
+      "name": "yestoday",
+      "value": "昨天"
+    },
+    {
+      "name": "today",
+      "value": "今天"
+    },
+    {
+      "name": "air",
+      "value": "空气"
+    },
+    {
+      "name": "air_quality",
+      "value": "污染指数"
+    },
+    {
+      "name": "weather",
+      "value": "天气"
+    },
+    {
+      "name": "china_weather",
+      "value": "中国天气"
+    },
+    {
+      "name": "weather_version",
+      "value": "天气版本：11.1.0"
+    },
+    {
+      "name": "weather_statement",
+      "value": "关于天气与隐私的声明"
+    },
+    {
+      "name": "weather_copyright",
+      "value": "版权所有2020 OpenHarmony技术有限公司"
+    },
+    {
+      "name": "du",
+      "value": "℃"
+    },
+    {
+      "name": "manage_city",
+      "value": "管理城市"
+    },
+    {
+      "name": "add_city",
+      "value": "添加城市"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "搜索城市（中文/拼音）"
+    },
+    {
+      "name": "update_time",
+      "value": "更新时间"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "hot_city",
+      "value": "热门城市"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Healthy Diet"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    }
+  ]
+}
