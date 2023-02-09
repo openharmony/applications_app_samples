@@ -1,0 +1,328 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "FAModel introduce"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "FAModel introduce"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "FaModel"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "DataAbility_desc",
+      "value": "data processing"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "service ability"
+    },
+    {
+      "name": "title",
+      "value": "DataAbility"
+    },
+    {
+      "name": "batch_insert",
+      "value": "BatchInsert"
+    },
+    {
+      "name": "book_name",
+      "value": "BookName:"
+    },
+    {
+      "name": "book_intro",
+      "value": "BookIntroduction:"
+    },
+    {
+      "name": "search_tip",
+      "value": "Click here to search"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "Please input to search"
+    },
+    {
+      "name": "DataAbility1_desc",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "service_title",
+      "value": "ServiceAbility"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "no",
+      "value": "no"
+    },
+    {
+      "name": "yes",
+      "value": "yes"
+    },
+    {
+      "name": "start_service",
+      "value": "start ServiceAbility"
+    },
+    {
+      "name": "connect_service",
+      "value": "connect ServiceAbility"
+    },
+    {
+      "name": "disconnect_service",
+      "value": "disconnect ServiceAbility"
+    },
+    {
+      "name": "data_page",
+      "value": "DataAbility"
+    },
+    {
+      "name": "service_page",
+      "value": "ServiceAbility"
+    },
+    {
+      "name": "feature_page",
+      "value": "FeatureAbility"
+    },
+    {
+      "name": "data_helper",
+      "value": "DAHelper"
+    },
+    {
+      "name": "app_context",
+      "value": "AppContext"
+    },
+    {
+      "name": "fa_model",
+      "value": "FAModel"
+    },
+    {
+      "name": "get_or_create_local_dir",
+      "value": "getOrCreateLocalDir"
+    },
+    {
+      "name": "verify_permission",
+      "value": "verifyPermission"
+    },
+    {
+      "name": "request_permission",
+      "value": "requestPermissionsFromUser"
+    },
+    {
+      "name": "get_application_info",
+      "value": "getApplicationInfo"
+    },
+    {
+      "name": "get_bundle_name",
+      "value": "getBundleName"
+    },
+    {
+      "name": "get_display_orientation",
+      "value": "getDisplayOrientation"
+    },
+    {
+      "name": "set_display_orientation",
+      "value": "setDisplayOrientation"
+    },
+    {
+      "name": "set_show_on_lock_screen",
+      "value": "setShowOnLockScreen"
+    },
+    {
+      "name": "set_wake_up_screen",
+      "value": "setWakeUpScreen"
+    },
+    {
+      "name": "get_process_info",
+      "value": "getProcessInfo"
+    },
+    {
+      "name": "get_element_name",
+      "value": "getElementName"
+    },
+    {
+      "name": "get_calling_bundle",
+      "value": "getCallingBundle"
+    },
+    {
+      "name": "get_cache_dir",
+      "value": "getCacheDir"
+    },
+    {
+      "name": "get_files_dir",
+      "value": "getFilesDir"
+    },
+    {
+      "name": "get_or_create_distributed_dir",
+      "value": "getOrCreateDistributedDir"
+    },
+    {
+      "name": "get_app_type",
+      "value": "getAppType"
+    },
+    {
+      "name": "get_hap_module_info",
+      "value": "getHapModuleInfo"
+    },
+    {
+      "name": "get_app_version_info",
+      "value": "getAppVersionInfo"
+    },
+    {
+      "name": "get_ability_info",
+      "value": "getAbilityInfo"
+    },
+    {
+      "name": "get_application_context",
+      "value": "getApplicationContext"
+    },
+    {
+      "name": "is_updating_configurations",
+      "value": "isUpdatingConfigurations"
+    },
+    {
+      "name": "print_drawn_completed",
+      "value": "printDrawnCompleted"
+    },
+    {
+      "name": "open_file",
+      "value": "openFile"
+    },
+    {
+      "name": "on",
+      "value": "on"
+    },
+    {
+      "name": "off",
+      "value": "off"
+    },
+    {
+      "name": "get_type",
+      "value": "getType"
+    },
+    {
+      "name": "get_file_types",
+      "value": "getFileTypes"
+    },
+    {
+      "name": "normalize_uri",
+      "value": "normalizeUri"
+    },
+    {
+      "name": "denormalize_uri",
+      "value": "denormalizeUri"
+    },
+    {
+      "name": "notify_change",
+      "value": "notifyChange"
+    },
+    {
+      "name": "call",
+      "value": "call"
+    },
+    {
+      "name": "execute_batch",
+      "value": "executeBatch"
+    },
+    {
+      "name": "get_want",
+      "value": "getWant"
+    },
+    {
+      "name": "start_ability",
+      "value": "startAbility"
+    },
+    {
+      "name": "acquire_data_ability_helper",
+      "value": "acquireDataAbilityHelper"
+    },
+    {
+      "name": "terminate_self_with_result",
+      "value": "terminateSelfWithResult"
+    },
+    {
+      "name": "has_window_focus",
+      "value": "hasWindowFocus"
+    },
+    {
+      "name": "terminate_self",
+      "value": "terminateSelf"
+    },
+    {
+      "name": "get_window",
+      "value": "getWindow"
+    },
+    {
+      "name": "particle_page",
+      "value": "ParticlePage"
+    },
+    {
+      "name": "connect_ability",
+      "value": "connect Ability"
+    },
+    {
+      "name": "disconnect_ability",
+      "value": "disconnect Ability"
+    },
+    {
+      "name": "connect_success",
+      "value": "connect success"
+    },
+    {
+      "name": "disconnect_success",
+      "value": "disconnect success"
+    },
+    {
+      "name": "connect_fail",
+      "value": "connect fail"
+    },
+    {
+      "name": "set_orientation_success",
+      "value": "setDisplayOrientation success"
+    },
+    {
+      "name": "call_success",
+      "value": "call success"
+    },
+    {
+      "name": "call_fail",
+      "value": "call fail"
+    },
+    {
+      "name": "start_ability_success",
+      "value": "startAbility success"
+    },
+    {
+      "name": "connect_ability_success",
+      "value": "connectAbility success"
+    },
+    {
+      "name": "disconnect_ability_success",
+      "value": "disconnectAbility success"
+    },
+    {
+      "name": "acquire_data_ability_helper_success",
+      "value": "acquireDataAbilityHelper succes"
+    },
+    {
+      "name": "terminate_self_success",
+      "value": "terminateSelf success"
+    }
+  ]
+}

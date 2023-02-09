@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "startMode",
+      "value": "启动模式"
+    },
+    {
+      "name": "standard",
+      "value": "普通多实例"
+    },
+    {
+      "name": "specified",
+      "value": "指定多实例"
+    },
+    {
+      "name": "singleton",
+      "value": "单实例"
+    },
+    {
+      "name": "otherFoods",
+      "value": "其它食物"
+    },
+    {
+      "name": "food_name_tomato",
+      "value": "番茄"
+    },
+    {
+      "name": "food_name_walnut",
+      "value": "核桃"
+    },
+    {
+      "name": "food_name_cucumber",
+      "value": "黄瓜"
+    },
+    {
+      "name": "food_name_blueberry",
+      "value": "蓝莓"
+    },
+    {
+      "name": "food_name_crab",
+      "value": "螃蟹"
+    },
+    {
+      "name": "food_name_ice_cream",
+      "value": "冰激凌"
+    },
+    {
+      "name": "food_name_onion",
+      "value": "洋葱"
+    },
+    {
+      "name": "food_name_mushroom",
+      "value": "蘑菇"
+    },
+    {
+      "name": "food_name_kiwi",
+      "value": "猕猴桃"
+    },
+    {
+      "name": "food_name_pitaya",
+      "value": "火龙果"
+    },
+    {
+      "name": "food_name_avocado",
+      "value": "牛油果"
+    },
+    {
+      "name": "food_name_strawberry",
+      "value": "草莓"
+    }
+  ]
+}

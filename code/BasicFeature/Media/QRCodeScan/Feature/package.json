@@ -1,0 +1,16 @@
+{
+  "license": "ISC",
+  "types": "",
+  "devDependencies": {},
+  "name": "@ohos/feature-qr-code-scan",
+  "description": "a npm package which contains arkUI2.0 page for qrcode scan",
+  "ohos": {
+    "org": ""
+  },
+  "main": "Index.ets",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {
+    "jsqr": "^1.4.0"
+  }
+}

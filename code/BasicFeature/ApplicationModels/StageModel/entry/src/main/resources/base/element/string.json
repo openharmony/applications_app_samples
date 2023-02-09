@@ -1,0 +1,304 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "StageModel"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "DataShareExtensionAbility_desc",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "DataShareExtensionAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "title",
+      "value": "DataShareExtensionAbility"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "service_extension_contextPage",
+      "value": "ServiceExtContext"
+    },
+    {
+      "name": "ability_context_page",
+      "value": "AbilityContext"
+    },
+    {
+      "name": "index",
+      "value": "StageModel"
+    },
+    {
+      "name": "form_ext_context_page",
+      "value": "FormExtContext"
+    },
+    {
+      "name": "bundle_page",
+      "value": "Bundle"
+    },
+    {
+      "name": "window_page",
+      "value": "Window"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "book_name",
+      "value": "BookName:"
+    },
+    {
+      "name": "book_intro",
+      "value": "BookIntroduction:"
+    },
+    {
+      "name": "ok",
+      "value": "yes"
+    },
+    {
+      "name": "no",
+      "value": "no"
+    },
+    {
+      "name": "start_ability",
+      "value": "startAbility"
+    },
+    {
+      "name": "start_ability_forResult",
+      "value": "startAbilityForResult"
+    },
+    {
+      "name": "start_ability_for_result_with_account",
+      "value": "startAbilityForResultWithAccount"
+    },
+    {
+      "name": "start_service_extension_ability",
+      "value": "startServiceExtAbility"
+    },
+    {
+      "name": "start_service_extension_ability_with_account",
+      "value": "startServiceExtAbilityWithAccount"
+    },
+    {
+      "name": "stop_service_extension_ability",
+      "value": "stopServiceExtAbility"
+    },
+    {
+      "name": "stop_service_extension_ability_with_account",
+      "value": "stopServiceExtAbilityWithAccount"
+    },
+    {
+      "name": "terminate_self",
+      "value": "terminateSelf"
+    },
+    {
+      "name": "terminate_self_with_result",
+      "value": "terminateSelfWithResult"
+    },
+    {
+      "name": "connect_ability",
+      "value": "connectAbility"
+    },
+    {
+      "name": "connect_ability_with_account",
+      "value": "connectAbilityWithAccount"
+    },
+    {
+      "name": "disconnect_ability",
+      "value": "disconnectAbility"
+    },
+    {
+      "name": "start_ability_with_account",
+      "value": "startAbilityWithAccount"
+    },
+    {
+      "name": "request_permissions_from_user",
+      "value": "requestPermissionsFromUser"
+    },
+    {
+      "name": "set_mission_label",
+      "value": "setMissionLabel"
+    },
+    {
+      "name": "is_terminating",
+      "value": "isTerminating"
+    },
+    {
+      "name": "ability_info",
+      "value": "abilityInfo"
+    },
+    {
+      "name": "current_hap_module_info",
+      "value": "currentHapModuleInfo"
+    },
+    {
+      "name": "config",
+      "value": "config"
+    },
+    {
+      "name": "resource_manager",
+      "value": "resourceManager"
+    },
+    {
+      "name": "application_info",
+      "value": "applicationInfo"
+    },
+    {
+      "name": "cache_dir",
+      "value": "cacheDir"
+    },
+    {
+      "name": "temp_dir",
+      "value": "tempDir"
+    },
+    {
+      "name": "files_dir",
+      "value": "filesDir"
+    },
+    {
+      "name": "database_dir",
+      "value": "databaseDir"
+    },
+    {
+      "name": "preferences_dir",
+      "value": "preferencesDir"
+    },
+    {
+      "name": "distributed_files_dir",
+      "value": "distributedFilesDir"
+    },
+    {
+      "name": "direction",
+      "value": "direction"
+    },
+    {
+      "name": "area",
+      "value": "area"
+    },
+    {
+      "name": "stage_mode",
+      "value": "stageMode"
+    },
+    {
+      "name": "get_application_context",
+      "value": "getApplicationContext"
+    },
+    {
+      "name": "bundle_name",
+      "value": "bundleName"
+    },
+    {
+      "name": "description_id",
+      "value": "descriptionId"
+    },
+    {
+      "name": "name",
+      "value": "name"
+    },
+    {
+      "name": "verify_access_token",
+      "value": "verifyAccessToken"
+    },
+    {
+      "name": "set_preferred_orientation",
+      "value": "setPreferredOrientation"
+    },
+    {
+      "name": "get_application_info",
+      "value": "getApplicationInfo"
+    },
+    {
+      "name": "set_wake_up_screen",
+      "value": "setWakeUpScreen"
+    },
+    {
+      "name": "get_top_window",
+      "value": "getTopWindow"
+    },
+    {
+      "name": "entity_type",
+      "value": "entityType"
+    },
+    {
+      "name": "process",
+      "value": "process"
+    },
+    {
+      "name": "entry_dir",
+      "value": "entryDir"
+    },
+    {
+      "name": "get_dispatcher_version",
+      "value": "getDispatcherVersion"
+    },
+    {
+      "name": "get_ability_info",
+      "value": "getAbilityInfo"
+    },
+    {
+      "name": "data_share_ext_ability_page",
+      "value": "DataShareExtAbility"
+    },
+    {
+      "name": "ability_access_ctrl_page",
+      "value": "AbilityAccessCtrl"
+    },
+    {
+      "name": "start_ability_by_call",
+      "value": "startAbilityByCall"
+    },
+    {
+      "name": "denormalize_uri",
+      "value": "denormalizeUri"
+    },
+    {
+      "name": "normalize_uri",
+      "value": "normalizeUri"
+    },
+    {
+      "name": "notify_change",
+      "value": "notifyChange"
+    },
+    {
+      "name": "on",
+      "value": "on"
+    },
+    {
+      "name": "off",
+      "value": "off"
+    },
+    {
+      "name": "data_share_helper_page",
+      "value": "DataShareHelper"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "actions": {},
+  "data": {
+    "jsonImage": "common/qing.png",
+    "city": "西安",
+    "average": "30℃",
+    "type": "多云",
+    "quality": "空气优",
+    "high": "34℃",
+    "low": "24℃"
+  }
+}
