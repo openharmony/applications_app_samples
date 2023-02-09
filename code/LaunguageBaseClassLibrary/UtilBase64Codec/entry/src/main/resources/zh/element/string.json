@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "Base64编解码"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "change_str",
+      "value": "要转换的字符串:"
+    },
+    {
+      "name": "encode",
+      "value": "编码"
+    },
+    {
+      "name": "decode",
+      "value": "解码"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "RationalNumber"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "rationalNumber",
+      "value": "Rational number:"
+    },
+    {
+      "name": "numerator",
+      "value": "Numerator:"
+    },
+    {
+      "name": "denominator",
+      "value": "Denominator:"
+    },
+    {
+      "name": "compare",
+      "value": "Compare rational numbers"
+    },
+    {
+      "name": "get",
+      "value": "Get rational number value"
+    },
+    {
+      "name": "getDenominator",
+      "value": "Get numerator and denominator"
+    },
+    {
+      "name": "isZero",
+      "value": "Check for zero"
+    },
+    {
+      "name": "isNaN",
+      "value": "Check for NaN"
+    },
+    {
+      "name": "isFinite",
+      "value": "Check for finite number"
+    }
+  ]
+}
