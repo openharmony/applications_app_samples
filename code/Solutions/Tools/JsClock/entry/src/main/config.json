@@ -1,0 +1,56 @@
+{
+  "app": {
+    "bundleName": "ohos.samples.clock",
+    "version": {
+      "code": 1000000,
+      "name": "1.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.samples.clock",
+    "name": ".MyApplication",
+    "mainAbility": ".default",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "name": ".default",
+        "icon": "$media:icon",
+        "srcPath": "default",
+        "srcLanguage": "js",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "singleton"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".default"
+      }
+    ]
+  }
+}
