@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "StaticSubscriber_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "static subscriber"
+    },
+    {
+      "name": "StaticSubscriber_label",
+      "value": "static subscriber"
+    }
+  ]
+}
