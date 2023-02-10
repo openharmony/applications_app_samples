@@ -1,0 +1,260 @@
+{
+  "string": [
+    {
+      "name": "no",
+      "value": "取消"
+    },
+    {
+      "name": "yes",
+      "value": "确认"
+    },
+    {
+      "name": "start_service",
+      "value": "启动Service"
+    },
+    {
+      "name": "connect_service",
+      "value": "连接Service"
+    },
+    {
+      "name": "disconnect_service",
+      "value": "断开Service"
+    },
+    {
+      "name": "data_page",
+      "value": "DataAbility"
+    },
+    {
+      "name": "service_page",
+      "value": "ServiceAbility"
+    },
+    {
+      "name": "feature_page",
+      "value": "FeatureAbility"
+    },
+    {
+      "name": "data_helper",
+      "value": "DAHelper"
+    },
+    {
+      "name": "app_context",
+      "value": "AppContext"
+    },
+    {
+      "name": "fa_model",
+      "value": "FAModel"
+    },
+    {
+      "name": "get_or_create_local_dir",
+      "value": "获取应用程序的本地根目录"
+    },
+    {
+      "name": "verify_permission",
+      "value": "验证特定pid和uid是否允许指定的权限"
+    },
+    {
+      "name": "request_permission",
+      "value": "获取权限"
+    },
+    {
+      "name": "get_application_info",
+      "value": "获取有关当前应用程序的信息"
+    },
+    {
+      "name": "get_bundle_name",
+      "value": "获取当前ability的捆绑包名"
+    },
+    {
+      "name": "get_display_orientation",
+      "value": "获取此能力的当前显示方向"
+    },
+    {
+      "name": "set_display_orientation",
+      "value": "设置当前能力的显示方向"
+    },
+    {
+      "name": "set_show_on_lock_screen",
+      "value": "设置锁屏时是否在锁屏顶部显示此功能"
+    },
+    {
+      "name": "set_wake_up_screen",
+      "value": "设置恢复此功能时是否唤醒屏幕"
+    },
+    {
+      "name": "get_process_info",
+      "value": "获取有关当前进程的信息"
+    },
+    {
+      "name": "get_element_name",
+      "value": "获取当前ability的ElementName对象"
+    },
+    {
+      "name": "get_calling_bundle",
+      "value": "获取调用ability的包名称"
+    },
+    {
+      "name": "get_cache_dir",
+      "value": "获取该应用程序的内部存储目录"
+    },
+    {
+      "name": "get_files_dir",
+      "value": "获取应用程序的文件目录"
+    },
+    {
+      "name": "get_or_create_distributed_dir",
+      "value": "获取Ability或应用的分布式文件路径"
+    },
+    {
+      "name": "get_app_type",
+      "value": "获取此应用的类型"
+    },
+    {
+      "name": "get_hap_module_info",
+      "value": "获取应用的ModuleInfo对象"
+    },
+    {
+      "name": "get_app_version_info",
+      "value": "获取应用的版本信息"
+    },
+    {
+      "name": "get_ability_info",
+      "value": "查询当前归属Ability详细信息"
+    },
+    {
+      "name": "get_application_context",
+      "value": "获取应用上下文信息"
+    },
+    {
+      "name": "is_updating_configurations",
+      "value": "检查此能力的配置是否正在更改"
+    },
+    {
+      "name": "print_drawn_completed",
+      "value": "通知系统绘制此页面功能所需的时间"
+    },
+    {
+      "name": "open_file",
+      "value": "在指定的远程路径中打开文件"
+    },
+    {
+      "name": "on",
+      "value": "注册观察者"
+    },
+    {
+      "name": "off",
+      "value": "注销观察者"
+    },
+    {
+      "name": "get_type",
+      "value": "获取给定URI指定数据的MIME类型"
+    },
+    {
+      "name": "get_filetypes",
+      "value": "获取支持的文件的MIME类型"
+    },
+    {
+      "name": "normalize_uri",
+      "value": "将给定uri转换为规范化uri"
+    },
+    {
+      "name": "denormalize_uri",
+      "value": "将给定规范化uri转换为非规范化uri"
+    },
+    {
+      "name": "notify_change",
+      "value": "通知观察者数据资源的更改"
+    },
+    {
+      "name": "call",
+      "value": "调用DataAbility的扩展接口"
+    },
+    {
+      "name": "execute_batch",
+      "value": "查询数据库中的数据"
+    },
+    {
+      "name": "get_want",
+      "value": "获取从Ability发送的Want"
+    },
+    {
+      "name": "start_ability",
+      "value": "启动Ability"
+    },
+    {
+      "name": "acquire_data_ability_helper",
+      "value": "获取dataAbilityHelper"
+    },
+    {
+      "name": "terminate_self_with_result",
+      "value": "破坏此Page Ability并返回数据"
+    },
+    {
+      "name": "has_window_focus",
+      "value": "检查是否具有窗口焦点"
+    },
+    {
+      "name": "terminate_self",
+      "value": "销毁Ability"
+    },
+    {
+      "name": "get_window",
+      "value": "获取当前Ability对应的窗口"
+    },
+    {
+      "name": "particle_page",
+      "value": "ParticlePage"
+    },
+    {
+      "name": "connect_ability",
+      "value": "连接Ability"
+    },
+    {
+      "name": "disconnect_ability",
+      "value": "断开连接Ability"
+    },
+    {
+      "name": "connect_success",
+      "value": "连接成功"
+    },
+    {
+      "name": "disconnect_success",
+      "value": "断开连接成功"
+    },
+    {
+      "name": "connect_fail",
+      "value": "连接失败"
+    },
+    {
+      "name": "set_orientation_success",
+      "value": "设置显示方向成功"
+    },
+    {
+      "name": "call_success",
+      "value": "调用成功"
+    },
+    {
+      "name": "call_fail",
+      "value": "调用失败"
+    },
+    {
+      "name": "start_ability_success",
+      "value": "启动Ability成功"
+    },
+    {
+      "name": "connect_ability_success",
+      "value": "连接Ability成功"
+    },
+    {
+      "name": "disconnect_ability_success",
+      "value": "断开连接Ability成功"
+    },
+    {
+      "name": "acquire_data_ability_helper_success",
+      "value": "获取DataAbilityHelper成功"
+    },
+    {
+      "name": "terminate_self_success",
+      "value": "销毁Ability成功"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AbilityContextPage",
+    "pages/TestPage",
+    "pages/DataShareExtAbilityPage",
+    "pages/FormExtContextPage",
+    "pages/ServiceExtContextPage",
+    "pages/BundlePage",
+    "pages/AbilityAccessCtrlPage",
+    "pages/DataShareHelperPage",
+    "pages/WindowPage"
+  ]
+}

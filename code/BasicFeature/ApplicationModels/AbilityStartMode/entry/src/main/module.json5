@@ -1,0 +1,88 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "abilities": [
+      {
+        "name": "SpecifiedAbility",
+        "srcEntrance": "./ets/SpecifiedAbility/SpecifiedAbility.ts",
+        "description": "$string:specifiedAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:specifiedAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "specified",
+        "continuable": true,
+      },
+      {
+        "name": "StandardAbility",
+        "srcEntrance": "./ets/StandardAbility/StandardAbility.ts",
+        "description": "$string:standardAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:standardAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "standard"
+      },
+      {
+        "name": "SingletonAbility",
+        "srcEntrance": "./ets/SingletonAbility/SingletonAbility.ts",
+        "description": "$string:singletonAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:singletonAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:mainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:mainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
