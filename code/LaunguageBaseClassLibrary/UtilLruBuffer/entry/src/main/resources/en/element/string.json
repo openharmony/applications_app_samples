@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "eTSUtilLruBuffer"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTSUtilLruBuffer Ability"
+    },
+    {
+      "name": "initialize_buffer",
+      "value": "Initialize buffer"
+    },
+    {
+      "name": "get_buffer_capacity",
+      "value": "Get buffer capacity"
+    },
+    {
+      "name": "update_buffer_capacity",
+      "value": "Update buffer capacity"
+    },
+    {
+      "name": "get_buffer_string",
+      "value": "Get buffer string"
+    },
+    {
+      "name": "add_key_value",
+      "value": "Add key-value pair"
+    },
+    {
+      "name": "get_value_with_key",
+      "value": "Get value of key"
+    },
+    {
+      "name": "get_all_key_values",
+      "value": "Get all key-value pairs"
+    },
+    {
+      "name": "delete_key_and_value",
+      "value": "Delete key and value"
+    },
+    {
+      "name": "clear_all_key_values",
+      "value": "Clear all key-value pairs"
+    },
+    {
+      "name": "view_operation_record",
+      "value": "View operation record"
+    }
+  ]
+}

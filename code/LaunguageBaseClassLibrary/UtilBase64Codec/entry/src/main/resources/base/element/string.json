@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "eTSBase64Codec"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "change_str",
+      "value": "String to convert:"
+    },
+    {
+      "name": "encode",
+      "value": "encode"
+    },
+    {
+      "name": "decode",
+      "value": "decode"
+    }
+  ]
+}
