@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "设置"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "bluetooth",
+      "value": "蓝牙"
+    },
+    {
+      "name": "device_found",
+      "value": "当前设备可被发现"
+    },
+    {
+      "name": "device_name",
+      "value": "设备名称"
+    },
+    {
+      "name": "connect_device",
+      "value": "已配对设备"
+    },
+    {
+      "name": "my_phone",
+      "value": "我的手机"
+    },
+    {
+      "name": "standby_machine",
+      "value": "备用机"
+    },
+    {
+      "name": "use_device",
+      "value": "可用设备"
+    },
+    {
+      "name": "smart_watch",
+      "value": "智能手表"
+    },
+    {
+      "name": "my_pc",
+      "value": "我的电脑"
+    },
+    {
+      "name": "my_earphones",
+      "value": "我的耳机"
+    },
+    {
+      "name": "mobile_network",
+      "value": "移动数据"
+    },
+    {
+      "name": "sim_manager",
+      "value": "SIM卡管理"
+    },
+    {
+      "name": "personal_hotspot",
+      "value": "个人热点"
+    },
+    {
+      "name": "airplane",
+      "value": "飞行模式"
+    },
+    {
+      "name": "traffic_management",
+      "value": "流量管理"
+    },
+    {
+      "name": "save",
+      "value": "已保存"
+    },
+    {
+      "name": "encryption",
+      "value": "加密"
+    },
+    {
+      "name": "encryption_not",
+      "value": "加密(不可上网)"
+    },
+    {
+      "name": "open",
+      "value": "开放(不可上网)"
+    },
+    {
+      "name": "connect_wlan",
+      "value": "已连接Wlan"
+    },
+    {
+      "name": "connect",
+      "value": "已连接"
+    },
+    {
+      "name": "available_wlan",
+      "value": "可用Wlan"
+    },
+    {
+      "name": "wlan",
+      "value": "WLAN"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "phone",
+      "value": "Phone"
+    },
+    {
+      "name": "wlan_index",
+      "value": "E1-9F-AP"
+    },
+    {
+      "name": "mobile",
+      "value": "MobileData"
+    },
+    {
+      "name": "ux",
+      "value": "UX"
+    },
+    {
+      "name": "aaa",
+      "value": "AAA"
+    },
+    {
+      "name": "bbb",
+      "value": "BBB"
+    },
+    {
+      "name": "ux_5g",
+      "value": "UX_5G"
+    },
+    {
+      "name": "start",
+      "value": "已开启"
+    }
+  ]
+}
