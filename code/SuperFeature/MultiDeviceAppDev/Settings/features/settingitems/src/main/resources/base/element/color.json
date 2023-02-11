@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "itemActivated",
+      "value": "#335291FF"
+    },
+    {
+      "name": "itemInactivated",
+      "value": "#FFFFFF"
+    }
+  ]
+}

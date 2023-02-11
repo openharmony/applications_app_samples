@@ -1,0 +1,15 @@
+{
+  "name": "@ohos/settingItems",
+  "description": "a npm package which contains arkUI2.0 page",
+  "ohos": {
+    "org": ""
+  },
+  "version": "1.0.0",
+  "main": "Index.ets",
+  "types": "",
+  "repository": {},
+  "license": "ISC",
+  "dependencies": {
+    "@ohos/common": "file:../../common"
+  }
+}
