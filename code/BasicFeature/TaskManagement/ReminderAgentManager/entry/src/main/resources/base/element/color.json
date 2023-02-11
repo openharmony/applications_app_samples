@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "tab_bar_select",
+      "value": "#007DFF"
+    },
+    {
+      "name": "tab_bar_unselect",
+      "value": "#66182431"
+    },
+    {
+      "name": "tab_bar_divider",
+      "value": "#33182431"
+    },
+    {
+      "name": "background_shallow_grey",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "button_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "font_dark",
+      "value": "#000000"
+    }
+  ]
+}
