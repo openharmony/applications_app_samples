@@ -1,0 +1,18 @@
+{
+	"license": "ISC",
+	"devDependencies": {},
+	"name": "MusicAlbum",
+	"ohos": {
+		"org": "huawei",
+		"directoryLevel": "project",
+		"buildTool": "hvigor"
+	},
+	"description": "本示例展示了如何使用自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常展示。",
+	"repository": {},
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/hypium": "1.0.1",
+		"@ohos/hvigor-ohos-plugin": "1.1.6",
+		"@ohos/hvigor": "1.1.6"
+	}
+}
