@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "音乐播放和数据流转"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "音乐播放和数据流转"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "音乐"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "用于分布式音乐进行不同设备间的数据交换"
+    }
+  ]
+}

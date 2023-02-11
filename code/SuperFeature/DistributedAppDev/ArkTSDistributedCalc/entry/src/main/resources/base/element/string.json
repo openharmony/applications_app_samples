@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Calculator"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "Choice Device"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "distributed_calculator",
+      "value": "distributed calculator"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "Allow data exchange between different devices"
+    },
+    {
+      "name": "localhost",
+      "value": "localhost"
+    }
+  ]
+}
