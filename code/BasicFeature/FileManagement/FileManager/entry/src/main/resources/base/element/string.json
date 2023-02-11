@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "file_manager",
+      "value": "文件管理"
+    },
+    {
+      "name": "image",
+      "value": "图片"
+    },
+    {
+      "name": "image_preview",
+      "value": "图片预览"
+    },
+    {
+      "name": "video",
+      "value": "视频"
+    },
+    {
+      "name": "document",
+      "value": "文档"
+    },
+    {
+      "name": "audio",
+      "value": "音频"
+    },
+    {
+      "name": "compressed_package",
+      "value": "压缩包"
+    },
+    {
+      "name": "my_phone",
+      "value": "我的手机"
+    },
+    {
+      "name": "read_reason",
+      "value": "应用需要文件读取权限"
+    },
+    {
+      "name": "write_reason",
+      "value": "应用需要文件写权限"
+    },
+    {
+      "name": "no_file",
+      "value": "没有相关文件"
+    },
+    {
+      "name": "not_supported_tip",
+      "value": "暂不支持，功能开发中..."
+    },
+    {
+      "name": "test_tip",
+      "value": "测试文件，不支持预览"
+    },
+    {
+      "name": "mock_tip",
+      "value": "模拟文件，不支持预览"
+    }
+  ]
+}

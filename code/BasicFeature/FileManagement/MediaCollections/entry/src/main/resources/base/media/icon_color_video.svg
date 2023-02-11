@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_color_video</title>
+    <g id="icon_color_video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="视频">
+            <rect id="矩形备份-11" fill="#FFFFFF" opacity="0" x="0" y="0" width="40" height="40"></rect>
+            <g id="编组" transform="translate(1.000000, 1.000000)">
+                <rect id="矩形备份-2" fill="#FF931A" opacity="0.6" x="20.4615385" y="0" width="17.5384615" height="17.5384615" rx="2.92307705"></rect>
+                <rect id="形状结合备份" fill-opacity="0.75" fill="#FFBD4C" x="0" y="5.84615385" width="32.1538462" height="32.1538462" rx="5.84615411"></rect>
+                <path d="M22.5299529,29.5961556 L12.5469711,29.5961556 C11.3361929,29.5961556 10.3546633,28.614626 10.3546633,27.4038478 C10.3546633,27.0223273 10.4542276,26.6474113 10.6435148,26.3161587 L15.6350049,17.5810496 C16.235719,16.5297997 17.5749004,16.1645683 18.6261503,16.7652824 C18.9660266,16.9594974 19.2477023,17.2411731 19.4419173,17.5810493 L24.4334091,26.3161584 C25.0341233,27.3674082 24.6688921,28.7065897 23.6176423,29.307304 C23.2863896,29.4965912 22.9114736,29.5961556 22.5299529,29.5961556 Z" id="Star备份" fill="#FFFFFF" transform="translate(17.538462, 21.923078) rotate(-270.000000) translate(-17.538462, -21.923078) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
