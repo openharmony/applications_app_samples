@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "eTSPowerManager"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name":"turnOff",
+      "value": "turn off"
+    },
+    {
+      "name":"restart",
+      "value": "restart"
+    },
+    {
+      "name":"checkState",
+      "value": "Check whether the screen is on or off"
+    },
+    {
+      "name":"questionTurnOff",
+      "value": "Are you sure you want to turn it off ?"
+    },
+    {
+      "name":"questionRestart",
+      "value": "Are you sure you want to reboot ?"
+    },
+    {
+      "name":"determine",
+      "value": "determine"
+    },
+    {
+      "name":"cancel",
+      "value": "cancel"
+    }
+  ]
+}

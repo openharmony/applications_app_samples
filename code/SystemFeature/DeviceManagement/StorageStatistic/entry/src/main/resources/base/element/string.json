@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Storage statistics"
+    },
+    {
+      "name": "storage_statistics_desc",
+      "value": "Statistics of storage space of various files and applications"
+    },
+    {
+      "name": "storage_statistics_label",
+      "value": "Storage statistics"
+    },
+    {
+      "name": "storage_manager_permission",
+      "value": "Used to obtain storage information"
+    },
+    {
+      "name": "get_bundle_info_permission",
+      "value": "Used to get information about installed apps"
+    },
+    {
+      "name": "main_storage_stats",
+      "value": "Storage statistics"
+    },
+    {
+      "name": "common_please_wait",
+      "value": "Please wait"
+    },
+    {
+      "name": "storage_list_user_data",
+      "value": "User data"
+    },
+    {
+      "name": "storage_list_used",
+      "value": "Used:"
+    },
+    {
+      "name": "query_data_application",
+      "value": "Application"
+    },
+    {
+      "name": "query_data_audio",
+      "value": "Audio"
+    },
+    {
+      "name": "query_data_video",
+      "value": "Video"
+    },
+    {
+      "name": "query_data_image",
+      "value": "Image"
+    },
+    {
+      "name": "query_data_file",
+      "value": "File"
+    },
+    {
+      "name": "query_data_system",
+      "value": "System"
+    },
+    {
+      "name": "app_info_app_storage_information",
+      "value": "Application storage information"
+    },
+    {
+      "name": "app_info_application",
+      "value": "Application"
+    },
+    {
+      "name": "app_info_data",
+      "value": "Data"
+    },
+    {
+      "name": "app_info_cache",
+      "value": "Cache"
+    },
+    {
+      "name": "storage_list_available_information",
+      "value": "View available volume information"
+    },
+    {
+      "name": "volume_list_available_information",
+      "value": "Available volume infomation"
+    },
+    {
+      "name": "volume_list_volume",
+      "value": "Volume"
+    }
+  ]
+}
