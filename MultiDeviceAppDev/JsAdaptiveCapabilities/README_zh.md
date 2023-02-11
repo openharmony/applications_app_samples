@@ -1,8 +1,8 @@
-# 多设备自适应能力
+# 一多能力集合
 
 ### 简介
 
-此Demo展示在JS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。实现效果如下：
+本示例展示了JS中的一多能力集合，包括资源限定词、原子布局和响应式布局。实现效果如下：
 
 ![atomic_layout2](screenshots/device/atomic_layout2.png)  ![atomic_layout4](screenshots/device/atomic_layout4.png)
 

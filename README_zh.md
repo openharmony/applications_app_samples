@@ -232,16 +232,16 @@
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="5" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
-  <td x:str><a href="ETSUI/HealthyDiet">一多健康饮食</a></td>
-  <td x:str><a href="MultiDeviceAppDev/AdaptiveCapabilities">ArkTS多设备自适应能力</a></td>
-  <td x:str><a href="MultiDeviceAppDev/JsAdaptiveCapabilities">Js多设备自适应能力（Js）（API 8）</a></td>
-  <td x:str><a href="MultiDeviceAppDev/AppMarket">一多应用市场首页</a></td>
+  <td x:str><a href="MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合</a></td>
+  <td x:str><a href="MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合（Js）（API 8）</a></td>
+  <td x:str><a href="MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="MultiDeviceAppDev/MusicAlbum">一多音乐专辑主页</a></td>
-  <td x:str><a href="MultiDeviceAppDev/Weather">一多天气</a></td>
-  <td x:str><a href="MultiDeviceAppDev/Settings">一多设置</a></td>
-  <td x:str><a href="UI/JsAdaptivePortalPage">Js一多页面</a></td>
+  <td x:str><a href="MultiDeviceAppDev/AppMarket">典型页面场景：应用市场首页</a></td>
+  <td x:str><a href="MultiDeviceAppDev/MusicAlbum">典型页面场景：音乐专辑页</a></td>
+  <td x:str><a href="MultiDeviceAppDev/Settings">典型页面场景：设置应用页面</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>分布式</strong></td>
@@ -347,6 +347,7 @@
    </tr>
   <![endif]>
 </table>
+
 
 
 ## 目录<a name="sectionMenu"></a>
