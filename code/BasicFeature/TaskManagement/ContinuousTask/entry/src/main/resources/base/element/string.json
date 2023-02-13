@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "长时任务管理"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "长时任务管理"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "长时任务"
+    },
+    {
+      "name": "keep_running",
+      "value": "长时任务权限"
+    }
+  ]
+}

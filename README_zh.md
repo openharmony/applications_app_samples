@@ -49,7 +49,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="19" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="20" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="ability/FaModel">FA模型</a></td>
   <td x:str><a href="ability/StageModel">Stage模型</a></td>
@@ -145,11 +145,17 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>任务管理</strong></td>
+  <td rowspan="2" x:str><strong>任务管理</strong></td>
   <td x:str><a href="ResourcesSchedule/ReminderAgentManager">后台代理提醒</a></td>
   <td x:str><a href="ResourcesSchedule/WorkScheduler">延迟任务调度</a></td>
   <td x:str><a href="ResourcesSchedule/PlayMusicBackground">后台播放音乐</a></td>
   <td x:str><a href="ResourcesSchedule/Flybird">资源调度接口使用</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/TaskManagement/ContinuousTask">长时任务</a></td>
+  <td x:str><a href="code/BasicFeature/TaskManagement/TransientTask">短时任务</a></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备信息统计</strong></td>
@@ -205,7 +211,7 @@
   <td x:str><strong>网络与连接</strong></td>
   <td x:str><a href="Communication/Wlan">Wlan</a></td>
   <td x:str><a href="device/Bluetooth">蓝牙</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Connectivity/Upload">上传</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
