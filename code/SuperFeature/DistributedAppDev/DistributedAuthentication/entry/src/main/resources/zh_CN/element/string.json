@@ -1,12 +1,12 @@
 {
   "string": [
     {
-      "name": "app_name",
-      "value": "设备管理"
+      "name": "module_desc",
+      "value": "模块描述"
     },
     {
-      "name": "description_mainability",
-      "value": "eTSDeviceManger Ability"
+      "name": "entryAbility_label",
+      "value": "设备管理"
     },
     {
       "name": "refresh_device_list",

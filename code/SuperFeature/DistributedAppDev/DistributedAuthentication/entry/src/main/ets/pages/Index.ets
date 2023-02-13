@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,9 @@
 import { DeviceView } from '../components/DeviceView'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { DeviceDataModel } from '../model/DeviceDataModel'
+import Logger from '../model/Logger'
+
+const TAG = 'DeviceManagerIndexPage'
 
 @Entry
 @Component
@@ -26,11 +29,11 @@ struct Index {
   refreshDevice() {
     let self = this
     this.remoteDeviceModel.registerDeviceListCallback(() => {
-      console.info('[DeviceMnager.IndexPage] registerDeviceListCallback, callback entered')
+      Logger.info(TAG,'registerDeviceListCallback, callback entered')
       self.deviceList = []
       let deviceTempList = self.remoteDeviceModel.discoverList
       for (let i = 0; i < deviceTempList.length; i++) {
-        console.info(`[DeviceMnager.IndexPage] discoverList device ${i}/${deviceTempList.length}` +
+        Logger.info(TAG,`discoverList device ${i}/${deviceTempList.length}` +
         `deviceId=${deviceTempList[i].deviceId}, deviceName=${deviceTempList[i].deviceName}` +
         `deviceType=${deviceTempList[i].deviceType}`)
         self.deviceList.push({
@@ -42,7 +45,7 @@ struct Index {
       }
       deviceTempList = self.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTempList.length; i++) {
-        console.info(`[DeviceMnager.IndexPage] devicelist device ${i}/${deviceTempList.length}` +
+        Logger.info(TAG,`devicelist device ${i}/${deviceTempList.length}` +
         `deviceId=${deviceTempList[i].deviceId}, deviceName=${deviceTempList[i].deviceName}` +
         `deviceType=${deviceTempList[i].deviceType}`)
         self.deviceList.push({
@@ -62,7 +65,7 @@ struct Index {
   build() {
     Column() {
       Row() {
-        Text($r("app.string.app_name"))
+        Text($r("app.string.entryAbility_label"))
           .fontColor(Color.White)
           .fontSize(20)
       }
