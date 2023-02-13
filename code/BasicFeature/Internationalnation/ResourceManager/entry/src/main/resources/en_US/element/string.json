@@ -1,6 +1,18 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "etsResourceManager"
+    },
+    {
       "name": "entry_MainAbility",
       "value": "eTSResourceManager"
     },
@@ -30,11 +42,11 @@
     },
     {
       "name": "media",
-      "value": "Media:"
+      "value": "Media size:"
     },
     {
       "name": "media_base",
-      "value": "MediaBase64:"
+      "value": "MediaBase64 string length:"
     }
   ]
 }
