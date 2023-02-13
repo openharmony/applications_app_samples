@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,9 +56,10 @@ struct Index {
         .fontSize(20)
     }
     .key(isFullScreen + 'FullScreenShot')
+    .width('90%')
+    .height(50)
     .type(ButtonType.Capsule)
     .backgroundColor('#0D9FFB')
-    .size({ width: '90%', height: 50 })
     .margin(10)
     .backgroundColor('#0D9FFB')
     .onClick(() => {
