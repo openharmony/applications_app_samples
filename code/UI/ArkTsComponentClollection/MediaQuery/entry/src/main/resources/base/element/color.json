@@ -1,8 +1,12 @@
 {
   "color": [
     {
-      "name": "white",
+      "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "indexPage_color",
+      "value": "#F5F5F5"
     }
   ]
 }

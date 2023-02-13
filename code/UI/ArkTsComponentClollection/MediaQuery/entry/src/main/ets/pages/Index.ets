@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,16 +17,21 @@ import mediaQuery from '@ohos.mediaquery'
 import { TitleBar } from '../common/TitleBar'
 import { newsList, getNew } from '../model/New'
 import { NewView } from '../common/NewView'
+import Logger from '../model/Logger'
+import { NewsType } from '../model/DataModel'
+
+const TAG = 'MainIndex'
+const INDEXPAGE_BGCOLOR = '#F5F5F5'
 
 @Entry
 @Component
 struct Index {
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
-  @State currentNew: any = getNew(0)
+  @State currentNew: NewsType = getNew(0)
   @State isLand: boolean = false
 
   onLand(mediaQueryResult) {
-    console.info(`[eTSMediaQuery.Index]onLand: mediaQueryResult.matches=${mediaQueryResult.matches}`)
+    Logger.info(`${TAG} onLand: mediaQueryResult.matches=${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
       this.isLand = true
     } else {
@@ -45,7 +50,7 @@ struct Index {
         List() {
           ForEach(newsList, (item) => {
             ListItem() {
-              Column(){
+              Column() {
                 Text(item.title)
                   .width('100%')
                   .fontSize(22)
@@ -79,7 +84,7 @@ struct Index {
       }
       .layoutWeight(2)
       .height('100%')
-      .backgroundColor('#F5F5F5')
+      .backgroundColor($r('app.color.indexPage_color'))
 
       if (this.isLand) {
         NewView({ currentNew: $currentNew })

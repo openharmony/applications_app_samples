@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
-      "value": "eTSMediaQuery"
+      "name": "module_desc",
+      "value": "module description"
     },
     {
-      "name": "description_mainability",
-      "value": "eTS_Empty Ability"
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "MediaQuery"
     },
     {
       "name": "new_title1",
