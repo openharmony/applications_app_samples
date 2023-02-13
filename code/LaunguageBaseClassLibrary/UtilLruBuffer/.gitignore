@@ -3,6 +3,7 @@
 /.idea
 **/build
 /.hvigor
-/build-profile.json5
-/package-lock.json
-/entry/package-lock.json
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
