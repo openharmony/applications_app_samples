@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,6 @@
 import Logger from './src/main/ets/utils/Logger'
 import FileManager from './src/main/ets/filemanager/FileManager'
 import ThumbnailImage from './src/main/ets/filemanager/components/ThumbnailImage'
+import FileSystem from './src/main/ets/filemanager/fileio/FileIoManager'
 
-export { Logger, FileManager, ThumbnailImage }
-
+export { Logger, FileManager, ThumbnailImage, FileSystem }
