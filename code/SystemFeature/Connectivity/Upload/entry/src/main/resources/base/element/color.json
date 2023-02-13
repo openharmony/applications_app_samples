@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "gray",
+      "value": "#F7F7F7"
+    },
+    {
+      "name": "light_gray",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "medium_gray",
+      "value": "#B2B2B2"
+    },
+    {
+      "name": "green",
+      "value": "#08D168"
+    }
+  ]
+}
