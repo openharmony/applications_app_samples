@@ -1,6 +1,18 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FlipClock"
+    },
+    {
       "name": "entry_desc",
       "value": "description"
     },
@@ -35,6 +47,10 @@
     {
       "name": "minute",
       "value": "minute"
+    },
+    {
+      "name": "seconds",
+      "value": "seconds"
     },
     {
       "name": "yes",
@@ -82,15 +98,35 @@
     },
     {
       "name": "screenLight",
-      "value": "屏幕常亮"
+      "value": "steady on screen"
     },
     {
       "name": "fullScreen",
-      "value": "全屏"
+      "value": "full screen"
     },
     {
       "name": "brightness",
-      "value": "亮度"
+      "value": "brightness"
+    },
+    {
+      "name": "screen_quenching",
+      "value": "screen quenching"
+    },
+    {
+      "name": "tab0",
+      "value": "clock"
+    },
+    {
+      "name": "tab1",
+      "value": "alarm clock"
+    },
+    {
+      "name": "tab2",
+      "value": "countdown"
+    },
+    {
+      "name": "tab3",
+      "value": "set"
     }
   ]
 }

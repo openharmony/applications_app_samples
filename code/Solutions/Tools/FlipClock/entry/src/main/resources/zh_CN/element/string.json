@@ -1,0 +1,132 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FlipClock"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "FlipClock"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "FlipClock"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "alarmClock",
+      "value": "闹钟"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "hour",
+      "value": "时"
+    },
+    {
+      "name": "minute",
+      "value": "分"
+    },
+    {
+      "name": "seconds",
+      "value": "秒"
+    },
+    {
+      "name": "yes",
+      "value": "是"
+    },
+    {
+      "name": "no",
+      "value": "否"
+    },
+    {
+      "name": "init_output",
+      "value": "当睡眠锁关闭时，屏幕可以定期停止"
+    },
+    {
+      "name": "control_sleepLock",
+      "value": "控制系统休眠的锁"
+    },
+    {
+      "name": "search_support",
+      "value": "查询系统是否支持休眠锁定"
+    },
+    {
+      "name": "sleepLockSwitch",
+      "value": "Sleep lock switch"
+    },
+    {
+      "name": "timingout_screen",
+      "value": "5S后定期关闭屏幕"
+    },
+    {
+      "name": "supportLock",
+      "value": "系统支持锁功能，防止系统休眠"
+    },
+    {
+      "name": "unsupportLock",
+      "value": "本系统不支持防止系统休眠的锁"
+    },
+    {
+      "name": "stopSleep",
+      "value": "睡眠锁已打开，无法定期关闭屏幕"
+    },
+    {
+      "name": "turnSleep",
+      "value": "锁已解锁，5S后可定时关闭屏幕"
+    },
+    {
+      "name": "screenLight",
+      "value": "屏幕常亮"
+    },
+    {
+      "name": "fullScreen",
+      "value": "全屏"
+    },
+    {
+      "name": "brightness",
+      "value": "亮度"
+    },
+    {
+      "name": "screen_quenching",
+      "value": "熄屏"
+    },
+    {
+      "name": "tab0",
+      "value": "时钟"
+    },
+    {
+      "name": "tab1",
+      "value": "闹钟"
+    },
+    {
+      "name": "tab2",
+      "value": "倒计时"
+    },
+    {
+      "name": "tab3",
+      "value": "设置"
+    }
+  ]
+}
