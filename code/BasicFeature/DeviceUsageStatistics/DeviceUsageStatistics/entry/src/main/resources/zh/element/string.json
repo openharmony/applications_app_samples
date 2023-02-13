@@ -23,6 +23,18 @@
     {
       "name": "application_last_used",
       "value": "应用上一次使用时间:"
+    },
+    {
+      "name": "hour",
+      "value": "时"
+    },
+    {
+      "name": "minute",
+      "value": "分"
+    },
+    {
+      "name": "second",
+      "value": "秒"
     }
   ]
 }
