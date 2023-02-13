@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "eTSUtilScope",
-      "value": "eTSUtilScope"
+      "name": "module_desc",
+      "value": "module description"
     },
     {
-      "name": "description_mainability",
-      "value": "ETS_Empty Ability"
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "eTSUtilScope"
     },
     {
       "name": "age",
