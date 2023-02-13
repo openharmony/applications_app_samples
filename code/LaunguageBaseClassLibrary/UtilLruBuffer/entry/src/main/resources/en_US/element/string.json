@@ -1,6 +1,18 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "UtilLruBuffer"
+    },
+    {
       "name": "app_name",
       "value": "eTSUtilLruBuffer"
     },
@@ -26,23 +38,23 @@
     },
     {
       "name": "add_key_value",
-      "value": "Add key-value pair"
+      "value": "Add key value pair"
     },
     {
       "name": "get_value_with_key",
-      "value": "Get value of key"
+      "value": "Get value with key"
     },
     {
       "name": "get_all_key_values",
-      "value": "Get all key-value pairs"
+      "value": "Get all key-values"
     },
     {
       "name": "delete_key_and_value",
-      "value": "Delete key and value"
+      "value": "Delete the value of key"
     },
     {
       "name": "clear_all_key_values",
-      "value": "Clear all key-value pairs"
+      "value": "Clear all key-values"
     },
     {
       "name": "view_operation_record",

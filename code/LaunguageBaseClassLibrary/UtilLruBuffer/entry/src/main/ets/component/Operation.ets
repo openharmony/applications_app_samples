@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 
 import util from '@ohos.util'
 import { ActionSheetDialog } from '../component/ActionSheetDialog'
+import Logger from '../model/Logger'
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
@@ -85,21 +86,21 @@ class MyDataSource extends BasicDataSource {
 
 const TAG = 'LruBuffer.Operation'
 let buffer = null
-let self = null
+let self = null // this指向
 
 @Component
 export struct Operation {
   private operation: Array<any> = [
-    $r('app.string.initialize_buffer'),
-    $r('app.string.get_buffer_capacity'),
-    $r('app.string.update_buffer_capacity'),
-    $r('app.string.get_buffer_string'),
-    $r('app.string.add_key_value'),
-    $r('app.string.get_value_with_key'),
-    $r('app.string.get_all_key_values'),
-    $r('app.string.delete_key_and_value'),
-    $r('app.string.clear_all_key_values'),
-    $r('app.string.view_operation_record'),
+  $r('app.string.initialize_buffer'),
+  $r('app.string.get_buffer_capacity'),
+  $r('app.string.update_buffer_capacity'),
+  $r('app.string.get_buffer_string'),
+  $r('app.string.add_key_value'),
+  $r('app.string.get_value_with_key'),
+  $r('app.string.get_all_key_values'),
+  $r('app.string.delete_key_and_value'),
+  $r('app.string.clear_all_key_values'),
+  $r('app.string.view_operation_record'),
   ]
   private isGet: boolean = true
   @State actionSheets: Array<string> = []
@@ -113,9 +114,9 @@ export struct Operation {
     autoCancel: true
   })
 
-  randomString(length) {
-    length = length || 32
-    let string = 'abcdefhijkmnprstwxyz123456789'
+  randomString(length: number) {
+    length = length || 32 // 随机设置字符串长度为32
+    let string = 'abcdefhijkmnprstwxyz123456789' // 声明一个默认字符串
     let maxLength = string.length
     let resultString = ''
     for (let i = 0; i < length; i++) {
@@ -125,7 +126,7 @@ export struct Operation {
   }
 
   action(key) {
-    console.info(TAG + 'action:key=' + key)
+    Logger.info(TAG, `action:key=${key}`)
     if (self.isGet) {
       if (buffer.contains(key)) {
         let value = buffer.get(key)
@@ -149,10 +150,10 @@ export struct Operation {
   }
 
   doOperation(index) {
-    console.info(TAG + ' doOperation index:' + index)
+    Logger.info(TAG, `doOperation index:${index}`) // index指的是循环数据的index值
     switch (index) {
       case 0:
-        console.info(TAG + ' case 0:')
+        Logger.info(TAG, ' case 0:')
         buffer = new util.LruBuffer()
         this.resultText = 'create LruBuffer success'
         break
@@ -160,14 +161,14 @@ export struct Operation {
         this.resultText = `capacity = ${buffer.getCapacity()}`
         break
       case 2:
-        buffer.updateCapacity(100)
+        buffer.updateCapacity(100) // 将缓冲区容量更新为指定容量100
         this.resultText = `update capacity success,capacity=${buffer.getCapacity()}`
         break
       case 3:
         this.resultText = buffer.toString()
         break
       case 4:
-        buffer.put(this.randomString(3), this.randomString(5))
+        buffer.put(this.randomString(3), this.randomString(5)) // 随机生成字符串的长度分别为3和5
         this.resultText = 'put key-value success'
         break
       case 5:
@@ -201,20 +202,19 @@ export struct Operation {
   }
 
   aboutToAppear() {
-    console.info(TAG + ' aboutToAppear')
+    Logger.info(TAG, 'aboutToAppear')
     self = this
   }
 
   build() {
     Column() {
-      GridRow({columns:12,gutter:{x:2,y:5},
-      breakpoints:{value:["400vp","600vp","800vp"],reference:BreakpointsReference.WindowSize},
-      direction:GridRowDirection.Row
-      })
-      {
+      GridRow({ columns: 12, gutter: { x: 2, y: 5 },
+        breakpoints: { value: ["400vp", "600vp", "800vp"], reference: BreakpointsReference.WindowSize },
+        direction: GridRowDirection.Row
+      }) {
         LazyForEach(new MyDataSource(this.operation), (item, index) => {
-          GridCol({span:{xs:6,sm:6,md:4,lg:3}}){
-            Row(){
+          GridCol({ span: { xs: 6, sm: 6, md: 4, lg: 3 } }) {
+            Row() {
               Button() {
                 Text(item)
                   .fontSize(16)
@@ -225,7 +225,7 @@ export struct Operation {
               .type(ButtonType.Capsule)
               .margin({ right: 10, top: 10 })
               .onClick(() => {
-                console.info(TAG + ' Click index:' + item.id)
+                Logger.info(TAG, `Click index:${item.id}`)
                 if (index !== 0 && buffer === null) {
                   this.resultText = 'Click the first button and then operate'
                   return

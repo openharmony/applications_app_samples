@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+const TITLE_BGCOLOR = '#0D9FFB'
 
 @Component
 export struct TitleBar {
@@ -23,6 +24,6 @@ export struct TitleBar {
     }
     .width('100%').height(50)
     .padding({ left: 15 })
-    .backgroundColor('#0D9FFB')
+    .backgroundColor(TITLE_BGCOLOR)
   }
 }
