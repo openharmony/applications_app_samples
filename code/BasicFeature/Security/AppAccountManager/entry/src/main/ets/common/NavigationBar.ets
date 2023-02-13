@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -74,7 +74,7 @@ export struct NavigationBar {
             .fontSize(18)
             .fontColor(Color.White)
             .textAlign(TextAlign.Start)
-            .margin({ right: '5%', top: '15%' })
+            .margin({ right: '5%' })
         }
         .height('8%')
         .width('100%')

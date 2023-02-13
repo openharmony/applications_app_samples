@@ -4,7 +4,7 @@
 
 本示例基于H5游戏，通过arkui的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。
 
-> 本例的H5游戏页面，由[https://yangyunhe369.github.io/h5-game-blockBreaker/](https://yangyunhe369.github.io/h5-game-blockBreaker/)提供
+> 本例的H5游戏页面，由https://yangyunhe369.github.io/h5-game-blockBreaker/ 提供
 
 ![](screenshots/device/main.jpg)
 
@@ -28,6 +28,6 @@ NA
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，从API version 9开始支持。
+2.本示例仅支持API9版本SDK，版本号：3.2.9.2。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。

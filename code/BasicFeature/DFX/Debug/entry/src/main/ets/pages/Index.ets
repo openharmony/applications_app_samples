@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -60,10 +60,10 @@ struct Index {
 
       // 显示Debug信息窗口
       DebugInfo({
-        pssMemory: this.pssMemory,
-        sharedMemory: this.sharedMemory,
+        pssMemory: $pssMemory,
+        sharedMemory: $sharedMemory,
         debugWindow: this.debugWindow,
-        privateMemory: this.privateMemory
+        privateMemory: $privateMemory
       })
     }
     .width('100%')
