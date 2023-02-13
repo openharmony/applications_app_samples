@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,21 +25,21 @@ class LoggerModel {
     this.domain = 0xFF00
   }
 
-  debug(...args: any[]) {
+  debug(...args: string[]) {
     hilog.debug(this.domain, this.prefix, this.format, args)
   }
 
-  info(...args: any[]) {
+  info(...args: string[]) {
     hilog.info(this.domain, this.prefix, this.format, args)
   }
 
-  warn(...args: any[]) {
+  warn(...args: string[]) {
     hilog.warn(this.domain, this.prefix, this.format, args)
   }
 
-  error(...args: any[]) {
+  error(...args: string[]) {
     hilog.error(this.domain, this.prefix, this.format, args)
   }
 }
 
-export let Logger = new LoggerModel('[Sample_OrangeShopping]')
+export let Logger = new LoggerModel('[Sample_rpc]')
