@@ -1,7 +1,15 @@
 {
   "string": [
     {
-      "name": "app_name",
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
       "value": "eTSDeviceManger"
     },
     {

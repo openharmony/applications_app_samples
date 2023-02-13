@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,15 +13,17 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+import Logger from '../model/Logger'
 
-const SUBSCRIBE_ID = 100
+const TAG = 'RemoteDeviceModel'
+const SUBSCRIBE_ID = 100 // 发现标识，用于标识不同的发现周期
 
 export class RemoteDeviceModel {
   deviceList: Array<any> = []
   discoverList: Array<any> = []
   callback
-  deviceManager
+  public deviceManager: deviceManager.DeviceManager
 
   constructor() {
   }
@@ -31,23 +33,26 @@ export class RemoteDeviceModel {
       this.registerDeviceListCallbackImplement(callback)
       return
     }
-    console.log('[DeviceMnager.RemoteDeviceModel] deviceManager.createDeviceManager begin')
-    let self = this
-    deviceManager.createDeviceManager('ohos.samples.etsdevicemanager', (error, value) => {
-      if (error) {
-        console.error('[DeviceMnager.RemoteDeviceModel] createDeviceManager failed.')
-        return;
-      }
-      self.deviceManager = value
-      self.registerDeviceListCallbackImplement(callback)
-      console.log('[DeviceMnager.RemoteDeviceModel] createDeviceManager callback returned, error=' + error + ' value=' + value)
-    });
-    console.log('[DeviceMnager.RemoteDeviceModel] deviceManager.createDeviceManager end')
+    Logger.info(TAG, 'deviceManager.createDeviceManager begin')
+    try {
+      deviceManager.createDeviceManager('ohos.samples.devicemanager', (error, value) => {
+        if (error) {
+          Logger.error(TAG, 'createDeviceManager failed.')
+          return;
+        }
+        this.deviceManager = value
+        this.registerDeviceListCallbackImplement(callback)
+        Logger.info(TAG, `createDeviceManager callback returned, error= ${error} value= ${value}`)
+      });
+    } catch (err) {
+      Logger.error(TAG, `createDeviceManager failed, code is ${err.code}, message is ${err.message}`)
+    }
+    Logger.info(TAG, 'deviceManager.createDeviceManager end')
   }
 
   deviceStateChangeActionOnline(device) {
     this.deviceList[this.deviceList.length] = device
-    console.info('[DeviceMnager.RemoteDeviceModel] online, device list=' + JSON.stringify(this.deviceList))
+    Logger.info(TAG, `device list=${JSON.stringify(this.deviceList)}`)
     for (let i = this.discoverList.length - 1; i >= 0; i--) {
       if (this.discoverList[i].deviceId != device.deviceId) {
         this.discoverList.splice(i, 1)
@@ -64,7 +69,7 @@ export class RemoteDeviceModel {
   }
 
   deviceStateChangeActionOffline(device) {
-    console.info('[DeviceMnager.RemoteDeviceModel] offline, this.deviceList.length=' + this.deviceList.length)
+    Logger.info(TAG, `this.deviceList.length=${this.deviceList.length}`)
     let list = []
     for (let i = 0; i < this.deviceList.length; i++) {
       if (this.deviceList[i].deviceId !== device.deviceId) {
@@ -72,42 +77,42 @@ export class RemoteDeviceModel {
       }
     }
     this.deviceList = list
-    console.info('[DeviceMnager.RemoteDeviceModel] offline, device list=' + JSON.stringify(this.deviceList))
+    Logger.info(TAG, `device list=${JSON.stringify(this.deviceList)}`)
     this.callback()
   }
 
   registerDeviceListCallbackImplement(callback) {
-    console.info('[DeviceMnager.RemoteDeviceModel] registerDeviceListCallback')
+    Logger.info(TAG, 'registerDeviceListCallback')
     this.callback = callback
     if (this.deviceManager === undefined) {
-      console.error('[DeviceMnager.RemoteDeviceModel] deviceManager has not initialized')
+      Logger.error(TAG, 'deviceManager has not initialized')
       this.callback()
       return
     }
-    console.info('[DeviceMnager.RemoteDeviceModel] getTrustedDeviceListSync begin')
+    Logger.info(TAG, 'getTrustedDeviceListSync begin')
     let list = this.deviceManager.getTrustedDeviceListSync()
-    console.info('[DeviceMnager.RemoteDeviceModel] getTrustedDeviceListSync end, deviceList=' + JSON.stringify(list))
+    Logger.info(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
     if (typeof (list) != 'undefined' && typeof (list.length) != 'undefined') {
       this.deviceList = list
     }
     this.callback()
-    console.info('[DeviceMnager.RemoteDeviceModel] callback finished');
+    Logger.info(TAG, 'callback finished');
     let self = this
     this.deviceManager.on('deviceStateChange', (data) => {
       if (data == null) {
         return
       }
-      console.info('[DeviceMnager.RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data))
+      Logger.info(TAG, `deviceStateChange data=${JSON.stringify(data)}`)
       switch (data.action) {
         case deviceManager.DeviceStateChangeAction.ONLINE:
-          console.info('[DeviceMnager.RemoteDeviceModel] deviceStateChange ONLINE')
+          Logger.info(TAG, 'deviceStateChange ONLINE')
           self.deviceStateChangeActionOnline(data.device)
           break
         case deviceManager.DeviceStateChangeAction.READY:
-          console.info('[DeviceMnager.RemoteDeviceModel] deviceStateChange READY')
+          Logger.info(TAG, 'deviceStateChange READY')
           break
         case deviceManager.DeviceStateChangeAction.OFFLINE:
-          console.info('[DeviceMnager.RemoteDeviceModel] deviceStateChange OFFLINE')
+          Logger.info(TAG, 'deviceStateChange OFFLINE')
           self.deviceStateChangeActionOffline(data.device)
           break
         default:
@@ -118,14 +123,14 @@ export class RemoteDeviceModel {
       if (data == null) {
         return
       }
-      console.info('[DeviceMnager.RemoteDeviceModel] deviceFound data=' + JSON.stringify(data))
+      Logger.info(TAG, `deviceFound data=${JSON.stringify(data)}`)
       self.deviceFound(data)
     })
     this.deviceManager.on('discoverFail', (data) => {
-      console.info('[DeviceMnager.RemoteDeviceModel] discoverFail data=' + JSON.stringify(data))
+      Logger.info(TAG, `discoverFail data=${JSON.stringify(data)}`)
     })
     this.deviceManager.on('serviceDie', () => {
-      console.error('[DeviceMnager.RemoteDeviceModel] serviceDie')
+      Logger.error(TAG, 'serviceDie')
     })
     this.startDeviceDiscovery()
   }
@@ -133,12 +138,12 @@ export class RemoteDeviceModel {
   deviceFound(data) {
     for (let i = 0;i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId == data.device.deviceId) {
-        console.info('[DeviceMnager.RemoteDeviceModel] device founded ignored')
+        Logger.info(TAG, 'device founded ignored')
         return
       }
     }
     this.discoverList[this.discoverList.length] = data.device
-    console.info('[DeviceMnager.RemoteDeviceModel] deviceFound self.discoverList=' + this.discoverList)
+    Logger.info(TAG, `deviceFound self.discoverList=${this.discoverList}`)
     this.callback()
   }
 
@@ -146,18 +151,22 @@ export class RemoteDeviceModel {
     let info = {
       subscribeId: SUBSCRIBE_ID,
       mode: 0xAA,
-      medium: 2,
-      freq: 2,
+      medium: 2, // WiFi发现类型
+      freq: 2, // 表示发现高频率的枚举
       isSameAccount: false,
       isWakeRemote: true,
-      capability: 0
+      capability: 0 // 表示发现DDMP能力的枚举
     }
-    console.info('[DeviceMnager.RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID)
-    this.deviceManager.startDeviceDiscovery(info)
+    Logger.info(TAG, `startDeviceDiscovery${SUBSCRIBE_ID}`)
+    try {
+      this.deviceManager.startDeviceDiscovery(info)
+    } catch (err) {
+      Logger.error(`startDeviceDiscovery failed, code is ${err.code}, message is ${err.message}`)
+    }
   }
 
   unregisterDeviceListCallback() {
-    console.info('[DeviceMnager.RemoteDeviceModel] stopDeviceDiscovery ' + SUBSCRIBE_ID)
+    Logger.info(TAG, `stopDeviceDiscovery${SUBSCRIBE_ID}`)
     this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID)
     this.deviceManager.off('deviceStateChange')
     this.deviceManager.off('deviceFound')
@@ -168,30 +177,34 @@ export class RemoteDeviceModel {
   }
 
   authenticateDevice(device) {
-    console.info('[DeviceMnager.RemoteDeviceModel] authenticateDevice ' + JSON.stringify(device))
+    Logger.info(TAG, `authenticateDevice${JSON.stringify(device)}`)
     for (let i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId != device.deviceId) {
         continue
       }
       let extraInfo = {
-        'targetPkgName': 'ohos.samples.etsdevicemanager',
+        'targetPkgName': 'ohos.samples.devicemanager',
         'appName': 'eTSDeviceManger',
         'appDescription': 'eTSDeviceManger Ability',
         'business': '0'
       }
       let authParam = {
-        'authType': 1,
+        'authType': 1, // 认证类型
         'appIcon': '',
         'appThumbnail': '',
         'extraInfo': extraInfo
       }
-      this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
-        if (err) {
-          console.info('[DeviceMnager.RemoteDeviceModel] authenticateDevice error:' + JSON.stringify(err))
-          return
-        }
-        console.info('[DeviceMnager.RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data))
-      })
+      try {
+        this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
+          if (err) {
+            Logger.info(TAG, `authenticateDevice error:${JSON.stringify(err)}`)
+            return
+          }
+          Logger.info(TAG, `authenticateDevice succeed:${JSON.stringify(data)}`)
+        })
+      } catch (err) {
+        Logger.info(JSON.stringify(err))
+      }
     }
   }
 }

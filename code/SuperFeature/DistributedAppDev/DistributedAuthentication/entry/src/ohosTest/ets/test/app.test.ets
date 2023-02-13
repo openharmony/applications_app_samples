@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import featureAbility from '@ohos.ability.featureAbility';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog';
 
 const BUNDLE = 'DeviceManager'
@@ -29,12 +29,11 @@ export default function appTest() {
     it(BUNDLE + '_startAbility', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
       let parameter = {
-        "want": {
-          bundleName: "ohos.samples.etsdevicemanager",
-          abilityName: "ohos.samples.etsdevicemanager.MainAbility"
-        }
+        bundleName: "ohos.samples.devicemanager",
+        abilityName: "EntryAbility"
       }
-      await featureAbility.startAbility(parameter, (err, data) => {
+      let abilityDelegator: any = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(parameter, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
         expect(0).assertEqual(err.code)
         done()
