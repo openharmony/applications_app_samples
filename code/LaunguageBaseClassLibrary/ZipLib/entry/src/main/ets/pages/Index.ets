@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,15 +15,15 @@
 
 import zlib from '@ohos.zlib'
 import fileio from '@ohos.fileio'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import Logger from '../model/Logger'
-import storage from '@ohos.data.storage'
+import data_preferences from '@ohos.data.preferences'
 import { AddDialog } from '../common/AddDialog'
-import featureAbility from '@ohos.ability.featureAbility'
-import { ZipLibSource } from "../model/DataSource"
+import { ZipLibSource } from '../model/DataSource'
+import context from '@ohos.application.context'
 
 const TAG: string = '[Index]'
-let fileList: storage.Storage = null
+let fileList: data_preferences.Preferences = null
 
 @Entry
 @Component
@@ -39,7 +39,7 @@ struct Index {
       fileName: this.fileName,
       fileContent: this.fileContent,
       isInserted: this.isInserted,
-      createFile: (isInserted: boolean, fileName: string, fileContent: string) => {
+      createFile: async (isInserted: boolean, fileName: string, fileContent: string) => {
         Logger.info(TAG, `enter the createFile`)
         this.fileName = `${fileName}.txt`
         let isDuplication = this.files['fileData'].includes(this.fileName)
@@ -52,27 +52,24 @@ struct Index {
         Logger.info(TAG, `fd = ${fd} number = ${number}`)
         this.files.pushData(this.fileName)
         Logger.info(TAG, `this.files = ${JSON.stringify(this.files['fileData'])}`)
-        fileList.putSync('fileName', JSON.stringify(this.files['fileData']))
-        fileList.flushSync()
+        await fileList.put('fileName', JSON.stringify(this.files['fileData']))
+        await fileList.flush()
       }
     }),
     autoCancel: true,
     alignment: DialogAlignment.Default
   })
 
-  aboutToAppear() {
-    let context = featureAbility.getContext()
-    context.getFilesDir().then((path) => {
-      this.path = path
-      Logger.info(TAG, `path = ${this.path}`)
-      fileList = storage.getStorageSync(`${this.path}/fileList`)
-      let value = fileList.getSync('fileName', '')
-      this.files['fileData'] = JSON.parse(`${value}`)
-      this.files.notifyDataReload()
-    })
+  async aboutToAppear() {
+    fileList = await data_preferences.getPreferences(getContext(this), 'fileList')
+    let ctx = getContext(this) as context.Context
+    this.path = ctx.filesDir
+    let value = await fileList.get('fileName', '')
+    this.files['fileData'] = JSON.parse(`${value}`)
+    this.files.notifyDataReload()
   }
 
-  zipHandler(path: string, fileName: string) {
+  async zipHandler(path: string, fileName: string): Promise<void> {
     let zipFile = `${path}/${fileName}`
     Logger.debug(TAG, `zipFile = ${zipFile}`)
     let tempName = fileName.split('.')
@@ -87,7 +84,7 @@ struct Index {
     }
     if (this.files['fileData'].includes(newName)) {
       prompt.showToast({
-        message: `已存在压缩文件，压缩失败`
+        message: $r('app.string.warning_failed')
       })
       return
     }
@@ -95,20 +92,20 @@ struct Index {
       zlib.zipFile(zipFile, zipOutFile, options).then(data => {
         Logger.info(TAG, `data = ${JSON.stringify(data)}`)
         prompt.showToast({
-          message: `文件压缩完成`
+          message: $r('app.string.tip_complete')
         })
         this.files.pushData(`${newName}`)
       })
     } catch {
       prompt.showToast({
-        message: `文件压缩失败`
+        message: $r('app.string.warning_failure')
       })
     }
-    fileList.putSync('fileName', JSON.stringify(this.files['fileData']))
-    fileList.flushSync()
+    await fileList.put('fileName', JSON.stringify(this.files['fileData']))
+    await fileList.flush()
   }
 
-  unzipHandler(path: string, fileName: string) {
+  async unzipHandler(path: string, fileName: string): Promise<void> {
     let zipFile = `${path}/${fileName}`
     Logger.debug(TAG, `zipFile = ${zipFile}`)
     let tempName = fileName.split('.')
@@ -117,7 +114,7 @@ struct Index {
     Logger.debug(TAG, `zipOutFile = ${zipOutFile}`)
     if (this.files['fileData'].includes(newName)) {
       prompt.showToast({
-        message: '已存在同名压缩文件，解压失败'
+        message: $r('app.string.warning_failed')
       })
       return
     }
@@ -131,11 +128,11 @@ struct Index {
       Logger.info(TAG, `data = ${JSON.stringify(data)}`)
     })
     prompt.showToast({
-      message: `文件解压完成`
+      message: $r('app.string.tip_complete')
     })
     this.files.pushData(`${newName}`)
-    fileList.putSync('fileName', JSON.stringify(this.files['fileData']))
-    fileList.flushSync()
+    await fileList.put('fileName', JSON.stringify(this.files['fileData']))
+    await fileList.flush()
   }
 
   build() {
@@ -148,7 +145,7 @@ struct Index {
             .fontSize(28)
 
           Button() {
-            Image($r("app.media.add"))
+            Image($r('app.media.add'))
               .height(45).width('100%')
               .objectFit(ImageFit.Contain)
               .align(Alignment.End)
@@ -156,7 +153,7 @@ struct Index {
           .key('addFileBtn')
           .width('10%')
           .type(ButtonType.Normal)
-          .backgroundColor('#0D9FFB')
+          .backgroundColor($r('app.color.button_bg'))
           .align(Alignment.End)
           .onClick(() => {
             this.dialogController.open()
@@ -166,7 +163,7 @@ struct Index {
         .height('8%')
         .constraintSize({ minHeight: 70 })
         .padding({ left: 10, right: 10 })
-        .backgroundColor('#0D9FFB')
+        .backgroundColor($r('app.color.button_bg'))
 
         List({ space: 20, initialIndex: 0 }) {
           LazyForEach(this.files, (item) => {
@@ -198,7 +195,7 @@ struct Index {
             .borderRadius(10)
             .margin({ top: '1%', left: '2.5%' })
             .align(Alignment.Center)
-            .backgroundColor('#FFFFFF')
+            .backgroundColor(Color.White)
           }, item => item)
         }
         .width('100%')
@@ -206,7 +203,7 @@ struct Index {
       }
       .height('100%')
       .width('100%')
-      .backgroundColor('#eeeeee')
+      .backgroundColor($r('app.color.index_bg'))
     }
   }
 }
