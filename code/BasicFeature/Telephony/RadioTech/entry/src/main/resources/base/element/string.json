@@ -1,12 +1,24 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "RadioTech"
+    },
+    {
       "name": "entry_MainAbility",
-      "value": "eTSRadioTech"
+      "value": "RadioTech"
     },
     {
       "name": "description_mainability",
-      "value": "eTS_Empty Ability"
+      "value": "Empty Ability"
     }
   ]
 }
