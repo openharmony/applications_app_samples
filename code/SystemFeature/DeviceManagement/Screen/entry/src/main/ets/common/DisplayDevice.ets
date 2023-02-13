@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,6 @@ import display from '@ohos.display'
 import Logger from '../model/Logger'
 import { ShowInfo } from '../common/ShowInfo'
 import { DisplayModel } from '../model/DisplayModel'
-
 const TAG: string = '[DisplayDevice]'
 
 @Component
@@ -98,7 +97,7 @@ export struct DisplayDevice {
               Logger.info(TAG, `defaultOrAllScreen = ${this.defaultOrAllScreen}`)
               this.dialogController.open()
             })
-        }, item => item.toString())
+        })
       }
       .margin({ top: 10, bottom: '8%' })
 
