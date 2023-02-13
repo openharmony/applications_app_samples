@@ -36,7 +36,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td width="140" align="center" rowspan="2" style='height:27.00pt' x:str><strong>UI</strong></td>
   <td width="170" x:str><strong>声明式开发范式</strong></td>
-  <td width="170" x:str><a href="ETSUI/CustomComponent">ArkTS组件集</a></td>
+  <td width="170" x:str><a href="ETSUI/ComponentCollection">ArkTS组件集</a></td>
   <td width="170" x:str><a href="ETSUI/MediaQuery">媒体查询</a></td>
   <td width="170"></td>
   <td width="170"></td>
@@ -180,7 +180,7 @@
   <td x:str></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="7" style='height:67.50pt;' x:str><strong>系统特性（Full SDK）</strong></td>
+  <td height="90" align="center" rowspan="8" style='height:67.50pt;' x:str><strong>系统特性（Full SDK）</strong></td>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="ability/Launcher">仿桌面应用</a></td>
   <td x:str><a href="ability/MissionManager">任务管理</a></td>
@@ -191,6 +191,14 @@
   <td x:str><strong>媒体</strong></td>
   <td x:str><a href="Basic/Screenshot">截屏</a></td>
   <td x:str><a href="media/ScreenRecorder">录屏</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ </tr>
+  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>安全</strong></td>
+  <td x:str><a href="Safety/AbilityAccessCtrl">应用访问权限控制</a></td>
+  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -228,7 +236,6 @@
   <td ></td>
   <td ></td>
   <td ></td>
- </tr>
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="5" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
