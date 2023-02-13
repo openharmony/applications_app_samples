@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Flip Clock"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "Flip Clock"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "alarmClock",
+      "value": "Alarm"
+    },
+    {
+      "name": "delete",
+      "value": "Delete"
+    },
+    {
+      "name": "hour",
+      "value": "Hour"
+    },
+    {
+      "name": "minute",
+      "value": "Minute"
+    },
+    {
+      "name": "yes",
+      "value": "OK"
+    },
+    {
+      "name": "no",
+      "value": "Cancel"
+    },
+    {
+      "name": "init_output",
+      "value": "The wake lock is disabled. The screen will be turned off at the specified time."
+    },
+    {
+      "name": "control_sleepLock",
+      "value": "A lock used to prevent the system from sleeping."
+    },
+    {
+      "name": "search_support",
+      "value": "Check whether the system supports the wake lock."
+    },
+    {
+      "name": "sleepLockSwitch",
+      "value": "Wake lock switch"
+    },
+    {
+      "name": "timingout_screen",
+      "value": "The screen will be turned off in 5s."
+    },
+    {
+      "name": "supportLock",
+      "value": "The system supports the wake lock."
+    },
+    {
+      "name": "unsupportLock",
+      "value": "The system does not support the wake lock."
+    },
+    {
+      "name": "stopSleep",
+      "value": "The wake lock is enabled. The screen will not be turned off at the specified time."
+    },
+    {
+      "name": "turnSleep",
+      "value": "The wake lock is disabled. The screen will be turned off in 5s."
+    },
+    {
+      "name": "screenLight",
+      "value": "Steady on"
+    },
+    {
+      "name": "fullScreen",
+      "value": "Full screen"
+    },
+    {
+      "name": "brightness",
+      "value": "Brightness"
+    }
+  ]
+}

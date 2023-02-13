@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
+      "name": "broadcast",
+      "value": "live"
+    },
+    {
+      "name": "money",
+      "value": "￥"
+    },
+    {
+      "name": "share",
+      "value": "share"
+    },
+    {
+      "name": "collection",
+      "value": "collect"
+    },
+    {
+      "name": "price_reduction_notice",
+      "value": "discount notice"
+    },
+    {
+      "name": "selected",
+      "value": "selected"
+    },
+    {
+      "name": "shopping",
+      "value": "orange shopping"
+    },
+    {
+      "name": "send_to",
+      "value": "send to"
+    },
+    {
+      "name": "select_address",
+      "value": "Please select your harvesting address"
+    },
+    {
+      "name": "service",
+      "value": "Serve"
+    },
+    {
+      "name": "free_hipping",
+      "value": "free shipping"
+    },
+    {
+      "name": "store_delivery",
+      "value": "Store delivery"
+    },
+    {
+      "name": "return_goods",
+      "value": "7 days no reason to return"
+    },
+    {
+      "name": "home_page",
+      "value": "front page"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "add_to_cart",
+      "value": "add to Shopping Cart"
+    },
+    {
+      "name": "buy_now",
+      "value": "buy now"
+    },
+    {
+      "name": "evaluate",
+      "value": "User Reviews (20,000+)"
+    },
+    {
+      "name": "ninety_nine_percent",
+      "value": "99%"
+    },
+    {
+      "name": "praise",
+      "value": "Praise"
+    },
+    {
+      "name": "deliver_to",
+      "value": "deliver to"
+    },
+    {
+      "name": "current_positioning",
+      "value": "Orientation/History Visit Cities"
+    },
+    {
+      "name": "hangzhou",
+      "value": "Hangzhou"
+    },
+    {
+      "name": "domestic_hot_city",
+      "value": "Popular cities in China"
+    },
+    {
+      "name": "select_configuration",
+      "value": "Midsummer Purple.8GB+128GB.4G full Netcom. Official website standard.x1 4G full Netcom official website standard.x1"
+    },
+    {
+      "name": "address",
+      "value": "Please select your harvesting address"
+    },
+    {
+      "name": "recommend",
+      "value": "Recommend a good thing for you, please check"
+    },
+    {
+      "name": "commodity",
+      "value": "HUAWEI P50 Pocket Hyperspectral Photography System Innovative dual-screen operation experience 120Hz high refresh rate 8GB+256GB"
+    },
+    {
+      "name": "subscribe_notice",
+      "value": "Subscribed to price reduction notice"
+    },
+    {
+      "name": "close",
+      "value": "close"
+    },
+    {
+      "name": "go_to_view",
+      "value": "Go to view"
+    },
+    {
+      "name": "reduction_notice",
+      "value": "The price of the product you are subscribed to has been reduced, please go to check it out."
+    },
+    {
+      "name": "shopping_advertising",
+      "value": "Low prices are prioritized to save you money"
+    }
+  ]
+}

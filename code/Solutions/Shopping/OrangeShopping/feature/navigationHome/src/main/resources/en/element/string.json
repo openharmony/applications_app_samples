@@ -1,0 +1,244 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "classification",
+      "value": "classification"
+    },
+    {
+      "name": "guess_you_like",
+      "value": "you may also like"
+    },
+    {
+      "name": "shop_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "edit",
+      "value": "edit"
+    },
+    {
+      "name": "shopping_self_support",
+      "value": "mall self-operated"
+    },
+    {
+      "name": "phone_name",
+      "value": "Feature Phone 5G Network Speed"
+    },
+    {
+      "name": "phone_size",
+      "value": "ice crystal blue,S12GB+GB"
+    },
+    {
+      "name": "phone_price",
+      "value": "￥35.8"
+    },
+    {
+      "name": "orders",
+      "value": "my Order"
+    },
+    {
+      "name": "all_order",
+      "value": "all orders"
+    },
+    {
+      "name": "vip_channel",
+      "value": "Member channel"
+    },
+    {
+      "name": "point_reward",
+      "value": "Points Mall"
+    },
+    {
+      "name": "interaction",
+      "value": "Interact politely"
+    },
+    {
+      "name": "card_volume",
+      "value": "Red Packet Cards"
+    },
+    {
+      "name": "official_Service",
+      "value": "Official customer service"
+    },
+    {
+      "name": "cash",
+      "value": "Cash red envelope"
+    },
+    {
+      "name": "old_for_new",
+      "value": "trade-in"
+    },
+    {
+      "name": "my_evaluation",
+      "value": "my comment"
+    },
+    {
+      "name": "user_name",
+      "value": "18839****17"
+    },
+    {
+      "name": "sign_Info",
+      "value": "v0member"
+    },
+    {
+      "name": "sign_info_address",
+      "value": "v shipping address"
+    },
+    {
+      "name": "often_see_live",
+      "value": "Frequently watched live"
+    },
+    {
+      "name": "read_more",
+      "value": "See more"
+    },
+    {
+      "name": "favor_live_lists_data_title",
+      "value": "live"
+    },
+    {
+      "name": "favor_live_lists_data_viewsInfo",
+      "value": "456,000 views"
+    },
+    {
+      "name": "tab_title_data_home",
+      "value": "Front page"
+    },
+    {
+      "name": "tab_title_data_new_product",
+      "value": "new"
+    },
+    {
+      "name": "tab_title_data_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "tab_title_data_mine",
+      "value": "mine"
+    },
+    {
+      "name": "find_search_text_data_search_text",
+      "value": "Boutique gifts"
+    },
+    {
+      "name": "find_search_text_data_searchTex",
+      "value": "Brand mobile phone"
+    },
+    {
+      "name": "find_search_text_data_searchTe",
+      "value": "Digital technology"
+    },
+    {
+      "name": "nav_data_phone",
+      "value": "phone"
+    },
+    {
+      "name": "nav_data_food",
+      "value": "video"
+    },
+    {
+      "name": "nav_data_men_wear",
+      "value": "Men's"
+    },
+    {
+      "name": "nav_data_sport",
+      "value": "sports"
+    },
+    {
+      "name": "nav_data_home_appliances",
+      "value": "home appliances"
+    },
+    {
+      "name": "title_bar_data_title_all",
+      "value": "all"
+    },
+    {
+      "name": "title_bar_data_title_selected",
+      "value": "Featured"
+    },
+    {
+      "name": "title_bar_data_title_new_product",
+      "value": "new"
+    },
+    {
+      "name": "title_bar_data_title_benefits",
+      "value": "affordable"
+    },
+    {
+      "name": "title_bar_data_content_recommend",
+      "value": "recommended to you"
+    },
+    {
+      "name": "title_bar_data_content_find",
+      "value": "find good stuff"
+    },
+    {
+      "name": "title_bar_data_content_first_publish",
+      "value": "new product launch"
+    },
+    {
+      "name": "title_bar_data_content_cheap_good",
+      "value": "cheap and good"
+    },
+    {
+      "name": "new_product_title_bar_data_title_selected",
+      "value": "Featured"
+    },
+    {
+      "name": "new_product_title_bar_data_title_phone",
+      "value": "phone"
+    },
+    {
+      "name": "new_product_title_bar_data_title_electric_appliance",
+      "value": "electrical appliances"
+    },
+    {
+      "name": "new_product_title_bar_data_title_sport",
+      "value": "sports"
+    },
+    {
+      "name": "new_product_title_bar_data_title_clothes",
+      "value": "apparel"
+    },
+    {
+      "name": "product_data_title_device",
+      "value": "XX equipment new product discount!"
+    },
+    {
+      "name": "product_data_labels_new_product",
+      "value": "new"
+    },
+    {
+      "name": "product_data_price",
+      "value": "￥4122"
+    },
+    {
+      "name": "order_data_title_obligation",
+      "value": "Pending payment"
+    },
+    {
+      "name": "order_data_title_wait_deliver",
+      "value": "To be delivered"
+    },
+    {
+      "name": "order_data_title_wait_receive",
+      "value": "Pending receipt"
+    },
+    {
+      "name": "order_data_title_wait_recommend",
+      "value": "Comment"
+    },
+    {
+      "name": "order_data_title_refund",
+      "value": "Refund/After-sale"
+    }
+  ]
+}
