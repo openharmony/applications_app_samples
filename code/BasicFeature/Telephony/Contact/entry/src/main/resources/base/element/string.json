@@ -1,6 +1,18 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Contact"
+    },
+    {
       "name": "entry_MainAbility",
       "value": "Contact"
     },
@@ -10,111 +22,111 @@
     },
     {
       "name": "save",
-      "value": "保存至：手机"
+      "value": "Save to: mobile phone"
     },
     {
       "name": "search",
-      "value": "搜索联系人"
+      "value": "Search for contacts"
     },
     {
       "name": "contacts",
-      "value": "位联系人"
+      "value": "Bit contact"
     },
     {
       "name": "phone",
-      "value": "电话"
+      "value": "telephone"
     },
     {
       "name": "contact",
-      "value": "联系人"
+      "value": "Contact person"
     },
     {
       "name": "collection",
-      "value": "收藏"
+      "value": "collect"
     },
     {
       "name": "newContact",
-      "value": "新建联系人"
+      "value": "Creating a contact"
     },
     {
       "name": "defaults",
-      "value": "默认"
+      "value": "default"
     },
     {
       "name": "phone_ring",
-      "value": "电话铃声"
+      "value": "Telephone ring"
     },
     {
       "name": "editor",
-      "value": "编辑"
+      "value": "edit"
     },
     {
       "name": "delete",
-      "value": "删除"
+      "value": "delete"
     },
     {
       "name": "name_card",
-      "value": "我的名片"
+      "value": "My business card"
     },
     {
       "name": "group",
-      "value": "群组"
+      "value": "group"
     },
     {
       "name": "editor_contact",
-      "value": "编辑联系人"
+      "value": "Edit contact"
     },
     {
       "name": "add_contact",
-      "value": "新增联系人"
+      "value": "Add a contact"
     },
     {
       "name": "import_file",
-      "value": "导入文件"
+      "value": "Import file"
     },
     {
       "name": "export_file",
-      "value": "导出文件"
+      "value": "Export file"
     },
     {
       "name": "save_phone",
-      "value": "保存至：手机"
+      "value": "Save to: mobile phone"
     },
     {
       "name": "cancel",
-      "value": "取消"
+      "value": "cancel"
     },
     {
       "name": "confirm",
-      "value": "确认"
+      "value": "confirm"
     },
     {
       "name": "warning",
-      "value": "警告"
+      "value": "warning"
     },
     {
       "name": "delete_show",
-      "value": "您正在删除该联系人，请确认是否删除"
+      "value": "You are deleting the contact. Please confirm whether to delete it"
     },
     {
       "name": "not_fill",
-      "value": "未填写"
+      "value": "Not filled in"
     },
     {
-      "name": "name",
-      "value": "姓名"
+      "name": "user_name",
+      "value": "name"
     },
     {
       "name": "address",
-      "value": "地址"
+      "value": "address"
     },
     {
       "name": "email",
-      "value": "邮箱"
+      "value": "mailbox"
     },
     {
       "name": "note",
-      "value": "备注"
+      "value": "remarks"
     }
   ]
 }
