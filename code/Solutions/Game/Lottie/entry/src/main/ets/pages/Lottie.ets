@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the MIT License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,29 +32,28 @@ import lottie from '@ohos/lottieETS'
 import Logger from '../util/Logger'
 
 const TAG: string = 'Lottie'
+const SELECT_OPACITY: number = 0.5
+const BUTTON_OPACITY: number = 0.8
 
 @Entry
 @Component
 struct Lottie {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private settings1: RenderingContextSettings = new RenderingContextSettings(true)
-  private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings1)
+  private settingsYear: RenderingContextSettings = new RenderingContextSettings(true)
+  private contextYear: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settingsYear)
   private scroller: Scroller = new Scroller()
-  private aa: Scroller = new Scroller()
   private animateItem: any = null
   private animateName: string = 'grunt'
-  private callbackItem: any = function () {
-    Logger.info(TAG, 'grunt loopComplete')
-  }
-  private triggerCallBack: any = function (item) {
-    Logger.info(TAG, `trigger loopComplete, name ${item.name}`)
-  }
+  private animationResources: string | Resource = $r('app.string.select_please')
+  private controller: TabsController = new TabsController()
   @State valueS: AnimationStatus = AnimationStatus.Initial
-  @State animationResources: string = '请选择'
   @State imagePath: Resource = $r('app.media.play')
   @State isPlaying: boolean = true
-  private controller: TabsController = new TabsController()
+
+  callbackItem() {
+    Logger.info(TAG, 'grunt loopComplete')
+  }
 
   build() {
     Column() {
@@ -67,38 +66,41 @@ struct Lottie {
         })
         .margin({ top: 10 })
 
-      Canvas(this.context1)
+      Canvas(this.contextYear)
         .width('540px')
         .height('360px')
         .backgroundColor(Color.Gray)
-        .onAppear(() => {
-          let ani = lottie.loadAnimation({
-            container: this.context1,
+        .onReady(() => {
+          let animation = lottie.loadAnimation({
+            container: this.contextYear,
             renderer: 'canvas',
             loop: true,
             autoplay: true,
-            name: '2016',
+            name: 'year',
             path: 'common/lottie/data.json',
           })
-          ani.addEventListener('loopComplete', this.callbackItem)
+          animation.addEventListener('loopComplete', this.callbackItem)
         })
         .onDisAppear(() => {
-          lottie.destroy('2016')
+          lottie.destroy('year')
         })
         .margin({ bottom: 10 })
+
       Scroll(this.scroller) {
         Column() {
           Row() {
             Animator('__lottie_ets')
+
             Text($r('app.string.select'))
-              .fontSize('16fp')
-              .fontColor('#182431')
+              .fontSize(16)
+              .fontColor($r('app.color.font_color'))
               .fontWeight(FontWeight.Medium)
-              .opacity(0.5)
+              .opacity(SELECT_OPACITY)
+
             Column() {
               Text(this.animationResources)
-                .fontSize('16fp')
-                .fontColor('#182431')
+                .fontSize(16)
+                .fontColor($r('app.color.font_color'))
                 .fontWeight(FontWeight.Medium)
                 .width('50%')
                 .textAlign(TextAlign.End)
@@ -120,17 +122,17 @@ struct Lottie {
                 }
               },
               {
-                value: '2016动画',
+                value: 'year动画',
                 action: () => {
-                  let ani = lottie.loadAnimation({
-                    container: this.context1,
+                  lottie.loadAnimation({
+                    container: this.contextYear,
                     renderer: 'canvas',
                     loop: true,
                     autoplay: true,
-                    name: '2016',
+                    name: 'year',
                     path: 'common/lottie/data.json',
                   })
-                  this.animationResources = '2016'
+                  this.animationResources = 'year'
                 }
               },
             ])
@@ -138,7 +140,7 @@ struct Lottie {
           .width('100%')
           .justifyContent(FlexAlign.SpaceBetween)
           .backgroundColor('#FFFFFF')
-          .padding('3%')
+          .padding(10)
           .borderRadius(24)
           .margin({ bottom: 8 })
 
@@ -157,11 +159,12 @@ struct Lottie {
                       this.imagePath = $r('app.media.play')
                     }
                   })
+
                 Text($r('app.string.play_pause'))
-                  .fontSize('13fp')
-                  .fontColor('#182431')
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -176,11 +179,12 @@ struct Lottie {
                     lottie.stop()
                     this.isPlaying = false
                   })
+
                 Text($r('app.string.stop'))
-                  .fontSize('13fp')
-                  .fontColor('#182431')
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -195,11 +199,12 @@ struct Lottie {
                     lottie.pause()
                     this.isPlaying = false
                   })
+
                 Text($r('app.string.pause'))
-                  .fontSize('13fp')
-                  .fontColor('#182431')
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -214,11 +219,12 @@ struct Lottie {
                     lottie.play()
                     this.isPlaying = true
                   })
+
                 Text($r('app.string.start_play'))
-                  .fontSize('13fp')
-                  .fontColor('#182431')
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -251,11 +257,12 @@ struct Lottie {
                       }
                     }
                   ])
+
                 Text($r('app.string.speed'))
-                  .fontSize('13fp')
-                  .fontColor("#182431")
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -280,11 +287,12 @@ struct Lottie {
                       }
                     }
                   ])
+
                 Text($r('app.string.play_order'))
-                  .fontSize('13fp')
-                  .fontColor('#182431')
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -298,11 +306,12 @@ struct Lottie {
                   .onClick(() => {
                     lottie.destroy()
                   })
+
                 Text($r('app.string.destruction_animation'))
-                  .fontSize('13fp')
-                  .fontColor('#182431')
+                  .fontSize(14)
+                  .fontColor($r('app.color.font_color'))
                   .fontWeight(FontWeight.Medium)
-                  .opacity(0.8)
+                  .opacity(BUTTON_OPACITY)
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
@@ -313,7 +322,7 @@ struct Lottie {
           }
           .justifyContent(FlexAlign.SpaceAround)
           .backgroundColor('#FFFFFF')
-          .padding('3%')
+          .padding(10)
           .borderRadius(24)
           .margin({ bottom: 8 })
 
@@ -322,10 +331,10 @@ struct Lottie {
               TabContent() {
                 Column() {
                   Text($r('app.string.display_effect'))
-                    .fontSize('13fp')
+                    .fontSize(14)
                     .margin({ top: 10, bottom: 10 })
-                  Column() {
 
+                  Column() {
                     Row() {
                       Column() {
                         Image($r('app.media.start_stop'))
@@ -334,11 +343,12 @@ struct Lottie {
                           .onClick(() => {
                             lottie.togglePause(this.animateName)
                           })
+
                         Text($r('app.string.play_pause'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }.width('33%')
@@ -350,11 +360,12 @@ struct Lottie {
                           .onClick(() => {
                             lottie.stop(this.animateName)
                           })
+
                         Text($r('app.string.stop'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }.width('33%')
@@ -366,11 +377,12 @@ struct Lottie {
                           .onClick(() => {
                             lottie.pause(this.animateName)
                           })
+
                         Text($r('app.string.pause'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -385,11 +397,12 @@ struct Lottie {
                           .onClick(() => {
                             lottie.play(this.animateName)
                           })
+
                         Text($r('app.string.start_play'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -402,11 +415,12 @@ struct Lottie {
                           .onClick(() => {
                             lottie.setSpeed(2, this.animateName)
                           })
+
                         Text($r('app.string.double_speed'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -419,11 +433,12 @@ struct Lottie {
                           .onClick(() => {
                             lottie.setDirection(-1, this.animateName)
                           })
+
                         Text($r('app.string.reverse_playback'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -436,14 +451,14 @@ struct Lottie {
                 .width('100%')
                 .height('100%')
                 .borderRadius(24)
-                .backgroundColor('#4D999999')
+                .backgroundColor($r('app.color.tab_content_background'))
               }
               .tabBar($r('app.string.play_pause'))
 
               TabContent() {
                 Column() {
                   Text($r('app.string.display_effect_this'))
-                    .fontSize('13fp')
+                    .fontSize(14)
                     .margin({ top: 10, bottom: 10 })
                   Column() {
 
@@ -457,11 +472,12 @@ struct Lottie {
                               this.animateItem.togglePause()
                             }
                           })
+
                         Text($r('app.string.play_pause'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -476,11 +492,12 @@ struct Lottie {
                               this.animateItem.stop()
                             }
                           })
+
                         Text($r('app.string.stop'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -495,11 +512,12 @@ struct Lottie {
                               this.animateItem.pause()
                             }
                           })
+
                         Text($r('app.string.pause'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -517,10 +535,10 @@ struct Lottie {
                             }
                           })
                         Text($r('app.string.start_play'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -535,11 +553,12 @@ struct Lottie {
                               this.animateItem.setSpeed(5)
                             }
                           })
+
                         Text($r('app.string.five_speed'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -554,11 +573,12 @@ struct Lottie {
                               this.animateItem.setDirection(-1)
                             }
                           })
+
                         Text($r('app.string.reverse_playback'))
-                          .fontSize('13fp')
-                          .fontColor('#182431')
+                          .fontSize(14)
+                          .fontColor($r('app.color.font_color'))
                           .fontWeight(FontWeight.Medium)
-                          .opacity(0.8)
+                          .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
                       }
@@ -571,7 +591,7 @@ struct Lottie {
                 .borderRadius(24)
                 .width('100%')
                 .height('100%')
-                .backgroundColor('#4D999999')
+                .backgroundColor($r('app.color.tab_content_background'))
               }
               .tabBar($r('app.string.play_pause'))
 
@@ -587,11 +607,12 @@ struct Lottie {
                             this.animateItem.setSegment(20, 30)
                           }
                         })
+
                       Text($r('app.string.fragment_cycle'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -606,12 +627,13 @@ struct Lottie {
                             this.animateItem.playSegments([[5, 15], [20, 30]], true)
                           }
                         })
+
                       Text($r('app.string.play_segments'))
                         .padding({ left: 5, right: 5 })
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -641,11 +663,12 @@ struct Lottie {
                             })
                           }
                         ])
+
                       Text($r('app.string.reset_play'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -660,11 +683,12 @@ struct Lottie {
                             this.animateItem.setSubframe(false)
                           }
                         })
+
                       Text($r('app.string.float_integer'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -675,7 +699,7 @@ struct Lottie {
                 .borderRadius(24)
                 .width('100%')
                 .height('100%')
-                .backgroundColor('#4D999999')
+                .backgroundColor($r('app.color.tab_content_background'))
               }
               .tabBar($r('app.string.cycle'))
 
@@ -705,10 +729,10 @@ struct Lottie {
                           }
                         ])
                       Text($r('app.string.animation_stop'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -736,11 +760,12 @@ struct Lottie {
                             })
                           }
                         ])
+
                       Text($r('app.string.animation_play'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -757,11 +782,12 @@ struct Lottie {
                             this.animateItem.resize()
                           }
                         })
+
                       Text($r('app.string.refresh_animation'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -776,11 +802,12 @@ struct Lottie {
                             this.animateItem.destroy(this.animateName)
                           }
                         })
+
                       Text($r('app.string.destruction_grunt_animation'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -791,7 +818,7 @@ struct Lottie {
                 .borderRadius(24)
                 .width('100%')
                 .height('100%')
-                .backgroundColor("#4D999999")
+                .backgroundColor($r('app.color.tab_content_background'))
               }
               .tabBar($r('app.string.playback_position'))
 
@@ -807,11 +834,12 @@ struct Lottie {
                             this.animateItem.addEventListener('loopComplete', this.callbackItem)
                           }
                         })
+
                       Text($r('app.string.add_listen'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -826,11 +854,12 @@ struct Lottie {
                             this.animateItem.stop()
                           }
                         })
+
                       Text($r('app.string.delete_listen'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -847,19 +876,20 @@ struct Lottie {
                             this.animateItem.pause()
                           }
                         })
+
                       Text($r('app.string.triggers_all_callbacks'))
                         .padding({ left: 5, right: 5 })
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
                     .width('50%')
 
                     Column() {
-                      Image($r('app.media.deleteall'))
+                      Image($r("app.media.delete_all"))
                         .width(30)
                         .height(30)
                         .onClick(() => {
@@ -867,11 +897,12 @@ struct Lottie {
                             this.animateItem.play()
                           }
                         })
+
                       Text($r('app.string.delete_all_Listen'))
-                        .fontSize('13fp')
-                        .fontColor('#182431')
+                        .fontSize(14)
+                        .fontColor($r('app.color.font_color'))
                         .fontWeight(FontWeight.Medium)
-                        .opacity(0.8)
+                        .opacity(BUTTON_OPACITY)
                         .margin({ top: 6 })
                         .fontFamily('Microsoft YaHei')
                     }
@@ -882,7 +913,7 @@ struct Lottie {
                 .borderRadius(24)
                 .width('100%')
                 .height('100%')
-                .backgroundColor('#4D999999')
+                .backgroundColor($r('app.color.tab_content_background'))
               }
               .tabBar($r('app.string.listen'))
             }
@@ -905,7 +936,7 @@ struct Lottie {
       }
       .scrollBar(BarState.Off)
       .height('100%')
-      .padding({ left: '3%', right: '3%', bottom: '720px' })
+      .padding({ left: 10, right: 10, bottom: '720px' })
     }
     .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
