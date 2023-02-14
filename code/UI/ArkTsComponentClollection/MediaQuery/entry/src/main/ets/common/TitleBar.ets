@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,22 +13,19 @@
  * limitations under the License.
  */
 @Component
-export struct NewView{
-  @Link currentNew:any
+export struct TitleBar {
+  private title: Resource = $r("app.string.entry_title")
 
-  build(){
-    Column(){
-      Text(this.currentNew.content)
-        .fontSize(22)
-        .width('100%')
-      Image(this.currentNew.img)
-        .width('100%')
-        .objectFit(ImageFit.Fill)
-        .margin({top:10,bottom:10})
-        .height('30%')
+  build() {
+    Row() {
+      Text(this.title)
+        .fontColor(Color.Black)
+        .fontWeight(FontWeight.Bold)
+        .fontSize(30)
     }
-    .height('100%')
-    .padding(15)
-    .layoutWeight(3)
+    .width('100%')
+    .height('8%')
+    .constraintSize({ minHeight: 50 })
+    .padding({ left: 10 })
   }
 }
