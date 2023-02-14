@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,7 @@ struct Index {
   @State isLand: boolean = false
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
   onLand = (mediaQueryResult) => {
-    Logger.info(TAG, ` onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
+    Logger.info(` onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
       this.isLand = true
     } else {
@@ -49,13 +49,12 @@ struct Index {
     } catch (err) {
       Logger.error(TAG, `Failed to load sensor :  ${JSON.stringify(err)}`)
     }
-
   }
 
   build() {
     Column() {
       Column() {
-        Text('北')
+        Text($r('app.string.north'))
           .fontSize(20)
           .margin({ left: '60%' })
 
