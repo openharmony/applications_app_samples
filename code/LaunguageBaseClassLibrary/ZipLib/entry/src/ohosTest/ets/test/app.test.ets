@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import featureAbility from '@ohos.ability.featureAbility'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
 
 const TAG = '[Sample_ZipLib]'
@@ -27,12 +27,11 @@ export default function appTest() {
     it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin')
       let parameter = {
-        "want": {
-          bundleName: "ohos.samples.ziplib",
-          abilityName: "ohos.samples.ziplib.MainAbility"
-        }
+        bundleName: "ohos.samples.ziplib",
+        abilityName: "EntryAbility"
       }
-      featureAbility.startAbility(parameter, (err, data) => {
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      abilityDelegator.startAbility(parameter, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
         done()

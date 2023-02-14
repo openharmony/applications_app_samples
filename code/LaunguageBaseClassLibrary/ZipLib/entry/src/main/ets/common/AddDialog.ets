@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,8 +15,6 @@
 
 import prompt from '@ohos.prompt'
 import Logger from '../model/Logger'
-
-const TAG: string = '[AddDialog]'
 
 @CustomDialog
 export struct AddDialog {
@@ -77,15 +75,15 @@ export struct AddDialog {
         .layoutWeight(7)
         .backgroundColor(Color.White)
         .onClick(() => {
-          Logger.info(TAG, `this.fileName = ${this.fileName}`)
+          Logger.info(`this.fileName = ${this.fileName}`)
           if (this.fileName === '') {
-            prompt.showToast({ message: `文件名不能为空`, duration: 1000 })
+            prompt.showToast({ message: $r('app.string.warning_empty'), duration: 1000 })
             return
           }
           this.isInserted = true
-          Logger.info(TAG, `fileName = ${this.fileName}`)
+          Logger.info(`fileName = ${this.fileName}`)
           this.createFile(this.isInserted, this.fileName, this.fileContent)
-          Logger.info(TAG, `isInserted = ${this.isInserted}`)
+          Logger.info(`isInserted = ${this.isInserted}`)
           this.controller.close()
         })
 
@@ -93,7 +91,7 @@ export struct AddDialog {
           .height(30)
           .vertical(true)
           .strokeWidth(2)
-          .color('#999999')
+          .color($r('app.color.divider_bg'))
 
         Button() {
           Text($r('app.string.button_cancel'))

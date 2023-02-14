@@ -20,7 +20,7 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
+  public getData(index: number): undefined {
     return undefined
   }
 
@@ -32,7 +32,7 @@ class BasicDataSource implements IDataSource {
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
+    const pos = this.listeners.indexOf(listener)
     if (pos >= 0) {
       console.info('remove listener')
       this.listeners.splice(pos, 1)
@@ -82,16 +82,16 @@ export class ZipLibSource extends BasicDataSource {
     return this.fileData.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.fileData[index]
   }
 
-  public addData(index: number, data: any): void {
+  public addData(index: number, data: string): void {
     this.fileData.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
-  public pushData(data: any): void {
+  public pushData(data: string): void {
     this.fileData.push(data)
     this.notifyDataAdd(this.fileData.length - 1)
   }
