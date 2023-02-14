@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,9 +16,9 @@
 @Component
 export default struct DebugInfo {
   @Prop debugWindow: boolean
-  private pssMemory: number
-  private sharedMemory: number
-  private privateMemory: number
+  @Link pssMemory: number
+  @Link sharedMemory: number
+  @Link privateMemory: number
 
   build() {
     Stack({ alignContent: Alignment.Top }) {

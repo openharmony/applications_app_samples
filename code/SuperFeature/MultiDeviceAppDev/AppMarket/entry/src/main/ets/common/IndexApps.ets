@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -60,10 +60,12 @@ export default struct IndexApps {
         .textAlign(TextAlign.Center)
         .fontColor('#18181A')
         .margin({ bottom: 8 })
-      Button($r('app.string.install'))
+      Text($r('app.string.install'))
         .width(this.currentBreakpoint === 'lg' ? 80 : 56)
         .height(28)
         .fontColor('#0A59F7')
+        .textAlign(TextAlign.Center)
+        .borderRadius(this.currentBreakpoint === 'lg' ? 26 : 20)
         .fontWeight(500)
         .fontSize(12)
         .padding({ top: 6, bottom: 6, left: 8, right: 8 })

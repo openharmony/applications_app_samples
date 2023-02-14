@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,6 +32,7 @@ export default struct HomeContent {
         GridCol({ span: { xs: 4, sm: 4, md: 8, lg: 8 }, order: 0 }) {
           IndexHeader({ currentWeather: this.currentWeather })
         }
+
         GridCol({ span: { xs: 4, sm: 4, md: 8, lg: 8 }, order: 1 }) {
           HoursWeather()
         }
@@ -39,9 +40,10 @@ export default struct HomeContent {
           MultiDayWeather()
         }
       }
+      .margin({ right: Style.NORMAL_PADDING })
     }
     .width('100%')
     .layoutWeight(1)
-    .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
+    .padding({ left: Style.NORMAL_PADDING })
   }
 }
