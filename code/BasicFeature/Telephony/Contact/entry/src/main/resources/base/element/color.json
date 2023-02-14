@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "index_bg",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "add_contact_bg",
+      "value": "#fff5f5f5"
+    },
+    {
+      "name": "user_name_color",
+      "value": "#B6C5D1"
+    },
+    {
+      "name": "color3",
+      "value": "#0D9FFB"
+    },
+    {
+      "name": "table_selected",
+      "value": "#007DFF"
+    },
+    {
+      "name": "color5",
+      "value": "#ffefefef"
+    },
+    {
+      "name": "table_normal",
+      "value": "#66000000"
+    }
+  ]
+}
