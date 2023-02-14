@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/Index",
+    "verifyability/pages/Index"
+  ]
+}
