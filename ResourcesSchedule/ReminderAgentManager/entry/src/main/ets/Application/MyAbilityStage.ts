@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import abilityStage from '@ohos.application.AbilityStage'
+import abilityStage from '@ohos.app.ability.AbilityStage'
 import Logger from '../util/Logger'
 
 const TAG: string = 'MyAbilityStage'

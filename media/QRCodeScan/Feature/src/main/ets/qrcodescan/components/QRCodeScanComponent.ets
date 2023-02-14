@@ -16,7 +16,7 @@
 import router from '@ohos.router'
 import image from '@ohos.multimedia.image'
 import prompt from '@ohos.promptAction'
-import context from '@ohos.application.context'
+import context from '@ohos.app.ability.common'
 import { CameraService } from '../CameraService'
 import { QRCodeScanConst } from '../QRCodeScanConst'
 import { QRCodeParser } from '../QRCodeParser'
@@ -147,7 +147,7 @@ export default struct QRCodeScanComponent {
               .onClick(async () => {
                 // 打开相册获取图片
                 this.isQRCodeScanStopped = true
-                let context = AppStorage.Get('context') as context.AbilityContext
+                let context = AppStorage.Get('context') as context.UIAbilityContext
                 let image = await this.qrCodeParser.getSingleImageFromAlbum(context)
                 if (image === null) {
                   prompt.showToast({

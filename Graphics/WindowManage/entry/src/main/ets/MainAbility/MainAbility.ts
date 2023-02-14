@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window'
 import Logger from '../../../../../WindowComponent/src/main/ets/components/util/Logger'
 import WindowManger from "../../../../../WindowComponent/src/main/ets/components/feature/WindowManger"

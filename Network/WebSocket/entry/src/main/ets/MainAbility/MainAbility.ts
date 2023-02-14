@@ -14,7 +14,7 @@
  */
 
 import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 
 const TAG: string = '[MainAbility]'
 

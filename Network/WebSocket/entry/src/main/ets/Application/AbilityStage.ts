@@ -14,7 +14,7 @@
  */
 
 import Logger from '../model/Logger'
-import AbilityStage from '@ohos.application.AbilityStage'
+import AbilityStage from '@ohos.app.ability.AbilityStage'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {

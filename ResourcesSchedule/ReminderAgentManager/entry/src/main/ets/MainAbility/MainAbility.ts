@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import ability from '@ohos.application.Ability'
+import ability from '@ohos.app.ability.UIAbility'
 import notification from '@ohos.notification'
 import window from '@ohos.window'
 import Logger from '../util/Logger'
