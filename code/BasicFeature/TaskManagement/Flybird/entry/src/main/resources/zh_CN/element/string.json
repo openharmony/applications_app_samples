@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "refresh",
+      "value": "重新一次"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "select_level",
+      "value": "请选择关卡"
+    },
+    {
+      "name": "level_one",
+      "value": "关卡1"
+    },
+    {
+      "name": "level_two",
+      "value": "关卡2"
+    },
+    {
+      "name": "level_three",
+      "value": "关卡3"
+    },
+    {
+      "name": "level_four",
+      "value": "关卡4"
+    },
+    {
+      "name": "level_five",
+      "value": "关卡5"
+    }
+  ]
+}
