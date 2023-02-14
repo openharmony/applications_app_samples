@@ -39,6 +39,7 @@ const SYSTEM_UI_HEIGHT = 134
 const DESIGN_WIDTH = 720.0
 const DESIGN_RATIO = 16 / 9
 const TAG = 'Index'
+let lastTime = -1
 
 export default {
   data: {
@@ -94,6 +95,11 @@ export default {
     this.playerModel.setOnStatusChangedListener((isPlaying) => {
       logger.debug(TAG, `on player status changed, isPlaying=${isPlaying} refresh ui`)
       this.playerModel.setOnPlayingProgressListener((currentTimeMs) => {
+        if(lastTime === currentTimeMs){
+          this.playerModel.pause()
+        }else{
+          lastTime = currentTimeMs
+        }
         this.currentTimeText = getShownTimer(currentTimeMs)
         this.currentProgress = Math.floor(currentTimeMs / this.totalMs * 100)
       })
