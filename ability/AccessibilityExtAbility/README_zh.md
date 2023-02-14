@@ -48,7 +48,7 @@ entry/src/main/ets/
 不涉及。
 
 ## 约束与限制
-1. 本示例仅支持标准系统上运行；
+1. 本示例仅支持标准系统上运行，支持设备：RK3568；
 2. 本示例为Stage模型，从API 9开始支持；
 3. 本示例基于DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.900, build on March 31, 2022)开发，需使用该版本或更高版本才可编译运行；
-4. 本示例使用了AccessibilityExtensionAbility相关系统接口，需要将默认的Public SDK替换为Full SDK，具体替换操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
+4. 本示例使用了AccessibilityExtensionAbility相关系统接口，需要将默认的Public SDK替换为Full SDK（版本号：3.2.9.2），具体替换操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；

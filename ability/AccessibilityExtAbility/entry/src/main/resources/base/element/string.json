@@ -42,11 +42,11 @@
     },
     {
       "name": "accessibility_not_clicked",
-      "value": "Clicked"
+      "value": "Not clicked"
     },
     {
       "name": "accessibility_clicked",
-      "value": "Not clicked"
+      "value": "Clicked"
     }
   ]
 }
