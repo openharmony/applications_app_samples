@@ -9,7 +9,7 @@
   },
   "main": "Index.ets",
   "repository": {},
+  "type": "module",
   "version": "1.0.0",
-  "dependencies": {},
-  "type": "module"
+  "dependencies": {}
 }

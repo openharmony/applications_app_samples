@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,8 +54,7 @@ const MAIN_LIST_ITEMS: MainListItemModel[] = [
   {
     image: $r('app.media.my_phone'),
     title: $r('app.string.my_phone'),
-    routerUrl: '',
-    isReady: false
+    routerUrl: 'filemanager/pages/MyPhone/MyPhone'
   }
 ]
 

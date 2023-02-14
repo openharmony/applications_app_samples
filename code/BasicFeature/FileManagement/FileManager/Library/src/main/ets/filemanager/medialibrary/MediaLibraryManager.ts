@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import image from '@ohos.multimedia.image';
+import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../../utils/Logger'
 
@@ -109,8 +109,8 @@ class MediaLibraryManager {
                         dir: mediaLibrary.DirectoryType, fileName: string): Promise<mediaLibrary.FileAsset> {
     Logger.debug('createFileAsset: ' + fileName)
     let media = this.getMediaLibrary(context)
-    let path = await media.getPublicDirectory(dir);
-    return await media.createAsset(mediaType, fileName, path);
+    let path = await media.getPublicDirectory(dir)
+    return await media.createAsset(mediaType, fileName, path)
   }
 
   async deleteFileAsset(context, fileAsset: mediaLibrary.FileAsset) {

@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "entry_desc",
-      "value": "description"
+      "value": "入口描述"
     },
     {
       "name": "MainAbility_desc",
-      "value": "description"
+      "value": "描述"
     },
     {
       "name": "MainAbility_label",
-      "value": "label"
+      "value": "标签"
     },
     {
       "name": "file_manager",
@@ -53,6 +53,14 @@
       "value": "应用需要文件写权限"
     },
     {
+      "name": "storage_reason",
+      "value": "应用需要获取空间使用状态权限"
+    },
+    {
+      "name": "file_access_reason",
+      "value": "应用需要文件访问权限"
+    },
+    {
       "name": "no_file",
       "value": "没有相关文件"
     },
@@ -67,6 +75,98 @@
     {
       "name": "mock_tip",
       "value": "模拟文件，不支持预览"
+    },
+    {
+      "name": "tip_input_name",
+      "value": "请输入名称"
+    },
+    {
+      "name": "title",
+      "value": "我的手机"
+    },
+    {
+      "name": "label_memory",
+      "value": "内存"
+    },
+    {
+      "name": "label_current_directory",
+      "value": "当前目录名"
+    },
+    {
+      "name": "label_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "label_item",
+      "value": "项"
+    },
+    {
+      "name": "label_move_to",
+      "value": "移动到这"
+    },
+    {
+      "name": "label_copy_move",
+      "value": "复制和移动"
+    },
+    {
+      "name": "tip_choose_one",
+      "value": "请至少选中一项"
+    },
+    {
+      "name": "label_rename",
+      "value": "重命名"
+    },
+    {
+      "name": "label_share",
+      "value": "分享"
+    },
+    {
+      "name": "tip_develop",
+      "value": "功能尚在开发..."
+    },
+    {
+      "name": "label_make_directory",
+      "value": "新建文件夹"
+    },
+    {
+      "name": "label_make_file",
+      "value": "新建文件"
+    },
+    {
+      "name": "label_sort",
+      "value": "排序"
+    },
+    {
+      "name": "label_clean",
+      "value": "清理"
+    },
+    {
+      "name": "label_nothing",
+      "value": "空空如也"
+    },
+    {
+      "name": "label_no_move",
+      "value": "不能移动到自己的子目录下"
+    },
+    {
+      "name": "label_is_delete",
+      "value": "是否删除选中项?"
+    },
+    {
+      "name": "label_delete",
+      "value": "删除"
+    },
+    {
+      "name": "label_delete_success",
+      "value": "删除成功"
+    },
+    {
+      "name": "label_input",
+      "value": "请输入文件名称"
+    },
+    {
+      "name": "label_confirm",
+      "value": "确定"
     }
   ]
 }
