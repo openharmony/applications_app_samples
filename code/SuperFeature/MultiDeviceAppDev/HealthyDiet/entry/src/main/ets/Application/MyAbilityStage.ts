@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.application.AbilityStage"
+import AbilityStage from '@ohos.app.ability.AbilityStage'
 
 const TAG: string = '[Sample_HealthyDiet]'
 

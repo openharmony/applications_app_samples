@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import fileIO from '@ohos.fileio'
 import media from '@ohos.multimedia.media'
 import Logger from '../util/Logger'
@@ -24,7 +24,7 @@ let player = media.createAudioPlayer()
 @Component
 struct Index {
   @State hasInit: boolean = false
-  private context: context.AbilityContext = null
+  private context: common.UIAbilityContext = null
   build() {
     Row() {
       Button({type: ButtonType.Circle, stateEffect: true}) {
@@ -87,6 +87,6 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as context.AbilityContext
+    this.context = getContext(this) as common.UIAbilityContext
   }
 }

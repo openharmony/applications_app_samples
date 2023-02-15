@@ -13,26 +13,25 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import Logger from '../model/Logger'
-
-const PERMISSIONS: Array<string> = [
-  'ohos.permission.CAPTURE_SCREEN',
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.MEDIA_LOCATION',
-  'ohos.permission.INTERNET'
-]
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `MainAbility onCreate`)
-    AppStorage.SetOrCreate('context', this.context)
-    this.context.requestPermissionsFromUser(PERMISSIONS, (err, data) => {
-      Logger.info(TAG, `request data: ${JSON.stringify(data)}, request error code: ${JSON.stringify(err.code)}`)
-    })
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context,['ohos.permission.CAPTURE_SCREEN','ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION','ohos.permission.INTERNET']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     const that = this
     this.context.eventHub.on("getAbilityData", (data) => {
       data.context = that.context

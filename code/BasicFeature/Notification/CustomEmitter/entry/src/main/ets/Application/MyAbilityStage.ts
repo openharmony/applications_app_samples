@@ -14,7 +14,7 @@
 */
 
 import Logger from '../util/Logger'
-import AbilityStage from '@ohos.application.AbilityStage'
+import AbilityStage from '@ohos.app.ability.AbilityStage'
 
 const TAG: string = 'MyAbilityStage'
 
