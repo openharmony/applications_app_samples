@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Accessibility_label",
+      "value": "accessibility label"
+    },
+    {
+      "name": "Accessibility_desc",
+      "value": "accessibility description"
+    },
+    {
+      "name": "accessibility_test",
+      "value": "辅助功能测试"
+    },
+    {
+      "name": "current_state",
+      "value": "当前状态"
+    },
+    {
+      "name": "state_unconnected",
+      "value": "未连接"
+    },
+    {
+      "name": "state_connected",
+      "value": "已连接"
+    },
+    {
+      "name": "accessibility_focus",
+      "value": "获焦"
+    },
+    {
+      "name": "accessibility_not_clicked",
+      "value": "未点击"
+    },
+    {
+      "name": "accessibility_clicked",
+      "value": "已点击"
+    }
+  ]
+}
