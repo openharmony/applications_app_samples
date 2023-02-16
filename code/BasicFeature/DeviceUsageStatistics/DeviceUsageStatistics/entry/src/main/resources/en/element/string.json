@@ -23,6 +23,18 @@
     {
       "name": "application_last_used",
       "value": "application last used"
+    },
+    {
+      "name": "hour",
+      "value": "hour"
+    },
+    {
+      "name": "minute",
+      "value": "minute"
+    },
+    {
+      "name": "second",
+      "value": "second"
     }
   ]
 }

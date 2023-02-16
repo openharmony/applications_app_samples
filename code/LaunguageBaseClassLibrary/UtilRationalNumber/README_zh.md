@@ -1,20 +1,12 @@
 # 有理数
 
-### 简介
+### 介绍
 
-本示例展示了util工具类中的有理数运算的一些方法使用。实现效果如下：
+[util](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-util.md)工具函数提供多种常用函数，如：实现字符串编解码、有理数运算、缓冲区管理、范围判断、Base64编解码、内置对象类型检查等。
 
-![](./screenshots/device/eTSRationalNumber.png)
+本示例使用[util](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-util.md)中RationalNumber相关接口实现有理数运算,展示了util工具类中的有理数运算的一些方法使用。
 
-### 相关概念
-
-utill工具函数提供多种常用函数，如：实现字符串编解码、有理数运算、缓冲区管理、范围判断、Base64编解码、内置对象类型检查等。
-
-### 相关权限
-
-不涉及。
-
-### 使用与说明
+使用说明：
 
 1.点击按钮“**有理数比较**”，对两个有理数进行比较，比较结果会在文本框中显示。
 
@@ -28,8 +20,24 @@ utill工具函数提供多种常用函数，如：实现字符串编解码、有
 
 6.点击按钮“**检查是否为有限值**”，在文本框中显示有理数是否为有限值结果。
 
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![](./screenshots/device/eTSRationalNumber.png)|
+
+### 相关权限
+
+不涉及。
+
+### 依赖
+
+不涉及。
+
 ### 约束与限制
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+2.本示例仅支持API9版本SDK，版本号：3.2.7.6。
+
+3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。

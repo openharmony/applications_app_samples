@@ -2,11 +2,11 @@
   "string": [
     {
       "name": "entry_MainAbility",
-      "value": "Ets进程信息"
+      "value": "进程信息"
     },
     {
       "name": "description_mainability",
-      "value": "EtsProcess Ability"
+      "value": "Process Ability"
     },
     {
       "name": "uptime",
