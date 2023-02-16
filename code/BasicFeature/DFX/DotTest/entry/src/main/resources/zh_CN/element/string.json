@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "appName",
+      "value": "测试打点"
+    },
+    {
+      "name": "event",
+      "value": "事件写入"
+    },
+    {
+      "name": "tracking",
+      "value": "追踪数值"
+    },
+    {
+      "name": "disable",
+      "value": "禁用应用打点："
+    },
+    {
+      "name": "writeSuccess",
+      "value": "成功写入事件"
+    },
+    {
+      "name": "writeFailed",
+      "value": "写入事件失败"
+    },
+    {
+      "name": "appDisabled",
+      "value": "禁用应用打点，无法成功写入事件"
+    },
+    {
+      "name": "initContentText",
+      "value": "初始化状态"
+    },
+    {
+      "name": "appAble",
+      "value": "启用应用打点，此时可成功写入事件"
+    }
+  ]
+}
