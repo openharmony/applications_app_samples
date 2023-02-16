@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,7 @@ import Message from '../model/Message'
 import Logger from '../model/Logger'
 import SmsModel from '../model/SmsModel'
 import DateTimeUtil from '../model/DateTimeUtil'
-import {MessageSource} from "../model/DataSource"
+import { MessageSource } from '../model/DataSource'
 
 const TAG: string = '[SendMessage]'
 const NO_SIM_STATE: number = -1
@@ -34,8 +34,8 @@ struct SendMessage {
   @State deliveryResult: string = ''
   @State content: string = ''
   @State messages: MessageSource = new MessageSource([])
-  private slotId: number = 0
-  private destinationPort: number= 1000
+  private slotId: number = 0 // 卡槽id
+  private destinationPort: number = 1000
   private contact: Contact
   private smsModel: SmsModel = new SmsModel()
   private dateTimeUtil: DateTimeUtil = new DateTimeUtil()
@@ -129,6 +129,7 @@ struct SendMessage {
           .onClick(() => {
             router.back()
           })
+
         Column() {
           Text(`${this.contact.name}`)
             .height(40)
@@ -137,6 +138,7 @@ struct SendMessage {
             .fontWeight(FontWeight.Bold)
             .textAlign(TextAlign.Center)
             .margin({ right: 50 })
+
           Text(`${this.contact.destinationHost}`)
             .height(20)
             .fontSize(20)
@@ -160,12 +162,14 @@ struct SendMessage {
                 .margin({ top: 20, right: 10 })
                 .textAlign(TextAlign.Center)
                 .textOverflow({ overflow: TextOverflow.None })
+
               Column() {
                 Text(`${this.dateTimeUtil.getDate()}  ${this.dateTimeUtil.getTime()}`)
                   .width('70%')
                   .fontSize(20)
                   .textAlign(TextAlign.End)
                   .margin({ top: 20 })
+
                 Text(`${item.content}`)
                   .width('70%')
                   .fontSize(25)
@@ -177,6 +181,8 @@ struct SendMessage {
               .alignSelf(ItemAlign.End)
             }
           }, item => item.content)
+          .width('100%')
+          .alignItems(HorizontalAlign.End)
         }
         .width('100%')
         .alignItems(HorizontalAlign.End)
@@ -184,7 +190,6 @@ struct SendMessage {
       .height('70%')
       .width('100%')
       .layoutWeight(1)
-
 
       Row() {
         TextArea({ placeholder: $r('app.string.message'), text: this.content })
@@ -200,6 +205,7 @@ struct SendMessage {
           .onChange((value: string) => {
             this.content = value
           })
+
         Image($r('app.media.arrow'))
           .width(50)
           .height(50)

@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "description_TestAbility",
-      "value": "eTS_Empty Ability"
+      "name": "module_test_desc",
+      "value": "test ability description"
     },
     {
-      "name": "entry_TestAbility",
-      "value": "eTSMessage"
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
     }
   ]
 }
