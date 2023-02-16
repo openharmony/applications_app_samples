@@ -1,16 +1,16 @@
 {
   "string": [
     {
-      "name": "MainAbility_label",
-      "value": "eTSBase64Codec"
+      "name": "module_desc",
+      "value": "module description"
     },
     {
-      "name": "entry_desc",
+      "name": "EntryAbility_desc",
       "value": "description"
     },
     {
-      "name": "MainAbility_desc",
-      "value": "description"
+      "name": "EntryAbility_label",
+      "value": "Base64编解码"
     },
     {
       "name": "change_str",

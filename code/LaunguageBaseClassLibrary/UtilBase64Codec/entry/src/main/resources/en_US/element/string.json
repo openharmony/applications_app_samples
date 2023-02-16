@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Base64Code"
+    },
+    {
+      "name": "change_str",
+      "value": "String to convert:"
+    },
+    {
+      "name": "encode",
+      "value": "Encode"
+    },
+    {
+      "name": "decode",
+      "value": "Decode"
+    }
+  ]
+}
