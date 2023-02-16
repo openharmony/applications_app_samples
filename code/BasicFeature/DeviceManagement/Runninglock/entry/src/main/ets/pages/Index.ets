@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,30 +13,30 @@
  * limitations under the License.
  */
 
-import lock from '@ohos.runningLock'
-import { LockSwitch } from '../common/lockSwitch'
+import { LockSwitch } from '../common/LockSwitch'
 import Logger from '../util/Logger'
+import runningLock from '@ohos.runningLock'
 
 const TAG: string = 'RunningLock'
+const TIMEOUT: number = 5000
 
 @Entry
 @Component
 struct Index {
   @State output: Resource = $r('app.string.init_output')
-  @State timeOut: number = 5000
-  @State backgroundColor: Color = Color.White
+  @State indexBackgroundColor: Color = Color.White
   @State isDelayTime: boolean = true
 
   build() {
     Column() {
-      Text($r('app.string.entry_MainAbility'))
+      Text($r('app.string.EntryAbility_label'))
         .width('100%')
         .height(50)
         .textAlign(TextAlign.Start)
         .fontColor(Color.White)
         .padding({ left: 10, top: 10 })
         .fontSize(30)
-        .backgroundColor('#0D9FFB')
+        .backgroundColor($r('app.color.main_background'))
 
       Scroll() {
         Column() {
@@ -65,17 +65,14 @@ struct Index {
             .width(200)
             .height(50)
             .margin({ left: 10, right: 5, top: 20 })
-            .backgroundColor('#0D9FFB')
+            .backgroundColor($r('app.color.main_background'))
             .onClick(() => {
-              lock.isRunningLockTypeSupported(lock.RunningLockType.BACKGROUND, (error, supported) => {
-                if (typeof error === 'undefined') {
-                  Logger.info(TAG, `BACKGROUND support status is: ${supported}`)
-                  this.output = $r('app.string.supportLock')
-                } else {
-                  Logger.info(TAG, `error: ${error}`)
-                  this.output = $r('app.string.unSupportLock')
-                }
-              })
+              let isSupported = runningLock.isSupported(runningLock.RunningLockType.BACKGROUND)
+              if (isSupported) {
+                this.output = $r('app.string.supportLock')
+              } else {
+                this.output = $r('app.string.unSupportLock')
+              }
             })
 
             Button() {
@@ -85,15 +82,15 @@ struct Index {
                 .textAlign(TextAlign.Center)
             }
             .key('timingOut')
-            .backgroundColor('#0D9FFB')
+            .backgroundColor($r('app.color.main_background'))
             .width(200)
             .height(50)
             .margin({ left: 10, right: 5, top: 20 })
             .onClick(() => {
               if (this.isDelayTime === true) {
                 setTimeout(() => {
-                  this.backgroundColor = Color.Black
-                }, this.timeOut)
+                  this.indexBackgroundColor = Color.Black
+                }, TIMEOUT)
               }
             })
 
@@ -108,10 +105,10 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-    .backgroundColor(this.backgroundColor)
+    .backgroundColor(this.indexBackgroundColor)
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
-        this.backgroundColor = Color.White
+        this.indexBackgroundColor = Color.White
       }
     })
   }
