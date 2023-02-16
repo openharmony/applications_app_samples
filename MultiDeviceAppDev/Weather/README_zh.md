@@ -1,18 +1,12 @@
-# 一多天气
+# 一多入门示例：天气应用
 
 ### 介绍
 
-本示例展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。
+本示例是[《一次开发，多端部署》](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的配套示例代码，以包含“首页、城市管理、添加城市、更新时间弹窗”等功能的“天气应用”为例，展示如何开发一多应用。《一次开发，多端部署》中的[“从一个例子开始”章节](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/start-with-a-example.md)以“天气应用”为例介绍了一多应用开发过程中涉及的主要流程（如UX设计、工程管理及调试、页面开发、功能开发等），建议将本示例与其一起搭配阅读和理解。
 
-实现：
+### 效果预览
 
-1.本示例参考[一次开发，多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的指导，主要使用响应式布局的栅格断点系统实现在不同尺寸窗口界面上不同的显示效果。
-
-2.使用[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)实现侧边栏功能。
-
-3.使用[栅格容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)实现界面内容的分割和展示。
-
-4.使用Canvas和CanvasRenderingContext2D完成空气质量和日出月落图的曲线绘制。
+![home](./screenshots/devices/zh/home.png)
 
 使用说明：
 
@@ -28,10 +22,6 @@
 
 6.点击管理城市界面的**添加城市**，进入添加城市界面，已添加的城市不可点击，未添加的城市点击可以添加并返回管理城市界面显示。
 
-效果预览：
-
-![home](./screenshots/devices/zh/home.png)
-
 ### 相关权限
 
 不涉及。
@@ -42,9 +32,11 @@
 
 ###  约束与限制
 
-1.本示例仅支持标准系统上运行。
+1. 本示例仅支持标准系统上运行。
 
-2.本示例仅支持API9版本SDK，版本号：3.2.5.5 Beta2。
+2. 本示例仅支持API9版本SDK，版本号：3.2.5.5 Beta2。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+3. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+4. 本示例在开发板上运行时，可以[修改开发板系统配置文件以开启自由窗口能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/faq.md#%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E8%87%AA%E7%94%B1%E7%AA%97%E5%8F%A3)。
 
