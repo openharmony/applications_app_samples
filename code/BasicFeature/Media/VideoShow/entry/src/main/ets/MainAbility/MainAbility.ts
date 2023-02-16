@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
     }

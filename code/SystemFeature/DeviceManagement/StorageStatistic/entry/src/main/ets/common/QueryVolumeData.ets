@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import storageStatistics from '@ohos.storageStatistics'
-import volumeManager from '@ohos.volumeManager'
+import storageStatistics from '@ohos.file.storageStatistics'
+import volumeManager from '@ohos.file.volumeManager'
 import CheckEmptyUtils from '../utils/CheckEmptyUtils'
 import Logger from '../utils/Logger'
 import { VolumeData } from '../model/VolumeData'

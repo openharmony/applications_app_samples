@@ -14,7 +14,7 @@
  */
 
 import dataStorage from '@ohos.data.storage';
-import FormExtension from '@ohos.application.FormExtension';
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.application.formBindingData';
 import formInfo from '@ohos.application.formInfo';
 import formProvider from '@ohos.application.formProvider';
@@ -139,7 +139,7 @@ async function deleteFormInfo(formId: string) {
   }
 }
 
-export default class FormAbility extends FormExtension {
+export default class FormAbility extends FormExtensionAbility {
   onCreate(want) {
     Logger.log(`FormAbility onCreate, want: ${JSON.stringify(want)}`);
 

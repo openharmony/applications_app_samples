@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+import AbilityStage from '@ohos.app.ability.AbilityStage'
 import Want from '@ohos.application.Want'
 import Logger from '../common/Logger'
 

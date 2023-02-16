@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window'
 import Logger from '../../../../../WindowComponent/src/main/ets/components/util/Logger'
 import WindowManger from "../../../../../WindowComponent/src/main/ets/components/feature/WindowManger"
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   private TAG: string = 'WindowManger'
   private subWindow: window.WindowStage
 

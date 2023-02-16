@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import deviceInfo from'@ohos.deviceInfo'
 import display from '@ohos.display';
 import Window from '@ohos.window'
@@ -21,7 +21,7 @@ import { Logger } from '@ohos/common'
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   storage: LocalStorage
 
   onCreate(want, launchParam) {

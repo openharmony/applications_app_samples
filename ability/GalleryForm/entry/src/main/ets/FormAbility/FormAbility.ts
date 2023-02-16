@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import FormExtension from '@ohos.application.FormExtension'
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility'
 import formBindingData from '@ohos.application.formBindingData'
 import formInfo from '@ohos.application.formInfo'
 import formProvider from '@ohos.application.formProvider'
@@ -26,7 +26,7 @@ import GalleryFormConst from '../data/GalleryFormConst'
 const TAG: string = 'FormAbility'
 let counts: number = 0
 
-export default class FormAbility extends FormExtension {
+export default class FormAbility extends FormExtensionAbility {
   getPreferences(context, key) {
     try {
       return preferences.getPreferences(context, key)

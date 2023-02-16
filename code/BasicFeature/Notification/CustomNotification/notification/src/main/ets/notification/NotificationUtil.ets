@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 import { logger } from '../util/Logger'
 
 const TAG: string = 'NotificationUtilModel'

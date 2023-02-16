@@ -31,7 +31,7 @@ struct ContactEdit {
   @State address: string = ''
   @State remark: string = ''
   @State phones: string[] = ['']
-  @State title: ResourceStr = $r('app.string.create_contact')
+  @State title: Resource = $r('app.string.create_contact')
 
   build() {
     Column() {
