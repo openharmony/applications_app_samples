@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
-      "value": "util工具函数-内置对象类型检查"
+      "name": "module_desc",
+      "value": "模块描述"
     },
     {
-      "name": "description_mainability",
-      "value": "eTS_Empty Ability"
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "util工具函数-内置对象类型检查"
     },
     {
       "name": "text",

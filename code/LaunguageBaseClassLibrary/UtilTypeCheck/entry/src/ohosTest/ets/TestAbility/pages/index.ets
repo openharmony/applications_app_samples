@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import hilog from '@ohos.hilog';
 
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    console.info('TestAbility index aboutToAppear')
+    hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
 
   @State message: string = 'Hello World'
