@@ -16,6 +16,8 @@ ohos.permission.PUBLISH_AGENT_REMINDER (permission for the reminder agent)
 
 ohos.permission.RUNNING_LOCK (permission for the running lock)
 
+ohos.permission.NOTIFICATION_CONTROLLER (permission for send notification)
+
 ### Usage
 
 1. There are four tab bars (**Clock**, **Alarm**, **Countdown**, and **Settings**) at the bottom of the home page of the sample app. The **Clock** tab page displays a flip clock.
@@ -30,4 +32,4 @@ ohos.permission.RUNNING_LOCK (permission for the running lock)
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run. 
+2. This sample requires DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022) to compile and run.
