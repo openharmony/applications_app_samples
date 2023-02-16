@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,11 +13,22 @@
  * limitations under the License.
  */
 
-export default {
-  onCreate() {
-    console.info('Application onCreate')
-  },
-  onDestroy() {
-    console.info('Application onDestroy')
-  },
+export class Temperature {
+  temp: number
+
+  constructor(value) {
+    this.temp = value
+  }
+
+  compareTo(value) {
+    return this.temp >= value.getTemp()
+  }
+
+  getTemp() {
+    return this.temp
+  }
+
+  toString() {
+    return this.temp.toString()
+  }
 }
