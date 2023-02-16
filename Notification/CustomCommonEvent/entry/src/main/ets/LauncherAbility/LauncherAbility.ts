@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
-import commonEvent from '@ohos.commonEvent'
+import Ability from '@ohos.app.ability.UIAbility'
+import commonEvent from '@ohos.commonEventManager'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 import surveillanceEventsManager from '../module/SurveillanceEventsManager'

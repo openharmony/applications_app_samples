@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger'
 
 const TAG: string = 'MainAbility'
@@ -21,7 +22,16 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     logger.info(TAG, `[Demo] MainAbility onCreate`)
-    this.context.requestPermissionsFromUser(['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION'])
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
+        logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   onDestroy() {

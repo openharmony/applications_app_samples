@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import { Logger } from '@ohos/common'
 
 const TAG: string = 'MainAbility'

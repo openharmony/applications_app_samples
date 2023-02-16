@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
@@ -21,7 +22,16 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
-	await this.context.requestPermissionsFromUser(['ohos.permission.INTERNET'])
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.INTERNET']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     const that = this
     this.context.eventHub.on('getAbilityData', (data) => {
       data.context = that.context

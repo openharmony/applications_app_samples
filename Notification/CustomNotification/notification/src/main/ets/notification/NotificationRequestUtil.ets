@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 import { WantAgent } from '@ohos.wantAgent'
 
 class NotificationRequestUtil {

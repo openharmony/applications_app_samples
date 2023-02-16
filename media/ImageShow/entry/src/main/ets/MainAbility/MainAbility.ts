@@ -13,16 +13,25 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger'
 
 const TAG: string = 'MainAbility'
-const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION']
 
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    await this.context.requestPermissionsFromUser(PERMISSIONS)
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   onDestroy() {

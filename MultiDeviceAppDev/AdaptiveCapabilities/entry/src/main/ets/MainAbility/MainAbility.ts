@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import Logger from '../model/Logger'
 import window from '@ohos.window'
 
@@ -30,7 +30,7 @@ export default class MainAbility extends Ability {
     // Main window is created, set main page for this ability
     Logger.info('[Sample_AdaptiveCapabilities]', 'onWindowStageCreate')
     windowStage.setUIContent(this.context, "pages/Index", null)
-    window.getTopWindow(this.context)
+    window.getLastWindow(this.context)
       .then(windowObj => {
         AppStorage.SetOrCreate('windowObj', windowObj)
       })

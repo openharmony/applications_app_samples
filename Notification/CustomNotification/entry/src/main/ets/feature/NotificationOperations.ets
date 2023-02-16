@@ -21,7 +21,7 @@ import {
   notificationRequestUtil,
   wantAgentUtil
 } from '@ohos/notification'
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
 const TAG: string = 'NotificationOperations'
 const BUNDLE_NAME: string = 'ohos.samples.customnotification'

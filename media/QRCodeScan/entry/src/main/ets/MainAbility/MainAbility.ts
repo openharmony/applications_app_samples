@@ -13,20 +13,27 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import { Logger, QRCodeScanConst } from '@ohos/feature-qr-code-scan'
 
-const PERMISSIONS: Array<string> = [
-  'ohos.permission.CAMERA',
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.MEDIA_LOCATION'
-]
+const TAG: string = 'MainAbility'
 
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     Logger.info('MainAbility onCreate')
-    let permissionRequestResult = await this.context.requestPermissionsFromUser(PERMISSIONS)
+    let permissionRequestResult
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      permissionRequestResult = atManager.requestPermissionsFromUser(this.context, [
+        'ohos.permission.CAMERA',
+        'ohos.permission.READ_MEDIA',
+        'ohos.permission.WRITE_MEDIA',
+        'ohos.permission.MEDIA_LOCATION'
+      ])
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     // 如果权限列表中有-1，说明用户拒绝了授权
     if (permissionRequestResult.authResults[0] === 0) {
       // 控制相机是否打开
@@ -55,7 +62,7 @@ export default class MainAbility extends Ability {
   }
 
   onForeground() {
-    AppStorage.SetOrCreate('cameraStatus', !AppStorage.Get('cameraStatus'))
+    AppStorage.SetOrCreate('cameraStatus',!AppStorage.Get('cameraStatus'))
     Logger.info('MainAbility onForeground')
   }
 

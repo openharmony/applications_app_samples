@@ -13,10 +13,9 @@
 * limitations under the License.
 */
 
-import display from '@ohos.display'
 import Logger from '../util/Logger'
 import geolocation from '@ohos.geolocation'
-import { listData, heatCity } from '../mock/LocationMock'
+import { heatCity, listData } from '../mock/LocationMock'
 import { MyDataSource } from '../util/DataSource'
 import httpRequestResponse from '../net/HttpRequestResponse'
 
