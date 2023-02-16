@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2022 Huawei Device Co., Ltd.
+* Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ struct DetailPage {
   private scroller: Scroller = new Scroller()
 
   build() {
-    Stack() {
+    Stack({ alignContent: Alignment.BottomStart }) {
       Scroll(this.scroller) {
         Column({ space: 12 }) {
           Stack({ alignContent: Alignment.BottomEnd }) {
@@ -89,8 +89,6 @@ struct DetailPage {
       .padding({ bottom: this.curBp === 'sm' ? 86 : 106 })
 
       BottomNavigation({ goodItemData: $goodDetailData })
-        .position({ x: 0, y: '100%' })
-        .translate({ x: 0, y: '-100%' })
 
       Image($r('app.media.back'))
         .width(32)
