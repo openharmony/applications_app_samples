@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,45 +13,48 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
+import promptAction from '@ohos.promptAction'
 import router from '@ohos.router'
 import faultLogger from '@ohos.faultLogger'
+import Logger from '../model/Logger'
+
+const INDEX: number = 0 // 初始索引值
+const DURATION: number = 100 // 定时器时间
 
 @Preview
 @CustomDialog
 export struct FaultDialog {
   private controller: CustomDialogController
   private faultTypes: string[] = ['JS_CRASH', 'CPP_CRASH', 'FREEZE_CRASH']
-  @State selectIndex: number = 0
+  @State selectIndex: number = INDEX
 
   addFaultLog() {
     switch (this.selectIndex) {
       case 0:
-        prompt.showToast({ message: '异常构造中...' })
+        promptAction.showToast({ message: $r('app.string.js_crash_building') })
         setTimeout(() => {
           let tempList = ['0', '1']
-          console.info(tempList[3].toString())
-        }, 100)
+          Logger.info(tempList[3].toString())
+        }, DURATION)
         break
       case 1:
-        prompt.showToast({ message: '异常构造中,完成后应用会自动退出，请重新进入应用抓取异常信息' })
+        promptAction.showToast({ message: $r('app.string.cpp_crash_building') })
         setTimeout(() => {
           // 此处是为了构造cpp_crash，故意写的有问题的接口调用，因此添加了@ts-ignore
-          let module = "ohos.samples.faultlogger";
-          // @ts-ignore
-          faultLogger.addFaultLog(0, faultLogger.FaultType.CPP_CRASH, module, "faultloggertestsummary02 ")
+          let module = 'ohos.samples.faultlogger'
+          faultLogger.addFaultLog(0, faultLogger.FaultType.CPP_CRASH, module, 'faultloggertestsummary02')
           router.back()
-        }, 100)
+        }, DURATION)
         break
       case 2:
-        prompt.showToast({ message: '异常构造中,会出现冻屏，请退出应用后重新进入应用抓取异常信息' })
+        promptAction.showToast({ message: $r('app.string.app_freeze_building') })
         setTimeout(() => {
-          let index = 0
+          let index = 0 // 循环初始值
           while (true) {
             index++
             this.selectIndex = index % 2
           }
-        }, 100)
+        }, DURATION)
         break
       default:
         break
@@ -64,12 +67,14 @@ export struct FaultDialog {
         .textAlign(TextAlign.Start)
         .width('100%')
         .fontSize(22)
+
       Column() {
         ForEach(this.faultTypes, (item, index) => {
           Row() {
             Image(this.selectIndex === index ? $r('app.media.checked') : $r('app.media.uncheck'))
               .height(30).width(30)
               .objectFit(ImageFit.Contain)
+
             Text(item)
               .padding(10)
               .fontSize(20)
@@ -100,6 +105,7 @@ export struct FaultDialog {
           })
 
           Divider().size({ width: 1, height: 40 }).backgroundColor(Color.Gray)
+
           Button() {
             Text($r('app.string.cancel'))
               .fontColor('#0D9FFB')
