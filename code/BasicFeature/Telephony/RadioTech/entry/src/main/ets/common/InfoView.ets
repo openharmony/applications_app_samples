@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 
 import Logger from '../model/Logger'
 import { RadioStatus } from '../model/RadioStatus'
+import { SimArray } from '../model/ResultModel'
 
 const TAG = '[InfoView]'
 
@@ -23,7 +24,7 @@ export struct InfoView {
   @Link show: boolean
   @Link slotId: number
   @Link title: string
-  @State simArray: Array<any> = []
+  @State simArray: Array<SimArray> = []
   @State radioStatus: RadioStatus = new RadioStatus()
 
   aboutToAppear() {

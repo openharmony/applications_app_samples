@@ -20,6 +20,7 @@ import { RadioStatus } from '../model/RadioStatus'
 import { ResultModel } from '../model/ResultModel'
 
 const TAG = '[Index]'
+const RADDIOTECH_BG_COLOR ='#0D9FFB'
 
 @Entry
 @Component
@@ -54,7 +55,7 @@ struct Index {
         Text($r('app.string.entry_MainAbility'))
           .width('100%')
           .height(50)
-          .backgroundColor('#0D9FFB')
+          .backgroundColor(RADDIOTECH_BG_COLOR)
           .fontColor(Color.White)
           .fontSize(20)
           .padding({ left: 20 })

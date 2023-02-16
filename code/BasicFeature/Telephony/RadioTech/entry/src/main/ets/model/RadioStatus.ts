@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -55,7 +55,7 @@ export class RadioStatus {
     async getISOCountryCodeForNetwork(slotId: number) {
         const iSOCountryCode = await radio.getISOCountryCodeForNetwork(slotId)
         Logger.info(`${TAG}, getISOCountryCodeForNetwork iSOCountryCode = ${iSOCountryCode}`)
-        if (typeof (iSOCountryCode) == `undefined`) {
+        if (typeof (iSOCountryCode) === `undefined`) {
             return 'not available'
         } else {
             return iSOCountryCode
@@ -65,7 +65,7 @@ export class RadioStatus {
     async getNetworkState() {
         const data = await radio.getNetworkState()
         Logger.info(`${TAG}, getNetworkState data = ${JSON.stringify(data)}`)
-        if (typeof (JSON.stringify(data)) == `undefined`) {
+        if (typeof (JSON.stringify(data)) === `undefined`) {
             return 'not available'
         } else {
             const networkState: string = `longOperatorName:${JSON.stringify(data.longOperatorName)}\n` +
