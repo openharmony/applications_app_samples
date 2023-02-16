@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,21 +13,27 @@
  * limitations under the License.
  */
 
-let TAG = '[eTSRPC.ProcessData]'
+import { Logger } from '../common/Logger'
+
+const TAG = '[eTSRPC.ProcessData]'
+type SelectType = {
+  subcategory: string,
+  count: number
+}
 
 export class ProcessData {
   private priceArr: Array<string> = new Array(8).fill('')
 
-  getPrice(selectStuffs: Array<any>) {
+  getPrice(selectStuffs: Array<SelectType>) {
     for (var i = 0; i < selectStuffs.length; i++) {
       this.priceArr[i] = selectStuffs[i].subcategory
       if (this.priceArr[i] === '') {
         this.priceArr[i] = '0'
       }
       this.priceArr[i+selectStuffs.length] = selectStuffs[i].count.toString()
-      console.log(`${TAG} priceArray[${i+selectStuffs.length}]= ${typeof(this.priceArr[i+selectStuffs.length])}`)
+      Logger.info(TAG, `priceArray[${i + selectStuffs.length}]= ${typeof (this.priceArr[i+selectStuffs.length])}`)
     }
-    console.log(`${TAG} priceArray= ${this.priceArr}`)
+    Logger.info(TAG, `priceArray= ${this.priceArr}`)
     return this.priceArr
   }
 }

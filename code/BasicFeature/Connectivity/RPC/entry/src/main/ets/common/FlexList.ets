@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 import { CustomDialogList } from '../common/CustomDialogList'
+import { Logger } from '../common/Logger'
 
 let TAG = '[eTSRPC.FlexList]'
 
@@ -71,12 +72,12 @@ export struct FlexList {
             .width(50)
             .height(50)
             .fontSize(16)
-            .fontColor('#000000')
-            .backgroundColor('#CCCCCC')
+            .fontColor(Color.Black)
+            .backgroundColor($r('app.color.button_bg'))
             .onClick(() => {
               if (this.amount > 0) {
                 this.amount--
-                console.log(`${TAG} amount is ${this.amount}`)
+                Logger.info(TAG, `amount is ${this.amount}`)
               }
             })
 
@@ -84,19 +85,19 @@ export struct FlexList {
             .width(50)
             .height(50)
             .fontSize(16)
-            .backgroundColor('#CCCCCC')
+            .backgroundColor($r('app.color.button_bg'))
             .textAlign(TextAlign.Center)
-            .border({ width: 1, color: '#999999' })
+            .border({ width: 1, color: $r('app.color.text_color') })
 
           Button('+', { type: ButtonType.Normal })
             .width(50)
             .height(50)
             .fontSize(16)
-            .fontColor('#000000')
-            .backgroundColor('#CCCCCC')
+            .fontColor(Color.Black)
+            .backgroundColor($r('app.color.button_bg'))
             .onClick(() => {
               this.amount++
-              console.log(`${TAG} amount is ${this.amount}`)
+              Logger.info(TAG, `amount is ${this.amount}`)
             })
         }
       }
