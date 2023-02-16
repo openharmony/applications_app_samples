@@ -4,7 +4,7 @@
 
 This sample simulates the countdown scenario to show the use of the vibrator APIs. Below shows the sample app.
 
-![](./screenshots/device/vibrator.png)
+![](./screenshots/device/vibratorTime.jpeg)
 
 ### Functions
 

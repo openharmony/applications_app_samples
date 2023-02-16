@@ -1,29 +1,46 @@
 # Debug
 
-### 概要简介
+### 介绍
 
-本示例通过使用hidebug，获取当前应用内存使用情况。实现效果如下：
+本示例通过使用[@ohos.hidebug](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hidebug.md) 接口来获取当前应用内存使用情况。
 
-![](screenshots/device/index.png) ![](screenshots/device/data.png)
+### 效果预览
 
-### 相关概念
+|主页|Debug数据|
+|--------------------------------|--------------------------------|
+|![](screenshots/device/index.jpeg)|![](screenshots/device/data.jpeg)|
 
-Debug调试：获取应用内存的使用情况，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息等； 可以完成虚拟机内存切片导出，虚拟机CPU
-Profiling采集等操作。
+使用说明
 
-Stack：堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
+1.点击界面右上方Debug图标，弹出Debug信息界面，显示当前应用内存使用情况；
 
-@Builder：@Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。
+2.再次点击右上方Debug图标，Debug信息界面消失。
 
+### 工程目录
+
+```
+entry/src/main/ets/
+|---Application
+|---component
+|   |---DebugInfo.ets                  // Debug信息页面
+|---data
+|   |---Logger.ts                      // 日志工具
+|---MainAbility
+|---pages
+|   |---Index.ets                      // 首页
+```
+### 具体实现
+
+* 本实例获取Debug信息的功能结主要封装在Index，源码参考:[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DFX/Debug/entry/src/main/ets/pages/Index.ets) 。
+    * 获取Debug信息：在Index页面中通过点击事件调用hidebug.getPss()、hidebug.getSharedDirty()、hidebug.getPrivateDirty()等方法能够获取应用进程实际使用的物理内存大小、进程的共享脏内存大小、进程的私有脏内存大小。
+  
 ### 相关权限
 
 不涉及。
 
-### 使用说明
+### 依赖
 
-1.点击界面右上方Debug图标，弹出Debug信息界面，显示当前应用内存使用情况。
-
-2.再次点击右上方Debug图标，Debug信息界面消失。
+不涉及。
 
 ### 约束与限制
 
@@ -32,3 +49,15 @@ Stack：堆叠容器，子组件按照顺序依次入栈，后一个子组件覆
 2.本示例仅支持API9版本SDK，版本号：3.2.9.2。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/BasicFeature/DFX/Debug/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+
+```
