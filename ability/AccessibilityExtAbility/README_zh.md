@@ -12,7 +12,7 @@
 
 ## 使用说明
 1. 在启动无障碍扩展服务前，需退出当前应用保证界面节点正常生成；
-2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/application-models/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
+2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/application-models/accessibilityextensionability.md), 服务连接状态将显示在屏幕上（本应用需开启`retrieve`、`touchGuide`、`keyEventObserver`、`gesture`等能力）;
 3. 启动无障碍扩展服务后，在设备屏幕上绘画手势`rightThenDown`获取当前界面全部节点，之后绘画手势`leftThenDown`打印所有节点的指定信息；
 4. 在设备屏幕上绘画手势`left`对按钮`获焦`进行聚焦，之后可通过绘画手势`right`取消对按钮聚焦；
 5. 在设备屏幕上绘画手势`down`，触发对按钮`未点击/已点击`的点击动作。
