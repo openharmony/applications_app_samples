@@ -4,4 +4,3 @@
 **/build
 /.hvigor
 /package-lock.json
-/build-profile.json5
