@@ -13,11 +13,20 @@
  * limitations under the License.
  */
 
-export default {
-  onCreate() {
-    console.info('Application onCreate')
-  },
-  onDestroy() {
-    console.info('Application onDestroy')
-  },
+@Component
+export struct SpecInput {
+  private result_str: Resource = $r('app.string.result_f')
+  @State specStrInput: string = ''
+
+  build() {
+    Row() {
+      Text(this.result_str).width('30%').height(30).fontSize(15).textAlign(TextAlign.Start)
+      Text(this.specStrInput)
+        .width('70%')
+        .height(30)
+        .fontSize(15)
+        .textAlign(TextAlign.Start)
+        .border({ width: 2, radius: 5, color: "#0D9FFB" })
+    }.margin({ top: 20 }).width(300)
+  }
 }

@@ -1,24 +1,28 @@
 {
   "string": [
     {
-      "name": "StringCodec",
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
       "value": "StringCodec"
     },
     {
-      "name": "description_mainability",
-      "value": "ETS_Empty Ability"
-    },
-    {
       "name": "StringCodec_title",
-      "value": "字符串编解码"
+      "value": "string encoding and decoding"
     },
     {
       "name": "StringName",
-      "value": "字符串"
+      "value": "character string"
     },
     {
       "name": "SpecString",
-      "value": "字符串 : "
+      "value": "specString:"
     },
     {
       "name": "SpecString_info",
@@ -46,27 +50,27 @@
     },
     {
       "name": "SpecFormOutput",
-      "value": "特定格式输出"
+      "value": "specific format output"
     },
     {
       "name": "StringCodec_info",
-      "value": "OpenHarmony 3.0，未来有迹可循！"
+      "value": "OpenHarmony 3.0 has a track to follow in the future!"
     },
     {
       "name": "read",
-      "value": "读取："
+      "value": "read:"
     },
     {
       "name": "write",
-      "value": "写入："
+      "value": "write:"
     },
     {
       "name": "Text_encoder",
-      "value": "文本编码器"
+      "value": "text encoder"
     },
     {
       "name": "Text_decoder",
-      "value": "文本译码器"
+      "value": "text decoder"
     },
     {
       "name": "description_errlnput",
@@ -75,6 +79,10 @@
     {
       "name": "entry_errlnput",
       "value": "entry_errlnput"
+    },
+    {
+      "name": "message",
+      "value": "OpenHarmony 3.0 has a track to follow in the future!"
     }
   ]
 }
