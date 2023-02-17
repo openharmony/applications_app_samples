@@ -27,6 +27,7 @@ export struct DeleteDialog {
 
       Row() {
         Text($r('app.string.label_delete'))
+          .id('checkDelete')
           .fontSize(20)
           .fontColor(Color.Red)
           .flexGrow(1)

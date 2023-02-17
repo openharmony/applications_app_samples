@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import UIAbility from '@ohos.app.ability.UIAbility'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log('TestAbility onCreate')
         var abilityDelegator: any
@@ -43,7 +43,6 @@ export default class TestAbility extends Ability {
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
         });
 
-        globalThis.abilityContext = this.context;
     }
 
     onWindowStageDestroy() {
