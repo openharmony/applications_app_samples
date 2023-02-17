@@ -45,9 +45,9 @@
 
 1. 本示例仅支持在标准系统上运行。
 
-2. 本示例仅支持API9版本的SDK，版本号：3.2.9.2。
+2. 本示例仅支持API9版本的SDK，版本号：3.2.10.6。
 
-3. 本示例需要使用DevEco Studio 3.0 Release (Build Version: 3.0.0.993)才可编译运行。
+3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)才可编译运行。
 
 4. 本示例需要使用[新框架](https://gitee.com/yan-shuifeng/arkui_docs/blob/master/%E6%96%B0%E6%A1%86%E6%9E%B6%E5%88%87%E6%8D%A2/acenewpipe.md)，才可以正常安装运行。
 
