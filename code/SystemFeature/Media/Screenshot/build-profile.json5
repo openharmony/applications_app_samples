@@ -12,16 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-{
+ 
+ {
   "app": {
-    "signingConfigs": [],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
+        "signingConfig": "default"
       }
     ]
   },
@@ -37,6 +36,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Feature",
+      "srcPath": "./Feature"
     }
   ]
 }

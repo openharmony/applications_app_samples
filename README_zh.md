@@ -271,7 +271,7 @@
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="5" style='height:67.50pt' x:str><strong>行业解决方案</strong></td>
+  <td height="90" align="center" rowspan="6" style='height:67.50pt' x:str><strong>行业解决方案</strong></td>
   <td x:str><strong>即时通信</strong></td>
   <td x:str><a href="AppSample/Chat">聊天实例应用</a></td>
   <td ></td>
@@ -288,6 +288,14 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>电商</strong></td>
   <td x:str><a href="ETSUI/OrangeShopping">购物示例应用</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>媒体</strong></td>
+  <td x:str><a href="media/MultiMedia">仿相机</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -399,6 +407,7 @@ code
   |---IM                           # 即时通信
   |---InputMethod                  # 输入法
   |---Shopping                     # 电商
+  |---Media                        # 媒体
   |---Game                         # 游戏	
   |---Tools                        # 工具
 |---Project                    # 工程能力
