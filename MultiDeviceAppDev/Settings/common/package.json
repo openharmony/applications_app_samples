@@ -9,5 +9,6 @@
   "types": "",
   "repository": {},
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "type": "module"
 }

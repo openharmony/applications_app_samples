@@ -54,7 +54,7 @@ This sample demonstrates a simple home screen app that provides the following fu
 
 2. This sample is based on the stage model, which is supported from API version 9.
 
-3. DevEco Studio 3.0 Beta4 (Build version: 3.0.0.992, built on July 14, 2022) must be used.
+3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 
 4. The permissions configured in this sample are at the system_basic or system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/security/hapsigntool-overview.md/).
 
