@@ -23,6 +23,22 @@ const AUXILIARY: ThirdLevelCategory =
       {
         title: $r('app.string.auxiliary_badge'),
         url: 'pages/components/auxiliary/badgeSample/BadgeSample'
+      },
+      {
+        title: $r('app.string.scroll_bar'),
+        url: 'pages/components/auxiliary/scrollbarSample/ScrollBarSample'
+      },
+      {
+        title: $r('app.string.auxiliary_refresh'),
+        url: 'pages/components/auxiliary/refreshSample/RefreshSample'
+      },
+      {
+        title: $r('app.string.auxiliary_panel'),
+        url: 'pages/components/auxiliary/panelSample/PanelSample'
+      },
+      {
+        title: $r('app.string.auxiliary_alphabetIndexer'),
+        url: 'pages/components/auxiliary/alphabetIndexerSample/AlphabetIndexerSample'
       }
     ]
   }
@@ -55,6 +71,26 @@ const BUTTON_AND_SELECTION: ThirdLevelCategory =
       {
         title: $r('app.string.toggle_title'),
         url: 'pages/components/buttonAndSelection/toggleSample/ToggleSample'
+      },
+      {
+        title: $r('app.string.checkbox_checkboxgroup'),
+        url: 'pages/components/buttonAndSelection/checkboxSample/CheckboxSample'
+      },
+      {
+        title: $r('app.string.text_picker'),
+        url: 'pages/components/buttonAndSelection/textPickerSample/TextPickerSample'
+      },
+      {
+        title: $r('app.string.time_picker'),
+        url: 'pages/components/buttonAndSelection/timePickerSample/TimePickerSample'
+      },
+      {
+        title: $r('app.string.counter_name'),
+        url: 'pages/components/buttonAndSelection/counterSample/CounterSample'
+      },
+      {
+        title: $r('app.string.rating_name'),
+        url: 'pages/components/buttonAndSelection/ratingSample/RatingSample'
       }
     ]
   }
@@ -79,6 +115,34 @@ const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =
       {
         title: $r('app.string.qrcode_title'),
         url: 'pages/components/informationPresentationAndDynamicEffects/qrCodeSample/QRCodeSample'
+      },
+      {
+        title: $r('app.string.loading_progress'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/loadingProgressSample/LoadingProgressSample'
+      },
+      {
+        title: $r('app.string.marquee_name'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/marqueeSample/MarqueeSample'
+      },
+      {
+        title: $r('app.string.text_timer'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/textTimerSample/TextTimerSample'
+      },
+      {
+        title: $r('app.string.text_clock'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/textclockSample/TextClockSample'
+      },
+      {
+        title: $r('app.string.progress_name'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/progressSample/ProgressSample'
+      },
+      {
+        title: $r('app.string.gauge_name'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/gaugeSample/GaugeSample'
+      },
+      {
+        title: $r('app.string.data_panel'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/dataPanelSample/DataPanelSample'
       }
     ]
   }
@@ -99,6 +163,26 @@ const TEXT_AND_INPUT: ThirdLevelCategory =
       {
         title: $r('app.string.text_title'),
         url: 'pages/components/textAndInput/textSample/TextSample'
+      },
+      {
+        title: $r('app.string.rich_text'),
+        url: 'pages/components/textAndInput/richTextSample/RichTextSample'
+      }
+    ]
+  }
+
+const SCOLL_SWIPE: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_blank_and_divider'),
+    title: $r('app.string.scroll_swiper'),
+    childNodes: [
+      {
+        title: $r('app.string.scroll_name'),
+        url: 'pages/components/scrollAndSwipe/scrollSample/ScrollSample'
+      },
+      {
+        title: $r('app.string.swiper_name'),
+        url: 'pages/components/scrollAndSwipe/swipeSample/SwipeSample'
       }
     ]
   }
@@ -107,6 +191,7 @@ export const COMPONENT_CATEGORIES: ThirdLevelCategory[] =
   [
     BLANK_AND_DIVIDER,
     BUTTON_AND_SELECTION,
+    SCOLL_SWIPE,
     INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS,
     TEXT_AND_INPUT,
     AUXILIARY

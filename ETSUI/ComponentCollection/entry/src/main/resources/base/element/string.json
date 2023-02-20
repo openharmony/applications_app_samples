@@ -1232,6 +1232,540 @@
     {
       "name": "translate_y_axis",
       "value": "Y-axis:"
+    },
+    //Display
+    {
+      "name": "components_display",
+      "value": "Display"
+    },
+    {
+      "name": "components_interaction",
+      "value": "Interaction"
+    },
+    {
+      "name": "components_effects",
+      "value": "Effects"
+    },
+    {
+      "name": "blur_effects",
+      "value": "Blur effects"
+    },
+    {
+      "name": "blur_radius_modify",
+      "value": "Blur radius"
+    },
+    {
+      "name": "background_blur",
+      "value": "Background Blur"
+    },
+    {
+      "name": "shadow_effects",
+      "value": "Shadow Effect"
+    },
+    {
+      "name": "x_offset",
+      "value": "X Offset"
+    },
+    {
+      "name": "y_offset",
+      "value": "Y Offset"
+    },
+    {
+      "name": "shadow",
+      "value": "Shadow"
+    },
+    {
+      "name": "blur",
+      "value": "Blur"
+    },
+    {
+      "name": "effects",
+      "value": "Effect"
+    },
+    {
+      "name": "effects_display",
+      "value": "Display"
+    },
+    {
+      "name": "grayscale_change",
+      "value": "GrayScale"
+    },
+    {
+      "name": "brightness_change",
+      "value": "Brightness"
+    },
+    {
+      "name": "saturate_change",
+      "value": "Saturate"
+    },
+    {
+      "name": "constrast_change",
+      "value": "Constrast"
+    },
+    {
+      "name": "invert_change",
+      "value": "Invert"
+    },
+    {
+      "name": "sepia_change",
+      "value": "Sepia"
+    },
+    {
+      "name": "hueRotate_change",
+      "value": "HueRoate"
+    },
+    {
+      "name": "color_blend_change",
+      "value": "Colorblend"
+    },{
+      "name": "z_index",
+      "value": "Z-Index"
+    },
+    {
+      "name": "overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "visibility",
+      "value": "Visibility"
+    },
+    {
+      "name": "opacity",
+      "value": "Opacity"
+    },
+    {
+      "name": "z_index_display",
+      "value": "Z-Index"
+    },
+    {
+      "name": "Red",
+      "value": "Red"
+    },
+    {
+      "name": "Blue",
+      "value": "Blue"
+    },
+    {
+      "name": "Yellow",
+      "value": "Yellow"
+    },
+    {
+      "name": "positon_modify",
+      "value": "Position"
+    },
+    {
+      "name": "offset_modify",
+      "value": "Offset"
+    },
+    {
+      "name": "visibility_change",
+      "value": "Visibility"
+    },
+    {
+      "name": "opacity_change",
+      "value": "Opacity"
+    },
+    {
+      "name": "opacity_display",
+      "value": "Opacity Display"
+    },
+    {
+      "name": "item_select",
+      "value": "Menu Item"
+    },
+    {
+      "name": "disabled",
+      "value": "Disabled"
+    },
+    {
+      "name": "button_disabled",
+      "value": "Button Disabled"
+    },
+    {
+      "name": "list_disabled",
+      "value": "List Disabled"
+    },
+    {
+      "name": "button",
+      "value": "Button"
+    },
+    {
+      "name": "focus",
+      "value": "Focus"
+    },
+    {
+      "name": "popup_window",
+      "value": "Popup"
+    },
+    {
+      "name": "touch_test",
+      "value": "Touch"
+    },
+    {
+      "name": "touch_region",
+      "value": "Region"
+    },
+    {
+      "name": "hovereffect",
+      "value": "Hover"
+    },
+    {
+      "name": "menu",
+      "value": "Menu"
+    },
+    {
+      "name": "multiState",
+      "value": "MultiState"
+    },
+    {
+      "name": "alert",
+      "value": "Alert"
+    },
+    {
+      "name": "result",
+      "value": "Result"
+    },
+    {
+      "name": "popup",
+      "value": "Popup"
+    },
+    {
+      "name": "custom_popup",
+      "value": "Custom Popup"
+    },
+    {
+      "name": "touch_test_region",
+      "value": "Touch test region"
+    },
+    {
+      "name": "touch_hit_test",
+      "value": "Click the hot area: set the hot area as the green area"
+    },
+    {
+      "name": "response_region",
+      "value": "Response Region"
+    },
+    {
+      "name": "touch_hit_subtitle",
+      "value": "Click the green area to trigger the blue area response"
+    },
+    {
+      "name": "option",
+      "value": "option"
+    },
+    {
+      "name": "hover_region",
+      "value": "Hover the mouse over the green area to observe the effect"
+    },
+    {
+      "name": "multistatus_region",
+      "value": "Switch status and observe the effect"
+    },
+    {
+      "name": "status_select",
+      "value": "Status selection"
+    },
+    // 辅助
+    {
+      "name": "scroll_bar",
+      "value": "ScrollBar"
+    },
+    {
+      "name": "scroll_vertical_title",
+      "value": "vertical scroll"
+    },
+    {
+      "name": "scroll_horizontal_title",
+      "value": "horizontal scroll"
+    },
+    // 刷新
+    {
+      "name": "auxiliary_refresh",
+      "value": "Refresh"
+    },
+    {
+      "name": "auxiliary_panel",
+      "value": "Panel"
+    },
+    {
+      "name": "auxiliary_alphabetIndexer",
+      "value": "AlphabetIndexer"
+    },
+    {
+      "name": "loading_progress",
+      "value": "LoadingProgress"
+    },
+    {
+      "name": "marquee_name",
+      "value": "Marquee"
+    },
+    {
+      "name": "text_timer",
+      "value": "TextTimer"
+    },
+    {
+      "name": "text_clock",
+      "value": "TextClock"
+    },
+    {
+      "name": "progress_name",
+      "value": "Progress"
+    },
+    {
+      "name": "gauge_name",
+      "value": "Gauge"
+    },
+    {
+      "name": "data_panel",
+      "value": "DataPanel"
+    },
+    {
+      "name": "checkbox_checkboxgroup",
+      "value": "Checkbox && CheckboxGroup"
+    },
+    {
+      "name": "text_picker",
+      "value": "TextPicker"
+    },
+    {
+      "name": "time_picker",
+      "value": "TimePicker"
+    },
+    {
+      "name": "counter_name",
+      "value": "Counter"
+    },
+    {
+      "name": "rating_name",
+      "value": "Rating"
+    },
+    {
+      "name": "rich_text",
+      "value": "RichText"
+    },
+    {
+      "name": "scroll_swiper",
+      "value": "Scroll and Swipe"
+    },
+    {
+      "name": "scroll_name",
+      "value": "Scroll"
+    },
+    {
+      "name": "swiper_name",
+      "value": "Swiper"
+    },
+    {
+      "name": "alphabetindexer_an",
+      "value": "An"
+    },
+    {
+      "name": "alphabetindexer_bu",
+      "value": "Bu"
+    },
+    {
+      "name": "alphabetindexer_bai",
+      "value": "Bai"
+    },
+    {
+      "name": "alphabetindexer_bao",
+      "value": "Bao"
+    },
+    {
+      "name": "alphabetindexer_bi",
+      "value": "Bi"
+    },
+    {
+      "name": "alphabetindexer_bing",
+      "value": "Bing"
+    },
+    {
+      "name": "alphabetindexer_cao",
+      "value": "Cao"
+    },
+    {
+      "name": "alphabetindexer_chen",
+      "value": "Chen"
+    },
+    {
+      "name": "alphabetindexer_cheng",
+      "value": "Cheng"
+    },
+    {
+      "name": "alphabetindexer_lv",
+      "value": "Lv"
+    },
+    {
+      "name": "alphabetindexer_liu3",
+      "value": "Liu3"
+    },
+    {
+      "name": "alphabetindexer_liu",
+      "value": "Liu"
+    },
+    {
+      "name": "alphabetindexer_li",
+      "value": "Li"
+    },
+    {
+      "name": "alphabetindexer_lou",
+      "value": "Lou"
+    },
+    {
+      "name": "alphabetindexer_liang",
+      "value": "Liang"
+    },
+    {
+      "name": "alphabetindexer_lei",
+      "value": "Lei"
+    },
+    {
+      "name": "alphabetindexer_lu",
+      "value": "Lu"
+    },
+    {
+      "name": "alphabetindexer_cui",
+      "value": "Cui"
+    },
+    {
+      "name": "alphabetindexer_list_display",
+      "value": "List Display"
+    },
+    {
+      "name": "alphabetindexer_color_select",
+      "value": "Color Select"
+    },
+    {
+      "name": "panel_show_minibar",
+      "value": "Show Minibar Type Panel"
+    },
+    {
+      "name": "panel_close_minibar",
+      "value": "Close Minibar Type Panel"
+    },
+    {
+      "name": "panel_show_foldable",
+      "value": "Show Foldable Type Panel"
+    },
+    {
+      "name": "panel_close_foldable",
+      "value": "Close Foldable Type Panel"
+    },
+    {
+      "name": "panel_show_temporary",
+      "value": "Show Temporary Type Panel"
+    },
+    {
+      "name": "panel_close_temporary",
+      "value": "Close Temporary Type Panel"
+    },
+    {
+      "name": "checkbox_apple",
+      "value": "Apple"
+    },
+    {
+      "name": "checkbox_blueberry",
+      "value": "Blueberry"
+    },
+    {
+      "name": "checkbox_banbana",
+      "value": "Banana"
+    },
+    {
+      "name": "checkbox_orange",
+      "value": "Orange"
+    },
+    {
+      "name": "checkbox_select_color",
+      "value": "Select Color"
+    },
+    {
+      "name": "checkbox_select_all",
+      "value": "Select All"
+    },
+    {
+      "name": "normal_display",
+      "value": "Display"
+    },
+    {
+      "name": "normal_options",
+      "value": "Options"
+    },
+    {
+      "name": "datapanel_circle",
+      "value": "Circle"
+    },
+    {
+      "name": "datapanel_line",
+      "value": "Line"
+    },
+    {
+      "name": "progress_linear",
+      "value": "Linear Progress"
+    },
+    {
+      "name": "progress_eclipse",
+      "value": "Eclipse Progress"
+    },
+    {
+      "name": "progress_scalering",
+      "value": "ScaleRing Progress"
+    },
+    {
+      "name": "progress_ring",
+      "value": "Ring Progress"
+    },
+    {
+      "name": "progress_capsule",
+      "value": "Capsule Progress"
+    },
+    {
+      "name": "progress_change",
+      "value": "Change Progress"
+    },
+    {
+      "name": "textclock_timeformat",
+      "value": "Time Format"
+    },
+    {
+      "name": "scroll_horizontal",
+      "value": "Horizontal Scroll"
+    },
+    {
+      "name": "scroll_vertical",
+      "value": "Vertical Scroll"
+    },
+    {
+      "name": "interaction_disable_list",
+      "value": "Disable List"
+    },
+    {
+      "name": "interaction_show_one_alert",
+      "value": "Click to show one button alert"
+    },
+    {
+      "name": "interaction_show_two_alert",
+      "value": "Click to show two button alert"
+    },
+    {
+      "name": "interaction_placementontop",
+      "value": "PlacementOnTop:"
+    },
+    {
+      "name": "interaction_arrowoffset",
+      "value": "Change arrowOffset:"
+    },
+    {
+      "name": "interaction_showpopup",
+      "value": "Show Popup"
+    },
+    {
+      "name": "interaction_showcustompopup",
+      "value": "Show Custom Popup"
+    },
+    {
+      "name": "interaction_disable",
+      "value": "Disable Component:"
     }
   ]
 }

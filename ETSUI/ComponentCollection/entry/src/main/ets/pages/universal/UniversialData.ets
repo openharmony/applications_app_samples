@@ -50,6 +50,21 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
           url: 'pages/universal/properties/translateSample/TranslateSample'
         }
       ]
+    },
+    {
+      image: $r('app.media.ic_display'),
+      title: $r('app.string.components_display'),
+      url: "pages/universal/properties/displaySample/DisplaySample"
+    },
+    {
+      image: $r('app.media.ic_interaction'),
+      title: $r('app.string.components_interaction'),
+      url: "pages/universal/properties/interactionSample/InteractionSample"
+    },
+    {
+      image: $r('app.media.ic_image_effects'),
+      title: $r('app.string.components_effects'),
+      url: "pages/universal/properties/effectsSample/EffectsSample"
     }
   ]
 

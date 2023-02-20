@@ -113,6 +113,15 @@
     {
       "name": "toggle_selected_color",
       "value": "#4D00BFC9"
+    },
+    //Display
+    {
+      "name": "background_light_gray",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "sub_title_color",
+      "value": "#182431"
     }
   ]
 }
