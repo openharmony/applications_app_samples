@@ -1,0 +1,20 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Bluetooth",
+    "pages/JuLiSensor",
+    "pages/LightSensor",
+    "pages/FlashLamp",
+    "pages/Earphone",
+    "pages/WiFi",
+    "pages/Keyup",
+    "pages/Battery",
+    "pages/Video",
+    "pages/RearCamera",
+    "pages/ScreenDisplay",
+    "pages/FingerPrint",
+    "pages/Drag",
+    "pages/Touch",
+    "pages/ShiZhong"
+  ]
+}
