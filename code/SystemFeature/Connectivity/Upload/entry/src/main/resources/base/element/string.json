@@ -1,0 +1,105 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "上传"
+    },
+    {
+      "name": "take_photo",
+      "value": "拍照"
+    },
+    {
+      "name": "photo",
+      "value": "轻触拍照"
+    },
+    {
+      "name": "pick_album",
+      "value": "从相册选择"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "tip",
+      "value": "这一刻的想法..."
+    },
+    {
+      "name": "gps",
+      "value": "所在位置"
+    },
+    {
+      "name": "anyone",
+      "value": "谁可以看"
+    },
+
+    {
+      "name": "choice_number",
+      "value": "最多选择九张图片"
+    },
+    {
+      "name": "complete",
+      "value": "完成"
+    },
+    {
+      "name": "publish",
+      "value": "发表"
+    },
+    {
+      "name": "publish_success",
+      "value": "发表成功"
+    },
+    {
+      "name": "publish_fail",
+      "value": "发表失败，请检查网络"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "user_tip",
+      "value": "功能开发中"
+    },
+    {
+      "name": "open",
+      "value": "公开"
+    },
+    {
+      "name": "takePhone_err",
+      "value": "此设备不支持摄像头"
+    },
+    {
+      "name": "photo_empty",
+      "value": "图库未安装"
+    },
+    {
+      "name": "media_permission",
+      "value": "允许应用读取用户外部存储中的媒体文件信息"
+    },
+    {
+      "name": "media_write_permission",
+      "value": "允许应用读写用户外部存储中的媒体文件信息"
+    },
+    {
+      "name": "media_location_permission",
+      "value": "允许应用访问用户媒体文件中的地理位置信息"
+    },
+    {
+      "name": "media_camera_permission",
+      "value": "允许应用访问用户相机信息"
+    },
+    {
+      "name": "media_internet_permission",
+      "value": "允许访问网络"
+    }
+  ]
+}
