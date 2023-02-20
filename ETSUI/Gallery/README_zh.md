@@ -3,7 +3,12 @@
 ### 简介
 
 本示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。效果图如下：
-![](screenshots/devices/index.png)
+
+|通用事件|通用属性|手势处理|基础组件|
+|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+|![image](screenshots/devices/index.png)|![image](screenshots/devices/prop.png)|![image](screenshots/devices/gesture.png)|![image](screenshots/devices/component.png)|
+|<center>点击事件</center>|<center>尺寸属性</center>|<center>基础手势</center>|<center>Button</center>|
+|![image](screenshots/devices/click.png)|![image](screenshots/devices/size.png)|![image](screenshots/devices/base.png)|![image](screenshots/devices/button.png)|
 
 ### 相关概念
 
