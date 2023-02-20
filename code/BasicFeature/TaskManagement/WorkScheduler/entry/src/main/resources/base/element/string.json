@@ -13,20 +13,64 @@
       "value": "WorkScheduler"
     },
     {
-      "name": "WorkSchedulerExtensionAbility_label",
-      "value": "WorkSchedulerExtensionAbility"
+      "name": "WorkSchedulerAbility_desc",
+      "value": "description"
     },
     {
-      "name": "WorkSchedulerExtensionAbility_desc",
-      "value": "system schedules the task execution time"
+      "name": "WorkSchedulerAbility_label",
+      "value": "label"
     },
     {
-      "name": "notification_permission",
-      "value": "允许应用管理通知和订阅通知。"
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
     },
     {
-      "name": "upgrade",
-      "value": "升级"
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "sampleName",
+      "value": "workScheduler"
+    },
+    {
+      "name": "version",
+      "value": "version"
+    },
+    {
+      "name": "title1",
+      "value": "versionUpdate"
+    },
+    {
+      "name": "isLatest",
+      "value": "It is the latest version"
+    },
+    {
+      "name": "title2",
+      "value": "website"
+    },
+    {
+      "name": "title3",
+      "value": "contact us"
+    },
+    {
+      "name": "dialogText",
+      "value": "Features in development, please look forward to！"
+    },
+    {
+      "name": "dialogTitle",
+      "value": "A new version has been downloaded. Do you want to update it?"
+    },
+    {
+      "name": "btn1",
+      "value": "confirm"
+    },
+    {
+      "name": "btn2",
+      "value": "cancel"
+    },
+    {
+      "name": "is_develop",
+      "value": "Features are still under development"
     }
   ]
 }
