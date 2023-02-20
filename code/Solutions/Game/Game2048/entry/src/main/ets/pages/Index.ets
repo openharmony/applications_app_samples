@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,84 +13,12 @@
  * limitations under the License.
  */
 
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  public dataArray: string[] = []
-
-  constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
-    }
-  }
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-}
-
-enum GameStatus {
-  BEFORE = -1,
-  RUNNING = 1,
-  OVER = 0
-}
-
 import display from '@ohos.display'
 import Logger from '../model/Logger'
-import dataStorage from '@ohos.data.storage'
+import data_preferences from '@ohos.data.preferences'
 import { GameRule } from '../model/GameRule'
-import featureAbility from '@ohos.ability.featureAbility'
+import { MyDataSource, screenSizeType } from '../model/GameModuel'
+import { GameStatus, TEXT_COLOR } from '../muck/GameData'
 
 const TAG = '[Game2048]'
 
@@ -101,8 +29,7 @@ struct Game2048 {
   private gameRule: GameRule = new GameRule(this.dataNumbers)
   @State maxScore: number = 123456
   @State curScore: number = 0
-  @State @Watch("onGameOver") gameStatus: number = GameStatus.BEFORE
-  @State textColor: string[] = ['#f0fff0', '#eee3da', '#ede0c8', '#f2b179', '#f59563', '#f67c5f', '#f65e3b', '#edcf72', '#edcc61', '#9c0', '#33b5e5', '#09c', '#a6c', '#93c']
+  @State @Watch('onGameOver') gameStatus: number = GameStatus.BEFORE
   dialogController: CustomDialogController = new CustomDialogController({
     builder: ScorePannel({
       curScore: this.curScore,
@@ -111,12 +38,9 @@ struct Game2048 {
     }),
     autoCancel: false
   })
-  @State screenSize: {
-    x: number,
-    y: number
-  } = { x: px2vp(1080), y: px2vp(0) }
+  @State screenSize: screenSizeType = { x: px2vp(1080), y: px2vp(0) }
 
-  //gameStatus listener
+  // gameStatus listener
   onGameOver() {
     if (this.gameStatus === GameStatus.OVER) {
       this.curScore = this.gameRule.score
@@ -124,7 +48,7 @@ struct Game2048 {
     }
   }
 
-  //restart game
+  // restart game
   gameStart() {
     this.gameRule.init()
     this.dataNumbers = this.gameRule.dataNumbers
@@ -132,7 +56,7 @@ struct Game2048 {
     this.handleLocalData('put')
   }
 
-  //dataView
+  // dataView
   dataView() {
     this.dataNumbers = this.gameRule.dataNumbers
     this.gameStatus = this.gameRule.status
@@ -152,25 +76,26 @@ struct Game2048 {
     this.handleLocalData('has')
   }
 
-  //handle local data
-  handleLocalData(method: string) {
-    let context = featureAbility.getContext()
-    context.getFilesDir((err, path) => {
-      let storage = dataStorage.getStorageSync(path + '/mystore')
-      if (method === 'put') {
-        storage.putSync('gameData', JSON.stringify(this.dataNumbers))
-        let score: string = this.gameRule.score.toString()
-        storage.putSync('score', score)
-        storage.putSync('gameStatus', this.gameRule.status.toString())
-        storage.flushSync()
-      } else if (method === 'has') {
-        if (storage.hasSync('gameData')) {
-          this.gameRule.score = this.curScore = Number(storage.getSync('score', 'string'))
-          this.gameStatus = this.gameRule.status = Number(storage.getSync('gameStatus', 'string'))
-          this.dataNumbers = this.gameRule.dataNumbers = JSON.parse(storage.getSync('gameData', 'string').toString())
-        }
+  // handle local data
+  async handleLocalData(method: string) {
+    let context = getContext(this)
+    let preferences = await data_preferences.getPreferences(context, 'mystore')
+    if (this.gameRule.score === undefined || this.gameRule.status === undefined || this.gameRule.dataNumbers === undefined) {
+      return
+    }
+    if (method === 'put') {
+      await preferences.put('gameData', JSON.stringify(this.dataNumbers))
+      let score: string = this.gameRule.score.toString()
+      await preferences.put('score', score)
+      await preferences.put('gameStatus', this.gameRule.status.toString())
+      await preferences.flush()
+    } else if (method === 'has') {
+      if (await preferences.has('gameData')) {
+        this.gameRule.score = this.curScore = Number(await preferences.get('score', 'string'))
+        this.gameStatus = this.gameRule.status = Number(await preferences.get('gameStatus', 'string'))
+        this.dataNumbers = this.gameRule.dataNumbers = JSON.parse(await preferences.get('gameData', 'string') as string)
       }
-    })
+    }
   }
 
   build() {
@@ -184,17 +109,17 @@ struct Game2048 {
           Column() {
             Text('Score')
               .fontSize('30px')
-              .fontColor('#efe1d3')
+              .fontColor($r('app.color.text_color'))
               .fontWeight(FontWeight.Bolder)
 
             Text(`${this.gameRule.score}`)
               .fontSize('30px')
-              .fontColor('#fcf8f5')
+              .fontColor($r('app.color.score_color'))
               .fontWeight(FontWeight.Bolder)
           }
           .alignItems(HorizontalAlign.Center)
           .justifyContent(FlexAlign.Center)
-          .backgroundColor('#bbada0')
+          .backgroundColor($r('app.color.top_color'))
           .width(this.screenSize.x * 0.25)
           .height(this.screenSize.x * 0.25)
           .borderRadius(15)
@@ -202,17 +127,17 @@ struct Game2048 {
           Column() {
             Text('Max')
               .fontSize('50px')
-              .fontColor('#efe1d3')
+              .fontColor($r('app.color.text_color'))
               .fontWeight(FontWeight.Bolder)
 
             Text(`${this.maxScore}`)
               .fontSize('30px')
-              .fontColor('#fcf8f5')
+              .fontColor($r('app.color.score_color'))
               .fontWeight(FontWeight.Bolder)
           }
           .alignItems(HorizontalAlign.Center)
           .justifyContent(FlexAlign.Center)
-          .backgroundColor('#bbada0')
+          .backgroundColor($r('app.color.top_color'))
           .width(this.screenSize.x * 0.25)
           .height(this.screenSize.x * 0.25)
           .borderRadius(15)
@@ -227,14 +152,14 @@ struct Game2048 {
             GridItem() {
               Text(`${item === 0 ? '' : item}`)
                 .fontSize('85px')
-                .fontColor(item <= 4 ? '#000' : '#fcf8f5')
+                .fontColor(item <= 4 ? '#000' : $r('app.color.score_color'))
                 .fontWeight(FontWeight.Bolder)
-                .backgroundColor('#f0fff0')
+                .backgroundColor($r('app.color.item_bg'))
                 .width('100%')
                 .height('100%')
                 .textAlign(TextAlign.Center)
                 .borderRadius(10)
-                .backgroundColor(this.textColor[(Math.log(item) / Math.log(2))])
+                .backgroundColor(TEXT_COLOR[(Math.log(item) / Math.log(2))])
             }
           })
         }
@@ -310,12 +235,12 @@ struct ScorePannel {
         .margin({ top: 10 })
 
       Text('Score')
-        .fontColor('#C8A584')
+        .fontColor($r('app.color.title_color'))
         .fontSize(20)
         .margin({ top: 10 })
 
       Text(`${this.curScore}`)
-        .fontColor('#5D5D5D')
+        .fontColor($r('app.color.cur_score_color'))
         .fontSize(40)
         .margin({ top: 10 })
 
@@ -336,10 +261,11 @@ struct ScorePannel {
             this.gameStart()
             this.controller.close()
           })
-      }.justifyContent(FlexAlign.SpaceAround)
+      }
+      .justifyContent(FlexAlign.SpaceAround)
       .margin({ top: 10, bottom: 10 })
     }
-    .backgroundColor('#f0f0f0')
+    .backgroundColor($r('app.color.index_bg'))
     .borderRadius(25)
   }
 }

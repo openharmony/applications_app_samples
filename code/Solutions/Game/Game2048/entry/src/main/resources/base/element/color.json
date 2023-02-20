@@ -1,0 +1,37 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_color",
+      "value": "#efe1d3"
+    },
+    {
+      "name": "score_color",
+      "value": "#fcf8f5"
+    },
+    {
+      "name": "top_color",
+      "value": "#bbada0"
+    },
+    {
+      "name": "item_bg",
+      "value": "#f0fff0"
+    },
+    {
+      "name": "title_color",
+      "value": "#C8A584"
+    },
+    {
+      "name": "cur_score_color",
+      "value": "#5D5D5D"
+    },
+    {
+      "name": "index_bg",
+      "value": "#f0f0f0"
+    }
+
+  ]
+}
