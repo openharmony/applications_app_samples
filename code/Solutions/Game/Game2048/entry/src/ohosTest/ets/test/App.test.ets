@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import featureAbility from '@ohos.ability.featureAbility';
-import hilog from '@ohos.hilog';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import hilog from '@ohos.hilog'
 
 const BUNDLE = 'Game2048'
 const TAG = '[Sample_Game2048]'
@@ -29,12 +30,11 @@ export default function appTest() {
     it(BUNDLE + '_startAbility', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
       let parameter = {
-        "want": {
-          bundleName: "ohos.samples.etsgame2048",
-          abilityName: "ohos.samples.etsgame2048.MainAbility"
-        }
+        bundleName: "ohos.samples.game2048",
+        abilityName: "EntryAbility"
       }
-      await featureAbility.startAbility(parameter, (err, data) => {
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(parameter, (err, data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
         expect(0).assertEqual(err.code)
         done()
