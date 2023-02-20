@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "购物"
+    },
+    {
+      "name": "str1",
+      "value": "我的搜藏"
+    },
+    {
+      "name": "str2",
+      "value": "管理"
+    },
+    {
+      "name": "singText1",
+      "value": "宝贝状态"
+    },
+    {
+      "name": "singText2",
+      "value": "收藏时间"
+    },
+    {
+      "name": "singText3",
+      "value": "运动出行"
+    },
+    {
+      "name": "singText4",
+      "value": "最近收藏"
+    },
+    {
+      "name": "search1",
+      "value": "搜索"
+    },
+    {
+      "name": "search2",
+      "value": "搜索发现"
+    },
+    {
+      "name": "user1",
+      "value": "关注 100"
+    },
+    {
+      "name": "user2",
+      "value": "粉丝 0"
+    },
+    {
+      "name": "cart1",
+      "value": "功能手机5G网速"
+    },
+    {
+      "name": "cart2",
+      "value": "12GB+8GB 官方精品0"
+    }
+  ]
+}
