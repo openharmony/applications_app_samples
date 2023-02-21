@@ -88,7 +88,7 @@ export default class RdbModel {
     Logger.info(TAG, `delete rows: ${rows}`)
   }
 
-  async query(predicates): Array<Contact> {
+  async query(predicates): Promise<Contact[]> {
     Logger.info(TAG, 'query start')
     Logger.info(TAG, 'predicates is ' + JSON.stringify(predicates))
     Logger.info(TAG, 'columns ' + JSON.stringify(this.columns))
