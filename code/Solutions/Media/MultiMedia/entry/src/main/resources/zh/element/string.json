@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "eTS多媒体"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "eTS多媒体 Ability"
+    },
+    {
+      "name": "entry_desc",
+      "value": "eTSMultiMedia Ability"
+    },
+    {
+      "name": "delete_file",
+      "value": "删除此文件?"
+    },
+    {
+      "name": "rename_file",
+      "value": "重命名此文件"
+    },
+    {
+      "name": "yes",
+      "value": "确定"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "rename_placeholder",
+      "value": "请输入新的名称"
+    },
+    {
+      "name": "photo",
+      "value": "拍照"
+    },
+    {
+      "name": "video",
+      "value": "录像"
+    },
+    {
+      "name": "album_empty",
+      "value": "此相册为空"
+    }
+  ]
+}
