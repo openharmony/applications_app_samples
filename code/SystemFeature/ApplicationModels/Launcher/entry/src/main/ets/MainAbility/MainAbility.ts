@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility'
 import WindowManager from '../manager/WindowManager'
 import { Logger } from '@ohos/base'
 import { WINDOW_NAMES, WINDOW_PAGES } from '../manager/WindowManager'

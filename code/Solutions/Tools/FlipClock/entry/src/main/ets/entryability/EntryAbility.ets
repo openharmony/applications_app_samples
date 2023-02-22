@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import Logger from '../model/Logger'
 import Notification from '@ohos.notificationManager'
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
     AppStorage.Set('context', this.context)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,14 +12,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.application.Ability'
+
+import UIAbility from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 import Logger from '../model/Logger'
 
-const TAG: string = 'MainAbility'
+const TAG: string = "MainAbility"
+const PERMISSIONS: Array<Permissions> = [
+  'ohos.permission.READ_MEDIA',
+  'ohos.permission.WRITE_MEDIA',
+  'ohos.permission.CAPTURE_SCREEN'
+]
 
-export default class MainAbility extends Ability {
+
+export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   onDestroy() {

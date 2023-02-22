@@ -14,14 +14,14 @@
  */
 
 import { Hypium } from '@ohos/hypium'
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Logger } from '@ohos/base'
 import testsuite from '../test/List.test'
 
 const TAG: string = 'TestAbility'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'TestAbility onCreate')
   }

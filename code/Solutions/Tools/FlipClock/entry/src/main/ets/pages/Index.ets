@@ -30,7 +30,6 @@ struct Index {
   @State currentIndex: number = 0
   private isTabScrollable: boolean = false
   private controller: TabsController = new TabsController()
-  private tabArray: MyDataSource = new MyDataSource(tabArray)
   // 设置屏幕亮度
   setBrightness(): void {
     brightness.setValue(this.brightnessValue)
@@ -62,7 +61,7 @@ struct Index {
     Column() {
       Stack() {
         Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
-          LazyForEach(this.tabArray, (item: TabType) => {
+          ForEach(tabArray, (item: TabType) => {
             TabContent() {
               if (item.num === 0) {
                 FlipClock()
@@ -75,7 +74,7 @@ struct Index {
               }
             }
             .tabBar(this.TabBuilder(item))
-          })
+          }, item => JSON.stringify(item))
         }
         .zIndex(-1)
         .width('100%')
@@ -96,7 +95,6 @@ struct Index {
       .height('100%')
     }
     .justifyContent(FlexAlign.SpaceBetween)
-    .brightness(this.brightnessValue)
     .gesture(SwipeGesture({ fingers: 1, direction: SwipeDirection.Vertical })
       .onAction((event: GestureEvent) => {
         if (0 <= event.angle) {
