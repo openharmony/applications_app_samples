@@ -14,17 +14,17 @@
  */
 
 import commonEvent from '@ohos.commonEvent'
-import common from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 import Logger from '../module/Logger'
 import surveillanceEventsManager from '../module/SurveillanceEventsManager'
 
 export default class SettingFeature {
-  private innerContext: common.UIAbilityContext = null
+  private innerContext: context.AbilityContext = null
   private pref: dataPreferences.Preferences = null
 
-  constructor(abilityContext: common.UIAbilityContext) {
+  constructor(abilityContext: context.AbilityContext) {
     this.innerContext = abilityContext
   }
 

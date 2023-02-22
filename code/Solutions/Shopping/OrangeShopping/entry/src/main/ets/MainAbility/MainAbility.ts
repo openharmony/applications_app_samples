@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import Ability from '@ohos.application.Ability'
 import { logger } from '@ohos/details-page-component'
 import { notificationUtil } from '@ohos/notification'
 import { QRCodeScanConst } from '@ohos/scan-component'
@@ -42,29 +41,13 @@ export default class MainAbility extends Ability {
   }
 
   requestPermission = async () => {
-    let atManager = abilityAccessCtrl.createAtManager()
-    try {
-      atManager.requestPermissionsFromUser(this.context, [
-        'ohos.permission.CAMERA',
-        'ohos.permission.MICROPHONE',
-        'ohos.permission.READ_MEDIA',
-        'ohos.permission.WRITE_MEDIA',
-        'ohos.permission.MEDIA_LOCATION',
-        'ohos.permission.INTERNET'
-      ]).then((data) => {
-        // 如果权限列表中有-1，说明用户拒绝了授权
-        if (data.authResults[0] === 0) {
-          // 控制相机是否打开
-          AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
-          logger.info('MainAbility permissionRequestResult success')
-        }
-      }, (err) => {
-        logger.error(TAG, 'Request permission failed:' + JSON.stringify(err))
-      })
-    } catch (err) {
-      logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    let permissionRequestResult = await this.context.requestPermissionsFromUser(PERMISSIONS)
+    // 如果权限列表中有-1，说明用户拒绝了授权
+    if (permissionRequestResult.authResults[0] === 0) {
+      // 控制相机是否打开
+      AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
+      logger.info('MainAbility permissionRequestResult success')
     }
-
     await notificationUtil.enableNotification()
   }
 

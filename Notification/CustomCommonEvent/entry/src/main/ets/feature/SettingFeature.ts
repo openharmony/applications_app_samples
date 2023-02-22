@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import commonEvent from '@ohos.commonEventManager'
-import context from '@ohos.app.ability.common'
+import commonEvent from '@ohos.commonEvent'
+import context from '@ohos.application.context'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 import Logger from '../module/Logger'
 import surveillanceEventsManager from '../module/SurveillanceEventsManager'
 
 export default class SettingFeature {
-  private innerContext: context.UIAbilityContext = null
+  private innerContext: context.AbilityContext = null
   private pref: dataPreferences.Preferences = null
 
-  constructor(abilityContext: context.UIAbilityContext) {
+  constructor(abilityContext: context.AbilityContext) {
     this.innerContext = abilityContext
   }
 

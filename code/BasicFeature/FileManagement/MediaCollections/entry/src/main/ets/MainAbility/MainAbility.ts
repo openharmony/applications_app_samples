@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import display from '@ohos.display'
 
-export default class MainAbility extends UIAbility {
+export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
   }
@@ -27,7 +27,7 @@ export default class MainAbility extends UIAbility {
 
   async onWindowStageCreate(windowStage) {
     console.log("[Demo] MainAbility onWindowStageCreate")
-    let abilityDisplay = await display.getDefaultDisplaySync()
+    let abilityDisplay = await display.getDefaultDisplay()
     let abilityDisplayWidth = abilityDisplay.width
     const displayWidth: number = 2500
     if (abilityDisplayWidth > displayWidth) {

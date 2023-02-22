@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.app.ability.AbilityStage'
+import AbilityStage from '@ohos.application.AbilityStage'
 import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger'
 
 const TAG: string = 'MyAbilityStage'

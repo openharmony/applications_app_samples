@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import Logger from '../model/Logger'
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends UIAbility {
+export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     let isRemote = want.parameters.isRemote
     if (isRemote) {

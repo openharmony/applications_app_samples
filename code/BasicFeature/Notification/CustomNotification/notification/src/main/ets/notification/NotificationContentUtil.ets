@@ -14,14 +14,14 @@
  */
 
 import image from '@ohos.multimedia.image'
-import notification from '@ohos.notificationManager'
+import notification from '@ohos.notification'
 
 class NotificationContentUtil {
-  /**
-   * init basic notification content
-   * @param basicContent
-   * @return return the created NotificationContent
-   */
+ /**
+  * init basic notification content
+  * @param basicContent
+  * @return return the created NotificationContent
+  */
   initBasicNotificationContent(basicContent: notification.NotificationBasicContent) {
     return {
       contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 通知内容类型
@@ -29,15 +29,15 @@ class NotificationContentUtil {
     }
   }
 
-  /**
-   *  init longText notification content
-   *
-   * @param basicContent
-   * @param notificationLongText
-   * @param notificationBriefText
-   * @param notificationExpandedTitle
-   * @return return the created NotificationContent
-   */
+ /**
+  *  init longText notification content
+  *
+  * @param basicContent
+  * @param notificationLongText
+  * @param notificationBriefText
+  * @param notificationExpandedTitle
+  * @return return the created NotificationContent
+  */
   initNotificationLongTextContent(basicContent: notification.NotificationBasicContent, notificationLongText: string, notificationBriefText: string, notificationExpandedTitle: string) {
     return {
       contentType: notification.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 通知内容类型

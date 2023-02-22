@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import storageStatistics from '@ohos.file.storageStatistics'
+import storageStatistics from '@ohos.storageStatistics'
 
 export interface AppData {
   appName: string

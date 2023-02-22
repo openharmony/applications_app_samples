@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import deviceInfo from'@ohos.deviceInfo'
 import display from '@ohos.display';
 import Window from '@ohos.window'

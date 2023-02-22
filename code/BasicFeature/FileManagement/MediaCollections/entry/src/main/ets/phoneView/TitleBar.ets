@@ -23,7 +23,7 @@ const TAG = 'InputDialog: '
 
 @Component
 export struct TitleBar {
-  @Link isPlaying: boolean
+  @Link isPlaying: $isPlaying
   @Link currentTime: number
   @Link myMedia: myMedia
   @Prop httpUrl: string

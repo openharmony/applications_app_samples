@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import Window from '@ohos.window'
 import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends UIAbility {
+export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
   }

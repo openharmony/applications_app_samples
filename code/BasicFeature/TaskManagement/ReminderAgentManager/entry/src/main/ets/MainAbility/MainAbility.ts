@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import ability from '@ohos.application.Ability'
 import notification from '@ohos.notification'
 import window from '@ohos.window'
 import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends UIAbility {
+export default class MainAbility extends ability {
   async onCreate(want, launchParam) {
     Logger.info(TAG, 'onCreate')
     await notification.requestEnableNotification()

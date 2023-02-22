@@ -34,7 +34,7 @@ struct TextInputSample {
   @State showPasswordIcon: boolean = true
   @State inputType: InputType = InputType.Normal
   @State inputContent: string = ''
-  @State typePlaceholder: Resource = $r('app.string.text_input_normal_type')
+  @State typePlaceholder: ResourceStr = $r('app.string.text_input_normal_type')
   private maxLength: number = 12
   private context: any = getContext(this)
   private inputController: TextInputController = new TextInputController()

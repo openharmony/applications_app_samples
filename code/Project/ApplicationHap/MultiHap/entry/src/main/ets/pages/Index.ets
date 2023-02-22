@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import Logger from '../util/Logger'
 
 const TAG: string = 'Index'
@@ -25,7 +25,7 @@ const VIDEO_ABILITY_NAME: string = "VideoAbility"
 @Entry
 @Component
 struct Index {
-  private context: common.UIAbilityContext = null
+  private context: context.AbilityContext = null
 
   build() {
     Row() {
@@ -64,6 +64,6 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as common.UIAbilityContext
+    this.context = getContext(this) as context.AbilityContext
   }
 }

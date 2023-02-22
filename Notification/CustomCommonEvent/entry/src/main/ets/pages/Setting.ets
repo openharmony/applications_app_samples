@@ -14,14 +14,15 @@
  */
 
 import commonEvent from '@ohos.commonEvent'
-import context from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import settingFeature from '../feature/SettingFeature'
+import surveillanceEventsManager from '../module/SurveillanceEventsManager'
 import { Header } from '../component/Header'
 
 @Entry
 @Component
 struct Setting {
-  private feature:settingFeature = new settingFeature(getContext() as context.UIAbilityContext)
+  private feature:settingFeature = new settingFeature(getContext() as context.AbilityContext)
   private dataSource: Array<Array<any>> = [
     [commonEvent.Support.COMMON_EVENT_WIFI_POWER_STATE, $r('app.string.enable_wifi')],
     [commonEvent.Support.COMMON_EVENT_SCREEN_OFF, $r('app.string.enable_screen_off')],

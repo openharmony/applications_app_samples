@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.app.ability.AbilityStage'
+import AbilityStage from "@ohos.application.AbilityStage"
 import { Logger } from '@ohos/common'
 
 export default class MyAbilityStage extends AbilityStage {

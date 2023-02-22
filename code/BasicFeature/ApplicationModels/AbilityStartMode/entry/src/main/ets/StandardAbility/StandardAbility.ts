@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import Ability from '@ohos.application.Ability'
+import AbilityConstant from '@ohos.application.AbilityConstant'
 import Logger from '../common/Logger'
 
 const TAG = '[Sample_StartMode]'
 
-export default class StandardAbility extends UIAbility {
+export default class StandardAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'StandardAbility onCreate')
     const that = this

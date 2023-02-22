@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import { Logger } from '@ohos/feature'
+import Ability from '@ohos.application.Ability'
+import { Logger } from '@ohos/notification'
 
-export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info('want param:' + JSON.stringify(want) ?? '')
-    Logger.info('launchParam:' + JSON.stringify(launchParam) ?? '')
+const TAG: string = 'MainAbility'
+
+export default class MainAbility extends Ability {
+  onCreate(want) {
+    Logger.info(TAG, '[Demo] MainAbility onCreate')
   }
 
   onDestroy() {

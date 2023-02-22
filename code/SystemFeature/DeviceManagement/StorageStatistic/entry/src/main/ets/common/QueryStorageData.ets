@@ -14,7 +14,7 @@
  */
 
 import bundle from '@ohos.bundle.bundleManager'
-import storageStatistics from '@ohos.file.storageStatistics'
+import storageStatistics from '@ohos.storageStatistics'
 import { AppData } from '../model/AppData'
 import CheckEmptyUtils from '../utils/CheckEmptyUtils'
 import Logger from '../utils/Logger'

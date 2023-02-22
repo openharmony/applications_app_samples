@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import commonEvent from '@ohos.commonEvent'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 import surveillanceEventsManager from '../module/SurveillanceEventsManager'
 import Logger from '../module/Logger'
 
-export default class LauncherAbility extends UIAbility {
+export default class LauncherAbility extends Ability {
   onCreate(want) {
     globalThis.abilityWant = want
     let settings: Map<string, number> = new Map()

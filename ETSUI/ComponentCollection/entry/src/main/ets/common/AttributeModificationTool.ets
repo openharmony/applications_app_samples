@@ -154,8 +154,8 @@ export struct CommonItemColorSelect {
  */
 @Component
 export struct CommonItemInput {
-  @Link inputValue: string
-  private name: Resource
+  @Link inputValue: ResourceStr
+  private name: ResourceStr
   private placeholder?: ResourceStr = ''
 
   build() {

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import commonEvent from '@ohos.commonEvent'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
@@ -21,13 +21,13 @@ import Logger from '../module/Logger'
 import router from '@ohos.router'
 
 export default class LaunchFeature {
-  private innerContext: common.UIAbilityContext = null
+  private innerContext: context.AbilityContext = null
   private pref: dataPreferences.Preferences = null
   private subscriber = null
   private subscriberLow = null
   private currentRecordTimes: number = 0
 
-  constructor(abilityContext: common.UIAbilityContext) {
+  constructor(abilityContext: context.AbilityContext) {
     this.innerContext = abilityContext
   }
 

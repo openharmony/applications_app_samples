@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import emitter from '@ohos.events.emitter'
 import Logger from '../common/Logger'
 
@@ -21,7 +21,7 @@ const TAG = '[Sample_StartMode]'
 const eventId = 1 // 设置一个Id，用来emitter传输
 
 
-export default class SingletonAbility extends UIAbility {
+export default class SingletonAbility extends Ability {
   onCreate(want) {
     Logger.info(TAG, 'SingletonAbility onCreate')
     const that = this

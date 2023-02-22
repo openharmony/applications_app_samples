@@ -36,5 +36,5 @@
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例仅支持API9版本SDK，版本号：3.2.10.6；
-3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)才可编译运行；
+2. 本示例仅支持API9版本SDK，版本号：3.2.7.5；
+3. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.993, built on Spet 04, 2022)才可编译运行；

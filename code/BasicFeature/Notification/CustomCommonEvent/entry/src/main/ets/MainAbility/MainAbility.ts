@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import Logger from '../module/Logger'
 
-export default class MainAbility extends UIAbility {
+export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info("MainAbility onCreate")
     globalThis.abilityWant = want;

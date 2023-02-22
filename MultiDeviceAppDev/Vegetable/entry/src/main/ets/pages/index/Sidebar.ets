@@ -17,7 +17,7 @@
 @Component
 export struct Sidebar {
   @Prop sidebarCurrBp: string
-  @State clickFontColor: Color = Color.Black
+  @State clickFontColor: ResourceColor = Color.Black
 
   build() {
     Column() {

@@ -12,6 +12,5 @@
   "version": "1.0.0",
   "dependencies": {
     "@ohos/base": "file:../base"
-  },
-  "type": "module"
+  }
 }

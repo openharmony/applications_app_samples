@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import historyFeature from '../feature/HistoryFeature'
 import { Header } from '../component/Header'
 
 @Entry
 @Component
 struct History {
-  private feature: historyFeature = new historyFeature(getContext() as common.UIAbilityContext)
+  private feature: historyFeature = new historyFeature(getContext() as context.AbilityContext)
   @State arr: Array<Array<string>> = []
 
   async onPageShow() {
