@@ -42,6 +42,7 @@ export struct FaultDialog {
         setTimeout(() => {
           // 此处是为了构造cpp_crash，故意写的有问题的接口调用，因此添加了@ts-ignore
           let module = 'ohos.samples.faultlogger'
+          //@ts-ignore
           faultLogger.addFaultLog(0, faultLogger.FaultType.CPP_CRASH, module, 'faultloggertestsummary02')
           router.back()
         }, DURATION)

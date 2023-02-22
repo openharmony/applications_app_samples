@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import FormExtension from '@ohos.application.FormExtension'
-import formBindingData from '@ohos.application.formBindingData'
-import formInfo from '@ohos.application.formInfo'
+import FormExtension from '@ohos.app.form.FormExtensionAbility'
+import formBindingData from '@ohos.app.form.formBindingData'
+import formInfo from '@ohos.app.form.formInfo'
 
 export default class FormAbility extends FormExtension {
   onCreate(want) {

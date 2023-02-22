@@ -23,6 +23,7 @@
         "signingConfig": "default"
       }
     ],
+    "signingConfigs": []
   },
   "modules": [
     {

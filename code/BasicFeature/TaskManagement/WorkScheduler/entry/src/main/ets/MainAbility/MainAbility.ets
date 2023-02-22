@@ -13,19 +13,33 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import { Logger } from '../utils/Logger'
 import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 
+const TAG: string = 'MainAbility'
 const VERSION: string = '1.0'
 const BUNDLE_NAME = 'ohos.samples.workschedulerextensionability'
-const PERMISSION = ['ohos.permission.INTERNET', 'ohos.permission.INSTALL_BUNDLE',
-  'ohos.permission.NOTIFICATION_CONTROLLER']
+const PERMISSIONS: Array<Permissions> = [
+  'ohos.permission.INTERNET',
+  'ohos.permission.INSTALL_BUNDLE',
+  'ohos.permission.NOTIFICATION_CONTROLLER'
+]
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    this.context.requestPermissionsFromUser(PERMISSION)
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     AppStorage.SetOrCreate('filePath', this.context.filesDir)
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEvent'
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 import Logger from '../util/Logger'
 
 const TAG: string = '[SecondAbility]'
@@ -32,7 +32,7 @@ let request = {
   content: windowCreateContent
 }
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `onCreate, want is: ${JSON.stringify(want)}`)
   }

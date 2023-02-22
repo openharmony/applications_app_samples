@@ -33,6 +33,6 @@ N/A
 
 1. This sample can only be run on standard-system devices. To use GPS positioning, the test device must support the GPS function.
 
-2. This sample demonstrates the stage model, which supports only the SDK of API version 9 (SDK version: 3.2.5.5). 
+2. This sample demonstrates the stage model, which supports only the SDK of API version 9 (SDK version: 3.2.10.6). 
 
-3. DevEco Studio 3.0 Beta4 (Build version: 3.0.0.992, built on July 14, 2022) must be used.
+3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.

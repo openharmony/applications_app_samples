@@ -28,6 +28,6 @@
 
 2.性能打点验证只能通过上述命令获取日志来进行验证。
 
-3.本示例仅支持API version 9版本SDK，版本号：3.2.9.2。
+3.本示例仅支持API version 9版本SDK，版本号：3.2.10.6。
 
-4.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+4.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上才可编译运行。

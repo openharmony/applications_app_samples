@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 
 export default class HistoryFeature {
-  constructor(abilityContext: context.AbilityContext) {
+  constructor(abilityContext: common.UIAbilityContext) {
     this.innerContext = abilityContext
   }
 
@@ -46,5 +46,5 @@ export default class HistoryFeature {
   }
 
   private dataSource: Array<Array<string>> = []
-  private innerContext: context.AbilityContext = null
+  private innerContext: common.UIAbilityContext = null
 }

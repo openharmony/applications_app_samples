@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import { Logger } from '@ohos/Log'
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
     let logger = new Logger(this.context)

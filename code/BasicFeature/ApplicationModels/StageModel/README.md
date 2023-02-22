@@ -171,4 +171,4 @@ The stage model is upgraded from the FA model. For details about the FA model, s
 
 2. **ServiceExtensionAbility** and **DataShareExtensionAbility** are system APIs and require the use of the Full SDK. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/full-sdk-switch-guide.md).
 
-3. DevEco Studio 3.0 Beta4 (Build version: 3.0.0.992, built on July 14, 2022) must be used.
+3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.

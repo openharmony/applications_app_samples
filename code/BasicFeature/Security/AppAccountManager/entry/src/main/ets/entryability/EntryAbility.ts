@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,12 +14,12 @@
  */
 
 import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 
 const TAG: string = '[Index]'
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `Ability onCreate want param: ` + JSON.stringify(want) ?? '' + 'launchParam:' + JSON.stringify(launchParam) ?? '')
   }

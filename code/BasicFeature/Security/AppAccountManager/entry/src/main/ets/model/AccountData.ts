@@ -14,7 +14,7 @@
  */
 
 import Logger from '../model/Logger'
-import appContext from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import preferences from '@ohos.data.preferences'
 
 
@@ -31,7 +31,7 @@ export class AccountData {
     return this.instance
   }
 
-  async getFromStorage(context: appContext.Context, url: string) {
+  async getFromStorage(context: common.Context, url: string) {
     let name = url
     Logger.info(TAG, `Name is ${name}`)
     try {
@@ -44,13 +44,13 @@ export class AccountData {
     }
   }
 
-  async getStorage(context: appContext.Context, url: string) {
+  async getStorage(context: common.Context, url: string) {
     this.storage = null
     await this.getFromStorage(context, url)
     return this.storage
   }
 
-  async putStorageValue(context: appContext.Context, key: string, value: string, url: string) {
+  async putStorageValue(context: common.Context, key: string, value: string, url: string) {
     this.storage = await this.getStorage(context, url)
     try {
       await this.storage.put(key, value)
@@ -62,7 +62,7 @@ export class AccountData {
     return
   }
 
-  async hasStorageValue(context: appContext.Context, key: string, url: string) {
+  async hasStorageValue(context: common.Context, key: string, url: string) {
     this.storage = await this.getStorage(context, url)
     let result
     try {
@@ -74,7 +74,7 @@ export class AccountData {
     return result
   }
 
-  async getStorageValue(context: appContext.Context, key: string, url: string) {
+  async getStorageValue(context: common.Context, key: string, url: string) {
     this.storage = await this.getStorage(context, url)
     let getValue
     try {
@@ -86,7 +86,7 @@ export class AccountData {
     return getValue
   }
 
-  async deleteStorageValue(context: appContext.Context, key: string, url: string) {
+  async deleteStorageValue(context: common.Context, key: string, url: string) {
     this.storage = await this.getStorage(context, url)
     try {
       await this.storage.delete(key)

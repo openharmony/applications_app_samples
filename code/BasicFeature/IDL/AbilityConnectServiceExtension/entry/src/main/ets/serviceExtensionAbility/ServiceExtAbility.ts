@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Extension from '@ohos.application.ServiceExtensionAbility'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
 import IdlWeatherServiceStub from '../MainAbility/data/IIdlWeatherServiceTS/idl_weather_service_stub'
 import { updateWeatherCallback } from "../MainAbility/data/IIdlWeatherServiceTS/i_idl_weather_service"
 import { getUpdateTemperature } from '../mock/RequestData'
@@ -31,7 +31,7 @@ class WeatherServiceStub extends IdlWeatherServiceStub {
   }
 }
 
-export default class ServiceExtAbility extends Extension {
+export default class ServiceExtAbility extends ServiceExtension {
   onCreate(want) {
     Logger.info(`onCreate, want: ${want.abilityName}`)
   }
