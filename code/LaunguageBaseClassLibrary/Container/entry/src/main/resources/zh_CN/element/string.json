@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArrayList"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "eTSContainer"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "contact_name",
+      "value": "姓名："
+    },
+    {
+      "name": "contact_age",
+      "value": "年龄："
+    },
+    {
+      "name": "contact_phone",
+      "value": "电话："
+    },
+    {
+      "name": "button_delete",
+      "value": "删除"
+    },
+    {
+      "name": "button_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "button_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "contact_information",
+      "value": "联系人信息"
+    },
+    {
+      "name": "input_name",
+      "value": "请输入姓名"
+    },
+    {
+      "name": "input_age",
+      "value": "请输入年龄"
+    },
+    {
+      "name": "name_null",
+      "value": "姓名不能为空"
+    },
+    {
+      "name": "age_null",
+      "value": "年龄不能为空"
+    },
+    {
+      "name": "phone_null",
+      "value": "电话号码不能为空"
+    }
+  ]
+}
