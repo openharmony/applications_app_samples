@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Column) function columnStyle () {
+@Extend(Column) function columnStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(24)
@@ -30,11 +30,7 @@ struct RadioSample {
   @State radioItemWidth: number = 0
   @State responseRegionIndex: number = 0
   @State noResponseRegionIndex: number = 0
-  private cityNames: Resource[] =
-    [$r('app.string.radio_beijing'),
-    $r('app.string.radio_shanghai'),
-    $r('app.string.radio_guangzhou'),
-    $r('app.string.radio_shenzhen')]
+  private cityNames: Resource[] = [$r('app.string.radio_beijing'), $r('app.string.radio_shanghai'), $r('app.string.radio_guangzhou'), $r('app.string.radio_shenzhen')]
 
   build() {
     Column() {
@@ -48,9 +44,11 @@ struct RadioSample {
                 // Only one option for the same group
                 Radio({ value: item, group: 'noResponse' }).checked(false)
                   .checked(this.noResponseRegionIndex === index)
-                  .onChange(() => {
-                    ShowToast.longToast(this.cityNames[index])
-                    this.noResponseRegionIndex = index
+                  .onChange((isChecked: boolean) => {
+                    if (isChecked) {
+                      ShowToast.longToast(this.cityNames[index])
+                      this.noResponseRegionIndex = index
+                    }
                   })
                 Text(item)
               }
@@ -70,9 +68,11 @@ struct RadioSample {
                     width: this.radioItemWidth, // Get response region with equals radio item width
                     height: '100%'
                   })
-                  .onChange(() => {
-                    ShowToast.longToast(this.cityNames[index])
-                    this.responseRegionIndex = index
+                  .onChange((isChecked: boolean) => {
+                    if (isChecked) {
+                      ShowToast.longToast(this.cityNames[index])
+                      this.responseRegionIndex = index
+                    }
                   })
                 Text(item)
                   .width(this.radioItemWidth)

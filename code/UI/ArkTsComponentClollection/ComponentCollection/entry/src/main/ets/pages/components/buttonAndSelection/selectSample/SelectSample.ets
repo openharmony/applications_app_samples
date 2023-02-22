@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,13 +25,10 @@ struct SelectSample {
   private indexTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_index').id)
   private valueTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_value').id)
   private selectIcon: ResourceStr[] = [
-    $r('app.media.ic_select_option_picture'),
-    $r('app.media.ic_select_option_collection'),
-    $r('app.media.ic_select_option_gesture')]
-  private cityNames: SelectOption[] = [
-    { value: $r('app.string.radio_beijing') },
-    { value: $r('app.string.radio_shanghai') },
-    { value: $r('app.string.radio_shenzhen') }]
+  $r('app.media.ic_select_option_picture'),
+  $r('app.media.ic_select_option_collection'),
+  $r('app.media.ic_select_option_gesture')]
+  private cityNames: SelectOption[] = [{ value: $r('app.string.radio_beijing') }, { value: $r('app.string.radio_shanghai') }, { value: $r('app.string.radio_shenzhen') }]
 
   @Styles itemBorder() {
     .height(60)
@@ -49,11 +46,9 @@ struct SelectSample {
           Row() {
             Image(this.selectIcon[this.selectIndex])
               .size({ width: 24, height: 24 })
-            Select([
-              { value: $r('app.string.select_picture'), icon: $r('app.media.ic_select_option_picture') },
+            Select([{ value: $r('app.string.select_picture'), icon: $r('app.media.ic_select_option_picture') },
               { value: $r('app.string.select_collection'), icon: $r('app.media.ic_select_option_collection') },
-              { value: $r('app.string.select_gesture'), icon: $r('app.media.ic_select_option_gesture') }
-            ])
+              { value: $r('app.string.select_gesture'), icon: $r('app.media.ic_select_option_gesture') }])
               .font({ size: 20, weight: FontWeight.Normal })
               .selected(this.selectIndex)
               .onSelect((index: number, value: string) => {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Column) function backgroundStyle () {
+@Extend(Column) function backgroundStyle() {
   .size({ width: '100%' })
   .margin({ top: 12 })
   .padding(12)

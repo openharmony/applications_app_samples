@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,8 +21,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct ShareElementTransitionSample {
   private imageArr: Resource[] =
     [
-      $r('app.media.ic_scenery1'), $r('app.media.ic_scenery2'), $r('app.media.ic_scenery3'), $r('app.media.ic_scenery4'),
-      $r('app.media.ic_scenery1'), $r('app.media.ic_scenery2'), $r('app.media.ic_scenery3'), $r('app.media.ic_scenery4')
+    $r('app.media.ic_scenery1'), $r('app.media.ic_scenery2'), $r('app.media.ic_scenery3'), $r('app.media.ic_scenery4'),
+    $r('app.media.ic_scenery1'), $r('app.media.ic_scenery2'), $r('app.media.ic_scenery3'), $r('app.media.ic_scenery4')
     ]
 
   build() {

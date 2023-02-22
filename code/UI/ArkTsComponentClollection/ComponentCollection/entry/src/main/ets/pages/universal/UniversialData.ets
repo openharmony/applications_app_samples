@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -50,6 +50,21 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
           url: 'pages/universal/properties/translateSample/TranslateSample'
         }
       ]
+    },
+    {
+      image: $r('app.media.ic_display'),
+      title: $r('app.string.components_display'),
+      url: "pages/universal/properties/displaySample/DisplaySample"
+    },
+    {
+      image: $r('app.media.ic_interaction'),
+      title: $r('app.string.components_interaction'),
+      url: "pages/universal/properties/interactionSample/InteractionSample"
+    },
+    {
+      image: $r('app.media.ic_image_effects'),
+      title: $r('app.string.components_effects'),
+      url: "pages/universal/properties/effectsSample/EffectsSample"
     }
   ]
 
@@ -78,3 +93,29 @@ export const UNIVERSAL_CATEGORIES: SecondLevelCategory[] =
     { title: $r('app.string.common_events'), childNodes: COMMON_EVENTS },
     { title: $r('app.string.common_properties'), childNodes: GRAPHIC_TRANSFORMATION }
   ]
+
+// univesal/properties/DisplaySample
+export let locationTypes: { value: Resource }[] =
+  [
+    { value: $r('app.string.components_display_center') },
+    { value: $r('app.string.components_display_topstart') },
+    { value: $r('app.string.components_display_topend') },
+    { value: $r('app.string.components_display_top') },
+    { value: $r('app.string.components_display_start') },
+    { value: $r('app.string.components_display_end') },
+    { value: $r('app.string.components_display_bottomstart') },
+    { value: $r('app.string.components_display_bottom') },
+    { value: $r('app.string.components_display_bottomend') }
+  ]
+
+export let visibileTypes: { value: Resource }[] =
+  [
+    { value: $r('app.string.components_display_visible') },
+    { value: $r('app.string.components_display_hidden') },
+    { value: $r('app.string.components_display_none') },
+  ]
+
+// univesal/properties/InteractionSample
+export let placementsNameData = ['TopLeft', 'Top', 'TopRight', 'RightTop', 'Right', 'RightBottom', 'LeftTop', 'Left', 'LeftBottom', 'BottomLeft', 'Bottom', 'BottomRight']
+export let hitTestModeNameData = ['Default', 'Block', 'Transparent', 'None']
+export let hoverEffectNameData = ['None', 'Highlight', 'Auto', 'Scale']

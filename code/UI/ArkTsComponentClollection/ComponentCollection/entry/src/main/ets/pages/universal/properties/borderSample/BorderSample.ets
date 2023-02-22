@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .padding(8)
   .height(100)
   .borderRadius(24)
@@ -24,7 +24,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .margin({ left: 12, right: 12 })
 }
 
-@Extend(Text) function textStyle (marginValue: number) {
+@Extend(Text) function textStyle(marginValue: number) {
   .height(80)
   .fontSize(18)
   .layoutWeight(1)

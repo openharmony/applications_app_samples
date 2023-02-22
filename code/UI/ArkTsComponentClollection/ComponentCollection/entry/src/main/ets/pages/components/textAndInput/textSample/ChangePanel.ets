@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,10 +23,9 @@ export struct ChangeTextCase {
     Column() {
       CommonItemSelect({
         name: $r('app.string.text_text_case'),
-        selects: [
-          $r('app.string.text_text_case_normal'),
-          $r('app.string.text_text_case_uppercase'),
-          $r('app.string.text_text_case_lowercase')],
+        selects: [$r('app.string.text_text_case_normal'),
+                  $r('app.string.text_text_case_uppercase'),
+                  $r('app.string.text_text_case_lowercase')],
         callback: (index) => {
           switch (index) {
             case 1:
@@ -73,10 +72,9 @@ export struct ChangeTextAttribute {
 
       CommonItemSelect({
         name: $r('app.string.text_text_align_type'),
-        selects: [
-          $r('app.string.text_text_align_start'),
-          $r('app.string.text_text_align_center'),
-          $r('app.string.text_text_align_end')],
+        selects: [$r('app.string.text_text_align_start'),
+                  $r('app.string.text_text_align_center'),
+                  $r('app.string.text_text_align_end')],
         callback: (index) => {
           switch (index) {
             case 1:
@@ -93,10 +91,9 @@ export struct ChangeTextAttribute {
 
       CommonItemSelect({
         name: $r('app.string.text_overflow'),
-        selects: [
-          $r('app.string.text_none'),
-          $r('app.string.text_text_over_flow_clip'),
-          $r('app.string.text_text_over_flow_ellipsis')],
+        selects: [$r('app.string.text_none'),
+                  $r('app.string.text_text_over_flow_clip'),
+                  $r('app.string.text_text_over_flow_ellipsis')],
         callback: (index) => {
           switch (index) {
             case 1:
@@ -117,11 +114,10 @@ export struct ChangeTextAttribute {
 
       CommonItemSelect({
         name: $r('app.string.text_decoration_type'),
-        selects: [
-          $r('app.string.text_none'),
-          $r('app.string.text_decoration_type_line_through'),
-          $r('app.string.text_decoration_type_over_line'),
-          $r('app.string.text_decoration_type_under_line')],
+        selects: [$r('app.string.text_none'),
+                  $r('app.string.text_decoration_type_line_through'),
+                  $r('app.string.text_decoration_type_over_line'),
+                  $r('app.string.text_decoration_type_under_line')],
         callback: (index) => {
           switch (index) {
             case 1:

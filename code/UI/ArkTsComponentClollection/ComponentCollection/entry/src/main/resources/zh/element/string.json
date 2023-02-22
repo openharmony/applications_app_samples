@@ -1200,6 +1200,543 @@
     {
       "name": "translate_y_axis",
       "value": "Y轴："
+    },
+    //Display
+    {
+      "name": "components_display",
+      "value": "显示"
+    },
+    {
+      "name": "components_interaction",
+      "value": "互动"
+    },
+    {
+      "name": "components_interaction_backgroundresponse",
+      "value": "背景组件响应点击\n"
+    },
+    {
+      "name": "components_interaction_foregroundresponse",
+      "value": "前景组件响应点击\n"
+    },
+    {
+      "name": "components_interaction_contentresponse",
+      "value": "内容组件响应点击\n"
+    },
+    {
+      "name": "components_effects",
+      "value": "图像效果"
+    },
+    {
+      "name": "blur_effects",
+      "value": "内容模糊效果"
+    },
+    {
+      "name": "blur_radius_modify",
+      "value": "半径调整"
+    },
+    {
+      "name": "background_blur",
+      "value": "背景模糊"
+    },
+    {
+      "name": "shadow_effects",
+      "value": "阴影效果"
+    },
+    {
+      "name": "x_offset",
+      "value": "X偏移调整"
+    },
+    {
+      "name": "y_offset",
+      "value": "Y偏移调整"
+    },
+    {
+      "name": "shadow",
+      "value": "阴影"
+    },
+    {
+      "name": "blur",
+      "value": "模糊"
+    },
+    {
+      "name": "effects",
+      "value": "特效"
+    },
+    {
+      "name": "effects_display",
+      "value": "效果展示"
+    },
+    {
+      "name": "grayscale_change",
+      "value": "灰度调整"
+    },
+    {
+      "name": "brightness_change",
+      "value": "亮度调整"
+    },
+    {
+      "name": "saturate_change",
+      "value": "饱和度调整"
+    },
+    {
+      "name": "constrast_change",
+      "value": "对比度调整"
+    },
+    {
+      "name": "invert_change",
+      "value": "反色调整"
+    },
+    {
+      "name": "sepia_change",
+      "value": "褐色调整"
+    },
+    {
+      "name": "hueRotate_change",
+      "value": "色相调整"
+    },
+    {
+      "name": "color_blend_change",
+      "value": "颜色调整"
+    },
+    {
+      "name": "z_index",
+      "value": "Z序"
+    },
+    {
+      "name": "overlay",
+      "value": "浮层"
+    },
+    {
+      "name": "visibility",
+      "value": "显隐"
+    },
+    {
+      "name": "opacity",
+      "value": "透明"
+    },
+    {
+      "name": "z_index_display",
+      "value": "Z序显示"
+    },
+    {
+      "name": "Red",
+      "value": "红色"
+    },
+    {
+      "name": "Blue",
+      "value": "蓝色"
+    },
+    {
+      "name": "Yellow",
+      "value": "黄色"
+    },
+    {
+      "name": "positon_modify",
+      "value": "位置调整"
+    },
+    {
+      "name": "offset_modify",
+      "value": "偏移调整"
+    },
+    {
+      "name": "visibility_change",
+      "value": "可见性调整"
+    },
+    {
+      "name": "opacity_change",
+      "value": "透明度调整"
+    },
+    {
+      "name": "opacity_display",
+      "value": "可见性调整"
+    },
+    {
+      "name": "item_select",
+      "value": "菜单选项"
+    },
+    {
+      "name": "disabled",
+      "value": "禁用"
+    },
+    {
+      "name": "button_disabled",
+      "value": "按钮禁用"
+    },
+    {
+      "name": "list_disabled",
+      "value": "列表禁用"
+    },
+    {
+      "name": "button",
+      "value": "按钮"
+    },
+    {
+      "name": "focus",
+      "value": "焦点"
+    },
+    {
+      "name": "popup_window",
+      "value": "弹窗"
+    },
+    {
+      "name": "touch_test",
+      "value": "点击"
+    },
+    {
+      "name": "touch_region",
+      "value": "热区"
+    },
+    {
+      "name": "hovereffect",
+      "value": "悬停"
+    },
+    {
+      "name": "menu",
+      "value": "菜单"
+    },
+    {
+      "name": "multiState",
+      "value": "多态"
+    },
+    {
+      "name": "alert",
+      "value": "告警弹窗"
+    },
+    {
+      "name": "result",
+      "value": "结果"
+    },
+    {
+      "name": "popup",
+      "value": "弹窗"
+    },
+    {
+      "name": "custom_popup",
+      "value": "自定义弹窗"
+    },
+    {
+      "name": "touch_test_region",
+      "value": "点击操作区"
+    },
+    {
+      "name": "touch_hit_test",
+      "value": "点击热区：设置热区为绿色区域"
+    },
+    {
+      "name": "response_region",
+      "value": "响应组件"
+    },
+    {
+      "name": "touch_hit_subtitle",
+      "value": "点击绿色区域，触发蓝色区域响应"
+    },
+    {
+      "name": "option",
+      "value": "操作"
+    },
+    {
+      "name": "hover_region",
+      "value": "鼠标悬浮在绿色区域内，观察效果"
+    },
+    {
+      "name": "multistatus_region",
+      "value": "切换状态，观察效果"
+    },
+    {
+      "name": "status_select",
+      "value": "状态选择"
+    },
+    // 辅助
+    {
+      "name": "scroll_bar",
+      "value": "ScrollBar 滚动条"
+    },
+    {
+      "name": "scroll_vertical_title",
+      "value": "纵向滚动"
+    },
+    {
+      "name": "scroll_horizontal_title",
+      "value": "横向滚动"
+    },
+    {
+      "name": "auxiliary_refresh",
+      "value": "下拉刷新"
+    },
+    {
+      "name": "auxiliary_panel",
+      "value": "Panel 弹出面板"
+    },
+    {
+      "name": "auxiliary_alphabetIndexer",
+      "value": "AlphabetIndexer 字母索引条"
+    },
+    {
+      "name": "loading_progress",
+      "value": "LoadingProgress"
+    },
+    {
+      "name": "marquee_name",
+      "value": "Marquee 跑马灯"
+    },{
+      "name": "text_timer",
+      "value": "TextTimer 文字计时器"
+    },
+    {
+      "name": "text_clock",
+      "value": "TextClock 文字时钟"
+    },
+    {
+      "name": "progress_name",
+      "value": "Progress 进度条"
+    },
+    {
+      "name": "gauge_name",
+      "value": "Gauge 仪表盘"
+    },
+    {
+      "name": "data_panel",
+      "value": "DataPanel 数据面板"
+    },
+    {
+      "name": "checkbox_checkboxgroup",
+      "value": "勾选框"
+    },
+    {
+      "name": "text_picker",
+      "value": "TextPicker 文本选择器"
+    },
+    {
+      "name": "time_picker",
+      "value": "TimePicker 时间选择器"
+    },
+    {
+      "name": "counter_name",
+      "value": "Counter 计数器"
+    },
+    {
+      "name": "rating_name",
+      "value": "Rating 评分条"
+    },
+    {
+      "name": "rich_text",
+      "value": "RichText 富文本"
+    },
+    {
+      "name": "scroll_swiper",
+      "value": "滚动与滑动"
+    },
+    {
+      "name": "scroll_name",
+      "value": "Scroll 滚动"
+    },
+    {
+      "name": "swiper_name",
+      "value": "Swiper 翻页"
+    },
+    {
+      "name": "alphabetindexer_an",
+      "value": "安"
+    },
+    {
+      "name": "alphabetindexer_bu",
+      "value": "卜"
+    },
+    {
+      "name": "alphabetindexer_bai",
+      "value": "白"
+    },
+    {
+      "name": "alphabetindexer_bao",
+      "value": "包"
+    },
+    {
+      "name": "alphabetindexer_bi",
+      "value": "毕"
+    },
+    {
+      "name": "alphabetindexer_bing",
+      "value": "冰"
+    },
+    {
+      "name": "alphabetindexer_cao",
+      "value": "曹"
+    },
+    {
+      "name": "alphabetindexer_chen",
+      "value": "陈"
+    },
+    {
+      "name": "alphabetindexer_cheng",
+      "value": "成"
+    },
+    {
+      "name": "alphabetindexer_lv",
+      "value": "吕"
+    },
+    {
+      "name": "alphabetindexer_liu3",
+      "value": "柳"
+    },
+    {
+      "name": "alphabetindexer_liu",
+      "value": "刘"
+    },
+    {
+      "name": "alphabetindexer_li",
+      "value": "李"
+    },
+    {
+      "name": "alphabetindexer_lou",
+      "value": "楼"
+    },
+    {
+      "name": "alphabetindexer_liang",
+      "value": "梁"
+    },
+    {
+      "name": "alphabetindexer_lei",
+      "value": "雷"
+    },
+    {
+      "name": "alphabetindexer_lu",
+      "value": "卢"
+    },
+    {
+      "name": "alphabetindexer_cui",
+      "value": "崔"
+    },
+    {
+      "name": "alphabetindexer_list_display",
+      "value": "效果显示"
+    },
+    {
+      "name": "alphabetindexer_color_select",
+      "value": "选择颜色"
+    },
+    {
+      "name": "panel_show_minibar",
+      "value": "显示 Minibar 类型面版"
+    },
+    {
+      "name": "panel_close_minibar",
+      "value": "关闭 Minibar 类型面版"
+    },
+    {
+      "name": "panel_show_foldable",
+      "value": "显示 Foldable 类型面版"
+    },
+    {
+      "name": "panel_close_foldable",
+      "value": "关闭 Foldable 类型面版"
+    },
+    {
+      "name": "panel_show_temporary",
+      "value": "显示 Temporary 类型面版"
+    },
+    {
+      "name": "panel_close_temporary",
+      "value": "关闭 Temporary 类型面版"
+    },
+    {
+      "name": "checkbox_blueberry",
+      "value": "蓝莓"
+    },
+    {
+      "name": "checkbox_orange",
+      "value": "橙子"
+    },
+    {
+      "name": "checkbox_select_color",
+      "value": "选择颜色"
+    },
+    {
+      "name": "checkbox_select_all",
+      "value": "全选"
+    },
+    {
+      "name": "normal_display",
+      "value": "效果展示"
+    },
+    {
+      "name": "normal_options",
+      "value": "选项"
+    },
+    {
+      "name": "datapanel_circle",
+      "value": "环型"
+    },
+    {
+      "name": "datapanel_line",
+      "value": "线型"
+    },
+    {
+      "name": "progress_linear",
+      "value": "线型"
+    },
+    {
+      "name": "progress_eclipse",
+      "value": "月食样式"
+    },
+    {
+      "name": "progress_scalering",
+      "value": "刻度环型"
+    },
+    {
+      "name": "progress_ring",
+      "value": "环型"
+    },
+    {
+      "name": "progress_capsule",
+      "value": "胶囊样式"
+    },
+    {
+      "name": "progress_change",
+      "value": "调整进度"
+    },
+    {
+      "name": "textclock_timeformat",
+      "value": "时间格式"
+    },
+    {
+      "name": "scroll_horizontal",
+      "value": "横向滚动"
+    },
+    {
+      "name": "scroll_vertical",
+      "value": "纵向滚动"
+    },
+    {
+      "name": "interaction_disable_list",
+      "value": "列表禁用"
+    },
+    {
+      "name": "interaction_show_one_alert",
+      "value": "显示单按键弹窗"
+    },
+    {
+      "name": "interaction_show_two_alert",
+      "value": "显示双按键弹窗"
+    },
+    {
+      "name": "interaction_placementontop",
+      "value": "显示位置:"
+    },
+    {
+      "name": "interaction_arrowoffset",
+      "value": "调整箭头:"
+    },
+    {
+      "name": "interaction_showpopup",
+      "value": "显示弹窗"
+    },
+    {
+      "name": "interaction_showcustompopup",
+      "value": "显示自定义弹窗"
+    },
+    {
+      "name": "interaction_disable",
+      "value": "组件禁用:"
     }
   ]
 }

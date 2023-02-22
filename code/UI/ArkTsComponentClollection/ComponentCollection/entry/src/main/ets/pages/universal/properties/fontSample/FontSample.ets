@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .height(80)
   .width('100%')
   .borderRadius(24)
@@ -36,13 +36,13 @@ struct Font {
         Column() {
           IntroductionTitle({ introduction: $r('app.string.font_color') })
           Row() {
-            Text('#409EFF')
+            Text($r('app.string.prop_bluefont'))
               .fontSize(20)
               .fontColor($r('app.color.background_blue'))
-            Text('#E6A23C')
+            Text($r('app.string.prop_orangefont'))
               .fontSize(20)
               .fontColor($r('app.color.background_orange'))
-            Text('#F56C6C')
+            Text($r('app.string.prop_pinkfont'))
               .fontSize(20)
               .fontColor($r('app.color.background_pink'))
           }

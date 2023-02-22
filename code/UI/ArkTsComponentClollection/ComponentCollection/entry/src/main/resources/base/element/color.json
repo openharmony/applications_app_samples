@@ -113,6 +113,41 @@
     {
       "name": "toggle_selected_color",
       "value": "#4D00BFC9"
+    },
+    //Display
+    {
+      "name": "background_light_gray",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "sub_title_color",
+      "value": "#182431"
+    },
+    {
+      "name": "title_colorone",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "title_colortwo",
+      "value": "#000000"
+    },
+    //辅助ScrollBarSample
+    {
+      "name": "scrollbar_background_color",
+      "value": "#ededed"
+    },
+    {
+      "name": "contentArea_background_color",
+      "value": "#C0C0C0"
+    },
+    // Interaction
+    {
+      "name": "normal_bg_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "btn_border_color",
+      "value": "#33000000"
     }
   ]
 }

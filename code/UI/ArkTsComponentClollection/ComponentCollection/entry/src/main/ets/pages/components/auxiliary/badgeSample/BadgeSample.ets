@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .margin(10)
   .width('100%')
   .borderRadius(14)
@@ -24,7 +24,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .justifyContent(FlexAlign.SpaceBetween)
 }
 
-@Extend(Badge) function badgeStyle () {
+@Extend(Badge) function badgeStyle() {
   .layoutWeight(1)
   .borderRadius(20)
   .margin({ left: 12, right: 12 })
@@ -70,7 +70,7 @@ struct BadgeSample {
           IntroductionTitle({ introduction: $r('app.string.badge_max') })
           Row() {
             Badge({
-              count: 10,
+              count: 10, // 设置提醒消息数100
               style: {
                 color: 0xFFFFFF,
                 fontSize: 16,
@@ -82,7 +82,7 @@ struct BadgeSample {
             .badgeStyle()
 
             Badge({
-              count: 100,
+              count: 100, // 设置提醒消息数100
               style: {
                 color: 0xFFFFFF,
                 fontSize: 16,
@@ -98,7 +98,7 @@ struct BadgeSample {
           IntroductionTitle({ introduction: $r('app.string.badge_location') })
           Row() {
             Badge({
-              count: 1,
+              count: 1, // 设置提醒消息数
               position: BadgePosition.Left,
               style: {
                 color: 0xFFFFFF,
@@ -111,7 +111,7 @@ struct BadgeSample {
             .badgeStyle()
 
             Badge({
-              count: 1,
+              count: 1, // 设置提醒消息数
               position: BadgePosition.RightTop,
               style: {
                 color: 0xFFFFFF,
@@ -124,7 +124,7 @@ struct BadgeSample {
             .badgeStyle()
 
             Badge({
-              count: 1,
+              count: 1, // 设置提醒消息数
               position: BadgePosition.Right,
               style: {
                 color: 0xFFFFFF,
