@@ -4,7 +4,7 @@
 
 This sample shows how to use HiDebug APIs to obtain the memory usage of an application. The display effect is as follows:
 
-![](screenshots/device/index.png) ![](screenshots/device/data.png)
+![](screenshots/device/index.jpeg) ![](screenshots/device/data.jpeg)
 
 ### Concepts
 
