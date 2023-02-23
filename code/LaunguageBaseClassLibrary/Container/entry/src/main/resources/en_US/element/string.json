@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArrayList"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "eTSContainer"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "contact_name",
+      "value": "Name:"
+    },
+    {
+      "name": "contact_age",
+      "value": "Age:"
+    },
+    {
+      "name": "contact_phone",
+      "value": "Phone:"
+    },
+    {
+      "name": "button_delete",
+      "value": "Delete"
+    },
+    {
+      "name": "button_confirm",
+      "value": "OK"
+    },
+    {
+      "name": "button_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "contact_information",
+      "value": "Contact Information"
+    },
+    {
+      "name": "input_name",
+      "value": "Enter a name"
+    },
+    {
+      "name": "input_age",
+      "value": "Enter the age"
+    },
+    {
+      "name": "input_phone",
+      "value": "Enter a phone"
+    },
+    {
+      "name": "name_null",
+      "value": "The name cannot be empty"
+    },
+    {
+      "name": "age_null",
+      "value": "The age cannot be empty"
+    },
+    {
+      "name": "phone_null",
+      "value": "The phone number cannot be empty"
+    }
+  ]
+}
