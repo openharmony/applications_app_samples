@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export function GetHardKeyValue(keyCode) {
+export function GetHardKeyValue(keyCode, isShift) {
   let keyList = {
     2000: "0",
     2001: "1",
@@ -59,10 +59,12 @@ export function GetHardKeyValue(keyCode) {
     2042: "z",
     2043: ",",
     2044: ".",
+    2047: "KEYCODE_SHIFT_LEFT",
+    2048: "KEYCODE_SHIFT_RIGHT",
     2050: " ",
-    2055: "KEYCODE_FORWARD_DEL",
+    2055: "KEYCODE_DEL",
     2058: "=",
-    2071: "KEYCODE_DEL",
+    2071: "KEYCODE_FORWARD_DEL",
     2064: "/",
     2065: "@",
     2066: "+",
@@ -71,7 +73,14 @@ export function GetHardKeyValue(keyCode) {
   };
 
   if (keyList.hasOwnProperty(keyCode)) {
-    return keyList[keyCode];
+    let value = keyList[keyCode]
+    if (isShift && keyCode >= 2017 && keyCode <= 2042) {
+      return value.toUpperCase();
+    }
+    return value;
+  }
+  if (keyCode == 2000) {
+    return "0"
   }
   return "";
 }

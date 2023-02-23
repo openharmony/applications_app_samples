@@ -19,9 +19,10 @@ import settings from '@ohos.settings';
 import display from '@ohos.display'
 import windowManager from '@ohos.window'
 import featureAbility from '@ohos.ability.featureAbility'
+import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import Log from './Log'
 
-let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
+let InputMethodEngine = inputMethodEngine.getInputMethodAbility();
 let isDebug = false;
 let TAG: string = 'KeyboardController->';
 export class KeyboardController {
@@ -30,6 +31,7 @@ export class KeyboardController {
   private getValueRes: string = "1"
   private nonBarPosition: number = 0
   private barPosition: number = 0
+  private keyCodes: Array<number> = []
   mContext
   WINDOW_TYPE_INPUT_METHOD_FLOAT= 2105
   windowName = 'imeWindow';
@@ -181,98 +183,23 @@ export class KeyboardController {
       this.hideWindow();
     });
 
-    this.mKeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+    this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
     this.mKeyboardDelegate.on('keyDown', (keyEvent) => {
-      this.inputHandle.addLog('OnKeyDown: code = ' + keyEvent.keyCode);
-
       if (this.isKeyboardShow) {
         this.inputHandle.hideKeyboardSelf();
       }
-
-      if (this.isSpecialKeyPress) {
-        this.keySum += 1;
-        return false;
-      }
-
-      var keyCode = keyEvent.keyCode;
-
-      var keyValue = GetHardKeyValue(keyCode);
-      if (keyValue == "") {
-        this.keySum += 1;
-        this.inputHandle.addLog('OnKeyDown: unknown keyCode');
-        this.isSpecialKeyPress = true;
-        return false;
-      }
-      return true;
+      this.inputHandle.addLog('keyDown: code = ' + keyEvent.keyCode);
+      let result = this.onKeyDown(keyEvent);
+      this.inputHandle.addLog('keyDown: result = ' + result);
+      return result
     });
 
     this.mKeyboardDelegate.on('keyUp', (keyEvent) => {
-      this.inputHandle.addLog('OnKeyUp: code = ' + keyEvent.keyCode);
-      var keyCode = keyEvent.keyCode;
-      var keyValue = GetHardKeyValue(keyCode);
-
-      if (this.isSpecialKeyPress) {
-        if (this.keySum > 1) {
-          this.isSpecialKeyPress = true;
-        } else {
-          this.isSpecialKeyPress = false
-        }
-        this.keySum -= 1;
-        return false;
-      }
-
-      switch (keyValue) {
-        case "KEYCODE_DPAD_UP":
-        {
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_UP);
-          if (isDebug) {
-            this.inputHandle.refreshInfo();
-          }
-          break;
-        }
-        case "KEYCODE_DPAD_DOWN":
-        {
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_DOWN);
-          if (isDebug) {
-            this.inputHandle.refreshInfo();
-          }
-          break;
-        }
-        case "KEYCODE_DPAD_LEFT":
-        {
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_LEFT);
-          if (isDebug) {
-            this.inputHandle.refreshInfo();
-          }
-          break;
-        }
-        case "KEYCODE_DPAD_RIGHT":
-        {
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_RIGHT);
-          if (isDebug) {
-            this.inputHandle.refreshInfo();
-          }
-          break;
-        }
-        case "KEYCODE_FORWARD_DEL":
-        {
-          this.inputHandle.deleteForward(1);
-          break;
-        }
-        case "KEYCODE_DEL":
-        {
-          this.inputHandle.deleteBackward(1);
-          break;
-        }
-        default:
-          {
-            this.inputHandle.insertText(keyValue);
-            break;
-          }
-      }
-
-      return true;
+      this.inputHandle.addLog('keyUp: code = ' + keyEvent.keyCode);
+      let result = this.onKeyUp(keyEvent);
+      this.inputHandle.addLog('keyUp: result = ' + result);
+      return result
     });
 
     if (isDebug) {
@@ -290,10 +217,140 @@ export class KeyboardController {
     }
   }
 
+  public isShiftKeyHold(): boolean {
+    if (this.keyCodes.length === 0) {
+      return false
+    }
+    let preDownKey = this.keyCodes[0]
+    return preDownKey === KeyCode.KEYCODE_SHIFT_LEFT || preDownKey === KeyCode.KEYCODE_SHIFT_RIGHT
+  }
+
+  public onKeyDown(keyEvent): boolean {
+    this.inputHandle.addLog('onKeyDown: code = ' + keyEvent.keyCode);
+    var keyCode = keyEvent.keyCode
+    let idx = this.keyCodes.indexOf(keyCode)
+    if (idx == -1) {
+      this.keyCodes.push(keyCode)
+    } else {
+      this.inputHandle.addLog("keyCode down is intercepted: " + keyCode);
+    }
+    this.inputHandle.addLog('onKeyDown: this.keyCodes = ' + JSON.stringify(this.keyCodes));
+    if (this.isShiftKeyHold() && this.keyCodes.length == 2 && !this.isKeyCodeAZ(keyCode)) {
+      this.isSpecialKeyPress = true;
+      return false
+    }
+    if (this.isSpecialKeyPress || keyCode === KeyCode.KEYCODE_ALT_LEFT || keyCode === KeyCode.KEYCODE_ALT_RIGHT) {
+      return false
+    }
+    var keyValue = GetHardKeyValue(keyCode, this.isShiftKeyHold());
+    if (!keyValue) {
+      this.inputHandle.addLog('onKeyDown: unknown keyCode' );
+      this.isSpecialKeyPress = true;
+      return false;
+    }
+    try {
+      return this.inputHardKeyCode(keyValue, keyCode)
+    } catch (ex) {
+      //方向键api需要优化
+      this.inputHandle.addLog("inputHardKeyCode error: " + ex);
+      return false
+    }
+  }
+
+  public onKeyUp(keyEvent): boolean {
+    this.inputHandle.addLog('OnKeyUp: code = ' + keyEvent.keyCode);
+    var keyCode = keyEvent.keyCode;
+    let idx = this.keyCodes.indexOf(keyCode)
+    if (idx != -1) {
+      this.keyCodes.splice(idx, 1)
+    } else {
+      this.inputHandle.addLog("keyCode KeyUp is intercepted: " + keyCode);
+    }
+    this.inputHandle.addLog('OnKeyUp: this.keyCodes = ' + JSON.stringify(this.keyCodes));
+
+    // For KEYCODE_DEL/KEYCODE_FORWARD_DEL, processed in OnKeyDown, so just intercept it
+    if (keyCode == 2055 || keyCode == 2071 || (keyCode >= 2012 && keyCode <= 2016)) {
+      this.inputHandle.addLog('special code: ' + keyCode);
+      return true
+    }
+
+    if (this.isSpecialKeyPress) {
+      var keyValue = GetHardKeyValue(keyCode, this.isShiftKeyHold())
+      if (!keyValue) {
+        this.isSpecialKeyPress = true;
+      }
+      if (this.keyCodes.length == 0) {
+        this.isSpecialKeyPress = false;
+      }
+      this.inputHandle.addLog('OnKeyUp: this.isSpecialKeyPress: ' + this.isSpecialKeyPress);
+      return false
+    }
+    return true;
+  }
+
+  public isKeyCodeAZ(keyCode: number) {
+    return keyCode >= KeyCode.KEYCODE_A && keyCode <= KeyCode.KEYCODE_Z
+  }
+
+  public isKeyCodeNumber(keyCode: number) {
+    return (keyCode >= KeyCode.KEYCODE_0 && keyCode <= KeyCode.KEYCODE_9) || (keyCode >= KeyCode.KEYCODE_NUMPAD_0 && keyCode <= KeyCode.KEYCODE_NUMPAD_9)
+  }
+
+  public inputHardKeyCode(keyValue: string, keyCode: number): boolean {
+    this.inputHandle.addLog("keyValue is: " + keyValue);
+    if (this.processFunctionKeys(keyValue)) {
+      return true
+    }
+    if (this.shiftKeys(keyValue)) {
+      return false
+    }
+    this.inputHandle.insertText(keyValue);
+    return true
+  }
+
+  public shiftKeys(keyValue: string): boolean {
+    this.inputHandle.addLog("processFunctionKeys keyValue is: " + keyValue);
+    switch (keyValue) {
+      case 'KEYCODE_SHIFT_LEFT':
+      case 'KEYCODE_SHIFT_RIGHT':
+        return true
+      default:
+        return false
+    }
+  }
+
+  public processFunctionKeys(keyValue: string): boolean {
+    this.inputHandle.addLog("processFunctionKeys keyValue is: " + keyValue);
+    switch (keyValue) {
+      case "KEYCODE_DEL":
+        this.inputHandle.deleteForward(1);
+        return true
+      case "KEYCODE_FORWARD_DEL":
+        this.inputHandle.deleteBackward(1);
+        return true
+      case "KEYCODE_DPAD_UP":
+        inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_UP);
+        return true
+      case "KEYCODE_DPAD_DOWN":
+        inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_DOWN);
+        return true
+      case "KEYCODE_DPAD_LEFT":
+        inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_LEFT);
+        return true
+      case "KEYCODE_DPAD_RIGHT":
+        inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_RIGHT);
+        return true
+      default:
+        return false
+    }
+  }
+
   private unRegisterListener(): void{
     this.inputHandle.addLog('unRegisterListener')
 
-    InputMethodEngine.off('inputStop');
+    InputMethodEngine.off('inputStop', ()=> {
+      this.inputHandle.addLog('inputStop off');
+    });
 
     InputMethodEngine.off('keyboardShow');
 
@@ -303,7 +360,6 @@ export class KeyboardController {
 
     this.mKeyboardDelegate.off('keyUp');
 
-    AppStorage.staticClear()
     if (isDebug) {
       this.mKeyboardDelegate.off('cursorContextChange');
 
