@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import bundle from '@ohos.bundle.bundleManager'
-import storageStatistics from '@ohos.storageStatistics'
+import storageStatistics from '@ohos.file.storageStatistics'
 import { AppData } from '../model/AppData'
 import CheckEmptyUtils from '../utils/CheckEmptyUtils'
 import Logger from '../utils/Logger'

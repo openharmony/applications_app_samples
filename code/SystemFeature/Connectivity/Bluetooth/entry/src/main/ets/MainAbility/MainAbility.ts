@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,15 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import logger from '../Model/Logger'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
     logger.info(TAG, `[Demo] MainAbility onCreate`)
-    await this.context.requestPermissionsFromUser(['ohos.permission.USE_BLUETOOTH', 'ohos.permission.DISCOVER_BLUETOOTH', 'ohos.permission.LOCATION', 'ohos.permission.MANAGE_BLUETOOTH','ohos.permission.APPROXIMATELY_LOCATION'])
+
+    const PERMISSIONS: Array<Permissions> = [
+      'ohos.permission.USE_BLUETOOTH',
+      'ohos.permission.DISCOVER_BLUETOOTH',
+      'ohos.permission.LOCATION',
+      'ohos.permission.MANAGE_BLUETOOTH',
+      'ohos.permission.APPROXIMATELY_LOCATION'
+    ]
+
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
+        logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   onDestroy() {

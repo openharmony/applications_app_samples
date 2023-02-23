@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,14 +14,14 @@
  */
 
 import Logger from '../Utils/Logger';
-import FormExtension from '@ohos.application.FormExtension';
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.application.formBindingData';
 import formInfo from '@ohos.application.formInfo';
 import formProvider from '@ohos.application.formProvider';
-import dataStorage from '@ohos.data.storage'
+import dataStorage from '@ohos.data.storage';
 import infoUtil from "libinfoutil.so";
 
-export default class FormAbility extends FormExtension {
+export default class FormAbility extends FormExtensionAbility {
     private storeDB: dataStorage.Storage = undefined
     private allWordArray : Array<string> = [
         "与时俱进", "与虎谋皮", "天下兴亡", "天天向上", "一心一意",

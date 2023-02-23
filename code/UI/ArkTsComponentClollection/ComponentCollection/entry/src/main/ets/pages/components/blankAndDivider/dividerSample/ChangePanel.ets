@@ -18,7 +18,7 @@ import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../..
 
 @Component
 export struct ChangePanel {
-  @Link lineColor: ResourceColor
+  @Link lineColor: Resource
   @Link strokeWidth: number
   @Link lineCapStyle: LineCapStyle
 
