@@ -32,9 +32,11 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
     rdb.getRdbStoreV9(this.context, STORE_CONFIG, 1, (err, data) => {
       Logger.info(TAG, `DataShareExtAbility getRdbStore done`)
       rdbStore = data
-      rdbStore.executeSql(SQL_CREATE_TABLE, [], () => {
-        Logger.info(TAG, `DataShareExtAbility executeSql done`)
-      })
+      if (rdbStore) {
+        rdbStore.executeSql(SQL_CREATE_TABLE, [], () => {
+          Logger.info(TAG, `DataShareExtAbility executeSql done`)
+        })
+      }
       if (callback) {
         callback()
       }
