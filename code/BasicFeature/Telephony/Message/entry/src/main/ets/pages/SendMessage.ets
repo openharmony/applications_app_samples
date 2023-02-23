@@ -181,8 +181,6 @@ struct SendMessage {
               .alignSelf(ItemAlign.End)
             }
           }, item => item.content)
-          .width('100%')
-          .alignItems(HorizontalAlign.End)
         }
         .width('100%')
         .alignItems(HorizontalAlign.End)

@@ -16,6 +16,7 @@
 import data_rdb from '@ohos.data.relationalStore'
 import common from '@ohos.app.ability.common'
 import Want from '@ohos.app.ability.Want'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import router from '@ohos.router'
 import Contact from '../model/Contact'
 import ContactDataSource from '../common/BasicDataSource'
@@ -60,9 +61,16 @@ struct Index {
   aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
     let context = getContext(this) as common.UIAbilityContext
-    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], () => {
-      Logger.info(TAG, 'grantPermission,requestPermissionsFromUser')
-    })
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(context,['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   getWant() {

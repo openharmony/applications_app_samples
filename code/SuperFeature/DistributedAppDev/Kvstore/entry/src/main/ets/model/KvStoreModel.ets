@@ -14,7 +14,7 @@
  */
 
 import distributedData from '@ohos.data.distributedKVStore'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 
 const STORE_ID = 'etskvstore'
@@ -32,7 +32,7 @@ export class KvStoreModel {
       callback()
       return;
     }
-    let context: context.Context = getContext(this)
+    let context: common.Context = getContext(this)
     var config = {
       context,
       bundleName: 'ohos.samples.kvstore',

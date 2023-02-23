@@ -2,3 +2,7 @@
 /local.properties
 /.idea
 **/build
+/.hvigor
+/package-lock.json
+/entry/package-lock.json
+/publish/package-lock.json

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import { DeviceDialog } from '../common/Dialog'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { DeviceDataModel } from '../model/DeviceDataModel'
@@ -78,7 +78,7 @@ export struct TitleBar {
 
   startAbility(deviceId) {
     Logger.info(TAG, `startAbility deviceId:${deviceId}`)
-    let context = getContext(this) as context.AbilityContext
+    let context = getContext(this) as common.UIAbilityContext
     context.startAbility({
       bundleName: 'ohos.samples.kvstore',
       abilityName: 'EntryAbility',
