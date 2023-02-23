@@ -13,7 +13,10 @@
 
 ## 效果预览
 
-![](screenshots/device/full-screenshot.png)![](screenshots/device/part-select.png)![](screenshots/device/part-screenshot.png)
+|全屏截图|局部截图选择区域|局部截图|
+|----------|----------|----------|
+|![](screenshots/device/full-screenshot.png)|![](screenshots/device/part-select.png)|![](screenshots/device/part-screenshot.png)|
+
 
 ## 相关权限
 
