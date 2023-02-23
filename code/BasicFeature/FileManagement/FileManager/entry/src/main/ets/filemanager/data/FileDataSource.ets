@@ -28,13 +28,14 @@ export default class FileDataSource implements IDataSource {
 
   getData(index: number): mediaLibrary.FileAsset {
     let file = this.fileList[index]
-    Logger.debug('getData index:' + index + ' name:' + file.displayName)
     return file
   }
 
   pushData(fileAsset: mediaLibrary.FileAsset) {
     this.fileList.push(fileAsset)
-    this.listener.onDataAdd(this.totalCount() - 1)
+    if (this.listener !== undefined) {
+      this.listener.onDataAdd(this.totalCount() - 1)
+    }
   }
 
   pushDataList(fileAssets: Array<mediaLibrary.FileAsset>) {

@@ -27,6 +27,7 @@ export struct FileList {
   @State fileList: FileDataSource = new FileDataSource()
   @State isNoFile: boolean = true
   @State showDeleteButton: boolean = false
+  @StorageLink('isUpdate') isUpdate: boolean = false
   title: Resource
   mediaType: mediaLibrary.MediaType
   itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void
@@ -143,8 +144,10 @@ export struct FileList {
                 itemIsNoFile: $isNoFile
               })
             }
-          }, (listItem: mediaLibrary.FileAsset) => listItem.displayName)
+            .id(' ' + this.isUpdate)
+          })
         }
+        .id(' ' + this.isUpdate)
         .width('100%')
       }
     }
@@ -160,6 +163,7 @@ struct FileListItemComponent {
   @Link itemFileList: FileDataSource
   @Link itemShowDeleteButton: boolean
   @Link itemIsNoFile: boolean
+  @StorageLink('isUpdate') isUpdate: boolean = false
   private fileListItem: mediaLibrary.FileAsset
   private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void
   private itemIndex: number
@@ -215,6 +219,7 @@ struct FileListItemComponent {
               if (this.itemFileList.totalCount() === 0) {
                 this.itemIsNoFile = true
               }
+              this.isUpdate = !this.isUpdate
             })
         }
       }
