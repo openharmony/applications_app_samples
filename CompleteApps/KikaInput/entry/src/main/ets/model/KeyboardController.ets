@@ -22,7 +22,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import Log from './Log'
 
-let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
+let InputMethodEngine = inputMethodEngine.getInputMethodAbility();
 let isDebug = false;
 let TAG: string = 'KeyboardController->';
 export class KeyboardController {
@@ -183,7 +183,7 @@ export class KeyboardController {
       this.hideWindow();
     });
 
-    this.mKeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+    this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
     this.mKeyboardDelegate.on('keyDown', (keyEvent) => {
       if (this.isKeyboardShow) {
@@ -348,7 +348,9 @@ export class KeyboardController {
   private unRegisterListener(): void{
     this.inputHandle.addLog('unRegisterListener')
 
-    InputMethodEngine.off('inputStop');
+    InputMethodEngine.off('inputStop', ()=> {
+      this.inputHandle.addLog('inputStop off');
+    });
 
     InputMethodEngine.off('keyboardShow');
 
