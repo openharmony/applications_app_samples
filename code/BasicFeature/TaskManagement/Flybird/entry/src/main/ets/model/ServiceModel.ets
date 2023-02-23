@@ -14,7 +14,7 @@
  */
 
 import prompt from '@ohos.prompt'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import rpc from "@ohos.rpc"
 import Logger from '../model/Logger'
 
@@ -54,8 +54,8 @@ export class ServiceModel {
 
   connectService() {
     Logger.info(`${TAG} onCconnectService begin`)
-    let context = getContext(this) as context.AbilityContext
-    connection = context.connectAbility(
+    let context = getContext(this) as common.UIAbilityContext
+    connection = context.connectServiceExtensionAbility(
       {
         deviceId: localDeviceId,
         bundleName: 'ohos.samples.flybird',
@@ -78,8 +78,8 @@ export class ServiceModel {
       })
       return
     }
-    let context = getContext(this) as context.AbilityContext
-    context.disconnectAbility(connection)
+    let context = getContext(this) as common.UIAbilityContext
+    context.disconnectServiceExtensionAbility(connection)
     connection = -1 // 连接状态值设置为-1
     prompt.showToast({
       message: 'onDisconnectService disconnect done'

@@ -15,17 +15,27 @@
 
 import Logger from '../data/Logger'
 import { Home } from '../component/Home'
-import context from '@ohos.application.context'
-
+import common from '@ohos.app.ability.common'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 const TAG: string = 'Index'
 
 @Entry
 @Component
 struct Index {
   async aboutToAppear() {
-    let permission: string[] = ['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS']
-    let ctx = getContext(this) as context.AbilityContext
-    let result = await ctx.requestPermissionsFromUser(permission)
+    let permission: Permissions[] = ['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS']
+    let ctx = getContext(this) as common.UIAbilityContext
+    let atManager = abilityAccessCtrl.createAtManager()
+    let result
+    try {
+      result = atManager.requestPermissionsFromUser(ctx, permission).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode = ${JSON.stringify(result)}`)
   }
 

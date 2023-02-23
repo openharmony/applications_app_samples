@@ -13,15 +13,26 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import contact from '@ohos.contact'
 import Logger from '../data/Logger'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
-export default class EntryAbility extends Ability {
+const TAG = 'EntryAbility'
+
+export default class EntryAbility extends UIAbility {
   async onCreate(want, launchParam) {
-    globalThis.abilityContext = this.context
-    await this.context.requestPermissionsFromUser(['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS'])
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     contact.queryContacts((err, data) => {
       if (err) {
         Logger.info(`queryContacts callback: err->${JSON.stringify(err)}`)

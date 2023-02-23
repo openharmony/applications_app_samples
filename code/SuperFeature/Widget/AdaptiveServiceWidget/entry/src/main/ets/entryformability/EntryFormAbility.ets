@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import FormExtension from '@ohos.application.FormExtension'
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility'
 import formBindingData from '@ohos.application.formBindingData'
 import formInfo from '@ohos.application.formInfo'
 
-export default class EntryFormAbility extends FormExtension {
+export default class EntryFormAbility extends FormExtensionAbility {
   onCreate(want) {
     // Called to return a FormBindingData object.
     let formData = {}
