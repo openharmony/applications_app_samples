@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,21 +54,25 @@ export const TAB_TITLE_DATA: Array<TabTitleModel> = [
 
 export const FAVOR_LIVE_LIST_DATA: Array<FavorLiveListsModel> = [
   {
+    id: 0,
     imgSrc: $r('app.media.live_coriander'),
     title: $r('app.string.favor_live_lists_data_title'),
     viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
   },
   {
+    id: 1,
     imgSrc: $r('app.media.live_scene'),
     title: $r('app.string.favor_live_lists_data_title'),
     viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
   },
   {
+    id: 2,
     imgSrc: $r('app.media.live_scene'),
     title: $r('app.string.favor_live_lists_data_title'),
     viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
   },
   {
+    id: 3,
     imgSrc: $r('app.media.live_coriander'),
     title: $r('app.string.favor_live_lists_data_title'),
     viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
@@ -177,23 +181,23 @@ export const SHOP_CART_ITEM_DATA: Array<ShopCartItemDataModel> = [
 ]
 
 export const FIND_SEARCH_TEXT_DATA: Array<SearchTextModel> = [
-  { searchText: $r('app.string.find_search_text_data_search_text') },
-  { searchText: $r('app.string.find_search_text_data_searchTex') },
-  { searchText: $r('app.string.find_search_text_data_searchTe') }
+  { id: 0, searchText: $r('app.string.find_search_text_data_search_text') },
+  { id: 1, searchText: $r('app.string.find_search_text_data_searchTex') },
+  { id: 2, searchText: $r('app.string.find_search_text_data_searchTe') }
 ]
 
 export const INDEX_DATA: Array<SwiperModel> = [
-  { img: $r('app.media.banner_movie1') },
-  { img: $r("app.media.banner_movie3") },
-  { img: $r('app.media.banner_movie1') },
-  { img: $r("app.media.banner_movie3") }
+  { id: 0, img: $r('app.media.banner_movie1') },
+  { id: 1, img: $r("app.media.banner_movie3") },
+  { id: 2, img: $r('app.media.banner_movie1') },
+  { id: 3, img: $r("app.media.banner_movie3") }
 ]
 
 export const SWIPER_DATA: Array<SwiperModel> = [
-  { img: $r("app.media.banner_movie2") },
-  { img: $r("app.media.banner_movie2") },
-  { img: $r("app.media.banner_movie2") },
-  { img: $r("app.media.banner_movie2") }
+  { id: 0, img: $r("app.media.banner_movie2") },
+  { id: 1, img: $r("app.media.banner_movie2") },
+  { id: 2, img: $r("app.media.banner_movie2") },
+  { id: 3, img: $r("app.media.banner_movie2") }
 ]
 
 export const NEW_PRODUCT_TITLE_BAR_DATA: Array<NewProductTitleBarModel> = [

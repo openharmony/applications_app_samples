@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2022 Huawei Device Co., Ltd.
+* Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -67,10 +67,10 @@ export struct Information {
           this.shareDialog = new CustomDialogController({
             builder: ButtonDialogBuilder({
               controller: this.shareDialog,
-              detail0: this.recommend,
-              detail1: '9800',
+              detailTitleText: this.recommend,
+              detailPriceText: '9800',
               title: this.commodity,
-              srcImg: SRC_IMG
+              srcImage: SRC_IMG
             }),
             cancel: undefined,
             autoCancel: true,

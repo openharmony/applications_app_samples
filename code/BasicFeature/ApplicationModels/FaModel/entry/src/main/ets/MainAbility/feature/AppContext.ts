@@ -15,7 +15,7 @@
 
 import bundle from '@ohos.bundle'
 import featureAbility from '@ohos.ability.featureAbility'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction';
 import Logger from '../util/Logger'
 import { BUNDLE_NAME } from '../model/DaHelperConst'
 

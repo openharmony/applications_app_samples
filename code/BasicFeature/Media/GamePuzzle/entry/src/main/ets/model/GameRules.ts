@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,16 +14,10 @@
  */
 import PictureItem from '../model/PictureItem'
 
-enum gameStatus {
-  running = 1,
-  over = 0
-}
-
 const EMPTY_PICTURE: PictureItem = new PictureItem(9, undefined)
 
 export default class GameRules {
   public numArray: PictureItem[]
-  public gameStatus: number = gameStatus.over
 
   itemChange(index: number, pictures: PictureItem[]) {
     let emptyIndex = this.findEmptyIndex(pictures)
@@ -44,7 +38,8 @@ export default class GameRules {
 
   gameInit(i: number, pictures: PictureItem[]) {
     let emptyIndex = this.findEmptyIndex(pictures)
-    if (this.gameStatus == gameStatus.running) {
+    let isGameStart: boolean = AppStorage.Get('isGameStart');
+    if (isGameStart) {
       switch (emptyIndex) {
         case 0:
           if (i === 1 || i === 3) {
@@ -113,7 +108,7 @@ export default class GameRules {
   }
 
   gameBegin(pictures: PictureItem[]) {
-    this.gameStatus = gameStatus.running
+    AppStorage.Set<boolean>('isGameStart', true);
     let len = pictures.length
     let index, temp
     while (len > 0) {

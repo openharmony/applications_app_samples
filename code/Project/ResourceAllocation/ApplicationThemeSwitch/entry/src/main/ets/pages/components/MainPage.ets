@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,88 +17,80 @@ import { NavigationDataModel } from '../../models/HomeModel'
 import { navigationData } from '../../mocks/HomeData'
 import { getTheme } from '../../utils/ThemeGet'
 import { TitleBarComponent } from './TitleBar'
-import { homePageContent } from './HomePageContent'
-
-const DEFAULT_OPACITY: number = 1 // 默认透明度
-const OPACITY: number = 0.6 // 透明度
-const RATIO: number = 0.1 // 组件的宽高比
+import { HomePageContent } from './HomePageContent'
+import { NAV_DATA } from '../../mocks/ProductsData'
 
 @Component
 export struct MainPage {
-  private navigationController: TabsController = new TabsController()
   @Prop ratio: number
   @Prop isLand: boolean
   @StorageLink('theme') theme: number = -1 // 初始主题theme值
   @State navigationTabsIndex: number = 0 // tabs索引
   @State navigationData: Array<NavigationDataModel> = navigationData
+  @State navTabsIndex: number = 0
+  private url: string
+  private navController: TabsController = new TabsController()
+  @StorageProp('curBp') curBp: string = 'sm'
 
   build() {
-    Flex({ direction: FlexDirection.Column }) {
-      List() {
-        ListItem() {
-          TitleBarComponent({ ratio: this.ratio })
-        }
-        .sticky(Sticky.Normal)
+    Column() {
+      TitleBarComponent()
         .backgroundImageSize({ width: '100%', height: '100%' })
-        .backgroundImage($r('app.media.titleBar'), ImageRepeat.NoRepeat)
-
-        ListItem() {
-          Column() {
-            Flex({
-              justifyContent: FlexAlign.SpaceBetween,
-              alignItems: ItemAlign.Center
-            }) {
-              Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-                ForEach(this.navigationData, item => {
-                  Column() {
-                    Text(item.navigationData)
-                      .margin(6)
-                      .fontSize(20)
-                      .opacity(this.navigationTabsIndex === item.id ? DEFAULT_OPACITY : OPACITY)
-                      .fontWeight(this.navigationTabsIndex === item.id ? FontWeight.Bold : FontWeight.Normal)
-                      .fontColor(Color.White)
-                  }
-                  .onClick(() => {
-                    this.navigationTabsIndex = item.id
-                    this.navigationController.changeIndex(item.id)
-                  })
-                }, item => item.toString())
-
-                Row() {
-                  Image($r('app.media.nav_classification'))
-                    .width(26)
-                    .height('55%')
-                    .objectFit(ImageFit.Contain)
-                  Text($r('app.string.classification'))
-                    .fontSize(20)
-                    .opacity(OPACITY)
-                    .fontWeight(FontWeight.Normal)
-                    .fontColor(Color.White)
-                }
+        .backgroundImage($r('app.media.title_bar'), ImageRepeat.NoRepeat)
+      Scroll() {
+        Column() {
+          Row() {
+            ForEach(NAV_DATA, item => {
+              Row() {
+                Text(item.navData)
+                  .fontSize(16)
+                  .fontColor($r('app.color.white'))
+                  .opacity(this.navTabsIndex == item.id ? 1 : 0.8)
+                  .fontWeight(this.navTabsIndex == item.id ? 500 : 400)
               }
-            }
-            .height(38)
-            .width('100%')
-            .margin({ left: 4, bottom: 12 })
-            .padding({ left: 8, right: 8 })
+              .align(Alignment.Center)
+              .onClick(() => {
+                this.navTabsIndex = item.id
+                this.navController.changeIndex(item.id)
+              })
+            }, item => item.id.toString())
 
-            Tabs({ controller: this.navigationController }) {
-              TabContent() {
-                homePageContent({ isLand: this.isLand, ratio: this.ratio })
-              }
+            Row() {
+              Divider()
+                .vertical(true)
+                .width(1)
+                .height(18)
+                .color($r('app.color.divider_white'))
+              Image($r('app.media.nav_classification'))
+                .width(16)
+                .height(16)
+                .objectFit(ImageFit.Contain)
+                .margin({ left: 4 })
+              Text($r('app.string.classification'))
+                .fontSize(16)
+                .opacity(0.8)
+                .fontColor($r('app.color.white'))
+                .margin({ left: 2 })
             }
-            .barWidth(0)
-            .barHeight(0)
-            .aspectRatio(RATIO)
-            .scrollable(false)
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .padding(12)
+
+          HomePageContent({ isLand: this.isLand, ratio: this.ratio })
         }
-        .backgroundColor(getTheme(this.theme).CATEGORIES_BACKGROUND_COLOR)
       }
+      .width('100%')
+      .height('100%')
+      .scrollBar(BarState.Off)
+      .flexGrow(1)
+      .flexShrink(1)
+      .align(Alignment.Top)
+      .backgroundColor(getTheme(this.theme).CATEGORIES_BACKGROUND_COLOR)
 
       Divider()
-        .color($r('app.color.divider_color'))
-        .width(1)
+        .color($r('app.color.divider2'))
+        .height(0.5)
     }
     .width('100%')
     .height('100%')

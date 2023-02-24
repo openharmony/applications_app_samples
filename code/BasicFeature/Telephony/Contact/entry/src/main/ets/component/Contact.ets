@@ -23,6 +23,8 @@ const TAG: string = 'Contact'
 
 @Component
 export struct Contact {
+  // 监听权限
+  @StorageLink('hasPermission') @Watch('queryContact') hasPermission: boolean = false
   @State result: string = ''
   @State selected: number = 0
   @State myPosition: string = ''
@@ -76,7 +78,7 @@ export struct Contact {
       .width('100%')
 
       Row() {
-        Text(`${this.contactNumber}${this.position}`)
+        Text(`${this.contactNumber}${this.myPosition}`)
           .fontSize(20)
           .fontColor(Color.Gray)
           .margin({ left: 32, bottom: 22 })
@@ -122,36 +124,40 @@ export struct Contact {
       }
       .margin({ left: 32, right: 32 })
 
+      Column() {
+        Row() {
+          Image($r('app.media.heads'))
+            .width(52)
+            .height(52)
+            .margin({ left: 32 })
+
+          Text($r('app.string.group'))
+            .fontSize(20)
+            .margin({ left: 16 })
+        }
+        .margin({ top: 22, bottom: 22 })
+        .width('100%')
+        .borderRadius(15)
+
+        Row() {
+          Image($r('app.media.heads'))
+            .width(52)
+            .height(52)
+            .margin({ left: 32 })
+
+          Text($r('app.string.name_card'))
+            .fontSize(20)
+            .margin({ left: 16 })
+        }
+        .width('100%')
+        .borderRadius(15)
+      }
+
       Row() {
         Column() {
-          Row() {
-            Image($r('app.media.heads'))
-              .width(52)
-              .height(52)
-              .margin({ left: 32 })
-
-            Text($r('app.string.group'))
-              .fontSize(20)
-              .margin({ left: 16 })
+          if (this.contacts.length > 0) {
+            ItemContainer({ contacts: this.contacts, selected: $selected })
           }
-          .margin({ top: 22, bottom: 22 })
-          .width('100%')
-          .borderRadius(15)
-
-          Row() {
-            Image($r('app.media.heads'))
-              .width(52)
-              .height(52)
-              .margin({ left: 32 })
-
-            Text($r('app.string.name_card'))
-              .fontSize(20)
-              .margin({ left: 16 })
-          }
-          .width('100%')
-          .borderRadius(15)
-
-          ItemContainer({ contacts: this.contacts, selected: $selected })
         }
         .width('90%')
 
@@ -181,10 +187,10 @@ export struct Contact {
     .backgroundColor($r('app.color.index_bg'))
   }
 
-  async aboutToAppear() {
+  async queryContact() {
     this.myPosition = await getContext(this).resourceManager.getStringValue($r('app.string.contacts').id)
     this.contacts = await contact.queryContacts()
-    Logger.info(TAG,`this contact is ${JSON.stringify(this.contacts)}`)
+    Logger.info(TAG, `this contact is ${JSON.stringify(this.contacts)}`)
     this.contactNumber = this.contacts.length
     // 对获取到的联系人数组根据姓名首字母排序
     let sortContact = this.contacts.map(function (a, b) {
@@ -197,5 +203,9 @@ export struct Contact {
       let contactInfo = await contact.queryContact(sortContact[i].key)
       this.contacts[i] = contactInfo
     }
+  }
+
+  async aboutToAppear() {
+    await this.queryContact()
   }
 }

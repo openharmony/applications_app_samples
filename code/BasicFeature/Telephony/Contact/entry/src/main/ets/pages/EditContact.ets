@@ -24,6 +24,7 @@ const TAG: string = 'EditContact'
 @Entry
 @Component
 struct EditContact {
+  @State contactId: number = 0
   @State name: string = ''
   @State email: string = ''
   @State nickName: string = ''
@@ -61,6 +62,7 @@ struct EditContact {
             Logger.info(TAG, `this number is ${this.phoneNumber} this test result ${test.test(this.phoneNumber)}`)
             if (test.test(this.phoneNumber) === true) {
               let contacts = {
+                id: this.contactId,
                 name: { fullName: this.name },
                 nickName: { nickName: this.nickName },
                 phoneNumbers: [{ phoneNumber: this.phoneNumber }],
@@ -100,6 +102,11 @@ struct EditContact {
 
   aboutToAppear() {
     this.contact.name.fullName === '' ? this.name = '' : this.name = this.contact.name.fullName
+    try {
+      this.contactId = this.contact.id
+    } catch (err) {
+      this.contactId = 0
+    }
     try {
       this.nickName = this.contact.nickName.nickName
     } catch (err) {

@@ -83,6 +83,7 @@ export struct ReminderCalendar {
           SwipeGesture({ direction: SwipeDirection.Horizontal })
             .onAction((event: GestureEvent) => {
               this.isEdit = !this.isEdit
+              this.deleteItem(index)
             })
           )
           .onClick(async () => {
@@ -93,19 +94,6 @@ export struct ReminderCalendar {
         })
       }
       .layoutWeight(1)
-      .editMode(this.isEdit)
-      .onItemDelete((index: number) => {
-        CalendarReminder.deleteCalendar(index).then(() => {
-          this.calendarNames = []
-          if (CalendarReminder.calendarReminders.length !== 0) {
-            for (let i = 0; i < CalendarReminder.calendarReminders.length; i++) {
-              this.calendarNames[i] = CalendarReminder.calendarReminders[i].reminderName
-            }
-          }
-          this.isEdit = false
-        })
-        return true
-      })
 
       Blank()
       Divider()
@@ -116,6 +104,19 @@ export struct ReminderCalendar {
     }
     .width('100%')
     .height('100%')
+  }
+
+  deleteItem(index: number): boolean {
+    CalendarReminder.deleteCalendar(index).then(() => {
+      this.calendarNames = []
+      if (CalendarReminder.calendarReminders.length !== 0) {
+        for (let i = 0; i < CalendarReminder.calendarReminders.length; i++) {
+          this.calendarNames[i] = CalendarReminder.calendarReminders[i].reminderName
+        }
+      }
+      this.isEdit = false
+    })
+    return true
   }
 
   aboutToAppear() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,50 +13,49 @@
  * limitations under the License.
  */
 
-import AbilityManager from '@ohos.application.abilityManager';
+import AbilityManager from '@ohos.application.abilityManager'
 import { SearchTextModel } from '../../models/HomeModel'
 import { searchTextData } from '../../mocks/HomeData'
 import { getTheme } from '../../utils/ThemeGet'
+import { FIND_SEARCH_TEXT_DATA } from '../../mocks/ProductsData'
 
-const OPACITY_TEXT: number = 0.6 // 文本透明度0.6
-const OPACITY_SWIPER: number = 0.8 // 轮播组件透明度0.8
-const INDEX: number = 2 // 组件层级2
-const INTERVAL: number = 2000 // 切换间隔2秒
 const DEFAULT_THEME: number = -1 // 默认主题
 const DARK: number = 0 // 深色主题模式
 const LIGHT: number = 1 // 浅色主题模式
 const CUSTOM_THEME: number = 3 // 自定义主题定义为3
-
+const PLAY_BACK_TIME: number = 2000 //swiper组件自动回放的时间
 @Component
 export struct TitleBarComponent {
-  @Prop ratio: number
   @StorageLink('theme') theme: number = -1 // 初始主题theme值
   @State searchData: Array<SearchTextModel> = searchTextData
+  @State isLight: boolean = true
 
   @Builder ThemeMenu() {
     Column() {
       Text($r('app.string.light_theme'))
-        .fontColor(Color.Black)
+        .fontColor(this.isLight ? Color.Black : Color.White)
         .fontSize(30)
         .borderRadius(8)
         .onClick(() => {
           AbilityManager.updateConfiguration({ colorMode: LIGHT }, () => {
+            this.isLight = true
             this.theme = LIGHT
           })
         })
 
       Text($r('app.string.dark_theme'))
-        .fontColor(Color.Black)
+        .fontColor(this.isLight ? Color.Black : Color.White)
         .fontSize(30)
         .borderRadius(8)
         .onClick(() => {
           AbilityManager.updateConfiguration({ colorMode: DARK }, () => {
+            this.isLight = false
             this.theme = DARK
           })
         })
 
       Text($r('app.string.custom_theme'))
-        .fontColor(Color.Black)
+        .fontColor(this.isLight ? Color.Black : Color.White)
         .fontSize(30)
         .borderRadius(8)
         .onClick(() => {
@@ -69,10 +68,12 @@ export struct TitleBarComponent {
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row() {
           Image($r('app.media.logo'))
-            .width(52)
+            .width(24)
+            .aspectRatio(1)
             .objectFit(ImageFit.Contain)
+
           if (this.theme !== DEFAULT_THEME) {
             Row() {
               Text($r('app.string.theme_current'))
@@ -90,51 +91,50 @@ export struct TitleBarComponent {
               .fontColor(getTheme(this.theme).STATUS_COLOR)
               .backgroundColor(Color.White)
           }
-          Image($r('app.media.scan'))
-            .width(50)
+          Image($r('app.media.scan_code'))
+            .width(24)
+            .aspectRatio(1)
             .objectFit(ImageFit.Contain)
         }
-        .height(38)
         .width('100%')
-        .margin({ bottom: 16, top: 10 })
+        .justifyContent(FlexAlign.SpaceBetween)
         .bindMenu(this.ThemeMenu)
 
-        Flex({ alignItems: ItemAlign.Center }) {
+        Row() {
           Image($r('app.media.search'))
             .objectFit(ImageFit.Contain)
-            .width(20 * (this.ratio + 0.2))
-            .margin({ left: 12, right: 8 })
+            .width(20)
+            .aspectRatio(1)
           Swiper() {
-            ForEach(this.searchData, item => {
+            ForEach(FIND_SEARCH_TEXT_DATA, item => {
               Column() {
                 Text(item.searchText)
-                  .opacity(OPACITY_TEXT)
-                  .fontColor(getTheme(this.theme).DEFAULT_COLOR)
-                  .fontSize(18 * this.ratio)
+                  .opacity(0.6)
+                  .fontColor($r('app.color.blank'))
                   .fontFamily('HarmonyHeiTi')
-                  .lineHeight(23 * (this.ratio + 0.2))
               }
               .width('100%')
-              .height(25 * (this.ratio + 0.2))
               .alignItems(HorizontalAlign.Start)
-            }, item => item.toString())
+            }, item => item.id.toString())
           }
           .loop(true)
-          .width('66%')
           .autoPlay(true)
           .vertical(true)
           .indicator(false)
-          .interval(INTERVAL)
+          .interval(PLAY_BACK_TIME)
+          .margin(12)
+          .displayCount(1)
         }
-        .zIndex(INDEX)
-        .height(56)
-        .margin({ bottom: 12 })
-        .backgroundColor(getTheme(this.theme).BACKGROUND_COLOR)
-        .border({ width: 2, color: Color.White, radius: 40 })
-        .opacity(OPACITY_SWIPER)
+        .zIndex(2)
+        .width('100%')
+        .justifyContent(FlexAlign.Start)
+        .margin({ top: 8, bottom: 12 })
+        .padding({ left: 12, right: 12 })
+        .backgroundColor($r('app.color.white'))
+        .border({ width: 2, color: $r('app.color.white'), radius: 40 })
       }
-      .margin({ top: 10 })
-      .padding({ left: 26, right: 26 })
+      .margin({ top: 12 })
+      .padding({ left: 12, right: 12 })
     }
     .width('100%')
     .backgroundColor(getTheme(this.theme).TITLE_BACKGROUND)

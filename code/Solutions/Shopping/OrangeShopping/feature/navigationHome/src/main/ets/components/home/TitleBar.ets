@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,14 +56,14 @@ export struct TitleBarComponent {
               }
               .width('100%')
               .alignItems(HorizontalAlign.Start)
-            }, item => item.toString())
+            }, item => item.id.toString())
           }
           .loop(true)
           .autoPlay(true)
           .vertical(true)
           .indicator(false)
           .interval(2000)
-          .padding(12)
+          .margin(12)
         }
         .zIndex(2)
         .width('100%')

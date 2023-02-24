@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -46,7 +46,7 @@ export struct HomePageContent {
             this.tabsIndex = item.id
             this.controller.changeIndex(item.id)
           })
-        }, item => item.toString())
+        }, item => item.id.toString())
       }
       .width('100%')
       .padding({ top: 12, bottom: 12, left: 20, right: 20 })

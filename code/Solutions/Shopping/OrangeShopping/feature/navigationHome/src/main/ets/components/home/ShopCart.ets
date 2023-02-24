@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ export struct ShopCart {
                 .fontSize(24)
                 .fontColor($r('app.color.blank'))
                 .fontFamily('HarmonyHeiTi')
-                .padding({ left: 12 })
+
               Blank()
               Text($r('app.string.edit'))
                 .fontSize(16)
@@ -48,6 +48,7 @@ export struct ShopCart {
             Cart({ shoppingCartGoodsListToCart: $shoppingCartGoodsList })
           }
           .width('100%')
+          .padding({ right: 12 })
           .backgroundColor($r('app.color.divider'))
 
           Text($r('app.string.guess_you_like'))
@@ -55,7 +56,6 @@ export struct ShopCart {
             .fontColor($r('app.color.blank'))
             .padding({ top: 24, bottom: 20, left: 12 })
           FavorGoodList({ url: this.url })
-            .height(this.goodsListHeight)
         }
         .padding({ bottom: 12 })
         .alignItems(HorizontalAlign.Start)
@@ -63,6 +63,7 @@ export struct ShopCart {
       .layoutWeight(1)
       .padding({ left: 12, right: 12 })
       .scrollBar(BarState.Off)
+      .align(Alignment.Top)
 
       Divider()
         .color($r('app.color.divider2'))

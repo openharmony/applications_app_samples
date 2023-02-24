@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import FeatureAbilityHelper from '../feature/FeatureAbilityHelper'
 
 @Entry
