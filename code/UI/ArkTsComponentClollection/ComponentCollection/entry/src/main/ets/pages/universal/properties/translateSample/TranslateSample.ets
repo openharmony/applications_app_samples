@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -94,7 +94,7 @@ struct TranslateSample {
           ForEach(this.componentSliders, (item) => {
             Row() {
               if (item.isXAxis) {
-                CommonItemSlider({ changeValue: $containerTranslateX, min: -20, max: 20, name: item.axisName })
+                CommonItemSlider({ changeValue: $containerTranslateX, min: -20, max: 20, name: item.axisName }) // -20和20为平移的区间
               } else {
                 CommonItemSlider({ changeValue: $containerTranslateY, min: -20, max: 20, name: item.axisName })
               }

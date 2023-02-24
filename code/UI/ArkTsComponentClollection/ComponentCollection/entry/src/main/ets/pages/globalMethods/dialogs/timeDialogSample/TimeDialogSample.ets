@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,9 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
+import { getStringData } from '../../../../data/ResourceDataHandle'
 
-@Extend(Text) function textStyle () {
+@Extend(Text) function textStyle() {
   .height(40)
   .padding(8)
   .fontSize(20)
@@ -26,7 +27,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .backgroundColor($r('app.color.background_grey'))
 }
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .height(50)
   .padding(12)
   .width('100%')
@@ -37,10 +38,10 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct TimeDialogSample {
-  @State fullTime: string = `00:00`
-  @State halfTime: string = `00:00`
+  @State fullTime: string = getStringData($r('app.string.time_picker_dialog_timeone'))
+  @State halfTime: string = getStringData($r('app.string.time_picker_dialog_timeone'))
   private context: any = getContext(this)
-  private selectTime: Date = new Date('10/01/2022 12:00')
+  private selectTime: Date = new Date(getStringData($r('app.string.time_picker_dialog_timetwo')))
 
   build() {
     Column() {
@@ -127,7 +128,7 @@ struct TimeDialogSample {
     if (value.minute < 10) {
       minute = `0${value.minute}`
     }
-    ShowToast.shortToast(
-      this.context.resourceManager.getStringSync($r('app.string.time_picker_toast_time').id) + hour + ':' + minute)
+    ShowToast.shortToast(`${this.context.resourceManager.getStringSync($r('app.string.time_picker_toast_time')
+      .id)}${hour}:${minute}`)
   }
 }

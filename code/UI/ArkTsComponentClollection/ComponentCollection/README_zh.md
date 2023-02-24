@@ -16,7 +16,12 @@
 
 ### 效果预览
 
-![component](screenshots/devices/component.png) 
+|绑定|通用|动画|全局方法|
+|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+|![image](screenshots/devices/component.png)|![image](screenshots/devices/general.png)|![image](screenshots/devices/animation.png)|![image](screenshots/devices/global.png)|
+|<center>Button 按钮</center>|<center>onClick 点击事件</center>|<center>元素共享转场</center>|<center>警告弹窗</center>|
+|![image](screenshots/devices/button_zh.png)|![image](screenshots/devices/click_event_zh.png)|![image](screenshots/devices/share_element_transition_zh.png)|![image](screenshots/devices/warning_popup_zh.png)|
+
 
 ### 相关权限
 
@@ -32,4 +37,4 @@
 
 2.本示例仅支持API9版本SDK，版本号：3.2.10.6。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)才可编译运行。    

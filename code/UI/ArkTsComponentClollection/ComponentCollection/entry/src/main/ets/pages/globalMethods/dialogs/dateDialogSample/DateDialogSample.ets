@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,9 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
+import { getStringData } from '../../../../data/ResourceDataHandle'
 
-@Extend(Text) function textStyle () {
+@Extend(Text) function textStyle() {
   .height(40)
   .padding(8)
   .fontSize(20)
@@ -26,7 +27,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .backgroundColor($r('app.color.background_grey'))
 }
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .height(50)
   .padding(12)
   .width('100%')
@@ -37,10 +38,10 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct DataDialogSample {
-  @State lunarDate: string = '2022-10-01'
-  @State gregorianDate: string = '2022-10-01'
-  private context: any = getContext(this)
-  private selectedDate: Date = new Date('2022-10-01')
+  @State lunarDate: string = getStringData($r('app.string.date_picker_dialog_datetimeone'))
+  @State gregorianDate: string = getStringData($r('app.string.date_picker_dialog_datetimeone'))
+  private context = getContext(this)
+  private selectedDate: Date = new Date(getStringData($r('app.string.date_picker_dialog_datetimeone')))
 
   build() {
     Column() {
@@ -55,8 +56,8 @@ struct DataDialogSample {
               .textStyle()
               .onClick(() => {
                 DatePickerDialog.show({
-                  start: new Date('1970-1-1'),
-                  end: new Date('2100-12-31'),
+                  start: new Date(getStringData($r('app.string.date_picker_dialog_datetimetwo'))),
+                  end: new Date(getStringData($r('app.string.date_picker_dialog_datetimethree'))),
                   selected: this.selectedDate,
                   lunar: true,
                   onAccept: (value: DatePickerResult) => {
@@ -80,8 +81,8 @@ struct DataDialogSample {
               .textStyle()
               .onClick(() => {
                 DatePickerDialog.show({
-                  start: new Date('1970-1-1'),
-                  end: new Date('2100-12-31'),
+                  start: new Date(getStringData($r('app.string.date_picker_dialog_datetimetwo'))),
+                  end: new Date(getStringData($r('app.string.date_picker_dialog_datetimethree'))),
                   selected: this.selectedDate,
                   lunar: false,
                   onAccept: (value: DatePickerResult) => {
@@ -131,8 +132,7 @@ struct DataDialogSample {
     if (value.day < 10) {
       day = `0${value.day}`
     }
-    ShowToast.shortToast(
-      this.context.resourceManager.getStringSync($r('app.string.date_picker_toast_date').id) + value.year + '-' +
-      month + '-' + day)
+    ShowToast.shortToast(`${this.context.resourceManager.getStringSync($r('app.string.date_picker_toast_date')
+      .id)}${value.year}-${month}-${day}`)
   }
 }

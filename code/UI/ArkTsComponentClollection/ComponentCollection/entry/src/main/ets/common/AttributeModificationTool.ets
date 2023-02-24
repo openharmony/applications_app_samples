@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -102,9 +102,7 @@ export struct CommonItemColorSelect {
   @State selectIndex: number = 0
   private name: Resource
   private isItemStyle: boolean = true
-  private colorNames: Array<{ value: Resource }> =
-    [{ value: $r('app.string.divider_color_blue') }, { value: $r('app.string.divider_color_green') },
-     { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
+  private colorNames: Array<{ value: Resource }> = [{ value: $r('app.string.divider_color_blue') }, { value: $r('app.string.divider_color_green') }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
 
   build() {
     Row() {
@@ -156,7 +154,7 @@ export struct CommonItemColorSelect {
 export struct CommonItemInput {
   @Link inputValue: string
   private name: Resource
-  private placeholder?: Resource = undefined
+  private placeholder?: ResourceStr = ''
 
   build() {
     Row() {

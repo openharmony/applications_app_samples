@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,14 +17,14 @@ import { ChangePanel } from './ChangePanel'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .width('100%')
   .padding(16)
   .borderRadius(24)
   .backgroundColor(Color.White)
 }
 
-@Extend(Column) function columnStyle () {
+@Extend(Column) function columnStyle() {
   .width('100%')
   .padding(16)
   .borderRadius(24)

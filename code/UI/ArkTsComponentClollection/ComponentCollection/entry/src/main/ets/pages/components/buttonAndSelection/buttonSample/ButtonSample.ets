@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,15 +16,16 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
+import { getStringData } from '../../../../data/ResourceDataHandle'
 
-@Extend(Column) function columnStyle () {
+@Extend(Column) function columnStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(24)
   .backgroundColor(Color.White)
 }
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(24)
@@ -34,7 +35,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct ButtonSample {
-  private context: any = getContext(this)
+  private context = getContext(this)
 
   @Styles buttonDefaultStyle() {
     .height(40)
@@ -55,17 +56,13 @@ struct ButtonSample {
               Button($r('app.string.button_confirm'))
                 .buttonDefaultStyle()
                 .onClick(() => {
-                  ShowToast.longToast(
-                    '' + this.context.resourceManager.getStringSync($r('app.string.button_type_capsule').id) +
-                    this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                  ShowToast.longToast(`${getStringData($r('app.string.button_type_capsule'))}${getStringData($r('app.string.button_click'))}`)
                 })
               // Set button type as parameter
               Button($r('app.string.button_confirm'), { type: ButtonType.Normal })
                 .buttonDefaultStyle()
                 .onClick(() => {
-                  ShowToast.longToast(
-                    '' + this.context.resourceManager.getStringSync($r('app.string.button_type_normal').id) +
-                    this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                  ShowToast.longToast(`${getStringData($r('app.string.button_type_normal'))}${getStringData($r('app.string.button_click'))}`)
                 })
               Button() {
                 Image($r('app.media.ic_button_circle_add'))
@@ -73,9 +70,7 @@ struct ButtonSample {
               .buttonDefaultStyle()
               .type(ButtonType.Circle) // Set button type as attribute
               .onClick(() => {
-                ShowToast.longToast(
-                  '' + this.context.resourceManager.getStringSync($r('app.string.button_type_circle').id) +
-                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                ShowToast.longToast(`${getStringData($r('app.string.button_type_circle'))}${getStringData($r('app.string.button_click'))}`)
               })
             }
             .width('100%')
@@ -99,9 +94,7 @@ struct ButtonSample {
             Button($r('app.string.button_state_effect_true'), { stateEffect: true })
               .buttonDefaultStyle()
               .onClick(() => {
-                ShowToast.longToast(
-                  '' + this.context.resourceManager.getStringSync($r('app.string.button_state_effect_true').id) +
-                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                ShowToast.longToast(`${getStringData($r('app.string.button_state_effect_true'))}${getStringData($r('app.string.button_click'))}`)
               })
 
             // No effect but response onClick event
@@ -109,9 +102,7 @@ struct ButtonSample {
               .buttonDefaultStyle()
               .stateEffect(false) // Set button type as attribute
               .onClick(() => {
-                ShowToast.longToast(
-                  '' + this.context.resourceManager.getStringSync($r('app.string.button_state_effect_false').id) +
-                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                ShowToast.longToast(`${getStringData($r('app.string.button_state_effect_false'))}${getStringData($r('app.string.button_click'))}`)
               })
 
             // Disable this button
@@ -121,9 +112,7 @@ struct ButtonSample {
               .opacity(0.4) // Opacity if disable
               .onClick(() => {
                 // onClick event will not response
-                ShowToast.longToast(
-                  '' + this.context.resourceManager.getStringSync($r('app.string.button_disable_style').id) +
-                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                ShowToast.longToast(`${getStringData($r('app.string.button_disable_style'))}${getStringData($r('app.string.button_click'))}`)
               })
           }
           .rowStyle()
@@ -137,9 +126,7 @@ struct ButtonSample {
               .buttonDefaultStyle()
               .onClick(() => {
                 // onClick event will not response
-                ShowToast.longToast(
-                  '' + this.context.resourceManager.getStringSync($r('app.string.button_border_radius').id) +
-                  this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+                ShowToast.longToast(`${getStringData($r('app.string.button_border_radius'))}${getStringData($r('app.string.button_click'))}`)
               })
 
             Button() {
@@ -155,9 +142,7 @@ struct ButtonSample {
             .buttonDefaultStyle()
             .onClick(() => {
               // onClick event will not response
-              ShowToast.longToast(
-                '' + this.context.resourceManager.getStringSync($r('app.string.button_border_radius').id) +
-                this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+              ShowToast.longToast(`${getStringData($r('app.string.button_border_radius'))}${getStringData($r('app.string.button_click'))}`)
             })
 
             Button() {
@@ -169,9 +154,7 @@ struct ButtonSample {
             .backgroundColor($r('app.color.button_custom_color'))
             .onClick(() => {
               // onClick event will not response
-              ShowToast.longToast(
-                '' + this.context.resourceManager.getStringSync($r('app.string.button_custom_bg_color').id) +
-                this.context.resourceManager.getStringSync($r('app.string.button_click').id))
+              ShowToast.longToast(`${getStringData($r('app.string.button_custom_bg_color'))}${getStringData($r('app.string.button_click'))}`)
             })
           }
           .rowStyle()

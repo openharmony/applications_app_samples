@@ -16,7 +16,7 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
   .padding(12)
   .width('100%')
   .borderRadius(24)

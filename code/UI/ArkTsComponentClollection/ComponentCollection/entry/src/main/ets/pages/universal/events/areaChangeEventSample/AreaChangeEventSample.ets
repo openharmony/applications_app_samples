@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,7 @@
 import { CommonItemSlider } from '../../../../common/AttributeModificationTool'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
+import Logger from '../../../../util/Logger'
 
 enum AreaSideName {
   NONE,
@@ -119,17 +120,17 @@ struct AreaChangeEventSample {
 
   decideMoveDirection() {
     let reachedSide = this.calculateReachedSide()
-    if (reachedSide == AreaSideName.NONE) {
+    if (reachedSide === AreaSideName.NONE) {
       return
     }
-    if (reachedSide == AreaSideName.CORNER) {
+    if (reachedSide === AreaSideName.CORNER) {
       this.xDirection = this.xDirection * -1
       this.yDirection = this.yDirection * -1
       return
     }
 
     // 再以当前运动方向生成新的方向
-    if (reachedSide == AreaSideName.LEFT || reachedSide == AreaSideName.RIGHT) {
+    if (reachedSide === AreaSideName.LEFT || reachedSide === AreaSideName.RIGHT) {
       this.xDirection = this.xDirection * -1
     } else {
       this.yDirection = this.yDirection * -1
@@ -178,13 +179,13 @@ struct AreaChangeEventSample {
                 .backgroundColor(0x317aff)
                 .position({ x: this.ballPositionX, y: this.ballPositionY })
             }
-            .height(this.areaCurrentHeightPercent.toString() + '%')
-            .width(this.areaCurrentWidthPercent.toString() + '%')
+            .height(`${this.areaCurrentHeightPercent.toString()}%`)
+            .width(`${this.areaCurrentWidthPercent.toString()}%`)
             .backgroundColor($r('app.color.background_shallow_grey'))
             .onAreaChange((oldValue: Area, newValue: Area) => {
               this.areaRight = newValue.width as number
               this.areaBottom = newValue.height as number
-              console.error("ROW area: " + JSON.stringify(newValue))
+              Logger.error(`ROW area: ${JSON.stringify(newValue)}`)
               this.areaChangedInfo
               = 'Area Info:\n' + '  globalPos:\n    x: ' + newValue.globalPosition.x + '\n    y: '
               + newValue.globalPosition.y + '\n' + '  width: ' + newValue.width + '\n  height: ' + newValue.height

@@ -45,6 +45,18 @@
       "value": "Font"
     },
     {
+      "name": "prop_bluefont",
+      "value": "#409EFF"
+    },
+    {
+      "name": "prop_orangefont",
+      "value": "#E6A23C"
+    },
+    {
+      "name": "prop_pinkfont",
+      "value": "#F56C6C"
+    },
+    {
       "name": "prop_size",
       "value": "Size"
     },
@@ -567,6 +579,18 @@
       "name": "date_picker_toast_date",
       "value": "Selected time:"
     },
+    {
+      "name": "date_picker_dialog_datetimeone",
+      "value": "2022-10-01"
+    },
+    {
+      "name": "date_picker_dialog_datetimetwo",
+      "value": "1970-1-1"
+    },
+    {
+      "name": "date_picker_dialog_datetimethree",
+      "value": "2100-12-31"
+    },
     // DatePicker
     {
       "name": "date_picker_title",
@@ -936,6 +960,22 @@
       "name": "span_decoration_color",
       "value": "Decoration color"
     },
+    {
+      "name": "span_decoration_none",
+      "value": "None"
+    },
+    {
+      "name": "span_decoration_linethrough",
+      "value": "LineThrough"
+    },
+    {
+      "name": "span_decoration_underline",
+      "value": "Underline"
+    },
+    {
+      "name": "span_decoration_overline",
+      "value": "Overline"
+    },
     // Text
     {
       "name": "text_title",
@@ -1151,6 +1191,18 @@
       "name": "time_picker_toast_time",
       "value": "Selected time:"
     },
+    {
+      "name": "time_picker_options_usemilitarytime",
+      "value": "usemilitarytime"
+    },
+    {
+      "name": "time_picker_dialog_timeone",
+      "value": "00:00"
+    },
+    {
+      "name": "time_picker_dialog_timetwo",
+      "value": "10/01/2022 12:00"
+    },
     // Toggle
     {
       "name": "toggle_title",
@@ -1200,6 +1252,811 @@
     {
       "name": "translate_y_axis",
       "value": "Y-axis:"
+    },
+    //Display
+    {
+      "name": "components_display",
+      "value": "Display"
+    },
+    {
+      "name": "components_interaction",
+      "value": "Interaction"
+    },
+    {
+      "name": "components_interaction_menuone",
+      "value": "Menu Item 1"
+    },
+    {
+      "name": "components_interaction_menutwo",
+      "value": "Menu Item 2"
+    },
+    {
+      "name": "components_interaction_menuthree",
+      "value": "Menu Item 3"
+    },
+    {
+      "name": "components_interaction_menufour",
+      "value": "Menu Item 4"
+    },
+    {
+      "name": "components_interaction_clicktextone",
+      "value": "Background"
+    },
+    {
+      "name": "components_interaction_clicktexttwo",
+      "value": "Forground"
+    },
+    {
+      "name": "components_interaction_clicktextthree",
+      "value": "Forground Child"
+    },
+    {
+      "name": "components_interaction_hittestbehavior",
+      "value": "hitTestBehavior:"
+    },
+    {
+      "name": "components_interaction_hovereffect",
+      "value": "hoverEffect"
+    },
+    {
+      "name": "components_interaction_backgroundresponse",
+      "value": "Background response click\n"
+    },
+    {
+      "name": "components_interaction_foregroundresponse",
+      "value": "Foreground response click\n"
+    },
+    {
+      "name": "components_interaction_contentresponse",
+      "value": "Content response click\n"
+    },
+    {
+      "name": "components_display_content",
+      "value": "ABCDEFG abcdefg"
+    },
+    {
+      "name": "components_display_center",
+      "value": "center"
+    },
+    {
+      "name": "components_display_topstart",
+      "value": "top start"
+    },
+    {
+      "name": "components_display_topend",
+      "value": "top end"
+    },
+    {
+      "name": "components_display_top",
+      "value": "top"
+    },
+    {
+      "name": "components_display_start",
+      "value": "start"
+    },
+    {
+      "name": "components_display_end",
+      "value": "end"
+    },
+    {
+      "name": "components_display_bottomstart",
+      "value": "bottom start"
+    },
+    {
+      "name": "components_display_bottom",
+      "value": "bottom"
+    },
+    {
+      "name": "components_display_bottomend",
+      "value": "bottom end"
+    },
+    {
+      "name": "components_display_none",
+      "value": "None"
+    },
+    {
+      "name": "components_display_hidden",
+      "value": "Hidden"
+    }, {
+      "name": "components_display_visible",
+      "value": "Visible"
+    },
+    {
+      "name": "components_effects",
+      "value": "Effects"
+    },
+    {
+      "name": "blur_effects",
+      "value": "Blur effects"
+    },
+    {
+      "name": "blur_radius_modify",
+      "value": "Blur radius"
+    },
+    {
+      "name": "background_blur",
+      "value": "Background Blur"
+    },
+    {
+      "name": "shadow_effects",
+      "value": "Shadow Effect"
+    },
+    {
+      "name": "x_offset",
+      "value": "X Offset"
+    },
+    {
+      "name": "y_offset",
+      "value": "Y Offset"
+    },
+    {
+      "name": "shadow",
+      "value": "Shadow"
+    },
+    {
+      "name": "blur",
+      "value": "Blur"
+    },
+    {
+      "name": "effects",
+      "value": "Effect"
+    },
+    {
+      "name": "effects_display",
+      "value": "Display"
+    },
+    {
+      "name": "grayscale_change",
+      "value": "GrayScale"
+    },
+    {
+      "name": "brightness_change",
+      "value": "Brightness"
+    },
+    {
+      "name": "saturate_change",
+      "value": "Saturate"
+    },
+    {
+      "name": "constrast_change",
+      "value": "Constrast"
+    },
+    {
+      "name": "invert_change",
+      "value": "Invert"
+    },
+    {
+      "name": "sepia_change",
+      "value": "Sepia"
+    },
+    {
+      "name": "hueRotate_change",
+      "value": "HueRoate"
+    },
+    {
+      "name": "color_blend_change",
+      "value": "Colorblend"
+    },
+    {
+      "name": "z_index",
+      "value": "Z-Index"
+    },
+    {
+      "name": "overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "visibility",
+      "value": "Visibility"
+    },
+    {
+      "name": "opacity",
+      "value": "Opacity"
+    },
+    {
+      "name": "z_index_display",
+      "value": "Z-Index"
+    },
+    {
+      "name": "Red",
+      "value": "Red"
+    },
+    {
+      "name": "Blue",
+      "value": "Blue"
+    },
+    {
+      "name": "Yellow",
+      "value": "Yellow"
+    },
+    {
+      "name": "positon_modify",
+      "value": "Position"
+    },
+    {
+      "name": "offset_modify",
+      "value": "Offset"
+    },
+    {
+      "name": "visibility_change",
+      "value": "Visibility"
+    },
+    {
+      "name": "opacity_change",
+      "value": "Opacity"
+    },
+    {
+      "name": "opacity_display",
+      "value": "Opacity Display"
+    },
+    {
+      "name": "item_select",
+      "value": "Menu Item"
+    },
+    {
+      "name": "disabled",
+      "value": "Disabled"
+    },
+    {
+      "name": "button_disabled",
+      "value": "Button Disabled"
+    },
+    {
+      "name": "list_disabled",
+      "value": "List Disabled"
+    },
+    {
+      "name": "button",
+      "value": "Button"
+    },
+    {
+      "name": "focus",
+      "value": "Focus"
+    },
+    {
+      "name": "popup_window",
+      "value": "Popup"
+    },
+    {
+      "name": "touch_test",
+      "value": "Touch"
+    },
+    {
+      "name": "touch_region",
+      "value": "Region"
+    },
+    {
+      "name": "hovereffect",
+      "value": "Hover"
+    },
+    {
+      "name": "menu",
+      "value": "Menu"
+    },
+    {
+      "name": "multiState",
+      "value": "MultiState"
+    },
+    {
+      "name": "alert",
+      "value": "Alert"
+    },
+    {
+      "name": "result",
+      "value": "Result"
+    },
+    {
+      "name": "popup",
+      "value": "Popup"
+    },
+    {
+      "name": "custom_popup",
+      "value": "Custom Popup"
+    },
+    {
+      "name": "touch_test_region",
+      "value": "Touch test region"
+    },
+    {
+      "name": "touch_hit_test",
+      "value": "Click the hot area: set the hot area as the green area"
+    },
+    {
+      "name": "response_region",
+      "value": "Response Region"
+    },
+    {
+      "name": "touch_hit_subtitle",
+      "value": "Click the green area to trigger the blue area response"
+    },
+    {
+      "name": "option",
+      "value": "option"
+    },
+    {
+      "name": "hover_region",
+      "value": "Hover the mouse over the green area to observe the effect"
+    },
+    {
+      "name": "multistatus_region",
+      "value": "Switch status and observe the effect"
+    },
+    {
+      "name": "status_select",
+      "value": "Status selection"
+    },
+    // 辅助
+    {
+      "name": "scroll_bar",
+      "value": "ScrollBar"
+    },
+    {
+      "name": "scroll_vertical_title",
+      "value": "vertical scroll"
+    },
+    {
+      "name": "scroll_horizontal_title",
+      "value": "horizontal scroll"
+    },
+    {
+      "name": "auxiliary_refresh",
+      "value": "Refresh"
+    },
+    {
+      "name": "auxiliary_refresh_offset",
+      "value": "offset:"
+    },
+    {
+      "name": "auxiliary_refresh_minvalue",
+      "value": "0"
+    },
+    {
+      "name": "auxiliary_refresh_maxvalue",
+      "value": "100"
+    },
+    {
+      "name": "auxiliary_refresh_friction",
+      "value": "friction:"
+    },
+    {
+      "name": "auxiliary_panel",
+      "value": "Panel"
+    },
+    {
+      "name": "auxiliary_alphabetIndexer",
+      "value": "AlphabetIndexer"
+    },
+    {
+      "name": "loading_progress",
+      "value": "LoadingProgress"
+    },
+    {
+      "name": "marquee_name",
+      "value": "Marquee"
+    },
+    {
+      "name": "marquee_src",
+      "value": "Hello ArkUI String Length Larger Than Content"
+    },
+    {
+      "name": "marquee_fromstart",
+      "value": "fromStart"
+    },
+    {
+      "name": "marquee_step",
+      "value": "step"
+    },
+    {
+      "name": "marquee_loop",
+      "value": "loop"
+    },
+    {
+      "name": "text_timer",
+      "value": "TextTimer"
+    },
+    {
+      "name": "text_timer_start",
+      "value": "start"
+    },
+    {
+      "name": "text_timer_pause",
+      "value": "pause"
+    },
+    {
+      "name": "text_timer_reset",
+      "value": "reset"
+    },
+    {
+      "name": "text_timer_iscountdown",
+      "value": "isCountDown"
+    },
+    {
+      "name": "text_timer_timeformatone",
+      "value": "mm:ss:SS"
+    },
+    {
+      "name": "text_timer_groupformat",
+      "value": "format"
+    },
+    {
+      "name": "text_timer_timeformattwo",
+      "value": "HH:mm:ss"
+    },
+    {
+      "name": "text_timer_timeformatthree",
+      "value": "DD-HH-mm-ss.SSS"
+    },
+    {
+      "name": "text_clock",
+      "value": "TextClock"
+    },
+    {
+      "name": "text_clock_start",
+      "value": "start"
+    },
+    {
+      "name": "text_clock_stop",
+      "value": "stop"
+    },
+    {
+      "name": "text_clock_timeformatone",
+      "value": "HH:mm:ss"
+    },
+    {
+      "name": "text_clock_groupformat",
+      "value": "format"
+    },
+    {
+      "name": "text_clock_timeformattwo",
+      "value": "YY:MM:dd"
+    },
+    {
+      "name": "text_clock_timeformatthree",
+      "value": "hh-mm-ss"
+    },
+    {
+      "name": "progress_name",
+      "value": "Progress"
+    },
+    {
+      "name": "gauge_name",
+      "value": "Gauge"
+    },
+    {
+      "name": "gauge_value",
+      "value": "value"
+    },
+    {
+      "name": "gauge_strokewidth",
+      "value": "strokeWidth"
+    },
+    {
+      "name": "gauge_startangle",
+      "value": "startAngle"
+    },
+    {
+      "name": "gauge_endangle",
+      "value": " endAngle"
+    },
+    {
+      "name": "data_panel",
+      "value": "DataPanel"
+    },
+    {
+      "name": "checkbox_checkboxgroup",
+      "value": "Checkbox && CheckboxGroup"
+    },
+    {
+      "name": "checkbox_title",
+      "value": "Checkbox"
+    },
+    {
+      "name": "checkbox_checkbox1",
+      "value": "Checkbox1"
+    },
+    {
+      "name": "checkbox_checkbox2",
+      "value": "Checkbox2"
+    },
+    {
+      "name": "checkbox_checkbox3",
+      "value": "Checkbox3"
+    },
+    {
+      "name": "checkbox_checkgroup",
+      "value": "checkboxGroup"
+    },
+    {
+      "name": "checkbox_checkgroup_title",
+      "value": "CheckboxGroup"
+    },
+    {
+      "name": "text_picker",
+      "value": "TextPicker"
+    },
+    {
+      "name": "time_picker",
+      "value": "TimePicker"
+    },
+    {
+      "name": "counter_name",
+      "value": "Counter"
+    },
+    {
+      "name": "rating_name",
+      "value": "Rating"
+    },
+    {
+      "name": "rating_options_indicator",
+      "value": "indicator"
+    },
+    {
+      "name": "rating_options_value",
+      "value": "value"
+    },
+    {
+      "name": "rating_options_stars",
+      "value": "stars"
+    },
+    {
+      "name": "rich_text",
+      "value": "RichText"
+    },
+    {
+      "name": "scroll_swiper",
+      "value": "Scroll and Swipe"
+    },
+    {
+      "name": "scroll_name",
+      "value": "Scroll"
+    },
+    {
+      "name": "swiper_name",
+      "value": "Swiper"
+    },
+    {
+      "name": "alphabetindexer_an",
+      "value": "An"
+    },
+    {
+      "name": "alphabetindexer_bu",
+      "value": "Bu"
+    },
+    {
+      "name": "alphabetindexer_bai",
+      "value": "Bai"
+    },
+    {
+      "name": "alphabetindexer_bao",
+      "value": "Bao"
+    },
+    {
+      "name": "alphabetindexer_bi",
+      "value": "Bi"
+    },
+    {
+      "name": "alphabetindexer_bing",
+      "value": "Bing"
+    },
+    {
+      "name": "alphabetindexer_cao",
+      "value": "Cao"
+    },
+    {
+      "name": "alphabetindexer_chen",
+      "value": "Chen"
+    },
+    {
+      "name": "alphabetindexer_lv",
+      "value": "Lv"
+    },
+    {
+      "name": "alphabetindexer_liu3",
+      "value": "Liu3"
+    },
+    {
+      "name": "alphabetindexer_liu",
+      "value": "Liu"
+    },
+    {
+      "name": "alphabetindexer_li",
+      "value": "Li"
+    },
+    {
+      "name": "alphabetindexer_lou",
+      "value": "Lou"
+    },
+    {
+      "name": "alphabetindexer_liang",
+      "value": "Liang"
+    },
+    {
+      "name": "alphabetindexer_lei",
+      "value": "Lei"
+    },
+    {
+      "name": "alphabetindexer_lu",
+      "value": "Lu"
+    },
+    {
+      "name": "alphabetindexer_cui",
+      "value": "Cui"
+    },
+    {
+      "name": "alphabetindexer_cheng",
+      "value": "Cheng"
+    },
+    {
+      "name": "alphabetindexer_list_display",
+      "value": "List Display"
+    },
+    {
+      "name": "alphabetindexer_color_select",
+      "value": "Color Select"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_selectedcolor",
+      "value": "selectedColor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_selectedbgcolor",
+      "value": "selectedBackColor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_popupcolor",
+      "value": "popupColor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_popupbackground",
+      "value": "popupBackground"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_usingpopup",
+      "value": "usingPopup"
+    },
+    {
+      "name": "panel_show_minibar",
+      "value": "Show Minibar Type Panel"
+    },
+    {
+      "name": "panel_close_minibar",
+      "value": "Close Minibar Type Panel"
+    },
+    {
+      "name": "panel_show_foldable",
+      "value": "Show Foldable Type Panel"
+    },
+    {
+      "name": "panel_close_foldable",
+      "value": "Close Foldable Type Panel"
+    },
+    {
+      "name": "panel_show_temporary",
+      "value": "Show Temporary Type Panel"
+    },
+    {
+      "name": "panel_close_temporary",
+      "value": "Close Temporary Type Panel"
+    },
+    {
+      "name": "panel_radio_groupname",
+      "value": "fruit"
+    },
+    {
+      "name": "checkbox_apple",
+      "value": "Apple"
+    },
+    {
+      "name": "checkbox_blueberry",
+      "value": "Blueberry"
+    },
+    {
+      "name": "checkbox_banbana",
+      "value": "Banana"
+    },
+    {
+      "name": "checkbox_cherries",
+      "value": "Cherries"
+    },
+    {
+      "name": "checkbox_durian",
+      "value": "Durian"
+    },
+    {
+      "name": "checkbox_orange",
+      "value": "Orange"
+    },
+    {
+      "name": "checkbox_select_color",
+      "value": "Select Color"
+    },
+    {
+      "name": "checkbox_select_all",
+      "value": "Select All"
+    },
+    {
+      "name": "normal_display",
+      "value": "Display"
+    },
+    {
+      "name": "normal_options",
+      "value": "Options"
+    },
+    {
+      "name": "datapanel_circle",
+      "value": "Circle"
+    },
+    {
+      "name": "datapanel_line",
+      "value": "Line"
+    },
+    {
+      "name": "progress_linear",
+      "value": "Linear Progress"
+    },
+    {
+      "name": "progress_eclipse",
+      "value": "Eclipse Progress"
+    },
+    {
+      "name": "progress_scalering",
+      "value": "ScaleRing Progress"
+    },
+    {
+      "name": "progress_ring",
+      "value": "Ring Progress"
+    },
+    {
+      "name": "progress_capsule",
+      "value": "Capsule Progress"
+    },
+    {
+      "name": "progress_change",
+      "value": "Change Progress"
+    },
+    {
+      "name": "textclock_timeformat",
+      "value": "Time Format"
+    },
+    {
+      "name": "scroll_horizontal",
+      "value": "Horizontal Scroll"
+    },
+    {
+      "name": "scroll_vertical",
+      "value": "Vertical Scroll"
+    },
+    {
+      "name": "interaction_disable_list",
+      "value": "Disable List"
+    },
+    {
+      "name": "interaction_show_one_alert",
+      "value": "Click to show one button alert"
+    },
+    {
+      "name": "interaction_show_two_alert",
+      "value": "Click to show two button alert"
+    },
+    {
+      "name": "interaction_placementontop",
+      "value": "PlacementOnTop:"
+    },
+    {
+      "name": "interaction_arrowoffset",
+      "value": "Change arrowOffset:"
+    },
+    {
+      "name": "interaction_showpopup",
+      "value": "Show Popup"
+    },
+    {
+      "name": "interaction_showcustompopup",
+      "value": "Show Custom Popup"
+    },
+    {
+      "name": "interaction_disable",
+      "value": "Disable Component:"
     }
   ]
 }
