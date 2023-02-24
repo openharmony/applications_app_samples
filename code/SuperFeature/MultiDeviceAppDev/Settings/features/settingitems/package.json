@@ -11,5 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@ohos/common": "file:../../common"
-  }
+  },
+  "type": "module"
 }

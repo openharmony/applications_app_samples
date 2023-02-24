@@ -14,8 +14,8 @@
  */
 import display from '@ohos.display'
 import router from '@ohos.router';
-import { ShowInfo } from '../Common/ShowInfo'
-import Logger from '../Common/Logger'
+import { ShowInfo } from '../common/ShowInfo'
+import Logger from '../common/Logger'
 
 const TAG: string = '[ScreenDetector]'
 

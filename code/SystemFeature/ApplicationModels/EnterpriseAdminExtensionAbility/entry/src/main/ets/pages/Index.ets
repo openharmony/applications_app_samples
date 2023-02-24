@@ -61,7 +61,7 @@ struct Index {
         Text(this.enableAdminMsg)
           .key('enableAdminMsg')
 
-        Blank().height(20);
+        Blank().height(20)
 
         Button() {
           Text($r("app.string.disable_admin"))
@@ -86,9 +86,9 @@ struct Index {
         Text(this.disableAdminMsg)
           .key('disableAdminMsg')
 
-        Blank().height(20);
+        Blank().height(20)
 
-        Blank().height(20);
+        Blank().height(20)
 
         Button() {
           Text($r("app.string.subscribe_app_install_uninstall_event"))
@@ -113,7 +113,7 @@ struct Index {
         Text(this.subscribeManagedEventMsg)
           .key('subscribeManagedEventMsg')
 
-        Blank().height(20);
+        Blank().height(20)
 
         Button() {
           Text($r("app.string.unsubscribe_app_install_uninstall_event"))

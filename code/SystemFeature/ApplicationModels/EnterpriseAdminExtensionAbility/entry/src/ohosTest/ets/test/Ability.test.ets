@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
+import hilog from '@ohos.hilog'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, Component, MatchPattern } from '@ohos.uitest'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
@@ -55,7 +55,7 @@ export default function abilityTest() {
       let connectState = await driver.findComponent(BY.key('enableAdminMsg'))
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 state')
-      expect('enableAdmin success').assertEqual(state);
+      expect('enableAdmin success').assertEqual(state)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 end')
     })
 
@@ -74,7 +74,7 @@ export default function abilityTest() {
       let connectState = await driver.findComponent(BY.key('subscribeManagedEventMsg'))
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 state')
-      expect('subscribeManagedEvent success').assertEqual(state);
+      expect('subscribeManagedEvent success').assertEqual(state)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 end')
     })
 
@@ -93,7 +93,7 @@ export default function abilityTest() {
       let connectState = await driver.findComponent(BY.key('unsubscribeManagedEventMsg'))
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 state')
-      expect('unsubscribeManagedEvent success').assertEqual(state);
+      expect('unsubscribeManagedEvent success').assertEqual(state)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 end')
     })
 
@@ -112,7 +112,7 @@ export default function abilityTest() {
       let connectState = await driver.findComponent(BY.key('disableAdminMsg'))
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 state')
-      expect('disableSuperAdmin success').assertEqual(state);
+      expect('disableSuperAdmin success').assertEqual(state)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 end')
     })
   })

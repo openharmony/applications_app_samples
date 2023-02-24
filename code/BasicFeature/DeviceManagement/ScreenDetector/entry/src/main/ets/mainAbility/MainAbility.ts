@@ -15,7 +15,7 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
-import Logger from '../Common/Logger'
+import Logger from '../common/Logger'
 
 const TAG: string = '[ScreenDetector]'
 
