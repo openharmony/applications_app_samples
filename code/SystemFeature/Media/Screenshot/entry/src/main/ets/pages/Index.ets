@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import {
   Logger,
   ResponseData,
@@ -326,7 +326,7 @@ struct Index {
 
           Button($r('app.string.finish'))
             .zIndex(SAVE_INDEX)
-            .position({ x: '100%', y: '100%' })
+            .position({ x: '80%', y: '80%' })
             .translate({ x: '-100%', y: '-100%' })
             .onClick(() => {
               let screenshotOption = {
