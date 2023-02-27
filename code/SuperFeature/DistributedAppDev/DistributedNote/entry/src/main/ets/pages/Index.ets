@@ -151,7 +151,7 @@ struct Index {
           ListItem() {
             NoteItem({ note: item, index: index })
           }
-        }, item => item.title)
+        })
       }
       .width('95%')
       .margin(10)

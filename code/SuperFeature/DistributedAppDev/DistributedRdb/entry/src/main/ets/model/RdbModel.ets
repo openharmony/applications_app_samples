@@ -93,7 +93,7 @@ export default class RdbModel {
     Logger.info(TAG, 'predicates is ' + JSON.stringify(predicates))
     Logger.info(TAG, 'columns ' + JSON.stringify(this.columns))
     let resultSet = await this.rdbStore.query(predicates, this.columns)
-    Logger.info(TAG, 'result is ' + JSON.stringify(resultSet))
+    Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount))
     return this.getListFromResultSet(resultSet)
   }
 
@@ -148,6 +148,7 @@ export default class RdbModel {
 
   getListFromResultSet(resultSet): Array<Contact> {
     let contacts: Array<Contact> = []
+    resultSet.goToFirstRow()
     while (!resultSet.isEnded) {
       let contact = new Contact(resultSet.getDouble(resultSet.getColumnIndex('id'))
         , resultSet.getString(resultSet.getColumnIndex('name'))

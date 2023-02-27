@@ -57,7 +57,7 @@ export class Browser {
     Logger.info(TAG, `delete before tab index= ${index} controller length ${this.webControllerArray.length} tabArrayIndex= ${this.tabArrayIndex}`)
     this.webArray.splice(index, 1)
     this.webControllerArray.splice(index, 1)
-    if (this.tabArrayIndex > index || this.tabArrayIndex == this.webArray.length) {
+    if (this.tabArrayIndex > index || this.tabArrayIndex === this.webArray.length) {
       this.tabArrayIndex -= 1
     }
     for (let i = index;i < this.webArray.length; ++i) {
