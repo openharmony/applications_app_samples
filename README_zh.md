@@ -36,14 +36,14 @@
  <tr height="18" style='height:13.50pt;'>
   <td width="140" align="center" rowspan="2" style='height:27.00pt' x:str><strong>UI</strong></td>
   <td width="170" x:str><strong>声明式开发范式</strong></td>
-  <td width="170" x:str><a href="ETSUI/ComponentCollection">ArkTS组件集</a></td>
-  <td width="170" x:str><a href="ETSUI/MediaQuery">媒体查询</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/ComponentCollection">ArkTS组件集</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/MediaQuery">媒体查询</a></td>
   <td width="170"></td>
   <td width="170"></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>类Web开发范式</strong></td>
-  <td x:str><a href="UI/JsComponentCollection">Js组件集</a></td>
+  <td x:str><a href="code/UI/JsComponentClollection/JsComponentCollection">Js组件集</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -51,249 +51,255 @@
  <tr height="18" style='height:13.50pt;'>
   <td height="270" align="center" rowspan="20" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
-  <td x:str><a href="ability/FaModel">FA模型</a></td>
-  <td x:str><a href="ability/StageModel">Stage模型</a></td>
-  <td x:str><a href="ability/AbilityStartMode">Ability的启动方式</a></td>
-  <td x:str><a href="Share/CustomShare">使用want分享数据</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/FaModel">FA模型</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">使用want分享数据</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>通知</strong></td>
-  <td x:str><a href="Notification/CustomEmitter">自定义Emitter</a></td>
-  <td x:str><a href="Notification/CustomNotification">自定义通知</a></td>
-  <td x:str><a href="Notification/CustomCommonEvent">公共事件的订阅和发布</a></td>
+  <td x:str><a href="code/BasicFeature/Notification/CustomEmitter">自定义Emitter</a></td>
+  <td x:str><a href="code/BasicFeature/Notification/CustomNotification">自定义通知</a></td>
+  <td x:str><a href="code/BasicFeature/Notification/CustomCommonEvent">公共事件的订阅和发布</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口管理</strong></td>
-  <td x:str><a href="Graphics/WindowManage">窗口管理</a></td>
+  <td x:str><a href="code/BasicFeature/WindowManagement/WindowManage">窗口管理</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>Web</strong></td>
-  <td x:str><a href="device/Browser">浏览器</a></td>
-  <td x:str><a href="Web/RunJsInWeb">JS注入与执行</a></td>
+  <td x:str><a href="code/BasicFeature/Web/Browser">浏览器</a></td>
+  <td x:str><a href="code/BasicFeature/Web/RunJsInWeb">JS注入与执行</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>媒体</strong></td>
-  <td x:str><a href="media/Image">图片显示及处理</a></td>
-  <td x:str><a href="media/VideoShow">视频播放</a></td>
-  <td x:str><a href="media/GamePuzzle">图片裁剪与分割</a></td>
+  <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理</a></td>
+  <td x:str><a href="code/BasicFeature/Media/VideoShow">视频播放</a></td>
+  <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="media/Recorder">录音机</a></td>
-  <td x:str><a href="media/QRCodeScan">二维码扫描</a></td>
+  <td x:str><a href="code/BasicFeature/Media/Recorder">录音机</a></td>
+  <td x:str><a href="code/BasicFeature/Media/QRCodeScan">二维码扫描</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>安全</strong></td>
-  <td x:str><a href="Safety/Cipher">加解密</a></td>
-  <td ><a href="Account/AppAccountManager">应用账号管理</a></td>
+  <td x:str><a href="code/BasicFeature/Security/Cipher">加解密</a></td>
+  <td ><a href="code/BasicFeature/Security/AppAccountManager">应用账号管理</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>网络与连接</strong></td>
-  <td x:str><a href="Network/Http">Http</a></td>
-  <td x:str><a href="Communication/RPC">RPC通信</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/Http">Http</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/RPC">RPC通信</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
-  <td x:str><a href="data/Preferences">首选项</a></td>
+  <td x:str><a href="code/BasicFeature/DataManagement/Preferences">首选项</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>文件管理</strong></td>
-  <td x:str><a href="FileManager/FileManager">文件管理</a></td>
-  <td x:str><a href="media/MediaCollections">媒体管理合集</a></td>
+  <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理</a></td>
+  <td x:str><a href="code/BasicFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>设备管理</strong></td>
-  <td x:str><a href="device/USBManager">USB管理</a></td>
-  <td x:str><a href="device/Location">位置服务</a></td>
-  <td x:str><a href="device/ScreenDetector">屏幕探测</a></td>
-  <td x:str><a href="device/Vibrator">振动</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/USBManager">USB管理</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Location">位置服务</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/ScreenDetector">屏幕探测</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator">振动</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="device/Sensor">传感器</a></td>
-  <td x:str><a href="common/Runninglock">运行锁</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Runninglock">运行锁</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>电话服务</strong></td>
-  <td x:str><a href="Telephony/Call">拨打电话</a></td>
-  <td x:str><a href="Telephony/SimManager">SIM卡管理</a></td>
-  <td x:str><a href="Telephony/Message">短信</a></td>
-  <td x:str><a href="Telephony/Contact">联系人</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/Call">拨打电话</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/SimManager">SIM卡管理</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/Message">短信</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/Contact">联系人</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="Telephony/Observer">网络和Sim卡状态订阅</a></td>
-  <td x:str><a href="Telephony/MobileNetwork">蜂窝数据</a></td>
-  <td x:str><a href="Telephony/RadioTech">网络搜索</td>
+  <td x:str><a href="code/BasicFeature/Telephony/Observer">网络和Sim卡状态订阅</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/MobileNetwork">蜂窝数据</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/RadioTech">网络搜索</td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>任务管理</strong></td>
-  <td x:str><a href="ResourcesSchedule/ReminderAgentManager">后台代理提醒</a></td>
-  <td x:str><a href="ResourcesSchedule/WorkScheduler">延迟任务调度</a></td>
-  <td x:str><a href="ResourcesSchedule/PlayMusicBackground">后台播放音乐</a></td>
-  <td x:str><a href="ResourcesSchedule/Flybird">资源调度接口使用</a></td>
+  <td x:str><a href="code/BasicFeature/TaskManagement/ReminderAgentManager">后台代理提醒</a></td>
+  <td x:str><a href="code/BasicFeature/TaskManagement/WorkScheduler">延迟任务调度</a></td>
+  <td x:str><a href="code/BasicFeature/TaskManagement/Flybird">资源调度接口使用</a></td>
+  <td x:str><a href="code/BasicFeature/TaskManagement/ContinuousTask">长时任务</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/TaskManagement/ContinuousTask">长时任务</a></td>
   <td x:str><a href="code/BasicFeature/TaskManagement/TransientTask">短时任务</a></td>
+  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备信息统计</strong></td>
-  <td x:str><a href="device/DeviceUsageStatistics">设备使用信息统计</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics">设备使用信息统计</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>DFX</strong></td>
-  <td x:str><a href="DFX/Debug">Debug调试</a></td>
-  <td ><a href="DFX/JsDotTest">测试打点</a></td>
-  <td ><a href="DFX/FaultLogger">故障日志获取</a></td>
-  <td ><a href="DFX/Logger">日志打印</a></td>
+  <td x:str><a href="code/BasicFeature/DFX/Debug">Debug调试</a></td>
+  <td ><a href="code/BasicFeature/DFX/DotTest">测试打点</a></td>
+  <td ><a href="code/BasicFeature/DFX/FaultLogger">故障日志获取</a></td>
+  <td ><a href="code/BasicFeature/DFX/Logger">日志打印</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
-  <td x:str><a href="common/ResourceManager">资源管理</a></td>
+  <td x:str><a href="code/BasicFeature/Internationalnation/ResourceManager">资源管理</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>IDL</strong</td>
-  <td x:str><a href="ability/AbilityConnectServiceExtension">Ability与ServiceExtensionAbility通信</a></td>
+  <td x:str><a href="code/BasicFeature/IDL/AbilityConnectServiceExtension">Ability与ServiceExtensionAbility通信</a></td>
   <td x:str></td>
   <td x:str></td>
   <td x:str></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="8" style='height:67.50pt;' x:str><strong>系统特性（Full SDK）</strong></td>
-  <td x:str><strong>应用模型</strong></td>
-  <td x:str><a href="ability/Launcher">仿桌面应用</a></td>
-  <td x:str><a href="ability/MissionManager">任务管理</a></td>
-  <td x:str><a href="ability/StaticSubscriber">静态订阅</a></td>
+  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性（Full SDK）</strong></td>
+  <td rowspan="2" x:str><strong>应用模型</strong></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用</a></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/StaticSubscriber">静态订阅</a></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/AccessibilityExtAbility">无障碍扩展</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility">企业设备管理扩展</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>媒体</strong></td>
-  <td x:str><a href="Basic/Screenshot">截屏</a></td>
-  <td x:str><a href="media/ScreenRecorder">录屏</a></td>
+  <td x:str><a href="code/SystemFeature/Media/Screenshot">截屏</a></td>
+  <td x:str><a href="code/SystemFeature/Media/ScreenRecorder">录屏</a></td>
   <td ></td>
   <td ></td>
  </tr>
  </tr>
   <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>安全</strong></td>
-  <td x:str><a href="Safety/AbilityAccessCtrl">应用访问权限控制</a></td>
+  <td x:str><a href="code/SystemFeature/Security/AbilityAccessCtrl">应用访问权限控制</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口管理</strong></td>
-  <td x:str><a href="ability/WindowExtAbility">窗口扩展</a></td>
+  <td x:str><a href="code/SystemFeature/WindowManagement/WindowExtAbility">窗口扩展</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>网络与连接</strong></td>
-  <td x:str><a href="Communication/Wlan">Wlan</a></td>
-  <td x:str><a href="device/Bluetooth">蓝牙</a></td>
+  <td x:str><a href="code/SystemFeature/Connectivity/Wlan">Wlan</a></td>
+  <td x:str><a href="code/SystemFeature/Connectivity/Bluetooth">蓝牙</a></td>
   <td x:str><a href="code/SystemFeature/Connectivity/Upload">上传</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
-  <td x:str><a href="data/CrossAppDataShare">系统应用跨应用数据共享</a></td>
+  <td x:str><a href="code/SystemFeature/DataManagement/CrossAppDataShare">系统应用跨应用数据共享</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备管理</strong></td>
-  <td x:str><a href="common/PowerManager">系统电源管理</a></td>
-  <td x:str><a href="FileManager/StorageStatistic">存储空间统计</a></td>
-  <td x:str><a href="device/Screen">屏幕属性</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/PowerManager">系统电源管理</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
-  <td x:str><a href="common/International">时区和语言设置</a></td>
+  <td x:str><a href="code/SystemFeature/Internationalnation/International">时区和语言设置</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="5" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
-  <td x:str><a href="MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合</a></td>
-  <td x:str><a href="MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合（Js）（API 8）</a></td>
-  <td x:str><a href="MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
-  <td ></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合（Js）（API 8）</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/HealthyDiet">典型页面场景：健康饮食</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="MultiDeviceAppDev/AppMarket">典型页面场景：应用市场首页</a></td>
-  <td x:str><a href="MultiDeviceAppDev/MusicAlbum">典型页面场景：音乐专辑页</a></td>
-  <td x:str><a href="MultiDeviceAppDev/Settings">典型页面场景：设置应用页面</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AppMarket">典型页面场景：应用市场首页</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MusicAlbum">典型页面场景：音乐专辑页</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Settings">典型页面场景：设置应用页面</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>分布式</strong></td>
-  <td x:str><a href="Preset/DistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
-  <td x:str><a href="ability/JsDistributedMusicPlayer">Js分布式音乐播放（Js）（API 9）</a></td>
-  <td x:str><a href="Preset/EtsDistributedCalc">分布式计算器</a></td>
-  <td x:str><a href="data/DistributedNote">分布式对象</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">Js分布式音乐播放（Js）（API 9）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="data/DistributedRdb">分布式关系型数据库库</a></td>
-  <td x:str><a href="data/DistributedDataGobang">分布式数据管理</a></td>
-  <td x:str><a href="device/DeviceManager">分布式组网认证</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库库</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证</a></td>
   <td x:str></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>卡片</strong></td>
-  <td x:str><a href="UI/JsAdaptiveServiceWidget">Js多设备自适应服务卡片（Js）（API 8）</a></td>
-  <td x:str><a href="ability/FormExtAbility">Stage模型卡片</a></td>
-  <td x:str><a href="ability/FormGame">Stage模型卡片JS与C++通信</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">Js多设备自适应服务卡片（Js）（API 8）</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信</a></td>
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="6" style='height:67.50pt' x:str><strong>行业解决方案</strong></td>
   <td x:str><strong>即时通信</strong></td>
-  <td x:str><a href="AppSample/Chat">聊天实例应用</a></td>
+  <td x:str><a href="code/Solutions/IM/Chat">聊天实例应用</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>输入法</strong></td>
-  <td x:str><a href="CompleteApps/KikaInput">轻量级输入法</a></td>
+  <td x:str><a href="code/Solutions/InputMethod/KikaInput">轻量级输入法</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>电商</strong></td>
-  <td x:str><a href="ETSUI/OrangeShopping">购物示例应用</a></td>
+  <td x:str><a href="code/Solutions/Shopping/OrangeShopping">购物示例应用</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -301,43 +307,43 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>媒体</strong></td>
-  <td x:str><a href="media/MultiMedia">仿相机</a></td>
+  <td x:str><a href="code/Solutions/Media/MultiMedia">仿相机</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>游戏</strong></td>
-  <td x:str><a href="ETSUI/Game2048">游戏2048</a></td>
-  <td x:str><a href="ETSUI/Lottie">Lottie</a></td>
-  <td ></td>
+  <td x:str><a href="code/Solutions/Game/Game2048">游戏2048</a></td>
+  <td x:str><a href="code/Solutions/Game/Lottie">Lottie</a></td>
+  <td x:str><a href="code/Solutions/Game/DistributedDataGobang">分布式五子棋</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>工具</strong></td>
-  <td x:str><a href="ETSUI/PatternLock">图案密码锁</a></td>
-  <td x:str><a href="CompleteApps/FlipClock">翻页时钟</a></td>
-  <td x:str><a href="common/Clock">Js时钟（Js）（API 9）</a></td>
-  <td x:str><a href="Preset/Clock">ArkTS时钟</a></td>
+  <td x:str><a href="code/Solutions/Tools/PatternLock">图案密码锁</a></td>
+  <td x:str><a href="code/Solutions/Tools/FlipClock">翻页时钟</a></td>
+  <td x:str><a href="code/Solutions/Tools/JsClock">Js时钟（Js）（API 9）</a></td>
+  <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>资源配置</strong></td>
-  <td x:str><a href="ETSUI/ApplicationThemeSwitch">应用主题切换</a></td>
+  <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>三方库使用</strong></td>
-  <td x:str><a href="EngineeringCapability/Npm">npm的使用</a></td>
+  <td x:str><a href="code/Project/ThirdPartyLibrary/Npm">npm的使用</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>应用程序包</strong></td>
-  <td x:str><a href="bundle/MultiHap">多hap</a></td>
+  <td x:str><a href="code/Project/ApplicationHap/MultiHap">多hap</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -345,22 +351,22 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="3" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="3" x:str><strong>语言基础类库</strong></td>
-  <td x:str><a href="Util/UtilBase64Codec">Base64编解码</a></td>
-  <td x:str><a href="Util/UtilLruBuffer">缓冲区</a></td>
-  <td x:str><a href="Util/UtilRationalNumber">有理数</a></td>
-  <td x:str><a href="Util/UtilScope">范围判断</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilBase64Codec">Base64编解码</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilLruBuffer">缓冲区</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilRationalNumber">有理数</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilScope">范围判断</a></td>
  </tr>
  <tr>
-  <td x:str><a href="Util/UtilStringCodec">字符串编解码</a></td>
-  <td x:str><a href="Util/UtilTypeCheck">内置对象类型检查</a></td>
-  <td x:str><a href="Util/UtilUrlString">URL字符串解析</a></td>
-  <td x:str><a href="Util/XmlTextConvert">xml文本转换</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilStringCodec">字符串编解码</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilTypeCheck">内置对象类型检查</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilUrlString">URL字符串解析</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/XmlTextConvert">xml文本转换</a></td>
  </tr>
  <tr>
-  <td x:str><a href="Basic/Container">线性容器ArrayList</a></td>
-  <td x:str><a href="thread/JsWorker">启动一个worker</a></td>
-  <td x:str><a href="PackageManagement/ZipLib">压缩与解压</a></td>
-  <td x:str><a href="ETSUI/Process">进程信息</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/Container">线性容器ArrayList</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/JsWorker">启动一个worker</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/Process">进程信息</a></td>
  </tr>
  <tr>
  <![if supportMisalignedColumns]>
