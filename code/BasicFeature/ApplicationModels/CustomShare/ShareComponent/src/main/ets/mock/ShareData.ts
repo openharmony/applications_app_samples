@@ -18,18 +18,22 @@ import { DialogDataModel } from '../model/ShareModel'
 export const dialogData: Array<DialogDataModel> = [
   {
     src: $r('app.media.chat'),
-    text: $r('app.string.chat')
+    text: $r('app.string.chat'),
+    id: 0
   },
   {
     src: $r('app.media.wChat'),
-    text: $r('app.string.video_sharing')
+    text: $r('app.string.video_sharing'),
+    id: 1
   },
   {
     src: $r('app.media.line'),
-    text: $r('app.string.copy_link')
+    text: $r('app.string.copy_link'),
+    id: 2
   },
   {
     src: $r("app.media.canvas"),
-    text: $r('app.string.generate_poster')
+    text: $r('app.string.generate_poster'),
+    id: 3
   }
 ]
