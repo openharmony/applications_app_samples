@@ -16,25 +16,27 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import preferences from '@ohos.data.preferences'
 import DateTimeUtil from '../model/DateTimeUtil'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import common from '@ohos.app.ability.common'
 import Logger from './Logger'
 import { Record } from './Record'
 
 const TAG = '[Recorder.MediaManager]'
 
 class MediaManager {
-  private mediaTest: mediaLibrary.MediaLibrary =
-  mediaLibrary.getMediaLibrary(AbilityDelegatorRegistry.getAbilityDelegator().getAppContext())
+  private context: common.UIAbilityContext
+  private mediaTest: mediaLibrary.MediaLibrary = null
   private storage: preferences.Preferences = null
 
-  constructor() {
+  constructor(context: common.UIAbilityContext) {
+    this.context = context
+    this.mediaTest = mediaLibrary.getMediaLibrary(this.context)
     this.initStorage()
   }
 
   async initStorage() {
     let name = 'ohos.samples.recorder'
     try {
-      this.storage = await preferences.getPreferences(AbilityDelegatorRegistry.getAbilityDelegator().getAppContext(), `${name}`)
+      this.storage = await preferences.getPreferences(this.context, `${name}`)
     } catch (err) {
       Logger.error(`getStorage failed, code is ${err.code}, message is ${err.message}`)
     }
@@ -44,7 +46,7 @@ class MediaManager {
   }
 
   async createAudioFile() {
-    this.mediaTest = mediaLibrary.getMediaLibrary(AbilityDelegatorRegistry.getAbilityDelegator().getAppContext())
+    this.mediaTest = mediaLibrary.getMediaLibrary(this.context)
     let info = {
       suffix: '.m4a', directory: mediaLibrary.DirectoryType.DIR_AUDIO
     }
@@ -88,7 +90,7 @@ class MediaManager {
       const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp)
       Logger.info(TAG, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`)
       const fileAsset = await fetchFileResult.getAllObject()
-      let record = new Record()
+      let record = new Record(this.context)
       await record.init(fileAsset[0], false)
       return record
     } else {
@@ -117,9 +119,15 @@ class MediaManager {
   }
 
   async getFileDuration(name: string): Promise<string> {
-    let duration = await this.storage.get(name, '00:00')
+    let duration
+    try {
+      duration = await this.storage.get(name, '00:00')
+    } catch (error) {
+      Logger.info(TAG, `error:${error.message}`)
+    }
+
     return duration as string
   }
 }
 
-export default new MediaManager()
+export default MediaManager

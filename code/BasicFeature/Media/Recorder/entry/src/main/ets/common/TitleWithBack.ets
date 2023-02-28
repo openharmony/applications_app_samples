@@ -26,7 +26,7 @@ export struct TitleBar {
         .objectFit(ImageFit.Contain)
         .margin({ left: 10 })
         .onClick(() => {
-          router.back()
+          router.replaceUrl({ url: 'pages/Index' })
         })
         .key('titleBack')
       Text(this.title)

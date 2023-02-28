@@ -14,12 +14,13 @@
  */
 
 import prompt from '@ohos.prompt'
+import common from '@ohos.app.ability.common'
 import { Record } from '../model/Record'
 
 @CustomDialog
 export struct RenameDialog {
   private controller: CustomDialogController
-  private record: Record = null
+  private record: Record = new Record(getContext(this) as common.UIAbilityContext)
   private newName: string = ''
   private renameCallback: (newName: string) => void
 

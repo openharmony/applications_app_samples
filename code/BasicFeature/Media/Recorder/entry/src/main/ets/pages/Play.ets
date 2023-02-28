@@ -15,6 +15,7 @@
 
 import router from '@ohos.router'
 import MediaManager from '../model/MediaManager'
+import common from '@ohos.app.ability.common'
 import { Record } from '../model/Record'
 import { TitleBar } from '../common/TitleWithBack'
 import { PlayView } from '../common/PlayView'
@@ -23,13 +24,14 @@ import { AudioModel } from '../model/AudioModel'
 @Entry
 @Component
 struct Play {
+  private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext)
   private fileId: number = router.getParams()['fileId']
   private audioModel: AudioModel = new AudioModel()
   @StorageLink('playState') playState: boolean = true
   @State record: Record = undefined
 
   async aboutToAppear() {
-    this.record = await MediaManager.queryFile(this.fileId)
+    this.record = await this.mediaManager.queryFile(this.fileId)
     if (this.record) {
       this.audioModel.initAudioPlayer(this.record.fileAsset, true)
     }

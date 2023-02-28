@@ -14,6 +14,7 @@
  */
 
 import DateTimeUtil from '../model/DateTimeUtil'
+import common from '@ohos.app.ability.common'
 import { Record } from '../model/Record'
 
 const TAG = '[Recorder.AudioItem]'
@@ -21,7 +22,7 @@ const TRANSLATE: number = -145
 
 @Component
 export struct AudioItem {
-  private record: Record = null
+  private record: Record = new Record(getContext(this) as common.UIAbilityContext)
   private index: number = -1
   private clickItem: (record: Record, operate: string) => void
   private checkItem: () => void

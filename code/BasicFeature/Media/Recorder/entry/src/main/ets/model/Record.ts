@@ -14,6 +14,7 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import common from '@ohos.app.ability.common'
 import DateTimeUtil from '../model/DateTimeUtil'
 import MediaManager from '../model/MediaManager'
 
@@ -24,8 +25,10 @@ export class Record {
   title: string
   duration: string
   isCheck: boolean
+  context: common.UIAbilityContext
 
-  constructor() {
+  constructor(context: common.UIAbilityContext) {
+    this.context = context
   }
 
   async init(fileAsset: mediaLibrary.FileAsset, isCheck: boolean){
@@ -34,7 +37,8 @@ export class Record {
       if (fileAsset.duration > 0) {
         this.duration = dateTimeUtil.getDurationString(fileAsset.duration)
       } else {
-        this.duration = await MediaManager.getFileDuration(fileAsset.title)
+        let mediaManager = new MediaManager(this.context)
+        this.duration = await mediaManager.getFileDuration(fileAsset.title)
       }
       this.title = fileAsset.title
     } else {

@@ -30,12 +30,13 @@ let TAG = '[Recorder.Index]'
 @Entry
 @Component
 struct Index {
+  private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext)
   private abilityContext: AbilityContextController
   private appContext: common.Context
   private audioModel: AudioModel = new AudioModel()
   @State recordList: Array<Record> = []
   @State isLand: boolean = false
-  @State record: Record = new Record()
+  @State record: Record = new Record(getContext(this) as common.UIAbilityContext)
   @State renameRecord: Record = undefined
   private renameDialogController: CustomDialogController = new CustomDialogController({
     builder: RenameDialog({ record: this.renameRecord, renameCallback: this.renameCallBack.bind(this) }),
@@ -65,7 +66,7 @@ struct Index {
       this.deleteDialogShow(1, [recorder], function(){
         let index = this.recordList.indexOf(recorder)
         this.recordList.splice(index, 1)
-        MediaManager.deleteFile(recorder.fileAsset.uri)
+        this.mediaManager.deleteFile(recorder.fileAsset.uri)
       }.bind(this))
     } else if (operate === 'rename') {
       this.renameRecord = recorder
@@ -75,7 +76,7 @@ struct Index {
 
   renameCallBack(newName) {
     Logger.info(TAG, `renameCallBack: newName=${newName}`)
-    let duration = MediaManager.getFileDuration(this.renameRecord.fileAsset.title)
+    let duration = this.mediaManager.getFileDuration(this.renameRecord.fileAsset.title)
     this.renameRecord.fileAsset.title = newName
     this.renameRecord.fileAsset.commitModify(err => {
       if (err !== undefined) {
@@ -83,7 +84,7 @@ struct Index {
         return
       }
       Logger.info(TAG, `commitModify success`)
-      MediaManager.saveFileDuration(this.renameRecord.fileAsset.title, duration)
+      this.mediaManager.saveFileDuration(this.renameRecord.fileAsset.title, duration)
       this.renameDialogController.close()
       this.getAudios()
       if (this.record.title == this.renameRecord.title) {
@@ -108,10 +109,10 @@ struct Index {
           action: () => {
             deleteAction()
             for (let record in checkRecords) {
-              MediaManager.deleteFile(checkRecords[record].fileAsset.uri)
+              this.mediaManager.deleteFile(checkRecords[record].fileAsset.uri)
               if (this.record && this.record.title === checkRecords[record].title) {
                 this.audioModel.finish()
-                this.record = new Record()
+                this.record = new Record(getContext(this) as common.UIAbilityContext)
                 this.record.init(undefined, false)
               }
             }
@@ -127,8 +128,8 @@ struct Index {
     )
   }
 
-  getAudios = async () => {
-    this.recordList = await MediaManager.queryAllAudios()
+  async getAudios() {
+    this.recordList = await this.mediaManager.queryAllAudios()
   }
 
   aboutToAppear() {
@@ -138,7 +139,7 @@ struct Index {
     this.abilityContext.requestPermissionsFromUser()
     this.getAudios()
     this.listener.on('change', this.onPortrait.bind(this))
-    MediaManager.onAudioChange(this.getAudios)
+    this.mediaManager.onAudioChange(this.getAudios)
   }
 
   onPageShow() {
