@@ -97,7 +97,7 @@ class CameraService {
    */
   async releaseCamera() {
     await this.captureSession.release()
-    await this.cameraInput.close()
+    await this.cameraInput.release()
     await this.photoOutput.release()
     await this.previewOutput.release()
     await this.imageReceiver.release()

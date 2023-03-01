@@ -14,7 +14,7 @@
  */
 
 import image from '@ohos.multimedia.image'
-import notification from '@ohos.notificationManager'
+import notification from '@ohos.notification'
 
 class NotificationContentUtil {
  /**

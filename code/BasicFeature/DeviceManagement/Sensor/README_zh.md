@@ -42,11 +42,11 @@ Math.round(alpha)得出让他的整数角度，配合Image组件的旋转属性r
 
 2.本示例仅支持在标准系统上运行。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上才可编译运行。
 
 4.本示例需要特殊模块与特定传感器，目前该功能仅支持部分机型。
 
-5.本示例仅支持API9版本SDK，版本号：3.2.9.2 Bate4。
+5.本示例仅支持API9版本SDK，版本号：3.2.10.6。
 
 ### 下载
 
@@ -59,3 +59,4 @@ echo code/BasicFeature/DeviceManagement/Sensor/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
+

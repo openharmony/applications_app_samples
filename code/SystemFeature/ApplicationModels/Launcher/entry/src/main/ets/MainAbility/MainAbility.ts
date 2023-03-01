@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
+import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
 import WindowManager from '../manager/WindowManager'
 import { Logger } from '@ohos/base'
 import { WINDOW_NAMES, WINDOW_PAGES } from '../manager/WindowManager'
 
-export default class MainAbility extends ServiceExtension {
+export default class MainAbility extends ServiceExtensionAbility {
   private windowManager: WindowManager = undefined
 
   onCreate(want) {

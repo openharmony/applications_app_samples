@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import storageStatistics from '@ohos.storageStatistics'
+import storageStatistics from '@ohos.file.storageStatistics'
 import fileio from '@ohos.fileio'
 import Logger from '../../utils/Logger'
 import { FileType, SubDirectoryType } from '../../mock/local/FileData'

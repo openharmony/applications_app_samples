@@ -46,7 +46,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例仅支持API9版本SDK，版本号：3.2.9.2 Bate4。
+2. 本示例仅支持API9版本SDK，版本号：3.2.10.6。
 
 3. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
@@ -61,3 +61,4 @@ echo code/BasicFeature/Internationalnation/ResourceManager/ > .git/info/sparse-c
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
+

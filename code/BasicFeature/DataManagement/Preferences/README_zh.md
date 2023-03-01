@@ -56,7 +56,7 @@ Preferences.flush()保存并刷新文件内容。
 
 3. 本示例仅支持API9版本SDK，版本号：3.2.9.2 Bate4。
 
-4. 本示例需要使用DevEco Studio 3.0 Beta4 (Build Version： 3.0.0.992， built on July 14， 2022)才可编译运行。
+4. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上才可编译运行。
 
 ### 下载
 
@@ -69,3 +69,4 @@ echo code/BasicFeature/DataManagement/Preferences/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
+

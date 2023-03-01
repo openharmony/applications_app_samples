@@ -51,7 +51,8 @@
     "js": [
       {
         "pages": [
-          "pages/index/index"
+          "pages/index/index",
+          "pages/setPage/setPage"
         ],
         "name": ".MainAbility",
         "window": {

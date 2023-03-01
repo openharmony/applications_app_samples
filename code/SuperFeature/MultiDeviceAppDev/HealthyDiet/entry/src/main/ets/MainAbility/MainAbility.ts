@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 
 const TAG: string = '[Sample_HealthyDiet]'
 
-export default class MainAbility extends UIAbility {
+export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     console.log(TAG, "MainAbility onCreate")
   }

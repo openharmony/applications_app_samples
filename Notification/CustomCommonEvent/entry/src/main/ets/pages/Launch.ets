@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import context from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import launchFeature from '../feature/LaunchFeature'
 
 @Entry
 @Component
 struct Launch {
-  private feature :launchFeature = new launchFeature(getContext() as context.UIAbilityContext)
+  private feature :launchFeature = new launchFeature(getContext() as context.AbilityContext)
 
   async onPageShow() {
     await this.feature.init()

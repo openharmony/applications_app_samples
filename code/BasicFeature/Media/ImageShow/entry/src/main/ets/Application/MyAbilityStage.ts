@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger'
+import AbilityStage from '@ohos.application.AbilityStage'
+import { Logger } from '@ohos/notification'
 
 const TAG: string = 'MyAbilityStage'
 

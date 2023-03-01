@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import Want from '@ohos.application.Want'
 import Logger from '../common/Logger'
 
 const TAG = '[Sample_StartMode]'
 
-export default class SpecifiedAbility extends UIAbility {
+export default class SpecifiedAbility extends Ability {
   private want: Want
 
   onCreate(want, launchParam) {

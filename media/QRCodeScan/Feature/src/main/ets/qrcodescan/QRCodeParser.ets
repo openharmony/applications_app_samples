@@ -17,7 +17,7 @@ import jsQR from 'jsqr'
 import fileio from '@ohos.fileio'
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import context from '@ohos.app.ability.common'
+import context from '@ohos.application.context'
 import DateTimeUtil from '../utils/DateTimeUtil'
 import { CameraService } from './CameraService'
 import { QRCodeScanConst } from './QRCodeScanConst'
@@ -81,7 +81,7 @@ class QRCodeParser {
   /**
    * 从相册中获取单张图片
    */
-  async getSingleImageFromAlbum(context: context.UIAbilityContext): Promise<ImageBitmap> {
+  async getSingleImageFromAlbum(context: context.AbilityContext): Promise<ImageBitmap> {
     Logger.info("getSingleImageFromAlbum start")
     let abilityResult = await context.startAbilityForResult({
       bundleName: 'com.ohos.photos',

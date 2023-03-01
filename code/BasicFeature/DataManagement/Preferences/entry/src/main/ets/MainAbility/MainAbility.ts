@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,35 +13,35 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../model/Logger'
 
 const TAG: string = '[MainAbility]'
 
-export default class MainAbility extends Ability {
-    onCreate(want) {
-        Logger.info(TAG, 'MainAbility onCreate is called')
-    }
+export default class MainAbility extends UIAbility {
+  onCreate(want) {
+    Logger.info(TAG, 'MainAbility onCreate is called')
+  }
 
-    onDestroy() {
-        Logger.info(TAG, 'MainAbility onDestroy is called')
-    }
+  onDestroy() {
+    Logger.info(TAG, 'MainAbility onDestroy is called')
+  }
 
-    onWindowStageCreate(windowStage) {
-        Logger.info(TAG, 'MainAbility onWindowStageCreate is called')
-        const context = this.context
-        windowStage.setUIContent(context, 'pages/Index', null)
-    }
+  onWindowStageCreate(windowStage) {
+    Logger.info(TAG, 'MainAbility onWindowStageCreate is called')
+    const context = this.context
+    windowStage.setUIContent(context, 'pages/Index', null)
+  }
 
-    onWindowStageDestroy() {
-        Logger.info(TAG, 'MainAbility onWindowStageDestroy is called')
-    }
+  onWindowStageDestroy() {
+    Logger.info(TAG, 'MainAbility onWindowStageDestroy is called')
+  }
 
-    onForeground() {
-        Logger.info(TAG, 'MainAbility onForeground is called')
-    }
+  onForeground() {
+    Logger.info(TAG, 'MainAbility onForeground is called')
+  }
 
-    onBackground() {
-        Logger.info(TAG, 'MainAbility onBackground is called')
-    }
+  onBackground() {
+    Logger.info(TAG, 'MainAbility onBackground is called')
+  }
 };

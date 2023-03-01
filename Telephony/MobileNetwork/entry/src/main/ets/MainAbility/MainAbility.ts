@@ -14,24 +14,14 @@
  */
 
 import Logger from '../model/Logger'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 
 const TAG: string = '[MainAbility]'
 
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    let atManager = abilityAccessCtrl.createAtManager()
-    try {
-      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.GET_NETWORK_INFO']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
-      })
-    } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
-    }
+    await this.context.requestPermissionsFromUser(['ohos.permission.GET_NETWORK_INFO'])
   }
 
   onDestroy() {

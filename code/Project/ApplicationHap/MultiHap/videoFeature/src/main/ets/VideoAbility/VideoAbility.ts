@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.application.Ability'
 import Window from '@ohos.window'
 import Logger from '../util/Logger'
 
 const TAG: string = 'VideoAbility'
 
-export default class VideoAbility extends UIAbility {
+export default class VideoAbility extends Ability {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MyAbilityStage onCreate')
   }

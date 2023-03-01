@@ -20,9 +20,10 @@
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
+        "signingConfig": "default"
       }
-    ]
+    ],
+    "signingConfigs": []
   },
   "modules": [
     {
