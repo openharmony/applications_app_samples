@@ -34,11 +34,11 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-  console.log("onAbilityCreateCallback")
+  console.log('onAbilityCreateCallback')
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  console.info("addAbilityMonitorCallback : " + JSON.stringify(err))
+  console.info('addAbilityMonitorCallback : ' + JSON.stringify(err))
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -46,7 +46,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    console.info("OpenHarmonyTestRunner OnPrepare ")
+    console.info('OpenHarmonyTestRunner OnPrepare')
   }
 
   async onRun() {

@@ -16,7 +16,8 @@
 import prompt from '@ohos.promptAction'
 import Logger from '../model/Logger'
 import common from '@ohos.app.ability.common'
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'AbilityContextController'
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.READ_MEDIA']
@@ -30,7 +31,7 @@ export default class AbilityContextController {
 
   // 拉起弹窗请求用户授权，对应FA模型的AppContext中的requestPermissionsFromUser
   requestPermissionsFromUser() {
-    let atManager = abilityAccessCtrl.createAtManager()
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
       atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
@@ -41,7 +42,7 @@ export default class AbilityContextController {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
     } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
   }
 }

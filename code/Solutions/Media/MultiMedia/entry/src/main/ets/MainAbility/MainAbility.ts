@@ -14,10 +14,11 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility'
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
 import Logger from '../model/Logger'
 
-const TAG: string = "MainAbility"
+const TAG: string = 'MainAbility'
 const PERMISSIONS: Array<Permissions> = [
   'ohos.permission.READ_MEDIA',
   'ohos.permission.WRITE_MEDIA',
@@ -28,7 +29,7 @@ const PERMISSIONS: Array<Permissions> = [
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
-    let atManager = abilityAccessCtrl.createAtManager()
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
       atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
@@ -36,7 +37,7 @@ export default class MainAbility extends UIAbility {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
     } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
   }
 
@@ -64,4 +65,4 @@ export default class MainAbility extends UIAbility {
     // Ability has back to background
     Logger.info(TAG, 'MainAbility onBackground')
   }
-};
+}

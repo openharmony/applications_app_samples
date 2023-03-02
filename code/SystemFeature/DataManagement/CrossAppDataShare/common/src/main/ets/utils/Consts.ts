@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import rdb from '@ohos.data.rdb'
+import rdb from '@ohos.data.relationalStore'
 
 // table name
 export const TABLE_NAME: string = 'contact'
 
 // table config
-export const STORE_CONFIG: rdb.StoreConfigV9 = { name: 'contact.db', securityLevel: rdb.SecurityLevel.S1 }
+export const STORE_CONFIG: rdb.StoreConfig = { name: 'contact.db', securityLevel: rdb.SecurityLevel.S1 }
 
 // create table sql
 export const SQL_CREATE_TABLE: string = 'CREATE TABLE IF NOT EXISTS contact (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, phone TEXT NOT NULL, email TEXT NOT NULL, address TEXT NOT NULL, remark TEXT NOT NULL, UNIQUE(name))'

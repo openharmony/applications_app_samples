@@ -16,6 +16,10 @@
 import StorageModel from '../model/StorageModel'
 import { CustomDatePicker } from '../common/CustomDataPicker'
 import { MyDataSource } from '../common/DataSource'
+import reminderAgentManager from '@ohos.reminderAgentManager'
+import log from '../model/Logger'
+
+const TAG: string = 'AlarmClock'
 
 @Component
 export struct AlarmClock {
@@ -94,6 +98,17 @@ export struct AlarmClock {
                     await this.storage.deleteSync(item.key)
                     this.listItems['dataArray'].splice(index, 1)
                     this.listItems.notifyDataReload()
+                    try {
+                      reminderAgentManager.cancelReminder(item.reminderId, (err, data) => {
+                        if (err) {
+                          log.info(TAG, `callback err code: ${err.code} message: ${err.message}`)
+                        } else {
+                          log.info(TAG, `cancelReminder callback`)
+                        }
+                      })
+                    } catch (error) {
+                      log.info(TAG, `cancelReminder code: ${error.code} message: ${error.message}`)
+                    }
                   })
                   .width('20%')
                   .height('100%')
@@ -106,7 +121,9 @@ export struct AlarmClock {
             .borderRadius(24)
             .margin({ bottom: 5 })
             .backgroundColor($r('app.color.divider_bg'))
-          }, item => item.value)
+          }, (item, index) => {
+            return JSON.stringify(item) + index
+          })
         }
         .width('100%')
         .height('100%')

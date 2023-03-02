@@ -26,17 +26,17 @@ export default class MainAbility extends UIAbility {
     try {
       atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+        let deviceFlag = want.parameters.isB
+        if (deviceFlag) {
+          AppStorage.SetOrCreate('deviceFlag', deviceFlag)
+        }
+        Logger.info(TAG, `deviceFlag = ${deviceFlag}`)
       }).catch((err) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
     } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
-    let deviceFlag = want.parameters.isB
-    if (deviceFlag) {
-      AppStorage.SetOrCreate('deviceFlag', deviceFlag)
-    }
-    Logger.info(TAG, `deviceFlag = ${deviceFlag}`)
   }
 
   onDestroy() {

@@ -14,7 +14,7 @@
  */
 
 import StorageModel from '../model/StorageModel'
-import reminderAgent from '@ohos.reminderAgent'
+import reminderAgentManager from '@ohos.reminderAgentManager'
 
 @CustomDialog
 export struct CustomDatePicker {
@@ -71,8 +71,8 @@ export struct CustomDatePicker {
           .layoutWeight(1)
           .backgroundColor(Color.White)
           .onClick(async () => {
-            let reminderRequest: reminderAgent.ReminderRequestAlarm = {
-              reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
+            let reminderRequest: reminderAgentManager.ReminderRequestAlarm = {
+              reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM,
               hour: this.hour,
               minute: this.minute,
               title: getContext(this).resourceManager.getStringSync($r('app.string.alarmClock')),
@@ -82,7 +82,7 @@ export struct CustomDatePicker {
               },
               ringDuration: 5000
             }
-            this.reminderId = await reminderAgent.publishReminder(reminderRequest)
+            this.reminderId = await reminderAgentManager.publishReminder(reminderRequest)
             let dateTime = { hour: this.hourTest, minute: this.minuteTest, reminderId: this.reminderId }
             StorageModel.getInstance().putStorageValue(`alarmClock${this.total}`, dateTime)
             this.total += 1

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,6 +26,19 @@ export default struct HomeContent {
   build() {
     Navigation() {
       if (!this.showSearchView) {
+        if (this.contactsCount > 0) {
+          Row() {
+            Text(this.contactsCount.toString())
+              .fontColor($r('app.color.text_gray'))
+              .fontSize(14)
+            Text($r('app.string.sub_title'))
+              .margin({ left: 5 })
+              .fontColor($r('app.color.text_gray'))
+              .fontSize(14)
+          }
+          .width('100%')
+          .padding({ left: 24, right: 24 })
+        }
         Search({ value: '', placeholder: this.searchHolder, icon: '/common/images/search.png' })
           .placeholderFont({ size: 16 })
           .placeholderColor('#88000000')
@@ -51,18 +64,7 @@ export default struct HomeContent {
   @Builder NavigationTitle() {
     Column() {
       Text($r('app.string.MainAbility_label'))
-        .fontSize(35)
-      if (this.contactsCount > 0) {
-        Row() {
-          Text(this.contactsCount.toString())
-            .fontColor($r('app.color.text_gray'))
-            .fontSize(18)
-          Text($r('app.string.sub_title'))
-            .margin({ left: 5 })
-            .fontColor($r('app.color.text_gray'))
-            .fontSize(18)
-        }
-      }
+        .fontSize(25)
     }
     .alignItems(HorizontalAlign.Start)
   }

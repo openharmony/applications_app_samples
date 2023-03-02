@@ -22,7 +22,7 @@ const TAG = 'MainAbility'
 export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
-    let atManager = abilityAccessCtrl.createAtManager()
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
       await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
