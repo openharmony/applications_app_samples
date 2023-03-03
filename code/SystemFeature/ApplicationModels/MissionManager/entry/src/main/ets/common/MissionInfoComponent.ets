@@ -158,7 +158,7 @@ export struct MissionInfoComponent {
         Logger.info(TAG, `PanGesture onActionStart`)
         if (this.panDirection === PanDirection.Left) {
           this.panDirection = PanDirection.Right
-          this.translateLeft = -380
+          this.translateLeft = -300
         } else {
           this.panDirection = PanDirection.Left
           this.translateLeft = 0
