@@ -46,6 +46,12 @@
           }
         ]
       }
+    ],
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
     ]
   }
 }
