@@ -30,6 +30,7 @@ struct MainPage {
     // Wait until available data is available to display the main interface
     this.queryStorageData.initData((hasInit: boolean) => {
       this.isStorageDataInit = hasInit
+      AppStorage.SetOrCreate('appDataList', this.queryStorageData.appDataList)
     })
   }
 
