@@ -61,13 +61,13 @@ struct Index {
     var fd = ''
     fileIO.open(path).then((fdNumber) => {
       fd = FD_PREFIX + fdNumber
+      player.src = fd
       Logger.info(TAG, "open fd success, fd: " + fd)
     }, (err) => {
       Logger.error(TAG, "open fd failed, err is " + err)
     }).catch((err) => {
       Logger.error(TAG, "open fd failed, err is " + err)
     })
-    player.src = fd
   }
 
   setCallback(player: media.AudioPlayer) {

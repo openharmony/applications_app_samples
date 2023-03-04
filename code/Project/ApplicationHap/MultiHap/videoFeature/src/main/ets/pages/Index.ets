@@ -33,6 +33,7 @@ struct Index {
           currentProgressRate: 1,
           controller: this.controller
         }).height(300)
+          .objectFit(ImageFit.Contain)
           .autoPlay(false)
           .controls(true)
           .onStart(() => {
