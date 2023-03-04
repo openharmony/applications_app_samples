@@ -101,7 +101,7 @@ class FileLoggerStrategy implements ILoggerStrategy {
     let path = context.filesDir
     let result = `${path}/${configure.cheese.filename}`
     try {
-      this.fileStream = fs.openSync(result, fs.OpenMode.READ_ONLY)
+      this.fileStream = fs.openSync(result, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
       this.fd = this.fileStream.fd
     } catch (err) {
       return

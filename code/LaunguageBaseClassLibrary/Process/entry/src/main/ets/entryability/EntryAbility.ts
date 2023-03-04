@@ -14,12 +14,12 @@
  */
 
 import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window'
 
 const TAG: string = '[Index]'
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `Ability onCreate want param: ` + JSON.stringify(want) ?? '' + 'launchParam:' + JSON.stringify(launchParam) ?? '')
   }

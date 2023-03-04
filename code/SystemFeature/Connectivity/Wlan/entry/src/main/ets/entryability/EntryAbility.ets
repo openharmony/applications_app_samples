@@ -14,13 +14,20 @@
  */
 
 import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import type { Permissions } from '@ohos.abilityAccessCtrl';
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info('Ability onCreate')
-    this.context.requestPermissionsFromUser(['ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'])
+    const PERMISSIONS: Array<Permissions> = ['ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'];
+    try {
+      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, PERMISSIONS);
+    } catch (err) {
+      Logger.info(`catch err->${JSON.stringify(err)}`);
+    }
   }
 
   onDestroy() {
