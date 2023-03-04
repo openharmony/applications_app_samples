@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import common from "@ohos.app.ability.common"
 const TOOL_WIDTH: SizeOptions = { width: 150, height: 38 }
 
 /**
@@ -104,12 +105,18 @@ export struct CommonItemColorSelect {
   private isItemStyle: boolean = true
   private colorNames: Array<{ value: Resource }> = [{ value: $r('app.string.divider_color_blue') }, { value: $r('app.string.divider_color_green') }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
 
+  changeResourceToString(resourceData:Resource){
+    let context = getContext(this) as common.UIAbilityContext
+    return context.resourceManager.getStringSync(resourceData.id)
+  }
+
   build() {
     Row() {
       Text(this.name)
         .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
       Blank()
       Select(this.colorNames)
+        .value(this.changeResourceToString(this.colorNames[this.selectIndex].value))
         .borderRadius(19)
         .font({ size: 20 })
         .optionFont({ size: 20 })
