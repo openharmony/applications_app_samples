@@ -42,25 +42,29 @@ export let initDietRecords: Array<DietRecord> = [
     id: -1,
     foodId: 0,
     mealTime: { name: $r('app.string.meal_time_breakfast'), id: MealTimeId.Breakfast },
-    weight: 0
+    weight: 0,
+    key: '1'
   },
   {
     id: -1,
     foodId: 0,
     mealTime: { name: $r('app.string.meal_time_lunch'), id: MealTimeId.Lunch },
-    weight: 0
+    weight: 0,
+    key: '2'
   },
   {
     id: -1,
     foodId: 0,
     mealTime: { name: $r('app.string.meal_time_dinner'), id: MealTimeId.Dinner },
-    weight: 0
+    weight: 0,
+    key: '3'
   },
   {
     id: -1,
     foodId: 0,
     mealTime: { name: $r('app.string.meal_time_supper'), id: MealTimeId.Supper },
-    weight: 0
+    weight: 0,
+    key: '4'
   }]
 
 export function getDietRecords(): Array<DietRecord> {
@@ -70,10 +74,10 @@ export function getDietRecords(): Array<DietRecord> {
 
 export function getFoodCategories(): Category[] {
   return [{ id: CategoryId.Vegetable, name: $r('app.string.category_vegetable') },
-          { id: CategoryId.Fruit, name: $r('app.string.category_fruit') },
-          { id: CategoryId.Nut, name: $r('app.string.category_nut') },
-          { id: CategoryId.Seafood, name: $r('app.string.category_seafood') },
-          { id: CategoryId.Dessert, name: $r('app.string.category_dessert') }]
+    { id: CategoryId.Fruit, name: $r('app.string.category_fruit') },
+    { id: CategoryId.Nut, name: $r('app.string.category_nut') },
+    { id: CategoryId.Seafood, name: $r('app.string.category_seafood') },
+    { id: CategoryId.Dessert, name: $r('app.string.category_dessert') }]
 }
 
 export function getMileTimes(): string[] {
@@ -152,11 +156,13 @@ export function statistics(): Array<OneMealStatisticsInfo> {
     var protein = foodInfo.protein * item.weight
     var fat = foodInfo.fat * item.weight
     var carbohydrates = foodInfo.carbohydrates * item.weight
-    oneMealStatisticsInfo.mealFoods.push(new MealFoodInfo(item.id, foodInfo.name, foodInfo.image, calories, protein, fat, carbohydrates, item.weight))
+    oneMealStatisticsInfo.mealFoods.push(new MealFoodInfo(item.id, foodInfo.name, foodInfo.image, calories,
+      protein, fat, carbohydrates, item.weight, item.key))
     oneMealStatisticsInfo.totalFat += fat
     oneMealStatisticsInfo.totalCalories += calories
     oneMealStatisticsInfo.totalCarbohydrates += carbohydrates
     oneMealStatisticsInfo.totalProtein += protein
+    oneMealStatisticsInfo.key = item.key
     mealMap.set(item.mealTime.id, oneMealStatisticsInfo)
   })
 

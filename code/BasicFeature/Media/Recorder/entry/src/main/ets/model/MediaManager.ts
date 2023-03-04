@@ -71,7 +71,7 @@ class MediaManager {
     if (fetchFileResult.getCount() > 0) {
       let fileAssets = await fetchFileResult.getAllObject()
       for (let i = 0; i < fileAssets.length; i++) {
-        let record = new Record()
+        let record = new Record(this.context)
         await record.init(fileAssets[i], false)
         result.push(record)
       }
@@ -109,23 +109,24 @@ class MediaManager {
     })
   }
 
-  saveFileDuration(name: string, value) {
+  async saveFileDuration(name: string, value) {
     if (this.storage === null) {
       Logger.info(TAG, `Create stroage is fail.`)
       return
     }
-    this.storage.put(name, value)
-    this.storage.flush()
+    await this.storage.put(name, value)
+    await this.storage.flush()
   }
 
   async getFileDuration(name: string): Promise<string> {
+    let bundleName = 'ohos.samples.recorder'
     let duration
     try {
-      duration = await this.storage.get(name, '00:00')
-    } catch (error) {
-      Logger.info(TAG, `error:${error.message}`)
+      let storage = await preferences.getPreferences(this.context, `${bundleName}`)
+      duration = await storage.get(name, '00:00')
+    } catch (err) {
+      Logger.info(TAG, `Failed to get value of duration,code:${err.code},message:${err.message}`)
     }
-
     return duration as string
   }
 }

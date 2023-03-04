@@ -31,7 +31,7 @@ export class Record {
     this.context = context
   }
 
-  async init(fileAsset: mediaLibrary.FileAsset, isCheck: boolean){
+  async init(fileAsset: mediaLibrary.FileAsset, isCheck: boolean) {
     this.fileAsset = fileAsset
     if (fileAsset) {
       if (fileAsset.duration > 0) {

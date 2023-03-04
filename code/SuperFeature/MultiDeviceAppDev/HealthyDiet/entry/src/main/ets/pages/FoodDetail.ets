@@ -343,7 +343,8 @@ struct Record {
           if (dietRecordsList == undefined || dietRecordsList.length === 0) {
             dietRecordsList = initDietRecords
           }
-          let dietRecordData = new DietRecord(dietRecordsList.length, this.foodInfo.id, new MealTime(this.mealTimeId), this.mealWeight)
+          let dietRecordData = new DietRecord(dietRecordsList.length, this.foodInfo.id,
+            new MealTime(this.mealTimeId), this.mealWeight, new Date().getTime().toString())
           dietRecordsList.push(dietRecordData)
           AppStorage.SetOrCreate<Array<DietRecord>>('dietRecords', dietRecordsList)
           this.controller.close()

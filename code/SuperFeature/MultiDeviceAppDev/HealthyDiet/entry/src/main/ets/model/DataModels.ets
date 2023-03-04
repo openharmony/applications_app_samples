@@ -74,12 +74,14 @@ export class DietRecord {
   foodId: number
   mealTime: MealTime
   weight: number
+  key: string
 
-  constructor(id: number, foodId: number, mealTime: MealTime, weight: number) {
+  constructor(id: number, foodId: number, mealTime: MealTime, weight: number, key: string) {
     this.id = id
     this.foodId = foodId
     this.mealTime = mealTime
     this.weight = weight
+    this.key = key
   }
 }
 
@@ -91,6 +93,7 @@ export class OneMealStatisticsInfo {
   totalFat: number = 0
   totalCarbohydrates: number = 0
   totalProtein: number = 0
+  key: string
 
   constructor(mealTime: MealTime) {
     this.mealTime = mealTime
@@ -106,8 +109,10 @@ export class MealFoodInfo {
   fat: number
   carbohydrates: number
   weight: number
+  key: string
 
-  constructor(recordId: number, name: string | Resource, image: Resource, calories: number, protein: number, fat: number, carbohydrates: number, weight: number) {
+  constructor(recordId: number, name: string | Resource, image: Resource, calories: number, protein: number,
+              fat: number, carbohydrates: number, weight: number, key: string) {
     this.recordId = recordId
     this.name = name
     this.image = image
@@ -116,5 +121,6 @@ export class MealFoodInfo {
     this.fat = fat
     this.carbohydrates = carbohydrates
     this.weight = weight
+    this.key = key
   }
 }

@@ -18,7 +18,6 @@ import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery'
 import Logger from '../model/Logger'
 import MediaManager from '../model/MediaManager'
-import AbilityContextController from '../model/AbilityContextController'
 import { HomeView } from '../common/HomeView'
 import { PlayView } from '../common/PlayView'
 import { AudioModel } from '../model/AudioModel'
@@ -31,7 +30,6 @@ let TAG = '[Recorder.Index]'
 @Component
 struct Index {
   private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext)
-  private abilityContext: AbilityContextController
   private appContext: common.Context
   private audioModel: AudioModel = new AudioModel()
   @State recordList: Array<Record> = []
@@ -132,12 +130,10 @@ struct Index {
     this.recordList = await this.mediaManager.queryAllAudios()
   }
 
-  aboutToAppear() {
+  async aboutToAppear() {
     this.record.init(undefined, false)
     this.appContext = getContext(this)
-    this.abilityContext = new AbilityContextController(this.appContext)
-    this.abilityContext.requestPermissionsFromUser()
-    this.getAudios()
+    await this.getAudios()
     this.listener.on('change', this.onPortrait.bind(this))
     this.mediaManager.onAudioChange(this.getAudios)
   }

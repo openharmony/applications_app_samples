@@ -48,9 +48,21 @@
       }
     ],
     "requestPermissions": [
-      {"name": "ohos.permission.MICROPHONE"},
-      {"name": "ohos.permission.READ_MEDIA"},
-      {"name": "ohos.permission.WRITE_MEDIA"}
+      {
+        "name": "ohos.permission.MICROPHONE"
+      },
+      {
+        "name": "ohos.permission.READ_MEDIA"
+      },
+      {
+        "name": "ohos.permission.WRITE_MEDIA"
+      }
+    ],
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
     ]
   }
 }

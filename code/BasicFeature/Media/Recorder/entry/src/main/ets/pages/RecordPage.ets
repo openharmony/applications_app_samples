@@ -37,8 +37,8 @@ struct RecordPage {
   @State duration: string = '00:00'
   @State resetAnimation: boolean = false
 
-  finish() {
-    this.mediaManager.saveFileDuration(this.fileAsset.title, this.duration)
+  async finish() {
+    await this.mediaManager.saveFileDuration(this.fileAsset.title, this.duration)
     this.recordModel.finish(() => {
       this.playState = false
       AppStorage.SetOrCreate('playState', this.playState)
