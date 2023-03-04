@@ -15,6 +15,8 @@
 
 import prompt from '@ohos.prompt'
 import Logger from '../util/Logger'
+import type common from '@ohos.app.ability.common'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'AbilityContextController'
 const accountId = 100
@@ -29,9 +31,9 @@ let want = {
 }
 
 export default class AbilityContextController {
-  private context: any
+  private context: common.UIAbilityContext
 
-  constructor(context) {
+  constructor(context: common.UIAbilityContext) {
     this.context = context
   }
 
@@ -183,7 +185,7 @@ export default class AbilityContextController {
         })
       }
     }
-    const result = this.context.connectAbility(want, options)
+    const result = this.context.connectServiceExtensionAbility(want, options)
     Logger.info(TAG, `connectAbilityResult: ${JSON.stringify(result)}`)
     prompt.showToast({
       message: `connectAbilityResult: ${JSON.stringify(result)}`
@@ -212,7 +214,7 @@ export default class AbilityContextController {
         })
       }
     }
-    const result = this.context.connectAbility(want, options)
+    const result = this.context.connectServiceExtensionAbility(want, options)
     Logger.info(TAG, `connectAbilityResult: ${JSON.stringify(result)}`)
     prompt.showToast({
       message: `connectAbilityResult: ${JSON.stringify(result)}`
@@ -221,7 +223,7 @@ export default class AbilityContextController {
 
   // 断开连接，对应FA模型的disconnectService
   disconnectAbility() {
-    this.context.disconnectAbility(connectionNumber).then((data) => {
+    this.context.disconnectServiceExtensionAbility(connectionNumber).then((data) => {
       Logger.info(TAG, `disconnectAbility success, data: ${JSON.stringify(data)}`)
       prompt.showToast({
         message: 'disconnectAbility success'
@@ -253,12 +255,19 @@ export default class AbilityContextController {
 
   // 拉起弹窗请求用户授权，对应FA模型的AppContext中的requestPermissionsFromUser
   requestPermissionsFromUser() {
-    this.context.requestPermissionsFromUser(permissions, (result) => {
-      Logger.info(TAG, `requestPermissionsFromUser: ${JSON.stringify(result)}`)
-      prompt.showToast({
-        message: 'requestPermissionsFromUser success'
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.ABILITY_BACKGROUND_COMMUNICATION']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+        prompt.showToast({
+          message: 'requestPermissionsFromUser success'
+        })
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
-    })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   // 设置ability在任务中显示的名称，

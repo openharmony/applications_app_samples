@@ -19,6 +19,7 @@ import formBindingData from '@ohos.app.form.formBindingData';
 import formInfo from '@ohos.app.form.formInfo';
 import formProvider from '@ohos.app.form.formProvider';
 import Logger from '../model/Logger'
+import type Want from '@ohos.app.ability.Want';
 
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 const FORM_PARAM_IDENTITY_KEY = "ohos.extra.param.key.form_identity";
@@ -140,47 +141,47 @@ async function deleteFormInfo(formId: string) {
 }
 
 export default class FormAbility extends FormExtensionAbility {
-  onAddForm(want) {
+  onAddForm(want: Want): formBindingData.FormBindingData {
     Logger.log(`FormAbility onCreate, want: ${JSON.stringify(want)}`);
 
     // get form info
-    let formId = want.parameters[FORM_PARAM_IDENTITY_KEY];
-    let formName = want.parameters[FORM_PARAM_NAME_KEY];
-    let tempFlag = want.parameters[FORM_PARAM_TEMPORARY_KEY];
+    let formId: string = want.parameters[FORM_PARAM_IDENTITY_KEY];
+    let formName: string = want.parameters[FORM_PARAM_NAME_KEY];
+    let tempFlag: boolean = want.parameters[FORM_PARAM_TEMPORARY_KEY];
     storeFormInfo(formId, formName, tempFlag);
 
     let obj = {
-      "temperature": getTemperature(formId, 0).toString(),
-      "time": getTime()
+      'temperature': getTemperature(formId, 0).toString(),
+      'time': getTime()
     };
-    let formData = formBindingData.createFormBindingData(obj);
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
   }
 
-  onCastToNormalForm(formId) {
+  onCastToNormalForm(formId: string): void {
     Logger.log(`FormAbility onCastToNormal, formId: ${formId}`);
     updateTempFormInfo(formId);
   }
 
-  onUpdateForm(formId) {
+  onUpdateForm(formId: string): void {
     Logger.log(`FormAbility onUpdate, formId: ${formId}`);
     updateForm(formId);
   }
 
-  onChangeFormVisibility(newStatus) {
-    Logger.log(`FormAbility onVisibilityChange`);
+  onChangeFormVisibility(newStatus: { [key: string]: number }): void {
+    Logger.log('FormAbility onVisibilityChange');
   }
 
-  onFormEventEvent(formId, message) {
+  onFormEvent(formId: string, message: string): void {
     Logger.log(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
   }
 
-  onRemoveForm(formId) {
+  onRemoveForm(formId: string): void {
     Logger.log(`FormAbility onDestroy, formId = ${formId}`);
     deleteFormInfo(formId);
   }
 
-  onAcquireFormState(want) {
+  onAcquireFormState(want: Want): formInfo.FormState {
     Logger.log(`FormAbility onAcquireFormState`);
     return formInfo.FormState.READY;
   }

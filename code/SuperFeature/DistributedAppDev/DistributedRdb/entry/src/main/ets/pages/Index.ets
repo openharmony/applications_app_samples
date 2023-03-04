@@ -63,7 +63,7 @@ struct Index {
     let context = getContext(this) as common.UIAbilityContext
     let atManager = abilityAccessCtrl.createAtManager()
     try {
-      atManager.requestPermissionsFromUser(context,['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
       }).catch((err) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
@@ -106,11 +106,15 @@ struct Index {
   }
 
   async onPageShow() {
-    await this.rdbModel.getRdbStore()
-    this.intervalId = setInterval(() => {
-      this.getWant()
-    }, 1000)
-    await this.getData()
+    try {
+      await this.rdbModel.getRdbStore()
+      this.intervalId = setInterval(() => {
+        this.getWant()
+      }, 1000)
+      await this.getData()
+    } catch (err) {
+      Logger.error('onPageShow:' + JSON.stringify(err))
+    }
   }
 
   async getData() {
@@ -240,7 +244,7 @@ struct Index {
             .onClick(() => {
               this.handleClickContact(item, index)
             })
-         }, item => JSON.stringify(item))
+          }, item => item.id.toString())
         }
         .width('100%')
         .layoutWeight(1)
@@ -263,9 +267,9 @@ struct Index {
       if (!this.isMultiCheck && !this.state.isStage) {
         Button() {
           Image($r('app.media.add'))
-            .height(80).width(80)
+            .height('100%').width('100%')
             .objectFit(ImageFit.Contain)
-            .align(Alignment.Center)
+            .align(Alignment.End)
         }
         .key('btnAdd')
         .size({ width: '15%', height: 80 })

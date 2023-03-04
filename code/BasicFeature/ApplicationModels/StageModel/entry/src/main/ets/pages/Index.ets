@@ -45,13 +45,6 @@ struct Index {
               })
             })
 
-          Button($r('app.string.form_ext_context_page'))
-            .fancy(() => {
-              router.push({
-                url: 'pages/FormExtContextPage'
-              })
-            })
-
           Button($r('app.string.bundle_page'))
             .fancy(() => {
               router.push({

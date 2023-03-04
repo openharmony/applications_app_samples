@@ -47,8 +47,12 @@ export default class RdbModel {
     }
     this.rdbStore = await data_rdb.getRdbStore(this.context, STORE_CONFIG)
     Logger.info(TAG, 'getRdbStore end')
-    await this.rdbStore.executeSql(this.sqlCreateTable)
-    await this.rdbStore.setDistributedTables([this.tableName])
+    try {
+      await this.rdbStore.executeSql(this.sqlCreateTable)
+      await this.rdbStore.setDistributedTables([this.tableName])
+    } catch (e) {
+      Logger.error(TAG, 'getRdbStore:' + JSON.stringify(e))
+    }
     this.isCreateDbDone = true
     Logger.info(TAG, 'create table done')
   }
@@ -161,6 +165,7 @@ export default class RdbModel {
       resultSet.goToNextRow()
     }
     resultSet.close()
+    Logger.info(TAG, 'contacts number is ' + contacts.length)
     return contacts
   }
 }
