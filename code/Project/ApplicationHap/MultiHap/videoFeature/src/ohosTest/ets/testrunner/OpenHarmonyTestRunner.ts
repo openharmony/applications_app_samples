@@ -17,8 +17,8 @@ import hilog from '@ohos.hilog';
 import TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
-var abilityDelegator = undefined
-var abilityDelegatorArguments = undefined
+let abilityDelegator = undefined
+let abilityDelegatorArguments = undefined
 
 function translateParamsToString(parameters) {
   const keySet = new Set([
@@ -68,7 +68,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     var cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
     cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
     var debug = abilityDelegatorArguments.parameters['-D']
-    if (debug == 'true') {
+    if (debug === 'true') {
       cmd += ' -D'
     }
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);

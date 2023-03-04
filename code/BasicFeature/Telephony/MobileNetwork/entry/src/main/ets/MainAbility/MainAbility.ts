@@ -15,7 +15,8 @@
 
 import Logger from '../model/Logger'
 import UIAbility from '@ohos.app.ability.UIAbility'
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = '[MainAbility]'
 
