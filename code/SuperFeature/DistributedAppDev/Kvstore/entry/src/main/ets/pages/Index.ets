@@ -15,6 +15,7 @@
 
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import common from '@ohos.app.ability.common'
+import { NoteModel } from '../model/NoteDataModel'
 import { NoteListItem } from '../common/NoteItem'
 import NoteDataSource from '../common/BasicDataSource'
 import { TitleBar } from '../common/TitleBar'
@@ -72,12 +73,19 @@ struct Index {
     })
   }
 
-  deleteNoteCallBack = (item) => {
-    Logger.info(TAG,`deleteNote${item}`);
-    let index = this.noteDataSource['dataArray'].indexOf(item)
-    this.noteDataSource['dataArray'].splice(index, 1)
+  deleteNoteCallBack = (item: NoteModel) => {
+    Logger.info(TAG, `deleteNote${JSON.stringify(item)}`);
+    let dataArray: NoteModel[] = this.noteDataSource['dataArray']
+    for (let i = 0;i < dataArray.length; i++) {
+      Logger.info(TAG, `i = ${i} and dataArray = ${JSON.stringify(dataArray[i])}`)
+      if (dataArray[i].title === item.title) {
+        Logger.info(TAG, `deleteNote index` + i);
+        this.noteDataSource['dataArray'].splice(i, 1)
+        break
+      }
+    }
     this.noteDataSource.notifyDataReload()
-    kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource['dataArray']))
+    kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource['dataArray']) + 'numBegin' + notesNum + 'numEnd')
   }
   startAbilityCallBack = (key) => {
     Logger.info(TAG,`startAbilityCallBack${key}`);

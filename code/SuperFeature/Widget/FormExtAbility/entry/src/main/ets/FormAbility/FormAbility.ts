@@ -14,10 +14,10 @@
  */
 
 import dataStorage from '@ohos.data.storage';
-import FormExtension from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.application.formBindingData';
-import formInfo from '@ohos.application.formInfo';
-import formProvider from '@ohos.application.formProvider';
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.app.form.formProvider';
 import Logger from '../model/Logger'
 
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
@@ -139,8 +139,8 @@ async function deleteFormInfo(formId: string) {
   }
 }
 
-export default class FormAbility extends FormExtension {
-  onCreate(want) {
+export default class FormAbility extends FormExtensionAbility {
+  onAddForm(want) {
     Logger.log(`FormAbility onCreate, want: ${JSON.stringify(want)}`);
 
     // get form info
@@ -157,25 +157,25 @@ export default class FormAbility extends FormExtension {
     return formData;
   }
 
-  onCastToNormal(formId) {
+  onCastToNormalForm(formId) {
     Logger.log(`FormAbility onCastToNormal, formId: ${formId}`);
     updateTempFormInfo(formId);
   }
 
-  onUpdate(formId) {
+  onUpdateForm(formId) {
     Logger.log(`FormAbility onUpdate, formId: ${formId}`);
     updateForm(formId);
   }
 
-  onVisibilityChange(newStatus) {
+  onChangeFormVisibility(newStatus) {
     Logger.log(`FormAbility onVisibilityChange`);
   }
 
-  onEvent(formId, message) {
+  onFormEventEvent(formId, message) {
     Logger.log(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
   }
 
-  onDestroy(formId) {
+  onRemoveForm(formId) {
     Logger.log(`FormAbility onDestroy, formId = ${formId}`);
     deleteFormInfo(formId);
   }

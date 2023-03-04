@@ -56,8 +56,7 @@ class LiteStore {
     if (!this.context) {
       Logger.info(TAG, 'current context is undefined')
     }
-    let path = await this.context.filesDir
-    this.store = await preferences.getPreferences(this.context, path + '/mystore')
+    this.store = await preferences.getPreferences(this.context, 'rdb_mode')
   }
 }
 
