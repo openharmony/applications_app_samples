@@ -26,7 +26,7 @@ export default struct DebugInfo {
         .fontSize(25)
         .width('80%')
         .lineHeight(40)
-        .margin({ top: '20%' })
+        .margin({ top: '5%' })
         .fontWeight(FontWeight.Bold)
 
       if (this.debugWindow) {
@@ -37,7 +37,7 @@ export default struct DebugInfo {
         }
         .width('85%')
         .height('25%')
-        .margin({ top: '40%' })
+        .margin({ top: '35%' })
         .padding({ bottom: '5%', top: '5%' })
         .backgroundColor(Color.White)
         .border({ width: 2, radius: 10 })
