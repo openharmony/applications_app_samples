@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import router from '@ohos.router'
 import { FileManager } from '@ohos/feature-file-manager'
 

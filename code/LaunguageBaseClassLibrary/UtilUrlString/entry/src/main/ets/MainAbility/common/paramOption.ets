@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -82,7 +82,7 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-var urlObject = new url.URL('https://gitee.com/openharmony')
+var urlObject = new url.URL('https://gitee.com/openharmony/')
 var paramsObject = new url.URLSearchParams(urlObject.search.slice(1))
 
 @Component

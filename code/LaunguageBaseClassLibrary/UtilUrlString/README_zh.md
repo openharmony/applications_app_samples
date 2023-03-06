@@ -4,7 +4,7 @@
 
 本示例对URL字符串的查找参数进行了增删改查的一系列操作，使得读者对URL的结构用途更加明了。实现效果如下：
 
-![](screenshot/device/main.png)
+![](screenshot/device/main.jpeg)
 
 ### 相关概念
 
