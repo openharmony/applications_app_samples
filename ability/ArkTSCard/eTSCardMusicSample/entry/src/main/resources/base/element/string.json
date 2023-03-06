@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "form_FormAbility_desc",
+      "value": "CardAbility"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "eTSCard"
+    },
+    {
+      "name": "temperature",
+      "value": "显示卡片String资源：温度"
+    },
+    {
+      "name": "entry_desc",
+      "value": "长时任务管理"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "长时任务管理"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "音乐卡片"
+    },
+    {
+      "name": "keep_running",
+      "value": "长时任务权限"
+    }
+  ]
+}
