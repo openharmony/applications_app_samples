@@ -118,6 +118,7 @@ struct Index {
     let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
     this.contacts['dataArray'] = await rdbModel.query(predicates)
     this.contacts.notifyDataReload()
+    Logger.info(TAG, 'getData contacts count' + this.contacts['dataArray'].length)
     let syncState = await liteStore.getValue()
     this.state.syncState = `${syncState}`
     if (!this.state.isStage && this.state.isDistributed && syncState === SyncState.AutomaticSync) {
@@ -239,7 +240,7 @@ struct Index {
             .onClick(() => {
               this.handleClickContact(item, index)
             })
-          }, item => item.id.toString())
+         }, item => JSON.stringify(item))
         }
         .width('100%')
         .layoutWeight(1)
@@ -262,9 +263,9 @@ struct Index {
       if (!this.isMultiCheck && !this.state.isStage) {
         Button() {
           Image($r('app.media.add'))
-            .height('100%').width('100%')
+            .height(80).width(80)
             .objectFit(ImageFit.Contain)
-            .align(Alignment.End)
+            .align(Alignment.Center)
         }
         .key('btnAdd')
         .size({ width: '15%', height: 80 })
