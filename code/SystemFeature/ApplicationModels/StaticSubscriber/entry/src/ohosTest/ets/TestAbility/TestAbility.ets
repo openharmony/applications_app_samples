@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from 'hypium/index'
 import testsuite from '../test/List.test'
 import Logger from '../../../main/ets/model/Logger'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info('TestAbility onCreate')
     var abilityDelegator: any

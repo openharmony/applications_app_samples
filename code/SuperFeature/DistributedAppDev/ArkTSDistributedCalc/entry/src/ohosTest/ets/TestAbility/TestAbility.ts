@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     console.log('TestAbility onCreate')
   }
@@ -31,11 +31,11 @@ export default class TestAbility extends Ability {
     console.log('TestAbility onWindowStageCreate')
     windowStage.loadContent("TestAbility/pages/index", (err, data) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        return;
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err))
+        return
       }
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-    });
+    })
 
     var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
@@ -56,4 +56,4 @@ export default class TestAbility extends Ability {
   onBackground() {
     console.log('TestAbility onBackground')
   }
-};
+}
