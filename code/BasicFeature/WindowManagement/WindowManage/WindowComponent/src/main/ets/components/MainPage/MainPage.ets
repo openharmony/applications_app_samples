@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +13,17 @@
  * limitations under the License.
  */
 
-import emitter from "@ohos.events.emitter"
-import window from '@ohos.window';
+import window from '@ohos.window'
 import WindowManger from '../feature/WindowManger'
 import { WindowEventId, WindowType } from "../util/WindowConst"
+import common from '@ohos.app.ability.common'
+import Logger from '../util/Logger'
 
 const windowAttribute: WindowType = {
   moveToWidth: 50, // 窗口移动X坐标
   moveToHeight: 250, // 窗口移动Y坐标
   setTouchable: true, // 窗口是否可触
-  resetSizeWidth: 300, // 窗口宽
+  resetSizeWidth: 400, // 窗口宽
   resetSizeHeight: 300, // 窗口高
   setPrivacyMode: true, // 窗口是否为隐私模式
   setBrightness: 1 // 窗口亮度
@@ -54,11 +54,13 @@ struct VideoWindow {
   @State isPlaying: boolean = false
   @Link videoSrc: Resource
   videoController: VideoController = new VideoController()
-  private context: AbilityContext
+  private context: common.UIAbilityContext
   private subWindow: window.WindowStage
+  private isPortrait: Boolean = true
+  private showSubWindow: Boolean = false
 
   aboutToAppear() {
-    this.context = getContext(this) as AbilityContext
+    this.context = getContext(this) as common.UIAbilityContext
     let data = {
       context: null,
       launchWant: null,
@@ -75,19 +77,25 @@ struct VideoWindow {
         currentProgressRate: PlaybackSpeed.Speed_Forward_1_00_X,
         controller: this.videoController
       })
-        .width('100%')
-        .height(px2vp(350))
+        .width(400)
+        .height(250)
         .margin(5)
         .loop(false)
         .muted(false)
-        .autoPlay(false)
         .controls(true)
         .autoPlay(true)
-        .objectFit(ImageFit.Contain)
-        .onClick(() => {
-          this.videoController.pause()
-          WindowManger.initSubWindow(this.subWindow)
-          WindowManger.setSubWindowAttribute(this.subWindow, windowAttribute)
+        .onClick(async () => {
+          Logger.info('onClick')
+          if (this.showSubWindow) {
+            this.videoController.start()
+            let windows = await this.subWindow?.getSubWindow()
+            windows[0]?.destroyWindow()
+            this.showSubWindow = false
+          } else {
+            this.videoController.pause()
+            WindowManger.initSubWindow(this.subWindow, windowAttribute)
+            this.showSubWindow = true
+          }
         })
         .onStart(() => {
           this.isPlaying = true
@@ -95,21 +103,15 @@ struct VideoWindow {
         .onPause(() => {
           this.isPlaying = false
         })
-        .onTouch((event: TouchEvent) => {
-          let eventData = {
-            data: {
-              "x": event.touches[0].x,
-              "y": event.touches[0].y,
-            } }
-          let innerEvent = {
-            eventId: WindowEventId.SUB_WINDOW_INNER_EVENT_ID,
-            priority: emitter.EventPriority.HIGH
-          }
-          emitter.emit(innerEvent, eventData)
-        })
+
       Button($r("app.string.pages_textTwo")).onClick(() => {
-        this.videoController.requestFullscreen(true)
-        WindowManger.changeWindowDirection(this.subWindow)
+        if (this.isPortrait) {
+          WindowManger.changeWindowDirection(this.subWindow, window.Orientation.LANDSCAPE)
+          this.isPortrait = false
+        } else {
+          WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT)
+          this.isPortrait = true
+        }
       })
     }
   }
