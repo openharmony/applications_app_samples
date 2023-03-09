@@ -14,7 +14,7 @@
  */
 
 import featureAbility from '@ohos.ability.featureAbility'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction';
 import rpc from '@ohos.rpc'
 import Logger from '../util/Logger'
 import { BASE_URI, BUNDLE_NAME, SERVICE_ABILITY_NAME, TAST_ABILITY_NAME } from '../model/DaHelperConst'

@@ -62,9 +62,13 @@ export struct AlarmClock {
       .padding(8)
       .width('100%')
 
-      DrawClock({ canvasWidth: $canvasWidth, radius: $canvasRadius })
-        .margin(8)
-        .width('100%')
+      Row() {
+        DrawClock({ canvasWidth: $canvasWidth, radius: $canvasRadius })
+          .margin(8)
+      }
+      .justifyContent(FlexAlign.Center)
+      .width('100%')
+
       List({ space: 8 }) {
         ForEach(this.alarmClockName, (item, index) => {
           ListItem() {
@@ -83,12 +87,12 @@ export struct AlarmClock {
             .backgroundColor(Color.White)
             .padding({ left: 12, right: 12, top: 8, bottom: 8 })
           }
-          .editable(this.isEdit)
           .padding({ left: 12, right: 12 })
           .gesture(
           SwipeGesture({ direction: SwipeDirection.Horizontal })
             .onAction((event: GestureEvent) => {
               this.isEdit = !this.isEdit
+              this.deleteItem(index)
             })
           )
           .onClick(async () => {
@@ -99,19 +103,6 @@ export struct AlarmClock {
         })
       }
       .layoutWeight(1)
-      .editMode(this.isEdit)
-      .onItemDelete((index: number) => {
-        AlarmClockReminder.deleteAlarmReminder(index).then(() => {
-          this.alarmClockName = []
-          if (AlarmClockReminder.alarmClockReminders.length !== 0) {
-            for (let i = 0; i < AlarmClockReminder.alarmClockReminders.length; i++) {
-              this.alarmClockName[i] = AlarmClockReminder.alarmClockReminders[i].reminderName
-            }
-          }
-          this.isEdit = false
-        })
-        return true
-      })
 
       Blank()
       Divider()
@@ -127,6 +118,23 @@ export struct AlarmClock {
       this.canvasWidth = Number(size) * 0.5
       this.canvasRadius = this.canvasWidth / 2
     })
+  }
+
+  deleteItem(index: number): boolean {
+    AlarmClockReminder.deleteAlarmReminder(index)
+      .then(() => {
+        this.alarmClockName = []
+        if (AlarmClockReminder.alarmClockReminders.length !== 0) {
+          for (let i = 0;
+               i < AlarmClockReminder.alarmClockReminders.length;
+               i++) {
+            this.alarmClockName[i] = AlarmClockReminder.alarmClockReminders[i].reminderName
+          }
+        }
+        this.isEdit = false
+      }
+      )
+    return true
   }
 
   aboutToAppear() {

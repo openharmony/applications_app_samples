@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -84,9 +84,10 @@ export struct FavorGoodList {
         GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
           this.GoodItem(item)
         }
-      }, item => item.toString())
+      }, item => item.id.toString())
     }
     .onAreaChange((oldArea: Area, newArea: Area) => {
+      console.info(`LSQ: newArea is ${newArea.height}`)
       AppStorage.SetOrCreate('goodsListHeight', newArea.height as number)
     })
   }

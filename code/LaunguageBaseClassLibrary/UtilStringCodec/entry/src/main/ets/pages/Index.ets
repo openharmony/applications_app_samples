@@ -60,10 +60,10 @@ struct StrCodec {
               .textAlign(TextAlign.Start)
           }
 
-          SpecInput({ result_str: $r('app.string.result_f'), specStrInput: this.specStrInput_f })
-          SpecInput({ result_str: $r('app.string.result_i'), specStrInput: this.specStrInput_i })
-          SpecInput({ result_str: $r('app.string.result_d'), specStrInput: this.specStrInput_d })
-          SpecInput({ result_str: $r('app.string.result_s'), specStrInput: this.specStrInput_s })
+          SpecInput({ result_str: $r('app.string.result_f'), specStrInput: $specStrInput_f })
+          SpecInput({ result_str: $r('app.string.result_i'), specStrInput: $specStrInput_i })
+          SpecInput({ result_str: $r('app.string.result_d'), specStrInput: $specStrInput_d })
+          SpecInput({ result_str: $r('app.string.result_s'), specStrInput: $specStrInput_s })
           Button() {
             Text($r('app.string.SpecFormOutput')).fontSize(15).fontWeight(FontWeight.Bold).fontColor(Color.White)
           }

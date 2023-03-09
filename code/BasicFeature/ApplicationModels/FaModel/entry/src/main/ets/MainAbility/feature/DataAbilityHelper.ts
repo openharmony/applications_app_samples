@@ -15,7 +15,7 @@
 
 import dataAbility from '@ohos.data.dataAbility'
 import featureAbility from '@ohos.ability.featureAbility'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction';
 import Logger from '../util/Logger'
 import { DA_HELPER, BASE_URI, COLUMNS } from '../model/DaHelperConst'
 

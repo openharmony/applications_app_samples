@@ -29,7 +29,7 @@ struct DataPage {
     Column() {
       TitleBar({ books: $books })
       List() {
-        ForEach(this.books, item => {
+        ForEach(this.books, (item: BookModel) => {
           ListItem() {
             BookView({ book: item, books: $books })
           }
@@ -49,7 +49,7 @@ struct DataPage {
             }
             this.dialogController.open()
           })
-        }, item => item.name)
+        }, item => item.id)
       }
       .width('94%')
       .height('100%')

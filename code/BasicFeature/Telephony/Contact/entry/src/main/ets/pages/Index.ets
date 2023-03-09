@@ -13,21 +13,11 @@
  * limitations under the License.
  */
 
-import Logger from '../data/Logger'
 import { Home } from '../component/Home'
-import context from '@ohos.application.context'
-
-const TAG: string = 'Index'
 
 @Entry
 @Component
 struct Index {
-  async aboutToAppear() {
-    let permission: string[] = ['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS']
-    let ctx = getContext(this) as context.AbilityContext
-    let result = await ctx.requestPermissionsFromUser(permission)
-    Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode = ${JSON.stringify(result)}`)
-  }
 
   build() {
     Column() {

@@ -57,6 +57,7 @@ struct Index {
         Text($r('app.string.north'))
           .fontSize(20)
           .margin({ left: '60%' })
+          .zIndex(2)
 
         Image(this.isLand ? $r('app.media.compass') : $r('app.media.compass_'))
           .objectFit(ImageFit.Auto)

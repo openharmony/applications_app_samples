@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -74,13 +74,13 @@ export const navigationData: Array<NavigationDataModel> = [
 
 // 首页轮播图
 export const swiperData: Array<SwiperModel> = [
-  { img: $r('app.media.banner') },
-  { img: $r('app.media.banner2') }
+  { id: 0, img: $r('app.media.banner') },
+  { id: 1, img: $r('app.media.banner2') }
 ]
 
 export const indexData: Array<SwiperModel> = [
-  { img: $r('app.media.banner') },
-  { img: $r('app.media.banner2') }
+  { id: 0, img: $r('app.media.banner') },
+  { id: 1, img: $r('app.media.banner2') }
 ]
 
 // 首页中间部分的tabBar
@@ -102,7 +102,7 @@ export const titleBarData: Array<TitleBarModel> = [
 // 首页商品列表
 export const productData: Array<ProductDataModel> = [
   {
-    id: 1,
+    id: 0,
     detail: {
       uri: $r('app.media.product001'),
       title: $r('app.string.productData_title_device'),
@@ -122,7 +122,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 2,
     detail: {
       uri: $r('app.media.product003'),
       title: $r('app.string.productData_title_device'),
@@ -132,7 +132,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 3,
     detail: {
       uri: $r('app.media.product004'),
       title: $r('app.string.productData_title_device'),
@@ -142,7 +142,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 4,
     detail: {
       uri: $r('app.media.product005'),
       title: $r('app.string.productData_title_device'),
@@ -152,7 +152,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 5,
     detail: {
       uri: $r('app.media.product006'),
       title: $r('app.string.productData_title_device'),
@@ -162,7 +162,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 6,
     detail: {
       uri: $r('app.media.product007'),
       title: $r('app.string.productData_title_device'),
@@ -172,7 +172,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 7,
     detail: {
       uri: $r('app.media.product008'),
       title: $r('app.string.productData_title_device'),
@@ -180,8 +180,9 @@ export const productData: Array<ProductDataModel> = [
       labels: $r('app.string.productData_labels_newProduct'),
       price: $r('app.string.productData_price')
     }
-  }, {
-    id: 1,
+  },
+  {
+    id: 8,
     detail: {
       uri: $r('app.media.product001'),
       title: $r('app.string.productData_title_device'),
@@ -191,7 +192,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 9,
     detail: {
       uri: $r('app.media.product002'),
       title: $r('app.string.productData_title_device'),
@@ -201,7 +202,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 10,
     detail: {
       uri: $r('app.media.product003'),
       title: $r('app.string.productData_title_device'),
@@ -211,7 +212,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 11,
     detail: {
       uri: $r('app.media.product004'),
       title: $r('app.string.productData_title_device'),
@@ -221,7 +222,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 12,
     detail: {
       uri: $r('app.media.product005'),
       title: $r('app.string.productData_title_device'),
@@ -231,7 +232,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 13,
     detail: {
       uri: $r('app.media.product006'),
       title: $r('app.string.productData_title_device'),
@@ -241,7 +242,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 14,
     detail: {
       uri: $r('app.media.product007'),
       title: $r('app.string.productData_title_device'),
@@ -251,7 +252,7 @@ export const productData: Array<ProductDataModel> = [
     }
   },
   {
-    id: 1,
+    id: 15,
     detail: {
       uri: $r('app.media.product008'),
       title: $r('app.string.productData_title_device'),
@@ -266,15 +267,15 @@ export const goodResponse: GoodResponse = {
   code: 0,
   data: {
     records: [{
-                id: -1,
-                detail: {
-                  uri: '',
-                  title: '',
-                  info: '',
-                  labels: '',
-                  price: -1
-                }
-              }],
+      id: -1,
+      detail: {
+        uri: '',
+        title: '',
+        info: '',
+        labels: '',
+        price: -1
+      }
+    }],
     totalCount: -1
   },
   error: null
