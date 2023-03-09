@@ -1,0 +1,24 @@
+{
+  "forms": [
+    {
+      "name": "ArkTSCardGame",
+      "description": "This is a ArkTS card game by canvas.",
+      "type": "eTS",
+      "uiSyntax": "arkts",
+      "src": "./ets/widget/pages/Card.ets",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "4*4",
+      "supportDimensions": [
+        "4*4"
+      ]
+    }
+  ]
+}

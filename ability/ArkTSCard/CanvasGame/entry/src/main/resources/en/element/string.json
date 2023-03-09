@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "res_fallback",
+      "value": "back"
+    },
+    {
+      "name": "res_restart",
+      "value": "reset"
+    }
+  ]
+}
