@@ -13,22 +13,13 @@
  * limitations under the License.
  */
 
-let obj2 = {
-  src: '/resources/homeImg/imgLoads/product003.png',
-  name: '【首降600+12期免息】XX/XXMate 40 Pro 5G 全网通 （亮黑色） 超大内存 极快网速 全球n多人的选择，你值得拥有',
-  collect: '300+人收藏',
-  price: '￥4500',
-  collected: true
-}
+import { collectData } from '../../data/collectData'
+import { CollectModel } from '../../model/collectModel'
 
 @Component
 export struct SinglePage2 {
   @Prop ratio: number
-  @State collectData: any = {}
-
-  async aboutToAppear() {
-    this.collectData = obj2
-  }
+  @State collectData: CollectModel = collectData
 
   build() {
     Column() {
