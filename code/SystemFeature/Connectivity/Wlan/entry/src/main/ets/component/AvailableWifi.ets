@@ -85,6 +85,7 @@ export struct AvailableWifi {
   }
 
   wifiListRefresh() {
-    this.wifiDataResource = new WifiDataSource(this.wifiList)
+    this.wifiDataResource['dataArray'] = this.wifiList
+    this.wifiDataResource.notifyDataReload()
   }
 }

@@ -21,13 +21,12 @@ import { Logger } from '../utils/Logger'
 
 const VERSION: string = '1.0'
 const HTTP_STATUS_CODE: number = 200
-const URL: string = 'https://gitee.com/two-thousand-or-three-thousand/applications_app_samples_12/raw/OpenHarmony_' +
-  '4.X_Dev/DataMock/WorkScheduler/updateWorkScheduler.hap'
+const URL: string = 'https://gitee.com/openharmony/applications_app_samples/raw/' +
+  'OpenHarmony_4.X_Dev/DataMock/WorkScheduler/UpdateWorkScheduler.hap'
 const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability']
 
 export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {
   onWorkStart(workInfo) {
-    Logger.info(`LSQ: get info === ${JSON.stringify(workInfo)}`)
     let filePath = JSON.parse(workInfo.parameters).filePath
     if (JSON.parse(workInfo.parameters).version === VERSION) {
       let result: Promise<http.HttpResponse> = WorkSchedulerSystem.getNewHap(URL)
