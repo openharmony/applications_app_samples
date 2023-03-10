@@ -32,4 +32,4 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   onBundleRemoved(bundleName: string) {
     Logger.info("EnterpriseAdminAbility", "onBundleRemoved bundleName" + bundleName)
   }
-};
+}

@@ -14,11 +14,14 @@
  */
 
 import common from '@ohos.app.ability.common'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import Logger from '../model/Logger'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'AbilityContextController'
-const permissions = ['ohos.permission.GET_BUNDLE_INFO_PRIVILEGED']
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.GET_BUNDLE_INFO_PRIVILEGED']
+
 
 export default class AbilityContextController {
   private context: common.UIAbilityContext
@@ -28,11 +31,18 @@ export default class AbilityContextController {
   }
 
   requestPermissionsFromUser() {
-    this.context.requestPermissionsFromUser(permissions, (result) => {
-      Logger.info(TAG, `requestPermissionsFromUser: ${JSON.stringify(result)}`)
-      prompt.showToast({
-        message: 'requestPermissionsFromUser success'
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
+        Logger.info(TAG, `requestPermissionsFromUser: ${JSON.stringify(data)}`)
+        prompt.showToast({
+          message: 'requestPermissionsFromUser success'
+        })
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
-    })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+    }
   }
 }

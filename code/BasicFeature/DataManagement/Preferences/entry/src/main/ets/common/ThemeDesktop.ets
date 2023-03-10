@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {MyDataSource} from '../util/DataSource'
+import { MyDataSource } from '../util/DataSource'
 
 @Component
 export default struct ThemeDesktop {
@@ -24,7 +24,7 @@ export default struct ThemeDesktop {
 
   build() {
     Grid() {
-      LazyForEach(new MyDataSource(this.themeDatas), (item) => {
+      ForEach(this.themeDatas, (item) => {
         GridItem() {
           Column() {
             Image(item.image)
@@ -37,7 +37,7 @@ export default struct ThemeDesktop {
           .width(90)
           .height(90)
         }
-      }, item => item.name)
+      }, item => JSON.stringify(item))
     }
     .rowsGap(10)
     .width('100%')

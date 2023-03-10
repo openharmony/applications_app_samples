@@ -15,8 +15,8 @@
 
 import display from '@ohos.display'
 import router from '@ohos.router';
-import Logger from '../Common/Logger'
-import { Warn } from '../Common/Warn'
+import Logger from '../common/Logger'
+import { Warn } from '../common/Warn'
 
 const TAG: string = '[ScreenDetector]'
 const VIRTUAL_SCREEN_MAX: number = 5

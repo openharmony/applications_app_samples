@@ -20,7 +20,7 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): undefined {
+  public getData(index: number): any {
     return undefined
   }
 
@@ -68,10 +68,10 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-export type TabType = {
-  icon: Resource,
-  icon_after: Resource,
-  text: Resource,
+export class TabType {
+  icon: Resource;
+  icon_after: Resource;
+  text: Resource;
   num: number
 }
 
@@ -87,7 +87,7 @@ export class MyDataSource extends BasicDataSource {
     return this.dataArray.length
   }
 
-  public getData(index: number): TabType {
+  public getData(index: number): any {
     return this.dataArray[index]
   }
 
@@ -96,7 +96,7 @@ export class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(index)
   }
 
-  public pushData(index: TabType): void {
+  public pushData(index: any): void {
     this.dataArray.push(index)
     this.notifyDataAdd(this.dataArray.length - 1)
   }

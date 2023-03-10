@@ -26,9 +26,9 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        return;
+        return
       }
-    });
+    })
   }
 
   onWindowStageDestroy() {

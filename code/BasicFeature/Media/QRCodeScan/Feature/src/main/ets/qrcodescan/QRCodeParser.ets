@@ -85,26 +85,34 @@ class QRCodeParser {
    * 从相册中获取单张图片
    */
   async getSingleImageFromAlbum(context: common.UIAbilityContext): Promise<ImageBitmap> {
-    Logger.info("getSingleImageFromAlbum start")
-    let abilityResult = await context.startAbilityForResult({
+    Logger.info(TAG, "getSingleImageFromAlbum start")
+    var want: Want = {
       bundleName: 'com.ohos.photos',
       abilityName: 'com.ohos.photos.MainAbility',
       parameters: {
         uri: 'singleselect' // 只选取单个文件
       }
-    })
-    if (abilityResult.want === null || abilityResult.want === undefined) {
-      Logger.info("getSingleImageFromAlbum end. abilityResult.want is null.")
-      return null
     }
 
-    if (abilityResult.want.parameters === null || abilityResult.want.parameters === undefined) {
-      Logger.info("getSingleImageFromAlbum end. abilityResult.want.parameters is null.")
-      return null
+    try {
+      context.startAbilityForResult(want, (error, result) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          Logger.error(TAG, 'startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+          return
+        }
+        // 执行正常业务
+        Logger.info(TAG, 'startAbilityForResult succeed, result.resultCode = ' +
+        result.resultCode)
+        return result.want.parameters['select-item-list']
+      })
+    } catch (paramError) {
+      // 处理入参错误异常
+      Logger.error(TAG, 'error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
     }
-
-    let images = abilityResult.want.parameters['select-item-list']
-    return new ImageBitmap(images[0])
+    return
   }
 
   /**

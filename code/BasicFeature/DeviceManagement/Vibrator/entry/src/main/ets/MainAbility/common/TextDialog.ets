@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,14 +40,20 @@ export struct TextDialog {
         .backgroundColor(Color.White)
         .margin({ top: 20, right: 40, bottom: 20 })
         .onClick(() => {
-          vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error) => {
-            if (error) {
-              Logger.error(TAG, `error.code: ${error.code} , error.message: ${error.message}`)
-            } else {
+          try {
+            // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+            vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error) => {
+              if (error) {
+                Logger.error(TAG, `error.code: ${error.code} , error.message: ${error.message}`)
+                return;
+              }
               Logger.info(TAG, `Callback returned to indicate successful.`)
-            }
+            })
+          } catch (err) {
+            Logger.error(TAG, `catch error.code: ${err.code} , error.message: ${err.message}`)
+          } finally {
             this.controller.close()
-          })
+          }
         })
 
         Divider()
