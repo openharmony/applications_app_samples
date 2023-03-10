@@ -16,7 +16,7 @@
 @Component
 export struct SpecInput {
   private result_str: Resource = $r('app.string.result_f')
-  @State specStrInput: string = ''
+  @Link specStrInput: string
 
   build() {
     Row() {

@@ -64,7 +64,7 @@ export struct ItemContainer {
             }
             .width('100%')
           }
-        }, item => item.toString())
+        }, item => item.id.toString())
       }
       .width('100%')
       .height('45%')

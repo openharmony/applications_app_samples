@@ -16,45 +16,41 @@
 import { ProductDataModel } from '../../model/homeModel'
 import { productData } from '../../data/homeData'
 
+class MyDataSource implements IDataSource {
+  totalCount(): number {
+    return this.num
+  }
+
+  getData(index: number): any {
+    return index
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  num: number = 5040
+  listeners: DataChangeListener[] = []
+}
+
 @Component
 export struct GoodsList {
-  @State data: any = ''
+  @State data: MyDataSource = new MyDataSource()
   @State productData: Array<ProductDataModel> = productData
   @Link ListIndex: number
   @Link ratio: number
   @State GridIndex: number = 0
   @State save: number = 0
   @State move: number = 0
-
-  aboutToAppear() {
-    class MyDataSource implements IDataSource {
-      totalCount(): number {
-        return this.num
-      }
-
-      getData(index: number): any {
-        return index
-      }
-
-      registerDataChangeListener(listener: DataChangeListener) {
-        if (this.listeners.indexOf(listener) < 0) {
-          this.listeners.push(listener)
-        }
-      }
-
-      unregisterDataChangeListener(listener: DataChangeListener) {
-        const pos = this.listeners.indexOf(listener)
-        if (pos >= 0) {
-          this.listeners.splice(pos, 1)
-        }
-      }
-
-      num: number = 5040
-      listeners: DataChangeListener[] = []
-    }
-
-    this.data = new MyDataSource()
-  }
 
   build() {
     Column() {

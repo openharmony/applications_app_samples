@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import context from '@ohos.application.context'
+import type common from '@ohos.app.ability.common';
 
 export class GetString {
-  private context: context.AbilityContext
+  private context: common.AbilityStageContext;
 
   constructor(context) {
     this.context = context

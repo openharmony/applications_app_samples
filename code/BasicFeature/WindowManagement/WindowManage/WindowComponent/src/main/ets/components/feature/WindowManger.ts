@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -55,60 +55,53 @@ class WindowManger {
     })
   }
 
-  initSubWindow(windowStage: window.WindowStage) {
+  async initSubWindow(windowStage: window.WindowStage, windowAttribute: WindowType) {
+    // 创建应用子窗口
+    let subWindow = await windowStage.createSubWindow("mySubWindow")
+    subWindow.on('avoidAreaChange', ({type, area}) => {
+      if (type === window.AvoidAreaType.TYPE_SYSTEM) {
+        AppStorage.SetOrCreate<number>("topHeight", area.topRect.height)
+        AppStorage.SetOrCreate<number>("bottomHeight", area.bottomRect.height)
+      }
+    })
+    Logger.info('show')
+    subWindow.resize(320, 240) // 长320vp，宽240vp
+    subWindow.moveWindowTo(10, 500) // 移动至坐标x为10，y为500的位置
+    subWindow.setUIContent("pages/SubWindowPage")
+    subWindow.setWindowTouchable(true)
+    subWindow.showWindow()
+
     // onTouch的坐标绑定
     let innerEvent = {
       eventId: WindowEventId.SUB_WINDOW_INNER_EVENT_ID
     }
     let callback = (eventData) => {
       Logger.info(this.TAG, 'onTouchEventData' + eventData.data.x)
-      subWindow.moveTo(windowPoint.x + eventData.data.x, windowPoint.y + eventData.data.y)
+      subWindow.moveWindowTo(windowPoint.x + eventData.data.x, windowPoint.y + eventData.data.y)
     }
     emitter.on(innerEvent, callback)
-    let subWindow = null
-    // 创建应用子窗口
-    windowStage.createSubWindow("mySubWindow", (err, data) => {
-      if (err.code) {
-        Logger.error(this.TAG, 'Failed to createSubWindow ' + JSON.stringify(err))
-        return
-      }
-      subWindow = data
-      // 获取子窗口规避区域
-      subWindow.on('avoidAreaChange', ({type, area}) => {
-        if (type === window.AvoidAreaType.TYPE_SYSTEM) {
-          AppStorage.SetOrCreate<number>("topHeight", area.topRect.height)
-          AppStorage.SetOrCreate<number>("bottomHeight", area.bottomRect.height)
-        }
-      })
-      // 监听窗口销毁
-      subWindow.on('touchOutside', () => {
-        subWindow.destroy()
-      })
-      subWindow.show()
-      subWindow.loadContent("pages/Video")
-    })
   }
 
   async setSubWindowAttribute(windowStage: window.WindowStage, windowAttribute: WindowType) {
     let subWindow: window.Window = await windowStage.getMainWindow()
-    await subWindow.moveTo(windowAttribute.moveToWidth, windowAttribute.moveToHeight)
+    await subWindow.moveWindowTo(windowAttribute.moveToWidth, windowAttribute.moveToHeight)
     // 设置子窗口为可触状态
-    await subWindow.setTouchable(windowAttribute.setTouchable)
+    await subWindow.setWindowTouchable(windowAttribute.setTouchable)
     // 设置子窗口的大小
-    await subWindow.resetSize(windowAttribute.resetSizeWidth, windowAttribute.resetSizeHeight)
+    await subWindow.resize(windowAttribute.resetSizeWidth, windowAttribute.resetSizeHeight)
     // 设置子窗口亮度
-    await subWindow.setBrightness(windowAttribute.setBrightness)
+    await subWindow.setWindowBrightness(windowAttribute.setBrightness)
     // 设置子窗口为隐私模式
-    await subWindow.setPrivacyMode(windowAttribute.setPrivacyMode)
+    await subWindow.setWindowPrivacyMode(windowAttribute.setPrivacyMode)
   }
 
-  changeWindowDirection(windowStage: window.WindowStage) {
+  changeWindowDirection(windowStage: window.WindowStage, orientation: window.Orientation) {
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         Logger.error(this.TAG, 'Failed to change the window: ' + JSON.stringify(err))
         return
       }
-      data.setPreferredOrientation(window.Orientation.LANDSCAPE)
+      data.setPreferredOrientation(orientation)
     })
   }
 }

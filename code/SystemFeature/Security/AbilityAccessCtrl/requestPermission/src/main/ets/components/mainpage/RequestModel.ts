@@ -15,8 +15,9 @@
 
 import bundleManager from '@ohos.bundle.bundleManager'
 import Logger from '../model/Logger'
-import abilityAccessCtrl,{Permissions} from '@ohos.abilityAccessCtrl'
-import common from '@ohos.app.ability.common'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
+import type common from '@ohos.app.ability.common'
 
 const TAG: string = '[requestPermission]'
 const BUNDLE_NAME: string = 'ohos.samples.abilityaccessctrl'
@@ -28,7 +29,7 @@ export class requestModel {
     this.permissions = permissions
   }
 
-  async requestPermission(bundleName: string, ctx: common.UIAbilityContext) {
+  async requestPermission(bundleName: string, ctx: common.UIAbilityContext): Promise<void> {
     Logger.info('requestPermission start')
     let bundleFlag = 0
     let appInfo = await bundleManager.getApplicationInfo(bundleName, bundleFlag)

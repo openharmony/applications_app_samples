@@ -20,13 +20,13 @@ import RdbModel from '../model/RdbModel'
 import { QueryItem } from '../common/QueryItem'
 import { TABLE_NAME, SQL_CREATE_TABLE, COLUMNS } from '../model/RdbConst'
 
-let rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
 
 @Entry
 @Component
 struct SearchPage {
   private searchText: string = ''
   private contacts: ContactDataSource = new ContactDataSource()
+  private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
 
   async getData() {
     if (this.searchText === '') {
@@ -40,7 +40,7 @@ struct SearchPage {
       .contains('phone', this.searchText)
       .or()
       .contains('remark', this.searchText)
-    this.contacts['dataArray'] = await rdbModel.query(predicates)
+    this.contacts['dataArray'] = await this.rdbModel.query(predicates)
     this.contacts.notifyDataReload()
   }
 

@@ -30,7 +30,7 @@ export struct DeleteDialog {
           .fontSize(20)
           .fontColor(Color.Red)
           .flexGrow(1)
-          .padding({top: 8, bottom: 8})
+          .padding({ top: 8, bottom: 8 })
           .onClick(() => {
             this.confirm()
           })
@@ -38,13 +38,12 @@ export struct DeleteDialog {
         Text($r('app.string.label_cancel'))
           .fontSize(20)
           .fontColor(Color.Gray)
-          .flexGrow(1)
-          .padding({top: 8, bottom: 8})
+          .padding({ top: 8, bottom: 8 })
           .onClick(() => {
             this.controller.close()
           })
       }
-      .width('100%')
+      .width(200)
     }
     .width('100%')
     .padding(20)

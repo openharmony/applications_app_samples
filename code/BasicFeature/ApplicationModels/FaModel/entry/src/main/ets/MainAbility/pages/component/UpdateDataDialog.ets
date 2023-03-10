@@ -59,27 +59,32 @@ export struct UpdateDataDialog {
       Blank()
 
       Row() {
-        Text($r('app.string.no'))
-          .fontSize(21)
-          .layoutWeight(1)
-          .align(Alignment.Center)
-          .onClick(() => {
-            this.controller.close()
-            this.clearDialog()
-          })
-        Text($r('app.string.yes'))
-          .fontSize(21)
-          .layoutWeight(1)
-          .align(Alignment.Center)
-          .onClick(async () => {
-            Logger.info(TAG, 'updateBook start')
-            let data = await DataAbilityHelper.updateBook(this.book)
-            if (data) {
-              this.books = getBooksFromResultSet(data)
-            }
-            this.controller.close()
-            this.clearDialog()
-          })
+        Row() {
+          Text($r('app.string.no'))
+            .fontSize(21)
+        }
+        .justifyContent(FlexAlign.Center)
+        .layoutWeight(1)
+        .onClick(() => {
+          this.controller.close()
+          this.clearDialog()
+        })
+
+        Row() {
+          Text($r('app.string.yes'))
+            .fontSize(21)
+        }
+        .justifyContent(FlexAlign.Center)
+        .layoutWeight(1)
+        .onClick(async () => {
+          Logger.info(TAG, 'updateBook start')
+          let data = await DataAbilityHelper.updateBook(this.book)
+          if (data) {
+            this.books = getBooksFromResultSet(data)
+          }
+          this.controller.close()
+          this.clearDialog()
+        })
       }
       .width('100%')
     }

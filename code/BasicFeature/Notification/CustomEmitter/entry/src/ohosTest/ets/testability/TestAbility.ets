@@ -14,7 +14,7 @@
  */
 
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'

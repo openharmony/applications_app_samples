@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 import Logger from '../utils/Logger';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import Window from '@ohos.window';
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
     onCreate(want, launchParam) {
         Logger.info('testTag', '%{public}s', 'TestAbility onCreate');
         Logger.info('testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');

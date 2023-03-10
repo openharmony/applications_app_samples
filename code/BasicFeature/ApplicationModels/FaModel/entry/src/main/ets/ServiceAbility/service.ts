@@ -16,7 +16,7 @@
 import CommonEvent from '@ohos.commonEvent'
 import Notification from '@ohos.notification'
 import particleAbility from '@ohos.ability.particleAbility'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction';
 import rpc from '@ohos.rpc'
 import Logger from '../MainAbility/util/Logger'
 import { BUNDLE_NAME, SERVICE_ABILITY_NAME, TAST_ABILITY_NAME } from '../MainAbility/model/DaHelperConst'

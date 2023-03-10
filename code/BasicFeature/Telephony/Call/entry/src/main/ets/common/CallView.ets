@@ -67,7 +67,6 @@ export struct CallView {
               this.output = this.output + `formatPhoneNumberToE164: ${JSON.stringify(data)}` + '\n'
               Logger.info(`${TAG}, callback: formatPhoneNumberToE164 err->${JSON.stringify(err)} data->${JSON.stringify(data)}`)
             })
-            this.input = ''
           }
         })
         .onFinish(() => {

@@ -47,8 +47,12 @@ export default class RdbModel {
     }
     this.rdbStore = await data_rdb.getRdbStore(this.context, STORE_CONFIG)
     Logger.info(TAG, 'getRdbStore end')
-    await this.rdbStore.executeSql(this.sqlCreateTable)
-    await this.rdbStore.setDistributedTables([this.tableName])
+    try {
+      await this.rdbStore.executeSql(this.sqlCreateTable)
+      await this.rdbStore.setDistributedTables([this.tableName])
+    } catch (e) {
+      Logger.error(TAG, 'getRdbStore:' + JSON.stringify(e))
+    }
     this.isCreateDbDone = true
     Logger.info(TAG, 'create table done')
   }
@@ -88,12 +92,12 @@ export default class RdbModel {
     Logger.info(TAG, `delete rows: ${rows}`)
   }
 
-  async query(predicates): Promise<Contact[]> {
+  async query(predicates): Promise<Array<Contact>> {
     Logger.info(TAG, 'query start')
     Logger.info(TAG, 'predicates is ' + JSON.stringify(predicates))
     Logger.info(TAG, 'columns ' + JSON.stringify(this.columns))
     let resultSet = await this.rdbStore.query(predicates, this.columns)
-    Logger.info(TAG, 'result is ' + JSON.stringify(resultSet))
+    Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount))
     return this.getListFromResultSet(resultSet)
   }
 
@@ -148,6 +152,7 @@ export default class RdbModel {
 
   getListFromResultSet(resultSet): Array<Contact> {
     let contacts: Array<Contact> = []
+    resultSet.goToFirstRow()
     while (!resultSet.isEnded) {
       let contact = new Contact(resultSet.getDouble(resultSet.getColumnIndex('id'))
         , resultSet.getString(resultSet.getColumnIndex('name'))
@@ -160,6 +165,7 @@ export default class RdbModel {
       resultSet.goToNextRow()
     }
     resultSet.close()
+    Logger.info(TAG, 'contacts number is ' + contacts.length)
     return contacts
   }
 }

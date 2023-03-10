@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,43 +15,32 @@
 
 import { SwiperModel } from '../../models/HomeModel'
 import { indexData } from '../../mocks/HomeData'
-import { getTheme } from '../../utils/ThemeGet'
+import { INDEX_DATA } from '../../mocks/ProductsData'
 
 @Component
 export struct SwiperComponent {
-  @Prop ratio: number
-  @Prop isLand: boolean
   @StorageLink('theme') theme: number = -1 // 初始主题theme值
   @State swiperData: Array<SwiperModel> = indexData
+  @StorageProp('curBp') curBp: string = 'md'
 
   build() {
-    Column() {
-      Swiper() {
-        ForEach(this.swiperData, item => {
-          Column() {
-            Flex({ justifyContent: FlexAlign.Center }) {
-              Image(item.img)
-                .objectFit(ImageFit.Fill)
-                .border({ radius: 20 * this.ratio })
-            }
-          }
-          .clip(true)
-          .border({ radius: 20 * this.ratio })
-          .margin({ right: this.isLand ? 5 : 0, left: this.isLand ? 5 : 0 })
-          .width(this.isLand ? '50%' : '100%')
-        }, item => item.toString())
-      }
-      .margin(2)
-      .loop(!this.isLand)
-      .autoPlay(!this.isLand)
-      .indicator(!this.isLand)
-      .disableSwipe(this.isLand)
-      .borderRadius(10)
-      .padding({ left: 2, right: 2 })
-      .margin({ right: this.isLand ? 8 : 16, left: this.isLand ? 20 : 16 })
-      .indicatorStyle({ selectedColor: 'red', color: Color.White })
-      .displayMode(this.isLand ? SwiperDisplayMode.AutoLinear : SwiperDisplayMode.Stretch)
-      .backgroundColor(getTheme(this.theme).MAIN_BACKGROUND_COLOR)
+    Swiper() {
+      ForEach(INDEX_DATA, item => {
+        Image(item.img)
+          .objectFit(ImageFit.Cover)
+          .width('100%')
+          .height('100%')
+          .borderRadius(16)
+      })
     }
+    .padding({ left: 12, right: 12 })
+    .height(170)
+    .autoPlay(true)
+    .itemSpace(20)
+    .displayCount(this.curBp === 'sm' ? 1 : this.curBp === 'md' ? 2 : 3)
+    .indicatorStyle({
+      selectedColor: $r('app.color.red'),
+      color: $r('app.color.white')
+    })
   }
 }

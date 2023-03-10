@@ -96,41 +96,44 @@ export struct Timer {
             .width('25%')
             .height('92%')
             .objectFit(ImageFit.Contain)
-            .rotate({ z: 1, angle: -this.rotates })
+            .rotate({ z: 1, angle: this.rotates })
         }
+        .height(270)
 
-        Text(`${this.formatTime(this.hoursTime)}:${this.formatTime(this.minuteTime)}:${this.formatTime(this.secondTime)}`)
-          .fontSize(24)
-          .fontFamily('HarmonyHeiTi-Medium')
-          .fontColor($r('app.color.font_dark'))
-        if (this.isRunning) {
-          Blank()
-            .height(180)
-        } else {
-          SelectTime({ hour: $pickerHour, minute: $pickerMinute, second: $pickerSecond })
-        }
-        Row() {
-          Image(this.resetImg)
-            .width(48)
-            .height(48)
-            .margin({ right: 100 })
-            .objectFit(ImageFit.Fill)
-            .onClick(async () => {
-              await this.reset()
-            })
-          Image(this.startImg)
-            .width(48)
-            .height(48)
-            .onClick(async () => {
-              if (this.pickerHour + this.pickerMinute + this.pickerSecond == 0) {
-                return
-              }
-              if (!this.isRunning || this.isPausing) {
-                await this.start()
-              } else {
-                await this.pause()
-              }
-            })
+        Column() {
+          Text(`${this.formatTime(this.hoursTime)}:${this.formatTime(this.minuteTime)}:${this.formatTime(this.secondTime)}`)
+            .fontSize(24)
+            .fontFamily('HarmonyHeiTi-Medium')
+            .fontColor($r('app.color.font_dark'))
+          if (this.isRunning) {
+            Blank()
+              .height(180)
+          } else {
+            SelectTime({ hour: $pickerHour, minute: $pickerMinute, second: $pickerSecond })
+          }
+          Row() {
+            Image(this.resetImg)
+              .width(48)
+              .height(48)
+              .margin({ right: 100 })
+              .objectFit(ImageFit.Fill)
+              .onClick(async () => {
+                await this.reset()
+              })
+            Image(this.startImg)
+              .width(48)
+              .height(48)
+              .onClick(async () => {
+                if (this.pickerHour + this.pickerMinute + this.pickerSecond == 0) {
+                  return
+                }
+                if (!this.isRunning || this.isPausing) {
+                  await this.start()
+                } else {
+                  await this.pause()
+                }
+              })
+          }
         }
       }
       .alignItems(HorizontalAlign.Center)

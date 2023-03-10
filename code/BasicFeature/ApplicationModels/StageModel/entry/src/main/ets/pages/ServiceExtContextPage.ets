@@ -66,10 +66,6 @@ struct ServiceExContextPage {
             .fancy(() => {
               this.serviceExContext.startAbilityWithAccount()
             })
-          Button($r("app.string.start_ability_by_call"))
-            .fancy(() => {
-              this.serviceExContext.startAbilityByCall()
-            })
         }
         .width('100%')
       }

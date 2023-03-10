@@ -50,7 +50,6 @@ export struct SelectTime {
             this.second = index
           })
       }
-      .height(128)
 
       Row() {
         Text($r('app.string.countdown_hour'))

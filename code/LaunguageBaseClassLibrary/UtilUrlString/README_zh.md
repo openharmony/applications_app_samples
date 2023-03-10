@@ -4,7 +4,7 @@
 
 本示例对URL字符串的查找参数进行了增删改查的一系列操作，使得读者对URL的结构用途更加明了。实现效果如下：
 
-![](screenshot/device/main.png)
+![](screenshot/device/main.jpeg)
 
 ### 相关概念
 
@@ -36,4 +36,4 @@
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上才可编译运行。

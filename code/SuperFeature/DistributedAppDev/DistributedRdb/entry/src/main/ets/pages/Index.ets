@@ -16,6 +16,7 @@
 import data_rdb from '@ohos.data.relationalStore'
 import common from '@ohos.app.ability.common'
 import Want from '@ohos.app.ability.Want'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import router from '@ohos.router'
 import Contact from '../model/Contact'
 import ContactDataSource from '../common/BasicDataSource'
@@ -31,12 +32,12 @@ import { TitleBar } from '../common/TitleBar'
 import { TABLE_NAME, BUNDLE, ABILITY, SQL_CREATE_TABLE, COLUMNS } from '../model/RdbConst'
 
 const TAG: string = 'Index'
-let liteStore = new LiteStore("sync_state", getContext(this) as common.UIAbilityContext)
-let rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
 
 @Entry
 @Component
 struct Index {
+  private liteStore = new LiteStore("sync_state", getContext(this) as common.UIAbilityContext)
+  private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
   private intervalId: number = undefined
   private contacts: ContactDataSource = new ContactDataSource()
   @State isMultiCheck: boolean = false
@@ -60,9 +61,16 @@ struct Index {
   aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
     let context = getContext(this) as common.UIAbilityContext
-    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], () => {
-      Logger.info(TAG, 'grantPermission,requestPermissionsFromUser')
-    })
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   getWant() {
@@ -73,7 +81,7 @@ struct Index {
       this.state.isDistributed = false
       this.state.selectedIndex = 0
       this.state.distributedDevice = ''
-      rdbModel.offDataChange()
+      this.rdbModel.offDataChange()
     }
     if (!this.state.isDistributed && want.parameters.isStage === 'Stage') {
       Logger.info(TAG, 'isStage = Stage')
@@ -90,7 +98,7 @@ struct Index {
         }
       })
       Logger.info(TAG, 'onDataChange')
-      rdbModel.onDataChange(this.state.distributedDevice, (result) => {
+      this.rdbModel.onDataChange(this.state.distributedDevice, (result) => {
         this.contacts['dataArray'] = result
         this.contacts.notifyDataReload()
       })
@@ -98,19 +106,24 @@ struct Index {
   }
 
   async onPageShow() {
-    await rdbModel.getRdbStore()
-    this.intervalId = setInterval(() => {
-      this.getWant()
-    }, 1000)
-    await this.getData()
+    try {
+      await this.rdbModel.getRdbStore()
+      this.intervalId = setInterval(() => {
+        this.getWant()
+      }, 1000)
+      await this.getData()
+    } catch (err) {
+      Logger.error('onPageShow:' + JSON.stringify(err))
+    }
   }
 
   async getData() {
     Logger.info(TAG, 'getData')
     let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
-    this.contacts['dataArray'] = await rdbModel.query(predicates)
+    this.contacts['dataArray'] = await this.rdbModel.query(predicates)
     this.contacts.notifyDataReload()
-    let syncState = await liteStore.getValue()
+    Logger.info(TAG, 'getData contacts count' + this.contacts['dataArray'].length)
+    let syncState = await this.liteStore.getValue()
     this.state.syncState = `${syncState}`
     if (!this.state.isStage && this.state.isDistributed && syncState === SyncState.AutomaticSync) {
       await this.syncData()
@@ -133,7 +146,7 @@ struct Index {
         value: $r('app.string.sure'),
         fontColor: Color.Red,
         action: async () => {
-          await rdbModel.deleteContacts(deleteContacts)
+          await this.rdbModel.deleteContacts(deleteContacts)
           await this.getData()
           this.quitMultiCheck()
         }
@@ -199,7 +212,7 @@ struct Index {
     Logger.info(TAG, 'sync data')
     let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
     predicates.inAllDevices()
-    rdbModel.syncData(predicates)
+    this.rdbModel.syncData(predicates)
   }
 
   build() {
@@ -286,7 +299,7 @@ struct Index {
         isStage: 'EXIT'
       }
     })
-    rdbModel.offDataChange()
+    this.rdbModel.offDataChange()
   }
 
   onPageHide() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -110,6 +110,7 @@ export struct TabletTitle {
         .fontSize(18)
         .margin(2)
         .width('51%')
+        .layoutWeight(1)
         .onChange((value: string) => {
           this.addr = value
         })
@@ -136,16 +137,17 @@ export struct TabletTitle {
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
             this.arrayIndex = item.id
-          } else if (event.type === TouchType.Up) {
+          }
+          if (event.type === TouchType.Up) {
             this.arrayIndex = 0
           }
         })
         .onClick((event: ClickEvent) => {
-          if (this.arrayIndex === 5) {
+          if (item.id === 5) {
             this.browser.loadUrl(this.addr)
             this.addr = ''
-          } else if (this.arrayIndex === 6) {
-            Logger.info(TAG, `add tab`)
+          } else if (item.id === 6) {
+            Logger.info(TAG, `add tab index = ` + this.arrayIndex)
             this.browser.addTab()
           }
         })
@@ -186,7 +188,7 @@ export struct BrowserTabs {
           })
           .onClick((event: ClickEvent) => {
             if (this.browser.webArray.length > 1) {
-              this.browser.deleteTab(this.tabButtonIndex)
+              this.browser.deleteTab(item.key)
             }
           })
         }.width(180).height('100%').backgroundColor(this.browser.tabArrayIndex == item.key ? '#ffffff' : '#ececec')
@@ -227,7 +229,8 @@ export struct WebTab {
         TabContent() {
           Web({
             src: this.isPhone ? $rawfile('phone.html') : $rawfile('pad.html'),
-            controller: this.browser.webControllerArray[item.key].controller
+            controller: this.browser.webControllerArray[item.key] !== undefined ?
+              this.browser.webControllerArray[item.key].controller : undefined
           })
             .javaScriptAccess(true)
             .fileAccess(true)

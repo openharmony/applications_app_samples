@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ export struct NewProduct {
                   .width('100%')
                   .borderRadius({ bottomLeft: 12, bottomRight: 12, topLeft: 0, topRight: 0 })
               }
-            }, item => item.toString())
+            }, item => item.id.toString())
           }
           .width('100%')
           .height(186)
@@ -60,7 +60,7 @@ export struct NewProduct {
                 this.tabsIndex = item.id
                 this.controller.changeIndex(item.id)
               })
-            }, item => item.toString())
+            }, item => item.id.toString())
 
             Row() {
               Image($r('app.media.line_navclass'))

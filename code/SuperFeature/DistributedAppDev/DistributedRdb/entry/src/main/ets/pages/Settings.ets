@@ -20,15 +20,15 @@ import { SyncState } from '../model/LiteStore'
 import { TitleBar } from '../common/TitleBar'
 
 const TAG: string = 'Settings'
-let liteStore = new LiteStore('', getContext(this) as common.UIAbilityContext)
 
 @Entry
 @Component
 struct Settings {
   @State syncState: string = SyncState.ManualSync
+  private liteStore = new LiteStore('sync_state', getContext(this) as common.UIAbilityContext)
 
   aboutToAppear() {
-    liteStore.getValue().then((value) => {
+    this.liteStore.getValue().then((value) => {
       Logger.info(TAG, `liteStore getValue: ${value}`)
       this.syncState = `${value}`
       Logger.info(TAG, `liteStore this.syncState: ${this.syncState}`)
@@ -59,13 +59,13 @@ struct Settings {
       TitleBar({ hasBackPress: true })
       this.SwitchBar('automatic', $r('app.string.automatic'), this.syncState === SyncState.AutomaticSync, (isOn: boolean) => {
         Logger.info(TAG, `automatic swtich is: ${isOn}`)
-        liteStore.setValue(SyncState.AutomaticSync)
+        this.liteStore.setValue(SyncState.AutomaticSync)
         this.syncState = SyncState.AutomaticSync
       })
 
       this.SwitchBar('manual', $r('app.string.manual'), this.syncState === SyncState.ManualSync, (isOn: boolean) => {
         Logger.info(TAG, `manualmatic swtich is: ${isOn}`)
-        liteStore.setValue(SyncState.ManualSync)
+        this.liteStore.setValue(SyncState.ManualSync)
         this.syncState = SyncState.ManualSync
       })
     }

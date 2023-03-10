@@ -20,7 +20,7 @@ import Logger from '../model/Logger'
 import data_preferences from '@ohos.data.preferences'
 import { AddDialog } from '../common/AddDialog'
 import { ZipLibSource } from '../model/DataSource'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 
 const TAG: string = '[Index]'
 let fileList: data_preferences.Preferences = null
@@ -62,7 +62,7 @@ struct Index {
 
   async aboutToAppear() {
     fileList = await data_preferences.getPreferences(getContext(this), 'fileList')
-    let ctx = getContext(this) as context.Context
+    let ctx = getContext(this) as common.Context
     this.path = ctx.filesDir
     let value = await fileList.get('fileName', '')
     this.files['fileData'] = JSON.parse(`${value}`)

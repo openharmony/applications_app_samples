@@ -27,7 +27,6 @@ export struct FileList {
   @State fileList: FileDataSource = new FileDataSource()
   @State isNoFile: boolean = true
   @State showDeleteButton: boolean = false
-  @StorageLink('isUpdate') isUpdate: boolean = false
   title: Resource
   mediaType: mediaLibrary.MediaType
   itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void
@@ -133,21 +132,22 @@ export struct FileList {
         .width('100%')
       } else {
         List() {
-          LazyForEach(this.fileList, (listItem: mediaLibrary.FileAsset, index: number) => {
+          LazyForEach(this.fileList, (listItem: mediaLibrary.FileAsset) => {
             ListItem() {
               FileListItemComponent({
                 itemFileList: $fileList,
                 fileListItem: listItem,
                 itemClickFunction: this.itemClickFunction,
-                itemIndex: index,
+                itemId: listItem.id,
                 itemShowDeleteButton: $showDeleteButton,
                 itemIsNoFile: $isNoFile
               })
             }
-            .id(' ' + this.isUpdate)
+          }, (listItem, index) => {
+            return JSON.stringify(listItem) + index
           })
         }
-        .id(' ' + this.isUpdate)
+        .height('100%')
         .width('100%')
       }
     }
@@ -163,10 +163,9 @@ struct FileListItemComponent {
   @Link itemFileList: FileDataSource
   @Link itemShowDeleteButton: boolean
   @Link itemIsNoFile: boolean
-  @StorageLink('isUpdate') isUpdate: boolean = false
   private fileListItem: mediaLibrary.FileAsset
   private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void
-  private itemIndex: number
+  private itemId: number
 
   @Styles itemPressedStyles() {
     .backgroundColor($r('app.color.item_pressed'))
@@ -214,12 +213,11 @@ struct FileListItemComponent {
             })
             .onClick(() => {
               FileManager.deleteFileAsset(getContext(this), this.fileListItem)
-              this.itemFileList.deleteData(this.itemIndex)
+              this.itemFileList.deleteData(this.itemId)
               this.itemShowDeleteButton = false
               if (this.itemFileList.totalCount() === 0) {
                 this.itemIsNoFile = true
               }
-              this.isUpdate = !this.isUpdate
             })
         }
       }

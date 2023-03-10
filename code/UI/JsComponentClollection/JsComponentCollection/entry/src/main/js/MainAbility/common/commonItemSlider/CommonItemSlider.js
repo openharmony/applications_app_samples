@@ -45,6 +45,7 @@ export default {
 
   setValue(sliderValueData) {
     this.Value = sliderValueData.value
+    this.sliderValue = sliderValueData.value
     this.$emit('sliderValue', {
       value: this.Value
     })

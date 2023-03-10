@@ -44,8 +44,8 @@
 
 .divider-row-container-divider {
   width: 100%;
-  stroke-width: 1vp;
-  margin: 0 12vp;
+  stroke-width: 2vp;
+  margin: 5vp 12vp;
   color: #000000;
 }
 
@@ -74,16 +74,16 @@
 }
 
 .divider-column-container-text {
-  width: 100%;
+  flex: 1;
   height: 30vp;
-  margin: 12vp;
+  margin: 10vp;
   text-align: center;
 }
 
 .divider-column-container-divider {
   height: 30vp;
-  stroke-width: 1vp;
-  margin: 12vp 0;
+  stroke-width: 2vp;
+  margin: 12vp 5vp;
   color: #000000;
 }
 

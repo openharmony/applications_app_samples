@@ -16,11 +16,11 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import preferences from '@ohos.data.preferences'
 import DateTimeUtil from '../model/DateTimeUtil'
-import common from '@ohos.app.ability.common'
+import type common from '@ohos.app.ability.common'
 import Logger from './Logger'
 import { Record } from './Record'
 
-const TAG = '[Recorder.MediaManager]'
+const TAG: string = '[Recorder.MediaManager]'
 
 class MediaManager {
   private context: common.UIAbilityContext
@@ -109,7 +109,7 @@ class MediaManager {
     })
   }
 
-  async saveFileDuration(name: string, value) {
+  async saveFileDuration(name: string, value): Promise<void> {
     if (this.storage === null) {
       Logger.info(TAG, `Create stroage is fail.`)
       return

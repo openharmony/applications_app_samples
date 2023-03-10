@@ -14,7 +14,7 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import common from '@ohos.app.ability.common'
+import type common from '@ohos.app.ability.common'
 import DateTimeUtil from '../model/DateTimeUtil'
 import MediaManager from '../model/MediaManager'
 

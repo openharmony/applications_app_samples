@@ -98,6 +98,9 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .onClick(() => {
           let that = new util.Base64Helper()
+          if (this.resultEncode === undefined || this.resultEncode === '') {
+            return
+          }
           let decodeNum = that.decodeSync(this.resultEncode)
           for (let i = 0; i < decodeNum.length; i++) {
             this.asciiToStr += String.fromCharCode(decodeNum[i])

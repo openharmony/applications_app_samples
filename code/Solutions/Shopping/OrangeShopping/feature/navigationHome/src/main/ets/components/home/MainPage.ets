@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,7 +45,7 @@ export struct MainPage {
                 this.navTabsIndex = item.id
                 this.navController.changeIndex(item.id)
               })
-            }, item => item.toString())
+            }, item => item.id.toString())
 
             Row() {
               Divider()
@@ -79,6 +79,7 @@ export struct MainPage {
       .scrollBar(BarState.Off)
       .flexGrow(1)
       .flexShrink(1)
+      .align(Alignment.Top)
 
       Divider()
         .color($r('app.color.divider2'))

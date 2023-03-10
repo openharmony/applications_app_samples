@@ -14,17 +14,18 @@
  */
 
 import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import prompt from '@ohos.promptAction'
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = '[Index]'
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.READ_MEDIA']
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want, launchParam) {
-    let atManager = abilityAccessCtrl.createAtManager()
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     let authResults = await atManager.requestPermissionsFromUser(this.context, PERMISSIONS)
     if (authResults.authResults.includes(-1)) {
       return

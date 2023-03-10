@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,13 +20,9 @@ import ImageModel from "../model/ImageModel"
 import ImagePicker from '../common/ImagePicker'
 import Logger from '../model/Logger'
 import PictureItem from '../model/PictureItem'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 
-enum gameStatus {
-  running = 1,
-  over = 0
-}
-
-const PERMISSIONS: Array<string> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION']
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'
@@ -37,6 +33,7 @@ struct Index {
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
   private ImageModel: ImageModel = new ImageModel(getContext(this))
   private game: GameRules = new GameRules()
+  @StorageLink('isGameStart') isGameStart: boolean = false
   private timer: number = -1
   private isRefresh: boolean = false
   @State numArray: PictureItem[] = []
@@ -51,8 +48,7 @@ struct Index {
 
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
-    let context = getContext(this) as any
-    await context.requestPermissionsFromUser(PERMISSIONS)
+    await abilityAccessCtrl.createAtManager().requestPermissionsFromUser(getContext(this), PERMISSIONS)
     this.imgDatas = await this.ImageModel.getAllImg()
     Logger.info(TAG, `images = ${this.imgDatas.length}`)
     this.numArray = await this.ImageModel.splitPic(this.index)
@@ -60,7 +56,7 @@ struct Index {
 
   onTimeOver() {
     if (this.gameTime == 0) {
-      this.game.gameStatus = 0
+      this.isGameStart = false
       AlertDialog.show({ message: 'TimeOver' })
       clearInterval(this.timer)
     }
@@ -69,6 +65,7 @@ struct Index {
   async onImageChange() {
     this.isRefresh = true
     this.dialogController.close()
+    this.numArray = []
     this.numArray = await this.ImageModel.splitPic(this.index)
     this.init()
     this.isRefresh = false
@@ -76,7 +73,6 @@ struct Index {
 
   init() {
     this.gameTime = GAME_TIME
-    this.game.gameStatus = 0
     clearInterval(this.timer)
   }
 
@@ -89,12 +85,12 @@ struct Index {
         count = 0
         break
       }
-      if (count == 7) {
-        AlertDialog.show({ message: $r('app.string.congratulations') })
-        this.game.gameStatus = gameStatus.over
-        clearInterval(this.timer)
-        this.gameTime = GAME_TIME
-      }
+    }
+    if (count === 7) {
+      this.isGameStart = false
+      AlertDialog.show({ message: $r('app.string.congratulations') })
+      clearInterval(this.timer)
+      this.gameTime = GAME_TIME
     }
   }
 
@@ -146,7 +142,7 @@ struct Index {
           if (this.isRefresh) {
             return
           }
-          if (this.game.gameStatus === gameStatus.running) {
+          if (this.isGameStart) {
             this.isRefresh = true
             this.numArray = this.game.gameInit(index, this.numArray)
             this.gameOver()
@@ -190,9 +186,10 @@ struct Index {
         .width('100%')
         .fontSize(18)
         .margin({ top: 5 })
-        .backgroundColor(this.game.gameStatus === gameStatus.over ? '#0D9FFB' : '#E5E5E5')
-        .enabled(this.game.gameStatus === gameStatus.over)
+        .backgroundColor(this.isGameStart ? $r('app.color.forbid') : $r('app.color.allow'))
+        .enabled(!this.isGameStart)
         .onClick(() => {
+          this.isGameStart = true
           this.start()
           this.numArray = this.game.gameBegin(this.numArray)
         })
@@ -202,9 +199,10 @@ struct Index {
         .width('100%')
         .fontSize(18)
         .margin({ top: 5 })
-        .backgroundColor(this.game.gameStatus === gameStatus.running ? '#0D9FFB' : '#E5E5E5')
-        .enabled(this.game.gameStatus === gameStatus.running)
+        .backgroundColor(this.isGameStart ? $r('app.color.allow') : $r('app.color.forbid'))
+        .enabled(this.isGameStart)
         .onClick(() => {
+          this.isGameStart = true
           this.start()
           this.numArray = this.game.gameBegin(this.numArray)
         })

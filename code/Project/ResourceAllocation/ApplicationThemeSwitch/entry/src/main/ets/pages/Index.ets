@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,6 +43,14 @@ struct NavigationHomePage {
     this.isLand = mediaQueryResult.matches
   }
 
+  @State url: string = ''
+  @State option: object = undefined
+  @State curBp: string = 'md' // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
+  private smListener: any
+  private mdListener: any
+  private lgListener: any
+  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: { data: { id: number } }[] = []
+
   @Builder TabBarBuilder(index: number) {
     Flex({ justifyContent: FlexAlign.SpaceBetween }) {
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -68,6 +76,13 @@ struct NavigationHomePage {
   }
 
   aboutToAppear() {
+    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<520vp)')
+    this.smListener.on('change', this.isBreakpointSM)
+    this.mdListener = mediaQuery.matchMediaSync('(520vp<=width<840vp)')
+    this.mdListener.on('change', this.isBreakpointMD)
+    this.lgListener = mediaQuery.matchMediaSync('(840vp<=width)')
+    this.lgListener.on('change', this.isBreakpointLG)
+
     this.listener.on('change', this.onPortrait.bind(this))
     display.getAllDisplay((err, data) => {
       let aspect = data[0].width / data[0].height
@@ -75,6 +90,31 @@ struct NavigationHomePage {
         this.ratio = RATIO
       }
     })
+  }
+
+  aboutToDisappear() {
+    this.smListener.off('change', this.isBreakpointSM)
+    this.mdListener.off('change', this.isBreakpointMD)
+    this.lgListener.off('change', this.isBreakpointLG)
+  }
+
+  isBreakpointSM = (mediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.curBp = 'sm'
+      AppStorage.SetOrCreate('curBp', this.curBp)
+    }
+  }
+  isBreakpointMD = (mediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.curBp = 'md'
+      AppStorage.SetOrCreate('curBp', this.curBp)
+    }
+  }
+  isBreakpointLG = (mediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.curBp = 'lg'
+      AppStorage.SetOrCreate('curBp', this.curBp)
+    }
   }
 
   build() {

@@ -21,13 +21,13 @@
 5. 在主页点击“我的手机”，进入应用沙箱目录下。
    1. 点击左下角“新建文件夹”按钮，在弹窗中输入文件夹名称，点击弹窗中的“确定”按钮，完成创建。
 
-   2. 点击新建的文件夹，进入目录，在新目录中点击左下角的“新建文件”，在弹窗的窗口中填写文件夹名称，然后点击确定，完成创建。
+   2. 点击新建的文件夹，进入目录，在新目录中点击左下角的“新建文件”，在弹窗的窗口中填写文件名称，然后点击确定，完成创建。
 
    3. 点击右上角多选按钮，选择需要重命名的文件（仅选中一个文件时可用），点击重命名，在弹窗中修改文件名称，点击“确定”，完成修改。
 
    4. 点击右上角多选按钮，选择需要复制和移动的文件（可多选，并且不可移动到本身的子目录下），选中后点击左下角“复制和移动”按钮，在页面中点击目标目录会进入该目录，在目标目录下点击“移动到这”按钮，完成文件复制和移动。
 
-   5. 点击右上角多选妞妞，选择需要删除的文件，选中后点击右下角“删除”按钮，在弹窗中点击“删除”，即可删除文件。
+   5. 点击右上角多选按钮，选择需要删除的文件，选中后点击右下角“删除”按钮，在弹窗中点击“删除”，即可删除文件。
 
 ### 工程目录
 
@@ -116,8 +116,8 @@ Library/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例仅支持API9版本SDK，版本号：3.2.9.2，本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
-3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行；
+2. 本示例仅支持API9版本SDK，版本号：3.2.10.6，本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
+3. 本示例需要使用DevEco Studio 3.1 Beta1 (Build Version: 3.1.0.200, built on February 13, 2023)才可编译运行；
 4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
 ### 下载

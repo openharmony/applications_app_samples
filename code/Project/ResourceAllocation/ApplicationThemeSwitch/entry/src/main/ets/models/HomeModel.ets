@@ -36,7 +36,8 @@ export class NavigationDataModel {
 }
 
 export class SwiperModel {
-  constructor(public img: Resource) {
+  constructor(public id: number, public img: Resource) {
+    this.id = id
     this.img = img
   }
 }

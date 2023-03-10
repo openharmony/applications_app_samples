@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import CommonEvent from '@ohos.commonEvent'
 import ParticleAbilityHelper from '../feature/ParticleAbilityHelper'
 import Logger from '../util/Logger'

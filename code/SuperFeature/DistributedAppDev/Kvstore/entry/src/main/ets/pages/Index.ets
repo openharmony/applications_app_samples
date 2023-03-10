@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-import context from '@ohos.application.context'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import common from '@ohos.app.ability.common'
+import { NoteModel } from '../model/NoteDataModel'
 import { NoteListItem } from '../common/NoteItem'
 import NoteDataSource from '../common/BasicDataSource'
 import { TitleBar } from '../common/TitleBar'
@@ -36,13 +38,17 @@ struct Index {
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
 
   aboutToAppear() {
-    let context = getContext(this) as context.AbilityContext
-    let permissionList = ['ohos.permission.DISTRIBUTED_DATASYNC']
-    context.requestPermissionsFromUser(permissionList).then((data) => {
-      Logger.info(TAG,`grantPermission,requestPermissionsFromUser,result.requestCode=${data}`)
-    }, (err) => {
-      Logger.warn(TAG,`failed to requestPermissionsFromUser : ${err.code}`);
-    })
+    let context = getContext(this) as common.UIAbilityContext
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(context,['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     let want = JSON.parse(AppStorage.Get('wantMsg'))
     Logger.info(TAG,`getWant =${JSON.stringify(want)}`);
     if (want.parameters.isStage === 'Stage') {
@@ -67,12 +73,19 @@ struct Index {
     })
   }
 
-  deleteNoteCallBack = (item) => {
-    Logger.info(TAG,`deleteNote${item}`);
-    let index = this.noteDataSource['dataArray'].indexOf(item)
-    this.noteDataSource['dataArray'].splice(index, 1)
+  deleteNoteCallBack = (item: NoteModel) => {
+    Logger.info(TAG, `deleteNote${JSON.stringify(item)}`);
+    let dataArray: NoteModel[] = this.noteDataSource['dataArray']
+    for (let i = 0;i < dataArray.length; i++) {
+      Logger.info(TAG, `i = ${i} and dataArray = ${JSON.stringify(dataArray[i])}`)
+      if (dataArray[i].title === item.title) {
+        Logger.info(TAG, `deleteNote index` + i);
+        this.noteDataSource['dataArray'].splice(i, 1)
+        break
+      }
+    }
     this.noteDataSource.notifyDataReload()
-    kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource['dataArray']))
+    kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource['dataArray']) + 'numBegin' + notesNum + 'numEnd')
   }
   startAbilityCallBack = (key) => {
     Logger.info(TAG,`startAbilityCallBack${key}`);

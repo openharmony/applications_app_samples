@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2022 Huawei Device Co., Ltd.
+* Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -117,23 +117,6 @@ export struct DetailPage {
         }
       })
 
-      BottomNavigation({ goodItemData: $goodDetailData })
-        .position({ x: 0, y: '100%' })
-        .translate({ x: 0, y: '-100%' })
-      SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })
-        .position({ x: '100%', y: '60%' })
-        .translate({ x: -180, y: 0 })
-      Panel(this.isPanel) {
-        Location({ isPanel: $isPanel, currentLocation: $currentLocation })
-      }
-      .mode(PanelMode.Half)
-      .dragBar(false)
-      .halfHeight(this.curBp === 'sm' ? 650 : 530)
-      .miniHeight(0)
-      .onChange(() => {
-        this.isPanel = false
-      })
-
       Image($r('app.media.back'))
         .width(32)
         .aspectRatio(1)
@@ -150,10 +133,10 @@ export struct DetailPage {
           this.shareDialog = new CustomDialogController({
             builder: ButtonDialogBuilder({
               controller: this.shareDialog,
-              detail0: this.recommend,
-              detail1: '9800',
+              detailTitleText: this.recommend,
+              detailPriceText: '9800',
               title: this.commodity,
-              srcImg: SRC_IMG
+              srcImage: SRC_IMG
             }),
             cancel: undefined,
             autoCancel: true,
@@ -162,10 +145,12 @@ export struct DetailPage {
           })
           this.shareDialog.open()
         })
+
       Column({ space: 12 }) {
         Image($r('app.media.broadcast'))
           .width(32)
           .height(32)
+
         Text($r('app.string.broadcast'))
           .fontSize(14)
           .fontColor($r('app.color.blank'))
@@ -181,6 +166,23 @@ export struct DetailPage {
       .translate({ x: -82, y: 0 })
       .onClick(() => {
         router.push({ url: 'pages/LivePage' })
+      })
+
+      BottomNavigation({ goodItemData: $goodDetailData })
+        .position({ x: 0, y: '100%' })
+        .translate({ x: 0, y: -56 })
+      SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })
+        .position({ x: '100%', y: '60%' })
+        .translate({ x: -180, y: 0 })
+      Panel(this.isPanel) {
+        Location({ isPanel: $isPanel, currentLocation: $currentLocation })
+      }
+      .mode(PanelMode.Half)
+      .dragBar(false)
+      .halfHeight(this.curBp === 'sm' ? 650 : 530)
+      .miniHeight(0)
+      .onChange(() => {
+        this.isPanel = false
       })
     }
     .height('100%')

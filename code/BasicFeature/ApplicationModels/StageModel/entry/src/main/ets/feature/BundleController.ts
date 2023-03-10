@@ -19,7 +19,7 @@ import Logger from '../util/Logger'
 
 const TAG: string = 'BundleController'
 
-let bundleName = "com.example.myapplication"
+let bundleName = 'ohos.samples.stagemodel'
 let bundleFlags = 0
 let userId = 100
 
@@ -43,47 +43,56 @@ export default class BundleController {
 
   // 指示应用程序的实体类型,对应FA模型中AppContext的getAppType()
   entityType() {
-    bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      let digital = data.description
-      if (digital === null || error.code != 0) {
+    bundle.getApplicationInfo(bundleName, bundleFlags, userId)
+      .then((data) => {
+        let digital = data.description
+        if (digital === null) {
+          Logger.info(TAG, 'digital is null')
+          return
+        }
+        Logger.info(TAG, `caller onRelease is called: ${digital}`)
+        prompt.showToast({
+          message: `caller onRelease is called sucess`
+        })
+      }).catch((error) => {
         Logger.info(TAG, `caller onRelease is error: ${error}`)
-        return
-      }
-      Logger.info(TAG, `caller onRelease is called: ${digital}`)
-      prompt.showToast({
-        message: `caller onRelease is called sucess`
       })
-    })
   }
 
   // 应用程序的进程，如果用户未设置，则值等于bundleName
   process() {
-    bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      let processData = data.process
-      if (processData === null || error.code != 0) {
-        Logger.info(TAG, `caller onRelease is called error: ${error}`)
-        return
-      }
-      Logger.info(TAG, `caller onRelease is called: ${processData}`)
-      prompt.showToast({
-        message: `caller onRelease is called sucess`
+    bundle.getApplicationInfo(bundleName, bundleFlags, userId)
+      .then((data) => {
+        let process = data.process
+        if (process === null) {
+          Logger.info(TAG, 'process is null')
+          return
+        }
+        Logger.info(TAG, `caller onRelease is called: ${process}`)
+        prompt.showToast({
+          message: `caller onRelease is called sucess`
+        })
+      }).catch((error) => {
+        Logger.info(TAG, `caller onRelease is error: ${error}`)
       })
-    })
   }
 
   // 获取应用程序的本地根目录,对应FA模型的getOrCreateLocalDir()
   entryDir() {
-    bundle.getApplicationInfo('ohos.samples.stagemodel', 0, (error, data) => {
-      let entryDirData = data.codePath
-      if (entryDirData === null || error.code != 0) {
-        Logger.info(TAG, `codePath error: ${error}`)
-        return
-      }
-      Logger.info(TAG, `codePath: ${entryDirData}`)
-      prompt.showToast({
-        message: `codePath: ${entryDirData}`
+    bundle.getApplicationInfo(bundleName, bundleFlags, userId)
+      .then((data) => {
+        let entryDirData = data.codePath
+        if (entryDirData === null) {
+          Logger.info(TAG, 'codePath is null')
+          return
+        }
+        Logger.info(TAG, `codePath: ${entryDirData}`)
+        prompt.showToast({
+          message: `codePath: ${entryDirData}`
+        })
+      }).catch((error) => {
+        Logger.info(TAG, `caller onRelease is error: ${error}`)
       })
-    })
   }
 
   // 获取应用的版本信息,对应FA模型的getAppVersionInfo()

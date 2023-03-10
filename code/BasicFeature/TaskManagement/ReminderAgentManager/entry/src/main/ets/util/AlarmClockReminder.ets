@@ -92,10 +92,12 @@ class AlarmClockReminder {
       await reminderAgent.addNotificationSlot({ type: notification.SlotType.SOCIAL_COMMUNICATION })
       let reminderId = await reminderAgent.publishReminder(this.alarmClockReminders[index].reminderRequestAlarm)
       this.alarmClockReminders[index].reminderId = reminderId
-      let audioIndex: number = await AudioPlayer.getAudioID(this.alarmClockReminders[index].audioSrc,
-        TimeConversion.timeToMillisecond(this.alarmClockReminders[index].reminderRequestAlarm.hour,
-        this.alarmClockReminders[index].reminderRequestAlarm.minute) * Constant.SECONDS_MILLISECONDS)
-      this.alarmClockReminders[index].audioTimeouts = audioIndex
+      if (this.alarmClockReminders[index].audioSrc) {
+        let audioIndex: number = await AudioPlayer.getAudioID(this.alarmClockReminders[index].audioSrc,
+          TimeConversion.timeToMillisecond(this.alarmClockReminders[index].reminderRequestAlarm.hour,
+          this.alarmClockReminders[index].reminderRequestAlarm.minute) * Constant.SECONDS_MILLISECONDS)
+        this.alarmClockReminders[index].audioTimeouts = audioIndex
+      }
       await PreferencesDataManager.putData('alarmClock', this.alarmClockReminders)
       if (this.alarmClockReminders[index].isVibrator) {
         let vibratorId = setTimeout(function () {
@@ -116,6 +118,7 @@ class AlarmClockReminder {
     } else {
       clearTimeout(this.alarmClockReminders[index].vibratorTimeouts)
       clearTimeout(this.alarmClockReminders[index].audioTimeouts)
+      await PreferencesDataManager.putData('alarmClock', this.alarmClockReminders)
       await reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId)
       await vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME)
     }

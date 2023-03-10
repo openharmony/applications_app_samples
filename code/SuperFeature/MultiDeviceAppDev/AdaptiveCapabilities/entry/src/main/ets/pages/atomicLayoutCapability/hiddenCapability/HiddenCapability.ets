@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,10 +16,10 @@
 @Entry
 @Component
 struct HiddenCapability {
-  @State rate: number = 0.45
+  @State rate: number = 0.8 // slider宽度比例
 
   @Builder slider() {
-    Slider({ value: this.rate * 100, min: 10, max: 45 })
+    Slider({ value: this.rate * 100, min: 10, max: 80 })
       .blockColor(Color.White)
       .width('60%')
       .height(50)

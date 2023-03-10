@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,6 +22,9 @@ import DateTimeUtil from '../utils/DateTimeUtil'
 import { CameraService } from './CameraService'
 import { QRCodeScanConst } from './QRCodeScanConst'
 import Logger from '../utils/Logger'
+import Want from '@ohos.app.ability.Want'
+
+const TAG: string = 'QRCodeParser'
 
 /**
  * 二维码解析器
@@ -35,8 +38,8 @@ class QRCodeParser {
    * @param canvasContext
    */
   parseQRCodeImageFromCamera(cameraService: CameraService,
-                   canvasContext: CanvasRenderingContext2D,
-                   imageComponentType?: image.ComponentType): void {
+                             canvasContext: CanvasRenderingContext2D,
+                             imageComponentType?: image.ComponentType): void {
     Logger.info("parseQRCodeImageFromCamera start")
     let fileName = this.getRandomFileName(QRCodeScanConst.IMG_FILE_PREFIX, QRCodeScanConst.IMG_SUFFIX_JPG)
     this.parseQRCodeImageWithNameFromCamera(cameraService, canvasContext, fileName, imageComponentType)
@@ -50,9 +53,9 @@ class QRCodeParser {
    * @param canvasContext
    */
   parseQRCodeImageWithNameFromCamera(cameraService: CameraService,
-                             canvasContext: CanvasRenderingContext2D,
-                             fileDisplayName: string,
-                             imageComponentType?: image.ComponentType): void {
+                                     canvasContext: CanvasRenderingContext2D,
+                                     fileDisplayName: string,
+                                     imageComponentType?: image.ComponentType): void {
     Logger.info("parseQRCodeImageWithNameFromCamera...")
     cameraService.imageReceiver.on('imageArrival', async () => {
       Logger.info("parseQRCodeImageWithNameFromCamera imageArrival start")
@@ -82,27 +85,34 @@ class QRCodeParser {
    * 从相册中获取单张图片
    */
   async getSingleImageFromAlbum(context: common.UIAbilityContext): Promise<ImageBitmap> {
-    Logger.info("getSingleImageFromAlbum start")
-    let abilityResult = await context.startAbilityForResult({
+    Logger.info(TAG, "getSingleImageFromAlbum start")
+    var want: Want = {
       bundleName: 'com.ohos.photos',
       abilityName: 'com.ohos.photos.MainAbility',
       parameters: {
         uri: 'singleselect' // 只选取单个文件
       }
-    })
-    if (abilityResult.want === null || abilityResult.want === undefined) {
-      Logger.info("getSingleImageFromAlbum end. abilityResult.want is null.")
-      return null
     }
 
-    if (abilityResult.want.parameters === null || abilityResult.want.parameters === undefined) {
-      Logger.info("getSingleImageFromAlbum end. abilityResult.want.parameters is null.")
-      return null
+    try {
+      context.startAbilityForResult(want, (error, result) => {
+        if (error.code) {
+          // 处理业务逻辑错误
+          Logger.error(TAG, 'startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+          return
+        }
+        // 执行正常业务
+        Logger.info(TAG, 'startAbilityForResult succeed, result.resultCode = ' +
+        result.resultCode)
+        return result.want.parameters['select-item-list']
+      })
+    } catch (paramError) {
+      // 处理入参错误异常
+      Logger.error(TAG, 'error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
     }
-
-    let images = abilityResult.want.parameters['select-item-list']
-    Logger.info("getSingleImageFromAlbum end")
-    return new ImageBitmap(images)
+    return
   }
 
   /**
@@ -142,7 +152,6 @@ class QRCodeParser {
     let publicDir = await mediaLibraryObj.getPublicDirectory(directoryType)
     // 使用资源类型、资源名称、和公共资源路径创建FileAccess对象
     let fileAsset = await mediaLibraryObj.createAsset(mediaType, fileDisplayName, publicDir)
-
     // 拿到fileAccess资源对应的uri
     let fileUri = fileAsset.uri
     // 调用open方法打开这个资源对象 // TODO 为啥要打开？
@@ -165,7 +174,6 @@ class QRCodeParser {
     let dateTimeUtil = new DateTimeUtil()
     return filePrefix + `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}` + fileSuffix
   }
-
 }
 
 export { QRCodeParser }

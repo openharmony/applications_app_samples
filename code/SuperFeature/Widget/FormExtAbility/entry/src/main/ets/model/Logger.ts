@@ -17,23 +17,23 @@ class Logger {
   constructor(private prefix: string) {
   }
 
-  public log(...args: any[]) {
+  public log(...args: string[]): void {
     console.log(`[${this.prefix}]: ${args.join('')}`)
   }
 
-  public info(...args: any[]) {
+  public info(...args: string[]): void {
     console.info(`[${this.prefix}]: ${args.join('')}`)
   }
 
-  public debug(...args: any[]) {
+  public debug(...args: string[]): void {
     console.debug(`[${this.prefix}]: ${args.join('')}`)
   }
 
-  public warn(...args: any[]) {
+  public warn(...args: string[]): void {
     console.warn(`[${this.prefix}]: ${args.join('')}`)
   }
 
-  public error(...args: any[]) {
+  public error(...args: string[]): void {
     console.error(`[${this.prefix}]: ${args.join('')}`)
   }
 }

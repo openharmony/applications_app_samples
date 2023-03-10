@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,20 +13,30 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
     Logger.info(TAG, `MainAbility onCreate`)
-    await this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
-    let deviceFlag = want.parameters.isB
-    if (deviceFlag) {
-      AppStorage.SetOrCreate('deviceFlag', deviceFlag)
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+        let deviceFlag = want.parameters.isB
+        if (deviceFlag) {
+          AppStorage.SetOrCreate('deviceFlag', deviceFlag)
+        }
+        Logger.info(TAG, `deviceFlag = ${deviceFlag}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
-    Logger.info(TAG, `deviceFlag = ${deviceFlag}`)
   }
 
   onDestroy() {

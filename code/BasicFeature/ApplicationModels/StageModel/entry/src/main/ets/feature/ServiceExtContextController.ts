@@ -15,6 +15,7 @@
 
 import prompt from '@ohos.prompt'
 import Logger from '../util/Logger'
+import type common from '@ohos.app.ability.common'
 
 const TAG: string = 'ServiceExtContextController'
 const accountId = 100
@@ -32,7 +33,7 @@ let want = {
 }
 
 export default class ServiceExtContextController {
-  private context: any
+  private context: common.UIAbilityContext
 
   constructor(context) {
     this.context = context
@@ -160,7 +161,7 @@ export default class ServiceExtContextController {
         })
       }
     }
-    let connection = this.context.connectAbility(want, options)
+    let connection = this.context.connectServiceExtensionAbility(want, options)
     Logger.info(TAG, `connection: ${JSON.stringify(connection)}`)
     prompt.showToast({
       message: `connection: ${JSON.stringify(connection)}`
@@ -189,7 +190,7 @@ export default class ServiceExtContextController {
         })
       }
     }
-    const result = this.context.connectAbility(want, options)
+    const result = this.context.connectServiceExtensionAbility(want, options)
     Logger.info(TAG, `connectAbilityResult: ${JSON.stringify(result)}`)
     prompt.showToast({
       message: `connectAbilityResult: ${JSON.stringify(result)}`
@@ -198,7 +199,7 @@ export default class ServiceExtContextController {
 
   // 将一个Ability与绑定的服务类型的Ability解绑。对应FA的ParticleAbilityTest中的disconnectAbility
   disconnectAbility() {
-    this.context.disconnectAbility(connection, (error) => {
+    this.context.disconnectServiceExtensionAbility(connection, (error) => {
       // connection为connectAbility中的返回值
       if (error) {
         Logger.info(TAG, `disconnectAbility result error: ${JSON.stringify(error)}`)
