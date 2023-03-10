@@ -16,7 +16,7 @@
 import fileio from '@ohos.file.fs'
 import router from '@ohos.router'
 import contact from '@ohos.contact'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import Logger from '../data/Logger'
 
 const TAG: string = 'Setting'
@@ -80,7 +80,7 @@ export struct Setting {
   }
 
   async writeContact() {
-    let ctx = getContext(this) as context.AbilityContext
+    let ctx = getContext(this) as common.UIAbilityContext
     let path = ctx.filesDir
     let file = fileio.openSync(`${path}/Contact.json`, fileio.OpenMode.READ_WRITE | fileio.OpenMode.CREATE)
     for (let i = 0; i < this.contacts.length; i++) {

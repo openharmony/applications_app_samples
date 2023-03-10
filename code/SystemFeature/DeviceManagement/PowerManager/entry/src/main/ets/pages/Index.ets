@@ -106,11 +106,11 @@ struct Index {
             console.info(`Callback when the second button is clicked`)
             if (title.id === $r('app.string.turnOff').id) {
               this.window = 'Is power off'
-              power.shutdownDevice('shutdown_test')
+              power.shutdown('shutdown_test')
               console.info(`power_shutdown_device_test success`)
             } else if (title.id === $r('app.string.restart').id) {
               this.window = 'Is to restart'
-              power.rebootDevice('reboot_test')
+              power.reboot('reboot_test')
               console.info(`power_reboot_device_test success`)
             }
           }

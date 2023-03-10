@@ -302,7 +302,7 @@ struct DialogLayoutComponent {
               this.controller.close()
             }
           })
-        }, item => item.toString())
+        }, item => item.data.id)
       }
       .width("100%")
       .height($r('app.float.wh_value_hundred'))

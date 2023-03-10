@@ -16,12 +16,23 @@
 import Logger from '../model/Logger'
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
+import prompt from '@ohos.promptAction'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import type { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = '[Index]'
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.READ_MEDIA']
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info(TAG, `Ability onCreate want param: ` + JSON.stringify(want) ?? '' + 'launchParam:' + JSON.stringify(launchParam) ?? '')
+  async onCreate(want, launchParam) {
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
+    let authResults = await atManager.requestPermissionsFromUser(this.context, PERMISSIONS)
+    if (authResults.authResults.includes(-1)) {
+      return
+    }
+    prompt.showToast({
+      message: 'requestPermissionsFromUser success'
+    })
   }
 
   onDestroy() {

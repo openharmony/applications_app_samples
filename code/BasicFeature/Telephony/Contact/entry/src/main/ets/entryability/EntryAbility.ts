@@ -19,7 +19,7 @@ import contact from '@ohos.contact';
 import Logger from '../data/Logger';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-const TAG = 'EntryAbility';
+const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want, launchParam) {

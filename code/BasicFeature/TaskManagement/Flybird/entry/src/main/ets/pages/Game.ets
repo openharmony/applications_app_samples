@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import bundleState from '@ohos.bundleState';
+import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 import Logger from '../model/Logger'
 
 const TAG = "Game"
@@ -241,7 +241,7 @@ struct Game {
   }
 
   showHistoryScore() {
-    bundleState.queryBundleStateInfos(Number(this.beginTime), Number(this.endTime), (err, res) => {
+    usageStatistics.queryBundleStatsInfos(Number(this.beginTime), Number(this.endTime), (err, res) => {
       if (err) {
         Logger.info(TAG, `queryBundleStateInfos1 callback failed,because: ${err.code}`)
       }

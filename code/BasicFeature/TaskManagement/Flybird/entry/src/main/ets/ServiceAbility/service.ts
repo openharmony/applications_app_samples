@@ -15,7 +15,7 @@
 
 import rpc from "@ohos.rpc"
 import wantAgent from '@ohos.wantAgent'
-import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
 import Logger from '../model/Logger'
 
 const TAG: string = 'ServiceAbility'
@@ -78,7 +78,7 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
   }
 }
 
-export default class ServiceExtAbility extends ServiceExtensionAbility {
+export default class ServiceExtAbility extends ServiceExtension {
   onCreate(want) {
     Logger.info(`${TAG} onCreate, want: ${want.abilityName}`)
   }

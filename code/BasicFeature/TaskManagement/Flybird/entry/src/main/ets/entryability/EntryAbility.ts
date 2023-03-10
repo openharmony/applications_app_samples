@@ -14,14 +14,14 @@
  */
 
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import Logger from '../model/Logger'
 
 const TAG = "EntryAbility"
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'Ability onCreate')
     Logger.info(TAG, `want param: ${JSON.stringify(want)}`)

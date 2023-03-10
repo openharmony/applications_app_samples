@@ -180,24 +180,28 @@ export let mockDietRecords: Array<DietRecord> = [
     id: 1,
     foodId: 2,
     mealTime: { name: $r('app.string.meal_time_dinner'), id: MealTimeId.Dinner },
-    weight: 200
+    weight: 200,
+    key: '1'
   },
   {
     id: 2,
     foodId: 8,
     mealTime: { name: $r('app.string.meal_time_dinner'), id: MealTimeId.Dinner },
-    weight: 200
+    weight: 200,
+    key: '2'
   },
   {
     id: 3,
     foodId: 6,
     mealTime: { name: $r('app.string.meal_time_lunch'), id: MealTimeId.Lunch },
-    weight: 200
+    weight: 200,
+    key: '3'
   },
   {
     id: 4,
     foodId: 3,
     mealTime: { name: $r('app.string.meal_time_dinner'), id: MealTimeId.Dinner },
-    weight: 200
+    weight: 200,
+    key: '4'
   }
 ]

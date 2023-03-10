@@ -13,11 +13,13 @@
  * limitations under the License.
  */
 
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl ,{Permissions}from '@ohos.abilityAccessCtrl'
 import promptAction from '@ohos.promptAction'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import bundleManager from '@ohos.bundle.bundleManager'
 import Logger from '../../model/Logger'
+
+const TAG = 'VerifyIndex'
 
 @Entry
 @Component
@@ -27,7 +29,7 @@ struct Index {
   @State tokenID: number = 0
   private cancel: string = ''
   private confirm: string = ''
-  private ctx: context.AbilityContext = getContext(this) as context.AbilityContext
+  private ctx: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
 
   async aboutToAppear() {
     let resource = await this.ctx.resourceManager
@@ -36,10 +38,10 @@ struct Index {
     let bundleFlag = 0
     let appInfo = await bundleManager.getApplicationInfo(this.bundleName, bundleFlag)
     this.tokenID = appInfo.accessTokenId
-    this.grantUserPermissions(this.permission)
+    this.grantUserPermissions(this.permission as Permissions)
   }
 
-  async grantUserPermissions(grantPermissions: string) {
+  async grantUserPermissions(grantPermissions: Permissions) {
     let atManager = abilityAccessCtrl.createAtManager()
     let result = await promptAction.showDialog({
       title: $r('app.string.title'),

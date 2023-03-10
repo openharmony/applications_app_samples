@@ -17,6 +17,7 @@ import router from '@ohos.router'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import MediaManager from '../model/MediaManager'
 import Logger from '../model/Logger'
+import common from '@ohos.app.ability.common'
 import { TitleBar } from '../common/TitleWithBack'
 import { AnimateView } from '../common/AnimateView'
 import { RecordModel } from '../model/RecordModel'
@@ -27,6 +28,7 @@ const TAG = '[Recorder.Record]'
 @Entry
 @Component
 struct RecordPage {
+  private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext)
   private recordModel: RecordModel = new RecordModel()
   private millisecond: number = 0
   @State fileAsset: mediaLibrary.FileAsset = undefined
@@ -35,8 +37,8 @@ struct RecordPage {
   @State duration: string = '00:00'
   @State resetAnimation: boolean = false
 
-  finish() {
-    MediaManager.saveFileDuration(this.fileAsset.title, this.duration)
+  async finish() {
+    await this.mediaManager.saveFileDuration(this.fileAsset.title, this.duration)
     this.recordModel.finish(() => {
       this.playState = false
       AppStorage.SetOrCreate('playState', this.playState)
@@ -46,7 +48,7 @@ struct RecordPage {
 
   async aboutToAppear() {
     this.recordModel.initAudioRecorder()
-    this.fileAsset = await MediaManager.createAudioFile()
+    this.fileAsset = await this.mediaManager.createAudioFile()
     this.fd = await this.fileAsset.open('Rw')
     this.recordModel.startRecorder(`fd://${this.fd}`, () => {
       Logger.info(TAG, 'startRecorder callback success')
@@ -125,7 +127,7 @@ struct RecordPage {
         if (this.fd) {
           this.fileAsset.close(this.fd)
         }
-        await MediaManager.deleteFile(this.fileAsset.uri)
+        await this.mediaManager.deleteFile(this.fileAsset.uri)
       }
     }
   }

@@ -77,7 +77,7 @@ export struct HomeView {
         TitleBar()
       }
       List() {
-        LazyForEach(this.recordDataSource, (item, index) => {
+        LazyForEach(this.recordDataSource, (item: Record, index) => {
           ListItem() {
             AudioItem({
               checkState: $checkState,
@@ -103,7 +103,7 @@ export struct HomeView {
               Text($r('app.string.rename'))
                 .fontSize(15)
                 .margin({ top: 5 })
-                .width(70)
+                .width(60)
                 .textAlign(TextAlign.Center)
             }
           }
@@ -132,7 +132,7 @@ export struct HomeView {
               Text($r('app.string.delete'))
                 .fontSize(15)
                 .margin({ top: 5 })
-                .width(70)
+                .width(60)
                 .textAlign(TextAlign.Center)
             }
           }
@@ -148,6 +148,7 @@ export struct HomeView {
         }
         .width('100%')
         .margin(10)
+        .justifyContent(FlexAlign.Center)
       } else {
         Button({ type: ButtonType.Circle, stateEffect: true }) {
           Image($r('app.media.rectangle'))

@@ -16,9 +16,12 @@
 // 数据
 export class DialogDataModel {
   public src: Resource
-  public text:  Resource
-  constructor(src: Resource, text: Resource) {
+  public text: Resource
+  public id: number
+
+  constructor(src: Resource, text: Resource, id: number) {
     this.src = src
     this.text = text
+    this.id = id
   }
 }

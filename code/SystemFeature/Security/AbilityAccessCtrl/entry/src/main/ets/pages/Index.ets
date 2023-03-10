@@ -17,7 +17,7 @@ import promptAction from '@ohos.promptAction'
 import bundleManager from '@ohos.bundle.bundleManager'
 import Logger from '../model/Logger'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import { requestModel } from '@ohos/requestModel'
 
 const TAG: string = '[Index]'
@@ -31,7 +31,7 @@ struct Index {
   private atManager: abilityAccessCtrl.AtManager = undefined
   aboutToAppear() {
     this.request = new requestModel([PERMISSION])
-    this.request.requestPermission('ohos.samples.abilityaccessctrl', getContext(this) as context.AbilityContext)
+    this.request.requestPermission('ohos.samples.abilityaccessctrl', getContext(this) as common.UIAbilityContext)
   }
 
   build() {

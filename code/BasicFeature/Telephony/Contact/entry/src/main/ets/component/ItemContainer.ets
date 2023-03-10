@@ -69,9 +69,11 @@ export struct ItemContainer {
       .width('100%')
       .height('45%')
       .onScrollIndex((startIndex: number, lastIndex: number) => {
-        // 更新选中的字母索引
-        this.letter = this.contacts[startIndex].name.fullName.substr(0, 1).toUpperCase()
-        this.selected = this.alphabetical.indexOf(this.letter)
+        if (!this.contacts) {
+          // 更新选中的字母索引
+          this.letter = this.contacts[startIndex].name.fullName.substr(0, 1).toUpperCase()
+          this.selected = this.alphabetical.indexOf(this.letter)
+        }
       })
     }
     .width('100%')
