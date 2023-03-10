@@ -142,7 +142,7 @@ export struct TitleBarComponent {
       Image($r('app.media.ic_back'))
         .height('60%')
         .margin({ left: 32 })
-        .width(this.isLand ? '5%' : '8%')
+        .width('8%')
         .objectFit(ImageFit.Contain)
         .onClick(async () => {
           let context = getContext(this) as any
@@ -157,7 +157,7 @@ export struct TitleBarComponent {
         Image($r('app.media.ic_hop_normal'))
           .height('60%')
           .margin({ right: 32 })
-          .width(this.isLand ? '5%' : '8%')
+          .width('8%')
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             this.showDiainfo()

@@ -27,7 +27,7 @@
     "metadata": [
       {
         "name": "ArkTSPartialUpdate",
-        "value": "true"
+        "value": "false"
       }
     ],
     "deliveryWithInstall": true,

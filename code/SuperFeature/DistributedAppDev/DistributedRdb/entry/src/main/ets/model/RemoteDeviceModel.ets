@@ -166,7 +166,11 @@ class RemoteDeviceModel {
       capability: 0
     }
     Logger.info(TAG, `startDeviceDiscovery${SUBSCRIBE_ID}`)
-    this.deviceManager.startDeviceDiscovery(info)
+    try {
+      this.deviceManager.startDeviceDiscovery(info)
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   unregisterDeviceListCallback() {

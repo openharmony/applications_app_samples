@@ -17,11 +17,11 @@ import util from '@ohos.util'
 import { SpecInput } from '../common/specInput'
 import { GetString } from '../utils/GetString'
 
-var resArray
 
 @Entry
 @Component
 struct StrCodec {
+  resArray: Uint8Array = undefined
   @State specStrInput_f: string = ''
   @State specStrInput_s: string = ''
   @State specStrInput_d: string = ''
@@ -148,12 +148,12 @@ struct StrCodec {
           .key('textEncoder')
           .margin({ top: 20 })
           .onClick(() => {
-            var textEncoder = new util.TextEncoder()
-            var buffer = new ArrayBuffer(100)
-            resArray = new Uint8Array(buffer)
-            resArray = textEncoder.encode(this.getString.convertResourceToString($r('app.string.message')))
-            var resArratNum = textEncoder.encodeInto(this.getString.convertResourceToString($r('app.string.message')), resArray)
-            this.resen = resArray.toString()
+            let textEncoder = new util.TextEncoder()
+            let buffer = new ArrayBuffer(100)
+            this.resArray = new Uint8Array(buffer)
+            this.resArray = textEncoder.encode(this.getString.convertResourceToString($r('app.string.message')))
+            let resArratNum = textEncoder.encodeInto(this.getString.convertResourceToString($r('app.string.message')), this.resArray)
+            this.resen = this.resArray.toString()
             this.read = JSON.stringify(resArratNum.read)
             this.write = JSON.stringify(resArratNum.written)
           })
@@ -182,8 +182,11 @@ struct StrCodec {
           .key('textDecoder')
           .margin({ top: 20, bottom: 50 })
           .onClick(() => {
-            var textDecoder = new util.TextDecoder("utf-8", { ignoreBOM: true })
-            var retStr = textDecoder.decode(resArray, { stream: false })
+            let textDecoder = new util.TextDecoder("utf-8", { ignoreBOM: true })
+            if (this.resArray === undefined) {
+              return
+            }
+            let retStr = textDecoder.decode(this.resArray, { stream: false })
             this.resdec = retStr
           })
           .backgroundColor($r('app.color.text_color'))

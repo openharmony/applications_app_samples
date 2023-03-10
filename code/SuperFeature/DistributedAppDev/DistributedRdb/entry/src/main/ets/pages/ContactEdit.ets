@@ -91,21 +91,25 @@ struct ContactEdit {
       promptAction.showToast({ message: $r('app.string.phone_validate'), duration: 1000 })
       return
     }
-    if (this.isInsert) {
-      let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
-      predicates.equalTo('name', this.contact.name)
-      let alreadyExist = await rdbModel.query(predicates)
-      if (alreadyExist.length > 0) {
-        Logger.info(TAG, 'already exist, need update')
-        this.contact.id = alreadyExist[0].id
-        await rdbModel.updateData(this.contact)
+    try {
+      if (this.isInsert) {
+        let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
+        predicates.equalTo('name', this.contact.name)
+        let alreadyExist = await rdbModel.query(predicates)
+        if (alreadyExist.length > 0) {
+          Logger.info(TAG, 'already exist, need update')
+          this.contact.id = alreadyExist[0].id
+          await rdbModel.updateData(this.contact)
+        } else {
+          await rdbModel.insertData(this.contact)
+          Logger.info(TAG, 'insert success')
+        }
       } else {
-        await rdbModel.insertData(this.contact)
-        Logger.info(TAG, 'insert success')
+        await rdbModel.updateData(this.contact)
+        Logger.info(TAG, 'update success')
       }
-    } else {
-      await rdbModel.updateData(this.contact)
-      Logger.info(TAG, 'update success')
+    } catch (err) {
+      Logger.error(JSON.stringify(err))
     }
     router.back()
   }

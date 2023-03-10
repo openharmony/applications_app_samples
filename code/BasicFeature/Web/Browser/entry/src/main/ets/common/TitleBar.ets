@@ -110,6 +110,7 @@ export struct TabletTitle {
         .fontSize(18)
         .margin(2)
         .width('51%')
+        .layoutWeight(1)
         .onChange((value: string) => {
           this.addr = value
         })
