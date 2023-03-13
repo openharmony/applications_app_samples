@@ -17,7 +17,7 @@ import router from '@ohos.router'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import fileio from '@ohos.fileio'
 import request from '@ohos.request'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 import { UploadFile } from '../feature/UploadFile'
 
@@ -39,7 +39,7 @@ export struct NavigationBar {
     // 将选中图片存入沙箱路径
     let id = url.split('image/')[1]
     Logger.info(TAG, `this.id = ${id}`)
-    let mContext = getContext(this) as context.Context
+    let mContext: common.Context = getContext(this) as common.Context
     let media = mediaLibrary.getMediaLibrary(mContext)
     Logger.info(TAG, `this.media = ${JSON.stringify(media)}`)
     let imagesFetchOp = {
@@ -82,7 +82,7 @@ export struct NavigationBar {
       data: [{ name: 'name123', value: '123' }],
     }
     Logger.info(TAG, `uploadConfig = ${JSON.stringify(uploadConfig)}`)
-    let uploadContext = getContext(this) as context.BaseContext
+    let uploadContext: common.BaseContext = getContext(this) as common.BaseContext
     let uploadTask = await request.uploadFile(uploadContext, uploadConfig)
     uploadTask.on('complete', async (taskStates) => {
       this.isSuccessNum++

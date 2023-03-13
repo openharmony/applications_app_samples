@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.application.AbilityStage"
+import AbilityStage from '@ohos.app.ability.AbilityStage'
 import Logger from '../util/Logger'
 
 const TAG: string = '[MyAbilityStage]'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    Logger.info(TAG, `MyAbilityStage onCreate`)
+    Logger.info(TAG, 'MyAbilityStage onCreate')
   }
 }

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 
 const TAG: string = '[GetPictures]'
 
 export default class GetPictures {
   async getImage(): Promise<void> {
-    let mContext = getContext(this) as context.AbilityContext
+    let mContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
     let abilityResult = await mContext.startAbilityForResult(
       {
         bundleName: 'com.ohos.photos',

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import backgroundTaskManager from '@ohos.backgroundTaskManager'
 import quickFixManager from '@ohos.app.ability.quickFixManager'
@@ -39,7 +39,7 @@ async function applyQuickFix() {
   }
 }
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `onCreate`)
     let status = want.parameters

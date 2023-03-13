@@ -47,7 +47,7 @@ export default struct DeviceList {
               this.device = this.devices[index]
               this.openDialog()
             })
-          }, item => item.name)
+          })
         }
         .height('40%')
         .width('80%')

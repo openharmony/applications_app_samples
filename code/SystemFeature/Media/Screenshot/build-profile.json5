@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
- {
+
+{
   "app": {
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
@@ -22,7 +22,8 @@
         "name": "default",
         "signingConfig": "default"
       }
-    ]
+    ],
+    "signingConfigs": []
   },
   "modules": [
     {
