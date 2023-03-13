@@ -137,6 +137,7 @@ struct Index {
         })
         this.missionInfos['dataArray'] = missionInfos
         this.missionInfos.notifyDataReload()
+        this.isRefreshing = false
         Logger.info(TAG, `getMissionInfos missionInfos= ${JSON.stringify(this.missionInfos)}`)
       }, 1000)
     })
@@ -167,7 +168,7 @@ struct Index {
       Text(this.isShow ? this.refreshMission : '')
         .fontSize(30)
         .margin(10)
-      Refresh({ refreshing: this.isRefreshing, offset: 120, friction: 100 }) {
+      Refresh({ refreshing: $$this.isRefreshing, offset: 120, friction: 100 }) {
         List({ space: 20, initialIndex: 0 }) {
           LazyForEach(this.missionInfos, (item) => {
             ListItem() {
