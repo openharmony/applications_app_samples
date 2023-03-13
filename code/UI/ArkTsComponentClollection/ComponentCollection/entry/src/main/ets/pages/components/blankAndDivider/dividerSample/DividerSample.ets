@@ -35,7 +35,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Component
 struct DividerSample {
   @State strokeWidth: number = 8
-  @State lineColor: ResourceColor = $r('app.color.background_blue')
+  @State lineColor: Resource = $r('app.color.background_blue')
   @State lineCapStyle: LineCapStyle = LineCapStyle.Butt
 
   build() {

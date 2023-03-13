@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import context from '@ohos.application.context'
+
 import fileIO from '@ohos.fileio'
 import media from '@ohos.multimedia.media'
 import Logger from '../util/Logger'
+import common from '@ohos.app.ability.common'
 
 const TAG: string = 'Index'
 const FD_PREFIX: string = 'fd://'
@@ -24,7 +25,7 @@ let player = media.createAudioPlayer()
 @Component
 struct Index {
   @State hasInit: boolean = false
-  private context: context.AbilityContext = null
+  private context: common.UIAbilityContext = null
   build() {
     Row() {
       Button({type: ButtonType.Circle, stateEffect: true}) {
@@ -60,13 +61,13 @@ struct Index {
     var fd = ''
     fileIO.open(path).then((fdNumber) => {
       fd = FD_PREFIX + fdNumber
+      player.src = fd
       Logger.info(TAG, "open fd success, fd: " + fd)
     }, (err) => {
       Logger.error(TAG, "open fd failed, err is " + err)
     }).catch((err) => {
       Logger.error(TAG, "open fd failed, err is " + err)
     })
-    player.src = fd
   }
 
   setCallback(player: media.AudioPlayer) {
@@ -87,6 +88,6 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as context.AbilityContext
+    this.context = getContext(this) as common.UIAbilityContext
   }
 }

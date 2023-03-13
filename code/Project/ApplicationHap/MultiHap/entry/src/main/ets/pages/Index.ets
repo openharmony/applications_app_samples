@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import context from '@ohos.application.context'
+
+import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 
 const TAG: string = 'Index'
@@ -25,7 +26,7 @@ const VIDEO_ABILITY_NAME: string = "VideoAbility"
 @Entry
 @Component
 struct Index {
-  private context: context.AbilityContext = null
+  private context: common.UIAbilityContext = null
 
   build() {
     Row() {
@@ -64,6 +65,6 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as context.AbilityContext
+    this.context = getContext(this) as common.UIAbilityContext
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,12 +14,12 @@
  */
 
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, "FormGame", "%{public}s", 'TestAbility onCreate')
   }
