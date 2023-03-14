@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,15 +32,15 @@ export struct NetWork {
     this.mobileDataState = await this.netWorkMobile.getCellularDataState()
   }
 
-  @Builder dataState(text: Resource, flag: boolean) {
+  @Builder dataState($$: {text: Resource, flag: boolean}) {
     Row() {
-      Text(text)
+      Text($$.text)
         .margin({ left: 10 })
         .fontSize(20)
         .width('55%')
         .textAlign(TextAlign.Start)
 
-      Text(flag === true ? $r('app.string.start') : $r('app.string.end'))
+      Text($$.flag === true ? $r('app.string.start') : $r('app.string.end'))
         .fontSize(20)
         .margin({ left: 10, right: 6 })
         .textAlign(TextAlign.Center)
@@ -50,10 +50,10 @@ export struct NetWork {
     .height('8%')
   }
 
-  @Builder netWorkState(info: Resource, result: Resource) {
+  @Builder netWorkState($$: {info: Resource, result: Resource}) {
     Column() {
       Row() {
-        Text(info)
+        Text($$.info)
           .margin({ left: 10 })
           .fontSize(20)
           .width('55%')
@@ -64,7 +64,7 @@ export struct NetWork {
       }
 
       Row() {
-        Text(result)
+        Text($$.result)
           .margin({ left: 10 })
           .fontSize(18)
           .width('55%')
@@ -112,19 +112,19 @@ export struct NetWork {
 
       Divider()
 
-      this.dataState($r('app.string.mobile'), this.cellularData)
+      this.dataState({text: $r('app.string.mobile'), flag: this.cellularData})
 
       Divider()
 
-      this.dataState($r('app.string.roaming'), this.cellularDataRoaming)
+      this.dataState({text: $r('app.string.roaming'), flag: this.cellularDataRoaming})
 
       Divider()
 
-      this.netWorkState($r('app.string.flow'), this.flowState)
+      this.netWorkState({info: $r('app.string.flow'), result: this.flowState})
 
       Divider()
 
-      this.netWorkState($r('app.string.connectData'), this.mobileDataState)
+      this.netWorkState({info: $r('app.string.connectData'), result: this.mobileDataState})
     }
     .width('100%')
     .height('100%')
