@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -95,7 +95,6 @@ struct FoodGridItem {
     Column() {
       Image(this.foodItem.image)
         .objectFit(ImageFit.Contain)
-        .backgroundColor('#f1f3f5')
         .height(152)
         .sharedTransition(this.foodItem.letter, {
           duration: 400,
@@ -116,6 +115,7 @@ struct FoodGridItem {
       .backgroundColor('#E5E5E5')
     }
     .height(184)
+    .backgroundColor('#f1f3f5')
     .clip(new Rect({ width: '100%', height: '100%', radius: 12 }))
     .onClick(() => {
       router.push({ url: 'pages/FoodDetail', params: { foodId: this.foodItem } })
@@ -157,7 +157,7 @@ struct CategoryModeFoods {
     Text(value)
       .fontColor(this.currentTabIndex === index ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0.6)')
       .fontSize(this.currentTabIndex === index ? 24 : 18)
-      .margin({ top: 2 })
+      .margin({ top: 2, left: 10, right: 10 })
       .height(56)
   }
 

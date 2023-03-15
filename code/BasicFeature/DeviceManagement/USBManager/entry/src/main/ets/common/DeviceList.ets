@@ -19,7 +19,7 @@ import DeviceAttribute from '../model/DeviceAttribute'
 export default struct DeviceList {
   @Link isRefreshing: boolean
   @Link device: DeviceAttribute
-  @Link devices: Array<DeviceAttribute>
+  @Consume('devicesList') devices: Array<DeviceAttribute>
   public getDeviceList?: () => void
   public openDialog?: () => void
 
@@ -32,7 +32,7 @@ export default struct DeviceList {
 
       Refresh({ refreshing: this.isRefreshing, offset: 120, friction: 100 }) {
         List() {
-          ForEach(this.devices, (item, index) => {
+          ForEach(this.devices, (item: DeviceAttribute, index) => {
             ListItem() {
               Text(`${item.manufacturerName} ${item.productName}`)
                 .height(50)
@@ -47,7 +47,7 @@ export default struct DeviceList {
               this.device = this.devices[index]
               this.openDialog()
             })
-          }, item => item.name)
+          })
         }
         .height('40%')
         .width('80%')
@@ -56,10 +56,9 @@ export default struct DeviceList {
       .height(300)
       .width('90%')
       .margin({ bottom: 20 })
-      .onStateChange(() => {
-        this.getDeviceList()
-      })
       .onRefreshing(() => {
+        this.isRefreshing = true
+        this.getDeviceList()
         setTimeout(() => {
           this.isRefreshing = false
         }, 1000)

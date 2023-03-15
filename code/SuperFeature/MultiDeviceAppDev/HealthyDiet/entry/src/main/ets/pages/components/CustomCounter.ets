@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,16 +19,16 @@ struct DecIcon {
   private click: () => void = undefined
 
   build() {
-    Stack() {
-      Line()
-        .startPoint([0, 0])
-        .endPoint([12, 0])
-        .stroke(Color.White)
-        .strokeWidth(2)
-        .strokeLineCap(LineCapStyle.Round)
+    Column() {
+      Row()
+        .width('100%')
+        .height(2)
+        .backgroundColor(Color.White)
     }
+    .justifyContent(FlexAlign.Center)
     .borderRadius(10)
     .backgroundColor('#35BD6A')
+    .padding({ left: 2, right: 2 })
     .width(20)
     .height(20)
     .opacity(0.4)
@@ -44,18 +44,18 @@ struct IncIcon {
   private readonly click: () => void = undefined
 
   build() {
-    Stack() {
-      Line()
-        .startPoint([0, 0])
-        .endPoint([0, 12])
-        .stroke(Color.White)
-        .strokeWidth(2)
-        .strokeLineCap(LineCapStyle.Round)
+    Column() {
+      Column()
+        .width(2)
+        .height('100%')
+        .backgroundColor(Color.White)
     }
+    .justifyContent(FlexAlign.Center)
     .borderRadius(10)
     .backgroundColor('#35BD6A')
     .width(20)
     .height(20)
+    .padding({ top: 2, bottom: 2 })
     .onClick(() => {
       this.click()
     })

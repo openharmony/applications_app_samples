@@ -47,7 +47,7 @@ struct Index {
   @State result: string = ''
   @State isListener: boolean = false
   @State isRefreshing: boolean = false
-  @State devices: Array<DeviceAttribute> = []
+  @Provide('devicesList') devices: Array<DeviceAttribute> = []
   @State device: DeviceAttribute = new DeviceAttribute()
   @State isSubscribed: boolean = false
   dialogController: CustomDialogController = new CustomDialogController({
@@ -184,11 +184,9 @@ struct Index {
           })
       }
       .margin({ top: 50 })
-
       DeviceList({
         isRefreshing: $isRefreshing,
         device: $device,
-        devices: $devices,
         getDeviceList: () => {
           this.getDeviceList()
         },
