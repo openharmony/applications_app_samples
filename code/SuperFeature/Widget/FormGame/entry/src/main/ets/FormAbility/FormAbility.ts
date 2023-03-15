@@ -21,6 +21,13 @@ import formProvider from '@ohos.app.form.formProvider';
 import dataStorage from '@ohos.data.storage';
 import infoUtil from "libinfoutil.so";
 
+// source max length
+const SOURCE_MAX_LENGTH: number = 3;
+// target max length
+const TARGET_MAX_LENGTH: number = 7;
+// single word length
+const WORD_LENGTH: number = 4;
+
 export default class FormAbility extends FormExtensionAbility {
   private storeDB: dataStorage.Storage = undefined;
   private allWordArray: Array<string> = [
@@ -71,7 +78,7 @@ export default class FormAbility extends FormExtensionAbility {
   }
 
   updateWordStr(index) {
-    if (index === NaN || index < 0 || index > 7) {
+    if (index === NaN || index < 0 || index > TARGET_MAX_LENGTH) {
       Logger.info('FormAbility updateWordStr failed for invalid eventIndex:' + index);
       return;
     }
@@ -90,14 +97,14 @@ export default class FormAbility extends FormExtensionAbility {
       }
       return strArray.join('');
     }
-    if (index <= 3) { // Select the source word
+    if (index <= SOURCE_MAX_LENGTH) { // Select the source word
       let selectChar = this.sourceWordStr.charAt(index);
       this.sourceWordStr = updateString(this.sourceWordStr, index, ' ');
       this.targetWordStr = fillSpace(this.targetWordStr, selectChar);
     } else { // Select the target word
-      let selectChar = this.targetWordStr.charAt(index - 4);
+      let selectChar = this.targetWordStr.charAt(index - WORD_LENGTH);
       this.sourceWordStr = fillSpace(this.sourceWordStr, selectChar);
-      this.targetWordStr = updateString(this.targetWordStr, index - 4, ' ');
+      this.targetWordStr = updateString(this.targetWordStr, index - WORD_LENGTH, ' ');
     }
     this.flushToStoreDB();
   }
@@ -128,7 +135,7 @@ export default class FormAbility extends FormExtensionAbility {
 
   disorderSourceWord() {
     const strArray = this.sourceWordStr.split('');
-    if (strArray.length !== 4) {
+    if (strArray.length !== WORD_LENGTH) {
       Logger.error('FormAbility invalid sourceWordStr len:' + strArray.length);
       return;
     }
@@ -204,22 +211,22 @@ export default class FormAbility extends FormExtensionAbility {
     this.targetWordStr = this.storeDB.getSync('targetWord', '    ').toString();
     Logger.info('FormAbility sourceWord:[' + this.sourceWordStr + ']' + " " + this.sourceWordStr.length);
     Logger.info('FormAbility targetWord:[' + this.targetWordStr + ']' + " " + this.targetWordStr.length);
-    if (this.sourceWordStr.length !== 4 || this.targetWordStr.length !== 4) {
+    if (this.sourceWordStr.length !== WORD_LENGTH || this.targetWordStr.length !== WORD_LENGTH) {
       this.sourceWordStr = this.allWordArray[0];
       this.targetWordStr = '    ';
     }
     Logger.info('FormAbility sourceWord:[' + this.sourceWordStr + ']');
     Logger.info('FormAbility targetWord:[' + this.targetWordStr + ']');
     let eventIndex = Number(JSON.parse(message).params.message.charAt(0));
-    if (eventIndex === NaN || eventIndex < 0 || eventIndex > 7) {
+    if (eventIndex === NaN || eventIndex < 0 || eventIndex > TARGET_MAX_LENGTH) {
       Logger.info('FormAbility onEvent failed for invalid eventIndex:' + eventIndex);
       return;
     }
-    if (eventIndex < 4 && this.sourceWordStr.charAt(eventIndex) === ' ') {
+    if (eventIndex < WORD_LENGTH && this.sourceWordStr.charAt(eventIndex) === ' ') {
       Logger.info('FormAbility source no need to update for eventIndex:' + eventIndex);
       return;
     }
-    if (eventIndex >= 4 && this.targetWordStr.charAt(eventIndex - 4) === ' ') {
+    if (eventIndex >= WORD_LENGTH && this.targetWordStr.charAt(eventIndex - WORD_LENGTH) === ' ') {
       Logger.info('FormAbility target no need to update for eventIndex:' + eventIndex);
       return;
     }
