@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import ContactStore from '../feature/ContactStore'
 import { arrayToString, Contact, ContactInfo, logger, OPERATE_STATUS, TitleBar } from '@ohos/common'
 
