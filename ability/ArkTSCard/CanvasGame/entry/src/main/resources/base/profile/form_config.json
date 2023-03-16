@@ -3,7 +3,6 @@
     {
       "name": "ArkTSCardGame",
       "description": "This is a ArkTS card game by canvas.",
-      "type": "eTS",
       "uiSyntax": "arkts",
       "src": "./ets/widget/pages/Card.ets",
       "window": {
