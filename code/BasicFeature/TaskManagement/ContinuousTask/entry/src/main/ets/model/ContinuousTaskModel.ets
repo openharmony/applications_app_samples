@@ -15,15 +15,15 @@
 
 import backgroundTaskManager from '@ohos.backgroundTaskManager'
 import wantAgent from '@ohos.wantAgent'
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 
 const TAG: string = 'ContinuousTaskModel'
 
 export default class ContinuousTaskModel {
-  private context: context.AbilityContext
+  private context: common.UIAbilityContext
 
-  constructor(context: context.AbilityContext) {
+  constructor(context: common.UIAbilityContext) {
     this.context = context
   }
 

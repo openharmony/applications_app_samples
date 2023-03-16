@@ -234,7 +234,7 @@ export default class CameraService {
   async releaseCamera() {
     Logger.info(this.tag, 'releaseCamera')
     if (this.cameraInput) {
-      await this.cameraInput.release()
+      await this.cameraInput.close()
     }
     if (this.previewOutput) {
       await this.previewOutput.release()

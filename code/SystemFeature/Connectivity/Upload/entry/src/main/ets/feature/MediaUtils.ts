@@ -14,7 +14,7 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import context from '@ohos.application.context'
+import type common from '@ohos.app.ability.common'
 import DateTimeUtil from '../feature/DateTimeUtil'
 import Logger from '../util/Logger'
 
@@ -24,14 +24,14 @@ export default class MediaUtils {
   private mediaTest: mediaLibrary.MediaLibrary = undefined
   private static instance: MediaUtils = undefined
 
-  public static getInstance(context: context.Context) {
+  public static getInstance(context: common.Context): MediaUtils {
     if (this.instance === undefined) {
       this.instance = new MediaUtils(context)
     }
     return this.instance
   }
 
-  constructor(context: context.Context) {
+  constructor(context: common.Context) {
     this.mediaTest = mediaLibrary.getMediaLibrary(context)
   }
 

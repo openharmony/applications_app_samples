@@ -14,21 +14,21 @@
  */
 
 import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info(`Ability onCreate`)
+    Logger.info('Ability onCreate')
   }
 
   onDestroy() {
-    Logger.info(`Ability onDestroy`)
+    Logger.info('Ability onDestroy')
   }
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
-    Logger.info(`Ability onWindowStageCreate`)
+    Logger.info('Ability onWindowStageCreate')
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -41,16 +41,16 @@ export default class EntryAbility extends Ability {
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info(`Ability onWindowStageDestroy`)
+    Logger.info('Ability onWindowStageDestroy')
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info(`Ability onForeground`)
+    Logger.info('Ability onForeground')
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info(`Ability onBackground`)
+    Logger.info('Ability onBackground')
   }
 }

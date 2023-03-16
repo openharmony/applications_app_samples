@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../model/Logger'
 import window from '@ohos.window'
 

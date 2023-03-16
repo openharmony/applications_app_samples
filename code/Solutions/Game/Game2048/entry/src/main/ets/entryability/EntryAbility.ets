@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import Logger from '../model/Logger'
 
-export default class EntryAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info('Ability onCreate')
   }

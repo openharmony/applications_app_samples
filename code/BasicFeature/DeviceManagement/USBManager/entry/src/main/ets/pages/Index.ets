@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import usb from '@ohos.usbManager'
+import usb from '@ohos.usbV9'
 import commonEventManager from '@ohos.commonEventManager'
 import promptAction from '@ohos.promptAction'
 import DeviceCustomDialog from '../common/DeviceCustomDialog'
@@ -110,7 +110,6 @@ struct Index {
     this.devices = []
     let usbDevices: usb.USBDevice[] = usb.getDevices()
     Logger.info(TAG, `usb getDeviceList 000 is : ${JSON.stringify(usbDevices)}`)
-
     if (CheckEmptyUtils.isEmpty(usbDevices)) {
       Logger.info(TAG, `usbDevices is null`)
       return
@@ -120,7 +119,6 @@ struct Index {
       this.result = 'device list is empty'
       return
     }
-
     for (let index = 0; index < usbDevices.length; index++) {
       Logger.info(TAG, `usb this.devices ${index} : ${JSON.stringify(this.devices)}`)
       let deviceAttribute = {

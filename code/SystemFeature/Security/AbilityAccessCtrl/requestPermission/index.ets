@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { requestModel } from './src/main/ets/components/mainPage/RequestModel'
+export { requestModel } from './src/main/ets/components/mainpage/RequestModel'

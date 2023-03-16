@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import context from '@ohos.application.context'
+import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 import PlayerModel from '../feature/BackgroundPlayerFeature'
 import ContinuousTaskModel from '../model/ContinuousTaskModel'
@@ -37,7 +37,7 @@ struct BackgroundPlayer {
   @State albumSrc: Resource = $r('app.media.album')
   @State selectedIndex: number = 0 // selected song
   @State imageArrays: Array<Resource> = [$r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')]
-  private continuousTaskModel: ContinuousTaskModel = new ContinuousTaskModel(getContext() as context.AbilityContext)
+  private continuousTaskModel: ContinuousTaskModel = new ContinuousTaskModel(getContext() as common.UIAbilityContext)
 
   // get time
   getShownTimer(ms: number): string {

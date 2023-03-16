@@ -204,7 +204,9 @@ struct Index {
             .borderRadius(20)
             .backgroundColor(Color.White)
           }
-        }, item => item.name)
+        }, (item, index) => {
+          return JSON.stringify(item) + index
+        })
       }
       .padding({ left: 10, right: 10, top: 10 })
       .width('100%')

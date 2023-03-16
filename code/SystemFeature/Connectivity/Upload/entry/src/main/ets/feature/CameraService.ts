@@ -17,7 +17,7 @@ import camera from '@ohos.multimedia.camera'
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import fileio from '@ohos.fileio'
-import context from '@ohos.application.context'
+import type common from '@ohos.app.ability.common'
 import MediaUtils from './MediaUtils'
 import Logger from '../util/Logger'
 
@@ -44,10 +44,11 @@ export default class CameraService {
   private cameraManager: camera.CameraManager
   private cameras: Array<camera.CameraDevice>
   private photoOutPut: camera.PhotoOutput
+  // @ts-ignore
   private captureSession: camera.CaptureSession
   private cameraOutputCapability: camera.CameraOutputCapability
 
-  constructor(context: context.Context) {
+  constructor(context: common.Context) {
     this.context = context
     this.mediaUtil = MediaUtils.getInstance(context)
     // 服务端代码，创建ImageReceiver
@@ -149,7 +150,7 @@ export default class CameraService {
     Logger.info(TAG, `releaseCamera start`)
     await this.captureSession.stop()
     if (this.cameraInput) {
-      await this.cameraInput.release()
+      await this.cameraInput.close()
     }
     if (this.previewOutput) {
       await this.previewOutput.release()
@@ -157,7 +158,7 @@ export default class CameraService {
     if (this.photoOutput) {
       await this.photoOutput.release()
     }
-    await this.cameraInput.release()
+    await this.cameraInput.close()
     await this.captureSession.release()
     Logger.info(TAG, `releaseCamera end`)
   }
