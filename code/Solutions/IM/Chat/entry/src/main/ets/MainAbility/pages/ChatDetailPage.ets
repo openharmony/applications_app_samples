@@ -83,7 +83,7 @@ struct ChatDetailPage {
       .padding({ left: 0, right: 10 })
       .justifyContent(FlexAlign.SpaceBetween)
 
-      List({ scroller: this.scroller, initialIndex: this.msgLength }) {
+      List({ scroller: this.scroller, initialIndex: this.msgLength - 1 }) {
         LazyForEach(this.chatDetailData, (msg: MessageBase) => {
           ListItem() {
             ChatItemView({ msg: msg, imgFile: $imgFile })
@@ -115,7 +115,7 @@ struct ChatDetailPage {
               .toString(), this.user1, this.user2, msg, 1, this.tdate.getSeconds())
             this.chatDetailData.pushData(msgBody)
             this.msgLength = this.chatDetailData.totalCount()
-            this.scroller.scrollToIndex(this.msgLength)
+            this.scroller.scrollToIndex(this.msgLength - 1)
           })
         Image($r('app.media.chatting_expression'))
           .key('chatExpression')
@@ -127,7 +127,7 @@ struct ChatDetailPage {
             let msgBody = new MessageBase(this.chatDetailData.totalCount().toString(), this.user1, this.user2, msg, 2)
             this.chatDetailData.pushData(msgBody)
             this.msgLength = this.chatDetailData.totalCount()
-            this.scroller.scrollToIndex(this.msgLength)
+            this.scroller.scrollToIndex(this.msgLength - 1)
           })
         Image($r('app.media.type_select'))
           .height(20)

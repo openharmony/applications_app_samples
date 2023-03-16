@@ -54,13 +54,11 @@ struct Index {
       }.width('10%')
       Column() {
         Web({ src: "https://yangyunhe369.github.io/h5-game-blockBreaker/", controller: this.controller })
-          .webDebuggingAccess(true)
           .domStorageAccess(true)
           .onlineImageAccess(true)
           .imageAccess(true)
           .zoomAccess(false)
           .javaScriptAccess(true)
-          .webDebuggingAccess(true)
           .backgroundColor(Color.Orange)
           .onPageEnd(e => {
             try {
