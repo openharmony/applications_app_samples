@@ -35,7 +35,7 @@ export class WifiModel {
     let wifiList: Array<WifiType> = []
     let result: Array<wifi.WifiScanInfo> = []
     try {
-      result = await wifi.getScanResults()
+      result = await wifi.getScanInfoList()
     } catch (err) {
       Logger.log(TAG, `scan info err: ${JSON.stringify(err)}`)
       return wifiList
