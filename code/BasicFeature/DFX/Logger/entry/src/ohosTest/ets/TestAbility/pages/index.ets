@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@system.router'
 
 @Entry
 @Component
