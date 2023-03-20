@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -103,7 +103,8 @@ export struct TitleBar {
         deviceName: 'Local device',
         deviceType: GobangConst.DEVICE_TYPE_NUMBER,
         networkId: '',
-        range: GobangConst.RANGE_NUMBER
+        range: GobangConst.RANGE_NUMBER,
+        authForm: 2
       })
       let deviceTemps = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTemps.length; i++) {
