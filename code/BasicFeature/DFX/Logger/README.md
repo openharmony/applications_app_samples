@@ -74,6 +74,6 @@ This sample shows how to use log APIs to print log information and save the info
 
 ## Constraints
 
-1. This sample requires API version 8 or later.
+1. This sample requires API version 10 or later.
 
 2. This sample requires DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) to compile and run.

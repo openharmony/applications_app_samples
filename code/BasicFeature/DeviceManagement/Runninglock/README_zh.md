@@ -46,8 +46,8 @@ log/src/main/ets/
 ### 约束与限制
 
 1.本示例仅支持在标准系统上运行;
-2.本示例仅支持API9版本SDK，版本号：3.2.10.6;
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上才可编译运行。
+2.本示例支持API10版本SDK，版本号：4.0.5.1;
+3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：

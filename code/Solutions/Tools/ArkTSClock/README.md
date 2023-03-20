@@ -14,6 +14,6 @@ For example, **2 * Math.PI / 60 * second** indicates the rotation angle of the s
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample demonstrates the stage model, which supports only API version 9.
+2. This sample demonstrates the stage model, which supports only API version 10.
 
 3. The DevEco Studio version used in this sample must be 3.0.0.900 or later.

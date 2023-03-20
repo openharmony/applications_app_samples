@@ -12,4 +12,4 @@ This example illustrates how to obtain application fault information in eTS.
 
 ### Constraints
 
-This sample can only be run on standard-system devices. The SDK version must be 3.2.10.6 or later.
+This sample can only be run on standard-system devices. The SDK version must be 4.0.5.1 or later.

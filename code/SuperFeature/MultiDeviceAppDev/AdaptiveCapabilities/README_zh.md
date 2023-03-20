@@ -50,9 +50,9 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，从API version 9开始支持。
+2.本示例为Stage模型，从API version 10开始支持。
 
-3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
 4.本示例在开发板上运行时，可以修改开发板系统配置文件以使能应用窗口能力。
 

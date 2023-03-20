@@ -30,6 +30,6 @@ ohos.permission.READ_MEDIA
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample demonstrates the stage model, which supports only API version 9.
+2. This sample demonstrates the stage model, which supports only API version 10.
 
-3. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.
+3. This sample requires DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) to compile and run.

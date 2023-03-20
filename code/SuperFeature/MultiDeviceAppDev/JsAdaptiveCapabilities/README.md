@@ -36,7 +36,7 @@ N/A
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample demonstrates the FA model, which supports only API version 8.
+2. This sample demonstrates the FA model, which supports only API version 10.
 
 3. DevEco Studio 3.0 Beta3 (Build version: 3.0.0.901, built on May 30, 2022) must be used.
 

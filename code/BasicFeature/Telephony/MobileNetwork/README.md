@@ -22,6 +22,6 @@ This sample shows how to use cellular data APIs to obtain SIM card information.
 
 2. The device must support the SIM card function and have a SIM card installed.
 
-3. This sample demonstrates the stage model, which supports only API version 9.
+3. This sample demonstrates the stage model, which supports only API version 10.
 
-4. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.
+4. This sample requires DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) to compile and run.
