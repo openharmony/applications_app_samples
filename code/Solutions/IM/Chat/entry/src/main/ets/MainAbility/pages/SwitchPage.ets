@@ -37,7 +37,7 @@ struct SwitchPage {
   //线程背景色
   @State workerColor: string = "#f0f0f0"
 
-  private aboutToAppear(): void{
+  aboutToAppear(): void{
     this.pageStart()
   }
 

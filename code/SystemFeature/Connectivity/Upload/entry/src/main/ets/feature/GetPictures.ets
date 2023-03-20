@@ -36,7 +36,7 @@ export default class GetPictures {
       let param = want['parameters']
       Logger.info(TAG, `this.param = ${JSON.stringify(param)}`)
       if (param !== null && param !== undefined) {
-        let result = param['select-item-list']
+        let result: Array<string> = param['select-item-list'] as Array<string>
         let select: Array<string> = []
         if (result.length >= 9) {
           for (let i = 0; i < 9; i++) {

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 
 class ShowToast {
   private longToastTime: number = 3000
