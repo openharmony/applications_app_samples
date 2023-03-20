@@ -50,8 +50,8 @@ position/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：GPS定位功能仅支持部分机型。
-2. 本示例为Stage模型，仅支持API9版本SDK，版本号：3.2.10.6。
-3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+2. 本示例为Stage模型，支持API10版本SDK，版本号：4.0.5.1。
+3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
 ### 下载
 

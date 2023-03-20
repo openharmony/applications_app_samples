@@ -32,6 +32,6 @@ N/A
 
 1. This sample can only be run on standard-system devices that use the Rockchip RK3568 chip.
 
-2. DevEco Studio 3.0 Beta4 (Build version: 3.0.0.992, built on July 14, 2022) must be used.
+2. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 
 3. [ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md) and [ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md) are permissions of the system_basic level, which can be viewed from the permission list (https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). You need to manually configure the signature of the corresponding permission level by following instructions in [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/security/hapsigntool-overview.md/).
