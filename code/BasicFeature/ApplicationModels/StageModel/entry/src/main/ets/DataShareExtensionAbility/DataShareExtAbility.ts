@@ -14,14 +14,14 @@
  */
 
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
-import rdb from '@ohos.data.rdb'
+import relationalStore from '@ohos.data.relationalStore'
 import Logger from '../util/Logger'
 
 const TAG: string = 'DataShareExtAbility'
 const TABLE_NAME: string = 'books'
-const STORE_CONFIG: rdb.StoreConfigV9 = { name: 'books.db', securityLevel: rdb.SecurityLevel.S1 }
+const STORE_CONFIG: relationalStore.StoreConfig = { name: 'books.db', securityLevel: relationalStore.SecurityLevel.S1 }
 const SQL_CREATE_TABLE: string = 'CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)'
-let rdbStore: rdb.RdbStoreV9 = undefined
+let rdbStore: relationalStore.RdbStore = undefined
 
 // 对应FA的DataAbility下的Data.ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
@@ -29,7 +29,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
   // 对应FA的onInitialized
   onCreate(want, callback) {
     Logger.info(TAG, ` DataShareExtAbility onCreate, want: ${JSON.stringify(want.abilityName)}`)
-    rdb.getRdbStoreV9(this.context, STORE_CONFIG, 1, (err, data) => {
+    relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, data) => {
       Logger.info(TAG, `DataShareExtAbility getRdbStore done`)
       rdbStore = data
       if (rdbStore !== undefined) {

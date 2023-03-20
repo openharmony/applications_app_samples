@@ -145,9 +145,9 @@ export default class FormAbility extends FormExtensionAbility {
     Logger.log(`FormAbility onCreate, want: ${JSON.stringify(want)}`);
 
     // get form info
-    let formId: string = want.parameters[FORM_PARAM_IDENTITY_KEY];
-    let formName: string = want.parameters[FORM_PARAM_NAME_KEY];
-    let tempFlag: boolean = want.parameters[FORM_PARAM_TEMPORARY_KEY];
+    let formId: string = want.parameters[FORM_PARAM_IDENTITY_KEY].toString();
+    let formName: string = want.parameters[FORM_PARAM_NAME_KEY].toString();
+    let tempFlag: boolean = Boolean(want.parameters[FORM_PARAM_TEMPORARY_KEY]);
     storeFormInfo(formId, formName, tempFlag);
 
     let obj = {
