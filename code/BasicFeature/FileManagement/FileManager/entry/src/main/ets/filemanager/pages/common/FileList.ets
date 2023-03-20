@@ -143,9 +143,7 @@ export struct FileList {
                 itemIsNoFile: $isNoFile
               })
             }
-          }, (listItem, index) => {
-            return JSON.stringify(listItem) + index
-          })
+          }, listItem => JSON.stringify(listItem.title) )
         }
         .height('100%')
         .width('100%')
