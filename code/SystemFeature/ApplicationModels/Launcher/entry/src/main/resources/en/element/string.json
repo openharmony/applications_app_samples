@@ -39,6 +39,10 @@
     {
       "name": "clear_all_missions_message",
       "value": "Cleaned to optimal condition"
+    },
+    {
+      "name": "start_abilities_from_background",
+      "value": "Start abilities from background"
     }
   ]
 }
