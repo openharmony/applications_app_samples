@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -95,17 +95,15 @@ export struct UsageList {
                   Text($r('app.string.application_last_used')).fontSize(15)
                   Text(hmsToString(Math.floor(item.prevAccessTime / 1000))).fontSize(15)
                 }
-                .width('100%')
               }
+              .alignItems(HorizontalAlign.Start)
               .layoutWeight(1)
               .padding({ left: 5, right: 5 })
             }
-            .width('100%')
             .height(95)
             .margin({ bottom: 50 })
           }, item => item.bundleName)
         }
-        .padding(10)
         .justifyContent(FlexAlign.Start)
       }
       .width('90%')
@@ -113,7 +111,8 @@ export struct UsageList {
       .scrollBar(BarState.Off)
       .backgroundColor(Color.White)
       .scrollable(ScrollDirection.Vertical)
-      .border({ width: 20, color: Color.White, radius: 10 })
+      .borderRadius(10)
+      .padding(20)
     }
     .width('100%')
     .height('55%')

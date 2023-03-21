@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -319,6 +319,7 @@ struct Record {
           .onChange((value: string, index: number) => {
             this.mealTimeId = index
           })
+          .height('100%')
 
         TextPicker({ range: this.foodWeight, selected: this.select })
           .layoutWeight(1)
@@ -330,6 +331,7 @@ struct Record {
           .onChange((value: string) => {
             this.mealWeight = Number(value)
           })
+          .height('100%')
       }
       .height(128)
 
