@@ -8,14 +8,14 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF InputStyle KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 import { keySourceListData, numberSourceListData, symbolSourceListData, keySourceListType, sourceListType
 } from '../model/keyboardKeyData'
 import { InputHandler } from '../model/KeyboardController'
-import styleConfiguration from '../common/styleConfiguration'
+import {StyleConfiguration, KeyStyle} from '../common/styleConfiguration'
 import Log from '../model/Log'
 import deviceInfo from '@ohos.deviceInfo'
 
@@ -25,7 +25,7 @@ let TAG: string = 'index->'
 @Component
 struct keyItemNumber {
   private keyValue: keySourceListType
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @Link upper: number
 
   @Styles pressedStyles() {
@@ -96,7 +96,7 @@ struct keyItemNumber {
 struct keyItem {
   private keyValue: keySourceListType
   private color: string
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
   }
@@ -130,7 +130,7 @@ struct keyItem {
 @Component
 struct keyItemGray {
   private keyValue: string
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -168,7 +168,7 @@ struct keyItemGray {
 //删除组件
 @Component
 struct deleteItem {
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
   }
@@ -200,8 +200,8 @@ struct deleteItem {
 //返回组件
 @Component
 struct returnItem {
-  private returnWidth: any
-  @Link inputStyle: any
+  private returnWidth: Resource
+  @Link inputStyle: KeyStyle
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
   }
@@ -233,8 +233,8 @@ struct returnItem {
 //空格组件
 @Component
 struct spaceItem {
-  private spaceWith: any
-  @Link inputStyle: any
+  private spaceWith: Resource
+  @Link inputStyle: KeyStyle
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
   }
@@ -267,7 +267,7 @@ struct spaceItem {
 @Component
 struct keyMenu {
   private keyList: keySourceListType[]
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @State public upper: number = 0
   @Link menuType: number
 
@@ -372,7 +372,7 @@ struct keyMenu {
 @Component
 struct numberMenu {
   private numberList: sourceListType[]
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -462,7 +462,7 @@ struct numberMenu {
 @Component
 struct symbolMenu {
   private symbolList: sourceListType[]
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   @Link menuType: number
 
   @Styles pressedStyles() {
@@ -548,7 +548,7 @@ struct symbolMenu {
 //下拉按钮
 @Component
 struct downMenu {
-  @Link inputStyle: any
+  @Link inputStyle: KeyStyle
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
       Stack() {
@@ -581,7 +581,7 @@ struct Index {
   @State menuType: number= 0
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false
   @StorageLink('isRkDevice') isRkDevice: boolean = false;
-  @StorageLink('inputStyle')  inputStyle: any = styleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType);
+  @StorageLink('inputStyle')  inputStyle: KeyStyle = StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType);
   onBackPress(): boolean{
     Log.showInfo(TAG, 'kikaInput onBackPress');
     InputHandler.getInstance().hideKeyboardSelf();
@@ -589,7 +589,7 @@ struct Index {
   }
 
   change() {
-    AppStorage.Set('inputStyle', styleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType))
+    AppStorage.Set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType));
   }
   build() {
     Stack() {
