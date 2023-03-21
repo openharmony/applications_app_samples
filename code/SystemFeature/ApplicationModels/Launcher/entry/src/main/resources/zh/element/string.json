@@ -39,6 +39,10 @@
     {
       "name": "clear_all_missions_message",
       "value": "已清理至最佳状态"
+    },
+    {
+      "name": "start_abilities_from_background",
+      "value": "允许应用后台启动"
     }
   ]
 }
