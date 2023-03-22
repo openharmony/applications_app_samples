@@ -3,7 +3,7 @@
 ### 介绍
 
 本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md) 
-、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/bl   ob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md) 
+、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md) 
 等接口，实现了增添文件、删除文件、查找指定类型文件文件和预览图片的功能;
 
 ### 效果预览
