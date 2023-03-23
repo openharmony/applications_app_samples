@@ -14,7 +14,7 @@
  */
 
 
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import type Window from '@ohos.window';
 import commonEvent from '@ohos.commonEventManager';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
@@ -30,7 +30,7 @@ const SIXTY: number = 60; // Convert minute
 const MIN_TIME: number = 10; // Convert min time
 const MUSIC_SIZE: number = 2; // Convert music size
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   private currentSession = null;
   private isSwitching = false;
   private currentTimeText: string = '';
@@ -122,9 +122,9 @@ export default class MainAbility extends Ability {
     // update duration
     this.totalMs = PlayerModel.getDuration();
     this.totalTimeText = this.getShownTimer(this.totalMs);
-    this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs());
-    Logger.info(TAG, 'refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs},
-      this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}');
+    this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs() as number);
+    Logger.info(TAG, 'refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}' +
+      'this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}');
     return 0;
   }
 
@@ -217,7 +217,7 @@ export default class MainAbility extends Ability {
     this.currentProgress = 0;
     this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
-      this.refreshSongInfo(PlayerModel.playerIndex);
+      this.refreshSongInfo(PlayerModel.playerIndex as number);
       PlayerModel.playMusic(0, true);
       this.isSwitching = false;
     });
@@ -238,7 +238,7 @@ export default class MainAbility extends Ability {
     this.currentProgress = 0;
     this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
-      this.refreshSongInfo(PlayerModel.playerIndex);
+      this.refreshSongInfo(PlayerModel.playerIndex as number);
       PlayerModel.playMusic(0, true);
       this.isSwitching = false;
     });
