@@ -143,8 +143,9 @@ class FeatureAbilityHelper {
   // 启动service,对应Stage模型中startServiceAbility
   async startServiceAbility(parameter) {
     Logger.info(TAG, 'startAbility start')
-    let startNum = await featureAbility.startAbility(parameter)
-    Logger.info(TAG, `startAbility end ${startNum}`)
+    await featureAbility.startAbility(parameter).then((data) => {
+      Logger.info(TAG, `startAbility ${JSON.stringify(data)}`)
+    })
   }
 
   // 连接service,对应stage模型connectService

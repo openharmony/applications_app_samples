@@ -15,7 +15,7 @@
 
 import bundle from '@ohos.bundle'
 import featureAbility from '@ohos.ability.featureAbility'
-import prompt from '@ohos.promptAction';
+import prompt from '@ohos.promptAction'
 import Logger from '../util/Logger'
 import { BUNDLE_NAME } from '../model/DaHelperConst'
 
@@ -254,10 +254,10 @@ class AppContext {
 
   // 通知系统绘制此页面功能所需的时间，Stage模型不支持
   printDrawnCompleted() {
-    context.printDrawnCompleted((err, data) => {
-      Logger.info(TAG, `printDrawnCompleted err = ${JSON.stringify(err)}, data = ${data}`)
+    context.printDrawnCompleted().then((data) => {
+      Logger.info(TAG, `printDrawnCompleted data = ${JSON.stringify(data)}`)
       prompt.showToast({
-        message: `printDrawnCompleted success ${data}`
+        message: 'printDrawnCompleted success'
       })
     })
   }
