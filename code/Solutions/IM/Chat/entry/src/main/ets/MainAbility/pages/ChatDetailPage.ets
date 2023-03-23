@@ -37,7 +37,7 @@ struct ChatDetailPage {
   msg2 = new TextMessage("我是好友消息2")
   tdate = new Date()
   megbody = new MessageBase("1", this.user1, this.user2, this.msg2, 1, this.tdate.getSeconds())
-  keyboartStr: string
+  @State keyboardStr: string = ''
   private chatDetailData = new ChatDetailData()
   private scroller: Scroller = new Scroller()
   @State wantParams: WantModel = new WantModel() // want的自定义参数
@@ -71,7 +71,7 @@ struct ChatDetailPage {
         }
         .key('moreBtn')
         .onClick(() => {
-          router.push({
+          router.pushUrl({
             url: "pages/ChatNewsPage",
             params: { NAME: router.getParams().chatName, IMAGEID: router.getParams().chatId }
           })
@@ -100,22 +100,23 @@ struct ChatDetailPage {
         Image($r('app.media.chatting_setmode_voice'))
           .height(20)
           .width(20)
-        TextInput({ placeholder: "", text: "" })
+        TextInput({ placeholder: "", text: this.keyboardStr })
           .key('bottomTextInput')
           .height(40)
           .width('80%')
           .enterKeyType(EnterKeyType.Send)
           .onChange((value: string) => {
-            this.keyboartStr = value
+            this.keyboardStr = value
           })
           .onSubmit((enterKey) => {
             this.tdate = new Date()
-            let msg = new TextMessage(this.keyboartStr)
+            let msg = new TextMessage(this.keyboardStr)
             let msgBody = new MessageBase(this.chatDetailData.totalCount()
               .toString(), this.user1, this.user2, msg, 1, this.tdate.getSeconds())
             this.chatDetailData.pushData(msgBody)
             this.msgLength = this.chatDetailData.totalCount()
             this.scroller.scrollToIndex(this.msgLength - 1)
+            this.keyboardStr = ''
           })
         Image($r('app.media.chatting_expression'))
           .key('chatExpression')
