@@ -54,7 +54,7 @@ Preferences.flush()保存并刷新文件内容。
 
 2. 本示例为Stage模型，从API version 10开始支持。
 
-3. 本示例支持API10版本SDK，版本号：4.0.5.1。
+3. 本示例已适配API10版本SDK，版本号：4.0.5.1。
 
 4. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
