@@ -3,9 +3,8 @@
     {
       "name": "eTSCardCalendar",
       "description": "This is a service widget.",
-      "type": "eTS",
       "uiSyntax": "arkts",
-      "src": "./ets/widget/pages/card",
+      "src": "./ets/widget/pages/card.ets",
       "window": {
         "designWidth": 720,
         "autoDesignWidth": true
