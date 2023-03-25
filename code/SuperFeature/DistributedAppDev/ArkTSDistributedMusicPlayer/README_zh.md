@@ -26,7 +26,7 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为stage模型，从API version 10开始支持。
+2.本示例为stage模型，已适配API10版本SDK，版本号：4.0.5.1；
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
 
