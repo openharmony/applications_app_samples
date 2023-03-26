@@ -16,6 +16,8 @@
 @Entry
 @Component
 struct Card {
+  @State btnFontSize: string = '20';
+  @State infoFontSize: string = '30';
   private BLACK_WIN: string = 'BLACK WINS!';
   private WHITE_WIN: string = 'WHITE WINS!';
   private BLACK_FIRST: string = 'BLACK FIRST';
@@ -37,8 +39,8 @@ struct Card {
   private chessboardHeight: number = 0;
   private chessboardLines: number = 14;
   private chessboardDotInfo: number = 4;
-  private chessboardLineWidth: number = 1.5;
-  private chessboardDotRadius: number = this.chessboardLineWidth * 3;
+  private chessboardLineWidth: number = 0;
+  private chessboardDotRadius: number = 0;
   private chessPiecesCount: number = 0;
   private chessPiecesArray: any = null;
   private processRecord: any = null;
@@ -335,7 +337,7 @@ struct Card {
     this.ctxInfo.fillRect(0, 0, this.infoAreaWidth, this.infoAreaHeight);
     this.context.textAlign = 'center';
     this.ctxInfo.fillStyle = 'rgba(0, 0, 0, 1.00)';
-    this.ctxInfo.font = '30px sans-serif';
+    this.ctxInfo.font = this.infoFontSize + ' sans-serif';
     this.ctxInfo.fillText(this.ALREADY_STEP, 0, this.infoAreaHeight / 1.5);
   }
 
@@ -349,7 +351,7 @@ struct Card {
     this.ctxInfo.fillRect(0, 0, this.infoAreaWidth, this.infoAreaHeight);
     this.context.textAlign = 'center';
     this.ctxInfo.fillStyle = 'rgba(0, 0, 0, 1.00)';
-    this.ctxInfo.font = '30px sans-serif';
+    this.ctxInfo.font = this.infoFontSize + ' sans-serif';
     this.ctxInfo.fillText(info, 0, this.infoAreaHeight / 1.5);
   }
 
@@ -359,7 +361,7 @@ struct Card {
     this.ctxInfo.fillRect(0, 0, this.infoAreaWidth, this.infoAreaHeight);
     this.context.textAlign = 'center';
     this.ctxInfo.fillStyle = 'rgba(0, 0, 0, 1.00)';
-    this.ctxInfo.font = '30px sans-serif';
+    this.ctxInfo.font = this.infoFontSize + ' sans-serif';
     this.ctxInfo.fillText(this.BLACK_FIRST, 0, this.infoAreaHeight / 1.5);
   }
 
@@ -373,7 +375,7 @@ struct Card {
     this.ctxInfo.fillRect(0, 0, this.infoAreaWidth, this.infoAreaHeight);
     this.context.textAlign = 'center';
     this.ctxInfo.fillStyle = 'rgba(0, 0, 0, 1.00)';
-    this.ctxInfo.font = '30px sans-serif';
+    this.ctxInfo.font = this.infoFontSize + ' sans-serif';
     this.ctxInfo.fillText(info, 0, this.infoAreaHeight / 1.5);
   }
 
@@ -383,6 +385,7 @@ struct Card {
         Row() {
           Column() {
             Button($r('app.string.res_restart')).width('80%').height('95%')
+              .fontSize(this.btnFontSize)
               .onClick(() => {
                 this.restart();
               })
@@ -396,12 +399,12 @@ struct Card {
                 console.info('[ArkTSCard] onReady for canvas draw info');
                 this.infoAreaWidth = Number(this.ctxInfo.width);
                 this.infoAreaHeight = Number(this.ctxInfo.height);
-                this.paintStartInfo();
               })
           }.width('40%').height('100%')
           .backgroundColor('#fff8c6c6')
           Column() {
             Button($r('app.string.res_fallback')).width('80%').height('95%')
+              .fontSize(this.btnFontSize)
               .onClick(() => {
                 this.fallback();
               })
@@ -414,9 +417,15 @@ struct Card {
           .height('90%')
           .onReady(() => {
             console.info('[ArkTSCard] onReady for canvas draw content');
+            let minSize = Math.min(this.context.width, this.context.height);
+            this.btnFontSize = minSize * 0.035 + 'vp';
+            this.infoFontSize = minSize * 0.09 + 'px';
+            this.chessboardLineWidth = minSize * 0.004;
+            this.chessboardDotRadius = this.chessboardLineWidth * 3;
             this.chessPiecesInit(Number(this.context.width), Number(this.context.height));
             this.paintBackground();
             this.paintChessboard();
+            this.paintStartInfo();
           })
           .onClick((event: ClickEvent) => {
             console.info(`[ArkTSCard] Click: PosX:${event.x} PosX:${event.y}`);
