@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +13,24 @@
  * limitations under the License.
  */
 
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility'
-import WindowManager from '../manager/WindowManager'
-import { Logger } from '@ohos/base'
-import { WINDOW_NAMES, WINDOW_PAGES } from '../manager/WindowManager'
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import WindowManager from '../manager/WindowManager';
+import { DesktopLayoutModel } from '@ohos/desktop';
+import { Logger } from '@ohos/base';
+import { WINDOW_NAMES, WINDOW_PAGES } from '../manager/WindowManager';
 
 export default class MainAbility extends ServiceExtensionAbility {
   private windowManager: WindowManager = undefined
-
   onCreate(want) {
     Logger.info('[MainAbility]', 'onCreate')
     this.initLauncher()
   }
 
   async initLauncher() {
-    this.windowManager = new WindowManager(this.context)
-    this.windowManager.registerWindowEvent()
-    await this.windowManager.showOrCreateWindow(WINDOW_NAMES.HOME, WINDOW_PAGES.HOME, false)
+    AppStorage.SetOrCreate('DesktopLayoutModel', DesktopLayoutModel.getInstance(this.context));
+    this.windowManager = new WindowManager(this.context);
+    this.windowManager.registerWindowEvent();
+    await this.windowManager.showOrCreateWindow(WINDOW_NAMES.home, WINDOW_PAGES.home, false);
   }
 
   onDestroy() {

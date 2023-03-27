@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,27 +13,30 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
+import CommonEvent from '@ohos.commonEvent';
 import {
+  AppItemInfo,
+  CardItemInfo,
   CheckEmptyUtils,
+  EventConstants,
   CommonConstants,
   FormModel,
-  Logger,
-  CardItemInfo
-} from '@ohos/base'
-import { DesktopLayoutModel } from '@ohos/desktop'
+  Logger
+} from '@ohos/base';
+import { DesktopLayoutModel } from '@ohos/desktop';
 
 
 const TAG: string = 'FormManagerComponent'
 
 @Component
 export default struct FormManagerComponent {
-  @StorageLink('formAppInfo') formAppInfo: any = {}
-  @StorageLink('formMgrItem') formItem: any = []
+  @StorageLink('formAppInfo') formAppInfo: AppItemInfo = undefined
+  @StorageLink('formMgrItem') formItem: Array<CardItemInfo> = []
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
   private mSwiperController: SwiperController = new SwiperController()
   private mSwiperIndex: number = 0
   private mFormIdList: number[] = []
-  private index: number = 0
 
   build() {
     Column() {
@@ -84,12 +87,12 @@ export default struct FormManagerComponent {
         .width('100%')
         .height('100%')
         .loop(false)
-        .index(this.index)
+        .index(this.mSwiperIndex)
         .indicatorStyle({
           selectedColor: Color.White
         })
         .onChange((index: number) => {
-          this.index = index
+          this.mSwiperIndex = index
         })
       }.alignItems(HorizontalAlign.Center)
       .height('70%')
@@ -111,13 +114,15 @@ export default struct FormManagerComponent {
         left: 20,
         right: 20 })
       .onClick(async () => {
-        Logger.info(TAG, `add card to desktop`)
-        let selectForm = this.getSelectedFormInfo()
+        Logger.info(TAG, `add card to desktop`);
+        let selectForm = this.getSelectedFormInfo();
         if (!CheckEmptyUtils.isEmpty(selectForm)) {
-          await DesktopLayoutModel.getInstance(getContext(this))
-            .createCardToDeskTop(this.getSelectedFormInfo())
+          await this.desktopLayoutModel.createCardToDeskTop(this.getSelectedFormInfo());
+          CommonEvent.publish(EventConstants.EVENT_ENTER_HOME, () => {
+            Logger.info(TAG, 'publish EVENT_ENTER_HOME');
+          })
         }
-        router.back()
+        router.back();
       })
     }
   }
@@ -136,7 +141,7 @@ export default struct FormManagerComponent {
   }
 
   getSelectedFormInfo() {
-    if (CheckEmptyUtils.isEmptyArr(this.formItem) || this.index > this.formItem.length) {
+    if (CheckEmptyUtils.isEmptyArr(this.formItem) || this.mSwiperIndex > this.formItem.length) {
       return undefined
     }
     let formCardItem: any = {}
@@ -147,8 +152,8 @@ export default struct FormManagerComponent {
         break
       }
       for (let j = 0; j < this.formItem[i].supportDimensions.length; j++) {
-        if (count === this.index) {
-          formCardItem.cardId = this.mFormIdList[this.index]
+        if (count === this.mSwiperIndex) {
+          formCardItem.cardId = this.mFormIdList[this.mSwiperIndex]
           formCardItem.appName = this.formAppInfo.appName
           formCardItem.cardName = this.formItem[i].cardName
           formCardItem.bundleName = this.formItem[i].bundleName

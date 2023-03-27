@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,8 +29,7 @@ const MISSION_OPERATE = {
 @Component
 export default struct MissionItem {
   private index: number = -1
-  private operateMission: (index: number, operate: number) => void
-  private missionInfo: MissionInfo | undefined = undefined
+  private missionInfo: MissionInfo = undefined
   private context: any = undefined
   @State snapShot: image.PixelMap | undefined = undefined
   @State icon: string = ''
@@ -92,16 +91,5 @@ export default struct MissionItem {
           .startLauncherAbility(this.missionInfo.abilityName, this.missionInfo.bundleName)
       }, 100)
     })
-    .gesture(
-    SwipeGesture({ fingers: 1, direction: SwipeDirection.Vertical })
-      .onAction((event: GestureEvent) => {
-        Logger.debug(TAG, `SwipeGesture event.angle=${event.angle}`)
-        if (event.angle > 5) {
-          this.operateMission(this.index, MISSION_OPERATE.CHANGE_LOCK)
-        } else if (event.angle < -5) {
-          this.operateMission(this.index, MISSION_OPERATE.CLEAR)
-        }
-      })
-    )
   }
 }

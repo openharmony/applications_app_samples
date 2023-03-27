@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,9 +30,9 @@ const TAG: string = 'Bubble'
 
 @Component
 export default struct Bubble {
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
   private appInfo: GridLayoutItemInfo = new GridLayoutItemInfo()
   private mDefaultAppIcon: string = ''
-  private desktopLayoutModel: DesktopLayoutModel = undefined
   private menuInfos: Array<MenuInfo> = undefined
   private context: any = undefined
   @State customPopup: boolean = false
@@ -159,8 +159,6 @@ export default struct Bubble {
   }
 
   aboutToAppear() {
-    this.context = getContext(this)
-    this.desktopLayoutModel = DesktopLayoutModel.getInstance(this.context)
     this.updateIcon()
     this.menuInfos = this.desktopLayoutModel.buildMenuInfoList(this.appInfo, this.dialogController)
     let appFormInfo = this.desktopLayoutModel.getAppItemFormInfo(this.appInfo.bundleName)
@@ -169,7 +167,7 @@ export default struct Bubble {
       this.customPopup = true
       setTimeout(() => {
         this.customPopup = false
-      }, 100)
+      }, 50)
     }
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
-import router from '@ohos.router'
+import prompt from '@ohos.prompt';
+import CommonEvent from '@ohos.commonEvent';
 import {
   AppItemInfo,
   CheckEmptyUtils,
@@ -28,14 +28,16 @@ import {
   MenuInfo,
   RdbManager,
   ResourceManager
-} from '@ohos/base'
+} from '@ohos/base';
 
-const TAG: string = 'LayoutInfoModel'
-const SYSTEM_APPLICATIONS: string = 'com.ohos.launcher,ohos.samples.launcher,com.ohos.systemui,com.ohos.devicemanagerui,com.ohos.callui,com.example.kikakeyboard,com.ohos.contactdataability,com.ohos.telephonydataability,com.ohos.medialibrary.MediaLibraryDataA,com.ohos.medialibrary.MediaScannerAbilityA'
-const KEY_NAME = 'name'
+const TAG: string = 'LayoutInfoModel';
+
+export const SHOPPING_BUNDLE: string = 'com.samples.asorangeshopping';
+const SYSTEM_APPLICATIONS: string = 'com.ohos.adminprovisioning,com.ohos.launcher,ohos.samples.launcher,com.ohos.systemui,com.ohos.devicemanagerui,com.ohos.callui,com.example.kikakeyboard,com.ohos.contactdataability,com.ohos.telephonydataability,com.ohos.medialibrary.MediaLibraryDataA,com.ohos.medialibrary.MediaScannerAbilityA'
+const KEY_NAME = 'name';
 
 export class DesktopLayoutModel {
-  private static layoutInfoModel: DesktopLayoutModel = undefined
+  public static layoutInfoModel: DesktopLayoutModel = undefined;
   private layoutInfo: Array<Array<GridLayoutItemInfo>> = []
   private readonly mSystemApplicationName = SYSTEM_APPLICATIONS.split(',')
   private mLauncherAbilityManager: LauncherAbilityManager = undefined
@@ -66,19 +68,19 @@ export class DesktopLayoutModel {
    *
    * @return {object} application data model singleton
    */
-  static getInstance(context): DesktopLayoutModel {
+  public static getInstance(context): DesktopLayoutModel {
     if (this.layoutInfoModel == null || this.layoutInfoModel === undefined) {
       this.layoutInfoModel = new DesktopLayoutModel(context)
     }
     return this.layoutInfoModel
   }
 
-  private removeItemByBundle(bundleName: string) {
+  private async removeItemByBundle(bundleName: string): Promise<void> {
     let page = this.layoutInfo.length
     for (let i = 0;i < page; i++) {
       for (let j = 0;j < this.layoutInfo[i].length; j++) {
         if (this.layoutInfo[i][j].bundleName === bundleName) {
-          this.removeItemFromDeskTop(this.layoutInfo[i][j])
+          await this.removeItemFromDeskTop(this.layoutInfo[i][j]);
         }
       }
     }
@@ -123,7 +125,7 @@ export class DesktopLayoutModel {
         if (!CheckEmptyUtils.isEmpty(appInfo)) {
           AppStorage.SetOrCreate('formAppInfo', appInfo)
           Logger.info(TAG, 'Launcher AppStorage.SetOrCreate formAppInfo')
-          this.jumpToFormManagerView(appInfo)
+          this.jumpToFormManagerView();
         }
       }
       menuInfoList.push(addFormToDeskTopMenu)
@@ -176,13 +178,10 @@ export class DesktopLayoutModel {
    * @param formInfo
 
    * */
-  jumpToFormManagerView(formInfo: GridLayoutItemInfo) {
-    router.push({
-      url: 'pages/FormPage',
-      params: {
-        formInfo: formInfo
-      }
-    })
+  jumpToFormManagerView(): void {
+    CommonEvent.publish(EventConstants.EVENT_ENTER_FORM_MANAGER, () => {
+      Logger.info(TAG, 'publish EVENT_ENTER_FORM_MANAGER');
+    });
   }
 
   /**
@@ -235,18 +234,17 @@ export class DesktopLayoutModel {
     if (gridLayoutItemInfos.length === 0) {
       let result = this.initPositionInfos(infos)
       await RdbManager.insertData(result)
-      Logger.info(TAG, `getLayoutInfo result0,${JSON.stringify(result)}`)
       this.layoutInfo = result
+      Logger.info(TAG, `getLayoutInfo result0,${JSON.stringify(this.layoutInfo)}`);
+      this.addEmptyCard();
       return result
     }
     // 数据库中查询到了数据，则优先加载数据库中的应用和卡片，剩余的应用图标在最后一个图标的位置后面添加
     else {
       for (let i = 0;i < infos.length; i++) {
-        Logger.info(TAG, `getLayoutInfo infos,i = ${i}`)
         let find = false
         for (let j = 0;j < gridLayoutItemInfos.length; j++) {
           if (infos[i].bundleName === gridLayoutItemInfos[j].bundleName) {
-            Logger.info(TAG, `getLayoutInfo find,j = ${j}`)
             if (gridLayoutItemInfos[j].page >= result.length) {
               result.push([])
             }
@@ -258,8 +256,8 @@ export class DesktopLayoutModel {
           plusApps.push(infos[i])
         }
       }
-      Logger.info(TAG, `getLayoutInfo result1,${JSON.stringify(result[0].length)}`)
       this.layoutInfo = result
+      Logger.info(TAG, `getLayoutInfo result1,${JSON.stringify(this.layoutInfo[0].length)}`);
       // 加载完数据库中的后，剩余的app
       if (plusApps.length > 0) {
         Logger.info(TAG, `加载完数据库中的后，剩余的app`)
@@ -270,9 +268,35 @@ export class DesktopLayoutModel {
           }
         }
       }
-      Logger.info(TAG, `getLayoutInfo result2,${JSON.stringify(result[0].length)}`)
+      Logger.info(TAG, `getLayoutInfo result2,${JSON.stringify(result[0].length)}`);
+      this.addEmptyCard();
       return this.layoutInfo
     }
+  }
+
+  // mock一下桌面静态图的信息
+  private mockItem(): GridLayoutItemInfo {
+    let mockTemp = new GridLayoutItemInfo();
+    mockTemp.typeId = CommonConstants.TYPE_IMAGE;
+    mockTemp.page = this.layoutInfo.length;
+    mockTemp.bundleName = SHOPPING_BUNDLE + '1';
+    mockTemp.row = 0;
+    mockTemp.column = 0;
+    mockTemp.area = CommonConstants.DEFAULT_IMAGE_AREA;
+    return mockTemp;
+  }
+
+  // 检测免安装的应用是否已经替换过占位卡片，没有时添加一个空的占位卡片
+  private addEmptyCard(): void {
+    Logger.info(TAG, 'addEmptyCard');
+    for (let i = 0; i < this.layoutInfo.length; i++) {
+      for (let j = 0; j < this.layoutInfo[i].length; j++) {
+        if (this.layoutInfo[i][j].bundleName === SHOPPING_BUNDLE) {
+          return;
+        }
+      }
+    }
+    this.layoutInfo.push([this.mockItem()]);
   }
 
   private async addAppToDesktop(appInfo: AppItemInfo, isRefresh: boolean) {
@@ -295,7 +319,7 @@ export class DesktopLayoutModel {
       this.layoutInfo.push([])
     }
     this.layoutInfo[gridItem.page].push(gridItem)
-    Logger.debug(TAG, `addAppToDesktop item ${JSON.stringify(gridItem)}`)
+    Logger.info(TAG, `addAppToDesktop item ${JSON.stringify(gridItem)}`);
     await RdbManager.initRdbConfig(this.context)
     await RdbManager.insertItem(gridItem)
     if (isRefresh) {
@@ -358,10 +382,14 @@ export class DesktopLayoutModel {
       let item: Array<GridLayoutItemInfo> = []
       result.push(item)
     }
-    Logger.debug(TAG, `result0 = ${JSON.stringify(result)}`)
+    Logger.info(TAG, `initPositionInfos result0 = ${JSON.stringify(result)}`);
     for (let j = 0;j < appInfos.length; j++) {
       let item = appInfos[j]
-      Logger.debug(TAG, `infos[${j}], item = ${JSON.stringify(item)}`)
+      Logger.info(TAG, `initPositionInfos infos[${j}], item = ${JSON.stringify(item)}`);
+      // 获取appLabelId，之后需要修改包名
+      if (appInfos[j].bundleName === SHOPPING_BUNDLE) {
+        AppStorage.SetOrCreate('cardLabelId', appInfos[j].appLabelId);
+      }
       let page = Math.floor(j / countsOnePage)
       let column = Math.floor(j % CommonConstants.DEFAULT_COLUMN_COUNT)
       let row = Math.floor(j / CommonConstants.DEFAULT_COLUMN_COUNT) % countsOnePage
@@ -369,9 +397,9 @@ export class DesktopLayoutModel {
       if (!CheckEmptyUtils.isEmpty(gridItem)) {
         result[page].push(gridItem)
       }
-      Logger.debug(TAG, `infos[${j}], page = ${page},row = ${row},column = ${column}`)
+      Logger.info(TAG, `initPositionInfos infos[${j}], page = ${page},row = ${row},column = ${column}`);
     }
-    Logger.debug(TAG, `result1 = ${JSON.stringify(result)}`)
+    Logger.info(TAG, `initPositionInfos result1 = ${JSON.stringify(result)}`);
     return result
   }
 
@@ -405,15 +433,20 @@ export class DesktopLayoutModel {
     }
     Logger.info(TAG, `createCardToDeskTop formCardItem ${JSON.stringify(formCardItem)}`)
     let gridItem = this.createNewCardItemInfo(formCardItem)
-    let page = this.layoutInfo.length
-    gridItem = this.updateItemLayoutInfo(gridItem)
-    if (gridItem.page >= page) {
+    if (formCardItem.bundleName === SHOPPING_BUNDLE) {
+      gridItem.page = this.layoutInfo.length;
+      gridItem.row = 0;
+      gridItem.column = 0;
+    } else {
+      gridItem = this.updateItemLayoutInfo(gridItem)
+    }
+    if (gridItem.page >= this.layoutInfo.length) {
       this.layoutInfo.push([])
     }
     this.layoutInfo[gridItem.page].push(gridItem)
     await RdbManager.initRdbConfig(this.context)
     await RdbManager.insertItem(gridItem)
-    Logger.info(TAG, `createCardToDeskTop gridItem2 =  ${JSON.stringify(gridItem)}`)
+    Logger.info(TAG, `createCardToDeskTop gridItem =  ${JSON.stringify(gridItem)}`);
     AppStorage.SetOrCreate('isRefresh', true)
   }
 
@@ -449,20 +482,22 @@ export class DesktopLayoutModel {
     AppStorage.SetOrCreate('isRefresh', true)
   }
 
-  private updateItemLayoutInfo(item: GridLayoutItemInfo) {
+  private updateItemLayoutInfo(item: GridLayoutItemInfo): GridLayoutItemInfo {
+    Logger.info(TAG, 'updateItemLayoutInfo' + this.layoutInfo.length);
     let page = this.layoutInfo.length
     const row = CommonConstants.DEFAULT_ROW_COUNT
     const column = CommonConstants.DEFAULT_COLUMN_COUNT
     let isNeedNewPage = true
-    pageCycle: for (let i = 0; i < page; i++) {
+    for (let i = 0; i < page; i++) {
       for (let y = 0; y < row; y++) {
         for (let x = 0; x < column; x++) {
+          Logger.info(TAG, `updateItemLayoutInfo page=${page}, startColumn=${x}, startRow=${y}`);
           if (this.isPositionValid(item, i, x, y)) {
             isNeedNewPage = false
             item.page = i
             item.column = x
             item.row = y
-            break pageCycle
+            return item;
           }
         }
       }
@@ -480,14 +515,14 @@ export class DesktopLayoutModel {
     const row = CommonConstants.DEFAULT_ROW_COUNT
     const column = CommonConstants.DEFAULT_COLUMN_COUNT
     if ((startRow + item.area[0]) > row || (startColumn + item.area[1]) > column) {
-      Logger.info(TAG, 'isPositionValid return false 1')
+      Logger.info(TAG, 'isPositionValid return false 1');
       return false
     }
     let isValid = true
     for (let x = startColumn; x < startColumn + item.area[1]; x++) {
       for (let y = startRow; y < startRow + item.area[0]; y++) {
         if (this.isPositionOccupied(page, x, y)) {
-          Logger.info(TAG, 'isPositionValid return false 2')
+          Logger.info(TAG, `isPositionValid isPositionOccupied page=${page},x=${x},y=${y}`);
           isValid = false
           break
         }
@@ -499,7 +534,7 @@ export class DesktopLayoutModel {
   private isPositionOccupied(page: number, column: number, row: number) {
     const layoutInfo = this.layoutInfo[page]
     // current page has space
-    for (const item of layoutInfo) {
+    for (let item of layoutInfo) {
       const xMatch = (column >= item.column) && (column < item.column + item.area[1])
       const yMatch = (row >= item.row) && (row < item.row + item.area[0])
       if (xMatch && yMatch) {

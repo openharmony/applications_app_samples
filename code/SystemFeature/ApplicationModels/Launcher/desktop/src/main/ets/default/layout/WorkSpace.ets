@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,10 +22,10 @@ const TAG: string = 'WorkSpace'
 
 @Component
 export struct WorkSpace {
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
   @StorageLink('isRefresh') @Watch('refreshWorkSpace') isRefresh: boolean = false;
   @State appPages: Array<Array<GridLayoutItemInfo>> = [[]]
   private swiperController: SwiperController = new SwiperController()
-  private desktopLayoutModel: DesktopLayoutModel = DesktopLayoutModel.getInstance(getContext(this))
 
   build() {
     Column() {
@@ -39,7 +39,6 @@ export struct WorkSpace {
       })
       .width('100%')
       .height('95%')
-      .margin({ top: '5%' })
       .gesture(
       PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 20 })
         .onActionStart((event: GestureEvent) => {
@@ -62,15 +61,14 @@ export struct WorkSpace {
   aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
     this.getData()
-    setInterval(()=>{
-      this.getData()
-    },3000)
   }
 
   refreshWorkSpace() {
+    Logger.info(TAG, 'refreshWorkSpace')
     if (this.isRefresh) {
       this.appPages = this.desktopLayoutModel.getLayoutInfoCache()
       AppStorage.SetOrCreate('isRefresh', false)
+      Logger.info(TAG, 'refreshWorkSpace' + JSON.stringify(this.appPages))
     }
   }
 
