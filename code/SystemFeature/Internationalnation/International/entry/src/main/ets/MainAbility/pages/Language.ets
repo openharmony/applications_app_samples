@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -67,9 +67,9 @@ struct Language {
   }
 
   @Builder
-  LanguageItem(languageInfo, index, handleClick) {
+  LanguageItem($$: { languageInfo, index, handleClick }) {
     Column() {
-      if (index !== 0) {
+      if ($$.index !== 0) {
         Divider()
           .color(Color.Gray)
           .width('100%')
@@ -78,13 +78,13 @@ struct Language {
       }
       Row() {
         Column() {
-          Text(languageInfo.language)
+          Text($$.languageInfo.language)
             .fontSize(22)
             .margin({ top: 10, bottom: 10 })
-            .fontColor(languageInfo.id === this.localLanguage ? Color.Blue : Color.Black)
+            .fontColor($$.languageInfo.id === this.localLanguage ? Color.Blue : Color.Black)
 
-          if (languageInfo.id !== this.localLanguage) {
-            Text(languageInfo.country)
+          if ($$.languageInfo.id !== this.localLanguage) {
+            Text($$.languageInfo.country)
               .fontColor(Color.Gray)
               .fontSize(22)
               .width('100%')
@@ -94,7 +94,7 @@ struct Language {
         .alignItems(HorizontalAlign.Start)
 
         Blank()
-        if (languageInfo.id === this.localLanguage) {
+        if ($$.languageInfo.id === this.localLanguage) {
           Image($r('app.media.check'))
             .size({ width: 35, height: 35 })
         }
@@ -102,14 +102,14 @@ struct Language {
       .width('100%')
     }
     .width('100%')
-    .onClick(handleClick)
+    .onClick($$.handleClick)
   }
 
   @Builder
   LanguageView() {
     Column() {
       LazyForEach(this.preferredLanguages, (item, index) => {
-        this.LanguageItem(item, index, () => {
+        this.LanguageItem({ languageInfo:item, index:index, handleClick: () => {
           if (item.id !== this.localLanguage) {
             try {
               i18n.System.setSystemLanguage(item.id)
@@ -124,7 +124,7 @@ struct Language {
               featureAbility.terminateSelf()
             }, 2000)
           }
-        })
+        }})
       }, item => item.language)
     }
     .width('95%')

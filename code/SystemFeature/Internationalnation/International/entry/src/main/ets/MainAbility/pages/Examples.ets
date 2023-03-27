@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -52,8 +52,8 @@ struct Examples {
     this.language = i18n.getDisplayLanguage(systemLanguage, systemLanguage)
   }
 
-  @Builder TextView(text) {
-    Text(text)
+  @Builder TextView( $$: { text }) {
+    Text($$.text)
       .fontSize(22)
       .fontColor(Color.Gray)
       .width('95%')
@@ -63,15 +63,15 @@ struct Examples {
   build() {
     Column() {
       TitleBar({ hasBackPress: true, title: $r('app.string.format_example') })
-      this.TextView(this.language)
+      this.TextView({ text: this.language })
       Column() {
-        this.TextView(this.date)
-        this.TextView(this.time)
+        this.TextView({ text: this.date })
+        this.TextView({ text: this.time })
         ForEach(this.numberFormat, (item, index) => {
-          this.TextView(item)
+          this.TextView({ text: item })
         }, item => item)
-        this.TextView(this.pluralFormat)
-        this.TextView(this.mDirection)
+        this.TextView({ text: this.pluralFormat })
+        this.TextView({ text: this.mDirection })
       }
       .width('95%')
       .padding(10)

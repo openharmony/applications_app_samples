@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -82,8 +82,8 @@ struct DateAndTime {
   }
 
   @Builder
-  TimeView(key, value, isDivider, handleClick) {
-    if (isDivider) {
+  TimeView($$: { key, value, isDivider, handleClick }) {
+    if ($$.isDivider) {
       Divider()
         .color(Color.Gray)
         .width('100%')
@@ -91,10 +91,10 @@ struct DateAndTime {
         .margin({ top: 10, bottom: 10 })
     }
     Row() {
-      Text(key)
+      Text($$.key)
         .fontSize(22)
       Blank()
-      Text(value)
+      Text($$.value)
         .fontSize(22)
       Image($r('app.media.more'))
         .width(15).height(50)
@@ -103,7 +103,7 @@ struct DateAndTime {
     }
     .width('100%')
     .margin(10)
-    .onClick(handleClick)
+    .onClick($$.handleClick)
   }
 
   build() {
@@ -113,7 +113,7 @@ struct DateAndTime {
         Column() {
           this.Hours24View()
           Column() {
-            this.TimeView($r('app.string.date'), this.date, false, () => {
+            this.TimeView({ key: $r('app.string.date'), value: this.date, isDivider: false, handleClick: () => {
               DatePickerDialog.show({
                 lunar: false,
                 onAccept: (result: DatePickerResult) => {
@@ -126,8 +126,8 @@ struct DateAndTime {
                   })
                 }
               })
-            })
-            this.TimeView($r('app.string.time'), this.time, true, () => {
+            }})
+            this.TimeView({ key: $r('app.string.time'), value: this.time, isDivider: true, handleClick: () => {
               TimePickerDialog.show({
                 useMilitaryTime: this.is24Hours,
                 onAccept: (result: TimePickerResult) => {
@@ -140,12 +140,12 @@ struct DateAndTime {
                   })
                 }
               })
-            })
-            this.TimeView($r('app.string.time_zone'), this.timeZone, true, () => {
+            }})
+            this.TimeView({ key:$r('app.string.time_zone'), value: this.timeZone, isDivider: true, handleClick: () => {
               router.push({
                 url: 'pages/TimeZone'
               })
-            })
+            }})
           }
           .width('95%')
           .padding(10)
