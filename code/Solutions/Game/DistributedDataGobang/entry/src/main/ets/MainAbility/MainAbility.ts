@@ -22,15 +22,15 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
     Logger.info(TAG, `MainAbility onCreate`)
+    let deviceFlag = want.parameters.isB
+    if (deviceFlag) {
+      AppStorage.SetOrCreate('deviceFlag', deviceFlag)
+    }
+    Logger.info(TAG, 'deviceFlag = ' + deviceFlag)
     let atManager = abilityAccessCtrl.createAtManager()
     try {
-      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+      await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-        let deviceFlag = want.parameters.isB
-        if (deviceFlag) {
-          AppStorage.SetOrCreate('deviceFlag', deviceFlag)
-        }
-        Logger.info(TAG, `deviceFlag = ${deviceFlag}`)
       }).catch((err) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })

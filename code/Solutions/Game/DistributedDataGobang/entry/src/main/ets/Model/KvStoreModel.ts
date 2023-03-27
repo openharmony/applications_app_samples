@@ -85,7 +85,9 @@ export class KvStoreModel {
       this.kvStore.on('dataChange', 1, (data) => {
         Logger.info(TAG, `dataChange, ${JSON.stringify(data)}`)
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
+        Logger.info(TAG, 'entries.length = ' + entries.length)
         for (let i = 0; i < entries.length; i++) {
+          Logger.info(TAG, 'entries[i].key = ' + entries[i].key + ' and msg = ' + msg)
           if (entries[i].key === msg) {
             let value = entries[i].value.value
             Logger.info(TAG, `Entries receive, ${msg} = ${value}`)
