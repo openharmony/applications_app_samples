@@ -83,6 +83,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.4.tgz" desc="Provided by media/VideoShow"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="Provided by Notification/CustomEmitter"/>
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>

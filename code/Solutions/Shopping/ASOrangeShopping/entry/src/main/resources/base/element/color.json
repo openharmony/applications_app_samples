@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "pink",
+      "value": "#E92F4F"
+    },
+    {
+      "name": "transfer",
+      "value": "#00FFFFFF"
+    },
+    {
+      "name": "divider",
+      "value": "#4F000000"
+    },
+    {
+      "name": "shadow",
+      "value": "#a3aeadad"
+    }
+  ]
+}
