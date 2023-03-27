@@ -70,7 +70,7 @@ struct MarqueeSample {
           fromStart: this.fromStart,
           src: this.marqueeSrc
         })
-          .width('100%')
+          .width(600)
           .fontColor(Color.White)
           .fontSize(30)
           .allowScale(false)

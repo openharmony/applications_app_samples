@@ -83,6 +83,7 @@ export struct DeleteDialog {
       }
       .margin({ top: 10 })
     }
+    .margin({ bottom: 100 })
     .width('80%')
     .borderRadius(15)
     .padding(16)
