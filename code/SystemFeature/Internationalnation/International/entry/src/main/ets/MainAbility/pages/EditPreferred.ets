@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,9 +41,9 @@ struct EditPreferred {
   }
 
   @Builder
-  PreferredItem(preferred, index) {
+  PreferredItem($$: { preferred, index }) {
     Column() {
-      if (index !== 0) {
+      if ($$.index !== 0) {
         Divider()
           .color(Color.Gray)
           .width('100%')
@@ -52,12 +52,12 @@ struct EditPreferred {
       }
       Row() {
         Column() {
-          Text(preferred[0])
-            .fontColor(preferred[0] === preferred[1] ? Color.Blue : Color.Black)
+          Text($$.preferred[0])
+            .fontColor($$.preferred[0] === $$.preferred[1] ? Color.Blue : Color.Black)
             .fontSize(22)
             .margin({ top: 10, bottom: 10 })
-          if (preferred[0] !== preferred[1]) {
-            Text(preferred[1])
+          if ($$.preferred[0] !== $$.preferred[1]) {
+            Text($$.preferred[1])
               .fontColor(Color.Gray)
               .fontSize(22)
               .margin({ top: 10, bottom: 10 })
@@ -66,13 +66,13 @@ struct EditPreferred {
         .alignItems(HorizontalAlign.Start)
 
         Blank()
-        if (preferred[0] !== preferred[1]) {
+        if ($$.preferred[0] !== $$.preferred[1]) {
           Image($r('app.media.delete'))
             .size({ width: 40, height: 40 })
             .objectFit(ImageFit.Contain)
             .onClick(() => {
-              this.deletePreferredLanguages.push(index)
-              this.preferredLanguages['dataArray'].splice(index, 1)
+              this.deletePreferredLanguages.push($$.index)
+              this.preferredLanguages['dataArray'].splice($$.index, 1)
               this.preferredLanguages.notifyDataReload()
             })
         }
@@ -86,7 +86,7 @@ struct EditPreferred {
   PreferredView() {
     Column() {
       LazyForEach(this.preferredLanguages, (item, index) => {
-        this.PreferredItem(item, index)
+        this.PreferredItem({ preferred: item, index: index })
       }, item => item[0])
     }
     .width('95%')

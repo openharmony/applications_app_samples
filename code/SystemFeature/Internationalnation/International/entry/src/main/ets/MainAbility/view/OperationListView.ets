@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,21 +31,21 @@ export default struct OperationListView {
   }
 
   @Builder
-  OperationItem(operationInfo, index) {
+  OperationItem($$: { operationInfo, index }) {
     Column() {
-      if (index !== 0) {
+      if ($$.index !== 0) {
         Divider()
           .color(Color.Gray)
           .width('100%')
           .strokeWidth(1)
           .margin({ top: 10, bottom: 10 })
       }
-      Text(operationInfo.key)
+      Text($$.operationInfo.key)
         .fontSize(25)
         .width('100%')
         .margin({ top: 10, bottom: 10 })
-      if (operationInfo.value !== '') {
-        Text(operationInfo.value)
+      if ($$.operationInfo.value !== '') {
+        Text($$.operationInfo.value)
           .fontColor(Color.Gray)
           .fontSize(25)
           .width('100%')
@@ -69,7 +69,7 @@ export default struct OperationListView {
         .fontColor(Color.Gray)
       Column() {
         LazyForEach(this.operationData, (item, index) => {
-          this.OperationItem(item, index)
+          this.OperationItem({ operationInfo: item, index: index })
         }, item => item.key)
       }
       .width('95%')
