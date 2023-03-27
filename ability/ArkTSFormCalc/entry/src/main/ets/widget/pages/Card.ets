@@ -118,9 +118,10 @@ struct CardDemo {
       Row() {
         ForEach(calcButton5(), (item, index) => {
           Button({ type: ButtonType.Normal }) {
-            Text("=") {
-            }
-            .fontSize(50)
+            Image(item.image)
+              .width('100%')
+              .aspectRatio(1)
+              .objectFit(ImageFit.Contain)
           }
           .width('100%')
           .height('100%')
