@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import backgroundTaskManager from '@ohos.backgroundTaskManager'
-import wantAgent from '@ohos.wantAgent'
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
 
@@ -44,15 +44,15 @@ export default class ContinuousTaskModel {
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
       try {
         backgroundTaskManager.startBackgroundRunning(this.context,
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-          Logger.info(TAG, `startBackgroundRunning succeeded`)
+        backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
+          Logger.info(TAG, 'startBackgroundRunning succeeded');
         }).catch((err) => {
-          Logger.info(TAG, `startBackgroundRunning failed Cause:  ${JSON.stringify(err)}`)
+          Logger.info(TAG, `startBackgroundRunning failed Cause:  ${JSON.stringify(err)}`);
         })
       } catch (error) {
-        Logger.error(TAG, `Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`)
+        Logger.error(TAG, `Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
       }
-    })
+    });
   }
 
   // cancel continuous task

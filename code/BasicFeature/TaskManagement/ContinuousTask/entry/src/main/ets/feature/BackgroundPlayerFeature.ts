@@ -14,6 +14,8 @@
  */
 
 import media from '@ohos.multimedia.media'
+import avSession from '@ohos.multimedia.avsession';
+import common from '@ohos.app.ability.common';
 import fileIo from '@ohos.fileio'
 import Logger from '../util/Logger'
 import { SONG_List } from '../mock/BackgroundPlayerData'
@@ -45,6 +47,7 @@ class PlayerModel {
   public playingProgressListener
   public intervalID = undefined
   public currentTimeMs: number = 0 // Current time
+  public avSession: avSession.AVSession
 
   constructor() {
     Logger.info(TAG, `createAudioPlayer start`)
@@ -69,6 +72,19 @@ class PlayerModel {
     })
     Logger.info(TAG, `initAudioPlayer end`)
   }
+
+  createAVSession(context: common.UIAbilityContext): void {
+    Logger.debug(TAG, 'createAVSession begin');
+    avSession.createAVSession(context, 'player', 'audio').then((data) => {
+      Logger.debug(TAG, 'createAVSession succeed');
+      this.avSession = data;
+    });
+  };
+
+  destroyAVSession(): void {
+    Logger.debug(TAG, 'destroyAVSession begin');
+    this.avSession?.destroy();
+  };
 
   getPlaylist(callback: () => void): void {
     // generate play list
@@ -176,27 +192,27 @@ class PlayerModel {
     return this.currentTimeMs
   }
 
-  playMusic(seekTo: number, startPlay: boolean): void {
-    Logger.info(TAG, `playMusic seekTo= ${seekTo} startPlay= ${startPlay}`)
-    this.notifyPlayingStatus(startPlay)
+  playMusic(flag: number, startPlay: boolean, context: common.UIAbilityContext): void {
+    Logger.info(TAG, `playMusic flag= ${flag} startPlay= ${startPlay}`);
+    this.notifyPlayingStatus(startPlay);
     if (startPlay) {
-      if (seekTo < 0 && this.currentTimeMs > 0) {
-        Logger.info(TAG, `pop seekTo= ${this.currentTimeMs}`)
-        seekTo = this.currentTimeMs
+      if (flag < 0 && this.currentTimeMs > 0) {
+        Logger.info(TAG, `pop flag= ${this.currentTimeMs}`);
+        flag = this.currentTimeMs;
       }
-      let player: PlayerModel = new PlayerModel()
       this.player.on('play', () => {
-        Logger.info(TAG, `play() callback entered, player.state= ${player.player.state}`)
-        if (seekTo > 0) {
-          player.seekTimeMs(seekTo)
+        Logger.info(TAG, `play() callback entered, player.state= ${this.player.state}`);
+        if (flag > 0) {
+          this.seekTimeMs(flag);
         }
-      })
-      this.player.play()
-      Logger.info(TAG, `player.play called player.state= ${this.player.state}`)
-    } else if (seekTo > 0) {
-      this.playingProgressListener(seekTo)
-      this.currentTimeMs = seekTo
-      Logger.info(TAG, `stash seekTo= ${this.currentTimeMs}`)
+      });
+      this.player.play();
+      this.createAVSession(context);
+      Logger.info(TAG, `player.play called player.state= ${this.player.state}`);
+    } else if (flag > 0) {
+      this.playingProgressListener(flag);
+      this.currentTimeMs = flag;
+      Logger.info(TAG, `stash flag= ${this.currentTimeMs}`);
     }
   }
 
@@ -217,20 +233,21 @@ class PlayerModel {
       Logger.info(TAG, `player.seek= ${time}`)
       this.player.seek(time)
     } else {
-      Logger.info(TAG, `stash seekTo= ${time}`)
+      Logger.info(TAG, `stash flag= ${time}`);
     }
   }
 
   stopMusic(): boolean {
     if (!this.isPlaying) {
-      Logger.info(TAG, `stopMusic ignored, isPlaying= ${this.isPlaying}`)
-      return
+      Logger.info(TAG, `stopMusic ignored, isPlaying= ${this.isPlaying}`);
+      return;
     }
-    this.notifyPlayingStatus(false)
-    Logger.info(TAG, `call player.stop`)
-    this.player.stop()
-    Logger.info(TAG, `player.stop called, player.state= ${this.player.state}`)
-  }
+    this.notifyPlayingStatus(false);
+    Logger.info(TAG, 'call player.stop');
+    this.player.stop();
+    this.destroyAVSession();
+    Logger.info(TAG, `player.stop called, player.state= ${this.player.state}`);
+  };
 }
 
 export default new PlayerModel()
