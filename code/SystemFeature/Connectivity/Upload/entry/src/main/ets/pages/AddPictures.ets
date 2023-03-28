@@ -21,6 +21,7 @@ export struct AddPictures {
   @StorageLink('imageList') imageList: Array<string> = [] // 用于接收选中的照片
   @StorageLink('photoUri') photoUri: string = '' // 用于接收拍照里的照片
   private GetPictures: GetPictures = new GetPictures()
+  scroller: Scroller = new Scroller()
   dialogController: CustomDialogController = new CustomDialogController({
     builder: SelectDialog({
       getImage: this.GetPictures.getImage
@@ -34,8 +35,8 @@ export struct AddPictures {
 
   build() {
     Column() {
-      Scroll() {
-        Column() {
+      Scroll(this.scroller) {
+        Row() {
           // 点击图标选择了图片时
           Grid() {
             ForEach(this.imageList, (imgUrl: string, index: number) => {
@@ -50,31 +51,37 @@ export struct AddPictures {
                 Image($r('app.media.ic_public_add'))
                   .width(48)
                   .height(48)
+                  .aspectRatio(1)
               }
+              .aspectRatio(1)
               .alignItems(HorizontalAlign.Center)
               .justifyContent(FlexAlign.Center)
               .width('100%')
-              .height(100)
+              .height('100%')
+              .aspectRatio(1)
               .backgroundColor($r('app.color.light_gray'))
               .onClick(() => {
                 this.dialogController.open()
               })
-            }.visibility(this.imageList.length < 9 ? Visibility.Visible : Visibility.None)
+            }
           }
           .columnsTemplate('1fr 1fr 1fr 1fr')
           .columnsGap(8)
           .rowsGap(8)
           .margin({ top: 8 })
-          .width('90%')
+          .width('100%')
+          .aspectRatio(1)
           .height(105 * (this.imageList.length > 4 ? 2 : 1))
         }
         .width('100%')
-        .height(Visibility.Visible ? 380 : 300 + (this.imageList.length / 4 > 1 ? 160 : 60))
+        .height(300 + (this.imageList.length / 4 > 1 ? 100 : 60))
       }
       .margin({ top: 20 })
-      .constraintSize({ maxHeight: '94%', minHeight: '94%' })
+      .height('100%')
     }
-    .width('100%')
+    .width('90%')
     .height('35%')
+    .alignItems(HorizontalAlign.Start)
+    .justifyContent(FlexAlign.Start)
   }
 }
