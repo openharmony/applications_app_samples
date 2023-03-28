@@ -103,6 +103,7 @@ export struct Toolkit {
                 })
               }, item => item.id)
             }
+            .height(260)
             .alignListItem(ListItemAlign.Center)
             .editMode(true)
           }.height('57%')
