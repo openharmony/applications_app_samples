@@ -38,6 +38,7 @@ struct BackgroundPlayer {
   @State selectedIndex: number = 0 // selected song
   @State imageArrays: Array<Resource> = [$r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')]
   private continuousTaskModel: ContinuousTaskModel = new ContinuousTaskModel(getContext() as common.UIAbilityContext)
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
 
   // get time
   getShownTimer(ms: number): string {
@@ -94,7 +95,7 @@ struct BackgroundPlayer {
     this.isSwitching = true
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
       this.refreshSongInfo(PlayerModel.playerIndex)
-      PlayerModel.playMusic(0, true)
+      PlayerModel.playMusic(0, true, this.context);
       if (PlayerModel.isPlaying) {
         this.imageArrays[1] = $r('app.media.ic_pause')
       }
@@ -117,9 +118,10 @@ struct BackgroundPlayer {
     this.isSwitching = true
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
       this.refreshSongInfo(PlayerModel.playerIndex)
-      PlayerModel.playMusic(0, true)
+      PlayerModel.playMusic(0, true, this.context);
       if (PlayerModel.isPlaying) {
         this.imageArrays[1] = $r('app.media.ic_pause')
+        this.continuousTaskModel.startContinuousTask();
       }
       this.isSwitching = false
     })
@@ -141,7 +143,7 @@ struct BackgroundPlayer {
       // start continuous task
       this.continuousTaskModel.startContinuousTask()
       PlayerModel.preLoad(PlayerModel.playerIndex, () => {
-        PlayerModel.playMusic(-1, true)
+        PlayerModel.playMusic(-1, true, this.context);
         this.imageArrays[1] = $r('app.media.ic_pause')
       })
     }
