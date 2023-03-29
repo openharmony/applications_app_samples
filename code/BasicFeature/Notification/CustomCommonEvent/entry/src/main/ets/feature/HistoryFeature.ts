@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,9 @@
 import common from '@ohos.app.ability.common'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
+import Logger from '../module/Logger'
+
+const TAG: string = '[Sample_CustomCommonEvent]'
 
 export default class HistoryFeature {
   constructor(abilityContext: common.UIAbilityContext) {
@@ -41,6 +44,8 @@ export default class HistoryFeature {
     for (let item of records) {
       await prefer.get(item, []).then((detail: Array<string>) => {
         this.dataSource.push(detail)
+      }).catch((error)=>{
+        Logger.info(TAG, `Failed to get value code is ${error.code}`)
       })
     }
   }
