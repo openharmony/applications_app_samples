@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,28 +14,31 @@
  */
 
 import display from '@ohos.display'
+import promptAction from '@ohos.promptAction';
 import CommonEvent from '@ohos.commonEvent'
 import Window from '@ohos.window'
-import prompt from '@ohos.prompt'
 import { EventConstants,Logger } from '@ohos/base'
 
 const TAG: string = 'WindowManager'
 
 export const WINDOW_NAMES = {
-  HOME: 'Home',
-  RECENTS: 'RecentsPage',
+  home: 'Home',
+  recents: 'RecentsPage',
+  form: 'FormPage',
 }
 
 export const WINDOW_PAGES = {
-  HOME: 'pages/Home',
-  RECENTS: 'pages/RecentsPage',
+  home: 'pages/Home',
+  recents: 'pages/RecentsPage',
+  form: 'pages/FormPage',
 }
 
 const SUBSCRIBER_INFO = {
   events: [
     EventConstants.EVENT_ENTER_HOME,
     EventConstants.EVENT_ENTER_RECENTS,
-    EventConstants.EVENT_CLEAR_RECENTS
+    EventConstants.EVENT_CLEAR_RECENTS,
+    EventConstants.EVENT_ENTER_FORM_MANAGER
   ]
 }
 
@@ -56,16 +59,21 @@ export default class WindowManager {
     Logger.info(TAG, `subscribe, ${JSON.stringify(data)}`)
     switch (data.event) {
       case EventConstants.EVENT_CLEAR_RECENTS:
-        let message = this.context.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id)
-        prompt.showToast({
-          message: message
-        })
+        let uninstallMessage: string = this.context.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
+        promptAction.showToast({
+          message: uninstallMessage
+        });
+        this.hideWindow(WINDOW_NAMES.recents);
+        break;
       case EventConstants.EVENT_ENTER_HOME:
-        this.hideWindow(WINDOW_NAMES.RECENTS)
-        this.showOrCreateWindow(WINDOW_NAMES.HOME, WINDOW_PAGES.HOME, false)
+        this.hideWindow(WINDOW_NAMES.recents);
+        this.hideWindow(WINDOW_NAMES.form);
         break
       case EventConstants.EVENT_ENTER_RECENTS:
-        this.showOrCreateWindow(WINDOW_NAMES.RECENTS, WINDOW_PAGES.RECENTS, true)
+        this.showOrCreateWindow(WINDOW_NAMES.recents, WINDOW_PAGES.recents, true);
+        break
+      case EventConstants.EVENT_ENTER_FORM_MANAGER:
+        this.showOrCreateWindow(WINDOW_NAMES.form, WINDOW_PAGES.form, true);
         break
       default:
         break
@@ -122,12 +130,12 @@ export default class WindowManager {
   }
 
   async hideWindow(windowName: string) {
-    Logger.info(TAG, 'hideWindow')
+    Logger.info(TAG, 'hideWindow');
     try {
-      let window = await Window.find(windowName)
-      await window.hide()
+      let window = await Window.find(windowName);
+      await window.destroy();
     } catch (error) {
-      Logger.error(TAG, `showWindow, show error: ${JSON.stringify(error)}`)
+      Logger.error(TAG, `showWindow, show error: ${JSON.stringify(error)}`);
     }
   }
 

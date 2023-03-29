@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import CommonEvent from '@ohos.commonEvent'
+import { EventConstants, } from '@ohos/base'
 import FormManagerComponent from '../components/FormManagerComponent'
 
 @Entry
@@ -23,11 +24,12 @@ struct FormPage {
     Column() {
       Row() {
         Image($r('app.media.ic_back'))
-          .width('10%')
+          .width(40)
           .aspectRatio(2)
           .margin({ left: 15 })
           .onClick(() => {
-            router.back()
+            CommonEvent.publish(EventConstants.EVENT_ENTER_HOME, () => {
+            })
           })
       }
       .width('100%')

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,9 +23,7 @@ import { EventConstants, Logger, MyDataSource } from '@ohos/base'
 
 const TAG: string = 'RecentsLayout'
 const SUBSCRIBER_INFO = {
-  events: [
-    EventConstants.EVENT_ENTER_RECENTS
-  ]
+  events: [EventConstants.EVENT_ENTER_RECENTS]
 }
 const MISSION_OPERATE = {
   CHANGE_LOCK: 0,
@@ -42,10 +40,10 @@ export struct RecentsLayout {
   async aboutToAppear() {
     await this.refreshMissionInfos()
     this.subscriber = await CommonEvent.createSubscriber(SUBSCRIBER_INFO)
-    CommonEvent.subscribe(this.subscriber, this.refreshMissionInfos.bind(this))
+    CommonEvent.subscribe(this.subscriber, this.refreshMissionInfos)
   }
 
-  async refreshMissionInfos() {
+  refreshMissionInfos = async () => {
     let context = getContext(this)
     this.missionInfos = await MissionModel.getMissionInfos(context)
     Logger.info(TAG, `refreshRecentsData end,result = ${this.missionInfos.length}`)
@@ -57,38 +55,31 @@ export struct RecentsLayout {
       this.showEmptyMessage = true
     }
   }
-
-  handleOperateMission = (index: number, operate: number) => {
-    let tmpMissions = this.missionInfos
-    this.missionInfos = []
-    let mission = tmpMissions[index]
-    if (operate === MISSION_OPERATE.CHANGE_LOCK) {
-      if (mission.lockedState) {
-        MissionModel.unLockMission(mission.missionId)
-      } else {
-        MissionModel.lockMission(mission.missionId)
-      }
-      mission.lockedState = !mission.lockedState
-      tmpMissions[index] = mission
-      this.missionInfos = tmpMissions
-      this.missionsData['dataArray'] = this.missionInfos
-      this.missionsData.notifyDataReload()
-    } else {
-      MissionModel.clearMission(mission.missionId)
-      this.missionInfos = tmpMissions
-      animateTo({ duration: 700, curve: Curve.Ease }, () => {
-        this.missionInfos.splice(index, 1)
-        if (this.missionInfos.length === 0) {
-          this.showEmptyMessage = true
+  handleOperateMission = async (index: number, operate: number) => {
+    Logger.info(TAG, `handleOperateMission, index=${index}, operate=${operate}`)
+    this.missionInfos = this.missionsData['dataArray']
+    this.missionsData['dataArray'] = []
+    this.missionsData.notifyDataReload()
+    if (this.missionInfos[index]) {
+      if (operate === MISSION_OPERATE.CHANGE_LOCK) {
+        if (this.missionInfos[index].lockedState) {
+          await  MissionModel.unLockMission(this.missionInfos[index].missionId)
+        } else {
+          await MissionModel.lockMission(this.missionInfos[index].missionId)
         }
-        this.missionsData['dataArray'] = this.missionInfos
-        this.missionsData.notifyDataReload()
-      })
+      } else {
+        await  MissionModel.clearMission(this.missionInfos[index].missionId)
+      }
     }
+    setTimeout(() => {
+      CommonEvent.publish(EventConstants.EVENT_ENTER_RECENTS, () => {
+        Logger.info(TAG, `enter recents`)
+      })
+    }, 20)
   }
 
-  async clearAllMissions() {
-    await MissionModel.clearAllMission()
+  clearAllMissions() {
+    MissionModel.clearAllMission()
     CommonEvent.publish(EventConstants.EVENT_CLEAR_RECENTS, () => {
       Logger.info(TAG, `clearAllMission,then exit recents`)
     })
@@ -105,13 +96,23 @@ export struct RecentsLayout {
         List({ space: 16 }) {
           LazyForEach(this.missionsData, (item, index) => {
             ListItem() {
-              MissionItem({ missionInfo: item, index: index, operateMission: this.handleOperateMission })
+              MissionItem({ missionInfo: item, index: index })
             }
+            .gesture(
+            SwipeGesture({ fingers: 1, direction: SwipeDirection.Vertical })
+              .onAction((event: GestureEvent) => {
+                Logger.debug(TAG, `SwipeGesture event.angle=${event.angle}`)
+                if (event.angle > 70 && event.angle < 110) {
+                  this.handleOperateMission(index, MISSION_OPERATE.CHANGE_LOCK)
+                } else if (event.angle > -80 && event.angle < -50) {
+                  this.handleOperateMission(index, MISSION_OPERATE.CLEAR)
+                }
+              })
+            )
           }, item => item.appName)
         }
         .listDirection(Axis.Horizontal)
         .height('60%')
-        .width('100%')
 
         Image($r("app.media.ic_delete"))
           .width(45)

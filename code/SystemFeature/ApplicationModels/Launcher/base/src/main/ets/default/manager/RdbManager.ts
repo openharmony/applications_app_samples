@@ -54,9 +54,11 @@ class RdbManagerModel {
    */
   async initRdbConfig(context): Promise<void> {
     Logger.info(TAG, 'initRdbConfig start')
-    this.mRdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG)
-    await this.mRdbStore.executeSql(SQL_CREATE_TABLE)
-    Logger.info(TAG, 'create table end')
+    if (this.mRdbStore === undefined) {
+      this.mRdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG);
+      await this.mRdbStore.executeSql(SQL_CREATE_TABLE);
+      Logger.info(TAG, 'create table end');
+    }
   }
 
   /**
@@ -185,12 +187,15 @@ class RdbManagerModel {
   }
 
   async deleteItemByPosition(page: number, row: number, column: number) {
-    const predicates = new dataRdb.RdbPredicates(TABLE_NAME)
+    const predicates = new dataRdb.RdbPredicates(TABLE_NAME);
     predicates.equalTo('page', page)
       .and().equalTo('row', row)
-      .and().equalTo('column', column)
-    let ret = await this.mRdbStore.delete(predicates)
-    Logger.debug(TAG, `deleteItem ret: ${ret}`)
+      .and().equalTo('column', column);
+    let query = await this.mRdbStore.query(predicates);
+    if (query.rowCount > 0) {
+      let ret = await this.mRdbStore.delete(predicates);
+      Logger.debug(TAG, `deleteItem ret: ${ret}`);
+    }
   }
 }
 
