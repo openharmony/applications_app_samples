@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import common from '@ohos.app.ability.common'
-import commonEvent from '@ohos.commonEvent'
+import commonEvent from '@ohos.commonEventManager'
 import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 import Logger from '../module/Logger'
@@ -71,14 +71,14 @@ export default class LaunchFeature {
         let value: Array<string> = []
         this.insertRecord(event, value)
       }
-    })
-    if (this.currentRecordTimes >= consts.MAX_RECORD_NUM) {
+      if (this.currentRecordTimes >= consts.MAX_RECORD_NUM) {
+        this.subscriber.finishCommonEvent()
+        return
+      }
+      this.subscriber.abortCommonEvent()
       this.subscriber.finishCommonEvent()
-      return
-    }
-    this.subscriber.abortCommonEvent()
-    this.subscriber.finishCommonEvent()
-    this.currentRecordTimes++
+      this.currentRecordTimes++
+    })
   }
 
   private callbackLowFunc = (error, event) => {
@@ -87,10 +87,10 @@ export default class LaunchFeature {
       for (let i = 0; i < consts.MAX_RECORD_NUM; i++) {
         this.pref.delete(value[i]).then(() => {
           this.pref.flush()
+          this.subscriberLow.finishCommonEvent()
         })
       }
     })
-    this.currentRecordTimes = 0;
   }
 
   jumpToStart = () => {
