@@ -35,7 +35,6 @@ struct ShopCart {
                 .fontSize(24)
                 .fontColor($r('app.color.blank'))
                 .fontFamily('HarmonyHeiTi')
-                .padding({ left: 12 })
               Blank()
               Text($r('app.string.back'))
                 .fontSize(16)
@@ -47,7 +46,7 @@ struct ShopCart {
                 })
             }
             .width('100%')
-            .margin({ top: 16, bottom: 12 })
+            .padding(12)
 
             Cart({ shoppingCartGoodsListToCart: $shoppingCartGoodsList })
           }

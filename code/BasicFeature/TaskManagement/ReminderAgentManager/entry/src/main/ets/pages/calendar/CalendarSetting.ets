@@ -98,8 +98,9 @@ export struct CalendarSetting {
           .fontSize(24)
           .margin({ left: 12 })
           .onClick(async () => {
-            await PreferencesDataManager.putData('Calendar', CalendarsReminder.calendarReminders)
-            this.controller.close()
+            CalendarsReminder.setToggle(CalendarsReminder.calendarReminders[this.selectIndex].isStart,this.selectIndex);
+            await PreferencesDataManager.putData('Calendar', CalendarsReminder.calendarReminders);
+            this.controller.close();
           })
       }
       .width('100%')
@@ -112,8 +113,11 @@ export struct CalendarSetting {
 
   aboutToAppear() {
     // Read the data of the settings and display it
-    this.calendarTime = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour
-    + ':' + CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute
-    this.selectName = CalendarsReminder.calendarReminders[this.selectIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic'
+    let hour = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour;
+    let minute = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute;
+    let dataTimeHour = hour < 10 ? `0${hour}` : hour;
+    let dateTimeMinute = minute < 10 ? `0${minute}` : minute;
+    this.calendarTime = `${dataTimeHour}:${dateTimeMinute}`;
+    this.selectName = CalendarsReminder.calendarReminders[this.selectIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic';
   }
 }

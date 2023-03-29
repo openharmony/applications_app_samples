@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[hilog日志系统](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md)，提供日志打印类，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
+本示例使用[hilog日志系统](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md) ，提供日志打印类，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
 
 ### 效果预览
 |首页|
@@ -11,7 +11,9 @@
 
 使用说明：
 
-点击log按钮即可输出日志。
+1.进入应用会自动生成一个空的日志文件。
+
+2.点击log按钮即可输出日志，并将日志生成到日志文件当中。
 
 ### 工程目录
 ```
