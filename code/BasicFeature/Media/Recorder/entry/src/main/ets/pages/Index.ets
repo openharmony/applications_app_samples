@@ -72,9 +72,9 @@ struct Index {
     }
   }
 
-  renameCallBack(newName) {
+  async renameCallBack(newName) {
     Logger.info(TAG, `renameCallBack: newName=${newName}`)
-    let duration = this.mediaManager.getFileDuration(this.renameRecord.fileAsset.title)
+    let duration = await this.mediaManager.getFileDuration(this.renameRecord.fileAsset.title)
     this.renameRecord.fileAsset.title = newName
     this.renameRecord.fileAsset.commitModify(err => {
       if (err !== undefined) {
