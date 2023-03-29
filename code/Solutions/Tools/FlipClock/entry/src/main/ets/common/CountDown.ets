@@ -246,6 +246,7 @@ struct Time {
       Row() {
         TextPicker({ range: this.pickerArrayGen(24) })
           .width(60)
+          .height('100%')
           .onChange((value: string, index: number) => {
             pickerH = index
           })
@@ -258,6 +259,7 @@ struct Time {
 
         TextPicker({ range: this.pickerArrayGen(60) })
           .width(60)
+          .height('100%')
           .onChange((value: string, index: number) => {
             pickerM = index
           })
@@ -270,6 +272,7 @@ struct Time {
 
         TextPicker({ range: this.pickerArrayGen(60) })
           .width(60)
+          .height('100%')
           .onChange((value: string, index: number) => {
             pickerS = index
           })

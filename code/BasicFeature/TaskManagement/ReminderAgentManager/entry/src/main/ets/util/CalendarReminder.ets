@@ -59,9 +59,9 @@ class CalendarReminder {
         },
         actionButton:
         [{
-           title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),
-           type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
-         }],
+          title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),
+          type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+        }],
         wantAgent: { pkgName: 'ohos.samples.reminderagentmanager', abilityName: 'MainAbility' },
         ringDuration: Constant.REMINDER_DURATION,
         title: context.resourceManager.getStringSync($r('app.string.calendar').id),
@@ -85,16 +85,19 @@ class CalendarReminder {
   async setToggle(isOn: boolean, index: number) {
     this.calendarReminders[index].isStart = isOn
     if (isOn) {
+      await reminderAgent.addNotificationSlot({ type: notification.SlotType.SERVICE_INFORMATION });
       let reminderId = await reminderAgent.publishReminder(this.calendarReminders[index].reminderRequestCalendar)
-      this.calendarReminders[index].reminderId = reminderId
-      let audioIndex: number = await AudioPlayer.getAudioID(
-      this.calendarReminders[index].audioSrc, TimeConversion.dateToMillisecond(
-      this.calendarReminders[index].reminderRequestCalendar.dateTime.year,
-      this.calendarReminders[index].reminderRequestCalendar.dateTime.month,
-      this.calendarReminders[index].reminderRequestCalendar.dateTime.day,
-      this.calendarReminders[index].reminderRequestCalendar.dateTime.hour,
-      this.calendarReminders[index].reminderRequestCalendar.dateTime.minute) * Constant.SECONDS_MILLISECONDS)
-      this.calendarReminders[index].audioTimeouts = audioIndex
+      this.calendarReminders[index].reminderId = reminderId;
+      if (this.calendarReminders[index].audioSrc) {
+        let audioIndex: number = await AudioPlayer.getAudioID(
+        this.calendarReminders[index].audioSrc, TimeConversion.dateToMillisecond(
+        this.calendarReminders[index].reminderRequestCalendar.dateTime.year,
+        this.calendarReminders[index].reminderRequestCalendar.dateTime.month,
+        this.calendarReminders[index].reminderRequestCalendar.dateTime.day,
+        this.calendarReminders[index].reminderRequestCalendar.dateTime.hour,
+        this.calendarReminders[index].reminderRequestCalendar.dateTime.minute) * Constant.SECONDS_MILLISECONDS);
+        this.calendarReminders[index].audioTimeouts = audioIndex;
+      }
       await PreferencesDataManager.putData('Calendar', this.calendarReminders)
       if (this.calendarReminders[index].isVibrator) {
         let vibratorId = setTimeout(function () {
@@ -119,6 +122,7 @@ class CalendarReminder {
     } else {
       clearTimeout(this.calendarReminders[index].vibratorTimeouts)
       clearTimeout(this.calendarReminders[index].audioTimeouts)
+      await PreferencesDataManager.putData('Calendar', this.calendarReminders);
       await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId)
       await vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME)
     }

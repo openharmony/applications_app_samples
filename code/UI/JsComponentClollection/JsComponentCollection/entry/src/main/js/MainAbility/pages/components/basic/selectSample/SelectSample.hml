@@ -29,7 +29,7 @@
   <div class="border-div">
     <select @change="changeChoiceFont" style="font-size: 24vp;">
       <option for="{{ selectCities }}" selected="{{ $item.isSelect }}" value="{{ $item.name }}"
-              style="font-size: {{ $item.fontSize }};">{{ $item.name }}</option>
+              style="font-size: 25vp;">{{ $item.name }}</option>
     </select>
   </div>
 
@@ -37,7 +37,7 @@
   <div class="border-div">
     <select @change="changeUnchoiceFont" style="font-size: 24vp;">
       <option for="{{ unSelectCities }}" selected="{{ $item.isSelect }}" value="{{ $item.name }}"
-              style="font-size: {{ $item.fontSize }};">{{ $item.name }}</option>
+              style="font-size: 25vp;">{{ $item.name }}</option>
     </select>
   </div>
 </div>
