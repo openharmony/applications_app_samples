@@ -17,6 +17,7 @@ import Logger from '../model/Logger'
 import TitleBar from '../view/TitleBar'
 import MediaUtils from '../model/MediaUtils'
 import { MediaView } from '../view/MediaView'
+import hilog from '@ohos.hilog';
 
 export default interface Album {
   albumName: string,
@@ -38,8 +39,17 @@ struct Index {
   @State albums: Array<Album> = []
   @State selectIndex: number = 0
   @State operateVisible: boolean = false
+  @StorageLink('isRefresh')@Watch('isRefreshList')isRefresh:boolean = false
   getAlbums = async () => {
     this.albums = await this.mediaUtils.getAlbums()
+  }
+
+  isRefreshList(){
+    if(this.isRefresh){
+      this.getAlbums()
+      this.isRefresh = false
+    }
+    return
   }
 
   async aboutToAppear() {

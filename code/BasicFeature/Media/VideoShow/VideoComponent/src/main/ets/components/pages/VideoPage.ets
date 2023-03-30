@@ -16,7 +16,7 @@ import router from '@ohos.router'
 
 @Component
 export struct VideoPage {
-  @State videoSrc: Resource = $rawfile('video_4.mp4')
+  @State videoSrc: Resource = $r('app.media.videos')
   @State controls: boolean = false
   @State isFull: boolean = false
   @State isPause: boolean = true

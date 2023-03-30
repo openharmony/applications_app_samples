@@ -180,6 +180,9 @@ struct FileListItemComponent {
 
         Column() {
           Text(this.fileListItem.title)
+            .maxLines(1)
+            .width('75%')
+            .textOverflow({overflow:TextOverflow.Ellipsis})
             .fontSize(16)
             .fontColor($r('app.color.black'))
 

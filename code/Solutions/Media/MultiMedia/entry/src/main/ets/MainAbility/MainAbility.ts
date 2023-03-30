@@ -39,6 +39,7 @@ export default class MainAbility extends UIAbility {
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
+    AppStorage.SetOrCreate('isRefresh',false)
   }
 
   onDestroy() {
