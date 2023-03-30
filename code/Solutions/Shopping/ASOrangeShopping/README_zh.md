@@ -17,7 +17,7 @@
 
 使用说明
 
-1.由于目前服务中心暂未适配免安装特性，所以需要替换预置的预置的服务中心；Launcher目前未适配元服务卡片，所以需要替换安装Launcher。具体替换安装步骤请参看[配置方法](data\help\InstallFreeDoc.md)
+1.由于目前服务中心暂未适配免安装特性，所以需要替换预置的预置的服务中心；Launcher目前未适配元服务卡片，所以需要替换安装Launcher。具体替换安装步骤请参看[配置方法]( https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/InstallFreeDoc.md )
 
 2.修改```push_hap_hsp.bat```脚本中hdc的路径，使用DevEco Studio，Build App(s)，编译生成hap与hsp包。通过DevEco的Terminal工具，执行```push_hap_hsp.bat```即可将应用文件push到服务中心的的指定目录。
 
@@ -123,25 +123,25 @@ ASOrangeShopping
 
 ### 具体实现
 
-1.配置原子化服务：在[app.json5](AppScope\app.json5)文件中配置```"bundleType": "atomicService"```字段
+1.配置原子化服务：在[app.json5]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/AppScope/app.json5 )文件中配置```"bundleType": "atomicService"```字段
 
 2.配置预加载：
 
-* 在[module.json5](entry\src\main\module.json5)文件中配置```"atomicService"```字段
+* 在[module.json5]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/src/main/module.json5 )文件中配置```"atomicService"```字段
 * 在```"perloads"```标签中添加需要预加载模块的moduleName
 
 2.ArkTs卡片:
 * 通过DevEco Studio在需要创建卡片的module上点击鼠标右键选择```New->Service Widget```可进入创建卡片选项卡。在选项卡的```Language```处选择```ArkTs```，按需配置好卡片信息之后，点击```Finish```完成卡片的创建。
-* 创建完成后会在对应module的目录下生成对应卡片的[FromAbility](entry\src\main\ets\entryformability\EntryFormAbility.ets)与[卡片布局文件](entry\src\main\ets\widget\pages\ShoppingCard.ets).
+* 创建完成后会在对应module的目录下生成对应卡片的[FromAbility]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/src/main/ets/entryformability/EntryFormAbility.ets )与[卡片布局文件]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/src/main/ets/widget/pages/ShoppingCard.ets ).
 * 开发者可通过FormAbility来管理卡片的生命周期，响应卡片触发的事件等；通过布局文件快速编辑卡片的外观布局，能够触发的点击事件等。
 
 3.配置Hsp：通过DevEco Studio在项目级目录上点击鼠标右键选择```New->Module```，然后选择```Shared Library```来创建Hsp共享包。
 
 4.依赖Hsp：
-* 在需要依赖Hsp的module的[oh-package.json5](entry\oh-package.json5)文件中配置```dependencies```字段，并在其中添加需要依赖的Hsp包的名称与文件位置。
-* 在[module.json5](entry\src\main\module.json5)文件中配置```dependencies```字段，其中```moduleName```与上一步中Hspdata包的名称保持一致。
-* 在需要使用到Hsp包中页面或者组件的地方直接import来引入对应的文件信息。这里以entry中[ShoppingDataUtil](entry\src\main\ets\utils\ShoppingDataUtil.ets)购物车功能为例，通过import引入了[shoppingdata](shoppingdata)中的[DatabaseUtil](shoppingdata\src\main\ets\utils\DatabaseUtil.ets)与[EmitterUtil](shoppingdata\src\main\ets\utils\EmitterUtil.ets)，借助这两个工具实现了添加与删除购物车的功能。
-* 也可以通过[router.pushUrl()]( [OpenAtom OpenHarmony](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/apis/js-apis-router.md/) )来跳转到Hsp的某个界面，这里以entry中的[SearchBar](entry\src\main\ets\pages\common\SearchBar.ets)为例，在onClick事件中触发跳转到[search](search)模块的[SearchPage](search\src\main\ets\pages\SearchPage.ets)界面，来实现商品搜索的功能。
+* 在需要依赖Hsp的module的[oh-package.json5]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/oh-package.json5 )文件中配置```dependencies```字段，并在其中添加需要依赖的Hsp包的名称与文件位置。
+* 在[module.json5]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/src/main/module.json5 )文件中配置```dependencies```字段，其中```moduleName```与上一步中Hspdata包的名称保持一致。
+* 在需要使用到Hsp包中页面或者组件的地方直接import来引入对应的文件信息。这里以entry中[ShoppingDataUtil]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/src/main/ets/utils/ShoppingDataUtil.ets )购物车功能为例，通过import引入了[shoppingdata]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/shoppingdata )中的[DatabaseUtil]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/shoppingdata/src/main/ets/utils/DatabaseUtil.ets )与[EmitterUtil]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/shoppingdata/src/main/ets/utils/EmitterUtil.ets )，借助这两个工具实现了添加与删除购物车的功能。
+* 也可以通过[router.pushUrl()]( https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/apis/js-apis-router.md/ )来跳转到Hsp的某个界面，这里以entry中的[SearchBar]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/entry/src/main/ets/pages/common/SearchBar.ets )为例，在onClick事件中触发跳转到[search]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/search )模块的[SearchPage]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping/search/src/main/ets/pages/SearchPage.ets )界面，来实现商品搜索的功能。
 
 5.免安装的触发：”使用说明“第2步中已经将元服务的hap与hsp文件push到服务中心的免安装路径下。这时开发者可以通过[router.pushUrl()]( https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/apis/js-apis-router.md/ )或[startAbility()]( https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/application-models/uiability-launch-type.md/ )的方式来触发应用免安装。
 
