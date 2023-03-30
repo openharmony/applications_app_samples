@@ -50,7 +50,7 @@ export struct EditPage {
 
   flushPage() {
     this.tempPixelMap = this.pixelMap
-    this.pixelMap = undefined
+    this.pixelMap = null
     this.pixelMap = this.tempPixelMap
   }
 
