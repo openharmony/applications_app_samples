@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "usercenter_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "UserCenter"
+    },
+    {
+      "name": "user_name",
+      "value": "18839****17"
+    },
+    {
+      "name": "sign_Info",
+      "value": "v0 member"
+    },
+    {
+      "name": "sign_info_address",
+      "value": "Address"
+    },
+    {
+      "name": "often_see_live",
+      "value": "Frequently watched live"
+    },
+    {
+      "name": "see_more",
+      "value": "See more"
+    },
+    {
+      "name": "favor_live_lists_data_title",
+      "value": "Live"
+    },
+    {
+      "name": "favor_live_lists_data_viewsInfo",
+      "value": "456,000 views"
+    },
+    {
+      "name": "order_data_title_obligation",
+      "value": " Pending payment"
+    },
+    {
+      "name": "order_data_title_wait_deliver",
+      "value": "To be delivered"
+    },
+    {
+      "name": "order_data_title_wait_receive",
+      "value": "Pending receipt"
+    },
+    {
+      "name": "order_data_title_wait_recommend",
+      "value": "Comment"
+    },
+    {
+      "name": "order_data_title_refund",
+      "value": " Refund/After-sale"
+    },
+    {
+      "name": "my_order",
+      "value": "My order"
+    },
+    {
+      "name": "all_order",
+      "value": "All order"
+    },
+    {
+      "name": "points_mall",
+      "value": "Points Mall"
+    },
+    {
+      "name": "interact_politely",
+      "value": "Interact politely"
+    },
+    {
+      "name": "card_volume",
+      "value": "Red Packet Cards"
+    },
+    {
+      "name": "official_Service",
+      "value": "Official customer service"
+    },
+    {
+      "name": "cash",
+      "value": "Cash red envelope"
+    },
+    {
+      "name": "old_for_new",
+      "value": "Trade-in"
+    },
+    {
+      "name": "my_comment",
+      "value": "My comment"
+    }
+  ]
+}

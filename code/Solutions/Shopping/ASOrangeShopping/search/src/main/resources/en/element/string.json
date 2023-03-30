@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "search_desc",
+      "value": "description"
+    },
+    {
+      "name": "SearchAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SearchAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "search_button_text",
+      "value": "Search"
+    },
+    {
+      "name": "goods_type_selected",
+      "value": "Selected"
+    },
+    {
+      "name": "goods_type_new",
+      "value": "New arrival"
+    },
+    {
+      "name": "goods_type_affordable",
+      "value": "Affordable"
+    },
+    {
+      "name": "no_related_products",
+      "value": "No related products"
+    },
+    {
+      "name": "clean",
+      "value": "Clean"
+    },
+    {
+      "name": "recent_searches",
+      "value": "Recent Searches"
+    }
+  ]
+}
