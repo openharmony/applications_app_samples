@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2022 Huawei Device Co., Ltd.
+* Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 import display from '@ohos.display'
 import Logger from '../util/Logger'
-import geolocation from '@ohos.geolocation'
+import geolocation from '@ohos.geoLocationManager'
 import { listData, heatCity } from '../mock/LocationMock'
 import { MyDataSource } from '../util/DataSource'
 import httpRequestResponse from '../net/HttpRequestResponse'
