@@ -57,16 +57,8 @@ struct Index {
 
   initAudioPlayer() {
     this.setCallback(player)
-    let path = this.context.bundleCodeDir + "/audioFeature/resources/rawfile/1.mp3"
-    var fd = ''
-    fileIO.open(path).then((fdNumber) => {
-      fd = FD_PREFIX + fdNumber
-      player.src = fd
-      Logger.info(TAG, "open fd success, fd: " + fd)
-    }, (err) => {
-      Logger.error(TAG, "open fd failed, err is " + err)
-    }).catch((err) => {
-      Logger.error(TAG, "open fd failed, err is " + err)
+    this.context.resourceManager.getRawFd("1.mp3").then(value => {
+      player.fdSrc = value
     })
   }
 
