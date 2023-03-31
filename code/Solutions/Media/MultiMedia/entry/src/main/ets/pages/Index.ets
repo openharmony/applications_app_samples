@@ -44,12 +44,11 @@ struct Index {
     this.albums = await this.mediaUtils.getAlbums()
   }
 
-  isRefreshList() {
+  isRefreshList(): void {
     if (this.isRefresh) {
       this.getAlbums()
       this.isRefresh = false
     }
-    return
   }
 
   async aboutToAppear() {
