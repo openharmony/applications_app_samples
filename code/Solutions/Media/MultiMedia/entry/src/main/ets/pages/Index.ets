@@ -39,13 +39,13 @@ struct Index {
   @State albums: Array<Album> = []
   @State selectIndex: number = 0
   @State operateVisible: boolean = false
-  @StorageLink('isRefresh')@Watch('isRefreshList')isRefresh:boolean = false
+  @StorageLink('isRefresh') @Watch('isRefreshList') isRefresh: boolean = false
   getAlbums = async () => {
     this.albums = await this.mediaUtils.getAlbums()
   }
 
-  isRefreshList(){
-    if(this.isRefresh){
+  isRefreshList() {
+    if (this.isRefresh) {
       this.getAlbums()
       this.isRefresh = false
     }

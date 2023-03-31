@@ -32,7 +32,7 @@ struct DocumentPage {
     Logger.info(this.tag, `fd = ${fd}`)
     await fileIo.write(fd, this.fileContent)
     await fileIo.close(fd)
-    AppStorage.Set('isRefresh',true)
+    AppStorage.Set('isRefresh', true)
     router.back()
   }
 

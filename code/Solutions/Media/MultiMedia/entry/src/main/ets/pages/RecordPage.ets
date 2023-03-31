@@ -90,7 +90,7 @@ struct Record {
         .onClick(() => {
           router.back()
           this.recordModel.finish()
-          AppStorage.Set('isRefresh',true)
+          AppStorage.Set('isRefresh', true)
         })
 
         Blank()
@@ -120,7 +120,7 @@ struct Record {
             }
             this.startRecord()
           }
-          AppStorage.Set('isRefresh',true)
+          AppStorage.Set('isRefresh', true)
         })
 
         Blank()
