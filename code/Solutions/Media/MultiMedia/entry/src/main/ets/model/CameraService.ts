@@ -186,6 +186,7 @@ export default class CameraService {
     }
     await this.photoOutPut.capture(photoSettings)
     Logger.info(this.tag, 'takePicture done')
+    AppStorage.Set('isRefresh', true)
   }
 
   async startVideo() {

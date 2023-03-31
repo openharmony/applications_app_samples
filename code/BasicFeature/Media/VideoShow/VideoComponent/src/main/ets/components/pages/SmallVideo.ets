@@ -15,7 +15,7 @@
 
 @Component
 export struct SmallVideo {
-  @State smallVideoSrc: Resource = $rawfile('video_4.mp4')
+  @State smallVideoSrc: Resource = $r('app.media.videos')
   @Link @Watch("onChanged") isHidden: boolean
   @Link isCancel: boolean
   @Consume('playTime') updateTime: number

@@ -31,6 +31,7 @@ export default struct TitleBar {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             router.back()
+            AppStorage.Set('isRefresh', true)
           })
       }
       Text(this.title)
