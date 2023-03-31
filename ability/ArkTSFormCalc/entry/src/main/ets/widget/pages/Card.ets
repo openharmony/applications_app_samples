@@ -37,7 +37,7 @@ struct CardDemo {
         ForEach(calcButton1(), (item, index) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
-              .width('100%')
+              .height('100%')
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
@@ -56,7 +56,7 @@ struct CardDemo {
         ForEach(calcButton2(), (item, index) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
-              .width('100%')
+              .height('100%')
               .aspectRatio(item.value === '0' ? 2.5 : 1)
               .objectFit(ImageFit.Contain)
           }
@@ -77,7 +77,7 @@ struct CardDemo {
         ForEach(calcButton3(), (item, index) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
-              .width('100%')
+              .height('100%')
               .aspectRatio(item.value === '0' ? 2.5 : 1)
               .objectFit(ImageFit.Contain)
           }
@@ -98,7 +98,7 @@ struct CardDemo {
         ForEach(calcButton4(), (item, index) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
-              .width('100%')
+              .height('100%')
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
@@ -119,7 +119,7 @@ struct CardDemo {
         ForEach(calcButton5(), (item, index) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
-              .width('100%')
+              .height('100%')
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)
           }
