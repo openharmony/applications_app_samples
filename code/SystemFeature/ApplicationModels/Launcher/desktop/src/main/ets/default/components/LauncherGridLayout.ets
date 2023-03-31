@@ -15,6 +15,7 @@
 
 
 import common from '@ohos.app.ability.common';
+import promptAction from '@ohos.promptAction';
 import wantConstant from '@ohos.ability.wantConstant';
 import Bubble from './Bubble';
 import CardItem from './CardItem';
@@ -33,6 +34,8 @@ export default struct LauncherGridLayout {
   @State rowsTemplate: string = ''
   @State gridInfos: Array<GridLayoutItemInfo> = []
   private gridData: MyDataSource = undefined
+  private delayTime: number = 3000
+  private createCardTime: number = 500
 
   build() {
     Grid() {
@@ -46,11 +49,13 @@ export default struct LauncherGridLayout {
             })
           } else if (item.typeId === CommonConstants.TYPE_IMAGE) {
             Image($r('app.media.card'))
-              .size({ width: '80%'})
+              .size({ width: '80%' })
               .aspectRatio(1)
               .onClick(async () => {
-                await this.desktopLayoutModel.removeItemFromDeskTop(item)
-                await this.createCardAndInstall()
+                this.startShopping()
+                setTimeout(async () => {
+                  await this.createCardAndInstall(item)
+                }, this.delayTime)
               })
           } else {
             CardItem({ formInfo: item })
@@ -82,8 +87,8 @@ export default struct LauncherGridLayout {
     Logger.info(TAG, `this.columnsTemplate = ${this.columnsTemplate},this.rowsTemplate = ${this.rowsTemplate}`)
   }
 
-  // 点击桌面占位图触发免安装与替换桌面卡片的逻辑
-  async createCardAndInstall() {
+  // 拉起元服务
+  startShopping(): void {
     let orangeWant = {
       bundleName: SHOPPING_BUNDLE,
       moduleName: 'entry',
@@ -92,6 +97,10 @@ export default struct LauncherGridLayout {
     }
     let context = getContext(this) as common.ServiceExtensionContext
     context.startAbility(orangeWant)
+  }
+
+  // 点击桌面占位图触发免安装与替换桌面卡片的逻辑
+  async createCardAndInstall(item): Promise<void> {
     // 包名需要修改 'com.samples.asorangeshopping'
     let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(SHOPPING_BUNDLE)
     let formCardItem = {
@@ -107,9 +116,19 @@ export default struct LauncherGridLayout {
     }
     Logger.info(`currentBundleFormsInfo: ${JSON.stringify(currentBundleFormsInfo)}, formCardItem: ${JSON.stringify(formCardItem)}`);
 
+    // 如果bundleName查询失败，不替换卡片
+    if (formCardItem.bundleName === '') {
+      promptAction.showToast({
+        message: $r('app.string.install_asorangeshopping')
+      })
+      return
+    }
+    // 移除桌面占位图
+    await this.desktopLayoutModel.removeItemFromDeskTop(item)
     setTimeout(async () => {
-      await this.desktopLayoutModel.createCardToDeskTop(formCardItem);
-    }, 1000)
+      // 创建桌面卡片
+      await this.desktopLayoutModel.createCardToDeskTop(formCardItem)
+    }, this.createCardTime)
     AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo)
   }
 }

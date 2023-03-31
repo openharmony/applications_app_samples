@@ -27,6 +27,10 @@
     {
       "name": "uninstall_failed",
       "value": "卸载失败"
+    },
+    {
+      "name": "install_asorangeshopping",
+      "value": "请先安装橘子购物元服务！"
     }
   ]
 }
