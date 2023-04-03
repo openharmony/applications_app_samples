@@ -22,13 +22,14 @@ const Gender = {
 
 @Component
 export struct ContactItem {
-  private contact: Contact = undefined
+  @ObjectLink contact: Contact
   @Link isMultiCheck: boolean
 
   build() {
     Row() {
       Image(this.contact.gender === Gender.MALE ? $r('app.media.contact_photo_male') : $r('app.media.contact_photo_female'))
-        .height(80).width(80)
+        .height(80)
+        .width(80)
         .objectFit(ImageFit.Fill)
       Column() {
         Text(this.contact.name)

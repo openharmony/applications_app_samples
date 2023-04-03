@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,24 +13,19 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
-import Logger from '../model/Logger'
 import TitleBar from '../view/TitleBar'
 import MediaUtils from '../model/MediaUtils'
 import { MediaView } from '../view/MediaView'
-import hilog from '@ohos.hilog';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
-export default interface Album {
-  albumName: string,
-  count: string
+@Observed
+export default class Album {
+  constructor(public albumName: string, public count: number, public mediaType?: mediaLibrary.MediaType) {
+    this.albumName = albumName;
+    this.count = count;
+    this.mediaType = mediaType;
+  }
 }
-
-const PERMISSIONS: Array<string> = [
-  'ohos.permission.CAMERA',
-  'ohos.permission.MICROPHONE',
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.MEDIA_LOCATION']
-const TAG: string = 'Index'
 
 @Entry
 @Component
@@ -39,35 +34,21 @@ struct Index {
   @State albums: Array<Album> = []
   @State selectIndex: number = 0
   @State operateVisible: boolean = false
-  @StorageLink('isRefresh') @Watch('isRefreshList') isRefresh: boolean = false
-  getAlbums = async () => {
-    this.albums = await this.mediaUtils.getAlbums()
-  }
 
-  isRefreshList(): void {
-    if (this.isRefresh) {
-      this.getAlbums()
-      this.isRefresh = false
-    }
-  }
-
-  async aboutToAppear() {
-    let context = getContext(this) as any
-    await context.requestPermissionsFromUser(PERMISSIONS)
-    Logger.info(TAG, 'grantPermission,requestPermissionsFromUser')
-    if (this.albums.length === 0) {
-      await this.getAlbums()
-      this.mediaUtils.onDateChange(this.getAlbums)
-    }
+  async onPageShow() {
+    this.albums = [];
+    this.albums = await this.mediaUtils.getAlbums();
   }
 
   @Builder OperateBtn(src, zIndex, translate, handleClick) {
     Button() {
       Image(src)
-        .size({ width: '70%', height: '70%' })
+        .width('70%')
+        .height('70%')
     }
     .type(ButtonType.Circle)
-    .size({ width: '40%', height: '40%' })
+    .width('40%')
+    .height('40%')
     .backgroundColor('#0D9FFB')
     .zIndex(zIndex)
     .translate({ x: translate.x, y: translate.y })
@@ -80,35 +61,88 @@ struct Index {
     Stack({ alignContent: Alignment.BottomEnd }) {
       Column() {
         TitleBar()
-        MediaView({ albums: $albums })
+        List() {
+          ForEach(this.albums, (item: Album, index) => {
+            ListItem() {
+              MediaView({ album: item })
+            }
+          }, item => item.albumName)
+        }
+        .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
+        .layoutWeight(1)
       }
       .width('100%')
       .height('100%')
 
       Stack({ alignContent: Alignment.Center }) {
-        this.OperateBtn($r('app.media.add'), 1, { x: 0, y: 0 }, () => {
+        Button() {
+          Image($r('app.media.add'))
+            .width('100%')
+            .height('100%')
+        }
+        .width(60)
+        .height(60)
+        .padding(10)
+        .type(ButtonType.Circle)
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
           animateTo({ duration: 500, curve: Curve.Ease }, () => {
             this.operateVisible = !this.operateVisible
           })
         })
-        if (this.operateVisible) {
-          this.OperateBtn($r('app.media.icon_camera'), 0, { x: 0, y: '-120%' }, () => {
-            this.operateVisible = !this.operateVisible
-            router.push({ url: 'pages/CameraPage' })
-          })
-          this.OperateBtn($r('app.media.icon_record'), 0, { x: '-120%', y: 0 }, () => {
-            this.operateVisible = !this.operateVisible
-            router.push({ url: 'pages/RecordPage' })
-          })
-          this.OperateBtn($r('app.media.icon_document'), 0, { x: 0, y: '120%' }, () => {
-            this.operateVisible = !this.operateVisible
-            router.push({ url: 'pages/DocumentPage' })
-          })
+
+        Button() {
+          Image($r('app.media.icon_camera'))
+            .width('100%')
+            .height('100%')
         }
+        .width(60)
+        .height(60)
+        .padding(10)
+        .type(ButtonType.Circle)
+        .backgroundColor('#0D9FFB')
+        .translate({ x: 0, y: -80 })
+        .visibility(this.operateVisible ? Visibility.Visible : Visibility.None)
+        .onClick(() => {
+          this.operateVisible = !this.operateVisible
+          router.pushUrl({ url: 'pages/CameraPage' })
+        })
+
+        Button() {
+          Image($r('app.media.icon_record'))
+            .width('100%')
+            .height('100%')
+        }
+        .width(60)
+        .height(60)
+        .padding(10)
+        .type(ButtonType.Circle)
+        .backgroundColor('#0D9FFB')
+        .translate({ x: -80, y: 0 })
+        .visibility(this.operateVisible ? Visibility.Visible : Visibility.None)
+        .onClick(() => {
+          this.operateVisible = !this.operateVisible
+          router.push({ url: 'pages/RecordPage' })
+        })
+
+        Button() {
+          Image($r('app.media.icon_document'))
+            .width('100%')
+            .height('100%')
+        }
+        .width(60)
+        .height(60)
+        .padding(10)
+        .type(ButtonType.Circle)
+        .backgroundColor('#0D9FFB')
+        .translate({ x: 0, y: 80 })
+        .visibility(this.operateVisible ? Visibility.Visible : Visibility.None)
+        .onClick(() => {
+          this.operateVisible = !this.operateVisible
+          router.pushUrl({ url: 'pages/DocumentPage' })
+        })
       }
-      .size({ width: '30%', height: '30%' })
-      .translate({ x: 10 })
-      .margin({ bottom: 50 })
+      .margin({ right: 40, bottom: 120 })
     }
     .width('100%')
     .height('100%')

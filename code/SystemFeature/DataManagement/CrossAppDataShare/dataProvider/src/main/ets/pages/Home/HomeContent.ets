@@ -56,7 +56,7 @@ export default struct HomeContent {
     .title(this.NavigationTitle)
     .backgroundColor($r('app.color.page_background'))
     .menus(this.NavigationMenus)
-    .titleMode(NavigationTitleMode.Free)
+    .titleMode(NavigationTitleMode.Full)
     .hideTitleBar(false)
     .hideBackButton(false)
   }

@@ -42,7 +42,7 @@ struct ContactEdit {
   build() {
     Column() {
       TitleBar({ title: $title, handleOnClick: this.submit })
-      Scroll() {
+      Column() {
         ContactInfo({
           name: $name,
           phones: $phones,
@@ -51,9 +51,15 @@ struct ContactEdit {
           remark: $remark
         })
       }
+      .width('100%')
+      .height('100%')
+      .flexGrow(1)
+      .flexShrink(1)
       .layoutWeight(1)
-      .padding({ left: $r('app.float.page_padding'), right: $r('app.float.page_padding') })
     }
+    .width('100%')
+    .height('100%')
+    .padding({ left: $r('app.float.page_padding'), right: $r('app.float.page_padding') })
     .backgroundColor($r('app.color.page_background'))
   }
 

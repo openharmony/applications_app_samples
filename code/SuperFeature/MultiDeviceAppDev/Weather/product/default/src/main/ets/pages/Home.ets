@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import mediaquery from '@ohos.mediaquery'
 import HomeContent from './home/HomeContent'
 import IndexTitleBar from './home/IndexTitleBar'
 import SideContent from './home/SideContent'
-import { CityListData, getBg, getCityListWeatherData, Logger } from '@ohos/common'
+import { CityListData, Style, getBg, getCityListWeatherData, Logger } from '@ohos/common'
 
 const TAG: string = 'Home'
 
@@ -46,6 +46,7 @@ struct Home {
             HomeContent({ showSideBar: this.showSideBar, cityListData: item, index: index })
           }, item => item.city)
         }
+        .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
         .indicatorStyle({
           selectedColor: Color.White
         })

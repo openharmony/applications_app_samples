@@ -71,7 +71,7 @@ export default struct HomeContent {
     .backgroundColor($r('app.color.page_background'))
     .layoutWeight(1)
     .hideBackButton(true)
-    .title(this.NavigationTitle)
+    .menus(this.NavigationMenus)
   }
 
   @Builder
@@ -101,7 +101,7 @@ export default struct HomeContent {
   }
 
   @Builder
-  NavigationTitle() {
+  NavigationMenus() {
     Stack({ alignContent: Alignment.End }) {
       Image($r('app.media.add'))
         .width(28)

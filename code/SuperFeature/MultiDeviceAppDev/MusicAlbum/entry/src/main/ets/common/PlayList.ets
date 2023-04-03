@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,14 +18,16 @@ import MyDataSource from '../model/SongModule'
 
 @Component
 export default struct PlayList {
-  @Consume coverHeight: number
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm'
   @StorageProp('fontSize') fontSize: number = 0
+  @Consume coverHeight: number
 
   @Builder
   PlayAll() {
     Row() {
-      Image($r("app.media.ic_play_all")).height(23).width(23)
+      Image($r("app.media.ic_play_all"))
+        .height(23)
+        .width(23)
       Text($r('app.string.play_all'))
         .maxLines(1)
         .padding({ left: 10 })
@@ -36,14 +38,13 @@ export default struct PlayList {
         .width(24)
         .height(24)
         .margin({ right: 16 })
-      Image($r('app.media.ic_sort_list')).height(24).width(24)
+      Image($r('app.media.ic_sort_list'))
+        .height(24)
+        .width(24)
     }
     .height(60)
     .width('100%')
-    .backgroundColor('#fff')
     .padding({ left: 12, right: 12 })
-    .borderRadius({ topRight: 20, topLeft: 20 })
-    .position({ x: 0, y: 0 })
   }
 
   @Builder
@@ -68,7 +69,9 @@ export default struct PlayList {
       .alignItems(HorizontalAlign.Start)
 
       Blank()
-      Image($r('app.media.ic_list_more')).height(24).width(24)
+      Image($r('app.media.ic_list_more'))
+        .height(24)
+        .width(24)
     }
     .height(60)
     .width('100%')
@@ -87,20 +90,24 @@ export default struct PlayList {
                   .strokeWidth(0.5)
                   .color('#000')
                   .opacity(0.1)
-              }.padding({ left: 14, right: 14 })
+              }
+              .width('100%')
+              .height(50)
+              .padding({ left: 14, right: 14 })
             }
-          }, item => item.id)
+          }, item => item.id.toString())
         }
         .width('100%')
-        .height('100%')
         .lanes(this.currentBreakpoint === 'lg' ? 2 : 1)
       }
-      .backgroundColor('#fff')
-      .margin({ top: 50 })
+      .height('100%')
+      .flexGrow(1)
+      .flexShrink(1)
     }
-    .padding({
-      top: this.currentBreakpoint === 'sm' ? 0 : 50,
-      bottom: this.currentBreakpoint === 'sm' ? this.coverHeight + 48 : 48
-    })
+    .width('100%')
+    .height('100%')
+    .borderRadius({ topLeft: 20, topRight: 20 })
+    .backgroundColor(Color.White)
+    .padding({ bottom: this.currentBreakpoint === 'sm' ? this.coverHeight : 0 })
   }
 }

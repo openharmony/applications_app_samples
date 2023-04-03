@@ -17,7 +17,7 @@ import display from '@ohos.display'
 import Logger from '../model/Logger'
 import data_preferences from '@ohos.data.preferences'
 import { GameRule } from '../model/GameRule'
-import { MyDataSource, screenSizeType } from '../model/GameModuel'
+import { MyDataSource, screenSizeType, DataType } from '../model/GameModuel';
 import { GameStatus, TEXT_COLOR } from '../muck/GameData'
 
 const TAG = '[Game2048]'
@@ -25,8 +25,12 @@ const TAG = '[Game2048]'
 @Entry
 @Component
 struct Game2048 {
-  @State dataNumbers: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  private gameRule: GameRule = new GameRule(this.dataNumbers)
+  @State dataNumbers: MyDataSource = new MyDataSource([
+    new DataType(0, 0), new DataType(1, 0), new DataType(2, 0), new DataType(3, 0),
+    new DataType(4, 0), new DataType(5, 0), new DataType(6, 0), new DataType(7, 0),
+    new DataType(8, 0), new DataType(9, 0), new DataType(10, 0), new DataType(11, 0),
+    new DataType(12, 0), new DataType(13, 0), new DataType(14, 0), new DataType(15, 0)])
+  private gameRule: GameRule = new GameRule(this.dataNumbers['dataArray'])
   @State maxScore: number = 123456
   @State curScore: number = 0
   @State @Watch('onGameOver') gameStatus: number = GameStatus.BEFORE
@@ -51,14 +55,18 @@ struct Game2048 {
   // restart game
   gameStart() {
     this.gameRule.init()
-    this.dataNumbers = this.gameRule.dataNumbers
+    this.gameRule.dataNumbers.forEach((item, index) => {
+      this.dataNumbers['dataArray'][index].data = item;
+    })
     this.gameStatus = GameStatus.RUNNING
     this.handleLocalData('put')
   }
 
   // dataView
   dataView() {
-    this.dataNumbers = this.gameRule.dataNumbers
+    this.gameRule.dataNumbers.forEach((item, index) => {
+      this.dataNumbers['dataArray'][index].data = item;
+    })
     this.gameStatus = this.gameRule.status
     this.curScore = this.gameRule.score
   }
@@ -93,7 +101,11 @@ struct Game2048 {
       if (await preferences.has('gameData')) {
         this.gameRule.score = this.curScore = Number(await preferences.get('score', 'string'))
         this.gameStatus = this.gameRule.status = Number(await preferences.get('gameStatus', 'string'))
-        this.dataNumbers = this.gameRule.dataNumbers = JSON.parse(await preferences.get('gameData', 'string') as string)
+        let tempData: MyDataSource = JSON.parse(await preferences.get('gameData', 'string') as string);
+        tempData['dataArray'].forEach((item: DataType, index: number) => {
+          this.gameRule.dataNumbers[index] = item.data;
+          this.dataNumbers['dataArray'][index].data = item.data;
+        })
       }
     }
   }
@@ -148,20 +160,11 @@ struct Game2048 {
         .width(this.screenSize.x)
 
         Grid() {
-          LazyForEach(new MyDataSource(this.dataNumbers), (item) => {
+          LazyForEach(this.dataNumbers, (item) => {
             GridItem() {
-              Text(`${item === 0 ? '' : item}`)
-                .fontSize('85px')
-                .fontColor(item <= 4 ? '#000' : $r('app.color.score_color'))
-                .fontWeight(FontWeight.Bolder)
-                .backgroundColor($r('app.color.item_bg'))
-                .width('100%')
-                .height('100%')
-                .textAlign(TextAlign.Center)
-                .borderRadius(10)
-                .backgroundColor(TEXT_COLOR[(Math.log(item) / Math.log(2))])
+              MyGridItem({ gridData: item })
             }
-          })
+          }, (item: DataType) => item.id.toString())
         }
         .columnsTemplate('1fr 1fr 1fr 1fr')
         .rowsTemplate('1fr 1fr 1fr 1fr')
@@ -217,6 +220,23 @@ struct Game2048 {
     .height('100%')
     .backgroundImage($r('app.media.gridBackground'))
     .backgroundImageSize(ImageSize.Cover)
+  }
+}
+
+@Component
+struct MyGridItem {
+  @ObjectLink gridData: DataType
+
+  build() {
+    Text(`${this.gridData.data === 0 ? '' : this.gridData.data}`)
+      .fontSize(50)
+      .fontColor(this.gridData.data <= 4 ? '#000' : $r('app.color.score_color'))
+      .fontWeight(FontWeight.Bolder)
+      .width('100%')
+      .height('100%')
+      .textAlign(TextAlign.Center)
+      .borderRadius(10)
+      .backgroundColor(this.gridData.data === 0 ? $r('app.color.item_bg'): TEXT_COLOR[(Math.log(this.gridData.data) / Math.log(2))])
   }
 }
 

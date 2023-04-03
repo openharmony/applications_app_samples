@@ -27,7 +27,8 @@ export default struct TitleBar {
     Row() {
       if (this.hasBackPress) {
         Image($r('app.media.ic_back'))
-          .width(40).height('100%')
+          .width(40)
+          .height('100%')
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             router.back()

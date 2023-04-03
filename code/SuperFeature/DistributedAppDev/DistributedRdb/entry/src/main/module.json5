@@ -48,12 +48,6 @@
         ]
       }
     ],
-    "metadata": [
-      {
-        "name": "ArkTSPartialUpdate",
-        "value": "false"
-      }
-    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC"

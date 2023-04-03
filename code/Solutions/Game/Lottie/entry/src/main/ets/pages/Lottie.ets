@@ -302,7 +302,6 @@ struct Lottie {
                 Image($r('app.media.ic_public_delete_filled'))
                   .width(30)
                   .height(30)
-                  .colorBlend(Color.White)
                   .onClick(() => {
                     lottie.destroy()
                   })

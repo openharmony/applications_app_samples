@@ -46,8 +46,8 @@ struct ContactEdit {
         })
       }
       .layoutWeight(1)
-      .padding({ left: $r('app.float.page_padding'), right: $r('app.float.page_padding') })
     }
+    .padding({ left: $r('app.float.page_padding'), right: $r('app.float.page_padding') })
     .backgroundColor($r('app.color.page_background'))
   }
 

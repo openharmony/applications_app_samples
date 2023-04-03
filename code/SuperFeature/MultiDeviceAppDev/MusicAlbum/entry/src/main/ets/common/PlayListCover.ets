@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -83,10 +83,15 @@ export default struct PlayListCover {
         }
       })
     }
+    .width('100%')
     .height(70)
     .padding({
       left: this.currentBreakpoint === 'sm' ? 20 : 0,
       right: this.currentBreakpoint === 'sm' ? 20 : 0
+    })
+    .margin({
+      top: this.currentBreakpoint === 'sm' ? 15 : 0,
+      bottom: this.currentBreakpoint === 'sm' ? 15 : 0
     })
     .justifyContent(FlexAlign.SpaceBetween)
   }
@@ -105,10 +110,7 @@ export default struct PlayListCover {
 
           GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
             this.CoverOptions()
-          }.margin({
-            top: this.currentBreakpoint === 'sm' ? 15 : 0,
-            bottom: this.currentBreakpoint === 'sm' ? 15 : 0
-          })
+          }
         }
         .margin({ left: this.coverMargin, right: this.coverMargin })
         .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })

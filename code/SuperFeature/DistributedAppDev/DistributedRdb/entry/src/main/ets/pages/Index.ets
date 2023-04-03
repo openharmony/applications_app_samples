@@ -16,7 +16,6 @@
 import data_rdb from '@ohos.data.relationalStore'
 import common from '@ohos.app.ability.common'
 import Want from '@ohos.app.ability.Want'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import router from '@ohos.router'
 import Contact from '../model/Contact'
 import ContactDataSource from '../common/BasicDataSource'
@@ -39,7 +38,7 @@ struct Index {
   private liteStore = new LiteStore("sync_state", getContext(this) as common.UIAbilityContext)
   private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
   private intervalId: number = undefined
-  private contacts: ContactDataSource = new ContactDataSource()
+  @State contacts: ContactDataSource = new ContactDataSource([])
   @State isMultiCheck: boolean = false
   @State isSelectedAll: boolean = false
   @State state: {
@@ -58,21 +57,13 @@ struct Index {
     distributedDevice: ''
   }
 
-  aboutToAppear() {
+  async aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
-    let context = getContext(this) as common.UIAbilityContext
-    let atManager = abilityAccessCtrl.createAtManager()
-    try {
-      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
-      })
-    } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
-    }
+    await this.rdbModel.getRdbStore();
+    await this.getData();
   }
 
+  // 拉起应用后读取数据，暂定为分布式功能
   getWant() {
     let want: Want = AppStorage.Get('want')
     if (this.state.isDistributed && want.parameters.isStage === 'EXIT') {
@@ -87,7 +78,7 @@ struct Index {
       Logger.info(TAG, 'isStage = Stage')
       this.state.isStage = true
       this.state.isDistributed = true
-      this.state.distributedDevice = want.parameters.device.toString()
+      this.state.distributedDevice = want.parameters.device as string;
       let context = getContext(this) as common.UIAbilityContext
       context.startAbility({
         bundleName: BUNDLE,
@@ -107,10 +98,13 @@ struct Index {
 
   async onPageShow() {
     try {
+      // 初始化分部署数据库
       await this.rdbModel.getRdbStore()
       this.intervalId = setInterval(() => {
+        // 手动侦听应用被拉起的动作
         this.getWant()
       }, 1000)
+      // 读取数据库数据
       await this.getData()
     } catch (err) {
       Logger.error('onPageShow:' + JSON.stringify(err))
@@ -119,10 +113,14 @@ struct Index {
 
   async getData() {
     Logger.info(TAG, 'getData')
+    // 初始化数据库的表，表名为contact
     let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
-    this.contacts['dataArray'] = await this.rdbModel.query(predicates)
+    // 读取表中的数据
+    this.contacts.replaceDataArray(await this.rdbModel.query(predicates));
+    // 通知懒加载数据变更
     this.contacts.notifyDataReload()
     Logger.info(TAG, 'getData contacts count' + this.contacts['dataArray'].length)
+    // 读取Preferences中的数据
     let syncState = await this.liteStore.getValue()
     this.state.syncState = `${syncState}`
     if (!this.state.isStage && this.state.isDistributed && syncState === SyncState.AutomaticSync) {
@@ -237,14 +235,14 @@ struct Index {
 
         SearchBar()
         List() {
-          LazyForEach(this.contacts, (item, index) => {
+          LazyForEach(this.contacts, (item: Contact, index) => {
             ListItem() {
               ContactItem({ contact: item, isMultiCheck: $isMultiCheck })
             }
             .onClick(() => {
               this.handleClickContact(item, index)
             })
-          }, item => item.id.toString())
+          },item=> JSON.stringify(item))
         }
         .width('100%')
         .layoutWeight(1)
@@ -267,12 +265,14 @@ struct Index {
       if (!this.isMultiCheck && !this.state.isStage) {
         Button() {
           Image($r('app.media.add'))
-            .height('100%').width('100%')
+            .height('100%')
+            .width('100%')
             .objectFit(ImageFit.Contain)
             .align(Alignment.End)
         }
         .key('btnAdd')
-        .size({ width: '15%', height: 80 })
+        .width(80)
+        .height(80)
         .margin({ right: 20, bottom: 50 })
         .type(ButtonType.Circle)
         .backgroundColor('#0D9FFB')
@@ -285,7 +285,8 @@ struct Index {
         })
       }
     }
-    .size({ width: '100%', height: '100%' })
+    .width('100%')
+    .height('100%')
   }
 
   async onBackPress() {

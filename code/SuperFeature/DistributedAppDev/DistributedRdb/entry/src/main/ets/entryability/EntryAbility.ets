@@ -16,14 +16,18 @@
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import Logger from '../model/Logger'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     AppStorage.SetOrCreate('want', want)
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  async onWindowStageCreate(windowStage: Window.WindowStage): Promise<void> {
     // Main window is created, set main page for this ability
+    let atManager = abilityAccessCtrl.createAtManager();
+    await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']);
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')

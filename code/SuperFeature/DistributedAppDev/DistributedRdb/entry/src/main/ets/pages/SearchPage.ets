@@ -20,12 +20,11 @@ import RdbModel from '../model/RdbModel'
 import { QueryItem } from '../common/QueryItem'
 import { TABLE_NAME, SQL_CREATE_TABLE, COLUMNS } from '../model/RdbConst'
 
-
 @Entry
 @Component
 struct SearchPage {
   private searchText: string = ''
-  private contacts: ContactDataSource = new ContactDataSource()
+  private contacts: ContactDataSource = new ContactDataSource([])
   private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
 
   async getData() {
