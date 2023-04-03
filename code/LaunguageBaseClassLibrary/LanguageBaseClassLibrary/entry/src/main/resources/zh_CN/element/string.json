@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "lable_name",
+      "value": "语言基础类库"
+    },
+    {
+      "name": "xml",
+      "value": "Xml & ConvertXml (XML解析,生成与转换)"
+    },
+    {
+      "name": "url",
+      "value": "Url (Url字符串解析)"
+    },
+    {
+      "name": "util",
+      "value": "Util (util工具函数)"
+    },
+    {
+      "name": "process",
+      "value": "Process (获取进程相关的信息)"
+    },
+    {
+      "name": "array_list",
+      "value": "ArrayList (线性容器ArrayList)"
+    }
+  ]
+}
