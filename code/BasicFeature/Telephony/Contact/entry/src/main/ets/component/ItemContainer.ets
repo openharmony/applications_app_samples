@@ -53,6 +53,7 @@ export struct ItemContainer {
                   .fontSize(20)
                   .margin({ left: 22 })
               }
+              .id('contactList')
               .width('100%')
               .borderRadius(15)
               .onClick(() => {

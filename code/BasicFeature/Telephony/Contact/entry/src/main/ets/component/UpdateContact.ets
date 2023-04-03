@@ -35,11 +35,11 @@ export struct UpdateContact {
           .margin({ top: 22, bottom: 32 })
 
         Column() {
-          this.updateContact($r('app.string.user_name'), this.name, $r('app.media.name'))
-          this.updateContact($r('app.string.address'), this.postalAddress, $r('app.media.address'))
-          this.updateContact($r('app.string.phone'), this.phoneNumber, $r('app.media.email'))
-          this.updateContact($r('app.string.email'), this.email, $r('app.media.nickname'))
-          this.updateContact($r('app.string.note'), this.nickName, $r('app.media.phone'))
+          this.updateContact($r('app.string.user_name'), this.name, $r('app.media.name'), 'Name')
+          this.updateContact($r('app.string.address'), this.postalAddress, $r('app.media.address'), 'Address')
+          this.updateContact($r('app.string.phone'), this.phoneNumber, $r('app.media.email'), 'Telephone')
+          this.updateContact($r('app.string.email'), this.email, $r('app.media.nickname'), 'Mail')
+          this.updateContact($r('app.string.note'), this.nickName, $r('app.media.phone'), 'Remark')
         }
         .height('80%')
       }
@@ -48,7 +48,7 @@ export struct UpdateContact {
   }
 
   @Builder
-  updateContact(editText: Resource, info: string, img: Resource) {
+  updateContact(editText: Resource, info: string, img: Resource, id: string) {
     Row() {
       Image(img)
         .width(32)
@@ -57,6 +57,7 @@ export struct UpdateContact {
         .objectFit(ImageFit.Contain)
 
       TextInput({ placeholder: editText, text: info })
+        .id('update' + (id))
         .width('80%')
         .fontSize(22)
         .fontWeight(FontWeight.Bold)

@@ -47,7 +47,7 @@ export struct Contact {
           .height(32)
           .margin({ right: 32, top: 32 })
           .objectFit(ImageFit.Contain)
-          .key('add')
+          .id('add')
           .onClick(() => {
             router.pushUrl({
               url: 'pages/AddContact'
@@ -58,7 +58,7 @@ export struct Contact {
           .height(32)
           .margin({ right: 32, top: 32 })
           .objectFit(ImageFit.Contain)
-          .key('setting')
+          .id('setting')
           .onClick(() => {
             router.pushUrl({
               url: 'pages/Setting'
@@ -87,6 +87,7 @@ export struct Contact {
 
       Stack({ alignContent: Alignment.TopStart }) {
         TextInput({ placeholder: $r('app.string.search'), text: this.result, controller: this.controller })
+          .id('inputContact')
           .fontSize(20)
           .height(52)
           .padding({ left: 46 })
