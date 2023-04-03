@@ -323,10 +323,10 @@ export class KeyboardController {
     this.inputHandle.addLog("processFunctionKeys keyValue is: " + keyValue);
     switch (keyValue) {
       case "KEYCODE_DEL":
-        this.inputHandle.deleteBackward(1);
+        this.inputHandle.deleteForward(1);
         return true
       case "KEYCODE_FORWARD_DEL":
-        this.inputHandle.deleteForward(1);
+        this.inputHandle.deleteBackward(1);
         return true
       case "KEYCODE_DPAD_UP":
         inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_UP);

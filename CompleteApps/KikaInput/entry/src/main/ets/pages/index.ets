@@ -186,7 +186,7 @@ struct deleteItem {
     .backgroundColor('#a8abb7')
     .borderRadius(4)
     .onClick(() => {
-      InputHandler.getInstance().deleteBackward(1);
+      InputHandler.getInstance().deleteForward(1);
     })
     .width(this.inputStyle.switchButtonWidth)
     .height('100%')
