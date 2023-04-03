@@ -79,6 +79,23 @@ struct Card {
     this.paintChessboard();
   }
 
+  paintForSizeChanged(areaWidth, areaHeight): void {
+    console.info(`[ArkTSCard] ${this.canvasWidth}-${this.canvasHeight} to ${areaWidth}-${areaHeight}`);
+    this.canvasWidth = areaWidth;
+    this.canvasHeight = areaHeight;
+    this.chessboardPosX = this.canvasWidth * this.chessboardMargin;
+    this.chessboardPosY = this.canvasHeight * this.chessboardMargin;
+    this.chessboardWidth = this.canvasWidth - this.chessboardPosX * 2;
+    this.chessboardHeight = this.canvasHeight - this.chessboardPosY * 2;
+    this.paintBackground();
+    this.paintChessboard();
+    for (let i = 0; i < this.processRecord.length; ++i) {
+      let process = this.processRecord[i];
+      this.paintChessPieces(process[0], process[1], i);
+    }
+    this.paintProcess();
+  }
+
   fallback(): void {
     console.info(`[ArkTSCard] Fallback ${this.processRecord.length} - ${this.chessPiecesCount}`);
     if (this.chessPiecesCount <= 0) {
@@ -416,16 +433,21 @@ struct Card {
           .width('100%')
           .height('90%')
           .onReady(() => {
-            console.info('[ArkTSCard] onReady for canvas draw content');
             let minSize = Math.min(this.context.width, this.context.height);
             this.btnFontSize = minSize * 0.035 + 'vp';
             this.infoFontSize = minSize * 0.09 + 'px';
             this.chessboardLineWidth = minSize * 0.004;
             this.chessboardDotRadius = this.chessboardLineWidth * 3;
-            this.chessPiecesInit(Number(this.context.width), Number(this.context.height));
-            this.paintBackground();
-            this.paintChessboard();
-            this.paintStartInfo();
+            if (this.canvasWidth === 0 && this.canvasHeight === 0) {
+              console.info('[ArkTSCard] onReady for canvas draw content');
+              this.chessPiecesInit(Number(this.context.width), Number(this.context.height));
+              this.paintBackground();
+              this.paintChessboard();
+              this.paintStartInfo();
+            } else {
+              console.info('[ArkTSCard] onReady for canvas size changed');
+              this.paintForSizeChanged(Number(this.context.width), Number(this.context.height));
+            }
           })
           .onClick((event: ClickEvent) => {
             console.info(`[ArkTSCard] Click: PosX:${event.x} PosX:${event.y}`);
