@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "device_management",
+      "value": "Device Management"
+    },
+    {
+      "name": "usb_manager",
+      "value": "USBManagement"
+    },
+    {
+      "name": "power_manager",
+      "value": "PowerManager"
+    }
+  ]
+}
