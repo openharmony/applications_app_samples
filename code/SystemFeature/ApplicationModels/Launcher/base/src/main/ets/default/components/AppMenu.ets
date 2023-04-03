@@ -23,6 +23,7 @@ export struct AppMenu {
     Column() {
       ForEach(this.menuInfos, (item) => {
         Column() {
+
           MenuInfoItem({
             menuInfo: item
           })

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,7 +22,7 @@ export struct TextAreaShow {
   build() {
     Row() {
       TextInput({ placeholder: this.placeholder })
-        .height(40)
+        .height(50)
         .width('70%')
         .fontSize(30)
         .margin({ top: 15 })
@@ -31,6 +31,7 @@ export struct TextAreaShow {
         .textAlign(TextAlign.Start)
         .fontWeight(FontWeight.Bold)
         .fontStyle(FontStyle.Normal)
+        .borderRadius(25)
         .placeholderFont({ size: 20, weight: 50, style: FontStyle.Italic })
         .key('inputText' + this.inputNumber)
         .onChange((value: string) => {

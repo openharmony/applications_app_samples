@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -76,17 +76,22 @@ export default class MediaUtils {
   }
 
   async getFileAssetsFromType(mediaType: number) {
-    Logger.info(this.tag, `getFileAssetsFromType,mediaType = ${mediaType}`)
-    let fileKeyObj = mediaLibrary.FileKey
-    let fetchOp = {
-      selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-      selectionArgs: [`${mediaType}`],
-    }
-    const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp)
-    Logger.info(this.tag, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`)
-    let fileAssets = []
-    if (fetchFileResult.getCount() > 0) {
-      fileAssets = await fetchFileResult.getAllObject()
+    Logger.info(this.tag, `getFileAssetsFromType,mediaType = ${mediaType}`);
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileAssets = [];
+
+    try {
+      let fetchOp = {
+        selections: `${fileKeyObj.MEDIA_TYPE}=?`,
+        selectionArgs: [`${mediaType}`],
+      };
+      const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp);
+      Logger.info(this.tag, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`);
+      if (fetchFileResult.getCount() > 0) {
+        fileAssets = await fetchFileResult.getAllObject();
+      }
+    } catch (err) {
+      console.info(`LSQ: err ${JSON.stringify(err)}`);
     }
     return fileAssets
   }

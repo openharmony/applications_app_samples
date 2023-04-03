@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import PreferencesStore from '../../utils/Preferences'
 import { SYNC_STATE } from '@ohos/common'
 
-@Extend(Column) function columnStyle () {
+@Extend(Column) function columnStyle() {
   .width('100%')
   .padding({ left: 12, right: 12, top: 8, bottom: 8 })
   .margin(12)
@@ -24,7 +24,7 @@ import { SYNC_STATE } from '@ohos/common'
   .borderRadius(24)
 }
 
-@Extend(Text) function introductionStyle () {
+@Extend(Text) function introductionStyle() {
   .fontColor(Color.Black)
   .fontSize(18)
   .margin({ top: 4 })
@@ -35,7 +35,10 @@ import { SYNC_STATE } from '@ohos/common'
 @Preview
 @Component
 export default struct SettingsContent {
-  @State syncState: string = SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT
+  @State syncState: string = SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT;
+  @State isDeduplication: boolean = false;
+  @State isOverwriteContact: boolean = false;
+  @State isOverwriteContactAssistant: boolean = false;
 
   build() {
     Scroll() {
@@ -49,10 +52,14 @@ export default struct SettingsContent {
             Text($r('app.string.deduplication'))
               .fontSize(18)
             Blank()
-            Toggle({ type: ToggleType.Switch, isOn: this.syncState === SYNC_STATE.DEDUPLICATION })
+            Toggle({ type: ToggleType.Switch, isOn: this.isDeduplication })
               .onChange((isOn: boolean) => {
-                this.setSyncState(SYNC_STATE.DEDUPLICATION)
-                this.syncState = SYNC_STATE.DEDUPLICATION
+                this.isDeduplication = isOn;
+                if (isOn) {
+                  this.setSyncState(SYNC_STATE.DEDUPLICATION);
+                  this.isOverwriteContact = false;
+                  this.isOverwriteContactAssistant = false;
+                }
               })
           }
           .width('100%')
@@ -67,10 +74,14 @@ export default struct SettingsContent {
             Text($r('app.string.overwrite_contact'))
               .fontSize(18)
             Blank()
-            Toggle({ type: ToggleType.Switch, isOn: this.syncState === SYNC_STATE.OVERWRITE_CONTACT })
+            Toggle({ type: ToggleType.Switch, isOn: this.isOverwriteContact })
               .onChange((isOn: boolean) => {
-                this.setSyncState(SYNC_STATE.OVERWRITE_CONTACT)
-                this.syncState = SYNC_STATE.OVERWRITE_CONTACT
+                this.isOverwriteContact = isOn;
+                if (isOn) {
+                  this.setSyncState(SYNC_STATE.OVERWRITE_CONTACT);
+                  this.isDeduplication = false;
+                  this.isOverwriteContactAssistant = false;
+                }
               })
           }
           .width('100%')
@@ -85,10 +96,14 @@ export default struct SettingsContent {
             Text($r('app.string.overwrite_contact_assistant'))
               .fontSize(18)
             Blank()
-            Toggle({ type: ToggleType.Switch, isOn: this.syncState === SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT })
+            Toggle({ type: ToggleType.Switch, isOn: this.isOverwriteContactAssistant })
               .onChange((isOn: boolean) => {
-                this.setSyncState(SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT)
-                this.syncState = SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT
+                this.isOverwriteContactAssistant = isOn;
+                if (isOn) {
+                  this.setSyncState(SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT);
+                  this.isDeduplication = false;
+                  this.isOverwriteContact = false;
+                }
               })
           }
           .width('100%')
@@ -97,13 +112,13 @@ export default struct SettingsContent {
             .introductionStyle()
         }
         .columnStyle()
-
       }
+      .padding({ left: $r('app.float.page_space_24'), right: $r('app.float.page_space_24') })
       .margin({ top: $r('app.float.page_space_12') })
     }
     .width('100%')
     .layoutWeight(1)
-    .padding({ left: $r('app.float.page_space_24'), right: $r('app.float.page_space_24') })
+    .align(Alignment.Top)
     .backgroundColor($r('app.color.page_background'))
   }
 
@@ -112,7 +127,18 @@ export default struct SettingsContent {
   }
 
   getSyncState = async () => {
-    this.syncState = <string> await PreferencesStore.get('syncState', SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT)
+    this.syncState = <string> await PreferencesStore.get('syncState', SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT);
+    switch (this.syncState) {
+      case SYNC_STATE.DEDUPLICATION:
+        this.isDeduplication = true;
+        break;
+      case SYNC_STATE.OVERWRITE_CONTACT:
+        this.isOverwriteContact = true;
+        break;
+      case SYNC_STATE.OVERWRITE_CONTACT_ASSISTANT:
+        this.isOverwriteContactAssistant = true;
+        break;
+    }
   }
 
   async setSyncState(state: string) {

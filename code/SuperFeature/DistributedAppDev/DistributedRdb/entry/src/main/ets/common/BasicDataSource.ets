@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,14 +15,38 @@
 
 import Contact from '../model/Contact'
 
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+export default class ContactDataSource implements IDataSource {
+  private dataArray: Array<Contact> = new Array<Contact>();
+  private listeners: Array<DataChangeListener> = [];
+
+  constructor(dataArray: Array<Contact>) {
+    this.dataArray = dataArray;
+  }
+
+  public replaceDataArray(dataArray: Array<Contact>) {
+    this.dataArray.splice(0, this.dataArray.length);
+    dataArray.forEach(item => {
+      this.dataArray.push(item);
+    })
+    this.notifyDataReload();
+  }
 
   public totalCount(): number {
-    return 0
+    return this.dataArray.length;
   }
+
   public getData(index: number): any {
-    return undefined
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: Contact): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: Contact): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -31,6 +55,7 @@ class BasicDataSource implements IDataSource {
       this.listeners.push(listener)
     }
   }
+
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -44,44 +69,28 @@ class BasicDataSource implements IDataSource {
       listener.onDataReloaded()
     })
   }
+
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index)
     })
   }
+
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index)
     })
   }
+
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index)
     })
   }
+
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to)
     })
-  }
-}
-
-export default class ContactDataSource extends BasicDataSource {
-  private dataArray: Contact[] = []
-
-  public totalCount(): number {
-    return this.dataArray.length
-  }
-  public getData(index: number): any {
-    return this.dataArray[index]
-  }
-
-  public addData(index: number, data: Contact): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
-  }
-  public pushData(data: Contact): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
   }
 }

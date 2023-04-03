@@ -403,7 +403,7 @@ struct Index {
       .width('90%')
       .margin({ top: '10%' })
 
-      Slider({ value: this.currentProgress })
+      Slider({ value: isNaN(this.currentProgress) ? 0 : this.currentProgress })
         .width('80%')
         .selectedColor('#ff0c4ae7')
         .onChange((value: number, mode: SliderChangeMode) => {

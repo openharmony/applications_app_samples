@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -73,10 +73,10 @@ export struct ContactDetailInfo {
         Row() {
           Column() {
             Text($r('app.string.default'))
-              .fontSize($r('app.float.font_size_22'))
+              .fontSize(16)
               .margin({ left: $r('app.float.page_space_16') })
             Text($r('app.string.phone_ring'))
-              .fontSize($r('app.float.font_size_22'))
+              .fontSize(16)
               .fontColor(Color.Gray)
               .margin({ left: $r('app.float.page_space_16') })
           }
@@ -100,6 +100,5 @@ export struct ContactDetailInfo {
     }
     .width('100%')
     .height('100%')
-    .padding({ left: $r('app.float.page_space_24'), right: $r('app.float.page_space_24') })
   }
 }

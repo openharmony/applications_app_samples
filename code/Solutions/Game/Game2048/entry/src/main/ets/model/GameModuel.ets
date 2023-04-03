@@ -13,8 +13,16 @@
  * limitations under the License.
  */
 
+@Observed
+export class DataType {
+  constructor(public id: number, public data: number) {
+    this.id = id;
+    this.data = data;
+  }
+}
+
 export class MyDataSource {
-  public dataArray: string[] = []
+  public dataArray: Array<DataType> = []
   private listeners: DataChangeListener[] = []
 
   constructor(ele) {
@@ -27,7 +35,7 @@ export class MyDataSource {
     return this.dataArray.length
   }
 
-  public getData(index: number): string {
+  public getData(index: number): DataType {
     return this.dataArray[index]
   }
 

@@ -40,19 +40,28 @@ export default class RdbModel {
     this.getRdbStore()
   }
 
+  // 初始化数据库
   async getRdbStore() {
     Logger.info(TAG, 'getRdbStore begin')
     if (this.isCreateDbDone) {
       return
     }
-    this.rdbStore = await data_rdb.getRdbStore(this.context, STORE_CONFIG)
+    try {
+      // 获取数据库存储对象
+      this.rdbStore = await data_rdb.getRdbStore(this.context, STORE_CONFIG);
+    } catch (err) {
+      console.info(`getRdbStore err ${JSON.stringify(err)}`);
+    }
     Logger.info(TAG, 'getRdbStore end')
     try {
+      // 执行sql语句，联系人个各个属性设定
       await this.rdbStore.executeSql(this.sqlCreateTable)
+      // 设置分布式表，表明为contact
       await this.rdbStore.setDistributedTables([this.tableName])
     } catch (e) {
       Logger.error(TAG, 'getRdbStore:' + JSON.stringify(e))
     }
+    // 分布式数据库创建为完成
     this.isCreateDbDone = true
     Logger.info(TAG, 'create table done')
   }
@@ -96,8 +105,10 @@ export default class RdbModel {
     Logger.info(TAG, 'query start')
     Logger.info(TAG, 'predicates is ' + JSON.stringify(predicates))
     Logger.info(TAG, 'columns ' + JSON.stringify(this.columns))
-    let resultSet = await this.rdbStore.query(predicates, this.columns)
+    // 默认查询所有列
+    let resultSet: data_rdb.ResultSet = await this.rdbStore.query(predicates, this.columns);
     Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount))
+    // 处理查询到的结果数组
     return this.getListFromResultSet(resultSet)
   }
 
@@ -150,24 +161,31 @@ export default class RdbModel {
     })
   }
 
-  getListFromResultSet(resultSet): Array<Contact> {
+  // 处理数据格式
+  getListFromResultSet(resultSet: data_rdb.ResultSet): Array<Contact> {
+    // 声明结果变量
     let contacts: Array<Contact> = []
+    // 进入结果集的第一行
     resultSet.goToFirstRow()
+    // 如果没有结束就继续遍历
     while (!resultSet.isEnded) {
-      let contact = new Contact(resultSet.getDouble(resultSet.getColumnIndex('id'))
+      // 读取各个属性，初始化临时变量contact
+      let contact: Contact = new Contact(resultSet.getDouble(resultSet.getColumnIndex('id'))
         , resultSet.getString(resultSet.getColumnIndex('name'))
         , resultSet.getDouble(resultSet.getColumnIndex('gender'))
         , resultSet.getString(resultSet.getColumnIndex('phone'))
         , resultSet.getString(resultSet.getColumnIndex('remark')))
       if (!contacts.includes(contact)) {
+        // 如果数据集合中没有这条数据就添加进去
         contacts.push(contact)
       }
+      // 进入下一行
       resultSet.goToNextRow()
     }
+    // 数据整合完毕就释放资源
     resultSet.close()
     Logger.info(TAG, 'contacts number is ' + contacts.length)
+    // 返回整合的联系人数据
     return contacts
   }
 }
-
-//export default new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS)

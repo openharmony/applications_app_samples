@@ -20,36 +20,27 @@ import Logger from '../model/Logger'
 
 const TAG: string = 'MainAbility'
 const PERMISSIONS: Array<Permissions> = [
+  'ohos.permission.CAMERA',
+  'ohos.permission.MICROPHONE',
   'ohos.permission.READ_MEDIA',
   'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.CAPTURE_SCREEN'
-]
-
+  'ohos.permission.MEDIA_LOCATION'];
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
-    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
-    try {
-      atManager.requestPermissionsFromUser(this.context, PERMISSIONS).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
-      })
-    } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
-    }
-    AppStorage.SetOrCreate('isRefresh', false)
   }
 
   onDestroy() {
     Logger.info(TAG, 'MainAbility onDestroy')
   }
 
-  onWindowStageCreate(windowStage) {
+  async onWindowStageCreate(windowStage): Promise<void> {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, 'MainAbility onWindowStageCreate')
-    windowStage.setUIContent(this.context, "pages/Index", null)
+    Logger.info(TAG, 'MainAbility onWindowStageCreate');
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    await atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
+    windowStage.setUIContent(this.context, 'pages/Index', null);
   }
 
   onWindowStageDestroy() {

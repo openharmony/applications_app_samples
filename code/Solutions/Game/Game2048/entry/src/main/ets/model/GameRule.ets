@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import {DataType } from '../model/GameModuel';
+
 // gameStatus
 enum GameStatus {
   BEFORE = -1,
@@ -28,12 +30,14 @@ export class GameRule {
     return i * this.row + j
   }
 
-  dataNumbers: number[]
+  dataNumbers: Array<number> = []
   status: number = GameStatus.BEFORE
   score: number = 0
 
-  constructor(dataNumbers: number[]) {
-    this.dataNumbers = dataNumbers
+  constructor(numbers: Array<DataType>) {
+    numbers.forEach((item) => {
+      this.dataNumbers.push(item.data);
+    })
   }
 
   // random

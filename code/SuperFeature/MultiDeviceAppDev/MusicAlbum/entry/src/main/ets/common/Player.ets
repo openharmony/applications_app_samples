@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -58,7 +58,5 @@ export default struct Player {
     .height(48)
     .backgroundColor('#F6F9FC')
     .padding({ left: 16, right: 16 })
-    .position({x: 0,y: '100%'})
-    .translate({x: 0,y: '-100%'})
   }
 }

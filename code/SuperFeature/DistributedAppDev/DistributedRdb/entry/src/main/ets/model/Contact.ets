@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+@Observed
 export default class Contact {
   id: number
   name: string

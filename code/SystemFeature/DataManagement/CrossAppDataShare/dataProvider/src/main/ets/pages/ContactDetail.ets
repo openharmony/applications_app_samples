@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,40 +22,51 @@ struct ContactDetail {
   @State contact: Contact = undefined
 
   build() {
-    Navigation() {
+    Column() {
+      Row() {
+        Image($r('app.media.back'))
+          .height(30)
+          .width(30)
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.Start)
+
       if (this.contact) {
         ContactDetailInfo({ contact: $contact })
+          .flexGrow(1)
+          .flexShrink(1)
       }
-    }
-    .backgroundColor($r('app.color.page_background'))
-    .toolBar(this.ToolBars)
-    .hideToolBar(false)
-  }
-
-  @Builder ToolBars() {
-    Row() {
-      this.ToolBar($r('app.media.edit'), $r('app.string.edit'), () => {
-        // edit the contact info
-        router.push({
-          url: 'pages/ContactEdit',
-          params: {
-            operate: OPERATE_STATUS.UPDATE,
-            contact: this.contact
-          }
-        })
-      })
-      this.ToolBar($r('app.media.delete'), $r('app.string.delete'), async () => {
-        // show delete dailog
-        dialogUtil.showAlertDialog($r('app.string.delete_alert_message'),
-        $r('app.string.delete'), async () => {
-            await contactDataShareUtil.delete(getContext(this), this.contact.id)
-            router.back()
-          }, $r('app.string.cancel'), () => {
+      Row() {
+        this.ToolBar($r('app.media.edit'), $r('app.string.edit'), () => {
+          // edit the contact info
+          router.push({
+            url: 'pages/ContactEdit',
+            params: {
+              operate: OPERATE_STATUS.UPDATE,
+              contact: this.contact
+            }
           })
-      })
+        })
+        this.ToolBar($r('app.media.delete'), $r('app.string.delete'), async () => {
+          // show delete dailog
+          dialogUtil.showAlertDialog($r('app.string.delete_alert_message'),
+          $r('app.string.delete'), async () => {
+              await contactDataShareUtil.delete(getContext(this), this.contact.id);
+              router.back();
+            }, $r('app.string.cancel'), () => {
+            })
+        })
+      }
+      .width('100%')
+      .height(56)
     }
+    .padding(24)
     .width('100%')
-    .height($r('app.float.tool_bar_height'))
+    .height('100%')
+    .backgroundColor($r('app.color.page_background'))
   }
 
   @Builder ToolBar(image: Resource, text: ResourceStr, handleOnClick: () => void) {

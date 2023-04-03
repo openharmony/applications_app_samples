@@ -45,8 +45,10 @@ class LiteStore {
 
   async getValue() {
     if (this.store === undefined) {
+      // 读取Preferences对象
       await this.getStore()
     }
+    // 获取Preferences对象中的数据
     let result = await this.store.get(this.key, 'ManualSync')
     Logger.info(TAG, `getValue: ${result}`)
     return result
