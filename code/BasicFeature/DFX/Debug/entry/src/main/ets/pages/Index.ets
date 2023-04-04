@@ -36,7 +36,7 @@ struct Index {
         Blank()
 
         Image($r('app.media.debug'))
-          .key('btnDebug')
+          .id('btnDebug')
           .width('10%')
           .margin({ right: 4 })
           .objectFit(ImageFit.Contain)
