@@ -128,6 +128,7 @@ export struct ContactInfo {
             .margin(4)
             .borderRadius(10)
         }
+        .id('editContact')
         .onClick(() => {
           router.pushUrl({
             url: 'pages/EditContact',
@@ -148,6 +149,7 @@ export struct ContactInfo {
             .fontColor(Color.Black)
             .borderRadius(10)
         }
+        .id('deleteContact')
         .onClick(async () => {
           AlertDialog.show(
             {

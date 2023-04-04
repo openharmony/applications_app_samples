@@ -36,6 +36,7 @@ struct EditContact {
     Column() {
       Row() {
         Image($r('app.media.no'))
+          .id('cancelEdit')
           .width(32)
           .height(32)
           .margin({ left: 32, right: 22 })
@@ -53,6 +54,7 @@ struct EditContact {
         Blank()
 
         Image($r('app.media.yes'))
+          .id('confirmEdit')
           .width(32)
           .height(32)
           .margin({ right: 32 })

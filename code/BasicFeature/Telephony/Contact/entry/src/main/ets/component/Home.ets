@@ -63,7 +63,7 @@ export struct Home {
         .fontColor(this.currentIndex === index ? $r('app.color.table_selected') : $r('app.color.table_normal'))
     }
     .width('100%')
-    .key('tab' + index)
+    .id('tab' + index)
   }
 
   TabItem(index: number) {

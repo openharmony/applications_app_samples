@@ -38,7 +38,7 @@ struct AddContact {
           .height(32)
           .margin({ left: 32, right: 22 })
           .objectFit(ImageFit.Contain)
-          .key('backIndex')
+          .id('cancel')
           .onClick(() => {
             router.back()
           })
@@ -52,6 +52,7 @@ struct AddContact {
         Blank()
 
         Image($r('app.media.yes'))
+          .id('confirm')
           .width(32)
           .height(32)
           .margin({ right: 32 })

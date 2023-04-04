@@ -39,11 +39,11 @@ export struct NewContact {
           .margin({ top: 22, bottom: 32 })
 
         Column() {
-          this.newContact($r('app.string.user_name'), $r('app.media.name'))
-          this.newContact($r('app.string.address'), $r('app.media.address'))
-          this.newContact($r('app.string.phone'), $r('app.media.phone'))
-          this.newContact($r('app.string.email'), $r('app.media.email'))
-          this.newContact($r('app.string.note'), $r('app.media.nickname'))
+          this.newContact($r('app.string.user_name'), $r('app.media.name'), 'Name')
+          this.newContact($r('app.string.address'), $r('app.media.address'), 'Address')
+          this.newContact($r('app.string.phone'), $r('app.media.phone'), 'Telephone')
+          this.newContact($r('app.string.email'), $r('app.media.email'), 'Mail')
+          this.newContact($r('app.string.note'), $r('app.media.nickname'), 'Remarks')
         }
         .height('80%')
       }
@@ -52,7 +52,7 @@ export struct NewContact {
   }
 
   @Builder
-  newContact(editText: Resource, img: Resource) {
+  newContact(editText: Resource, img: Resource, id: string) {
     Row() {
       Image(img)
         .width(32)
@@ -61,6 +61,7 @@ export struct NewContact {
         .objectFit(ImageFit.Contain)
 
       TextInput({ placeholder: editText })
+        .id('input' + (id))
         .width('80%')
         .fontSize(22)
         .fontWeight(FontWeight.Bold)
