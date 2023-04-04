@@ -138,8 +138,8 @@ struct Index {
     this.mediaManager.onAudioChange(this.getAudios)
   }
 
-  onPageShow() {
-    this.getAudios()
+  async onPageShow() {
+    this.recordList = await this.mediaManager.queryAllAudios();
   }
 
   build() {

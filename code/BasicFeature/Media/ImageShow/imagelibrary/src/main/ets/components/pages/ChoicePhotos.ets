@@ -137,7 +137,7 @@ export struct ChoicePhotos {
 
         Blank()
 
-        Button(`${this.nextText} ${this.isChoice === true ? `(${this.choiceMedias.length})` : ''}`)
+        Button(`${this.nextText} ${this.isChoice ? `(${this.choiceMedias.length})` : ''}`)
           .fontSize(20)
           .height(32)
           .backgroundColor(this.isChoice === true ? '#E92F4F' : '#fffa8e8e')

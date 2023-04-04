@@ -25,30 +25,29 @@ const PERMISSIONS: Array<Permissions> = ['ohos.permission.MICROPHONE', 'ohos.per
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want, launchParam) {
-    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
-    let authResults = await atManager.requestPermissionsFromUser(this.context, PERMISSIONS)
-    if (authResults.authResults.includes(-1)) {
-      return
-    }
-    prompt.showToast({
-      message: 'requestPermissionsFromUser success'
-    })
   }
 
   onDestroy() {
     Logger.info(TAG, `Ability onDestroy`)
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  async onWindowStageCreate(windowStage: Window.WindowStage): Promise<void> {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, `Ability onWindowStageCreate`)
-
+    Logger.info(TAG, 'Ability onWindowStageCreate');
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    let authResults = await atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
+    if (authResults.authResults.includes(-1)) {
+      return;
+    }
+    prompt.showToast({
+      message: 'requestPermissionsFromUser success'
+    });
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
+        Logger.error(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return
       }
-      Logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
+      Logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     })
   }
 

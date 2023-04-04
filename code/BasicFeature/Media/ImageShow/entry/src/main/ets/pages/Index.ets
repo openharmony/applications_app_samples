@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -192,6 +192,7 @@ struct Index {
       .margin({ top: 20 })
       .constraintSize({ maxHeight: '94%', minHeight: '94%' })
       .backgroundColor('#f1f3f5')
+      .align(Alignment.Top)
     }
     .width('100%')
     .height('100%')

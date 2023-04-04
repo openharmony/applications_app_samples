@@ -374,6 +374,7 @@ struct Index {
           this.fallChess(event)
         }
         this.distributedData.clickCount++
+        this.flushData();
       })
 
       Row() {
@@ -381,7 +382,6 @@ struct Index {
           Button($r('app.string.restart'), { stateEffect: true })
             .height(40)
             .fontSize(24 / this.dpiBi)
-            .margin({ left: 20 })
             .padding({ left: 10, right: 10 })
             .backgroundColor('RGB(210,105,30)')
             .onClick(() => {
@@ -390,12 +390,12 @@ struct Index {
               this.distributedData.step = 0
               this.distributedData.clickCount = 0
               this.distributedData.fallLocation = []
+              this.flushData();
             })
           Blank()
           Button($r('app.string.repentance_chess'), { stateEffect: true })
             .backgroundColor('RGB(210,105,30)')
             .height(40)
-            .margin({ right: 20 })
             .padding({ left: 10, right: 10 })
             .fontSize(24 / this.dpiBi)
             .enabled(this.isClick)
@@ -406,10 +406,12 @@ struct Index {
                 this.distributedData.step--
                 this.isRetract = true
                 this.isClick = false
+                this.flushData();
               }
             })
         }
       }
+      .justifyContent(FlexAlign.SpaceBetween)
       .width(210)
     }
     .justifyContent(FlexAlign.Center)
