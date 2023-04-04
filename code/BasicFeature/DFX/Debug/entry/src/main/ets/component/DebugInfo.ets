@@ -35,6 +35,7 @@ export default struct DebugInfo {
           this.showDebug($r('app.string.sharedDirty'), this.sharedMemory)
           this.showDebug($r('app.string.privateDirty'), this.privateMemory)
         }
+        .id('debugInfo')
         .width('85%')
         .height('25%')
         .margin({ top: '35%' })
@@ -52,12 +53,14 @@ export default struct DebugInfo {
   showDebug(title: Resource, data: number) {
     Row() {
       Text(title)
+        .id('title')
         .fontSize(20)
         .width('60%')
         .margin({ left: 6 })
         .textAlign(TextAlign.End)
 
       Text(`${data}KB`)
+        .id('storageSize')
         .fontSize(20)
     }
     .width('100%')
