@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,17 +13,162 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, beforeAll } from '@ohos/hypium'
+import { Driver, ON, UiDirection } from '@ohos.UiTest'
 import { Logger } from '@ohos/base'
 
+const BUNDLE = 'LauncherTest'
+const TAG = '[Sample_Launcher_Test]'
+
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      Logger.info('abilityTest', 'it begin')
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+
+  beforeAll(async () => {
+    let driver = await Driver.create()
+    await driver.delayMs(1000)
+    // Launcher主界面是窗口，需要退出测试的界面执行测试用例
+    await driver.pressBack()
+    await driver.delayMs(1000)
+  })
+
+  describe('ActsAbilityTest', () => {
+    /**
+     * 场景：启动桌面后检查各个页面是否正常
+     * 输入：向左/向右滑动动作
+     * 预期输出：桌面正常滑动且显示正常
+     */
+    it(BUNDLE + 'ShowDesktop_001', 0, async (done) => {
+      Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
+      let driver = await Driver.create()
+      await driver.fling(UiDirection.LEFT, 10000)
+      await driver.delayMs(1000)
+      await driver.fling(UiDirection.RIGHT, 10000)
+      await driver.delayMs(1000)
+      // 滑动结束后，检查是否回到桌面第一页
+      await driver.assertComponentExist(ON.text('相机'))
+      await driver.delayMs(100)
+      await driver.assertComponentExist(ON.text('联系人'))
+      await driver.delayMs(100)
+      await driver.assertComponentExist(ON.text('信息'))
+      await driver.delayMs(100)
+      Logger.info(TAG, BUNDLE + 'ShowDesktop_001 end.')
+      done()
+    })
+
+    /**
+     * 场景：长按应用图标触发应用菜单,添加服务卡片到桌面
+     * 输入：长按应用图标，在弹出的菜单中选择添加服务卡片
+     * 预期输出：服务卡片正常添加
+     */
+    it(BUNDLE + 'AddForm_001', 1, async (done) => {
+      Logger.info(TAG, BUNDLE + 'AddForm_001 begin.')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      let camera = await driver.findComponent(ON.text('相机'))
+      await camera.longClick()
+      await driver.delayMs(500)
+      // 在RK3568上点击物理坐标，尝试添加卡片
+      await driver.click(244, 285)
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('添加到桌面'))
+      let addForm = await driver.findComponent(ON.text('添加到桌面'))
+      await addForm.click()
+      await driver.delayMs(1000)
+      // 点击卡片物理坐标打开相机，RK3568
+      await driver.click(80, 504)
+      await driver.delayMs(1000)
+      // 检查相机是否打开
+      await driver.assertComponentExist(ON.text('拍照'))
+      await driver.delayMs(1000)
+      await driver.pressBack()
+      Logger.info(TAG, BUNDLE + 'AddForm_001 end.')
+      done()
+    })
+
+    /**
+     * 场景：尝试卸载应用
+     * 输入：长按应用图标，在弹出的菜单中选择卸载
+     * 预期输出：在卸载弹窗出现后，正常点击卸载
+     */
+    it(BUNDLE + 'UninstallApp_001', 2, async (done) => {
+      Logger.info(TAG, BUNDLE + 'UninstallApp_001 begin.')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      let camera = await driver.findComponent(ON.text('相机'))
+      await camera.longClick()
+      await driver.delayMs(500)
+      // 点击“卸载”物理坐标，尝试卸载应用
+      await driver.click(244, 355)
+      await driver.delayMs(1000)
+      // 检查卸载弹窗是否弹出
+      await driver.assertComponentExist(ON.text('卸载'))
+      let uninstall = await driver.findComponent(ON.text('卸载'))
+      await uninstall.click()
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + 'UninstallApp_001 end.')
+      done()
+    })
+
+    /**
+     * 场景：通过桌面打开不同的应用
+     * 输入：点击打开不同应用
+     * 预期输出：各应用打开正常，断言关键字正常
+     */
+    it(BUNDLE + 'OpenApps_001', 3, async (done) => {
+      Logger.info(TAG, BUNDLE + 'OpenApps_001 begin.')
+      let driver = await Driver.create()
+      let appList = ['相机', '联系人', '信息']
+      let keyWords = ['拍照', '电话', '信息']
+      for (let i = 0;i < appList.length; i++) {
+        Logger.info(TAG, 'open ' + appList[i])
+        let app = await driver.findComponent(ON.text(appList[i]))
+        await app.click()
+        await driver.delayMs(1000)
+        // 检查应用是否已经打开
+        await driver.assertComponentExist(ON.text(keyWords[i]))
+        await driver.pressBack()
+        Logger.info(TAG, 'close ' + appList[i])
+        await driver.delayMs(1000)
+      }
+      Logger.info(TAG, BUNDLE + 'OpenApps_001 end.')
+      done()
+    })
+
+
+    /**
+     * 场景：桌面上滑手势拉起最近任务页面
+     * 输入：点击清除最近任务
+     * 预期输出：最近任务被清除
+     */
+    it(BUNDLE + 'CleanRecent_001', 4, async (done) => {
+      Logger.info(TAG, BUNDLE + 'CleanRecent_001 begin.')
+      let driver = await Driver.create()
+      await driver.fling({
+        x: 500, y: 480
+      }, {
+        x: 500, y: 200
+      }, 5, 1200)
+      await driver.delayMs(1000)
+
+      // 检查最近任务中是否有相机和联系人
+      await driver.assertComponentExist(ON.text('信息'))
+      await driver.assertComponentExist(ON.text('联系人'))
+      let deleteIc = await driver.findComponent(ON.id('ic_delete'))
+      await deleteIc.click()
+      await driver.delayMs(1000)
+      await driver.fling({
+        x: 500, y: 480
+      }, {
+        x: 500, y: 200
+      }, 5, 1200)
+      await driver.delayMs(1000)
+
+      // 检查任务是否清空
+      await driver.assertComponentExist(ON.text('最近无运行应用'))
+      let recent = await driver.findComponent(ON.text('最近无运行应用'))
+      await recent.click()
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + 'CleanRecent_001 end.')
+      done()
     })
   })
 }

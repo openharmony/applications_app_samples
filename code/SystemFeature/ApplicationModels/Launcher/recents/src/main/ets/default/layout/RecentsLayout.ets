@@ -115,6 +115,7 @@ export struct RecentsLayout {
         .height('60%')
 
         Image($r("app.media.ic_delete"))
+          .id('ic_delete')
           .width(45)
           .height(45)
           .objectFit(ImageFit.Contain)

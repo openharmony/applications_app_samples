@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,7 +23,18 @@ const TAG: string = 'TestAbility'
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
+    // launcher需要通过拉起ServiceExtensionAbility的方式拉起
     Logger.info(TAG, 'TestAbility onCreate')
+    let serviceWant = {
+      'deviceId': '',
+      'bundleName': 'ohos.samples.launcher',
+      'abilityName': 'MainAbility'
+    }
+    this.context.startServiceExtensionAbility(serviceWant).then(() => {
+      Logger.info('startServiceExtensionAbility success')
+    }).catch((error) => {
+      Logger.info('startServiceExtensionAbility failed: ' + JSON.stringify(error))
+    })
   }
 
   onDestroy() {
