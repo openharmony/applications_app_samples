@@ -82,6 +82,7 @@ struct Index {
               .textAlign(TextAlign.Center)
 
             Text(this.result.toString())
+              .id('totalPrice')
               .height(25)
               .fontSize(20)
               .margin({ left: '5%' })
@@ -91,7 +92,7 @@ struct Index {
           .width('80%')
 
           Button($r('app.string.confirm'))
-            .key('confirmOrderBtn')
+            .id('confirmOrderBtn')
             .width('80%')
             .height(40)
             .margin({ top: 30 })
