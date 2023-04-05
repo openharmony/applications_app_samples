@@ -20,6 +20,25 @@ import mediaQuery from '@ohos.mediaquery'
 import PlayerModel from '../model/PlayerModel'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { DeviceDialog } from '../common/DeviceDialog'
+import rpc from '@ohos.rpc'
+
+enum MusicSharedEventCode {
+  START_DISTRIBUTED_MUSIC_SERVICE = 1,
+  STOP_DISTRIBUTED_MUSIC_SERVICE = 2,
+}
+
+enum MusicSharedStatus {
+  MUSIC_SHARED = 0,
+  MUSIC_REMOTING = 1,
+  MUSIC_STOP_SHARED = 2
+}
+
+enum MusicConnectEvent {
+  EVENT_CONNECT = "ONCONNECT",
+  EVENT_DISCONNECT = "ONDISCONNECT",
+  EVENT_FAILED = "ONFAILED",
+  EVENT_TIMEOUT = "CONNECTTIMEOUT"
+}
 
 const TAG: string = 'Index'
 const DESIGN_WIDTH: number = 720.0
@@ -29,6 +48,9 @@ const ONE_HUNDRED: number = 100
 const ONE_THOUSAND: number = 1000
 const SIXTY: number = 60
 const REMOTE_ABILITY_STARTED: string = 'remoteAbilityStarted'
+const APPLICATION_BUNDLE_NAME = "ohos.samples.etsdistributedmusicplayer"
+const APPLICATION_SERVICE_NAME = "ServiceAbility"
+const ABILITY_SHARED_BUTTON = 0
 
 @Entry
 @Component
@@ -53,6 +75,9 @@ struct Index {
   private dialogController: CustomDialogController = null
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   private context
+  private deviceId
+  private clickFlag = MusicSharedStatus.MUSIC_SHARED
+  private localExtensionRemote
   onLand = (mediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
@@ -99,7 +124,101 @@ struct Index {
     })
   }
 
+  showPromptDialog(title, str) {
+  AlertDialog.show({
+    title: title,
+    message: str,
+    confirm: {
+      value: 'ok',
+      action: () => {
+        Logger.info(TAG, `Button-clicking callback`)
+      }
+    },
+    cancel: () => { Logger.info(TAG, `Closed callbacks`) }
+  })
+}
+
+  remoteServiceExtensionConnectEvent(event) {
+    if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_CONNECT) {
+      this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+      Logger.info(TAG, 'remote service on connect callbacked')
+
+    } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_DISCONNECT) {
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+      this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+      this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'))
+
+    } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_FAILED) {
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+      this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+      this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'))
+
+    } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_TIMEOUT) {
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+      this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+      this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.ConnectionTimeout'))
+    }
+  }
+
+  connectLocalExtension() {
+    let localServiceWant = {
+      bundleName: APPLICATION_BUNDLE_NAME,
+      abilityName: APPLICATION_SERVICE_NAME,
+    }
+    let connectOptions = {
+      onConnect(elementName, remote) {
+        globalThis.viewThis.localExtensionRemote = remote
+        Logger.info(TAG, `onConnect called elementName is ${JSON.stringify(elementName)}`)
+      },
+      onDisconnect(elementName) {
+        globalThis.viewThis.context.terminateSelf()
+        Logger.info(TAG, `OnDisconnect called elementName is ${JSON.stringify(elementName)}`)
+      },
+      onFailed(code) {
+        globalThis.viewThis.context.terminateSelf()
+        Logger.info(TAG, `OnFailed called code is ${JSON.stringify(code)}`)
+      }
+    }
+    this.context.connectServiceExtensionAbility(localServiceWant, connectOptions)
+  }
+
+  startRemoteExtension(deviceId, params) {
+    if (typeof(this.localExtensionRemote) === 'object' && typeof(deviceId) === 'string' && deviceId !== '') {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      data.writeString(deviceId)
+      data.writeString(JSON.stringify(params))
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
+      this.deviceId = deviceId
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+    } else {
+      Logger.info(TAG, `Remote start type is error, typeof= ${typeof(this.localExtensionRemote)}`)
+    }
+  }
+
+  stopRemoteExtension() {
+    if (typeof(this.localExtensionRemote) === 'object' && typeof(this.deviceId) === 'string' && this.deviceId !== '') {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      data.writeString(this.deviceId)
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
+      this.deviceId = ''
+    } else {
+      Logger.info(TAG, `Remote stopped type is error, typeof= ${typeof(this.localExtensionRemote)}`)
+    }
+  }
+
   onBackPress() {
+    let localServiceWant = {
+      bundleName: APPLICATION_BUNDLE_NAME,
+      abilityName: APPLICATION_SERVICE_NAME,
+    }
+    this.context.stopServiceExtensionAbility(localServiceWant)
+    this.localExtensionRemote = null
+
     if (this.isDialogShowing === true) {
       this.dismissDialog()
       return true
@@ -130,12 +249,6 @@ struct Index {
       }
     }
     Logger.info(TAG, `context.startAbility deviceId= ${deviceId}`)
-    let wantValue = {
-      bundleName: 'ohos.samples.etsdistributedmusicplayer',
-      abilityName: 'MainAbility',
-      deviceId: deviceId,
-      parameters: params
-    }
     let timerId = setTimeout(() => {
       Logger.info(TAG, 'onMessageReceiveTimeout, terminateSelf')
       this.context.terminateSelf((error) => {
@@ -151,11 +264,9 @@ struct Index {
       })
     })
     Logger.info(TAG, `context.startAbility start`)
-    this.context.startAbility(wantValue).then((data) => {
-      Logger.info(TAG, `context.startAbility finished ${JSON.stringify(data)}`)
-    })
+    this.clickFlag = MusicSharedStatus.MUSIC_REMOTING
+    this.startRemoteExtension(this.deviceLists[this.selectedIndex].deviceId, params)
     this.clearSelectState()
-    Logger.info(TAG, `context.startAbility want= ${JSON.stringify(wantValue)}`)
     Logger.info(TAG, 'context.startAbility end')
   }
 
@@ -242,6 +353,16 @@ struct Index {
     this.totalTimeText = this.getShownTimer(this.totalMs)
     this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs())
     Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
+  }
+
+  onAppSharedClick() {
+    if (this.clickFlag % 3 === 0) {
+      Logger.info(TAG, `start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`)
+      this.showDialog()
+    } else if (this.clickFlag % 3 === 2) {
+      this.stopRemoteExtension()
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+    }
   }
 
   onPreviousClick() {
@@ -376,6 +497,8 @@ struct Index {
       Logger.info(TAG, 'on playlist generated, refresh ui')
       this.restoreFromWant()
     })
+    globalThis.viewThis = this
+    this.connectLocalExtension()
   }
 
   build() {
@@ -430,7 +553,7 @@ struct Index {
               .onClick(() => {
                 switch (index) {
                   case 0:
-                    this.showDialog()
+                    this.onAppSharedClick()
                     break
                   case 1:
                     this.onPreviousClick()
