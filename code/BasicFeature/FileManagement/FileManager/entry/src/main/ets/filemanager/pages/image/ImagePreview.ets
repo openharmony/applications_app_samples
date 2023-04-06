@@ -34,6 +34,7 @@ struct ImagePreview {
     Column() {
       Row() {
         Image($r('app.media.back'))
+          .id('imageBack')
           .width(36)
           .height(36)
           .objectFit(ImageFit.Fill)

@@ -47,6 +47,7 @@ export struct InputNameDialog {
         text: this.name ? this.name : '',
         controller: this.textController
       })
+        .id('input')
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
@@ -61,6 +62,7 @@ export struct InputNameDialog {
 
       Row() {
         Text($r('app.string.label_confirm'))
+          .id('promise')
           .fontColor($r('app.color.text_color'))
           .fontSize(20)
           .letterSpacing(2)
@@ -79,6 +81,7 @@ export struct InputNameDialog {
       })
 
       Text($r('app.string.label_cancel'))
+        .id('cancel')
         .fontSize(20)
         .onClick(() => {
           this.controller.close()

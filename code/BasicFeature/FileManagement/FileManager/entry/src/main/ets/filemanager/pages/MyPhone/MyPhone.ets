@@ -174,6 +174,7 @@ export struct MyPhone {
                 })
             } else {
               Image($r('app.media.select'))
+                .id('select')
                 .width(30)
                 .height(30)
                 .onClick(() => {
@@ -188,6 +189,7 @@ export struct MyPhone {
       } else {
         Row() {
           Image($r('app.media.left'))
+            .id('left')
             .width(30)
             .height(20)
             .onClick(() => {
@@ -211,6 +213,7 @@ export struct MyPhone {
                 })
             } else {
               Image($r('app.media.select'))
+                .id('secondarySelect')
                 .width(30)
                 .height(30)
                 .onClick(() => {
@@ -346,6 +349,7 @@ export struct MyPhone {
             .height(60)
 
           Text($r('app.string.label_nothing'))
+            .id('blank')
             .fontSize(30)
             .fontColor(Color.Gray)
             .opacity(.5)
@@ -363,6 +367,7 @@ export struct MyPhone {
             .fontSize(20)
             .fontColor(this.canMove ? Color.Black : Color.Gray)
         }
+        .id('move')
         // 样式需要，这里给出50%
         .width('50%')
         .borderRadius(18)
@@ -390,6 +395,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_copy_move'))
+              .id('copy')
               .fontSize(16)
           }
           .onClick(() => {
@@ -407,6 +413,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_rename'))
+              .id('rename')
               .fontSize(16)
               .fontColor(this.selectedFiles.length === 1 ? Color.Black : Color.Gray)
           }
@@ -424,6 +431,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_share'))
+              .id('share')
               .fontSize(16)
           }
           .onClick(() => {
@@ -436,6 +444,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_delete'))
+              .id('delete')
               .fontSize(16)
           }
           .onClick(() => {
@@ -463,6 +472,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_make_directory'))
+              .id('makeDirectory')
               .fontSize(16)
           }
           .onClick(() => {
@@ -477,6 +487,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_make_file'))
+              .id('makeFile')
               .fontSize(16)
           }
           .onClick(() => {
@@ -491,6 +502,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_sort'))
+              .id('sort')
               .fontSize(16)
           }
           .onClick(() => {
@@ -503,6 +515,7 @@ export struct MyPhone {
               .height(30)
 
             Text($r('app.string.label_clean'))
+              .id('clean')
               .fontSize(16)
           }
           .onClick(() => {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -61,6 +61,7 @@ export struct FileList {
     Column() {
       Row() {
         Image($r('app.media.back'))
+          .id('back')
           .width(36)
           .height(36)
           .objectFit(ImageFit.Fill)
@@ -88,6 +89,7 @@ export struct FileList {
 
         if (this.mediaType === mediaLibrary.MediaType.FILE) {
           Image($r('app.media.add'))
+            .id('fileAdd')
             .width(36)
             .height(36)
             .objectFit(ImageFit.Fill)
@@ -118,6 +120,7 @@ export struct FileList {
       if (this.isNoFile) {
         Column() {
           Image($r('app.media.no_file'))
+            .id('no_file')
             .width(36)
             .height(36)
             .margin({ top: 50 })
@@ -199,6 +202,7 @@ struct FileListItemComponent {
 
         if (this.itemShowDeleteButton) {
           Image($r('app.media.delete'))
+            .id('fileListDelete')
             .width(30)
             .height(30)
             .margin({ right: 20 })
