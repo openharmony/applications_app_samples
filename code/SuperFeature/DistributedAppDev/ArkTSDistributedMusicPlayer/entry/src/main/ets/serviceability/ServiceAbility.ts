@@ -38,6 +38,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
                 },
                 onDisconnect(elementName) {
                     Logger.info(TAG, `ServiceExtension has onDisconnected,elementName= ${JSON.stringify(elementName)}`)
+                    clearTimeout(timeoutId)
                     if (typeof(globalThis.viewThis) === 'object' &&
                         typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
                         globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_DISCONNECT)
@@ -45,6 +46,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
                 },
                 onFailed(code) {
                     Logger.info(TAG, `ServiceExtension has onFailed, code= ${JSON.stringify(code)}`)
+                    clearTimeout(timeoutId)
                     if (typeof(globalThis.viewThis) === 'object' &&
                         typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
                         globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_FAILED)
