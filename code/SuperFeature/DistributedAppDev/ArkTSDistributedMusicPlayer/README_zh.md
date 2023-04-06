@@ -16,7 +16,7 @@
 
 允许不同设备间的数据交换：ohos.permission.DISTRIBUTED_DATASYNC
 
-允许后台拉起页面：ohos.permission.START_ABILITIES_FROM_BACKGROUND
+允许音乐服务后台拉起音乐页面：ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 ### 使用说明
 
