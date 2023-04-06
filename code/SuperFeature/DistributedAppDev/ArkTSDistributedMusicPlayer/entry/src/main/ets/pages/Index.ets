@@ -249,19 +249,8 @@ struct Index {
       }
     }
     Logger.info(TAG, `context.startAbility deviceId= ${deviceId}`)
-    let timerId = setTimeout(() => {
-      Logger.info(TAG, 'onMessageReceiveTimeout, terminateSelf')
-      this.context.terminateSelf((error) => {
-        Logger.info(TAG, `terminateSelf finished, error= ${error}`)
-      })
-    }, 3000)
-
     KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
       Logger.info(TAG, 'OnMessageReceived, terminateSelf')
-      clearTimeout(timerId)
-      this.context.terminateSelf((error) => {
-        Logger.info(TAG, `terminateSelf finished, error= ${error}`)
-      })
     })
     Logger.info(TAG, `context.startAbility start`)
     this.clickFlag = MusicSharedStatus.MUSIC_REMOTING
