@@ -125,17 +125,14 @@ struct Index {
       this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
       Logger.info(TAG, 'remote service on connect callbacked')
-
     } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_DISCONNECT) {
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
       this.clickFlag = MusicSharedStatus.MUSIC_SHARED
       this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'))
-
     } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_FAILED) {
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
       this.clickFlag = MusicSharedStatus.MUSIC_SHARED
       this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'))
-
     } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_TIMEOUT) {
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
       this.clickFlag = MusicSharedStatus.MUSIC_SHARED
@@ -201,7 +198,7 @@ struct Index {
       this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
       this.deviceId = ''
     } else {
-      Logger.info(TAG, `Remote stopped type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+      Logger.info(TAG, `Remote stopped type is wrong or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
     }
   }
 
