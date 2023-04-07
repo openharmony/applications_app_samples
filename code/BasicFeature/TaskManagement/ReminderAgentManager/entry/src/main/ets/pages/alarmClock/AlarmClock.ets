@@ -41,6 +41,7 @@ export struct AlarmClock {
           .width(30)
           .height(30)
           .margin({ right: 8 })
+          .id('addClock')
           .onClick(() => {
             TimePickerDialog.show({
               selected: new Date,
@@ -78,6 +79,7 @@ export struct AlarmClock {
               Blank()
               Toggle({ type: ToggleType.Switch, isOn: AlarmClockReminder.alarmClockReminders[index].isStart })
                 .margin({ left: 8 })
+                .id(`clockSwitch${index}`)
                 .onChange(async (isOn: boolean) => {
                   await AlarmClockReminder.setToggle(isOn, index)
                 })
@@ -88,6 +90,7 @@ export struct AlarmClock {
             .padding({ left: 12, right: 12, top: 8, bottom: 8 })
           }
           .padding({ left: 12, right: 12 })
+          .id(`clock${this.selectAlarmClockIndex}`)
           .gesture(
           SwipeGesture({ direction: SwipeDirection.Horizontal })
             .onAction((event: GestureEvent) => {

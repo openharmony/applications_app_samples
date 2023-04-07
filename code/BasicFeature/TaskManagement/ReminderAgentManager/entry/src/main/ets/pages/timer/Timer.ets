@@ -103,6 +103,7 @@ export struct Timer {
         Column() {
           Text(`${this.formatTime(this.hoursTime)}:${this.formatTime(this.minuteTime)}:${this.formatTime(this.secondTime)}`)
             .fontSize(24)
+            .id('countDown')
             .fontFamily('HarmonyHeiTi-Medium')
             .fontColor($r('app.color.font_dark'))
           if (this.isRunning) {
@@ -115,6 +116,7 @@ export struct Timer {
             Image(this.resetImg)
               .width(48)
               .height(48)
+              .id('resetCalculagraph')
               .margin({ right: 100 })
               .objectFit(ImageFit.Fill)
               .onClick(async () => {
@@ -123,6 +125,7 @@ export struct Timer {
             Image(this.startImg)
               .width(48)
               .height(48)
+              .id('startCalculagraph')
               .onClick(async () => {
                 if (this.pickerHour + this.pickerMinute + this.pickerSecond == 0) {
                   return

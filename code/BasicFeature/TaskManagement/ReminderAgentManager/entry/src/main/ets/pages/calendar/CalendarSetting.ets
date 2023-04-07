@@ -36,6 +36,7 @@ export struct CalendarSetting {
         Text(this.calendarTime)
           .fontSize(20)
           .fontColor($r('app.color.button_color'))
+          .id(`calendarTime${this.selectIndex}`)
           .onClick(() => {
             TimePickerDialog.show({
               selected: new Date,
@@ -63,6 +64,7 @@ export struct CalendarSetting {
           .onChange((isOn: boolean) => {
             CalendarsReminder.calendarReminders[this.selectIndex].isVibrator = isOn
           })
+          .id(`vibrationSwitch${this.selectIndex}`)
       }
       .width('100%')
       .padding({ left: 8, right: 8 })
@@ -78,6 +80,7 @@ export struct CalendarSetting {
           .font({ size: 20 })
           .optionFont({ size: 20 })
           .selectedOptionFont({ size: 20 })
+          .id(`music${this.selectIndex}`)
           .onSelect((index: number, value: string) => {
             this.selectName = value
             CalendarsReminder.calendarReminders[this.selectIndex].audioSrc = this.musics[index].src
