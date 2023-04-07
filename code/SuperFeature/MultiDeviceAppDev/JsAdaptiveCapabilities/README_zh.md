@@ -39,3 +39,14 @@
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
 4.本示例着重介绍了一多的自适应布局能力，未引入断点能力，建议查看相关能力在IDE提供的MatePadPro预览器中运行和查看效果。 
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```
