@@ -326,10 +326,10 @@ struct Index {
   }
 
   onAppSharedClick() {
-    if (this.clickFlag === 0) {
+    if (this.clickFlag === MusicSharedStatus.MUSIC_SHARED) {
       Logger.info(TAG, `start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`)
       this.showDialog()
-    } else if (this.clickFlag === 2) {
+    } else if (this.clickFlag === MusicSharedStatus.MUSIC_STOP_SHARED) {
       this.stopRemoteExtension()
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
     }
