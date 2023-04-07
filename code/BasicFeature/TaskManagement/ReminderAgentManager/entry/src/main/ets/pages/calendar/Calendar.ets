@@ -38,6 +38,7 @@ export struct ReminderCalendar {
           .width(24)
           .height(24)
           .margin({ right: 8 })
+          .id('addCalendar')
           .onClick(() => {
             DatePickerDialog.show({
               start: new Date(),
@@ -68,6 +69,7 @@ export struct ReminderCalendar {
               Blank()
               Toggle({ type: ToggleType.Switch, isOn: CalendarReminder.calendarReminders[index].isStart })
                 .margin({ left: 8 })
+                .id(`calendarSwitch${index}`)
                 .onChange(async (isOn: boolean) => {
                   await CalendarReminder.setToggle(isOn, index)
                 })
@@ -78,6 +80,7 @@ export struct ReminderCalendar {
             .padding({ left: 12, right: 12, top: 8, bottom: 8 })
           }
           .editable(this.isEdit)
+          .id(`calendar${index}`)
           .padding({ left: 12, right: 12 })
           .gesture(
           SwipeGesture({ direction: SwipeDirection.Horizontal })
