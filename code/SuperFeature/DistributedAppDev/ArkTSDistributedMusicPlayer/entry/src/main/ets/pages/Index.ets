@@ -58,7 +58,8 @@ struct Index {
   private context
   private deviceId
   private clickFlag = MusicSharedStatus.MUSIC_SHARED
-  private localExtensionRemote
+  private localExtensionRemote = null
+  private remoteProxy = null
   onLand = (mediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
@@ -142,6 +143,18 @@ struct Index {
     }
   }
 
+  musicPause() {
+    Logger.info(TAG, 'mly pause recv')
+    PlayerModel.pause()
+    this.imageArrays[2] = $r('app.media.ic_play')
+  }
+
+  musicPlay() {
+    Logger.info(TAG, 'mly play recv')
+    PlayerModel.play(-1, true)
+    this.imageArrays[2] = $r('app.media.ic_pause')
+  }
+
   connectLocalExtension() {
     let localServiceWant = {
       bundleName: APPLICATION_BUNDLE_NAME,
@@ -190,6 +203,32 @@ struct Index {
     } else {
       Logger.info(TAG, `Remote stopped type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
     }
+  }
+
+  sendMessagePlay() {
+    if(this.localExtensionRemote === null) {
+      Logger.info(TAG, `can not get proxy`)
+      return
+    }
+    let option = new rpc.MessageOption()
+    let data = new rpc.MessageParcel()
+    let reply = new rpc.MessageParcel()
+
+    this.localExtensionRemote.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE, data, reply, option)
+    Logger.info(TAG, `onPlayClick send mssage success`)
+  }
+
+  sendMessagePause() {
+    if(this.localExtensionRemote === null) {
+      Logger.info(TAG, `can not get proxy`)
+      return
+    }
+    let option = new rpc.MessageOption()
+    let data = new rpc.MessageParcel()
+    let reply = new rpc.MessageParcel()
+
+    this.localExtensionRemote.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE, data, reply, option)
+    Logger.info(TAG, `onPauseClick send mssage success`)
   }
 
   onBackPress() {
@@ -389,10 +428,12 @@ struct Index {
     if (PlayerModel.isPlaying) {
       PlayerModel.pause()
       this.imageArrays[2] = $r('app.media.ic_play')
+      this.sendMessagePause()
     } else {
       PlayerModel.preLoad(PlayerModel.index, () => {
         PlayerModel.play(-1, true)
         this.imageArrays[2] = $r('app.media.ic_pause')
+        this.sendMessagePlay()
       })
     }
   }
