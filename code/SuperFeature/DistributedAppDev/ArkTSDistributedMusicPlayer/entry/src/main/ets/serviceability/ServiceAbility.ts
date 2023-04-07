@@ -1,11 +1,23 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility'
 import rpc from '@ohos.rpc'
 import Logger from '../model/Logger'
+import { APPLICATION_BUNDLE_NAME, APPLICATION_ABILITY_NAME, APPLICATION_SERVICE_NAME } from '../common/MusicSharedDefinition'
 
 const TAG: string = 'ServiceAbility'
-const APPLICATION_BUNDLE_NAME = "ohos.samples.etsdistributedmusicplayer"
-const APPLICATION_ABILITY_NAME = "MainAbility"
-const APPLICATION_SERVICE_NAME = "ServiceAbility"
 const CONNECT_REMOTE_TIMEOUT = 10000
 enum MusicSharedEventCode {
     START_DISTRIBUTED_MUSIC_SERVICE = 1,
@@ -80,14 +92,14 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
             let params = {
                 uri: jsonData['uri'],
                 seekTo: jsonData['seekTo'],
-                isPlaying: jsonData['isPlaying']
+                isPlaying: jsonData['isPlaying'],
+                flag: "START_REMOTE_DISTRIBUTED_MUSIC_SERVICE"
             }
             let want = {
                 deviceId: deviceId,
                 bundleName: APPLICATION_BUNDLE_NAME,
                 abilityName: APPLICATION_SERVICE_NAME,
-                parameters: params,
-                action: "START_REMOTE_DISTRIBUTED_MUSIC_SERVICE"
+                parameters: params
             }
             this.startServiceAbility(want)
         } else if (code === MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE) {
@@ -105,7 +117,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
 
 export default class ServiceAbility extends ServiceExtensionAbility {
     onCreate(want){
-        if(want.action == "START_REMOTE_DISTRIBUTED_MUSIC_SERVICE") {
+        if(want.parameters.flag == "START_REMOTE_DISTRIBUTED_MUSIC_SERVICE") {
             let localwant = {
                 bundleName: APPLICATION_BUNDLE_NAME,
                 abilityName: APPLICATION_ABILITY_NAME,
