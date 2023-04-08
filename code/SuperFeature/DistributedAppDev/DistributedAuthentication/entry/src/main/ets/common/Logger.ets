@@ -13,33 +13,31 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 
 class Logger {
-  private domain: number = 0xFF00
-  private prefix: string = ''
-  private format: string = '%{public}s, %{public}s'
+  private domain: number = 0xFF00;
+  private prefix: string = '[Sample_DeviceManager]';
+  private format: string = '%{public}s, %{public}s';
 
-  constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xFF00
+  constructor() {
   }
 
-  debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+  debug(...args: string[]) {
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
-  info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+  info(...args: string[]) {
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
-  warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+  warn(...args: string[]) {
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
-  error(...args: any[]) {
-    hilog.error(this.domain, this.prefix, this.format, args)
+  error(...args: string[]) {
+    hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export default new Logger('[Samples_DeviceManager]')
+export default new Logger();
