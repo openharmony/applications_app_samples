@@ -48,7 +48,7 @@ export struct AlarmClockSetting {
         Text($r('app.string.alarm_clock_remind_day'))
           .fontSize(20)
         Blank()
-        ForEach(this.days, (item) => {
+        ForEach(this.days, (item, index) => {
           Column() {
             Text(item.name)
               .margin(2)
@@ -56,6 +56,7 @@ export struct AlarmClockSetting {
             Checkbox({ name: item.name, group: 'days' })
               .select(item.isSelect)
               .selectedColor(0x39a2db)
+              .id(`day${this.selectAlarmClockIndex}${index}`)
               .onChange((value: boolean) => {
                 item.isSelect = value
               })
@@ -72,12 +73,14 @@ export struct AlarmClockSetting {
         Blank()
         Counter() {
           Text(`${JSON.stringify(this.snoozeTimes)}`)
+            .id('timeCounter')
         }
+        .id(`intervalTime${this.selectAlarmClockIndex}`)
         .onInc(() => {
           this.snoozeTimes++
         })
         .onDec(() => {
-          this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--
+            this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--
         })
       }
       .width('100%')
@@ -90,12 +93,14 @@ export struct AlarmClockSetting {
         Blank()
         Counter() {
           Text(`${JSON.stringify(this.timeInterval)}`)
+            .id('durationCounter')
         }
+        .id(`intervalDuration${this.selectAlarmClockIndex}`)
         .onInc(() => {
           this.timeInterval++
         })
         .onDec(() => {
-          this.timeInterval <= 0 ? 0 : this.timeInterval--
+            this.timeInterval <= 0 ? 0 : this.timeInterval--
         })
       }
       .width('100%')
@@ -110,6 +115,7 @@ export struct AlarmClockSetting {
           type: ToggleType.Switch,
           isOn: AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].isVibrator
         })
+          .id(`vibrationSwitch${this.selectAlarmClockIndex}`)
           .margin({ left: 8 })
           .onChange((isOn: boolean) => {
             AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].isVibrator = isOn
@@ -124,6 +130,7 @@ export struct AlarmClockSetting {
         Blank()
         Select(this.musics)
           .selected(0)
+          .id(`selectMusic${this.selectAlarmClockIndex}`)
           .value(this.selectName)
           .padding({ left: 20, right: 20 })
           .font({ size: 20 })

@@ -82,6 +82,7 @@ export struct FlexList {
             })
 
           Text(this.amount.toString())
+            .id('amount')
             .width(50)
             .height(50)
             .fontSize(16)
