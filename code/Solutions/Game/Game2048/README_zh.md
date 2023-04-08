@@ -32,3 +32,14 @@
 
 3.本示例已适配API10版本SDK，版本号：4.0.5.1。
 
+### 下载
+
+如需单独下载本工程，执行如下命令：
+
+````
+git init
+git config core.sparsecheckout true
+echo code/Solutions/Game/Game2048/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+````

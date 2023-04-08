@@ -32,3 +32,15 @@
 4. 本示例所配置的权限 ohos.permission.CAPTURE_SCREEN 为 system_core 级别(
    相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))；
 5. 本示例需要设置为系统应用才可使用接口 hasPrivacyWindow 判断隐私窗口,签名文件中修改 app-feature 为 hos_system_app。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SystemFeature/Media/Screenshot/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+
+```

@@ -127,7 +127,7 @@ Library/src/main/ets/
     ```
     git init
     git config core.sparsecheckout true
-    echo FileManager/FileManager/ > .git/info/sparse-checkout
+    echo code/BasicFeature/FileManager/FileManager/ > .git/info/sparse-checkout
     git remote add origin https://gitee.com/openharmony/applications_app_samples.git
     git pull origin master
     ```
