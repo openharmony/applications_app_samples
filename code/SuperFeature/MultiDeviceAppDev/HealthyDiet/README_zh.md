@@ -38,3 +38,14 @@
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
 
 4. 本示例使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SuperFeature/MultiDeviceAppDev/HealthyDiet/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```

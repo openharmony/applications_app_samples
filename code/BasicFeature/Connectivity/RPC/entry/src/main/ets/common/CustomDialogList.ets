@@ -33,5 +33,6 @@ export struct CustomDialogList {
           })
       }, item => JSON.stringify(item))
     }
+    .id('menu')
   }
 }

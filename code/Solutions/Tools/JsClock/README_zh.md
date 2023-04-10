@@ -37,3 +37,15 @@ hdc file send ./entry-default-signed.hap /system/app/ohos.samples.clock/Clock_De
 hdc shell  reboot
 
 等设备重启后即可完成应用的替换安装，无需其他操作。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+
+````
+git init
+git config core.sparsecheckout true
+echo code/Solutions/Tools/JsClock/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+````

@@ -51,3 +51,15 @@
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
 4.本示例运行需要具有系统应用签名，因此需要手动配置系统应用的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))，需要注意的是，在修改签名json文件时，不需要调整“apl”字段，需要调整“app-feature”字段为“hos_system_app”。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/BasicFeature/Notification/CustomCommonEvent/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+
+```

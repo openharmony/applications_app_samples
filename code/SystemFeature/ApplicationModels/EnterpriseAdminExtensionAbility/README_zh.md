@@ -33,3 +33,14 @@
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 5. 本示例涉及ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要配置高权限签名，可参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```

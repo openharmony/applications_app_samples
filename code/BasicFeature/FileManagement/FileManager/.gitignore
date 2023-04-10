@@ -3,4 +3,5 @@
 /.idea
 **/build
 /.hvigor
-**/package-lock.json
+/package-lock.json
+/Library/package-lock.json

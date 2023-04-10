@@ -60,3 +60,13 @@ hdc file send C:\window_manager_config.xml system/etc/window/resources/window_ma
 hdc shell reboot
 ```
 
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SuperFeature/MultiDeviceAppDev/AppMarket/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```

@@ -63,7 +63,7 @@ struct Index {
       .barHeight(56)
       .barWidth('100%')
       .vertical(false)
-      .scrollable(true)
+      .scrollable(false)
       .backgroundColor($r('app.color.background_shallow_grey'))
       .onChange((index: number) => {
         this.tabsIndex = index

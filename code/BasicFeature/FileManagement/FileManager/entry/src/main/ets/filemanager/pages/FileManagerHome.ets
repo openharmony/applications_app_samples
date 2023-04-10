@@ -73,10 +73,11 @@ export default struct FileManagerHome {
         .fontColor($r('app.color.black'))
         .alignSelf(ItemAlign.Start)
       List() {
-        ForEach(MAIN_LIST_ITEMS, (listItem: MainListItemModel) => {
+        ForEach(MAIN_LIST_ITEMS, (listItem: MainListItemModel, no: number) => {
           ListItem() {
             MainListItemComponent({ mainListItem: listItem })
           }
+          .id('ListItem' + no)
         })
       }
       .width('100%')

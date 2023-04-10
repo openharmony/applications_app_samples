@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -81,7 +81,7 @@ export struct SleepView {
           .width('52%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.enter_sleep_time') })
-          .key('shortestSleepTime')
+          .id('shortestSleepTime')
           .width('46%')
           .type(InputType.Normal)
           .fontSize(20)
@@ -102,7 +102,7 @@ export struct SleepView {
           .width('52%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.enter_sleep_time') })
-          .key('longestSleepTime')
+          .id('longestSleepTime')
           .width('46%')
           .type(InputType.Normal)
           .fontSize(20)
@@ -135,7 +135,7 @@ export struct SleepView {
           .width('30%')
           .textAlign(TextAlign.Center)
       }
-      .key('sleepAnalysis')
+      .id('sleepAnalysis')
       .type(ButtonType.Capsule)
       .margin({ top: 10, bottom: 10 })
       .backgroundColor(0x317aff)

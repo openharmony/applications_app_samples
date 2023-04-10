@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -71,7 +71,7 @@ export struct TempView {
           .width('45%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.morning_placeholder') })
-          .key('morningTemperature')
+          .id('morningTemperature')
           .width('54%')
           .type(InputType.Normal)
           .fontSize(20)
@@ -92,7 +92,7 @@ export struct TempView {
           .width('45%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.noon_placeholder') })
-          .key('noonTemperature')
+          .id('noonTemperature')
           .width('54%')
           .type(InputType.Normal)
           .fontSize(20)
@@ -113,7 +113,7 @@ export struct TempView {
           .width('45%')
           .fontSize(20)
         TextInput({ placeholder: $r('app.string.night_placeholder') })
-          .key('nightTemperature')
+          .id('nightTemperature')
           .width('54%')
           .type(InputType.Normal)
           .fontSize(20)
@@ -135,7 +135,7 @@ export struct TempView {
           .width('30%')
           .textAlign(TextAlign.Center)
       }
-      .key('temperatureAnalysis')
+      .id('temperatureAnalysis')
       .type(ButtonType.Capsule)
       .margin({ top: 10, bottom: 10 })
       .backgroundColor(0x317aff)

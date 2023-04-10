@@ -52,3 +52,14 @@ entry/src/main/ets/
 2. 本示例已适配API10版本SDK，版本号：4.0.5.1。
 3. 本示例基于DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.900, build on March 31, 2022)开发，需使用该版本或更高版本才可编译运行；
 4. 本示例使用了AccessibilityExtensionAbility相关系统接口，需要将默认的Public SDK替换为Full SDK，具体替换操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SystemFeature/ApplicationModels/AccessibilityExtAbility/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```

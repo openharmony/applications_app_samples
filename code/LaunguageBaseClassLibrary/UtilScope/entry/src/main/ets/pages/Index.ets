@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -80,7 +80,7 @@ struct Index {
 
       Row({ space: 5 }) {
         TextInput({ placeholder: $r('app.string.age_placeholder') })
-          .key('inputAge')
+          .id('inputAge')
           .height('100%')
           .width('60%')
           .type(InputType.Number)
@@ -102,7 +102,7 @@ struct Index {
             .textAlign(TextAlign.Center)
             .lineHeight(26)
         }
-        .key('ageAnalysis')
+        .id('ageAnalysis')
         .type(ButtonType.Capsule)
         .backgroundColor(0x317aff)
         .onClick(() => {
