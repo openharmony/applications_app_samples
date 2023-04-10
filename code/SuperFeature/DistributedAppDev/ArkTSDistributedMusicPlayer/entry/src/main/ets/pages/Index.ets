@@ -32,6 +32,8 @@ const ONE_THOUSAND: number = 1000
 const SIXTY: number = 60
 const REMOTE_ABILITY_STARTED: string = 'remoteAbilityStarted'
 const ABILITY_SHARED_BUTTON = 0
+const DEFAULT_NUM = -1
+const PREVIOUS_CLICK = 2
 
 @Entry
 @Component
@@ -121,35 +123,40 @@ struct Index {
   }
 
   remoteServiceExtensionConnectEvent(event) {
-    if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_CONNECT) {
-      this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
-      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
-      Logger.info(TAG, 'remote service on connect callbacked')
-    } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_DISCONNECT) {
-      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
-      this.clickFlag = MusicSharedStatus.MUSIC_SHARED
-      this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'))
-    } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_FAILED) {
-      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
-      this.clickFlag = MusicSharedStatus.MUSIC_SHARED
-      this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'))
-    } else if (typeof(event) === 'string' && event === MusicConnectEvent.EVENT_TIMEOUT) {
-      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
-      this.clickFlag = MusicSharedStatus.MUSIC_SHARED
-      this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.ConnectionTimeout'))
+    if (typeof(event) === 'string') {
+      if (event === MusicConnectEvent.EVENT_CONNECT) {
+        this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+        Logger.info(TAG, 'remote service on connect callbacked')
+      } else if (event === MusicConnectEvent.EVENT_DISCONNECT) {
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'))
+      } else if (event === MusicConnectEvent.EVENT_FAILED) {
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'))
+      } else if (event === MusicConnectEvent.EVENT_TIMEOUT) {
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.ConnectionTimeout'))
+      }
+    } else {
+      Logger.info(TAG, 'event is not a string')
     }
   }
 
   musicPause() {
-    Logger.info(TAG, 'mly pause recv')
+    Logger.info(TAG, 'music pause recv')
     PlayerModel.pause()
-    this.imageArrays[2] = $r('app.media.ic_play')
+    this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
   }
 
   musicPlay() {
-    Logger.info(TAG, 'mly play recv')
-    PlayerModel.play(-1, true)
-    this.imageArrays[2] = $r('app.media.ic_pause')
+    Logger.info(TAG, 'music play recv')
+    PlayerModel.play(DEFAULT_NUM, true)
+    this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
+  }
   }
 
   connectLocalExtension() {
@@ -388,7 +395,7 @@ struct Index {
       this.refreshSongInfo(PlayerModel.index)
       PlayerModel.play(0, true)
       if (PlayerModel.isPlaying) {
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
       }
       this.isSwitching = false
     })
@@ -410,7 +417,7 @@ struct Index {
       this.refreshSongInfo(PlayerModel.index)
       PlayerModel.play(0, true)
       if (PlayerModel.isPlaying) {
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
       }
       this.isSwitching = false
     })
@@ -424,12 +431,12 @@ struct Index {
     Logger.info(TAG, `onPlayClick isPlaying= ${PlayerModel.isPlaying}`)
     if (PlayerModel.isPlaying) {
       PlayerModel.pause()
-      this.imageArrays[2] = $r('app.media.ic_play')
+      this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
       this.sendMessagePause()
     } else {
       PlayerModel.preLoad(PlayerModel.index, () => {
-        PlayerModel.play(-1, true)
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        PlayerModel.play(DEFAULT_NUM, true)
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
         this.sendMessagePlay()
       })
     }
@@ -495,9 +502,9 @@ struct Index {
         this.currentProgress = Math.floor(currentTimeMs / this.totalMs * ONE_HUNDRED)
       })
       if (isPlaying) {
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
       } else {
-        this.imageArrays[2] = $r('app.media.ic_play')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
       }
     })
 
