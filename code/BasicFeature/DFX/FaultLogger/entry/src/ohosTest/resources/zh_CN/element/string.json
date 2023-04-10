@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "create_fault",
+      "value": "构造异常"
+    },
+    {
+      "name": "catch_js_fault",
+      "value": "获取JS_FAULT异常"
+    },
+    {
+      "name": "catch_cpp_fault",
+      "value": "获取CPP_FAULT异常"
+    },
+    {
+      "name": "catch_app_freeze_fault",
+      "value": "获取APP_FREEZE异常"
+    },
+    {
+      "name": "catch_all_fault",
+      "value": "获取NO_SPECIFIC异常"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    }
+  ]
+}

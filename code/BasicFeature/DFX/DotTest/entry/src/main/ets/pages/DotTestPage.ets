@@ -13,47 +13,43 @@
  * limitations under the License.
  */
 
-import hiAppEvent from '@ohos.hiAppEvent'
-import prompt from '@ohos.prompt'
-import Logger from '../model/Logger'
+import hiAppEvent from '@ohos.hiAppEvent';
+import prompt from '@ohos.prompt';
+import Logger from '../model/Logger';
 
-const TAG = 'DotTestPage'
+const TAG = 'DotTestPage';
 
 @Entry
 @Component
 struct DotTestPage {
-  @State contentText: Resource = $r('app.string.initContentText')
-  @State isOn: boolean = false
+  @State contentText: Resource = $r('app.string.initContentText');
+  @State isOn: boolean = false;
 
   private writeEvent() {
     hiAppEvent.write('test_event', hiAppEvent.EventType.STATISTIC, {
       'int_data': 100, 'str_data': 'strValue'
     }, (err, value) => {
       if (err) {
-        Logger.error(TAG, `failed to write event because ${err.code}`)
-        this.contentText = $r('app.string.writeFailed')
-        return
+        Logger.error(TAG, `failed to write event because ${err.code}`);
+        this.contentText = $r('app.string.writeFailed');
+        return;
       }
       prompt.showToast({
         message: 'success to write event'
-      })
-      this.contentText = $r('app.string.writeSuccess')
-      Logger.info(TAG, `success to write event: ${value}`)
-    })
+      });
+      this.contentText = $r('app.string.writeSuccess');
+      Logger.info(TAG, `success to write event: ${value}`);
+    });
   }
 
   private changeEvent(isOn: boolean) {
-    this.isOn = isOn
+    this.isOn = isOn;
     if (isOn) {
-      hiAppEvent.configure({
-        disable: isOn
-      })
-      this.contentText = $r('app.string.appDisabled')
+      hiAppEvent.configure({ disable: isOn });
+      this.contentText = $r('app.string.appDisabled');
     } else {
-      hiAppEvent.configure({
-        disable: isOn
-      })
-      this.contentText = $r('app.string.appAble')
+      hiAppEvent.configure({ disable: isOn });
+      this.contentText = $r('app.string.appAble');
     }
   }
 
@@ -75,30 +71,42 @@ struct DotTestPage {
           Text(this.contentText)
             .fontSize('15vp')
             .margin({ left: '4vp' })
-        }.width('400vp').height('200vp')
-        .border({
-          width: '2vp',
-        })
+        }
+        .width('400vp')
+        .height('200vp')
+        .border({ width: '2vp' })
         .margin({ bottom: '10vp' })
 
-        Button($r('app.string.event')).width('150vp').height('50vp')
+        Button($r('app.string.event'))
+          .id('eventInto')
+          .width('150vp')
+          .height('50vp')
           .fontSize('16vp')
           .onClick(() => {
-            this.writeEvent()
+            this.writeEvent();
           })
-      }.width('100%').height('40%')
+      }
+      .width('100%')
+      .height('40%')
       .justifyContent(FlexAlign.Center)
 
       Row() {
-        Text($r('app.string.disable')).fontSize('16vp')
+        Text($r('app.string.disable'))
+          .fontSize('16vp')
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+          .id('eventSwitch')
           .selectedColor($r('app.color.toggle_selectedColor'))
           .switchPointColor($r('app.color.toggle_switchPointColor'))
           .onChange((isOn: boolean) => {
             this.changeEvent(isOn)
           })
-      }.width('100%').height('10%')
-      .backgroundColor($r('app.color.operation_bgColor')).justifyContent(FlexAlign.SpaceAround)
-    }.width('100%').height('100%')
+      }
+      .width('100%')
+      .height('10%')
+      .backgroundColor($r('app.color.operation_bgColor'))
+      .justifyContent(FlexAlign.SpaceAround)
+    }
+    .width('100%')
+    .height('100%')
   }
 }

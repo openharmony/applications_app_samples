@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "writeSuccess",
+      "value": "成功写入事件"
+    },
+    {
+      "name": "writeFailed",
+      "value": "写入事件失败"
+    },
+    {
+      "name": "appDisabled",
+      "value": "禁用应用打点，无法成功写入事件"
+    },
+    {
+      "name": "appAble",
+      "value": "启用应用打点，此时可成功写入事件"
+    }
+  ]
+}

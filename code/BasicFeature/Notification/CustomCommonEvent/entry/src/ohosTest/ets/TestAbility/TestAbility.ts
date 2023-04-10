@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,49 +13,48 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Logger from '../../../main/ets/module/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import testsuite from '../test/List.test';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type window from '@ohos.window';
+import { Hypium } from '@ohos/hypium';
+import { logger } from '../util/Logger';
 
-export default class TestAbility extends Ability {
-    onCreate(want, launchParam) {
-        Logger.info('TestAbility onCreate')
-        let abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        let abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        Logger.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-    }
+const TAG: string = 'TestAbility';
 
-    onDestroy() {
-        Logger.info('TestAbility onDestroy')
-    }
+export default class TestAbility extends UIAbility {
+  onCreate(want, launchParam): void {
+    logger.info(TAG, `TestAbility onCreate, want param: ${JSON.stringify(want)},launchParam: ${JSON.stringify(launchParam)}`);
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    logger.info(TAG, 'start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  }
 
-    onWindowStageCreate(windowStage) {
-        Logger.info('TestAbility onWindowStageCreate')
-        windowStage.loadContent("TestAbility/pages/index", (err, data) => {
-            if (err.code) {
-                Logger.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-        });
+  onDestroy(): void {
+    logger.info(TAG, 'TestAbility onDestroy');
+  }
 
-        globalThis.abilityContext = this.context;
-    }
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    logger.info(TAG, 'TestAbility onWindowStageCreate');
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
+      if (err.code) {
+        logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
+      }
+      logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data) ?? ''}`);
+    });
+  }
 
-    onWindowStageDestroy() {
-        Logger.info('TestAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy(): void {
+    logger.info(TAG, 'TestAbility onWindowStageDestroy');
+  }
 
-    onForeground() {
-        Logger.info('TestAbility onForeground')
-    }
+  onForeground(): void {
+    logger.info(TAG, 'TestAbility onForeground');
+  }
 
-    onBackground() {
-        Logger.info('TestAbility onBackground')
-    }
-};
+  onBackground(): void {
+    logger.info(TAG, 'TestAbility onBackground');
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "create_fault",
+      "value": "Create Fault"
+    },
+    {
+      "name": "catch_js_fault",
+      "value": "Catch JS_FAULT info"
+    },
+    {
+      "name": "catch_cpp_fault",
+      "value": "Catch CPP_FAULT info"
+    },
+    {
+      "name": "catch_app_freeze_fault",
+      "value": "Catch APP_FREEZE info"
+    },
+    {
+      "name": "catch_all_fault",
+      "value": "Catch NO_SPECIFIC info"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    }
+  ]
+}

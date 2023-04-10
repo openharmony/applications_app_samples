@@ -83,6 +83,7 @@ struct Index {
 
       Scroll() {
         Text(this.message)
+          .id('message')
           .textAlign(TextAlign.Start)
           .width('100%')
           .fontSize(22)
@@ -96,7 +97,7 @@ struct Index {
         Column() {
           ForEach(this.operates, (item, index) => {
             Button(item)
-              .key(item)
+              .id(item)
               .type(ButtonType.Capsule)
               .size({ width: '90%', height: 60 })
               .margin({ top: 10 })
