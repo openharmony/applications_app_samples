@@ -116,7 +116,6 @@ struct keyItem {
     .width(this.inputStyle.basicButtonWidth)
     .height('100%')
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
-    .padding({ top: '5%', bottom: '5%' })
     .onClick(() => {
       InputHandler.getInstance().insertText(this.keyValue.content);
     })
