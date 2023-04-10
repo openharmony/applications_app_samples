@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager'
 import { appInit } from '../model/AppInfo'
 import AppTime from '../model/AppTime'
 
