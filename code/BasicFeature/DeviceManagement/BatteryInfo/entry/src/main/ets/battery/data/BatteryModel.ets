@@ -120,14 +120,8 @@ export class BatteryModel {
       case batteryInfo.BatteryCapacityLevel.LEVEL_LOW:
         value = 'LEVEL_LOW';
         break;
-      case batteryInfo.BatteryCapacityLevel.LEVEL_WARNING:
-        value = 'LEVEL_WARNING';
-        break;
       case batteryInfo.BatteryCapacityLevel.LEVEL_CRITICAL:
         value = 'LEVEL_CRITICAL';
-        break;
-      case batteryInfo.BatteryCapacityLevel.LEVEL_SHUTDOWN:
-        value = 'LEVEL_SHUTDOWN';
         break;
       default:
         break;
