@@ -22,7 +22,7 @@ const TRANSLATE: number = -145
 
 @Component
 export struct AudioItem {
-  private record: Record = new Record(getContext(this) as common.UIAbilityContext)
+  @ObjectLink record: Record
   private index: number = -1
   private clickItem: (record: Record, operate: string) => void
   private checkItem: () => void
@@ -55,10 +55,6 @@ export struct AudioItem {
     return `${date.getFullYear()}/${dateTimeUtil.fill(date.getMonth() + 1)}/${dateTimeUtil.fill(date.getDate())}`
   }
 
-  aboutToAppear() {
-    this.imgRes = this.record.isCheck ? $r('app.media.check') : $r('app.media.uncheck')
-  }
-
   build() {
     Row() {
       Row() {
@@ -80,7 +76,7 @@ export struct AudioItem {
             .fontSize(20)
             .fontColor(Color.Gray)
           if (this.checkState) {
-            Image(this.imgRes)
+            Image(this.record.isCheck ? $r('app.media.check') : $r('app.media.uncheck'))
               .size({ width: 20, height: 20 })
               .objectFit(ImageFit.Contain)
               .margin({ left: 5 })
@@ -122,7 +118,8 @@ export struct AudioItem {
             .size({ width: 30, height: 30 })
         }
         .type(ButtonType.Circle)
-        .size({ width: 50, height: 50 })
+        .width(50)
+        .height(50)
         .backgroundColor('#FF0000')
         .margin({ left: 5 })
         .onClick(() => {

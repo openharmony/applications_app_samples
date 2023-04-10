@@ -24,12 +24,6 @@
       "default",
       "tablet"
     ],
-    "metadata": [
-      {
-        "name": "ArkTSPartialUpdate",
-        "value": "false"
-      }
-    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

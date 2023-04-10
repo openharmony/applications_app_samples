@@ -57,12 +57,6 @@
       {
         "name": "ohos.permission.WRITE_MEDIA"
       }
-    ],
-    "metadata": [
-      {
-        "name": "ArkTSPartialUpdate",
-        "value": "false"
-      }
     ]
   }
 }

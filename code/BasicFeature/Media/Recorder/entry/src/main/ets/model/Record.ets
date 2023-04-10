@@ -20,6 +20,7 @@ import MediaManager from '../model/MediaManager'
 
 const dateTimeUtil = new DateTimeUtil()
 
+@Observed
 export class Record {
   fileAsset: mediaLibrary.FileAsset
   title: string
