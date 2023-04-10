@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,16 +29,22 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
   // 对应FA的onInitialized
   onCreate(want, callback) {
     Logger.info(TAG, ` DataShareExtAbility onCreate, want: ${JSON.stringify(want.abilityName)}`)
-    relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, data) => {
-      Logger.info(TAG, `DataShareExtAbility getRdbStore done`)
-      rdbStore = data
-      if (rdbStore !== undefined) {
-        rdbStore.executeSql(SQL_CREATE_TABLE, [], () => {
-          Logger.info(TAG, `DataShareExtAbility executeSql done`)
-        })
-      }
-      if (callback) {
-        callback()
+    relationalStore.getRdbStore(globalThis.context, STORE_CONFIG, (err, data) => {
+      if (err) {
+        Logger.error(TAG, `DataShareExtAbility getRdbStore err : ${JSON.stringify(err)}`)
+      } else {
+        Logger.info(TAG, `DataShareExtAbility getRdbStore done`)
+        rdbStore = data
+        Logger.info(TAG, `DataShareExtAbility rdbStore1 ; ${rdbStore}`)
+        if (rdbStore != undefined) {
+          Logger.info(TAG, `DataShareExtAbility rdbStore2 ; ${rdbStore}`)
+          rdbStore.executeSql(SQL_CREATE_TABLE, [], () => {
+            Logger.info(TAG, `DataShareExtAbility executeSql done`)
+          })
+        }
+        if (callback) {
+          callback()
+        }
       }
     })
     Logger.info(TAG, `DataShareExtAbility onCreate end`)

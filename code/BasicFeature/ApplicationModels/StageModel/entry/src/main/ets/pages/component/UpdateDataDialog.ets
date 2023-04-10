@@ -61,14 +61,14 @@ export struct UpdateDataDialog {
         Text($r('app.string.no'))
           .fontSize(21)
           .layoutWeight(1)
-          .align(Alignment.Center)
+          .textAlign(TextAlign.Center)
           .onClick(() => {
             this.controller.close()
           })
         Text($r('app.string.ok'))
           .fontSize(21)
           .layoutWeight(1)
-          .align(Alignment.Center)
+          .textAlign(TextAlign.Center)
           .onClick(() => {
             this.update()
           })
