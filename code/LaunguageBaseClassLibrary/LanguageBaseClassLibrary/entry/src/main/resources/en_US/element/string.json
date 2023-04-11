@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "lable_name",
+      "value": "LanguageBaseClassLibrary"
+    },
+    {
+      "name": "xml",
+      "value": "Xml & ConvertXml (XML Parsing,Generation and convert)"
+    },
+    {
+      "name": "url",
+      "value": "Url (URL String Parsing)"
+    },
+    {
+      "name": "util",
+      "value": "Util (util)"
+    },
+    {
+      "name": "process",
+      "value": "Process (Obtaining Process Information)"
+    },
+    {
+      "name": "array_list",
+      "value": "ArrayList (Linear Container ArrayList)"
+    }
+  ]
+}
