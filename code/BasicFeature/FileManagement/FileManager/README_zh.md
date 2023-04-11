@@ -124,10 +124,8 @@ Library/src/main/ets/
 
 如需单独下载本工程，执行如下命令：
 
-    ```
     git init
     git config core.sparsecheckout true
     echo code/BasicFeature/FileManager/FileManager/ > .git/info/sparse-checkout
     git remote add origin https://gitee.com/openharmony/applications_app_samples.git
     git pull origin master
-    ```
