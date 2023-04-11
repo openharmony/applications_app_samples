@@ -1,0 +1,18 @@
+{
+  "strarray": [
+    {
+      "name": "power_operations",
+      "value": [
+        {
+          "value": "关机"
+        },
+        {
+          "value": "重启"
+        },
+        {
+          "value": "检测亮灭屏状态"
+        }
+      ]
+    }
+  ]
+}

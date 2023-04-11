@@ -1,0 +1,18 @@
+{
+  "strarray": [
+    {
+      "name": "power_operations",
+      "value": [
+        {
+          "value": "turn off"
+        },
+        {
+          "value": "restart"
+        },
+        {
+          "value": "Check whether the screen is on or off"
+        }
+      ]
+    }
+  ]
+}
