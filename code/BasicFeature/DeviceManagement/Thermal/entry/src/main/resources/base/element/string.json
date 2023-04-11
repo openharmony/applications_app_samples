@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "thermal"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "thermal"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "thermal"
+    }
+  ]
+}
