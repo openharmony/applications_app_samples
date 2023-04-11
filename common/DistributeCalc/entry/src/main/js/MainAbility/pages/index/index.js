@@ -23,7 +23,6 @@ import { logger } from '../../common/Logger'
 let pressedEqual = false
 let kvStoreModel = new KvStoreModel()
 let remoteDeviceModel = new RemoteDeviceModel()
-let timerId = 0
 const TAG = 'Index'
 
 export default {
@@ -103,12 +102,6 @@ export default {
         logger.info(TAG, `data expression:${this.expression}`)
       })
     }
-    timerId = setInterval(() => {
-      if (this.isDistributed) {
-        let temp = this.expression
-        this.expression = temp
-      }
-    }, 200)
   },
   stopDataListener() {
     logger.info(TAG, `stopDataListener`)
@@ -126,7 +119,6 @@ export default {
       this.stopDataListener()
       this.isDistributed = false
     }
-    clearInterval(timerId)
     kvStoreModel = null
     remoteDeviceModel = undefined
   },
