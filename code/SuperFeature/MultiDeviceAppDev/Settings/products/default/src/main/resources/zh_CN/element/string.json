@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "mainability_description",
+      "value": "示例应用"
+    },
+    {
+      "name": "mainability_label",
+      "value": "设置"
+    }
+  ]
+}

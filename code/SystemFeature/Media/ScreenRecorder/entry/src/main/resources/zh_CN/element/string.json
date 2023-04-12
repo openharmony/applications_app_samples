@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "屏幕录制"
+    },
+    {
+      "name": "title",
+      "value": "屏幕录制"
+    },
+    {
+      "name": "recorder_desc",
+      "value": "屏幕录制控制"
+    },
+    {
+      "name": "start_rec",
+      "value": "启动"
+    },
+    {
+      "name": "stop_rec",
+      "value": "停止"
+    }
+  ]
+}

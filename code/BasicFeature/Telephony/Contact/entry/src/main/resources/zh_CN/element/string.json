@@ -1,0 +1,132 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Contact"
+    },
+    {
+    "name": "entry_MainAbility",
+    "value": "Contact"
+    },
+    {
+      "name": "description_mainability",
+      "value": "Read or write contacts"
+    },
+    {
+      "name": "save",
+      "value": "保存至：手机"
+    },
+    {
+      "name": "search",
+      "value": "搜索联系人"
+    },
+    {
+      "name": "contacts",
+      "value": "位联系人"
+    },
+    {
+      "name": "phone",
+      "value": "电话"
+    },
+    {
+      "name": "contact",
+      "value": "联系人"
+    },
+    {
+      "name": "collection",
+      "value": "收藏"
+    },
+    {
+      "name": "newContact",
+      "value": "新建联系人"
+    },
+    {
+      "name": "defaults",
+      "value": "默认"
+    },
+    {
+      "name": "phone_ring",
+      "value": "电话铃声"
+    },
+    {
+      "name": "editor",
+      "value": "编辑"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "name_card",
+      "value": "我的名片"
+    },
+    {
+      "name": "group",
+      "value": "群组"
+    },
+    {
+      "name": "editor_contact",
+      "value": "编辑联系人"
+    },
+    {
+      "name": "add_contact",
+      "value": "新增联系人"
+    },
+    {
+      "name": "import_file",
+      "value": "导入文件"
+    },
+    {
+      "name": "export_file",
+      "value": "导出文件"
+    },
+    {
+      "name": "save_phone",
+      "value": "保存至：手机"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "warning",
+      "value": "警告"
+    },
+    {
+      "name": "delete_show",
+      "value": "您正在删除该联系人，请确认是否删除"
+    },
+    {
+      "name": "not_fill",
+      "value": "未填写"
+    },
+    {
+      "name": "user_name",
+      "value": "姓名"
+    },
+    {
+      "name": "address",
+      "value": "地址"
+    },
+    {
+      "name": "email",
+      "value": "邮箱"
+    },
+    {
+      "name": "note",
+      "value": "备注"
+    }
+  ]
+}

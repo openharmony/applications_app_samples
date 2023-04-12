@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "Setting"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "bluetooth",
+      "value": "BlueTooth"
+    },
+    {
+      "name": "device_found",
+      "value": "The current device is discoverable by nearby devices"
+    },
+    {
+      "name": "device_name",
+      "value": "Device name"
+    },
+    {
+      "name": "connect_device",
+      "value": "Paired Device"
+    },
+    {
+      "name": "my_phone",
+      "value": "My phone"
+    },
+    {
+      "name": "standby_machine",
+      "value": "Standby Machine"
+    },
+    {
+      "name": "use_device",
+      "value": "Available equipment"
+    },
+    {
+      "name": "smart_watch",
+      "value": "Smart Watch"
+    },
+    {
+      "name": "my_pc",
+      "value": "My computer"
+    },
+    {
+      "name": "my_earphones",
+      "value": "My earphones"
+    },
+    {
+      "name": "mobile_network",
+      "value": "Mobile Data"
+    },
+    {
+      "name": "sim_manager",
+      "value": "SIM card management"
+    },
+    {
+      "name": "personal_hotspot",
+      "value": "Personal Hotspot"
+    },
+    {
+      "name": "airplane",
+      "value": "Airplane Mode"
+    },
+    {
+      "name": "traffic_management",
+      "value": "Traffic Management"
+    },
+    {
+      "name": "save",
+      "value": "Save"
+    },
+    {
+      "name": "encryption",
+      "value": "Encryption"
+    },
+    {
+      "name": "encryption_not",
+      "value": "Encrypted (no internet access)"
+    },
+    {
+      "name": "open",
+      "value": "Open (no internet access)"
+    },
+    {
+      "name": "connect_wlan",
+      "value": "Connected to WLAN"
+    },
+    {
+      "name": "connect",
+      "value": "Connect"
+    },
+    {
+      "name": "available_wlan",
+      "value": "Available WLAN"
+    },
+    {
+      "name": "wlan",
+      "value": "WLAN"
+    },
+    {
+      "name": "back",
+      "value": "Back"
+    },
+    {
+      "name": "phone",
+      "value": "Phone"
+    },
+    {
+      "name": "wlan_index",
+      "value": "E1-9F-AP"
+    },
+    {
+      "name": "mobile",
+      "value": "MobileData"
+    },
+    {
+      "name": "ux",
+      "value": "UX"
+    },
+    {
+      "name": "aaa",
+      "value": "AAA"
+    },
+    {
+      "name": "bbb",
+      "value": "BBB"
+    },
+    {
+      "name": "ux_5g",
+      "value": "UX_5G"
+    },
+    {
+      "name": "start",
+      "value": "已开启"
+    }
+  ]
+}

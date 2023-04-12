@@ -1,0 +1,124 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "form_ServiceAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "midnight",
+      "value": "半夜"
+    },
+    {
+      "name": "early_morning",
+      "value": "清晨"
+    },
+    {
+      "name": "morning",
+      "value": "早上"
+    },
+    {
+      "name": "yestoday",
+      "value": "昨天"
+    },
+    {
+      "name": "today",
+      "value": "今天"
+    },
+    {
+      "name": "air",
+      "value": "空气"
+    },
+    {
+      "name": "air_quality",
+      "value": "优"
+    },
+    {
+      "name": "weather",
+      "value": "天气"
+    },
+    {
+      "name": "weather_type",
+      "value": "晴"
+    },
+    {
+      "name": "highest_temperature",
+      "value": "35℃/"
+    },
+    {
+      "name": "lowest_temperature",
+      "value": "25℃"
+    },
+    {
+      "name": "du",
+      "value": "℃"
+    },
+    {
+      "name": "update_time",
+      "value": "更新时间"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "hot_city",
+      "value": "热门城市"
+    },
+    {
+      "name": "Hangzhou_city",
+      "value": "杭州"
+    },
+    {
+      "name": "airTips",
+      "value": "炎热，出门注意防晒哦"
+    },
+    {
+      "name": "sunny",
+      "value": "晴"
+    },
+    {
+      "name": "sunset",
+      "value": "日落"
+    },
+    {
+      "name": "sunrise",
+      "value": "日出"
+    },
+    {
+      "name": "cloudy",
+      "value": "多云"
+    },
+    {
+      "name": "overcast",
+      "value": "阴"
+    },
+    {
+      "name": "light_rain",
+      "value": "小雨"
+    },
+    {
+      "name": "thundershower",
+      "value": "雷阵雨"
+    },
+    {
+      "name": "moderate_rain",
+      "value": "中雨"
+    },
+    {
+      "name": "heavy_rain",
+      "value": "大雨"
+    }
+  ]
+}

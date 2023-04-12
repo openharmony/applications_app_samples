@@ -1,0 +1,682 @@
+{
+  "color": {
+    "index_font_color_selected": "#1296DB",
+    "index_font_color_unselected": "#565353",
+    "white": "#FFFFFF",
+    "badge_color": "red",
+    "text_badge_color": "red",
+    "black": "#000000"
+  },
+  "strings": {
+    "tab_arr": [
+      "组件",
+      "通用",
+      "动画",
+      "全局方法"
+    ],
+    "common_confirm": "确定",
+    "common_cancle": "取消",
+    "component_category": [
+      {
+        "name": "空白与分隔",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_blank_divider.png",
+        "values": [
+          {
+            "name": "Divider 分隔组件",
+            "url": "pages/components/basic/dividerSample/DividerSample"
+          }
+        ]
+      },
+      {
+        "name": "按钮与选择",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_button_selection.png",
+        "values": [
+          {
+            "name": "Button 按钮组件",
+            "url": "pages/components/basic/buttonSample/ButtonSample"
+          },
+          {
+            "name": "DatePicker 时间选择器",
+            "url": "pages/components/basic/datePickerSample/DatePickerSample"
+          },
+          {
+            "name": "Radio 单选按钮",
+            "url": "pages/components/basic/radioSample/RadioSample"
+          },
+          {
+            "name": "Select 选择组件",
+            "url": "pages/components/basic/selectSample/SelectSample"
+          },
+          {
+            "name": "Slider 滑动条组件",
+            "url": "pages/components/basic/sliderSample/SliderSample"
+          },
+          {
+            "name": "Switch 切换组件",
+            "url": "pages/components/basic/switchSample/SwitchSample"
+          }
+        ]
+      },
+      {
+        "name": "信息展示与动效",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_information_presentation_and_dynamic_effects.png",
+        "values": [
+          {
+            "name": "QRCode 二维码组件",
+            "url": "pages/components/basic/qrCodeSample/QRCodeSample"
+          }
+        ]
+      },
+      {
+        "name": "文本与输入",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_text_and_input.png",
+        "values": [
+          {
+            "name": "Span 行内文本组件",
+            "url": "pages/components/basic/spanSample/SpanSample"
+          },
+          {
+            "name": "Input 文本输入组件",
+            "url": "pages/components/basic/inputSample/InputSample"
+          },
+          {
+            "name": "Text 文本组件",
+            "url": "pages/components/basic/textSample/TextSample"
+          }
+        ]
+      },
+      {
+        "name": "辅助",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_auxiliary.png",
+        "values": [
+          {
+            "name": "Badge 标记组件",
+            "url": "pages/components/badgeSample/BadgeSample"
+          }
+        ]
+      }
+    ],
+    "universal_category": [
+      {
+        "name": "通用事件",
+        "values": [
+          {
+            "name": "onClick 点击事件",
+            "isUnfold": "false",
+            "url": "pages/universals/events/clickSample/ClickSample",
+            "icon_url": "common/image/ic_click_event.png",
+            "values": []
+          }
+        ]
+      },
+      {
+        "name": "通用属性",
+        "values": [
+          {
+            "name": "background 背景",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/backgroundSample/BackgroundSample",
+            "icon_url": "common/image/ic_props_background.png",
+            "values": []
+          },
+          {
+            "name": "border 边框",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/borderSample/BorderSample",
+            "icon_url": "common/image/ic_props_border.png",
+            "values": []
+          },
+          {
+            "name": "font 字体",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/fontSample/FontSample",
+            "icon_url": "common/image/ic_props_font.png",
+            "values": []
+          },
+          {
+            "name": "size 尺寸",
+            "isUnfold": "false",
+            "url": "pages/universals/properties/sizeSample/SizeSample",
+            "icon_url": "common/image/ic_props_size.png",
+            "values": []
+          },
+          {
+            "name": "图形变换",
+            "isUnfold": "false",
+            "icon_url": "common/image/ic_graphic_transformation.png",
+            "values": [
+              {
+                "name": "rotate 旋转",
+                "url": "pages/universals/properties/rotateSample/RotateSample"
+              },
+              {
+                "name": "translate 平移",
+                "url": "pages/universals/properties/translateSample/TranslateSample"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "animation_category": [
+      {
+        "name": "转场动画",
+        "isUnfold": "false",
+        "icon_url": "common/image/transition_animation.png",
+        "values": [
+          {
+            "name": "pageTransition 页面转场",
+            "url": "pages/animations/pageTransitionSample/PageTransitionSample"
+          }
+        ]
+      }
+    ],
+    "global_method_category": [
+      {
+        "name": "弹窗",
+        "isUnfold": "false",
+        "icon_url": "common/image/ic_popup_window.png",
+        "values": [
+          {
+            "name": "CustomDialog 自定义弹窗",
+            "url": "pages/globalMethods/popups/dialogSample/DialogSample"
+          }
+        ]
+      }
+    ],
+    "background_title": "Background 背景",
+    "background_set_color": "设置背景颜色",
+    "background_set_gradient": "设置背景渐变",
+    "background_default_up_to_down": "默认由上到下",
+    "background_angle_gradient": "45度夹角渐变",
+    "background_repeat_gradient": "重复渐变",
+    "background_brand": "Brand",
+    "background_warning": "Warning",
+    "background_danger": "Danger",
+    "background_set_image": "设置背景图片",
+    "background_default": "默认",
+    "background_no_repeat": "不平铺 no-repeat",
+    "background_image_size": "图片大小 宽50% 高100%",
+    "background_image_position": "图片位置 从右上开始渲染",
+    "badge_title": "Badge 标记组件",
+    "badge_type": "标记类型",
+    "badge_number": "数字标记",
+    "badge_text": "文本标记",
+    "badge_max_message_num": "数字标记最大消息数",
+    "badge_normal_message_num": "正常消息数",
+    "badge_beyond_message_num": "超过最大显示消息",
+    "badge_position": "标记位置",
+    "badge_left": "左侧标记",
+    "badge_right_top": "右上标记",
+    "badge_right": "右侧标记",
+    "badge_style": "标记样式",
+    "badge_blue_big": "蓝色大标记",
+    "badge_green_small": "绿色小标记",
+    "border_title": "Border 边框样式",
+    "border_style": "边框类型",
+    "border_dotted_line": "虚线",
+    "border_dot": "圆点",
+    "border_solid_line": "实线",
+    "border_width_color_corner": "边框宽度、颜色、圆角",
+    "border_width": "宽度",
+    "border_color": "颜色",
+    "border_corner": "圆角",
+    "border_style_attribute": "分别设置边框以及样式和属性",
+    "border_top": "上边框",
+    "border_left": "左边框",
+    "border_bottom": "下边框",
+    "border_right": "右边框",
+    "border_four_angle": "分别设置四个角的圆角",
+    "border_left_top": "左上",
+    "border_left_bottom": "左下",
+    "border_right_bottom": "右下",
+    "border_right_top": "右上",
+    "button_title": "Button 按钮组件",
+    "button_type_title": "类型",
+    "button_confirm": "确定",
+    "button_type_message": "点击事件",
+    "button_capsule": "胶囊按钮",
+    "button_general": "普通按钮",
+    "button_circle": "圆形按钮",
+    "button_status_result": "状态效果",
+    "button_click_result": "有按下效果",
+    "button_click_not_result": "无按下效果",
+    "button_disabled": "禁用",
+    "button_custom_style": "自定义样式",
+    "button_circle_rect": "圆角方按钮",
+    "button_icon": "图标按钮",
+    "button_custom_color": "自定义颜色",
+    "button_click": "被点击了",
+    "click_events_title": "onClick 点击事件",
+    "click_start_events_bubble_up": "未阻止事件冒泡",
+    "click_stop_events_bubble_up": "阻止事件冒泡",
+    "click_start_bubble_up": "冒泡",
+    "click_stop_bubble_up": "不冒泡",
+    "click_event_child": "子元素",
+    "click_event_parent": "父元素",
+    "click_stop_bubble_up_description": "点击子元素时，子元素拦截了事件冒泡，不会触发父元素的点击事件",
+    "click_start_bubble_up_description": "点击子元素时，子元素未拦截了事件冒泡，会触发父元素的点击事件",
+    "date_picker_title": "DatePicker 时间选择器",
+    "dialog_title": "Dialog 自定义弹窗",
+    "dialog_whether_drag": "是否支持拖拽",
+    "dialog_can_drag": "可拖拽",
+    "dialog_cannot_drag": "不可拖拽",
+    "dialog_request_permission": "组件集合申请需要开启以下权限",
+    "dialog_video_permission": "麦克风权限",
+    "dialog_video_introduce": "语音通话时需要麦克风权限",
+    "dialog_location_introduce": "导航时需要位置权限",
+    "dialog_location_permission": "位置权限",
+    "dialog_key_open": "一键开启",
+    "divider_title": "Divider 分隔器组件",
+    "divider_transverse": "横向",
+    "divider_vertical": "纵向",
+    "divider_property": "属性",
+    "divider_width_message": "分隔线宽度",
+    "divider_color_left_text": "分隔线颜色",
+    "divider_cap_style_left_text": "分隔线端点属性",
+    "divider_vertical_options": [
+      "北京",
+      "上海",
+      "广州"
+    ],
+    "divider_cap_style_options": [
+      {
+        "name": "Butt",
+        "value": "butt"
+      },
+      {
+        "name": "Round",
+        "value": "round"
+      },
+      {
+        "name": "Square",
+        "value": "square"
+      }
+    ],
+    "divider_color_options": [
+      {
+        "name": "Blue",
+        "value": "#409EFF"
+      },
+      {
+        "name": "Green",
+        "value": "#67C23A"
+      },
+      {
+        "name": "Orange",
+        "value": "#E6A23C"
+      },
+      {
+        "name": "Pink",
+        "value": "#F56C6C"
+      }
+    ],
+    "font_title": "Font 字体",
+    "font_color": "颜色",
+    "font_blue_color": "#409EFF",
+    "font_brown_color": "#E6A23C",
+    "font_red_color": "#F56C6C",
+    "font_size": "大小",
+    "font_fourteen_vp": "14vp",
+    "font_eighteen_vp": "18vp",
+    "font_twenty_six_vp": "26vp",
+    "font_thickness": "粗细",
+    "font_style": "样式",
+    "font_normal": "normal",
+    "font_italic": "italic",
+    "font_family": "字体",
+    "font_family_sans": "sans-serif",
+    "font_family_h_y_q_i_hei": "HYQiHei-65S",
+    "input_title": "Input 文本输入组件",
+    "input_type_title": "类型",
+    "input_type_placeholder": "数字、字母、下划线、空格、特殊字符",
+    "input_now_type": "当前类型",
+    "input_events": "事件",
+    "input_password_icon": "密码图标",
+    "input_placeholder_style_title": "提示文字样式",
+    "input_placeholder_style_message": "提示文字",
+    "input_placeholder_events_message": "文本选择弹窗会出现翻译",
+    "input_regular_expression": "正则表达式",
+    "input_regular_expression_description": "只能输入英文",
+    "input_limit_length_title": "限制输入字符长度",
+    "input_limit_length_placeholder": "当前最大输入12个字符",
+    "input_type_options": [
+      {
+        "value": "text",
+        "name": "Normal"
+      },
+      {
+        "value": "password",
+        "name": "Password"
+      },
+      {
+        "value": "email",
+        "name": "Email"
+      },
+      {
+        "value": "number",
+        "name": "Number"
+      },
+      {
+        "value": "date",
+        "name": "Date"
+      },
+      {
+        "value": "time",
+        "name": "Time"
+      }
+    ],
+    "input_password_icon_options": [
+      {
+        "name": "显示",
+        "value": "true"
+      },
+      {
+        "name": "隐藏",
+        "value": "false"
+      }
+    ],
+    "page_transition_title": "页面间转场",
+    "page_transition_back": "返回页面间转场页面",
+    "page_transition_introduce": "PAGE TRANSITIONS",
+    "page_transition_handlers": [
+      {
+        "name": "顶部进场/底部退场",
+        "url": "pages/animations/pageTransitionSampleFromTop/PageTransitionSampleFromTop"
+      },
+      {
+        "name": "底部进场/底部退场",
+        "url": "pages/animations/pageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
+      },
+      {
+        "name": "左侧进场/底部退场",
+        "url": "pages/animations/pageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
+      },
+      {
+        "name": "右侧进场/底部退场",
+        "url": "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight"
+      },
+      {
+        "name": "缩放进场/底部退场",
+        "url": "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale"
+      },
+      {
+        "name": "旋转进场/底部退场",
+        "url": "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
+      }
+    ],
+    "qrcode_title": "QRCode 二维码组件",
+    "qrcode_value_left": "内容",
+    "qrcode_value_right": "输入改变二维码内容",
+    "qrcode_color_left": "颜色",
+    "qrcode_shape_left": "形状",
+    "qrcode_color_list": [
+      {
+        "value": "#000000",
+        "name": "Black"
+      },
+      {
+        "value": "#FA2A2D",
+        "name": "Red"
+      },
+      {
+        "value": "#FF9800",
+        "name": "Orange"
+      }
+    ],
+    "qrcode_shape_list": [
+      {
+        "value": "rect",
+        "name": "Rect"
+      },
+      {
+        "value": "circle",
+        "name": "Circle"
+      }
+    ],
+    "radio_title": "Radio 单选按钮",
+    "radio_second_title": "没有热区(只有点击按钮才生效)",
+    "radio_second_hot_title": "添加热区(点击文字区域也生效)",
+    "radio_city": [
+      {
+        "name": "北京",
+        "value": "beijing"
+      },
+      {
+        "name": "上海",
+        "value": "shanghai"
+      },
+      {
+        "name": "广州",
+        "value": "guangzhou"
+      },
+      {
+        "name": "深圳",
+        "value": "shenzhen"
+      }
+    ],
+    "rotate_title": "旋转",
+    "rotate_image": "图片旋转",
+    "rotate_container": "容器旋转",
+    "rotate_container_text": "ArkUI",
+    "rotate_angles": [
+      {
+        "angle": 0,
+        "info": "原图"
+      },
+      {
+        "angle": 15,
+        "info": "旋转15°"
+      }
+    ],
+    "rotate_component_angles": [
+      {
+        "angle": 0,
+        "info": "容器组件"
+      },
+      {
+        "angle": 15,
+        "info": "旋转15°"
+      }
+    ],
+    "select_title": "Select 选择菜单",
+    "select_elements": [
+      {
+        "isSelect": false,
+        "icon": "common/image/ic_select_one.png",
+        "name": "图片"
+      },
+      {
+        "isSelect": true,
+        "icon": "common/image/ic_select_two.png",
+        "name": "收藏"
+      },
+      {
+        "isSelect": false,
+        "icon": "common/image/ic_select_three.png",
+        "name": "手势"
+      }
+    ],
+    "select_cities": [
+      {
+        "isSelect": false,
+        "fontSize": "25vp",
+        "name": "北京"
+      },
+      {
+        "isSelect": true,
+        "fontSize": "30vp",
+        "name": "上海"
+      },
+      {
+        "isSelect": false,
+        "fontSize": "25vp",
+        "name": "深圳"
+      }
+    ],
+    "unselect_cities": [
+      {
+        "isSelect": false,
+        "fontSize": "30vp",
+        "name": "北京"
+      },
+      {
+        "isSelect": true,
+        "fontSize": "25vp",
+        "name": "上海"
+      },
+      {
+        "isSelect": false,
+        "fontSize": "30vp",
+        "name": "深圳"
+      }
+    ],
+    "select_include_image": "含图标",
+    "select_image": "图片",
+    "select_restore": "收藏",
+    "select_gesture": "手势",
+    "select_beijing": "北京",
+    "select_shanghai": "上海",
+    "select_shenzhen": "深圳",
+    "select_choice_font_style": "选中项背景色及文本样式",
+    "select_unchoice_font_style": "未选中项背景色及文本样式",
+    "select_thirty_vp": "30vp",
+    "select_twenty_five_vp": "25vp",
+    "select_resources": [
+      "common/image/ic_select_one.png",
+      "common/image/ic_select_two.png",
+      "common/image/ic_select_three.png"
+    ],
+    "size_title": "Size 尺寸",
+    "size_width_title": "宽度",
+    "size_width_designate_description": "宽度为100vp",
+    "size_width_percentage_description": "宽度为60%",
+    "size_height_title": "高度",
+    "size_height_designate_description": "高度为100vp",
+    "size_height_percentage_description": "高度为60%",
+    "size_border_style_title": "边框类型",
+    "size_box_sizing_content_description": "标准盒子模型，设置的width和height只包含内容的宽和高，不包含边框（border）和内边距（padding）",
+    "size_box_sizing_border_description": "设置的width和height包含内容，边框（border）和内边距（padding），即：组件内容区的实际宽度 = width - (border + padding) ",
+    "size_content_box": "content-box",
+    "size_border_box": "border-box",
+    "slider_title": "Slider 滑动条",
+    "slider_show": "显示当前值(最小值50/最大值130)",
+    "slider_events": "事件",
+    "slider_step_tip": "步长与提示(步长为10)",
+    "slider_custom_property": "自定义属性",
+    "slider_block_color": "滑块颜色",
+    "slider_selected_color": "已滑动颜色",
+    "slider_unselected_color": "未滑动颜色",
+    "slider_event_begin": "开始拖动滑块",
+    "slider_event_moving": "正在拖动滑块过程中",
+    "slider_event_end": "结束拖动滑块",
+    "slider_event_click": "点击滑动条更改滑块位置",
+    "span_title": "Span 行内文本组件",
+    "span_set_properties": "配置不同文本属性",
+    "span_decorative_characte": "装饰线及文本样式",
+    "span_first_part": "钢是在烈火和急剧冷却里锻炼出来的，",
+    "span_second_part": "所以才能坚硬和什么也不怕。",
+    "span_third_part": "我们的一代也是这样的在斗争中和可怕的考验中锻炼出来的，",
+    "span_fourth_part": "学习了不在生活面前屈服。",
+    "span_decorative_sample_text": "装饰线示例文本",
+    "span_characters_sample_text": "  字符样式示例文本",
+    "span_between_characters": "字符间距",
+    "span_decorative_style": "装饰线类型",
+    "span_decorative_color": "装饰线颜色",
+    "span_line_through": "line-through",
+    "span_under_line": "underline",
+    "span_decorative_none": "none",
+    "switch_title": "Switch 切换组件",
+    "switch_font_size": "可设置字体的大小",
+    "switch_font_color": "可设置字体的颜色",
+    "switch_font_weight": "可设置字体的粗细",
+    "switch_on": "开",
+    "switch_off": "关",
+    "switch_turn_on": "开关打开",
+    "switch_turn_off": "开关关闭",
+    "text_title": "Text 文本组件",
+    "text_content": "钢是在烈火和急剧冷却里锻炼出来的，所以才能坚硬和什么也不怕。我们的一代也是这样的在斗争中和可怕的考验中锻炼出来的，学习了不在生活面前屈服。",
+    "text_content_en": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life.",
+    "text_change_letter_spacing": "改变字符间距",
+    "text_change_line_height": "拖动改变行高",
+    "text_change_alignment_type": "对齐类型",
+    "text_change_font_color": "字体颜色",
+    "text_change_display_mode": "超长显示方式",
+    "text_change_decorative_thread": "装饰线",
+    "text_change_text_case": "大小写属性",
+    "text_underscore": "下划线",
+    "text_delete": "删除线",
+    "text_over_line": "标准",
+    "text_case": "大小写",
+    "text_default": "默认",
+    "text_case_options": [
+      {
+        "value": "none",
+        "name": "默认"
+      },
+      {
+        "value": "toUpperCase",
+        "name": "全大写"
+      },
+      {
+        "value": "toLowerCase",
+        "name": "全小写"
+      }
+    ],
+    "text_decorative_thread_options": [
+      {
+        "value": "none",
+        "name": "默认"
+      },
+      {
+        "value": "underline",
+        "name": "下划线"
+      },
+      {
+        "value": "line-through",
+        "name": "删除线"
+      }
+    ],
+    "text_display_mode_options": [
+      {
+        "value": "normal",
+        "name": "默认"
+      },
+      {
+        "value": "clip",
+        "name": "剪裁"
+      },
+      {
+        "value": "ellipsis",
+        "name": "省略"
+      }
+    ],
+    "text_alignment_type_options": [
+      {
+        "name": "左对齐",
+        "value": "start"
+      },
+      {
+        "name": "居中",
+        "value": "center"
+      },
+      {
+        "name": "右对齐",
+        "value": "end"
+      }
+    ],
+    "translate_title": "平移",
+    "translate_image": "图片平移",
+    "translate_container": "容器平移",
+    "translate_container_text": "ArkUI",
+    "translate_x_axis": "X轴:",
+    "translate_y_axis": "Y轴:"
+  },
+  "Files": {
+  }
+}

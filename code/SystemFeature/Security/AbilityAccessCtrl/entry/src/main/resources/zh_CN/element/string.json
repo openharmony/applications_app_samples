@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "VerifyAbility_label",
+      "value": "标签"
+    },
+    {
+      "name": "title",
+      "value": "是否授予权限："
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "button",
+      "value": "检测权限"
+    },
+    {
+      "name": "authorization",
+      "value": "权限已被授予"
+    },
+    {
+      "name": "unauthorization",
+      "value": "权限未被授予"
+    }
+  ]
+}

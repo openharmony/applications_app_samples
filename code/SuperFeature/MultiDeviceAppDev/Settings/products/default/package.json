@@ -1,0 +1,16 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "ohos": {
+    "org": "huawei",
+    "buildTool": "hvigor",
+    "directoryLevel": "module"
+  },
+  "description": "example description",
+  "repository": {},
+  "license": "ISC",
+  "dependencies": {
+    "@ohos/common": "file:../../common",
+    "@ohos/settingItems": "file:../../features/settingitems"
+  }
+}

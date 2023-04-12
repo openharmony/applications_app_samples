@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "ArkJS组件库"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ArkUI组件、常用属性、常用方法等对应用进行分类描述"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "default_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "default_bg_color",
+      "value": "#000000"
+    },
+    {
+      "name": "main_bg_color",
+      "value": "#212121"
+    },
+    {
+      "name": "top_nav_bg_color",
+      "value": "#212121"
+    },
+    {
+      "name": "status_color",
+      "value": "#000000"
+    },
+    {
+      "name": "title_bg_color",
+      "value": "#000000"
+    }
+  ]
+}

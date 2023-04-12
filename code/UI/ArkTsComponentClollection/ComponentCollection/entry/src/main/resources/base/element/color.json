@@ -1,0 +1,118 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "bottom_title_divider",
+      "value": "#99838388"
+    },
+    {
+      "name": "tab_bar_divider",
+      "value": "#33182431"
+    },
+    {
+      "name": "font_color_shallow",
+      "value": "#99000000"
+    },
+    {
+      "name": "font_color_dark",
+      "value": "#000000"
+    },
+    {
+      "name": "tab_bar_select",
+      "value": "#007DFF"
+    },
+    {
+      "name": "tab_bar_unselect",
+      "value": "#66182431"
+    },
+    {
+      "name": "background_shallow_grey",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "background_dark",
+      "value": "#FF000000"
+    },
+    {
+      "name": "background_grey",
+      "value": "#0d000000"
+    },
+    {
+      "name": "background_orange",
+      "value": "#E6A23C"
+    },
+    {
+      "name": "background_pink",
+      "value": "#F56C6C"
+    },
+    {
+      "name": "background_blue",
+      "value": "#409EFF"
+    },
+    {
+      "name": "background_green",
+      "value": "#67C23A"
+    },
+    {
+      "name": "pop_up_background",
+      "value": "#0D182431"
+    },
+    // Button
+    {
+      "name": "button_custom_color",
+      "value": "#80FF7500"
+    },
+    {
+      "name": "button_default_bg_color",
+      "value": "#007DFF"
+    },
+    // Divider
+    {
+      "name": "divider_block_color",
+      "value": "#1A838388"
+    },
+    // Interpolation Calculation
+    {
+      "name": "curve_normal",
+      "value": "#3F56EA"
+    },
+    {
+      "name": "curve_bezier",
+      "value": "#00BFC9"
+    },
+    {
+      "name": "curve_spring",
+      "value": "#BCD600"
+    },
+    {
+      "name": "curve_init",
+      "value": "#E40078"
+    },
+    {
+      "name": "curve_steps",
+      "value": "#FF7500"
+    },
+    // Radio
+    {
+      "name": "radio_response_region_color",
+      "value": "#66ffc0cb"
+    },
+    // Select
+    {
+      "name": "select_option_bg_color",
+      "value": "#33007DFF"
+    },
+    {
+      "name": "select_option_font_color",
+      "value": "#FF007DFF"
+    },
+    // Toggle
+    {
+      "name": "toggle_selected_color",
+      "value": "#4D00BFC9"
+    }
+  ]
+}

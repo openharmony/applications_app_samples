@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "简单桌面"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "简单桌面"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "桌面"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加到桌面"
+    },
+    {
+      "name": "get_bundle_info_permission",
+      "value": "用于获取安装的应用信息"
+    },
+    {
+      "name": "install_bundle_info_permission",
+      "value": "用于安装或卸载应用"
+    },
+    {
+      "name": "listen_bundle_change_permission",
+      "value": "用于监听应用的安装和卸载"
+    },
+    {
+      "name": "manage_missions_permission",
+      "value": "用于管理最新任务"
+    },
+    {
+      "name": "request_form_permission",
+      "value": "用于请求卡片信息"
+    },
+    {
+      "name": "clear_all_missions_message",
+      "value": "已清理至最佳状态"
+    }
+  ]
+}

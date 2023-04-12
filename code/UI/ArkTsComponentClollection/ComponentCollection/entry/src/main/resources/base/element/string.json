@@ -1,0 +1,1237 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Component Collection"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ArkUI components, common attributes, common methods, etc. to classify and describe applications"
+    },
+    {
+      "name": "animation",
+      "value": "Animation"
+    },
+    {
+      "name": "component",
+      "value": "Component"
+    },
+    {
+      "name": "universal",
+      "value": "Universal"
+    },
+    {
+      "name": "global_method",
+      "value": "Global Method"
+    },
+    {
+      "name": "auxiliary",
+      "value": "Auxiliary"
+    },
+    {
+      "name": "common_properties",
+      "value": "Common properties"
+    },
+    {
+      "name": "prop_background",
+      "value": "Background"
+    },
+    {
+      "name": "prop_border",
+      "value": "Border"
+    },
+    {
+      "name": "prop_font",
+      "value": "Font"
+    },
+    {
+      "name": "prop_size",
+      "value": "Size"
+    },
+    {
+      "name": "graphic_transformation",
+      "value": "Graphics Transform"
+    },
+    {
+      "name": "common_events",
+      "value": "Common events"
+    },
+    {
+      "name": "click_event",
+      "value": "Click event"
+    },
+    {
+      "name": "touch_event",
+      "value": "Touch event"
+    },
+    {
+      "name": "show_hide_event",
+      "value": "Show/Hide Event"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "Drag/Drop Event"
+    },
+    {
+      "name": "key_event",
+      "value": "Key Event"
+    },
+    {
+      "name": "focus_event",
+      "value": "Focus Event"
+    },
+    {
+      "name": "mouse_event",
+      "value": "Mouse Event"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "Component Area Change Event"
+    },
+    {
+      "name": "gesture_processing",
+      "value": "Gesture Processing"
+    },
+    {
+      "name": "basic_gestures",
+      "value": "Basic Gestures"
+    },
+    {
+      "name": "tap_gesture",
+      "value": "TapGesture"
+    },
+    {
+      "name": "long_press_gesture",
+      "value": "LongPressGesture"
+    },
+    {
+      "name": "pan_gesture",
+      "value": "PanGesture"
+    },
+    {
+      "name": "pinch_gesture",
+      "value": "PinchGesture"
+    },
+    {
+      "name": "rotation_gesture",
+      "value": "RotationGesture"
+    },
+    {
+      "name": "swipe_gesture",
+      "value": "SwipeGesture"
+    },    {
+      "name": "combined_gestures",
+      "value": "Combined Gestures"
+    },
+    {
+      "name": "transition_animation",
+      "value": "Transition animation"
+    },
+    {
+      "name": "interpolation_calculation",
+      "value": "Interpolation calculation"
+    },
+    {
+      "name": "dialog",
+      "value": "Dialog"
+    },
+    {
+      "name": "button_and_selection",
+      "value": "Button and Selection"
+    },
+    {
+      "name": "information_presentation_and_dynamic_effects",
+      "value": "Information presentation and dynamic effects"
+    },
+    {
+      "name": "blank_and_divider",
+      "value": "Blank and divider"
+    },
+    {
+      "name": "text_and_input",
+      "value": "Text and input"
+    },
+    // AlertDialog
+    {
+      "name": "alert_dialog",
+      "value": "Alert dialog"
+    },
+    {
+      "name": "alert_dialog_type_one",
+      "value": "One button alert dialog"
+    },
+    {
+      "name": "alert_dialog_type_two",
+      "value": "Two button alert dialog"
+    },
+    {
+      "name": "alert_dialog_type_two_button_one",
+      "value": "This is button one"
+    },
+    {
+      "name": "alert_dialog_type_two_button_two",
+      "value": "This is button two"
+    },
+    {
+      "name": "alert_dialog_prompt",
+      "value": "Hint"
+    },
+    {
+      "name": "alert_dialog_warning",
+      "value": "Warning"
+    },
+    {
+      "name": "alert_dialog_info",
+      "value": "You are performing an action"
+    },
+    {
+      "name": "alert_dialog_confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "alert_dialog_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "alert_dialog_type",
+      "value": "Dialog type"
+    },
+    {
+      "name": "alert_dialog_location",
+      "value": "Dialog position"
+    },
+    {
+      "name": "alert_dialog_auto_cancel",
+      "value": "Click on the mask layer to close the dialog"
+    },
+    {
+      "name": "alert_dialog_true",
+      "value": "Closeable"
+    },
+    {
+      "name": "alert_dialog_false",
+      "value": "Non-closing"
+    },
+    {
+      "name": "alert_dialog_top",
+      "value": "Vertical top"
+    },
+    {
+      "name": "alert_dialog_center",
+      "value": "Vertical center"
+    },
+    {
+      "name": "alert_dialog_bottom",
+      "value": "Vertical bottom"
+    },
+    {
+      "name": "alert_dialog_offset",
+      "value": "Relative position offset dialog"
+    },
+    {
+      "name": "alert_dialog_left",
+      "value": "Upper left offset"
+    },
+    {
+      "name": "alert_dialog_right",
+      "value": "Lower right offset"
+    },
+    {
+      "name": "alert_dialog_grid",
+      "value": "Different grid width dialog"
+    },
+    {
+      "name": "alert_dialog_grid_two",
+      "value": "2 grid width"
+    },
+    {
+      "name": "alert_dialog_grid_three",
+      "value": "3 grid width"
+    },
+    {
+      "name": "alert_dialog_grid_four",
+      "value": "4 grid width"
+    },
+    // Background
+    {
+      "name": "background_color",
+      "value": "Set background color"
+    },
+    {
+      "name": "background_gradient",
+      "value": "Set background gradient"
+    },
+    {
+      "name": "background_gradient_linear",
+      "value": "linear gradient"
+    },
+    {
+      "name": "background_gradient_sweep",
+      "value": "angle gradient"
+    },
+    {
+      "name": "background_gradient_radial",
+      "value": "Radial gradient"
+    },
+    {
+      "name": "background_image",
+      "value": "Set background image"
+    },
+    {
+      "name": "background_image_default",
+      "value": "default"
+    },
+    {
+      "name": "background_image_repeat",
+      "value": "XY axis repeat plot"
+    },
+    {
+      "name": "background_image_size",
+      "value": "Image size 50% wide and 100% high"
+    },
+    {
+      "name": "background_image_offset",
+      "value": "Picture position offset to the right and down"
+    },
+    // Badge
+    {
+      "name": "auxiliary_badge",
+      "value": "Badge"
+    },
+    {
+      "name": "badge_type",
+      "value": "Tag type"
+    },
+    {
+      "name": "badge_number",
+      "value": "Number marker"
+    },
+    {
+      "name": "badge_string",
+      "value": "Text tag"
+    },
+    {
+      "name": "badge_max",
+      "value": "Number tag maximum number of messages"
+    },
+    {
+      "name": "badge_number_normal",
+      "value": "Normal badge"
+    },
+    {
+      "name": "badge_number_max",
+      "value": "Maximum Badge"
+    },
+    {
+      "name": "badge_location",
+      "value": "Mark position"
+    },
+    {
+      "name": "badge_left",
+      "value": "Left marker"
+    },
+    {
+      "name": "badge_top",
+      "value": "Top right tag"
+    },
+    {
+      "name": "badge_right",
+      "value": "Right marker"
+    },
+    {
+      "name": "badge_style",
+      "value": "Marker style"
+    },
+    {
+      "name": "badge_blue",
+      "value": "Large blue marker"
+    },
+    {
+      "name": "badge_green",
+      "value": "Small green marker"
+    },
+    // Border
+    {
+      "name": "border_type",
+      "value": "Border type"
+    },
+    {
+      "name": "border_type_dashed",
+      "value": "Dotted line"
+    },
+    {
+      "name": "border_type_dotted",
+      "value": "Dot"
+    },
+    {
+      "name": "border_type_solid",
+      "value": "Solid line"
+    },
+    {
+      "name": "border_border_style",
+      "value": "Border width, color, rounded corners"
+    },
+    {
+      "name": "border_border_width",
+      "value": "Width"
+    },
+    {
+      "name": "border_border_color",
+      "value": "Color"
+    },
+    {
+      "name": "border_border_radius",
+      "value": "Rounded corners"
+    },
+    {
+      "name": "border_edge_style",
+      "value": "Set the border and style and properties separately"
+    },
+    {
+      "name": "border_style_top",
+      "value": "Top border"
+    },
+    {
+      "name": "border_style_bottom",
+      "value": "Bottom border"
+    },
+    {
+      "name": "border_style_left",
+      "value": "Left border"
+    },
+    {
+      "name": "border_style_right",
+      "value": "Right border"
+    },
+    {
+      "name": "border_radius",
+      "value": "Set the rounded corners of each of the four corners"
+    },
+    {
+      "name": "border_radius_left_top",
+      "value": "Top left border"
+    },
+    {
+      "name": "border_radius_left_bottom",
+      "value": "Bottom left border"
+    },
+    {
+      "name": "border_radius_right_top",
+      "value": "Top right border"
+    },
+    {
+      "name": "border_radius_right_bottom",
+      "value": "Bottom right border"
+    },
+    // Button
+    {
+      "name": "button_title",
+      "value": "Button"
+    },
+    {
+      "name": "button_type",
+      "value": "Type"
+    },
+    {
+      "name": "button_confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "button_type_capsule",
+      "value": "Capsule"
+    },
+    {
+      "name": "button_type_normal",
+      "value": "Normal"
+    },
+    {
+      "name": "button_type_circle",
+      "value": "Circle"
+    },
+    {
+      "name": "button_state_effect",
+      "value": "State effect"
+    },
+    {
+      "name": "button_state_effect_true",
+      "value": "Has effect"
+    },
+    {
+      "name": "button_state_effect_false",
+      "value": "No effect"
+    },
+    {
+      "name": "button_disable_style",
+      "value": "Disable"
+    },
+    {
+      "name": "button_custom_style",
+      "value": "Custom style"
+    },
+    {
+      "name": "button_border_radius",
+      "value": " Rounded button"
+    },
+    {
+      "name": "button_with_icon",
+      "value": "Icon button"
+    },
+    {
+      "name": "button_custom_bg_color",
+      "value": "Custom color"
+    },
+    {
+      "name": "button_click",
+      "value": "Button is clicked"
+    },
+    // Click Event
+    {
+      "name": "click_action_tips",
+      "value": "Click the gray area to change the crosshair position"
+    },
+    {
+      "name": "touch_action_tips",
+      "value": "Touch the gray area and move to change the crosshair position"
+    },
+    {
+      "name": "component_area_change_action_tips",
+      "value": "Slide to change the gray area size or position for controlling the ball motion area"
+    },
+    {
+      "name": "get_click_event_detail",
+      "value": "Click location information"
+    },
+    // CustomDialog
+    {
+      "name": "custom_dialog",
+      "value": "Custom dialog"
+    },
+    {
+      "name": "custom_dialog_style_custom",
+      "value": "Whether the dialog style is customized"
+    },
+    {
+      "name": "custom_dialog_style_custom_true",
+      "value": "Custom"
+    },
+    {
+      "name": "custom_dialog_style_custom_false",
+      "value": "Non-custom"
+    },
+    {
+      "name": "custom_dialog_title",
+      "value": "The component collection requests to enable the following permissions"
+    },
+    {
+      "name": "custom_dialog_permission_microphone",
+      "value": "Microphone permission"
+    },
+    {
+      "name": "custom_dialog_permission_microphone_info",
+      "value": "Microphone permission is required for voice calls"
+    },
+    {
+      "name": "custom_dialog_permission_location",
+      "value": "Location permissions"
+    },
+    {
+      "name": "custom_dialog_permission_location_info",
+      "value": "Location permission is required for navigation"
+    },
+    {
+      "name": "custom_dialog_start",
+      "value": "One-click opening"
+    },
+    // DatePickerDialog
+    {
+      "name": "date_picker_dialog",
+      "value": "DatePickerDialog"
+    },
+    {
+      "name": "date_picker_dialog_date",
+      "value": "Show date dialog"
+    },
+    {
+      "name": "date_picker_dialog_date_lunar",
+      "value": "Lunar date:"
+    },
+    {
+      "name": "date_picker_dialog_date_gregorian",
+      "value": "Gregorian calendar date:"
+    },
+    {
+      "name": "date_picker_dialog_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "date_picker_toast_date",
+      "value": "Selected time:"
+    },
+    // DatePicker
+    {
+      "name": "date_picker_title",
+      "value": "DatePicker"
+    },
+    {
+      "name": "date_picker_lunar",
+      "value": "Is lunar"
+    },
+    // Divider
+    {
+      "name": "divider_title",
+      "value": "Divider"
+    },
+    {
+      "name": "divider_stroke_width",
+      "value": "Stroke width"
+    },
+    {
+      "name": "divider_line_color",
+      "value": "Line color"
+    },
+    {
+      "name": "divider_line_cap",
+      "value": "LineCapStyle"
+    },
+    {
+      "name": "divider_horizontal",
+      "value": "Horizontal"
+    },
+    {
+      "name": "divider_vertical",
+      "value": "Vertical"
+    },
+    {
+      "name": "divider_attribute",
+      "value": "Divider"
+    },
+    {
+      "name": "divider_color_blue",
+      "value": "Blue"
+    },
+    {
+      "name": "divider_color_green",
+      "value": "Green"
+    },
+    {
+      "name": "divider_color_orange",
+      "value": "Orange"
+    },
+    {
+      "name": "divider_color_pink",
+      "value": "Pink"
+    },
+    {
+      "name": "divider_line_type_butt",
+      "value": "Butt"
+    },
+    {
+      "name": "divider_line_type_round",
+      "value": "Round"
+    },
+    {
+      "name": "divider_line_type_square",
+      "value": "Square"
+    },
+    // Font
+    {
+      "name": "font_color",
+      "value": "Color"
+    },
+    {
+      "name": "font_size",
+      "value": "Size"
+    },
+    {
+      "name": "font_thickness",
+      "value": "Thickness"
+    },
+    {
+      "name": "font_style",
+      "value": "Style"
+    },
+    // Interpolation Calculation
+    {
+      "name": "interpolation_calculation_cubic_bezier_curve",
+      "value": "Third-order Bézier curve object"
+    },
+    {
+      "name": "interpolation_calculation_spring",
+      "value": "Spring curve object"
+    },
+    {
+      "name": "interpolation_calculation_init_curve",
+      "value": "EaseIn (deceleration start) difference curve"
+    },
+    {
+      "name": "interpolation_calculation_steps_curve",
+      "value": "step curve object"
+    },
+    // Page Transition
+    {
+      "name": "page_transition",
+      "value": "Transitions between pages"
+    },
+    {
+      "name": "page_transition_left",
+      "value": "Left Entry/Right Exit"
+    },
+    {
+      "name": "page_transition_right",
+      "value": "Right Entry/Left Exit"
+    },
+    {
+      "name": "page_transition_top",
+      "value": "Top Entry/Bottom Exit"
+    },
+    {
+      "name": "page_transition_bottom",
+      "value": "Bottom Entry/Top Exit"
+    },
+    {
+      "name": "page_transition_scale",
+      "value": "Zoom in/out"
+    },
+    {
+      "name": "page_transition_rotate",
+      "value": "Spin in/out"
+    },
+    {
+      "name": "page_transition_back",
+      "value": "Back to page transition between pages"
+    },
+    // QRCode
+    {
+      "name": "qrcode_title",
+      "value": "QRCode"
+    },
+    {
+      "name": "qrcode_content",
+      "value": "Content"
+    },
+    {
+      "name": "qrcode_color",
+      "value": "Color"
+    },
+    {
+      "name": "qrcode_enter_content",
+      "value": "Enter to change QR code"
+    },
+    // Radio
+    {
+      "name": "radio_title",
+      "value": "Radio"
+    },
+    {
+      "name": "radio_no_response_region",
+      "value": "Not add response region(take effect when click the button)"
+    },
+    {
+      "name": "radio_has_response_region",
+      "value": "Add response region (click row of button take effect)"
+    },
+    {
+      "name": "radio_beijing",
+      "value": "Beijing"
+    },
+    {
+      "name": "radio_shanghai",
+      "value": "Shanghai"
+    },
+    {
+      "name": "radio_shenzhen",
+      "value": "Shenzhen"
+    },
+    {
+      "name": "radio_guangzhou",
+      "value": "Guangzhou"
+    },
+    // Rotate
+    {
+      "name": "graphic_transformation_rotate",
+      "value": "Rotate"
+    },
+    {
+      "name": "rotate_photo",
+      "value": "Image rotation"
+    },
+    {
+      "name": "rotate_container",
+      "value": "Component rotation"
+    },
+    {
+      "name": "rotate_before_image",
+      "value": "Original image"
+    },
+    {
+      "name": "rotate_before_component",
+      "value": "Container component"
+    },
+    {
+      "name": "rotate_image_angle",
+      "value": "Rotate 15°"
+    },
+    // Select
+    {
+      "name": "select_title",
+      "value": "Select"
+    },
+    {
+      "name": "select_has_icon",
+      "value": "Select with icon"
+    },
+    {
+      "name": "select_option_bg_and_text_style",
+      "value": "Selected item background color and text style"
+    },
+    {
+      "name": "select_unselect_option_style",
+      "value": "Option item background and text style"
+    },
+    {
+      "name": "select_button_style",
+      "value": "Drop-down button text style"
+    },
+    {
+      "name": "select_picture",
+      "value": "Picture"
+    },
+    {
+      "name": "select_collection",
+      "value": "Collection"
+    },
+    {
+      "name": "select_gesture",
+      "value": "Gesture"
+    },
+    {
+      "name": "select_index",
+      "value": "Select option index:"
+    },
+    {
+      "name": "select_value",
+      "value": "The value of the selected option:"
+    },
+    // Shareelement Transition
+    {
+      "name": "share_element_transition",
+      "value": "Shared element transition"
+    },
+    // Size
+    {
+      "name": "size_width",
+      "value": "Width"
+    },
+    {
+      "name": "size_width_fixed_100vp",
+      "value": "Width is 100vp"
+    },
+    {
+      "name": "size_width_percent",
+      "value": "width is 60%"
+    },
+    {
+      "name": "size_height",
+      "value": "Height"
+    },
+    {
+      "name": "size_height_fixed_100vp",
+      "value": "Height is 100vp"
+    },
+    {
+      "name": "size_height_percent",
+      "value": "Height is 60%"
+    },
+    // Slider
+    {
+      "name": "slider_title",
+      "value": "Slider"
+    },
+    {
+      "name": "slider_step_tip",
+      "value": "Step and tip (step is 10)"
+    },
+    {
+      "name": "slider_current_value",
+      "value": "Show current value (min-50/max-130)"
+    },
+    {
+      "name": "slider_events",
+      "value": "Events"
+    },
+    {
+      "name": "slider_attributes",
+      "value": "Attributes"
+    },
+    {
+      "name": "slider_vertical_reverse",
+      "value": "Vertical and reverse"
+    },
+    {
+      "name": "slider_forward",
+      "value": "Forward"
+    },
+    {
+      "name": "slider_reverse",
+      "value": "Reverse"
+    },
+    {
+      "name": "slider_select_color",
+      "value": "Select color"
+    },
+    {
+      "name": "slider_track_color",
+      "value": "Track color"
+    },
+    {
+      "name": "slider_block_color",
+      "value": "Block color"
+    },
+    {
+      "name": "slider_track_thickness",
+      "value": "Track thickness"
+    },
+    {
+      "name": "slider_event_begin",
+      "value": "Start dragging the slider"
+    },
+    {
+      "name": "slider_event_moving",
+      "value": "In the process of dragging the slider"
+    },
+    {
+      "name": "slider_event_end",
+      "value": "End drag slider"
+    },
+    {
+      "name": "slider_event_click",
+      "value": "Click the slider to move the slider position"
+    },
+    {
+      "name": "slider_title_value",
+      "value": "Slider slide as a percentage of the total length:"
+    },
+    // Span
+    {
+      "name": "span_title",
+      "value": "Span"
+    },
+    {
+      "name": "span_attribute",
+      "value": "Configure different span attributes"
+    },
+    {
+      "name": "span_content_one",
+      "value": "Steel is tempered in fire and sharp cooling, "
+    },
+    {
+      "name": "span_content_two",
+      "value": "so it can be hard and not afraid of anything. "
+    },
+    {
+      "name": "span_content_three",
+      "value": "It is also in this way that our generation has been tempered in struggles and terrible trials, "
+    },
+    {
+      "name": "span_content_four",
+      "value": "learning not to succumb to life."
+    },
+    {
+      "name": "span_decoration_and_letter_spacing",
+      "value": "Decoration and letter spacing"
+    },
+    {
+      "name": "span_letter_spacing",
+      "value": "LetterSpacing"
+    },
+    {
+      "name": "span_decoration_type",
+      "value": "Decoration type"
+    },
+    {
+      "name": "span_text_decoration",
+      "value": "Decoration test text"
+    },
+    {
+      "name": "span_text_spacing",
+      "value": "  LetterSpacing test text"
+    },
+    {
+      "name": "span_upper_lower",
+      "value": "Upper or lower case"
+    },
+    {
+      "name": "span_decoration_color",
+      "value": "Decoration color"
+    },
+    // Text
+    {
+      "name": "text_title",
+      "value": "Text"
+    },
+    {
+      "name": "text_content",
+      "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life."
+    },
+    {
+      "name": "text_content_en",
+      "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life."
+    },
+    {
+      "name": "text_text_align_center",
+      "value": "Center"
+    },
+    {
+      "name": "text_text_align_start",
+      "value": "Start"
+    },
+    {
+      "name": "text_text_align_end",
+      "value": "End"
+    },
+    {
+      "name": "text_decoration_type",
+      "value": "Text decoration type"
+    },
+    {
+      "name": "text_decoration_type_under_line",
+      "value": "Under line"
+    },
+    {
+      "name": "text_decoration_type_line_through",
+      "value": "Line through"
+    },
+    {
+      "name": "text_decoration_type_over_line",
+      "value": "Over line"
+    },
+    {
+      "name": "text_text_align_type",
+      "value": "Text alignment"
+    },
+    {
+      "name": "text_letter_spacing",
+      "value": "Letter spacing"
+    },
+    {
+      "name": "text_overflow",
+      "value": "Text overflow"
+    },
+    {
+      "name": "text_none",
+      "value": "None"
+    },
+    {
+      "name": "text_text_over_flow_clip",
+      "value": "Clip"
+    },
+    {
+      "name": "text_text_over_flow_ellipsis",
+      "value": "Ellipsis"
+    },
+    {
+      "name": "text_line_height",
+      "value": "Line height     "
+    },
+    {
+      "name": "text_font_color",
+      "value": "Font color"
+    },
+    {
+      "name": "text_over_flow",
+      "value": "Text over flow"
+    },
+    {
+      "name": "text_text_case_normal",
+      "value": "Normal"
+    },
+    {
+      "name": "text_text_case",
+      "value": "Text case"
+    },
+    {
+      "name": "text_text_case_uppercase",
+      "value": "Uppercase"
+    },
+    {
+      "name": "text_text_case_lowercase",
+      "value": "Lowercase"
+    },
+    // TextInput
+    {
+      "name": "text_input_title",
+      "value": "TextInput"
+    },
+    {
+      "name": "text_input_normal_type",
+      "value": "Digits, letters, underline(_), spaces, and special characters."
+    },
+    {
+      "name": "text_input_password_type",
+      "value": "Input password"
+    },
+    {
+      "name": "text_input_email_type",
+      "value": "Input email"
+    },
+    {
+      "name": "text_input_number_type",
+      "value": "Digit input mode"
+    },
+    {
+      "name": "text_input_phone_type",
+      "value": "Digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#)"
+    },
+    {
+      "name": "text_input_input_type",
+      "value": "Input type"
+    },
+    {
+      "name": "text_input_current_type",
+      "value": "Current type"
+    },
+    {
+      "name": "text_input_show_password_icon",
+      "value": "Show password icon"
+    },
+    {
+      "name": "text_input_icon_show",
+      "value": "Show"
+    },
+    {
+      "name": "text_input_icon_hide",
+      "value": "Hide"
+    },
+    {
+      "name": "text_input_event",
+      "value": "Event"
+    },
+    {
+      "name": "text_input_event_placeholder",
+      "value": "Copy,paste,cut,submit,edit event"
+    },
+    {
+      "name": "text_input_placeholder_style",
+      "value": "Placeholder style"
+    },
+    {
+      "name": "text_input_placeholder",
+      "value": "Placeholder"
+    },
+    {
+      "name": "text_input_filter",
+      "value": "Input filter"
+    },
+    {
+      "name": "text_input_only_input_english",
+      "value": "Only english letters can be entered"
+    },
+    {
+      "name": "text_input_caret_position",
+      "value": "Caret position"
+    },
+    {
+      "name": "text_input_max_length",
+      "value": "Limit the input character length"
+    },
+    {
+      "name": "text_input_placeholder_max_length",
+      "value": "12 characters max"
+    },
+    {
+      "name": "text_input_toast_paste",
+      "value": "Pasted text is:"
+    },
+    {
+      "name": "text_input_toast_cut",
+      "value": "Cut text is:"
+    },
+    {
+      "name": "text_input_toast_copy",
+      "value": "The copied text is:"
+    },
+    {
+      "name": "text_input_toast_submit",
+      "value": "The submitted text is:"
+    },
+    {
+      "name": "text_input_toast_edit",
+      "value": "The edited text is:"
+    },
+    // TimePickerDialog
+    {
+      "name": "time_picker_dialog",
+      "value": "TimePickerDialog"
+    },
+    {
+      "name": "time_picker_dialog_time",
+      "value": "Show time dialog"
+    },
+    {
+      "name": "time_picker_dialog_24_hour",
+      "value": "24 hours:"
+    },
+    {
+      "name": "time_picker_dialog_12_hour",
+      "value": "12 hours:"
+    },
+    {
+      "name": "time_picker_dialog_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "time_picker_toast_time",
+      "value": "Selected time:"
+    },
+    // Toggle
+    {
+      "name": "toggle_title",
+      "value": "Toggle"
+    },
+    {
+      "name": "toggle_select",
+      "value": "Select"
+    },
+    {
+      "name": "toggle_unselect",
+      "value": "Unselect"
+    },
+    {
+      "name": "toggle_type_switch",
+      "value": "Switch"
+    },
+    {
+      "name": "toggle_type_checkbox",
+      "value": "Check box"
+    },
+    {
+      "name": "toggle_type_button",
+      "value": "Button"
+    },
+    {
+      "name": "toggle_state",
+      "value": "Checked: "
+    },
+    // Translate
+    {
+      "name": "graphic_transformation_translate",
+      "value": "Translate"
+    },
+    {
+      "name": "translate_image",
+      "value": "Image panning"
+    },
+    {
+      "name": "translate_container",
+      "value": "Component panning"
+    },
+    {
+      "name": "translate_x_axis",
+      "value": "X-axis:"
+    },
+    {
+      "name": "translate_y_axis",
+      "value": "Y-axis:"
+    }
+  ]
+}

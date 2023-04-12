@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "window"
+    },
+    {
+      "name": "MainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "Immersive_desc",
+      "value": "description"
+    },
+    {
+      "name": "Immersive_label",
+      "value": "label"
+    },
+    {
+      "name": "FullScrenn_desc",
+      "value": "description"
+    },
+    {
+      "name": "FullScrenn_label",
+      "value": "label"
+    }
+  ]
+}

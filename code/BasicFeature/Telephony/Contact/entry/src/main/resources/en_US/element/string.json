@@ -1,0 +1,132 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Contact"
+    },
+    {
+    "name": "entry_MainAbility",
+    "value": "Contact"
+    },
+    {
+      "name": "description_mainability",
+      "value": "Read or write contacts"
+    },
+    {
+      "name": "save",
+      "value": "Save to: mobile phone"
+    },
+    {
+      "name": "search",
+      "value": "Search for contacts"
+    },
+    {
+      "name": "contacts",
+      "value": "Bit contact"
+    },
+    {
+      "name": "phone",
+      "value": "telephone"
+    },
+    {
+      "name": "contact",
+      "value": "Contact person"
+    },
+    {
+      "name": "collection",
+      "value": "collect"
+    },
+    {
+      "name": "newContact",
+      "value": "Creating a contact"
+    },
+    {
+      "name": "defaults",
+      "value": "default"
+    },
+    {
+      "name": "phone_ring",
+      "value": "Telephone ring"
+    },
+    {
+      "name": "editor",
+      "value": "edit"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "name_card",
+      "value": "My business card"
+    },
+    {
+      "name": "group",
+      "value": "group"
+    },
+    {
+      "name": "editor_contact",
+      "value": "Edit contact"
+    },
+    {
+      "name": "add_contact",
+      "value": "Add a contact"
+    },
+    {
+      "name": "import_file",
+      "value": "Import file"
+    },
+    {
+      "name": "export_file",
+      "value": "Export file"
+    },
+    {
+      "name": "save_phone",
+      "value": "Save to: mobile phone"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "warning",
+      "value": "warning"
+    },
+    {
+      "name": "delete_show",
+      "value": "You are deleting the contact. Please confirm whether to delete it"
+    },
+    {
+      "name": "not_fill",
+      "value": "Not filled in"
+    },
+    {
+      "name": "user_name",
+      "value": "name"
+    },
+    {
+      "name": "address",
+      "value": "address"
+    },
+    {
+      "name": "email",
+      "value": "mailbox"
+    },
+    {
+      "name": "note",
+      "value": "remarks"
+    }
+  ]
+}

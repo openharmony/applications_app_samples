@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "index_bg",
+      "value": "#F5F5F5"
+    },
+    {
+      "name": "button_color",
+      "value": "#0D9FFB"
+    },
+    {
+      "name": "text_color",
+      "value": "#8F8F8F"
+    }
+  ]
+}

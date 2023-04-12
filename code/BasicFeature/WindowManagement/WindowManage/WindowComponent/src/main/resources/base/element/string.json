@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "pages_text",
+      "value": "窗口视频"
+    },
+    {
+      "name": "pages_textTwo",
+      "value": "全屏播放并切换窗口方向"
+    },
+  ]
+}

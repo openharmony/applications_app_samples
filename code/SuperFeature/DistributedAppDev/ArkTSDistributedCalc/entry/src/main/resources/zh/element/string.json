@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "计算器"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "选择设备"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "distributed_calculator",
+      "value": "分布式计算器"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "允许不同设备间的数据交换"
+    },
+    {
+      "name": "localhost",
+      "value": "本机(结束协同)"
+    }
+  ]
+}

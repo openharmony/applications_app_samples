@@ -1,0 +1,1205 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "ArkTS组件库"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ArkUI各组件、通用属性、通用方法等分类及描述应用"
+    },
+    {
+      "name": "animation",
+      "value": "动画"
+    },
+    {
+      "name": "component",
+      "value": "组件"
+    },
+    {
+      "name": "universal",
+      "value": "通用"
+    },
+    {
+      "name": "global_method",
+      "value": "全局方法"
+    },
+    {
+      "name": "auxiliary",
+      "value": "辅助"
+    },
+    {
+      "name": "common_properties",
+      "value": "通用属性"
+    },
+    {
+      "name": "prop_background",
+      "value": "background 背景"
+    },
+    {
+      "name": "prop_border",
+      "value": "border 边框"
+    },
+    {
+      "name": "prop_font",
+      "value": "font 字体"
+    },
+    {
+      "name": "prop_size",
+      "value": "size 尺寸"
+    },
+    {
+      "name": "graphic_transformation",
+      "value": "图形变换"
+    },
+    {
+      "name": "common_events",
+      "value": "通用事件"
+    },
+    {
+      "name": "click_event",
+      "value": "onClick 点击事件"
+    },
+    {
+      "name": "touch_event",
+      "value": "触摸事件"
+    },
+    {
+      "name": "show_hide_event",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "key_event",
+      "value": "按键事件"
+    },
+    {
+      "name": "focus_event",
+      "value": "焦点事件"
+    },
+    {
+      "name": "mouse_event",
+      "value": "鼠标事件"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "组件区域变化事件"
+    },
+    {
+      "name": "gesture_processing",
+      "value": "手势处理"
+    },
+    {
+      "name": "basic_gestures",
+      "value": "基础手势"
+    },
+    {
+      "name": "tap_gesture",
+      "value": "TapGesture"
+    },
+    {
+      "name": "long_press_gesture",
+      "value": "LongPressGesture"
+    },
+    {
+      "name": "pan_gesture",
+      "value": "PanGesture"
+    },
+    {
+      "name": "pinch_gesture",
+      "value": "PinchGesture"
+    },
+    {
+      "name": "rotation_gesture",
+      "value": "RotationGesture"
+    },
+    {
+      "name": "swipe_gesture",
+      "value": "SwipeGesture"
+    },    {
+      "name": "combined_gestures",
+      "value": "组合手势"
+    },
+    {
+      "name": "transition_animation",
+      "value": "转场动画"
+    },
+    {
+      "name": "interpolation_calculation",
+      "value": "Interpolation Calculation 插值计算"
+    },
+    {
+      "name": "dialog",
+      "value": "弹窗"
+    },
+    {
+      "name": "button_and_selection",
+      "value": "按钮与选择"
+    },
+    {
+      "name": "information_presentation_and_dynamic_effects",
+      "value": "信息展示与动效"
+    },
+    {
+      "name": "blank_and_divider",
+      "value": "空白与分隔"
+    },
+    {
+      "name": "text_and_input",
+      "value": "文本与输入"
+    },
+    // AlertDialog
+    {
+      "name": "alert_dialog",
+      "value": "AlertDialog 警告弹窗"
+    },
+    {
+      "name": "alert_dialog_type_one",
+      "value": "单按钮弹窗"
+    },
+    {
+      "name": "alert_dialog_type_two",
+      "value": "双按钮弹窗"
+    },
+    {
+      "name": "alert_dialog_type_two_button_one",
+      "value": "这是第一个按钮"
+    },
+    {
+      "name": "alert_dialog_type_two_button_two",
+      "value": "这是第二个按钮"
+    },
+    {
+      "name": "alert_dialog_prompt",
+      "value": "提示"
+    },
+    {
+      "name": "alert_dialog_warning",
+      "value": "警告"
+    },
+    {
+      "name": "alert_dialog_info",
+      "value": "您正在执行操作"
+    },
+    {
+      "name": "alert_dialog_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "alert_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "alert_dialog_type",
+      "value": "弹窗类型"
+    },
+    {
+      "name": "alert_dialog_location",
+      "value": "弹窗位置"
+    },
+    {
+      "name": "alert_dialog_auto_cancel",
+      "value": "点击遮罩层是否关闭弹窗"
+    },
+    {
+      "name": "alert_dialog_true",
+      "value": "可关闭"
+    },
+    {
+      "name": "alert_dialog_false",
+      "value": "不可关闭"
+    },
+    {
+      "name": "alert_dialog_top",
+      "value": "垂直顶部"
+    },
+    {
+      "name": "alert_dialog_center",
+      "value": "垂直居中"
+    },
+    {
+      "name": "alert_dialog_bottom",
+      "value": "垂直底部"
+    },
+    {
+      "name": "alert_dialog_offset",
+      "value": "相对位置偏移弹窗"
+    },
+    {
+      "name": "alert_dialog_left",
+      "value": "左上偏移"
+    },
+    {
+      "name": "alert_dialog_right",
+      "value": "右下偏移"
+    },
+    {
+      "name": "alert_dialog_grid",
+      "value": "不同栅格宽度弹窗"
+    },
+    {
+      "name": "alert_dialog_grid_two",
+      "value": "2栅格宽度"
+    },
+    {
+      "name": "alert_dialog_grid_three",
+      "value": "3栅格宽度"
+    },
+    {
+      "name": "alert_dialog_grid_four",
+      "value": "4栅格宽度"
+    },
+    // Background
+    {
+      "name": "background_color",
+      "value": "背景颜色"
+    },
+    {
+      "name": "background_gradient",
+      "value": "背景渐变"
+    },
+    {
+      "name": "background_gradient_linear",
+      "value": "线性渐变"
+    },
+    {
+      "name": "background_gradient_sweep",
+      "value": "角度渐变"
+    },
+    {
+      "name": "background_gradient_radial",
+      "value": "径向渐变"
+    },
+    {
+      "name": "background_image",
+      "value": "背景图片"
+    },
+    {
+      "name": "background_image_default",
+      "value": "默认"
+    },
+    {
+      "name": "background_image_repeat",
+      "value": "XY轴重复绘制"
+    },
+    {
+      "name": "background_image_size",
+      "value": "图片大小宽50%，高100%"
+    },
+    {
+      "name": "background_image_offset",
+      "value": "图片位置向右下偏移"
+    },
+    // Badge
+    {
+      "name": "auxiliary_badge",
+      "value": "Badge 标记"
+    },
+    {
+      "name": "badge_type",
+      "value": "标记类型"
+    },
+    {
+      "name": "badge_number",
+      "value": "数字标记"
+    },
+    {
+      "name": "badge_string",
+      "value": "文本标记"
+    },
+    {
+      "name": "badge_max",
+      "value": "数字标记最大消息数"
+    },
+    {
+      "name": "badge_number_normal",
+      "value": "正常消息数"
+    },
+    {
+      "name": "badge_number_max",
+      "value": "超过最大显示消息"
+    },
+    {
+      "name": "badge_location",
+      "value": "标记位置"
+    },
+    {
+      "name": "badge_left",
+      "value": "左侧标记"
+    },
+    {
+      "name": "badge_top",
+      "value": "右上标记"
+    },
+    {
+      "name": "badge_right",
+      "value": "右侧标记"
+    },
+    {
+      "name": "badge_style",
+      "value": "标记样式"
+    },
+    {
+      "name": "badge_blue",
+      "value": "蓝色大标记"
+    },
+    {
+      "name": "badge_green",
+      "value": "绿色小标记"
+    },
+    // Border
+    {
+      "name": "border_type",
+      "value": "边框类型"
+    },
+    {
+      "name": "border_type_dashed",
+      "value": "虚线"
+    },
+    {
+      "name": "border_type_dotted",
+      "value": "圆点"
+    },
+    {
+      "name": "border_type_solid",
+      "value": "实线"
+    },
+    {
+      "name": "border_border_style",
+      "value": "边框宽度、颜色、圆角"
+    },
+    {
+      "name": "border_border_width",
+      "value": "宽度"
+    },
+    {
+      "name": "border_border_color",
+      "value": "颜色"
+    },
+    {
+      "name": "border_border_radius",
+      "value": "圆角"
+    },
+    {
+      "name": "border_edge_style",
+      "value": "分别设置边框以及样式和属性"
+    },
+    {
+      "name": "border_style_top",
+      "value": "上边框"
+    },
+    {
+      "name": "border_style_bottom",
+      "value": "下边框"
+    },
+    {
+      "name": "border_style_left",
+      "value": "左边框"
+    },
+    {
+      "name": "border_style_right",
+      "value": "右边框"
+    },
+    {
+      "name": "border_radius",
+      "value": "分别设置四个角的圆角"
+    },
+    {
+      "name": "border_radius_left_top",
+      "value": "左上边框"
+    },
+    {
+      "name": "border_radius_left_bottom",
+      "value": "左下边框"
+    },
+    {
+      "name": "border_radius_right_top",
+      "value": "右上边框"
+    },
+    {
+      "name": "border_radius_right_bottom",
+      "value": "右下边框"
+    },
+    // Button
+    {
+      "name": "button_title",
+      "value": "Button 按钮"
+    },
+    {
+      "name": "button_type",
+      "value": "类型"
+    },
+    {
+      "name": "button_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "button_type_capsule",
+      "value": "胶囊按钮"
+    },
+    {
+      "name": "button_type_normal",
+      "value": "普通按钮"
+    },
+    {
+      "name": "button_type_circle",
+      "value": "圆形按钮"
+    },
+    {
+      "name": "button_state_effect",
+      "value": "状态效果"
+    },
+    {
+      "name": "button_state_effect_true",
+      "value": "有按下效果"
+    },
+    {
+      "name": "button_state_effect_false",
+      "value": "无按下效果"
+    },
+    {
+      "name": "button_disable_style",
+      "value": "禁用"
+    },
+    {
+      "name": "button_custom_style",
+      "value": "自定义样式"
+    },
+    {
+      "name": "button_border_radius",
+      "value": "圆角方按钮"
+    },
+    {
+      "name": "button_with_icon",
+      "value": "图标按钮"
+    },
+    {
+      "name": "button_custom_bg_color",
+      "value": "自定义颜色"
+    },
+    {
+      "name": "button_click",
+      "value": "被点击了！"
+    },
+    // Click Event
+    {
+      "name": "click_action_tips",
+      "value": "点击灰色区域，更改准星位置"
+    },
+    {
+      "name": "touch_action_tips",
+      "value": "在灰色区域触摸滑动实时改变准星位置"
+    },
+    {
+      "name": "component_area_change_action_tips",
+      "value": "滑动进度条控制小球运动区域"
+    },
+    {
+      "name": "get_click_event_detail",
+      "value": "点击事件详细信息"
+    },
+    // CustomDialog
+    {
+      "name": "custom_dialog",
+      "value": "CustomDialog 自定义弹窗"
+    },
+    {
+      "name": "custom_dialog_style_custom",
+      "value": "弹窗样式是否自定义"
+    },
+    {
+      "name": "custom_dialog_style_custom_true",
+      "value": "自定义"
+    },
+    {
+      "name": "custom_dialog_style_custom_false",
+      "value": "非自定义"
+    },
+    {
+      "name": "custom_dialog_title",
+      "value": "组件集合申请开启以下权限"
+    },
+    {
+      "name": "custom_dialog_permission_microphone",
+      "value": "麦克风权限"
+    },
+    {
+      "name": "custom_dialog_permission_microphone_info",
+      "value": "语音通话时需要麦克风权限"
+    },
+    {
+      "name": "custom_dialog_permission_location",
+      "value": "位置权限"
+    },
+    {
+      "name": "custom_dialog_permission_location_info",
+      "value": "导航时需要位置权限"
+    },
+    {
+      "name": "custom_dialog_start",
+      "value": "一键开启"
+    },
+    // DatePickerDialog
+    {
+      "name": "date_picker_dialog",
+      "value": "DatePickerDialog 日期选择弹窗"
+    },
+    {
+      "name": "date_picker_dialog_date",
+      "value": "显示日期弹窗"
+    },
+    {
+      "name": "date_picker_dialog_date_lunar",
+      "value": "农历日期："
+    },
+    {
+      "name": "date_picker_dialog_date_gregorian",
+      "value": "公历日期："
+    },
+    {
+      "name": "date_picker_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "date_picker_toast_date",
+      "value": "选中的时间为："
+    },
+    // DatePicker
+    {
+      "name": "date_picker_title",
+      "value": "DatePicker 时间选择器"
+    },
+    {
+      "name": "date_picker_lunar",
+      "value": "显示农历"
+    },
+    // Divider
+    {
+      "name": "divider_title",
+      "value": "Divider 分隔器"
+    },
+    {
+      "name": "divider_stroke_width",
+      "value": "分隔线宽度"
+    },
+    {
+      "name": "divider_line_color",
+      "value": "分隔线颜色"
+    },
+    {
+      "name": "divider_line_cap",
+      "value": "分隔线端点属性"
+    },
+    {
+      "name": "divider_horizontal",
+      "value": "横向"
+    },
+    {
+      "name": "divider_vertical",
+      "value": "纵向"
+    },
+    {
+      "name": "divider_attribute",
+      "value": "属性"
+    },
+    // Font
+    {
+      "name": "font_color",
+      "value": "颜色"
+    },
+    {
+      "name": "font_size",
+      "value": "大小"
+    },
+    {
+      "name": "font_thickness",
+      "value": "粗细"
+    },
+    {
+      "name": "font_style",
+      "value": "样式"
+    },
+    // Interpolation Calculation
+    {
+      "name": "interpolation_calculation_cubic_bezier_curve",
+      "value": "三阶贝塞尔曲线对象"
+    },
+    {
+      "name": "interpolation_calculation_spring",
+      "value": "弹簧曲线对象"
+    },
+    {
+      "name": "interpolation_calculation_init_curve",
+      "value": "EaseIn（减速开始）差值曲线"
+    },
+    {
+      "name": "interpolation_calculation_steps_curve",
+      "value": "阶梯曲线对象"
+    },
+    // Page Transition
+    {
+      "name": "page_transition",
+      "value": "pageTransition 页面间转场"
+    },
+    {
+      "name": "page_transition_left",
+      "value": "左侧进场/右侧退场"
+    },
+    {
+      "name": "page_transition_right",
+      "value": "右侧进场/左侧退场"
+    },
+    {
+      "name": "page_transition_top",
+      "value": "顶部进场/底部退场"
+    },
+    {
+      "name": "page_transition_bottom",
+      "value": "底部进场/顶部退场"
+    },
+    {
+      "name": "page_transition_scale",
+      "value": "缩放进场/退场"
+    },
+    {
+      "name": "page_transition_rotate",
+      "value": "旋转进场/退场"
+    },
+    {
+      "name": "page_transition_back",
+      "value": "返回页面间转场页面"
+    },
+    // QRCode
+    {
+      "name": "qrcode_title",
+      "value": "QRCode 二维码"
+    },
+    {
+      "name": "qrcode_content",
+      "value": "内容"
+    },
+    {
+      "name": "qrcode_color",
+      "value": "颜色"
+    },
+    {
+      "name": "qrcode_enter_content",
+      "value": "改变二维码内容"
+    },
+    // Radio
+    {
+      "name": "radio_title",
+      "value": "Radio 单选按钮"
+    },
+    {
+      "name": "radio_no_response_region",
+      "value": "不添加热区(只有点击按钮才生效)"
+    },
+    {
+      "name": "radio_has_response_region",
+      "value": "添加热区(点击按钮所在行生效)"
+    },
+    {
+      "name": "radio_beijing",
+      "value": "北京"
+    },
+    {
+      "name": "radio_shanghai",
+      "value": "上海"
+    },
+    {
+      "name": "radio_shenzhen",
+      "value": "深圳"
+    },
+    {
+      "name": "radio_guangzhou",
+      "value": "广州"
+    },
+    // Rotate
+    {
+      "name": "graphic_transformation_rotate",
+      "value": "rotate 旋转"
+    },
+    {
+      "name": "rotate_photo",
+      "value": "图片旋转"
+    },
+    {
+      "name": "rotate_container",
+      "value": "容器旋转"
+    },
+    {
+      "name": "rotate_before_image",
+      "value": "原图"
+    },
+    {
+      "name": "rotate_before_component",
+      "value": "容器组件"
+    },
+    {
+      "name": "rotate_image_angle",
+      "value": "旋转15°"
+    },
+    // Select
+    {
+      "name": "select_title",
+      "value": "Select 选择菜单"
+    },
+    {
+      "name": "select_has_icon",
+      "value": "含图标"
+    },
+    {
+      "name": "select_option_bg_and_text_style",
+      "value": "选中项背景色及文本样式"
+    },
+    {
+      "name": "select_unselect_option_style",
+      "value": "未选中项背景色及文本样式"
+    },
+    {
+      "name": "select_button_style",
+      "value": "按钮本身文本样式"
+    },
+    {
+      "name": "select_picture",
+      "value": "图片"
+    },
+    {
+      "name": "select_collection",
+      "value": "收藏"
+    },
+    {
+      "name": "select_gesture",
+      "value": "手势"
+    },
+    {
+      "name": "select_index",
+      "value": "选中选项索引："
+    },
+    {
+      "name": "select_value",
+      "value": "选中选项的值："
+    },
+    // Shareelement Transition
+    {
+      "name": "share_element_transition",
+      "value": "sharedTransition 共享元素转场"
+    },
+    // Size
+    {
+      "name": "size_width",
+      "value": "宽度"
+    },
+    {
+      "name": "size_width_fixed_100vp",
+      "value": "宽度为100vp"
+    },
+    {
+      "name": "size_width_percent",
+      "value": "宽度为60%"
+    },
+    {
+      "name": "size_height",
+      "value": "高度"
+    },
+    {
+      "name": "size_height_fixed_100vp",
+      "value": "高度为100vp"
+    },
+    {
+      "name": "size_height_percent",
+      "value": "高度为60%"
+    },
+    // Slider
+    {
+      "name": "slider_title",
+      "value": "Slider 滑动条"
+    },
+    {
+      "name": "slider_step_tip",
+      "value": "步长与提示(步长为10)"
+    },
+    {
+      "name": "slider_current_value",
+      "value": "显示当前值(最小值50/最大值130)"
+    },
+    {
+      "name": "slider_events",
+      "value": "事件监听"
+    },
+    {
+      "name": "slider_attributes",
+      "value": "自定义属性"
+    },
+    {
+      "name": "slider_vertical_reverse",
+      "value": "纵向与反向"
+    },
+    {
+      "name": "slider_forward",
+      "value": "正向"
+    },
+    {
+      "name": "slider_reverse",
+      "value": "反向"
+    },
+    {
+      "name": "slider_track_thickness",
+      "value": "滑轨宽度"
+    },
+    {
+      "name": "slider_block_color",
+      "value": "滑块颜色"
+    },
+    {
+      "name": "slider_track_color",
+      "value": "未滑动颜色"
+    },
+    {
+      "name": "slider_select_color",
+      "value": "已滑动颜色"
+    },
+    {
+      "name": "slider_event_begin",
+      "value": "开始拖动滑块"
+    },
+    {
+      "name": "slider_event_moving",
+      "value": "正在拖动滑块过程中"
+    },
+    {
+      "name": "slider_event_end",
+      "value": "结束拖动滑块"
+    },
+    {
+      "name": "slider_event_click",
+      "value": "点击滑动条更改滑块位置"
+    },
+    {
+      "name": "slider_title_value",
+      "value": "滑块滑动在总长中占比："
+    },
+    // Span
+    {
+      "name": "span_title",
+      "value": "Span 行内文本"
+    },
+    {
+      "name": "span_attribute",
+      "value": "配置不同文本属性"
+    },
+    {
+      "name": "span_content_one",
+      "value": "钢是在烈火和急剧冷却里锻炼出来的，"
+    },
+    {
+      "name": "span_content_two",
+      "value": "所以才能坚硬和什么也不怕。"
+    },
+    {
+      "name": "span_content_three",
+      "value": "我们的一代也是这样的在斗争中和可怕的考验中锻炼出来的，"
+    },
+    {
+      "name": "span_content_four",
+      "value": "学习了不在生活面前屈服。"
+    },
+    {
+      "name": "span_decoration_and_letter_spacing",
+      "value": "装饰线及字符间距"
+    },
+    {
+      "name": "span_letter_spacing",
+      "value": "字符间距"
+    },
+    {
+      "name": "span_decoration_type",
+      "value": "装饰线类型"
+    },
+    {
+      "name": "span_text_decoration",
+      "value": "装饰线示例文本"
+    },
+    {
+      "name": "span_text_spacing",
+      "value": "  字符间距示例文本"
+    },
+    {
+      "name": "span_upper_lower",
+      "value": "配置不同文本属性"
+    },
+    {
+      "name": "span_decoration_color",
+      "value": "装饰线颜色"
+    },
+    // Text
+    {
+      "name": "text_title",
+      "value": "Text 文本"
+    },
+    {
+      "name": "text_content",
+      "value": "钢是在烈火和急剧冷却里锻炼出来的，所以才能坚硬和什么也不怕。我们的一代也是这样的在斗争中和可怕的考验中锻炼出来的，学习了不在生活面前屈服。"
+    },
+    {
+      "name": "text_text_align_center",
+      "value": "居中"
+    },
+    {
+      "name": "text_text_align_start",
+      "value": "左对齐"
+    },
+    {
+      "name": "text_text_align_end",
+      "value": "右对齐"
+    },
+    {
+      "name": "text_decoration_type",
+      "value": "装饰线"
+    },
+    {
+      "name": "text_decoration_type_under_line",
+      "value": "下划线"
+    },
+    {
+      "name": "text_decoration_type_line_through",
+      "value": "删除线"
+    },
+    {
+      "name": "text_decoration_type_over_line",
+      "value": "上划线"
+    },
+    {
+      "name": "text_text_align_type",
+      "value": "对齐类型"
+    },
+    {
+      "name": "text_letter_spacing",
+      "value": "字符间距"
+    },
+    {
+      "name": "text_overflow",
+      "value": "超长文本显示方式"
+    },
+    {
+      "name": "text_none",
+      "value": "无"
+    },
+    {
+      "name": "text_text_over_flow_clip",
+      "value": "剪裁"
+    },
+    {
+      "name": "text_text_over_flow_ellipsis",
+      "value": "省略"
+    },
+    {
+      "name": "text_line_height",
+      "value": "行高       "
+    },
+    {
+      "name": "text_font_color",
+      "value": "字体颜色"
+    },
+    {
+      "name": "text_over_flow",
+      "value": "超长显示方式"
+    },
+    {
+      "name": "text_text_case_normal",
+      "value": "默认"
+    },
+    {
+      "name": "text_text_case",
+      "value": "大小写"
+    },
+    {
+      "name": "text_text_case_uppercase",
+      "value": "大写"
+    },
+    {
+      "name": "text_text_case_lowercase",
+      "value": "小写"
+    },
+    // TextInput
+    {
+      "name": "text_input_title",
+      "value": "TextInput 文本输入"
+    },
+    {
+      "name": "text_input_normal_type",
+      "value": "数字、字母、下划线、空格、特殊字符"
+    },
+    {
+      "name": "text_input_password_type",
+      "value": "请输入密码"
+    },
+    {
+      "name": "text_input_email_type",
+      "value": "请输入邮箱"
+    },
+    {
+      "name": "text_input_number_type",
+      "value": "只能输入数字"
+    },
+    {
+      "name": "text_input_phone_type",
+      "value": "数字、+ 、-、*、#，长度不限"
+    },
+    {
+      "name": "text_input_input_type",
+      "value": "类型"
+    },
+    {
+      "name": "text_input_current_type",
+      "value": "当前类型"
+    },
+    {
+      "name": "text_input_show_password_icon",
+      "value": "密码图标"
+    },
+    {
+      "name": "text_input_icon_show",
+      "value": "显示"
+    },
+    {
+      "name": "text_input_icon_hide",
+      "value": "隐藏"
+    },
+    {
+      "name": "text_input_event",
+      "value": "事件"
+    },
+    {
+      "name": "text_input_event_placeholder",
+      "value": "复制、粘贴、剪切、回车、编辑事件"
+    },
+    {
+      "name": "text_input_placeholder_style",
+      "value": "提示文字样式"
+    },
+    {
+      "name": "text_input_placeholder",
+      "value": "提示文字"
+    },
+    {
+      "name": "text_input_filter",
+      "value": "正则表达式"
+    },
+    {
+      "name": "text_input_only_input_english",
+      "value": "只能输入英文"
+    },
+    {
+      "name": "text_input_caret_position",
+      "value": "光标位置"
+    },
+    {
+      "name": "text_input_max_length",
+      "value": "限制输入字符长度"
+    },
+    {
+      "name": "text_input_placeholder_max_length",
+      "value": "当前最大输入12字符"
+    },
+    {
+      "name": "text_input_toast_paste",
+      "value": "粘贴的文本为："
+    },
+    {
+      "name": "text_input_toast_cut",
+      "value": "剪切的文本为："
+    },
+    {
+      "name": "text_input_toast_copy",
+      "value": "复制的文本为："
+    },
+    {
+      "name": "text_input_toast_submit",
+      "value": "提交的文本为："
+    },
+    {
+      "name": "text_input_toast_edit",
+      "value": "编辑的文本为："
+    },
+    // TimePickerDialog
+    {
+      "name": "time_picker_dialog",
+      "value": "TimePickerDialog 时间选择弹窗"
+    },
+    {
+      "name": "time_picker_dialog_time",
+      "value": "显示时间弹窗"
+    },
+    {
+      "name": "time_picker_dialog_24_hour",
+      "value": "24小时："
+    },
+    {
+      "name": "time_picker_dialog_12_hour",
+      "value": "12小时："
+    },
+    {
+      "name": "time_picker_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "time_picker_toast_time",
+      "value": "选中的时间为："
+    },
+    // Toggle
+    {
+      "name": "toggle_title",
+      "value": "Toggle 切换按钮"
+    },
+    {
+      "name": "toggle_select",
+      "value": "已选中"
+    },
+    {
+      "name": "toggle_unselect",
+      "value": "未选中"
+    },
+    {
+      "name": "toggle_type_switch",
+      "value": "开关(选中色、滑块色可配置)"
+    },
+    {
+      "name": "toggle_type_checkbox",
+      "value": "复选框(选中色可配置)"
+    },
+    {
+      "name": "toggle_type_button",
+      "value": "状态按钮(选中色可配置)"
+    },
+    {
+      "name": "toggle_state",
+      "value": "是否选中："
+    },
+    // Translate
+    {
+      "name": "graphic_transformation_translate",
+      "value": "translate 平移"
+    },
+    {
+      "name": "translate_image",
+      "value": "图片平移"
+    },
+    {
+      "name": "translate_container",
+      "value": "容器平移"
+    },
+    {
+      "name": "translate_x_axis",
+      "value": "X轴："
+    },
+    {
+      "name": "translate_y_axis",
+      "value": "Y轴："
+    }
+  ]
+}

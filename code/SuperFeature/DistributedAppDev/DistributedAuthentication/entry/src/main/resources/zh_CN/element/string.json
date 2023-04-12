@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "设备管理"
+    },
+    {
+      "name": "refresh_device_list",
+      "value": "刷新设备列表"
+    },
+    {
+      "name": "device_name",
+      "value": "设备名称:"
+    },
+    {
+      "name": "device_id",
+      "value": "设备Id:"
+    },
+    {
+      "name": "device_state",
+      "value": "状态:"
+    }
+  ]
+}

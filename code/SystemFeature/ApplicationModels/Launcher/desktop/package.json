@@ -1,0 +1,17 @@
+{
+  "license": "ISC",
+  "types": "",
+  "devDependencies": {},
+  "name": "@ohos/desktop",
+  "description": "a npm package which contains arkUI2.0 page",
+  "ohos": {
+    "org": ""
+  },
+  "main": "./index.ets",
+  "repository": {},
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/base": "file:../base"
+  }
+}

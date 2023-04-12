@@ -1,0 +1,51 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<div class="container">
+  <div class="second-level-category" for="list in listCategory" if="{{ itemType === 'notHaveSecondTitle' }}">
+    <div class="second-level-category-title" onclick="listCategoryOnClick(list)">
+      <image class="second-level-category-icon" src="{{ list.icon_url }}"></image>
+      <text class="second-level-category-name">{{ list.name }}</text>
+      <image class="icon-arrow"
+             if="{{!list.url}}"
+             src="{{ list.isUnfold === 'false' ? '/common/image/ic_right_arrow.png': '/common/image/ic_down_arrow.png' }}"></image>
+    </div>
+    <div class="third-level-category" for="{{ item in list.values }}"
+         onclick="handlerOnClick(item)" if="{{ list.isUnfold === 'true' }}">
+      <text class="third-level-category-name">{{ item.name }}</text>
+    </div>
+  </div>
+
+  <div class="second-level-category-box" for="list in listCategory" if="{{ itemType === 'haveSecondTitle' }}">
+    <div class="second-level-category-top-title">
+      <text>{{ list.name }}</text>
+    </div>
+    <div class="second-level-category-container">
+      <div class="second-level-category-box" for="listChild in list.values">
+        <div class="second-level-category-title" onclick="listCategoryOnClick(listChild)">
+          <image class="second-level-category-icon" src="{{ listChild.icon_url }}"></image>
+          <text class="second-level-category-name">{{ listChild.name }}</text>
+          <image class="icon-arrow"
+                 if="{{listChild.values.length !== 0}}"
+                 src="{{ listChild.isUnfold === 'false' ? '/common/image/ic_right_arrow.png': '/common/image/ic_down_arrow.png' }}">
+          </image>
+        </div>
+        <div class="third-level-category" for="{{ item in listChild.values }}"
+             onclick="handlerOnClick(item)" if="{{ listChild.isUnfold === 'true' }}">
+          <text class="third-level-category-name">{{ item.name }}</text>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

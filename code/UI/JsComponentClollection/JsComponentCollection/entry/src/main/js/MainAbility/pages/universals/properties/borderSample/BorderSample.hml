@@ -1,0 +1,99 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ borderTitle }}"></titleBar>
+  <div class="border-box">
+    <text class="introduce">{{ $t('strings.border_style') }}</text>
+    <div class="white-background-color">
+
+      <!-- Border style start -->
+      <div class="border-universal" style="border: 1vp dashed #000000;">
+        <text>{{ $t('strings.border_dotted_line') }}</text>
+      </div>
+      <div class="border-universal" style="border: 1vp dotted #000000;">
+        <text>{{ $t('strings.border_dot') }}</text>
+      </div>
+      <div class="border-universal" style="border: 1vp solid #000000;">
+        <text>{{ $t('strings.border_solid_line') }}</text>
+      </div>
+      <!-- Border style end -->
+
+    </div>
+  </div>
+
+  <div class="border-box">
+    <text class="introduce">{{ $t('strings.border_width_color_corner') }}</text>
+    <div class="white-background-color">
+
+      <!-- Border width color corner start -->
+      <div class="border-universal" style="border: 10vp solid #000000;">
+        <text>{{ $t('strings.border_width') }}</text>
+      </div>
+      <div class="border-universal" style="border: 2vp solid #409EFF;">
+        <text>{{ $t('strings.border_color') }}</text>
+      </div>
+      <div class="border-universal" style="border: 2vp solid #000000; border-radius: 20vp;">
+        <text>{{ $t('strings.border_corner') }}</text>
+      </div>
+      <!-- Border width color corner end -->
+
+    </div>
+  </div>
+
+  <div class="border-box">
+    <text class="introduce">{{ $t('strings.border_style_attribute') }}</text>
+    <div class="white-background-color">
+
+      <!-- Border style attribute start -->
+      <div class="border-universal" style="border-top: 2vp solid #409EFF;">
+        <text>{{ $t('strings.border_top') }}</text>
+      </div>
+      <div class="border-universal left-margin" style="border-left: 2vp dashed #000000;">
+        <text>{{ $t('strings.border_left') }}</text>
+      </div>
+      <div class="border-universal" style="border-bottom: 10vp solid #000000;">
+        <text>{{ $t('strings.border_bottom') }}</text>
+      </div>
+      <div class="border-universal" style="border-right: 2vp solid #000000; border-radius: 20vp;">
+        <text>{{ $t('strings.border_right') }}</text>
+      </div>
+      <!-- Border style attribute end -->
+
+    </div>
+  </div>
+
+  <div class="border-box bottom-margin">
+    <text class="introduce">{{ $t('strings.border_four_angle') }}</text>
+    <div class="white-background-color">
+
+      <!-- Border four angle start -->
+      <div class="border-universal left-margin" style="border-top: 2vp solid #000000; border-top-left-radius: 20vp;">
+        <text>{{ $t('strings.border_left_top') }}</text>
+      </div>
+      <div class="border-universal left-margin" style="border-left: 2vp solid #000000; border-bottom-left-radius: 20vp;">
+        <text>{{ $t('strings.border_left_bottom') }}</text>
+      </div>
+      <div class="border-universal left-margin" style="border-bottom: 2vp solid #000000; border-bottom-right-radius: 20vp;">
+        <text>{{ $t('strings.border_right_bottom') }}</text>
+      </div>
+      <div class="border-universal left-margin" style="border-right: 2vp solid #000000; border-top-right-radius: 20vp;">
+        <text>{{ $t('strings.border_right_top') }}</text>
+      </div>
+      <!-- Border four angle end -->
+    </div>
+  </div>
+</div>

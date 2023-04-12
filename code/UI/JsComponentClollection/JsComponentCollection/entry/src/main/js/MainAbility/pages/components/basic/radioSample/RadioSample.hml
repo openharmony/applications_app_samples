@@ -1,0 +1,53 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ radioTitle }}"></titleBar>
+  <div class="radio-box">
+    <text class="introduce">{{ $t('strings.radio_second_title') }}</text>
+    <div class="white-background-color">
+      <div style="width: 100%;" for="item in radioCity">
+
+        <!-- Not hot radio start -->
+        <input type="radio"
+               name="radioCity"
+               value="{{ item.value }}"onclick="ClickRadio(item.name)"></input>
+        <label>{{ item.name }}</label>
+        <!-- Not hot radio end -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="radio-box bottom-margin">
+    <text class="introduce">{{ $t('strings.radio_second_hot_title') }}</text>
+    <div class="white-background-color">
+      <div class="radio-group" for="item in radioCity">
+
+        <!-- Hot radio start -->
+        <input class="radio-group-input"
+               type="radio"
+               name="radioCityHot"
+               id="{{ item.value }}"
+               value="{{ item.value }}"onclick="ClickRadio(item.name)">
+        </input>
+        <label target="{{ item.value }}" class="radio-group-label">{{ item.name }}</label>
+        <!-- Hot radio end -->
+
+      </div>
+    </div>
+  </div>
+</div>

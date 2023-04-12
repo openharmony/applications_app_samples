@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "title",
+      "value": "分布式数据管理"
+    },
+    {
+      "name": "check_device",
+      "value": "选择设备"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "note",
+      "value": "笔记"
+    },
+    {
+      "name": "note_content",
+      "value": "笔记内容"
+    }
+  ]
+}

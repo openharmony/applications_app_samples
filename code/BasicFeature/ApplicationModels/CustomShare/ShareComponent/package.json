@@ -1,0 +1,15 @@
+{
+  "license": "ISC",
+  "types": "",
+  "devDependencies": {},
+  "name": "@ohos/sharecomponent",
+  "description": "a npm package which contains arkUI2.0 page",
+  "ohos": {
+    "org": ""
+  },
+  "main": "index.ets",
+  "repository": {},
+  "type": "module",
+  "version": "1.0.1",
+  "dependencies": {}
+}

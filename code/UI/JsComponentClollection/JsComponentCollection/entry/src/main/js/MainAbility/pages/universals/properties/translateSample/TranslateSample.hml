@@ -1,0 +1,63 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<div class="container">
+  <titleBar title="{{ $t('strings.translate_title') }}"></titleBar>
+  <text class="introduce">{{ $t('strings.translate_image') }}</text>
+  <div class="image-border-div">
+    <image class="image-class" src="common/image/ic_scenery1.png"
+           style="transform: translateX({{ imageXTranslate }}) translateY({{ imageYTranslate }})">
+    </image>
+  </div>
+  <div class="slider-div">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_x_axis') }}</text>
+    <slider min="-50" max="50" value="{{ imageXTranslate }}" onchange="setImageXTranslateValue"
+            style="padding: 0; flex-weight: 1;">
+    </slider>
+    <text style="font-size: 24vp;">{{ imageXTranslate + 'vp' }}</text>
+  </div>
+
+  <div class="slider-div">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_y_axis') }}</text>
+    <slider min="-20" max="20" value="{{ imageYTranslate }}" onchange="setImageYTranslateValue"
+            style="padding: 0; flex-weight: 1;">
+    </slider>
+    <text style="font-size: 24vp;">{{ imageYTranslate + 'vp' }}</text>
+  </div>
+  <text class="introduce">{{ $t('strings.translate_container') }}</text>
+  <div class="container-border-div">
+    <div class="container-div"
+         style="transform: translateX({{ containerXTranslate }}) translateY({{ containerYTranslate }});">
+      <text>{{ $t('strings.translate_container_text') }}</text>
+      <text>{{ $t('strings.translate_container_text') }}</text>
+      <text>{{ $t('strings.translate_container_text') }}</text>
+    </div>
+  </div>
+
+  <div class="slider-div">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_x_axis') }}</text>
+    <slider min="-50" max="50" value="{{ containerXTranslate }}" onchange="setContainerXTranslateValue"
+            style="padding: 0; flex-weight: 1;"></slider>
+    <text style="font-size: 24vp;">{{ containerXTranslate + 'vp' }}</text>
+  </div>
+
+  <div class="slider-div">
+    <text style="font-size: 20vp;">{{ $t('strings.translate_y_axis') }}</text>
+    <slider min="-20" max="20" value="{{ containerYTranslate }}" onchange="setContainerYTranslateValue"
+            style="padding: 0; flex-weight: 1;"></slider>
+    <text style="font-size: 24vp;">{{ containerYTranslate + 'vp' }}</text>
+  </div>
+</div>

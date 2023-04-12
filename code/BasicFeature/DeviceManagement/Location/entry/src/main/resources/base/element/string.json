@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "位置服务"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "位置服务"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "位置服务"
+    },
+    {
+      "name": "internet_permission",
+      "value": "允许使用网络socket"
+    },
+    {
+      "name": "location_permission",
+      "value": "允许应用在前台运行时获取位置信息"
+    },
+    {
+      "name": "background_location_permission",
+      "value": "允许应用在后台运行时获取位置信息"
+    },
+    {
+      "name": "fuzzy_location_permission",
+      "value": "允许应用获取设备模糊位置信息"
+    }
+  ]
+}

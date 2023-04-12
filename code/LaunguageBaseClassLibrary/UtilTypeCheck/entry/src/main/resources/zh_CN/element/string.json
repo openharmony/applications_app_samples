@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "util工具函数-内置对象类型检查"
+    },
+    {
+      "name": "text",
+      "value": "确认"
+    },
+    {
+      "name": "show",
+      "value": "显示预置值"
+    },
+    {
+      "name": "check",
+      "value": "校验预置值"
+    }
+  ]
+}

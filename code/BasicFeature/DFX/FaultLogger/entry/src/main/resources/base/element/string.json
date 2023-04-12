@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "FaultLogger"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FaultLogger"
+    },
+    {
+      "name": "select_fault_type",
+      "value": "请选择异常类型"
+    },
+    {
+      "name": "sure",
+      "value": "确定"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "create_fault",
+      "value": "构造异常"
+    },
+    {
+      "name": "catch_js_fault",
+      "value": "获取JS_FAULT异常"
+    },
+    {
+      "name": "catch_cpp_fault",
+      "value": "获取CPP_FAULT异常"
+    },
+    {
+      "name": "catch_app_freeze_fault",
+      "value": "获取APP_FREEZE异常"
+    },
+    {
+      "name": "catch_all_fault",
+      "value": "获取NO_SPECIFIC异常"
+    },
+    {
+      "name": "js_crash_building",
+      "value": "异常构造中..."
+    },
+    {
+      "name": "cpp_crash_building",
+      "value": "异常构造中,完成后应用会自动退出，请重新进入应用抓取异常信息"
+    },
+    {
+      "name": "app_freeze_building",
+      "value": "异常构造中,会出现冻屏，请退出应用后重新进入应用抓取异常信息"
+    }
+  ]
+}

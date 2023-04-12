@@ -1,0 +1,211 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "媒体管理合集"
+    },
+    {
+      "name": "index_play",
+      "value": "播放"
+    },
+    {
+      "name": "phoneMain_audio",
+      "value": "音频"
+    },
+    {
+      "name": "phoneMain_audioTitle",
+      "value": "音频名称"
+    },
+    {
+      "name": "phoneMain_videoTitle",
+      "value": "视频名称"
+    },
+    {
+      "name": "phoneMain_video",
+      "value": "视频"
+    },
+    {
+      "name": "phoneMain_collection",
+      "value": "收藏"
+    },{
+      "name": "phoneMain_me",
+      "value": "我的"
+    },
+    {
+      "name": "phoneMain_legitimateStr",
+      "value": "请输入合法字符"
+    },
+    {
+      "name": "phoneMain_title",
+      "value": "标题"
+    },
+    {
+      "name": "phoneMain_loading",
+      "value": "正在加载..."
+    },
+    {
+      "name": "phoneMain_setSpeed",
+      "value": "倍速"
+    },
+    {
+      "name": "index_del",
+      "value": "是否删除此视频"
+    },
+    {
+      "name": "index_cel",
+      "value": "取消"
+    },
+    {
+      "name": "index_celOk",
+      "value": "已取消"
+    },
+    {
+      "name": "index_sure",
+      "value": "确定"
+    },
+    {
+      "name": "index_deleteOk",
+      "value": "删除成功"
+    },
+    {
+      "name": "index_formation",
+      "value": "详细信息"
+    },
+    {
+      "name": "index_formation_id",
+      "value": "文件资源编号："
+    },
+    {
+      "name": "index_formation_uri",
+      "value": "文件资源uri："
+    },
+    {
+      "name": "index_formation_mimeType",
+      "value": "文件扩展属性："
+    },
+    {
+      "name": "index_formation_mediaType",
+      "value": "媒体类型："
+    },
+    {
+      "name": "index_formation_displayName",
+      "value": "文件名："
+    },
+    {
+      "name": "index_formation_title",
+      "value": "文件标题："
+    },
+    {
+      "name": "index_formation_relativePath",
+      "value": "相对公共目录路径："
+    },
+    {
+      "name": "index_formation_parent",
+      "value": "父目录id："
+    },
+    {
+      "name": "index_formation_size",
+      "value": "文件大小："
+    },
+    {
+      "name": "index_formation_dateAdded",
+      "value": "添加日期："
+    },
+    {
+      "name": "index_formation_dateModified",
+      "value": "修改日期："
+    },
+    {
+      "name": "index_formation_dateTaken",
+      "value": "拍摄日期："
+    },
+    {
+      "name": "index_formation_artist",
+      "value": "专辑："
+    },
+    {
+      "name": "index_formation_audioAlbum",
+      "value": "作者："
+    },
+    {
+      "name": "index_formation_width",
+      "value": "图片宽度："
+    },
+    {
+      "name": "index_formation_height",
+      "value": "图片高度："
+    },
+    {
+      "name": "index_formation_orientation",
+      "value": "图片显示方向："
+    },
+    {
+      "name": "index_formation_duration",
+      "value": "持续时间："
+    },
+    {
+      "name": "index_formation_albumId",
+      "value": "文件所归属的相册编号："
+    },
+    {
+      "name": "index_formation_albumUri",
+      "value": "文件所归属相册uri："
+    },
+    {
+      "name": "index_formation_albumName",
+      "value": "文件所归属相册名称："
+    },
+    {
+      "name": "mainDialog_inputText",
+      "value": "请在上方输入音频/视频播放地址，或在左侧寻找你想要播放的内容。"
+    },
+    {
+      "name": "mainDialog_know",
+      "value": "知道了"
+    },
+    {
+      "name": "renameDialog_title",
+      "value": "名称"
+    },
+    {
+      "name": "renameDialog_inputName",
+      "value": "请输入名字"
+    },
+    {
+      "name": "renameDialog_inputNameOk",
+      "value": "修改完成"
+    },
+    {
+      "name": "streamMedia_inputText",
+      "value": "输入播放源地址"
+    },
+    {
+      "name": "streamMedia_Playing",
+      "value": "正在播放"
+    },
+    {
+      "name": "tooKit_search",
+      "value": "搜索"
+    },
+    {
+      "name": "tooKit_setting",
+      "value": "设置"
+    },
+    {
+      "name": "tooKit_play",
+      "value": "播放"
+    },
+    {
+      "name": "tooKit_null",
+      "value": " "
+    }
+  ]
+}
