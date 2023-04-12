@@ -71,7 +71,7 @@ export struct TextTimerComponent {
       Column() {
         Text(this.textStr)
           .fontSize(35)
-          .key('textTime')
+          .key('countdownTime')
       }
       .margin({ bottom: 80 })
       .onClick(() => {
