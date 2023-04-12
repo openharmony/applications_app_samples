@@ -63,6 +63,8 @@ ohos.permission.CAPTURE_SCREEN
 
 5.系统权限的自动化签名指南，可通过打开DevEco Studio中菜单，File -> Project Structure -> Project -> Signing Configs(TAB页最下方蓝色字体) -> “**View the operation guide**” 跳转链接，可支持系统权限的自动签名生成。
 
+6.rk设备由于芯片限制，应用中videoFrameWidth，videoFrameHeight，videoFrameRate需同比缩小3/5, 才能实现rk上的播放效果。
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：
