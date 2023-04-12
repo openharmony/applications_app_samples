@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "tab_content_background",
+      "value": "#4D999999"
+    }
+  ]
+}

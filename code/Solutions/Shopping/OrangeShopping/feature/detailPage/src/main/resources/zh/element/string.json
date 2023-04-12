@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
+      "name": "broadcast",
+      "value": "直播中"
+    },
+    {
+      "name": "money",
+      "value": "￥"
+    },
+    {
+      "name": "share",
+      "value": "分享"
+    },
+    {
+      "name": "collection",
+      "value": "收藏"
+    },
+    {
+      "name": "shopping",
+      "value": "桔子购物"
+    },
+    {
+      "name": "price_reduction_notice",
+      "value": "降价通知"
+    },
+    {
+      "name": "selected",
+      "value": "已选"
+    },
+    {
+      "name": "send_to",
+      "value": "送至"
+    },
+    {
+      "name": "select_address",
+      "value": "请选择您的收获地址"
+    },
+    {
+      "name": "service",
+      "value": "服务"
+    },
+    {
+      "name": "free_hipping",
+      "value": "免运费"
+    },
+    {
+      "name": "store_delivery",
+      "value": "店铺发货"
+    },
+    {
+      "name": "return_goods",
+      "value": "7天无理由退货"
+    },
+    {
+      "name": "home_page",
+      "value": "首页"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "add_to_cart",
+      "value": "加入购物车"
+    },
+    {
+      "name": "buy_now",
+      "value": "立即购买"
+    },
+    {
+      "name": "evaluate",
+      "value": "用户评价 (2万+)"
+    },
+    {
+      "name": "ninety_nine_percent",
+      "value": "99%"
+    },
+    {
+      "name": "praise",
+      "value": "好评"
+    },
+    {
+      "name": "deliver_to",
+      "value": "配送至"
+    },
+    {
+      "name": "current_positioning",
+      "value": "定位/历史访问城市"
+    },
+    {
+      "name": "hangzhou",
+      "value": "杭州"
+    },
+    {
+      "name": "domestic_hot_city",
+      "value": "国内热门城市"
+    },
+    {
+      "name": "select_configuration",
+      "value": "仲夏紫.8GB+128GB.4G全网通.官网标配.x1 4G全网通官网标配.x1 "
+    },
+    {
+      "name": "address",
+      "value": "请选择您的收获地址"
+    },
+    {
+      "name": "recommend",
+      "value": "推荐一个好物给你请查收"
+    },
+    {
+      "name": "commodity",
+      "value": "HUAWEI P50 Pocket 超光谱摄影系统 创新双屏操作体验 120Hz高刷 8GB+256GB"
+    },
+    {
+      "name": "subscribe_notice",
+      "value": "已订阅降价通知"
+    },
+    {
+      "name": "close",
+      "value": "关闭"
+    },
+    {
+      "name": "go_to_view",
+      "value": "前往查看"
+    },
+    {
+      "name": "reduction_notice",
+      "value": "您订阅的产品已降价，请前往查看。"
+    },
+    {
+      "name": "shopping_advertising",
+      "value": "低价为先, 为您省钱"
+    }
+  ]
+}

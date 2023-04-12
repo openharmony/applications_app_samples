@@ -1,0 +1,27 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "聊天"
+    }, {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "user1Name",
+      "value": "自己"
+    },
+    {
+      "name": "user2Name",
+      "value": "朋友"
+    }
+  ]
+}
