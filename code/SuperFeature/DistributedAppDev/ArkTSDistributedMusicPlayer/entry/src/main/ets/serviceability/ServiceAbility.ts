@@ -31,9 +31,9 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
     try {
       let connectOptions = {
         onConnect(elementName, remote): void {
-          Logger.info(TAG, `start remote service has been succeeded, elementName= ${JSON.stringify(elementName)}, remote= ${JSON.stringify(remote)}`)
+          Logger.info(TAG, `Start remote service has been succeeded, elementName= ${JSON.stringify(elementName)}, remote= ${JSON.stringify(remote)}`)
           if (remote === null) {
-            Logger.info(TAG, `remote is null`)
+            Logger.info(TAG, 'Remote is null')
           }
           globalThis.viewThis.remoteProxy = remote;
           clearTimeout(timeoutId)
@@ -62,7 +62,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
 
       this.context.connectServiceExtensionAbility(want, connectOptions)
       let timeoutId = setTimeout(() => {
-        Logger.info(TAG, 'connect remote service extension timeout')
+        Logger.info(TAG, 'Connect remote service extension timeout')
         if (typeof(globalThis.viewThis) === 'object' &&
           typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
           globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_TIMEOUT)
@@ -74,12 +74,12 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
   }
   stopServiceAbility(want): void {
     this.context.stopServiceExtensionAbility(want).then(() => {
-      Logger.info(TAG, `stop service has been succeeded, want= ${JSON.stringify(want)}`)
+      Logger.info(TAG, `Stop service has been succeeded, want= ${JSON.stringify(want)}`)
     }).catch((err) => {
-      Logger.info(TAG, `stop service has been failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
+      Logger.info(TAG, `Stop service has been failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
     })
   }
-  onRemoteRequest(code, data, reply, option): boolean {
+  onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, options: rpc.MessageOption): boolean {
     if (code === MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE) {
       let deviceId = data.readString()
       let jsonData = JSON.parse(data.readString())
@@ -106,7 +106,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       this.stopServiceAbility(want)
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE) {
       if (globalThis.viewThis.remoteProxy === null) {
-        Logger.info(TAG, `play local is null`)
+        Logger.info(TAG, 'Play local is null')
         return false
       }
       let option = new rpc.MessageOption()
@@ -115,7 +115,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       globalThis.viewThis.remoteProxy.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE, data, reply, option)
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE) {
       if (globalThis.viewThis.remoteProxy === null) {
-        Logger.info(TAG, `pause local is null`)
+        Logger.info(TAG, 'Pause local is null')
         return false
       }
       let option = new rpc.MessageOption()
@@ -128,11 +128,15 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       globalThis.viewThis.musicPause()
     } else if (code === MusicSharedEventCode.STOP_LOCAL_SERIVCE) {
       this.context.terminateSelf().then(() => {
-        Logger.info(TAG, `terminateSelf service extension has been succeeded`)
+        Logger.info(TAG, 'TerminateSelf service extension has been succeeded')
       }).catch((err) => {
-        Logger.info(TAG, `terminateSelf service extension has been failed err= ${JSON.stringify(err)}`)
+        Logger.info(TAG, `TerminateSelf service extension has been failed err= ${JSON.stringify(err)}`)
       })
+    } else {
+      Logger.info(TAG, 'Invalid instruction')
+      return false
     }
+    return true
   }
 }
 
