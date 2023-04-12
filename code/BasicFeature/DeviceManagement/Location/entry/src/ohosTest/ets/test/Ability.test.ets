@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,17 +15,82 @@
 
 import { describe, it, expect } from '@ohos/hypium'
 import Logger from '../../../../../position/src/main/ets/components/util/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import { Driver, ON } from '@ohos.UiTest'
 
-const TAG: string = 'abilityTest'
+const TAG = '[Sample_Location]'
+const BUNDLE = 'Location_'
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      Logger.info(TAG, `it begin`)
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+    /**
+     * 打开应用
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.location',
+          abilityName: 'MainAbility'
+        })
+        done()
+      } catch (exception) {
+        Logger.info(TAG, `StartAbility_001 exception = ${JSON.stringify(exception)}`)
+        expect().assertFail()
+      }
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 end')
+    })
+
+    /**
+     * 获取权限
+     */
+    it(BUNDLE + 'RequestPermissionFunction_001', 0, async () => {
+      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      // 获取位置访问权限
+      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission')
+      await driver.assertComponentExist(ON.text('允许'))
+      let btnAccept = await driver.findComponent(ON.text('允许'))
+      await btnAccept.click()
+      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end')
+    })
+
+    /**
+     * 选择城市
+     */
+    it(BUNDLE + 'SelectCityFunction_001', 0, async () => {
+      Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      // 点击热门城市
+      Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 clickHeatCity')
+      await driver.assertComponentExist(ON.id('city1'))
+      let heatCity = await driver.findComponent(ON.id('city1'))
+      await heatCity.click()
+      // 现在所选城市
+      await driver.assertComponentExist(ON.id('currentLoc'))
+      let currentCity = await driver.findComponent(ON.id('currentLoc'))
+      let currentValue = await currentCity.getText()
+      expect(currentValue).assertEqual('北京')
+      // 点击索引选择城市
+      Logger.info(TAG, BUNDLE + 'SelectAlphaCityFunction_001 clickCityByAlpha')
+      await driver.assertComponentExist(ON.text('A'))
+      let alpha = await driver.findComponents(ON.text('A'))
+      await alpha[0].click()
+      await driver.assertComponentExist(ON.id('cityFirst1'))
+      let cityFirst = await driver.findComponent(ON.id('cityFirst1'))
+      await cityFirst.click()
+      await driver.assertComponentExist(ON.id('region2'))
+      let region = await driver.findComponent(ON.id('region2'))
+      await region.click()
+      // 现在所选城市
+      await driver.assertComponentExist(ON.id('currentLoc'))
+      let currentSelectCity = await driver.findComponent(ON.id('currentLoc'))
+      let currentCityValue = await currentSelectCity.getText()
+      expect(currentCityValue).assertEqual('安徽/安庆')
+      Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 end')
     })
   })
 }

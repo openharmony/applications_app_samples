@@ -92,6 +92,7 @@ export struct Location {
             Text(`${this.currentLocation}` || $r('app.string.xian'))
               .fontSize(20)
               .alignSelf(ItemAlign.Start)
+              .id('currentLoc')
           } else {
             Text($r('app.string.current_positioning'))
               .fontSize(20)
@@ -151,8 +152,7 @@ export struct Location {
                         this.currentLocation = item
                       })
                   }
-                  .key("city" + (index + 1))
-
+                  .id(`city${index + 1}`)
                 })
               }
               .margin({ right: 60, top: 10 })
@@ -191,10 +191,10 @@ export struct Location {
                               this.isCity = item.name === undefined ? item : item.name
                             }
                           })
-                          .key("city_ah")
+                          .id(`cityFirst${index + 1}`)
                         if (this.isCity === item.name) {
                           List() {
-                            ForEach(item.city, (secondCity) => {
+                            ForEach(item.city, (secondCity, index) => {
                               ListItem() {
                                 Column() {
                                   Text(`${secondCity}`)
@@ -202,7 +202,7 @@ export struct Location {
                                     .height(30)
                                     .fontSize(18)
                                     .margin({ top: 4 })
-                                    .key("region" + (index + 1))
+                                    .id(`region${index + 1}`)
                                     .onClick(() => {
                                       this.currentLocation = `${item.name}/${secondCity}`
                                     })
