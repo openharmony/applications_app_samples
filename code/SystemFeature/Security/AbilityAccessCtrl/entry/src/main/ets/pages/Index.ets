@@ -38,7 +38,7 @@ struct Index {
     Row() {
       Column() {
         Button($r('app.string.button'))
-          .key('checkPermission')
+          .id('checkPermission')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
