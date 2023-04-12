@@ -27,10 +27,10 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
     this.context = context
   }
 
-  startServiceAbility(want) {
+  startServiceAbility(want): void {
     try {
       let connectOptions = {
-        onConnect(elementName, remote) {
+        onConnect(elementName, remote): void {
           Logger.info(TAG, `start remote service has been succeeded, elementName= ${JSON.stringify(elementName)}, remote= ${JSON.stringify(remote)}`)
           if (remote === null) {
             Logger.info(TAG, `remote is null`)
@@ -42,7 +42,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
             globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_CONNECT)
           }
         },
-        onDisconnect(elementName) {
+        onDisconnect(elementName): void {
           Logger.info(TAG, `ServiceExtension has onDisconnected,elementName= ${JSON.stringify(elementName)}`)
           clearTimeout(timeoutId)
           if (typeof(globalThis.viewThis) === 'object' &&
@@ -50,7 +50,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
             globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_DISCONNECT)
           }
         },
-        onFailed(code) {
+        onFailed(code): void {
           Logger.info(TAG, `ServiceExtension has onFailed, code= ${JSON.stringify(code)}`)
           clearTimeout(timeoutId)
           if (typeof(globalThis.viewThis) === 'object' &&
@@ -72,22 +72,22 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       Logger.info(TAG, `ConnectServiceExtensionAbility has failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
     }
   }
-  stopServiceAbility(want) {
+  stopServiceAbility(want): void {
     this.context.stopServiceExtensionAbility(want).then(() => {
       Logger.info(TAG, `stop service has been succeeded, want= ${JSON.stringify(want)}`)
     }).catch((err) => {
       Logger.info(TAG, `stop service has been failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
     })
   }
-  onRemoteRequest(code, data, reply, option) {
+  onRemoteRequest(code, data, reply, option): boolean {
     if (code === MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE) {
       let deviceId = data.readString()
       let jsonData = JSON.parse(data.readString())
       let params = {
-        uri: jsonData['uri'],
-        seekTo: jsonData['seekTo'],
-        isPlaying: jsonData['isPlaying'],
-        flag: "START_REMOTE_DISTRIBUTED_MUSIC_SERVICE"
+        uri: jsonData.uri,
+        seekTo: jsonData.seekTo,
+        isPlaying: jsonData.isPlaying,
+        flag: 'START_REMOTE_DISTRIBUTED_MUSIC_SERVICE'
       }
       let want = {
         deviceId: deviceId,
@@ -107,7 +107,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE) {
       if (globalThis.viewThis.remoteProxy === null) {
         Logger.info(TAG, `play local is null`)
-        return
+        return false
       }
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
@@ -116,7 +116,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE) {
       if (globalThis.viewThis.remoteProxy === null) {
         Logger.info(TAG, `pause local is null`)
-        return
+        return false
       }
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
@@ -126,14 +126,19 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       globalThis.viewThis.musicPlay()
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE) {
       globalThis.viewThis.musicPause()
+    } else if (code === MusicSharedEventCode.STOP_LOCAL_SERIVCE) {
+      this.context.terminateSelf().then(() => {
+        Logger.info(TAG, `terminateSelf service extension has been succeeded`)
+      }).catch((err) => {
+        Logger.info(TAG, `terminateSelf service extension has been failed err= ${JSON.stringify(err)}`)
+      })
     }
-    return true
   }
 }
 
 export default class ServiceAbility extends ServiceExtensionAbility {
-  onCreate(want){
-    if(want.parameters.flag == "START_REMOTE_DISTRIBUTED_MUSIC_SERVICE") {
+  onCreate(want): void {
+    if (want.parameters.flag === 'START_REMOTE_DISTRIBUTED_MUSIC_SERVICE') {
       let localwant = {
         bundleName: APPLICATION_BUNDLE_NAME,
         abilityName: APPLICATION_ABILITY_NAME,
@@ -146,32 +151,32 @@ export default class ServiceAbility extends ServiceExtensionAbility {
       })
     }
   }
-  onDestroy() {
+  onDestroy(): void {
     Logger.info(TAG, 'ServiceAbility onDestroy')
   }
 
-  onRequest(want, startId) {
+  onRequest(want, startId): void {
     Logger.info(TAG, 'ServiceAbility onRequest')
   }
 
-  onConnect(want) {
+  onConnect(want): rpc.RemoteObject {
     Logger.info(TAG, 'ServiceAbility onConnect')
     return new DistributedMusicServiceExtension('ohos.samples.distributedMusicServiceExtension', this.context)
   }
 
-  onDisconnect(want) {
+  onDisconnect(want): void {
     Logger.info(TAG, 'ServiceAbility onDisconnect')
   }
 
-  onReconnect(want) {
+  onReconnect(want): void {
     Logger.info(TAG, 'ServiceAbility onReconnect')
   }
 
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig): void {
     Logger.info(TAG, 'ServiceAbility onConfigurationUpdate')
   }
 
-  onDump(params) {
+  onDump(params: Array<string>): Array<string> {
     Logger.info(TAG, 'ServiceAbility onDump')
     return params
   }

@@ -157,6 +157,17 @@ struct Index {
     PlayerModel.play(DEFAULT_NUM, true)
     this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
   }
+
+  exitMusicApp() {
+    Logger.info(TAG, `exit music app called`)
+    if (typeof(this.localExtensionRemote) === 'object') {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_LOCAL_SERIVCE, data, reply, option)
+    } else {
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+    }
   }
 
   connectLocalExtension() {
@@ -236,13 +247,6 @@ struct Index {
   }
 
   onBackPress() {
-    let localServiceWant = {
-      bundleName: APPLICATION_BUNDLE_NAME,
-      abilityName: APPLICATION_SERVICE_NAME,
-    }
-    this.context.stopServiceExtensionAbility(localServiceWant)
-    this.localExtensionRemote = null
-
     if (this.isDialogShowing === true) {
       this.dismissDialog()
       return true

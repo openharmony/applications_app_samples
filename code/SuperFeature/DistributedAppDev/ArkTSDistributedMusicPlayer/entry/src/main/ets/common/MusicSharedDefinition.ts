@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export const APPLICATION_BUNDLE_NAME = "ohos.samples.etsdistributedmusicplayer"
-export const APPLICATION_SERVICE_NAME = "ServiceAbility"
-export const APPLICATION_ABILITY_NAME = "MainAbility"
+export const APPLICATION_BUNDLE_NAME = 'ohos.samples.etsdistributedmusicplayer'
+export const APPLICATION_SERVICE_NAME = 'ServiceAbility'
+export const APPLICATION_ABILITY_NAME = 'MainAbility'
 
 export const enum MusicSharedEventCode {
   START_DISTRIBUTED_MUSIC_SERVICE = 1,
@@ -23,6 +23,7 @@ export const enum MusicSharedEventCode {
   PAUSE_MUSIC_SERVICE = 4,
   PLAY_MUSIC_SERVICE_REMOTE = 5,
   PAUSE_MUSIC_SERVICE_REMOTE = 6,
+  STOP_LOCAL_SERIVCE = 7,
 }
 
 export const enum MusicSharedStatus {
@@ -32,8 +33,8 @@ export const enum MusicSharedStatus {
 }
 
 export const enum MusicConnectEvent {
-  EVENT_CONNECT = "ONCONNECT",
-  EVENT_DISCONNECT = "ONDISCONNECT",
-  EVENT_FAILED = "ONFAILED",
-  EVENT_TIMEOUT = "CONNECTTIMEOUT"
+  EVENT_CONNECT = 'ONCONNECT',
+  EVENT_DISCONNECT = 'ONDISCONNECT',
+  EVENT_FAILED = 'ONFAILED',
+  EVENT_TIMEOUT = 'CONNECTTIMEOUT'
 }
