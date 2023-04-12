@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例是[《一次开发，多端部署》](https://gitee.com/fanzhaonan/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的配套示例代码，展示了[页面开发的一多能力](https://gitee.com/fanzhaonan/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/layout-intro.md)，包括自适应布局、响应式布局、典型布局场景以及资源文件使用。
+本示例是[《一次开发，多端部署》](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的配套示例代码，展示了[页面开发的一多能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/layout-intro.md)，包括自适应布局、响应式布局、典型布局场景以及资源文件使用。
 
 | 名称         | 简介                                                         |
 | ------------ | ------------------------------------------------------------ |
