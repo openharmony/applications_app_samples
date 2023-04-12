@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
 import { LiveInfoDataModel, MyDataSource } from '../model/LiveDataModel'
@@ -97,6 +98,7 @@ export struct LivePage {
                         .fontColor('#ffffff')
                       Row() {
                         Text(item.peopleNum) // 直播间观看人数
+                          .id(item.peopleNum)
                           .fontSize(12)
                           .fontColor('#ffffff')
                         Text($r('app.string.watch'))
@@ -128,6 +130,7 @@ export struct LivePage {
 
                 Column() {
                   Image($r('app.media.live_close')) // 关闭图标
+                    .id('close')
                     .width(42).height(42)
                     .onClick(() => {
                       router.back()
