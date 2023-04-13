@@ -13,17 +13,65 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
-import Logger from '../../../../src/main/ets/model/Logger'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[Sample_StaticSubscriber]'
+const DOMAIN = 0xF811
+const BUNDLE = 'StaticSubscriber_'
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      Logger.info('it begin')
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+    /**
+     * 拉起静态订阅应用
+     */
+    it(BUNDLE + 'EntryFunction_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      // 进入静态订阅
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 enter');
+      await driver.assertComponentExist(ON.text('静态订阅'));
+      let btnEnter = await driver.findComponent(ON.text('静态订阅'));
+      await btnEnter.click();
+      await driver.delayMs(1000);
+      // 返回桌面
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 outToHome');
+      await driver.pressBack();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.text('静态订阅'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 end');
+    })
+
+    /**
+     * 拉起发布应用
+     */
+    it(BUNDLE + 'PublishFunction_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      // 进入发布应用
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 enter');
+      await driver.assertComponentExist(ON.text('发布'));
+      let enterBtn = await driver.findComponent(ON.text('发布'));
+      await enterBtn.click();
+      await driver.delayMs(2000);
+      // 点击发布
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 clickPublish');
+      await driver.assertComponentExist(ON.text('发布'));
+      let publishBtn = await driver.findComponent(ON.text('发布'));
+      await publishBtn.click();
+      await driver.delayMs(1000);
+      // 下拉菜单栏查看通知
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 checkNotice');
+      await driver.swipe(100, 10, 100, 500, 600);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('静态订阅'));
+      await driver.delayMs(1000);
+      await driver.swipe(100, 500, 100, 10, 600);
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 end');
     })
   })
 }
