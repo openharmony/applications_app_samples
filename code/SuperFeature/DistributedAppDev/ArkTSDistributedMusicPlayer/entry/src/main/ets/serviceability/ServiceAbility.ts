@@ -82,7 +82,8 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
   onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, options: rpc.MessageOption): boolean {
     if (code === MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE) {
       let deviceId = data.readString()
-      let jsonData = JSON.parse(data.readString())
+      let stringJson:string = data.readString()
+      let jsonData = JSON.parse(stringJson)
       let params = {
         uri: jsonData.uri,
         seekTo: jsonData.seekTo,
