@@ -48,10 +48,11 @@ struct Index {
       Column() {
         TitleBar()
         List() {
-          ForEach(newsList, (item) => {
+          ForEach(newsList, (item, index) => {
             ListItem() {
               Column() {
                 Text(item.title)
+                  .id(`item${index}`)
                   .width('100%')
                   .fontSize(22)
                 Text(item.publisher)
