@@ -23,6 +23,34 @@
     {
       "name": "cancel",
       "value": "cancel"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "Distributed music remote control service"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "Distributed music service"
+    },
+    {
+      "name": "onConnectService",
+      "value": "Connection is successful"
+    },
+    {
+      "name": "onDisconnectService",
+      "value": "Connection failed."
+    },
+    {
+      "name": "onFailedService",
+      "value": "Connection error"
+    },
+    {
+      "name": "ConnectRemoteDevices",
+      "value": "Connect remote devices"
+    },
+    {
+      "name": "ConnectionTimeout",
+      "value": "Connection timeout"
     }
   ]
 }

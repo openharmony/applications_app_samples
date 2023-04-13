@@ -50,9 +50,21 @@
         "startWindowBackground": "$color:white"
       }
     ],
+    "extensionAbilities": [
+      {
+        "name": "ServiceAbility",
+        "srcEntrance": "./ets/serviceability/ServiceAbility.ts",
+        "label": "$string:ServiceAbility_label",
+        "description": "$string:ServiceAbility_desc",
+        "type": "service"
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
       }
     ]
   }
