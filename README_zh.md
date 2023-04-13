@@ -38,7 +38,7 @@
   <td width="170" x:str><strong>声明式开发范式</strong></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/ComponentCollection">ArkTS组件集</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/MediaQuery">媒体查询</a></td>
-  <td width="170"></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/StateManagement">状态管理</a></td>
   <td width="170"></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
