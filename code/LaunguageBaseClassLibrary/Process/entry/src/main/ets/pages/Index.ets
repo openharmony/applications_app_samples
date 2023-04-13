@@ -42,7 +42,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('getUptime')
+          .id('getUptime')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -59,7 +59,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('getDirectory')
+          .id('getDirectory')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -77,7 +77,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('changeDirectory')
+          .id('changeDirectory')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -96,7 +96,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('sendSignal')
+          .id('sendSignal')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
@@ -120,7 +120,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('startProcess')
+          .id('startProcess')
           .type(ButtonType.Capsule)
           .height(40)
           .margin({ top: 15 })
@@ -144,7 +144,7 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('closeProcess')
+          .id('closeProcess')
           .type(ButtonType.Capsule)
           .height(40)
           .margin({ top: 15 })
@@ -168,14 +168,14 @@ struct Index {
               .width('100%')
               .textAlign(TextAlign.Center)
           }
-          .key('exitProcess')
+          .id('exitProcess')
           .type(ButtonType.Capsule)
           .height(40)
           .backgroundColor('#0D9FFB')
           .margin({ top: 15 })
           .onClick(() => {
             Logger.info('[Process]process exit')
-            process.exit(0)
+            new process.ProcessManager().exit(0);
           })
 
           Text(this.result)
@@ -186,6 +186,7 @@ struct Index {
             .margin({ top: 20 })
             .textAlign(TextAlign.Start)
             .padding(10)
+            .id('result')
         }.constraintSize({ minHeight: '100%' })
       }
       .width('100%').height('100%')

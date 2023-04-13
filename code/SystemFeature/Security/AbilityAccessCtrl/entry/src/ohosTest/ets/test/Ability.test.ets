@@ -13,41 +13,104 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
+import router from '@ohos.router';
 
-const TAG = '[Sample_AbilityAccessCtrl]'
-const DOMAIN = 0xF811
-const BUNDLE = 'AbilityAccessCtrl_'
+const TAG = '[Sample_AbilityAccessCtrl]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'AbilityAccessCtrl_';
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function appTest() {
   describe('appTest', function () {
+    /**
+     * 打开应用
+     */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let parameter = {
-        bundleName: "ohos.samples.abilityaccessctrl",
-        abilityName: "EntryAbility"
+        bundleName: 'ohos.samples.abilityaccessctrl',
+        abilityName: 'EntryAbility'
+      };
+      try {
+        await abilityDelegatorRegistry.startAbility(parameter);
+        done();
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
+      } catch (err) {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code);
+        expect(0).assertEqual(err.code);
+        done();
       }
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator()
-      abilityDelegatorRegistry.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
     })
 
     /**
-     * 进入页面
+     * 取消授权
      */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
+    it(BUNDLE + 'GetPermission_001', 0, async function () {
       // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetPermission_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('取消'));
+      let cancelBtn = await driver.findComponent(ON.text('取消'));
+      await cancelBtn.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('checkPermission'));
+      let checkPermissionBtn = await driver.findComponent(ON.id('checkPermission'));
+      await checkPermissionBtn.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('权限未被授予'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetPermission_001 end');
+    })
+
+    /**
+     * 退出应用
+     */
+    it(BUNDLE + 'CloseApp_001', 0, async function () {
+      // create UiDriver
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CloseApp_001 begin');
+      router.back();
+      // 获取当前的ability
+      let currentAbility = await abilityDelegatorRegistry.getCurrentTopAbility();
+      // 获取当前ability的生命周期
+      let state = abilityDelegatorRegistry.getAbilityState(currentAbility);
+      console.info(`LSQ getAbilityState ${state}`);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CloseApp_001 end');
+    })
+
+    /**
+     * 再次打开应用
+     */
+    it(BUNDLE + 'StartAbility_002', 0, async function (done) {
+      let driver = Driver.create();
+      await driver.assertComponentExist(ON.text('AbilityAccessCtrl'));
+      let camera = await driver.findComponent(ON.text('AbilityAccessCtrl'));
+      await camera.click();
+      driver.delayMs(1000);
+      done();
+    })
+
+    /**
+     * 授权
+     */
+    it(BUNDLE + 'GetPermission_002', 0, async function () {
+      // create UiDriver
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetPermission_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('确认'));
+      let cancelBtn = await driver.findComponent(ON.text('确认'));
+      await cancelBtn.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('checkPermission'));
+      let checkPermissionBtn = await driver.findComponent(ON.id('checkPermission'));
+      await checkPermissionBtn.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('权限已被授予'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetPermission_001 end');
     })
   })
 }

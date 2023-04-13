@@ -120,7 +120,7 @@ struct Index {
             .objectFit(ImageFit.Contain)
             .align(Alignment.End)
         }
-        .key('addBtn')
+        .id('addBtn')
         .width('10%')
         .type(ButtonType.Normal)
         .backgroundColor($r('app.color.header_bg'))
@@ -183,7 +183,7 @@ struct Index {
               Blank()
               Button() {
                 Text($r('app.string.button_delete'))
-                  .key('delContact')
+                  .id(`${item.name}_delContact`)
                   .fontColor(Color.Red)
                   .fontSize(19)
                   .width(100)
@@ -204,6 +204,7 @@ struct Index {
             .borderRadius(20)
             .backgroundColor(Color.White)
           }
+          .id('dataItem')
         }, (item, index) => {
           return JSON.stringify(item) + index
         })
