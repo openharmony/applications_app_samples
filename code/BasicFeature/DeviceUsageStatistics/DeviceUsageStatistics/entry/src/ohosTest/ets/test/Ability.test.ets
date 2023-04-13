@@ -13,40 +13,59 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { Driver, ON, UiDirection } from '@ohos.UiTest'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import Logger from '../utils/Logger'
 
 const TAG = '[Sample_DeviceUsageStatistics]'
-const DOMAIN = 0xF811
 const BUNDLE = 'DeviceUsageStatistics_'
 
 export default function abilityTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
+      Logger.info( TAG, BUNDLE + 'StartAbility_001 begin')
+      let driver = Driver.create()
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       await abilityDelegator.startAbility({
         bundleName: "ohos.samples.deviceusage",
         abilityName: "EntryAbility"
       }, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
         expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
+        Logger.info(TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
       })
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 end')
+      done()
     })
 
     /**
-     * 设备使用时长
+     * 应用使用时长
      */
-    it(BUNDLE + 'DeviceUsageFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DeviceUsageFunction_001 begin')
-      let driver = await UiDriver.create()
+    it(BUNDLE + 'AppStatistics_001', 1, async () => {
+      Logger.info(TAG, BUNDLE + 'AppStatistics_001 begin')
+      let driver = await Driver.create()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DeviceUsageFunction_001 end')
+      await driver.assertComponentExist(ON.text('应用使用时长'))
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + 'AppStatistics_001 end')
+    })
+
+    /**
+     * 不常用应用
+     */
+    it(BUNDLE + 'FreeApps_001', 2, async () => {
+      Logger.info(TAG, BUNDLE + 'FreeApps_001 begin')
+      let driver = await Driver.create()
+      await driver.fling({
+        x: 500, y: 480
+      }, {
+        x: 500, y: 200
+      }, 5, 1200)
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('不常用应用'))
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + 'FreeApps_001 end')
     })
   })
 }

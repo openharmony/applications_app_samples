@@ -14,7 +14,9 @@
  */
 
 import abilityTest from './Ability.test'
+import unitTest from './UnitTest.test'
 
 export default function testsuite() {
   abilityTest()
+  unitTest()
 }
