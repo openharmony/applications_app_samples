@@ -1,24 +1,24 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
       "value": "description"
     },
     {
-      "name": "MainAbility_desc",
-      "value": "description"
+      "name": "EntryAbility_label",
+      "value": "label"
     },
     {
-      "name": "MainAbility_label",
-      "value": "ArkTSCard"
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
     },
     {
-      "name": "form_FormAbility_desc",
-      "value": "CardAbility"
-    },
-    {
-      "name": "form_FormAbility_label",
-      "value": "ArkTSCard"
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
     }
   ]
 }

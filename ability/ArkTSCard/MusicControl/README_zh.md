@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了如何通过ArkTs卡片实现一个简单的音乐卡片
+本示例展示了如何通过ArkTS卡片实现一个简单的音乐卡片
 
 ### 效果预览
 
@@ -26,15 +26,15 @@ entry/src/main/ets/
     |---BackgroundPlayerFeature.ts        // 音乐功能处理文件
 |---mock
     |---BackgroundPlayerData.ts           // 音乐文件数据
-|---MainAbility
-    |---MainAbility.ts                    // Ability声明周期处理文件
-|---Formability
-|   |---FormAbility.ts                     // 卡片声明周期处理文件
+|---entryability
+    |---EntryAbility.ts                    // Ability声明周期处理文件
+|---entryformability
+|   |---EntryFormAbility.ts                // 卡片声明周期处理文件
 |---pages
 |   |---index.ets                          // 首页
-|---widget
+|---music
 |   |---pages
-|   |   |---card.ets                       // 音乐卡片页面
+|   |   |---MusicCard.ets                  // 音乐卡片页面
 ```
 
 ### 相关权限
@@ -47,11 +47,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备：原型机；
+1.本示例仅支持标准系统上运行。
 
-2.本示例仅支持API9版本SDK，版本号：3.2.10.3 Beta4；
+2.本示例为Stage模型，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.100, built on September 4, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.400, built on March 29, 2023)才可编译运行。
 
 4.本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 

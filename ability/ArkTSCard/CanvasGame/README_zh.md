@@ -31,19 +31,17 @@
 ```
 entry/src/main/
 ├── ets
-│   ├── Application
-│   │   └── MyAbilityStage.ts    // AbilityStage生命周期调度入口
-│   ├── FormAbility
-│   │   └── FormAbility.ts       // FormExtensionAbility生命周期调度入口
-│   ├── MainAbility
-│   │   └── MainAbility.ts       // UIAbility生命周期调度入口
+│   ├── entryformability
+│   │   └── EntryFormAbility.ts   // FormExtensionAbility生命周期调度入口
+│   ├── entryability
+│   │   └── EntryAbility.ts       // UIAbility生命周期调度入口
 │   ├── model
-│   │   └── Logger.ts            // 日志打印工具类
+│   │   └── Logger.ts             // 日志打印工具类
 │   ├── pages
-│   │   └── Index.ets            // 入口页面
-│   └── widget
+│   │   └── Index.ets             // 入口页面
+│   └── game
 │       └── pages
-│           └── Card.ets         // 卡片页面，使用Canvas实现了一个简单的五子棋小游戏
+│           └── GameCard.ets      // 卡片页面，使用Canvas实现了一个简单的五子棋小游戏
 ├── module.json5
 └── resources
     └── base
@@ -76,7 +74,7 @@ entry/src/main/
 
 2.本示例为Stage模型的ArkTS卡片，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.200, built on November 3, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.400, built on March 29, 2023)才可编译运行。
 
 ### 下载
 

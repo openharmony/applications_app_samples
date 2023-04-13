@@ -6,11 +6,13 @@
 
 ### 效果预览
 
-<img src="./screenshots/arktsCalc_preview.png" alt="img" style="zoom:80%;" />
+| 添加卡片                                         | 卡片预览                                                 | 操作卡片                                         |
+| ------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------ |
+| ![CalculatorAdd](screenshots/CalculatorAdd.jpeg) | ![CalculatorPreview](screenshots/CalculatorPreview.jpeg) | ![CalculatorUse](screenshots/CalculatorUse.jpeg) |
 
 ### 使用说明
 
-1.部分设备的桌面不支持卡片，可以通过自己的开发卡片使用方，进行卡片的创建、更新和删除等操作。具体参考：[卡片使用方说明](../FormLauncher/README_zh.md)。
+1.部分设备的桌面不支持卡片，可以通过自己的开发卡片使用方，进行卡片的创建、更新和删除等操作。具体参考：[卡片使用方说明](../../FormLauncher/README_zh.md)。
 
 ### 工程目录
 
@@ -22,9 +24,9 @@ entry/src/main/ets/
 |   |---EntryFormAbility.ts                // 卡片声明周期处理文件
 |---pages
 |   |---index.ets                          // 首页
-|---widget
+|---calc
 |   |---pages
-|   |   |---card.ets                       // 计算器卡片页面
+|   |   |---CardCalc.ets                       // 计算器卡片页面
 ```
 
 ### 相关权限

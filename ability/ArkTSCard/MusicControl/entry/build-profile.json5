@@ -15,12 +15,12 @@
 
 {
   "apiType": 'stageMode',
-  "showInServiceCenter": true,
   "buildOption": {
   },
   "targets": [
     {
-      "name": "default"
+      "name": "default",
+      "runtimeOS": "OpenHarmony"
     }
   ]
 }
