@@ -29,6 +29,7 @@ export struct DiscoverPage {
           Row() {
             SettingItemView({ image: $r('app.media.find_friends'), text: "聊天社区" })
           }
+          .id('chatCommunity')
           .onClick(() => {
             router.pushUrl({
               url: 'pages/FriendsMomentsPage'
