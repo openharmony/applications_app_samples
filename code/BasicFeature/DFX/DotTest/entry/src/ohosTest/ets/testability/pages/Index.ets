@@ -13,17 +13,10 @@
  * limitations under the License.
  */
 
-import Logger from '../../../../main/ets/model/Logger'
-
-const TAG = 'UiTestIndex'
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
-    Logger.info(TAG, 'TestAbility index aboutToAppear');
-  }
-
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
