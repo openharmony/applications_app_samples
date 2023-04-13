@@ -16,9 +16,8 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
-    "description": "$string:entry_desc",
-    "mainElement": "MainAbility",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
       "tablet"
@@ -26,23 +25,16 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "metadata": [
-      {
-        "name": "ArkTSPartialUpdate",
-        "value": "true"
-      }
-    ],
     "abilities": [
       {
-        "name": "com.samples.etscardmusic.MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
-        "description": "$string:MainAbility_desc",
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:MainAbility_label",
-        "launchType": "singleton",
+        "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:white",
-        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
         "backgroundModes": [
           "audioPlayback",
           "dataTransfer"
@@ -73,10 +65,10 @@
     ],
     "extensionAbilities": [
       {
-        "name": "FormAbility",
-        "srcEntrance": "./ets/FormAbility/FormAbility.ts",
-        "label": "$string:form_FormAbility_label",
-        "description": "$string:form_FormAbility_desc",
+        "name": "EntryFormAbility",
+        "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
+        "label": "$string:EntryFormAbility_label",
+        "description": "$string:EntryFormAbility_desc",
         "type": "form",
         "metadata": [
           {

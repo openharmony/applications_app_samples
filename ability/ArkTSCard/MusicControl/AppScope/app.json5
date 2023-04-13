@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 {
   "app": {
-    "bundleName": "com.samples.etscardmusic",
+    "bundleName": "com.samples.musiccontrol",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
-    "label": "$string:app_name",
-    "distributedNotificationEnabled": true
+    "label": "$string:app_name"
   }
 }

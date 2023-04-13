@@ -1,32 +1,24 @@
 {
   "string": [
     {
-      "name": "form_FormAbility_desc",
-      "value": "CardAbility"
+      "name": "module_desc",
+      "value": "module description"
     },
     {
-      "name": "form_FormAbility_label",
-      "value": "eTSCard"
+      "name": "EntryAbility_desc",
+      "value": "description"
     },
     {
-      "name": "temperature",
-      "value": "显示卡片String资源：温度"
+      "name": "EntryAbility_label",
+      "value": "label"
     },
     {
-      "name": "entry_desc",
-      "value": "长时任务管理"
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
     },
     {
-      "name": "MainAbility_desc",
-      "value": "长时任务管理"
-    },
-    {
-      "name": "MainAbility_label",
-      "value": "音乐卡片"
-    },
-    {
-      "name": "keep_running",
-      "value": "长时任务权限"
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
     }
   ]
 }
