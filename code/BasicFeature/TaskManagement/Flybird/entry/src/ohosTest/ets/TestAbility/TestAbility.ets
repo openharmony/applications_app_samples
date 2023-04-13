@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Ability from '@ohos.app.ability.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import Window from '@ohos.window'
@@ -22,7 +23,7 @@ import Logger from '../../../main/ets/model/Logger'
 
 const TAG = 'TestAbility'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'TestAbility onCreate');
     Logger.info(TAG, 'want param:' + JSON.stringify(want) ?? '');

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import hilog from '@ohos.hilog';
 import TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import Logger from '../../../main/ets/model/Logger'
@@ -68,7 +68,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     if (debug == 'true') {
       cmd += ' -D'
     }
-    Logger.info(0x0000, 'testTag', 'cmd : %{public}s', cmd);
+    hilog.info(0x0000, 'testTag', 'cmd : %{public}s', cmd);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
         Logger.info(TAG, JSON.stringify(err) ?? '');

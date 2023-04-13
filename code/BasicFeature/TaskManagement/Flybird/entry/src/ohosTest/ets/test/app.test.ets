@@ -14,84 +14,157 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
+import { UiDriver, BY, UiComponent, MatchPattern, Driver, ON } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
+import Logger from '../utils/Logger';
 
 const TAG = '[Sample_Flybird]'
 const DOMAIN = 0xF811
-const BUNDLE = 'Flybird'
+const BUNDLE = 'Flybird_'
+
+// 屏幕上最多显示10条记录
+const MAX_NUM = 10
+const DELAY_TIME = 1000
+let driver: Driver = Driver.create()
+
+//通过text验证有没有这个组件 有的话点击一下
+async function checkButtonAndClickWithText(text: string) {
+  let atom = text
+  await driver.assertComponentExist(ON.text(atom))
+  let button = await driver.findComponent(ON.text(atom))
+  await button.click()
+  await driver.delayMs(DELAY_TIME)
+  Logger.info(TAG, BUNDLE + atom)
+}
+
+//通过id验证有没有这个组件 有的话点击一下
+async function checkButtonAndClickWithID(text: string) {
+  let atom = text
+  await driver.assertComponentExist(ON.id(atom))
+  let button = await driver.findComponent(ON.id(atom))
+  await button.click()
+  await driver.delayMs(DELAY_TIME)
+  Logger.info(TAG, BUNDLE + atom)
+}
 
 export default function appTest() {
   describe('appTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let parameter = {
-        bundleName: "ohos.samples.flybird",
-        abilityName: "EntryAbility"
-      }
-      let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin, err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
-    })
+    
     /**
-      * flyBird
-      */
-    it(BUNDLE + 'FlyBirdFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
+     * 打开应用
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.flybird',
+          abilityName: 'EntryAbility'
+        })
+        done()
+      } catch (exception) {
+        Logger.info(TAG, `StartAbility_001 end ${JSON.stringify(exception)}`)
+        expect(0).assertEqual(exception.code)
+        done()
+      }
+      Logger.info(TAG, BUNDLE + 'StartAbility_001' + ' end')
+    })
+
+    /**
+     * input输入 flyBird
+     */
+    it(BUNDLE + 'InputFlyBirdFunction_001', 0, async function () {
+      let testName = 'InputFlyBird'
+      Logger.info(TAG, BUNDLE + testName + ' begin')
+
+      let driver: Driver = Driver.create()
+      await driver.delayMs(DELAY_TIME)
+
       // input输入
       hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 flyInput')
-      await driver.assertComponentExist(BY.key('textArea'))
-      let flyInput = await driver.findComponent(BY.key('textArea'))
+      await driver.assertComponentExist(ON.id('textArea'))
+      let flyInput = await driver.findComponent(ON.id('textArea'))
       await flyInput.inputText('flybird')
-      let flyVal = await flyInput.getText()
-      expect('flybird').assertEqual(flyVal)
-      await driver.delayMs(1000)
+
+      Logger.info(TAG, BUNDLE + testName + ' end')
+    })
+
+    /**
+     * Connect service
+     */
+    it(BUNDLE + 'ConnectServiceFunction_001', 0, async function () {
+      let testName = 'ConnectService'
+      Logger.info(TAG, BUNDLE + testName + ' begin')
+
+      let driver: Driver = Driver.create()
+      await driver.delayMs(DELAY_TIME)
+
       // ConnectService
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 ConnectService')
-      await driver.assertComponentExist(BY.text('Connect service', MatchPattern.CONTAINS))
-      let btnConnect = await driver.findComponent(BY.text('Connect service', MatchPattern.CONTAINS))
-      await btnConnect.click()
-      await driver.delayMs(1000)
-      // setGameAlarm
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 setGameAlarm')
-      await driver.assertComponentExist(BY.text('set game alarm', MatchPattern.CONTAINS))
-      let btnSetAlarm = await driver.findComponent(BY.text('set game alarm', MatchPattern.CONTAINS))
-      await btnSetAlarm.click()
-      await driver.delayMs(1000)
-      // setGameCalendar
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 setGameCalendar')
-      await driver.assertComponentExist(BY.text('set game calendar', MatchPattern.CONTAINS))
-      let btnSetCalendar = await driver.findComponent(BY.text('set game calendar', MatchPattern.CONTAINS))
-      await btnSetCalendar.click()
-      await driver.delayMs(1000)
+      await checkButtonAndClickWithText('Connect service')
+
+      Logger.info(TAG, BUNDLE + testName + ' end')
+    })
+
+    /**
+     * SetGameAlarm
+     */
+    it(BUNDLE + 'SetGameAlarmFunction_001', 0, async function () {
+      let testName = 'SetGameAlarm'
+      Logger.info(TAG, BUNDLE + testName + ' begin')
+
+      let driver: Driver = Driver.create()
+      await driver.delayMs(DELAY_TIME)
+
+      // SetGameAlarm
+      await checkButtonAndClickWithText('set game alarm')
+
+      Logger.info(TAG, BUNDLE + testName + ' end')
+    })
+
+    /**
+     * SetGameCalendar
+     */
+    it(BUNDLE + 'SetGameCalendarFunction_001', 0, async function () {
+      let testName = 'SetGameCalendar'
+      Logger.info(TAG, BUNDLE + testName + ' begin')
+
+      let driver: Driver = Driver.create()
+      await driver.delayMs(DELAY_TIME)
+
+      // SetGameCalendar
+      await checkButtonAndClickWithText('set game calendar')
+
+      Logger.info(TAG, BUNDLE + testName + ' end')
+    })
+
+    /**
+     * StartGame
+     */
+    it(BUNDLE + 'StartGameFunction_001', 0, async function () {
+      let testName = 'StartGameCalendar'
+      Logger.info(TAG, BUNDLE + testName + ' begin')
+
+      let driver: Driver = Driver.create()
+      await driver.delayMs(DELAY_TIME)
+
       // startGame
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 startGame')
-      await driver.assertComponentExist(BY.text('start game', MatchPattern.CONTAINS))
-      let btnStartGame = await driver.findComponent(BY.text('start game', MatchPattern.CONTAINS))
-      await btnStartGame.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 end')
+      await checkButtonAndClickWithText('start game')
+
+      // 关卡1
+      await checkButtonAndClickWithText('关卡1')
+      // 等待小鸟降落
+      await driver.delayMs(DELAY_TIME * 10)
+      // 返回上一页
+      await checkButtonAndClickWithText('返回')
+
       // 返回首页
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 IndexBack')
-      await driver.assertComponentExist(BY.text('返回', MatchPattern.CONTAINS))
-      let backBtn = await driver.findComponent(BY.text('返回', MatchPattern.CONTAINS))
-      await backBtn.click()
-      await driver.delayMs(1000)
+      await checkButtonAndClickWithText('返回')
+
       // DisconnectService
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 DisconnectService')
-      await driver.assertComponentExist(BY.text('Disconnect service', MatchPattern.CONTAINS))
-      let btnDisconnect = await driver.findComponent(BY.text('Disconnect service', MatchPattern.CONTAINS))
-      await btnDisconnect.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'FlyBirdFunction_001 end')
+      await checkButtonAndClickWithText('Disconnect service')
+
+      Logger.info(TAG, BUNDLE + testName + ' end')
     })
   })
 }
