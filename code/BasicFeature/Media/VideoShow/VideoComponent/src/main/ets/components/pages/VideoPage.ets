@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router'
 
 @Component
@@ -68,6 +69,7 @@ export struct VideoPage {
         if(this.isHidden){
           Column() {
             Image($r('app.media.previewImg'))
+              .id('previewImg')
               .objectFit(ImageFit.Contain)
           }
           .width('100%')
@@ -79,6 +81,7 @@ export struct VideoPage {
         if(this.isHidden){
           Column() {
             Image($r('app.media.play'))
+              .id('playBtn')
               .width(76).height(76)
               .onClick(() => {
                 this.detailVideoController.start()

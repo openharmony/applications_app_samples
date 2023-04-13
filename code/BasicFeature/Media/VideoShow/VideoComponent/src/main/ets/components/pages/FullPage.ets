@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
 
@@ -66,6 +67,7 @@ export struct FullPage {
             .loop(true)
             .controls(false)
             .objectFit(ImageFit.Contain)
+            .id('fullVideo')
             .onPause(() => {
               this.isHidden = true
             })
@@ -90,6 +92,7 @@ export struct FullPage {
           if(this.isHidden){
             Column() {
               Image($r('app.media.play'))
+                .id('fullPlayBtn')
                 .width(78).height(78)
                 .onClick(() => {
                   this.fullVideoController.start()
@@ -103,6 +106,7 @@ export struct FullPage {
         // 返回上一页按钮
         Column() {
           Image($r('app.media.back'))
+            .id('backBtn')
             .width(42).height(42)
             .onClick(() => {
               router.back()
