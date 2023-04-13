@@ -33,7 +33,7 @@
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568；
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1；
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
 
 3.本示例仅支持模块化编译，在build-profile.json5文件的buildOption字段添加"compileMode": "esmodule"；
 

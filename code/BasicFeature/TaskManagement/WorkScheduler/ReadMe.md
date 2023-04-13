@@ -72,7 +72,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例已适配API10版本SDK，本示例涉及使用系统接口：@ohos.bundle，需要手动替换Full
+2. 本示例已适配API version 9版本SDK，本示例涉及使用系统接口：@ohos.bundle，需要手动替换Full
   SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。

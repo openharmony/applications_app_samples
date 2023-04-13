@@ -32,7 +32,7 @@
 
 2.本示例完整功能必须双端授予允许使用分布式协同能力，否则在只有发起端授权条件下，发起端会弹框提示错误。
 
-3.本示例为stage模型，已适配API10版本SDK，版本号：4.0.5.1；
+3.本示例为stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
 
 4.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
 
