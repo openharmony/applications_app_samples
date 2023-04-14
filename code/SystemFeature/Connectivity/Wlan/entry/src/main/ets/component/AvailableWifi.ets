@@ -44,6 +44,7 @@ export struct AvailableWifi {
             .fontSize(22)
             .layoutWeight(1)
         }
+        .id('validWlan')
         .width('100%')
       }
 
@@ -51,7 +52,7 @@ export struct AvailableWifi {
         ListItem() {
           WifiView({ wifi: item })
         }
-        .key('Wifi' + index)
+        .id(`Wifi${index}`)
         .onClick(() => {
           Logger.info(TAG, 'wifi click')
           this.scanInfo = item
