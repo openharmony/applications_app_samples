@@ -78,7 +78,7 @@ export struct DisplayDevice {
       Row() {
         Rect({ width: '34%', height: '17%' })
           .margin({ top: '10%', left: 4, right: 4, bottom: 4 })
-          .key('bigRect')
+          .id('bigRect')
           .fill('#5dbbff')
           .onClick(async () => {
             await this.getDefaultScreen()
@@ -91,7 +91,7 @@ export struct DisplayDevice {
           Rect({ width: '18%', height: '9%' })
             .margin({ top: '10%', left: 4, right: 4, bottom: 4 })
             .fill('#5dbbff')
-            .key('smallRect' + (index + 1))
+            .id('smallRect' + (index + 1))
             .onClick(async () => {
               await this.getAllScreen()
               Logger.info(TAG, `defaultOrAllScreen = ${this.defaultOrAllScreen}`)
@@ -104,7 +104,7 @@ export struct DisplayDevice {
       Button($r('app.string.add_screen'))
         .width('58%')
         .height('6%')
-        .key('addScreen')
+        .id('addScreen')
         .fontSize(18)
         .margin({ top: 10, left: 4, right: 4, bottom: '8%' })
         .onClick(async () => {
@@ -116,7 +116,7 @@ export struct DisplayDevice {
       Button($r('app.string.remove_screen'))
         .width('58%')
         .height('6%')
-        .key('removeScreen')
+        .id('removeScreen')
         .fontSize(18)
         .margin({ top: 10, left: 4, right: 4, bottom: 4 })
         .onClick(async () => {

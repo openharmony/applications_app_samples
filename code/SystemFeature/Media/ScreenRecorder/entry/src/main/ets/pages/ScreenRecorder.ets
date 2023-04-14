@@ -73,6 +73,7 @@ struct ScreenRecorder {
   build() {
     Row() {
       Rect({ width: 10, height: 10, radius: 2 })
+        .id('stopRecord')
         .fill(Color.Red)
         .visibility(this.isIconHidden ? Visibility.Hidden : Visibility.Visible)
       TextTimer({ controller: this.textTimerController })
