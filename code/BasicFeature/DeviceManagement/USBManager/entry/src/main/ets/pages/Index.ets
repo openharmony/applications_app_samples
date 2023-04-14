@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import usb from '@ohos.usbV9'
+import usb from '@ohos.usb'
 import commonEventManager from '@ohos.commonEventManager'
 import promptAction from '@ohos.promptAction'
 import DeviceCustomDialog from '../common/DeviceCustomDialog'
