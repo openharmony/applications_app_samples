@@ -13,24 +13,24 @@
  * limitations under the License.
  */
 
-import AirQuality from './AirQuality'
-import HoursWeather from './HoursWeather'
-import IndexHeader from './IndexHeader'
-import IndexEnd from './IndexEnd'
-import LifeIndex from './LifeIndex'
-import MultidayWeather from './MultidayWeather'
-import SunCanvas from './SunCanvas'
-import { CityListData, Style } from '@ohos/common'
+import AirQuality from './AirQuality';
+import HoursWeather from './HoursWeather';
+import IndexHeader from './IndexHeader';
+import IndexEnd from './IndexEnd';
+import LifeIndex from './LifeIndex';
+import MultidayWeather from './MultidayWeather';
+import SunCanvas from './SunCanvas';
+import { CityListData, Style } from '@ohos/common';
 
 @Component
 export default struct HomeContent {
-  private cityListData: CityListData | undefined = undefined
-  private index: number = 1
-  private scroller: Scroller = new Scroller()
-  @Prop showSideBar: boolean
-  @StorageLink('titleText') titleText: string[] = []
-  @StorageLink('swiperIndex') swiperIndex: number = 0
-  @State headerOpacity: number = 1
+  private cityListData: CityListData | undefined = undefined;
+  private index: number = 1;
+  private scroller: Scroller = new Scroller();
+  @Prop showSideBar: boolean;
+  @StorageLink('titleText') titleText: string[] = [];
+  @StorageLink('swiperIndex') swiperIndex: number = 0;
+  @State headerOpacity: number = 1;
 
   build() {
     Scroll(this.scroller) {
@@ -68,17 +68,18 @@ export default struct HomeContent {
         }
       }
     }
+    .id('homeContent' + this.index)
     .width('100%')
     .layoutWeight(1)
     .scrollBar(BarState.Off)
     .onScroll(() => {
-      this.headerOpacity = 1 - (this.scroller.currentOffset().yOffset - 45) / 100
+      this.headerOpacity = 1 - (this.scroller.currentOffset().yOffset - 45) / 100;
       if (this.scroller.currentOffset().yOffset > 45) {
-        this.titleText[this.index] = this.cityListData.header.city
-        AppStorage.SetOrCreate('titleText', this.titleText)
+        this.titleText[this.index] = this.cityListData.header.city;
+        AppStorage.SetOrCreate('titleText', this.titleText);
       } else if (this.scroller.currentOffset().yOffset < 45) {
-        this.titleText[this.index] = ''
-        AppStorage.SetOrCreate('titleText', this.titleText)
+        this.titleText[this.index] = '';
+        AppStorage.SetOrCreate('titleText', this.titleText);
       }
     })
   }

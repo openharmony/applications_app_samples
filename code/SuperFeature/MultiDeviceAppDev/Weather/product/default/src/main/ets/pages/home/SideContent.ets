@@ -26,6 +26,7 @@ export default struct SideContent {
     Row() {
       Blank()
       Image($r('app.media.icon_subarea'))
+        .id('cancelSubarea')
         .size({ width: 24, height: 24 })
         .objectFit(ImageFit.Contain)
         .onClick(() => {
@@ -54,8 +55,9 @@ export default struct SideContent {
       List({ space: 12 }) {
         LazyForEach(this.cityList, (item, index) => {
           ListItem() {
-            CityItem({cityInfo: item, index: index})
+            CityItem({ cityInfo: item, index: index })
           }
+          .id('sliderCity' + index)
           .onClick(() => {
             this.swiperIndex = index
             AppStorage.SetOrCreate('swiperIndex', index)
@@ -86,43 +88,43 @@ struct CityItem {
 
   build() {
     Row() {
-    Text(this.cityInfo.name)
-      .fontColor(Color.White)
-      .fontSize(24)
-    if (this.index === 0) {
-      Image($r('app.media.icon_location'))
-        .size({ width: 16, height: 16 })
-        .objectFit(ImageFit.Contain)
-    }
-    Blank()
-    Column() {
-      Row() {
-        Text(this.cityInfo.temp)
-          .fontColor(Color.White)
-          .fontWeight(Style.BIG_FONT_WEIGHT)
-          .fontSize(54)
-        Text($r('app.string.du'))
-          .fontColor(Color.White)
-          .fontSize(20)
-          .margin({ bottom: 28 })
-      }
-
-      Text(this.cityInfo.weather)
+      Text(this.cityInfo.name)
         .fontColor(Color.White)
-        .fontSize(14)
+        .fontSize(24)
+      if (this.index === 0) {
+        Image($r('app.media.icon_location'))
+          .size({ width: 16, height: 16 })
+          .objectFit(ImageFit.Contain)
+      }
+      Blank()
+      Column() {
+        Row() {
+          Text(this.cityInfo.temp)
+            .fontColor(Color.White)
+            .fontWeight(Style.BIG_FONT_WEIGHT)
+            .fontSize(54)
+          Text($r('app.string.du'))
+            .fontColor(Color.White)
+            .fontSize(20)
+            .margin({ bottom: 28 })
+        }
+
+        Text(this.cityInfo.weather)
+          .fontColor(Color.White)
+          .fontSize(14)
+      }
     }
-  }
-  .width('100%')
-  .height(100)
-  .alignItems(VerticalAlign.Center)
-  .padding(Style.NORMAL_PADDING)
-  .border({
-    radius: Style.NORMAL_RADIUS,
-    width: 1,
-    color: this.swiperIndex === this.index ? '#BBFFFFFF' : '#116ACD'
-  })
-  .alignItems(VerticalAlign.Center)
-  .backgroundImageSize(ImageSize.Cover)
-  .backgroundImage(getSideBg(this.cityInfo.weather))
+    .width('100%')
+    .height(100)
+    .alignItems(VerticalAlign.Center)
+    .padding(Style.NORMAL_PADDING)
+    .border({
+      radius: Style.NORMAL_RADIUS,
+      width: 1,
+      color: this.swiperIndex === this.index ? '#BBFFFFFF' : '#116ACD'
+    })
+    .alignItems(VerticalAlign.Center)
+    .backgroundImageSize(ImageSize.Cover)
+    .backgroundImage(getSideBg(this.cityInfo.weather))
   }
 }

@@ -13,26 +13,34 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { City, getSideBg, MyDataSource, Style } from '@ohos/common'
+import router from '@ohos.router';
+import { City, getSideBg, MyDataSource, Style } from '@ohos/common';
 
 @Entry
 @Component
 struct CityList {
-  @StorageLink('cityList') cities: Array<City> = []
-  @StorageLink('curBp') curBp: string = 'lg'
-  private cityList: MyDataSource = new MyDataSource(this.cities)
+  @StorageLink('cityList') cities: Array<City> = [];
+  @StorageLink('curBp') curBp: string = 'lg';
+  private cityList: MyDataSource = new MyDataSource(this.cities);
 
   getOffsetMD(index) {
-    if (index === 0) { return 1 }
-    if (index % 2 === 0) { return 2 }
-    return 0
+    if (index === 0) {
+      return 1;
+    }
+    if (index % 2 === 0) {
+      return 2;
+    }
+    return 0;
   }
 
   getOffsetLG(index) {
-    if (index === 0) { return 2 }
-    if (index % 2 === 0) { return 4 }
-    return 0
+    if (index === 0) {
+      return 2;
+    }
+    if (index % 2 === 0) {
+      return 4;
+    }
+    return 0;
   }
 
   @Builder CityInfo(item, index) {
@@ -103,6 +111,7 @@ struct CityList {
       .layoutWeight(1)
       .margin({ top: 12 })
       .scrollBar(BarState.Off)
+      .align(Alignment.TopStart)
       .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
 
       Column() {
@@ -113,10 +122,11 @@ struct CityList {
         Text($r('app.string.add_city'))
           .fontSize(10)
       }
+      .id('addCity')
       .justifyContent(FlexAlign.Center)
       .padding({ bottom: this.curBp === 'lg' ? Style.ADD_CITY_BOTTOM_LG : Style.ADD_CITY_BOTTOM })
       .onClick(() => {
-        router.push({ url: 'pages/AddCity' })
+        router.pushUrl({ url: 'pages/AddCity' });
       })
     }
     .height('100%')
@@ -124,7 +134,7 @@ struct CityList {
   }
 
   onPageShow() {
-    this.cityList['dataArray'] = this.cities
-    this.cityList.notifyDataReload()
+    this.cityList['dataArray'] = this.cities;
+    this.cityList.notifyDataReload();
   }
 }
