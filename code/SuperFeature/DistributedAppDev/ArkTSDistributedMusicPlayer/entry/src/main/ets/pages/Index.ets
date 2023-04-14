@@ -81,7 +81,6 @@ struct Index {
         deviceType: hardware_deviceManager.DeviceType.UNKNOWN_TYPE,
         networkId: '',
         range: ONE_THOUSAND,
-        authForm: 2
       })
       let deviceTempList = this.remoteDeviceModel.discoverLists.length > 0 ? this.remoteDeviceModel.discoverLists : this.remoteDeviceModel.deviceLists
       for (let i = 0; i < deviceTempList.length; i++) {
