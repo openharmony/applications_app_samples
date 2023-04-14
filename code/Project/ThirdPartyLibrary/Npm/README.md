@@ -54,6 +54,6 @@ N/A
 
 2. In this sample, only open-source pure logic third-party libraries can be imported. The **format** method in dayjs is not supported.
 
-3. This sample is based on the stage model, which is supported from API version 10.
+3. This sample is based on the stage model, which is supported from API version 9.
 
 4. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.

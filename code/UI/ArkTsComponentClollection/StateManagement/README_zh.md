@@ -155,7 +155,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.2。
+2.本示例已适配API version 9版本SDK，版本号：4.0.5.2。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.200, built on November 3, 2022)才可编译运行。
 
