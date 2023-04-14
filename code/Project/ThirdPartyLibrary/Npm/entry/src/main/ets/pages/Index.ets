@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,7 +40,7 @@ struct Index {
             .height(50)
             .type(ButtonType.Normal)
             .margin('5%')
-            .key('getCode')
+            .id('getCode')
             .onClick(() => {
               this.value = ''
               for (let i = 0; i < 6; i++) {
@@ -52,6 +52,7 @@ struct Index {
             .fontSize(35)
             .backgroundColor('#ffe5d9d9')
             .fontColor('#ffc81c1c')
+            .id('checkCode')
             .fontStyle(FontStyle.Italic)
             .margin({ top: 20 })
           Button($r('app.string.next_page'))
@@ -59,7 +60,7 @@ struct Index {
             .width(150)
             .height(50)
             .type(ButtonType.Normal)
-            .key('indexNextPage')
+            .id('indexNextPage')
             .margin({ top: '25%', left: '2%' })
             .onClick(() => {
               this.value = ''
