@@ -18,6 +18,10 @@ import image from '@ohos.multimedia.image'
 import { logger } from '@ohos/photomodify'
 
 const TAG: string = 'Index'
+// 96为需要创建的像素buffer大小，取值为height*width*4
+const BUFFERSIZE: number = 96
+// 图片像素格式，3表示格式为RGBA_8888
+const PIXELMAPFORMAT: number = 3
 
 @Entry
 @Component
@@ -32,9 +36,16 @@ struct Index {
 
   aboutToAppear() {
     logger.info(TAG, 'enter aboutToAppear')
-    if (AppStorage.Get('pixelMaps')) {
-      this.pixelMaps.push(undefined)
-    }
+    const color = new ArrayBuffer(BUFFERSIZE)
+    let opts = { editable: true, pixelFormat: PIXELMAPFORMAT, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts, (error, pixelmap) => {
+      if (error) {
+        logger.info(TAG, `Failed to create pixelmap.`);
+      } else {
+        this.pixelMaps.push(pixelmap)
+        logger.info(TAG, 'Succeeded in creating pixelmap.');
+      }
+    })
     if (router.getParams() && router.getParams()['isShowCamera']) {
       this.isShowCamera = true
     }
