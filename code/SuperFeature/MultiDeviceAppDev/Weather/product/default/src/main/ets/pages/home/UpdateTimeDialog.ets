@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { getUpdateTimes, Style } from '@ohos/common'
+import { getUpdateTimes, Style } from '@ohos/common';
 
 @Preview
 @CustomDialog
 export default struct UpdateTimeDialog {
-  private controller: CustomDialogController
-  private updateTimes: string[] = getUpdateTimes()
-  private handleCancelDialog: () => void
-  @StorageLink('curBp') curBp: string = 'md'
+  private controller: CustomDialogController;
+  private updateTimes: string[] = getUpdateTimes();
+  private handleCancelDialog: () => void;
+  @StorageLink('curBp') curBp: string = 'md';
 
   build() {
     GridRow({ columns: { sm: 4, md: 8, lg: 12 },
@@ -38,7 +38,7 @@ export default struct UpdateTimeDialog {
             List() {
               ForEach(this.updateTimes, (item, index) => {
                 ListItem() {
-                  UpdateTimeItem({index: index, updateTime: item})
+                  UpdateTimeItem({ index: index, updateTime: item })
                 }
               }, item => item)
             }
@@ -76,18 +76,19 @@ export default struct UpdateTimeDialog {
 
   calcListHeight() {
     if (this.curBp === 'lg') {
-      return Style.TIME_LIST_HEIGHT * this.updateTimes.length / 2 + Style.TIME_LIST_MARGIN
+      return Style.TIME_LIST_HEIGHT * this.updateTimes.length / 2 + Style.TIME_LIST_MARGIN;
     } else {
-      return Style.TIME_LIST_HEIGHT * this.updateTimes.length + Style.TIME_LIST_MARGIN
+      return Style.TIME_LIST_HEIGHT * this.updateTimes.length + Style.TIME_LIST_MARGIN;
     }
   }
 }
 
 @Component
 struct UpdateTimeItem {
-  private index: number = 0
-  private updateTime: string = ''
-  @StorageLink('curBp') curBp: string = 'md'
+  private index: number = 0;
+  private updateTime: string = '';
+  @StorageLink('curBp') curBp: string = 'md';
+
   build() {
     Row() {
       Text(this.updateTime)
