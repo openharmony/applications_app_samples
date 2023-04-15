@@ -26,8 +26,8 @@ export default class MyAbilityStage extends AbilityStage {
 
   onAcceptWant(want: Want) {
     Logger.info(TAG, 'MyAbilityStage onAcceptWant start')
-    if (want && want.abilityName == 'SpecifiedAbility') {
-      if (want.parameters && want.parameters.foodItemId) {
+    if (want && want.abilityName === 'SpecifiedAbility') {
+      if (want.parameters) {
         return `SpecifiedAbility${want.parameters.foodItemId}`
       }
     }
