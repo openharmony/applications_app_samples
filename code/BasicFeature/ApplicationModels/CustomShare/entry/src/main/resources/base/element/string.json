@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Share"
+    },
+    {
+      "name": "share_link",
+      "value": "文本+链接分享"
+    },
+    {
+      "name": "share_file",
+      "value": "应用内文件分享"
+    },
+    {
+      "name": "share_other",
+      "value": "其它应用分享"
+    },
+    {
+      "name": "detail_title",
+      "value": "推荐一个好物给你请查收"
+    },
+    {
+      "name": "detail_price",
+      "value": "9800"
+    },
+    {
+      "name": "title",
+      "value": "手机拥有超光谱摄影系统 创新双屏操作体验 120Hz高刷 8GB+256GB"
+    },
+    {
+      "name": "src_img",
+      "value": "https://gitee.com/openharmony/applications_app_samples/raw/master/AppSample/Chat/entry/src/main/resources/base/media/phone.png"
+    },
+    {
+      "name": "fontSize_eighteen",
+      "value": "18vp"
+    },
+    {
+      "name": "permission_internet",
+      "value": "允许使用Internet网络"
+    },
+    {
+      "name": "permission_read_media",
+      "value": "允许应用读取用户外部存储中的媒体文件信息"
+    },
+    {
+      "name": "permission_write_media",
+      "value": "允许应用读写用户外部存储中的媒体文件信息"
+    },
+    {
+      "name": "permission_media_location",
+      "value": "允许应用访问用户媒体文件中的地理位置信息"
+    },
+    {
+      "name": "permission_capture_screen",
+      "value": "允许应用访问用户媒体文件中的地理位置信息"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "app_menu_open",
+      "value": "Open"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "Snippets"
+    },
+    {
+      "name": "remove",
+      "value": "Remove"
+    },
+    {
+      "name": "uninstall",
+      "value": "Uninstall"
+    },
+    {
+      "name": "uninstall_success",
+      "value": "Successfully uninstalled"
+    },
+    {
+      "name": "disable_uninstall",
+      "value": "Disable uninstall"
+    },
+    {
+      "name": "uninstall_failed",
+      "value": "Uninstallation failed"
+    }
+  ]
+}

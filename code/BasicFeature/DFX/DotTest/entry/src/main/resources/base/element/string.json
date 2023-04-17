@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "DotTest"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "DotTest"
+    },
+    {
+      "name": "description_mainability",
+      "value": "Empty Ability"
+    },
+    {
+      "name": "appName",
+      "value": "Dot Testing"
+    },
+    {
+      "name": "event",
+      "value": "Event into"
+    },
+    {
+      "name": "tracking",
+      "value": "Tracking"
+    },
+    {
+      "name": "disable",
+      "value": "Disable application dosing："
+    },
+    {
+      "name": "writeSuccess",
+      "value": "Successful write event"
+    },
+    {
+      "name": "writeFailed",
+      "value": "Write event failed，"
+    },
+    {
+      "name": "appDisabled",
+      "value": "Failed to write event when application log is disabled"
+    },
+    {
+      "name": "appAble",
+      "value": "Enable application registration, at which time events can be written successfully"
+    }
+  ]
+}

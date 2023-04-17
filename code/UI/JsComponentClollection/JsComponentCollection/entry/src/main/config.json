@@ -1,0 +1,90 @@
+{
+  "app": {
+    "vendor": "samples",
+    "bundleName": "ohos.samples.jscomponentcollection",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:entry_desc",
+        "type": "page",
+        "launchType": "singleton"
+      }
+    ],
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "ohos.samples.jscomponentcollection",
+    "name": ".entry",
+    "js": [
+      {
+        "pages": [
+          "pages/index/Index",
+          "pages/animations/pageTransitionSample/PageTransitionSample",
+          "pages/animations/pageTransitionSampleFromBottom/PageTransitionSampleFromBottom",
+          "pages/animations/pageTransitionSampleFromLeft/PageTransitionSampleFromLeft",
+          "pages/animations/pageTransitionSampleFromTop/PageTransitionSampleFromTop",
+          "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight",
+          "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale",
+          "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate",
+          "pages/components/badgeSample/BadgeSample",
+          "pages/components/basic/buttonSample/ButtonSample",
+          "pages/components/basic/datePickerSample/DatePickerSample",
+          "pages/components/basic/dividerSample/DividerSample",
+          "pages/components/basic/inputSample/InputSample",
+          "pages/components/basic/qrCodeSample/QRCodeSample",
+          "pages/components/basic/radioSample/RadioSample",
+          "pages/components/basic/selectSample/SelectSample",
+          "pages/components/basic/sliderSample/SliderSample",
+          "pages/components/basic/spanSample/SpanSample",
+          "pages/components/basic/switchSample/SwitchSample",
+          "pages/components/basic/textSample/TextSample",
+          "pages/globalMethods/popups/dialogSample/DialogSample",
+          "pages/universals/properties/backgroundSample/BackgroundSample",
+          "pages/universals/properties/borderSample/BorderSample",
+          "pages/universals/events/clickSample/ClickSample",
+          "pages/universals/properties/fontSample/FontSample",
+          "pages/universals/properties/rotateSample/RotateSample",
+          "pages/universals/properties/sizeSample/SizeSample",
+          "pages/universals/properties/translateSample/TranslateSample"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

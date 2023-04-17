@@ -1,0 +1,104 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "无他"
+    },
+    {
+      "name": "LauncherAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "LauncherAbility_label",
+      "value": "无他"
+    },
+    {
+      "name": "always",
+      "value": "一直"
+    },
+    {
+      "name": "once",
+      "value": "仅本次"
+    },
+    {
+      "name": "never",
+      "value": "从不"
+    },
+    {
+      "name": "sample_version",
+      "value": "version 0.0.1"
+    },
+    {
+      "name": "sample_desc",
+      "value": "本示例用于演示公共事件的订阅和发布的使用方法和效果。需要注意的是，由于本应用使用了发布粘性事件的系统行为，因此是作为系统应用发布的，这一特性普通三方应用无法使用。"
+    },
+    {
+      "name": "once_tips",
+      "value": "如下事件仅在本次运行期生效:"
+    },
+    {
+      "name": "screen_on_tips",
+      "value": "请不要使用手机，您进行了亮屏操作"
+    },
+    {
+      "name": "screen_off_tips",
+      "value": "请不要使用手机，您进行了灭屏操作"
+    },
+    {
+      "name": "wifi_tips",
+      "value": "请不要使用手机，您连接或断开了wifi"
+    },
+    {
+      "name": "total_time_tips",
+      "value": "本次监控时长："
+    },
+    {
+      "name": "total_interrupt_tips",
+      "value": "监控期间干扰次数："
+    },
+    {
+      "name": "current_listen_tips",
+      "value": "当前监听状态："
+    },
+    {
+      "name": "no_interrupt_tips",
+      "value": "无干扰"
+    },
+    {
+      "name": "enable_screen_on",
+      "value": "是否记录亮屏事件"
+    },
+    {
+      "name": "enable_screen_off",
+      "value": "是否记录灭屏事件"
+    },
+    {
+      "name": "enable_wifi",
+      "value": "是否记录联网事件"
+    },
+    {
+      "name": "start_time",
+      "value": "开始于："
+    },
+    {
+      "name": "end_time",
+      "value": "结束于："
+    },
+    {
+      "name": "total_time",
+      "value": "总耗时："
+    },
+    {
+      "name": "total_interrupt",
+      "value": "干扰次数："
+    }
+  ]
+}

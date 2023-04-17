@@ -1,0 +1,49 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "Flybird"
+    },
+
+    {
+      "name": "connect_service",
+      "value": "Connect service"
+    },
+    {
+      "name": "disconnect_service",
+      "value": "Disconnect service"
+    },
+    {
+      "name": "set_alarm",
+      "value": "set game alarm"
+    },
+    {
+      "name": "start_game",
+      "value": "start game"
+    },
+    {
+      "name": "input_placeholder",
+      "value": "Input the input string"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "Fly Bird"
+    },
+    {
+      "name": "set_calendar",
+      "value": "set game calendar"
+    }
+  ]
+}

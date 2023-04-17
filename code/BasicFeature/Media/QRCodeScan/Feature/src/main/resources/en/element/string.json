@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "QRCode Scan"
+    },
+    {
+      "name": "selectedFileNotImage",
+      "value": "the selected file is not a picture"
+    },
+    {
+      "name": "qrcodeResult",
+      "value": "the scan was successful. The results are as follows："
+    },
+    {
+      "name": "putTheQRCodeToScan",
+      "value": "put the QR code into the box and scan it"
+    },
+    {
+      "name": "lightByTouch",
+      "value": "light by touch"
+    },
+    {
+      "name": "notSupportCurrent",
+      "value": "functional modules are under development..."
+    },
+    {
+      "name": "queryImageFailed",
+      "value": "query image failed"
+    },
+    {
+      "name": "qrCodeNotRecognized",
+      "value": "The QR code was not recognized"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "priority": 5,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TestAbility",
+        "srcEntrance": "./ets/TestAbility/TestAbility.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION"
+      },
+      {
+        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "FormAbility",
+        "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+        "label": "$string:form_FormAbility_label",
+        "description": "$string:form_FormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      },
+      {
+        "name": "ServiceExtAbility",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+      },
+      {
+        "name": "DataShareExtAbility",
+        "srcEntrance": "./ets/DataShareExtensionAbility/DataShareExtAbility.ts",
+        "icon": "$media:icon",
+        "description": "$string:DataShareExtensionAbility_desc",
+        "type": "dataShare",
+        "uri": "datashare://ohos.samples.stagemodel.DataShare",
+        "visible": true
+      },
+    ]
+  }
+}

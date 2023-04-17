@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "二维码扫描"
+    },
+    {
+      "name": "selectedFileNotImage",
+      "value": "所选文件不是图片"
+    },
+    {
+      "name": "qrcodeResult",
+      "value": "扫描成功，结果如下："
+    },
+    {
+      "name": "putTheQRCodeToScan",
+      "value": "将二维码放入框中,即可扫描"
+    },
+    {
+      "name": "lightByTouch",
+      "value": "轻触照亮"
+    },
+    {
+      "name": "notSupportCurrent",
+      "value": "功能模块开发中..."
+    },
+    {
+      "name": "queryImageFailed",
+      "value": "图片获取失败"
+    },
+    {
+      "name": "qrCodeNotRecognized",
+      "value": "未识别到二维码"
+    }
+  ]
+}

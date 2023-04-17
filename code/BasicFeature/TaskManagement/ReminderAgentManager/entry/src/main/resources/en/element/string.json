@@ -1,0 +1,152 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "Create a scheduled reminder with countdown, calendar, alarm"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "SystemCapability.Notification.ReminderAgent"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Background Agent Reminder"
+    },
+    {
+      "name": "permission_reason",
+      "value": "Allow the app to use background agent reminders"
+    },
+    {
+      "name": "permission_vibrate",
+      "value": "Allows the application to control motor vibration"
+    },
+    {
+      "name": "permission_media",
+      "value": "Allows the app to read media file information from the user's external storage"
+    },
+    {
+      "name": "setting",
+      "value": "Settings"
+    },
+    {
+      "name": "delete",
+      "value": "Delete"
+    },
+    {
+      "name": "confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "alarm_clock",
+      "value": "Alarm Clock"
+    },
+    {
+      "name": "alarm_clock_close",
+      "value": "Turn off alarm"
+    },
+    {
+      "name": "alarm_clock_postpone",
+      "value": "Snooze alarm"
+    },
+    {
+      "name": "alarm_clock_reach",
+      "value": "Alarm time has arrived"
+    },
+    {
+      "name": "alarm_clock_existence",
+      "value": "Alarm clock already exists"
+    },
+    {
+      "name": "alarm_clock_one",
+      "value": "One"
+    },
+    {
+      "name": "alarm_clock_two",
+      "value": "Two"
+    },
+    {
+      "name": "alarm_clock_three",
+      "value": "Three"
+    },
+    {
+      "name": "alarm_clock_four",
+      "value": "Four"
+    },
+    {
+      "name": "alarm_clock_five",
+      "value": "Five"
+    },
+    {
+      "name": "alarm_clock_six",
+      "value": "Six"
+    },
+    {
+      "name": "alarm_clock_seven",
+      "value": "Seven"
+    },
+    {
+      "name": "alarm_clock_remind_day",
+      "value": "Set reminder days"
+    },
+    {
+      "name": "alarm_clock_snooze",
+      "value": "Set the number of intervals"
+    },
+    {
+      "name": "alarm_clock_interval",
+      "value": "Set interval duration"
+    },
+    {
+      "name": "calendar",
+      "value": "Calendar"
+    },
+    {
+      "name": "calendar_close",
+      "value": "Turn off calendar reminders"
+    },
+    {
+      "name": "calendar_reach",
+      "value": "Calendar reminder time is up"
+    },
+    {
+      "name": "calendar_existence",
+      "value": "Calendar reminder already exists"
+    },
+    {
+      "name": "calendar_time",
+      "value": "Set reminder time"
+    },
+    {
+      "name": "timer",
+      "value": "Timer"
+    },
+    {
+      "name": "countdown_close",
+      "value": "Countdown has ended"
+    },
+    {
+      "name": "countdown_hour",
+      "value": "Hour"
+    },
+    {
+      "name": "countdown_minute",
+      "value": "Points"
+    },
+    {
+      "name": "countdown_second",
+      "value": "Seconds"
+    },
+    {
+      "name": "is_vibrator",
+      "value": "Set vibration"
+    },
+    {
+      "name": "setting_ringtone",
+      "value": "Set ringtone"
+    }
+  ]
+}

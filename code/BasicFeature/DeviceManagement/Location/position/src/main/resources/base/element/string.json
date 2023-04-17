@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "description_mainability",
+      "value": "位置服务"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "位置服务"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "位置服务"
+    },
+    {
+      "name": "deliver_to",
+      "value": "配送至"
+    },
+    {
+      "name": "current_positioning",
+      "value": "定位/历史访问城市"
+    },
+    {
+      "name": "xian",
+      "value": "西安"
+    },
+    {
+      "name": "domestic_hot_city",
+      "value": "国内热门城市"
+    }
+  ]
+}

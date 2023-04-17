@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "五子棋"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "五子棋"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "五子棋"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "select_device",
+      "value": "选择设备"
+    },
+    {
+      "name": "restart",
+      "value": "重开"
+    },
+    {
+      "name": "repentance_chess",
+      "value": "悔棋"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "允许不同设备间的数据交换"
+    },
+    {
+      "name": "total",
+      "value": "共计"
+    },
+    {
+      "name": "round",
+      "value": "回合"
+    },
+    {
+      "name": "black_chess",
+      "value": "黑子"
+    },
+    {
+      "name": "white_chess",
+      "value": "白子"
+    },
+    {
+      "name": "win",
+      "value": "胜！"
+    }
+  ]
+}

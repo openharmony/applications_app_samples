@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "save_to_phone",
+      "value": "保存至：手机"
+    },
+    {
+      "name": "contact_name",
+      "value": "姓名"
+    },
+    {
+      "name": "contact_phone",
+      "value": "电话"
+    },
+    {
+      "name": "contact_address",
+      "value": "地址"
+    },
+    {
+      "name": "contact_email",
+      "value": "邮箱"
+    },
+    {
+      "name": "contact_remark",
+      "value": "备注"
+    },
+    {
+      "name": "default",
+      "value": "默认"
+    },
+    {
+      "name": "phone_ring",
+      "value": "电话铃声"
+    }
+  ]
+}

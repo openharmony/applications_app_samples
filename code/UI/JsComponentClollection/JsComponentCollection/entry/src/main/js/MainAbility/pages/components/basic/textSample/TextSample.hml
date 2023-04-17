@@ -1,0 +1,76 @@
+<!--
+ Copyright (c) 2022 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
+<element name="sliderBox" src="../../../../common/commonItemSlider/CommonItemSlider.hml"></element>
+<element name="selectBox" src="../../../../common/commonItemSelect/CommonItemSelect.hml"></element>
+<div class="container">
+  <titleBar title="{{ textTitle }}"></titleBar>
+  <div class="container-top">
+
+  <!-- text start -->
+    <text class="container-top-text-content"
+          style="color: {{ fontColor }};
+            text-align: {{ textAlign }};
+            line-height: {{ lineHeight + 'vp' }};
+            text-decoration: {{ textDecoration }};
+            text-overflow: {{ textOverflow }};
+            max-lines: {{ maxLines }};
+            letter-spacing: {{ letterSpacing }};
+            min-font-size: 14vp;
+            max-font-size: 20vp;">
+      {{ $t('strings.text_content') }}
+    </text>
+
+  <!-- text end -->
+    <sliderBox @slider-value="setLetterSpacingValue"
+               left-text="{{ textChangeLetterSpacing }}"
+               value="{{ letterSpacing }}"
+               min="{{ minSliderLetterSpacing }}"
+               max="{{ maxSliderLetterSpacing }}">
+    </sliderBox>
+    <sliderBox @slider-value="setLineHeightValue"
+               left-text="{{ textChangeLineHeight }}"
+               value="{{ lineHeight }}"
+               min="{{ minSliderLineHeight }}"
+               max="{{ maxSliderLineHeight }}">
+    </sliderBox>
+    <selectBox @select-value="setAlignTypeValue"
+               left-text="{{ textChangeAlignmentType }}"
+               select-options="{{ textAlignmentTypeOptions }}">
+    </selectBox>
+    <selectBox @select-value="setDisplayModeValue"
+               left-text="{{ textChangeDisplayMode }}"
+               select-options="{{ textDisplayModeOptions }}">
+    </selectBox>
+    <selectBox @select-value="setDecorativeThreadValue"
+               left-text="{{ textChangeDecorativeThread }}"
+               select-options="{{ textDecorativeThreadOptions }}">
+    </selectBox>
+    <selectBox @select-value="setFontColorValue"
+               left-text="{{ textChangeFontColor }}"
+               select-options="{{ textInputColorOptions }}">
+    </selectBox>
+  </div>
+
+  <div class="container-bottom bottom-margin">
+    <text class="container-bottom-text-content">{{ textContentEn }}</text>
+    <selectBox @select-value="setTextCaseValue"
+               left-text="{{ textChangeTextCase }}"
+               select-options="{{ textCaseOptions }}">
+    </selectBox>
+  </div>
+</div>
+

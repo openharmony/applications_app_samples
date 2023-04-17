@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "vegetable",
+      "value": "素食"
+    },
+    {
+      "name": "vegetable_potato",
+      "value": "土豆"
+    },
+    {
+      "name": "vegetable_cabbage",
+      "value": "卷心菜"
+    },
+    {
+      "name": "vegetable_eggplant",
+      "value": "茄子"
+    },
+    {
+      "name": "fruit",
+      "value": "水果"
+    },
+    {
+      "name": "fruit_apple",
+      "value": "苹果"
+    },
+    {
+      "name": "fruit_banana",
+      "value": "香蕉"
+    },
+    {
+      "name": "fruit_peach",
+      "value": "桃子"
+    },
+    {
+      "name": "meat",
+      "value": "肉类"
+    },
+    {
+      "name": "meat_beef",
+      "value": "牛肉"
+    },
+    {
+      "name": "meat_pork",
+      "value": "猪肉"
+    },
+    {
+      "name": "meat_chicken",
+      "value": "鸡肉"
+    },
+    {
+      "name": "snacks",
+      "value": "零食"
+    },
+    {
+      "name": "snacks_biscuits",
+      "value": "饼干"
+    },
+    {
+      "name": "snacks_chips",
+      "value": "土豆条"
+    },
+    {
+      "name": "snacks_candy",
+      "value": "糖果"
+    },
+    {
+      "name": "final_price",
+      "value": "总价格："
+    },
+    {
+      "name": "confirm",
+      "value": "提交订单"
+    }
+  ]
+}

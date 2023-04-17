@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "RunningLock"
+    },
+    {
+      "name": "init_output",
+      "value": "The sleep lock is off, and the screen can be off periodically"
+    },
+    {
+      "name": "control_sleepLock",
+      "value": "System sleep control lock"
+    },
+    {
+      "name": "search_support",
+      "value": "Query suppor"
+    },
+    {
+      "name": "sleepLockSwitch",
+      "value": "Sleep lock switch"
+    },
+    {
+      "name": "timingOut_screen",
+      "value": "Timing out screen 5s after"
+    },
+    {
+      "name":"supportLock",
+      "value": "supportSleepLock"
+    },
+    {
+      "name":"unSupportLock",
+      "value": "unSupportSleepLock"
+    },
+    {
+      "name":"stopSleep",
+      "value": "The sleep lock is open and the screen cannot be periodically extinguished"
+    },
+    {
+      "name":"turnSleep",
+      "value": "The lock has been removed, and the screen can be put out periodically after 5 seconds"
+    }
+  ]
+}

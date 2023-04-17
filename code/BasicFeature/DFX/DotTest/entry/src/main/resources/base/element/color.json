@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "toggle_selectedColor",
+      "value": "#007DFF"
+    },
+    {
+      "name": "toggle_switchPointColor",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "operation_bgColor",
+      "value": "#FF708090"
+    },
+    {
+      "name": "title_bgColor",
+      "value": "#0D9FFB"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "message"
+    },
+    {
+      "name": "contact",
+      "value": "contacts"
+    },
+    {
+      "name": "sim",
+      "value": "SIM card"
+    },
+    {
+      "name": "full_name",
+      "value": "name"
+    },
+    {
+      "name": "telephone",
+      "value": "telephone"
+    },
+    {
+      "name": "save",
+      "value": "save contact"
+    },
+    {
+      "name": "manager",
+      "value": "manager"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "show_name",
+      "value": "name:"
+    },
+    {
+      "name": "show_telephone",
+      "value": "telephone:"
+    },
+    {
+      "name": "message_service",
+      "value": "information service"
+    },
+    {
+      "name": "new_contact",
+      "value": "new contact"
+    },
+    {
+      "name": "message",
+      "value": "message"
+    },
+    {
+      "name": "title_dialog",
+      "value": "Input error "
+    },
+    {
+      "name": "message_dialog",
+      "value": "name and phone number cannot be empty "
+    },
+    {
+      "name": "determine",
+      "value": "determine"
+    },
+    {
+      "name": "no_sim",
+      "value": "no SIM"
+    },
+    {
+      "name": "insert_sim",
+      "value": "please insert sim card"
+    },
+    {
+      "name": "no_message",
+      "value": "no message"
+    },
+    {
+      "name": "input_message",
+      "value": "please input message"
+    },
+    {
+      "name": "repeat_contact",
+      "value": "repeat contact"
+    },
+    {
+      "name": "exist_contact",
+      "value": "The contact already exists"
+    }
+  ]
+}

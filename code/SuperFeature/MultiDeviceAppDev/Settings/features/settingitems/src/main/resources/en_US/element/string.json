@@ -1,0 +1,164 @@
+{
+  "string": [
+    {
+      "name": "enabled",
+      "value": "On"
+    },
+    {
+      "name": "disabled",
+      "value": "Off"
+    },
+    {
+      "name": "settings",
+      "value": "Settings"
+    },
+    {
+      "name": "searchHint",
+      "value": "Search"
+    },
+    {
+      "name": "wifiTab",
+      "value": "WLAN"
+    },
+    {
+      "name": "wifiTipConnectedWLAN",
+      "value": "Connected WLAN"
+    },
+    {
+      "name": "wifiTipValidWLAN",
+      "value": "Valid WLAN"
+    },
+    {
+      "name": "wifiInfoTitleFrequency",
+      "value": "Frequency"
+    },
+    {
+      "name": "wifiSummaryConnected",
+      "value": "Connected"
+    },
+    {
+      "name": "wifiSummaryConnecting",
+      "value": "Connecting..."
+    },
+    {
+      "name": "wifiSummarySaveEncrypted",
+      "value": "Saved, Encrypted"
+    },
+    {
+      "name": "wifiSummarySaveOpen",
+      "value": "Saved, Open"
+    },
+    {
+      "name": "wifiSummaryEncrypted",
+      "value": "Encrypted"
+    },
+    {
+      "name": "wifiSummaryOpen",
+      "value": "Open"
+    },
+    {
+      "name": "brightnessTab",
+      "value": "Display & Brightness"
+    },
+    {
+      "name": "applyTab",
+      "value": "Apps"
+    },
+    {
+      "name": "aboutTab",
+      "value": "About Device"
+    },
+    {
+      "name": "volumeControlTab",
+      "value": "Sounds"
+    },
+    {
+      "name": "wifiList",
+      "value": "WLAN-List which can be used"
+    },
+    {
+      "name": "usersAccountsTab",
+      "value": "Users & Accounts"
+    },
+    {
+      "name": "systemTab",
+      "value": "System & Updates"
+    },
+    {
+      "name": "privacy",
+      "value": "Privacy"
+    },
+    {
+      "name": "permissionManager",
+      "value": "Permission Manager"
+    },
+    {
+      "name": "storageTab",
+      "value": "Storage"
+    },
+    {
+      "name": "security",
+      "value": "security"
+    },
+    {
+      "name": "privacyTab",
+      "value": "privacyTab"
+    },
+    {
+      "name": "biometricsAndPassword",
+      "value": "Biometrics & Password"
+    },
+    {
+      "name": "moreConnectionsTab",
+      "value": "More Connections"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    },
+    {
+      "name": "nfcTips",
+      "value": "To perform mobile payment, key verification, and touch, touch the back of the device to the NFC sensor area of another terminal."
+    },
+    {
+      "name": "bluetoothTab",
+      "value": "Bluetooth"
+    },
+    {
+      "name": "mobileData",
+      "value": "Mobile Data"
+    },
+    {
+      "name": "moreWlanSettings",
+      "value": "More settings"
+    },
+    {
+      "name": "wlanPlus",
+      "value": "WLAN+"
+    },
+    {
+      "name": "wlanPlusTip",
+      "value": "Automatically switch between WLAN and mobile data to stay online."
+    },
+    {
+      "name": "wlanDirect",
+      "value": "WLAN Direct"
+    },
+    {
+      "name": "wlanSecurityCheck",
+      "value": "WLAN security check"
+    },
+    {
+      "name": "wlanSecurityCheckTip",
+      "value": "Check the security of connected WLAN networks, and avoid connecting to known networks that pose security risks."
+    },
+    {
+      "name": "savedWlan",
+      "value": "Saved WLAN"
+    },
+    {
+      "name": "installCertificates",
+      "value": "Install certificates"
+    }
+  ]
+}

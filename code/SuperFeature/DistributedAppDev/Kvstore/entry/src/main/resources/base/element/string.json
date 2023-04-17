@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "title",
+      "value": "KvStore"
+    },
+    {
+      "name": "check_device",
+      "value": "Check device"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "note",
+      "value": "Note"
+    },
+    {
+      "name": "note_content",
+      "value": "Note content"
+    }
+  ]
+}

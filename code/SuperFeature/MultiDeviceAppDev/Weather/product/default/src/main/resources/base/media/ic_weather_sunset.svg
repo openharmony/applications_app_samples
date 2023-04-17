@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_weather_sunset</title>
+    <defs>
+        <linearGradient x1="56.0529849%" y1="0%" x2="56.0529849%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFE466" offset="0%"></stop>
+            <stop stop-color="#FFC322" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="96.0384828%" id="linearGradient-2">
+            <stop stop-color="#FFDF5C" offset="0%"></stop>
+            <stop stop-color="#FFC323" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="ic_weather_sunset" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,18.375 C17.4081869,18.375 20.2227503,20.9166045 20.6517215,24.2078447 L7.34827851,24.2078447 C7.77724968,20.9166045 10.5918131,18.375 14,18.375 Z" id="形状结合" fill="url(#linearGradient-1)"></path>
+        <path d="M14,13.125 L14,15.75 M22.4558186,16.6275147 L20.5996633,18.48367 M5.54418141,16.6275147 L7.40033671,18.48367" id="Combined-Shape" stroke="url(#linearGradient-2)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero"></path>
+        <line x1="24.3541667" y1="25.0833333" x2="3.50593948" y2="25.0833333" id="直线-2" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round"></line>
+        <line x1="10.1909143" y1="5.39993553" x2="17.8387223" y2="5.39993553" id="直线-3" stroke="#FFFFFF" stroke-width="1.45833333" stroke-linecap="round" transform="translate(13.982581, 5.399936) scale(1, -1) rotate(-270.000000) translate(-13.982581, -5.399936) "></line>
+        <line x1="13.4166667" y1="7.4375" x2="18.010496" y2="7.62094425" id="直线-3" stroke="#FFFFFF" stroke-width="1.45833333" stroke-linecap="round" transform="translate(15.750000, 7.437500) scale(1, -1) rotate(-315.000000) translate(-15.750000, -7.437500) "></line>
+        <line x1="9.91666667" y1="7.4375" x2="14.510496" y2="7.62094425" id="直线-3" stroke="#FFFFFF" stroke-width="1.45833333" stroke-linecap="round" transform="translate(12.250000, 7.437500) rotate(225.000000) translate(-12.250000, -7.437500) "></line>
+    </g>
+</svg>

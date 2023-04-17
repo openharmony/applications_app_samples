@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "bg1",
+      "value": "#f2f2f2"
+    },
+    {
+      "name": "fontColor",
+      "value": "#66696d"
+    },
+    {
+      "name": "btn1",
+      "value": "#65cce1"
+    },
+    {
+      "name": "btn2",
+      "value": "#ccc"
+    }
+  ]
+}

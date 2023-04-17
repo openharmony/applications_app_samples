@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "eTSDistributedRdb"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "DistributedRdb"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DistributedRdb"
+    },
+    {
+      "name": "check_device",
+      "value": "Check device"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "Search contact"
+    },
+    {
+      "name": "select_all",
+      "value": "Select all"
+    },
+    {
+      "name": "delete",
+      "value": "Delete"
+    },
+    {
+      "name": "sure",
+      "value": "OK"
+    },
+    {
+      "name": "quit",
+      "value": "Quit"
+    },
+    {
+      "name": "male",
+      "value": "Male"
+    },
+    {
+      "name": "female",
+      "value": "Female"
+    },
+    {
+      "name": "gender",
+      "value": "Gender:"
+    },
+    {
+      "name": "name",
+      "value": "Name"
+    },
+    {
+      "name": "phone",
+      "value": "Phone"
+    },
+    {
+      "name": "remark",
+      "value": "Remark"
+    },
+    {
+      "name": "automatic",
+      "value": "Automatic synchronization"
+    },
+    {
+      "name": "manual",
+      "value": "Manual synchronization"
+    },
+    {
+      "name": "setting",
+      "value": "Setting"
+    },
+    {
+      "name": "connect",
+      "value": "Connect device"
+    },
+    {
+      "name": "delete_contact",
+      "value": "Delete the selected contacts?"
+    },
+    {
+      "name": "name_validate",
+      "value": "姓名不能为空"
+    },
+    {
+      "name": "phone_validate",
+      "value": "手机不能为空"
+    }
+  ]
+}

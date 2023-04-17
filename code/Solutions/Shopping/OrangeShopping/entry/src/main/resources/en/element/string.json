@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_descc",
+      "value": "OrangeShopping"
+    },
+    {
+      "name": "MainAbility_descc",
+      "value": "OrangeShopping"
+    },
+    {
+      "name": "MainAbility_name",
+      "value": "OrangeShopping"
+    },
+    {
+      "name": "WorkSchedulerExtensionAbility_label",
+      "value": "WorkSchedulerExtensionAbility"
+    },
+    {
+      "name": "WorkSchedulerExtensionAbility_desc",
+      "value": "system schedules the task execution time"
+    }
+  ]
+}

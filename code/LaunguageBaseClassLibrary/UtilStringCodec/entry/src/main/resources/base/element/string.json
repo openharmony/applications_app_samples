@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "StringCodec"
+    },
+    {
+      "name": "StringCodec_title",
+      "value": "string encoding and decoding"
+    },
+    {
+      "name": "StringName",
+      "value": "character string"
+    },
+    {
+      "name": "SpecString",
+      "value": "specString:"
+    },
+    {
+      "name": "SpecString_info",
+      "value": "OpenHarmony 3.0"
+    },
+    {
+      "name": "result",
+      "value": "result = "
+    },
+    {
+      "name": "result_f",
+      "value": "result[%f] = "
+    },
+    {
+      "name": "result_i",
+      "value": "result[%i] = "
+    },
+    {
+      "name": "result_d",
+      "value": "result[%d] = "
+    },
+    {
+      "name": "result_s",
+      "value": "result[%s] = "
+    },
+    {
+      "name": "SpecFormOutput",
+      "value": "specific format output"
+    },
+    {
+      "name": "StringCodec_info",
+      "value": "OpenHarmony 3.0 has a track to follow in the future!"
+    },
+    {
+      "name": "read",
+      "value": "read:"
+    },
+    {
+      "name": "write",
+      "value": "write:"
+    },
+    {
+      "name": "Text_encoder",
+      "value": "text encoder"
+    },
+    {
+      "name": "Text_decoder",
+      "value": "text decoder"
+    },
+    {
+      "name": "description_errlnput",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "entry_errlnput",
+      "value": "entry_errlnput"
+    },
+    {
+      "name": "message",
+      "value": "OpenHarmony 3.0 has a track to follow in the future!"
+    }
+  ]
+}

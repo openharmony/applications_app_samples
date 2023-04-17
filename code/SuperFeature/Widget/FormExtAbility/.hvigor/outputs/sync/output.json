@@ -1,0 +1,51 @@
+{
+  "ohos-module-entry": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\loader_out\\default",
+          "RES_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\jsbundle",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\manifest\\default"
+        }
+      },
+      "ohosTest": {
+        "SOURCE_ROOT": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\src\\ohosTest",
+        "RESOURCES_PATH": [
+          "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\src\\ohosTest\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "RES_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\cache\\ohosTest\\ohosTest@CompileArkTS\\jsbundle",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\cache\\ohosTest\\ohosTest@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\entry\\build\\default\\intermediates\\manifest\\ohosTest"
+        }
+      }
+    }
+  },
+  "ohos-project": {
+    "SELECT_PRODUCT_NAME": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\build",
+    "BUNDLE_NAME": "ohos.samples.formextability",
+    "BUILD_PATH": {
+      "OUTPUT_PATH": "C:\\Users\\tbh\\Desktop\\samples\\applications_app_samples\\code\\SuperFeature\\Widget\\FormExtAbility\\build\\outputs\\default"
+    }
+  },
+  "version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "video_desc",
+      "value": "description"
+    },
+    {
+      "name": "video_ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "video_ability_label",
+      "value": "label"
+    }
+  ]
+}

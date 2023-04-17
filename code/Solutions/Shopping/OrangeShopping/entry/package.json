@@ -1,0 +1,25 @@
+{
+  "license": "ISC",
+  "devDependencies": {},
+  "name": "product",
+  "ohos": {
+    "org": "huawei",
+    "directoryLevel": "module",
+    "buildTool": "hvigor"
+  },
+  "description": "example description",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/http": "file:../libs/ohos-http-1.0.0.tgz",
+    "@ohos/video-component": "file:../libs/ohos-video-component-1.0.4.tgz",
+    "@ohos/details-page-component": "file:../feature/detailPage",
+    "@ohos/notification": "file:../libs/ohos-notification-1.0.0.tgz",
+    "@ohos/scan-component": "file:../libs/ohos-feature-qr-code-scan-1.0.0.tgz",
+    "@ohos/updatedialog": "file:../libs/ohos-updatedialog-1.0.0.tgz",
+    "@ohos/enter-animation": "file:../libs/ohos-enter-animation-1.0.1.tgz",
+    "@ohos/share-component": "file:../libs/ohos-sharecomponent-1.0.1.tgz",
+    "@ohos/emitter": "file:../feature/emitter",
+    "@ohos/navigation-component": "file:../feature/navigationHome"
+  }
+}
