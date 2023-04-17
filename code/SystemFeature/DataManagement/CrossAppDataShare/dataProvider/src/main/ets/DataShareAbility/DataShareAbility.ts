@@ -24,7 +24,7 @@ export default class DataShareAbility extends DataShareExtensionAbility {
   onCreate(want, callback) {
     logger.info(TAG, 'onCreate')
     try {
-      rdb.getRdbStore(this.context, STORE_CONFIG, (error, data) => {
+      rdb.getRdbStore(globalThis.context, STORE_CONFIG, (error, data) => {
         logger.info(TAG, 'DataShareExtAbility getRdbStore done')
         rdbStore = data
         rdbStore.executeSql(SQL_CREATE_TABLE, [], () => {
