@@ -56,7 +56,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-不涉及。
+允许系统应用获取分布式设备的认证组网能力：ohos.permission.ACCESS_SERVICE_DM。
 
 ### 约束与限制
 
