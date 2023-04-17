@@ -1,9 +1,0 @@
-{
-  "src": [
-    "pages/Index",
-    "pages/AlbumPage",
-    "pages/CameraPage",
-    "pages/DocumentPage",
-    "pages/RecordPage"
-  ]
-}
