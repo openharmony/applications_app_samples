@@ -98,6 +98,8 @@ struct BackgroundPlayer {
       PlayerModel.playMusic(0, true, this.context);
       if (PlayerModel.isPlaying) {
         this.imageArrays[1] = $r('app.media.ic_pause')
+        // start continuous task
+        this.continuousTaskModel.startContinuousTask()
       }
       this.isSwitching = false
     })
@@ -221,6 +223,7 @@ struct BackgroundPlayer {
             Image(item)
               .size({ width: 72, height: 72 })
               .objectFit(ImageFit.Contain)
+              .id('image' + index)
               .onClick(() => {
                 switch (index) {
                   case 0:
