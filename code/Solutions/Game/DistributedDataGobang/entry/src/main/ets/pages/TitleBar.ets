@@ -103,8 +103,7 @@ export struct TitleBar {
         deviceName: 'Local device',
         deviceType: GobangConst.DEVICE_TYPE_NUMBER,
         networkId: '',
-        range: GobangConst.RANGE_NUMBER,
-        authForm: 2
+        range: GobangConst.RANGE_NUMBER
       })
       let deviceTemps = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTemps.length; i++) {
