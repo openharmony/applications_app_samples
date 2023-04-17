@@ -54,6 +54,7 @@ struct Index {
 
                 Column() {
                   Text(item.title)
+                    .id(item.uri.id)
                     .width('100%')
                     .fontSize(14)
 
