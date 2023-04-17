@@ -45,6 +45,7 @@ struct ScreenshotDialog {
       .padding(20)
       .backgroundColor(Color.White)
     }
+    .id('screenResult')
     .scrollable(this.isScroll ? ScrollDirection.None : ScrollDirection.Vertical)
     .scale({ x: SCALE, y: SCALE })
     .onClick(() => {
@@ -154,34 +155,36 @@ struct Index {
             Text($r('app.string.shot_full_screen'))
               .fontSize(18)
           }
-          .onClick(() => {
-            this.isScroll = true
-            let result: ResponseData = hasPrivate()
-            if (result.status === 'failed') {
-              prompt.showToast({
-                message: result.errorMessage
-              })
-              return
-            }
-            if (result.status === 'success' && result.result) {
-              prompt.showToast({
-                message: $r('app.string.private_toast')
-              })
-              return
-            }
-            let promise = getScreenshot()
-            try {
-              promise.then(res => {
-                this.screenshotUrl = res
-                this.screenshotDialogController.open()
-              })
-            } catch (error) {
-              prompt.showToast({
-                message: `${error}`
-              })
-            }
-          })
-        }.margin({ bottom: 20 })
+        }
+        .margin({ bottom: 20 })
+        .id('screenShot')
+        .onClick(() => {
+          this.isScroll = true
+          let result: ResponseData = hasPrivate()
+          if (result.status === 'failed') {
+            prompt.showToast({
+              message: result.errorMessage
+            })
+            return
+          }
+          if (result.status === 'success' && result.result) {
+            prompt.showToast({
+              message: $r('app.string.private_toast')
+            })
+            return
+          }
+          let promise = getScreenshot()
+          try {
+            promise.then(res => {
+              this.screenshotUrl = res
+              this.screenshotDialogController.open()
+            })
+          } catch (error) {
+            prompt.showToast({
+              message: `${error}`
+            })
+          }
+        })
 
         Row() {
           Image($r('app.media.shot_part'))
@@ -194,41 +197,42 @@ struct Index {
             Text($r('app.string.shot_part_screen'))
               .fontSize(18)
           }
-          .onClick(() => {
-            this.isScroll = false
-            let result: ResponseData = hasPrivate()
-            if (result.status === 'failed') {
-              prompt.showToast({
-                message: result.errorMessage
-              })
-              return
-            }
-            if (result.status === 'success' && result.result) {
-              prompt.showToast({
-                message: $r('app.string.private_toast')
-              })
-              return
-            }
-            setFullScreen(getContext(this), true)
-            let promise = getScreenshot()
-            try {
-              promise.then(res => {
-                this.screenshotUrl = res
-                getCurrentWindow(getContext(this))
-                  .then(data => data.getProperties())
-                  .then(res => {
-                    this.fullScreenWidth = res.windowRect.width
-                    this.fullScreenHeight = res.windowRect.height
-                  })
-                this.isFullScreen = true
-              })
-            } catch (error) {
-              prompt.showToast({
-                message: JSON.stringify(error)
-              })
-            }
-          })
         }
+        .id('localScreenShot')
+        .onClick(() => {
+          this.isScroll = false
+          let result: ResponseData = hasPrivate()
+          if (result.status === 'failed') {
+            prompt.showToast({
+              message: result.errorMessage
+            })
+            return
+          }
+          if (result.status === 'success' && result.result) {
+            prompt.showToast({
+              message: $r('app.string.private_toast')
+            })
+            return
+          }
+          setFullScreen(getContext(this), true)
+          let promise = getScreenshot()
+          try {
+            promise.then(res => {
+              this.screenshotUrl = res
+              getCurrentWindow(getContext(this))
+                .then(data => data.getProperties())
+                .then(res => {
+                  this.fullScreenWidth = res.windowRect.width
+                  this.fullScreenHeight = res.windowRect.height
+                })
+              this.isFullScreen = true
+            })
+          } catch (error) {
+            prompt.showToast({
+              message: JSON.stringify(error)
+            })
+          }
+        })
       }
       .alignItems(HorizontalAlign.Start)
     }
@@ -243,6 +247,7 @@ struct Index {
             .fontSize(25)
 
           Image($r('app.media.more'))
+            .id('menu')
             .width(30)
             .height(30)
             .objectFit(ImageFit.Contain)
@@ -264,12 +269,20 @@ struct Index {
           }
 
           Toggle({ type: ToggleType.Switch, isOn: false })
+            .id('privacy')
             .size({ width: 40, height: 20 })
             .selectedColor($r('app.color.selected_color'))
             .switchPointColor($r('app.color.switch_point_color'))
             .onChange((isOn: boolean) => {
               setWindowPrivacyMode(getContext(this), isOn)
             })
+            .blur(0)
+            .borderStyle(BorderStyle.Dotted)
+            .visibility(Visibility.Visible)
+            .focusable(true)
+            .focusOnTouch(false)
+            .defaultFocus(false)
+            .touchable(true)
         }
         .width('100%')
         .padding({ left: 20, right: 20 })
@@ -279,7 +292,7 @@ struct Index {
           .height(300)
           .objectFit(ImageFit.Contain)
       }
-      .width('100%')
+      .width('100.00%')
     } else {
       Stack() {
         Image(this.screenshotUrl)
@@ -325,6 +338,7 @@ struct Index {
           })
 
           Button($r('app.string.finish'))
+            .id('finish')
             .zIndex(SAVE_INDEX)
             .position({ x: '80%', y: '80%' })
             .translate({ x: '-100%', y: '-100%' })

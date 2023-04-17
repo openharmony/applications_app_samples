@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,11 +13,13 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.application.AbilityStage"
-import Logger from '../../../main/ets/common/Logger.ts'
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Logger from '../../../main/ets/common/Logger.ts';
+
+const TAG: string = 'abilityTest';
 
 export default class TestAbilityStage extends AbilityStage {
-    onCreate() {
-        Logger.info(TAG, "[Demo] TestAbilityStage onCreate")
-    }
+  onCreate() {
+    Logger.info(TAG, '[Demo] TestAbilityStage onCreate');
+  }
 }
