@@ -12,7 +12,14 @@
       "name": "device_management",
       "value": "设备管理"
     },
-
+    {
+      "name": "battery_info",
+      "value": "电量信息"
+    },
+    {
+      "name": "thermal",
+      "value": "热管理"
+    },
     {
       "name": "usb_manager",
       "value": "USB管理"
