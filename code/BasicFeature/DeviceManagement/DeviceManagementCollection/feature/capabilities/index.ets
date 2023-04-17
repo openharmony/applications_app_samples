@@ -16,3 +16,7 @@
 export { UsbManager } from './src/main/ets/capabilities/UsbManager';
 
 export { PowerManager } from './src/main/ets/capabilities/PowerManager';
+
+export { BatteryInfo } from './src/main/ets/capabilities/BatteryInfo';
+
+export { Thermal } from './src/main/ets/capabilities/Thermal';
