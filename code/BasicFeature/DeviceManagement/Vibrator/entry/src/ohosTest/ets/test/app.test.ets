@@ -65,7 +65,8 @@ export default function appTest() {
           expect().assertFail();
           Logger.error(TAG, `StartVibration error.code = ${error.code}, error.message = ${error.message}`);
           return;
-        }Logger.info(TAG, `Callback returned to indicate a successful vibration`);
+        }
+        Logger.info(TAG, `Callback returned to indicate a successful vibration`);
 
       });
       await driver.delayMs(1000);
@@ -73,7 +74,7 @@ export default function appTest() {
     })
     // 设置倒计时时间
     it(`${BUNDLE}SetCountdownTime_001`, 0, async () => {
-      Logger.info(TAG, BUNDLE + 'SelectCountdownTime_001 begin');
+      Logger.info(TAG, BUNDLE + 'SetCountdownTime_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
       stopVibration();
@@ -139,7 +140,7 @@ export default function appTest() {
       await driver.delayMs(500);
       // 校验时间是否为0
       let timeText: string = await countdownTime.getText();
-      expect(timeText).assertEqual('00:00:00')
+      expect(timeText).assertEqual('00 : 00 : 00');
       Logger.info(TAG, BUNDLE + 'ResetCountdownTime_001 end');
     });
   })
