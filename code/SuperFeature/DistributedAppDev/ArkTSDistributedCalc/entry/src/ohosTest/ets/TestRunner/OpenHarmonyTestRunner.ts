@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,66 +13,53 @@
  * limitations under the License.
  */
 
-import type TestRunner from '@ohos.application.testRunner'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import type TestRunner from '@ohos.application.testRunner';
+import { logger } from '../util/Logger';
 
-let abilityDelegator = undefined
-let abilityDelegatorArguments = undefined
+let abilityDelegator = undefined;
+let abilityDelegatorArguments = undefined;
+const TAG: string = 'OpenHarmonyTestRunner';
 
-function translateParamsToString(parameters): string {
-  const keySet = new Set([
-    '-s class', '-s notClass', '-s suite', '-s it',
-    '-s level', '-s testType', '-s size', '-s timeout',
-    '-s dryRun'
-  ])
-  let targetParams = ''
-  for (const key in parameters) {
-    if (keySet.has(key)) {
-      targetParams = `${targetParams} ${key} ${parameters[key]}`
-    }
-  }
-  return targetParams.trim()
+async function onAbilityCreateCallback() {
+  logger.info(TAG, 'onAbilityCreateCallback');
 }
 
-async function onAbilityCreateCallback(): Promise<void> {
-  console.log('onAbilityCreateCallback')
-}
-
-async function addAbilityMonitorCallback(err): Promise<void> {
-  console.info('addAbilityMonitorCallback : ' + JSON.stringify(err))
+async function addAbilityMonitorCallback(err: any) {
+  logger.info(TAG, `addAbilityMonitorCallback : ${JSON.stringify(err) ?? ''} `);
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
   constructor() {
   }
 
-  onPrepare(): void {
-    console.info('OpenHarmonyTestRunner OnPrepare ')
+  onPrepare() {
+    logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare ');
   }
 
-  async onRun(): Promise<void> {
-    console.log('OpenHarmonyTestRunner onRun run')
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
+  async onRun() {
+    logger.info(TAG, 'OpenHarmonyTestRunner onRun run');
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
     let lMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
+    };
+    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
+    let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
+    let debug = abilityDelegatorArguments.parameters['-D'];
+    if (debug == 'true') {
+      cmd += ' -D';
     }
-    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
-    let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
-    cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
-    let debug = abilityDelegatorArguments.parameters['-D']
-    if (debug === 'true') {
-      cmd += ' -D'
-    }
-    console.info('cmd : ' + cmd)
+    logger.info(TAG, `cmd : ${cmd}`);
     abilityDelegator.executeShellCommand(cmd,
-      (err, d) => {
-        console.info('executeShellCommand : err : ' + JSON.stringify(err))
-        console.info('executeShellCommand : data : ' + d.stdResult)
-        console.info('executeShellCommand : data : ' + d.exitCode)
-      })
-    console.info('OpenHarmonyTestRunner onRun end')
+      (err: Error, d: {
+        stdResult: string,
+        exitCode: number
+      }) => {
+        logger.info(TAG, `executeShellCommand : err : ${JSON.stringify(err) ?? ''},data: ${d.stdResult ?? ''}, ${d.exitCode ?? ''}`);
+      });
+    logger.info(TAG, 'OpenHarmonyTestRunner onRun end');
   }
 }

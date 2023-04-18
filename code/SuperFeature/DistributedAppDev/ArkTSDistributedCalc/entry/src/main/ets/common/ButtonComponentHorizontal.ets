@@ -29,6 +29,7 @@ export struct ButtonComponentHorizontal {
                 .aspectRatio(index < 2 ? 1 : 0.5)
                 .objectFit(ImageFit.Contain)
             }
+            .id(item.value)
             .width('100%')
             .height('100%')
             .borderRadius(20)
@@ -50,6 +51,7 @@ export struct ButtonComponentHorizontal {
                 .aspectRatio(item.value === '0' ? 2.5 : 1)
                 .objectFit(ImageFit.Contain)
             }
+            .id(item.value)
             .width('100%')
             .height('100%')
             .borderRadius(20)

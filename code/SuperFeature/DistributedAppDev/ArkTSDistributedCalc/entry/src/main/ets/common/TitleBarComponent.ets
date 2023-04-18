@@ -155,6 +155,7 @@ export struct TitleBarComponent {
       Blank().layoutWeight(1)
       if (!this.isShow) {
         Image($r('app.media.ic_hop_normal'))
+          .id('selectDevice')
           .height('60%')
           .margin({ right: 32 })
           .width('8%')

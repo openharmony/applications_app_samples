@@ -59,20 +59,20 @@ struct Index {
   }
 
   onInputValue = (value) => {
-    Logger.info(TAG, `this.isLand=${this.isLand}`)
+    Logger.info(TAG, `this.isLand=${this.isLand}`);
     if (value === 'C') { // 当用户点击C按钮，表达式和运算结果归0
-      this.expression = ''
-      this.result = ''
-      return
-    } else if (value === '') {
-      this.expression = this.expression.substring(0, this.expression.length - 1)
-      this.result = this.result = calc(this.expression)
+      this.expression = '';
+      this.result = '';
+      return;
+    } else if (value === 'D') {
+      this.expression = this.expression.substring(0, this.expression.length - 1);
+      this.result = this.result = calc(this.expression);
       if (!this.expression.length) {
-        this.result = ''
-        Logger.info(TAG, `handleBackspace`)
+        this.result = '';
+        Logger.info(TAG, `handleBackspace`);
       }
     } else if (isOperator(value)) {
-      Logger.info(TAG, `value=${value}`)
+      Logger.info(TAG, `value=${value}`);
       let size = this.expression.length;
       if (size) {
         const last = this.expression.charAt(size - 1);
@@ -81,18 +81,18 @@ struct Index {
         }
       }
       if (!this.expression && (value === '*' || value === '/')) {
-        return
+        return;
       }
-      this.expression += value
+      this.expression += value;
     } else if (value === '=') {
-      this.result = calc(this.expression)
+      this.result = calc(this.expression);
       if (this.result !== '' && this.result !== undefined) {
-        this.expression = this.result
-        this.result = ''
+        this.expression = this.result;
+        this.result = '';
       }
     } else {
-      this.expression += value
-      this.result = calc(this.expression)
+      this.expression += value;
+      this.result = calc(this.expression);
     }
   }
 
