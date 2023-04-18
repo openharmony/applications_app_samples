@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Socket"
+    },
+    {
+      "name": "internet_permission",
+      "value": "get internet permission"
+    },
+    {
+      "name": "get_wifi_info_permission",
+      "value": "get internet permission"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "input_roomNumber",
+      "value": "input roomNumber"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "create_room",
+      "value": "create room"
+    },
+    {
+      "name": "send_message",
+      "value": "send message"
+    },
+    {
+      "name": "classmate_fengzi",
+      "value": "classmate fengzi"
+    },
+    {
+      "name": "classmate_wenzi",
+      "value": "classmate wenzi"
+    },
+    {
+      "name": "online",
+      "value": "online"
+    },
+    {
+      "name": "offline",
+      "value": "offline"
+    }
+  ]
+}
