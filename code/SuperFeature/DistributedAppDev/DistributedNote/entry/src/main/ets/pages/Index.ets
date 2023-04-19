@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -147,9 +147,10 @@ struct Index {
       .padding(16)
 
       List({ space: 10 }) {
-        LazyForEach(this.noteDataSource, (item, index) => {
+        LazyForEach(this.noteDataSource, (item: Note, index) => {
           ListItem() {
             NoteItem({ note: item, index: index })
+              .id(`${item.title}`)
           }
         }, item => JSON.stringify(item))
       }
@@ -165,7 +166,7 @@ struct Index {
             .fontColor(Color.Red)
             .fontSize(20)
         }.layoutWeight(1)
-        .key('clearNote')
+        .id('clearNote')
         .onClick(() => {
           Logger.info(TAG, 'clear notes')
           this.noteDataSource['dataArray'] = []
@@ -181,7 +182,7 @@ struct Index {
             .fontColor(Color.Black)
             .fontSize(20)
         }.layoutWeight(1)
-        .key('addNote')
+        .id('addNote')
         .onClick(() => {
           router.push({
             url: 'pages/Edit',

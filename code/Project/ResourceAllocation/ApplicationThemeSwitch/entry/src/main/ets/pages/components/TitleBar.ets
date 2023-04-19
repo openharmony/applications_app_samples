@@ -81,6 +81,7 @@ export struct TitleBarComponent {
                 .fontColor(getTheme(this.theme).STATUS_COLOR)
                 .backgroundColor(Color.White)
               Text(this.theme === LIGHT ? $r('app.string.light_theme') : this.theme === DARK ? $r('app.string.dark_theme') : $r('app.string.custom_theme'))
+                .id(`${this.theme}`)
                 .fontSize(20)
                 .fontColor(getTheme(this.theme).STATUS_COLOR)
                 .backgroundColor(Color.White)

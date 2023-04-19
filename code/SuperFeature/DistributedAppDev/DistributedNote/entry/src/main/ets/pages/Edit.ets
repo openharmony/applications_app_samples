@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -51,7 +51,7 @@ struct Edit {
         .width('100%')
 
         TextInput({ placeholder: 'input the title', text: this.note.title })
-          .key('titleInput')
+          .id('titleInput')
           .placeholderColor(Color.Gray)
           .fontSize(30)
           .margin({ left: 15, right: 15, top: 15 })
@@ -61,7 +61,7 @@ struct Edit {
             this.note.title = value
           })
         TextArea({ placeholder: 'input the content', text: this.note.content })
-          .key('contentInput')
+          .id('contentInput')
           .placeholderColor(Color.Gray)
           .backgroundColor(Color.White)
           .fontSize(30)
@@ -77,7 +77,7 @@ struct Edit {
             .fontColor(Color.White)
             .fontSize(17)
         }
-        .key('saveNote')
+        .id('saveNote')
         .backgroundColor('#0D9FFB')
         .height(50)
         .width(200)
