@@ -42,6 +42,7 @@ export struct SmallVideo {
           .controls(false)
           .autoPlay(true)
           .muted(true)
+          .id('smallVideo')
           .onFinish(() => {
             this.isHidden = false
           })
@@ -51,6 +52,7 @@ export struct SmallVideo {
           .width(16)
           .height(16)
           .position({ x: '80%', y: '10%' })
+          .id('closeBtn')
           .onClick(() => {
             this.isHidden = false
             this.isCancel = false

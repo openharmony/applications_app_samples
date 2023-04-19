@@ -13,39 +13,210 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import Logger from '../utils/Logger'
+
+const BUNDLE = 'OrangeShopping'
+const TAG = '[Sample_OrangeShopping]'
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
+    /**
+     * 拉起一个ability
+     * 本示例运行时间较长，请将Time Out调整为600s，确保用例正常执行
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async (done) => {
+      Logger.info(TAG, 'StartAbility_001 start')
+      let driver = await Driver.create()
+      let want = {
+        bundleName: 'ohos.samples.orangeshopping',
+        abilityName: 'MainAbility'
+      }
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(want, (err, data) => {
+        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
+        expect(0).assertEqual(err.code)
+      })
+      await driver.delayMs(1000)
+      Logger.info(TAG, 'StartAbility_001 end')
+      done()
     })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
+
+    /**
+     * 获取权限
+     */
+    it(BUNDLE + 'GetPermission_001', 0, async (done) => {
+      Logger.info(TAG, 'GetPermission_001 start')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('允许'))
+      let agree = await driver.findComponent(ON.text('允许'))
+      await agree.click()
+      await driver.delayMs(1000)
+      await agree.click()
+      await driver.delayMs(1000)
+      // 允许发送通知按钮，只能通过点击物理坐标允许   RK3568
+      await driver.click(200, 684)
+      await driver.delayMs(1000)
+      // 关闭广告弹窗
+      await driver.assertComponentExist(ON.text('关闭'))
+      let closeBtn = await driver.findComponent(ON.text('关闭'))
+      await closeBtn.click()
+      await driver.delayMs(1000)
+      // 关闭升级弹窗
+      await driver.assertComponentExist(ON.text('立即升级'))
+      let updateBtn = await driver.findComponent(ON.text('立即升级'))
+      await updateBtn.click()
+      await driver.delayMs(2000)
+      Logger.info(TAG, 'GetPermission_001 end')
+      done()
     })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
+
+    /**
+     * 点击底部Tab切换不同页面
+     */
+    it(BUNDLE + 'SwitchPage_001', 0, async (done) => {
+      Logger.info(TAG, 'SwitchPage_001 start')
+      let driver = await Driver.create()
+      // 检查Tab是否存在
+      await driver.assertComponentExist(ON.id('homeTab0'))
+      await driver.assertComponentExist(ON.id('homeTab1'))
+      await driver.assertComponentExist(ON.id('homeTab2'))
+      await driver.assertComponentExist(ON.id('homeTab3'))
+      // 切换到新品页
+      let newProduct = await driver.findComponent(ON.id('homeTab1'))
+      await newProduct.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('精选'))
+      // 切换到购物车页
+      let shoppingCart = await driver.findComponent(ON.id('homeTab2'))
+      await shoppingCart.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('购物车'))
+      // 切换到用户中心页
+      let userCenter = await driver.findComponent(ON.id('homeTab3'))
+      await userCenter.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('官方客服'))
+      // 切换到首页
+      let mainPage = await driver.findComponent(ON.id('homeTab0'))
+      await mainPage.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('首页'))
+      Logger.info(TAG, 'SwitchPage_001 end')
+      done()
     })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
+
+    /**
+     * 点击播放键，播放视频
+     */
+    it(BUNDLE + 'PlayVideo_001', 0, async (done) => {
+      Logger.info(TAG, 'PlayVideo_001 start')
+      let driver = await Driver.create()
+      let goods0 = await driver.findComponent(ON.id('goods0'))
+      await goods0.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('playBtn'))
+      await driver.assertComponentExist(ON.id('previewImg'))
+      let playBtn = await driver.findComponent(ON.id('playBtn'))
+      await playBtn.click()
+      await driver.delayMs(500)
+      // 开始播放，预览图消失
+      let previewImg = await driver.findComponent(ON.id('previewImg'))
+      await expect(previewImg).assertNull()
+      Logger.info(TAG, 'PlayVideo_001 end')
+      done()
     })
-    it('assertContain', 0, function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO)
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin')
-      let a = 'abc'
-      let b = 'b'
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+
+    /**
+     * 点击视频组件，进入全屏界面，检查播放与暂停功能
+     */
+    it(BUNDLE + 'FullVideo_001', 0, async (done) => {
+      Logger.info(TAG, 'FullVideo_001 start')
+      let driver = await Driver.create()
+      await driver.assertComponentExist(ON.id('VideoPage'))
+      let playBtn = await driver.findComponent(ON.id('VideoPage'))
+      await playBtn.click()
+      await driver.delayMs(500)
+      // 点击界面暂停播放
+      await driver.assertComponentExist(ON.id('fullVideo'))
+      let fullVideo = await driver.findComponent(ON.id('fullVideo'))
+      await fullVideo.click()
+      // 暂停后出现播放键
+      await driver.assertComponentExist(ON.id('fullPlayBtn'))
+      let fullPlayBtn = await driver.findComponent(ON.id('fullPlayBtn'))
+      await fullPlayBtn.click()
+      await driver.delayMs(500)
+      let tempBtn = await driver.findComponent(ON.id('fullPlayBtn'))
+      await expect(tempBtn).assertNull()
+      await driver.pressBack()
+      await driver.delayMs(500)
+      // 返回主界面
+      await driver.pressBack()
+      await driver.delayMs(500)
+      Logger.info(TAG, 'FullVideo_001 end')
+      done()
+    })
+
+    /**
+     * 添加某商品到购物车界面
+     */
+    it(BUNDLE + 'AddGoodsToCart_001', 0, async (done) => {
+      Logger.info(TAG, 'AddGoodsToCart_001 start')
+      let driver = await Driver.create()
+      let cartTag = 'cart_'
+      let goods = await driver.findComponent(ON.id("goods0"))
+      // 点击商品
+      await goods.click()
+      await driver.delayMs(1000)
+      // 检查跳转后商品是否一致
+      await driver.assertComponentExist(ON.text('加入购物车'))
+      await driver.assertComponentExist(ON.id('goodsDetail0'))
+      await driver.assertComponentExist(ON.text('购物车'))
+      // 点击添加商品到购物车当中
+      let addBtn = await driver.findComponent(ON.text('加入购物车'))
+      await addBtn.click()
+      await driver.delayMs(1000)
+      // 跳转到购物车页面
+      let cartBtn = await driver.findComponent(ON.text('购物车'))
+      await cartBtn.click()
+      await driver.delayMs(1000)
+      // 检查商品是否已经添加
+      await driver.assertComponentExist(ON.id(cartTag + 'goods0'))
+      // 退回首页
+      await driver.pressBack()
+      await driver.delayMs(500)
+      await driver.pressBack()
+      await driver.delayMs(500)
+      Logger.info(TAG, 'AddGoodsToCart_001 end')
+      done()
+    })
+
+    /**
+     * 进入直播间
+     */
+    it(BUNDLE + 'OpenLivePage_001', 0, async (done) => {
+      Logger.info(TAG, 'OpenLivePage_001 start')
+      let driver = await Driver.create()
+      let goods0 = await driver.findComponent(ON.id('goods0'))
+      await goods0.click()
+      await driver.delayMs(1000)
+      // 点击进入直播间
+      await driver.assertComponentExist(ON.id('directVideo'))
+      let enterVideoComp = await driver.findComponent(ON.id('directVideo'))
+      await enterVideoComp.click()
+      await driver.delayMs(500)
+      await driver.assertComponentExist(ON.id('close'))
+      await driver.assertComponentExist(ON.text('520', MatchPattern.CONTAINS))
+      await driver.delayMs(1000)
+      await driver.pressBack()
+      await driver.delayMs(500)
+      await driver.pressBack()
+      await driver.delayMs(500)
+      Logger.info(TAG, 'OpenLivePage_001 end')
+      done()
     })
   })
 }
