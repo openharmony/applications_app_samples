@@ -60,6 +60,7 @@ export struct MediaItem {
         Text(this.media.title)
           .width('100%')
           .fontSize(22)
+          .id('fileName')
         Text(this.getTimeString())
           .width('100%')
           .fontSize(22)
@@ -81,7 +82,7 @@ export struct MediaItem {
             .size({ width: 40, height: 40 })
         }
       }
-      .key('rename')
+      .id(`rename${this.index}`)
       .size({ width: 50, height: 50 })
       .backgroundColor('#F5F5F5')
       .onClick(() => {
@@ -95,7 +96,7 @@ export struct MediaItem {
             .size({ width: 40, height: 40 })
         }
       }
-      .key('delete')
+      .id(`delete${this.index}`)
       .size({ width: 50, height: 50 })
       .margin({ left: 15, right: 10 })
       .backgroundColor('#F5F5F5')

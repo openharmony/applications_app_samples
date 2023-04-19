@@ -87,6 +87,7 @@ struct Record {
         }
         .size({ width: 75, height: 75 })
         .backgroundColor('#FFFFFF')
+        .id('endOfRecording')
         .onClick(() => {
           router.back()
           this.recordModel.finish()
@@ -100,12 +101,15 @@ struct Record {
               Rect({ width: 5, height: 25 })
               Rect({ width: 5, height: 25 })
                 .margin({ left: 10 })
-            }.width(20).height(25).key('stop')
+                .id('pauseBtn')
+            }
+            .width(20)
+            .height(25)
           } else {
             Polyline({ width: 20, height: 25 })
               .points([[0, 0], [20, 12.5], [0, 25]])
               .margin({ left: 5 })
-              .key('start')
+              .id('startBtn')
           }
         }
         .size({ width: 75, height: 75 })
