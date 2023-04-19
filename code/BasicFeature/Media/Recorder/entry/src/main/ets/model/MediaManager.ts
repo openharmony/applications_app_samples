@@ -13,122 +13,123 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import preferences from '@ohos.data.preferences'
-import DateTimeUtil from '../model/DateTimeUtil'
-import type common from '@ohos.app.ability.common'
-import Logger from './Logger'
-import { Record } from './Record'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import preferences from '@ohos.data.preferences';
+import DateTimeUtil from '../model/DateTimeUtil';
+import type common from '@ohos.app.ability.common';
+import Logger from './Logger';
+import { Record } from './Record';
 
-const TAG: string = '[Recorder.MediaManager]'
+const TAG: string = '[Recorder.MediaManager]';
 
 class MediaManager {
-  private context: common.UIAbilityContext
-  private mediaTest: mediaLibrary.MediaLibrary = null
-  private storage: preferences.Preferences = null
+  private context: common.UIAbilityContext;
+  private mediaTest: mediaLibrary.MediaLibrary = null;
+  private storage: preferences.Preferences = null;
 
   constructor(context: common.UIAbilityContext) {
-    this.context = context
-    this.mediaTest = mediaLibrary.getMediaLibrary(this.context)
-    this.initStorage()
+    this.context = context;
+    this.mediaTest = mediaLibrary.getMediaLibrary(this.context);
+    this.initStorage();
   }
 
-  async initStorage() {
-    let name = 'ohos.samples.recorder'
+  async initStorage(): Promise<void> {
+    let name = 'ohos.samples.recorder';
     try {
-      this.storage = await preferences.getPreferences(this.context, `${name}`)
+      this.storage = await preferences.getPreferences(this.context, `${name}`);
     } catch (err) {
-      Logger.error(`getStorage failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`getStorage failed, code is ${err.code}, message is ${err.message}`);
     }
     if (this.storage === null) {
-      Logger.info(TAG, `Create stroage is fail.`)
+      Logger.info(TAG, 'Create storage is fail.');
     }
   }
 
-  async createAudioFile() {
-    this.mediaTest = mediaLibrary.getMediaLibrary(this.context)
+  async createAudioFile(): Promise<mediaLibrary.FileAsset> {
+    this.mediaTest = mediaLibrary.getMediaLibrary(this.context);
     let info = {
       suffix: '.m4a', directory: mediaLibrary.DirectoryType.DIR_AUDIO
-    }
-    let dateTimeUtil = new DateTimeUtil()
-    let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`
-    let displayName = `${name}${info.suffix}`
-    Logger.info(TAG, `createAudioFile displayName=${displayName}`)
-    let publicPath = await this.mediaTest.getPublicDirectory(info.directory)
-    Logger.info(TAG, `createAudioFile publicPath=${publicPath}`)
-    return await this.mediaTest.createAsset(mediaLibrary.MediaType.AUDIO, displayName, publicPath)
+    };
+    let dateTimeUtil = new DateTimeUtil();
+    let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`;
+    let displayName = `${name}${info.suffix}`;
+    Logger.info(TAG, `createAudioFile displayName=${displayName}`);
+    let publicPath = await this.mediaTest.getPublicDirectory(info.directory);
+    Logger.info(TAG, `createAudioFile publicPath=${publicPath}`);
+    let file: mediaLibrary.FileAsset = await this.mediaTest.createAsset(mediaLibrary.MediaType.AUDIO, displayName, publicPath);
+    return Promise.resolve(file);
   }
 
-  async queryAllAudios() {
-    let fileKeyObj = mediaLibrary.FileKey
+  async queryAllAudios(): Promise<Array<Record>> {
+    let fileKeyObj = mediaLibrary.FileKey;
     let fetchOp = {
       selections: `${fileKeyObj.MEDIA_TYPE}=?`,
       selectionArgs: [`${mediaLibrary.MediaType.AUDIO}`],
-    }
-    const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp)
-    let result: Array<Record> = []
-    Logger.info(TAG, `queryAllAudios fetchFileResult=${fetchFileResult.getCount()}`)
+    };
+    const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp);
+    let result: Array<Record> = [];
+    Logger.info(TAG, `queryAllAudios fetchFileResult=${fetchFileResult.getCount()}`);
     if (fetchFileResult.getCount() > 0) {
-      let fileAssets = await fetchFileResult.getAllObject()
+      let fileAssets = await fetchFileResult.getAllObject();
       for (let i = 0; i < fileAssets.length; i++) {
-        let record = new Record(this.context)
-        await record.init(fileAssets[i], false)
-        result.push(record)
+        let record: Record = new Record(this.context);
+        await record.init(fileAssets[i], false);
+        result.push(record);
       }
     }
-    return result
+    return Promise.resolve(result);
   }
 
-  async queryFile(id: number) {
-    let fileKeyObj = mediaLibrary.FileKey
+  async queryFile(id: number): Promise<Record> {
+    let fileKeyObj = mediaLibrary.FileKey;
     if (id !== undefined) {
-      let args = id.toString()
+      let args = id.toString();
       let fetchOp = {
         selections: `${fileKeyObj.ID}=?`,
         selectionArgs: [args],
-      }
-      const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp)
-      Logger.info(TAG, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`)
-      const fileAsset = await fetchFileResult.getAllObject()
-      let record = new Record(this.context)
-      await record.init(fileAsset[0], false)
-      return record
+      };
+      const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp);
+      Logger.info(TAG, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`);
+      const fileAsset = await fetchFileResult.getAllObject();
+      let record: Record = new Record(this.context);
+      await record.init(fileAsset[0], false);
+      return Promise.resolve(record);
     } else {
-      return undefined
+      return undefined;
     }
   }
 
-  deleteFile(uri) {
-    Logger.info(TAG, `deleteFile,uri = ${uri}`)
-    return this.mediaTest.deleteAsset(uri)
+  async deleteFile(uri): Promise<void> {
+    Logger.info(TAG, `deleteFile,uri = ${uri}`);
+    await this.mediaTest.deleteAsset(uri);
   }
 
   onAudioChange(callback: () => void) {
     this.mediaTest.on('audioChange', () => {
-      callback()
+      callback();
     })
   }
 
   async saveFileDuration(name: string, value): Promise<void> {
     if (this.storage === null) {
-      Logger.info(TAG, `Create stroage is fail.`)
-      return
+      Logger.info(TAG, 'Create storage is fail.');
+      return;
     }
-    await this.storage.put(name, value)
-    await this.storage.flush()
+    await this.storage.put(name, value);
+    await this.storage.flush();
   }
 
   async getFileDuration(name: string): Promise<string> {
-    let bundleName = 'ohos.samples.recorder'
-    let duration
+    let bundleName = 'ohos.samples.recorder';
+    let duration;
     try {
-      let storage = await preferences.getPreferences(this.context, `${bundleName}`)
-      duration = await storage.get(name, '00:00')
+      let storage = await preferences.getPreferences(this.context, `${bundleName}`);
+      duration = await storage.get(name, '00:00');
     } catch (err) {
-      Logger.info(TAG, `Failed to get value of duration,code:${err.code},message:${err.message}`)
+      Logger.info(TAG, `Failed to get value of duration,code:${err.code},message:${err.message}`);
     }
-    return duration as string
+    return duration as string;
   }
 }
 
-export default MediaManager
+export default MediaManager;
