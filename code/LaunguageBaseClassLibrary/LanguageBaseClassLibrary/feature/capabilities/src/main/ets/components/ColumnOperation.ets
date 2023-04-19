@@ -30,6 +30,7 @@ export struct ColumnOperation {
               .fontSize(16)
               .fontColor(Color.White)
           }
+          .id(`item${index}`)
           .width('100%')
           .height(50)
           .type(ButtonType.Capsule)

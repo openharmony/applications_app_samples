@@ -14,7 +14,7 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { describe, it } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
@@ -117,8 +117,81 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('Finite', MatchPattern.CONTAINS));
 
       await driver.pressBack();
+      await driver.pressBack();
       done();
       logger.info(TAG, `${BUNDLE}RationalNumber_001 end`);
+    })
+
+    // 进入Url字符串解析页面
+    it(BUNDLE + 'Url_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}Url_001 begin`);
+      let driver: Driver = await Driver.create();
+      await driver.delayMs(500);
+      //find component on text 'Xml'
+      await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
+      let button = await driver.findComponent(ON.text('Url (Url字符串解析)'));
+      await button.click();
+      await driver.delayMs(1000);
+      //check text
+      await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
+      await driver.delayMs(200);
+      done()
+      logger.info(TAG, `${BUNDLE}Url_001 end`);
+    })
+
+    // Url字符串解析
+    it(BUNDLE + 'ClickUrlStringBtnFunction_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'ClickUrlStringBtnFunction_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      // 点击插入键值对到查询字符串
+      await driver.assertComponentExist(ON.id('item0'))
+      let insertKeyValuePairs = await driver.findComponent(ON.id('item0'))
+      await insertKeyValuePairs.click()
+      await driver.delayMs(500)
+      // 是否成功插入
+      await driver.assertComponentExist(ON.id('output'))
+      let outputInsert = await driver.findComponent(ON.id('output'))
+      let insertValue = await outputInsert.getText()
+      expect(insertValue).assertContain('node=nodeValue1')
+      // 点击删除键值对
+      await driver.assertComponentExist(ON.id('item1'))
+      let deleteKeyValuePairs = await driver.findComponent(ON.id('item1'))
+      await deleteKeyValuePairs.click()
+      await driver.delayMs(500)
+      // 是否成功删除
+      await driver.assertComponentExist(ON.id('output'))
+      let outputDelete = await driver.findComponent(ON.id('output'))
+      let deleteValue = await outputDelete.getText()
+      expect(deleteValue).assertEqual('https://gitee.com/openharmony/')
+      // 点击获取指定名称对应的第一个值
+      await driver.assertComponentExist(ON.id('item0'))
+      let insertKeyValue = await driver.findComponent(ON.id('item0'))
+      await insertKeyValue.click()
+      await driver.delayMs(500)
+      await driver.assertComponentExist(ON.id('item2'))
+      let getFirstValue = await driver.findComponent(ON.id('item2'))
+      await getFirstValue.click()
+      await driver.delayMs(500)
+      // 是否成功获取
+      await driver.assertComponentExist(ON.id('output'))
+      let outputGet = await driver.findComponent(ON.id('output'))
+      let getValue = await outputGet.getText()
+      expect(getValue).assertContain('nodeValue1')
+      // 点击设置键的新值
+      await driver.assertComponentExist(ON.id('item3'))
+      let setNewValue = await driver.findComponent(ON.id('item3'))
+      await setNewValue.click()
+      await driver.delayMs(500)
+      // 是否成功设置新值
+      await driver.assertComponentExist(ON.id('output'))
+      let outputSet = await driver.findComponent(ON.id('output'))
+      let setValue = await outputSet.getText()
+      expect(setValue).assertContain('newValue')
+      // 返回首页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, BUNDLE + 'ClickUrlStringBtnFunction_001 end')
     })
   })
 }
