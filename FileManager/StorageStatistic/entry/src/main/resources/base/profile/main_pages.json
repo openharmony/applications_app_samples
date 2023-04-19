@@ -1,7 +1,0 @@
-{
-  "src": [
-    "pages/MainPage",
-    "pages/AppInfo",
-    "pages/VolumeList"
-  ]
-}
