@@ -64,7 +64,7 @@ export struct AlarmClock {
         Text($r('app.string.alarmClock'))
           .fontSize(30)
         Text('+')
-          .key('add')
+          .id('add')
           .width('60%')
           .height('100%')
           .fontSize(50)
@@ -93,6 +93,7 @@ export struct AlarmClock {
                   .width('50%')
                   .fontSize(30)
                 Button($r('app.string.delete'))
+                  .id('deleteAlarmClock')
                   .margin({ left: '20%' })
                   .onClick(async () => {
                     await this.storage.deleteSync(item.key)

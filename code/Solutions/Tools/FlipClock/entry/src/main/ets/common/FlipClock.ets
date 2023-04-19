@@ -203,6 +203,7 @@ export struct FlipClock {
         .width('30%')
         .height('10%')
       }
+      .id('currentTimeBox')
       .width('90%')
       .height('100%')
     }
