@@ -129,7 +129,7 @@ export struct BundleInfo {
             .layoutWeight(1)
             .objectFit(ImageFit.Contain)
         }
-        .key(item.name + 'App')
+        .id(item.name + 'App')
         .margin(5)
         .width('95%')
         .height('20%')

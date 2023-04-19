@@ -53,7 +53,7 @@ export struct LoginInfo {
           .textAlign(TextAlign.End)
 
         TextInput({ placeholder: 'xxxxxxx' })
-          .key('nameInput')
+          .id('nameInput')
           .margin(10)
           .width('55%')
           .fontSize(20)
@@ -74,7 +74,7 @@ export struct LoginInfo {
           .textAlign(TextAlign.End)
 
         TextInput({ placeholder: 'xxxxxxx' })
-          .key('passwordInput')
+          .id('passwordInput')
           .margin(10)
           .width('55%')
           .fontSize(20)
@@ -89,7 +89,7 @@ export struct LoginInfo {
       .padding({ left: 5 })
 
       Button($r('app.string.register'))
-        .key('register')
+        .id('register')
         .margin(10)
         .width('60%')
         .fontSize(20)
@@ -105,7 +105,7 @@ export struct LoginInfo {
         })
 
       Button($r('app.string.login'))
-        .key('login')
+        .id('login')
         .margin(10)
         .width('60%')
         .fontSize(20)
