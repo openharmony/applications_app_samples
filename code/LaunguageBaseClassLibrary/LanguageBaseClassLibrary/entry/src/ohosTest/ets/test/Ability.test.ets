@@ -75,7 +75,55 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}util_001 end`);
     })
 
-    // RationalNumber (有理数)
+    // StringCode(字符串编码)
+    it(BUNDLE + 'StringCodeFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} StringCodeFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 进入字符串编解码界面
+      await driver.assertComponentExist(ON.text('StringCode (字符串编解码)'));
+      let strBtn = await driver.findComponent(ON.text('StringCode (字符串编解码)'));
+      await strBtn.click();
+      await driver.delayMs(200);
+      // 点击特定格式输出
+      await driver.assertComponentExist(ON.id('specFormatOutput'));
+      let specOutputBtn = await driver.findComponent(ON.id('specFormatOutput'));
+      await specOutputBtn.click();
+      await driver.delayMs(200);
+      // 点击文本编码器
+      await driver.assertComponentExist(ON.id('textEncoder'));
+      let textEncoderBtn = await driver.findComponent(ON.id('textEncoder'));
+      await textEncoderBtn.click();
+      await driver.delayMs(200);
+      // 判断读取信息是否正确
+      await driver.assertComponentExist(ON.id('read'));
+      let readInfo = await driver.findComponent(ON.id('read'));
+      let readValue = await readInfo.getText();
+      logger.info(TAG, `${BUNDLE}clickTextEncoderFunction_001 readValue：${readValue}`);
+      expect(readValue).assertEqual('23');
+      // 判断写入信息是否正确
+      await driver.assertComponentExist(ON.id('write'));
+      let writeInfo = await driver.findComponent(ON.id('write'));
+      let writeValue = await writeInfo.getText();
+      logger.info(TAG, `${BUNDLE}clickTextEncoderFunction_001 writeValue：${writeValue}`);
+      expect(writeValue).assertEqual('39');
+      // 点击文本译码器
+      await driver.assertComponentExist(ON.id('textDecoder'));
+      let textDecoderBtn = await driver.findComponent(ON.id('textDecoder'));
+      await textDecoderBtn.click();
+      await driver.delayMs(200);
+      // 获取译码文本，判断是否是原字符串
+      await driver.assertComponentExist(ON.id('decRes'));
+      let decRes = await driver.findComponent(ON.id('decRes'));
+      let decodeValue = await decRes.getText();
+      expect(decodeValue).assertContain('OpenHarmony 3.0');
+      // 返回首页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} StringCodeFunction_001 end`);
+    })
+
+    // RationalNumber(有理数)
     it(BUNDLE + 'RationalNumber_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 begin`);
       let driver: Driver = Driver.create();
