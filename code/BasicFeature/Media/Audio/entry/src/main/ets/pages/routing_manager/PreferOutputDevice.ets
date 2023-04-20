@@ -16,6 +16,14 @@
 import audio from '@ohos.multimedia.audio'
 import fs from '@ohos.file.fs'
 
+class Model {
+  public value: string;
+
+  constructor(value: string) {
+    this.value = value;
+  }
+}
+
 @Entry
 @Component
 struct PreferOutputDevice {
@@ -39,7 +47,7 @@ struct PreferOutputDevice {
     }
   }
   private outputDeviceList = []
-  private selectOutputDeviceList = [{ value: "无数据" }]
+  @State selectOutputDeviceList: Array<Model> = [new Model('no_data')]
   @State selectedOutputIndex: number = 0
   @State outputDeviceListTag: number = 0
   private audioRenderer = null
@@ -52,6 +60,10 @@ struct PreferOutputDevice {
     let audioManager = audio.getAudioManager();
     this.audioRoutingManager = audioManager.getRoutingManager();
 
+    this.audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, async (deviceChanged) => {
+      this.selectedOutputIndex = 0
+      await this.getSelectOutputDeviceList()
+    })
     for (let key in audio.ContentType) {
       this.contentTypeList.push({ value: key })
     }
@@ -133,7 +145,7 @@ struct PreferOutputDevice {
     let deviceList = [];
     for (let i = 0;i < deviceDescriptors.length; i++) {
       let deviceTypeName = this.getDeviceTypeNameByValue(deviceDescriptors[i].deviceType)
-      deviceList.push({ value: deviceTypeName })
+      deviceList.push(new Model(deviceTypeName))
     }
     return deviceList;
   }
