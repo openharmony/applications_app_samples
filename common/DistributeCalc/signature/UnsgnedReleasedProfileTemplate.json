@@ -1,28 +1,28 @@
 {
-  "version-name": "2.0.0",
-  "version-code": 2,
-  "app-distribution-type": "os_integration",
-  "uuid": "5027b99e-5f9e-465d-9508-a9e0134ffe18",
-  "validity": {
-    "not-before": 1594865258,
-    "not-after": 1689473258
-  },
-  "type": "release",
-  "bundle-info": {
-    "developer-id": "OpenHarmony",
-    "distribution-certificate": "-----BEGIN CERTIFICATE-----\nMIICFjCCAZmgAwIBAgIEe1TRSzAMBggqhkjOPQQDAwUAMGMxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEjMCEGA1UEAxMaT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gQ0EwHhcNMjMwNDIw\nMDIzODE0WhcNMzMwNDE3MDIzODE0WjBKMRUwEwYDVQQDDAxpZGVfZGVtb19hcHAx\nDTALBgNVBAsTBFVuaXQxFTATBgNVBAoTDE9yZ2FuaXphdGlvbjELMAkGA1UEBhMC\nQ04wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATLFzAyGUIY8UDj5Ing68PI6dAj\nvO5EYUJ32utWujSAbCVDAAey5zSylwHZ5blTFyDtvQ5w6nC309yyxODXd0gto1Iw\nUDAdBgNVHQ4EFgQUivixs6plP8ksmTGaPAr4pzGiAcEwDgYDVR0PAQH/BAQDAgeA\nMB8GA1UdIwQYMBaAFNuGtyIW1QuhS7fdJXu58QV9oi1HMAwGCCqGSM49BAMDBQAD\naQAwZgIxAOsFhbG+xnNZ/TNkIVVlTgcLLQG4Zsm3ZQaaB3oUHrMbDXSOGXXmdYAN\nRuJMe5px1wIxAKStRmfYiVUIKDciT91PIeukOw8amFfCpIqRJrTgV3xKnkyL2qQB\nlTrYfRxSOKtM3w==\n-----END CERTIFICATE-----\n",
-    "bundle-name": "ohos.samples.distributedcalc",
-    "apl": "normal",
-    "app-feature": "hos_normal_app"
-  },
-  "acls": {
-    "allowed-acls": [
-      "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
-      "ohos.permission.ACCESS_SERVICE_DM"
-    ]
-  },
-  "permissions": {
-    "restricted-permissions": []
-  },
-  "issuer": "pki_internal"
+	"version-name":"2.0.0",
+	"version-code":2,
+	"app-distribution-type":"os_integration",
+	"uuid":"5027b99e-5f9e-465d-9508-a9e0134ffe18",
+	"validity":{
+		"not-before":1594865258,
+		"not-after":1689473258
+	},
+	"type":"release",
+	"bundle-info":{
+		"developer-id":"OpenHarmony",
+		"distribution-certificate":"-----BEGIN CERTIFICATE-----\nMIICFjCCAZmgAwIBAgIEDtg//TAMBggqhkjOPQQDAwUAMGMxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEjMCEGA1UEAxMaT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gQ0EwHhcNMjMwNDIw\nMDI0NjI4WhcNMzMwNDE3MDI0NjI4WjBKMRUwEwYDVQQDDAxpZGVfZGVtb19hcHAx\nDTALBgNVBAsTBFVuaXQxFTATBgNVBAoTDE9yZ2FuaXphdGlvbjELMAkGA1UEBhMC\nQ04wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARgMxctkyyaUCSpYgl5Lwdjww89\nPgqLE+CsMsZ52cZ9KaMyNfpWOhM8yeytvYc3t0fB5E9NeEX4chTbZKj+dQ5Zo1Iw\nUDAdBgNVHQ4EFgQU32Pz3XSd/1xtW9fzhIhyyRhicWIwDgYDVR0PAQH/BAQDAgeA\nMB8GA1UdIwQYMBaAFNuGtyIW1QuhS7fdJXu58QV9oi1HMAwGCCqGSM49BAMDBQAD\naQAwZgIxAOCSJajGYnQQThHavvK74xjTprNfcP4bLR+mme77Qg8cYOMzYnmg3dUl\nEKWjYDhE3gIxANlaaUY702ivT4oJy1PqsEl+SwRN+kXAML03yZnSxZDKFTEoeu28\n3DoH/84ZQsqYtA==\n-----END CERTIFICATE-----\n",
+		"bundle-name":"ohos.samples.distributedcalc",
+		"apl":"normal",
+		"app-feature":"hos_normal_app"
+	},
+	"acls":{
+		"allowed-acls":[
+			"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+			"ohos.permission.ACCESS_SERVICE_DM"
+		]
+	},
+	"permissions":{
+		"restricted-permissions":[]
+	},
+	"issuer":"pki_internal"
 }
