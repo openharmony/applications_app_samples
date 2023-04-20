@@ -52,10 +52,12 @@ struct CameraPage {
           .margin({ bottom: 130 })
         Column() {
           Text($r('app.string.photo'))
+            .id('photo')
             .fontColor(Color.White)
             .fontSize(18)
             .margin({ bottom: 20 })
           Image($r('app.media.take_photo_normal'))
+            .id('click')
             .size({ width: 70, height: 70 })
             .onClick(() => {
               this.cameraService.takePicture()

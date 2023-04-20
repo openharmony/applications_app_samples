@@ -136,6 +136,7 @@ export struct NavigationBar {
           .fontWeight(FontWeight.Medium)
           .fontColor($r('app.color.white'))
       }
+      .id('publish')
       .width(80)
       .height(40)
       .backgroundColor($r('app.color.green'))
