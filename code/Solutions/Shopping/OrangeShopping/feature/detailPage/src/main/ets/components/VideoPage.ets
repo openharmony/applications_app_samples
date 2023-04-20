@@ -68,6 +68,7 @@ export struct VideoPage {
         if(this.isHidden){
           Column() {
             Image($r('app.media.preview_Img'))
+              .id('previewImg')
               .objectFit(ImageFit.Contain)
           }
           .width('100%')
@@ -79,6 +80,7 @@ export struct VideoPage {
         if(this.isHidden){
           Column() {
             Image($r('app.media.play'))
+              .id('playBtn')
               .width(76).height(76)
               .onClick(() => {
                 this.detailVideoController.start()
