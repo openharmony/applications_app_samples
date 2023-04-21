@@ -23,7 +23,7 @@ import { ContactSource } from '../model/DataSource'
 
 const TAG: string = '[Index]'
 
-@Extend(Text) function fancyText (width: string, textAlign: number) {
+@Extend(Text) function fancyText(width: string, textAlign: number) {
   .width(width)
   .fontSize(20)
   .textAlign(textAlign)
@@ -95,7 +95,7 @@ struct Index {
               .fancyText('40%', TextAlign.Center)
               .fontColor(Color.White)
           }
-          .key('newContact')
+          .id('newContact')
           .height(40)
           .type(ButtonType.Capsule)
           .backgroundColor($r('app.color.main_background'))
@@ -110,7 +110,7 @@ struct Index {
               .fancyText('40%', TextAlign.Center)
               .fontColor(Color.White)
           }
-          .key('manage')
+          .id('manage')
           .height(40)
           .type(ButtonType.Capsule)
           .backgroundColor($r('app.color.main_background'))
@@ -127,13 +127,13 @@ struct Index {
 
         Column() {
           List({ space: 20, initialIndex: 0 }) {
-            LazyForEach(this.contacts, (item) => {
+            LazyForEach(this.contacts, (item: Contact, index: number) => {
               ListItem() {
                 Row() {
                   Column() {
                     Row() {
                       Text($r('app.string.show_name'))
-                        .fancyText('30%', TextAlign.Center)
+                        .fancyText('20%', TextAlign.Center)
 
                       Text(item.name)
                         .fancyText('50%', TextAlign.Start)
@@ -142,7 +142,7 @@ struct Index {
 
                     Row() {
                       Text($r('app.string.show_telephone'))
-                        .fancyText('30%', TextAlign.Center)
+                        .fancyText('20%', TextAlign.Center)
 
                       Text(item.destinationHost)
                         .fancyText('50%', TextAlign.Start)
@@ -164,24 +164,27 @@ struct Index {
                         }
                       })
                     })
-                    .key('sendSms')
+                    .id(`${item.name}`)
+
+                  Text('×')
+                    .id(`delete_${item.name}`)
+                    .fontSize(50)
+                    .fontWeight(FontWeight.Bold)
+                    .visibility(this.editable ? Visibility.Visible : Visibility.None)
+                    .onClick(() => {
+                      this.contacts['contactData'].splice(index, 1)
+                      this.contacts.notifyDataReload()
+                      Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts['contactData'][index])}`)
+                    })
                 }
                 .width('100%')
               }
-              .editable(true)
             }, item => item.name)
           }
-          .editMode(this.editable)
           .listDirection(Axis.Vertical)
           .chainAnimation(false) // 联动特效关闭
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
           .divider({ strokeWidth: 2, color: $r('app.color.start_window_background'), startMargin: 20, endMargin: 20 })
-          .onItemDelete((index: number) => {
-            this.contacts['contactData'].splice(index, 1)
-            this.contacts.notifyDataReload()
-            Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts['contactData'][index])}`)
-            return true
-          })
           .width('90%')
           .height('100%')
         }
