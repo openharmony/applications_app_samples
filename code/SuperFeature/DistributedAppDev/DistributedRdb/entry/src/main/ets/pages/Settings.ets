@@ -35,39 +35,54 @@ struct Settings {
     })
   }
 
-  @Builder SwitchBar(key, text, switchOn, onChange) {
-    Row() {
-      Text(text)
-        .fontSize(22)
-        .fontWeight(FontWeight.Bold)
-        .layoutWeight(1)
-      Column() {
-        Toggle({ type: ToggleType.Switch, isOn: switchOn })
-          .key((key) + 'Toggle')
-          .onChange(onChange)
-      }
-    }
-    .width('95%')
-    .padding(16)
-    .margin({ top: 10 })
-    .backgroundColor(Color.White)
-    .borderRadius(16)
-  }
-
   build() {
     Column() {
       TitleBar({ hasBackPress: true })
-      this.SwitchBar('automatic', $r('app.string.automatic'), this.syncState === SyncState.AutomaticSync, (isOn: boolean) => {
-        Logger.info(TAG, `automatic swtich is: ${isOn}`)
-        this.liteStore.setValue(SyncState.AutomaticSync)
-        this.syncState = SyncState.AutomaticSync
-      })
+      Row() {
+        Text($r('app.string.automatic'))
+          .fontSize(22)
+          .fontWeight(FontWeight.Bold)
+          .layoutWeight(1)
+        Column() {
+          Toggle({ type: ToggleType.Switch, isOn: this.syncState === SyncState.AutomaticSync })
+            .key(('automatic') + 'Toggle')
+            .onChange((isOn: boolean) => {
+              // 如果是开启状态
+              if (isOn) {
+                this.liteStore.setValue(SyncState.AutomaticSync)
+                this.syncState = SyncState.AutomaticSync
+              }
+              Logger.info(TAG, `automatic swtich is: ${isOn}`)
+            })
+        }
+      }
+      .width('95%')
+      .padding(16)
+      .margin({ top: 10 })
+      .backgroundColor(Color.White)
+      .borderRadius(16)
 
-      this.SwitchBar('manual', $r('app.string.manual'), this.syncState === SyncState.ManualSync, (isOn: boolean) => {
-        Logger.info(TAG, `manualmatic swtich is: ${isOn}`)
-        this.liteStore.setValue(SyncState.ManualSync)
-        this.syncState = SyncState.ManualSync
-      })
+      Row() {
+        Text($r('app.string.manual'))
+          .fontSize(22)
+          .fontWeight(FontWeight.Bold)
+          .layoutWeight(1)
+        Column() {
+          Toggle({ type: ToggleType.Switch, isOn: this.syncState === SyncState.ManualSync })
+            .key(('manual') + 'Toggle')
+            .onChange((isOn: boolean) => {
+              if (isOn) {
+                this.liteStore.setValue(SyncState.ManualSync)
+                this.syncState = SyncState.ManualSync
+              }
+            })
+        }
+      }
+      .width('95%')
+      .padding(16)
+      .margin({ top: 10 })
+      .backgroundColor(Color.White)
+      .borderRadius(16)
     }
     .height('100%')
     .width('100%')
