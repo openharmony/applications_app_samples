@@ -22,7 +22,7 @@ class Logger {
 
   constructor(prefix: string) {
     this.prefix = prefix;
-    this.domain = 0xFF00;
+    this.domain = 0xF811;
   }
 
   debug(...args: string[]): void {

@@ -471,90 +471,90 @@ export default function appTest() {
       await backBtn.click();
       await driver.delayMs(500);
     });
-  /**
-   * 应用内全局数据与UI之间的状态同步
-   */
-  it(`${BUNDLE}_applyGlobalDataSync`, 0, async () => {
-    let driver: Driver = Driver.create();
-    await driver.delayMs(500);
-    // 切换到应用级状态变量
-    await driver.assertComponentExist(ON.id('tabBar1'));
-    let applyLeval: Component = await driver.findComponent(ON.id('tabBar1'));
-    await applyLeval.click();
-    await driver.delayMs(500);
-    // 进入应用内全局数据与UI之间的状态同步
-    await driver.assertComponentExist(ON.text('应用内全局数据与UI之间的状态同步'));
-    let enterPageText: Component = await driver.findComponent(ON.text('应用内全局数据与UI之间的状态同步'));
-    await enterPageText.click();
-    await driver.delayMs(500);
-    // 点击Toggle组件，控制夜间模式
-    await driver.assertComponentExist(ON.id('nightModeSwitch'));
-    let nightModeSwitch: Component = await driver.findComponent(ON.id('nightModeSwitch'));
-    await nightModeSwitch.click();
-    await driver.delayMs(500);
-    await driver.drag(320,473,420,473,800)
-    await driver.delayMs(500);
-    // 进入Ability1
-    await driver.assertComponentExist(ON.id('enterAbilityOne'));
-    let enterAbilityOne: Component = await driver.findComponent(ON.id('enterAbilityOne'));
-    await enterAbilityOne.click();
-    await driver.delayMs(500);
-    // 返回
-    await driver.assertComponentExist(ON.id('backBtn'));
-    let backBtn: Component = await driver.findComponent(ON.id('backBtn'));
-    await backBtn.click();
-    await driver.delayMs(500);
-    // 进入Ability2
-    await driver.assertComponentExist(ON.id('enterAbilityTwo'));
-    let enterAbilityTwo: Component = await driver.findComponent(ON.id('enterAbilityTwo'));
-    await enterAbilityTwo.click();
-    await driver.delayMs(500);
-    // 返回
-    await backBtn.click();
-    await driver.delayMs(500);
-    // 再次进入Ability1
-    await enterAbilityOne.click();
-    await driver.delayMs(500);
-    // 点击控制夜间模式按钮
-    await driver.assertComponentExist(ON.id('nightModeSwitchTwo'));
-    let nightModeSwitchTwo: Component = await driver.findComponent(ON.id('nightModeSwitchTwo'));
-    await nightModeSwitchTwo.click();
-    await driver.delayMs(500);
-    await driver.drag(320,745,420,745,800)
-    await driver.delayMs(500);
-    // 返回首页
-    await backBtn.click();
-    await driver.delayMs(500);
-    // 进入Ability2
-    await enterAbilityTwo.click();
-    await driver.delayMs(500);
-    // 点击控制夜间模式按钮
-    await driver.assertComponentExist(ON.id('nightModeSwitchThree'));
-    let nightModeSwitchThree: Component = await driver.findComponent(ON.id('nightModeSwitchThree'));
-    await nightModeSwitchThree.click();
-    await driver.delayMs(500);
-    // 返回首页
-    await backBtn.click();
-    await driver.delayMs(500);
-    // 再次进入Ability1
-    await enterAbilityOne.click();
-    await driver.delayMs(500);
-    // 展示源码
-    await driver.assertComponentExist(ON.id('viewSourceCode'));
-    let viewSourceCode: Component = await driver.findComponent(ON.id('viewSourceCode'));
-    await viewSourceCode.click();
-    await driver.delayMs(500);
-    // 关闭web源码
-    await driver.assertComponentExist(ON.id('close'));
-    let closeWebBtn: Component = await driver.findComponent(ON.id('close'));
-    await closeWebBtn.click();
-    await driver.delayMs(500);
-    // 返回
-    await backBtn.click();
-    await driver.delayMs(500);
-    await backBtn.click();
-    await driver.delayMs(500);
-  });
+    /**
+     * 应用内全局数据与UI之间的状态同步
+     */
+    it(`${BUNDLE}_applyGlobalDataSync`, 0, async () => {
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 切换到应用级状态变量
+      await driver.assertComponentExist(ON.id('tabBar1'));
+      let applyLeval: Component = await driver.findComponent(ON.id('tabBar1'));
+      await applyLeval.click();
+      await driver.delayMs(500);
+      // 进入应用内全局数据与UI之间的状态同步
+      await driver.assertComponentExist(ON.text('应用内全局数据与UI之间的状态同步'));
+      let enterPageText: Component = await driver.findComponent(ON.text('应用内全局数据与UI之间的状态同步'));
+      await enterPageText.click();
+      await driver.delayMs(500);
+      // 点击Toggle组件，控制夜间模式
+      await driver.assertComponentExist(ON.id('nightModeSwitch'));
+      let nightModeSwitch: Component = await driver.findComponent(ON.id('nightModeSwitch'));
+      await nightModeSwitch.click();
+      await driver.delayMs(500);
+      await driver.drag(320,473,420,473,800)
+      await driver.delayMs(500);
+      // 进入Ability1
+      await driver.assertComponentExist(ON.id('enterAbilityOne'));
+      let enterAbilityOne: Component = await driver.findComponent(ON.id('enterAbilityOne'));
+      await enterAbilityOne.click();
+      await driver.delayMs(500);
+      // 返回
+      await driver.assertComponentExist(ON.id('backBtn'));
+      let backBtn: Component = await driver.findComponent(ON.id('backBtn'));
+      await backBtn.click();
+      await driver.delayMs(500);
+      // 进入Ability2
+      await driver.assertComponentExist(ON.id('enterAbilityTwo'));
+      let enterAbilityTwo: Component = await driver.findComponent(ON.id('enterAbilityTwo'));
+      await enterAbilityTwo.click();
+      await driver.delayMs(500);
+      // 返回
+      await backBtn.click();
+      await driver.delayMs(500);
+      // 再次进入Ability1
+      await enterAbilityOne.click();
+      await driver.delayMs(500);
+      // 点击控制夜间模式按钮
+      await driver.assertComponentExist(ON.id('nightModeSwitchTwo'));
+      let nightModeSwitchTwo: Component = await driver.findComponent(ON.id('nightModeSwitchTwo'));
+      await nightModeSwitchTwo.click();
+      await driver.delayMs(500);
+      await driver.drag(320,745,420,745,800)
+      await driver.delayMs(500);
+      // 返回首页
+      await backBtn.click();
+      await driver.delayMs(500);
+      // 进入Ability2
+      await enterAbilityTwo.click();
+      await driver.delayMs(500);
+      // 点击控制夜间模式按钮
+      await driver.assertComponentExist(ON.id('nightModeSwitchThree'));
+      let nightModeSwitchThree: Component = await driver.findComponent(ON.id('nightModeSwitchThree'));
+      await nightModeSwitchThree.click();
+      await driver.delayMs(500);
+      // 返回首页
+      await backBtn.click();
+      await driver.delayMs(500);
+      // 再次进入Ability1
+      await enterAbilityOne.click();
+      await driver.delayMs(500);
+      // 展示源码
+      await driver.assertComponentExist(ON.id('viewSourceCode'));
+      let viewSourceCode: Component = await driver.findComponent(ON.id('viewSourceCode'));
+      await viewSourceCode.click();
+      await driver.delayMs(500);
+      // 关闭web源码
+      await driver.assertComponentExist(ON.id('close'));
+      let closeWebBtn: Component = await driver.findComponent(ON.id('close'));
+      await closeWebBtn.click();
+      await driver.delayMs(500);
+      // 返回
+      await backBtn.click();
+      await driver.delayMs(500);
+      await backBtn.click();
+      await driver.delayMs(500);
+    });
     /**
      * 应用内全局数据与UI之间的状态同步
      */
