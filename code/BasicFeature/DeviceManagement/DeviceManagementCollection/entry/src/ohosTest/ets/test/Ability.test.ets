@@ -15,7 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { Driver, ON, Component } from '@ohos.UiTest';
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
 const TAG: string = 'Sample_DeviceManagementTest';
@@ -70,11 +70,11 @@ export default function abilityTest() {
       await button.click();
       await driver.delayMs(200);
       //check text
-      await driver.assertComponentExist(ON.text('检测亮灭屏状态'));
-      let judge = await driver.findComponent(ON.text('系统电源管理'));
+      await driver.assertComponentExist(ON.text('检测亮灭屏状态', MatchPattern.CONTAINS));
+      let judge = await driver.findComponent(ON.text('检测亮灭屏状态', MatchPattern.CONTAINS));
       await judge.click();
       await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('亮灭屏状态:'));
+      await driver.assertComponentExist(ON.text('亮灭屏状态:', MatchPattern.CONTAINS));
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}power_001 end`);
       done();

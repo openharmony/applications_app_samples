@@ -177,10 +177,11 @@ export default function abilityTest() {
         await driver.click(rect.right + 190, rect.bottom - 60);
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.type("AlertDialog"));
-        // 无法获取到系统弹窗的确定按钮，当前只能先用坐标，此处使用的是rk设备弹窗中的坐标
-        await driver.click(210, 658)
+        let btnInDailog: Component[] = await driver.findComponents(ON.type('Button'));
+        await btnInDailog[1].click();
         await driver.delayMs(1000);
         let recorder = await driver.findComponent(ON.text('recorderRenamed', MatchPattern.CONTAINS));
+        await driver.delayMs(500);
         expect(recorder).assertNull();
       }
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 end');

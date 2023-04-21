@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Component
 export struct TitleBar {
-  private title: string | Resource = $r('app.string.module_desc')
-  private rightBtn: Resource = null
-  private handleRightBtn: () => void = null
-  private hasBackPress: boolean = false
+  private title: string | Resource = $r('app.string.module_desc');
+  private rightBtn: Resource = null;
+  private handleRightBtn: () => void = null;
+  private hasBackPress: boolean = false;
 
   build() {
     Row() {
@@ -29,7 +29,7 @@ export struct TitleBar {
           .width(50).height('100%')
           .objectFit(ImageFit.Contain)
           .onClick(() => {
-            router.back()
+            router.back();
           })
       }
 
@@ -41,7 +41,7 @@ export struct TitleBar {
 
       if (this.rightBtn) {
         Image(this.rightBtn)
-          .key('rightBtn')
+          .id('rightBtn')
           .width(50)
           .height('100%')
           .objectFit(ImageFit.Contain)

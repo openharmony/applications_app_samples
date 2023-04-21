@@ -270,7 +270,7 @@ struct Index {
             .objectFit(ImageFit.Contain)
             .align(Alignment.End)
         }
-        .key('btnAdd')
+        .id('btnAdd')
         .width(80)
         .height(80)
         .margin({ right: 20, bottom: 50 })
