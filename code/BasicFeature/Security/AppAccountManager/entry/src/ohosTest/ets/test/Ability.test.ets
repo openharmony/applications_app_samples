@@ -31,45 +31,7 @@ async function checkButtonAndClickWithID(text:string) {
   await button.click()
   await driver.delayMs(1000)
 }
-// 注册信息
-async function applicationRegister(username:string, usernameValue:string, email:string, emailValue:string, sign:string, signValue:string, password:string, passwordValue:string, confirmPassword:string, confirmPasswordValue:string, completeText:string) {
-  // 填写用户名
-  let registerUserName = username
-  let registerUsernameValue = usernameValue
-  await driver.assertComponentExist(ON.id(registerUserName))
-  let usernameInput  = await driver.findComponent(ON.id(registerUserName))
-  await usernameInput.inputText(registerUsernameValue)
-  // 填写邮箱
-  let registerEmail = email
-  let registerEmailValue = emailValue
-  await driver.assertComponentExist(ON.id(registerEmail))
-  let emailInput = await driver.findComponent(ON.id(registerEmail))
-  await emailInput.inputText(registerEmailValue)
-  // 填写个性签名
-  let registerSign = sign
-  let registerSignValue = signValue
-  await driver.assertComponentExist(ON.id(registerSign))
-  let signInput = await driver.findComponent(ON.id(registerSign))
-  await signInput.inputText(registerSignValue)
-  // 填写密码
-  let registerPassword = password
-  let registerPasswordValue = passwordValue
-  await driver.assertComponentExist(ON.id(registerPassword))
-  let passwordInput = await driver.findComponent(ON.id(registerPassword))
-  await passwordInput.inputText(registerPasswordValue)
-  // 确认密码
-  let registerConfirmPassword = confirmPassword
-  let registerConfirmPasswordValue = confirmPasswordValue
-  await driver.assertComponentExist(ON.id(registerConfirmPassword))
-  let confirmPasswordInput = await driver.findComponent(ON.id(registerConfirmPassword))
-  await confirmPasswordInput.inputText(registerConfirmPasswordValue)
-  // 点击设置完成
-  let complete = completeText
-  await checkButtonAndClickWithID(complete)
-  // 点击弹窗关闭
-  let registerClose = await driver.findComponent(ON.type('AlertDialog'))
-  await registerClose.click()
-}
+
 // 登录账号
 async function applicationLogin(username:string, usernameValue:string, password:string, passwordValue:string) {
   // 填写用户名
@@ -85,39 +47,7 @@ async function applicationLogin(username:string, usernameValue:string, password:
   let passwordInput = await driver.findComponent(ON.id(loginPassword))
   await passwordInput.inputText(loginPasswordValue)
 }
-// 修改信息
-async function applicationModify(email:string, emailValue:string, sign:string, signValue:string, password:string, passwordValue:string, confirmPassword:string, confirmPasswordValue:string, completeText:string) {
-  // 填写邮箱
-  let modifyEmail = email
-  let modifyEmailValue = emailValue
-  await driver.assertComponentExist(ON.id(modifyEmail))
-  let emailInput = await driver.findComponent(ON.id(modifyEmail))
-  await emailInput.inputText(modifyEmailValue)
-  // 填写个性签名
-  let modifySign = sign
-  let modifySignValue = signValue
-  await driver.assertComponentExist(ON.id(modifySign))
-  let signInput = await driver.findComponent(ON.id(modifySign))
-  await signInput.inputText(modifySignValue)
-  // 填写密码
-  let modifyPassword = password
-  let modifyPasswordValue = passwordValue
-  await driver.assertComponentExist(ON.id(modifyPassword))
-  let passwordInput = await driver.findComponent(ON.id(modifyPassword))
-  await passwordInput.inputText(modifyPasswordValue)
-  // 确认密码
-  let modifyConfirmPassword = confirmPassword
-  let modifyConfirmPasswordValue = confirmPasswordValue
-  await driver.assertComponentExist(ON.id(modifyConfirmPassword))
-  let confirmPasswordInput = await driver.findComponent(ON.id(modifyConfirmPassword))
-  await confirmPasswordInput.inputText(modifyConfirmPasswordValue)
-  // 点击设置完成
-  let complete = completeText
-  await checkButtonAndClickWithID(complete)
-  // 点击弹窗关闭
-  let registerClose = await driver.findComponent(ON.type('AlertDialog'))
-  await registerClose.click()
-}
+
 // 点击确定
 async function confirmCheck() {
   let buttonConfirm = await driver.findComponents(ON.type('Button').within(ON.type('AlertDialog')))
@@ -138,16 +68,40 @@ export default function appTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
       })
     })
+
     it(BUNDLE + 'ClickMusicFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickMusicFunction_001 begin')
-      let driver: Driver = Driver.create()
       await driver.delayMs(1000)
       // 进入到音乐
       await checkButtonAndClickWithID('MusicApp')
       // 点击注册
       await checkButtonAndClickWithID('register')
       // 注册信息
-      await applicationRegister('Register1', 'testName_Music', 'Register2', '123456@qq.com', 'Register3', '测试音乐应用', 'Register4', '123456', 'Register5', '123456', 'complete')
+      // 填写用户名
+      await driver.assertComponentExist(ON.id('Register1'))
+      let usernameInput  = await driver.findComponent(ON.id('Register1'))
+      await usernameInput.inputText('testName_Music')
+      // 填写邮箱
+      await driver.assertComponentExist(ON.id('Register2'))
+      let emailInput = await driver.findComponent(ON.id('Register2'))
+      await emailInput.inputText('123456@qq.com')
+      // 填写个性签名
+      await driver.assertComponentExist(ON.id('Register3'))
+      let signInput = await driver.findComponent(ON.id('Register3'))
+      await signInput.inputText('测试音乐应用')
+      // 输入密码
+      await driver.assertComponentExist(ON.id('Register4'))
+      let passwordInput = await driver.findComponent(ON.id('Register4'))
+      await passwordInput.inputText('123456')
+      // 确认密码
+      await driver.assertComponentExist(ON.id('Register5'))
+      let confirmPasswordInput = await driver.findComponent(ON.id('Register5'))
+      await confirmPasswordInput.inputText('123456')
+      // 点击设置完成
+      await checkButtonAndClickWithID('complete')
+      // 点击弹窗关闭
+      let registerClose = await driver.findComponent(ON.type('AlertDialog'))
+      await registerClose.click()
       // 输入账号密码
       await applicationLogin('nameInput', 'testName_Music', 'passwordInput', '123456')
       // 点击登录
@@ -155,7 +109,27 @@ export default function appTest() {
       // 点击修改信息
       await checkButtonAndClickWithID('modify')
       // 修改信息
-      await applicationModify('Modify1', '123456789@qq.com', 'Modify2', 'test Music', 'Modify3', '123456789', 'Modify4', '123456789', 'modComplete')
+      // 填写邮箱
+      await driver.assertComponentExist(ON.id('Modify1'))
+      let modifyEmailInput = await driver.findComponent(ON.id('Modify1'))
+      await modifyEmailInput.inputText('123456789@qq.com')
+      // 填写个性签名
+      await driver.assertComponentExist(ON.id('Modify2'))
+      let modifySignInput = await driver.findComponent(ON.id('Modify2'))
+      await modifySignInput.inputText('test Music')
+      // 填写密码
+      await driver.assertComponentExist(ON.id('Modify3'))
+      let modifyPasswordInput = await driver.findComponent(ON.id('Modify3'))
+      await modifyPasswordInput.inputText('123456789')
+      // 确认密码
+      await driver.assertComponentExist(ON.id('Modify4'))
+      let modifyConfirmPasswordInput = await driver.findComponent(ON.id('Modify4'))
+      await modifyConfirmPasswordInput.inputText('123456789')
+      // 点击设置完成
+      await checkButtonAndClickWithID('modComplete')
+      // 点击弹窗关闭
+      let modifyRegisterClose = await driver.findComponent(ON.type('AlertDialog'))
+      await modifyRegisterClose.click()
       // 点击切换应用
       await checkButtonAndClickWithID('application')
       // 点击确定
@@ -174,6 +148,7 @@ export default function appTest() {
       await confirmCheck()
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickMusicFunction_001 end')
     })
+
     it(BUNDLE + 'ClickVideoFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickVideoFunction_001 begin')
       let driver: Driver = Driver.create()
@@ -183,7 +158,31 @@ export default function appTest() {
       // 点击注册
       await checkButtonAndClickWithID('register')
       // 注册信息
-      await applicationRegister('Register1', 'testName_Video', 'Register2', '123456@qq.com', 'Register3', '测试视频应用', 'Register4', '123456', 'Register5', '123456', 'complete')
+      // 填写用户名
+      await driver.assertComponentExist(ON.id('Register1'))
+      let usernameInput  = await driver.findComponent(ON.id('Register1'))
+      await usernameInput.inputText('testName_Video')
+      // 填写邮箱
+      await driver.assertComponentExist(ON.id('Register2'))
+      let emailInput = await driver.findComponent(ON.id('Register2'))
+      await emailInput.inputText('123456@qq.com')
+      // 填写个性签名
+      await driver.assertComponentExist(ON.id('Register3'))
+      let signInput = await driver.findComponent(ON.id('Register3'))
+      await signInput.inputText('测试视频应用')
+      // 输入密码
+      await driver.assertComponentExist(ON.id('Register4'))
+      let passwordInput = await driver.findComponent(ON.id('Register4'))
+      await passwordInput.inputText('123456')
+      // 确认密码
+      await driver.assertComponentExist(ON.id('Register5'))
+      let confirmPasswordInput = await driver.findComponent(ON.id('Register5'))
+      await confirmPasswordInput.inputText('123456')
+      // 点击设置完成
+      await checkButtonAndClickWithID('complete')
+      // 点击弹窗关闭
+      let registerClose = await driver.findComponent(ON.type('AlertDialog'))
+      await registerClose.click()
       // 输入账号密码
       await applicationLogin('nameInput', 'testName_Video', 'passwordInput', '123456')
       // 点击登录
@@ -191,7 +190,27 @@ export default function appTest() {
       // 点击修改信息
       await checkButtonAndClickWithID('modify')
       // 修改信息
-      await applicationModify('Modify1', '123456789@qq.com', 'Modify2', 'test Video', 'Modify3', '123456789', 'Modify4', '123456789', 'modComplete')
+      // 填写邮箱
+      await driver.assertComponentExist(ON.id('Modify1'))
+      let modifyEmailInput = await driver.findComponent(ON.id('Modify1'))
+      await modifyEmailInput.inputText('123456789@qq.com')
+      // 填写个性签名
+      await driver.assertComponentExist(ON.id('Modify2'))
+      let modifySignInput = await driver.findComponent(ON.id('Modify2'))
+      await modifySignInput.inputText('test Video')
+      // 填写密码
+      await driver.assertComponentExist(ON.id('Modify3'))
+      let modifyPasswordInput = await driver.findComponent(ON.id('Modify3'))
+      await modifyPasswordInput.inputText('123456789')
+      // 确认密码
+      await driver.assertComponentExist(ON.id('Modify4'))
+      let modifyConfirmPasswordInput = await driver.findComponent(ON.id('Modify4'))
+      await modifyConfirmPasswordInput.inputText('123456789')
+      // 点击设置完成
+      await checkButtonAndClickWithID('modComplete')
+      // 点击弹窗关闭
+      let modifyRegisterClose = await driver.findComponent(ON.type('AlertDialog'))
+      await modifyRegisterClose.click()
       // 点击切换应用
       await checkButtonAndClickWithID('application')
       // 点击确定
@@ -211,6 +230,7 @@ export default function appTest() {
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickVideoFunction_001 end')
     })
+
     it(BUNDLE + 'ClickMapFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickMapFunction_001 begin')
       let driver: Driver = Driver.create()
@@ -220,7 +240,31 @@ export default function appTest() {
       // 点击注册
       await checkButtonAndClickWithID('register')
       // 注册信息
-      await applicationRegister('Register1', 'testName_Map', 'Register2', '123456@qq.com', 'Register3', '测试地图应用', 'Register4', '123456', 'Register5', '123456', 'complete')
+      // 填写用户名
+      await driver.assertComponentExist(ON.id('Register1'))
+      let usernameInput  = await driver.findComponent(ON.id('Register1'))
+      await usernameInput.inputText('testName_Map')
+      // 填写邮箱
+      await driver.assertComponentExist(ON.id('Register2'))
+      let emailInput = await driver.findComponent(ON.id('Register2'))
+      await emailInput.inputText('123456@qq.com')
+      // 填写个性签名
+      await driver.assertComponentExist(ON.id('Register3'))
+      let signInput = await driver.findComponent(ON.id('Register3'))
+      await signInput.inputText('测试地图应用')
+      // 输入密码
+      await driver.assertComponentExist(ON.id('Register4'))
+      let passwordInput = await driver.findComponent(ON.id('Register4'))
+      await passwordInput.inputText('123456')
+      // 确认密码
+      await driver.assertComponentExist(ON.id('Register5'))
+      let confirmPasswordInput = await driver.findComponent(ON.id('Register5'))
+      await confirmPasswordInput.inputText('123456')
+      // 点击设置完成
+      await checkButtonAndClickWithID('complete')
+      // 点击弹窗关闭
+      let registerClose = await driver.findComponent(ON.type('AlertDialog'))
+      await registerClose.click()
       // 输入账号密码
       await applicationLogin('nameInput', 'testName_Map', 'passwordInput', '123456')
       // 点击登录
@@ -228,7 +272,27 @@ export default function appTest() {
       // 点击修改信息
       await checkButtonAndClickWithID('modify')
       // 修改信息
-      await applicationModify('Modify1', '123456789@qq.com', 'Modify2', 'test Map', 'Modify3', '123456789', 'Modify4', '123456789', 'modComplete')
+      // 填写邮箱
+      await driver.assertComponentExist(ON.id('Modify1'))
+      let modifyEmailInput = await driver.findComponent(ON.id('Modify1'))
+      await modifyEmailInput.inputText('123456789@qq.com')
+      // 填写个性签名
+      await driver.assertComponentExist(ON.id('Modify2'))
+      let modifySignInput = await driver.findComponent(ON.id('Modify2'))
+      await modifySignInput.inputText('test Map')
+      // 填写密码
+      await driver.assertComponentExist(ON.id('Modify3'))
+      let modifyPasswordInput = await driver.findComponent(ON.id('Modify3'))
+      await modifyPasswordInput.inputText('123456789')
+      // 确认密码
+      await driver.assertComponentExist(ON.id('Modify4'))
+      let modifyConfirmPasswordInput = await driver.findComponent(ON.id('Modify4'))
+      await modifyConfirmPasswordInput.inputText('123456789')
+      // 点击设置完成
+      await checkButtonAndClickWithID('modComplete')
+      // 点击弹窗关闭
+      let modifyRegisterClose = await driver.findComponent(ON.type('AlertDialog'))
+      await modifyRegisterClose.click()
       // 点击切换应用
       await checkButtonAndClickWithID('application')
       // 点击确定
