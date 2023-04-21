@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 import dataShare from '@ohos.data.dataShare'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction'
 import Logger from '../util/Logger'
 
 const TAG: string = 'DateShareHelper'
@@ -36,12 +36,19 @@ class DataShareHelper {
     if (this.dataShareHelper === null || this.dataShareHelper === undefined) {
       Logger.info(TAG, `insert dataShareHelper = ${this.dataShareHelper}`)
       return
+    } else {
+      Logger.info(TAG, `insert dataShareHelper ;dataShareHelper is ${this.dataShareHelper}`)
     }
     let valuesBuckets = { name: 'Book name', introduction: 'Book introduction' }
-    let insertId = await this.dataShareHelper.insert(BASE_URI, valuesBuckets)
-    Logger.info(TAG, `insert succeed, data : ${insertId}`)
-    let resultSet = await this.queryAll()
-    return resultSet
+    try {
+      let insertId = await this.dataShareHelper.insert(BASE_URI, valuesBuckets)
+      Logger.info(TAG, `insert succeed, data : ${insertId}`)
+      let resultSet = await this.queryAll()
+      return resultSet
+    } catch (err) {
+      Logger.error(TAG, `insert error= ${JSON.stringify(err)}`)
+    }
+
   }
 
   async updateBook(book) {
@@ -63,10 +70,16 @@ class DataShareHelper {
       Logger.info(TAG, `queryAll dataShareHelper = ${this.dataShareHelper}`)
       return
     }
-    let predicates = new dataSharePredicates.DataSharePredicates()
-    let resultSet = await this.dataShareHelper.query(BASE_URI, predicates, COLUMNS)
-    Logger.info(TAG, `queryAll resultSet= ${JSON.stringify(resultSet)}`)
-    return resultSet
+    Logger.info(TAG, `dataShareHelper not null`)
+    try {
+      let predicates = new dataSharePredicates.DataSharePredicates()
+      let resultSet = await this.dataShareHelper.query(BASE_URI, predicates, COLUMNS)
+      Logger.info(TAG, `queryAll resultSet= ${JSON.stringify(resultSet)}`)
+      return resultSet
+    } catch (err) {
+      Logger.error(TAG, `queryAll error= ${JSON.stringify(err)}`)
+    }
+
   }
 
   // 删除指定数据

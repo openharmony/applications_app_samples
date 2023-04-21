@@ -32,6 +32,8 @@ export struct InfoView {
   @State sim2Color: string = '#FFFFFF'
   private sim1Text: Resource = undefined
   private sim2Text: Resource = undefined
+  private firstName: string = 'card1'
+  private secondNAme: string = 'card2'
 
   async getColor(slotId: number) {
     let color: string = ''
@@ -98,7 +100,8 @@ export struct InfoView {
             simText: this.sim1Text,
             simColor: this.sim1Color,
             simTitle: $r('app.string.sim1_id'),
-            simCard: $r('app.string.sim1_card')
+            simCard: $r('app.string.sim1_card'),
+            idName: this.firstName
           })
 
           Show({
@@ -106,7 +109,8 @@ export struct InfoView {
             simText: this.sim2Text,
             simColor: this.sim2Color,
             simTitle: $r('app.string.sim2_id'),
-            simCard: $r('app.string.sim2_card')
+            simCard: $r('app.string.sim2_card'),
+            idName: this.secondNAme
           })
         }
         SimView()

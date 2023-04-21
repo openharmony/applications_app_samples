@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,6 +20,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct DatePickerSample {
   @State isLunar: boolean = false
   @State selectDate: string = '2022-10-30'
+  private selectedDate: Date = new Date('2022-10-30')
 
   @Styles itemBorder() {
     .padding(12)
@@ -39,7 +40,7 @@ struct DatePickerSample {
         DatePicker({
           start: new Date('1970-1-1'),
           end: new Date('2200-12-31'),
-          selected: new Date(this.selectDate) // Default date is 2022-10-30
+          selected: this.selectedDate // Default date is 2022-10-30
         })
           .height(230)
           .lunar(this.isLunar)

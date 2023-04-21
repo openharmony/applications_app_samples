@@ -31,6 +31,7 @@ export struct Decrypt {
       Column() {
         Select([{ value: 'RSA' },
           { value: 'AES' }])
+          .id('decryptAlgorithm')
           .margin(4)
           .selected(0)
           .value(this.algorithmType)
@@ -43,7 +44,7 @@ export struct Decrypt {
           })
 
         TextArea()
-          .key('decryptInput')
+          .id('decryptInput')
           .margin(6)
           .width('60%')
           .onChange((value: string) => {
@@ -56,7 +57,7 @@ export struct Decrypt {
             .margin(10)
             .width('30%')
             .height('6%')
-            .key('decryptBtn')
+            .id('decryptBtn')
             .onClick(() => {
               if (this.message === '') {
                 prompt.showToast({
@@ -82,7 +83,7 @@ export struct Decrypt {
             .margin(10)
             .width('30%')
             .height('6%')
-            .key('resetBtn')
+            .id('decryptResetBtn')
             .onClick(() => {
               this.info = ''
             })
@@ -90,6 +91,7 @@ export struct Decrypt {
         .margin(10)
 
         Text(this.info)
+          .id('decryptInfo')
           .fontSize(18)
           .width('85%')
           .height('25%')

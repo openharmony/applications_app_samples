@@ -41,7 +41,7 @@ FA模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob
 
 6.FA模型中DataAbilityHelper对应stage模型DataShareHelper。
 
-7.FA模型通过导入@ohos.resourceManager， 获取应用资源信息 ；Stage模型从API version 10开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager。
+7.FA模型通过导入@ohos.resourceManager， 获取应用资源信息 ；Stage模型从API version 9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager。
 
 #### FA对应Stage接口（FA-->Stage）
 
@@ -151,7 +151,7 @@ FaModel升级StageModel，对应的StageModel参考[StageModel](../StageModel)�
 
 1.本示例仅支持在标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1 及以上。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9 及以上。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

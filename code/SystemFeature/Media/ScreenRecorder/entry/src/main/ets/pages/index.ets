@@ -43,6 +43,7 @@ struct Index {
           .fontSize(20)
           .margin(20)
         Button($r('app.string.start_rec'))
+          .id('startRecord')
           .onClick(this.start)
       }
       .layoutWeight(1)

@@ -55,7 +55,7 @@ export default struct OperationListView {
     .width('100%')
     .onClick(() => {
       if (this.handleItemClick) {
-        this.handleItemClick(index)
+        this.handleItemClick($$.index)
       }
     })
   }

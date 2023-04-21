@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@ohos/http": "file:../libs/ohos-http-1.0.0.tgz",
-    "@ohos/video-component": "file:../libs/ohos-video-component-1.0.4.tgz",
+    "@ohos/video-component": "file:../libs/ohos-video-component-1.0.5.tgz",
     "@ohos/details-page-component": "file:../feature/detailPage",
     "@ohos/notification": "file:../libs/ohos-notification-1.0.0.tgz",
     "@ohos/scan-component": "file:../libs/ohos-feature-qr-code-scan-1.0.0.tgz",

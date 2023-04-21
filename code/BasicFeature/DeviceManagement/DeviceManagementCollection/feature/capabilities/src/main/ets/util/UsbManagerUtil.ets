@@ -32,12 +32,11 @@ export function getDeviceList(): DeviceAttribute[] {
   }
   if (CheckEmptyUtils.isEmptyArray(usbDevices)) {
     logger.info(TAG, `usb getDeviceList is null`);
-    this.result = 'device list is empty';
     return [];
   }
   let devices: DeviceAttribute[] = [];
   for (let index = 0; index < usbDevices.length; index++) {
-    logger.info(TAG, `usb this.devices ${index} : ${JSON.stringify(this.devices)}`);
+    logger.info(TAG, `usb devices ${index} : ${JSON.stringify(devices)}`);
     let deviceAttribute = {
       version: usbDevices[index].version,
       serial: usbDevices[index].serial,
@@ -59,7 +58,7 @@ export function getDeviceList(): DeviceAttribute[] {
 }
 
 export function createUsbSubscribe(callback: () => void) {
-  if (!CheckEmptyUtils.isEmpty(this.commonEventSubscriber)) {
+  if (!CheckEmptyUtils.isEmpty(commonEventSubscriber)) {
     logger.info(TAG, `usb event not subscribed`);
     return;
   }

@@ -31,6 +31,7 @@ struct About {
           .onClick(() => {
             router.back()
           })
+          .id('back')
 
         Text($r('app.string.about'))
           .fontColor(Color.White)

@@ -28,7 +28,7 @@ ohos.permission.MANAGE_MISSIONS
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample supports only the SDK of API version 10 and uses the system API **@ohos.application.missionManager**. Therefore, you must manually switch to the Full SDK for successful compilation. For details about the operation, see [Guide to Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/full-sdk-switch-guide.md).
+2. This sample supports only the SDK of API version 9 and uses the system API **@ohos.application.missionManager**. Therefore, you must manually switch to the Full SDK for successful compilation. For details about the operation, see [Guide to Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/full-sdk-switch-guide.md).
 
 3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 

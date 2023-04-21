@@ -21,7 +21,7 @@ export struct ItemContainer {
   @Link selected: number
   @State routerItem: number = 0
   @State letter: string = ''
-  private contacts: contact.Contact[] = []
+  @Link contacts: contact.Contact[];
   private alphabetical: string[] =
     [
       'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',

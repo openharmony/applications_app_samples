@@ -117,7 +117,7 @@ struct AlbumPage {
         LazyForEach(this.mediaDataSource, (item, index) => {
           ListItem() {
             MediaItem({ media: item, index: index, btnAction: this.btnAction.bind(this) })
-          }.key('ListItem' + (index + 1))
+          }
           .onClick(() => {
             if (item.mediaType === mediaLibrary.MediaType.VIDEO) {
               Logger.info(this.tag, `onClick,item.id=${item.id}`)

@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "Drag Function"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "addCate",
+      "value": "add categories"
+    },
+    {
+      "name": "allCate",
+      "value": "all categories"
+    },
+    {
+      "name": "remove",
+      "value": "remove"
+    }
+  ]
+}

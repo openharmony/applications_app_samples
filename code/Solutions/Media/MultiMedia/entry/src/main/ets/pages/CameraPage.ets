@@ -112,6 +112,7 @@ struct CameraPage {
             Text($r('app.string.video'))
               .fontColor(this.curModel === CameraMode.MODE_VIDEO ? Color.White : Color.Gray)
               .fontSize(25)
+              .id('video')
               .margin({ left: 30 })
               .onClick(() => {
                 if (this.curModel === CameraMode.MODE_PHOTO) {
@@ -145,7 +146,7 @@ struct CameraPage {
             Image(this.getCameraIcon())
               .size({ width: 70, height: 70 })
               .margin({ left: 50 })
-              .key('photo')
+              .id('cameraIcon')
               .onClick(() => {
                 if (this.curModel === CameraMode.MODE_PHOTO) {
                   Logger.info(this.tag, 'takePicture begin')

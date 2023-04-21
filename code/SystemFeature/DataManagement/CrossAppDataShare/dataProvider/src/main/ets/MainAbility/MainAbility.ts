@@ -22,6 +22,7 @@ const TAG: string = 'MainAbility'
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     logger.info(TAG, 'onCreate')
+    globalThis.context = this.context
   }
 
   onDestroy() {

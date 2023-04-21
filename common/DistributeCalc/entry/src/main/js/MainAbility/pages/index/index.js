@@ -19,6 +19,7 @@ import RemoteDeviceModel from '../../common/RemoteDeviceModel.js'
 import featureAbility from '@ohos.ability.featureAbility'
 import { KvStoreModel } from '../../common/kvstoreModel.js'
 import { logger } from '../../common/Logger'
+import window from '@ohos.window';
 
 let pressedEqual = false
 let kvStoreModel = new KvStoreModel()
@@ -35,9 +36,31 @@ export default {
     isPush: false,
     isShow: false,
     isDistributed: false,
-    deviceList: []
+    deviceList: [],
+    topRectHeight: 72,
+    bottomRectHeight: 72
   },
   onInit() {
+    let windowClass = null;
+    window.getTopWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      try {
+        windowClass.on('avoidAreaChange', (data) => {
+          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+          this.topRectHeight=data.area.topRect.height
+          this.bottomRectHeight=data.area.bottomRect.height
+        });
+      } catch (exception) {
+        console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+      }
+    });
+
     this.title = this.$t('strings.title')
     this.grantPermission()
   },

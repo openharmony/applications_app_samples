@@ -1,7 +1,0 @@
-{
-  "src": [
-    "pages/Home",
-    "pages/CityList",
-    "pages/AddCity"
-  ]
-}
