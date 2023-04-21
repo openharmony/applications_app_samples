@@ -84,6 +84,7 @@ struct Index {
             Column() {
               Stack() {
                 TextArea({ placeholder: $r('app.string.tip') })
+                  .id('comment')
                   .height(150)
                   .backgroundColor('#fffffff')
                   .onChange((value) => {
@@ -110,6 +111,7 @@ struct Index {
                     GridItem() {
                       if (index < this.mediaUris.length - 1) {
                         Image(item)
+                          .id('image')
                           .width('100%')
                           .height(100)
                           .borderRadius(10)

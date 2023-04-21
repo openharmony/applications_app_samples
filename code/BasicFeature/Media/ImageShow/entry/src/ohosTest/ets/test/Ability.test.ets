@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,19 +13,163 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium'
-import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger'
+import hilog from '@ohos.hilog';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Driver, ON } from '@ohos.UiTest';
 
-const TAG: string = 'abilityTest'
+const DRIVER = Driver.create();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      Logger.info(TAG, `it begin`)
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+
+    /**
+     * 拉起相机拍三张照片
+     */
+    it('StartAbility_001', 0, async function (done) {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'StartAbility_001 begin');
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'com.ohos.camera',
+          abilityName: 'com.ohos.camera.MainAbility'
+        });
+        await DRIVER.delayMs(4000);
+        await DRIVER.click(360, 1090);
+        await DRIVER.delayMs(1000);
+        await DRIVER.click(360, 1090);
+        await DRIVER.delayMs(1000);
+        await DRIVER.click(360, 1090);
+        await DRIVER.delayMs(1000);
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      hilog.info(0x0000, 'testTag', 'StartAbility_001 end');
+    })
+
+    /**
+     * 拉起应用
+     */
+    it('StartAbility_002', 0, async function (done) {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'StartAbility_002 begin');
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'ohos.samples.imageshow',
+          abilityName: 'MainAbility'
+        });
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      hilog.info(0x0000, 'testTag', 'StartAbility_002 end');
+    })
+
+    /**
+     * 授权
+     */
+    it('GetPermission_001', 0, async function (done) {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'GetPermission_001 begin');
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text('允许'));
+      let allowBtn = await DRIVER.findComponent(ON.text('允许'));
+      await allowBtn.click();
+      done();
+      hilog.info(0x0000, 'testTag', 'GetPermission_001 end');
+    })
+
+    /**
+     * 输入评价
+     */
+    it('EditComment_001', 0, async function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'EditComment_001 begin');
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('comment'));
+      let textArea = await DRIVER.findComponent(ON.id('comment'));
+      await textArea.inputText('this is a comment');
+      await DRIVER.delayMs(1000);
+      expect(await textArea.getText()).assertEqual('this is a comment');
+      hilog.info(0x0000, 'testTag', 'EditComment_001 end');
+    })
+
+    /**
+     * 跳转到选择图片页面
+     */
+    it('JumpToChoicePage_001', 0, async function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'JumpToChoicePage_001 begin');
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text('添加图片/照片'));
+      let choicePhotoBtn = await DRIVER.findComponent(ON.text('添加图片/照片'));
+      await choicePhotoBtn.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('nextStep'));
+      hilog.info(0x0000, 'testTag', 'JumpToChoicePage_001 end');
+    })
+
+    /**
+     * 选择图片
+     */
+    it('ChoicePhoto_001', 0, async function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'ChoicePhoto_001 begin');
+      await DRIVER.assertComponentExist(ON.id('image1'));
+      let image1 = await DRIVER.findComponent(ON.id('image1'));
+      await image1.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('select1'));
+      await DRIVER.assertComponentExist(ON.id('selected1'));
+      await DRIVER.assertComponentExist(ON.id('image2'));
+      let image2 = await DRIVER.findComponent(ON.id('image2'));
+      await image2.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('select2'));
+      await DRIVER.assertComponentExist(ON.id('selected2'));
+      await DRIVER.assertComponentExist(ON.id('image3'));
+      let image3 = await DRIVER.findComponent(ON.id('image3'));
+      await image3.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('select3'));
+      await DRIVER.assertComponentExist(ON.id('selected3'));
+      hilog.info(0x0000, 'testTag', 'ChoicePhoto_001 end');
+    })
+
+    /**
+     * 删除图片---sample有bug，已告知，待修复
+     */
+    it('DeleteImage_001', 0, async function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'DeleteImage_001 begin');
+      await DRIVER.assertComponentExist(ON.id('deleteImage3'));
+      let deleteImageBtn = await DRIVER.findComponent(ON.id('deleteImage3'));
+      await deleteImageBtn.click();
+      await DRIVER.delayMs(1000);
+      let select3 = await DRIVER.findComponents(ON.id('select3'));
+      expect(select3).assertNull();
+      hilog.info(0x0000, 'testTag', 'DeleteImage_001 end');
+    })
+
+    /**
+     * 返回主页
+     */
+    it('BackToIndex_001', 0, async function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'BackToIndex_001 begin');
+      await DRIVER.assertComponentExist(ON.id('nextStep'));
+      let nextStepBtn = await DRIVER.findComponent(ON.id('nextStep'));
+      await nextStepBtn.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('image'));
+      let imageArray = await DRIVER.findComponents(ON.id('image'));
+      expect(imageArray.length).assertEqual(2);
+      hilog.info(0x0000, 'testTag', 'BackToIndex_001 end');
     })
   })
 }

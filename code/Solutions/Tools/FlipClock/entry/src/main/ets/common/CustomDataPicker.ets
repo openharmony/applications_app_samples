@@ -53,6 +53,7 @@ export struct CustomDatePicker {
         TimePicker({
           selected: this.selectedTime,
         })
+          .id('timePicker')
           .useMilitaryTime(true)
           .onChange((date) => {
             this.hour = date.hour
@@ -65,7 +66,7 @@ export struct CustomDatePicker {
 
       Row() {
         Button($r('app.string.yes'))
-          .key('yes')
+          .id('yes')
           .fontSize(20)
           .fontColor(Color.Blue)
           .layoutWeight(1)
