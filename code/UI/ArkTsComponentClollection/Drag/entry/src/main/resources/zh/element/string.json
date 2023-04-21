@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "addCate",
+      "value": "添加的品类"
+    },
+    {
+      "name": "allCate",
+      "value": "所有品类"
+    },
+    {
+      "name": "remove",
+      "value": "移除"
+    }
+  ]
+}
