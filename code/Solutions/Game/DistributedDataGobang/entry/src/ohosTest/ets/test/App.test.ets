@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,48 +12,84 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import hilog from '@ohos.hilog';
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest'
+import Logger from '../util/Logger'
 
 const BUNDLE = 'DistributedDataGobang'
 const TAG = '[Sample_DistributedDataGobang]'
-const DOMAIN = 0xF811
 
 export default function appTest() {
   describe('appTest', function () {
     /**
      * 拉起Ability
      */
-    it(BUNDLE + '_startAbility', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
+    it(BUNDLE + '_startAbility', 0, async (done) => {
+      Logger.info(TAG, BUNDLE + '_startAbility start')
       let want = {
         bundleName: 'ohos.samples.distributeddatagobang',
         abilityName: 'MainAbility'
       }
-      var abilityDelegator: any
-      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility(want, (err) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility end')
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      await abilityDelegator.startAbility(want, (err, data) => {
+        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
+        expect(err).assertNull()
       })
+      Logger.info(TAG, BUNDLE + '_startAbility end')
+      done()
     })
+
     /**
-     * 授权
+     * 获取权限
      */
-    it(BUNDLE + '_IndexPage_btnAgree', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_btnAgree start")
-      let driver = await UiDriver.create()
+    it(BUNDLE + '_IndexPage_btnAgree', 1, async () => {
+      Logger.info(TAG, BUNDLE + "_IndexPage_btnAgree start")
+      let driver = await Driver.create()
       await driver.delayMs(1000)
       // 相机权限点击允许
-      await driver.assertComponentExist(BY.text('允许', MatchPattern.CONTAINS))
-      let btnCameraAgree = await driver.findComponent(BY.text('允许', MatchPattern.CONTAINS))
+      await driver.assertComponentExist(ON.text('允许'))
+      let btnCameraAgree = await driver.findComponent(ON.text('允许'))
       await btnCameraAgree.click()
-      await driver.delayMs(5000)
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_btnAgree end")
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + "_IndexPage_btnAgree end")
+    })
+
+    /**
+     * 检查Title是否正常显示
+     */
+    it(BUNDLE + '_TitleBar', 2, async () => {
+      Logger.info(TAG, BUNDLE + "_TitleBar start")
+      let driver = await Driver.create()
+      // 检查返回键是否显示
+      await driver.assertComponentExist(ON.id('ic_back'))
+      // 检查hop键是否显示
+      await driver.assertComponentExist(ON.id('ic_hop'))
+      let hopBtn = await driver.findComponent(ON.id('ic_hop'))
+      await hopBtn.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text('选择设备'))
+      await driver.assertComponentExist(ON.text('取消'))
+      let cancelBtn = await driver.findComponent(ON.text('取消'))
+      await cancelBtn.click()
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + "_TitleBar end")
+    })
+
+    /**
+     * 检查下方按键是否显示正常
+     */
+    it(BUNDLE + '_CheckBtn', 3, async () => {
+      Logger.info(TAG, BUNDLE + "_CheckBtn start")
+      let driver = await Driver.create()
+      // 检查重开键是否显示
+      await driver.assertComponentExist(ON.text('重开'))
+      await driver.delayMs(1000)
+      // 检查悔棋键是否显示
+      await driver.assertComponentExist(ON.text('悔棋'))
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + "_CheckBtn end")
     })
   })
 }

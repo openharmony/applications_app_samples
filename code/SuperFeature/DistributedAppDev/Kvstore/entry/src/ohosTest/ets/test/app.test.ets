@@ -13,93 +13,101 @@
  * limitations under the License.
  */
 
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest'
+import Logger from '../util/Logger'
 
 const TAG = '[Sample_Kvstore]'
-const DOMAIN = 0xF811
 const BUNDLE = 'Kvstore_'
 
 export default function appTest() {
-  describe('appTest', function () {
-    it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001')
+  describe('appTest', () => {
+    it(BUNDLE + 'StartAbilityFunction_001', 0, async (done) => {
+      let driver = await Driver.create()
+      Logger.info(TAG, BUNDLE + 'StartAbilityFunction_001')
       let parameter = {
         bundleName: "ohos.samples.kvstore",
         abilityName: "EntryAbility"
       }
       let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       abilityDelegator.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
+        Logger.info(TAG, BUNDLE + 'StartAbilityFunction_001,err:' + JSON.stringify(err))
+        expect(err).assertNull()
       })
+      Logger.info(TAG, BUNDLE + 'StartAbilityFunction_001 end')
+      await driver.delayMs(1000)
+      done()
     })
+
     /**
      * 点击允许授权
      */
-    it(BUNDLE + 'ClickAcceptFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept')
+    it(BUNDLE + 'ClickAcceptFunction_001', 1, async () => {
+      Logger.info(TAG, BUNDLE + 'ClickAcceptFunction_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1500)
+      Logger.info(TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept')
       // 点击允许
-      await driver.assertComponentExist(BY.text('允许'))
-      let btnAccept = await driver.findComponent(BY.text('允许'))
+      await driver.assertComponentExist(ON.text('允许'))
+      let btnAccept = await driver.findComponent(ON.text('允许'))
       await btnAccept.click()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 end')
+      Logger.info(TAG, BUNDLE + 'ClickAcceptFunction_001 end')
     })
+
     /**
-     * 点击右上角按钮拉起对端设备
+     * 检查分布式弹窗
      */
-    it(BUNDLE + 'ClickRightBtnFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickRightBtnFunction_001 begin')
-      let driver = await UiDriver.create()
+    it(BUNDLE + 'ClickRightBtnFunction_001', 2, async () => {
+      Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 begin')
+      let driver = await Driver.create()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickRightBtnFunction_001 clickRightBtn')
+      Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 clickRightBtn')
       // 点击右上角按钮
-      await driver.assertComponentExist(BY.key('rightBtn'))
-      let rightBtn = await driver.findComponent(BY.key('rightBtn'))
+      await driver.assertComponentExist(ON.id('rightBtn'))
+      let rightBtn = await driver.findComponent(ON.id('rightBtn'))
       await rightBtn.click()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickRightBtnFunction_001 clickCancel')
+      Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 clickCancel')
       // 点击取消
-      await driver.assertComponentExist(BY.key('cancel'))
-      let cancelBtn = await driver.findComponent(BY.key('cancel'))
+      await driver.assertComponentExist(ON.text('选择设备'))
+      await driver.assertComponentExist(ON.id('cancel'))
+      let cancelBtn = await driver.findComponent(ON.id('cancel'))
       await driver.delayMs(3000)
       await cancelBtn.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickRightBtnFunction_001 end')
+      Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 end')
     })
+
     /**
-     * 点击添加和删除卡片
+     * 点击添加和删除笔记
      */
-    it(BUNDLE + 'HandleCardFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 begin')
-      let driver = await UiDriver.create()
+    it(BUNDLE + 'HandleCardFunction_001', 3, async () => {
+      Logger.info(TAG, BUNDLE + 'HandleCardFunction_001 begin')
+      let driver = await Driver.create()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 clickAddBtn')
-      // 点击添加
-      await driver.assertComponentExist(BY.key('add'))
-      let addBtn = await driver.findComponent(BY.key('add'))
-      await driver.delayMs(3000)
-      await addBtn.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 delCard')
+      Logger.info(TAG, BUNDLE + 'HandleCardFunction_001 clickAddBtn')
+      // 添加三次笔记
+      await driver.assertComponentExist(ON.id('add'))
+      for (let i = 0;i < 3; i++) {
+        await driver.delayMs(500)
+        let addBtn = await driver.findComponent(ON.id('add'))
+        await addBtn.click()
+        await driver.delayMs(500)
+      }
+      Logger.info(TAG, BUNDLE + 'HandleCardFunction_001 delCard')
       // 删除卡片
-      await driver.assertComponentExist(BY.key('del笔记1'))
-      let delBtn = await driver.findComponent(BY.key('del笔记1'))
-      await delBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 clickAddBtn')
-      // 点击添加
-      await driver.assertComponentExist(BY.key('add'))
-      let addBtn2 = await driver.findComponent(BY.key('add'))
-      await driver.delayMs(3000)
-      await addBtn2.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'HandleCardFunction_001 end')
+      for (let i = 0;i < 3; i++) {
+        await driver.assertComponentExist(ON.id('del' + i))
+        await driver.delayMs(500)
+        let delBtn = await driver.findComponent(ON.id('del' + i))
+        await delBtn.click()
+        await driver.delayMs(500)
+        let delBtnLater = await driver.findComponent(ON.id('del' + i))
+        await expect(delBtnLater).assertNull()
+        await driver.delayMs(500)
+      }
+      Logger.info(TAG, BUNDLE + 'HandleCardFunction_001 end')
     })
   })
 }
