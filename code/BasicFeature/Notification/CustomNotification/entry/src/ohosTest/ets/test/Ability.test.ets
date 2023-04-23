@@ -54,24 +54,55 @@ export default function appTest() {
       let Button = await driver.findComponents(ON.type('Button').within(ON.type('Scroll')))
       // 点击基本类型通知
       await Button[0].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       // 点击长文本类型通知
       await Button[1].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.assertComponentExist(ON.text('CustomNotification'))
+      let textButton = await driver.findComponent(ON.text('CustomNotification'))
+      await textButton.click()
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       // 点击多行文本类型通知
       await Button[2].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       // 点击图片类型通知
       await Button[3].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       // 点击带按钮的通知
       await Button[4].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       // 点击可跳转的通知
       await Button[5].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       // 点击取消所有通知
       await Button[6].click()
+      // 下拉查看通知
+      await driver.swipe(180, 0, 180, 50, 600)
+      await driver.delayMs(1000)
+      await driver.swipe(180, 50, 180, 0, 600)
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateCustomNotificationFunction_001 end')
     })
