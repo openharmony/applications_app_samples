@@ -44,6 +44,7 @@ export struct GoodsList {
           Column() {
             // 此处的商品图片需要根据父组件的宽度而变化，这里使用65%
             Image(item.uri)
+              .id('goods' + item.id)
               .width('70%')
               .aspectRatio(1)
               .objectFit(ImageFit.Contain)

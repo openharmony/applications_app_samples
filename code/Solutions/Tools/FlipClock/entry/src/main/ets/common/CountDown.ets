@@ -164,6 +164,7 @@ export struct CountDown {
               this.context.arc(15, this.pointerHeight, 10, 3.14 * 0.5, 3.14 * 1.5)
               this.context.stroke()
             })
+            .id('countdownCanvas')
             .width(10)
             .height(250)
             .position({
@@ -192,6 +193,7 @@ export struct CountDown {
         .height(280)
 
         Text(FormatTime(this.hoursTime) + ':' + FormatTime(this.minuteTime) + ':' + FormatTime(this.secondTime))
+          .id('countdownTime')
           .fontSize(20)
           .fontWeight(500)
           .fontColor($r('app.color.text_bg'))
@@ -204,7 +206,7 @@ export struct CountDown {
         }
         Row() {
           Image(this.resetImg)
-            .key('reset')
+            .id('reset')
             .width(48)
             .height(48)
             .margin({ right: 100 })
@@ -214,7 +216,7 @@ export struct CountDown {
             })
 
           Image(this.startImg)
-            .key('start')
+            .id('start')
             .width(48)
             .height(48)
             .onClick(() => {
@@ -258,6 +260,7 @@ struct Time {
           .margin({ left: 14, right: 14 })
 
         TextPicker({ range: this.pickerArrayGen(60) })
+          .id('minute')
           .width(60)
           .height('100%')
           .onChange((value: string, index: number) => {

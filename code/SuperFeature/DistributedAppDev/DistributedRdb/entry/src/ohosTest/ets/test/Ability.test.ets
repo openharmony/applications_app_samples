@@ -13,59 +13,214 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
+import { logger } from '../util/Logger';
 
-const TAG = '[Sample_DistributedRdb]'
-const DOMAIN = 0xF811
-const BUNDLE = 'DistributedRdb_'
+const TAG = '[Sample_DistributedRdb]';
+const BUNDLE = 'DistributedRdb_';
 
 export default function abilityTest() {
-  describe('appTest', function () {
-    it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin')
-      let parameter = {
-          bundleName: "ohos.samples.distributedrdb",
-          abilityName: "EntryAbility"
-      }
-      var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
+  let driver = Driver.create();
+  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+  describe('abilityTest', function () {
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
+      let want = {
+        bundleName: "ohos.samples.distributedrdb",
+        abilityName: "EntryAbility"
+      };
+      delegator.startAbility(want, (err) => {
+        logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
+      done();
     })
+
     /**
      * 点击允许授权
      */
-    it(BUNDLE + 'ClickAcceptFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept')
+    it(BUNDLE + 'ClickAcceptFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 begin`);
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 clickAccept`);
       // 点击允许
-      await driver.assertComponentExist(BY.text('允许'))
-      let btnAccept = await driver.findComponent(BY.text('允许'))
-      await btnAccept.click()
-      await driver.delayMs(3000)
+      await driver.assertComponentExist(ON.text('允许'));
+      let btnAccept = await driver.findComponent(ON.text('允许'));
+      await btnAccept.click();
+      await driver.delayMs(2000);
+      await delegator.getCurrentTopAbility().then((Ability) => {
+        logger.info(TAG, `${BUNDLE}get top ability, ${Ability.context.abilityInfo.name}`);
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      })
+      logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 end`);
+      done();
     })
+
     /**
-     * 点击添加按钮添加联系人
+     * 设置页面
      */
-    it(BUNDLE + 'AddContactFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddContactFunction_001 begin')
-      let driver = await UiDriver.create()
+    it(BUNDLE + 'Settings_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}Settings_001 begin`);
+      await driver.delayMs(1000);
+      // 点击右上角更多按钮、弹出菜单
+      await driver.assertComponentExist(ON.id('rightBtn'));
+      let btnMore = await driver.findComponent(ON.id('rightBtn'));
+      await driver.delayMs(500);
+      await btnMore.click();
+      await driver.delayMs(1000);
+      // 点击设置，进入设置页面
+      await driver.assertComponentExist(ON.text('设置', MatchPattern.CONTAINS));
+      let btnSetting = await driver.findComponent(ON.text('设置', MatchPattern.CONTAINS));
+      await btnSetting.click();
+      await driver.delayMs(1000);
+      // 点击Switch开关设置同步方式
+      await driver.assertComponentExist(ON.id('automaticToggle'));
+      await driver.assertComponentExist(ON.id('manualToggle'));
+      let automaticSwitch = await driver.findComponent(ON.id('automaticToggle'));
+      let manualSwitch = await driver.findComponent(ON.id('manualToggle'));
+      let isManual = await manualSwitch.isChecked();
+      let isAutomatic = await automaticSwitch.isChecked();
+      logger.info(TAG, `${BUNDLE}isManual=${isManual},isAutomatic=${isAutomatic}`);
+      expect(isManual !== isAutomatic).assertTrue();
+      await automaticSwitch.click();
+      await driver.delayMs(1000);
+      let isManual1 = await manualSwitch.isChecked();
+      let isAutomatic1 = await automaticSwitch.isChecked();
+      logger.info(TAG, `${BUNDLE}isManual1=${isManual1},isAutomatic1=${isAutomatic1}`);
+      expect(isManual1 !== isManual).assertTrue();
+      expect(isManual1 !== isAutomatic1).assertTrue();
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}Settings_001 end`);
+      done();
+    })
+
+    /**
+     * 连接设备弹窗
+     */
+    it(BUNDLE + 'SelectDeviceDialog_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}SelectDeviceDialog_001 begin`);
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddContactFunction_001 clickAddBtn')
-      // 点击添加按钮
-      await driver.assertComponentExist(BY.key('btnAdd'))
-      let btnAdd = await driver.findComponent(BY.key('btnAdd'))
-      await driver.delayMs(3000)
-      await btnAdd.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddContactFunction_001 end')
+      // 点击右上角更多按钮、弹出菜单
+      await driver.assertComponentExist(ON.id('rightBtn'));
+      let btnMore = await driver.findComponent(ON.id('rightBtn'));
+      await driver.delayMs(500);
+      await btnMore.click();
+      await driver.delayMs(1000);
+      // 点击设置，进入设置页面
+      await driver.assertComponentExist(ON.text('连接设备', MatchPattern.CONTAINS));
+      let btnSetting = await driver.findComponent(ON.text('连接设备', MatchPattern.CONTAINS));
+      await btnSetting.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('选择设备', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text('取消', MatchPattern.CONTAINS));
+      let btnCancel = await driver.findComponent(ON.text('取消', MatchPattern.CONTAINS));
+      await btnCancel.click();
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}SelectDeviceDialog_001 end`);
+      done();
+    })
+
+    /**
+     * 添加联系人
+     */
+    it(BUNDLE + 'AddContactFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}AddContactFunction_001 begin`);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('btnAdd'));
+      let btnAdd = await driver.findComponent(ON.id('btnAdd'));
+      await btnAdd.click();
+      await driver.delayMs(1000);
+      // 添加联系人数据
+      await driver.assertComponentExist(ON.text('性别', MatchPattern.CONTAINS));
+      let inputTexts: Component[] = await driver.findComponents(ON.type('TextInput'));
+      await inputTexts[0].inputText('name1');
+      await inputTexts[1].inputText('13300000000');
+      await inputTexts[2].inputText('remark1');
+      await driver.assertComponentExist(ON.id('rightBtn'));
+      let rightBtn = await driver.findComponent(ON.id('rightBtn'));
+      await rightBtn.click();
+      await driver.delayMs(1000);
+      let list: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(list.length > 0).assertTrue();
+      logger.info(TAG, `${BUNDLE}AddContactFunction_001 end`);
+      done();
+    })
+
+    /**
+     * 搜索联系人
+     */
+    it(BUNDLE + 'SearchContactFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}SearchContactFunction_001 begin`);
+      await driver.delayMs(1000)
+      // 点击搜索框
+      await driver.assertComponentExist(ON.id('searchBar'))
+      let searchBar = await driver.findComponent(ON.id('searchBar'))
+      await searchBar.click()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.type('TextInput'));
+      let input: Component = await driver.findComponent(ON.type('TextInput'));
+      await input.inputText('name');
+      let list: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(list.length > 0).assertTrue();
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}SearchContactFunction_001 end`);
+      done();
+    })
+
+    /**
+     * 长按联系人进入多选、退出多选
+     */
+    it(BUNDLE + 'LongClickFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}LongClickFunction_001 begin`);
+      await driver.delayMs(1000)
+      // 长按第一条，进入多选
+      let list: Component[] = await driver.findComponents(ON.type('ListItem'));
+      if (list !== null && list.length > 0) {
+        let item = list[0];
+        await item.longClick();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('退出', MatchPattern.CONTAINS));
+        let exit = await driver.findComponent(ON.text('退出', MatchPattern.CONTAINS));
+        await exit.click();
+      }
+      logger.info(TAG, `${BUNDLE}LongClickFunction_001 end`);
+      done();
+    })
+
+    /**
+     * 进入多选后全选、删除
+     */
+    it(BUNDLE + 'DeleteContactFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}DeleteContactFunction_001 begin`);
+      await driver.delayMs(1000)
+      // 长按第一条，进入多选
+      let list: Component[] = await driver.findComponents(ON.type('ListItem'));
+      if (list !== null && list.length > 0) {
+        let item = list[0];
+        await item.longClick();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('全选', MatchPattern.CONTAINS));
+        let allCheck = await driver.findComponent(ON.text('全选', MatchPattern.CONTAINS));
+        await allCheck.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('取消', MatchPattern.CONTAINS));
+        await driver.assertComponentExist(ON.text('删除', MatchPattern.CONTAINS));
+        let btnDelete = await driver.findComponent(ON.text('删除', MatchPattern.CONTAINS));
+        await btnDelete.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.type("AlertDialog"));
+        let btnInDailog = await driver.findComponents(ON.type('Button'));
+        await btnInDailog[0].click();
+        await driver.delayMs(1000);
+        let list1: Component[] = await driver.findComponents(ON.type('ListItem'));
+        expect(list1 == null || list1.length == 0).assertTrue();
+      }
+      logger.info(TAG, `${BUNDLE}DeleteContactFunction_001 end`);
+      done();
     })
   })
 }
