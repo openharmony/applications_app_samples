@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "settings",
+      "value": "Settings"
+    },
+    {
+      "name": "systemTab",
+      "value": "System & Updates"
+    },
+    {
+      "name": "aboutTab",
+      "value": "About Device"
+    },
+    {
+      "name": "wifiTipConnectedWLAN",
+      "value": "已连接WLAN"
+    },
+    {
+      "name": "wifiTipValidWLAN",
+      "value": "Valid WLAN"
+    },
+    {
+      "name": "moreWlanSettings",
+      "value": "More settings"
+    },
+    {
+      "name": "wlanPlus",
+      "value": "WLAN+"
+    },
+    {
+      "name": "wlanDirect",
+      "value": "WLAN Direct"
+    },
+    {
+      "name": "moreConnectionsTab",
+      "value": "More Connections"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    }
+  ]
+}
