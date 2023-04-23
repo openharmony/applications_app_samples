@@ -166,7 +166,7 @@ struct Index {
         .backgroundColor($r('app.color.button_bg'))
 
         List({ space: 20, initialIndex: 0 }) {
-          LazyForEach(this.files, (item) => {
+          LazyForEach(this.files, (item,index) => {
             ListItem() {
               Row() {
                 Image(item.includes('.zip') ? $r('app.media.zip') : $r('app.media.file'))
@@ -186,6 +186,7 @@ struct Index {
                     .onClick(() => {
                       item.includes('.zip') ? this.unzipHandler(this.path, item) : this.zipHandler(this.path, item)
                     })
+                    .id('compress_' + index)
                 }
                 .width('25%')
                 .margin({ left: '15' })

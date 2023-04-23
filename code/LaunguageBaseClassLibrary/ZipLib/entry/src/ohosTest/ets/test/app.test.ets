@@ -65,12 +65,14 @@ export default function appTest() {
       await confirmBtn.click()
       await driver.delayMs(1000)
       // 点击压缩
-      let compressBtn = await driver.findComponents(ON.type('Button').within(ON.type('List')))
-      await compressBtn[0].click()
+      await driver.assertComponentExist(ON.id('compress_0'))
+      let compressBtn = await driver.findComponent(ON.id('compress_0'))
+      await compressBtn.click()
       await driver.delayMs(1000)
       // 点击解压
-      let decompressBtn = await driver.findComponents(ON.type('Button').within(ON.type('List')))
-      await decompressBtn[1].click()
+      await driver.assertComponentExist(ON.id('compress_1'))
+      let decompressBtn = await driver.findComponent(ON.id('compress_1'))
+      await decompressBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 end')
     })
