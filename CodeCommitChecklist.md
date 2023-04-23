@@ -43,7 +43,7 @@
 20. TS、JS语言缩进为2格，C++语言缩进为4格；
 21. 涉及应用截图时，图片不能包含人物、关键信息、网络等有侵权风险的资源；
 22. 工程中不要配置签名信息，禁止上传local.properties和package-lock.json等系统自动生成的文件；
-23. 规范日志格式，统一用[Sample_包名]开头，如时钟日志，使用[Sample_Clock]，日志打印需要使用Hilog接口，建议封装单独的[Logger类](https://gitee.com/openharmony/applications_app_samples/blob/master/MultiDeviceAppDev/Weather/product/src/main/ets/util/Logger.ts)，示例如下：
+23. 规范日志格式，统一用[Sample_包名]开头，如时钟日志，使用[Sample_Clock]，日志打印需要使用Hilog接口，建议封装单独的[Logger类](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SuperFeature/MultiDeviceAppDev/Weather/common/src/main/ets/util/Logger.ts) ，示例如下：
 ```ts
 import hilog from '@ohos.hilog'
 ...

@@ -6,9 +6,9 @@
 
 实现：
 
-1. 使用[DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md) 实现数据共享。
-2. 使用[关系型数据库](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-rdb.md)实现数据的增、删、改、查接口。
-3. 使用[DataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md)管理和访问数据库数据变化。
+1. 使用[DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md) 实现数据共享。
+2. 使用[关系型数据库](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-rdb.md) 实现数据的增、删、改、查接口。
+3. 使用[DataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md) 管理和访问数据库数据变化。
 
 使用说明：
 

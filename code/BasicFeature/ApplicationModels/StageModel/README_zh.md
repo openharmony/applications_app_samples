@@ -2,7 +2,7 @@
 
 ### 介绍
 
-[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md)的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
+[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md) 的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
 
 Stage模型的设计基于如下三个出发点：
 
@@ -44,7 +44,7 @@ Stage模型的设计基于如下三个出发点：
 
 2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
 
-3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) 。
+3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/fa-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) 。
 
 4.Stage模型中DataShareExtensionAbility对应FA模型中dataAbility，具体实现差异详见方法注释。
 

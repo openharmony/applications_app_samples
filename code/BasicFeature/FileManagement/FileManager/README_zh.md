@@ -81,7 +81,7 @@ Library/src/main/ets/
     * 删除指定路径的文件：使用MediaLibrary.deleteAsset();
     * 获取预览图：使用image.createImageSource()创建指定的文件资源ImageSource，然后调用ImageSource.createPixelMap()，接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md) 。
     
-* MyPhone模块中的文件增删、复制移动、查找功能封装在FileSystem，源码参考：[FileIoManager.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/fileio/FileIoManager.ets) 。
+* MyPhone模块中的文件增删、复制移动、查找功能封装在FileSystem，源码参考：[FileIoManager.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/fileio/FileIoManager.ets) 。
   * 读取文件列表：使用fileio.opendirSync()打开指定目录dir，然后使用dir.readSync()读取文件内容dirent，在调用dirent中相关api获取想要的文件参数;
   * 创建目录：使用fileio.mkdirSync()创建文件夹；
   * 创建文件：使用fileio.openSync()床架文件；

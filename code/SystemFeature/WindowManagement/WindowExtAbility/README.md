@@ -4,7 +4,7 @@
 
 This sample simulates the **Setting** app, where you can touch the menu bar to go to the details page.
 
-In this sample, the [Window Extension Ability](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md) is used to set abilities, and [AbilityComponent](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-ability-component.md) is used to load abilities.
+In this sample, the [Window Extension Ability](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-application-windowExtensionAbility.md) is used to set abilities, and [AbilityComponent](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-ability-component.md) is used to load abilities.
 
 ### Usage
 
