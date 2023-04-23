@@ -2,7 +2,7 @@
 
 ### Introduction
 
-The [stage model](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/stage-brief.md) is designed to make it easier to develop complex applications in the distributed environment.
+The [stage model](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability-deprecated/stage-brief.md) is designed to make it easier to develop complex applications in the distributed environment.
 
 The stage model is designed based on the following considerations:
 
@@ -44,7 +44,7 @@ The stage model is designed based on the following considerations:
 
 2. In the stage model, the configuration file required for creating widgets is **resources/base/profile/form_config.json**.
 
-3. The two models have different ability lifecycles. For details, see [Stage Model Lifecycle](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/stage-brief.md#lifecycle) and [FA Model Lifecycle](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/fa-brief.md#lifecycle).
+3. The two models have different ability lifecycles. For details, see [Stage Model Lifecycle](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability-deprecated/stage-brief.md#lifecycle) and [FA Model Lifecycle](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability-deprecated/fa-brief.md#lifecycle).
 
 4. **DataShareExtensionAbility** in the stage model corresponds to **DataAbility** in the FA model. For details about their implementation differences, see the corresponding APIs.
 

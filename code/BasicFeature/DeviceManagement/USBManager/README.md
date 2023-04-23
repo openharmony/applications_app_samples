@@ -10,7 +10,7 @@ This example demonstrates the use of USB device management, including USB device
 
 1. [Subscribe to USB Listening Events](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEvent.md#commoneventcreatesubscriber) : Obtain the interface usage status by subscribing to the USB insertion and removal listening events.
 
-2. [Get USB Device List](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-usb.md#usbgetdevices): Gets the list of plugged in USB devices.
+2. [Get USB Device List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-usb-deprecated.md#usbgetdevices): Gets the list of plugged in USB devices.
 
 ### Related permissions
 

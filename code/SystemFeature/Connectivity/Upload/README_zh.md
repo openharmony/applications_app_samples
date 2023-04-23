@@ -14,7 +14,7 @@
 
 1.安装应用前，先本地配置好服务器；
 
-2.将[NavigationBar.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/ToUpload/entry/src/main/ets/pages/NavigationBar.ets)文件中的服务器地址替换成配置好的服务器地址；
+2.将[NavigationBar.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/pages/NavigationBar.ets) 文件中的服务器地址替换成配置好的服务器地址；
 
 3.启动应用，点击允许访问权限进入；
 

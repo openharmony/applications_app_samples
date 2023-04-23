@@ -2,7 +2,7 @@
 
 ### 介绍
 
-Ability框架在API 8及更早版本使用[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md)。FA模型中Ability分为PageAbility、ServiceAbility、DataAbility、FormAbility几种类型。其中：
+Ability框架在API 8及更早版本使用[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/fa-brief.md) 。FA模型中Ability分为PageAbility、ServiceAbility、DataAbility、FormAbility几种类型。其中：
 
 - PageAbility是具备ArkUI实现的Ability，是用户具体可见并可以交互的Ability实例。
 - ServiceAbility也是Ability一种，但是没有UI，提供其他Ability调用自定义的服务，在后台运行。
@@ -33,7 +33,7 @@ PageAbility：应用的界面绘制。
 
 3.FA模型中ability生命周期与Stage模型生命周期区别：
 
-FA模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) ；Stage模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) 。
+FA模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/fa-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) ；Stage模型生命周期[具体参考文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) 。
 
 4.FA模型中dataAbility对应Stage模型中DataShareExtensionAbility，具体实现差异详见方法注释。
 

@@ -6,7 +6,7 @@
 
 实现：
 
-1.本示例参考[通知开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-guidelines.md) ，主要实现通知发送端的功能。
+1.本示例参考[通知开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/Readme-CN.md) ，主要实现通知发送端的功能。
 
 2.参照[Notification模块接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notification.md)，实现接口功能。
 
