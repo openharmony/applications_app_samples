@@ -106,11 +106,12 @@ struct Index {
       })
 
       Grid() {
-        LazyForEach(this.noteDataSource, item => {
+        LazyForEach(this.noteDataSource, (item, index) => {
           GridItem() {
             NoteListItem({
               note: item,
-              deleteNoteCallBack: this.deleteNoteCallBack
+              deleteNoteCallBack: this.deleteNoteCallBack,
+              noteID: index
             })
           }
           .onClick(() => {

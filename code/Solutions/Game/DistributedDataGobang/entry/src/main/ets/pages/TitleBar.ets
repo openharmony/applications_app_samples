@@ -116,6 +116,7 @@ export struct TitleBar {
   build() {
     Row() {
       Image($r('app.media.ic_back'))
+        .id('ic_back')
         .width(40)
         .height(30)
         .margin({ left: 15 })
@@ -128,6 +129,7 @@ export struct TitleBar {
         .layoutWeight(1)
       if (this.deviceFlag === 'A') {
         Image($r('app.media.ic_hop'))
+          .id('ic_hop')
           .width(40)
           .height(40)
           .margin({ right: 15 })

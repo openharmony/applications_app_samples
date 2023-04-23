@@ -12,47 +12,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
+import Logger from '../util/Logger'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
-    console.log('TestAbility onCreate')
-
+    Logger.info('TestAbility onCreate')
   }
 
   onDestroy() {
-    console.log('TestAbility onDestroy')
+    Logger.info('TestAbility onDestroy')
   }
 
   onWindowStageCreate(windowStage) {
-    console.log('TestAbility onWindowStageCreate')
+    Logger.info('TestAbility onWindowStageCreate')
     windowStage.loadContent("TestAbility/pages/index", (err, data) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err))
+        Logger.error('Failed to load the content. Cause:' + JSON.stringify(err))
         return
       }
-      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
     })
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    console.info('start run testcase!!!')
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    Logger.info('start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   onWindowStageDestroy() {
-    console.log('TestAbility onWindowStageDestroy')
+    Logger.info('TestAbility onWindowStageDestroy')
   }
 
   onForeground() {
-    console.log('TestAbility onForeground')
+    Logger.info('TestAbility onForeground')
   }
 
   onBackground() {
-    console.log('TestAbility onBackground')
+    Logger.info('TestAbility onBackground')
   }
-};
+}
