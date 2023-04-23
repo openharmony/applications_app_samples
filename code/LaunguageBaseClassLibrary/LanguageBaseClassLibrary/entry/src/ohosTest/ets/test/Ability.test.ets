@@ -50,6 +50,22 @@ export default function abilityTest() {
       let button = await driver.findComponent(ON.text('Xml & ConvertXml (XML解析,生成与转换)'));
       await button.click();
       await driver.delayMs(200);
+      // 点击Xml生成
+      await driver.assertComponentExist(ON.text('Xml 生成', MatchPattern.CONTAINS));
+      let serializer = await driver.findComponent(ON.text('Xml 生成', MatchPattern.CONTAINS));
+      await serializer.click();
+      await driver.delayMs(1000);
+      logger.info(TAG, BUNDLE + 'ClickXmlFunction_001 clickParserXml');
+      // 点击Xml解析
+      await driver.assertComponentExist(ON.text('Xml 解析', MatchPattern.CONTAINS));
+      let parser = await driver.findComponent(ON.text('Xml 解析', MatchPattern.CONTAINS));
+      await parser.click();
+      await driver.delayMs(1000);
+      logger.info(TAG, BUNDLE + 'ClickXmlFunction_001 clickConvertXml');
+      // 点击Xml转换
+      let convert = await driver.findComponent(ON.text('Xml 转换', MatchPattern.CONTAINS));
+      await convert.click();
+      await driver.delayMs(1000);
       //check text
       await driver.assertComponentExist(ON.text('Xml & ConvertXml (XML解析,生成与转换)'));
       await driver.delayMs(200);
@@ -165,9 +181,144 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('Finite', MatchPattern.CONTAINS));
 
       await driver.pressBack();
-      await driver.pressBack();
       done();
       logger.info(TAG, `${BUNDLE}RationalNumber_001 end`);
+    })
+
+    // 进入到LRUCache (缓冲区)
+    it(BUNDLE + 'UtilLruBuffer_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'LRUCache'
+      await driver.assertComponentExist(ON.text('LRUCache (缓冲区)'));
+      let button = await driver.findComponent(ON.text('LRUCache (缓冲区)'));
+      await button.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击初始化缓冲区
+      await driver.assertComponentExist(ON.text('初始化缓冲区'));
+      let initializeBtn = await driver.findComponent(ON.text('初始化缓冲区'));
+      await initializeBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击获取缓冲区容量
+      await driver.assertComponentExist(ON.text('获取缓冲区容量'));
+      let getBufferBtn = await driver.findComponent(ON.text('获取缓冲区容量'));
+      await getBufferBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击更新缓冲区容量
+      await driver.assertComponentExist(ON.text('更新缓冲区容量'));
+      let updateBufferBtn = await driver.findComponent(ON.text('更新缓冲区容量'));
+      await updateBufferBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击获取缓冲区字符串
+      await driver.assertComponentExist(ON.text('获取缓冲区字符串'));
+      let getBufferCharacterBtn = await driver.findComponent(ON.text('获取缓冲区字符串'));
+      await getBufferCharacterBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击添加键值对
+      await driver.assertComponentExist(ON.text('添加键值对'));
+      let addBtn = await driver.findComponent(ON.text('添加键值对'));
+      await addBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击获取键对应的值
+      await driver.assertComponentExist(ON.text('获取键对应的值'));
+      let getBtn = await driver.findComponent(ON.text('获取键对应的值'));
+      await getBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 关闭弹窗
+      let getDialogBtn = await driver.findComponent(ON.type('Dialog'));
+      await getDialogBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击获取所有键值对
+      await driver.assertComponentExist(ON.text('获取所有键值对'));
+      let getAllBtn = await driver.findComponent(ON.text('获取所有键值对'));
+      await getAllBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击删除指定键及关联值
+      await driver.assertComponentExist(ON.text('删除指定键及关联值'));
+      let deleteBtn = await driver.findComponent(ON.text('删除指定键及关联值'));
+      await deleteBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 关闭弹窗
+      let deleteDialogBtn = await driver.findComponent(ON.type('Dialog'));
+      await deleteDialogBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击清除所有键值对
+      await driver.assertComponentExist(ON.text('清除所有键值对'));
+      let eliminateBtn = await driver.findComponent(ON.text('清除所有键值对'));
+      await eliminateBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
+      // 点击查看操作记录
+      await driver.assertComponentExist(ON.text('查看操作记录'));
+      let operatingBtn = await driver.findComponent(ON.text('查看操作记录'));
+      await operatingBtn.click();
+      await driver.delayMs(200);
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 end`);
+    })
+
+    // Base64Helper (Base64编解码)
+    it(BUNDLE + 'UtilBase64Codec_001', 0, async function () {
+      logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
+      let driver = await Driver.create();
+      await driver.delayMs(200);
+      // 进入Base64编解码
+      await driver.assertComponentExist(ON.text('Base64Helper (Base64编解码)'));
+      let typeBtn = await driver.findComponent(ON.text('Base64Helper (Base64编解码)'));
+      await typeBtn.click();
+      await driver.delayMs(200);
+      // 点击编码
+      await driver.assertComponentExist(ON.text('编码'));
+      let codeBtn = await driver.findComponent(ON.text('编码'));
+      await codeBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'UtilBase64Codec_001 clickCheckPresetValue');
+      // 点击解码
+      await driver.assertComponentExist(ON.text('解码'));
+      let decodeBtn = await driver.findComponent(ON.text('解码'));
+      await decodeBtn.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
+    })
+
+    // TypeCheck (类型检查)
+    it(BUNDLE + 'TypeCheck_001', 0, async function () {
+      logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`);
+      let driver = await Driver.create();
+      await driver.delayMs(200);
+      // 进入类型检查
+      await driver.assertComponentExist(ON.text('TypeCheck (类型检查)'));
+      let typeBtn = await driver.findComponent(ON.text('TypeCheck (类型检查)'));
+      await typeBtn.click();
+      await driver.delayMs(200);
+      // 点击显示预置值
+      await driver.assertComponentExist(ON.text('显示预置值'));
+      let displayPresetValueBtn = await driver.findComponent(ON.text('显示预置值'));
+      await displayPresetValueBtn.click();
+      await driver.delayMs(200);
+      logger.info(TAG, BUNDLE + 'TypeCheck_001 clickCheckPresetValue');
+      // 点击校验预置值
+      await driver.assertComponentExist(ON.text('校验预置值'));
+      let checkPresetValueBtn = await driver.findComponent(ON.text('校验预置值'));
+      await checkPresetValueBtn.click();
+      await driver.delayMs(200);
+      await driver.pressBack();
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`)
     })
 
     // 进入Url字符串解析页面
