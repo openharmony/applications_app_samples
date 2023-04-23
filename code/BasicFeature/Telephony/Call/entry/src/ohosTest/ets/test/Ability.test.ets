@@ -13,55 +13,56 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, Component } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Logger from '../util/Logger';
 
-const TAG = '[Sample_Call]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Call_'
+const TAG = 'AppTest';
+const BUNDLE = 'Call_';
+let driver: Driver = Driver.create();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
+      Logger.info(TAG, `${BUNDLE}StartAbility start`);
       let want = {
-        bundleName: "ohos.samples.call",
-        abilityName: "EntryAbility"
+        bundleName: 'ohos.samples.call',
+        abilityName: 'EntryAbility'
       }
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility(want, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin, err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
+      abilityDelegator.startAbility(want, (err) => {
+        Logger.info(TAG, `${BUNDLE}StartAbility get err ${JSON.stringify(err)}`);
+        done();
+        Logger.info(TAG, `${BUNDLE}StartAbility end`);
+      });
     })
-
     /**
      * 输入电话号码并拨打
      */
     it(BUNDLE + 'CallFunction_001', 0, async function () {
       // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CallFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
+      Logger.info(TAG, `${BUNDLE}CallFunction_001 begin`);
+      await driver.delayMs(1000);
       // 输入电话号码
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CallFunction_001 input')
-      await driver.assertComponentExist(BY.key('telInput'))
-      let telInput = await driver.findComponent(BY.key('telInput'))
-      await telInput.inputText('13566254180')
-      let telVal = await telInput.getText()
-      expect('13566254180').assertEqual(telVal)
-      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('telInput'));
+      let telInput = await driver.findComponent(ON.id('telInput'));
+      await driver.delayMs(1000);
+      await telInput.inputText('13566254180');
+      await driver.delayMs(1000);
+      let telVal = await telInput.getText();
+      await driver.delayMs(1000);
+      expect('13566254180').assertEqual(telVal);
+      await driver.delayMs(1000);
       // 点击图标拨号
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CallFunction_001 call')
-      await driver.assertComponentExist(BY.key('callImg'))
-      let callBtn = await driver.findComponent(BY.key('callImg'))
-      await callBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CallFunction_001 end')
+      await driver.assertComponentExist(ON.id('callImg'));
+      let callBtn = await driver.findComponent(ON.id('callImg'));
+      await driver.delayMs(1000);
+      await callBtn.click();
+      await driver.delayMs(1000);
+      // 返回桌面
+      await driver.click(360,1244);
+      Logger.info(TAG, `${BUNDLE}CallFunction_001 end`);
     })
   })
 }

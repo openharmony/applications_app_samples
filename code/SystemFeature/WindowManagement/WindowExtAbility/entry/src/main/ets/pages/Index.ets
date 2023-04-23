@@ -77,6 +77,7 @@ struct Index {
               .width('100%')
               .height(56)
               .borderRadius(24)
+              .id(`settingType${index}`)
               .padding({ left: 24, right: 24 })
               .onClick(() => {
                 this.info = item.info

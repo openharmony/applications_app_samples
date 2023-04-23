@@ -62,6 +62,7 @@ struct ListModeFoods {
     Column() {
       Text($r("app.string.title_food_list"))
         .width('100%')
+        .id('foodList')
         .height(56)
         .padding({ left: 20 })
         .backgroundColor('#FF1f3f5')
@@ -90,6 +91,7 @@ struct ListModeFoods {
 @Component
 struct FoodGridItem {
   private foodItem: FoodInfo
+  private foodItemIndex: number;
 
   build() {
     Column() {
@@ -114,6 +116,7 @@ struct FoodGridItem {
       .height(32)
       .backgroundColor('#E5E5E5')
     }
+    .id(`foodItem${this.foodItemIndex}`)
     .height(184)
     .backgroundColor('#f1f3f5')
     .clip(new Rect({ width: '100%', height: '100%', radius: 12 }))
@@ -130,9 +133,9 @@ struct FoodGrid {
 
   build() {
     Grid() {
-      ForEach(this.foodItems, (item: FoodInfo) => {
+      ForEach(this.foodItems, (item: FoodInfo, index: number) => {
         GridItem() {
-          FoodGridItem({ foodItem: item })
+          FoodGridItem({ foodItem: item, foodItemIndex: index })
         }
       })
     }
@@ -196,6 +199,7 @@ struct FoodsDisplay {
         Image($r("app.media.ic_switch"))
           .height(24)
           .width(24)
+          .id('switch')
           .margin({ left: 24, right: 24 })
       }
       .height(56)
@@ -239,6 +243,7 @@ struct Home {
     }
     .width('100%')
     .height('100%')
+    .id(`tabTitle${index}`)
   }
 
   aboutToAppear() {

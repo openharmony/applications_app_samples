@@ -23,6 +23,7 @@ export struct TitleBar {
         .width(28)
         .height(28)
         .margin({ right: 4 })
+        .id('back')
         .objectFit(ImageFit.Contain)
 
       Text($r('app.string.back'))

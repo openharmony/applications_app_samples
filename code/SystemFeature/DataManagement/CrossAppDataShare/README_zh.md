@@ -4,6 +4,9 @@
 
  本示例实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。 
 
+注：
+1.联系人指的是内置联系人应用，为dataProvider生成的hap包，需要手动安装，由于联系人和联系人助手共用一个bundleName，因此打包之前需要更改bundleName，保证两个包的bundleName不同，这样两个应用打开才不会出问题。
+
 实现：
 
 1. 使用[DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md) 实现数据共享。

@@ -38,14 +38,17 @@ export struct ContactInfo {
       Text($r('app.string.save_to_phone'))
         .fontSize($r('app.float.font_size_22'))
         .margin({ top: 22, bottom: 32 })
-
-      this.newContact($r('app.string.contact_name'), $r('app.media.name'), '', this.name, 12)
+      // 传一个id：0
+      this.newContact($r('app.string.contact_name'), $r('app.media.name'), '', this.name, 12, 0)
       LazyForEach(this.phoneData, (item, index) => {
         this.phoneView(item, index)
       }, (item, index) => index.toString())
-      this.newContact($r('app.string.contact_email'), $r('app.media.email'), '', this.email, 20)
-      this.newContact($r('app.string.contact_address'), $r('app.media.address'), '', this.address, 20)
-      this.newContact($r('app.string.contact_remark'), $r('app.media.remark'), '', this.remark, 50)
+      // 传一个id：1
+      this.newContact($r('app.string.contact_email'), $r('app.media.email'), '', this.email, 20, 1)
+      // 传一个id：2
+      this.newContact($r('app.string.contact_address'), $r('app.media.address'), '', this.address, 20, 2)
+      // 传一个id：3
+      this.newContact($r('app.string.contact_remark'), $r('app.media.remark'), '', this.remark, 50, 3)
     }
     .width('100%')
   }
@@ -64,6 +67,7 @@ export struct ContactInfo {
         .type(InputType.PhoneNumber)
         .fontSize($r('app.float.font_size_22'))
         .maxLength(11)
+        .id('phoneInput')
         .fontWeight(FontWeight.Bold)
         .backgroundColor(Color.White)
         .placeholderFont({ size: 24, weight: 450, family: 'cursive', style: FontStyle.Normal })
@@ -91,7 +95,7 @@ export struct ContactInfo {
   }
 
   @Builder
-  newContact(editText: Resource, img: Resource, filter: string, itemValue: string, maxLength: number) {
+  newContact(editText: Resource, img: Resource, filter: string, itemValue: string, maxLength: number, id: number) {
     Row() {
       Image(img)
         .width($r('app.float.image_size_32'))
@@ -104,6 +108,7 @@ export struct ContactInfo {
         .fontSize($r('app.float.font_size_22'))
         .maxLength(maxLength)
         .inputFilter(filter)
+        .id(`contactMsg${id}`)
         .fontWeight(FontWeight.Bold)
         .backgroundColor(Color.White)
         .placeholderFont({ size: 24, weight: 450, family: 'cursive', style: FontStyle.Normal })

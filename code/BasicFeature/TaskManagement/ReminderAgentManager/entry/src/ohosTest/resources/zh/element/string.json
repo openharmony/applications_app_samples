@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "determine",
+      "value": "确定"
+    },
+    {
+      "name": "alarm_clock",
+      "value": "闹钟"
+    },
+    {
+      "name": "calendar",
+      "value": "日历"
+    },
+    {
+      "name": "timer",
+      "value": "计时器"
+    },
+    {
+      "name": "agree",
+      "value": "允许"
+    }
+  ]
+}

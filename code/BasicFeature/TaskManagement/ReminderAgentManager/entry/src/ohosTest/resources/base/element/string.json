@@ -11,6 +11,30 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "determine",
+      "value": "determine"
+    },
+    {
+      "name": "alarm_clock",
+      "value": "alarm_clock"
+    },
+    {
+      "name": "calendar",
+      "value": "calendar"
+    },
+    {
+      "name": "timer",
+      "value": "timer"
+    },
+    {
+      "name": "agree",
+      "value": "agree"
     }
   ]
 }
