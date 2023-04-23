@@ -23,7 +23,7 @@ const windowCreateContent = {
   contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
   normal: {
     text: 'onWindowStageCreate',
-    title: 'TestAbility'
+    title: 'JumpAbility'
   }
 }
 
@@ -32,7 +32,7 @@ let request = {
   content: windowCreateContent
 }
 
-export default class TestAbility extends UIAbility {
+export default class JumpAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `onCreate, want is: ${JSON.stringify(want)}`)
   }

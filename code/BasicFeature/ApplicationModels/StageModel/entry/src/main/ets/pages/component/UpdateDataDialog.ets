@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-import { BookModel, getBooksFromResultSet } from '../../feature/BookModel'
-import DateShareHelper from '../../feature/DataShareHelper'
-import Logger from '../../util/Logger'
+import { BookModel, getBooksFromResultSet } from '../../feature/BookModel';
+import DateShareHelper from '../../feature/DataShareHelper';
+import Logger from '../../util/Logger';
 
-const TAG: string = 'UpdateData'
+const TAG: string = 'UpdateData';
 
 @CustomDialog
 export struct UpdateDataDialog {
-  @Link books: Array<BookModel>
-  private book: BookModel
-  controller: CustomDialogController
+  @Link books: Array<BookModel>;
+  private book: BookModel;
+  controller: CustomDialogController;
 
   build() {
     Column() {
@@ -33,12 +33,13 @@ export struct UpdateDataDialog {
         .margin({ top: 20 })
         .fontColor(Color.Black)
       TextInput({ placeholder: 'input name', text: this.book.name })
+        .id('bookNameInput')
         .type(InputType.Normal)
         .placeholderColor(Color.Gray)
         .fontSize(19)
         .margin({ top: 10, left: 12, right: 12 })
         .onChange((value: string) => {
-          this.book.name = value
+          this.book.name = value;
         })
 
       Text($r('app.string.book_intro'))
@@ -47,12 +48,13 @@ export struct UpdateDataDialog {
         .fontColor(Color.Black)
         .margin({ top: 20 })
       TextInput({ placeholder: 'input introduction', text: this.book.introduction })
+        .id('bookNameIntro')
         .type(InputType.Normal)
         .placeholderColor(Color.Gray)
         .fontSize(20)
         .margin({ left: 12, right: 12, top: 10 })
         .onChange((value: string) => {
-          this.book.introduction = value
+          this.book.introduction = value;
         })
 
       Blank()
@@ -70,7 +72,7 @@ export struct UpdateDataDialog {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.update()
+            this.update();
           })
       }
       .width('100%')
@@ -80,9 +82,9 @@ export struct UpdateDataDialog {
   }
 
   async update() {
-    Logger.info(TAG, 'updateBook start')
-    let data = await DateShareHelper.updateBook(this.book)
-    this.books = getBooksFromResultSet(data)
-    this.controller.close()
+    Logger.info(TAG, 'updateBook start');
+    let data = await DateShareHelper.updateBook(this.book);
+    this.books = getBooksFromResultSet(data);
+    this.controller.close();
   }
 }

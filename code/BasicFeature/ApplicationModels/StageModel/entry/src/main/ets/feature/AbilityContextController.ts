@@ -26,9 +26,9 @@ const permissions = ['']
 
 let want = {
   bundleName: 'ohos.samples.stagemodel',
-  abilityName: 'TestAbility',
+  abilityName: 'JumpAbility',
   moduleName: 'entry'
-}
+};
 
 export default class AbilityContextController {
   private context: common.UIAbilityContext
@@ -59,13 +59,13 @@ export default class AbilityContextController {
   startAbilityForResult() {
     this.context.startAbilityForResult(
       {
-        deviceId: '', bundleName: 'ohos.samples.stagemodel', abilityName: 'TestAbility'
+        deviceId: '', bundleName: 'ohos.samples.stagemodel', abilityName: 'JumpAbility'
       },
       (error, result) => {
         Logger.info(TAG, `startAbilityForResult AsyncCallback is called, error.code: ${JSON.stringify(error)}`)
         Logger.info(TAG, `startAbilityForResult AsyncCallback is called, result.resultCode: ${JSON.stringify(result.resultCode)}`)
       }
-    )
+    );
   }
 
   // 启动一个Ability并在该Ability帐号销毁时返回执行结果，
