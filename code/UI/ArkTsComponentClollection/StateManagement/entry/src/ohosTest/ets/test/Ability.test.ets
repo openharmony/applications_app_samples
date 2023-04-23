@@ -140,7 +140,7 @@ export default function abilityTest() {
       });
 
       /**
-       * 基础类型
+       * 测试基础类型状态管理
        */
       it(BUNDLE + 'BaseTypeFunction_001', 0, async function () {
         let testName = 'BaseTypeFunction'
@@ -181,7 +181,7 @@ export default function abilityTest() {
       });
 
       /**
-       * 数组类型
+       * 测试数组类型状态管理
        */
       it(BUNDLE + 'ArrayTypeFunction_001', 0, async function () {
         let testName = 'ArrayTypeFunction'
@@ -241,7 +241,7 @@ export default function abilityTest() {
       })
 
       /**
-       * 类对象类型
+       * 测试类对象类型状态管理
        */
       it(BUNDLE + 'ObjectTypeFunction_001', 0, async function () {
         let testName = 'ObjectTypeFunction'
@@ -295,7 +295,7 @@ export default function abilityTest() {
       });
 
       /**
-       * 只更新所绑定的组件
+       * 测试只更新所绑定的组件
        */
       it(BUNDLE + 'UpdateBindComponentFunction_001', 0, async function () {
         let testName = 'UpdateBindComponentFunction'
@@ -335,7 +335,7 @@ export default function abilityTest() {
       });
 
       /**
-       * 单、双向同步
+       * 测试单、双向同步
        */
       it(BUNDLE + 'SingleBindFunction_001', 0, async function () {
         let testName = 'SingleBindFunction'
@@ -383,7 +383,7 @@ export default function abilityTest() {
       })
 
       /**
-       * 子组件同步父组件的内容
+       * 测试子组件同步父组件的内容
        */
       it(BUNDLE + 'ChildParentFunction_001', 0, async function () {
         let testName = 'ChildParentFunction'
@@ -448,7 +448,7 @@ export default function abilityTest() {
       })
 
       /**
-       * 爷孙组件之间状态同步
+       * 测试爷孙组件之间状态同步
        */
       it(BUNDLE + 'DeepBindFunction_001', 0, async function () {
         let testName = 'DeepBindFunction'
@@ -517,7 +517,7 @@ export default function abilityTest() {
       });
 
       /**
-       * 兄弟组件之间状态同步
+       * 测试兄弟组件之间状态同步
        */
       it(BUNDLE + 'BrotherBindFunction_001', 0, async function () {
         let testName = 'BrotherBindFunction'
