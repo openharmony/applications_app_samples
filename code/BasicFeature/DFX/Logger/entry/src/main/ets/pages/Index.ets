@@ -54,6 +54,7 @@ struct Index {
 
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Button($r('app.string.log'))
+          .id('log')
           .fontSize(30)
           .width('55%')
           .height('8%')

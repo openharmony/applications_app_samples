@@ -110,8 +110,8 @@ class FileLoggerStrategy implements ILoggerStrategy {
 
   private async writeFile(message: string) {
     // 写文件
-    await fs.writeSync(this.fd, `${message}\n`)
-    await this.fileStream.closeSync()
+    fs.writeSync(this.fd, `${message}\n`)
+    this.fileStream.closeSync()
   }
 
   public async debug(message: string): Promise<void> {

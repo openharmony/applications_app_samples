@@ -122,6 +122,7 @@ struct SendMessage {
     Column() {
       Row() {
         Image($r('app.media.back'))
+          .id('back')
           .width(150)
           .height(50)
           .margin({ left: 20 })
@@ -154,7 +155,7 @@ struct SendMessage {
 
       Scroll() {
         Column() {
-          LazyForEach(this.messages, (item) => {
+          LazyForEach(this.messages, (item: Message) => {
             Row() {
               Text(`${item.sendResult}`)
                 .fontSize(20)
@@ -171,6 +172,7 @@ struct SendMessage {
                   .margin({ top: 20 })
 
                 Text(`${item.content}`)
+                  .id('messageInfo')
                   .width('70%')
                   .fontSize(25)
                   .padding({ top: 20, bottom: 20, left: 20 })
@@ -191,6 +193,7 @@ struct SendMessage {
 
       Row() {
         TextArea({ placeholder: $r('app.string.message'), text: this.content })
+          .id('messageContent')
           .placeholderColor('#92958C')
           .placeholderFont({ size: 20, weight: 100, family: 'cursive', style: FontStyle.Normal })
           .textAlign(TextAlign.Start)
@@ -205,6 +208,7 @@ struct SendMessage {
           })
 
         Image($r('app.media.arrow'))
+          .id('send')
           .width(50)
           .height(50)
           .margin({ right: 10 })
