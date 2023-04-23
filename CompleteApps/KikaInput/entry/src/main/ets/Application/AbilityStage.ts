@@ -20,6 +20,6 @@ export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     AppStorage.SetOrCreate<number>('windowWidth', -1);
     AppStorage.SetOrCreate<number>('windowHeight', -1);
-    Log.showInfo(TAG, "[Demo] MyAbilityStage onCreate");
+    Log.showInfo(TAG, '[Demo] MyAbilityStage onCreate');
   }
 }

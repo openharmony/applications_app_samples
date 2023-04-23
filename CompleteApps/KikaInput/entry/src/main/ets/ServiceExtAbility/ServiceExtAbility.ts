@@ -17,7 +17,7 @@ import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 import rpc from '@ohos.rpc';
 import { KeyboardController } from '../model/KeyboardController.ets';
 import Log from '../model/Log';
-import Want from "@ohos.application.Want";
+import Want from '@ohos.application.Want';
 
 let TAG: string = 'ServiceExtAbility->';
 

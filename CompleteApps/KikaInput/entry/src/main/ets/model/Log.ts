@@ -24,7 +24,7 @@ export function filterKey(target: any, propKey: string, descriptor: PropertyDesc
   descriptor.value = function (...args: string[]) {
     let filterResult = args.map((str) => {
       let tempStr = str;
-      FILTER_KEYS.forEach((filterKey) => tempStr = tempStr.replace(filterKey, "**"));
+      FILTER_KEYS.forEach((filterKey) => tempStr = tempStr.replace(filterKey, '**'));
       return tempStr;
     });
     const result = original.call(this, ...filterResult);
