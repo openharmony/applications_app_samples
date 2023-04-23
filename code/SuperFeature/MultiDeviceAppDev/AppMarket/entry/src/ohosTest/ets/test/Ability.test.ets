@@ -13,39 +13,86 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { logger } from '../util/Logger';
+
+const TAG: string = '[Sample_AppMarket]';
+const BUNDLE = 'AppMarket_';
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
+
+    /**
+     * 拉起应用
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.appmarket',
+          abilityName: 'MainAbility'
+        })
+        done();
+      } catch (expection) {
+        logger.info(TAG, `StartAbility end ${JSON.stringify(expection)}`);
+        done();
+      }
+      logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
     })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
+
+    /**
+     * 关闭窗口
+     */
+    it(BUNDLE + 'CloseWindowFunction_001', 0, async () => {
+      logger.info(TAG, `${BUNDLE}CloseWindowFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      let window = await driver.findWindow({
+        actived: true
+      });
+      await window.close();
+      await driver.delayMs(200);
+      logger.info(TAG, `${BUNDLE}CloseWindowFunction_001 end`);
     })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
+
+    /**
+     * 最小化窗口
+     */
+    it(BUNDLE + 'MinimizeWindowFunction_001', 0, async () => {
+      logger.info(TAG, `${BUNDLE}MinimizeWindowFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      let appMarket = await driver.findComponent(ON.text('AppMarket'));
+      await appMarket.click();
+      await driver.delayMs(200);
+      let window = await driver.findWindow({
+        actived: true
+      });
+      await window.minimize();
+      await driver.delayMs(200);
+      logger.info(TAG, `${BUNDLE}MinimizeWindowFunction_001 end`);
     })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-    it('assertContain',0, function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc'
-      let b = 'b'
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+
+    /**
+     * 窗口分屏
+     */
+    it(BUNDLE + 'SplitWindowFunction_001', 0, async () => {
+      logger.info(TAG, `${BUNDLE}SplitWindowFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      let appMarket = await driver.findComponent(ON.text('AppMarket'));
+      await appMarket.click();
+      await driver.delayMs(200);
+      let window = await driver.findWindow({
+        actived: true
+      });
+      await window.split();
+      await driver.delayMs(200);
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}SplitWindowFunction_001 end`);
     })
   })
 }
