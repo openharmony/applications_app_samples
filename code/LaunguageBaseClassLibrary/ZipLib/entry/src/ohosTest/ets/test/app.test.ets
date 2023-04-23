@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
+import { Driver, ON} from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
 
@@ -43,14 +43,35 @@ export default function appTest() {
      */
     it(BUNDLE + 'AddFileFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 begin')
-      let driver = await UiDriver.create()
+      let driver = await Driver.create()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 clickAddBtn')
       // 点击添加
-      await driver.assertComponentExist(BY.key('addFileBtn'))
-      let btnAdd = await driver.findComponent(BY.key('addFileBtn'))
-      await driver.delayMs(3000)
+      await driver.assertComponentExist(ON.id('addFileBtn'))
+      let btnAdd = await driver.findComponent(ON.id('addFileBtn'))
       await btnAdd.click()
+      await driver.delayMs(1000)
+      // 输入文件名称
+      await driver.assertComponentExist(ON.id('inputFileName'))
+      let fileNameInput  = await driver.findComponent(ON.id('inputFileName'))
+      await fileNameInput.inputText('fileName')
+      // 输入文件内容
+      await driver.assertComponentExist(ON.id('inputFileContent'))
+      let fileContentInput  = await driver.findComponent(ON.id('inputFileContent'))
+      await fileContentInput.inputText('fileContent')
+      // 点击确认
+      await driver.assertComponentExist(ON.id('confirmBtn'))
+      let confirmBtn  = await driver.findComponent(ON.id('confirmBtn'))
+      await confirmBtn.click()
+      await driver.delayMs(1000)
+      // 点击压缩
+      let compressBtn = await driver.findComponents(ON.type('Button').within(ON.type('List')))
+      await compressBtn[0].click()
+      await driver.delayMs(1000)
+      // 点击解压
+      let decompressBtn = await driver.findComponents(ON.type('Button').within(ON.type('List')))
+      await decompressBtn[1].click()
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 end')
     })
   })

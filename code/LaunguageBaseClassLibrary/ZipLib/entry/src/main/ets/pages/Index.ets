@@ -150,7 +150,7 @@ struct Index {
               .objectFit(ImageFit.Contain)
               .align(Alignment.End)
           }
-          .key('addFileBtn')
+          .id('addFileBtn')
           .width('10%')
           .type(ButtonType.Normal)
           .backgroundColor($r('app.color.button_bg'))

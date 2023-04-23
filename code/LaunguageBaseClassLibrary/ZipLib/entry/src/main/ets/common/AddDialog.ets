@@ -33,7 +33,7 @@ export struct AddDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Medium)
       TextInput({ placeholder: inputPrompt, text: inputContent })
-        .key('input' + (key))
+        .id('input' + (key))
         .layoutWeight(1)
         .placeholderColor(Color.Gray)
         .fontSize(16)
@@ -70,7 +70,7 @@ export struct AddDialog {
             .fontColor(Color.Blue)
             .fontSize(17)
         }
-        .key('confirmBtn')
+        .id('confirmBtn')
         .margin(5)
         .layoutWeight(7)
         .backgroundColor(Color.White)
