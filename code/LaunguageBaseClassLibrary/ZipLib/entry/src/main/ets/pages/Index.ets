@@ -166,7 +166,7 @@ struct Index {
         .backgroundColor($r('app.color.button_bg'))
 
         List({ space: 20, initialIndex: 0 }) {
-          LazyForEach(this.files, (item,index) => {
+          LazyForEach(this.files, (item, index) => {
             ListItem() {
               Row() {
                 Image(item.includes('.zip') ? $r('app.media.zip') : $r('app.media.file'))
