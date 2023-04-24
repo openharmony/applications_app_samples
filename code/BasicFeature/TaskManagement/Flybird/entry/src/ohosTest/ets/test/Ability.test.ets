@@ -15,16 +15,15 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { UiDriver, BY, UiComponent, MatchPattern, Driver, ON } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
 import Logger from '../utils/Logger';
+import resourceManager from '@ohos.resourceManager'
 
 const TAG = '[Sample_Flybird]'
 const DOMAIN = 0xF811
 const BUNDLE = 'Flybird_'
 
-// 屏幕上最多显示10条记录
-const MAX_NUM = 10
 const DELAY_TIME = 1000
 let driver: Driver = Driver.create()
 
@@ -145,6 +144,12 @@ export default function appTest() {
       let testName = 'StartGameCalendar'
       Logger.info(TAG, BUNDLE + testName + ' begin')
 
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator()
+      // 获取ability
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility()
+      //获取manager
+      let manager = ability.context.resourceManager
+
       let driver: Driver = Driver.create()
       await driver.delayMs(DELAY_TIME)
 
@@ -152,14 +157,15 @@ export default function appTest() {
       await checkButtonAndClickWithText('start game')
 
       // 关卡1
-      await checkButtonAndClickWithText('关卡1')
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.level_one')))
       // 等待小鸟降落
       await driver.delayMs(DELAY_TIME * 10)
       // 返回上一页
-      await checkButtonAndClickWithText('返回')
+      let text = getContext().resourceManager.getStringSync($r('app.string.back'))
+      await checkButtonAndClickWithText(text)
 
       // 返回首页
-      await checkButtonAndClickWithText('返回')
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.back')))
 
       // DisconnectService
       await checkButtonAndClickWithText('Disconnect service')

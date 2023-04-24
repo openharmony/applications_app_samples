@@ -17,13 +17,13 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../utils/Logger';
 
 const TAG = '[Sample_ScreenDetector]'
 const BUNDLE = 'ScreenDetector_'
-// 屏幕上最多显示10条记录
-const MAX_NUM = 10
+
 const DELAY_TIME = 1000
 let driver: Driver = Driver.create()
 

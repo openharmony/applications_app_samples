@@ -16,29 +16,29 @@
 import hilog from '@ohos.hilog';
 
 class Logger {
-  private domain: number;
-  private prefix: string;
-  private format: string = '%{public}s, %{public}s';
+  private DOMAIN: number;
+  private PREFIX: string;
+  private FORMAT: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix;
-    this.domain = 0xF811;
+    this.PREFIX = prefix;
+    this.DOMAIN = 0xF811;
   }
 
   debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args);
+    hilog.debug(this.DOMAIN, this.PREFIX, this.FORMAT, args);
   }
 
   info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args);
+    hilog.info(this.DOMAIN, this.PREFIX, this.FORMAT, args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args);
+    hilog.warn(this.DOMAIN, this.PREFIX, this.FORMAT, args);
   }
 
   error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args);
+    hilog.error(this.DOMAIN, this.PREFIX, this.FORMAT, args);
   }
 }
 
