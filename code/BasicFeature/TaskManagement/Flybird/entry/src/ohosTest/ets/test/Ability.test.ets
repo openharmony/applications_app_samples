@@ -49,7 +49,7 @@ async function checkButtonAndClickWithID(text: string) {
 
 export default function appTest() {
   describe('appTest', function () {
-    
+
     /**
      * 打开应用
      */
