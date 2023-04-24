@@ -15,31 +15,31 @@
 
 import hilog from '@ohos.hilog';
 
+const DOMAIN: number = 0xF811
+const PREFIX = ''
+const FORMAT = '%{public}s, %{public}s'
+
 class Logger {
-  private DOMAIN: number;
-  private PREFIX: string;
-  private FORMAT: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.PREFIX = prefix;
-    this.DOMAIN = 0xF811;
+
   }
 
   debug(...args: string[]): void {
-    hilog.debug(this.DOMAIN, this.PREFIX, this.FORMAT, args);
+    hilog.debug(DOMAIN, PREFIX, FORMAT, args);
   }
 
   info(...args: string[]): void {
-    hilog.info(this.DOMAIN, this.PREFIX, this.FORMAT, args);
+    hilog.info(DOMAIN, PREFIX, FORMAT, args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.DOMAIN, this.PREFIX, this.FORMAT, args);
+    hilog.warn(DOMAIN, PREFIX, FORMAT, args);
   }
 
   error(...args: string[]): void {
-    hilog.error(this.DOMAIN, this.PREFIX, this.FORMAT, args);
+    hilog.error(DOMAIN, PREFIX, FORMAT, args);
   }
 }
 
-export default new Logger('Sample_ComponentCollection');
+export default new Logger('Sample_Flybird');
