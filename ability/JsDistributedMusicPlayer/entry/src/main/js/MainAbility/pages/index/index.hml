@@ -40,7 +40,7 @@
       <image class="control_button" onclick="onNextClick" src="/common/media/ic_play_next.svg"/>
     </div>
   </div>
-  <dialog id="continueAbilityDialog" class="dialog-main" oncancel="cancelDialog" style="margin-bottom : {{ bottomRectHeight }} px">
+  <dialog id="continueAbilityDialog" class="dialog-main" oncancel="cancelDialog" style="margin-bottom : {{ bottomRectHeight+20 }} px">
     <div class="dialog-div">
       <text class="dialog_title_text">{{ $t('strings.select') }}</text>
       <list class="dialog_device_list" divider="true">
