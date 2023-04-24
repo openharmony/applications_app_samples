@@ -16,6 +16,8 @@
 
 允许不同设备间的数据交换：ohos.permission.DISTRIBUTED_DATASYNC
 
+允许系统应用获取分布式设备的认证组网能力：[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionaccess_service_dm)
+
 ### 使用说明
 
 1.**音乐播放**，点击**播放**、**暂停**、上**一曲**、下**一曲**按钮可以对音乐进行操作。
