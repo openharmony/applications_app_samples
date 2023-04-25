@@ -1,6 +1,19 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_uitest_com.samples.uitest.cer",
+          "storePassword": "0000001B7C772802CC92F788725C8E5638AF9D94C53848C0E5AFD8A92D00CDEF8863EA166B68105D8D8F53",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BC9019953D70444F9A3A8081E9852C225D1E24529DCCCEF3F5247CD4FF60B1D15BC33A006943230",
+          "profile": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_uitest_com.samples.uitest.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_uitest_com.samples.uitest.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
