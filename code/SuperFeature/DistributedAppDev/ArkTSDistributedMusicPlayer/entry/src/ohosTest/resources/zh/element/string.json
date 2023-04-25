@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "entry_desc",
+      "value": "音乐播放和数据同步"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "音乐播放和数据同步"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "用于分布式数据迁移"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "音乐"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "选择设备"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "分布式音乐远程控制服务"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "分布式音乐服务"
+    },
+    {
+      "name": "onConnectService",
+      "value": "连接成功"
+    },
+    {
+      "name": "onDisconnectService",
+      "value": "连接断开"
+    },
+    {
+      "name": "onFailedService",
+      "value": "连接错误"
+    },
+    {
+      "name": "ConnectRemoteDevices",
+      "value": "连接远程设备"
+    },
+    {
+      "name": "ConnectionTimeout",
+      "value": "连接超时"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
+    }
+  ]
+}
