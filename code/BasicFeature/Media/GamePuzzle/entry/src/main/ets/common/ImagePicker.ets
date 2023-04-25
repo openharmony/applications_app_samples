@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 @CustomDialog
 export default struct ImagePicker {
   private imageDatas: Array<mediaLibrary.FileAsset> = []
-  private selected: number = 0
+  @State selected: number = 0
   public controller: CustomDialogController
   @Link index: number
 
@@ -31,8 +31,13 @@ export default struct ImagePicker {
         ForEach(this.imageDatas, (item, index) => {
           ListItem() {
             Stack({ alignContent: Alignment.TopEnd }) {
-              Image(item.uri).width(180).height(150).margin({ left: 2, right: 2, top: 5, bottom: 5 })
-              Radio({ value: 'Radio3', group: 'radioGroup' }).checked(index === this.index ? true : false)
+              Image(item.uri)
+                .width(180)
+                .height(150)
+                .margin({ left: 2, right: 2, top: 5, bottom: 5 })
+              Radio({ value: 'Radio3', group: 'radioGroup' })
+                .id(`radio${this.selected + 1}_${index + 1}`)
+                .checked(index === this.selected ? true : false)
                 .onChange(() => {
                   this.selected = index
                 })
@@ -46,11 +51,13 @@ export default struct ImagePicker {
 
       Row() {
         Button($r('app.string.cancel'))
+          .id('cancel')
           .margin({ right: '25%' })
           .onClick(() => {
             this.controller.close()
           })
         Button($r('app.string.conform'))
+          .id('confirm')
           .onClick(() => {
             this.index = this.selected
           })
