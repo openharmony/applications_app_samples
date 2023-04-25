@@ -14,13 +14,14 @@
  */
 
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Ability from '@ohos.app.ability.Ability'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 import Window from '@ohos.window'
 
-export default class TestAbility extends Ability {
+export default class TestAbility extends UIAbility {
     onCreate(want, launchParam) {
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
@@ -43,7 +44,7 @@ export default class TestAbility extends Ability {
     onWindowStageCreate(windowStage: Window.WindowStage) {
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
-        windowStage.loadContent('TestAbility/pages/index', (err, data) => {
+        windowStage.loadContent('testAbility/pages/index', (err, data) => {
             if (err.code) {
                 hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.ERROR);
                 hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -54,7 +55,7 @@ export default class TestAbility extends Ability {
                 JSON.stringify(data) ?? '');
         });
 
-        globalThis.abilityContext = this.context;
+//        globalThis.abilityContext = this.context;
     }
 
     onWindowStageDestroy() {
