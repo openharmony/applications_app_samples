@@ -387,23 +387,23 @@
         "url": "pages/animations/pageTransitionSampleFromTop/PageTransitionSampleFromTop"
       },
       {
-        "name": "bottom enter/bottom exit",
+        "name": "bottom enter/top exit",
         "url": "pages/animations/pageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
       },
       {
-        "name": "left enter/bottom exit",
+        "name": "left enter/right exit",
         "url": "pages/animations/pageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
       },
       {
-        "name": "roight enter/bottom exit",
+        "name": "right enter/left exit",
         "url": "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight"
       },
       {
-        "name": "scale enter/bottom exit",
+        "name": "scale enter/exit",
         "url": "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale"
       },
       {
-        "name": "rotate enter/bottom exit",
+        "name": "rotate enter/exit",
         "url": "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
       }
     ],
