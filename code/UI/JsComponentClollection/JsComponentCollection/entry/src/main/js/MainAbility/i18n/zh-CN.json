@@ -390,23 +390,23 @@
         "url": "pages/animations/pageTransitionSampleFromTop/PageTransitionSampleFromTop"
       },
       {
-        "name": "底部进场/底部退场",
+        "name": "底部进场/顶部退场",
         "url": "pages/animations/pageTransitionSampleFromBottom/PageTransitionSampleFromBottom"
       },
       {
-        "name": "左侧进场/底部退场",
+        "name": "左侧进场/右侧退场",
         "url": "pages/animations/pageTransitionSampleFromLeft/PageTransitionSampleFromLeft"
       },
       {
-        "name": "右侧进场/底部退场",
+        "name": "右侧进场/左侧退场",
         "url": "pages/animations/pageTransitionSampleFromRight/PageTransitionSampleFromRight"
       },
       {
-        "name": "缩放进场/底部退场",
+        "name": "缩放进场/退场",
         "url": "pages/animations/pageTransitionSampleWithScale/PageTransitionSampleWithScale"
       },
       {
-        "name": "旋转进场/底部退场",
+        "name": "旋转进场/退场",
         "url": "pages/animations/pageTransitionSampleWithRotate/PageTransitionSampleWithRotate"
       }
     ],
