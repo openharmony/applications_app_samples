@@ -1,0 +1,13 @@
+{
+	"BuildOptions":{
+		"BUNDLE_NAME":"com.samples.jsunit",
+		"BUILD_PATH":{
+			"OUTPUT_PATH":"D:\\project\\coco2\\code-test\\jsunit\\build\\outputs\\default"
+		},
+		"SELECT_BUILD_PRODUCT":"default"
+	},
+	"CommonInfo":{
+		"project.ide.version":"3.1.0.200",
+		"current.select.product":"default"
+	}
+}
