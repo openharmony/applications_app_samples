@@ -19,17 +19,17 @@ import { DirectoryItem, DirectoryList } from '../../common/DirectoryList'
 @Component
 struct TypicalSceneIndex {
   private typicalScene: Array<DirectoryItem> = [
-    { title: $r('app.string.diversion_layout'), uri: 'pages/typicalScene/diversion/DiversionSample' },
-    { title: $r('app.string.repeat_layout'), uri: 'pages/typicalScene/repeat/RepeatSample' },
-    { title: $r('app.string.indentation_layout'), uri: 'pages/typicalScene/indentation/IndentationSample' },
-    { title: $r('app.string.header'), uri: 'pages/typicalScene/header/HeaderSample' },
-    { title: $r('app.string.banner'), uri: 'pages/typicalScene/banner/BannerSample' },
-    { title: $r('app.string.operationEntries'), uri: 'pages/typicalScene/operationEntries/OperationEntriesSample' },
-    { title: $r('app.string.tabs'), uri: 'pages/typicalScene/tabs/TabsSample' },
-    { title: $r('app.string.bigImage'), uri: 'pages/typicalScene/bigImage/BigImageSample' },
-    { title: $r('app.string.multiLaneList'), uri: 'pages/typicalScene/multiLaneList/MultiLaneListSample' },
-    { title: $r('app.string.grid'), uri: 'pages/typicalScene/responsiveGrid/ResponsiveGridSample' },
-    { title: $r('app.string.aside'), uri: 'pages/typicalScene/sidebar/SidebarSample' }
+    { title: $r('app.string.diversion_layout'), uri: 'pages/typicalScene/diversion/DiversionSample', id:'DiversionSample' },
+    { title: $r('app.string.repeat_layout'), uri: 'pages/typicalScene/repeat/RepeatSample', id:'RepeatSample' },
+    { title: $r('app.string.indentation_layout'), uri: 'pages/typicalScene/indentation/IndentationSample', id:'IndentationSample' },
+    { title: $r('app.string.header'), uri: 'pages/typicalScene/header/HeaderSample', id:'HeaderSample' },
+    { title: $r('app.string.banner'), uri: 'pages/typicalScene/banner/BannerSample', id:'BannerSample' },
+    { title: $r('app.string.operationEntries'), uri: 'pages/typicalScene/operationEntries/OperationEntriesSample', id:'OperationEntriesSample' },
+    { title: $r('app.string.tabs'), uri: 'pages/typicalScene/tabs/TabsSample', id:'TabsSample' },
+    { title: $r('app.string.bigImage'), uri: 'pages/typicalScene/bigImage/BigImageSample', id:'BigImageSample' },
+    { title: $r('app.string.multiLaneList'), uri: 'pages/typicalScene/multiLaneList/MultiLaneListSample', id:'MultiLaneListSample' },
+    { title: $r('app.string.grid'), uri: 'pages/typicalScene/responsiveGrid/ResponsiveGridSample', id:'ResponsiveGridSample' },
+    { title: $r('app.string.aside'), uri: 'pages/typicalScene/sidebar/SidebarSample', id:'SidebarSample' }
   ]
 
   build() {

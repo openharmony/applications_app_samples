@@ -19,15 +19,15 @@ import { DirectoryItem, DirectoryList } from '../../common/DirectoryList'
 @Component
 struct Index {
   private directory: DirectoryItem[] = [
-    { title: $r('app.string.grid_layout1'), uri: 'pages/gridRow/gridRow/GridRowSample1' },
-    { title: $r('app.string.grid_layout2'), uri: 'pages/gridRow/gridRow/GridRowSample2' },
-    { title: $r('app.string.grid_layout3'), uri: 'pages/gridRow/gridRow/GridRowSample3' },
-    { title: $r('app.string.grid_layout4'), uri: 'pages/gridRow/gridRow/GridRowSample4' },
-    { title: $r('app.string.grid_layout5'), uri: 'pages/gridRow/gridRow/GridRowSample5' },
-    { title: $r('app.string.grid_layout6'), uri: 'pages/gridRow/gridRow/GridRowSample6' },
-    { title: $r('app.string.grid_layout7'), uri: 'pages/gridRow/gridRow/GridRowSample7' },
-    { title: $r('app.string.grid_layout8'), uri: 'pages/gridRow/gridRow/GridRowSample8' },
-    { title: $r('app.string.grid_layout9'), uri: 'pages/gridRow/gridRow/GridRowSample9' }
+    { title: $r('app.string.grid_layout1'), uri: 'pages/gridRow/gridRow/GridRowSample1', id:'GridRowSample1' },
+    { title: $r('app.string.grid_layout2'), uri: 'pages/gridRow/gridRow/GridRowSample2', id:'GridRowSample2' },
+    { title: $r('app.string.grid_layout3'), uri: 'pages/gridRow/gridRow/GridRowSample3', id:'GridRowSample3' },
+    { title: $r('app.string.grid_layout4'), uri: 'pages/gridRow/gridRow/GridRowSample4', id:'GridRowSample4' },
+    { title: $r('app.string.grid_layout5'), uri: 'pages/gridRow/gridRow/GridRowSample5', id:'GridRowSample5' },
+    { title: $r('app.string.grid_layout6'), uri: 'pages/gridRow/gridRow/GridRowSample6', id:'GridRowSample6' },
+    { title: $r('app.string.grid_layout7'), uri: 'pages/gridRow/gridRow/GridRowSample7', id:'GridRowSample7' },
+    { title: $r('app.string.grid_layout8'), uri: 'pages/gridRow/gridRow/GridRowSample8', id:'GridRowSample8' },
+    { title: $r('app.string.grid_layout9'), uri: 'pages/gridRow/gridRow/GridRowSample9', id:'GridRowSample9' }
   ]
 
   build() {
