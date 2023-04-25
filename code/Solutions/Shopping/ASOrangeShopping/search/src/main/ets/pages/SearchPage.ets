@@ -45,18 +45,17 @@ function getResultList(list: Array<GoodsInfo>, keyWord: string): Array<GoodsInfo
   return result;
 }
 
-
 @Entry
 @Component
 export struct SearchPage {
   private placeHolder: string;
-  private context:Context = getContext(this);
+  private context: Context = getContext(this);
   private preferencesUtil: DataPreferencesUtil;
   private databaseUtil: DatabaseUtil;
   private stringUtil: Resource2String = new Resource2String(this.context);
   @State hasResult: boolean = true;
   @State currentSearch: string = '';
-  @State recentList: Array<string> = [];
+  @Provide('recentList') recentList: Array<string> = [];
   @State goodsList: Array<GoodsInfo> = [];
   @State isResentSearchShow: boolean = true;
   @Provide('resultList') resultList: Array<GoodsInfo> = [];
@@ -92,8 +91,8 @@ export struct SearchPage {
     Column() {
       Search({ placeholder: this.placeHolder, value: this.currentSearch })
         .backgroundColor($r('app.color.white'))
-        .size({ width: '100%', height: 40 })
-         //TODO 资源文件转换有问题, 暂时用字符串替代 this.stringUtil.getString($r('app.string.search_button_text'))
+        .size({ width: '100%', height: 35 })
+          //TODO 资源文件转换有问题, 暂时用字符串替代 this.stringUtil.getString($r('app.string.search_button_text'))
         .searchButton('search')
         .onSubmit(value => {
           this.currentSearch = value;
@@ -107,7 +106,7 @@ export struct SearchPage {
         })
 
       Text($r("app.string.no_related_products"))
-        .fontSize(24)
+        .fontSize(16)
         .fontColor(Color.Gray)
         .visibility(this.hasResult ? Visibility.None : Visibility.Visible)
 

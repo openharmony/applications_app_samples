@@ -44,7 +44,7 @@ export struct GoodsInCart {
     Column() {
       Row() {
         CheckboxGroup({ group: 'goodsInCart' })
-          .width(20)
+          .width(16)
           .aspectRatio(1)
           .selectedColor($r('app.color.pink'))
 
@@ -53,18 +53,19 @@ export struct GoodsInCart {
           .fontWeight(400)
           .fontColor(Color.Black)
       }
+      .margin(12)
       .width('100%')
 
       ForEach(this.goodsListInCart ? this.goodsListInCart : [], (item: GoodsInfo) => {
         Row() {
           Checkbox({ name: item.title, group: 'goodsInCart' })
-            .width(20)
+            .width(16)
             .aspectRatio(1)
             .selectedColor($r('app.color.pink'))
 
           Image(GOODS_DATA_ROOT + item.imageUrl)
-            .width(70)
-            .height(80)
+            .width(65)
+            .height(70)
             .objectFit(ImageFit.Contain)
             .margin({ left: 12, right: 16 })
 
@@ -92,26 +93,26 @@ export struct GoodsInCart {
 
           Row() {
             Image($r('app.media.reduce'))
-              .width(28)
-              .height(28)
-              .objectFit(ImageFit.Contain)
+              .width(20)
+              .height(20)
+              .objectFit(ImageFit.Auto)
               .onClick(() => {
                 this.shoppingDataUtil.changeGoods(item.id, item.count - 1);
               })
             Text(`${item.count}`)
-              .fontSize(12)
+              .fontSize(14)
               .margin({ left: 10, right: 10 })
             Image($r('app.media.add'))
-              .width(28)
-              .height(28)
-              .objectFit(ImageFit.Contain)
+              .width(20)
+              .height(20)
+              .objectFit(ImageFit.Auto)
               .onClick(() => {
                 this.shoppingDataUtil.changeGoods(item.id, item.count + 1);
               })
           }
           .height(80)
           .layoutWeight(1)
-          .margin({ top: 12, left: 12, bottom: 12 })
+          .margin({ left: 6, top: 12, bottom: 12 })
         }
         .width('100%')
         .padding({ left: 12, right: 12 })

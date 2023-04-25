@@ -23,7 +23,7 @@ let TAG: string = 'RecentSearches';
 export struct RecentSearches {
   private context: Context;
   private preferencesUtil: DataPreferencesUtil;
-  @State recentList: Array<string> = [];
+  @Consume('recentList') recentList: Array<string>;
   @Link currentSearch: string;
 
   aboutToAppear() {
@@ -37,11 +37,11 @@ export struct RecentSearches {
     Column({ space: 12 }) {
       Row() {
         Text($r('app.string.recent_searches'))
-          .fontSize(16)
+          .fontSize(14)
           .textAlign(TextAlign.Start)
         Blank()
         Text($r('app.string.clean'))
-          .fontSize(16)
+          .fontSize(14)
           .margin({ left: 12 })
           .fontColor(Color.Gray)
           .textAlign(TextAlign.Start)
@@ -58,23 +58,27 @@ export struct RecentSearches {
       GridRow({ gutter: { x: vp2px(3), y: vp2px(3) }, columns: 5 }) {
         ForEach(this.recentList, (item: string, index: number) => {
           GridCol() {
-            Text(item)
-              .height(35)
-              .borderRadius(20)
-              .fontColor(Color.Gray)
-              .textAlign(TextAlign.Center)
-              .backgroundColor($r('app.color.white'))
-              .constraintSize({ minWidth: 50, maxWidth: 350 })
-              .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .padding({ top: 6, bottom: 6, left: 12, right: 12 })
-              .onClick(() => {
-                this.currentSearch = item;
-              })
+            Row() {
+              Text(item)
+                .maxLines(1)
+                .fontSize(12)
+                .fontColor(Color.Gray)
+                .textAlign(TextAlign.Center)
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
+            }
+            .borderRadius(20)
+            .backgroundColor($r('app.color.white'))
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ maxWidth: 500 })
+            .padding({ top: 6, bottom: 6, left: 12, right: 12 })
+            .onClick(() => {
+              this.currentSearch = item;
+            })
           }
         })
       }
       .width('100%')
-      .padding({ top: 12, bottom: 12, left: 24, right: 24 })
+      .padding({ top: 12, bottom: 12, left: 6, right: 6 })
     }
   }
 }

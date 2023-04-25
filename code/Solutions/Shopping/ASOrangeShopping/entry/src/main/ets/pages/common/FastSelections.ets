@@ -34,13 +34,12 @@ export struct FastSelections {
       ForEach(FAST_SELECTION_DATA, (item: FastSelectionModel, index: number) => {
         Column() {
           Text(item.firstTile)
-            .fontSize(20)
-            .decoration({ type: this.currentIndex === index ? TextDecorationType.Underline : TextDecorationType.None })
+            .fontSize(14)
             .fontColor($r('app.color.white'))
             .fontWeight(this.currentIndex === index ? FontWeight.Bolder : FontWeight.Normal)
 
           Text(item.secondTile)
-            .fontSize(16)
+            .fontSize(12)
             .fontColor($r('app.color.white'))
             .fontWeight(this.currentIndex === index ? FontWeight.Bolder : FontWeight.Normal)
         }
