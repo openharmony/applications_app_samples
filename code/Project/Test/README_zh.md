@@ -83,6 +83,8 @@ entry/src/
 
 ### 下载
 
+如需单独下载本工程，执行如下命令：
+
 ```
 git init
 git config core.sparsecheckout true
