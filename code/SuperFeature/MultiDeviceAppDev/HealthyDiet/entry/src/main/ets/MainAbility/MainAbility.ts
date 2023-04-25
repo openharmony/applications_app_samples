@@ -20,7 +20,7 @@ import window from '@ohos.window';
 const TAG: string = '[Sample_HealthyDiet]';
 const DPI: number = 160;
 const SM_SIZE: number = 320;
-const MD_SIZE: number = 520;
+const MD_SIZE: number = 600;
 const LG_SIZE: number = 840;
 
 
