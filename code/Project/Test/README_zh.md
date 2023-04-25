@@ -36,8 +36,6 @@ entry/src/ohosTest/ets
 
 - basicExampleTest.ets  arkXtest 测试框架基础使用示例代码
 
-arkXtest框架文档 [开发指南](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)
-
 ## uitest 项目
 
 ### uiTest 测试框架功能
@@ -72,10 +70,6 @@ entry/src/
 #### 具体实现
 - basicExampleTest.ets  uitest测试框架基础使用代码示例
 
-uitest框架文档 [开发指南](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)
-uitest框架API说明 [开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-uitest.md#split9)
-
-
 
 ## 约束与限制
 1.本示例仅支持标准系统上运行,支持设备:RK3568.
@@ -92,7 +86,7 @@ uitest框架API说明 [开发指南](https://gitee.com/openharmony/docs/blob/mas
 ```
 git init
 git config core.sparsecheckout true
-echo code/Project/Test/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/lijialang/applications_app_samples.git
+echo code/Project/Test > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
