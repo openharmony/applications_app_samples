@@ -20,9 +20,11 @@ export default {
     minute: 0,
     second: 0
   },
-  onInit() {
+  onShow() {
     this.updateTime();
-    this.timer = setInterval(this.updateTime, 1000)
+    this.timer = setInterval(() => {
+      this.updateTime()
+    }, 1000)
   },
   updateTime: function () {
     var nowTime = new Date()
@@ -39,7 +41,7 @@ export default {
       this.second = '0' + this.second
     }
   },
-  onDestroy() {
+  onHide() {
     clearInterval(this.timer)
   }
 }
