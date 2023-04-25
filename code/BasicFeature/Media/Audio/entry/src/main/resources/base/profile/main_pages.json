@@ -1,8 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/nav_sec/AudioManager",
-    "pages/nav_third/AudioRoutingManager",
-    "pages/routing_manager/PreferOutputDevice"
+    "pages/PreferOutputDevice",
+    "pages/Focus"
   ]
 }
