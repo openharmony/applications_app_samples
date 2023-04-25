@@ -26,17 +26,18 @@ export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin')
-      let parameter = {
-        bundleName: "ohos.samples.ziplib",
-        abilityName: "EntryAbility"
-      }
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      abilityDelegator.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
-      })
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: "ohos.samples.ziplib",
+          abilityName: "EntryAbility"
+        });
+        done();
+      } catch (err) {
+        expect(err.code).assertEqual(0);
+        done();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
     })
     /**
      * 添加文件
