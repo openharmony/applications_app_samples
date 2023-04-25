@@ -23,9 +23,8 @@ import { GOODS_LIST, GOODS_TYPE_LIST, GOODS_DATA_ROOT } from '../../data/GoodsDa
 export struct GoodsItem {
   @State goods: GoodsInfo = GOODS_LIST[0];
   @State isSimpleMode: boolean = false; //适配猜你喜欢页面需要显示的简略信息
-  private bigTextSize: number = 20;
-  private mediumTextSize: number = 16;
-  private smallTextSize: number = 14;
+  private mediumTextSize: number = 14;
+  private smallTextSize: number = 12;
 
   @Styles hideInSimpleMode() {
     .visibility(this.isSimpleMode ? Visibility.None : Visibility.Visible)
@@ -35,25 +34,23 @@ export struct GoodsItem {
     Column() {
       // 此处的商品图片需要根据父组件的宽度而变化，这里使用65%
       Image(GOODS_DATA_ROOT + this.goods.imageUrl)
-        .width('65%')
+        .width('55%')
         .aspectRatio(1)
         .objectFit(ImageFit.Contain)
 
-      Divider()
-        .strokeWidth(1)
-        .margin(6)
-
       Column() {
         Text(this.goods.title)
-          .fontSize(this.bigTextSize)
+          .maxLines(2)
+          .fontSize(this.mediumTextSize)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
         Text(this.goods.introduction)
+          .maxLines(2)
           .fontSize(this.smallTextSize)
           .fontColor(Color.Gray)
           .margin({ bottom: 6 })
           .textOverflow({ overflow: TextOverflow.Ellipsis })
         Text(this.goods.price)
-          .fontSize(this.bigTextSize)
+          .fontSize(this.mediumTextSize)
           .fontWeight(FontWeight.Bold)
           .fontColor($r('app.color.pink'))
         Text(this.goods.old_price)
@@ -66,15 +63,16 @@ export struct GoodsItem {
 
         Row({ space: 6 }) {
           ForEach(this.goods.type.split(','), item => {
-            Text(GOODS_TYPE_LIST[parseInt(item)])
-              .margin({ top: 6, bottom: 6 })
-              .borderRadius(6)
-              .fontWeight(FontWeight.Bold)
-              .fontSize(this.mediumTextSize)
-              .textAlign(TextAlign.Center)
-              .size({ width: 45, height: 25 })
-              .fontColor($r('app.color.white'))
-              .backgroundColor($r('app.color.pink'))
+            Row() {
+              Text(GOODS_TYPE_LIST[parseInt(item)])
+                .margin({ top: 3, bottom: 3, left: 6, right: 6 })
+                .fontWeight(FontWeight.Bold)
+                .fontSize(this.smallTextSize)
+                .textAlign(TextAlign.Center)
+                .fontColor($r('app.color.white'))
+            }
+            .borderRadius(6)
+            .backgroundColor($r('app.color.pink'))
           })
         }
         .width('100%')

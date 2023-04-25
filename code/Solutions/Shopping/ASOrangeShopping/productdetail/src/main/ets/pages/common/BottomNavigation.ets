@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 
+import promptAction from '@ohos.promptAction';
 import RouterUtil from '../../utils/RouterUtil';
 import { EmitterUtil } from 'shoppingdata';
 import { GoodsInfo } from '../../model/DetailMode';
@@ -90,6 +91,7 @@ export struct BottomNavigation {
           // 通过Emitter将商品id与商品数量进行同步
           new EmitterUtil().changeGoods(this.goodsInfo.id, ++this.goodsInfo.count);
           logger.info('click to add goods.' + this.goodsInfo.id);
+          promptAction.showToast({ message: $r('app.string.add_to_cart') })
         })
 
         Row() {

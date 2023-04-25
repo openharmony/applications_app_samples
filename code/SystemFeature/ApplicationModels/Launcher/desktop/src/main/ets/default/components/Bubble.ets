@@ -37,7 +37,7 @@ export default struct Bubble {
   private context: any = undefined
   @State customPopup: boolean = false
   @State formInfo: CardItemInfo | undefined = undefined
-  @Prop icon: string
+  @State icon: string = ''
   dialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteDialog({
       confirm: () => {
