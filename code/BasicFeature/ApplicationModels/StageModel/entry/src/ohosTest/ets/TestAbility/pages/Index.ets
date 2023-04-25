@@ -13,17 +13,9 @@
  * limitations under the License.
  */
 
-import Logger from '../../util/Logger'
-
-const TAG: string = 'Index'
-
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
-    Logger.info(TAG, `TestAbility index aboutToAppear`)
-  }
-
   @State message: string = 'Hello World'
 
   build() {

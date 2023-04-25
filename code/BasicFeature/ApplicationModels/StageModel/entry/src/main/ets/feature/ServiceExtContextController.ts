@@ -24,13 +24,13 @@ let caller = undefined
 let connection = 1
 let wantAccount = {
   'bundleName': 'ohos.samples.stagemodel',
-  'abilityName': 'TestAbility'
-}
+  'abilityName': 'JumpAbility'
+};
 let want = {
   bundleName: 'ohos.samples.stagemodel',
-  abilityName: 'TestAbility',
+  abilityName: 'JumpAbility',
   moduleName: 'entry'
-}
+};
 
 export default class ServiceExtContextController {
   private context: common.UIAbilityContext
