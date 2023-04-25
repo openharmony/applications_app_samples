@@ -27,15 +27,17 @@ export default function appTest() {
     it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility({
-        bundleName: "ohos.samples.simmanager",
-        abilityName: "EntryAbility"
-      }, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: "ohos.samples.simmanager",
+          abilityName: "EntryAbility"
+        });
+        done();
+      } catch (err) {
+        expect(err.code).assertEqual(0);
+        done();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
 
     /**
