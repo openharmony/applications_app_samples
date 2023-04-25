@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "back",
+      "value": "back"
+    },
+    {
+      "name": "test_add",
+      "value": "test_add"
+    },
+    {
+      "name": "base_type",
+      "value": "Based type"
+    },
+    {
+      "name": "array_type",
+      "value": "Array type"
+    },
+    {
+      "name": "class_type",
+      "value": "Class Object type"
+    },
+    {
+      "name": "only_update_bound_components",
+      "value": "Only the components to which you are bound are updated"
+    },
+    {
+      "name": "single_and_two_way_sync",
+      "value": "Single and two-way synchronization"
+    },
+    {
+      "name": "partial_sync",
+      "value": "The child component synchronizes parts of the parent component"
+    },
+    {
+      "name": "parent_descendent_sync",
+      "value": "State synchronization between parent and descendent"
+    },
+    {
+      "name": "select_colorblue",
+      "value": "Blue"
+    },
+    {
+      "name": "select_colorpink",
+      "value": "Pink"
+    },
+    {
+      "name": "brother_sync",
+      "value": "State synchronization between brother components"
+    },
+    {
+      "name": "application_storage_ui",
+      "value": "State synchronization between the app storage and the UI"
+    },
+    {
+      "name": "ability_storage_ui",
+      "value": "State synchronization between the ability storage and the UI"
+    }
+  ]
+}

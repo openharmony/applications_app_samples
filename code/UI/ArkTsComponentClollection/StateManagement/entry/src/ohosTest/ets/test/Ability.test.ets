@@ -17,14 +17,13 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../utils/Logger';
 
 const TAG = '[Sample_StateManagement]'
 const BUNDLE = 'StateManagement_'
-// 屏幕上最多显示10条记录
-const MAX_NUM = 10
+
 const DELAY_TIME = 1000
 let driver: Driver = Driver.create()
 
@@ -146,11 +145,15 @@ export default function abilityTest() {
         let testName = 'BaseTypeFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入基础类型页面
-        await driver.assertComponentExist(ON.text('基础类型'));
-        let enterPage = await driver.findComponent(ON.text('基础类型'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.base_type'))));
+        let enterPage = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.base_type'))));
         await enterPage.click();
         await driver.delayMs(500);
         // 设置圆形颜色
@@ -187,11 +190,15 @@ export default function abilityTest() {
         let testName = 'ArrayTypeFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入数组类型页面
-        await driver.assertComponentExist(ON.text('数组类型'));
-        let enterPage = await driver.findComponent(ON.text('数组类型'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.array_type'))));
+        let enterPage = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.array_type'))));
         await enterPage.click();
         await driver.delayMs(500);
         // 点击删除元素
@@ -247,11 +254,15 @@ export default function abilityTest() {
         let testName = 'ObjectTypeFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入类对象类型页面
-        await driver.assertComponentExist(ON.text('类对象类型'));
-        let enterPageText = await driver.findComponent(ON.text('类对象类型'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.class_type'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.class_type'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击更新对象
@@ -301,11 +312,15 @@ export default function abilityTest() {
         let testName = 'UpdateBindComponentFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入只更新所绑定的组件页面
-        await driver.assertComponentExist(ON.text('只更新所绑定的组件'));
-        let enterPageText = await driver.findComponent(ON.text('只更新所绑定的组件'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.only_update_bound_components'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.only_update_bound_components'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击更新对象
@@ -341,11 +356,15 @@ export default function abilityTest() {
         let testName = 'SingleBindFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入单双向同步页面
-        await driver.assertComponentExist(ON.text('单、双向同步'));
-        let enterPageText = await driver.findComponent(ON.text('单、双向同步'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.single_and_two_way_sync'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.single_and_two_way_sync'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击设置粉色
@@ -389,11 +408,15 @@ export default function abilityTest() {
         let testName = 'ChildParentFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入单双向同步页面
-        await driver.assertComponentExist(ON.text('子组件同步父组件部分内容'));
-        let enterPageText = await driver.findComponent(ON.text('子组件同步父组件部分内容'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.partial_sync'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.partial_sync'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击修改父组件第一个属性文本
@@ -454,11 +477,15 @@ export default function abilityTest() {
         let testName = 'DeepBindFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入单双向同步页面
-        await driver.assertComponentExist(ON.text('爷孙组件之间状态同步'));
-        let enterPageText = await driver.findComponent(ON.text('爷孙组件之间状态同步'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.parent_descendent_sync'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.parent_descendent_sync'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击孙组件select组件并选择颜色
@@ -466,8 +493,8 @@ export default function abilityTest() {
         let grandsonA = await driver.findComponent(ON.id('grandsonCompA'));
         await grandsonA.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('粉色'));
-        let selectedPink = await driver.findComponent(ON.text('粉色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
+        let selectedPink = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
         await selectedPink.click();
         await driver.delayMs(500);
         // 点击爷组件select组件并选择颜色
@@ -475,8 +502,8 @@ export default function abilityTest() {
         let grandfatherCompA = await driver.findComponent(ON.id('grandfatherCompA'));
         await grandfatherCompA.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('蓝色'));
-        let selectedBlueCompA = await driver.findComponent(ON.text('蓝色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
+        let selectedBlueCompA = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
         await selectedBlueCompA.click();
         await driver.delayMs(500);
         // 点击孙组件select组件并选择颜色
@@ -484,8 +511,8 @@ export default function abilityTest() {
         let grandsonCompB = await driver.findComponent(ON.id('grandsonCompB'));
         await grandsonCompB.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('粉色'));
-        let selectedPinkCompB = await driver.findComponent(ON.text('粉色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
+        let selectedPinkCompB = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
         await selectedPinkCompB.click();
         await driver.delayMs(500);
         // 点击爷组件select组件并选择颜色
@@ -493,8 +520,8 @@ export default function abilityTest() {
         let grandfatherCompB = await driver.findComponent(ON.id('grandfatherCompB'));
         await grandfatherCompB.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('蓝色'));
-        let selectedBlueCompB = await driver.findComponent(ON.text('蓝色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
+        let selectedBlueCompB = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
         await selectedBlueCompB.click();
         await driver.delayMs(500);
         // 展示源码
@@ -523,11 +550,15 @@ export default function abilityTest() {
         let testName = 'BrotherBindFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 进入单双向同步页面
-        await driver.assertComponentExist(ON.text('兄弟组件之间状态同步'));
-        let enterPageText = await driver.findComponent(ON.text('兄弟组件之间状态同步'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.brother_sync'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.brother_sync'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击子组件B中的select组件并选择颜色
@@ -535,8 +566,8 @@ export default function abilityTest() {
         let linkSelectCompB = await driver.findComponent(ON.id('linkSelectCompB'));
         await linkSelectCompB.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('粉色'));
-        let linkselectedPinkB = await driver.findComponent(ON.text('粉色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
+        let linkselectedPinkB = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
         await linkselectedPinkB.click();
         await driver.delayMs(500);
         // 点击子组件B中的select组件并选择颜色
@@ -544,8 +575,8 @@ export default function abilityTest() {
         let linkSelectCompA = await driver.findComponent(ON.id('linkSelectCompA'));
         await linkSelectCompA.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('蓝色'));
-        let linkselectedBlueA = await driver.findComponent(ON.text('蓝色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
+        let linkselectedBlueA = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
         await linkselectedBlueA.click();
         await driver.delayMs(500);
         // 点击子组件B中的select组件并选择颜色
@@ -553,8 +584,8 @@ export default function abilityTest() {
         let consumeSelectCompB = await driver.findComponent(ON.id('consumeSelectCompB'));
         await consumeSelectCompB.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('粉色'));
-        let consumeSelectedPinkB = await driver.findComponent(ON.text('粉色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
+        let consumeSelectedPinkB = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorpink'))));
         await consumeSelectedPinkB.click();
         await driver.delayMs(500);
         // 点击子组件B中的select组件并选择颜色
@@ -562,8 +593,8 @@ export default function abilityTest() {
         let consumeSelectCompA = await driver.findComponent(ON.id('consumeSelectCompA'));
         await consumeSelectCompA.click();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('蓝色'));
-        let consumeSelectedBlueA = await driver.findComponent(ON.text('蓝色'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
+        let consumeSelectedBlueA = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.select_colorblue'))));
         await consumeSelectedBlueA.click();
         await driver.delayMs(500);
         // 展示源码
@@ -592,6 +623,10 @@ export default function abilityTest() {
         let testName = 'GlobalSynFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
         // 切换到应用级状态变量
@@ -600,8 +635,8 @@ export default function abilityTest() {
         await applyLeval.click();
         await driver.delayMs(500);
         // 进入应用内全局数据与UI之间的状态同步
-        await driver.assertComponentExist(ON.text('应用内全局数据与UI之间的状态同步'));
-        let enterPageText = await driver.findComponent(ON.text('应用内全局数据与UI之间的状态同步'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.application_storage_ui'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.application_storage_ui'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击Toggle组件，控制夜间模式
@@ -682,10 +717,14 @@ export default function abilityTest() {
         let testName = 'AbilitySynFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
+        let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+        let context = await abilityDelegatorRegistry.getAppContext();
+        let manager = context.resourceManager;
+
         let driver: Driver = Driver.create();
         await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('Ability内全局数据与UI之间的状态同步'));
-        let enterPageText = await driver.findComponent(ON.text('Ability内全局数据与UI之间的状态同步'));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.ability_storage_ui'))));
+        let enterPageText = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.ability_storage_ui'))));
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击Toggle组件，控制夜间模式
