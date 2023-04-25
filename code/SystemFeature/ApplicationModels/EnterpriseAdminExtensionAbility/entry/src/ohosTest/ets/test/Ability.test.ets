@@ -26,18 +26,18 @@ export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin')
-      let want = {
-        bundleName: "ohos.samples.enterprise_admin_ext_ability",
-        abilityName: "EntryAbility"
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: "ohos.samples.enterprise_admin_ext_ability",
+          abilityName: "EntryAbility"
+        });
+        done();
+      } catch (err) {
+        expect(err.code).assertEqual(0);
+        done();
       }
-      var abilityDelegator: any
-      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      abilityDelegator.startAbility(want, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
-      })
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
     })
 
     it(BUNDLE + 'onAdminEnabled_001', 0, async function () {
@@ -56,6 +56,7 @@ export default function abilityTest() {
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 state')
       expect('enableAdmin success').assertEqual(state)
+      await driver.delayMs(100)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 end')
     })
 
@@ -75,6 +76,7 @@ export default function abilityTest() {
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 state')
       expect('subscribeManagedEvent success').assertEqual(state)
+      await driver.delayMs(100)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 end')
     })
 
@@ -94,6 +96,7 @@ export default function abilityTest() {
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 state')
       expect('unsubscribeManagedEvent success').assertEqual(state)
+      await driver.delayMs(100)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 end')
     })
 
@@ -113,6 +116,7 @@ export default function abilityTest() {
       let state = await connectState.getText()
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 state')
       expect('disableSuperAdmin success').assertEqual(state)
+      await driver.delayMs(100)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 end')
     })
   })
