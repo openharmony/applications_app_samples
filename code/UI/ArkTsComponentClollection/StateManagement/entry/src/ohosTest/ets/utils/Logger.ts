@@ -16,11 +16,11 @@
 import hilog from '@ohos.hilog';
 
 const DOMAIN: number = 0xF811;
-const PREFIX = '';
+const PREFIX = 'Sample_StateManagement';
 const FORMAT = '%{public}s, %{public}s';
 
 class Logger {
-  constructor(prefix: string) {
+  constructor() {
 
   }
 
@@ -41,4 +41,4 @@ class Logger {
   }
 }
 
-export default new Logger('Sample_StateManagement');
+export default new Logger();
