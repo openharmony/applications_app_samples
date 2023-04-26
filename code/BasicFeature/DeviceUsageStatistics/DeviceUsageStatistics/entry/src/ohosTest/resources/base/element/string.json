@@ -11,6 +11,14 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "application_duration",
+      "value": "application duration"
+    },
+    {
+      "name": "free_apps",
+      "value": "free apps"
     }
   ]
 }

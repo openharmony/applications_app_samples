@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import TestRunner from '@ohos.application.testRunner'
 import { Logger } from '@ohos/base'
 

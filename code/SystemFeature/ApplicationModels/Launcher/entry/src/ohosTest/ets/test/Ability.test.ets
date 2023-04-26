@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { describe, it, beforeAll } from '@ohos/hypium'
-import { Driver, ON, UiDirection } from '@ohos.UiTest'
+import { Driver, ON } from '@ohos.UiTest'
 import { Logger } from '@ohos/base'
 
 const BUNDLE = 'LauncherTest'
@@ -27,7 +28,7 @@ export default function abilityTest() {
     await driver.delayMs(1000)
     // Launcher主界面是窗口，需要退出测试的界面执行测试用例
     await driver.pressBack()
-    await driver.delayMs(1000)
+    await driver.delayMs(2000)
   })
 
   describe('ActsAbilityTest', () => {
@@ -39,16 +40,25 @@ export default function abilityTest() {
     it(BUNDLE + 'ShowDesktop_001', 0, async (done) => {
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
       let driver = await Driver.create()
-      await driver.fling(UiDirection.LEFT, 10000)
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
+      await driver.fling({
+        x: 300, y: 300
+      }, {
+        x: 500, y: 300
+      }, 5, 200)
       await driver.delayMs(1000)
-      await driver.fling(UiDirection.RIGHT, 10000)
+      await driver.fling({
+        x: 300, y: 300
+      }, {
+        x: 100, y: 300
+      }, 5, 200)
       await driver.delayMs(1000)
       // 滑动结束后，检查是否回到桌面第一页
-      await driver.assertComponentExist(ON.text('相机'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
       await driver.delayMs(100)
-      await driver.assertComponentExist(ON.text('联系人'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.contacts'))))
       await driver.delayMs(100)
-      await driver.assertComponentExist(ON.text('信息'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.messages'))))
       await driver.delayMs(100)
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 end.')
       done()
@@ -62,22 +72,24 @@ export default function abilityTest() {
     it(BUNDLE + 'AddForm_001', 1, async (done) => {
       Logger.info(TAG, BUNDLE + 'AddForm_001 begin.')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
-      let camera = await driver.findComponent(ON.text('相机'))
+      let camera = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
       await camera.longClick()
       await driver.delayMs(500)
       // 在RK3568上点击物理坐标，尝试添加卡片
-      await driver.click(244, 285)
+      await driver.click(244, 350)
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('添加到桌面'))
-      let addForm = await driver.findComponent(ON.text('添加到桌面'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+      let addForm = await driver.findComponent(
+      ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addForm.click()
       await driver.delayMs(1000)
       // 点击卡片物理坐标打开相机，RK3568
-      await driver.click(80, 504)
+      await driver.click(220, 520)
       await driver.delayMs(1000)
       // 检查相机是否打开
-      await driver.assertComponentExist(ON.text('拍照'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.photo'))))
       await driver.delayMs(1000)
       await driver.pressBack()
       Logger.info(TAG, BUNDLE + 'AddForm_001 end.')
@@ -92,16 +104,18 @@ export default function abilityTest() {
     it(BUNDLE + 'UninstallApp_001', 2, async (done) => {
       Logger.info(TAG, BUNDLE + 'UninstallApp_001 begin.')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
-      let camera = await driver.findComponent(ON.text('相机'))
+      let camera = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
       await camera.longClick()
       await driver.delayMs(500)
       // 点击“卸载”物理坐标，尝试卸载应用
-      await driver.click(244, 355)
+      await driver.click(244, 395)
       await driver.delayMs(1000)
       // 检查卸载弹窗是否弹出
-      await driver.assertComponentExist(ON.text('卸载'))
-      let uninstall = await driver.findComponent(ON.text('卸载'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.uninstall'))))
+      let uninstall = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.uninstall'))))
       await uninstall.click()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'UninstallApp_001 end.')
@@ -116,8 +130,13 @@ export default function abilityTest() {
     it(BUNDLE + 'OpenApps_001', 3, async (done) => {
       Logger.info(TAG, BUNDLE + 'OpenApps_001 begin.')
       let driver = await Driver.create()
-      let appList = ['相机', '联系人', '信息']
-      let keyWords = ['拍照', '电话', '信息']
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
+      let appList = [await resourceManager.getStringValue($r('app.string.camera')),
+        await resourceManager.getStringValue($r('app.string.contacts')),
+        await resourceManager.getStringValue($r('app.string.messages'))]
+      let keyWords = [await resourceManager.getStringValue($r('app.string.photo')),
+        await resourceManager.getStringValue($r('app.string.telephone')),
+        await resourceManager.getStringValue($r('app.string.messages'))]
       for (let i = 0;i < appList.length; i++) {
         Logger.info(TAG, 'open ' + appList[i])
         let app = await driver.findComponent(ON.text(appList[i]))
@@ -133,7 +152,6 @@ export default function abilityTest() {
       done()
     })
 
-
     /**
      * 场景：桌面上滑手势拉起最近任务页面
      * 输入：点击清除最近任务
@@ -142,6 +160,7 @@ export default function abilityTest() {
     it(BUNDLE + 'CleanRecent_001', 4, async (done) => {
       Logger.info(TAG, BUNDLE + 'CleanRecent_001 begin.')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.fling({
         x: 500, y: 480
       }, {
@@ -150,8 +169,8 @@ export default function abilityTest() {
       await driver.delayMs(1000)
 
       // 检查最近任务中是否有相机和联系人
-      await driver.assertComponentExist(ON.text('信息'))
-      await driver.assertComponentExist(ON.text('联系人'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.messages'))))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.contacts'))))
       let deleteIc = await driver.findComponent(ON.id('ic_delete'))
       await deleteIc.click()
       await driver.delayMs(1000)
@@ -163,8 +182,10 @@ export default function abilityTest() {
       await driver.delayMs(1000)
 
       // 检查任务是否清空
-      await driver.assertComponentExist(ON.text('最近无运行应用'))
-      let recent = await driver.findComponent(ON.text('最近无运行应用'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.message_no_mission'))))
+      let recent = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.message_no_mission'))))
       await recent.click()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'CleanRecent_001 end.')

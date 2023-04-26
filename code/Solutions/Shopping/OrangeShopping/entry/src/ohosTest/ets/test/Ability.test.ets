@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import Logger from '../utils/Logger'
@@ -37,7 +37,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       await abilityDelegator.startAbility(want, (err, data) => {
         Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
-        expect(0).assertEqual(err.code)
+        expect(err).assertNull()
       })
       await driver.delayMs(1000)
       Logger.info(TAG, 'StartAbility_001 end')
@@ -50,9 +50,10 @@ export default function abilityTest() {
     it(BUNDLE + 'GetPermission_001', 0, async (done) => {
       Logger.info(TAG, 'GetPermission_001 start')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('允许'))
-      let agree = await driver.findComponent(ON.text('允许'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
+      let agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       await agree.click()
       await driver.delayMs(1000)
       await agree.click()
@@ -61,13 +62,13 @@ export default function abilityTest() {
       await driver.click(200, 684)
       await driver.delayMs(1000)
       // 关闭广告弹窗
-      await driver.assertComponentExist(ON.text('关闭'))
-      let closeBtn = await driver.findComponent(ON.text('关闭'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.close'))))
+      let closeBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.close'))))
       await closeBtn.click()
       await driver.delayMs(1000)
       // 关闭升级弹窗
-      await driver.assertComponentExist(ON.text('立即升级'))
-      let updateBtn = await driver.findComponent(ON.text('立即升级'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.update'))))
+      let updateBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.update'))))
       await updateBtn.click()
       await driver.delayMs(2000)
       Logger.info(TAG, 'GetPermission_001 end')
@@ -80,6 +81,7 @@ export default function abilityTest() {
     it(BUNDLE + 'SwitchPage_001', 0, async (done) => {
       Logger.info(TAG, 'SwitchPage_001 start')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       // 检查Tab是否存在
       await driver.assertComponentExist(ON.id('homeTab0'))
       await driver.assertComponentExist(ON.id('homeTab1'))
@@ -89,22 +91,25 @@ export default function abilityTest() {
       let newProduct = await driver.findComponent(ON.id('homeTab1'))
       await newProduct.click()
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('精选'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.title_bar_data_title_selected'))))
       // 切换到购物车页
       let shoppingCart = await driver.findComponent(ON.id('homeTab2'))
       await shoppingCart.click()
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('购物车'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shopping_cart'))))
       // 切换到用户中心页
       let userCenter = await driver.findComponent(ON.id('homeTab3'))
       await userCenter.click()
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('官方客服'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.official_Service'))))
       // 切换到首页
       let mainPage = await driver.findComponent(ON.id('homeTab0'))
       await mainPage.click()
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('首页'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.tab_title_data_home'))))
       Logger.info(TAG, 'SwitchPage_001 end')
       done()
     })
@@ -166,21 +171,25 @@ export default function abilityTest() {
     it(BUNDLE + 'AddGoodsToCart_001', 0, async (done) => {
       Logger.info(TAG, 'AddGoodsToCart_001 start')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       let cartTag = 'cart_'
       let goods = await driver.findComponent(ON.id("goods0"))
       // 点击商品
       await goods.click()
       await driver.delayMs(1000)
       // 检查跳转后商品是否一致
-      await driver.assertComponentExist(ON.text('加入购物车'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))))
       await driver.assertComponentExist(ON.id('goodsDetail0'))
-      await driver.assertComponentExist(ON.text('购物车'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shopping_cart'))))
       // 点击添加商品到购物车当中
-      let addBtn = await driver.findComponent(ON.text('加入购物车'))
+      let addBtn = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))))
       await addBtn.click()
       await driver.delayMs(1000)
       // 跳转到购物车页面
-      let cartBtn = await driver.findComponent(ON.text('购物车'))
+      let cartBtn = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.shopping_cart'))))
       await cartBtn.click()
       await driver.delayMs(1000)
       // 检查商品是否已经添加

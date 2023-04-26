@@ -47,10 +47,12 @@ export default function appTest() {
     it(BUNDLE + '_IndexPage_btnAgree', 1, async () => {
       Logger.info(TAG, BUNDLE + "_IndexPage_btnAgree start")
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
       // 相机权限点击允许
-      await driver.assertComponentExist(ON.text('允许'))
-      let btnCameraAgree = await driver.findComponent(ON.text('允许'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
+      let btnCameraAgree = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       await btnCameraAgree.click()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + "_IndexPage_btnAgree end")
@@ -62,6 +64,7 @@ export default function appTest() {
     it(BUNDLE + '_TitleBar', 2, async () => {
       Logger.info(TAG, BUNDLE + "_TitleBar start")
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       // 检查返回键是否显示
       await driver.assertComponentExist(ON.id('ic_back'))
       // 检查hop键是否显示
@@ -69,9 +72,9 @@ export default function appTest() {
       let hopBtn = await driver.findComponent(ON.id('ic_hop'))
       await hopBtn.click()
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('选择设备'))
-      await driver.assertComponentExist(ON.text('取消'))
-      let cancelBtn = await driver.findComponent(ON.text('取消'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.select_device'))))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.cancel'))))
+      let cancelBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.cancel'))))
       await cancelBtn.click()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + "_TitleBar end")
@@ -83,11 +86,14 @@ export default function appTest() {
     it(BUNDLE + '_CheckBtn', 3, async () => {
       Logger.info(TAG, BUNDLE + "_CheckBtn start")
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       // 检查重开键是否显示
-      await driver.assertComponentExist(ON.text('重开'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.restart'))))
       await driver.delayMs(1000)
       // 检查悔棋键是否显示
-      await driver.assertComponentExist(ON.text('悔棋'))
+      await driver.assertComponentExist(
+        ON.text(await resourceManager.getStringValue($r('app.string.repentance_chess'))))
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + "_CheckBtn end")
     })

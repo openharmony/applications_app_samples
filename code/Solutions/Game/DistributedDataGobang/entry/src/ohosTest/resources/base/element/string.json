@@ -11,6 +11,26 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "allow",
+      "value": "allow"
+    },
+    {
+      "name": "select_device",
+      "value": "SelectDevice"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "restart",
+      "value": "Restart"
+    },
+    {
+      "name": "repentance_chess",
+      "value": "RepentanceChess"
     }
   ]
 }

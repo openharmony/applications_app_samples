@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Driver, ON, UiDirection } from '@ohos.UiTest'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import { Driver, ON } from '@ohos.UiTest'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import Logger from '../utils/Logger'
 
@@ -31,8 +31,8 @@ export default function abilityTest() {
         bundleName: "ohos.samples.deviceusage",
         abilityName: "EntryAbility"
       }, (err, data) => {
-        expect(0).assertEqual(err.code)
-        Logger.info(TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
+        expect(err).assertNull()
+        Logger.info(TAG, BUNDLE + 'StartAbility_001,err:' + JSON.stringify(err))
       })
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'StartAbility_001 end')
@@ -45,8 +45,9 @@ export default function abilityTest() {
     it(BUNDLE + 'AppStatistics_001', 1, async () => {
       Logger.info(TAG, BUNDLE + 'AppStatistics_001 begin')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('应用使用时长'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.application_duration'))))
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'AppStatistics_001 end')
     })
@@ -57,13 +58,14 @@ export default function abilityTest() {
     it(BUNDLE + 'FreeApps_001', 2, async () => {
       Logger.info(TAG, BUNDLE + 'FreeApps_001 begin')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.fling({
         x: 500, y: 480
       }, {
         x: 500, y: 200
       }, 5, 1200)
       await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('不常用应用'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.free_apps'))))
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'FreeApps_001 end')
     })

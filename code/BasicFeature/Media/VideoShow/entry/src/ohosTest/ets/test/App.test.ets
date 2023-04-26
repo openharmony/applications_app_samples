@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import Logger from '../utils/Logger'
 
 const BUNDLE = 'VideoShow'
@@ -35,7 +36,7 @@ export default function appTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       await abilityDelegator.startAbility(want, (err, data) => {
         Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
-        expect(0).assertEqual(err.code)
+        expect(err).assertNull()
       })
       await driver.delayMs(1000)
       Logger.info(TAG, 'StartAbility end')
