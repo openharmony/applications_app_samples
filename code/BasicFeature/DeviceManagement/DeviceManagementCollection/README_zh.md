@@ -95,13 +95,13 @@ DeviceManagementCollection
 
 1.首页菜单展示：使用一个module，menuitems完成菜单组件的实现，传入要展示的菜单的strarray类型的资源和菜单点击对应的组件即可。使用Navigation和NavRouter组件实现菜单点击进入功能界面，使用LocalStorage实现应用内Ability内数据共享，点击菜单时标记selectedLabel，在entry中的Capabilities组件中，通过selectedLabel显示对应的功能组件。
 
-2.电量信息：使用[@ohos.batteryInfo.d.ts](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-battery-info.md)接口获取电池和充放电状态信息
+2.电量信息：使用[@ohos.batteryInfo.d.ts](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-battery-info.md) 接口获取电池和充放电状态信息
 
-3.系统电源管理：使用[power](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-power.md)实现关机、重启、获取亮灭屏状态功能。
+3.系统电源管理：使用[power](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-power.md) 实现关机、重启、获取亮灭屏状态功能。
 
-4.热管理：使用[@ohos.thermal.d.ts](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-thermal.md)提供热管理相关的接口，查询热档位以及注册温控等级回调。
+4.热管理：使用[@ohos.thermal.d.ts](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-thermal.md) 提供热管理相关的接口，查询热档位以及注册温控等级回调。
 
-5.USB管理：使用[usb](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-usb.md)实现usb设备列表的获取，使用[commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md)实现USB设备插入和拔出监听。
+5.USB管理：使用[usb](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-usb-deprecated.md) 实现usb设备列表的获取，使用[commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md) 实现USB设备插入和拔出监听。
 
 ### 相关权限
 

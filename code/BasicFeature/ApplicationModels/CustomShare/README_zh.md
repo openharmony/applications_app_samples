@@ -13,13 +13,13 @@
 
 1.启动Share应用，首页展示分享跳转页面，点击分享按钮出现自定义分享弹窗（三方APP的）。
 
-2.点击分享文本+链接，选择"Chat"图标，会拉起三方应用[Chat](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat)
-，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat/entry/src/main/ets/MainAbility/pages/Index.ets)
+2.点击分享文本+链接，选择"Chat"图标，会拉起三方应用[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/entry/src/main/ets/pages/Index.ets)
 中任意的朋友进行分享。
 
 3.点击生成海报，此时第一层弹窗消失并出现新的弹窗，点击截图并分享，会出现小提示"截图成功，分享加载中..."
-,稍后会拉起三方应用[Chat](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat)
-，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat/entry/src/main/ets/MainAbility/pages/Index.ets)
+,稍后会拉起三方应用[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/entry/src/main/ets/pages/Index.ets)
 中任意的朋友进行分享。
 
 ### 效果预览
@@ -40,7 +40,7 @@
 
 ### 依赖
 
-依赖于[Chat](https://gitee.com/openharmony/applications_app_samples/blob/master/AppSample/Chat)  应用，来作为接收方。
+依赖于[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)  应用，来作为接收方。
 
 ### 约束与限制
 
@@ -56,7 +56,7 @@ Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharm
 
 5.本示例涉及相关权限为system_core级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 查看）， 需要手动配置高级别的权限签名(
-具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)) 。
 
 ### 下载
 
