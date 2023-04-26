@@ -38,7 +38,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/device/DeviceManager/entry/src/main/ets/MainAbility/model/RemoteDeviceModel.ets)
+获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets)
 
     * 使用RemoteDeviceModel.createDeviceManager()来获取DeviceManager对象；
     * 获取本机设备信息：调用RemoteDeviceModel.getLocalDeviceInfo()来获取本机设备信息；

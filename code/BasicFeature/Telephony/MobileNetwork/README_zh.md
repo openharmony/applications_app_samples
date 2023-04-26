@@ -4,7 +4,7 @@
 
 本示例通过获取SIM卡相关信息，展示打开本应用时网络信息。
 
-本示例使用 [@Builder](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-builder.md) 在一个自定义组件内快速生成多个布局内容。
+本示例使用 [@Builder](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。
 
 本示例使用 [SystemCapability.Telephony.CellularData系统能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。
 

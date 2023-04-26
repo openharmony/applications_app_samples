@@ -98,11 +98,11 @@ LanguageBaseClassLibrary
 
 1.首页菜单展示：使用一个module，menuitems完成菜单组件的实现，传入要展示的菜单的strarray类型的资源和菜单点击对应的组件即可。使用Navigation和NavRouter组件实现菜单点击进入功能界面，使用LocalStorage实现应用内Ability内数据共享，点击菜单时标记selectedLabel，在entry中的Capabilities组件中，通过selectedLabel显示对应的功能组件。
 
-2.Xml & ConvertXml：使用[xml](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-xml.md)和[convertxml](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-convertxml.md)实现xml的解析和生成以及xml转换为js对象，点击按钮实现对应的功能。
+2.Xml & ConvertXml：使用[xml](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-xml.md) 和[convertxml](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-convertxml.md) 实现xml的解析和生成以及xml转换为js对象，点击按钮实现对应的功能。
 
-3.Process：使用[process](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-process.md)实现获取进程相关信息的功能，点击按钮实现对应的功能。
+3.Process：使用[process](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-process.md) 实现获取进程相关信息的功能，点击按钮实现对应的功能。
 
-4.Url：使用[URL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-url.md)对URL字符串的查找参数进行了增删改查的一系列操作，使得读者对URL的结构用途更加明了，点击按钮实现对应的功能。
+4.Url：使用[URL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-url.md) 对URL字符串的查找参数进行了增删改查的一系列操作，使得读者对URL的结构用途更加明了，点击按钮实现对应的功能。
 
 5.Util，使用util中不同的功能函数实现以下功能：
 

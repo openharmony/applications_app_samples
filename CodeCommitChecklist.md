@@ -5,9 +5,9 @@
 3. 新增Sample的工程推荐使用Stage模型编写；
 4. 新增Sample的工程中需要包含UI自动化用例（ohosTest工程模块），覆盖基本的功能场景；
 5. 新增Sample需要遵循[代码提交规范](#section1)、[工程结构规范](#section2)、[PR提交格式规范](#section3)、[ReadMe编写规范](#section4)和[UI自动化用例编写规范](#section5)；
-6. 新增Sample的UX设计需要符合[一多规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/Readme-CN.md)；
+6. 新增Sample的UX设计需要符合[一多规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/Readme-CN.md) ；
 7. 新增Sample推荐使用当前最新版本IDE和SDK版本；
-8. 工程合入时，需要提供测试用例报告([参考示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/ohosTest.md))，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
+8. 工程合入时，需要提供测试用例报告([参考示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/ohosTest.md)) ，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
 
 ## 代码规范<a name="section1"></a>
 
@@ -123,22 +123,22 @@ class Logger {
    ```
 5. 具体实现：
    先描述功能都在哪个模块，再具体描述如何实现这些功能的，以及在哪里使用他们，附上文件链接；示例如下：
-    * 增添文件、删除文件、查找指定类型文件文件和预览图片的功能接口封装在MediaLibraryManager，源码参考：[MediaLibraryManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/medialibrary/MediaLibraryManager.ts)
+    * 增添文件、删除文件、查找指定类型文件文件和预览图片的功能接口封装在MediaLibraryManager，源码参考：[MediaLibraryManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/medialibrary/MediaLibraryManager.ts)
         * 使用mediaLibrary.getMediaLibrary来获取MediaLibrary对象;
         * 读取每个文件的数据：使用MediaLibrary.getFileAssets读取满足条件的文件集合FetchFileResult，然后调用FetchFileResult.getFirstObject();
         * 创建模拟文件：使用MediaLibrary.getPublicDirectory()获取系统预定的目录，然后使用MediaLibrary.createAsset();
         * 删除指定路径的文件：使用MediaLibrary.deleteAsset();
         * 获取预览图：使用image.createImageSource()创建指定的文件资源ImageSource，然后调用ImageSource.createPixelMap()，接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md) 。
 
-    * 在Library模块中通过封装FileManager向外提供功能接口，如MediaLibraryManager.getPixelMapByFileAsset()，源码参考：[FileManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/FileManager.ts)
-        * 如效果预览中的**图片列表**，读取指定类型的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+    * 在Library模块中通过封装FileManager向外提供功能接口，如MediaLibraryManager.getPixelMapByFileAsset()，源码参考：[FileManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/FileManager.ts)
+        * 如效果预览中的**图片列表**，读取指定类型的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
           中调用FileManager.getFileAssets()；
-        * 创建模拟文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+        * 创建模拟文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
           中调用FileManager.createTxtFileAsset()；
-        * 删除指定路径的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+        * 删除指定路径的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
           中调用FileManager.deleteFileAsset()；
-        * 获取缩略图：在[ThumbnailImage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
-        * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/FileManager/FileManager/entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
+        * 获取缩略图：在[ThumbnailImage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
+        * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
 6. 相关权限：介绍应用的使用权限，附上链接；
 7. 依赖： 介绍对其他sample的依赖，附上sample链接；
 8. 约束与限制：
