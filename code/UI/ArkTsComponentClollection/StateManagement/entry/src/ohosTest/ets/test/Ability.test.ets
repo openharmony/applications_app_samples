@@ -644,6 +644,7 @@ export default function abilityTest() {
         let nightModeSwitch = await driver.findComponent(ON.id('nightModeSwitch'));
         await nightModeSwitch.click();
         await driver.delayMs(500);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(320, 473, 420, 473, 800)
         await driver.delayMs(500);
         // 进入Ability1
@@ -672,6 +673,7 @@ export default function abilityTest() {
         let nightModeSwitchTwo = await driver.findComponent(ON.id('nightModeSwitchTwo'));
         await nightModeSwitchTwo.click();
         await driver.delayMs(500);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(320, 745, 420, 745, 800)
         await driver.delayMs(500);
         // 返回首页
@@ -732,6 +734,7 @@ export default function abilityTest() {
         let nightModeSwitch = await driver.findComponent(ON.id('nightModeSwitch'));
         await nightModeSwitch.click();
         await driver.delayMs(500);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(320, 470, 420, 470, 800)
         await driver.delayMs(500);
         // 进入Page1
@@ -767,6 +770,7 @@ export default function abilityTest() {
         let nightModeSwitchTwo = await driver.findComponent(ON.id('nightModeSwitchTwo'));
         await nightModeSwitchTwo.click();
         await driver.delayMs(500);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(320, 745, 380, 745, 800)
         await driver.delayMs(500);
         // 返回首页
