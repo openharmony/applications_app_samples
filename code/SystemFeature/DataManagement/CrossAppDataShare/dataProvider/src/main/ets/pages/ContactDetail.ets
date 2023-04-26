@@ -40,7 +40,8 @@ struct ContactDetail {
           .flexShrink(1)
       }
       Row() {
-        this.ToolBar($r('app.media.edit'), $r('app.string.edit'), () => {
+        // 添加一个id 0
+        this.ToolBar($r('app.media.edit'), $r('app.string.edit'), 0, () => {
           // edit the contact info
           router.push({
             url: 'pages/ContactEdit',
@@ -50,7 +51,8 @@ struct ContactDetail {
             }
           })
         })
-        this.ToolBar($r('app.media.delete'), $r('app.string.delete'), async () => {
+        // 添加一个id:1
+        this.ToolBar($r('app.media.delete'), $r('app.string.delete'), 1, async () => {
           // show delete dailog
           dialogUtil.showAlertDialog($r('app.string.delete_alert_message'),
           $r('app.string.delete'), async () => {
@@ -69,7 +71,7 @@ struct ContactDetail {
     .backgroundColor($r('app.color.page_background'))
   }
 
-  @Builder ToolBar(image: Resource, text: ResourceStr, handleOnClick: () => void) {
+  @Builder ToolBar(image: Resource, text: ResourceStr, id: number, handleOnClick: () => void) {
     Column() {
       Image(image)
         .size({ width: $r('app.float.image_size_30'), height: $r('app.float.image_size_30') })
@@ -80,6 +82,7 @@ struct ContactDetail {
     }
     .layoutWeight(1)
     .onClick(handleOnClick)
+    .id(`operateContact${id}`)
   }
 
   onPageShow() {
