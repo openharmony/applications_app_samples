@@ -37,7 +37,7 @@ export default class TestAbility extends UIAbility {
     let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     logger.info(TAG, 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-    windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
+    windowStage.loadContent('testAbility/pages/Index', (err, data) => {
       if (err.code) {
         logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
         return;
