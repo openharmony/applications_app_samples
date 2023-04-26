@@ -40,11 +40,17 @@ async function checkButtonAndClickWithText(text: string) {
   await driver.delayMs(1000)
 }
 
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
+
 export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
         await abilityDelegator.startAbility({
           bundleName: "ohos.samples.AdaptiveCapabilities",
@@ -202,7 +208,7 @@ export default function appTest() {
       await driver.pressBack()
       await driver.delayMs(1000)
       // 向下滑动
-      await driver.swipe(100, 500,20, 20)
+      await driver.swipe(100, 500, 20, 20)
       await driver.delayMs(1000)
       // 点击栅格span/offset/order继承性
       await checkButtonAndClickWithID('GridRowSample8')
@@ -266,14 +272,14 @@ export default function appTest() {
       await driver.pressBack()
       await driver.delayMs(1000)
       // 向下滑动
-      await driver.swipe(100, 500,20, 20)
+      await driver.swipe(100, 500, 20, 20)
       await driver.delayMs(1000)
       // 点击页签布局
       await checkButtonAndClickWithID('TabsSample')
       // 点击排行榜
-      await checkButtonAndClickWithText('排行榜')
+      await checkButtonAndClickWithText(await getResourceString($r('app.string.tabBar2')))
       // 点击我的
-      await checkButtonAndClickWithText('我的')
+      await checkButtonAndClickWithText(await getResourceString($r('app.string.tabBar3')))
       await driver.pressBack()
       await driver.delayMs(1000)
       // 点击大图浏览
@@ -283,14 +289,14 @@ export default function appTest() {
       // 点击多列列表
       await checkButtonAndClickWithID('MultiLaneListSample')
       // 向下滑动
-      await driver.swipe(100, 500,20, 20)
+      await driver.swipe(100, 500, 20, 20)
       await driver.delayMs(1000)
       await driver.pressBack()
       await driver.delayMs(1000)
       // 点击网格视图
       await checkButtonAndClickWithID('ResponsiveGridSample')
       // 向下滑动
-      await driver.swipe(100, 500,20, 20)
+      await driver.swipe(100, 500, 20, 20)
       await driver.delayMs(1000)
       await driver.pressBack()
       await driver.delayMs(1000)
