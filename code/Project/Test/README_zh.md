@@ -78,16 +78,3 @@ entry/src/
 
 3.本示例需要使用DevEco Studio 3.1 Beta1 (Build Version: 3.1.0.200)及以上版本才可编译运行。
 
-
-
-### 下载
-
-如需单独下载本工程，执行如下命令：
-
-```
-git init
-git config core.sparsecheckout true
-echo code/Project/Test > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
-git pull origin master
-```
