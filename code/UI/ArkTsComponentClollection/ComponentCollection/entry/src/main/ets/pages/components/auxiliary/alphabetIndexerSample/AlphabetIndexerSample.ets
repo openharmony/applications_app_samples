@@ -206,7 +206,7 @@ struct AlphabetIndexerSample {
             .alignStyle(IndexerAlign.Right) // 弹出框在索引条左侧弹出
             .onSelect((index: number) => {
               Logger.info(`${this.value[index]} Selected!`)
-            })
+            }).id('test_alphabet')
             .onRequestPopupData((index: number) => {
               if (this.value[index] === 'A') {
                 this.currentSelectIndex = 0

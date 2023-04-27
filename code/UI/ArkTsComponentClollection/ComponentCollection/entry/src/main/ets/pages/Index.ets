@@ -55,5 +55,6 @@ struct Index {
     .width('100%')
     .padding({ top: 6, bottom: 6 })
     .alignItems(HorizontalAlign.Center)
+    .id(`tabBar${index}`)
   }
 }

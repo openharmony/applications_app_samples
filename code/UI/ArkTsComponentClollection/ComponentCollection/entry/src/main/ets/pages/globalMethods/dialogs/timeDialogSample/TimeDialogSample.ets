@@ -68,7 +68,7 @@ struct TimeDialogSample {
                     this.ShowToastTime(value)
                   }
                 })
-              })
+              }).id('test_24hour')
           }
           .rowStyle()
 
@@ -91,7 +91,7 @@ struct TimeDialogSample {
                     this.ShowToastTime(value)
                   }
                 })
-              })
+              }).id('test_12hour')
           }
           .rowStyle()
         }

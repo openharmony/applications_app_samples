@@ -28,7 +28,7 @@ struct ShareElementTransitionSampleTo {
         .sharedTransition(`sharedImage_${this.sharedTransitionID}`)
         .onClick(() => {
           router.back()
-        })
+        }).id('test_back')
     }
     .padding(12)
     .backgroundColor(Color.Black)
