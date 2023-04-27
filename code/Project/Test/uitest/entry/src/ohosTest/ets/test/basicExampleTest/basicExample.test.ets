@@ -14,30 +14,30 @@
 */
 
 import hilog from '@ohos.hilog';
-import { describe, it, expect } from '@ohos/hypium'
+import { describe, it, expect, TestType } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Logger from '../../util/Logger';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
-const TAG = '[basicExampleTest]'
-const DOMAIN = 0xF811
-const BUNDLE = 'basic_'
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+const TAG = 'basicExampleTest'
 export default function basicExampleTest() {
   describe('basicExampleTest', function () {
 
     /**
      * @tc.number:basicExampleTest_001
      * @tc.name: testUiExample
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测 uitest click 功能
+     * @tc.type: TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 验证UI操作点击指定按钮后，界面变化是否符合预期
      */
-    it('testUiExample',0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + "001, begin")
+    it('testUiExample',TestType.FUNCTION, async function (done) {
+      Logger.info(TAG, 'testUiExample start')
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.samples.uitest -a EntryAbility').then(result =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch(err => {
-        console.info('Uitest, start ability failed: ' + err)
-      })
+      let want = {
+        bundleName : bundleName,
+        abilityName : "EntryAbility"
+      }
+      await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
       await delegator.getCurrentTopAbility().then((Ability)=>{
@@ -57,7 +57,7 @@ export default function basicExampleTest() {
       // check text
       await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
-      hilog.info(DOMAIN, TAG, BUNDLE + "001, end")
+      Logger.info(TAG, 'testUiExample end');
       done();
     })
     function sleep(time) {

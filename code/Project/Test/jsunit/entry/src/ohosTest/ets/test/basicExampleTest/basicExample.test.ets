@@ -14,12 +14,12 @@
 */
 
 import hilog from '@ohos.hilog';
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, it, expect, TestType } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Logger from '../../util/Logger';
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const TAG = '[basicExampleTest]'
-const DOMAIN = 0xF811
 const BUNDLE = 'basic_'
 export default function basicExampleTest() {
   describe('basicExampleTest', function () {
@@ -30,8 +30,8 @@ export default function basicExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测delegator.startAbility接口打开指定Ability对象
      */
-    it(BUNDLE+ 'StartAbility_001',0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + "001, begin")
+    it(BUNDLE+ 'StartAbility_001',TestType.FUNCTION, async function (done) {
+      Logger.info(TAG, " StartAbility_001 begin")
       //start tested ability
       let want = {
         bundleName : bundleName,
@@ -44,8 +44,8 @@ export default function basicExampleTest() {
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
+      Logger.info(TAG, " StartAbility_001 end")
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + "001, end")
     })
 
     function sleep(time) {
