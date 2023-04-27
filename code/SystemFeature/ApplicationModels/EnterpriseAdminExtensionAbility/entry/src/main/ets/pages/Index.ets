@@ -59,7 +59,7 @@ struct Index {
         })
 
         Text(this.enableAdminMsg)
-          .key('enableAdminMsg')
+          .id('enableAdminMsg')
 
         Blank().height(20)
 
@@ -68,7 +68,7 @@ struct Index {
             .fontSize(20)
             .fontColor(Color.Blue)
         }
-        .key('disableAdmin')
+        .id('disableAdmin')
         .type(ButtonType.Capsule)
         .height(60)
         .width(320)
@@ -84,7 +84,7 @@ struct Index {
         })
 
         Text(this.disableAdminMsg)
-          .key('disableAdminMsg')
+          .id('disableAdminMsg')
 
         Blank().height(20)
 
@@ -95,7 +95,7 @@ struct Index {
             .fontSize(20)
             .fontColor(Color.Blue)
         }
-        .key('subscribeManagedEvent')
+        .id('subscribeManagedEvent')
         .type(ButtonType.Capsule)
         .height(60)
         .width(320)
@@ -111,7 +111,7 @@ struct Index {
         })
 
         Text(this.subscribeManagedEventMsg)
-          .key('subscribeManagedEventMsg')
+          .id('subscribeManagedEventMsg')
 
         Blank().height(20)
 
@@ -120,7 +120,7 @@ struct Index {
             .fontSize(20)
             .fontColor(Color.Blue)
         }
-        .key('unsubscribeManagedEvent')
+        .id('unsubscribeManagedEvent')
         .type(ButtonType.Capsule)
         .height(60)
         .width(320)
@@ -136,7 +136,7 @@ struct Index {
         })
 
         Text(this.unsubscribeManagedEventMsg)
-          .key('unsubscribeManagedEventMsg')
+          .id('unsubscribeManagedEventMsg')
       }
       .width('100%')
     }
