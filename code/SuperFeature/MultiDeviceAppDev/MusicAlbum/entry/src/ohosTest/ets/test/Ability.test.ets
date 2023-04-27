@@ -14,38 +14,77 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Driver, ON } from '@ohos.UiTest';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+const TAG: string = '[Sample_MusicAlbum]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'MusicAlbum_';
+let ability: UIAbility;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
+    /**
+     * 打开应用
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.MusicAlbum',
+          abilityName: 'MainAbility'
+        });
+        done();
+      } catch (expection) {
+        expect(0).assertEqual(expection.code);
+        hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(expection));
+        done();
+      }
+      ability = await abilityDelegator.getCurrentTopAbility();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
+
+    /**
+     * 点击窗口化
+     */
+    it(BUNDLE + 'WindowSplitFunction_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WindowSplitFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.click(500, 500);
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WindowSplitFunction_001 end');
     })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-    it('assertContain', 0, function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc'
-      let b = 'b'
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+
+    /**
+     * 检查窗口
+     */
+    it(BUNDLE + 'WindowResumeFunction_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WindowResumeFunction_001 begin');
+      let driver = await Driver.create();
+      let window = await driver.findWindow({
+        bundleName: 'ohos.samples.MusicAlbum'
+      });
+      let boundsBefore = await window.getBounds();
+      hilog.info(DOMAIN, TAG, BUNDLE + JSON.stringify(boundsBefore));
+      // 检查窗口化
+      await window.resume();
+      await driver.delayMs(1000);
+      let boundsAfter = await window.getBounds();
+      expect(boundsBefore.bottom - boundsBefore.top).assertLarger(boundsAfter.bottom - boundsAfter.top);
+      expect(boundsBefore.right - boundsBefore.left).assertLarger(boundsAfter.right - boundsAfter.left);
+      // 检查窗口拖动
+      await driver.drag(boundsAfter.left + 30, boundsAfter.top + 15, 100, 100, 100);
+      await driver.delayMs(1000);
+      let boundsMove = await window.getBounds();
+      expect(boundsAfter.top).assertLarger(boundsMove.top);
+      expect(boundsAfter.right).assertLarger(boundsMove.right);
+      await driver.delayMs(1000);
+      await window.resume();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WindowResumeFunction_001 end');
     })
   })
 }

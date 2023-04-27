@@ -1,6 +1,6 @@
 // @ts-nocheck
 /*
-* Copyright (c) 2022 Huawei Device Co., Ltd.
+* Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -66,8 +66,9 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
-        .width("60%")
-        .height("6%")
+        .id('shareLinkResource')
+        .width('60%')
+        .height('6%')
         .margin({ bottom: $r('app.float.fontSize_eighteen') })
         .onClick(() => {
           this.homeBtn()
@@ -78,8 +79,9 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
-        .width("60%")
-        .height("6%")
+        .id('shareFileResource')
+        .width('60%')
+        .height('6%')
         .margin({ bottom: $r('app.float.fontSize_eighteen') })
         .onClick(() => {
           this.homeBtn()
@@ -90,8 +92,9 @@ struct Index {
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
-        .width("60%")
-        .height("6%")
+        .id('shareOtherResource')
+        .width('60%')
+        .height('6%')
         .margin({ bottom: $r('app.float.fontSize_eighteen') })
         .onClick(() => {
           this.homeBtn()
