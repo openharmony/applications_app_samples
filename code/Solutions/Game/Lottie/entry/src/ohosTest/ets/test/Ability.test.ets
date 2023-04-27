@@ -17,9 +17,12 @@ import { describe, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import Logger from '../../../main/ets/util/Logger';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const TAG: string = '[Sample_Lottie]';
 const BUNDLE = 'Lottie_';
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let ability: UIAbility;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -29,7 +32,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       Logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
           bundleName: 'ohos.samples.lottie',
@@ -40,6 +42,7 @@ export default function abilityTest() {
         Logger.info(TAG, `StartAbility end ${JSON.stringify(expection)}`);
         done();
       }
+      ability = await abilityDelegator.getCurrentTopAbility();
       Logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
     })
 
@@ -56,9 +59,11 @@ export default function abilityTest() {
       await selectAnimation.click();
       await driver.delayMs(200);
       // 选择grunt动画
-      await driver.assertComponentExist(ON.text('grunt动画'));
-      let gruntAnimation = await driver.findComponent(ON.text('grunt动画'));
-      await gruntAnimation.click();
+      let resourceManager = ability.context.resourceManager;
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.grunt'))));
+      let grunt = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.grunt'))));
+      await driver.delayMs(200);
+      await grunt.click();
       await driver.delayMs(200);
       Logger.info(TAG, `${BUNDLE}SelectAnimationAssetFunction_001 end`);
     })
@@ -108,9 +113,11 @@ export default function abilityTest() {
       await selectAnimation.click();
       await driver.delayMs(200);
       // 选择year动画
-      await driver.assertComponentExist(ON.text('year动画'));
-      let gruntAnimation = await driver.findComponent(ON.text('year动画'));
-      await gruntAnimation.click();
+      let resourceMgr = ability.context.resourceManager;
+      await driver.assertComponentExist(ON.text(await resourceMgr.getStringValue($r('app.string.year'))));
+      let year = await driver.findComponent(ON.text(await resourceMgr.getStringValue($r('app.string.year'))));
+      await driver.delayMs(200);
+      await year.click();
       await driver.delayMs(200);
       // 点击播放暂停，year动画暂停
       await driver.assertComponentExist(ON.id('play'));
@@ -142,21 +149,21 @@ export default function abilityTest() {
       let btnSpeed = await driver.findComponent(ON.id('speed'));
       await btnSpeed.click();
       await driver.delayMs(200);
-      // 选择3倍速播放
-      await driver.assertComponentExist(ON.text('×3'));
-      let threeSpeed = await driver.findComponent(ON.text('×3'));
-      await threeSpeed.click();
+      // 选择2倍速播放
+      await driver.assertComponentExist(ON.text(await resourceMgr.getStringValue($r('app.string.three_speed'))));
+      let speed = await driver.findComponent(ON.text(await resourceMgr.getStringValue($r('app.string.three_speed'))));
+      await speed.click();
       await driver.delayMs(200);
-      // 点击播放顺序，选择方向播放year动画
+      // 点击播放顺序，选择反向播放year动画`
       await driver.assertComponentExist(ON.id('playOrder'));
       let btnPlayOrder = await driver.findComponent(ON.id('playOrder'));
       await btnPlayOrder.click();
       await driver.delayMs(200);
       // 选择反向
-      await driver.assertComponentExist(ON.text('反向'));
-      let btnReverse = await driver.findComponent(ON.text('反向'));
-      await btnReverse.click();
-      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceMgr.getStringValue($r('app.string.reverse'))));
+      let reverse = await driver.findComponent(ON.text(await resourceMgr.getStringValue($r('app.string.reverse'))));
+      await reverse.click();
+      await driver.delayMs(200);
       Logger.info(TAG, `${BUNDLE}DestroyAnimationFunction_001 end`);
     })
   })
