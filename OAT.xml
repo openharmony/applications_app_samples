@@ -85,6 +85,12 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
+                <filteritem type="filepath" name="code/DataMock/WorkScheduler/UpdateWorkScheduler.hap" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmony.p12" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyApplication.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileRelease.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/app_packing_tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/hap-sign-tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
