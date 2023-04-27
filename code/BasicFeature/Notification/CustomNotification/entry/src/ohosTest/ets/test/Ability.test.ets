@@ -22,11 +22,18 @@ const TAG = '[Sample_CustomNotification]'
 const DOMAIN = 0xF811
 const BUNDLE = 'CustomNotification_'
 
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
+
+
 export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
         await abilityDelegator.startAbility({
           bundleName: "ohos.samples.customnotification",
@@ -50,7 +57,7 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 点击允许
       await driver.assertComponentExist(ON.type('Button'))
-      let buttonClick = await driver.findComponent(ON.text('允许'))
+      let buttonClick = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow_button'))))
       await buttonClick.click()
       // 获取按钮
       let Button = await driver.findComponents(ON.type('Button').within(ON.type('Scroll')))
