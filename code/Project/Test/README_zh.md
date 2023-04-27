@@ -43,13 +43,6 @@ entry/src/ohosTest/ets
 
 - basicExampleTest.ets  arkXtest 测试框架基础使用示例代码
 
-## uitest 项目
-
-### uiTest 测试框架功能
-- [On](#on9)：提供控件特征描述能力，用于控件筛选匹配查找。
-- [Component](#component9)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
-- [Driver](#driver9)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
-- [UiWindow<sup>](#uiwindow9)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能力。
 ### uitest项目工程目录
 ```
 entry/src/
