@@ -1,0 +1,164 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "module_desc",
+      "value": "Lottie"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "lottie"
+    },
+    {
+      "name": "select",
+      "value": "select"
+    },
+    {
+      "name": "play_pause",
+      "value": "play_pause"
+    },
+    {
+      "name": "start_play",
+      "value": "start_play"
+    },
+    {
+      "name": "speed",
+      "value": "speed"
+    },
+    {
+      "name": "play_order",
+      "value": "play_order"
+    },
+    {
+      "name": "destruction_animation",
+      "value": "destruction_animation"
+    },
+    {
+      "name": "display_effect",
+      "value": "display_effect"
+    },
+    {
+      "name": "display_effect_this",
+      "value": "display_effect_this"
+    },
+    {
+      "name": "stop",
+      "value": "stop"
+    },
+    {
+      "name": "pause",
+      "value": "pause"
+    },
+    {
+      "name": "double_speed",
+      "value": "double_speed"
+    },
+    {
+      "name": "reverse_playback",
+      "value": "reverse_playback"
+    },
+    {
+      "name": "five_speed",
+      "value": "five_speed"
+    },
+    {
+      "name": "fragment_cycle",
+      "value": "fragment_cycle"
+    },
+    {
+      "name": "play_segments",
+      "value": "play_segments"
+    },
+    {
+      "name": "reset_play",
+      "value": "reset_play"
+    },
+    {
+      "name": "float_integer",
+      "value": "float_integer"
+    },
+    {
+      "name": "cycle",
+      "value": "cycle"
+    },
+    {
+      "name": "animation_stop",
+      "value": "animation_stop"
+    },
+    {
+      "name": "animation_play",
+      "value": "animation_play"
+    },
+    {
+      "name": "refresh_animation",
+      "value": "refresh_animation"
+    },
+    {
+      "name": "destruction_grunt_animation",
+      "value": "destruction_grunt_animation"
+    },
+    {
+      "name": "playback_position",
+      "value": "playback_position"
+    },
+    {
+      "name": "add_listen",
+      "value": "add_listen"
+    },
+    {
+      "name": "delete_listen",
+      "value": "delete_listen"
+    },
+    {
+      "name": "delete_all_Listen",
+      "value": "delete_all_Listen"
+    },
+    {
+      "name": "triggers_all_callbacks",
+      "value": "triggers_all_callbacks"
+    },
+    {
+      "name": "listen",
+      "value": "listen"
+    },
+    {
+      "name": "select_please",
+      "value": "select_please"
+    },
+    {
+      "name": "forward",
+      "value": "forward"
+    },
+    {
+      "name": "reverse",
+      "value": "reverse"
+    },
+    {
+      "name": "grunt",
+      "value": "grunt"
+    },
+    {
+      "name": "year",
+      "value": "year"
+    },
+    {
+      "name": "three_speed",
+      "value": "three_speed"
+    }
+  ]
+}
