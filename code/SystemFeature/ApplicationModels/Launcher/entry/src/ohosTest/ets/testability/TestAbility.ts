@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { Hypium } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import UIAbility from '@ohos.app.ability.UIAbility'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Logger } from '@ohos/base'
+import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
+import { Logger } from '@ohos/base'
 
 const TAG: string = 'TestAbility'
 
@@ -43,7 +43,7 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage) {
     Logger.info(TAG, 'TestAbility onWindowStageCreate')
-    windowStage.loadContent("TestAbility/pages/index", (err, data) => {
+    windowStage.loadContent("testability/pages/Index", (err, data) => {
       if (err.code) {
         Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
         return;

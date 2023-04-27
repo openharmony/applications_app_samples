@@ -48,7 +48,7 @@ export struct Cart {
             .selectedColor($r('app.color.red'))
             .aspectRatio(1)
           Image(PRODUCT_DATA[item].uri)
-            .id('cart' + PRODUCT_DATA[item].uri.id)
+            .id('cart' + PRODUCT_DATA[item].id)
             .width(70)
             .height(80)
             .objectFit(ImageFit.Contain)

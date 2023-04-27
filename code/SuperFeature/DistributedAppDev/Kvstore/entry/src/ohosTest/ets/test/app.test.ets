@@ -46,11 +46,12 @@ export default function appTest() {
     it(BUNDLE + 'ClickAcceptFunction_001', 1, async () => {
       Logger.info(TAG, BUNDLE + 'ClickAcceptFunction_001 begin')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1500)
       Logger.info(TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept')
       // 点击允许
-      await driver.assertComponentExist(ON.text('允许'))
-      let btnAccept = await driver.findComponent(ON.text('允许'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
+      let btnAccept = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       await btnAccept.click()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'ClickAcceptFunction_001 end')
@@ -62,6 +63,7 @@ export default function appTest() {
     it(BUNDLE + 'ClickRightBtnFunction_001', 2, async () => {
       Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 begin')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 clickRightBtn')
       // 点击右上角按钮
@@ -71,7 +73,7 @@ export default function appTest() {
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'ClickRightBtnFunction_001 clickCancel')
       // 点击取消
-      await driver.assertComponentExist(ON.text('选择设备'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.check_device'))))
       await driver.assertComponentExist(ON.id('cancel'))
       let cancelBtn = await driver.findComponent(ON.id('cancel'))
       await driver.delayMs(3000)
@@ -96,7 +98,7 @@ export default function appTest() {
         await driver.delayMs(500)
       }
       Logger.info(TAG, BUNDLE + 'HandleCardFunction_001 delCard')
-      // 删除卡片
+      // 删除笔记
       for (let i = 0;i < 3; i++) {
         await driver.assertComponentExist(ON.id('del' + i))
         await driver.delayMs(500)

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import Logger from '../util/Logger'
@@ -36,7 +36,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       await abilityDelegator.startAbility(want, (err, data) => {
         Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
-        expect(0).assertEqual(err.code)
+        expect(err).assertNull()
       })
       await driver.delayMs(1000)
       Logger.info(TAG, 'StartAbility end')
@@ -48,13 +48,16 @@ export default function abilityTest() {
     it(BUNDLE + 'OpenDialog', 1, async (done) => {
       Logger.info(TAG, 'OpenDialog start')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       // 检查Dialog是否显示
-      await driver.assertComponentExist(ON.text('桔子购物'))
-      let closeBtn = await driver.findComponent(ON.text('X'))
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shopping'))))
+      let closeBtn = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.close_icon'))))
       await closeBtn.click()
       await driver.delayMs(500)
       // 检查Dialog是否关闭
-      let title = await driver.findComponent(ON.text('桔子购物'))
+      let title = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.shopping'))))
       await expect(title).assertNull()
       await driver.delayMs(500)
       Logger.info(TAG, 'OpenDialog end')
@@ -68,14 +71,17 @@ export default function abilityTest() {
     it(BUNDLE + 'OpenDetail', 2, async (done) => {
       Logger.info(TAG, 'OpenDetail start')
       let driver = await Driver.create()
-      let idList = ['33554489', '33554490', '33554491']  // 商品id列表
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
+
+      let idList = ['0', '1', '2']  // 商品id列表
       for (let i in idList) {
         let goods = await driver.findComponent(ON.id(idList[i]))
         // 点击商品
         await goods.click()
         await driver.delayMs(500)
         // 检查跳转后商品是否一致
-        await driver.assertComponentExist(ON.text('用户评价', MatchPattern.CONTAINS))
+        await driver.assertComponentExist(
+          ON.text(await resourceManager.getStringValue($r('app.string.evaluate')), MatchPattern.CONTAINS))
         await driver.assertComponentExist(ON.id(idList[i]))
         await driver.pressBack()
         await driver.delayMs(500)
@@ -91,23 +97,26 @@ export default function abilityTest() {
     it(BUNDLE + 'AddGoodsToCart', 3, async (done) => {
       Logger.info(TAG, 'AddGoodsToCart start')
       let driver = await Driver.create()
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       let cartTag = 'cart'
-      let idList = ['33554489', '33554490', '33554491']  // 商品id列表
+      let idList = ['0', '1', '2']  // 商品id列表
       for (let i in idList) {
         let goods = await driver.findComponent(ON.id(idList[i]))
         // 点击商品
         await goods.click()
         await driver.delayMs(500)
         // 检查跳转后商品是否一致
-        await driver.assertComponentExist(ON.text('加入购物车', MatchPattern.CONTAINS))
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))))
         await driver.assertComponentExist(ON.id(idList[i]))
-        await driver.assertComponentExist(ON.text('购物车'))
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shop_cart'))))
         // 点击添加商品到购物车当中
-        let addBtn = await driver.findComponent(ON.text('加入购物车'))
+        let addBtn = await driver.findComponent(
+          ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))))
         await addBtn.click()
         await driver.delayMs(500)
         // 跳转到购物车页面
-        let cartBtn = await driver.findComponent(ON.text('购物车'))
+        let cartBtn = await driver.findComponent(
+          ON.text(await resourceManager.getStringValue($r('app.string.shop_cart'))))
         await cartBtn.click()
         await driver.delayMs(500)
         // 检查商品是否已经添加

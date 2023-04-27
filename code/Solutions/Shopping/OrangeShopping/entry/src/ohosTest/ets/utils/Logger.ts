@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,30 +15,30 @@
 
 import hilog from '@ohos.hilog'
 
+const DOMAIN: number = 0xF811
+
 class Logger {
-  private domain: number
   private prefix: string
   private format: string = '%{public}s, %{public}s'
 
   constructor(prefix: string) {
     this.prefix = prefix
-    this.domain = 0xF811
   }
 
   debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(DOMAIN, this.prefix, this.format, args)
   }
 
   info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(DOMAIN, this.prefix, this.format, args)
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(DOMAIN, this.prefix, this.format, args)
   }
 
   error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args)
+    hilog.error(DOMAIN, this.prefix, this.format, args)
   }
 }
 

@@ -15,6 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import TestRunner from '@ohos.application.testRunner'
+import Logger from '../utils/Logger'
 
 var abilityDelegator = undefined
 var abilityDelegatorArguments = undefined
@@ -35,11 +36,11 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-  console.log("onAbilityCreateCallback");
+  Logger.info("onAbilityCreateCallback");
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  console.info("addAbilityMonitorCallback : " + JSON.stringify(err))
+  Logger.info("addAbilityMonitorCallback : " + JSON.stringify(err))
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -47,11 +48,11 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    console.info("OpenHarmonyTestRunner OnPrepare ")
+    Logger.info("OpenHarmonyTestRunner OnPrepare ")
   }
 
   async onRun() {
-    console.log('OpenHarmonyTestRunner onRun run')
+    Logger.info('OpenHarmonyTestRunner onRun run')
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
@@ -66,13 +67,12 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     if (debug == 'true') {
       cmd += ' -D'
     }
-    console.info('cmd : ' + cmd)
-    abilityDelegator.executeShellCommand(cmd,
-      (err: any, d: any) => {
-        console.info('executeShellCommand : err : ' + JSON.stringify(err));
-        console.info('executeShellCommand : data : ' + d.stdResult);
-        console.info('executeShellCommand : data : ' + d.exitCode);
-      })
-    console.info('OpenHarmonyTestRunner onRun end')
+    Logger.info('cmd : ' + cmd)
+    abilityDelegator.executeShellCommand(cmd, (err, d) => {
+      Logger.info('executeShellCommand : err : ' + JSON.stringify(err))
+      Logger.info('executeShellCommand : data : ' + d.stdResult)
+      Logger.info('executeShellCommand : data : ' + d.exitCode)
+    })
+    Logger.info('OpenHarmonyTestRunner onRun end')
   }
-};
+}

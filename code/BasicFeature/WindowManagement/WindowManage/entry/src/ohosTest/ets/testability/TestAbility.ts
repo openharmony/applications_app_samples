@@ -17,11 +17,15 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import UIAbility from '@ohos.app.ability.UIAbility'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
-import Logger from '../util/Logger'
+import Logger from '../utils/Logger'
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info('TestAbility onCreate')
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    Logger.info('start run testcase!!!')
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   onDestroy() {
@@ -30,17 +34,15 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage) {
     Logger.info('TestAbility onWindowStageCreate')
-    windowStage.loadContent("TestAbility/pages/index", (err, data) => {
+    windowStage.loadContent("testability/pages/Index", (err, data) => {
       if (err.code) {
-        Logger.error('Failed to load the content. Cause:' + JSON.stringify(err))
-        return
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
       }
       Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-    })
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info('start run testcase!!!')
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+    });
+
+    globalThis.abilityContext = this.context;
   }
 
   onWindowStageDestroy() {

@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "camera",
+      "value": "相机"
+    },
+    {
+      "name": "contacts",
+      "value": "联系人"
+    },
+    {
+      "name": "messages",
+      "value": "信息"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加到桌面"
+    },
+    {
+      "name": "photo",
+      "value": "添加到桌面"
+    },
+    {
+      "name": "uninstall",
+      "value": "卸载"
+    },
+    {
+      "name": "telephone",
+      "value": "电话"
+    },
+    {
+      "name": "message_no_mission",
+      "value": "最近无运行应用"
+    }
+  ]
+}
