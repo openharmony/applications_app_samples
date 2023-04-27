@@ -76,7 +76,7 @@ export default function abilityTest() {
     it('GetPermission_001', 0, async function (done) {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0x0000, 'testTag', 'GetPermission_001 begin');
-      await DRIVER.delayMs(1000);
+      await DRIVER.delayMs(2000);
       await DRIVER.assertComponentExist(ON.text('允许'));
       let allowBtn = await DRIVER.findComponent(ON.text('允许'));
       await allowBtn.click();
