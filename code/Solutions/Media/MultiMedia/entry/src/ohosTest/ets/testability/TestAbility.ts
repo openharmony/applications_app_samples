@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import UIAbility from '@ohos.app.ability.UIAbility';
+
+import UIAbility from '@ohos.app.ability.UIAbility'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
@@ -28,13 +29,15 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage) {
     console.log('TestAbility onWindowStageCreate')
-    windowStage.loadContent("TestAbility/pages/index", (err, data) => {
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err))
         return
       }
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
     })
+
+    globalThis.abilityContext = this.context
     var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments: any

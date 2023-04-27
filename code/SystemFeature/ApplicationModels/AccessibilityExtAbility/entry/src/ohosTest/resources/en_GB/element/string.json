@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "accessibility_test",
+      "value": "accessibilitTest"
+    },
+    {
+      "name": "current_state",
+      "value": "currentState"
+    },
+    {
+      "name": "state_unconnected",
+      "value": "unconnected"
+    },
+    {
+      "name": "state_connected",
+      "value": "connected"
+    }
+  ]
+}
