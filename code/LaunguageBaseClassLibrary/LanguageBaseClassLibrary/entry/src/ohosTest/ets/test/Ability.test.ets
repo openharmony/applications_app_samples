@@ -22,6 +22,13 @@ const TAG: string = 'Sample_LanguageBaseClassLibraryTest';
 const BUNDLE = 'LanguageBaseClassLibrary';
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     // 打开应用
@@ -46,28 +53,28 @@ export default function abilityTest() {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'Xml'
-      await driver.assertComponentExist(ON.text('Xml & ConvertXml (XML解析,生成与转换)'));
-      let button = await driver.findComponent(ON.text('Xml & ConvertXml (XML解析,生成与转换)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.xml'))));
       await button.click();
       await driver.delayMs(200);
       // 点击Xml生成
-      await driver.assertComponentExist(ON.text('Xml 生成', MatchPattern.CONTAINS));
-      let serializer = await driver.findComponent(ON.text('Xml 生成', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.serializer')), MatchPattern.CONTAINS));
+      let serializer = await driver.findComponent(ON.text(await getResourceString($r('app.string.serializer')), MatchPattern.CONTAINS));
       await serializer.click();
       await driver.delayMs(1000);
       logger.info(TAG, BUNDLE + 'ClickXmlFunction_001 clickParserXml');
       // 点击Xml解析
-      await driver.assertComponentExist(ON.text('Xml 解析', MatchPattern.CONTAINS));
-      let parser = await driver.findComponent(ON.text('Xml 解析', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.parser')), MatchPattern.CONTAINS));
+      let parser = await driver.findComponent(ON.text(await getResourceString($r('app.string.parser')), MatchPattern.CONTAINS));
       await parser.click();
       await driver.delayMs(1000);
       logger.info(TAG, BUNDLE + 'ClickXmlFunction_001 clickConvertXml');
       // 点击Xml转换
-      let convert = await driver.findComponent(ON.text('Xml 转换', MatchPattern.CONTAINS));
+      let convert = await driver.findComponent(ON.text(await getResourceString($r('app.string.convert')), MatchPattern.CONTAINS));
       await convert.click();
       await driver.delayMs(1000);
       //check text
-      await driver.assertComponentExist(ON.text('Xml & ConvertXml (XML解析,生成与转换)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
       await driver.delayMs(200);
       await driver.pressBack();
       done();
@@ -80,12 +87,12 @@ export default function abilityTest() {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'Xml'
-      await driver.assertComponentExist(ON.text('Util (util工具函数)'));
-      let button = await driver.findComponent(ON.text('Util (util工具函数)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
       await button.click();
       await driver.delayMs(200);
       //check text
-      await driver.assertComponentExist(ON.text('Util (util工具函数)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
       await driver.delayMs(200);
       done();
       logger.info(TAG, `${BUNDLE}util_001 end`);
@@ -97,8 +104,8 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(200);
       // 进入字符串编解码界面
-      await driver.assertComponentExist(ON.text('StringCode (字符串编解码)'));
-      let strBtn = await driver.findComponent(ON.text('StringCode (字符串编解码)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.string_code'))));
+      let strBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.string_code'))));
       await strBtn.click();
       await driver.delayMs(200);
       // 点击特定格式输出
@@ -145,38 +152,38 @@ export default function abilityTest() {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //进入有理数界面
-      await driver.assertComponentExist(ON.text('RationalNumber (有理数)'));
-      let button = await driver.findComponent(ON.text('RationalNumber (有理数)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.rational_number'))));
       await button.click();
       await driver.delayMs(200);
 
-      await driver.assertComponentExist(ON.text('有理数比较'));
-      let compare = await driver.findComponent(ON.text('有理数比较'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.compare'))));
+      let compare = await driver.findComponent(ON.text(await getResourceString($r('app.string.compare'))));
       await compare.click();
-      await driver.assertComponentExist(ON.text('有理数1小于有理数2'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.less_than'))));
 
-      await driver.assertComponentExist(ON.text('获取有理数的值'));
-      let getValue = await driver.findComponent(ON.text('获取有理数的值'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get'))));
+      let getValue = await driver.findComponent(ON.text(await getResourceString($r('app.string.get'))));
       await getValue.click();
-      await driver.assertComponentExist(ON.text('的值是', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get_value')), MatchPattern.CONTAINS));
 
-      await driver.assertComponentExist(ON.text('获取有理数分子分母'));
-      let operation0= await driver.findComponent(ON.text('获取有理数分子分母'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.getDenominator'))));
+      let operation0= await driver.findComponent(ON.text(await getResourceString($r('app.string.getDenominator'))));
       await operation0.click();
-      await driver.assertComponentExist(ON.text('分子:', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.numerator')), MatchPattern.CONTAINS));
 
-      await driver.assertComponentExist(ON.text('检查是否为0'));
-      let operation1= await driver.findComponent(ON.text('检查是否为0'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.isZero'))));
+      let operation1= await driver.findComponent(ON.text(await getResourceString($r('app.string.isZero'))));
       await operation1.click();
-      await driver.assertComponentExist(ON.text('有理数1 is', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number_is')), MatchPattern.CONTAINS));
 
-      await driver.assertComponentExist(ON.text('检查是否表示NaN'));
-      let operation2= await driver.findComponent(ON.text('检查是否表示NaN'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.isNaN'))));
+      let operation2= await driver.findComponent(ON.text(await getResourceString($r('app.string.isNaN'))));
       await operation2.click();
-      await driver.assertComponentExist(ON.text('有理数1 is not NaN', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number_is_not_nan')), MatchPattern.CONTAINS));
 
-      await driver.assertComponentExist(ON.text('检查是否为有限值'));
-      let operation3= await driver.findComponent(ON.text('检查是否为有限值'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.isFinite'))));
+      let operation3= await driver.findComponent(ON.text(await getResourceString($r('app.string.isFinite'))));
       await operation3.click();
       await driver.assertComponentExist(ON.text('Finite', MatchPattern.CONTAINS));
 
@@ -191,44 +198,44 @@ export default function abilityTest() {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'LRUCache'
-      await driver.assertComponentExist(ON.text('LRUCache (缓冲区)'));
-      let button = await driver.findComponent(ON.text('LRUCache (缓冲区)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.lru_cache'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.lru_cache'))));
       await button.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击初始化缓冲区
-      await driver.assertComponentExist(ON.text('初始化缓冲区'));
-      let initializeBtn = await driver.findComponent(ON.text('初始化缓冲区'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.initialize_buffer'))));
+      let initializeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.initialize_buffer'))));
       await initializeBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击获取缓冲区容量
-      await driver.assertComponentExist(ON.text('获取缓冲区容量'));
-      let getBufferBtn = await driver.findComponent(ON.text('获取缓冲区容量'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get_buffer_capacity'))));
+      let getBufferBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.get_buffer_capacity'))));
       await getBufferBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击更新缓冲区容量
-      await driver.assertComponentExist(ON.text('更新缓冲区容量'));
-      let updateBufferBtn = await driver.findComponent(ON.text('更新缓冲区容量'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.update_buffer_capacity'))));
+      let updateBufferBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.update_buffer_capacity'))));
       await updateBufferBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击获取缓冲区字符串
-      await driver.assertComponentExist(ON.text('获取缓冲区字符串'));
-      let getBufferCharacterBtn = await driver.findComponent(ON.text('获取缓冲区字符串'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get_buffer_string'))));
+      let getBufferCharacterBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.get_buffer_string'))));
       await getBufferCharacterBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击添加键值对
-      await driver.assertComponentExist(ON.text('添加键值对'));
-      let addBtn = await driver.findComponent(ON.text('添加键值对'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_key_value'))));
+      let addBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_key_value'))));
       await addBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击获取键对应的值
-      await driver.assertComponentExist(ON.text('获取键对应的值'));
-      let getBtn = await driver.findComponent(ON.text('获取键对应的值'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get_value_with_key'))));
+      let getBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.get_value_with_key'))));
       await getBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
@@ -238,14 +245,14 @@ export default function abilityTest() {
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击获取所有键值对
-      await driver.assertComponentExist(ON.text('获取所有键值对'));
-      let getAllBtn = await driver.findComponent(ON.text('获取所有键值对'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get_all_key_values'))));
+      let getAllBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.get_all_key_values'))));
       await getAllBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击删除指定键及关联值
-      await driver.assertComponentExist(ON.text('删除指定键及关联值'));
-      let deleteBtn = await driver.findComponent(ON.text('删除指定键及关联值'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.delete_key_and_value'))));
+      let deleteBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.delete_key_and_value'))));
       await deleteBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
@@ -255,14 +262,14 @@ export default function abilityTest() {
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击清除所有键值对
-      await driver.assertComponentExist(ON.text('清除所有键值对'));
-      let eliminateBtn = await driver.findComponent(ON.text('清除所有键值对'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.clear_all_key_values'))));
+      let eliminateBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.clear_all_key_values'))));
       await eliminateBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilLruBuffer_001 clickCheckPresetValue');
       // 点击查看操作记录
-      await driver.assertComponentExist(ON.text('查看操作记录'));
-      let operatingBtn = await driver.findComponent(ON.text('查看操作记录'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.view_operation_record'))));
+      let operatingBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.view_operation_record'))));
       await operatingBtn.click();
       await driver.delayMs(200);
       await driver.pressBack();
@@ -276,19 +283,19 @@ export default function abilityTest() {
       let driver = await Driver.create();
       await driver.delayMs(200);
       // 进入Base64编解码
-      await driver.assertComponentExist(ON.text('Base64Helper (Base64编解码)'));
-      let typeBtn = await driver.findComponent(ON.text('Base64Helper (Base64编解码)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.base64'))));
+      let typeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.base64'))));
       await typeBtn.click();
       await driver.delayMs(200);
       // 点击编码
-      await driver.assertComponentExist(ON.text('编码'));
-      let codeBtn = await driver.findComponent(ON.text('编码'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.encode'))));
+      let codeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.encode'))));
       await codeBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'UtilBase64Codec_001 clickCheckPresetValue');
       // 点击解码
-      await driver.assertComponentExist(ON.text('解码'));
-      let decodeBtn = await driver.findComponent(ON.text('解码'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.decode'))));
+      let decodeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.decode'))));
       await decodeBtn.click();
       await driver.delayMs(1000);
       await driver.pressBack();
@@ -301,19 +308,19 @@ export default function abilityTest() {
       let driver = await Driver.create();
       await driver.delayMs(200);
       // 进入类型检查
-      await driver.assertComponentExist(ON.text('TypeCheck (类型检查)'));
-      let typeBtn = await driver.findComponent(ON.text('TypeCheck (类型检查)'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.type_check'))));
+      let typeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.type_check'))));
       await typeBtn.click();
       await driver.delayMs(200);
       // 点击显示预置值
-      await driver.assertComponentExist(ON.text('显示预置值'));
-      let displayPresetValueBtn = await driver.findComponent(ON.text('显示预置值'));
+      await driver.assertComponentExist(ON.id('displayPresetValue'));
+      let displayPresetValueBtn = await driver.findComponent(ON.id('displayPresetValue'));
       await displayPresetValueBtn.click();
       await driver.delayMs(200);
       logger.info(TAG, BUNDLE + 'TypeCheck_001 clickCheckPresetValue');
       // 点击校验预置值
-      await driver.assertComponentExist(ON.text('校验预置值'));
-      let checkPresetValueBtn = await driver.findComponent(ON.text('校验预置值'));
+      await driver.assertComponentExist(ON.id('checkPresetValue'));
+      let checkPresetValueBtn = await driver.findComponent(ON.id('checkPresetValue'));
       await checkPresetValueBtn.click();
       await driver.delayMs(200);
       await driver.pressBack();
