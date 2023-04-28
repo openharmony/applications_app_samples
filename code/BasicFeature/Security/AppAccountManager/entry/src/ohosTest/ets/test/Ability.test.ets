@@ -23,6 +23,13 @@ const DOMAIN = 0xF811
 const BUNDLE = 'AppAccountManager_'
 
 let driver: Driver = Driver.create()
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 //通过id验证有没有这个组件 有的话点击一下
 async function checkButtonAndClickWithID(text:string) {
   let atom = text
@@ -48,16 +55,17 @@ async function applicationLogin(username:string, usernameValue:string, password:
   await passwordInput.inputText(loginPasswordValue)
 }
 
-// 点击确定
+// 点击确认
 async function confirmCheck() {
-  let buttonConfirm = await driver.findComponents(ON.type('Button').within(ON.type('AlertDialog')))
-  await buttonConfirm[0].click()
+  await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_confirm'))))
+  let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_confirm'))))
+  await button.click()
+  await driver.delayMs(1000)
 }
 export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
         await abilityDelegator.startAbility({
           bundleName: "ohos.samples.etsappaccountmanager",
@@ -90,7 +98,7 @@ export default function appTest() {
       // 填写个性签名
       await driver.assertComponentExist(ON.id('Register3'))
       let signInput = await driver.findComponent(ON.id('Register3'))
-      await signInput.inputText('测试音乐应用')
+      await signInput.inputText('testMusic')
       // 输入密码
       await driver.assertComponentExist(ON.id('Register4'))
       let passwordInput = await driver.findComponent(ON.id('Register4'))
@@ -171,7 +179,7 @@ export default function appTest() {
       // 填写个性签名
       await driver.assertComponentExist(ON.id('Register3'))
       let signInput = await driver.findComponent(ON.id('Register3'))
-      await signInput.inputText('测试视频应用')
+      await signInput.inputText('testVideo')
       // 输入密码
       await driver.assertComponentExist(ON.id('Register4'))
       let passwordInput = await driver.findComponent(ON.id('Register4'))
@@ -253,7 +261,7 @@ export default function appTest() {
       // 填写个性签名
       await driver.assertComponentExist(ON.id('Register3'))
       let signInput = await driver.findComponent(ON.id('Register3'))
-      await signInput.inputText('测试地图应用')
+      await signInput.inputText('testMap')
       // 输入密码
       await driver.assertComponentExist(ON.id('Register4'))
       let passwordInput = await driver.findComponent(ON.id('Register4'))
