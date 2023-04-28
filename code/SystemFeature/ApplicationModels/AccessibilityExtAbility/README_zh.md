@@ -19,7 +19,7 @@
 
 ## 具体实现
 
-* 获取界面元素、查询元素指定信息、通过text查找元素和获取元素执行指定动作的功能封装在AccessibilityManager，源码参考: [AccessibilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/ability/AccessibilityExtAbility/entry/src/main/ets/AccessibilityExtAbility/AccessibilityManager.ts)
+* 获取界面元素、查询元素指定信息、通过text查找元素和获取元素执行指定动作的功能封装在AccessibilityManager，源码参考: [AccessibilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility/entry/src/main/ets/AccessibilityExtAbility/AccessibilityManager.ts)
   * 使用 [getWindowRootElement()](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontextgetwindowrootelement) 获取界面根节点；
   * 获取元素属性值：使用AccessibilityUtils.getAttributeValue()；
   * 获取界面所有元素：基于获取的根元素，使用AccessibilityUtils.createElementArray()获取界面所有元素；
@@ -51,7 +51,7 @@ entry/src/main/ets/
 1. 本示例仅支持标准系统上运行；
 2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 3. 本示例基于DevEco Studio 3.0 Beta3 (Build Version: 3.0.0.900, build on March 31, 2022)开发，需使用该版本或更高版本才可编译运行；
-4. 本示例使用了AccessibilityExtensionAbility相关系统接口，需要将默认的Public SDK替换为Full SDK，具体替换操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
+4. 本示例使用了AccessibilityExtensionAbility相关系统接口，需要将默认的Public SDK替换为Full SDK，具体替换操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md) ；
 
 ### 下载
 
