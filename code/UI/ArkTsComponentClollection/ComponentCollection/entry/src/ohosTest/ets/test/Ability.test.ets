@@ -21,12 +21,10 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../utils/Logger';
 import { getStringData } from '../../../main/ets/data/ResourceDataHandle';
+const BUNDLE = 'ComponentCollection_';
 
-const TAG = '[Sample_ComponentCollection]'
-const BUNDLE = 'ComponentCollection_'
-
-const DELAY_TIME = 1000
-let driver: Driver = Driver.create()
+const DELAY_TIME = 1000;
+let driver: Driver = Driver.create();
 
 // 获取AbilityDelegator
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -42,7 +40,7 @@ async function checkButtonAndClickWithText(text: string) {
   let button = await driver.findComponent(ON.text(atom));
   await button.click();
   await driver.delayMs(DELAY_TIME);
-  Logger.info(TAG, BUNDLE + atom);
+  Logger.info(BUNDLE + atom);
 }
 
 // 通过id验证有没有这个组件 有的话点击一下
@@ -52,7 +50,7 @@ async function checkButtonAndClickWithID(text: string) {
   let button = await driver.findComponent(ON.id(atom));
   await button.click();
   await driver.delayMs(DELAY_TIME);
-  Logger.info(TAG, BUNDLE + atom);
+  Logger.info(BUNDLE + atom);
 }
 
 // 通过id验证有没有这个组件 有的话点击一下
@@ -62,7 +60,7 @@ async function checkButtonAndLongClickWithID(text: string) {
   let button = await driver.findComponent(ON.id(atom));
   await button.longClick();
   await driver.delayMs(DELAY_TIME);
-  Logger.info(TAG, BUNDLE + atom);
+  Logger.info(BUNDLE + atom);
 }
 
 // 展开Select并选择
@@ -105,7 +103,7 @@ export default function abilityTest() {
        * 打开应用
        */
       it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-        Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
+        Logger.info(BUNDLE + 'StartAbility_001 begin')
         let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         try {
           await abilityDelegator.startAbility({
@@ -118,11 +116,11 @@ export default function abilityTest() {
 
           done();
         } catch (exception) {
-          Logger.info(TAG, `StartAbility_001 end ${JSON.stringify(exception)}`);
+          Logger.info(BUNDLE, `StartAbility_001 end ${JSON.stringify(exception)}`);
           expect(0).assertEqual(exception.code);
           done();
         }
-        Logger.info(TAG, BUNDLE + 'StartAbility_001' + ' end');
+        Logger.info(BUNDLE + 'StartAbility_001' + ' end');
       })
 
       /**
@@ -130,7 +128,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'DividerFunction_001', 0, async function () {
         let testName = 'DividerFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -158,12 +156,12 @@ export default function abilityTest() {
             {
               let atom = 'colorSelect';
               await checkButtonAndClickWithID(atom);
-              Logger.info(TAG, BUNDLE + testName + atom);
+              Logger.info(BUNDLE + testName + atom);
             }
             {
               let atom = keys[i];
               await checkButtonAndClickWithText(atom);
-              Logger.info(TAG, BUNDLE + testName + atom);
+              Logger.info(BUNDLE + testName + atom);
             }
           }
         }
@@ -173,12 +171,12 @@ export default function abilityTest() {
             {
               let atom = 'capSelect';
               await checkButtonAndClickWithID(atom);
-              Logger.info(TAG, BUNDLE + testName + atom);
+              Logger.info(BUNDLE + testName + atom);
             }
             {
               let atom = keys[i];
               await checkButtonAndClickWithText(atom);
-              Logger.info(TAG, BUNDLE + testName + atom);
+              Logger.info(BUNDLE + testName + atom);
             }
           }
         }
@@ -188,7 +186,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -196,7 +194,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'ButtonAndSelectFunction_001', 0, async function () {
         let testName = 'ButtonAndSelectFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -263,7 +261,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -271,7 +269,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'DatePickerFunction_001', 0, async function () {
         let testName = 'DatePickerFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -289,12 +287,12 @@ export default function abilityTest() {
         {
           let atom = 'Checkbox';
           await checkButtonAndClickWithID(atom);
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         {
           let atom = await manager.getStringValue($r('app.string.november'));
           await checkButtonAndClickWithText(atom);
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
 
         // 返回
@@ -302,7 +300,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -310,7 +308,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'RadioFunction_001', 0, async function () {
         let testName = 'RadioFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -362,7 +360,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -370,7 +368,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'SelectFunction_001', 0, async function () {
         let testName = 'SelectFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -401,12 +399,12 @@ export default function abilityTest() {
               { // 点击展开
                 let atom = 'select' + group;
                 await checkButtonAndClickWithID(atom);
-                Logger.info(TAG, BUNDLE + testName + atom);
+                Logger.info(BUNDLE + testName + atom);
               }
               { // 选择一个
                 let atom = keys[i];
                 await checkButtonAndClickWithText(atom);
-                Logger.info(TAG, BUNDLE + testName + atom);
+                Logger.info(BUNDLE + testName + atom);
               }
               { // 验证点击有无响应
                 let atom = 'onSelectId' + i;
@@ -421,7 +419,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -429,7 +427,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'SlideFunction_001', 0, async function () {
         let testName = 'SlideFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -483,7 +481,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -491,7 +489,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'ToggleFunction_001', 0, async function () {
         let testName = 'ToggleFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -510,42 +508,42 @@ export default function abilityTest() {
           await checkButtonAndClickWithID(atom);
           // 验证点击有无响应
           await driver.assertComponentExist(ON.id(atom));
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         { // 点击
           let atom = 'test_ToggleSwitch2';
           await checkButtonAndClickWithID(atom);
           // 验证点击有无响应
           await driver.assertComponentExist(ON.id(atom));
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         { // 点击
           let atom = 'test_ToggleCheckbox1';
           await checkButtonAndClickWithID(atom);
           //验证点击有无响应
           await driver.assertComponentExist(ON.id(atom));
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         { // 点击
           let atom = 'test_ToggleCheckbox2';
           await checkButtonAndClickWithID(atom);
           // 验证点击有无响应
           await driver.assertComponentExist(ON.id(atom));
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         { // 点击
           let atom = 'test_ToggleCheckbox1';
           await checkButtonAndClickWithID(atom);
           // 验证点击有无响应
           await driver.assertComponentExist(ON.id(atom));
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         { // 点击
           let atom = 'test_ToggleCheckbox2';
           await checkButtonAndClickWithID(atom);
           // 验证点击有无响应
           await driver.assertComponentExist(ON.id(atom));
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -553,7 +551,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -561,7 +559,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'CheckboxFunction_001', 0, async function () {
         let testName = 'CheckboxFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -589,7 +587,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -597,7 +595,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'CheckboxFunction_001', 0, async function () {
         let testName = 'CheckboxFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -621,14 +619,14 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
       /**
        * Counter 计数器
        */
       it(BUNDLE + 'CounterFunction_001', 0, async function () {
         let testName = 'CounterFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -652,7 +650,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -660,7 +658,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'RatingFunction_001', 0, async function () {
         let testName = 'RatingFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -688,7 +686,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -696,7 +694,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'ScrollFunction_001', 0, async function () {
         let testName = 'ScrollFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -728,7 +726,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -736,7 +734,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'QRCodeFunction_001', 0, async function () {
         let testName = 'QRCodeFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -754,7 +752,7 @@ export default function abilityTest() {
           let atom = await manager.getStringValue($r('app.string.qrcode_enter_content'));
           let input = await driver.findComponent(ON.id('test_qrcode'));
           await input.inputText('test');
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
         { // 展开颜色
           let atom = 'test_colorSelect';
@@ -770,7 +768,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -778,7 +776,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'LoadingProgressFunction_001', 0, async function () {
         let testName = 'LoadingProgressFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -802,7 +800,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -810,7 +808,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'MarqueeFunction_001', 0, async function () {
         let testName = 'MarqueeFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -842,7 +840,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -850,7 +848,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TextTimerFunction_001', 0, async function () {
         let testName = 'TextTimerFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -911,7 +909,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -919,7 +917,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TextClockFunction_001', 0, async function () {
         let testName = 'TextClockFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -959,7 +957,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -967,7 +965,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'ProgressFunction_001', 0, async function () {
         let testName = 'ProgressFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -994,7 +992,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1002,7 +1000,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'GaugeFunction_001', 0, async function () {
         let testName = 'GaugeFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1036,14 +1034,14 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
       /**
        * DataPanel 数据面板
        */
       it(BUNDLE + 'DataPanelFunction_001', 0, async function () {
         let testName = 'DataPanelFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1066,7 +1064,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1074,7 +1072,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'SpanFunction_001', 0, async function () {
         let testName = 'SpanFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1117,7 +1115,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1125,7 +1123,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TextInputFunction_001', 0, async function () {
         let testName = 'TextInputFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1143,7 +1141,7 @@ export default function abilityTest() {
           let atom = await manager.getStringValue($r('app.string.text_and_input'));
           let input = await driver.findComponent(ON.id('test_input'));
           await input.inputText('test');
-          Logger.info(TAG, BUNDLE + testName + atom);
+          Logger.info(BUNDLE + testName + atom);
         }
 
         // 返回
@@ -1151,7 +1149,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1159,7 +1157,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TextFunction_001', 0, async function () {
         let testName = 'TextFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1203,7 +1201,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1211,7 +1209,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'RichTextFunction_001', 0, async function () {
         let testName = 'RichTextFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1231,7 +1229,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1239,7 +1237,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'BadgeFunction_001', 0, async function () {
         let testName = 'BadgeFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1259,7 +1257,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1267,7 +1265,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'ScrollBarFunction_001', 0, async function () {
         let testName = 'ScrollBarFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1301,7 +1299,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1309,7 +1307,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'RefreshFunction_001', 0, async function () {
         let testName = 'RefreshFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1336,7 +1334,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1344,7 +1342,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'PanelFunction_001', 0, async function () {
         let testName = 'PanelFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1385,7 +1383,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1393,7 +1391,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'AlphabetIndexerFunction_001', 0, async function () {
         let testName = 'AlphabetIndexerFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1415,7 +1413,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1423,7 +1421,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TarBarGeneralFunction_001', 0, async function () {
         let testName = 'TarBarGeneralFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1433,9 +1431,9 @@ export default function abilityTest() {
           let bar = await driver.findComponent(ON.id('tabBar1'));
           await bar.click();
           await driver.delayMs(DELAY_TIME);
-          Logger.info(TAG, BUNDLE + testName + testAtomName);
+          Logger.info(BUNDLE + testName + testAtomName);
         }
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1443,7 +1441,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'OnClickFunction_001', 0, async function () {
         let testName = 'OnClickFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.click_event')));
@@ -1457,7 +1455,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1465,7 +1463,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TouchFunction_001', 0, async function () {
         let testName = 'TouchFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.touch_event')));
@@ -1480,7 +1478,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1488,7 +1486,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'AreaChangeFunction_001', 0, async function () {
         let testName = 'AreaChangeFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_area_change_event')));
@@ -1508,7 +1506,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1516,7 +1514,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'BackgroundFunction_001', 0, async function () {
         let testName = 'BackgroundFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_background')));
@@ -1527,7 +1525,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1535,7 +1533,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'BorderFunction_001', 0, async function () {
         let testName = 'BorderFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_border')));
@@ -1546,7 +1544,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1554,7 +1552,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'FontFunction_001', 0, async function () {
         let testName = 'FontFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_font')));
@@ -1565,7 +1563,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1573,7 +1571,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'SizeFunction_001', 0, async function () {
         let testName = 'SizeFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_size')));
@@ -1584,7 +1582,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1592,7 +1590,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'RotateFunction_001', 0, async function () {
         let testName = 'RotateFunction'
-        Logger.info(TAG, BUNDLE + testName + ' begin')
+        Logger.info(BUNDLE + testName + ' begin')
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.graphic_transformation_rotate'))));
         if (!button) {
@@ -1608,7 +1606,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1616,7 +1614,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TranslateFunction_001', 0, async function () {
         let testName = 'TranslateFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.graphic_transformation_translate'))));
         if (!button) {
@@ -1648,7 +1646,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1656,7 +1654,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'DisplayFunction_001', 0, async function () {
         let testName = 'DisplayFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.components_display')));
@@ -1700,7 +1698,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1708,7 +1706,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'InteractionFunction_001', 0, async function () {
         let testName = 'InteractionFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.components_interaction')));
@@ -1756,7 +1754,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       });
 
       /**
@@ -1764,7 +1762,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TarBarAnimateFunction_001', 0, async function () {
         let testName = 'TarBarAnimateFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1774,9 +1772,9 @@ export default function abilityTest() {
           let bar = await driver.findComponent(ON.id('tabBar2'));
           await bar.click();
           await driver.delayMs(DELAY_TIME);
-          Logger.info(TAG, BUNDLE + testName + testAtomName);
+          Logger.info(BUNDLE + testName + testAtomName);
         }
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1784,7 +1782,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'PageTransitionFunction_001', 0, async function () {
         let testName = 'PageTransitionFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.page_transition'))));
         if (!button) {
@@ -1826,7 +1824,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
@@ -1835,7 +1833,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'SharedTransitionFunction_001', 0, async function () {
         let testName = 'SharedTransitionFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.share_element_transition'))));
         if (!button) {
@@ -1858,7 +1856,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
@@ -1867,7 +1865,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'InterpolationFunction_001', 0, async function () {
         let testName = 'InterpolationFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.interpolation_calculation')));
@@ -1881,7 +1879,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
@@ -1890,7 +1888,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TarBarGlobalFunction_001', 0, async function () {
         let testName = 'TarBarGlobalFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
@@ -1900,9 +1898,9 @@ export default function abilityTest() {
           let bar = await driver.findComponent(ON.id('tabBar3'));
           await bar.click();
           await driver.delayMs(DELAY_TIME);
-          Logger.info(TAG, BUNDLE + testName + testAtomName);
+          Logger.info(BUNDLE + testName + testAtomName);
         }
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
       })
 
       /**
@@ -1910,7 +1908,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'AlertDialogFunction_001', 0, async function () {
         let testName = 'AlertDialogFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.alert_dialog'))));
         if (!button) {
@@ -1967,7 +1965,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
@@ -1976,7 +1974,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'CustomDialogFunction_001', 0, async function () {
         let testName = 'CustomDialogFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.custom_dialog'))));
         if (!button) {
@@ -1996,7 +1994,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
@@ -2005,7 +2003,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'DatePickerDialogFunction_001', 0, async function () {
         let testName = 'DatePickerDialogFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.date_picker_dialog'))));
         if (!button) {
@@ -2041,7 +2039,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
@@ -2050,7 +2048,7 @@ export default function abilityTest() {
        */
       it(BUNDLE + 'TimePickerDialogFunction_001', 0, async function () {
         let testName = 'TimePickerDialogFunction';
-        Logger.info(TAG, BUNDLE + testName + ' begin');
+        Logger.info(BUNDLE + testName + ' begin');
 
         let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.time_picker_dialog'))));
         if (!button) {
@@ -2086,7 +2084,7 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
-        Logger.info(TAG, BUNDLE + testName + ' end');
+        Logger.info(BUNDLE + testName + ' end');
 
       })
 
