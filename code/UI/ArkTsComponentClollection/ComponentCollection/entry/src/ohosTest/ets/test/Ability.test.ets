@@ -133,23 +133,21 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Divider 分隔器
-          let atom = await manager.getStringValue($r('app.string.divider_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            // 自动判断是否展开可以方便单元测试 只有第一次需要展开 再点一次会关上
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.blank_and_divider')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Divider 分隔器
+        let atom = await manager.getStringValue($r('app.string.divider_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          // 自动判断是否展开可以方便单元测试 只有第一次需要展开 再点一次会关上
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.blank_and_divider')));
         }
+        await checkButtonAndClickWithText(atom);
 
-        { // 移动bar 分割线宽度
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 916, 400, 916, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        // 移动bar 分割线宽度
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 916, 400, 916, 800);
+        await driver.delayMs(DELAY_TIME);
         { // 更改颜色
           let keys = ['Green', 'Orange', 'Pink'];
           for (let i = 0; i < keys.length; i++) {
@@ -199,15 +197,15 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Button 按钮
-          let atom = await manager.getStringValue($r('app.string.button_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Button 按钮
+        let atom = await manager.getStringValue($r('app.string.button_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
+        await checkButtonAndClickWithText(atom);
+
         // 依次点击类型按钮
         { // 类型
           let keys = ['Capsule', 'Normal', 'Circle'];
@@ -274,26 +272,18 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入DatePicker 时间选择器
-          let atom = await manager.getStringValue($r('app.string.date_picker_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入DatePicker 时间选择器
+        let atom = await manager.getStringValue($r('app.string.date_picker_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
+        await checkButtonAndClickWithText(atom);
 
-        {
-          let atom = 'Checkbox';
-          await checkButtonAndClickWithID(atom);
-          Logger.info(BUNDLE + testName + atom);
-        }
-        {
-          let atom = await manager.getStringValue($r('app.string.november'));
-          await checkButtonAndClickWithText(atom);
-          Logger.info(BUNDLE + testName + atom);
-        }
+        // 选择十一月
+        await checkButtonAndClickWithID('Checkbox');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.november')));
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -313,15 +303,15 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Radio 单选按钮
-          let atom = await manager.getStringValue($r('app.string.radio_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Radio 单选按钮
+        let atom = await manager.getStringValue($r('app.string.radio_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
+        await checkButtonAndClickWithText(atom);
+
         { // 不添加热区
           let keys = [await manager.getStringValue($r('app.string.radio_beijing')),
             await manager.getStringValue($r('app.string.radio_shanghai')),
@@ -373,15 +363,15 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Select 选择菜单
-          let atom = await manager.getStringValue($r('app.string.select_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Select 选择菜单
+        let atom = await manager.getStringValue($r('app.string.select_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
+        await checkButtonAndClickWithText(atom);
+
         { // 含图标 group=0
           // 选中项背景 group=1
           // 未选中项背景 group=2
@@ -432,49 +422,34 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Slider 滑动条
-          let atom = await manager.getStringValue($r('app.string.slider_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Slider 滑动条
+        let atom = await manager.getStringValue($r('app.string.slider_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
-        { // 显示当前值
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(195, 273, 354, 273, 800);
-          await driver.drag(110, 273, 354, 273, 800);
-          await driver.delayMs(DELAY_TIME);
-          let atom = 'test_Text1';
-          await driver.assertComponentExist(ON.id(atom));
-          let text = await driver.findComponent(ON.id(atom));
-          text.click();
-        }
-        { // 滑块颜色
-          let atom = 'test_select1';
-          await checkButtonAndClickWithID(atom);
-        }
-        {
-          let atom = 'Green';
-          await checkButtonAndClickWithText(atom);
-        }
-        { // 已滑动颜色
-          let atom = 'test_select2';
-          await checkButtonAndClickWithID(atom);
-        }
-        {
-          let atom = 'Orange';
-          await checkButtonAndClickWithText(atom);
-        }
-        { // 未滑动颜色
-          let atom = 'test_select3';
-          await checkButtonAndClickWithID(atom);
-        }
-        {
-          let atom = 'Pink';
-          await checkButtonAndClickWithText(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 显示当前值
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(195, 273, 354, 273, 800);
+        await driver.drag(110, 273, 354, 273, 800);
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.id('test_Text1'));
+        let text = await driver.findComponent(ON.id('test_Text1'));
+        text.click();
+
+        // 滑块颜色
+        await checkButtonAndClickWithID('test_select1');
+        await checkButtonAndClickWithText('Green');
+        // 已滑动颜色
+        await checkButtonAndClickWithID('test_select2');
+
+        await checkButtonAndClickWithText('Orange');
+        // 未滑动颜色
+        await checkButtonAndClickWithID('test_select3');
+        await checkButtonAndClickWithText('Pink');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -494,57 +469,38 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Toggle 切换按钮
-          let atom = await manager.getStringValue($r('app.string.toggle_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Toggle 切换按钮
+        let atom = await manager.getStringValue($r('app.string.toggle_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
-        { // 点击
-          let atom = 'test_ToggleSwitch1';
-          await checkButtonAndClickWithID(atom);
-          // 验证点击有无响应
-          await driver.assertComponentExist(ON.id(atom));
-          Logger.info(BUNDLE + testName + atom);
-        }
-        { // 点击
-          let atom = 'test_ToggleSwitch2';
-          await checkButtonAndClickWithID(atom);
-          // 验证点击有无响应
-          await driver.assertComponentExist(ON.id(atom));
-          Logger.info(BUNDLE + testName + atom);
-        }
-        { // 点击
-          let atom = 'test_ToggleCheckbox1';
-          await checkButtonAndClickWithID(atom);
-          //验证点击有无响应
-          await driver.assertComponentExist(ON.id(atom));
-          Logger.info(BUNDLE + testName + atom);
-        }
-        { // 点击
-          let atom = 'test_ToggleCheckbox2';
-          await checkButtonAndClickWithID(atom);
-          // 验证点击有无响应
-          await driver.assertComponentExist(ON.id(atom));
-          Logger.info(BUNDLE + testName + atom);
-        }
-        { // 点击
-          let atom = 'test_ToggleCheckbox1';
-          await checkButtonAndClickWithID(atom);
-          // 验证点击有无响应
-          await driver.assertComponentExist(ON.id(atom));
-          Logger.info(BUNDLE + testName + atom);
-        }
-        { // 点击
-          let atom = 'test_ToggleCheckbox2';
-          await checkButtonAndClickWithID(atom);
-          // 验证点击有无响应
-          await driver.assertComponentExist(ON.id(atom));
-          Logger.info(BUNDLE + testName + atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        await checkButtonAndClickWithID('test_ToggleSwitch1');
+        // 验证点击有无响应
+        await driver.assertComponentExist(ON.id('test_ToggleSwitch1'));
+
+        await checkButtonAndClickWithID('test_ToggleSwitch2');
+        // 验证点击有无响应
+        await driver.assertComponentExist(ON.id('test_ToggleSwitch2'));
+
+        await checkButtonAndClickWithID('test_ToggleCheckbox1');
+        //验证点击有无响应
+        await driver.assertComponentExist(ON.id('test_ToggleCheckbox1'));
+
+        await checkButtonAndClickWithID('test_ToggleCheckbox2');
+        // 验证点击有无响应
+        await driver.assertComponentExist(ON.id('test_ToggleCheckbox2'));
+
+        await checkButtonAndClickWithID('test_ToggleCheckbox1');
+        // 验证点击有无响应
+        await driver.assertComponentExist(ON.id('test_ToggleCheckbox1'));
+
+        await checkButtonAndClickWithID('test_ToggleCheckbox2');
+        // 验证点击有无响应
+        await driver.assertComponentExist(ON.id('test_ToggleCheckbox2'));
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -564,23 +520,19 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入勾选框
-          let atom = await manager.getStringValue($r('app.string.checkbox_checkboxgroup'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入勾选框
+        let atom = await manager.getStringValue($r('app.string.checkbox_checkboxgroup'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
-        { // 点击全选
-          let atom = 'test_selectAll';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 更改颜色
-          let atom = 'test_changeColor3';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击全选
+        await checkButtonAndClickWithID('test_selectAll');
+        // 更改颜色
+        await checkButtonAndClickWithID('test_changeColor3');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -600,19 +552,17 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { //进入TimePicker 时间选择器
-          let atom = await manager.getStringValue($r('app.string.time_picker'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        //进入TimePicker 时间选择器
+        let atom = await manager.getStringValue($r('app.string.time_picker'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
-        { // 点击_useMilitaryTime
-          let atom = 'test_toggle';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击_useMilitaryTime
+        await checkButtonAndClickWithID('test_toggle');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -631,19 +581,17 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Counter 计数器
-          let atom = await manager.getStringValue($r('app.string.counter_name'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Counter 计数器
+        let atom = await manager.getStringValue($r('app.string.counter_name'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
-        { // 点击
-          let atom = 'test_toggle';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击计数器
+        await checkButtonAndClickWithID('test_toggle');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -663,23 +611,19 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Rating 评分条
-          let atom = await manager.getStringValue($r('app.string.rating_name'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Rating 评分条
+        let atom = await manager.getStringValue($r('app.string.rating_name'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
         }
-        { // 点击评分条 打一半分
-          let atom = 'test_rating';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击indicator
-          let atom = 'test_indicator';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击评分条 打一半分
+        await checkButtonAndClickWithID('test_rating');
+        // 点击indicator
+        await checkButtonAndClickWithID('test_indicator');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -699,27 +643,26 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { //进入Scroll 滚动
-          let atom = await manager.getStringValue($r('app.string.scroll_name'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            //如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
-          }
-          await checkButtonAndClickWithText(atom);
+        //进入Scroll 滚动
+        let atom = await manager.getStringValue($r('app.string.scroll_name'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          //如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
         }
-        { // 左右滑动
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(195, 273, 354, 273, 800);
-          await driver.drag(400, 273, 100, 273, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
-        { // 上下滑动
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(110, 800, 110, 900, 800);
-          await driver.drag(110, 900, 110, 800, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 左右滑动
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(195, 273, 354, 273, 800);
+        await driver.drag(400, 273, 100, 273, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 上下滑动
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(110, 800, 110, 900, 800);
+        await driver.drag(110, 900, 110, 800, 800);
+        await driver.delayMs(DELAY_TIME);
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -739,29 +682,23 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入QRCode 二维码
-          let atom = await manager.getStringValue($r('app.string.qrcode_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入QRCode 二维码
+        let atom = await manager.getStringValue($r('app.string.qrcode_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
         }
-        { // 改变二维码内容
-          let atom = await manager.getStringValue($r('app.string.qrcode_enter_content'));
-          let input = await driver.findComponent(ON.id('test_qrcode'));
-          await input.inputText('test');
-          Logger.info(BUNDLE + testName + atom);
-        }
-        { // 展开颜色
-          let atom = 'test_colorSelect';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 改变颜色
-          let atom = 'Orange';
-          await checkButtonAndClickWithText(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 改变二维码内容
+        let input = await driver.findComponent(ON.id('test_qrcode'));
+        await input.inputText('test');
+
+        // 展开颜色
+        await checkButtonAndClickWithID('test_colorSelect');
+        // 改变颜色
+        await checkButtonAndClickWithText('Orange');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -781,15 +718,15 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { //进入LoadingProgress
-          let atom = 'LoadingProgress';
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        //进入LoadingProgress
+        let atom = 'LoadingProgress';
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
+        await checkButtonAndClickWithText(atom);
+
         // 选择颜色红色
         await checkButtonAndClickWithID('test_circle1');
         // 选择颜色粉色
@@ -813,27 +750,21 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Marquee 跑马灯
-          let atom = await manager.getStringValue($r('app.string.marquee_name'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Marquee 跑马灯
+        let atom = await manager.getStringValue($r('app.string.marquee_name'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        { // 点击start
-          let atom = 'test_marqueeButton';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 更改方向
-          let atom = 'test_toggle';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击stop
-          let atom = 'test_marqueeButton';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击start
+        await checkButtonAndClickWithID('test_marqueeButton');
+        // 更改方向
+        await checkButtonAndClickWithID('test_toggle');
+        // 点击stop
+        await checkButtonAndClickWithID('test_marqueeButton');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -853,56 +784,36 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入TextTimer 文字计时器
-          let atom = await manager.getStringValue($r('app.string.text_timer'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入TextTimer 文字计时器
+        let atom = await manager.getStringValue($r('app.string.text_timer'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        { // 点击start
-          let atom = 'test_start';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击pause
-          let atom = 'test_pause';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击reset
-          let atom = 'test_reset';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击isCountDown
-          let atom = 'test_toggle';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击时间格式mm:ss
-          let atom = 'test_radio1';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击时间格式HH:ss
-          let atom = 'test_radio2';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击时间格式DD-HH
-          let atom = 'test_radio3';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击start
+        await checkButtonAndClickWithID('test_start');
+        // 点击pause
+        await checkButtonAndClickWithID('test_pause');
+        // 点击reset
+        await checkButtonAndClickWithID('test_reset');
+        // 点击isCountDown
+        await checkButtonAndClickWithID('test_toggle');
+        // 点击时间格式mm:ss
+        await checkButtonAndClickWithID('test_radio1');
+        // 点击时间格式HH:ss
+        await checkButtonAndClickWithID('test_radio2');
+        // 点击时间格式DD-HH
+        await checkButtonAndClickWithID('test_radio3');
         // 切换格式后再次测试计时器
-        { // 点击start
-          let atom = 'test_start';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击pause
-          let atom = 'test_pause';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击reset
-          let atom = 'test_reset';
-          await checkButtonAndClickWithID(atom);
-        }
+        // 点击start
+        await checkButtonAndClickWithID('test_start');
+        // 点击pause
+        await checkButtonAndClickWithID('test_pause');
+        // 点击reset
+        await checkButtonAndClickWithID('test_reset');
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -922,35 +833,25 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入TextClock 文字时钟
-          let atom = await manager.getStringValue($r('app.string.text_clock'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入TextClock 文字时钟
+        let atom = await manager.getStringValue($r('app.string.text_clock'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        { // 点击时间格式YY:mm
-          let atom = 'test_radio2';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击时间格式hh-mm
-          let atom = 'test_radio3';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击时间格式HH:mm
-          let atom = 'test_radio1';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击stop
-          let atom = 'test_stop';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 点击start
-          let atom = 'test_start';
-          await checkButtonAndClickWithID(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 点击时间格式YY:mm
+        await checkButtonAndClickWithID('test_radio2');
+        // 点击时间格式hh-mm
+        await checkButtonAndClickWithID('test_radio3');
+        // 点击时间格式HH:mm
+        await checkButtonAndClickWithID('test_radio1');
+        // 点击stop
+        await checkButtonAndClickWithID('test_stop');
+        // 点击start
+        await checkButtonAndClickWithID('test_start');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -970,22 +871,21 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Progress 进度条
-          let atom = await manager.getStringValue($r('app.string.progress_name'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Progress 进度条
+        let atom = await manager.getStringValue($r('app.string.progress_name'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        { // 调整进度
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 1087, 400, 1087, 800);
-          await driver.drag(800, 1087, 100, 1087, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 调整进度
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 1087, 400, 1087, 800);
+        await driver.drag(800, 1087, 100, 1087, 800);
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1005,29 +905,28 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Gauge 仪表盘
-          let atom = await manager.getStringValue($r('app.string.gauge_name'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Gauge 仪表盘
+        let atom = await manager.getStringValue($r('app.string.gauge_name'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        { // 调整Value
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 664, 400, 664, 800);
-          await driver.drag(800, 664, 100, 664, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
-        { // 调整strokeWidth
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 739, 400, 739, 800);
-          await driver.drag(800, 739, 100, 739, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 调整Value
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 664, 400, 664, 800);
+        await driver.drag(800, 664, 100, 664, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 调整strokeWidth
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 739, 400, 739, 800);
+        await driver.drag(800, 739, 100, 739, 800);
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1046,18 +945,17 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入DataPanel 数据面板
-          let atom = await manager.getStringValue($r('app.string.data_panel'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入DataPanel 数据面板
+        let atom = await manager.getStringValue($r('app.string.data_panel'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        { // 看一下 展示动画
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 看一下 展示动画
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1077,38 +975,33 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Span 行内文本
-          let atom = await manager.getStringValue($r('app.string.span_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Span 行内文本
+        let atom = await manager.getStringValue($r('app.string.span_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
         }
-        { // 字符间距
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 606, 400, 606, 800);
-          await driver.drag(800, 606, 100, 606, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
-        { // 展开装饰线类型
-          let atom = 'test_itemSelect';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 选择一个underline
-          let atom = 'Underline';
-          await checkButtonAndClickWithText(atom);
-        }
-        { // 展开装饰线颜色
-          let atom = 'test_colorSelect';
-          await checkButtonAndClickWithID(atom);
-        }
-        { // 选择一个Pink
-          let atom = 'Pink';
-          await checkButtonAndClickWithText(atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 字符间距
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 606, 400, 606, 800);
+        await driver.drag(800, 606, 100, 606, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 展开装饰线类型
+        await checkButtonAndClickWithID('test_itemSelect');
+
+        // 选择一个underline
+        await checkButtonAndClickWithText('Underline');
+
+        // 展开装饰线颜色
+        await checkButtonAndClickWithID('test_colorSelect');
+
+        // 选择一个Pink
+        await checkButtonAndClickWithText('Pink');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1128,21 +1021,18 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入TextInput 文本输入
-          let atom = await manager.getStringValue($r('app.string.text_input_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入TextInput 文本输入
+        let atom = await manager.getStringValue($r('app.string.text_input_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
         }
-        { // 输入文本
-          let atom = await manager.getStringValue($r('app.string.text_and_input'));
-          let input = await driver.findComponent(ON.id('test_input'));
-          await input.inputText('test');
-          Logger.info(BUNDLE + testName + atom);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 输入文本
+        let input = await driver.findComponent(ON.id('test_input'));
+        await input.inputText('test');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1162,29 +1052,29 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Text 文本
-          let atom = await manager.getStringValue($r('app.string.text_title'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Text 文本
+        let atom = await manager.getStringValue($r('app.string.text_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
         }
-        { // 字符间距
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 463, 400, 463, 800);
-          await driver.drag(800, 463, 100, 463, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
-        { // 行高
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 523, 400, 523, 800);
-          await driver.drag(800, 523, 100, 523, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 字符间距
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 463, 400, 463, 800);
+        await driver.drag(800, 463, 100, 463, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 行高
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 523, 400, 523, 800);
+        await driver.drag(800, 523, 100, 523, 800);
+        await driver.delayMs(DELAY_TIME);
+
         // 选择对齐类型 居中
         await clickSelectIDAndSelectText('select1', await manager.getStringValue($r('app.string.text_text_align_center')));
         // 选择超长文本显示方式 省略
@@ -1214,15 +1104,14 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入RichText 富文本
-          let atom = await manager.getStringValue($r('app.string.rich_text'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入RichText 富文本
+        let atom = await manager.getStringValue($r('app.string.rich_text'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
         }
+        await checkButtonAndClickWithText(atom);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1242,15 +1131,14 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Badge 标记
-          let atom = await manager.getStringValue($r('app.string.auxiliary_badge'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Badge 标记
+        let atom = await manager.getStringValue($r('app.string.auxiliary_badge'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
         }
+        await checkButtonAndClickWithText(atom);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1270,29 +1158,28 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入ScrollBar 滚动条
-          let atom = await manager.getStringValue($r('app.string.scroll_bar'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入ScrollBar 滚动条
+        let atom = await manager.getStringValue($r('app.string.scroll_bar'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
         }
-        { // 纵向滚动
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 200, 212, 463, 800);
-          await driver.drag(212, 463, 212, 200, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
-        { // 横向滚动
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(112, 900, 412, 900, 800);
-          await driver.drag(412, 900, 112, 900, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 纵向滚动
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 200, 212, 463, 800);
+        await driver.drag(212, 463, 212, 200, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 横向滚动
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(112, 900, 412, 900, 800);
+        await driver.drag(412, 900, 112, 900, 800);
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1311,23 +1198,21 @@ export default function abilityTest() {
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
-        ;
 
-        { // 进入下拉刷新
-          let atom = await manager.getStringValue($r('app.string.auxiliary_refresh'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入下拉刷新
+        let atom = await manager.getStringValue($r('app.string.auxiliary_refresh'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
         }
-        { // 下拉刷新
-          await driver.delayMs(DELAY_TIME);
-          // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-          await driver.drag(212, 200, 212, 663, 800);
-          await driver.delayMs(DELAY_TIME);
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 下拉刷新
+        await driver.delayMs(DELAY_TIME);
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(212, 200, 212, 663, 800);
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1347,36 +1232,35 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入Panel 弹出面板
-          let atom = await manager.getStringValue($r('app.string.auxiliary_panel'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入Panel 弹出面板
+        let atom = await manager.getStringValue($r('app.string.auxiliary_panel'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
         }
-        { // 打开minibar
-          await checkButtonAndClickWithID('test_miniBarButton');
-          // 选择Banana
-          await checkButtonAndClickWithID('test_miniBarRadio1');
-          // 关闭minibar
-          await checkButtonAndClickWithID('test_miniBarButton');
-        }
-        { // 打开foldable
-          await checkButtonAndClickWithID('test_foldableButton');
-          // 选择Banana
-          await checkButtonAndClickWithID('test_foldableRadio1');
-          // 关闭minibar
-          await checkButtonAndClickWithID('test_foldableButton');
-        }
-        { // 打开temporary
-          await checkButtonAndClickWithID('test_temporaryButton');
-          // 选择Banana
-          await checkButtonAndClickWithID('test_temporaryRadio1');
-          // 关闭minibar
-          await checkButtonAndClickWithID('test_temporaryButton');
-        }
+        await checkButtonAndClickWithText(atom);
+
+        // 打开minibar
+        await checkButtonAndClickWithID('test_miniBarButton');
+        // 选择Banana
+        await checkButtonAndClickWithID('test_miniBarRadio1');
+        // 关闭minibar
+        await checkButtonAndClickWithID('test_miniBarButton');
+
+        // 打开foldable
+        await checkButtonAndClickWithID('test_foldableButton');
+        // 选择Banana
+        await checkButtonAndClickWithID('test_foldableRadio1');
+        // 关闭minibar
+        await checkButtonAndClickWithID('test_foldableButton');
+
+        // 打开temporary
+        await checkButtonAndClickWithID('test_temporaryButton');
+        // 选择Banana
+        await checkButtonAndClickWithID('test_temporaryRadio1');
+        // 关闭minibar
+        await checkButtonAndClickWithID('test_temporaryButton');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1396,15 +1280,15 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
-        { // 进入AlphabetIndexer 字母索引条
-          let atom = await manager.getStringValue($r('app.string.auxiliary_alphabetIndexer'));
-          let button = await driver.findComponent(ON.text(atom));
-          if (!button) {
-            // 如果没展开 就展开
-            await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
-          }
-          await checkButtonAndClickWithText(atom);
+        // 进入AlphabetIndexer 字母索引条
+        let atom = await manager.getStringValue($r('app.string.auxiliary_alphabetIndexer'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.auxiliary')));
         }
+        await checkButtonAndClickWithText(atom);
+
         // 点击alphabet
         await checkButtonAndClickWithID('test_alphabet');
 
@@ -1425,14 +1309,14 @@ export default function abilityTest() {
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
-        {
-          let testAtomName = await manager.getStringValue($r('app.string.universal'))
-          await driver.assertComponentExist(ON.id('tabBar1'));
-          let bar = await driver.findComponent(ON.id('tabBar1'));
-          await bar.click();
-          await driver.delayMs(DELAY_TIME);
-          Logger.info(BUNDLE + testName + testAtomName);
-        }
+
+        let testAtomName = await manager.getStringValue($r('app.string.universal'))
+        await driver.assertComponentExist(ON.id('tabBar1'));
+        let bar = await driver.findComponent(ON.id('tabBar1'));
+        await bar.click();
+        await driver.delayMs(DELAY_TIME);
+        Logger.info(BUNDLE + testName + testAtomName);
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -1622,9 +1506,9 @@ export default function abilityTest() {
           await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
         }
 
-        { // 进入页面
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation_translate')));
-        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation_translate')));
+
         // 正常显示
         // 调整图片平移slider X轴
         await driver.delayMs(DELAY_TIME)
@@ -1766,14 +1650,14 @@ export default function abilityTest() {
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
-        {
-          let testAtomName = 'switch animation'
-          await driver.assertComponentExist(ON.id('tabBar2'));
-          let bar = await driver.findComponent(ON.id('tabBar2'));
-          await bar.click();
-          await driver.delayMs(DELAY_TIME);
-          Logger.info(BUNDLE + testName + testAtomName);
-        }
+
+        let testAtomName = 'switch animation'
+        await driver.assertComponentExist(ON.id('tabBar2'));
+        let bar = await driver.findComponent(ON.id('tabBar2'));
+        await bar.click();
+        await driver.delayMs(DELAY_TIME);
+        Logger.info(BUNDLE + testName + testAtomName);
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -1892,14 +1776,15 @@ export default function abilityTest() {
 
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
-        {
-          let testAtomName = 'switch to global'
-          await driver.assertComponentExist(ON.id('tabBar3'));
-          let bar = await driver.findComponent(ON.id('tabBar3'));
-          await bar.click();
-          await driver.delayMs(DELAY_TIME);
-          Logger.info(BUNDLE + testName + testAtomName);
-        }
+
+        // 切换到全局
+        let testAtomName = 'switch to global'
+        await driver.assertComponentExist(ON.id('tabBar3'));
+        let bar = await driver.findComponent(ON.id('tabBar3'));
+        await bar.click();
+        await driver.delayMs(DELAY_TIME);
+        Logger.info(BUNDLE + testName + testAtomName);
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
