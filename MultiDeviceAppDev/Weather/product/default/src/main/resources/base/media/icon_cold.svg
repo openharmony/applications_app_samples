@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>icon_cold</title>
-    <g id="icon_cold" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="矩形" stroke="#FFFFFF" stroke-width="1.5" transform="translate(11.823223, 12.198223) rotate(-315.000000) translate(-11.823223, -12.198223) " x="6.8232233" y="1.5732233" width="10" height="21.25" rx="4.125"></rect>
-        <line x1="7.5" y1="12.375" x2="16.4638756" y2="12.375" id="直线" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square" transform="translate(12.000000, 12.375000) rotate(-315.000000) translate(-12.000000, -12.375000) "></line>
-        <path d="M13.5321706,9.38528793 L13.5321706,6.60830265 C13.7661997,5.10585977 14.5174212,4.35463832 15.7858349,4.35463832" id="路径-2" stroke="#FFFFFF" stroke-linecap="round" transform="translate(14.659003, 6.869963) rotate(-315.000000) translate(-14.659003, -6.869963) "></path>
-    </g>
-</svg>

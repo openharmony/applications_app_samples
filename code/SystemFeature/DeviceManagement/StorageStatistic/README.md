@@ -4,7 +4,7 @@
 
 This sample presents how to view the storage space usage, space of all installed applications, and available volumes of a device by using the application bundle management, application space statistics, and volume management modules.
 
-This sample uses the [<**DataPanel** component>](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md) to display the space information about different applications; uses [**Bundle**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-Bundle.md) to obtain the application name and bundle information; uses [**App Space Statistics**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-storage-statistics.md) to obtain the storage space usage of the device; use [**Volume Management**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-volumemanager.md) to obtain information about available volumes of the device.
+This sample uses the [<**DataPanel** component>](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md) to display the space information about different applications; uses [**Bundle**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-Bundle.md) to obtain the application name and bundle information; uses [**App Space Statistics**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-file-storage-statistics.md) to obtain the storage space usage of the device; use [**Volume Management**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-file-volumemanager.md) to obtain information about available volumes of the device.
 Instructions:
 
 1. The main page displays the detailed information about the storage space usage of the current device.
@@ -35,7 +35,7 @@ N/A
 
 1. This sample can only be run on standard-system devices that use the Rockchip RK3568 development board.
 
-2. This sample is based on the stage model, which is supported from API version 10 (SDK version: 3.2.7.5). 
+2. This sample is based on the stage model, which is supported from API version 9 (SDK version: 3.2.7.5). 
 
 3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 

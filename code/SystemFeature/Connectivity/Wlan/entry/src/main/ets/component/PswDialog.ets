@@ -29,7 +29,7 @@ export struct PswDialog {
         .width('95%')
 
       TextInput({ placeholder: 'input password' })
-        .key('input')
+        .id('input')
         .type(InputType.Password)
         .placeholderColor(Color.Gray)
         .fontSize(19)
@@ -46,6 +46,7 @@ export struct PswDialog {
             .fontColor(Color.Blue)
             .fontSize(17)
         }
+        .id('sure')
         .layoutWeight(7)
         .backgroundColor(Color.White)
         .margin(5)

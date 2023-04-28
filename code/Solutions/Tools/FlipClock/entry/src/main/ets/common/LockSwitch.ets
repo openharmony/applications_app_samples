@@ -28,7 +28,7 @@ export struct LockSwitch {
       Text($r('app.string.screenLight')).fontSize(18)
 
       Toggle({ type: ToggleType.Switch, isOn: this.isLock })
-        .key('screenLight')
+        .id('screenLight')
         .onChange(() => {
           this.isLock = !(this.isLock)
           lock.createRunningLock('running_lock_test', lock.RunningLockType.PROXIMITY_SCREEN_CONTROL)

@@ -13,57 +13,59 @@
  * limitations under the License.
  */
 
-import Mission from '../modle/Mission'
-import missionManager from '@ohos.application.missionManager'
-import Logger from '../modle/Logger'
-import image from '@ohos.multimedia.image'
+import Mission from '../modle/Mission';
+import missionManager from '@ohos.application.missionManager';
+import Logger from '../modle/Logger';
+import image from '@ohos.multimedia.image';
 
-const TAG: string = 'MissionInfoComponent'
+const TAG: string = 'MissionInfoComponent';
 
 @Component
 export struct MissionInfoComponent {
-  @State missionSnapshot: image.PixelMap | undefined = undefined
-  @State isOn: boolean = undefined
-  @State translateLeft: number = 0
-  @State panDirection: PanDirection = PanDirection.Left
-  private mission: Mission
-  private handlerRefresh: () => void
+  @State missionSnapshot: image.PixelMap | undefined = undefined;
+  @State isOn: boolean = undefined;
+  @State translateLeft: number = 0;
+  @State panDirection: PanDirection = PanDirection.Left;
+  private mission: Mission;
+  private index: number = 0;
+  private handlerRefresh: () => void;
 
   onClickLockMission(missionId: number) {
-    this.isOn = true
+    this.isOn = true;
     missionManager.lockMission(missionId).then(() => {
-      Logger.info(TAG, 'lockMission is called')
-      this.handlerRefresh()
-    })
+      Logger.info(TAG, 'lockMission is called');
+      this.handlerRefresh();
+    });
   }
 
   onClickUnlockMission(missionId: number) {
-    this.isOn = false
+    this.isOn = false;
     missionManager.unlockMission(missionId).then(() => {
-      Logger.info(TAG, 'UnlockMission is called')
-      this.handlerRefresh()
-    })
+      Logger.info(TAG, 'UnlockMission is called');
+      this.handlerRefresh();
+    });
   }
 
   onClickClearMission(missionId: number) {
     missionManager.clearMission(missionId).then(() => {
-      Logger.info(TAG, 'ClearMission is called')
-      this.handlerRefresh()
-    })
+      Logger.info(TAG, 'ClearMission is called');
+      this.handlerRefresh();
+    });
   }
 
   onClickMoveMissionToFront(missionId: number) {
     missionManager.moveMissionToFront(missionId).then(() => {
-      Logger.info(TAG, 'moveMissionToFront is called')
-    })
+      Logger.info(TAG, 'moveMissionToFront is called');
+    });
   }
 
-  @Builder RowOfSquareTexts(resourceText: Resource, stringText: string | Resource) {
+  @Builder RowOfSquareTexts(key: string, resourceText: Resource, stringText: string | Resource) {
     Row() {
       Text(resourceText)
         .fontSize(20)
         .fontWeight(10)
       Text(stringText)
+        .id(key + this.index)
         .height(40)
         .fontSize(16)
         .textAlign(TextAlign.Center)
@@ -84,10 +86,10 @@ export struct MissionInfoComponent {
   }
 
   async getSnapshot() {
-    Logger.info(TAG, `mission= ${JSON.stringify(this.mission)}`)
-    let missionSnapshot = await missionManager.getMissionSnapShot('', this.mission.missionId)
-    this.missionSnapshot = missionSnapshot.snapshot
-    Logger.info(TAG, `getMissionSnapShot missionSnapshot = ${JSON.stringify(missionSnapshot)}`)
+    Logger.info(TAG, `mission= ${JSON.stringify(this.mission)}`);
+    let missionSnapshot = await missionManager.getMissionSnapShot('', this.mission.missionId);
+    this.missionSnapshot = missionSnapshot.snapshot;
+    Logger.info(TAG, `getMissionSnapShot missionSnapshot = ${JSON.stringify(missionSnapshot)}`);
   }
 
   onRunningState(runningState: number) {
@@ -115,10 +117,10 @@ export struct MissionInfoComponent {
           .size({ width: 100, height: 200 })
           .margin({ left: 20, right: 10 })
         Column() {
-          this.RowOfSquareTexts($r('app.string.bundle_name'), this.mission.want.bundleName)
-          this.RowOfSquareTexts($r('app.string.running_state'), this.onRunningState(this.mission.runningState))
-          this.RowOfSquareTexts($r('app.string.locked_state'), this.onLockedState(this.mission.lockedState))
-          this.RowOfSquareTexts($r('app.string.continuable'), this.onContinuable(this.mission.continuable))
+          this.RowOfSquareTexts('', $r('app.string.bundle_name'), this.mission.want.bundleName)
+          this.RowOfSquareTexts('', $r('app.string.running_state'), this.onRunningState(this.mission.runningState))
+          this.RowOfSquareTexts('lockState', $r('app.string.locked_state'), this.onLockedState(this.mission.lockedState))
+          this.RowOfSquareTexts('', $r('app.string.continuable'), this.onContinuable(this.mission.continuable))
         }
         .width('50%')
         .height(200)
@@ -133,18 +135,18 @@ export struct MissionInfoComponent {
       Row() {
         if (this.isOn) {
           this.RowOfSquareButtons($r('app.string.unlocked_mission'), '#0D9FFB', () => {
-            this.onClickUnlockMission(this.mission.missionId)
+            this.onClickUnlockMission(this.mission.missionId);
           })
         } else {
           this.RowOfSquareButtons($r('app.string.locked_mission'), '#0D9FFB', () => {
-            this.onClickLockMission(this.mission.missionId)
+            this.onClickLockMission(this.mission.missionId);
           })
         }
         this.RowOfSquareButtons($r('app.string.move_mission'), Color.Orange, () => {
-          this.onClickMoveMissionToFront(this.mission.missionId)
+          this.onClickMoveMissionToFront(this.mission.missionId);
         })
         this.RowOfSquareButtons($r('app.string.clear_mission'), '#ffea0606', () => {
-          this.onClickClearMission(this.mission.missionId)
+          this.onClickClearMission(this.mission.missionId);
         })
       }
       .margin({ left: 20 })
@@ -155,13 +157,13 @@ export struct MissionInfoComponent {
     .gesture(
     PanGesture({ fingers: 1, direction: this.panDirection, distance: 20 })
       .onActionStart(() => {
-        Logger.info(TAG, `PanGesture onActionStart`)
+        Logger.info(TAG, `PanGesture onActionStart`);
         if (this.panDirection === PanDirection.Left) {
-          this.panDirection = PanDirection.Right
-          this.translateLeft = -300
+          this.panDirection = PanDirection.Right;
+          this.translateLeft = -300;
         } else {
-          this.panDirection = PanDirection.Left
-          this.translateLeft = 0
+          this.panDirection = PanDirection.Left;
+          this.translateLeft = 0;
         }
       })
     )

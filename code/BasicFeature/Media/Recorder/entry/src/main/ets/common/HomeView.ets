@@ -13,66 +13,41 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { TitleBar } from '../common/TitleBar'
-import { Record } from '../model/Record'
-import RecordDataSource from '../common/BasicDataSource'
-import { CheckTitle } from '../common/CheckTitle'
-import { AudioItem } from '../common/AudioItem'
+import router from '@ohos.router';
+import RecordDataSource from '../common/BasicDataSource';
+import { AudioItem } from '../common/AudioItem';
+import { CheckTitle } from '../common/CheckTitle';
+import { Record } from '../model/Record';
+import { TitleBar } from '../common/TitleBar';
 
 @Component
 export struct HomeView {
-  private clickItem: (record: Record, operate: string) => void
-  private deleteDialogShow: (num: number, checkRecords: Record[], deleteAction: () => void) => void
-  @State leftSliderIndex: number = -1
-  @State checkNum: number = 0
-  @Link @Watch('recordListChange') recordList: Array<Record>
-  @State @Watch('checkStateChange') checkState: boolean = false
-  private recordDataSource: RecordDataSource = new RecordDataSource([])
-
-  checkItem() {
-    this.checkNum = 0
-    for (let i = 0;i < this.recordList.length; i++) {
-      if (this.recordList[i].isCheck == true) {
-        this.checkNum++
-      }
-    }
-  }
+  private clickItem: (record: Record, operate: string) => void;
+  private deleteDialogShow: (num: number, checkRecords: Record[], deleteAction: () => void) => void;
+  @State leftSliderIndex: number = -1;
+  @State checkNum: number = 0;
+  @Link @Watch('recordListChange') recordList: Array<Record>;
+  @State @Watch('checkStateChange') checkState: boolean = false;
+  private recordDataSource: RecordDataSource = new RecordDataSource([]);
 
   checkStateChange() {
     if (!this.checkState) {
       for (let i = 0;i < this.recordList.length; i++) {
-        this.recordList[i].isCheck = false
+        this.recordList[i].isCheck = false;
       }
     }
-    this.checkNum = 0
-  }
-
-  batchDelete() {
-    let checkRecords = []
-    let newRecords = []
-    for (let i = 0;i < this.recordList.length; i++) {
-      if (this.recordList[i].isCheck == true) {
-        checkRecords.push(this.recordList[i])
-      } else {
-        newRecords.push(this.recordList[i])
-      }
-    }
-    this.deleteDialogShow(checkRecords.length, checkRecords, function(){
-      this.recordList = newRecords
-      this.checkState = false
-    }.bind(this))
+    this.checkNum = 0;
   }
 
   recordListChange() {
-    this.recordDataSource['dataArray'] = this.recordList
-    this.recordDataSource.notifyDataReload()
+    this.recordDataSource['dataArray'] = this.recordList;
+    this.recordDataSource.notifyDataReload();
   }
 
   build() {
     Column() {
       if (this.checkState) {
-        CheckTitle({ checkState: $checkState, num: $checkNum })
+        CheckTitle({ checkState: $checkState, checkNum: $checkNum })
       } else {
         TitleBar()
       }
@@ -85,10 +60,10 @@ export struct HomeView {
               index: index,
               leftSliderIndex: $leftSliderIndex,
               clickItem: this.clickItem,
-              checkItem: this.checkItem.bind(this)
+              checkItem: this.checkItem
             })
           }
-          .key('audioItem' + (index + 1))
+          .id('audioItem' + index)
         }, item => item.title + item.isCheck)
       }
       .layoutWeight(1)
@@ -107,21 +82,21 @@ export struct HomeView {
                 .textAlign(TextAlign.Center)
             }
           }
+          .id('checkedRename')
           .size({ width: 70, height: 70 })
           .layoutWeight(1)
           .backgroundColor('#F5F5F5')
           .enabled(this.checkNum == 1)
           .opacity(this.checkNum == 1 ? 1.0 : 0.5)
-          .key('longRename')
           .onClick(() => {
-            let checkRecord = null
+            let checkRecord = null;
             for (let i = 0;i < this.recordList.length; i++) {
               if (this.recordList[i].isCheck == true) {
-                checkRecord = this.recordList[i]
+                checkRecord = this.recordList[i];
               }
             }
-            this.clickItem(checkRecord, 'rename')
-            this.checkState = false
+            this.clickItem(checkRecord, 'rename');
+            this.checkState = false;
           })
 
           Button({ type: ButtonType.Circle, stateEffect: true }) {
@@ -136,15 +111,15 @@ export struct HomeView {
                 .textAlign(TextAlign.Center)
             }
           }
+          .id('checkedDelete')
           .size({ width: 70, height: 70 })
           .layoutWeight(1)
           .backgroundColor('#F5F5F5')
           .enabled(this.checkNum > 0)
           .opacity(this.checkNum > 0 ? 1.0 : 0.5)
           .onClick(() => {
-            this.batchDelete()
+            this.batchDelete();
           })
-          .key('longDelete')
         }
         .width('100%')
         .margin(10)
@@ -156,14 +131,15 @@ export struct HomeView {
             .size({ width: 30, height: 30 })
             .key('startImg')
         }
+        .id('btnRecord')
         .width(70)
         .height(70)
         .borderWidth(1)
         .backgroundColor('#FFFFFF')
         .margin(10)
         .onClick(() => {
-          this.leftSliderIndex = -1
-          router.push({ url: 'pages/RecordPage' })
+          this.leftSliderIndex = -1;
+          router.pushUrl({ url: 'pages/RecordPage' });
         })
       }
     }
@@ -171,5 +147,27 @@ export struct HomeView {
     .height('100%')
     .backgroundColor('#F5F5F5')
     .zIndex(2)
+  }
+
+  checkItem = (index: number) => {
+    this.recordList[index].isCheck = !this.recordList[index].isCheck;
+    this.checkNum = this.checkNum + (this.recordList[index].isCheck ? 1 : -1);
+    this.recordDataSource['dataArray'] = this.recordList;
+    this.recordDataSource.notifyDataReload();
+  }
+  batchDelete = () => {
+    let checkRecords = [];
+    let newRecords = [];
+    for (let i = 0;i < this.recordList.length; i++) {
+      if (this.recordList[i].isCheck == true) {
+        checkRecords.push(this.recordList[i]);
+      } else {
+        newRecords.push(this.recordList[i]);
+      }
+    }
+    this.deleteDialogShow(checkRecords.length, checkRecords, () => {
+      this.recordList = newRecords;
+      this.checkState = false;
+    });
   }
 }

@@ -13,6 +13,14 @@
       "value": "Device Management"
     },
     {
+      "name": "battery_info",
+      "value": "Battery Information"
+    },
+    {
+      "name": "thermal",
+      "value": "Thermal Management"
+    },
+    {
       "name": "usb_manager",
       "value": "USBManagement"
     },

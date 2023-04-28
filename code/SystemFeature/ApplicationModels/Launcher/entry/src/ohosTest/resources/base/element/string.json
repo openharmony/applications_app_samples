@@ -11,6 +11,38 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "camera",
+      "value": "Camera"
+    },
+    {
+      "name": "contacts",
+      "value": "Contacts"
+    },
+    {
+      "name": "messages",
+      "value": "messages"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "Add to desktop"
+    },
+    {
+      "name": "photo",
+      "value": "PHOTO"
+    },
+    {
+      "name": "uninstall",
+      "value": "Uninstall"
+    },
+    {
+      "name": "telephone",
+      "value": "Telephone"
+    },
+    {
+      "name": "message_no_mission",
+      "value": "No apps running recently"
     }
   ]
 }

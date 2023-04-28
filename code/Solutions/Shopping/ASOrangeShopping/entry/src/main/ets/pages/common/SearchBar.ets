@@ -32,7 +32,7 @@ export struct SearchBar {
       }
       .borderRadius(30)
       .alignItems(VerticalAlign.Center)
-      .size({ width: '100%', height: 40 })
+      .size({ width: '100%', height: 35 })
       .backgroundColor($r('app.color.white'))
       .margin({ top: 6, bottom: 6 })
       .onClick(async () => {

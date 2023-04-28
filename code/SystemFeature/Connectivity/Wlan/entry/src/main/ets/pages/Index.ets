@@ -99,6 +99,7 @@ struct Index {
           .height(40)
         Column() {
           Toggle({ type: ToggleType.Switch, isOn: this.isSwitchOn })
+            .id('switch')
             .onChange((isOn: boolean) => {
               Logger.log(`LSQ: wifi swtich is: ${isOn}`)
               AppStorage.SetOrCreate('wifiList', [])

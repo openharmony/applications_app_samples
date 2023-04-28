@@ -52,7 +52,7 @@ export struct StringCode {
             .fontWeight(FontWeight.Bold)
             .fontColor(Color.White)
         }
-        .key('specFormatOutput')
+        .id('specFormatOutput')
         .width('100%')
         .height(40)
         .onClick(() => {
@@ -99,6 +99,7 @@ export struct StringCode {
             .fontSize(15)
             .textAlign(TextAlign.Start)
           Text(this.read)
+            .id('read')
             .width('30%')
             .fontSize(15)
             .height(30)
@@ -109,6 +110,7 @@ export struct StringCode {
             .fontSize(15)
             .textAlign(TextAlign.Center)
           Text(this.write)
+            .id('write')
             .width('30%')
             .fontSize(15)
             .height(30)
@@ -123,7 +125,7 @@ export struct StringCode {
             .fontSize(15)
             .fontWeight(FontWeight.Bold)
         }
-        .key('textEncoder')
+        .id('textEncoder')
         .width('100%')
         .height(40)
         .onClick(() => {
@@ -138,6 +140,7 @@ export struct StringCode {
             .textAlign(TextAlign.Start)
             .fontColor(Color.Black)
           Text(this.resdec)
+            .id('decRes')
             .width('80%')
             .height(60)
             .fontSize(15)
@@ -154,7 +157,7 @@ export struct StringCode {
             .fontSize(15)
             .fontWeight(FontWeight.Bold)
         }
-        .key('textDecoder')
+        .id('textDecoder')
         .width('100%')
         .height(40)
         .margin({ bottom: 50 })

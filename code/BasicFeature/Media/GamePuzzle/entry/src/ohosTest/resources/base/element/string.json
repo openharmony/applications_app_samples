@@ -1,7 +1,7 @@
 {
   "string": [
     {
-      "name": "entry_test_desc",
+      "name": "module_test_desc",
       "value": "test ability description"
     },
     {
@@ -11,6 +11,42 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "allow",
+      "value": "allow"
+    },
+    {
+      "name": "entry_desc",
+      "value": "Description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Game Puzzle"
+    },
+    {
+      "name": "start",
+      "value": "Start"
+    },
+    {
+      "name": "restart",
+      "value": "Restart"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "conform",
+      "value": "OK"
+    },
+    {
+      "name": "congratulations",
+      "value": "Congratulations!"
     }
   ]
 }

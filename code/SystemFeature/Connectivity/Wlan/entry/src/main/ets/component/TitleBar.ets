@@ -29,7 +29,7 @@ export struct TitleBar {
           .size({ width: 60, height: '95%' })
           .objectFit(ImageFit.Contain)
       }
-      .key('about')
+      .id('about')
       .type(ButtonType.Normal)
       .height('90%')
       .backgroundColor($r('app.color.button_color'))

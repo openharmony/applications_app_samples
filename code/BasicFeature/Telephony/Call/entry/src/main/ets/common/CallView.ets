@@ -29,7 +29,7 @@ export struct CallView {
   build() {
     Column() {
       Image(this.src)
-        .key('callImg')
+        .id('callImg')
         .width(70)
         .height(70)
         .onClick(() => {

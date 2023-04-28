@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "dataUser_desc",
+      "value": "联系人助手"
+    },
+    {
+      "name": "contact",
+      "value": "联系人"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    }
+  ]
+}

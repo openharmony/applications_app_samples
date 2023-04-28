@@ -13,39 +13,49 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
+import fs from '@ohos.file.fs';
 
-const TAG = '[Sample_Logger]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Logger_'
+const TAG = '[Sample_Logger]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Logger_';
+const DRIVER = Driver.create();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let filePath: string;
 
 export default function abilityTest() {
   describe('appTest', function () {
+    /**
+     * 拉起应用，判断界面是否存在log按钮，此处无法访问文件内容，无法判断功能行结果，仅检查UI
+     */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility({
-        bundleName: "ohos.samples.logger",
-        abilityName: "EntryAbility"
-      }, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.logger',
+          abilityName: 'EntryAbility'
+        });
+        await DRIVER.delayMs(1000);
+        filePath = (await abilityDelegator.getCurrentTopAbility()).context.filesDir;
+        done();
+      } catch (err) {
+        expect(err.code).assertEqual(0);
+        done();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
 
-    /**
-     * 进入页面
-     */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
+    it('AddLog_001', 0, async () => {
+      let logBefore = fs.readTextSync(`${filePath}/log.txt`);
+      await DRIVER.assertComponentExist(ON.id('log'));
+      let log = await DRIVER.findComponent(ON.id('log'));
+      await log.click();
+      await DRIVER.delayMs(1000);
+      let logAfter = fs.readTextSync(`${filePath}/log.txt`);
+      expect(logAfter.length).assertLarger(logBefore.length);
     })
   })
 }

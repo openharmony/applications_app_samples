@@ -17,10 +17,11 @@
 
 使用说明
 
-1. 未连接wifi状态下进入应用；
-2. 进入首页后连接wifi；
-3. 后台判断版本号后会下载最新的升级包，并在页面中给出弹窗询问是否安装，点击“确定”按钮；
-4. 应用会安装已经下载的升级包，实现版本更新，安装后会回到设备桌面，此时点击应用图标，可以看到版本已经是最新版了。
+1. 安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本，目录为：WorkScheduler/signTool/b_sign_hap_release.bat；
+2. 未连接wifi状态下进入应用；
+3. 进入首页后连接wifi；
+4. 后台判断版本号后会下载最新的升级包，并在页面中给出弹窗询问是否安装，点击“确定”按钮；
+5. 应用会安装已经下载的升级包，实现版本更新，安装后会回到设备桌面，此时点击应用图标，可以看到版本已经是最新版了。
 
 ### 工程目录
 ```
@@ -72,7 +73,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例已适配API10版本SDK，本示例涉及使用系统接口：@ohos.bundle，需要手动替换Full
+2. 本示例已适配API version 9版本SDK，本示例涉及使用系统接口：@ohos.bundle，需要手动替换Full
   SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。

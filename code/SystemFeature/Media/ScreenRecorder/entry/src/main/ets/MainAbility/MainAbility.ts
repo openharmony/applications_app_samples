@@ -27,11 +27,13 @@ export default class MainAbility extends UIAbility {
     globalThis.abilityWant = want;
     globalThis.shotScreenContext = this.context;
     //The list of user_grant permission, MEDIA|MIC separated to grant
+    // mediaLibrary接口被废弃，新接口需要ohos.permission.READ_IMAGEVIDEO权限，测试用例已经升级到新接口，sample未处理
     const PERMISSIONS: Array<Permissions> = [
-      "ohos.permission.MEDIA_LOCATION",
-      "ohos.permission.READ_MEDIA",
-      "ohos.permission.WRITE_MEDIA",
-      "ohos.permission.MICROPHONE"
+      'ohos.permission.MEDIA_LOCATION',
+      'ohos.permission.READ_MEDIA',
+      'ohos.permission.WRITE_MEDIA',
+      'ohos.permission.MICROPHONE',
+      'ohos.permission.READ_IMAGEVIDEO'
     ];
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(this.context, PERMISSIONS);

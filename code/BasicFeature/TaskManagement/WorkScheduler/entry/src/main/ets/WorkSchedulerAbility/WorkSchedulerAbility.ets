@@ -21,8 +21,8 @@ import { Logger } from '../utils/Logger'
 
 const VERSION: string = '1.0'
 const HTTP_STATUS_CODE: number = 200
-const URL: string = 'https://gitee.com/openharmony/applications_app_samples/raw/' +
-  'OpenHarmony_4.X_Dev/DataMock/WorkScheduler/UpdateWorkScheduler.hap'
+const URL: string = 'https://gitee.com/openharmony/applications_app_samples/tree/master/code/DataMock' +
+'/WorkScheduler/UpdateWorkScheduler.hap'
 const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability']
 
 export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {

@@ -11,6 +11,14 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "ok",
+      "value": "yes"
+    },
+    {
+      "name": "no",
+      "value": "no"
     }
   ]
 }

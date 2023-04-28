@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Component
 export struct TitleBar {
-  private title: string = ''
+  private title: string = '';
 
   build() {
     Row() {
@@ -26,10 +26,11 @@ export struct TitleBar {
         .objectFit(ImageFit.Contain)
         .margin({ left: 10 })
         .onClick(() => {
-          router.replaceUrl({ url: 'pages/Index' })
+          router.replaceUrl({ url: 'pages/Index' });
         })
-        .key('titleBack')
+        .id('titleBack')
       Text(this.title)
+        .id('titleContent')
         .fontColor(Color.Black)
         .fontSize(25)
         .layoutWeight(1)

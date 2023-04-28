@@ -27,7 +27,7 @@ export struct RenameDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Bold)
       TextInput({ placeholder: 'input new name', text: this.title })
-        .key('inputRename')
+        .id('inputRename')
         .type(InputType.Normal)
         .placeholderColor(Color.Gray)
         .maxLength(20)

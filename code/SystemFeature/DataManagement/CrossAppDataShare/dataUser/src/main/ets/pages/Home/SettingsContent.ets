@@ -53,6 +53,7 @@ export default struct SettingsContent {
               .fontSize(18)
             Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.isDeduplication })
+              .id('deduplication')
               .onChange((isOn: boolean) => {
                 this.isDeduplication = isOn;
                 if (isOn) {
@@ -75,6 +76,7 @@ export default struct SettingsContent {
               .fontSize(18)
             Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.isOverwriteContact })
+              .id('overwriteContact')
               .onChange((isOn: boolean) => {
                 this.isOverwriteContact = isOn;
                 if (isOn) {
@@ -97,6 +99,7 @@ export default struct SettingsContent {
               .fontSize(18)
             Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.isOverwriteContactAssistant })
+              .id(`overwriteAssistant`)
               .onChange((isOn: boolean) => {
                 this.isOverwriteContactAssistant = isOn;
                 if (isOn) {

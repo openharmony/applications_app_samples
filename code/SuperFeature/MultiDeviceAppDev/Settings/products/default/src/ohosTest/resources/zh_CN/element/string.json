@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "settings",
+      "value": "设置"
+    },
+    {
+      "name": "systemTab",
+      "value": "系统"
+    },
+    {
+      "name": "aboutTab",
+      "value": "关于设备"
+    },
+    {
+      "name": "wifiTipConnectedWLAN",
+      "value": "已连接WLAN"
+    },
+    {
+      "name": "wifiTipValidWLAN",
+      "value": "可用WLAN"
+    },
+    {
+      "name": "moreWlanSettings",
+      "value": "更多WLAN设置"
+    },
+    {
+      "name": "wlanPlus",
+      "value": "WLAN+"
+    },
+    {
+      "name": "wlanDirect",
+      "value": "WLAN直连"
+    },
+    {
+      "name": "moreConnectionsTab",
+      "value": "更多连接"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    }
+  ]
+}

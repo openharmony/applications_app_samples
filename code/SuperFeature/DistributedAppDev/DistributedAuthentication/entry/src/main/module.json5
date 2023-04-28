@@ -53,6 +53,11 @@
           }
         ]
       }
+    ],
+	"requestPermissions": [
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM"
+      }
     ]
   }
 }

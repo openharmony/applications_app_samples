@@ -40,7 +40,7 @@ entry/src/main/ets/
 
 ### 约束与限制
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例仅支持API9版本SDK，版本号：3.2.10.6。
+2. 本示例仅支持API version 9版本SDK，版本号：3.2.11.9。
 3. 本示例需要使用DevEco Studio 3.1 Beta1 (Build Version: 3.1.0.200)才可编译运行。
 
 ### 下载

@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON, UiDirection } from '@ohos.UiTest'
+import { Driver, ON } from '@ohos.UiTest'
 import { BundleStateUtil } from 'feature-util'
 import Logger from '../utils/Logger'
 

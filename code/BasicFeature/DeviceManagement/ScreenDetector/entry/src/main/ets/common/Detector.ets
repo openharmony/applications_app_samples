@@ -88,7 +88,7 @@ export struct Detector {
                   scrInfo: item
                 }
               });
-            })
+            }).id('test_screen' + index)
           })
         }.height('50%').width('100%').padding(10)
 
@@ -107,7 +107,7 @@ export struct Detector {
                 this.limit = JSON.stringify(VIRTUAL_SCREEN_MAX)
                 this.errorDialog.open()
               }
-            })
+            }).id('test_add')
 
           Button($r('app.string.remove_screen'))
             .fontSize(18)
@@ -122,7 +122,7 @@ export struct Detector {
                 this.limit = JSON.stringify(VIRTUAL_SCREEN_MIN)
                 this.errorDialog.open()
               }
-            })
+            }).id('test_cut')
         }.height('50%')
     }.height('90%')
   }

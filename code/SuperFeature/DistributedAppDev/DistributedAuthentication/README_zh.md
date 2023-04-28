@@ -38,7 +38,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/device/DeviceManager/entry/src/main/ets/MainAbility/model/RemoteDeviceModel.ets)
+获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication/entry/src/main/ets/model/RemoteDeviceModel.ets)
 
     * 使用RemoteDeviceModel.createDeviceManager()来获取DeviceManager对象；
     * 获取本机设备信息：调用RemoteDeviceModel.getLocalDeviceInfo()来获取本机设备信息；
@@ -56,7 +56,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-不涉及。
+允许系统应用获取分布式设备的认证组网能力：ohos.permission.ACCESS_SERVICE_DM。
 
 ### 约束与限制
 
@@ -64,12 +64,14 @@ entry/src/main/ets/
 
 2.本示例仅支持标准系统上运行。
 
-3.本示例需要使用DevEco Studio 3.1 Beta1 (Build Version: 3.1.0.200, built on February 13, 2023)才可编译运行。
+3.本示例适配API version 10版本SDK，版本号：4.0.5.1。
 
-4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)
+4.本示例需要使用DevEco Studio 3.1 Beta1 (Build Version: 3.1.0.200, built on February 13, 2023)才可编译运行。
+
+5.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)
 。
 
-5.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)
+6.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)
 ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
 ### 下载

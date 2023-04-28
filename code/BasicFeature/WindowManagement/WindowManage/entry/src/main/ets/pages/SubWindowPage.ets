@@ -28,6 +28,7 @@ struct SubWindowPage {
         currentProgressRate: PlaybackSpeed.Speed_Forward_1_00_X,
         controller: this.videoController
       })
+        .id('smallVideo')
         .width(400)
         .height(250)
         .margin(5)

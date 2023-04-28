@@ -66,11 +66,12 @@ export struct TabletTitle {
 
   build() {
     Row() {
-      ForEach(this.navigationButton, item => {
+      ForEach(this.navigationButton, (item, index) => {
         Button({ type: ButtonType.Normal }) {
           Image(item.imageSrc)
         }
         .margin(8)
+        .id(`navigationButton${index}`)
         .width(BUTTON_WIDTH)
         .height(BUTTON_WIDTH)
         .backgroundColor(this.arrayIndex === item.id ? DOWN_COLOR : UP_COLOR)
@@ -109,6 +110,7 @@ export struct TabletTitle {
         .placeholderFont({ size: 18, weight: 500 })
         .fontSize(18)
         .margin(2)
+        .id('inputUrl')
         .width('51%')
         .layoutWeight(1)
         .onChange((value: string) => {
@@ -124,11 +126,12 @@ export struct TabletTitle {
           }
         })
 
-      ForEach(this.actionButton, item => {
+      ForEach(this.actionButton, (item, index) => {
         Button({ type: ButtonType.Normal }) {
           Image(item.imageSrc)
         }
         .margin(8)
+        .id(`actionButton${index}`)
         .width(BUTTON_WIDTH)
         .height(BUTTON_WIDTH)
         .backgroundColor(this.arrayIndex === item.id ? DOWN_COLOR : UP_COLOR)
@@ -175,6 +178,7 @@ export struct BrowserTabs {
             Image($r('app.media.ic_public_cancel_filled')).width(24).height(24)
           }
           .backgroundColor(this.tabButtonIndex == item.key ? DOWN_COLOR : '#00000000')
+          .id('cancelBtn')
           .margin({ right: 2 })
           .width(33)
           .height(33)
@@ -230,7 +234,7 @@ export struct WebTab {
           Web({
             src: this.isPhone ? $rawfile('phone.html') : $rawfile('pad.html'),
             controller: this.browser.webControllerArray[item.key] !== undefined ?
-              this.browser.webControllerArray[item.key].controller : undefined
+            this.browser.webControllerArray[item.key].controller : undefined
           })
             .javaScriptAccess(true)
             .fileAccess(true)

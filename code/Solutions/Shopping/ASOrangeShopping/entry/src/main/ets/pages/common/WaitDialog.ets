@@ -27,7 +27,7 @@ export struct WaitDialog {
   build() {
     Column() {
       LoadingProgress()
-        .size({ width: 100, height: 100 })
+        .size({ width: 60, height: 60 })
     }
     .size({ width: 100, height: 100 })
     .borderRadius(20)

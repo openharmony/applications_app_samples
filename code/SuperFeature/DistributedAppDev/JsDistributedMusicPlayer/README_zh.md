@@ -16,6 +16,8 @@
 
 允许不同设备间的数据交换：ohos.permission.DISTRIBUTED_DATASYNC
 
+允许系统应用获取分布式设备的认证组网能力：[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionaccess_service_dm)
+
 ### 使用说明
 
 1.**音乐播放**，点击**播放**、**暂停**、上**一曲**、下**一曲**按钮可以对音乐进行操作。
@@ -26,7 +28,7 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1；
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示后台任务中的短时任务。通过[@ohos.resourceschedule.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-quickFixManager.md)等接口实现应用热更新的方式去展现短时任务机制。
+本示例主要展示后台任务中的短时任务。通过[@ohos.resourceschedule.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md) ，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-quickFixManager.md) 等接口实现应用热更新的方式去展现短时任务机制。
 
 ### 效果预览
 
@@ -12,7 +12,7 @@
 
 使用说明
 
-1.安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本[b_sign_hap_release.bat](https://gitee.com/openharmony/applications_app_samples/blob/master/codeBasicFeature/TaskManagement/TransientTask/signature/material/b_sign_hap_release.bat)去生成签名的应用包，再将此签名应用包进行安装即可；
+1.安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本[b_sign_hap_release.bat](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/signature/material/b_sign_hap_release.bat) 去生成签名的应用包，再将此签名应用包进行安装即可；
 
 2.进入应用，点击检查更新按钮，点击弹出框更新按钮会进行下载补丁包；
 
@@ -33,7 +33,7 @@
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568；
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1；
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
 
 3.本示例仅支持模块化编译，在build-profile.json5文件的buildOption字段添加"compileMode": "esmodule"；
 

@@ -32,7 +32,11 @@ export struct NetWork {
     this.mobileDataState = await this.netWorkMobile.getCellularDataState()
   }
 
-  @Builder dataState($$: {text: Resource, flag: boolean}) {
+  @Builder dataState($$: {
+    key: string,
+    text: Resource,
+    flag: boolean
+  }) {
     Row() {
       Text($$.text)
         .margin({ left: 10 })
@@ -41,6 +45,7 @@ export struct NetWork {
         .textAlign(TextAlign.Start)
 
       Text($$.flag === true ? $r('app.string.start') : $r('app.string.end'))
+        .id($$.key)
         .fontSize(20)
         .margin({ left: 10, right: 6 })
         .textAlign(TextAlign.Center)
@@ -50,7 +55,11 @@ export struct NetWork {
     .height('8%')
   }
 
-  @Builder netWorkState($$: {info: Resource, result: Resource}) {
+  @Builder netWorkState($$: {
+    key: string,
+    info: Resource,
+    result: Resource
+  }) {
     Column() {
       Row() {
         Text($$.info)
@@ -65,6 +74,7 @@ export struct NetWork {
 
       Row() {
         Text($$.result)
+          .id($$.key)
           .margin({ left: 10 })
           .fontSize(18)
           .width('55%')
@@ -88,6 +98,7 @@ export struct NetWork {
           .textAlign(TextAlign.Start)
         Row() {
           Text($r('app.string.simOne'))
+            .id('simOne')
             .margin(5)
             .fontSize(20)
             .width('40%')
@@ -96,6 +107,7 @@ export struct NetWork {
             .backgroundColor(this.slotId === 0 ? '#0D9FFB' : undefined)
 
           Text($r('app.string.simTwo'))
+            .id('simTwo')
             .margin(5)
             .fontSize(20)
             .width('40%')
@@ -112,19 +124,19 @@ export struct NetWork {
 
       Divider()
 
-      this.dataState({text: $r('app.string.mobile'), flag: this.cellularData})
+      this.dataState({ key: 'mobileData', text: $r('app.string.mobile'), flag: this.cellularData })
 
       Divider()
 
-      this.dataState({text: $r('app.string.roaming'), flag: this.cellularDataRoaming})
+      this.dataState({ key: 'roaming', text: $r('app.string.roaming'), flag: this.cellularDataRoaming })
 
       Divider()
 
-      this.netWorkState({info: $r('app.string.flow'), result: this.flowState})
+      this.netWorkState({ key: 'dataFlowType', info: $r('app.string.flow'), result: this.flowState })
 
       Divider()
 
-      this.netWorkState({info: $r('app.string.connectData'), result: this.mobileDataState})
+      this.netWorkState({ key: 'connectState',  info: $r('app.string.connectData'), result: this.mobileDataState })
     }
     .width('100%')
     .height('100%')

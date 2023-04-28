@@ -4,7 +4,7 @@
 
 本实例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。在详情页中通过**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
 
-本实例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md)设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md)组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)容器组件设置展示的商品信息。
+本实例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
 
 使用说明：
 
@@ -58,16 +58,16 @@
 
 [媒体库视频](https://gitee.com/openharmony/app_samples/tree/master/media/VideoShow) 本示例的详情页中的视频功能依赖此示例。
 
-[分享](https://gitee.com/openharmony/applications_app_samples/tree/master/Share/Share) 本示例的详情页中的分享功能依赖此示例。
+[分享](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare) 本示例的详情页中的分享功能依赖此示例。
 
-[事件通知](https://gitee.com/openharmony/applications_app_samples/tree/master/Ntification/CustomNotification) 本示例详情页中的降价通知功能依赖此示例。
+[事件通知](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotification) 本示例详情页中的降价通知功能依赖此示例。
 
-[扫一扫](https://gitee.com/openharmony/applications_app_samples/tree/master/media/QRCodeScan) 本示首页中的扫码功能依赖此示例。
+[扫一扫](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/QRCodeScan) 本示首页中的扫码功能依赖此示例。
 
 ### 约束与限制
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

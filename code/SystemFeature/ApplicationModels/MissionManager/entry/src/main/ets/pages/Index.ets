@@ -13,133 +13,137 @@
  * limitations under the License.
  */
 
-import missionManager from '@ohos.app.ability.missionManager'
-import Logger from '../modle/Logger'
-import Mission from '../modle/Mission'
-import { MissionInfoComponent } from '../common/MissionInfoComponent'
-import { TitleBar } from '../common/TitleBar'
+import missionManager from '@ohos.app.ability.missionManager';
+import Logger from '../modle/Logger';
+import Mission from '../modle/Mission';
+import { MissionInfoComponent } from '../common/MissionInfoComponent';
+import { TitleBar } from '../common/TitleBar';
 
-const TAG: string = 'Index'
-const NUMMAX: number = 10
+const TAG: string = 'Index';
+const NUMMAX: number = 10;
+const CURRENT_BUNDLE: string = 'ohos.samples.missionmanager';
 
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
   public getData(index: number): any {
-    return undefined
+    return undefined;
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
+      this.listeners.push(listener);
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      this.listeners.splice(pos, 1)
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
+      listener.onDataAdded(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
+      listener.onDataChanged(index);
     })
   }
 }
 
 class MyDataSource extends BasicDataSource {
-  public dataArray: Mission[] = []
+  public dataArray: Mission[] = [];
 
   constructor(ele) {
-    super()
-    for (var index = 0;index < ele.length; index++) {
-      this.dataArray.push(ele[index])
+    super();
+    for (let index = 0;index < ele.length; index++) {
+      this.dataArray.push(ele[index]);
     }
   }
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
-  public getData(index: number): any {
-    return this.dataArray[index]
+  public getData(index: number): Mission {
+    return this.dataArray[index];
   }
 
   public addData(index: number, data: Mission): void {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0);
+    this.notifyDataAdd(index);
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State missionInfos: MyDataSource = new MyDataSource([])
-  @State listenerId: number = 0
-  @State isRefreshing: boolean = false
-  @State refreshMission: Resource = $r('app.string.get_mission_manager')
-  @State isShow: boolean = true
+  @State missionInfos: MyDataSource = new MyDataSource([]);
+  @State listenerId: number = 0;
+  @State isRefreshing: boolean = false;
+  @State refreshMission: Resource = $r('app.string.get_mission_manager');
+  @State isShow: boolean = true;
 
   onMissionCreatedCallback() {
-    Logger.info(TAG, `onMissionCreatedCallback Created`)
+    Logger.info(TAG, `onMissionCreatedCallback Created`);
   }
 
   onMissionDestroyedCallback() {
-    Logger.info(TAG, `onMissionDestroyedCallback destroyed`)
+    Logger.info(TAG, `onMissionDestroyedCallback destroyed`);
   }
 
   onMissionSnapshotChangedCallback() {
-    Logger.info(TAG, `onMissionSnapshotChangedCallback  snapshot changed`)
+    Logger.info(TAG, `onMissionSnapshotChangedCallback  snapshot changed`);
   }
 
   onMissionMovedToFrontCallback() {
-    Logger.info(TAG, `onMissionMovedToFrontCallback moved to fornt`)
+    Logger.info(TAG, `onMissionMovedToFrontCallback moved to fornt`);
   }
 
   onMissionLabelUpdatedCallback() {
-    Logger.info(TAG, `onMissionLabelUpdatedCallback label has changed`)
+    Logger.info(TAG, `onMissionLabelUpdatedCallback label has changed`);
   }
 
   onMissionIconUpdatedCallback() {
-    Logger.info(TAG, `onMissionIconUpdatedCallback icon has changed`)
+    Logger.info(TAG, `onMissionIconUpdatedCallback icon has changed`);
   }
 
   onMissionClosed() {
-    Logger.info(TAG, `onMissionClose closed`)
+    Logger.info(TAG, `onMissionClose closed`);
   }
 
   handlerRefresh = () => {
-    Logger.info(TAG, `clickCallback start`)
-    this.isShow = false
+    Logger.info(TAG, `clickCallback start`);
+    this.isShow = false;
+    this.missionInfos['dataArray'] = [];
     missionManager.getMissionInfos('', NUMMAX, (error, data) => {
-      var missionInfos = []
+      let missionInfos = [];
       setTimeout(() => {
-        missionInfos = data.map((item) => {
-          return item
-        })
-        this.missionInfos['dataArray'] = missionInfos
-        this.missionInfos.notifyDataReload()
-        this.isRefreshing = false
-        Logger.info(TAG, `getMissionInfos missionInfos= ${JSON.stringify(this.missionInfos)}`)
-      }, 1000)
+        missionInfos = data.filter((item) => {
+          if (item.want.bundleName !== CURRENT_BUNDLE) {
+            return item;
+          }
+        });
+        this.missionInfos['dataArray'] = missionInfos;
+        this.missionInfos.notifyDataReload();
+        this.isRefreshing = false;
+        Logger.info(TAG, `getMissionInfos missionInfos= ${JSON.stringify(this.missionInfos)}`);
+      }, 100)
     })
   }
 
@@ -152,14 +156,14 @@ struct Index {
       onMissionLabelUpdated: this.onMissionLabelUpdatedCallback,
       onMissionIconUpdated: this.onMissionIconUpdatedCallback,
       onMissionClosed: this.onMissionClosed
-    }
+    };
 
-    this.listenerId = missionManager.on("mission", listener)
-    Logger.info(TAG, `aboutToAppear ${this.listenerId}`)
+    this.listenerId = missionManager.on("mission", listener);
+    Logger.info(TAG, `aboutToAppear ${this.listenerId}`);
   }
 
   aboutToDisappear() {
-    missionManager.off("mission", this.listenerId)
+    missionManager.off("mission", this.listenerId);
   }
 
   build() {
@@ -170,15 +174,15 @@ struct Index {
         .margin(10)
       Refresh({ refreshing: $$this.isRefreshing, offset: 120, friction: 100 }) {
         List({ space: 20, initialIndex: 0 }) {
-          LazyForEach(this.missionInfos, (item) => {
+          LazyForEach(this.missionInfos, (item: Mission, index: number) => {
             ListItem() {
-              MissionInfoComponent({ mission: item, handlerRefresh: this.handlerRefresh })
+              MissionInfoComponent({ mission: item, index: index, handlerRefresh: this.handlerRefresh })
             }
           }, item => item.timestamp)
         }
         .width('100%')
-        .height('90%')
       }
+      .layoutWeight(1)
       .width('100%')
       .onRefreshing(this.handlerRefresh)
     }

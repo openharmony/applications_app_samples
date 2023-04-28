@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest'
+import Logger from '../util/Logger'
 
 const BUNDLE = 'Game2048'
 const TAG = '[Sample_Game2048]'
-const DOMAIN = 0xF811
 
 export default function appTest() {
   describe('appTest', function () {
@@ -28,30 +27,31 @@ export default function appTest() {
      * 拉起一个Ability
      */
     it(BUNDLE + '_startAbility', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility start')
+      Logger.info(TAG, BUNDLE + '_startAbility start')
       let parameter = {
         bundleName: "ohos.samples.game2048",
         abilityName: "EntryAbility"
       }
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       await abilityDelegator.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + '_startAbility end')
+        Logger.info(TAG, BUNDLE + '_startAbility get err ' + JSON.stringify(err))
+        expect(err).assertNull()
       })
+      Logger.info(TAG, BUNDLE + '_startAbility end')
+      done()
     })
+    
     /**
      * 点击开始游戏
      */
     it(BUNDLE + '_IndexPage_StartGame', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_StartGame start")
-      let driver = await UiDriver.create()
+      Logger.info(TAG, BUNDLE + "_IndexPage_StartGame start")
+      let driver = await Driver.create()
       await driver.delayMs(1000)
-      await driver.assertComponentExist(BY.key('startGame'))
-      let startBtn = await driver.findComponent(BY.key('startGame'))
+      await driver.assertComponentExist(ON.id('startGame'))
+      let startBtn = await driver.findComponent(ON.id('startGame'))
       await startBtn.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + "_IndexPage_StartGame end")
+      Logger.info(TAG, BUNDLE + "_IndexPage_StartGame end")
     })
   })
 }

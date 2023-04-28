@@ -105,8 +105,7 @@ export struct TitleBarComponent {
         deviceName: getContext(this).resourceManager.getStringSync($r('app.string.localhost').id),
         deviceType: 0,
         networkId: '',
-        range: DEVICE_DISCOVERY_RANGE,
-        authForm: 2
+        range: DEVICE_DISCOVERY_RANGE
       })
       let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTempList.length; i++) {
@@ -117,8 +116,7 @@ export struct TitleBarComponent {
           deviceName: deviceTempList[i].deviceName,
           deviceType: deviceTempList[i].deviceType,
           networkId: deviceTempList[i].networkId,
-          range: DEVICE_DISCOVERY_RANGE,
-          authForm: 2
+          range: DEVICE_DISCOVERY_RANGE
         })
       }
     })
@@ -157,6 +155,7 @@ export struct TitleBarComponent {
       Blank().layoutWeight(1)
       if (!this.isShow) {
         Image($r('app.media.ic_hop_normal'))
+          .id('selectDevice')
           .height('60%')
           .margin({ right: 32 })
           .width('8%')

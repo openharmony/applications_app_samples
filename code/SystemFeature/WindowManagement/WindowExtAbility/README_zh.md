@@ -4,7 +4,7 @@
 
 本示例仿设置应用，实现点击设置菜单栏，跳转或加载详情页面。
 
-本示例通过 [窗口扩展能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md) 设置不同Ability，使用 [AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-ability-component.md) 组件加载各个Ability。
+本示例通过 [窗口扩展能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-windowExtensionAbility.md) 设置不同Ability，使用 [AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-ability-component.md) 组件加载各个Ability。
 
 使用说明：
 
@@ -29,7 +29,7 @@
 
 1.本示例仅支持标准系统上运行，支持设备：支持RK3568。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

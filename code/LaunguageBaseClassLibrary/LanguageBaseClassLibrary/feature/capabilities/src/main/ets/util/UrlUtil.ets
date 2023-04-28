@@ -50,5 +50,5 @@ export function getFirstNode(): string {
 export function changeValue(): string {
   paramsObject.set(nodeKey, 'newValue');
   nodeNum = 0;
-  return this.outputs = urlObject.toString() + paramsObject.toString();
+  return urlObject.toString() + paramsObject.toString();
 }

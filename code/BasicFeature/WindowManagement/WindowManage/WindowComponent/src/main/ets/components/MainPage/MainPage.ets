@@ -77,6 +77,7 @@ struct VideoWindow {
         currentProgressRate: PlaybackSpeed.Speed_Forward_1_00_X,
         controller: this.videoController
       })
+        .id('mainVideo')
         .width(400)
         .height(250)
         .margin(5)
@@ -105,15 +106,17 @@ struct VideoWindow {
           this.isPlaying = false
         })
 
-      Button($r("app.string.pages_textTwo")).onClick(() => {
-        if (this.isPortrait) {
-          WindowManger.changeWindowDirection(this.subWindow, window.Orientation.LANDSCAPE)
-          this.isPortrait = false
-        } else {
-          WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT)
-          this.isPortrait = true
-        }
-      })
+      Button($r("app.string.pages_textTwo"))
+        .id('windowBtn')
+        .onClick(() => {
+          if (this.isPortrait) {
+            WindowManger.changeWindowDirection(this.subWindow, window.Orientation.LANDSCAPE)
+            this.isPortrait = false
+          } else {
+            WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT)
+            this.isPortrait = true
+          }
+        })
     }
   }
 }

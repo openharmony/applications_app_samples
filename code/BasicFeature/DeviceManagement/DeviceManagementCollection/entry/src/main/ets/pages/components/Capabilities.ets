@@ -14,7 +14,7 @@
  */
 
 import { getString } from '@ohos/common';
-import { PowerManager, UsbManager } from '@ohos/capabilities';
+import { BatteryInfo, PowerManager, Thermal, UsbManager } from '@ohos/capabilities';
 
 @Component
 export struct Capabilities {
@@ -23,8 +23,14 @@ export struct Capabilities {
   build() {
     Column() {
       //  此处根据选中的菜单，显示对应的页面内容
+      if (this.selectedLabel === getString($r('app.string.battery_info'))) {
+        BatteryInfo()
+      }
       if (this.selectedLabel === getString($r('app.string.power_manager'))) {
         PowerManager()
+      }
+      if (this.selectedLabel === getString($r('app.string.thermal'))) {
+        Thermal()
       }
       if (this.selectedLabel === getString($r('app.string.usb_manager'))) {
         UsbManager()

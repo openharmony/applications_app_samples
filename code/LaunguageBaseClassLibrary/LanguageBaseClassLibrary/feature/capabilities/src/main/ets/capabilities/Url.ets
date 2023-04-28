@@ -27,6 +27,7 @@ export struct Url {
     Scroll() {
       Column() {
         Text(this.output)
+          .id('output')
           .width('95%')
           .height('30%')
           .fontSize(15)

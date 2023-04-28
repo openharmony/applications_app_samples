@@ -15,7 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { Driver, ON, Component } from '@ohos.UiTest';
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
 const TAG: string = 'Sample_DeviceManagementTest';
@@ -40,22 +40,63 @@ export default function abilityTest() {
       done();
     })
 
+    // 电量信息
+    it(BUNDLE + 'BatteryInfo_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}BatteryInfo_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on type 'list'
+      await driver.assertComponentExist(ON.type('List'));
+      let list = await driver.findComponent(ON.type('List'));
+      let button = await list.scrollSearch(ON.text('电量信息'));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text('Battery SOC'));
+      await driver.assertComponentExist(ON.text('Charging Status'));
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}BatteryInfo_001 end`);
+      done();
+    })
+
     // 系统电源管理
     it(BUNDLE + 'power_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}power_001 begin`);
       let driver: Driver = await Driver.create();
-      await driver.delayMs(1000);
       //find component on text '系统电源管理'
-      await driver.assertComponentExist(ON.text('系统电源管理'));
-      let button = await driver.findComponent(ON.text('系统电源管理'));
+      await driver.assertComponentExist(ON.type('List'));
+      let list = await driver.findComponent(ON.type('List'));
+      let button = await list.scrollSearch(ON.text('系统电源管理'));
       await button.click();
-      await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(200);
       //check text
-      await driver.assertComponentExist(ON.text('系统电源管理'));
-      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('检测亮灭屏状态', MatchPattern.CONTAINS));
+      let judge = await driver.findComponent(ON.text('检测亮灭屏状态', MatchPattern.CONTAINS));
+      await judge.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text('亮灭屏状态:', MatchPattern.CONTAINS));
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}power_001 end`);
+      done();
+    })
+
+    // 热管理
+    it(BUNDLE + 'Thermal_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}Thermal_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on type 'list'
+      await driver.assertComponentExist(ON.type('List'));
+      let list = await driver.findComponent(ON.type('List'));
+      let button = await list.scrollSearch(ON.text('热管理'));
+      await button.click();
+      await driver.delayMs(500);
+      //check text
+      await driver.assertComponentExist(ON.text('Thermal level'));
+      await driver.assertComponentExist(ON.text('Callback level'));
+      await driver.delayMs(200);
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}Thermal_001 end`);
       done();
     })
 
@@ -63,17 +104,16 @@ export default function abilityTest() {
     it(BUNDLE + 'usb_manager_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}usb_manager_001 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(200);
       //find component on type 'list'
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let button = await list.scrollSearch(ON.text('USB管理'));
       await button.click();
-      await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(200);
       //check text
-      await driver.assertComponentExist(ON.text('USB管理'));
-      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('设备列表'));
+      await driver.delayMs(200);
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}usb_manager_001 end`);
       done();

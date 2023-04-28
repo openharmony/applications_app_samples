@@ -22,6 +22,7 @@ export default struct TitleBar {
       Text(this.title)
         .fontColor(Color.White)
         .fontSize(28)
+        .id('title')
     }
     .width('100%')
     .height('8%')

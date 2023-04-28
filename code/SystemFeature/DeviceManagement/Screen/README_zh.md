@@ -28,7 +28,7 @@ Screen：screen接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏�
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.5.1。
+2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.编译前下载最新日构建中ohos-sdk，解压并替换@ohos.screen.d.ts文件。
 

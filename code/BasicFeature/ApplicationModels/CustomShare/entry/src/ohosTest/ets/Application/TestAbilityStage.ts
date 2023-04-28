@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import Logger from '../../../main/ets/model/Logger'
 
-const TAG: string = 'TestAbilityStage'
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Logger from '../../../main/ets/model/Logger';
+
+const TAG: string = 'TestAbilityStage';
 
 export default class TestAbilityStage extends AbilityStage {
   onCreate() {
-    Logger.info(TAG, `TestAbilityStage onCreate`)
+    Logger.info(TAG, 'TestAbilityStage onCreate');
   }
 }

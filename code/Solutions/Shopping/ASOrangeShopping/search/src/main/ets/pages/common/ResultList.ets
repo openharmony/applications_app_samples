@@ -25,7 +25,7 @@ export struct ResultList {
   build() {
     Column() {
       Scroll() {
-        GridRow({ gutter: { x: vp2px(8), y: vp2px(8) } }) {
+        GridRow({ gutter: { x: vp2px(4), y: vp2px(4) } }) {
           ForEach(this.resultList, (item: GoodsInfo) => {
             GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
               // 快速选择的渲染条件，如果有当前类型的标签，才会进行渲染
@@ -34,7 +34,7 @@ export struct ResultList {
           });
         }
         .width('100%')
-        .margin({ left: 12, right: 12, bottom: 160 })
+        .padding({ left: 12, right: 12, bottom: 160 })
       }
       .scrollBar(BarState.Off)
       .alignSelf(ItemAlign.Center)

@@ -13,46 +13,47 @@
  * limitations under the License.
  */
 
-import mediaquery from '@ohos.mediaquery'
-import HomeContent from './home/HomeContent'
-import IndexTitleBar from './home/IndexTitleBar'
-import SideContent from './home/SideContent'
-import { CityListData, Style, getBg, getCityListWeatherData, Logger } from '@ohos/common'
+import mediaquery from '@ohos.mediaquery';
+import HomeContent from './home/HomeContent';
+import IndexTitleBar from './home/IndexTitleBar';
+import SideContent from './home/SideContent';
+import { CityListData, Style, getBg, getCityListWeatherData, Logger } from '@ohos/common';
 
-const TAG: string = 'Home'
+const TAG: string = 'Home';
 
 @Entry
 @Component
 struct Home {
-  @StorageLink('isRefresh') @Watch('refreshChange') isRefresh: boolean = false
-  @StorageLink('swiperIndex') swiperIndex: number = 0
-  @State curBp: string = 'md'
-  @State cityListWeatherData: CityListData[] = getCityListWeatherData()
-  @State popupState: boolean = false
-  @State showSideBar: boolean = false
-  private smListener: mediaquery.MediaQueryListener
-  private mdListener: mediaquery.MediaQueryListener
-  private lgListener: mediaquery.MediaQueryListener
+  @StorageLink('isRefresh') @Watch('refreshChange') isRefresh: boolean = false;
+  @StorageLink('swiperIndex') swiperIndex: number = 0;
+  @State curBp: string = 'md';
+  @State cityListWeatherData: CityListData[] = getCityListWeatherData();
+  @State popupState: boolean = false;
+  @State showSideBar: boolean = false;
+  private smListener: mediaquery.MediaQueryListener;
+  private mdListener: mediaquery.MediaQueryListener;
+  private lgListener: mediaquery.MediaQueryListener;
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       SideContent({ showSideBar: $showSideBar })
         .height('100%')
       Column() {
-        IndexTitleBar({ curBp: this.curBp, showSideBar: $showSideBar })
+        IndexTitleBar({ showSideBar: $showSideBar })
           .height(56)
         Swiper() {
           ForEach(this.cityListWeatherData, (item, index) => {
             HomeContent({ showSideBar: this.showSideBar, cityListData: item, index: index })
           }, item => item.city)
         }
+        .id('swiper')
         .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
         .indicatorStyle({
           selectedColor: Color.White
         })
         .onChange(index => {
-          this.swiperIndex = index
-          AppStorage.SetOrCreate('swiperIndex', this.swiperIndex)
+          this.swiperIndex = index;
+          AppStorage.SetOrCreate('swiperIndex', this.swiperIndex);
         })
         .indicator(this.curBp !== 'lg')
         .index(this.swiperIndex)
@@ -73,53 +74,53 @@ struct Home {
   }
 
   aboutToAppear() {
-    this.smListener = mediaquery.matchMediaSync('(320vp<width<=520vp)')
-    this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync('(520vp<width<=840vp)')
-    this.mdListener.on("change", this.isBreakpointMD)
-    this.lgListener = mediaquery.matchMediaSync('(840vp<width)')
-    this.lgListener.on("change", this.isBreakpointLG)
+    this.smListener = mediaquery.matchMediaSync('(320vp<width<=600vp)');
+    this.smListener.on("change", this.isBreakpointSM);
+    this.mdListener = mediaquery.matchMediaSync('(600vp<width<=840vp)');
+    this.mdListener.on("change", this.isBreakpointMD);
+    this.lgListener = mediaquery.matchMediaSync('(840vp<width)');
+    this.lgListener.on("change", this.isBreakpointLG);
   }
 
   aboutToDisappear() {
-    this.smListener.off("change", this.isBreakpointSM)
-    this.mdListener.off("change", this.isBreakpointMD)
-    this.lgListener.off("change", this.isBreakpointLG)
+    this.smListener.off("change", this.isBreakpointSM);
+    this.mdListener.off("change", this.isBreakpointMD);
+    this.lgListener.off("change", this.isBreakpointLG);
   }
 
   isBreakpointSM = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
-      this.curBp = 'sm'
-      this.showSideBar = false
-      AppStorage.SetOrCreate('curBp', this.curBp)
+      this.curBp = 'sm';
+      this.showSideBar = false;
+      AppStorage.SetOrCreate('curBp', this.curBp);
     }
-    Logger.info(TAG, `this.curBp = ${this.curBp}`)
+    Logger.info(TAG, `this.curBp = ${this.curBp}`);
   }
   isBreakpointMD = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
-      this.curBp = 'md'
-      this.showSideBar = false
-      AppStorage.SetOrCreate('curBp', this.curBp)
+      this.curBp = 'md';
+      this.showSideBar = false;
+      AppStorage.SetOrCreate('curBp', this.curBp);
     }
-    Logger.info(TAG, `this.curBp = ${this.curBp}`)
+    Logger.info(TAG, `this.curBp = ${this.curBp}`);
   }
   isBreakpointLG = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       if (this.curBp !== 'lg') {
-        this.showSideBar = true
+        this.showSideBar = true;
       }
-      this.curBp = 'lg'
-      AppStorage.SetOrCreate('curBp', this.curBp)
+      this.curBp = 'lg';
+      AppStorage.SetOrCreate('curBp', this.curBp);
     }
-    Logger.info(TAG, `this.curBp = ${this.curBp}`)
+    Logger.info(TAG, `this.curBp = ${this.curBp}`);
   }
 
   refreshChange() {
-    Logger.info(TAG, `refreshChange}`)
+    Logger.info(TAG, `refreshChange}`);
     if (this.isRefresh) {
-      this.cityListWeatherData = getCityListWeatherData()
-      AppStorage.SetOrCreate('isRefresh', false)
+      this.cityListWeatherData = getCityListWeatherData();
+      AppStorage.SetOrCreate('isRefresh', false);
     }
-    Logger.info(TAG, `refreshChange, this.cityListWeatherData.length = ${this.cityListWeatherData.length}`)
+    Logger.info(TAG, `refreshChange, this.cityListWeatherData.length = ${this.cityListWeatherData.length}`);
   }
 }

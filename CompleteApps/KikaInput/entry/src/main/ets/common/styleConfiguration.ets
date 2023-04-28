@@ -165,7 +165,6 @@ export class StyleConfiguration {
           keyboardHeight: $r("app.float.keyboard_height")
         }
       }
-
     }
   }
 }

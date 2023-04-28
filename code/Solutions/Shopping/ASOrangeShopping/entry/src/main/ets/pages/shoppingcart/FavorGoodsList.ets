@@ -26,11 +26,11 @@ export struct FavorGoodList {
   build() {
     Column() {
       Text($r('app.string.guess_you_like'))
-        .fontSize(20)
+        .fontSize(16)
         .fontColor(Color.Black)
-        .padding({ top: 24, bottom: 20, left: 12 })
+        .padding({ top: 16, bottom: 16, left: 12 })
 
-      GridRow({ gutter: { x: vp2px(8), y: vp2px(8) } }) {
+      GridRow({ gutter: { x: vp2px(4), y: vp2px(4) } }) {
         ForEach(this.productsData, (item: GoodsInfo) => {
           GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
             GoodsItem({ goods: item, isSimpleMode: true })

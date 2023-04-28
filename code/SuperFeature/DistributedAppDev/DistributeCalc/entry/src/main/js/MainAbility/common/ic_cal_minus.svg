@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 93 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_cal_minus</title>
+    <g id="calculator" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="分布式计算器_A端_计算器首页" transform="translate(-355.000000, -510.000000)">
+            <g id="ic_cal_minus" transform="translate(355.000000, 510.000000)">
+                <rect id="矩形备份-17" fill-opacity="1" x="0" y="-7.10542736e-15" width="70px" height="70px" rx="21" ></rect>
+                <rect id="矩形" x="31" y="44" width="30" height="3" rx="1.5" transform="translate(-10, -13)" fill="#007DFF"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
