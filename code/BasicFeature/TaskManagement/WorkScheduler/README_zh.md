@@ -11,7 +11,7 @@
 
 ### 效果预览
 
-|当前版本首页                             |提示弹窗                                 |最新版本                                |
+|当前版本首页                             |提示弹窗                                 |新版本                                |
 |---------------------------------------|---------------------------------------|---------------------------------------|
 |![image](screenshots/device/oldVersion.png)|![image](screenshots/device/dialog.png)|![image](screenshots/device/newVersion.png)|
 
@@ -20,8 +20,14 @@
 1. 安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本，目录为：WorkScheduler/signTool/b_sign_hap_release.bat；
 2. 未连接wifi状态下进入应用；
 3. 进入首页后连接wifi；
-4. 后台判断版本号后会下载最新的升级包，并在页面中给出弹窗询问是否安装，点击“确定”按钮；
-5. 应用会安装已经下载的升级包，实现版本更新，安装后会回到设备桌面，此时点击应用图标，可以看到版本已经是最新版了。
+4. 后台判断版本号后会下载新的升级包，并在页面中给出弹窗询问是否安装，点击“确定”按钮；
+5. 应用会安装已经下载的升级包，实现版本更新，安装后会回到设备桌面，此时点击应用图标，可以看到版本已经是新版本了。
+6. 运行自动化测试用例时，必须使用命令行装包，不能使用ide自动装包，安装自动化测试包之前，先编译好未签名的测试包，
+然后在终端执行工程里的脚本，目录为：WorkScheduler/signTool/a_sign_hap_release.bat；
+7. 运行自动化测试应用时需要使用如下命令：
+```
+hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest -s timeout 150000
+```
 
 ### 工程目录
 ```
@@ -48,7 +54,7 @@ entry/src/main/ets/
   * 设置延时任务：在运行示例时会在[MainAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/MainAbility/MainAbility.ets)
   通过WorkSchedulerSystem.startUpdateSample()方法调用workScheduler.startWork()建立任务；
   * 下载更新包：当任务条件满足后，会在[WorkSchedulerAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
-  通过WorkSchedulerSystem.getNewHap()方法调用http.createHttp().request()接口下载我们需要的文件；
+  通过WorkSchedulerSystem.getNewHap()方法调用http.createHttp().request()接口下载需要的文件；
   * 保存更新包：通过WorkSchedulerSystem.saveFile()来实现，受限调用fileio.openSync()创建文件，然后调用fileio.writeSync()将下载的内容写入指定文件内；
   * 发送通知：在[WorkSchedulerAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
   中通过WorkSchedulerSystem.publishNotification()方法，调用Notification.publish()接口发送指定内容的信息；
