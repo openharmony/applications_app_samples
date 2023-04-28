@@ -1,0 +1,70 @@
+{
+  "app": {
+    "bundleName": "ohos.samples.jsanimationstyle",
+    "version": {
+      "code": 1000000,
+      "name": "1.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.samples.jsanimationstyle",
+    "name": ".MyApplication",
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "name": ".MainAbility",
+        "icon": "$media:icon",
+        "srcPath": "default",
+        "srcLanguage": "js",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index",
+          "pages/animation/index/index",
+          "pages/gradient/index",
+          "pages/customfont/index",
+          "pages/transitions/index/index",
+          "pages/transitions/sharedelement/sharedelement",
+          "pages/transitions/sharedtargetpage/sharedtargetpage",
+          "pages/transitions/cardtargetpage/cardtargetpage",
+          "pages/transitions/cardtransition/cardtransition",
+          "pages/transitions/customtransition/customtransition",
+          "pages/transitions/customtarget/customtarget"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ]
+  }
+}

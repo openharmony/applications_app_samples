@@ -1,0 +1,25 @@
+{
+  "strings": {
+    "animationstyle": "动画样式",
+    "translate": "移动",
+    "rotate": "旋转",
+    "scale": "缩放",
+    "compositeAnimation": "复合动画",
+
+    "gradientstyle": "渐变样式",
+    "default": "默认渐变方向为从上向下渐变",
+    "angle": "45度夹角渐变" ,
+    "right": "设置方向为to right为从左向右渐变" ,
+    "repeat": "从左向右渐变，重复渐变",
+
+    "transitionstyle": "转场样式",
+    "element": "共享元素样式",
+    "card": "卡片转场样式",
+    "customtransition": "自定义转场样式",
+    "customtarget": "自定义样式跳转目标页",
+    "remove": "MAIN TITLE",
+    "detail": "我是详情页",
+    "sharedjump": "跳转目标页",
+    "sharedpaget": "我是目标页"
+  }
+}
