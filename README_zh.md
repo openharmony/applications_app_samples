@@ -127,7 +127,6 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Runninglock">运行锁</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集</a></td>  
   <td ></td>
  </tr>
