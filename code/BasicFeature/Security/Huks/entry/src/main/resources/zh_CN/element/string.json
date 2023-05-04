@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "通用密钥库系统"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "通用密钥库系统"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "通用密钥库系统"
+    },
+    {
+      "name": "send_message",
+      "value": "发送消息"
+    },
+    {
+      "name": "recieve_message",
+      "value": "接收消息"
+    },
+    {
+      "name": "import_key",
+      "value": "导入密钥"
+    },
+    {
+      "name": "new_key",
+      "value": "新密钥"
+    },
+    {
+      "name": "old_key",
+      "value": "旧密钥"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "input_message",
+      "value": "输入您要发送的消息"
+    }
+  ]
+}
