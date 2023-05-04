@@ -58,12 +58,15 @@ struct SliderSample {
               min: 50,
               max: 130,
               style: SliderStyle.OutSet
-            })
+            }).id('testSlide1')
               .layoutWeight(1)
               .onChange((value: number) => {
                 this.minOrMaxValue = value
-              })
-            Text(`${Math.trunc(this.minOrMaxValue)}`)
+              }).onClick((event: ClickEvent) => {
+                let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+                console.log('Sample_ComponentCollection'+text)
+            })
+            Text(`${Math.trunc(this.minOrMaxValue)}`).id('test_Text1')
           }
           .rowStyle()
 

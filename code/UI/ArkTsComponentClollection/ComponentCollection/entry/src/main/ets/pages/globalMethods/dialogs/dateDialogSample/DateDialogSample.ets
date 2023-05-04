@@ -70,7 +70,7 @@ struct DataDialogSample {
                     this.ShowToastDate(value)
                   }
                 })
-              })
+              }).id('test_lunar')
           }
           .rowStyle()
 
@@ -95,7 +95,7 @@ struct DataDialogSample {
                     this.ShowToastDate(value)
                   }
                 })
-              })
+              }).id('test_gregorian')
           }
           .rowStyle()
         }

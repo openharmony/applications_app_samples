@@ -50,6 +50,7 @@ import { getStringData } from '../../../../data//ResourceDataHandle'
 @Entry
 @Component
 struct CheckboxSample {
+  @State testCount: number = 0
   @State rating: number = 1
   @State indicator: boolean = false
   @State stars: number = 5
@@ -120,11 +121,11 @@ struct CheckboxSample {
             .margin(10)
           Row() {
             Blank()
-            ForEach(this.colorArray, (item: Color) => {
+            ForEach(this.colorArray, (item: Color, index) => {
               Circle({ width: 20, height: 20 })
                 .colorPicker(item, () => {
                   this.slectedColor = item
-                })
+                }).id('test_changeColor'+index)
                 .stateStyles({
                   pressed: pressedStyle,
                   normal: {
@@ -148,7 +149,7 @@ struct CheckboxSample {
             .selectedColor(0xed6f21)
             .onChange((itemName: CheckboxGroupResult) => {
               Logger.info(`checkbox group content ${JSON.stringify(itemName)}`)
-            })
+            }).id('test_selectAll')
           Text($r('app.string.checkbox_select_all')).fontSize(20)
         }.width('100%')
 

@@ -34,17 +34,20 @@ export struct ChangePanel {
       // CommonItemColorInput will parse color 'FFFFFFFF' -> '#FFFFFFFF'
       CommonItemColorSelect({
         name: $r('app.string.slider_block_color'),
-        selectColor: $blockColor
+        selectColor: $blockColor,
+        testId: "test_select1"
       })
 
       CommonItemColorSelect({
         name: $r('app.string.slider_select_color'),
-        selectColor: $selectColor
+        selectColor: $selectColor,
+        testId: "test_select2"
       })
 
       CommonItemColorSelect({
         name: $r('app.string.slider_track_color'),
-        selectColor: $trackColor
+        selectColor: $trackColor,
+        testId: "test_select3"
       })
     }
   }
