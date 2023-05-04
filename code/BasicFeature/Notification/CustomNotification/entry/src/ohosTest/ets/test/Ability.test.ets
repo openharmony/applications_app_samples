@@ -63,7 +63,7 @@ export default function appTest() {
       let Button = await driver.findComponents(ON.type('Button').within(ON.type('Scroll')))
       // 点击基本类型通知
       await Button[0].click()
-      // 下拉查看通知
+      // 下拉查看通知 (固定坐标只支持RK3568)
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
       await driver.swipe(180, 50, 180, 0, 600)
