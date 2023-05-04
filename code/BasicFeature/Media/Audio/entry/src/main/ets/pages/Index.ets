@@ -12,26 +12,45 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 import router from '@ohos.router';
 
 @Entry
 @Component
 struct Index {
   build() {
-    Row() {
+    Column() {
       Column() {
+        Image($r('app.media.png01')).width(120).height(120).margin({ top: 24 })
         Button() {
-          Text("音频管理").fontSize(30).fontColor(Color.White)
-        }.id("audioManagerBtnId").width('100%')
-        .margin({ bottom: 40 })
-        .height(100)
-        .onClick(() => {
-          router.pushUrl({ url: 'pages/nav_sec/AudioManager' })
-        })
-      }.width('90%')
-      .margin('5%')
+          Text($r('app.string.SelectOutputDevice')).fontColor(Color.White).fontSize(18)
+        }.width(312).height(40).margin({ top: 24 })
+      }
+      .id('select_output_device_card')
+      .backgroundColor(Color.White)
+      .margin({ top: 40 })
+      .borderRadius(30)
+      .width('100%')
+      .height(232)
+      .onClick(async () => {
+        await router.pushUrl({ url: 'pages/PreferOutputDevice' })
+      })
+
+      Column() {
+        Image($r('app.media.png02')).width(120).height(120).margin({ top: 24 })
+        Button() {
+          Text($r('app.string.AudioFocus')).fontColor(Color.White).fontSize(18)
+        }.width(312).height(40).margin({ top: 24 })
+      }
+      .id('audio_focus_card')
+      .backgroundColor(Color.White)
+      .margin({ top: 40 })
+      .borderRadius(30)
+      .width('100%')
+      .height(232)
+      .onClick(async () => {
+        await router.pushUrl({ url: 'pages/Focus' })
+      })
     }
-    .height('100%').width('100%');
+    .height('100%').width('100%').backgroundColor('#c4c4c4').padding({ left: 20, right: 20 })
   }
 }

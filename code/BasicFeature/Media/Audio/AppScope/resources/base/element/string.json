@@ -3,6 +3,58 @@
     {
       "name": "app_name",
       "value": "etsAudio"
+    },
+    {
+      "name": "Speaker",
+      "value": "扬声器"
+    },
+    {
+      "name": "EarPiece",
+      "value": "听筒"
+    },
+    {
+      "name": "WiredHeadset",
+      "value": "有线耳机[带麦克风]"
+    },
+    {
+      "name": "WiredHeadPhones",
+      "value": "有线耳机[无麦克风]"
+    },
+    {
+      "name": "Bluetooth_A2DP",
+      "value": "蓝牙设备A2DP"
+    },
+    {
+      "name": "USB_Headset",
+      "value": "USB耳机"
+    },
+    {
+      "name": "BLUETOOTH_SCO",
+      "value": "蓝牙设备SCO"
+    },
+    {
+      "name": "Back",
+      "value": "返回"
+    },
+    {
+      "name": "SelectOutputDevice",
+      "value": "发声设备查询与选择"
+    },
+    {
+      "name": "AudioFocus",
+      "value": "音频焦点"
+    },
+    {
+      "name": "VoiceCallType",
+      "value": "通话类型"
+    },
+    {
+      "name": "MusicType",
+      "value": "音乐类型"
+    },
+    {
+      "name": "RingtoneType",
+      "value": "铃声类型"
     }
   ]
 }
