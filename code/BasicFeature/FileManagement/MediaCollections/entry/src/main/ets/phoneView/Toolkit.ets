@@ -38,10 +38,10 @@ export struct Toolkit {
   private deleteDialogShow: (index: number, mediaType) => void
   private renameDialogShow: (index: number, mediaType) => void
   private GridData: gridData[] = [
-    { icon: $r('app.media.icon_color_music'), textStr: '音频' },
-    { icon: $r('app.media.icon_color_video'), textStr: '视频' },
-    { icon: $r('app.media.icon_color_favorite'), textStr: '收藏' },
-    { icon: $r('app.media.icon_color_me'), textStr: '我的' },
+    { icon: $r('app.media.icon_color_music'), textStr: '音频', id: 'music' },
+    { icon: $r('app.media.icon_color_video'), textStr: '视频', id: 'video' },
+    { icon: $r('app.media.icon_color_favorite'), textStr: '收藏', id: 'favorite' },
+    { icon: $r('app.media.icon_color_me'), textStr: '我的', id: 'me' },
   ]
   private context: any
   @State audioText: string = ''

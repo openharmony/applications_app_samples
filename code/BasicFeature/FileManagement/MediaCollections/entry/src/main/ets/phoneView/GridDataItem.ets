@@ -44,6 +44,7 @@ export struct GridDataItem {
     Column() {
       Image(this.item.icon).width(40).height(40)
       Text(this.item.textStr)
+        .id(this.item.id)
         .margin({ top: 5 })
         .fontSize(16)
         .fontColor('rgba(255,255,255,0.90)')
