@@ -12,10 +12,14 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+import Logger from '../../util/Logger'
 
 @Entry
 @Component
 struct Index {
+  aboutToAppear() {
+    Logger.info('testTag', '%{public}s', 'TestAbility index aboutToAppear');
+  }
  @State message: string = 'Hello World'
 
  build() {
