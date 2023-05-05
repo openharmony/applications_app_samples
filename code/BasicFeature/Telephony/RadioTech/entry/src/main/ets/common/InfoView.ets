@@ -62,6 +62,7 @@ export struct InfoView {
         }
         .width('100%')
         .key('arrow' + (index + 1))
+        .id('arrow' + (index + 1))
         .onClick(() => {
           Logger.info(`${TAG}, PanelView`)
           this.show = !this.show
