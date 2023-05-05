@@ -53,7 +53,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
         {
             cmd += ' -D'
         }
-        hilog.info(0x0000, 'testTag', 'cmd : %{public}s', cmd);
+        Logger.info('testTag', 'cmd : %{public}s', cmd);
         abilityDelegator.executeShellCommand(cmd,
             (err: any, d: any) => {
                 Logger.info('testTag', 'executeShellCommand : err : %{public}s', JSON.stringify(err) ?? '');
