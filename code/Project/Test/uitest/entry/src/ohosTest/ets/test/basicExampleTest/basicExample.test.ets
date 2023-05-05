@@ -40,9 +40,9 @@ export default function basicExampleTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
-      await delegator.getCurrentTopAbility().then((Ability)=>{
+      await delegator.getCurrentTopAbility().then((ability)=>{
         console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+        expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       // ui test code
       // init driver

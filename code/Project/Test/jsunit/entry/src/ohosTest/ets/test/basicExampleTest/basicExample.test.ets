@@ -30,8 +30,8 @@ export default function basicExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测delegator.startAbility接口打开指定Ability对象
      */
-    it(BUNDLE+ 'StartAbility_001',TestType.FUNCTION, async function (done) {
-      Logger.info(TAG, " StartAbility_001 begin")
+    it(BUNDLE + 'StartAbility_001',TestType.FUNCTION, async function (done) {
+      Logger.info(" StartAbility_001 begin")
       //start tested ability
       let want = {
         bundleName : bundleName,
@@ -40,9 +40,9 @@ export default function basicExampleTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability)=>{
+      await delegator.getCurrentTopAbility().then((ability)=>{
         console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+        expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       Logger.info(TAG, " StartAbility_001 end")
       done();

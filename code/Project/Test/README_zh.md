@@ -4,13 +4,24 @@
 
 测试框架arkxtest的详细介绍请[参考](https://gitee.com/openharmony/testfwk_arkxtest)。
 
-## 目录 
+
+## 效果预览
+不涉及
+
+使用说明
+- 将jsunit或uitest目录下的项目工程整体导入到DevEco Studio开发工具中。
+- 查看ohostest目录下的测试代码实现。
+- 在DevEco Studio中执行测试用例代码查看执行效果，执行方式请[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453)。
+
+## 工程目录 
 
 ```
 Test 
   |-----jsunit  单元测试框架示例
   |-----uitest  UI测试框架示例
 ```
+
+## 具体实现
 
 ### jsunit单元测试框架示例内容
 -  单元测试框架基础使用示例。
@@ -21,15 +32,11 @@ Test
 
 >  相关功能实现，请查看具体代码实现
 
-## 使用说明
-- 将jsunit或uitest目录下的项目工程整体导入到DevEco Studio开发工具中。
-- 查看ohostest目录下的测试代码实现。
-- 在DevEco Studio中执行测试用例代码查看执行效果，执行方式请[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453)。
-
-
-# 效果预览
+## 相关权限
 不涉及
 
+## 依赖
+不涉及
 
 ## 约束与限制
 1.本示例仅支持标准系统上运行。

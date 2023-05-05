@@ -14,7 +14,7 @@
  */
 
 import hilog from '@ohos.hilog';
-
+const TAG = "[Sample_ArkTest]";
 class Logger {
     private domain: number;
     private prefix: string;
@@ -42,4 +42,4 @@ class Logger {
     }
 }
 
-export default new Logger('[Sample_Npm]');
+export default new Logger(TAG);
