@@ -19,6 +19,7 @@ import PlayerModel from '../../model/PlayerModel.js'
 import KvStoreModel from '../../model/KvStoreModel.js'
 import { logger } from '../../model/Logger'
 import display from '@ohos.display'
+import window from '@ohos.window';
 
 function getShownTimer(ms) {
   var seconds = Math.floor(ms / 1000)
@@ -39,6 +40,7 @@ const SYSTEM_UI_HEIGHT = 134
 const DESIGN_WIDTH = 720.0
 const DESIGN_RATIO = 16 / 9
 const TAG = 'Index'
+let lastTime = -1
 
 export default {
   data: {
@@ -59,8 +61,33 @@ export default {
     risw: 720, // ratio independent screen width
     rish: 1280, // ratio independent screen height
     hasInitialized: false,
+    topRectHeight: 72,
+    bottomRectHeight: 72
+  },
+  // 获取导航键高度
+  getNavHegiht(){
+    let windowClass = null;
+    window.getTopWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      try {
+        windowClass.on('avoidAreaChange', (data) => {
+          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+          this.topRectHeight=data.area.topRect.height
+          this.bottomRectHeight=data.area.bottomRect.height
+        });
+      } catch (exception) {
+        console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+      }
+    });
   },
   onInit() {
+    this.getNavHegiht()
     logger.info(TAG, `onInit begin`)
     this.grantPermission()
     logger.info(TAG, `getDefaultDisplay begin`)
@@ -94,6 +121,11 @@ export default {
     this.playerModel.setOnStatusChangedListener((isPlaying) => {
       logger.debug(TAG, `on player status changed, isPlaying=${isPlaying} refresh ui`)
       this.playerModel.setOnPlayingProgressListener((currentTimeMs) => {
+        if (lastTime === currentTimeMs) {
+          this.playerModel.pause()
+        } else {
+          lastTime = currentTimeMs
+        }
         this.currentTimeText = getShownTimer(currentTimeMs)
         this.currentProgress = Math.floor(currentTimeMs / this.totalMs * 100)
       })
@@ -146,7 +178,7 @@ export default {
     this.playerModel.seek(0)
     this.restoreFromWant()
   },
-  onBackPress() {
+  onHide() {
     logger.debug(TAG, `onBackPress isDialogShowing=${this.isDialogShowing}`)
     if (this.isDialogShowing === true) {
       this.dismissDialog()
@@ -183,7 +215,7 @@ export default {
     + ` this.totalTimeText=${this.totalTimeText}this.currentTimeText=${this.currentTimeText}`)
   },
   setProgress(e) {
-    logger.debug(TAG, `setProgress ${ e.mode}, ${e.value}`)
+    logger.debug(TAG, `setProgress ${e.mode}, ${e.value}`)
     this.currentProgress = e.value
     if (isNaN(this.totalMs)) {
       this.currentProgress = 0

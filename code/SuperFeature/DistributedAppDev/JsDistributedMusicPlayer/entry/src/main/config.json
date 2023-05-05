@@ -1,7 +1,7 @@
 {
   "app": {
     "vendor": "samples",
-    "bundleName": "ohos.samples.jsdistributedmusicplayer",
+    "bundleName": "ohos.samples.distributedmusicplayer",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
