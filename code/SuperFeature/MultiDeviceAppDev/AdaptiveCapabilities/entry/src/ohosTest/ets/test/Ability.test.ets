@@ -76,7 +76,7 @@ export default function appTest() {
       await checkButtonAndClickWithID('AtomicLayoutCapabilityIndex')
       // 点击拉伸能力1
       await checkButtonAndClickWithID('FlexibleCapability1')
-      // slider滑动
+      // slider滑动 (目前坐标只适用于RK3568)
       await driver.swipe(410, 1017, 360, 1017, 200)
       await driver.delayMs(1000)
       await driver.pressBack()
