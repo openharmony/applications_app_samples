@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Log from '../model/Log'
+import Log from '../model/Log';
 
-let TAG: string = 'service->'
+let TAG: string = 'service->';
 
 class ServiceExtAbility extends InputMethodExtensionAbility {
   onCreate(want) {
