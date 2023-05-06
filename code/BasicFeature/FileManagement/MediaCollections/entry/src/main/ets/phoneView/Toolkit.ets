@@ -101,7 +101,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, item => item.id)
+              }, item => item.displayName)
             }
             .height(260)
             .alignListItem(ListItemAlign.Center)
