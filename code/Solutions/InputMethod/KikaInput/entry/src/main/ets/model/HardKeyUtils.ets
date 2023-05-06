@@ -73,14 +73,14 @@ export function GetHardKeyValue(keyCode, isShift) {
   };
 
   if (keyList.hasOwnProperty(keyCode)) {
-    let value = keyList[keyCode]
+    let value = keyList[keyCode];
     if (isShift && keyCode >= 2017 && keyCode <= 2042) {
       return value.toUpperCase();
     }
     return value;
   }
   if (keyCode == 2000) {
-    return "0"
+    return "0";
   }
   return "";
 }

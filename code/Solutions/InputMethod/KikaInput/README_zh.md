@@ -101,9 +101,9 @@ kikainput是一个轻量级的输入法应用，支持在运行OpenHarmony OS的
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
+2.本示例为Stage模型，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
 4.本示例由于接口问题暂时去除编译校验检验。
 
@@ -119,14 +119,3 @@ hdc shell  reboot
 
 等设备重启后即可完成应用的替换安装，无需其他操作。
 
-### 下载
-
-如需单独下载本工程，执行如下命令：
-
-````
-git init
-git config core.sparsecheckout true
-echo code/Solutions/InputMethod/KikaInput/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
-git pull origin master
-````
