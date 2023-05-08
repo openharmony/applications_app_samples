@@ -24,7 +24,7 @@ const BUNDLE: string = 'DotTest_';
 export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
-  describe('AbilityTest', function () {
+  describe('ActsAbilityTest', function () {
     // 打开应用
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
