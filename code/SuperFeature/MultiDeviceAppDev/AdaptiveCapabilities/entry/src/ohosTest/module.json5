@@ -15,7 +15,7 @@
 
 {
   "module": {
-    "name": "entry_test",
+    "name": "appTest",
     "type": "feature",
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
