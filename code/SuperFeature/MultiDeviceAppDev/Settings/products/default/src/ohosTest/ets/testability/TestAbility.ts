@@ -30,7 +30,7 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage) {
     Logger.info('TestAbility onWindowStageCreate')
-    windowStage.loadContent("testability/pages/Index", (err, data) => {
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause:' + JSON.stringify(err))
         return

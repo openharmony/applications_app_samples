@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "bei_jing",
+      "value": "北京"
+    },
+    {
+      "name": "shang_hai",
+      "value": "上海"
+    },
+    {
+      "name": "wu_han",
+      "value": "武汉"
+    }
+  ]
+}
