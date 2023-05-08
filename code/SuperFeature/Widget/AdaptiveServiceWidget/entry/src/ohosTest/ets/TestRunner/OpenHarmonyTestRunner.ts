@@ -19,7 +19,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 
 var abilityDelegator = undefined
 var abilityDelegatorArguments = undefined
-
+// 
 function translateParamsToString(parameters) {
   const keySet = new Set([
     '-s class', '-s notClass', '-s suite', '-s it',
