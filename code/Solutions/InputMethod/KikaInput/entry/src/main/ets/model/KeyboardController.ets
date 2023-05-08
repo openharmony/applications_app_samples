@@ -18,7 +18,6 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 import settings from '@ohos.settings';
 import display from '@ohos.display';
 import windowManager from '@ohos.window';
-import featureAbility from '@ohos.ability.featureAbility';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import Log from './Log';
 
@@ -43,11 +42,6 @@ export class KeyboardController {
   constructor(context) {
     this.inputHandle.addLog('constructor');
     this.mContext = context;
-    this.helper = featureAbility.acquireDataAbilityHelper(this.mContext, this.uri);
-  }
-
-  public getValue(settingDataKey: string) {
-    this.getValueRes = settings.getValueSync(this.helper, settingDataKey, "1");
   }
 
   public onCreate(): void {
@@ -370,11 +364,6 @@ export class KeyboardController {
   }
 
   private showWindow() {
-    try {
-      this.getValue('settings.display.navigationbar_status');
-    } catch (err) {
-      Log.showError(TAG, "get value failed" + err);
-    }
     Log.showInfo(TAG, 'current navigation state is' + this.getValueRes);
     this.inputHandle.addLog('showWindow');
     windowManager.find(this.windowName).then((win) => {
