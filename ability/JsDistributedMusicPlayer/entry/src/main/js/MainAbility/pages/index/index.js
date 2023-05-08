@@ -178,8 +178,9 @@ export default {
     this.playerModel.seek(0)
     this.restoreFromWant()
   },
-  onBackPress() {
-    logger.debug(TAG, `onBackPress isDialogShowing=${this.isDialogShowing}`)
+  onHide() {
+    logger.info(TAG, `onHide isDialogShowing=${this.isDialogShowing}`)
+    this.playerModel.pause()
     if (this.isDialogShowing === true) {
       this.dismissDialog()
       return true
