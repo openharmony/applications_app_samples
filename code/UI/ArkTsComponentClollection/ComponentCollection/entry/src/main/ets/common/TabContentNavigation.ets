@@ -35,7 +35,7 @@ export struct TabContentNavigation {
     Column() {
       List() {
         if (this.hasSecondLevelCategory(this.categories[0])) {
-          ForEach(this.categories, (secondLevelCategory: SecondLevelCategory) => {
+          ForEach(this.categories, (secondLevelCategory: SecondLevelCategory, secondLevelCategoryIndex: number) => {
             ListItem() {
               Column() {
                 Text(secondLevelCategory.title)
@@ -48,13 +48,19 @@ export struct TabContentNavigation {
                   .padding({ bottom: 4, top: 4, left: 24 })
 
                 Column() {
-                  ForEach(secondLevelCategory.childNodes, (thirdLevelCategory: ThirdLevelCategory) => {
-                    ThirdLevelNavigation({ thirdLevelCategory: thirdLevelCategory })
+                  ForEach(secondLevelCategory.childNodes, (thirdLevelCategory: ThirdLevelCategory,
+                                                           thirdLevelCategoryIndex: number) => {
+                    ThirdLevelNavigation({
+                      thirdLevelCategory: thirdLevelCategory,
+                      secondLevelCategoryIndex: secondLevelCategoryIndex,
+                      ThirdLevelNavigationIndex: thirdLevelCategoryIndex
+                    })
                   })
                 }
                 .ColumnStyle()
               }
             }
+            .id('ListItem' + secondLevelCategoryIndex)
           })
         } else {
           ForEach(this.categories, (thirdLevelCategory: ThirdLevelCategory) => {
@@ -89,6 +95,8 @@ export struct TabContentNavigation {
 struct ThirdLevelNavigation {
   @State isUnfold: boolean = false
   private thirdLevelCategory: ThirdLevelCategory
+  private ThirdLevelNavigationIndex: number;
+  private secondLevelCategoryIndex: number;
 
   build() {
     Column() {
@@ -141,6 +149,8 @@ struct ThirdLevelNavigation {
         })
       }
     }
+    // 整体字符串折行会被识别出来，导致功能异常，只能放在单独一行，1和0分别为首页标题层级index
+    .id(`secondLevelMenu${this.secondLevelCategoryIndex}${this.secondLevelCategoryIndex === 1 ? 0 : this.ThirdLevelNavigationIndex}`)
   }
 }
 

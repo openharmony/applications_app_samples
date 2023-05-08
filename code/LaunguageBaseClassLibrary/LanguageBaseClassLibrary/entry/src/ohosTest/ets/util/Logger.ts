@@ -15,31 +15,27 @@
 
 import hilog from '@ohos.hilog';
 
-class Logger {
-  private domain: number;
-  private prefix: string;
-  private format: string = '%{public}s, %{public}s';
+const DOMAIN: number = 0xF811;
+const PREFIX = 'Sample_LanguageBaseClassLibraryTest';
+const FORMAT = '%{public}s, %{public}s';
 
-  constructor(prefix: string) {
-    this.prefix = prefix;
-    this.domain = 0xF811;
-  }
+class Logger {
 
   debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args);
+    hilog.debug(DOMAIN, PREFIX, FORMAT, args);
   }
 
   info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args);
+    hilog.info(DOMAIN, PREFIX, FORMAT, args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args);
+    hilog.warn(DOMAIN, PREFIX, FORMAT, args);
   }
 
   error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args);
+    hilog.error(DOMAIN, PREFIX, FORMAT, args);
   }
 }
 
-export const logger = new Logger('Sample_LanguageBaseClassLibraryTest');
+export const logger = new Logger();

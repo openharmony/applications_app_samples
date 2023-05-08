@@ -70,15 +70,15 @@ struct TextTimerSample {
         Row() {
           Button($r('app.string.text_timer_start')).onClick(() => {
             this.textTimerController.start()
-          })
+          }).id('test_start')
           Blank()
           Button($r('app.string.text_timer_pause')).onClick(() => {
             this.textTimerController.pause()
-          })
+          }).id('test_pause')
           Blank()
           Button($r('app.string.text_timer_reset')).onClick(() => {
             this.textTimerController.reset()
-          })
+          }).id('test_reset')
         }.width('100%')
       }
       .cardStyle()
@@ -95,7 +95,7 @@ struct TextTimerSample {
           Toggle({ type: ToggleType.Switch, isOn: this.isCountDown })
             .onChange((isOn) => {
               this.isCountDown = isOn
-            })
+            }).id('test_toggle')
         }.width('100%')
         .height(50)
       }.cardStyle()
@@ -116,7 +116,7 @@ struct TextTimerSample {
             .onChange((isChecked: boolean) => {
               if (isChecked)
                 this.format = getStringData($r('app.string.text_timer_timeformatone'))
-            })
+            }).id('test_radio1')
         }.width('100%')
         .height(50)
 
@@ -133,7 +133,7 @@ struct TextTimerSample {
             .onChange((isChecked: boolean) => {
               if (isChecked)
                 this.format = getStringData($r('app.string.text_timer_timeformattwo'))
-            })
+            }).id('test_radio2')
         }.width('100%')
         .height(50)
 
@@ -150,7 +150,7 @@ struct TextTimerSample {
             .onChange((isChecked: boolean) => {
               if (isChecked)
                 this.format = getStringData($r('app.string.text_timer_timeformatthree'))
-            })
+            }).id('test_radio3')
         }.width('100%')
         .height(50)
       }

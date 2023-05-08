@@ -36,6 +36,7 @@ struct QRCodeSample {
       Column() {
         QRCode(this.qrCodeContent) // QR code content
           .color(this.qrCodeColor) // QR code color
+          .id('test_qrcode')
       }
       .backgroundStyle()
       .justifyContent(FlexAlign.Center)

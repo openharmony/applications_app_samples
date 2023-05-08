@@ -187,7 +187,7 @@ export struct CountDown {
             .width('25%')
             .height('92%')
             .objectFit(ImageFit.Contain)
-            .rotate({ z: 1, angle: this.rotates })
+            .rotate({ z: 1, angle: -this.rotates })
         }
         .margin({ top: 35 })
         .height(280)

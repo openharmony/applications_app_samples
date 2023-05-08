@@ -51,10 +51,10 @@
  <tr height="18" style='height:13.50pt;'>
   <td height="270" align="center" rowspan="20" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
-  <td x:str><a href="code/BasicFeature/ApplicationModels/FaModel">FA模型</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">使用want分享数据</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>通知</strong></td>
@@ -127,7 +127,6 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Runninglock">运行锁</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集</a></td>  
   <td ></td>
  </tr>
@@ -179,7 +178,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>IDL</strong</td>
+  <td x:str><strong>IDL</strong></td>
   <td x:str><a href="code/BasicFeature/IDL/AbilityConnectServiceExtension">Ability与ServiceExtensionAbility通信</a></td>
   <td x:str></td>
   <td x:str></td>
@@ -270,7 +269,7 @@
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库库</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证</a></td>
   <td x:str></td>
@@ -418,7 +417,6 @@ code
   |---ApplicationHap               # 应用程序包
 |---LaunguageBaseClassLibrary  # 语言基础类库
 ```
-旧目录结构请前往[README_zh_old](README_zh_old.md)查看。
 
 ## 约束<a name="section18841871178"></a>
 

@@ -193,7 +193,7 @@ export struct RegisterInfo {
               .textAlign(TextAlign.Center)
 
             TextInput({ placeholder: 'xxxxx' })
-              .key('Register' + (index + 1))
+              .id('Register' + (index + 1))
               .margin(10)
               .width('55%')
               .fontSize(20)
@@ -230,7 +230,7 @@ export struct RegisterInfo {
       }, item => JSON.stringify(item))
 
       Button($r('app.string.setting'))
-        .key('complete')
+        .id('complete')
         .margin(10)
         .width('60%')
         .fontSize(20)

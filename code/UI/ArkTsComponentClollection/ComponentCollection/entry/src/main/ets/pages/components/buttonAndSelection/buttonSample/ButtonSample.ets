@@ -37,6 +37,8 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
 struct ButtonSample {
   private context = getContext(this)
 
+  @State onClickId: string = 'onClickId'
+
   @Styles buttonDefaultStyle() {
     .height(40)
     .layoutWeight(1)
@@ -46,7 +48,7 @@ struct ButtonSample {
 
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.button_title') })
+      TitleBar({ title: $r('app.string.button_title') }).id(this.onClickId)
       Scroll() {
         Column() {
           IntroductionTitle({ introduction: $r('app.string.button_type') })
@@ -57,13 +59,15 @@ struct ButtonSample {
                 .buttonDefaultStyle()
                 .onClick(() => {
                   ShowToast.longToast(`${getStringData($r('app.string.button_type_capsule'))}${getStringData($r('app.string.button_click'))}`)
-                })
+                  this.onClickId = 'Capsule onClickId'
+                }).id('Capsule')
               // Set button type as parameter
               Button($r('app.string.button_confirm'), { type: ButtonType.Normal })
                 .buttonDefaultStyle()
                 .onClick(() => {
                   ShowToast.longToast(`${getStringData($r('app.string.button_type_normal'))}${getStringData($r('app.string.button_click'))}`)
-                })
+                  this.onClickId = 'Normal onClickId'
+                }).id('Normal')
               Button() {
                 Image($r('app.media.ic_button_circle_add'))
               }
@@ -71,7 +75,8 @@ struct ButtonSample {
               .type(ButtonType.Circle) // Set button type as attribute
               .onClick(() => {
                 ShowToast.longToast(`${getStringData($r('app.string.button_type_circle'))}${getStringData($r('app.string.button_click'))}`)
-              })
+                this.onClickId = 'Circle onClickId'
+              }).id('Circle')
             }
             .width('100%')
             .justifyContent(FlexAlign.SpaceAround)
@@ -95,7 +100,8 @@ struct ButtonSample {
               .buttonDefaultStyle()
               .onClick(() => {
                 ShowToast.longToast(`${getStringData($r('app.string.button_state_effect_true'))}${getStringData($r('app.string.button_click'))}`)
-              })
+                this.onClickId = 'Has effect onClickId'
+              }).id('Has effect')
 
             // No effect but response onClick event
             Button($r('app.string.button_state_effect_false'))
@@ -103,7 +109,8 @@ struct ButtonSample {
               .stateEffect(false) // Set button type as attribute
               .onClick(() => {
                 ShowToast.longToast(`${getStringData($r('app.string.button_state_effect_false'))}${getStringData($r('app.string.button_click'))}`)
-              })
+                this.onClickId = 'No effect onClickId'
+              }).id('No effect')
 
             // Disable this button
             Button($r('app.string.button_disable_style'))
@@ -113,7 +120,8 @@ struct ButtonSample {
               .onClick(() => {
                 // onClick event will not response
                 ShowToast.longToast(`${getStringData($r('app.string.button_disable_style'))}${getStringData($r('app.string.button_click'))}`)
-              })
+                this.onClickId = 'Disable onClickId'
+              }).id('Disable')
           }
           .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
@@ -127,7 +135,8 @@ struct ButtonSample {
               .onClick(() => {
                 // onClick event will not response
                 ShowToast.longToast(`${getStringData($r('app.string.button_border_radius'))}${getStringData($r('app.string.button_click'))}`)
-              })
+                this.onClickId = 'Rounded button onClickId'
+              }).id('Rounded button')
 
             Button() {
               Row() {
@@ -142,8 +151,9 @@ struct ButtonSample {
             .buttonDefaultStyle()
             .onClick(() => {
               // onClick event will not response
-              ShowToast.longToast(`${getStringData($r('app.string.button_border_radius'))}${getStringData($r('app.string.button_click'))}`)
-            })
+              ShowToast.longToast(`${getStringData($r('app.string.button_with_icon'))}${getStringData($r('app.string.button_click'))}`)
+              this.onClickId = 'Icon button onClickId'
+            }).id('Icon button')
 
             Button() {
               Text($r('app.string.button_custom_bg_color'))
@@ -155,7 +165,8 @@ struct ButtonSample {
             .onClick(() => {
               // onClick event will not response
               ShowToast.longToast(`${getStringData($r('app.string.button_custom_bg_color'))}${getStringData($r('app.string.button_click'))}`)
-            })
+              this.onClickId = 'Custom color onClickId'
+            }).id('Custom color')
           }
           .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)

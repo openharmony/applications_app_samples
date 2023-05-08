@@ -44,7 +44,7 @@ struct Second {
           .fontSize(20)
           .fontColor(Color.White)
           .textAlign(TextAlign.Start)
-          .margin({ right: '5%', top: '15%' })
+          .margin({ right: '5%' })
           .id('encryptAndDecrypt')
 
       }

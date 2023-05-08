@@ -204,7 +204,7 @@ export struct ModifyInfo {
               .textAlign(TextAlign.Center)
 
             TextInput({ placeholder: 'xxxxx' })
-              .key('Modify' + (index + 1))
+              .id('Modify' + (index + 1))
               .margin(10)
               .width('55%')
               .fontSize(20)
@@ -237,7 +237,7 @@ export struct ModifyInfo {
       }, item => JSON.stringify(item))
 
       Button($r('app.string.setting'))
-        .key('modComplete')
+        .id('modComplete')
         .margin(10)
         .width('60%')
         .fontSize(20)

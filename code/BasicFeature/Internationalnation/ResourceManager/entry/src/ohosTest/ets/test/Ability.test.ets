@@ -14,8 +14,8 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { Driver, MatchPattern } from '@ohos.UiTest'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
 
 const TAG = '[Sample_ResourceManager]'
@@ -26,16 +26,19 @@ export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let parameter = {
-        bundleName: "ohos.samples.resourcemanager",
-        abilityName: "EntryAbility"
-      }
-      AbilityDelegatorRegistry.getAbilityDelegator().startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.resourcemanager',
+          abilityName: 'EntryAbility'
+        })
         done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
+      } catch (expection) {
+        expect(0).assertEqual(expection.code)
+        hilog.info(DOMAIN, TAG, `StartAbility end ${JSON.stringify(expection)}`)
+        done()
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
 
     /**
@@ -43,7 +46,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
+      let driver = await Driver.create()
       await driver.delayMs(3000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })

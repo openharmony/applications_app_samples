@@ -49,6 +49,7 @@ struct Index {
             .fontColor($r('app.color.fontColor'))
 
           Text(`：${VERSION}`)
+            .id('version')
             .fontSize(20)
             .fontColor($r('app.color.fontColor'))
         }

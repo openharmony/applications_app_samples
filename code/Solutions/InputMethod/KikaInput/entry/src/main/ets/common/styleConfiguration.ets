@@ -13,8 +13,33 @@
  * limitations under the License.
  */
 
-export default class StyleConfiguration {
-  static getInputStyle(islandSpace, isRkDevice, deviceType) {
+export interface KeyStyle {
+  deviceType?: string,
+  basicButtonWidth: Resource,
+  basicButtonHeight: Resource,
+  featurePicSize: Resource,
+  switchButtonWidth: Resource,
+  returnPicSize: Resource,
+  returnButtonWidthType_1: Resource,
+  returnButtonWidthType_2: Resource,
+  spaceButtonWidth_1: Resource,
+  spaceButtonWidth_2: Resource,
+  paddingTop: Resource,
+  paddingLeftRight: Resource,
+  downMenuHeight: Resource,
+  downMenuPicWidth: Resource,
+  downMenuPicHeight: Resource,
+  downMenuWidth: Resource,
+  litterNumberFontSize: Resource,
+  en_fontSize: Resource,
+  symbol_fontSize: Resource,
+  switchNumberFontSize: Resource,
+  number1234ontFSize?: Resource,
+  keyboardHeight: Resource
+}
+
+export class StyleConfiguration {
+  static getInputStyle(islandSpace, isRkDevice, deviceType): KeyStyle {
     if (isRkDevice) {
       return {
         basicButtonWidth: $r("app.float.rk_basic_button_width"),
@@ -39,7 +64,7 @@ export default class StyleConfiguration {
         number1234ontFSize: $r("app.float.rk_number_1234_fontSize"),
         keyboardHeight: $r("app.float.rk_keyboard_height")
       }
-    } else if(deviceType == 'tablet') {
+    } else if (deviceType == 'tablet') {
       if (islandSpace) {
         return {
           deviceType: 'tablet_landSpace',
@@ -140,7 +165,6 @@ export default class StyleConfiguration {
           keyboardHeight: $r("app.float.keyboard_height")
         }
       }
-
     }
   }
 }

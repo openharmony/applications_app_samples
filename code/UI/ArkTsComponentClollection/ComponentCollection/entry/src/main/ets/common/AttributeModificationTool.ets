@@ -39,6 +39,10 @@ export struct CommonItemSlider {
         .layoutWeight(1)
         .onChange((value: number) => {
           this.changeValue = value
+          console.log('Sample_ComponentCollection'+String(value))
+        }).onClick((event: ClickEvent) => {
+          let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+          console.log('Sample_ComponentCollection'+text)
         })
       Text(`${Math.trunc(this.changeValue)}vp`)
     }
@@ -57,6 +61,7 @@ export struct CommonItemSelect {
   private callback: (index: number, value?: string) => void
   private selectOption: SelectOption[] = []
   private name: ResourceStr
+  private testId: string = 'test_itemSelect'
   private selectIndex: number
   private fontSize: Font = { size: 20, weight: FontWeight.Medium }
   private isItemStyle: boolean = true
@@ -83,7 +88,7 @@ export struct CommonItemSelect {
         .onSelect((index, value) => {
           this.callback(index, value)
           this.selectIndex = index
-        })
+        }).id(this.testId)
     }
     .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
@@ -101,6 +106,7 @@ export struct CommonItemSelect {
 export struct CommonItemColorSelect {
   @Link selectColor: Resource
   @State selectIndex: number = 0
+  private testId: string = 'test_colorSelect'
   private name: Resource
   private isItemStyle: boolean = true
   private colorNames: Array<{ value: Resource }> = [{ value: $r('app.string.divider_color_blue') }, { value: $r('app.string.divider_color_green') }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
@@ -143,7 +149,7 @@ export struct CommonItemColorSelect {
             default:
               this.selectColor = $r('app.color.background_dark')
           }
-        })
+        }).id(this.testId)
     }
     .borderRadius(this.isItemStyle ? 0 : 24)
     .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
@@ -172,7 +178,7 @@ export struct CommonItemInput {
         .size(TOOL_WIDTH)
         .onChange(value => {
           this.inputValue = value
-        })
+        }).id('test_input')
     }
     .size({ width: '100%', height: 70 })
     .padding({ left: 12, right: 12 })

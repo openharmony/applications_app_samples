@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,39 +13,92 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import wifiManager from '@ohos.wifiManager';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import { Logger } from '../utils/Logger';
+
+const DRIVER = Driver.create();
+
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-    it('assertContain', 0, function () {
+    /**
+     * 拉起应用
+     */
+    it('StartAbility_001', 0, async (done) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc'
-      let b = 'b'
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+      Logger.info('StartAbility_001 begin');
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'ohos.samples.workschedulerextensionability',
+          abilityName: 'MainAbility'
+        });
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      Logger.info('StartAbility_001 end');
+    })
+
+    /**
+     * 检查版本
+     */
+    it('CheckoutVersion_001', 0, async () => {
+      Logger.info('CheckoutVersion_001 begin');
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('version'));
+      let version = await DRIVER.findComponent(ON.id('version'));
+      // 断言当前版本为1.0
+      expect((await version.getText()).split('：')[1]).assertEqual('1.0');
+      Logger.info('CheckoutVersion_001 end');
+    })
+
+    /**
+     * 控制wifi
+     */
+    it('ControlWifi_001', 0, async (done) => {
+      Logger.info('ControlWifi_001 begin');
+      // 如果没有打开wifi，就打开wifi
+      if (!wifiManager.isWifiActive()) {
+        wifiManager.enableWifi();
+      } else {
+        // 如果已经打开wifi了，就重新连接
+        try {
+          wifiManager.disableWifi();
+        } catch (err) {
+          Logger.info('disableWifi failed', `${JSON.stringify(err)}`);
+        }
+        await DRIVER.delayMs(5000);
+        try {
+          wifiManager.enableWifi();
+        } catch (err) {
+          Logger.info('enableWifi failed', `${JSON.stringify(err)}`);
+        }
+        await DRIVER.delayMs(5000);
+      }
+      Logger.info('ControlWifi_001 end');
+      done();
+    })
+
+    /**
+     * 更新sample
+     */
+    it('UpdateApp_001', 1, async () => {
+      Logger.info('UpdateApp_001 begin');
+      let manager = abilityDelegatorRegistry.getAppContext().resourceManager;
+      // 等待文件下载并保存
+      await DRIVER.delayMs(5000);
+      // 点击确定开始装包
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.btn1'))));
+      let confirmBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.btn1'))));
+      await confirmBtn.click();
+      await DRIVER.delayMs(5000);
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.app_name'))));
+      Logger.info('UpdateApp_001 end');
     })
   })
 }
