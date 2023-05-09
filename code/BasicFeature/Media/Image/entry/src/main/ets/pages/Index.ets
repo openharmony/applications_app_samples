@@ -51,6 +51,7 @@ struct Index {
             let context = getContext(this)
             this.terminateSelf(context)
           })
+          .id('btnBack')
 
         Text($r('app.string.publish_comments'))
           .fontSize(22)
@@ -87,6 +88,7 @@ struct Index {
                       this.isShowComment = false
                     }
                   })
+                  .id('textAreaTip')
 
                 if (this.isShowComment) {
                   Image($r('app.media.comment'))
@@ -118,6 +120,7 @@ struct Index {
                                 url: 'pages/ChoicePhotos'
                               })
                             })
+                            .id('choicePhotos')
                           Text($r('app.string.add_picture'))
                             .fontSize(13)
                         }
@@ -157,6 +160,7 @@ struct Index {
                 .borderRadius(10)
                 .justifyContent(FlexAlign.Center)
                 .backgroundColor('#F1F3F5')
+                .id('choicePhotos')
               }
               Text($r('app.string.anonymous_display'))
                 .fontSize(15)

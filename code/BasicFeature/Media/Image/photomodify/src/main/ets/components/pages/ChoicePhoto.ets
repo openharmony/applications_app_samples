@@ -126,6 +126,7 @@ export struct ChoicePhoto {
           .onClick(() => {
             router.back()
           })
+          .id('btnBack')
 
         Text($r('app.string.recently_added'))
           .fontColor(Color.Black)
@@ -159,6 +160,7 @@ export struct ChoicePhoto {
 
             })
           })
+          .id('btnNext')
       }
       .width('100%')
       .height(35)
@@ -187,6 +189,7 @@ export struct ChoicePhoto {
                     this.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
                   }
                 })
+                .id('btnChoiceShow')
               if (this.whichShow[index]) {
                 Divider()
                   .vertical(false)
@@ -238,6 +241,7 @@ export struct ChoicePhoto {
                     }
                   }
                 })
+                .id('imageShow')
               }
               .aspectRatio(1)
             })
@@ -276,6 +280,7 @@ export struct ChoicePhoto {
                     }
                     this.choiceMedias.splice(index, 1)
                   })
+                  .id('btnChoiceDelete_' + index)
               }
               .width('100%')
             }
