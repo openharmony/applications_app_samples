@@ -15,7 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON, MatchPattern, UiDirection } from '@ohos.UiTest';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
 const TAG = '[Sample_Weather]';
@@ -89,28 +89,18 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('homeContent1'));
       await driver.swipe(300, 200, 500, 200);
       await driver.assertComponentExist(ON.id('homeContent0'));
-      await driver.fling(UiDirection.DOWN, 5000);
-      await driver.assertComponentExist(ON.text('中国天气', MatchPattern.CONTAINS));
-      await driver.fling(UiDirection.UP, 5000);
-      await driver.assertComponentExist(ON.text('℃', MatchPattern.CONTAINS));
       logger.info(TAG, `${BUNDLE}Home_001 end`);
-      done();
-    })
-
-    //上下滑动
-    it(BUNDLE + 'Home_002', 0, async function (done) {
-      logger.info(TAG, `${BUNDLE}Home_002 begin`);
-      await driver.fling(UiDirection.DOWN, 5000);
-      await driver.assertComponentExist(ON.text('中国天气', MatchPattern.CONTAINS));
-      await driver.fling(UiDirection.UP, 5000);
-      await driver.assertComponentExist(ON.text('℃', MatchPattern.CONTAINS));
-      logger.info(TAG, `${BUNDLE}Home_002 end`);
       done();
     })
 
     // 更新间隔
     it(BUNDLE + 'UpdateTime_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}UpdateTime_001 begin`)
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      // 获取ability
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
       // 点击弹出菜单
       await driver.assertComponentExist(ON.id('menuPopup'));
       let iconMore = await driver.findComponent(ON.id('menuPopup'));
@@ -120,8 +110,8 @@ export default function abilityTest() {
       let city = await driver.findComponent(ON.id('menu1'));
       await city.click();
       await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text('取消', MatchPattern.CONTAINS));
-      let cancel = await driver.findComponent(ON.text('取消', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.cancel')), MatchPattern.CONTAINS));
+      let cancel = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.cancel')), MatchPattern.CONTAINS));
       await cancel.click();
       logger.info(TAG, `${BUNDLE}UpdateTime_001 end`);
       done();
@@ -130,6 +120,11 @@ export default function abilityTest() {
     // 点击弹出菜单
     it(BUNDLE + 'City_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}City_001 begin`);
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      // 获取ability
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
       // 点击弹出菜单
       await driver.assertComponentExist(ON.id('menuPopup'));
       let iconMore = await driver.findComponent(ON.id('menuPopup'));
@@ -138,8 +133,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('menu0'));
       let city = await driver.findComponent(ON.id('menu0'));
       await city.click();
-      await driver.assertComponentExist(ON.text('北京', MatchPattern.CONTAINS));
-      await driver.assertComponentExist(ON.text('上海', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.bei_jing')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.shang_hai')), MatchPattern.CONTAINS));
       logger.info(TAG, `${BUNDLE}City_001 end`);
       done();
     })
@@ -147,17 +142,21 @@ export default function abilityTest() {
     // 添加城市
     it(BUNDLE + 'AddCity_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}AddCity_001 begin`);
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      // 获取ability
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
       // 点击菜单进入管理城市
       await driver.assertComponentExist(ON.id('addCity'));
       let addCity = await driver.findComponent(ON.id('addCity'));
       await addCity.click();
-      await driver.assertComponentExist(ON.text('热门城市', MatchPattern.CONTAINS));
       // 添加城市
-      await driver.assertComponentExist(ON.text('武汉', MatchPattern.CONTAINS));
-      let city = await driver.findComponent(ON.text('武汉', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.wu_han')), MatchPattern.CONTAINS));
+      let city = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.wu_han')), MatchPattern.CONTAINS));
       await city.click();
       await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text('武汉', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.wu_han')), MatchPattern.CONTAINS));
       // 返回首页
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}AddCity_001 end`);

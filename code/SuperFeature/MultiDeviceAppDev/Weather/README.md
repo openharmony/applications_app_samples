@@ -46,4 +46,4 @@ N/A
 
 2. This sample demonstrates the stage model, which supports only the SDK of API version 9 (SDK version: 3.2.11.9 Beta2).
 
-3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)must be used.
+3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.400)must be used.
