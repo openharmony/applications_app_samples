@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
+import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.UiTest'
 import hilog from '@ohos.hilog'
 
 const TAG = '[Sample_Preferences]'
