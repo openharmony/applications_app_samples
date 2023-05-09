@@ -663,7 +663,7 @@ export default function abilityTest() {
         await enterAbilityTwo.click();
         await driver.delayMs(500);
         // 返回
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 再次进入Ability1
         await enterAbilityOne.click();
@@ -677,7 +677,7 @@ export default function abilityTest() {
         await driver.drag(320, 745, 420, 745, 800)
         await driver.delayMs(500);
         // 返回首页
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 进入Ability2
         await enterAbilityTwo.click();
@@ -688,7 +688,7 @@ export default function abilityTest() {
         await nightModeSwitchThree.click();
         await driver.delayMs(500);
         // 返回首页
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 再次进入Ability1
         await enterAbilityOne.click();
@@ -704,9 +704,9 @@ export default function abilityTest() {
         await closeWebBtn.click();
         await driver.delayMs(500);
         // 返回
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500)
 
         Logger.info(TAG, BUNDLE + testName + ' end')
@@ -752,7 +752,7 @@ export default function abilityTest() {
         let enterPageTwo = await driver.findComponent(ON.id('enterPageTwo'));
         await enterPageTwo.click();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 进入跨Ability页面
         await driver.assertComponentExist(ON.id('enterOutOfAbility'));
@@ -760,7 +760,7 @@ export default function abilityTest() {
         await enterAbility.click();
         await driver.delayMs(500);
         // 返回
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 进入Page1
         await enterPageOne.click();
@@ -774,12 +774,12 @@ export default function abilityTest() {
         await driver.drag(320, 745, 380, 745, 800)
         await driver.delayMs(500);
         // 返回首页
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 进入Ability
         await enterAbility.click();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 进入Page2
         await enterPageTwo.click();
@@ -790,12 +790,12 @@ export default function abilityTest() {
         await nightModeSwitchThree.click();
         await driver.delayMs(500);
         // 返回首页
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 再次进入Page1
         await enterPageOne.click();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 再次进入Ability
         await enterAbility.click();
@@ -804,17 +804,17 @@ export default function abilityTest() {
         let nightModeSwitchFour = await driver.findComponent(ON.id('nightModeSwitchFour'));
         await nightModeSwitchFour.click();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 再次进入Page1
         await enterPageOne.click();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 进入Page2
         await enterPageTwo.click();
         await driver.delayMs(500);
-        await backBtn.click();
+        await driver.pressBack();
         await driver.delayMs(500);
         // 展示源码
         await driver.assertComponentExist(ON.id('viewSourceCode'));
