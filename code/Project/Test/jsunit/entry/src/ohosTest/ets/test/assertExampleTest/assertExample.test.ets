@@ -19,7 +19,6 @@
 * | 1    | assertClose        | 检验actualvalue和expectvalue(0)的接近程度是否是expectValue(1)。 |
 * | 2    | assertContain      | 检验actualvalue中是否包含expectvalue。                       |
 * | 3    | assertEqual        | 检验actualvalue是否等于expectvalue[0]。                      |
-* | 3    | assertDeepEquals   | 检验actualvalue与expectvalue[0]是否有相同的对象属性。                      |
 * | 4    | assertFail         | 抛出一个错误。                                               |
 * | 5    | assertFalse        | 检验actualvalue是否是false。                                 |
 * | 6    | assertTrue         | 检验actualvalue是否是true。                                  |
@@ -29,17 +28,17 @@
 * | 10   | assertNull         | 检验actualvalue是否是null。                                  |
 * | 11   | assertThrowError   | 检验actualvalue抛出Error内容是否是expectValue。              |
 * | 12   | assertUndefined    | 检验actualvalue是否是undefined。                             |
-* | 13   | assertNaN          | 检验actualvalue是否是一个NAN                                 |
-* | 14   | assertNegUnlimited | 检验actualvalue是否等于Number.NEGATIVE_INFINITY             |
-* | 15   | assertPosUnlimited | 检验actualvalue是否等于Number.POSITIVE_INFINITY             |
-* | 16   | assertDeepEquals   | 检验actualvalue和expectvalue是否完全相等               |
-* | 17   | assertPromiseIsPending | 判断promise是否处于Pending状态。                         |
-* | 18   | assertPromiseIsRejected | 判断promise是否处于Rejected状态。                       |
-* | 19   | assertPromiseIsRejectedWith | 判断promise是否处于Rejected状态，并且比较执行的结果值。|
-* | 20   | assertPromiseIsRejectedWithError | 判断promise是否处于Rejected状态并有异常，同时比较异常的类型和message值。                   |
-* | 21   | assertPromiseIsResolved | 判断promise是否处于Resolved状态。                       |
-* | 22   | assertPromiseIsResolvedWith | 判断promise是否处于Resolved状态，并且比较执行的结果值。|
-* | 23   | not                | 断言取反,支持上面所有的断言功能                                 |
+* | 13   | assertNaN          | @since1.0.4 检验actualvalue是否是NaN                        |
+* | 14   | assertNegUnlimited | @since1.0.4 检验actualvalue是否等于Number.NEGATIVE_INFINITY             |
+* | 15   | assertPosUnlimited | @since1.0.4 检验actualvalue是否等于Number.POSITIVE_INFINITY            |
+* | 16   | assertDeepEquals   | @since1.0.4 检验actualvalue和expectvalue(0)是否是同一个对象               |
+* | 17   | assertPromiseIsPending | @since1.0.4 判断promise是否处于Pending状态。                         |
+* | 18   | assertPromiseIsRejected | @since1.0.4 判断promise是否处于Rejected状态。                       |
+* | 19   | assertPromiseIsRejectedWith | @since1.0.4 判断promise是否处于Rejected状态，并且比较执行的结果值。|
+* | 20   | assertPromiseIsRejectedWithError | @since1.0.4 判断promise是否处于Rejected状态并有异常，同时比较异常的类型和message值。                   |
+* | 21   | assertPromiseIsResolved | @since1.0.4 判断promise是否处于Resolved状态。                       |
+* | 22   | assertPromiseIsResolvedWith | @since1.0.4 判断promise是否处于Resolved状态，并且比较执行的结果值。|
+* | 23   | not                | @since1.0.4 断言取反,支持上面所有的断言功能                                 |
 *
  */
 
