@@ -7,3 +7,5 @@
 **/build
 **/package-lock.json
 **/node_modules
+/oh_modules
+**/oh_modules
