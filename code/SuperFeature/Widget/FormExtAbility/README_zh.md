@@ -27,7 +27,7 @@ Ability：Ability是应用所具备能力的抽象，也是应用程序的重要
 
 2.本示例为Stage模型，已适配API version 9，版本号：3.2.11.9。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 ### 下载
 
