@@ -59,12 +59,14 @@ export class KvStoreModel {
   }
 
   put(key, value) {
-    Logger.debug(TAG, `kvStore.put ${key} = ${value}`)
-    this.kvStore.put(key, value).then((data) => {
-      Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
-    }).catch((err) => {
-      Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
-    })
+    if(this.kvStore) {
+      Logger.debug(TAG, `kvStore.put ${key} = ${value}`)
+      this.kvStore.put(key, value).then((data) => {
+        Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
+      })
+    }
   }
 
   setOnMessageReceivedListener(context, msg, callback) {
