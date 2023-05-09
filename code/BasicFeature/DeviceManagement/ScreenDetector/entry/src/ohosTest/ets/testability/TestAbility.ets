@@ -44,7 +44,7 @@ export default class TestAbility extends UIAbility {
     onWindowStageCreate(windowStage: Window.WindowStage) {
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
-        windowStage.loadContent('testAbility/pages/index', (err, data) => {
+        windowStage.loadContent('testability/pages/index', (err, data) => {
             if (err.code) {
                 hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.ERROR);
                 hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
