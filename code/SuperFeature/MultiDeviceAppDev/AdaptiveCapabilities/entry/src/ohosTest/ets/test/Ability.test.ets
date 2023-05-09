@@ -48,7 +48,7 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
       try {
