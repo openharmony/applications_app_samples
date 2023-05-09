@@ -16,6 +16,7 @@
 import Logger from '../model/Logger'
 import preferences from '@ohos.data.preferences'
 import ThemeDesktop from '../common/ThemeDesktop'
+import emitter from '@ohos.events.emitter'
 
 const THEMES = [
   [
@@ -68,6 +69,10 @@ struct Index {
     await this.getPreferencesFromStorage()
     //从轻量级存储db文件中获取键名为theme的键值
     this.nowTheme = await this.getPreference()
+    console.info(`nowTheme__get ${this.nowTheme}`)
+    emitter.emit({ eventId: 0, priority: 0 }, { data: {
+      nowTheme: this.nowTheme
+    } })
     let index = THEME_NAMES.indexOf(this.nowTheme)
     this.themeDatas = THEMES[index]
   }
@@ -110,6 +115,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
         Image($r('app.media.change'))
           .key('changeBtn')
+          .id('changeBtn')
           .height(30)
           .layoutWeight(1)
           .objectFit(ImageFit.ScaleDown)

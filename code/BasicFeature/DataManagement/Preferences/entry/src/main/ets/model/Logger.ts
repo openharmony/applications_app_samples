@@ -13,33 +13,28 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
+const DOMAIN: number = 0xF811;
+const PREFIX = 'Sample_Preferences';
+const FORMAT = '%{public}s, %{public}s';
 
 class Logger {
-  private domain: number
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
-
-  constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xFF00
-  }
 
   debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(DOMAIN, PREFIX, FORMAT, args);
   }
 
   info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(DOMAIN, PREFIX, FORMAT, args);
   }
 
   warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(DOMAIN, PREFIX, FORMAT, args);
   }
 
   error(...args: any[]) {
-    hilog.error(this.domain, this.prefix, this.format, args)
+    hilog.error(DOMAIN, PREFIX, FORMAT, args);
   }
 }
 
-export default new Logger('[Preferences]')
+export default new Logger();
