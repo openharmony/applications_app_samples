@@ -13,27 +13,27 @@
  * limitations under the License.
  */
 
-import TestRunner from '@ohos.application.testRunner'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import Logger from '../../../main/ets/model/Logger'
+import TestRunner from '@ohos.application.testRunner';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import Logger from '../../../main/ets/model/Logger';
 
-var abilityDelegator = undefined
-var abilityDelegatorArguments = undefined
-const TAG = 'OpenHarmonyTestRunner'
+var abilityDelegator = undefined;
+var abilityDelegatorArguments = undefined;
+const TAG = 'OpenHarmonyTestRunner';
 
 function translateParamsToString(parameters) {
   const keySet = new Set([
     '-s class', '-s notClass', '-s suite', '-s it',
     '-s level', '-s testType', '-s size', '-s timeout',
     '-s dryRun'
-  ])
+  ]);
   let targetParams = '';
   for (const key in parameters) {
     if (keySet.has(key)) {
-      targetParams = `${targetParams} ${key} ${parameters[key]}`
+      targetParams = `${targetParams} ${key} ${parameters[key]}`;
     }
   }
-  return targetParams.trim()
+  return targetParams.trim();
 }
 
 async function onAbilityCreateCallback() {
@@ -54,19 +54,19 @@ export default class OpenHarmonyTestRunner implements TestRunner {
 
   async onRun() {
     Logger.info(TAG, 'OpenHarmonyTestRunner onRun run');
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    var testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
     let lMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
     };
-    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
-    var cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
-    cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
-    var debug = abilityDelegatorArguments.parameters['-D']
+    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
+    var cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
+    cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters);
+    var debug = abilityDelegatorArguments.parameters['-D'];
     if (debug == 'true') {
-      cmd += ' -D'
+      cmd += ' -D';
     }
     Logger.info(TAG, cmd);
     abilityDelegator.executeShellCommand(cmd,
