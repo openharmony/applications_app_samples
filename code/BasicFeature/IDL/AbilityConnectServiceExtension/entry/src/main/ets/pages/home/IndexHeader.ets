@@ -35,6 +35,7 @@ export default struct IndexHeader {
         Text(`${this.currentWeather}`)
           .fontColor(Color.White)
           .fontWeight(Style.BIG_FONT_WEIGHT)
+          .id('temperature')
           .fontSize(96)
         Text($r('app.string.du'))
           .fontColor(Color.White)

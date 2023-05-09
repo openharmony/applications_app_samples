@@ -21,6 +21,7 @@ const TAG = '[Show]'
 export struct Show {
   private slotId: number = undefined
   private simColor: string = undefined
+  private idName: string = undefined
   @State simCard: Resource = undefined
   @State simText: Resource = undefined
   @State simTitle: Resource = undefined
@@ -77,6 +78,7 @@ export struct Show {
         this.dialogController.open()
         Logger.info(TAG, `CustomDialog start`)
       })
+      .id(this.idName)
     }
   }
 }

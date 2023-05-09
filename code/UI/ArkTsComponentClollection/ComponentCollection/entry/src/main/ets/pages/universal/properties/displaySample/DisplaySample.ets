@@ -111,7 +111,7 @@ struct Page {
                     .value(this.firstZindex + "")
                     .onSelect((index: number) => {
                       this.firstZindex = index + 1
-                    })
+                    }).id('test_select1')
                 }
 
                 Blank()
@@ -122,7 +122,7 @@ struct Page {
                     .value(this.secondZindex + "")
                     .onSelect((index: number) => {
                       this.secondZindex = index + 1
-                    })
+                    }).id('test_select2')
                 }
 
                 Blank()
@@ -133,7 +133,7 @@ struct Page {
                     .value(this.thirdZindex + "")
                     .onSelect((index: number) => {
                       this.thirdZindex = index + 1
-                    })
+                    }).id('test_select3')
                 }
 
                 Blank()
@@ -173,7 +173,7 @@ struct Page {
                 Select(this.selectArray).onSelect((index: number) => {
                   this.alignmentLocation = this.alignments[index]
                   this.selectIndex = index;
-                })
+                }).id('test_selectPosition')
                   .value(getStringData(this.selectArray[this.selectIndex].value))
               }.cardStyle()
 
@@ -236,7 +236,7 @@ struct Page {
                 .onSelect((index: number) => {
                   this.currentVisibility = this.visibilityArray[index]
                   this.visibleIndex = index
-                })
+                }).id('test_selectVisible')
                 .selected(this.visibleIndex)
             }.cardStyle()
           }.width('100%')

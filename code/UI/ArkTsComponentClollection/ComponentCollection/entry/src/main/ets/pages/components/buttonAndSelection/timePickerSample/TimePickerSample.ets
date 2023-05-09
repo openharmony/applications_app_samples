@@ -65,7 +65,7 @@ struct TimePickerSample {
           Toggle({ type: ToggleType.Switch, isOn: this.isMilitaryTime })
             .onChange((isOn) => {
               this.isMilitaryTime = isOn
-            })
+            }).id('test_toggle')
         }.width('100%')
         .height(50)
       }.cardStyle()

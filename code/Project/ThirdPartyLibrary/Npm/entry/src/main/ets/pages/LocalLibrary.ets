@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,15 +37,17 @@ struct LocalLibrary {
           TextShow({ text: $r('app.string.third_string_splicing'), fontSize: 25 })
           TextShow({ text: $r('app.string.input_first_string'), fontSize: 20 })
           TextAreaShow({ placeholder: '', value: $firstString, inputNumber: 3 })
+            .id('firstStrTextArea')
           TextShow({ text: $r('app.string.input_second_string'), fontSize: 20 })
           TextAreaShow({ placeholder: '', value: $secondString, inputNumber: 4 })
+            .id('secondStrTextArea')
           Button('确定')
             .fontSize(20)
             .width(100)
             .height(50)
             .type(ButtonType.Normal)
             .margin({ top: 20 })
-            .key('confirmBtn')
+            .id('confirmBtn')
             .onClick(() => {
               if (this.firstString === '') {
                 this.pinDialogController = new CustomDialogController({
@@ -65,10 +67,16 @@ struct LocalLibrary {
               this.logger.info(TAG, `onClick resultString = ${this.resultString}`)
             })
           if (this.firstString != '' && this.secondString != '') {
-            Text(`拼接后字符串：${this.resultString}`)
-              .fontSize(20)
-              .alignSelf(ItemAlign.Start)
-              .margin({ top: '3%', left: '5%' })
+           Row(){
+             Text(`拼接后字符串:`)
+               .fontSize(20)
+               .alignSelf(ItemAlign.Start)
+             Text(this.resultString)
+               .fontSize(20)
+               .alignSelf(ItemAlign.Start)
+               .id('montage')
+            }.width('100%')
+           .margin({ top: '3%', left: '5%' })
           }
         }.width('100%')
       }

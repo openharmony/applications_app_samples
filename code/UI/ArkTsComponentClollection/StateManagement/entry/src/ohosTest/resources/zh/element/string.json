@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "test_add",
+      "value": "test_add"
+    },
+    {
+      "name": "base_type",
+      "value": "基础类型"
+    },
+    {
+      "name": "array_type",
+      "value": "数组类型"
+    },
+    {
+      "name": "class_type",
+      "value": "类对象类型"
+    },
+    {
+      "name": "only_update_bound_components",
+      "value": "只更新所绑定的组件"
+    },
+    {
+      "name": "single_and_two_way_sync",
+      "value": "单、双向同步"
+    },
+    {
+      "name": "partial_sync",
+      "value": "子组件同步父组件部分内容"
+    },
+    {
+      "name": "parent_descendent_sync",
+      "value": "爷孙组件之间状态同步"
+    },
+    {
+      "name": "select_colorblue",
+      "value": "蓝色"
+    },
+    {
+      "name": "select_colorpink",
+      "value": "粉色"
+    },
+    {
+      "name": "brother_sync",
+      "value": "兄弟组件之间状态同步"
+    },
+    {
+      "name": "application_storage_ui",
+      "value": "应用内全局数据与UI之间的状态同步"
+    },
+    {
+      "name": "ability_storage_ui",
+      "value": "Ability内全局数据与UI之间的状态同步"
+    }
+  ]
+}

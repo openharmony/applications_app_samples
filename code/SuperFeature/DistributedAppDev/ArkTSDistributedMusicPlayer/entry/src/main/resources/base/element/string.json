@@ -23,6 +23,34 @@
     {
       "name": "cancel",
       "value": "取消"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "分布式音乐远程控制服务"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "分布式音乐服务"
+    },
+    {
+      "name": "onConnectService",
+      "value": "连接成功"
+    },
+    {
+      "name": "onDisconnectService",
+      "value": "连接断开"
+    },
+    {
+      "name": "onFailedService",
+      "value": "连接错误"
+    },
+    {
+      "name": "ConnectRemoteDevices",
+      "value": "连接远程设备"
+    },
+    {
+      "name": "ConnectionTimeout",
+      "value": "连接超时"
     }
   ]
 }

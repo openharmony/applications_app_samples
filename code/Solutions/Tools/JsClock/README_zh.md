@@ -24,11 +24,9 @@ TextClock：TextClock组件通过文本将当前系统时间显示在设备上�
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1；
+2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
-
-4.如果安装本示例报错为error：install sign info inconsistent，则有可能本应用被设置为系统预置应用，已安装在系统中，此时需使用命令进行替换安装，并在替换安装后对设备进行重启操作，具体命令如下：
+3.如果安装本示例报错为error：install sign info inconsistent，则有可能本应用被设置为系统预置应用，已安装在系统中，此时需使用命令进行替换安装，并在替换安装后对设备进行重启操作，具体命令如下：
 
 hdc shell mount -o rw,remount /
 

@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import UpdateTimeDialog from './UpdateTimeDialog'
-import { getMenuInfo, Style } from '@ohos/common'
+import router from '@ohos.router';
+import UpdateTimeDialog from './UpdateTimeDialog';
+import { getMenuInfo, Style } from '@ohos/common';
 
 @Component
 export default struct IndexTitleBar {
-  @State popupState: boolean = false
-  @Prop @Watch('curBpChange') curBp: string
-  @Link showSideBar: boolean
-  @StorageLink('titleText') titleText: string[] = []
-  @StorageLink('swiperIndex') swiperIndex: number = 0
-  private showDialog: boolean = false
-  private dialogController: CustomDialogController = undefined
+  @State popupState: boolean = false;
+  @StorageProp('curBp') @Watch('curBpChange') curBp: string = 'sm'
+  @Link showSideBar: boolean;
+  @StorageLink('titleText') titleText: string[] = [];
+  @StorageLink('swiperIndex') swiperIndex: number = 0;
+  private showDialog: boolean = false;
+  private dialogController: CustomDialogController = undefined;
 
   @Builder popupBuilder() {
     Row() {
@@ -38,28 +38,29 @@ export default struct IndexTitleBar {
               .margin({ top: 10, bottom: 10 })
           }
           Text(item.title)
+            .id('menu' + index)
             .fontSize(16)
             .fontColor('#000000')
             .fontWeight(FontWeight.Regular)
             .width('100%')
             .onClick(() => {
               if (item.url !== '') {
-                this.popupState = false
+                this.popupState = false;
                 if (this.showSideBar) {
-                  this.showSideBar = false
+                  this.showSideBar = false;
                 }
-                router.push({ url: item.url })
+                router.pushUrl({ url: item.url });
               } else {
                 if (this.dialogController === undefined) {
                   this.dialogController = new CustomDialogController({
                     builder: UpdateTimeDialog({ handleCancelDialog: this.cancelDialog }),
                     autoCancel: false,
                     customStyle: true
-                  })
+                  });
                 }
-                this.showDialog = true
-                this.popupState = false
-                this.dialogController.open()
+                this.showDialog = true;
+                this.popupState = false;
+                this.dialogController.open();
               }
             })
         }, item => item.title)
@@ -76,6 +77,7 @@ export default struct IndexTitleBar {
     Row() {
       if (!this.showSideBar && this.curBp === 'lg') {
         Image($r('app.media.icon_subarea'))
+          .id('iconSubarea')
           .size({ width: 24, height: 24 })
           .objectFit(ImageFit.Contain)
           .onClick(() => {
@@ -90,6 +92,7 @@ export default struct IndexTitleBar {
         .layoutWeight(1)
 
       Image($r('app.media.icon_more'))
+        .id('menuPopup')
         .size({ width: 24, height: 24 })
         .objectFit(ImageFit.Fill)
         .bindPopup(this.popupState, {
@@ -100,12 +103,12 @@ export default struct IndexTitleBar {
           enableArrow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.popupState = false
+              this.popupState = false;
             }
           }
         })
         .onClick(() => {
-          this.popupState = !this.popupState
+          this.popupState = !this.popupState;
         })
     }
     .width('100%')
@@ -114,19 +117,19 @@ export default struct IndexTitleBar {
   }
 
   cancelDialog = () => {
-    this.dialogController.close()
-    this.showDialog = false
+    this.dialogController.close();
+    this.showDialog = false;
   }
 
   curBpChange() {
     if (this.showDialog) {
-      this.dialogController.close()
+      this.dialogController.close();
       this.dialogController = new CustomDialogController({
         builder: UpdateTimeDialog({ handleCancelDialog: this.cancelDialog }),
         autoCancel: false,
         customStyle: true
-      })
-      this.dialogController.open()
+      });
+      this.dialogController.open();
     }
   }
 }

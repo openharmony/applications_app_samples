@@ -27,9 +27,7 @@ import { WaitDialog } from '../common/WaitDialog';
 
 @Component
 export struct Home {
-  @State childWidth: number = 0;
-  @State childHeight: number = 0;
-  @State goodsFlow: GoodsFlow = GoodsFlow.getInstance();
+  @State goodsFlow: GoodsFlow = new GoodsFlow();
   @State currentList: Array<GoodsInfo> = [];
   @State @Watch("myChange") currentGoodsType: number = GOODS_TYPE.SELECTED.valueOf();
   private waitDialog: CustomDialogController = new CustomDialogController({
@@ -54,7 +52,7 @@ export struct Home {
       FastSelections({ currentGoodsType: $currentGoodsType })
 
       Scroll() {
-        GridRow({ gutter: { x: vp2px(8), y: vp2px(8) } }) {
+        GridRow({ gutter: { x: vp2px(4), y: vp2px(4) } }) {
           LazyForEach(this.goodsFlow, (item: GoodsInfo) => {
             GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
               GoodsItem({ goods: item })

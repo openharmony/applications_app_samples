@@ -47,9 +47,9 @@ export default class BreakpointSystem {
   }
 
   public register() {
-    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<520vp)')
+    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<600vp)')
     this.smListener.on('change', this.isBreakpointSM)
-    this.mdListener = mediaQuery.matchMediaSync('(520vp<=width<840vp)')
+    this.mdListener = mediaQuery.matchMediaSync('(600vp<=width<840vp)')
     this.mdListener.on('change', this.isBreakpointMD)
     this.lgListener = mediaQuery.matchMediaSync('(840vp<=width)')
     this.lgListener.on('change', this.isBreakpointLG)

@@ -42,6 +42,7 @@ export struct TitleBar {
       Image($r('app.media.yes'))
         .width($r('app.float.image_size_32'))
         .height($r('app.float.image_size_32'))
+        .id('finish')
         .objectFit(ImageFit.Contain)
         .onClick(this.handleOnClick)
     }

@@ -103,8 +103,7 @@ export struct TitleBar {
         deviceName: 'Local device',
         deviceType: GobangConst.DEVICE_TYPE_NUMBER,
         networkId: '',
-        range: GobangConst.RANGE_NUMBER,
-        authForm: 2
+        range: GobangConst.RANGE_NUMBER
       })
       let deviceTemps = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
       for (let i = 0; i < deviceTemps.length; i++) {
@@ -117,6 +116,7 @@ export struct TitleBar {
   build() {
     Row() {
       Image($r('app.media.ic_back'))
+        .id('ic_back')
         .width(40)
         .height(30)
         .margin({ left: 15 })
@@ -129,6 +129,7 @@ export struct TitleBar {
         .layoutWeight(1)
       if (this.deviceFlag === 'A') {
         Image($r('app.media.ic_hop'))
+          .id('ic_hop')
           .width(40)
           .height(40)
           .margin({ right: 15 })

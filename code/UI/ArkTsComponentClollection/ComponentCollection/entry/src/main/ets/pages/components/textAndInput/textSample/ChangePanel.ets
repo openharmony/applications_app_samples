@@ -22,6 +22,7 @@ export struct ChangeTextCase {
   build() {
     Column() {
       CommonItemSelect({
+        testId: 'select5',
         name: $r('app.string.text_text_case'),
         selects: [$r('app.string.text_text_case_normal'),
                   $r('app.string.text_text_case_uppercase'),
@@ -71,6 +72,7 @@ export struct ChangeTextAttribute {
       })
 
       CommonItemSelect({
+        testId: 'select1',
         name: $r('app.string.text_text_align_type'),
         selects: [$r('app.string.text_text_align_start'),
                   $r('app.string.text_text_align_center'),
@@ -90,6 +92,7 @@ export struct ChangeTextAttribute {
       })
 
       CommonItemSelect({
+        testId: 'select2',
         name: $r('app.string.text_overflow'),
         selects: [$r('app.string.text_none'),
                   $r('app.string.text_text_over_flow_clip'),
@@ -113,6 +116,7 @@ export struct ChangeTextAttribute {
       })
 
       CommonItemSelect({
+        testId: 'select3',
         name: $r('app.string.text_decoration_type'),
         selects: [$r('app.string.text_none'),
                   $r('app.string.text_decoration_type_line_through'),
@@ -137,6 +141,7 @@ export struct ChangeTextAttribute {
 
       // CommonItemColorInput will parse color 'FF000000' -> '#FF000000'
       CommonItemColorSelect({
+        testId: 'select4',
         name: $r('app.string.text_font_color'),
         selectColor: $fontColor
       })

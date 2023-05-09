@@ -13,10 +13,7 @@
  * limitations under the License.
  */
 
-import Logger from '../model/Logger'
-import bundleState from '@ohos.bundleState'
-import { AppInfo, appInit } from '../model/AppInfo'
-import { getAppName, getAppIcon } from '../utils/Util'
+import { AppInfo, appInit, BundleStateUtil } from 'feature-util'
 
 const TAG = 'FreeApps'
 
@@ -26,17 +23,12 @@ export struct FreeApps {
   @State freeApps: Array<AppInfo> = []
 
   aboutToAppear() {
-    for (let i in this.apps) {
-      this.isIdleState(this.apps[i].bundleName)
-    }
+    this.getFreeApps()
   }
 
-  async isIdleState(bundleName: string) {
-    let isIdleState = await bundleState.isIdleState(bundleName)
-    if (isIdleState) {
-      this.freeApps.push({ bundleName: bundleName, name: getAppName(bundleName), icon: getAppIcon(bundleName) })
-    }
-    Logger.info(TAG, `freeApps=${JSON.stringify(this.freeApps)}`)
+  async getFreeApps() {
+    let bundleStateUtil = new BundleStateUtil()
+    this.freeApps = await bundleStateUtil.getFreeAppList()
   }
 
   build() {

@@ -77,6 +77,7 @@ struct Home {
     }
     .width('100%')
     .height('100%')
+    .id(`tabBar${index}`)
     .justifyContent(FlexAlign.Center)
     .onClick(() => {
       this.tabController.changeIndex(index)

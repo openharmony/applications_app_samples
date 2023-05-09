@@ -31,6 +31,7 @@ export struct Encryption {
       Column() {
         Select([{ value: 'RSA' },
           { value: 'AES' }])
+          .id('encryptionAlgorithm')
           .margin(4)
           .selected(0)
           .value(this.algorithmType)
@@ -45,7 +46,7 @@ export struct Encryption {
         TextArea()
           .margin(4)
           .width('60%')
-          .key('encryptionInput')
+          .id('encryptionInput')
           .onChange((value: string) => {
             this.message = value
           })
@@ -56,7 +57,7 @@ export struct Encryption {
             .fontSize(20)
             .width('45%')
             .height('6%')
-            .key('encryptionBtn')
+            .id('encryptionBtn')
             .onClick(() => {
               if (this.message === '') {
                 prompt.showToast({
@@ -82,7 +83,7 @@ export struct Encryption {
             .fontSize(20)
             .width('30%')
             .height('6%')
-            .key('resetBtn')
+            .id('encryptionResetBtn')
             .onClick(() => {
               this.info = ''
             })
@@ -90,6 +91,7 @@ export struct Encryption {
         .margin(10)
 
         Text(this.info)
+          .id('encryptionInfo')
           .fontSize(18)
           .width('85%')
           .height('25%')

@@ -11,6 +11,14 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "app_name",
+      "value": "WorkScheduler"
+    },
+    {
+      "name": "btn1",
+      "value": "confirm"
     }
   ]
 }

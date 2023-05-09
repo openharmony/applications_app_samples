@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -80,12 +80,12 @@ export struct setting {
               .onChange((value: string) => {
                 this.url = value
               })
-             .key("GET")
+              .id('GET')
           }
           .width('95%')
           .height('10%')
 
-          ForEach(this.list, (item,index) => {
+          ForEach(this.list, (item, index) => {
             Row() {
               Text('Key: ')
                 .width('20%')
@@ -98,7 +98,7 @@ export struct setting {
                 .onChange((value: string) => {
                   this.keys[this.flag - 1] = value
                 })
-               .key("Key"+(index+1))
+                .id(`key${index + 1}`)
             }
             .width('95%')
             .height('10%')
@@ -115,7 +115,7 @@ export struct setting {
                 .onChange((value: string) => {
                   this.values[this.flag -1] = value
                 })
-                .key("Value"+(index+1))
+                .id(`value${index + 1}`)
             }
             .width('95%')
             .height('10%')
@@ -130,7 +130,7 @@ export struct setting {
                 this.flag += 1
                 this.list = Http.setList(this.list, this.flag)
               })
-             .key("add")
+              .id('add')
 
             Button($r('app.string.reduce'))
               .margin(10)
@@ -142,9 +142,10 @@ export struct setting {
                 }
                 this.list = Http.setList(this.list, this.flag)
               })
-             .key("reduce")
+              .id('reduce')
 
             Button($r('app.string.reset'))
+              .id('reset')
               .margin(10)
               .fontSize(20)
               .width('60%')
@@ -173,9 +174,10 @@ export struct setting {
                 }
                 this.showPage = !this.showPage
               })
-             .key("submit")
+              .id('submit')
 
             Button($r('app.string.back'))
+              .id('back')
               .margin(10)
               .fontSize(20)
               .width('60%')
@@ -193,6 +195,7 @@ export struct setting {
           .width('100%')
         } else {
           Text(`${this.resultInfo} ${this.result}`)
+            .id(`${this.result === '' || this.result === 'Failed' ? 'failed' : 'succeed'}`)
             .fontSize(20)
             .margin('5%')
 
@@ -208,7 +211,7 @@ export struct setting {
               this.method = 'GET'
               this.showPage = !this.showPage
             })
-           .key("errorBack")
+            .id('back')
         }
       }
     }

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { addCity, City, getCityList, MyDataSource, Style } from '@ohos/common'
+import router from '@ohos.router';
+import { addCity, City, getCityList, MyDataSource, Style } from '@ohos/common';
 
 @Entry
 @Component
@@ -50,8 +50,8 @@ struct AddCity {
 
 @Component
 export struct CityGrid {
-  @StorageLink('cityList') cities: Array<City> = []
-  private cityList: MyDataSource = new MyDataSource(getCityList())
+  @StorageLink('cityList') cities: Array<City> = [];
+  private cityList: MyDataSource = new MyDataSource(getCityList());
 
   build() {
     GridRow({ columns: { sm: 4, md: 8, lg: 12 },
@@ -85,26 +85,27 @@ export struct CityGrid {
               .borderRadius(Style.CITY_TEXT_RADIUS)
               .onClick(() => {
                 if (!this.isCityAdded(item)) {
-                  addCity(item)
-                  AppStorage.SetOrCreate('isRefresh', true)
-                  router.back()
+                  addCity(item);
+                  AppStorage.SetOrCreate('isRefresh', true);
+                  router.back();
                 }
               })
             }
           }, item => item.name)
         }
       }
+      .height('100%')
     }
     .padding({ left: Style.NORMAL_PADDING, right: Style.NORMAL_PADDING })
   }
 
   isCityAdded(city: City) {
-    let isAdded: boolean = false
+    let isAdded: boolean = false;
     this.cities.forEach(item => {
       if (item.name === city.name) {
-        isAdded = true
+        isAdded = true;
       }
     })
-    return isAdded
+    return isAdded;
   }
 }

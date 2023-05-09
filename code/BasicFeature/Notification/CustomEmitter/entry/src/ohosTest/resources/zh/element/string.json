@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "shopping",
+      "value": "桔子购物"
+    },
+    {
+      "name": "close_icon",
+      "value": "X"
+    },
+    {
+      "name": "evaluate",
+      "value": "用户评价"
+    },
+    {
+      "name": "add_to_cart",
+      "value": "加入购物车"
+    },
+    {
+      "name": "shop_cart",
+      "value": "购物车"
+    }
+  ]
+}

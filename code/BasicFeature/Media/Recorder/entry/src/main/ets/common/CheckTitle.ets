@@ -15,31 +15,37 @@
 
 @Component
 export struct CheckTitle {
-  @Link num: number
-  @Link checkState: boolean
+  @Link checkNum: number;
+  @Link checkState: boolean;
 
   build() {
     Row() {
       Image($r('app.media.close'))
+        .id('closeCheck')
         .size({ width: 40, height: '100%' })
         .objectFit(ImageFit.Contain)
         .margin(10)
         .onClick(() => {
-          this.checkState = false
+          this.checkState = false;
         })
-        .key('close')
-      Text(this.num > 0 ? $r('app.string.check_title_selected') : $r('app.string.check_title_unselected'))
-        .fontColor(Color.Black)
-        .fontSize(25)
-      if (this.num > 0) {
-        Text(this.num.toString())
+      if (this.checkNum > 0) {
+        Text($r('app.string.check_title_selected'))
+          .fontColor(Color.Black)
+          .fontSize(25)
+        Text(this.checkNum.toString())
+          .id('checkedNum')
           .fontColor(Color.Black)
           .fontSize(25)
         Text($r('app.string.check_title_selected_end'))
           .fontColor(Color.Black)
           .fontSize(25)
+      } else {
+        Text($r('app.string.check_title_unselected'))
+          .fontColor(Color.Black)
+          .fontSize(25)
       }
     }
+    .width('100%')
     .height('8%')
     .constraintSize({ minHeight: 50 })
   }

@@ -20,6 +20,8 @@
 
 允许不同设备间的数据交换：ohos.permission.DISTRIBUTED_DATASYNC
 
+允许系统应用获取分布式设备的认证组网能力：[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionaccess_service_dm)
+
 ### 使用说明
 
 1.点击桌面应用图标，启动应用。
@@ -38,7 +40,7 @@
 
 2.分布式计算功能使用的前提是分布式组网。
 
-3.本示例已适配API10版本SDK，版本号：4.0.5.1，本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本进行编译。
+3.本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400)及以上版本进行编译。
 
 4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 

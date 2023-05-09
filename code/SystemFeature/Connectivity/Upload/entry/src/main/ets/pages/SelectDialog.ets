@@ -24,6 +24,7 @@ export default struct SelectDialog {
   build() {
     Column() {
       Text($r('app.string.take_photo'))
+        .id('take_photo')
         .fontSize(18)
         .margin({ top: Style.MARGIN_TOP, bottom: Style.MARGIN_BOTTOM })
         .onClick(() => {
@@ -36,6 +37,7 @@ export default struct SelectDialog {
       Divider().color($r('app.color.gray')).width(1)
 
       Text($r('app.string.pick_album'))
+        .id('pick_album')
         .fontSize(18)
         .margin({ top: Style.MARGIN_TOP, bottom: Style.MARGIN_BOTTOM })
         .onClick(() => {

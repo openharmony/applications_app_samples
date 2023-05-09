@@ -63,6 +63,22 @@
     {
       "name": "generate_poster",
       "value": "生成海报"
+    },
+    {
+      "name": "friend",
+      "value": "朋友0"
+    },
+    {
+      "name": "title",
+      "value": "手机拥有超光谱摄影系统 创新双屏操作体验 120Hz高刷 8GB+256GB"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
+    },
+    {
+      "name": "chatAPP",
+      "value": "聊天"
     }
   ]
 }

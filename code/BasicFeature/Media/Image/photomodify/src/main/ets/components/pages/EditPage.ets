@@ -19,6 +19,15 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { logger } from '../util/Logger'
 
 const TAG: string = 'EditPage'
+const SAMPLE_SIZE: number = 1
+const DESIRED_WIDTH: number = 3000
+const DESIRED_HEIGHT: number = 4000
+const ROTATE: number = 10
+const DESIRED_PIXEL_FORMAT: number = 3
+const DESIRED_REGION_HEIGHT: number = 6000
+const DESIRED_REGION_WIDTH: number = 8000
+const DESIRED_REGION_X: number = 0
+const DESIRED_REGION_Y: number = 0
 
 @Component
 export struct EditPage {
@@ -46,7 +55,6 @@ export struct EditPage {
   @State selectIndex: number = 0
   @State isLand: boolean = false
   private mediaLibraryInstance: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(getContext(this) as any)
-
 
   flushPage() {
     this.tempPixelMap = this.pixelMap
@@ -90,7 +98,21 @@ export struct EditPage {
     if (!imageSourceApi) {
       return
     }
-    let pixmap = await imageSourceApi.createPixelMap()
+    // 图片解码参数，通过图片解码参数创建PixelMap对象，防止拍照图片太大而无法预览
+    let decodingOptions = {
+      sampleSize: SAMPLE_SIZE,
+      editable: true,
+      desiredSize: { width: DESIRED_WIDTH, height: DESIRED_HEIGHT },
+      rotate: ROTATE,
+      desiredPixelFormat: DESIRED_PIXEL_FORMAT,
+      desiredRegion: {
+        size: { height: DESIRED_REGION_HEIGHT, width: DESIRED_REGION_WIDTH },
+        x: DESIRED_REGION_X,
+        y: DESIRED_REGION_Y
+      },
+      index: 0
+    }
+    let pixmap = await imageSourceApi.createPixelMap(decodingOptions)
     if (!pixmap) {
       return
     }

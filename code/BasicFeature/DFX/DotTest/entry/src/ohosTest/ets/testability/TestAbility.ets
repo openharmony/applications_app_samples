@@ -13,52 +13,48 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Window from '@ohos.window'
-import Logger from '../../../main/ets/model/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import testsuite from '../test/List.test';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { Hypium } from '@ohos/hypium';
+import { logger } from '../util/Logger';
 
-const TAG = 'TestAbility'
+const TAG: string = 'TestAbility';
 
-export default class TestAbility extends Ability {
-  onCreate(want, launchParam) {
-    Logger.info(TAG, 'TestAbility onCreate');
-    Logger.info(TAG, 'want param:' + JSON.stringify(want) ?? '');
-    Logger.info(TAG, 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info(TAG, 'start run testcase!!!');
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+export default class TestAbility extends UIAbility {
+  onCreate(want, launchParam): void {
+    logger.info(TAG, `TestAbility onCreate, want param: ${JSON.stringify(want)},launchParam: ${JSON.stringify(launchParam)}`);
+    var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    logger.info(TAG, 'start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
-  onDestroy() {
-    Logger.info(TAG, 'TestAbility onDestroy');
+  onDestroy(): void {
+    logger.info(TAG, 'TestAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
-    Logger.info(TAG, 'TestAbility onWindowStageCreate');
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    logger.info(TAG, 'TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
         return;
       }
-      Logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data) ?? ''}`);
     });
   }
 
-  onWindowStageDestroy() {
-    Logger.info(TAG, 'TestAbility onWindowStageDestroy');
+  onWindowStageDestroy(): void {
+    logger.info(TAG, 'TestAbility onWindowStageDestroy');
   }
 
-  onForeground() {
-    Logger.info(TAG, 'TestAbility onForeground');
+  onForeground(): void {
+    logger.info(TAG, 'TestAbility onForeground');
   }
 
-  onBackground() {
-    Logger.info(TAG, 'TestAbility onBackground');
+  onBackground(): void {
+    logger.info(TAG, 'TestAbility onBackground');
   }
 }

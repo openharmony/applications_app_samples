@@ -6,4 +6,5 @@
 /package-lock.json
 **/.preview
 **/package-lock.json
-**/node_modules
+/oh_modules
+**/oh_modules

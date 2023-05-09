@@ -24,6 +24,7 @@ export struct TitleBar {
   build() {
     Row() {
       Image($r('app.media.back'))
+        .id('btnBack')
         .width(32)
         .height(32)
         .margin({ right: 40 })
@@ -35,6 +36,7 @@ export struct TitleBar {
         .fontSize(16)
 
       Image($r('app.media.add'))
+        .id('btnAdd')
         .width(40)
         .height(40)
         .margin({ left: 30 })

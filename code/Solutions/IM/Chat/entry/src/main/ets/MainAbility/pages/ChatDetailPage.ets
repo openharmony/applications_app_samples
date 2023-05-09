@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -55,7 +55,7 @@ struct ChatDetailPage {
     Column() {
       Row() {
         Image($r('app.media.left'))
-          .key('returnBtn')
+          .id('returnBtn')
           .height(30)
           .width(30)
           .onClick(() => {
@@ -69,7 +69,7 @@ struct ChatDetailPage {
             .height(40)
             .width(40)
         }
-        .key('moreBtn')
+        .id('moreBtn')
         .onClick(() => {
           router.pushUrl({
             url: "pages/ChatNewsPage",
@@ -101,7 +101,7 @@ struct ChatDetailPage {
           .height(20)
           .width(20)
         TextInput({ placeholder: "", text: this.keyboardStr })
-          .key('bottomTextInput')
+          .id('bottomTextInput')
           .height(40)
           .width('80%')
           .enterKeyType(EnterKeyType.Send)
@@ -119,7 +119,7 @@ struct ChatDetailPage {
             this.keyboardStr = ''
           })
         Image($r('app.media.chatting_expression'))
-          .key('chatExpression')
+          .id('chatExpression')
           .height(20)
           .width(20)
           .onClick(() => {

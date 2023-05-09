@@ -1,7 +1,0 @@
-{
-  "src": [
-    "pages/index",
-    "pages/ContactInfoPage",
-    "pages/NewContactPage"
-  ]
-}

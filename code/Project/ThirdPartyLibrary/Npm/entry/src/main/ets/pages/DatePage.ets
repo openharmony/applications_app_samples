@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,17 +40,20 @@ struct DatePage {
           TextShow({ text: $r('app.string.second_dayjs'), fontSize: 25 })
           TextShow({ text: $r('app.string.input_math_date'), fontSize: 20 })
           TextAreaShow({ placeholder: '2000-01-01', value: $value, inputNumber: 0 })
+            .id('computeDate')
           TextShow({ text: $r('app.string.before_day'), fontSize: 20 })
           TextAreaShow({ placeholder: '0', value: $beforeDays, inputNumber: 1 })
+            .id('beforeDays')
           TextShow({ text: $r('app.string.after_day'), fontSize: 20 })
           TextAreaShow({ placeholder: '0', value: $afterDays, inputNumber: 2 })
+            .id('afterDays')
           Button($r('app.string.sure'))
             .fontSize(20)
             .width(100)
             .height(50)
             .type(ButtonType.Normal)
             .margin({ top: 20 })
-            .key('confirm')
+            .id('confirm')
             .onClick(() => {
               if (this.value === '') {
                 this.pinDialogController = new CustomDialogController({
@@ -81,17 +84,30 @@ struct DatePage {
 
 
           if (this.beforeDays) {
-            Text(`${this.beforeDays} 天前日期：${this.beforeValue}`)
-              .fontSize(20)
-              .alignSelf(ItemAlign.Start)
-              .margin({ top: '3%', left: '5%' })
+            Row() {
+              Text(`${this.beforeDays} 天前日期：`)
+                .fontSize(20)
+                .alignSelf(ItemAlign.Start)
+
+              Text(this.beforeValue)
+                .fontSize(20)
+                .alignSelf(ItemAlign.Start)
+                .id('beforeDaysText')
+            }.width('100%')
+            .margin({ top: '3%', left: '5%' })
           }
 
           if (this.afterDays) {
-            Text(`${this.afterDays} 天后日期：${this.afterValue}`)
-              .fontSize(20)
-              .alignSelf(ItemAlign.Start)
-              .margin({ top: '3%', left: '5%' })
+            Row() {
+              Text(`${this.afterDays} 天后日期：`)
+                .fontSize(20)
+                .alignSelf(ItemAlign.Start)
+              Text(this.afterValue)
+                .fontSize(20)
+                .id('afterDaysText')
+                .alignSelf(ItemAlign.Start)
+            }.width('100%')
+            .margin({ top: '3%', left: '5%' })
           }
 
           Button($r('app.string.next_page'))
@@ -100,7 +116,7 @@ struct DatePage {
             .height(50)
             .type(ButtonType.Normal)
             .margin({ top: 20 })
-            .key('dateNextPage')
+            .id('dateNextPage')
             .onClick(() => {
               this.value = ''
               router.push({

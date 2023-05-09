@@ -13,11 +13,7 @@
  * limitations under the License.
  */
 
-import Logger from '../model/Logger'
-import AppTime from '../model/AppTime'
-import bundleState from '@ohos.bundleState'
-import {MyDataSource} from '../utils/DataSource'
-import { getAppName, getTotalTime, getTimStr } from '../utils/Util'
+import { AppTime, BundleStateUtil, getAppName, getTotalTime } from 'feature-util'
 
 const TAG = 'PanelView'
 const oftenUsed = 5
@@ -35,23 +31,9 @@ export struct PanelView {
   }
 
   async getTime() {
-    let dateBegin = new Date()
-    dateBegin.setHours(0)
-    dateBegin.setMinutes(0)
-    dateBegin.setSeconds(0)
-    Logger.info(TAG, `dateBegin= ${getTimStr(dateBegin)} ${dateBegin.toString()}`)
-    let dateEnd = new Date()
-    Logger.info(TAG, `dateEnd= ${getTimStr(dateEnd)} ${dateEnd.toString()}`)
-    let res = await bundleState.queryBundleStateInfos(Date.parse(dateBegin.toString()), Date.parse(dateEnd.toString()))
-    Logger.info(TAG, `queryBundleStateInfos promise success`)
-    let list: Array<AppTime> = []
-    for (let key in res) {
-      if (res.hasOwnProperty(key)) {
-        Logger.info(TAG, `queryBundleStateInfos promise result ${JSON.stringify(res[key])}`)
-        let appTime = new AppTime(res[key].bundleName, res[key].abilityPrevAccessTime, res[key].abilityInFgTotalTime)
-        list.push(appTime)
-      }
-    }
+    let bundleStateUtil = new BundleStateUtil()
+    let list = await bundleStateUtil.getTotalAppList()
+
     this.totalTime = getTotalTime(list)
     list.sort((a, b) => b.totalTime - a.totalTime)
     this.statisticals = list

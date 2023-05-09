@@ -1,6 +1,6 @@
 // @ts-nocheck
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,6 +40,7 @@ export struct SettingPage {
                   .fontSize(15)
                   .fontColor(Color.Black)
               }
+              .id('mineMessage')
               .alignItems(HorizontalAlign.Start)
               .padding({ left: 20 })
             }
@@ -80,6 +81,7 @@ export struct SettingPage {
           Column() {
             SettingItemView({ image: $r('app.media.icon_me_setting'), text: '设置' })
           }
+          .id('setting')
           .margin({ bottom: 10 })
           .onClick(() => {
             router.push({ url: 'pages/Setting' })

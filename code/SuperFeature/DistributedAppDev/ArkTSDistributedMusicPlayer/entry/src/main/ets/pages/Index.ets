@@ -20,6 +20,8 @@ import mediaQuery from '@ohos.mediaquery'
 import PlayerModel from '../model/PlayerModel'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { DeviceDialog } from '../common/DeviceDialog'
+import { APPLICATION_BUNDLE_NAME, APPLICATION_SERVICE_NAME, MusicSharedEventCode, MusicSharedStatus, MusicConnectEvent } from '../common/MusicSharedDefinition'
+import rpc from '@ohos.rpc'
 
 const TAG: string = 'Index'
 const DESIGN_WIDTH: number = 720.0
@@ -29,6 +31,9 @@ const ONE_HUNDRED: number = 100
 const ONE_THOUSAND: number = 1000
 const SIXTY: number = 60
 const REMOTE_ABILITY_STARTED: string = 'remoteAbilityStarted'
+const ABILITY_SHARED_BUTTON = 0
+const DEFAULT_NUM = -1
+const PREVIOUS_CLICK = 2
 
 @Entry
 @Component
@@ -53,6 +58,10 @@ struct Index {
   private dialogController: CustomDialogController = null
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   private context
+  private deviceId
+  private clickFlag = MusicSharedStatus.MUSIC_SHARED
+  private localExtensionRemote = null
+  private remoteProxy = null
   onLand = (mediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
@@ -72,7 +81,6 @@ struct Index {
         deviceType: hardware_deviceManager.DeviceType.UNKNOWN_TYPE,
         networkId: '',
         range: ONE_THOUSAND,
-        authForm: 2
       })
       let deviceTempList = this.remoteDeviceModel.discoverLists.length > 0 ? this.remoteDeviceModel.discoverLists : this.remoteDeviceModel.deviceLists
       for (let i = 0; i < deviceTempList.length; i++) {
@@ -97,6 +105,144 @@ struct Index {
       this.dialogController.open()
       Logger.info(TAG, 'CustomDialogController end')
     })
+  }
+
+  showPromptDialog(title, str) {
+    AlertDialog.show({
+      title: title,
+      message: str,
+      confirm: {
+        value: $r('app.string.cancel'),
+        action: () => {
+          Logger.info(TAG, `Button-clicking callback`)
+        }
+      },
+      cancel: () => { Logger.info(TAG, `Closed callbacks`) }
+    })
+  }
+
+  remoteServiceExtensionConnectEvent(event) {
+    if (typeof(event) === 'string') {
+      if (event === MusicConnectEvent.EVENT_CONNECT) {
+        this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+        Logger.info(TAG, 'remote service on connect callbacked')
+      } else if (event === MusicConnectEvent.EVENT_DISCONNECT) {
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'))
+      } else if (event === MusicConnectEvent.EVENT_FAILED) {
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'))
+      } else if (event === MusicConnectEvent.EVENT_TIMEOUT) {
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
+        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.ConnectionTimeout'))
+      }
+    } else {
+      Logger.info(TAG, 'event is not a string')
+    }
+  }
+
+  musicPause() {
+    Logger.info(TAG, 'music pause recv')
+    PlayerModel.pause()
+    this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
+  }
+
+  musicPlay() {
+    Logger.info(TAG, 'music play recv')
+    PlayerModel.play(DEFAULT_NUM, true)
+    this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
+  }
+
+  exitMusicApp() {
+    Logger.info(TAG, `exit music app called`)
+    if (typeof(this.localExtensionRemote) === 'object') {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_LOCAL_SERIVCE, data, reply, option)
+    } else {
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+    }
+  }
+
+  connectLocalExtension() {
+    let localServiceWant = {
+      bundleName: APPLICATION_BUNDLE_NAME,
+      abilityName: APPLICATION_SERVICE_NAME,
+    }
+    let connectOptions = {
+      onConnect(elementName, remote) {
+        globalThis.viewThis.localExtensionRemote = remote
+        Logger.info(TAG, `onConnect called elementName is ${JSON.stringify(elementName)}`)
+      },
+      onDisconnect(elementName) {
+        globalThis.viewThis.context.terminateSelf()
+        Logger.info(TAG, `OnDisconnect called elementName is ${JSON.stringify(elementName)}`)
+      },
+      onFailed(code) {
+        globalThis.viewThis.context.terminateSelf()
+        Logger.info(TAG, `OnFailed called code is ${JSON.stringify(code)}`)
+      }
+    }
+    this.context.connectServiceExtensionAbility(localServiceWant, connectOptions)
+  }
+
+  startRemoteExtension(deviceId, params) {
+    if (typeof(this.localExtensionRemote) === 'object' && typeof(deviceId) === 'string' && deviceId !== '') {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      data.writeString(deviceId)
+      data.writeString(JSON.stringify(params))
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
+      this.deviceId = deviceId
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+    } else {
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+    }
+  }
+
+  stopRemoteExtension() {
+    if (typeof(this.localExtensionRemote) === 'object' && typeof(this.deviceId) === 'string' && this.deviceId !== '') {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      data.writeString(this.deviceId)
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
+      this.deviceId = ''
+    } else {
+      Logger.info(TAG, `Remote stopped type is wrong or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+    }
+  }
+
+  sendMessagePlay() {
+    if(this.localExtensionRemote === null) {
+      Logger.info(TAG, `can not get proxy`)
+      return
+    }
+    let option = new rpc.MessageOption()
+    let data = new rpc.MessageParcel()
+    let reply = new rpc.MessageParcel()
+
+    this.localExtensionRemote.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE, data, reply, option)
+    Logger.info(TAG, `onPlayClick send mssage success`)
+  }
+
+  sendMessagePause() {
+    if(this.localExtensionRemote === null) {
+      Logger.info(TAG, `can not get proxy`)
+      return
+    }
+    let option = new rpc.MessageOption()
+    let data = new rpc.MessageParcel()
+    let reply = new rpc.MessageParcel()
+
+    this.localExtensionRemote.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE, data, reply, option)
+    Logger.info(TAG, `onPauseClick send mssage success`)
   }
 
   onBackPress() {
@@ -130,32 +276,13 @@ struct Index {
       }
     }
     Logger.info(TAG, `context.startAbility deviceId= ${deviceId}`)
-    let wantValue = {
-      bundleName: 'ohos.samples.etsdistributedmusicplayer',
-      abilityName: 'MainAbility',
-      deviceId: deviceId,
-      parameters: params
-    }
-    let timerId = setTimeout(() => {
-      Logger.info(TAG, 'onMessageReceiveTimeout, terminateSelf')
-      this.context.terminateSelf((error) => {
-        Logger.info(TAG, `terminateSelf finished, error= ${error}`)
-      })
-    }, 3000)
-
     KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
       Logger.info(TAG, 'OnMessageReceived, terminateSelf')
-      clearTimeout(timerId)
-      this.context.terminateSelf((error) => {
-        Logger.info(TAG, `terminateSelf finished, error= ${error}`)
-      })
     })
     Logger.info(TAG, `context.startAbility start`)
-    this.context.startAbility(wantValue).then((data) => {
-      Logger.info(TAG, `context.startAbility finished ${JSON.stringify(data)}`)
-    })
+    this.clickFlag = MusicSharedStatus.MUSIC_REMOTING
+    this.startRemoteExtension(deviceId, params)
     this.clearSelectState()
-    Logger.info(TAG, `context.startAbility want= ${JSON.stringify(wantValue)}`)
     Logger.info(TAG, 'context.startAbility end')
   }
 
@@ -244,6 +371,16 @@ struct Index {
     Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`)
   }
 
+  onAppSharedClick() {
+    if (this.clickFlag === MusicSharedStatus.MUSIC_SHARED) {
+      Logger.info(TAG, `start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`)
+      this.showDialog()
+    } else if (this.clickFlag === MusicSharedStatus.MUSIC_STOP_SHARED) {
+      this.stopRemoteExtension()
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+    }
+  }
+
   onPreviousClick() {
     if (this.isSwitching) {
       Logger.info(TAG, 'onPreviousClick ignored, isSwitching')
@@ -261,7 +398,7 @@ struct Index {
       this.refreshSongInfo(PlayerModel.index)
       PlayerModel.play(0, true)
       if (PlayerModel.isPlaying) {
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
       }
       this.isSwitching = false
     })
@@ -283,7 +420,7 @@ struct Index {
       this.refreshSongInfo(PlayerModel.index)
       PlayerModel.play(0, true)
       if (PlayerModel.isPlaying) {
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
       }
       this.isSwitching = false
     })
@@ -297,11 +434,13 @@ struct Index {
     Logger.info(TAG, `onPlayClick isPlaying= ${PlayerModel.isPlaying}`)
     if (PlayerModel.isPlaying) {
       PlayerModel.pause()
-      this.imageArrays[2] = $r('app.media.ic_play')
+      this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
+      this.sendMessagePause()
     } else {
       PlayerModel.preLoad(PlayerModel.index, () => {
-        PlayerModel.play(-1, true)
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        PlayerModel.play(DEFAULT_NUM, true)
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
+        this.sendMessagePlay()
       })
     }
   }
@@ -366,9 +505,9 @@ struct Index {
         this.currentProgress = Math.floor(currentTimeMs / this.totalMs * ONE_HUNDRED)
       })
       if (isPlaying) {
-        this.imageArrays[2] = $r('app.media.ic_pause')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
       } else {
-        this.imageArrays[2] = $r('app.media.ic_play')
+        this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
       }
     })
 
@@ -376,6 +515,8 @@ struct Index {
       Logger.info(TAG, 'on playlist generated, refresh ui')
       this.restoreFromWant()
     })
+    globalThis.viewThis = this
+    this.connectLocalExtension()
   }
 
   build() {
@@ -430,7 +571,7 @@ struct Index {
               .onClick(() => {
                 switch (index) {
                   case 0:
-                    this.showDialog()
+                    this.onAppSharedClick()
                     break
                   case 1:
                     this.onPreviousClick()
@@ -446,7 +587,7 @@ struct Index {
                 }
               })
           }
-          .key('image' + (index + 1))
+          .id('image' + (index + 1))
           .width(100)
           .height(100)
           .alignItems(HorizontalAlign.Center)

@@ -42,6 +42,7 @@ struct DetailPage {
               ForEach(this.swiperList, item => {
                 Column() {
                   Image(this.goodDetailData.uri)
+                    .id(this.goodDetailData.id.toString())
                     .width('100%')
                     .aspectRatio(1)
                 }

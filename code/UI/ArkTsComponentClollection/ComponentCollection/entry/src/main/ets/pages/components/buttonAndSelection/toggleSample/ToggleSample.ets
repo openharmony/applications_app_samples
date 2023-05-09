@@ -27,6 +27,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct ToggleSample {
+  @State testIndexId: string = 'testIndexId'
   @State isNormalSelect: boolean = false
   @State isCustomSelect: boolean = true
   private context: any = getContext(this)
@@ -34,7 +35,7 @@ struct ToggleSample {
 
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.toggle_title') })
+      TitleBar({ title: $r('app.string.toggle_title') }).id(this.testIndexId)
       Scroll() {
         Column() {
           IntroductionTitle({ introduction: $r('app.string.toggle_type_switch') })
@@ -42,14 +43,16 @@ struct ToggleSample {
             Toggle({ type: ToggleType.Switch, isOn: false })
               .onChange((isOn: boolean) => {
                 ShowToast.longToast(`${this.toggleState}${isOn}`)
-              })
+                this.testIndexId = 'test_ToggleSwitch1'
+              }).id('test_ToggleSwitch1')
 
             Toggle({ type: ToggleType.Switch, isOn: true })
               .switchPointColor($r('app.color.background_blue'))
               .selectedColor($r('app.color.toggle_selected_color'))
               .onChange((isOn: boolean) => {
                 ShowToast.longToast(`${this.toggleState}${isOn}`)
-              })
+                this.testIndexId = 'test_ToggleSwitch2'
+              }).id('test_ToggleSwitch2')
           }
           .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
@@ -60,7 +63,8 @@ struct ToggleSample {
               Toggle({ type: ToggleType.Checkbox, isOn: false })
                 .onChange((isOn: boolean) => {
                   ShowToast.longToast(`${this.toggleState}${isOn}`)
-                })
+                  this.testIndexId = 'test_ToggleCheckbox1'
+                }).id('test_ToggleCheckbox1')
               Text($r('app.string.radio_beijing'))
             }
 
@@ -69,7 +73,8 @@ struct ToggleSample {
                 .selectedColor($r('app.color.toggle_selected_color'))
                 .onChange((isOn: boolean) => {
                   ShowToast.longToast(`${this.toggleState}${isOn}`)
-                })
+                  this.testIndexId = 'test_ToggleCheckbox2'
+                }).id('test_ToggleCheckbox2')
               Text($r('app.string.radio_shanghai'))
             }
           }
@@ -86,7 +91,8 @@ struct ToggleSample {
             .onChange((isOn: boolean) => {
               this.isNormalSelect = isOn
               ShowToast.longToast(`${this.toggleState}${isOn}`)
-            })
+              this.testIndexId = 'test_ToggleButton1'
+            }).id('test_ToggleButton1')
 
             Toggle({ type: ToggleType.Button, isOn: this.isCustomSelect }) {
               Text(this.isCustomSelect ? $r('app.string.toggle_select') : $r('app.string.toggle_unselect'))
@@ -97,7 +103,8 @@ struct ToggleSample {
             .onChange((isOn: boolean) => {
               this.isCustomSelect = isOn
               ShowToast.longToast(`${this.toggleState}${isOn}`)
-            })
+              this.testIndexId = 'test_ToggleButton2'
+            }).id('test_ToggleButton2')
           }
           .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)

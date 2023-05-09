@@ -53,7 +53,7 @@ struct ShareElementTransitionSample {
               url: 'pages/animations/TransitionAnimations/shareElementTransitionSample/ShareElementTransitionSampleTo',
               params: { image: item, id: index }
             })
-          })
+          }).id('test_grid'+index)
         })
       }
       .padding(12)

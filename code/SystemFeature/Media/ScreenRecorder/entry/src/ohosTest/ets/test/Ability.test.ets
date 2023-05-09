@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,19 +13,105 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import Logger from '../../../main/ets/common/Logger.ts'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import hilog from '@ohos.hilog';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-const TAG: string = 'abilityTest'
+const TAG: string = 'abilityTest';
+const DRIVER = Driver.create();
+const DOMAIN = 0xF811;
+const BUNDLE = 'ScreenRecorder_';
+let predicates = new dataSharePredicates.DataSharePredicates();
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+let mediaDataCount: number
+let fileManager: userFileManager.UserFileManager
 
 export default function abilityTest() {
-    describe('ActsAbilityTest', function () {
-        it('assertContain',0, function () {
-            Logger.info(TAG, `it begin`)
-            let a = 'abc'
-            let b = 'b'
-            expect(a).assertContain(b)
-            expect(a).assertEqual(a)
+  describe('ActsAbilityTest', function () {
+
+    /**
+     * 拉起应用
+     */
+    it('StartAbility_001', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'ohos.samples.screenrecorder',
+          abilityName: 'MainAbility'
         })
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
+
+    /**
+     * 授权
+     */
+    it('GetPermission_001', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      await DRIVER.delayMs(3000);
+      await DRIVER.assertComponentExist(ON.text('允许'));
+      let allowBtn1 = await DRIVER.findComponent(ON.text('允许'));
+      await allowBtn1.click();
+      await DRIVER.delayMs(1000);
+      let allowBtn2 = await DRIVER.findComponent(ON.text('允许'));
+      await allowBtn2.click();
+      await DRIVER.delayMs(1000);
+      let allowBtn3 = await DRIVER.findComponent(ON.text('允许'));
+      await allowBtn3.click();
+      await DRIVER.delayMs(1000);
+      done();
+      // 获取当前应用的ability
+      let currentAbility = await abilityDelegatorRegistry.getCurrentTopAbility();
+      // 使用当前应用的ability获取媒体库
+      fileManager = userFileManager.getUserFileMgr(currentAbility.context);
+      // 读取媒体库的视频资源
+      let fetchResultBefore = await fileManager.getPhotoAssets({
+        fetchColumns: [],
+        predicates: predicates.equalTo('media_type', userFileManager.FileType.VIDEO)
+      })
+      // 媒体资源的数量
+      mediaDataCount = fetchResultBefore.getCount();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
+    })
+
+    /**
+     * 开始录制视频
+     */
+    it('StartRecord_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      await DRIVER.assertComponentExist(ON.id('startRecord'));
+      let startRecordBtn = await DRIVER.findComponent(ON.id('startRecord'));
+      await startRecordBtn.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('stopRecord'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
+    })
+
+    /**
+     * 停止录制视频
+     */
+    it('StopRecord_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      await DRIVER.delayMs(3000);
+      await DRIVER.assertComponentExist(ON.id('stopRecord'));
+      let stopRecordBtn = await DRIVER.findComponent(ON.id('stopRecord'));
+      await stopRecordBtn.click();
+      await DRIVER.delayMs(10000);
+      // 再次获取媒体库中的视频数量
+      let fetchResultAfter = await fileManager.getPhotoAssets({
+        fetchColumns: [],
+        predicates: predicates.equalTo('media_type', userFileManager.FileType.VIDEO)
+      })
+      // 断言比录制视频之前多一个
+      expect(fetchResultAfter.getCount()).assertEqual(mediaDataCount + 1)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
+    })
+  })
 }

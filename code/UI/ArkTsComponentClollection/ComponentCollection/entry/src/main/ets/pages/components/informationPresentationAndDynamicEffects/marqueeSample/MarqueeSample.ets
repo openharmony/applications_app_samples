@@ -89,7 +89,7 @@ struct MarqueeSample {
         Button(this.start ? 'stop' : 'start')
           .onClick(() => {
             this.start = !this.start
-          })
+          }).id('test_marqueeButton')
           .width(200)
           .height(60)
           .margin({ bottom: 20 })
@@ -108,7 +108,7 @@ struct MarqueeSample {
           Toggle({ type: ToggleType.Switch, isOn: this.fromStart })
             .onChange((isOn) => {
               this.fromStart = isOn
-            })
+            }).id('test_toggle')
         }.width('100%')
         .height(50)
 

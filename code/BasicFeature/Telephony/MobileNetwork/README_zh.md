@@ -4,7 +4,7 @@
 
 本示例通过获取SIM卡相关信息，展示打开本应用时网络信息。
 
-本示例使用 [@Builder](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-builder.md) 在一个自定义组件内快速生成多个布局内容。
+本示例使用 [@Builder](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。
 
 本示例使用 [SystemCapability.Telephony.CellularData系统能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。
 
@@ -34,7 +34,7 @@
 
 1.本示例仅支持标准系统上运行，支持设备：仅支持部分机型。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

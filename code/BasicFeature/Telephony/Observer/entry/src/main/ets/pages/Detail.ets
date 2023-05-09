@@ -349,7 +349,7 @@ export struct Detail {
           .onClick(() => {
             router.back()
           })
-          .key('back')
+          .id('back')
         Text($r('app.string.detail'))
           .fontSize(30)
           .margin({ left: '26%' })

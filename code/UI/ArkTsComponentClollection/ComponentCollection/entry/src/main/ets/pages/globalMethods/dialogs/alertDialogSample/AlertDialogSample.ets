@@ -62,7 +62,7 @@ struct WarningDialogSample {
                     }
                   }
                 )
-              })
+              }).id('test_oneButton')
             Button($r('app.string.alert_dialog_type_two'))
               .buttonStyle()
               .onClick(() => {
@@ -90,7 +90,7 @@ struct WarningDialogSample {
                     }
                   }
                 )
-              })
+              }).id('test_twoButton')
           }
           .rowStyle()
 
@@ -116,7 +116,7 @@ struct WarningDialogSample {
                     alignment: DialogAlignment.Top
                   }
                 )
-              })
+              }).id('test_topButton')
             Button($r('app.string.alert_dialog_center'))
               .buttonStyle()
               .onClick(() => {
@@ -137,7 +137,7 @@ struct WarningDialogSample {
                     alignment: DialogAlignment.Center
                   }
                 )
-              })
+              }).id('test_centerButton')
             Button($r('app.string.alert_dialog_bottom'))
               .buttonStyle()
               .onClick(() => {
@@ -158,7 +158,7 @@ struct WarningDialogSample {
                     alignment: DialogAlignment.Bottom
                   }
                 )
-              })
+              }).id('test_bottomButton')
           }
           .rowStyle()
 
@@ -184,7 +184,7 @@ struct WarningDialogSample {
                     }
                   }
                 )
-              })
+              }).id('test_closeableButton')
             Button($r('app.string.alert_dialog_false'))
               .buttonStyle()
               .onClick(() => {
@@ -205,7 +205,7 @@ struct WarningDialogSample {
                     }
                   }
                 )
-              })
+              }).id('test_noCloseButton')
           }
           .rowStyle()
 
@@ -231,7 +231,7 @@ struct WarningDialogSample {
                     offset: { dx: -20, dy: -150 }
                   }
                 )
-              })
+              }).id('test_upperLeftButton')
             Button($r('app.string.alert_dialog_right'))
               .buttonStyle()
               .onClick(() => {
@@ -252,7 +252,7 @@ struct WarningDialogSample {
                     offset: { dx: 20, dy: 150 }
                   }
                 )
-              })
+              }).id('test_lowRightButton')
           }
           .rowStyle()
 
@@ -278,7 +278,7 @@ struct WarningDialogSample {
                     gridCount: 2
                   }
                 )
-              })
+              }).id('test_2GridButton')
             Button($r('app.string.alert_dialog_grid_three'))
               .buttonStyle()
               .onClick(() => {
@@ -299,7 +299,7 @@ struct WarningDialogSample {
                     gridCount: 3
                   }
                 )
-              })
+              }).id('test_3GridButton')
             Button($r('app.string.alert_dialog_grid_four'))
               .buttonStyle()
               .onClick(() => {
@@ -320,7 +320,7 @@ struct WarningDialogSample {
                     gridCount: 4
                   }
                 )
-              })
+              }).id('test_4GridButton')
           }
           .rowStyle()
         }

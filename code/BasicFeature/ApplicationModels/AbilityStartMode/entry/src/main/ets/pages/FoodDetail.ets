@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -128,6 +128,7 @@ struct ContentTable {
       .layoutWeight(2)
     }
     .margin({ bottom: 20 })
+    .id('ContentTable')
   }
 
   build() {
@@ -193,7 +194,9 @@ struct CaloriesProgress {
         .style({ strokeWidth: 24 })
         .color(this.getCalorieColor())
         .margin({ top: 18 })
-    }.cardStyle()
+    }
+    .cardStyle()
+    .id('CaloriesProgress')
   }
 
   getCalorieColor() {
@@ -380,5 +383,6 @@ export struct FoodDetail {
     .backgroundColor('#EDF2F5')
     .height('100%')
     .align(Alignment.Top)
+    .id('detailPage')
   }
 }

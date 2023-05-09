@@ -23,6 +23,7 @@ export struct InputComponent {
       Column() {
         Scroll() {
           Text(this.expression)
+            .id('expression')
             .maxLines(1)
             .opacity(0.9)
             .fontWeight(400)
@@ -34,6 +35,7 @@ export struct InputComponent {
         .align(this.isLand ? Alignment.Start : Alignment.End)
         Scroll() {
           Text(this.result)
+            .id('result')
             .maxLines(1)
             .opacity(0.38)
             .textAlign(TextAlign.Start)

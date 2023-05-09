@@ -21,15 +21,12 @@ export struct UserTitle {
     Row() {
       Image($r('app.media.user_avatar'))
         .padding(2)
-        .size({ width: 40, height: 40 })
+        .size({ width: 32, height: 32 })
         .borderRadius(6)
         .objectFit(ImageFit.Fill)
-        .onClick(() => {
-          RouterUtil.gotoUserCenter();
-        })
 
       Text($r('app.string.user_center'))
-        .fontSize(25)
+        .fontSize(16)
         .fontWeight(FontWeight.Bolder)
         .fontColor($r('app.color.white'))
         .margin({ left: 12 })
@@ -42,5 +39,8 @@ export struct UserTitle {
     .alignItems(VerticalAlign.Center)
     .backgroundColor("#00000000")
     .padding({ top: 10, bottom: 10 })
+    .onClick(() => {
+      RouterUtil.gotoUserCenter();
+    })
   }
 }

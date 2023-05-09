@@ -20,6 +20,8 @@
 
 允许不同设备间的数据交换：[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
+允许系统应用获取分布式设备的认证组网能力：[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionaccess_service_dm)
+
 ### 依赖
 
 不涉及。
@@ -28,7 +30,7 @@
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，已适配API10版本SDK，版本号：4.0.5.1。
+2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)及以上才可编译运行。
 

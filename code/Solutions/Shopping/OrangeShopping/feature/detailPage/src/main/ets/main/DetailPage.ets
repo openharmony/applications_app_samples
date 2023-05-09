@@ -54,6 +54,7 @@ export struct DetailPage {
           Stack({ alignContent: Alignment.BottomEnd }) {
             Swiper() {
               VideoPage({ isStart: $openFirst })
+                .id('VideoPage')
               ForEach(SWIPER_PICTURE_DATA, item => {
                 Column() {
                   Image(this.goodDetailData['uri'])
@@ -98,6 +99,7 @@ export struct DetailPage {
           }
           .padding({ left: 12, right: 12 })
         }
+        .id('goodsDetail' + this.goodDetailData['id'])
         .width('100%')
       }
       .width('100%')
@@ -156,6 +158,7 @@ export struct DetailPage {
           .fontSize(14)
           .fontColor($r('app.color.blank'))
       }
+      .id('directVideo')
       .width(62)
       .height(78)
       .borderWidth(0.5)

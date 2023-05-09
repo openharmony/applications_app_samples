@@ -30,6 +30,7 @@ export struct SubItemToggle {
       Blank()
 
       Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+        .id('ToggleSwitch')
         .width(36)
         .height(20)
         .selectedColor('#007DFF')

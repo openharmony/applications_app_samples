@@ -38,14 +38,14 @@ struct Second {
         .onClick(() => {
           router.back()
         })
-        .key('back')
+        .id('back')
 
         Text(this.flag ? $r('app.string.encryption') : $r('app.string.decrypt'))
           .fontSize(20)
           .fontColor(Color.White)
           .textAlign(TextAlign.Start)
-          .margin({ right: '5%', top: '15%' })
-          .key('encryptAndDecrypt')
+          .margin({ right: '5%' })
+          .id('encryptAndDecrypt')
 
       }
       .height('6%')

@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "bluetooth",
+      "value": "蓝牙"
+    },
+    {
+      "name": "match",
+      "value": "配对"
+    },
+    {
+      "name": "match_request",
+      "value": "蓝牙配对请求"
+    },
+    {
+      "name": "agree",
+      "value": "允许"
+    }
+  ]
+}

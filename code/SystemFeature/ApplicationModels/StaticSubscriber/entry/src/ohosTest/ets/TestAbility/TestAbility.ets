@@ -13,43 +13,51 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from 'hypium/index'
-import testsuite from '../test/List.test'
-import Logger from '../../../main/ets/model/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
+import window from '@ohos.window';
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info('TestAbility onCreate')
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info('start run testcase!!!')
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
   }
 
   onDestroy() {
-    Logger.info('TestAbility onDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
-    Logger.info('TestAbility onWindowStageCreate')
-    windowStage.setUIContent(this.context, 'TestAbility/pages/Index', null)
-
-    globalThis.abilityContext = this.context
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      var abilityDelegator: any;
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      var abilityDelegatorArguments: any;
+      abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+      hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
+      Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
+        JSON.stringify(data) ?? '');
+    });
   }
 
   onWindowStageDestroy() {
-    Logger.info('TestAbility onWindowStageDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    Logger.info('TestAbility onForeground')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onForeground');
   }
 
   onBackground() {
-    Logger.info('TestAbility onBackground')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onBackground');
   }
 }

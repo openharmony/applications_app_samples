@@ -42,7 +42,7 @@ struct Index {
     Scroll() {
       Column() {
         GridRow({ gutter: { x: vp2px(8), y: vp2px(8) }, }) {
-          ForEach(PRODUCT_DATA, item => {
+          ForEach(PRODUCT_DATA, (item, index) => {
             GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
               Column() {
                 // 此处的商品图片需要根据父组件的宽度而变化，这里使用70%
@@ -54,6 +54,7 @@ struct Index {
 
                 Column() {
                   Text(item.title)
+                    .id(index.toString())
                     .width('100%')
                     .fontSize(14)
 

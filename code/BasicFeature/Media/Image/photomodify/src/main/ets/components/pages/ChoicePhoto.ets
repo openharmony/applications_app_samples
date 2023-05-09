@@ -52,9 +52,12 @@ export struct ChoicePhoto {
     }
   }
 
-  @Builder showChoiceBuild(backGround: string, showNumber: number) {
+  @Builder showChoiceBuild($$: {
+    backGround: string,
+    showNumber: number
+  }) {
     Column() {
-      Text(showNumber === 0 ? '' : `${showNumber}`)
+      Text($$.showNumber === 0 ? '' : `${$$.showNumber}`)
         .fontSize(14)
         .fontColor(Color.White)
         .height(20)
@@ -65,7 +68,7 @@ export struct ChoicePhoto {
     .margin({ top: 6, right: 6 })
     .borderRadius(15)
     .border({ width: 1, style: BorderStyle.Solid, color: Color.White })
-    .backgroundColor(backGround)
+    .backgroundColor($$.backGround)
   }
 
   async getFileAssetsFromType(mediaType: mediaLibrary.MediaType) {
@@ -219,9 +222,9 @@ export struct ChoicePhoto {
                     .objectFit(ImageFit.Fill)
 
                   if (this.isShowChoices[index]) {
-                    this.showChoiceBuild('#e92f4f', this.choiceMedias.indexOf(item) + 1)
+                    this.showChoiceBuild({ backGround: '#e92f4f', showNumber: this.choiceMedias.indexOf(item) + 1 })
                   } else {
-                    this.showChoiceBuild('#ffb7b4b4', 0)
+                    this.showChoiceBuild({ backGround: '#ffb7b4b4', showNumber: 0 })
                   }
                 }
                 .width('100%')

@@ -20,7 +20,7 @@ import { BreakPointType } from '../common/BreakpointSystem'
 import { FoodInfo, CategoryId, MealTime, MealTimeId, DietRecord } from '../model/DataModels'
 import { getFoodInfo, initDietRecords, getMileTimes } from '../model/DataUtil'
 
-@Styles function cardStyle () {
+@Styles function cardStyle() {
   .height('100%')
   .padding({ top: 20, right: 20, left: 20 })
   .backgroundColor(Color.White)
@@ -55,6 +55,7 @@ struct PageTitle {
       Image($r('app.media.back'))
         .width(20)
         .height(20)
+        .id('backIndex')
         .onClick(() => {
           router.back()
         })
@@ -338,6 +339,7 @@ struct Record {
       Button($r('app.string.button_food_detail_complete'), { type: ButtonType.Capsule, stateEffect: true })
         .height(43)
         .width('100%')
+        .id('complete')
         .margin({ top: 33, left: 72, right: 72 })
         .backgroundColor($r('app.color.theme_color_green'))
         .onClick(() => {
@@ -412,6 +414,7 @@ struct FoodDetail {
         Button($r('app.string.button_food_detail_record'), { type: ButtonType.Capsule, stateEffect: true })
           .height(42)
           .width('80%')
+          .id('record')
           .margin({ top: 32, bottom: 32 })
           .backgroundColor($r('app.color.theme_color_green'))
           .onClick(() => {

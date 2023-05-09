@@ -47,7 +47,7 @@ export struct AddDialog {
           .onChange((value: string) => {
             this.editContact.name = value
           })
-          .key('nameInput')
+          .id('nameInput')
       }
       .margin({ top: 10 })
 
@@ -68,7 +68,7 @@ export struct AddDialog {
           .onChange((value: string) => {
             this.editContact.destinationHost = value
           })
-          .key('telInput')
+          .id('telInput')
       }
       .margin({ top: 10 })
 
@@ -78,7 +78,7 @@ export struct AddDialog {
             .fontColor(Color.Red)
             .fontSize(17)
         }
-        .key('cancel')
+        .id('cancel')
         .layoutWeight(7)
         .backgroundColor(Color.White)
         .margin(5)
@@ -95,7 +95,7 @@ export struct AddDialog {
             .fontColor(Color.Blue)
             .fontSize(17)
         }
-        .key('confirm')
+        .id('confirm')
         .layoutWeight(7)
         .backgroundColor(Color.White)
         .margin(5)

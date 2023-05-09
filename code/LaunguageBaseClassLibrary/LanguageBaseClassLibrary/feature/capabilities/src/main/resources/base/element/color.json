@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "text_color",
+      "value": "#0D9FFB"
+    },
+    {
+      "name": "button_bg",
+      "value": "#00FFFFFF"
+    }
+  ]
+}

@@ -14,6 +14,7 @@ limitations under the License.
 -->
 
 <div class="calc-container">
+  <div style="height : {{ topRectHeight }} px; width : 100%"></div>
   <div class="content">
     <stack class="calc-titlebar">
       <div @click="handleExist">
@@ -91,7 +92,7 @@ limitations under the License.
       </div>
     </stack>
   </div>
-  <dialog id="showDialog" if="{{ isShow }}" class="calc-select-device-dialog" oncancel="cancelDialog">
+  <dialog id="showDialog" if="{{ isShow }}" class="calc-select-device-dialog" oncancel="cancelDialog" style="margin-bottom : {{ bottomRectHeight+20 }} px">
     <div class="calc-select-device-wrapper">
       <text class="calc-select-device-text calc-select-device-item-title">选择设备</text>
       <list class="calc-select-device-item">
@@ -110,4 +111,5 @@ limitations under the License.
       </text>
     </div>
   </dialog>
+  <div style="height : {{ bottomRectHeight  }} px; width : 100%"></div>
 </div>

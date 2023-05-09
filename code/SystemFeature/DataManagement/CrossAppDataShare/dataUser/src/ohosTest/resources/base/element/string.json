@@ -11,6 +11,22 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "dataUser_desc",
+      "value": "Contact assistant"
+    },
+    {
+      "name": "delete",
+      "value": "Delete"
+    },
+    {
+      "name": "edit",
+      "value": "Edit"
+    },
+    {
+      "name": "contact",
+      "value": "Contact"
     }
   ]
 }

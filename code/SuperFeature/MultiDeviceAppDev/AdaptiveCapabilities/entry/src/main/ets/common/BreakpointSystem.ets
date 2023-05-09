@@ -60,7 +60,7 @@ export class BreakpointSystem {
   private currentBreakpoint: string = 'md'
   private breakpoints: Breakpoint[] = [
     { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
-    { name: 'md', size: 520 }, { name: 'lg', size: 840 }
+    { name: 'md', size: 600 }, { name: 'lg', size: 840 }
   ]
 
   private updateCurrentBreakpoint(breakpoint: string) {

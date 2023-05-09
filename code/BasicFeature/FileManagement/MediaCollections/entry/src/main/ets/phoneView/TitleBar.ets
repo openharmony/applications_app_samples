@@ -45,6 +45,7 @@ export struct TitleBar {
         TextInput({ text: this.httpUrl })
           .fontColor(this.isInputBg)
           .backgroundColor('#343434')
+          .id('search')
           .width('100%')
           .height('100%')
           .fontSize(18)

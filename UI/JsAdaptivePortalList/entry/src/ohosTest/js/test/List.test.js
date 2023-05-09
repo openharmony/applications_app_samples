@@ -1,1 +1,0 @@
-require('./Ability.test.js')

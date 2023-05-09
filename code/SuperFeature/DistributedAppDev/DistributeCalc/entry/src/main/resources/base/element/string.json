@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "DistributedCalc"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Distributed calculator"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Distributed calculator"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "Used for calculator to exchange data between different devicesUsed for calculator to exchange data between different devices"
+    }
+  ]
+}

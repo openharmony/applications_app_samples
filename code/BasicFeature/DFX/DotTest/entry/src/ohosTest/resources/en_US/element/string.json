@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "writeSuccess",
+      "value": "Successful write event"
+    },
+    {
+      "name": "writeFailed",
+      "value": "Write event failed，"
+    },
+    {
+      "name": "appDisabled",
+      "value": "Failed to write event when application log is disabled"
+    },
+    {
+      "name": "appAble",
+      "value": "Enable application registration, at which time events can be written successfully"
+    }
+  ]
+}

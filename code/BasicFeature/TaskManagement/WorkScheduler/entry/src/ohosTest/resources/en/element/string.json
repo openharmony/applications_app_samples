@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "app_name",
+      "value": "WorkScheduler"
+    },
+    {
+      "name": "btn1",
+      "value": "confirm"
+    }
+  ]
+}

@@ -4,11 +4,14 @@
 
  本示例实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。 
 
+注：
+1.联系人指的是内置联系人应用，为dataProvider生成的hap包，需要手动安装，由于联系人和联系人助手共用一个bundleName，因此打包之前需要更改bundleName，保证两个包的bundleName不同，这样两个应用打开才不会出问题。
+
 实现：
 
-1. 使用[DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md) 实现数据共享。
-2. 使用[关系型数据库](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-rdb.md)实现数据的增、删、改、查接口。
-3. 使用[DataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md)管理和访问数据库数据变化。
+1. 使用[DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md) 实现数据共享。
+2. 使用[关系型数据库](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-rdb.md) 实现数据的增、删、改、查接口。
+3. 使用[DataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md) 管理和访问数据库数据变化。
 
 使用说明：
 
@@ -38,7 +41,7 @@
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，已适配API10版本SDK，版本号：4.0.5.1。
+2. 本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
 

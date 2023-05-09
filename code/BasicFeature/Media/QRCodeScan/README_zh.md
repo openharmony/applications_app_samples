@@ -60,8 +60,8 @@ Feature/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行,支持设备:RK3568。
-2. 本示例已适配API10版本SDK，版本号：4.0.5.1，本示例涉及使用系统接口：xcomponent.d.ts，需要手动替换Full
-   SDK（4.0.5.1）才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例涉及使用系统接口：xcomponent.d.ts，需要手动替换Full
+   SDK（3.2.11.9）才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
 ### 下载

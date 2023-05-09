@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例是[《一次开发，多端部署》](https://gitee.com/fanzhaonan/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的配套示例代码，展示了[页面开发的一多能力](https://gitee.com/fanzhaonan/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/layout-intro.md)，包括自适应布局、响应式布局、典型布局场景以及资源文件使用。
+本示例是[《一次开发，多端部署》](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的配套示例代码，展示了[页面开发的一多能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/layout-intro.md)，包括自适应布局、响应式布局、典型布局场景以及资源文件使用。
 
 | 名称         | 简介                                                         |
 | ------------ | ------------------------------------------------------------ |
@@ -50,7 +50,7 @@
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，已适配API10版本SDK，版本号：4.0.5.1；。
+2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

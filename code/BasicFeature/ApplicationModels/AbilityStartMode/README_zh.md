@@ -4,7 +4,7 @@
 
 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。
 
-本实例参考[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md) 。
+本实例参考[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/application-package-structure-stage.md) 。
 本实例需要使用[aa工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/aa-tool.md) 查看应用Ability 模式信息。 
 
 ### 效果预览
@@ -78,7 +78,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.5.1。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

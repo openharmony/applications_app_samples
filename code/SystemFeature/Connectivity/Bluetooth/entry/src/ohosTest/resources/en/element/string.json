@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "bluetooth",
+      "value": "Bluetooth"
+    },
+    {
+      "name": "match",
+      "value": "Match"
+    },
+    {
+      "name": "match_request",
+      "value": "Match request"
+    },
+    {
+      "name": "agree",
+      "value": "agree"
+    }
+  ]
+}

@@ -52,6 +52,9 @@
       {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC",
         "reason": "$string:cancel"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM"
       }
     ]
   }
