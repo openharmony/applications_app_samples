@@ -22,7 +22,7 @@ const TAG = '[Sample_DeviceUsageStatistics]'
 const BUNDLE = 'DeviceUsageStatistics_'
 
 export default function abilityTest() {
-  describe('appTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       Logger.info( TAG, BUNDLE + 'StartAbility_001 begin')
       let driver = Driver.create()
