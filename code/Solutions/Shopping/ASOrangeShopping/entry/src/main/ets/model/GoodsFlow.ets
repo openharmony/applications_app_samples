@@ -21,14 +21,6 @@ import { GOODS_LIST } from '../data/GoodsData';
 export class GoodsFlow implements IDataSource {
   private dataArray: Array<GoodsInfo> = GOODS_LIST;
   private listeners: DataChangeListener[] = [];
-  private static instance: GoodsFlow = new GoodsFlow();
-
-  static getInstance(): GoodsFlow {
-    return this.instance;
-  }
-
-  private constructor() {
-  }
 
   // 获取索引对应的数据
   public getData(index: number): GoodsInfo {

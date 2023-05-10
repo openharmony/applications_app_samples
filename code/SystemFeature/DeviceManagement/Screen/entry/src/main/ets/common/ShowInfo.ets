@@ -33,6 +33,7 @@ export struct ShowInfo {
       Text(infos)
         .margin({ left: 5 })
         .fontSize(18)
+        .id('smallRectId')
     }
     .margin(5)
   }
@@ -76,7 +77,7 @@ export struct ShowInfo {
       Text($r('app.string.info'))
         .margin(10)
         .fontSize(20)
-        .key('deviceInfo')
+        .id('deviceInfo')
 
       Column() {
         this.infoText($r('app.string.id'), this.screenInfo('id'))

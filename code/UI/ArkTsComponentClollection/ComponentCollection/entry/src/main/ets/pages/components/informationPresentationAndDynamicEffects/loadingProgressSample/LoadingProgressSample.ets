@@ -71,11 +71,11 @@ struct LoadingProgressSample {
       Column() {
         Row() {
           Blank()
-          ForEach(this.colorArray, (item: Color) => {
+          ForEach(this.colorArray, (item: Color, index) => {
             Circle({ width: 20, height: 20 })
               .colorPicker(item, () => {
                 this.mColor = item
-              })
+              }).id('test_circle'+index)
               .stateStyles({
                 pressed: pressedStyle,
                 normal: {

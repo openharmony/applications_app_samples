@@ -65,6 +65,7 @@ struct Index {
           ForEach(this.albums, (item: Album, index) => {
             ListItem() {
               MediaView({ album: item })
+                .id(`mediaType${index}`)
             }
           }, item => item.albumName)
         }
@@ -83,6 +84,7 @@ struct Index {
         .width(60)
         .height(60)
         .padding(10)
+        .id('addBtn')
         .type(ButtonType.Circle)
         .backgroundColor('#0D9FFB')
         .onClick(() => {
@@ -93,6 +95,7 @@ struct Index {
 
         Button() {
           Image($r('app.media.icon_camera'))
+            .id('camera')
             .width('100%')
             .height('100%')
         }
@@ -110,6 +113,7 @@ struct Index {
 
         Button() {
           Image($r('app.media.icon_record'))
+            .id('record')
             .width('100%')
             .height('100%')
         }
@@ -133,6 +137,7 @@ struct Index {
         .width(60)
         .height(60)
         .padding(10)
+        .id('document')
         .type(ButtonType.Circle)
         .backgroundColor('#0D9FFB')
         .translate({ x: 0, y: 80 })
@@ -142,6 +147,8 @@ struct Index {
           router.pushUrl({ url: 'pages/DocumentPage' })
         })
       }
+      .width(180)
+      .height(220)
       .margin({ right: 40, bottom: 120 })
     }
     .width('100%')

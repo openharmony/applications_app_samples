@@ -1,0 +1,14 @@
+{
+  "license": "ISC",
+  "devDependencies": {},
+  "name": "entry",
+  "ohos": {
+    "org": "huawei",
+    "directoryLevel": "module",
+    "buildTool": "hvigor"
+  },
+  "description": "OpenHarmony battery info example",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {}
+}

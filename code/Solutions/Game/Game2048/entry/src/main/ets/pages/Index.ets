@@ -115,6 +115,7 @@ struct Game2048 {
       Column() {
         Row() {
           Image($r('app.media.logo2048'))
+            .id('logo2048')
             .width(this.screenSize.x * 0.25)
             .height(this.screenSize.x * 0.25)
 
@@ -203,7 +204,7 @@ struct Game2048 {
             .borderRadius(5)
             .margin({ top: 50 })
             .width(200)
-            .key('startGame')
+            .id('startGame')
             .onClick(() => {
               this.gameStart()
             })

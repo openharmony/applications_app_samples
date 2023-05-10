@@ -74,6 +74,7 @@ export default struct HomeContent {
       Image($r('app.media.add'))
         .width($r('app.float.navigation_image_size'))
         .height($r('app.float.navigation_image_size'))
+        .id('addContact')
         .onClick(() => {
           router.push({
             url: 'pages/ContactEdit',

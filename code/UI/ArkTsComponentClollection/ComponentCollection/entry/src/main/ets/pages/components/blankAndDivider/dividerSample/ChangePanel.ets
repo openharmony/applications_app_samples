@@ -30,11 +30,13 @@ export struct ChangePanel {
       // Select line color
       CommonItemColorSelect({
         name: $r('app.string.divider_line_color'),
-        selectColor: $lineColor
+        selectColor: $lineColor,
+        testId: 'colorSelect'
       })
 
       // Select lineCapStyle
       CommonItemSelect({
+        testId: 'capSelect',
         name: $r('app.string.divider_line_cap'),
         selects: [$r('app.string.divider_line_type_butt'), $r('app.string.divider_line_type_round'),
         $r('app.string.divider_line_type_square')],

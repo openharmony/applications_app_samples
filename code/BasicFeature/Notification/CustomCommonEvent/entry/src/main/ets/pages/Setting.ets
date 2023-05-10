@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -48,6 +48,7 @@ struct Setting {
               Column() {
                 Text($r('app.string.always')).fontSize(14)
                 Radio({ value: 'always', group: item[0] })
+                  .id(item[0]+'0')
                   .checked(this.feature.checkStateForAlways(item[0]))
                   .height(20)
                   .width(20)
@@ -61,6 +62,7 @@ struct Setting {
               Column() {
                 Text($r('app.string.once')).fontSize(14)
                 Radio({ value: 'once', group: item[0] })
+                  .id(item[0]+'1')
                   .checked(this.feature.checkStateForOnce(item[0]))
                   .height(20)
                   .width(20)
@@ -74,6 +76,7 @@ struct Setting {
               Column() {
                 Text($r('app.string.never')).fontSize(14)
                 Radio({ value: 'never', group: item[0] })
+                  .id(item[0]+'2')
                   .checked(this.feature.checkStateForNever(item[0]))
                   .height(20)
                   .width(20)

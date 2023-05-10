@@ -42,6 +42,7 @@ struct DocumentPage {
       TextArea({ placeholder: 'input file content', text: this.fileContent })
         .placeholderColor(Color.Gray)
         .fontSize(22)
+        .id('textArea')
         .margin({ left: 15, right: 15, top: 15 })
         .textAlign(TextAlign.Start)
         .height('30%')
@@ -51,6 +52,7 @@ struct DocumentPage {
       Button() {
         Text($r('app.string.save'))
           .fontColor(Color.Black)
+          .id('saveBtn')
           .fontSize(17)
       }
       .backgroundColor('#0D9FFB')

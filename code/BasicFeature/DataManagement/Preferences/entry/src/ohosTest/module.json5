@@ -17,7 +17,7 @@
   "module": {
     "name": "entry_test",
     "type": "feature",
-    "srcEntrance": "./ets/TestAbility/TestAbility.ts",
+    "srcEntrance": "./ets/testability/TestAbility.ets",
     "description": "$string:entry_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [
@@ -31,7 +31,7 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/TestAbility/TestAbility.ts",
+        "srcEntrance": "./ets/testability/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",

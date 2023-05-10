@@ -75,7 +75,7 @@ struct InterpolationCalculation {
             .onClick(() => {
               this.customWidth = this.isAnimationStart ? '15%' : '95%'
               this.isAnimationStart = !this.isAnimationStart
-            })
+            }).id('test_goButton')
         }
         .constraintSize({ minHeight: '100%' })
       }

@@ -116,7 +116,7 @@ struct Index {
                 .onChange((isOn: boolean) => {
                   this.onChangeCallback(index, isOn)
                 })
-                .key('switch' + (index + 1))
+                .id('switch' + (index + 1))
             }.width('100%')
           }
           .width('100%')
@@ -127,7 +127,7 @@ struct Index {
       .padding({ left: 10, right: 10 })
 
       Button($r('app.string.details'))
-        .key('seeDetails')
+        .id('seeDetails')
         .width('40%')
         .onClick(() => {
           Logger.info(TAG, `detailData is = ${JSON.stringify(detailData)}`)

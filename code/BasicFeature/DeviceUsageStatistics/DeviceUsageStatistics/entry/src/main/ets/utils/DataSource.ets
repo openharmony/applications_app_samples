@@ -69,9 +69,9 @@ class BasicDataSource implements IDataSource {
 }
 
 export class MyDataSource extends BasicDataSource {
-  private dataArray: any[] = []
+  private dataArray = []
 
-  constructor(dataArray: any[]){
+  constructor(dataArray: []){
     super()
     this.dataArray = dataArray
   }
@@ -94,7 +94,7 @@ export class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(this.dataArray.length - 1)
   }
 
-  public replaceData(result: any[]) {
+  public replaceData(result: []) {
     this.dataArray = result
     this.notifyDataReload()
   }

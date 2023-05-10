@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.usbV9](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-usb.md)、[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md)接口展示了USB设备管理的使用，包括USB设备插拔状态监听和USB设备信息显示。
+本示例使用[@ohos.usbV9](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-usb-deprecated.md) 、[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md) 接口展示了USB设备管理的使用，包括USB设备插拔状态监听和USB设备信息显示。
 
 ### 效果预览
 
@@ -36,7 +36,7 @@ entry/src/main/ets/
 ### 具体实现
 + USB监听功能和设备信息获取功能在Index中实现，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets):
     + 监听USB设备挂载和卸载：使用commonEventManager.createSubscriber创建订阅者，用来监听USB挂载和卸载事件，commonEventManager.unsubscribe取消订阅者；
-    + 订阅者信息枚举值：[support类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/commonEventManager-definitions.md#common_event_usb_device_detached)，COMMON_EVENT_USB_DEVICE_DETACHED：卸载USB公共事件的动作，COMMON_EVENT_USB_DEVICE_ATTACHED：挂载USB公共事件的动作；
+    + 订阅者信息枚举值：[support类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/commonEventManager-definitions.md#common_event_usb_device_detached) ，COMMON_EVENT_USB_DEVICE_DETACHED：卸载USB公共事件的动作，COMMON_EVENT_USB_DEVICE_ATTACHED：挂载USB公共事件的动作；
     + 获取USB设备列表：使用usbV9.getDevices接口获取接入主设备的USB设备列表。
 
 ### 相关权限
@@ -51,7 +51,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持在标准系统上运行;
 
-2. 本示例已适配API10版本SDK，版本号:4.0.5.1;
+2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9;
 
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

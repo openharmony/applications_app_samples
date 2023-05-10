@@ -55,6 +55,7 @@ export struct ChoicePhotos {
   @Builder showChoiceBuild(backGround: string, showNumber: number) {
     Column() {
       Text(showNumber === 0 ? '' : `${showNumber}`)
+        .id(`select${showNumber}`)
         .fontSize(14)
         .fontColor(Color.White)
         .height(20)
@@ -138,6 +139,7 @@ export struct ChoicePhotos {
         Blank()
 
         Button(`${this.nextText} ${this.isChoice ? `(${this.choiceMedias.length})` : ''}`)
+          .id('nextStep')
           .fontSize(20)
           .height(32)
           .backgroundColor(this.isChoice === true ? '#E92F4F' : '#fffa8e8e')
@@ -204,6 +206,7 @@ export struct ChoicePhotos {
               GridItem() {
                 Stack({ alignContent: Alignment.TopEnd }) {
                   Image(item.uri)
+                    .id(`image${index + 1}`)
                     .width('100%')
                     .height('100%')
                     .borderRadius(10)
@@ -254,10 +257,12 @@ export struct ChoicePhotos {
             GridItem() {
               Stack({ alignContent: Alignment.TopEnd }) {
                 Image(item.uri)
+                  .id(`selected${index + 1}`)
                   .width('100%')
                   .height(70)
                   .borderRadius(10)
                 Image($r('app.media.delete'))
+                  .id(`deleteImage${index + 1}`)
                   .width(20)
                   .height(20)
                   .margin({ top: 5, right: 5 })

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,40 +13,87 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import Logger from '../../../main/ets/model/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import { logger } from '../util/Logger';
 
-const TAG = 'AbilityTest'
+const TAG: string = 'Sample_DotTest';
+const BUNDLE: string = 'DotTest_';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
+  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+  let driver: Driver = Driver.create();
+  describe('AbilityTest', function () {
+    // 打开应用
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
+      let want = {
+        bundleName: "ohos.samples.dottest",
+        abilityName: "EntryAbility"
+      };
+      delegator.startAbility(want, (err) => {
+        logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
+      })
+      await driver.delayMs(1000);
+      await delegator.getCurrentTopAbility().then((Ability) => {
+        console.info("get top ability");
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      })
+      logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
+      done();
     })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
+
+    // 打开禁用应用打点开关
+    it(BUNDLE + 'EventSwitch_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}EventSwitch_001 begin`);
+      await driver.assertComponentExist(ON.id('eventSwitch'));
+      let eventSwitch = await driver.findComponent(ON.id('eventSwitch'));
+      await eventSwitch.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getString($r('app.string.appDisabled')), MatchPattern.EQUALS));
+      logger.info(TAG, `${BUNDLE}EventSwitch_001 end`);
+      done();
     })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
+
+    // 禁用应用打点后写入事件
+    it(BUNDLE + 'InputEvent_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}InputEvent_001 begin`);
+      await driver.assertComponentExist(ON.id('eventInto'));
+      let eventIntoBtn = await driver.findComponent(ON.id('eventInto'));
+      await eventIntoBtn.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getString($r('app.string.writeFailed')), MatchPattern.EQUALS));
+      logger.info(TAG, `${BUNDLE}InputEvent_001 end`);
+      done();
     })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
+
+    // 关闭禁用应用打点开关
+    it(BUNDLE + 'EventSwitch_002', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}EventSwitch_002 begin`);
+      await driver.assertComponentExist(ON.id('eventSwitch'));
+      let eventSwitch = await driver.findComponent(ON.id('eventSwitch'));
+      await eventSwitch.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getString($r('app.string.appAble')), MatchPattern.EQUALS));
+      logger.info(TAG, `${BUNDLE}EventSwitch_002 end`);
+      done();
     })
-    it('assertContain', 0, function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      Logger.info(TAG, 'it begin');
-      let a = 'abc'
-      let b = 'b'
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+
+    // 禁用应用打点后写入事件
+    it(BUNDLE + 'InputEvent_002', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}InputEvent_002 begin`);
+      await driver.assertComponentExist(ON.id('eventInto'));
+      let eventIntoBtn = await driver.findComponent(ON.id('eventInto'));
+      await eventIntoBtn.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getString($r('app.string.writeSuccess')), MatchPattern.EQUALS));
+      logger.info(TAG, `${BUNDLE}InputEvent_002 end`);
+      done();
     })
+
+    function getString(resource: Resource) {
+      return delegator.getAppContext().resourceManager.getStringSync(resource);
+    }
   })
 }

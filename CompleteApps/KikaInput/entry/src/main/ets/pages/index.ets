@@ -13,20 +13,20 @@
  * limitations under the License.
  */
 import { keySourceListData, numberSourceListData, symbolSourceListData, keySourceListType, sourceListType
-} from '../model/keyboardKeyData'
-import { InputHandler } from '../model/KeyboardController'
-import {StyleConfiguration, KeyStyle} from '../common/styleConfiguration'
-import Log from '../model/Log'
-import deviceInfo from '@ohos.deviceInfo'
+} from '../model/keyboardKeyData';
+import { InputHandler } from '../model/KeyboardController';
+import {StyleConfiguration, KeyStyle} from '../common/styleConfiguration';
+import Log from '../model/Log';
+import deviceInfo from '@ohos.deviceInfo';
 
-let deviceType = deviceInfo.deviceType
-let TAG: string = 'index->'
+let deviceType = deviceInfo.deviceType;
+let TAG: string = 'index->';
 //有大小写的按键组件
 @Component
 struct keyItemNumber {
-  private keyValue: keySourceListType
-  @Link inputStyle: KeyStyle
-  @Link upper: number
+  private keyValue: keySourceListType;
+  @Link inputStyle: KeyStyle;
+  @Link upper: number;
 
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
@@ -94,9 +94,9 @@ struct keyItemNumber {
 //无大小写的按键组件
 @Component
 struct keyItem {
-  private keyValue: keySourceListType
-  private color: string
-  @Link inputStyle: KeyStyle
+  private keyValue: keySourceListType;
+  private color: string;
+  @Link inputStyle: KeyStyle;
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
   }
@@ -116,6 +116,7 @@ struct keyItem {
     .width(this.inputStyle.basicButtonWidth)
     .height('100%')
     .shadow({ radius: 1, color: '#76787c', offsetY: 3 })
+    .padding({ top: '5%', bottom: '5%' })
     .onClick(() => {
       InputHandler.getInstance().insertText(this.keyValue.content);
     })
@@ -128,9 +129,9 @@ struct keyItem {
 //无大小写的灰色组件
 @Component
 struct keyItemGray {
-  private keyValue: string
-  @Link inputStyle: KeyStyle
-  @Link menuType: number
+  private keyValue: string;
+  @Link inputStyle: KeyStyle;
+  @Link menuType: number;
 
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
@@ -167,7 +168,7 @@ struct keyItemGray {
 //删除组件
 @Component
 struct deleteItem {
-  @Link inputStyle: KeyStyle
+  @Link inputStyle: KeyStyle;
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
   }
@@ -199,8 +200,8 @@ struct deleteItem {
 //返回组件
 @Component
 struct returnItem {
-  private returnWidth: Resource
-  @Link inputStyle: KeyStyle
+  private returnWidth: Resource;
+  @Link inputStyle: KeyStyle;
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
   }
@@ -232,8 +233,8 @@ struct returnItem {
 //空格组件
 @Component
 struct spaceItem {
-  private spaceWith: Resource
-  @Link inputStyle: KeyStyle
+  private spaceWith: Resource;
+  @Link inputStyle: KeyStyle;
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
   }
@@ -265,10 +266,10 @@ struct spaceItem {
 //key键盘
 @Component
 struct keyMenu {
-  private keyList: keySourceListType[]
-  @Link inputStyle: KeyStyle
-  @State public upper: number = 0
-  @Link menuType: number
+  private keyList: keySourceListType[];
+  @Link inputStyle: KeyStyle;
+  @State public upper: number = 0;
+  @Link menuType: number;
 
   @Styles pressedStyles() {
     .backgroundColor("#868b95")
@@ -313,11 +314,11 @@ struct keyMenu {
         .borderRadius(4)
         .onClick(() => {
           if (this.upper === 0) {
-            this.upper = 1
+            this.upper = 1;
           } else if (this.upper === 1) {
-            this.upper = 2
+            this.upper = 2;
           } else if (this.upper === 2) {
-            this.upper = 0
+            this.upper = 0;
           }
         })
         .height('100%')
@@ -370,9 +371,9 @@ struct keyMenu {
 //数字键盘
 @Component
 struct numberMenu {
-  private numberList: sourceListType[]
-  @Link inputStyle: KeyStyle
-  @Link menuType: number
+  private numberList: sourceListType[];
+  @Link inputStyle: KeyStyle;
+  @Link menuType: number;
 
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
@@ -460,9 +461,9 @@ struct numberMenu {
 //符号键盘
 @Component
 struct symbolMenu {
-  private symbolList: sourceListType[]
-  @Link inputStyle: KeyStyle
-  @Link menuType: number
+  private symbolList: sourceListType[];
+  @Link inputStyle: KeyStyle;
+  @Link menuType: number;
 
   @Styles pressedStyles() {
     .backgroundColor("#AEB3BD")
@@ -547,7 +548,7 @@ struct symbolMenu {
 //下拉按钮
 @Component
 struct downMenu {
-  @Link inputStyle: KeyStyle
+  @Link inputStyle: KeyStyle;
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
       Stack() {
@@ -574,11 +575,11 @@ struct downMenu {
 @Entry
 @Component
 struct Index {
-  private keyList: keySourceListType[]= keySourceListData
-  private numberList: sourceListType[]= numberSourceListData
-  private symbolList: sourceListType[]= symbolSourceListData
-  @State menuType: number= 0
-  @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false
+  private keyList: keySourceListType[]= keySourceListData;
+  private numberList: sourceListType[]= numberSourceListData;
+  private symbolList: sourceListType[]= symbolSourceListData;
+  @State menuType: number= 0;
+  @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
   @StorageLink('isRkDevice') isRkDevice: boolean = false;
   @StorageLink('inputStyle')  inputStyle: KeyStyle = StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, deviceType);
   onBackPress(): boolean{

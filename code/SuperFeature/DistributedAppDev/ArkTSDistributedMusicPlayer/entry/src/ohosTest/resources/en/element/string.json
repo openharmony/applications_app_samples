@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "entry_desc",
+      "value": "music play and data circulation"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "music play and data circulation"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "Used for distributed data migration"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "music"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "Select Device"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "Distributed music remote control service"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "Distributed music service"
+    },
+    {
+      "name": "onConnectService",
+      "value": "Connection is successful"
+    },
+    {
+      "name": "onDisconnectService",
+      "value": "Connection failed."
+    },
+    {
+      "name": "onFailedService",
+      "value": "Connection error"
+    },
+    {
+      "name": "ConnectRemoteDevices",
+      "value": "Connect remote devices"
+    },
+    {
+      "name": "ConnectionTimeout",
+      "value": "Connection timeout"
+    },
+    {
+      "name": "accept",
+      "value": "accept"
+    }
+  ]
+}

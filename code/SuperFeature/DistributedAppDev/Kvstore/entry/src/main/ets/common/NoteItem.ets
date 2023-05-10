@@ -18,13 +18,14 @@ import { NoteModel } from '../model/NoteDataModel'
 @Component
 export struct NoteListItem {
   private note: NoteModel = null
+  private noteID:number = null
   private deleteNoteCallBack = null
 
   build() {
     Column() {
       if (this.note.title === '' && this.note.content === '') {
         Image($r('app.media.add'))
-          .key('add')
+          .id('add')
           .objectFit(ImageFit.Contain)
           .width(50).height('100%')
       } else {
@@ -46,7 +47,7 @@ export struct NoteListItem {
           .width('100%').height('100%')
 
           Image($r('app.media.delete'))
-            .key('del' + this.note.title)
+            .id('del' + this.noteID)
             .width('30%')
             .height('30%')
             .objectFit(ImageFit.Contain)

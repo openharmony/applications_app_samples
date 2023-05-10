@@ -4,7 +4,7 @@
 
 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。
 
-本示例使用 [DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/tsbasiccomponents-datapanel.md) 展示不同种类的应用存储信息，通过 [Bundle模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md) 来获取不同应用的包名与应用名等信息， 使用 [应用空间统计](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-storage-statistics.md) 来查询当前设备的存储使用情况，使用 [卷管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-volumemanager.md) 来查询可用卷存储使用情况。
+本示例使用 [DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md) 展示不同种类的应用存储信息，通过 [Bundle模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md) 来获取不同应用的包名与应用名等信息， 使用 [应用空间统计](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md) 来查询当前设备的存储使用情况，使用 [卷管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md) 来查询可用卷存储使用情况。
 使用说明：
 
 1. 主页面会展示当前设备存储使用的详细信息。
@@ -35,7 +35,7 @@
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，已适配API10版本SDK，版本号：4.0.5.1。
+2. 本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3. 本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 

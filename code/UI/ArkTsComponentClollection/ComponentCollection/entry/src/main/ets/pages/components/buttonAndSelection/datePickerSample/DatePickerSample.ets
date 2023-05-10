@@ -60,7 +60,7 @@ struct DatePickerSample {
             .select(this.isLunar)
             .onChange((isSelect: boolean) => {
               this.isLunar = isSelect
-            })
+            }).id('Checkbox')
           Text($r('app.string.date_picker_lunar'))
         }
       }

@@ -25,7 +25,7 @@ struct BreakpointSample {
       this.currentBreakpoint = 'xs'
       return
     }
-    if (windowWidth < 520) {
+    if (windowWidth < 600) {
       this.currentBreakpoint = 'sm'
       return
     }

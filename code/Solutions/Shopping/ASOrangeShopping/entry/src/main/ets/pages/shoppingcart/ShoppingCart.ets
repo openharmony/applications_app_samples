@@ -22,7 +22,7 @@ export struct ShoppingCart {
     Column() {
       Row() {
         Text($r('app.string.shopping_cart'))
-          .fontSize(24)
+          .fontSize(16)
           .fontColor(Color.Black)
           .fontFamily('HarmonyHeiTi')
         Blank()
@@ -33,7 +33,7 @@ export struct ShoppingCart {
           .fontFamily('HarmonyHeiTi')
       }
       .width('100%')
-      .margin({ top: 16, bottom: 16 })
+      .margin({ top: 12, bottom: 12 })
       .padding({ right: 16, left: 16 })
 
       Scroll() {
@@ -43,10 +43,11 @@ export struct ShoppingCart {
         }
         .layoutWeight(1)
         .margin({ left: 12, right: 12 })
-        .justifyContent(FlexAlign.Center)
+        .justifyContent(FlexAlign.Start)
+        .constraintSize({ minHeight: '100%' })
       }
       .scrollBar(BarState.Off)
-      .alignSelf(ItemAlign.Center)
+      .alignSelf(ItemAlign.Start)
       .constraintSize({ minHeight: '100%' })
     }
     .size({ width: '100%', height: '100%' })

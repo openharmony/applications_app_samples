@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "About Battery"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "About Battery"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "About Battery"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -72,6 +72,7 @@ struct FullImagePage {
     Column() {
       Image(`/resources/images/photo${this.imageStrId.toString()}.jpg`)
         //此处330为初始图片大小
+        .id('pinchImage')
         .width(330 + this.picChange)
         .sharedTransition('shareImage')
         .objectFit(ImageFit.Contain)

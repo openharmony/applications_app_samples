@@ -21,14 +21,13 @@ const TAG = 'MainAbility'
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, `MainAbility onCreate`)
+    globalThis.context=this.context
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, `MainAbility onWindowStageCreate`)
     windowStage.setUIContent(this.context, 'pages/Index', null)
-    // 设置应用显示在锁屏之上,对应FA模型中AppContext的setShowOnLockScreen接口
-    windowStage.setShowOnLockScreen(true);
   }
 
   onForeground() {

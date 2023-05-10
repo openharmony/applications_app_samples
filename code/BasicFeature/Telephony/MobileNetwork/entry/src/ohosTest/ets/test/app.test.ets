@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,43 +13,50 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import featureAbility from '@ohos.ability.featureAbility'
-import hilog from '@ohos.hilog'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import { logger } from '../util/Logger';
 
-const TAG = '[Sample_MobileNetwork]'
-const DOMAIN = 0xF811
-const BUNDLE = 'MobileNetwork_'
+const TAG = '[Sample_MobileNetwork]';
+const BUNDLE = 'MobileNetwork_';
 
 export default function appTest() {
+  let driver = Driver.create();
+  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   describe('appTest', function () {
+    // 启动应用
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
+      logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       let want = {
         bundleName: "ohos.samples.mobilenetwork",
         abilityName: "MainAbility"
-      }
-      var abilityDelegator: any
-      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      await abilityDelegator.startAbility(want, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
+      };
+      delegator.startAbility(want, (err) => {
+        logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
+      await driver.delayMs(1000);
+      await delegator.getCurrentTopAbility().then((Ability) => {
+        logger.info(TAG, `${BUNDLE}get top ability, ${Ability.context.abilityInfo.name}`);
+        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
+      })
+      logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
+      done();
     })
 
-    /**
-     * BringMobileNetwork
-     */
-    it(BUNDLE + 'BringMobileNetworkFunction_001', 0, async function () {
-      // create UiDriver
-      hilog.info(DOMAIN, TAG, BUNDLE + 'BringMobileNetworkFunction_001 begin')
-      let driver = await UiDriver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'BringMobileNetworkFunction_001 end')
+    // 检查UI界面显示是否正常
+    it(BUNDLE + 'CheckUI_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}CheckUI_001 begin`);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('默认数据卡', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text('移动数据', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text('漫游', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.id('mobileData'));
+      await driver.assertComponentExist(ON.id('roaming'));
+      await driver.assertComponentExist(ON.id('dataFlowType'));
+      await driver.assertComponentExist(ON.id('connectState'));
+      logger.info(TAG, `${BUNDLE}CheckUI_001 end`);
+      done();
     })
   })
 }

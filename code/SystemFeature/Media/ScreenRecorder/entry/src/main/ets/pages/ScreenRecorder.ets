@@ -29,7 +29,7 @@ const DEFAULT_VIDEO_PROFILE = {
   audioCodec: media.CodecMimeType.AUDIO_AAC,
   audioSampleRate: 48000,
   fileFormat: media.ContainerFormatType.CFT_MPEG_4,
-  videoBitrate: 48000,
+  videoBitrate: 2000000,
   videoCodec: media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth: 0,
   videoFrameHeight: 0,
@@ -73,6 +73,7 @@ struct ScreenRecorder {
   build() {
     Row() {
       Rect({ width: 10, height: 10, radius: 2 })
+        .id('stopRecord')
         .fill(Color.Red)
         .visibility(this.isIconHidden ? Visibility.Hidden : Visibility.Visible)
       TextTimer({ controller: this.textTimerController })

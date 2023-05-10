@@ -44,6 +44,7 @@ export struct AddPictures {
                 Image(imgUrl)
                   .width('100%')
                   .aspectRatio(1)
+                  .id('imageShow')
               }
             })
             GridItem() {
@@ -52,6 +53,7 @@ export struct AddPictures {
                   .width(48)
                   .height(48)
                   .aspectRatio(1)
+                  .id('add')
               }
               .aspectRatio(1)
               .alignItems(HorizontalAlign.Center)

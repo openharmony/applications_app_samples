@@ -76,6 +76,7 @@ struct AppInfo {
               .justifyContent(FlexAlign.SpaceAround)
             })
           }
+          .id('appInfo')
           .constraintSize({ minHeight: '100%' })
         }
         .width('100%')

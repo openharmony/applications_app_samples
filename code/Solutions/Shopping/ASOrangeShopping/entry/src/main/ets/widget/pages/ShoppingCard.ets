@@ -19,9 +19,11 @@ struct ShoppingCard {
   @Builder Title() {
     Row() {
       Image($r('app.media.point'))
-        .size({ width: 5, height: 5 })
+        .width(5)
+        .height(5)
       Image($r('app.media.icon'))
-        .size({ width: 20, height: 20 })
+        .width(20)
+        .height(20)
         .shadow({
           radius: 3,
           offsetX: 3,
@@ -33,7 +35,8 @@ struct ShoppingCard {
         .fontColor($r('app.color.white'))
         .fontWeight(FontWeight.Bolder)
       Image($r('app.media.point'))
-        .size({ width: 5, height: 5 })
+        .width(5)
+        .height(5)
     }
     .width('100%')
     .height(30)
@@ -73,7 +76,8 @@ struct ShoppingCard {
           .fontSize(12)
           .fontWeight(FontWeight.Bolder)
           .fontColor($r('app.color.white'))
-          .size({ width: '100%', height: 25 })
+          .width('100%')
+          .height(25)
           .backgroundColor($r('app.color.pink'))
           .borderRadius(20)
           .textAlign(TextAlign.Center)

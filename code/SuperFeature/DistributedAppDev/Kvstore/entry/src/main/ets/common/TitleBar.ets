@@ -153,7 +153,7 @@ export struct TitleBar {
           .width(70).height(40)
           .objectFit(ImageFit.Contain)
       }
-      .key('rightBtn')
+      .id('rightBtn')
       .type(ButtonType.Normal)
       .backgroundColor($r('app.color.title_btn_background'))
       .onClick(() => {

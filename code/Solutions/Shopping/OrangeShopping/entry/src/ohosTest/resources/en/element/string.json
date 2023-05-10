@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "allow",
+      "value": "allow"
+    },
+    {
+      "name": "close",
+      "value": "close"
+    },
+    {
+      "name": "update",
+      "value": "update now"
+    },
+    {
+      "name": "title_bar_data_title_selected",
+      "value": "Featured"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "shopping cart"
+    },
+    {
+      "name": "official_Service",
+      "value": "Official customer service"
+    },
+    {
+      "name": "tab_title_data_home",
+      "value": "Front page"
+    },
+    {
+      "name": "add_to_cart",
+      "value": "add to Shopping Cart"
+    }
+  ]
+}

@@ -73,6 +73,7 @@ export struct MainPage {
           Column() {
             Swiper() {
               VideoPage({ isStart: $openFirst })
+                .id('VideoPage')
               // 模拟Swiper数据
               LazyForEach(new MyDataSource(this.arrSwiper), (item) => {
                 Text(item.toString())
@@ -139,7 +140,7 @@ export struct MainPage {
         .border({ color: 'rgba(0,0,0,0.2)' })
         .borderRadius(16)
         .borderWidth(1.3)
-        .key('directVideo')
+        .id('directVideo')
         .onClick(() => {
           router.push({ url: 'pages/LivePage' })
         })

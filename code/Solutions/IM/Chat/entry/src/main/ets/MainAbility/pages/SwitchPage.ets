@@ -74,6 +74,7 @@ struct SwitchPage {
               .borderRadius(14)
               .margin({ left: this.fiveThousandNum })
           }
+          .id('firstSwitch')
           .width(60)
           .height(30)
           .backgroundColor(this.fiveThousandColor)

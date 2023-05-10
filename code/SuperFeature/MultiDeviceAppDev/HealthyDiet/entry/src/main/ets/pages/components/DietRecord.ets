@@ -191,6 +191,7 @@ struct MealFoodDetail {
   @State translateX: number = 0
   private mealFoodInfo: MealFoodInfo
   private panTranslateX: number = 300
+  private mealFoodInfoIndex:number;
 
   build() {
     if (this.shown) {
@@ -234,6 +235,7 @@ struct MealFoodDetail {
 
           Image($r("app.media.ic_public_delete"))
             .backgroundColor('#E84026')
+            .id('deleteRecord')
             .objectFit(ImageFit.ScaleDown)
             .borderRadius(20)
             .margin({ left: 50 })
@@ -242,8 +244,8 @@ struct MealFoodDetail {
               animateTo({ duration: 400 }, () => {
                 this.shown = false
                 let dietRecords = AppStorage.Get<Array<DietRecord>>('dietRecords')
-                dietRecords.forEach((item)=>{
-                  if(item.key === this.mealFoodInfo.key){
+                dietRecords.forEach((item) => {
+                  if (item.key === this.mealFoodInfo.key) {
                     item.weight = 0
                   }
                 })
@@ -254,6 +256,7 @@ struct MealFoodDetail {
         .translate({ x: this.translateX })
         .width('100%')
         .height(70)
+        .id(`mealFoodInfoIndex${this.mealFoodInfoIndex}`)
         .gesture(
         PanGesture()
           .onActionUpdate((event: GestureEvent) => {
@@ -286,8 +289,8 @@ struct MealCard {
           .backgroundColor('#FFFFFF')
           .padding({ left: 16, right: 16 })
 
-        ForEach(this.mealInfo.mealFoods, (mealItem) => {
-          MealFoodDetail({ mealFoodInfo: mealItem })
+        ForEach(this.mealInfo.mealFoods, (mealItem, index) => {
+          MealFoodDetail({ mealFoodInfo: mealItem, mealFoodInfoIndex: index })
         })
       }
     }
@@ -342,6 +345,7 @@ struct NoRecord {
           .fontColor('rgba(0, 0,0,0.4)')
       }
       .width('100%')
+      .id('noRecord')
     }
     .width('100%')
   }

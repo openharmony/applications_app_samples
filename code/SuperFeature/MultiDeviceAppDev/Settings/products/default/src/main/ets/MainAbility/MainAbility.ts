@@ -38,7 +38,7 @@ export default class MainAbility extends UIAbility {
   updateBreakpoint(windowWidth: number) {
     let windowWidthVp: number = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
     let curBp: string
-    if (windowWidthVp < 520) {
+    if (windowWidthVp < 600) {
       curBp = 'sm'
     } else if (windowWidthVp < 840) {
       curBp = 'md'

@@ -16,6 +16,7 @@
 // @ts-nocheck
 
 export class gridData {
+  id?:string
   icon: Resource
   textStr: string
 }

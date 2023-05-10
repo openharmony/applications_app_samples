@@ -48,7 +48,7 @@ struct RatingSample {
           .stepSize(0.5)
           .onChange((value: number) => {
             this.rating = value
-          })
+          }).id('test_rating')
       }
       .cardStyle()
       .width('100%')
@@ -64,7 +64,7 @@ struct RatingSample {
           Toggle({ type: ToggleType.Switch, isOn: this.indicator })
             .onChange((isOn) => {
               this.indicator = isOn
-            })
+            }).id('test_indicator')
         }.width('100%')
         .height(50)
 

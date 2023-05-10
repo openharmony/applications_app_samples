@@ -46,12 +46,12 @@ export function obtainImgVertical(): Array<ImageList> {
 export function obtainImgV(): Array<ImageList> {
   let list =
     [
-      { image: $r('app.media.ic_cal_delete'), value: '' },
+      { image: $r('app.media.ic_cal_delete'), value: 'D' },
       { image: $r('app.media.ic_cal_minus'), value: '-' },
       { image: $r('app.media.ic_cal_plus'), value: '+' },
       { image: $r('app.media.ic_cal_equal'), value: '=' }
-    ]
-  return list
+    ];
+  return list;
 }
 
 export function obtainImgLevel(): Array<ImageList> {
@@ -77,11 +77,11 @@ export function obtainImgLevel(): Array<ImageList> {
 
 export function obtainImg(): Array<ImageList> {
   let list = [
-    { image: $r('app.media.ic_cal_delete'), value: '' },
+    { image: $r('app.media.ic_cal_delete'), value: 'D' },
     { image: $r('app.media.ic_cal_delete_c'), value: 'C' },
     { image: $r('app.media.ic_cal_equal'), value: '=' }
-  ]
-  return list
+  ];
+  return list;
 }
 
 export function obtainImgL(): Array<ImageList> {

@@ -105,7 +105,7 @@ struct Lottie {
                 .width('50%')
                 .textAlign(TextAlign.End)
             }
-            .key('selectAnimationBtn')
+            .id('selectAnimationBtn')
             .bindMenu([
               {
                 value: 'grunt动画',
@@ -168,6 +168,7 @@ struct Lottie {
                   .margin({ top: 6 })
                   .fontFamily('Microsoft YaHei')
               }
+              .id('play')
               .width('25%')
 
               Column() {
@@ -189,6 +190,7 @@ struct Lottie {
                   .fontFamily('Microsoft YaHei')
               }
               .width('25%')
+              .id('suspend')
 
               Column() {
                 Image($r('app.media.pause'))
@@ -209,6 +211,7 @@ struct Lottie {
                   .fontFamily('Microsoft YaHei')
               }
               .width('25%')
+              .id('pause')
 
               Column() {
                 Image($r('app.media.start'))
@@ -229,6 +232,7 @@ struct Lottie {
                   .fontFamily('Microsoft YaHei')
               }
               .width('25%')
+              .id('startPlay')
             }
 
             Row() {
@@ -267,6 +271,7 @@ struct Lottie {
                   .fontFamily('Microsoft YaHei')
               }
               .width('25%')
+              .id('speed')
 
               Column() {
                 Image($r('app.media.forward'))
@@ -297,6 +302,7 @@ struct Lottie {
                   .fontFamily('Microsoft YaHei')
               }
               .width('25%')
+              .id('playOrder')
 
               Column() {
                 Image($r('app.media.ic_public_delete_filled'))
@@ -315,6 +321,7 @@ struct Lottie {
                   .fontFamily('Microsoft YaHei')
               }
               .width('25%')
+              .id('destroyAnimation')
             }
             .width('100%')
             .justifyContent(FlexAlign.Start)
@@ -350,7 +357,9 @@ struct Lottie {
                           .opacity(BUTTON_OPACITY)
                           .margin({ top: 6 })
                           .fontFamily('Microsoft YaHei')
-                      }.width('33%')
+                      }
+                      .width('33%')
+                      .id('stop')
 
                       Column() {
                         Image($r('app.media.stop_playing'))

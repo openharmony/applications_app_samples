@@ -32,6 +32,7 @@ export default struct HomeContent {
         Row() {
           Text($r('app.string.sync_contacts'))
             .fontColor(Color.Blue)
+            .id('syncContact')
             .fontSize(20)
           if (this.isLoading) {
             LoadingProgress()
@@ -106,6 +107,7 @@ export default struct HomeContent {
       Image($r('app.media.add'))
         .width(28)
         .height(28)
+        .id('addBtn')
         .onClick(() => {
           router.pushUrl({
             url: 'pages/ContactEdit',

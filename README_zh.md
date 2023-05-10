@@ -38,7 +38,7 @@
   <td width="170" x:str><strong>声明式开发范式</strong></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/ComponentCollection">ArkTS组件集</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/MediaQuery">媒体查询</a></td>
-  <td width="170"></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/StateManagement">状态管理</a></td>
   <td width="170"></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -51,10 +51,10 @@
  <tr height="18" style='height:13.50pt;'>
   <td height="270" align="center" rowspan="20" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
-  <td x:str><a href="code/BasicFeature/ApplicationModels/FaModel">FA模型</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">使用want分享数据</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>通知</strong></td>
@@ -127,8 +127,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Runninglock">运行锁</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集</a></td>  
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -179,14 +178,14 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>IDL</strong</td>
+  <td x:str><strong>IDL</strong></td>
   <td x:str><a href="code/BasicFeature/IDL/AbilityConnectServiceExtension">Ability与ServiceExtensionAbility通信</a></td>
   <td x:str></td>
   <td x:str></td>
   <td x:str></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性（Full SDK）</strong></td>
+  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性</strong></td>
   <td rowspan="2" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
@@ -270,7 +269,7 @@
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库库</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证</a></td>
   <td x:str></td>
@@ -349,24 +348,12 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="3" align="center" x:str><strong>语言基础类库</strong></td>
-  <td rowspan="3" x:str><strong>语言基础类库</strong></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilBase64Codec">Base64编解码</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilLruBuffer">缓冲区</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilRationalNumber">有理数</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilScope">范围判断</a></td>
- </tr>
- <tr>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilStringCodec">字符串编解码</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilTypeCheck">内置对象类型检查</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/UtilUrlString">URL字符串解析</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/XmlTextConvert">xml文本转换</a></td>
- </tr>
- <tr>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/Container">线性容器ArrayList</a></td>
+  <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
+  <td rowspan="1" x:str><strong>语言基础类库</strong></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库</a></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/JsWorker">启动一个worker</a></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/Process">进程信息</a></td>
+  <td ></td>
  </tr>
  <tr>
  <![if supportMisalignedColumns]>
@@ -374,6 +361,8 @@
    </tr>
   <![endif]>
 </table>
+
+
 
 
 
@@ -428,7 +417,6 @@ code
   |---ApplicationHap               # 应用程序包
 |---LaunguageBaseClassLibrary  # 语言基础类库
 ```
-旧目录结构请前往[README_zh_old](README_zh_old.md)查看。
 
 ## 约束<a name="section18841871178"></a>
 

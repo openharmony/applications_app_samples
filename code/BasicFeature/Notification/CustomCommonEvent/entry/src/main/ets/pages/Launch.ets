@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,24 +28,28 @@ struct Launch {
   build() {
     Column() {
       Image($rawfile('jumpToStart.png'))
+        .id('jumpToStart')
         .objectFit(ImageFit.Contain)
         .width(160)
         .height(75)
         .onClick(this.feature.jumpToStart)
         .position({ x: '30%', y: '20%' })
       Image($rawfile('jumpToHistory.png'))
+        .id('jumpToHistory')
         .objectFit(ImageFit.Contain)
         .width(160)
         .height(75)
         .onClick(this.feature.jumpToHistory)
         .position({ x: '30%', y: '35%' })
       Image($rawfile('jumpTosetting.png'))
+        .id('jumpToSetting')
         .objectFit(ImageFit.Contain)
         .width(160)
         .height(75)
         .onClick(this.feature.jumpToSetting)
         .position({ x: '30%', y: '50%' })
       Image($rawfile('jumpAbout.png'))
+        .id('jumpToAbout')
         .objectFit(ImageFit.Contain)
         .width(160)
         .height(75)

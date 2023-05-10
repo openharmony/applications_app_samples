@@ -140,7 +140,6 @@ struct Index {
             Column() {
               Toggle({ type: ToggleType.Switch, isOn: this.isOn })
                 .selectedColor('#ff2982ea')
-                .key('toggleBtn')
                 .onChange((isOn: boolean) => {
                   if (isOn) {
                     this.isOn = true
@@ -153,6 +152,7 @@ struct Index {
                   }
                 })
             }
+            .id('toggleBtn')
           }
           .width('90%')
 
@@ -170,7 +170,7 @@ struct Index {
               .margin({ left: '5%' })
               .alignSelf(ItemAlign.Start)
 
-            ForEach(this.deviceList, (item) => {
+            ForEach(this.deviceList, (item, index) => {
               Row() {
                 Text(item)
                   .fontSize(20)
@@ -179,7 +179,7 @@ struct Index {
               .width('100%')
               .height(50)
               .margin({ left: '5%', top: '1%' })
-              .key('pairedDevice')
+              .id(`pairedDevice${index}`)
               .onClick(() => {
                 AlertDialog.show({
                   title: $r('app.string.disconnect'),

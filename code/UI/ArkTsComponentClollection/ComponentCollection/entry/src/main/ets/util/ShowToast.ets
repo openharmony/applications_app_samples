@@ -30,6 +30,7 @@ class ShowToast {
   longToast(message: ResourceStr) {
     this.showToast(message, this.longToastTime)
   }
+
 }
 
 export default new ShowToast()

@@ -173,7 +173,7 @@ struct Interaction {
                   .select(this.buttonIsDisabled)
                   .onChange((value: boolean) => {
                     this.buttonIsDisabled = value
-                  })
+                  }).id('test_checkbox1')
               }
             }.cardStyle()
 
@@ -202,7 +202,7 @@ struct Interaction {
                   .select(this.listIsDisabled)
                   .onChange((value: boolean) => {
                     this.listIsDisabled = value
-                  })
+                  }).id('test_checkbox2')
               }
             }.width('100%')
             .cardStyle()
@@ -242,7 +242,7 @@ struct Interaction {
                         }
                       }
                     )
-                  })
+                  }).id('test_oneButton')
                 Button($r('app.string.interaction_show_two_alert'))
                   .onClick(() => {
                     AlertDialog.show(
@@ -269,7 +269,7 @@ struct Interaction {
                         }
                       }
                     )
-                  })
+                  }).id('test_twoButton')
               }.cardStyle()
 
               Text($r('app.string.popup'))
@@ -320,7 +320,7 @@ struct Interaction {
                         this.handlePopup = false
                       }
                     }
-                  })
+                  }).id('test_popButton')
               }.cardStyle()
 
               Text($r('app.string.custom_popup'))
@@ -355,7 +355,7 @@ struct Interaction {
                         this.handleCustomPopup = false
                       }
                     }
-                  })
+                  }).id('test_customButton')
               }.cardStyle()
             }.width('100%')
             .padding(12)
@@ -392,7 +392,7 @@ struct Interaction {
                     .onClick(() => {
                       this.mForgroundChildHandleClick = true
                       this.handleClickCallback()
-                    })
+                    }).id('test_forgroundChild')
                 }
                 .width(200)
                 .height(200)
@@ -442,6 +442,7 @@ struct Interaction {
                   .position({ x: 0, y: 0 })
                   .fill(Color.Green)
                   .hitTestBehavior(HitTestMode.None)
+                  .id('test_rect')
                 Rect({ width: 50, height: 50 })
                   .position({ x: 250, y: 0 })
                   .fill(Color.Green)
@@ -577,7 +578,7 @@ struct Interaction {
                   .select(this.mComponentDisabled)
                   .onChange((value: boolean) => {
                     this.mComponentDisabled = value
-                  })
+                  }).id('test_checkbox')
               }.width(200)
             }.cardStyle()
           }.width('100%')

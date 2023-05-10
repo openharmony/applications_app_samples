@@ -2,7 +2,7 @@
 
 ### 介绍
 
-[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md)的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
+[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md) 的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
 
 Stage模型的设计基于如下三个出发点：
 
@@ -44,7 +44,7 @@ Stage模型的设计基于如下三个出发点：
 
 2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
 
-3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-brief.md#生命周期) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/fa-brief.md#生命周期) 。
+3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/fa-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) 。
 
 4.Stage模型中DataShareExtensionAbility对应FA模型中dataAbility，具体实现差异详见方法注释。
 
@@ -169,7 +169,7 @@ FaModel升级StageModel，对应的FaModel参考[FaModel](../FaModel)。
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API10版本SDK，版本号：4.0.5.1，本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility等相关系统接口，需要替换Full SDK，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility等相关系统接口，需要替换Full SDK，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
 
 3.本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility，需要在签名证书UnsgnedReleasedProfileTemplate.json中配置"app-privilege-capabilities": ["AllowAppUsePrivilegeExtension"]，否则安装失败。具体操作指南可参考[应用特权配置指南](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 

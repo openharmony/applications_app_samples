@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -131,7 +131,9 @@ struct Main {
     Stack({ alignContent: Alignment.TopStart }) {
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
         Image(this.btnSrc)
-          .objectFit(ImageFit.Contain).size({ width: 320, height: 150 })
+          .id('startMonitor')
+          .objectFit(ImageFit.Contain)
+          .size({ width: 320, height: 150 })
           .onClick(this.executeCallBack)
         Column() {
           Text($r('app.string.current_listen_tips')).size({ width: '80%', height: '50%' })
@@ -174,6 +176,7 @@ struct Main {
       .offset({ x: '0%', y: '-15%' })
 
       Image($rawfile('nextDetail.png'))
+        .id('nextDetail')
         .size({ width: 160, height: 50 })
         .objectFit(ImageFit.Contain)
         .position({ x: '60%', y: '85%' })

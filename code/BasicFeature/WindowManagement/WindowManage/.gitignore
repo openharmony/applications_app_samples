@@ -4,3 +4,5 @@
 **/build
 /.hvigor
 **/node_modules
+**/package-lock.json
+**/.preview

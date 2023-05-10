@@ -64,16 +64,16 @@ struct PanelSample {
             .width('80%')
             .onClick(() => {
               this.minShow = !this.minShow
-            })
+            }).id('test_miniBarButton')
           Button(this.foldableShow ? $r('app.string.panel_close_foldable') : $r('app.string.panel_show_foldable'))
             .width('80%')
             .onClick(() => {
               this.foldableShow = !this.foldableShow
-            })
+            }).id('test_foldableButton')
           Button(this.temporaryShow ? $r('app.string.panel_close_temporary') : $r('app.string.panel_show_temporary'))
             .onClick(() => {
               this.temporaryShow = !this.temporaryShow
-            })
+            }).id('test_temporaryButton')
             .width('80%')
         }.width('100%')
       }.cardStyle()
@@ -88,6 +88,7 @@ struct PanelSample {
                   .fontSize(15)
                 Blank()
                 Radio({ value: item, group: this.radioGroupName })
+                  .id('test_miniBarRadio'+index)
                   .checked(this.selectIndex === index)
               }.width('100%')
             }.itemCardStyle()
@@ -111,6 +112,7 @@ struct PanelSample {
                   .fontSize(15)
                 Blank()
                 Radio({ value: item, group: this.radioGroupName })
+                  .id('test_foldableRadio'+index)
                   .checked(this.selectIndex === index)
               }.width('100%')
             }.itemCardStyle()
@@ -135,6 +137,7 @@ struct PanelSample {
                   .fontSize(15)
                 Blank()
                 Radio({ value: item, group: this.radioGroupName })
+                  .id('test_temporaryRadio'+index)
                   .checked(this.selectIndex === index)
               }.width('100%')
             }.itemCardStyle()

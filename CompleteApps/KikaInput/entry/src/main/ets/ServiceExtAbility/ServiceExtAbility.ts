@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import rpc from '@ohos.rpc'
-import { KeyboardController } from '../model/KeyboardController.ets'
-import Log from '../model/Log'
-import Want from "@ohos.application.Want"
+import rpc from '@ohos.rpc';
+import { KeyboardController } from '../model/KeyboardController.ets';
+import Log from '../model/Log';
+import Want from '@ohos.application.Want';
 
-let TAG: string = 'ServiceExtAbility->'
+let TAG: string = 'ServiceExtAbility->';
 
 class StubTest extends rpc.RemoteObject {
   constructor(des) {
@@ -87,4 +87,4 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
   }
 }
 
-export default ServiceExtAbility
+export default ServiceExtAbility;

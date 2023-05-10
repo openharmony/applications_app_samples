@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Component
 export struct SearchBar {
@@ -31,6 +31,7 @@ export struct SearchBar {
         .margin({ right: 10 })
         .backgroundColor('#FAFAFA')
     }
+    .id('searchBar')
     .width('100%')
     .height('7%')
     .backgroundColor('#FAFAFA')
@@ -40,7 +41,7 @@ export struct SearchBar {
     .onClick(() => {
       router.pushUrl({
         url: 'pages/SearchPage'
-      })
+      });
     })
   }
 }
