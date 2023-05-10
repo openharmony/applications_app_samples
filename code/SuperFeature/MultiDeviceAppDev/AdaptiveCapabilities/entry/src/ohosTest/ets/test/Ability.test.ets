@@ -65,7 +65,7 @@ export default function appTest() {
     })
 
     /**
-     * 自适应布局
+     * 自适应布局 (目前坐标只适用于RK3568)
      */
     it(BUNDLE + 'CreateAdaptiveCapabilitiesOneFunction_001', 0, async function () {
       // create UiDriver
@@ -76,7 +76,7 @@ export default function appTest() {
       await checkButtonAndClickWithID('AtomicLayoutCapabilityIndex')
       // 点击拉伸能力1
       await checkButtonAndClickWithID('FlexibleCapability1')
-      // slider滑动 (目前坐标只适用于RK3568)
+      // slider滑动
       await driver.swipe(410, 1017, 360, 1017, 200)
       await driver.delayMs(1000)
       await driver.pressBack()
@@ -160,7 +160,7 @@ export default function appTest() {
     })
 
     /**
-     * 响应式布局
+     * 响应式布局 (目前坐标只适用于RK3568)
      */
     it(BUNDLE + 'CreateAdaptiveCapabilitiesTwoFunction_001', 0, async function () {
       // create UiDriver
@@ -226,7 +226,7 @@ export default function appTest() {
     })
 
     /**
-     * 典型布局场景
+     * 典型布局场景 (目前坐标只适用于RK3568)
      */
     it(BUNDLE + 'CreateAdaptiveCapabilitiesThreeFunction_001', 0, async function () {
       // create UiDriver
