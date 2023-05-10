@@ -21,6 +21,7 @@ import { KvStoreModel } from '../model/KvStoreModel'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { TitleBarComponent } from '../common/TitleBarComponent'
 import { isOperator, calc } from '../model/Calculator'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'Index'
 const EXIT: string = 'exit'
@@ -99,7 +100,16 @@ struct Index {
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
     let context = getContext(this) as any
-    await context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'])
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch(err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+    }
     Logger.info(TAG, `grantPermission,requestPermissionsFromUser`)
     if (AppStorage.Get('isRemote') === 'isRemote') {
       this.isDistributed = true

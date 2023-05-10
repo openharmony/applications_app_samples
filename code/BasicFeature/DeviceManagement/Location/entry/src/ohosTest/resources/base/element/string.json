@@ -11,6 +11,18 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
+    },
+    {
+      "name": "beijing",
+      "value": "北京"
+    },
+    {
+      "name": "anhui",
+      "value": "安徽/安庆"
     }
   ]
 }

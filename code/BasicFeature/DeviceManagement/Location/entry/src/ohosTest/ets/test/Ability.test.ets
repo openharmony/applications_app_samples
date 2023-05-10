@@ -20,6 +20,14 @@ import { Driver, ON } from '@ohos.UiTest'
 
 const TAG = '[Sample_Location]'
 const BUNDLE = 'Location_'
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -51,8 +59,8 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 获取位置访问权限
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission')
-      await driver.assertComponentExist(ON.text('允许'))
-      let btnAccept = await driver.findComponent(ON.text('允许'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.accept'))))
+      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.accept'))))
       await btnAccept.click()
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end')
     })
@@ -73,7 +81,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('currentLoc'))
       let currentCity = await driver.findComponent(ON.id('currentLoc'))
       let currentValue = await currentCity.getText()
-      expect(currentValue).assertEqual('北京')
+      expect(currentValue).assertEqual(await getResourceString($r('app.string.beijing')))
       // 点击索引选择城市
       Logger.info(TAG, BUNDLE + 'SelectAlphaCityFunction_001 clickCityByAlpha')
       await driver.assertComponentExist(ON.text('A'))
@@ -89,7 +97,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('currentLoc'))
       let currentSelectCity = await driver.findComponent(ON.id('currentLoc'))
       let currentCityValue = await currentSelectCity.getText()
-      expect(currentCityValue).assertEqual('安徽/安庆')
+      expect(currentCityValue).assertEqual(await getResourceString($r('app.string.anhui')))
       Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 end')
     })
   })
