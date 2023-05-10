@@ -53,7 +53,6 @@ export class KeyboardController {
   public onDestroy(): void {
     this.inputHandle.addLog('onDestroy');
     this.unRegisterListener();
-    this.mContext.terminateSelf();
   }
 
   private initWindow(): void {
@@ -165,7 +164,7 @@ export class KeyboardController {
     })
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
-        this.onDestroy();
+        this.mContext.destroy();
     });
     InputMethodEngine.on('keyboardShow', () => {
       this.inputHandle.addLog('keyboard show');
