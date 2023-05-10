@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "Entertainment_card",
+      "value": "entertainment card"
+    },
+    {
+      "name": "Service_card",
+      "value": "service card"
+    },
+    {
+      "name":"Add_to_table",
+      "value": "add to table"
+    }
+  ]
+}
