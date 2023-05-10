@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "该模板实现了列表页的功能"
+    },
+    {
+      "name": "ability_desc",
+      "value": "该Ability加载主Page的内容"
+    },
+    {
+      "name": "ability_label",
+      "value": "音视频录制"
+    },
+    {
+      "name": "page_title",
+      "value": "录制"
+    },
+    {
+      "name": "page_title_video",
+      "value": "视频录制"
+    },
+    {
+      "name": "page_title_audio",
+      "value": "音频录制"
+    },
+    {
+      "name": "button_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "button_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "audio_parameter",
+      "value": "选择音频采样率"
+    },
+    {
+      "name": "audio_samplerate",
+      "value": "音频采样率： "
+    },
+    {
+      "name": "video_parameter",
+      "value": "选择视频分辨率"
+    },
+    {
+      "name": "video_resolution",
+      "value": "视频分辨率： "
+    }
+  ]
+}

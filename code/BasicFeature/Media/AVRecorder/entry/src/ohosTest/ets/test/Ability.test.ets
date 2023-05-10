@@ -1,0 +1,97 @@
+import hilog from '@ohos.hilog';
+import { describe, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+// @ts-ignore
+import { Driver, ON } from '@ohos.UiTest';
+
+const DOMAIN = 0xF811
+const TAG = '[Sample_AVRecorder]'
+const BUNDLE = 'AVRecorder'
+const driver = Driver.create();
+
+export default function abilityTest() {
+  describe('ActsAbilityTest', function () {
+    /**
+     * 拉起应用
+     */
+    it(BUNDLE + '_StartAbility',0, async function () {
+      hilog.info(DOMAIN, TAG, BUNDLE + '_StartAbility start');
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.samples.avrecorder',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        hilog.info(DOMAIN, TAG, BUNDLE + '_StartAbility error');
+        expect().assertFail();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + '_StartAbility end');
+    })
+
+    /**
+     * 允许权限
+     */
+    it(BUNDLE + '_Permission', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + '_Permission begin');
+      await driver.delayMs(1000);
+      for (let i = 0; i < 3; i++) {
+        let btnAccept = await driver.findComponent(ON.text('允许'));
+        if (btnAccept !== undefined) {
+          await btnAccept.click();
+          await driver.delayMs(500);
+        }
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + '_Permission end');
+    })
+
+    /**
+     * 音频录制参数选择
+     */
+    it(BUNDLE + '_TestSetParameter', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + '_TestSetParameter begin');
+      let audioRecordPage = await driver.findComponent(ON.text('音频录制'));
+      if (audioRecordPage !== undefined) {
+        await audioRecordPage.click();
+        await driver.delayMs(1000);
+      }
+      let settingBtn = await driver.findComponent(ON.id('audioSetting'));
+      if (settingBtn !== undefined) {
+        await settingBtn.click();
+      }
+      let confirmBtn = await driver.findComponent(ON.id('confirm'));
+      if (confirmBtn !== undefined) {
+        await confirmBtn.click();
+        await driver.delayMs(1000);
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + '_TestSetParameter end');
+    })
+    /**
+     * 音频录制状态切换（开始录制-暂停录制-恢复录制-停止录制）
+     */
+    it(BUNDLE + '_TestRecorderFunc', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + '_TestRecorderFunc begin');
+      let startBtn = await driver.findComponent(ON.id('audioStart'));
+      if (startBtn !== undefined) {
+        await startBtn.click();
+      }
+      await driver.delayMs(2000);
+      let pauseBtn = await driver.findComponent(ON.id('audioPause'));
+      if (pauseBtn !== undefined) {
+        await pauseBtn.click();
+        await driver.delayMs(500);
+      }
+      let resumeBtn = await driver.findComponent(ON.id('audioResume'));
+      if (resumeBtn !== undefined) {
+        await resumeBtn.click();
+      }
+      await driver.delayMs(1000);
+      let stopBtn = await driver.findComponent(ON.id('audioStop'));
+      if (stopBtn !== undefined) {
+        await stopBtn.click();
+        await driver.delayMs(500);
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + '_TestRecorderFunc end');
+    })
+  })
+}

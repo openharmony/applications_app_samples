@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_red_circle</title>
+    <defs>
+        <circle id="path-1" cx="7" cy="7" r="6"></circle>
+    </defs>
+    <g id="ic_red_circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="蒙版" fill="#FA2A2D" fill-rule="nonzero" xlink:href="#path-1"></use>
+    </g>
+</svg>
