@@ -54,7 +54,7 @@ entry/src/main/ets/
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 3.解压与压缩相关接口的入参路径必须为context相关接口获取的相对路径，目前该接口仅支持操作应用目录下的文件。
 
