@@ -13,56 +13,56 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import Logger from '../utils/Logger';
 
 /**
  * Lift cycle management of Ability.
  */
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+        Logger.info('testTag', 'Ability onCreate');
         let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
             'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'];
         globalThis.abilityWant = this.launchWant;
         globalThis.abilityContext = this.context;
         let atManager = abilityAccessCtrl.createAtManager();
         atManager.requestPermissionsFromUser(globalThis.abilityContext, permissionNames).then((data) => {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'requestPermissionsFromUser called');
+            Logger.info('testTag', 'requestPermissionsFromUser called');
         });
     }
 
     onDestroy() {
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+        Logger.info('testTag', 'Ability onDestroy');
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+        Logger.info('testTag', 'Ability onWindowStageCreate');
 
         windowStage.loadContent('pages/ListPage', (err, data) => {
             if (err.code) {
-                hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+                Logger.error('testTag', 'Failed to load the content.');
                 return;
             }
-            hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+            Logger.info('testTag', 'Succeeded in loading the content.');
         });
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+        Logger.info('testTag', 'Ability onWindowStageDestroy');
     }
 
     onForeground() {
         // Ability has brought to foreground
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+        Logger.info('testTag', 'Ability onForeground');
     }
 
     onBackground() {
         // Ability has back to background
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+        Logger.info('testTag', 'Ability onBackground');
     }
 }

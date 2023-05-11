@@ -35,14 +35,6 @@ struct audioRecording {
   @State isPauseRecording: boolean = false;
   private mSaveCameraAsset: SaveCameraAsset = new SaveCameraAsset(TAG);
   private mFileAssetId: number = 0;  // init fd 0
-  startRecordingBtn: any = $r('app.media.take_video_normal');
-  stopRecordingBtn: any = $r('app.media.ic_stop');
-  pauseRecordingBtn: any = $r('app.media.ic_pause');
-  resumeRecordingBtn: any = $r('app.media.ic_continue');
-  settingBtn: any = $r('app.media.ic_setting');
-  groupBtn: any = $r('app.media.ic_circle_open');
-  recordingBtn: any = $r('app.media.ic_red_circle');
-  pausedBtn: any = $r('app.media.ic_small_pause');
   @State audioChannels: number = 2;  // set default audioChannels 2
   @State audioSampleRate: number = 48000; // set default audioSampleRate 48000
 
@@ -281,7 +273,7 @@ struct audioRecording {
             .fontColor('white')
             .margin({ left: 99, top: 13, right: 79, bottom: 703})
           if (!this.isStartRecording) {
-            Image(this.settingBtn)
+            Image($r('app.media.ic_setting'))
               .width(40)
               .height(40)
               .margin({ left: 12, top: 12, right: 308, bottom: 704})
@@ -292,11 +284,11 @@ struct audioRecording {
                 }
               })
               .id('audioSetting')
-            Image(this.recordingBtn)
+            Image($r('app.media.ic_red_circle'))
               .width(12)
               .height(12)
               .margin({ left: 136, top: 25, right: 212, bottom: 715})
-            Image(this.startRecordingBtn)
+            Image($r('app.media.take_video_normal'))
               .width(86)
               .height(86)
               .margin({ left: 132, top: 612, right: 132, bottom: 72})
@@ -304,33 +296,33 @@ struct audioRecording {
               .id('audioStart')
           }
           else {
-            Image(this.groupBtn)
+            Image($r('app.media.ic_circle_open'))
               .width(120)
               .height(56)
               .margin({ left: 120, top: 632, right: 120, bottom: 92})
-            Image(this.stopRecordingBtn)
+            Image($r('app.media.ic_stop'))
               .width(16)
               .height(16)
               .margin({ left: 146, top: 652, right: 198, bottom: 112})
               .onClick(() => this.stopRecordingProcess())
               .id('audioStop')
             if (!this.isPauseRecording) {
-              Image(this.recordingBtn)
+              Image($r('app.media.ic_red_circle'))
                 .width(12)
                 .height(12)
                 .margin({ left: 136, top: 25, right: 212, bottom: 715})
-              Image(this.pauseRecordingBtn)
+              Image($r('app.media.ic_pause'))
                 .width(14)
                 .height(15)
                 .margin({ left: 200, top: 652, right: 146, bottom: 113})
                 .onClick(() => this.pauseRecordingProcess())
                 .id('audioPause')
             } else {
-              Image(this.pausedBtn)
+              Image($r('app.media.ic_small_pause'))
                 .width(14)
                 .height(14)
                 .margin({ left: 136, top: 25, right: 212, bottom: 715})
-              Image(this.resumeRecordingBtn)
+              Image($r('app.media.ic_continue'))
                 .width(16)
                 .height(16)
                 .margin({ left: 198, top: 651, right: 144, bottom: 111})
