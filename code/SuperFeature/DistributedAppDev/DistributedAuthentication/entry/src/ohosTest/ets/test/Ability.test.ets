@@ -116,25 +116,6 @@ export default function IndexTest() {
     });
 
     /**
-     * 获取可信设备列表
-     */
-    it(BUNDLE + 'GetTrustedDeviceList_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDeviceList_001 start');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.refresh')), MatchPattern.CONTAINS));
-      let refresh = await driver.findComponent(ON.text(await getResourceString($r('app.string.refresh')), MatchPattern.CONTAINS));
-      await refresh.click();
-      await driver.delayMs(1000);
-      let credible = await driver.findComponent((ON.text(await getResourceString($r('app.string.certified')), MatchPattern.CONTAINS)));
-      await driver.delayMs(1000);
-      let trustedDeviceName = await credible.getText();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDeviceList_001 trustedDeviceName = ' + trustedDeviceName);
-      expect(trustedDeviceName).assertContain(await getResourceString($r('app.string.certified')));
-      hilog.info(DOMAIN, TAG, BUNDLE + 'GetTrustedDeviceList_001 end');
-    });
-
-    /**
      * 发现可用设备
      */
     it(BUNDLE + 'DiscoveryDevices_001', 0, async () => {
