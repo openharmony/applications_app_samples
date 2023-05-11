@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
+import { describe, expect, it } from '@ohos/hypium'
+import { Driver } from '@ohos.UiTest'
 import featureAbility from '@ohos.ability.featureAbility'
 import hilog from '@ohos.hilog'
 
@@ -39,13 +39,12 @@ export default function appTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
       })
     })
-
     /**
      * 进入页面
      */
     it(BUNDLE + 'CreateFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await UiDriver.create()
+      let driver = await Driver.create()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
     })
