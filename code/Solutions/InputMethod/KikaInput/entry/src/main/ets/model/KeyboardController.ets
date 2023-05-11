@@ -53,6 +53,8 @@ export class KeyboardController {
   public onDestroy(): void {
     this.inputHandle.addLog('onDestroy');
     this.unRegisterListener();
+    let win = windowManager.findWindow(this.windowName);
+    win.destroyWindow();
   }
 
   private initWindow(): void {
