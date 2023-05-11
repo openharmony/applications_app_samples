@@ -29,7 +29,7 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/TestAbility/TestAbility.ets",
+        "srcEntrance": "./ets/testability/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",
