@@ -34,8 +34,8 @@ struct audioRecording {
   @State isStartRecording: boolean = false;
   @State isPauseRecording: boolean = false;
   private mSaveCameraAsset: SaveCameraAsset = new SaveCameraAsset(TAG);
-  private mFileAssetId: number = 0;  // init fd 0
-  @State audioChannels: number = 2;  // set default audioChannels 2
+  private mFileAssetId: number = 0; // init fd 0
+  @State audioChannels: number = 2; // set default audioChannels 2
   @State audioSampleRate: number = 48000; // set default audioSampleRate 48000
 
   private avProfile = {
@@ -271,12 +271,12 @@ struct audioRecording {
             .height(40)
             .fontSize(27)
             .fontColor('white')
-            .margin({ left: 99, top: 13, right: 79, bottom: 703})
+            .margin({ left: 99, top: 13, right: 79, bottom: 703 })
           if (!this.isStartRecording) {
             Image($r('app.media.ic_setting'))
               .width(40)
               .height(40)
-              .margin({ left: 12, top: 12, right: 308, bottom: 704})
+              .margin({ left: 12, top: 12, right: 308, bottom: 704 })
               .onClick(() => {
                 if (this.settingDialog !== undefined) {
                   Logger.info(TAG, 'to open setting dialog');
@@ -287,11 +287,11 @@ struct audioRecording {
             Image($r('app.media.ic_red_circle'))
               .width(12)
               .height(12)
-              .margin({ left: 136, top: 25, right: 212, bottom: 715})
+              .margin({ left: 136, top: 25, right: 212, bottom: 715 })
             Image($r('app.media.take_video_normal'))
               .width(86)
               .height(86)
-              .margin({ left: 132, top: 612, right: 132, bottom: 72})
+              .margin({ left: 132, top: 612, right: 132, bottom: 72 })
               .onClick(() => this.startRecordingProcess())
               .id('audioStart')
           }
@@ -299,33 +299,33 @@ struct audioRecording {
             Image($r('app.media.ic_circle_open'))
               .width(120)
               .height(56)
-              .margin({ left: 120, top: 632, right: 120, bottom: 92})
+              .margin({ left: 120, top: 632, right: 120, bottom: 92 })
             Image($r('app.media.ic_stop'))
               .width(16)
               .height(16)
-              .margin({ left: 146, top: 652, right: 198, bottom: 112})
+              .margin({ left: 146, top: 652, right: 198, bottom: 112 })
               .onClick(() => this.stopRecordingProcess())
               .id('audioStop')
             if (!this.isPauseRecording) {
               Image($r('app.media.ic_red_circle'))
                 .width(12)
                 .height(12)
-                .margin({ left: 136, top: 25, right: 212, bottom: 715})
+                .margin({ left: 136, top: 25, right: 212, bottom: 715 })
               Image($r('app.media.ic_pause'))
                 .width(14)
                 .height(15)
-                .margin({ left: 200, top: 652, right: 146, bottom: 113})
+                .margin({ left: 200, top: 652, right: 146, bottom: 113 })
                 .onClick(() => this.pauseRecordingProcess())
                 .id('audioPause')
             } else {
               Image($r('app.media.ic_small_pause'))
                 .width(14)
                 .height(14)
-                .margin({ left: 136, top: 25, right: 212, bottom: 715})
+                .margin({ left: 136, top: 25, right: 212, bottom: 715 })
               Image($r('app.media.ic_continue'))
                 .width(16)
                 .height(16)
-                .margin({ left: 198, top: 651, right: 144, bottom: 111})
+                .margin({ left: 198, top: 651, right: 144, bottom: 111 })
                 .onClick(() => this.resumeRecordingProcess())
                 .id('audioResume')
             }
@@ -373,7 +373,7 @@ struct CustomDialogSetting {
   @State currentAudioSampleRate: number = 48000
   private initAudioChannels: number = this.audioChannels
   private initAudioSampleRate: number = this.audioSampleRate
-  @State audioChannelsList: Array<number> = [1,2]
+  @State audioChannelsList: Array<number> = [1, 2]
   @State audioSampleRateList: Array<number> = [8000, 22050, 32000, 44100, 48000, 96000]
 
   build() {
@@ -422,6 +422,7 @@ struct CustomDialogSetting {
           .divider({ strokeWidth: 0.5, color: '#EEEEEE', startMargin: 0, endMargin: 0 })
         }.margin({ left: 24, right: 24, top: 16 })
       }.alignItems(HorizontalAlign.Start)
+
       Row() {
         Button($r('app.string.button_cancel'))
           .onClick(() => {
@@ -436,7 +437,12 @@ struct CustomDialogSetting {
           .fontSize(16)
           .id('cancel')
           .layoutWeight(1)
-        Divider().vertical(true).height(24).color('#182431').opacity(0.6).margin({ left: 8, right: 8 })
+        Divider()
+          .vertical(true)
+          .height(24)
+          .color('#182431')
+          .opacity(0.6)
+          .margin({ left: 8, right: 8 })
         Button($r('app.string.button_confirm'))
           .onClick(() => {
             this.audioChannels = this.currentAudioChannels
@@ -453,9 +459,9 @@ struct CustomDialogSetting {
       }
       .width(300)
       .height(40)
-      .margin({top: 12, bottom: 16})
+      .margin({ top: 12, bottom: 16 })
     }
-    .margin({left: 12, right: 12, bottom: 12})
+    .margin({ left: 12, right: 12, bottom: 12 })
     .backgroundColor('#FFFFFF')
     .borderRadius(32)
     .alignItems(HorizontalAlign.Center)
