@@ -24,7 +24,7 @@ const BUNDLE = 'DistributedNote_';
 const DRIVER = Driver.create();
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('ActsAbilityTest', function () {
 
     /**
      * 拉起应用
