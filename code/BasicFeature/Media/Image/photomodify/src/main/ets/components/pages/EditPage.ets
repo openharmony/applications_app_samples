@@ -180,6 +180,7 @@ export struct EditPage {
           .onClick(() => {
             router.back()
           })
+          .id('btnBack')
 
         Blank()
 
@@ -197,6 +198,7 @@ export struct EditPage {
               params: { isShowCamera: true }
             })
           })
+          .id('btnConfirm')
       }
       .width('100%')
       .height('5%')
@@ -213,6 +215,7 @@ export struct EditPage {
               .width('90%')
               .objectFit(ImageFit.None)
               .backgroundColor('#ff070707')
+              .id('imagePixelMap')
           }
           .height('89%')
           .width('100%')
@@ -243,6 +246,7 @@ export struct EditPage {
                     this.pixelMap = item
                     this.selectIndex = index
                   })
+                  .id('selectedList')
               })
               Row() {
                 Image($r('app.media.add'))
@@ -252,6 +256,7 @@ export struct EditPage {
                   .onClick(() => {
                     router.back()
                   })
+                  .id('addAgain')
               }
               .backgroundColor('#ffeae9e9')
               .justifyContent(FlexAlign.Center)
@@ -302,6 +307,7 @@ export struct EditPage {
                     this.cropFrontShows[index] = true
                   }
                 })
+                .id('btnCrop_' + index)
               })
             }
             .width('100%')
@@ -326,6 +332,7 @@ export struct EditPage {
                   }
                   this.flushPage()
                 })
+                .id('btnScale_' + index)
               })
             }
             .width('100%')
@@ -337,6 +344,7 @@ export struct EditPage {
       }
       .constraintSize(this.isLand === false ? { maxHeight: '84%' } : { maxHeight: '82%' })
       .backgroundColor('#f1f3f5')
+      .id('scroll')
 
       Divider()
         .vertical(false)
@@ -388,6 +396,7 @@ export struct EditPage {
               return item
             })
           })
+          .id('btnChange_' + index)
         })
       }
       .width('100%')
