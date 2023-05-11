@@ -19,9 +19,9 @@ import { DirectoryItem, DirectoryList } from '../../common/DirectoryList'
 @Component
 struct ResponsiveLayoutIndex {
   private responsiveLayout: DirectoryItem[] = [
-    { title: $r('app.string.breakpoint'), uri: 'pages/responsiveLayout/breakpoint/BreakpointSample' },
-    { title: $r('app.string.media_query'), uri: 'pages/responsiveLayout/mediaQuery/MediaQuerySample' },
-    { title: $r('app.string.grid_layout'), uri: 'pages/gridRow/GridRowLayoutIndex' }
+    { title: $r('app.string.breakpoint'), uri: 'pages/responsiveLayout/breakpoint/BreakpointSample', id:'BreakpointSample' },
+    { title: $r('app.string.media_query'), uri: 'pages/responsiveLayout/mediaQuery/MediaQuerySample', id:'MediaQuerySample' },
+    { title: $r('app.string.grid_layout'), uri: 'pages/gridRow/GridRowLayoutIndex', id:'GridRowLayoutIndex' }
   ]
 
   build() {
