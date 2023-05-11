@@ -24,7 +24,7 @@ const BUNDLE = 'DistributedRdb_';
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('abilityTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       let want = {

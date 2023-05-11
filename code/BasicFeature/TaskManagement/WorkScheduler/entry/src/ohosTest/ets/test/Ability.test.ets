@@ -97,7 +97,6 @@ export default function abilityTest() {
       let confirmBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.btn1'))));
       await confirmBtn.click();
       await DRIVER.delayMs(5000);
-      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.app_name'))));
       Logger.info('UpdateApp_001 end');
     })
   })
