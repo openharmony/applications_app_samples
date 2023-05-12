@@ -15,55 +15,55 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import type { Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import type { Permissions } from '@ohos.abilityAccessCtrl';
 import Logger from '../utils/Logger';
 
 /**
  * Lift cycle management of Ability.
  */
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        Logger.info('testTag', 'Ability onCreate');
-        let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
-            'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'];
-        globalThis.abilityWant = this.launchWant;
-        globalThis.abilityContext = this.context;
-        let atManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(globalThis.abilityContext, permissionNames).then((data) => {
-            Logger.info('testTag', 'requestPermissionsFromUser called');
-        });
-    }
+  onCreate(want, launchParam) {
+    Logger.info('testTag', 'Ability onCreate');
+    let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
+      'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'];
+    globalThis.abilityWant = this.launchWant;
+    globalThis.abilityContext = this.context;
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(globalThis.abilityContext, permissionNames).then((data) => {
+      Logger.info('testTag', 'requestPermissionsFromUser called');
+    });
+  }
 
-    onDestroy() {
-        Logger.info('testTag', 'Ability onDestroy');
-    }
+  onDestroy() {
+    Logger.info('testTag', 'Ability onDestroy');
+  }
 
-    onWindowStageCreate(windowStage: Window.WindowStage) {
-        // Main window is created, set main page for this ability
-        Logger.info('testTag', 'Ability onWindowStageCreate');
+  onWindowStageCreate(windowStage: Window.WindowStage) {
+    // Main window is created, set main page for this ability
+    Logger.info('testTag', 'Ability onWindowStageCreate');
 
-        windowStage.loadContent('pages/ListPage', (err, data) => {
-            if (err.code) {
-                Logger.error('testTag', 'Failed to load the content.');
-                return;
-            }
-            Logger.info('testTag', 'Succeeded in loading the content.');
-        });
-    }
+    windowStage.loadContent('pages/ListPage', (err, data) => {
+      if (err.code) {
+        Logger.error('testTag', 'Failed to load the content. Cause: ' + JSON.stringify(err));
+        return;
+      }
+        Logger.info('testTag', 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    });
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        Logger.info('testTag', 'Ability onWindowStageDestroy');
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    Logger.info('testTag', 'Ability onWindowStageDestroy');
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        Logger.info('testTag', 'Ability onForeground');
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    Logger.info('testTag', 'Ability onForeground');
+  }
 
-    onBackground() {
-        // Ability has back to background
-        Logger.info('testTag', 'Ability onBackground');
-    }
+  onBackground() {
+   // Ability has back to background
+    Logger.info('testTag', 'Ability onBackground');
+  }
 }

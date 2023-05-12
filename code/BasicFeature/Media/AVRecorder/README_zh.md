@@ -32,7 +32,7 @@ entry/src/main/ets/
 |---utils
 |   |---DateTimeUtils                      // 录制显示时间转换函数
 |   |---SaveCameraAsset.ets                // 创建录制文件相关函数
-|   |---Logger.ets                         // 封装的日志打印函数
+|   |---Logger.ts                          // 封装的日志打印函数
 ```
 
 ### 具体实现

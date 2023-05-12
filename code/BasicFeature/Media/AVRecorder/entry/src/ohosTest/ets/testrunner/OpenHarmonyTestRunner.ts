@@ -53,7 +53,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
       cmd += ' -D';
     }
     logger.info(TAG, `cmd : ${cmd}`);
-    abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
+    abilityDelegator.executeShellCommand(cmd, (err: Error, d: {stdResult: string, exitCode: number}) => {
       logger.info(TAG, 'executeShellCommand err happened!');
     })
     logger.info(TAG, 'OpenHarmonyTestRunner onRun end');
