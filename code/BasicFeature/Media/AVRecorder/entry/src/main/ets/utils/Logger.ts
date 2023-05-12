@@ -12,33 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hiLog from '@ohos.hilog'
+
+import hilog from '@ohos.hilog';
 
 class Logger {
-    private domain: number
-    private prefix: string
-    private format: string = "%{public}s, %{public}s"
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
 
-    constructor(prefix: string) {
-        this.prefix = prefix
-        this.domain = 0xFF00
-    }
+  constructor(prefix: string) {
+    this.prefix = prefix;
+    this.domain = 0xFF00;
+  }
 
-    debug(...args: any[]) {
-        hiLog.debug(this.domain, this.prefix, this.format, args)
-    }
+  debug(...args: string[]): void {
+    hilog.debug(this.domain, this.prefix, this.format, args);
+  }
 
-    info(...args: any[]) {
-        hiLog.info(this.domain, this.prefix, this.format, args)
-    }
+  info(...args: string[]): void {
+    hilog.info(this.domain, this.prefix, this.format, args);
+  }
 
-    warn(...args: any[]) {
-        hiLog.warn(this.domain, this.prefix, this.format, args)
-    }
+  warn(...args: string[]): void {
+    hilog.warn(this.domain, this.prefix, this.format, args);
+  }
 
-    error(...args: any[]) {
-        hiLog.error(this.domain, this.prefix, this.format, args)
-    }
+  error(...args: string[]): void {
+    hilog.error(this.domain, this.prefix, this.format, args);
+  }
 }
 
 export default new Logger('AVRecorderSample')

@@ -74,7 +74,7 @@ export default function abilityTest() {
       if (settingBtn !== undefined) {
         await settingBtn.click();
       }
-      let confirmBtn = await driver.findComponent(ON.id('confirm'));
+      let confirmBtn = await driver.findComponent(ON.id('audioConfirm'));
       if (confirmBtn !== undefined) {
         await confirmBtn.click();
         await driver.delayMs(1000);

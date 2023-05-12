@@ -753,7 +753,7 @@ struct CustomDialogSetting {
           .fontColor('#007DFF')
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
-          .id('cancel')
+          .id('videoCancel')
           .layoutWeight(1)
         Divider()
           .vertical(true)
@@ -773,7 +773,7 @@ struct CustomDialogSetting {
           .fontColor('#007DFF')
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
-          .id('confirm')
+          .id('videoConfirm')
           .layoutWeight(1)
       }
       .width(300)

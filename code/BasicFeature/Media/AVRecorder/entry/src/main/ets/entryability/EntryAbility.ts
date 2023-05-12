@@ -48,7 +48,7 @@ export default class EntryAbility extends UIAbility {
         Logger.error('testTag', 'Failed to load the content. Cause: ' + JSON.stringify(err));
         return;
       }
-        Logger.info('testTag', 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
+      Logger.info('testTag', 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
     });
   }
 
@@ -63,7 +63,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onBackground() {
-   // Ability has back to background
+    // Ability has back to background
     Logger.info('testTag', 'Ability onBackground');
   }
 }

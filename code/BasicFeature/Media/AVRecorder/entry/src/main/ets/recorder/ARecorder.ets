@@ -435,7 +435,7 @@ struct CustomDialogSetting {
           .fontColor('#007DFF')
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
-          .id('cancel')
+          .id('audioCancel')
           .layoutWeight(1)
         Divider()
           .vertical(true)
@@ -454,7 +454,7 @@ struct CustomDialogSetting {
           .fontColor('#007DFF')
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
-          .id('confirm')
+          .id('audioConfirm')
           .layoutWeight(1)
       }
       .width(300)
