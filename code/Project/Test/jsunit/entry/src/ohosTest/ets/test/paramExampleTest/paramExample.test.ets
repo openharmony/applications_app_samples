@@ -54,7 +54,7 @@
  * Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
  *
  * 指导文档
- * https://gitee.com/lijialang/testfwk_arkxtest#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8
+ * https://gitee.com/openharmony/testfwk_arkxtest#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8
  */
 
 import {describe, it, expect, TestType} from '@ohos/hypium';
