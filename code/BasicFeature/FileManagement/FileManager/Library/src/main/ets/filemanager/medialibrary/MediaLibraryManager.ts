@@ -16,17 +16,20 @@
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../../utils/Logger'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import type { Permissions } from '@ohos.abilityAccessCtrl';
 
 /**
  * 主要封装了mediaLibrary库相关的接口
  */
 class MediaLibraryManager {
   requestPermission(context): void {
-    let permissions = [
+    let permissions: Array<Permissions> = [
       'ohos.permission.READ_MEDIA',
       'ohos.permission.WRITE_MEDIA'
     ]
-    context.requestPermissionsFromUser(permissions, (code, result) => {
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(context, permissions, (code, result) => {
       Logger.debug('permissionRequest ' + JSON.stringify(code) + ' Result: ' + JSON.stringify(result))
     })
   }
