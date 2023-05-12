@@ -8,6 +8,7 @@
 ## 效果预览
 
 ![](screenshots/1.png)
+![](screenshots/3.png)
 
 
 使用说明

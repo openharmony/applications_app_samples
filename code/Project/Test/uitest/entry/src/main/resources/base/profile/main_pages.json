@@ -1,5 +1,15 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/click",
+    "pages/third",
+    "pages/fourth",
+    "pages/Input",
+    "pages/mouse",
+    "pages/Fling",
+    "pages/Swipe",
+    "pages/Pinch",
+    "pages/scroller",
+    "pages/Drag"
   ]
 }
