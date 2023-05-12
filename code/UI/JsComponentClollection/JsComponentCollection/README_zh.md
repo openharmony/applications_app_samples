@@ -4,7 +4,9 @@
 
 本示例为ArkUI中组件、通用、动画、全局方法的集合。
 
-本示例使用 [Tabs容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-tabs.md)搭建整体应用框架，每个 [TabContent内容视图](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-tab-content.md) 使用 [div容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md) 嵌套布局，在每个 [div](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md) 中使用 [循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-attributes.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。通过组件、通用、动画、全局方法四个大类展现了ArkUI的能力，并把四大类中的功能进行了分类，方便开发者查看，每个示例又结合了不同的展现方式，以契合实际应用场景为主生动的体现了ArkUI能力的用法。
+### 效果预览
+
+![component](screenshots/devices/component.png)
 
 使用说明：
 
@@ -14,9 +16,63 @@
 
 3.若存在三级导航，点击三级导航则跳转详情页面。
 
-### 效果预览
+### 工程目录
 
-![component](screenshots/devices/component.png)
+```
+entry/src/main/js/MainAbility
+|---app.js
+|---common
+|   |---commonItemInput                    // 输入框组件
+|   |---commonItemSelect                   // 选择菜单组件
+|   |---commonItemSlider              // 滑动条组件
+|   |---css              // 通用样式
+|   |---image              // 图片资源
+|   |---logger              // 详情页面标题组件
+|   |---tabContentNavigation              // 页面切换组件
+|   |---titleBar              // 页面标题组件
+|---pages
+|   |---animations                     
+|   |   |---pageTransitionSample     // 变换
+|   |   |---pageTransitionSampleFromBottom   // 从下变换
+|   |   |---pageTransitionSampleFromLeft     // 从左变换
+|   |   |---pageTransitionSampleFromRight    // 从右变换
+|   |   |---pageTransitionSampleFromTop      // 从上变换
+|   |   |---pageTransitionSampleWithRotate   // 旋转变换
+|   |   |---pageTransitionSampleWithScale    // 缩小放大变换
+|   |---components                      // 首页
+|   |   |---badgeSample
+|   |   |---basic
+|   |   |   |---buttonSample        // 按钮
+|   |   |   |---datePickerSample     // 日期选择器
+|   |   |   |---dividerSample        // 分隔器
+|   |   |   |---inputSample        // 输入框
+|   |   |   |---qrCodeSample         // 二维码
+|   |   |   |---radioSample      // 单选
+|   |   |   |---selectSample    // 选择菜单
+|   |   |   |---sliderSample    // 滑动条
+|   |   |   |---spanSample      // 行内文本
+|   |   |   |---switchSample     // 切换
+|   |   |   |---textSample           // 文本
+|   |---globalMethods                      // 全局方法
+|   |   |---popups
+|   |   |   |---dialogSample             // 自定义弹窗
+|   |---index                      // 首页
+|   |---universals                      // 通用
+|   |   |---events
+|   |   |   |---clickSample         // 点击事件
+|   |   |---properties
+|   |   |   |---backgroundSample   // 背景
+|   |   |   |---borderSample       // 边框
+|   |   |   |---fontSample        // 字体
+|   |   |   |---rotateSample       // 旋转
+|   |   |   |---sizeSample         // 字号
+|   |   |   |---translateSample      // 变换
+
+```
+
+### 具体实现
+
+本示例使用 [Tabs容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-tabs.md)搭建整体应用框架，每个 [TabContent内容视图](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-tab-content.md) 使用 [div容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md) 嵌套布局，在每个 [div](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md) 中使用 [循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-attributes.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。通过组件、通用、动画、全局方法四个大类展现了ArkUI的能力，并把四大类中的功能进行了分类，方便开发者查看，每个示例又结合了不同的展现方式，以契合实际应用场景为主生动的体现了ArkUI能力的用法。
 
 ### 相关权限
 
