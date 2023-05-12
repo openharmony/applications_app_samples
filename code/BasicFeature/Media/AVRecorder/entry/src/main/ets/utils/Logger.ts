@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('AVRecorderSample')
+export default new Logger('AVRecorderSample');
