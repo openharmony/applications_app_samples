@@ -29,7 +29,7 @@ export default function findWindowExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 获取指定的window对象
      */
-    it('findWindowExampleTest_bundleName', TestType.FUNCTION, async function () {
+    it('findWindowExampleTest_bundleName', TestType.FUNCTION, async function (done) {
       let want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
@@ -40,6 +40,7 @@ export default function findWindowExampleTest() {
       let window = await driver.findWindow({bundleName: bundleName})
       let name = await window.getBundleName()
       expect(name == bundleName).assertTrue()
+      done()
     })
   })
 }

@@ -36,7 +36,7 @@ export default function PontMatrixEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest injectMultiPointerAction 功能
      */
-    it('testInjectMultiPointerAction', TestType.FUNCTION, async function () {
+    it('testInjectMultiPointerAction', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
@@ -70,6 +70,7 @@ export default function PontMatrixEventTest() {
       let bounds2= await image2.getBounds()
       expect(bounds2 != bounds1).assertTrue()
       await driver.pressBack()
+      done()
     })
   })
 }

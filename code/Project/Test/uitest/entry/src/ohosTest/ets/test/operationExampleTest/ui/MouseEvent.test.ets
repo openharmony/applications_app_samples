@@ -36,7 +36,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标左键点击 功能
      */
-    it('testMouseClick1', TestType.FUNCTION, async function () {
+    it('testMouseClick1', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id("mouse_test"));
@@ -44,6 +44,7 @@ export default function MouseEventTest() {
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_LEFT, 2017) //在100，100 鼠标左键点击
       let text = await driver.findComponent(ON.id("mouse_test_result"));
       expect(await text.getText() == 'left').assertTrue();
+      done()
     })
 
     /**
@@ -52,7 +53,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标右键点击 功能
      */
-    it('testMouseClick2', TestType.FUNCTION, async function () {
+    it('testMouseClick2', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id("mouse_test"));
@@ -60,6 +61,7 @@ export default function MouseEventTest() {
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_RIGHT, 2017) //在100，100 鼠标右键点击
       let text = await driver.findComponent(ON.id("mouse_test_result"));
       expect(await text.getText() == 'right').assertTrue();
+      done()
     })
 
     /**
@@ -68,7 +70,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标中间点击 功能
      */
-    it('testMouseClick3', TestType.FUNCTION, async function () {
+    it('testMouseClick3', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id("mouse_test"));
@@ -76,6 +78,7 @@ export default function MouseEventTest() {
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_MIDDLE, 2017) //在100，100 鼠标右键点击
       let text = await driver.findComponent(ON.id("mouse_test_result"));
       expect(await text.getText() == 'middle').assertTrue();
+      done()
     })
 
     /**
@@ -84,7 +87,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
      */
-    it('testMouseMoveTo', TestType.FUNCTION, async function () {
+    it('testMouseMoveTo', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let Button = await driver.findComponent(ON.id('hover_bt'))
@@ -93,6 +96,7 @@ export default function MouseEventTest() {
       await driver.delayMs(waitUiReadyMs)
       let newButton = await driver.findComponent(ON.id('hoverText'))
       expect(await newButton.getText() == 'hover').assertTrue()
+      done()
     })
 
 
@@ -102,7 +106,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
      */
-    it('testMouseScroll', TestType.FUNCTION, async function () {
+    it('testMouseScroll', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let scroll = await driver.findComponent(ON.id('scroll_test'))
@@ -110,6 +114,7 @@ export default function MouseEventTest() {
       await driver.mouseScroll(center,true,30)
       let button1 = await driver.findComponent(ON.id('scroll_item'))
       expect(await button1.getText() != '0').assertTrue()
+      done()
     })
   })
 }

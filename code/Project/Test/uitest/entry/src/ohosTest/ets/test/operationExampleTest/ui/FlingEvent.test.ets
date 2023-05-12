@@ -36,7 +36,7 @@ export default function FlingEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest fling 功能
      */
-    it('FlingEvent_h', TestType.FUNCTION, async function () {
+    it('FlingEvent_h', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       await driver.fling({x:400, y:300},{x:100, y:300}, 20, 600)
@@ -45,6 +45,7 @@ export default function FlingEventTest() {
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.id('swiper_text'))
       expect(await text.getText()).assertEqual("arkUI")
+      done()
     })
 
     /**
@@ -53,13 +54,14 @@ export default function FlingEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest fling 功能
      */
-    it('FlingEvent_v', TestType.FUNCTION, async function () {
+    it('FlingEvent_v', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       await driver.fling({x:400, y:700},{x:400, y:500}, 20, 600 )
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.id('scroll_item'))
       expect(await text.getText()).not().assertEqual("0")
+      done()
     })
   })
 }

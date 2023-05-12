@@ -36,7 +36,7 @@ export default function PinchEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest pinchIn  功能
      */
-    it('PinchEventTest_In', TestType.FUNCTION, async function ( ) {
+    it('PinchEventTest_In', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
@@ -46,6 +46,7 @@ export default function PinchEventTest() {
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()
       expect(bounds1).not().assertDeepEquals(bounds2);
+      done()
     })
 
 
@@ -55,7 +56,7 @@ export default function PinchEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest pinchOut  功能
      */
-    it('PinchEventTest_Out', TestType.FUNCTION, async function ( ) {
+    it('PinchEventTest_Out', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
@@ -65,6 +66,7 @@ export default function PinchEventTest() {
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()
       expect(bounds1).not().assertDeepEquals(bounds2);
+      done()
     })
   })
 }
