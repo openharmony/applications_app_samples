@@ -14,7 +14,7 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import type window from '@ohos.window';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
 import Logger from '../utils/Logger';
@@ -39,7 +39,7 @@ export default class EntryAbility extends UIAbility {
     Logger.info('testTag', 'Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {
     // Main window is created, set main page for this ability
     Logger.info('testTag', 'Ability onWindowStageCreate');
 
