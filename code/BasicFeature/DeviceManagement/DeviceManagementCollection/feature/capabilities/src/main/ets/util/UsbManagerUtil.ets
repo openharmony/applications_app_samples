@@ -15,7 +15,7 @@
 
 import commonEventManager from '@ohos.commonEventManager';
 import promptAction from '@ohos.promptAction';
-import usbV9 from '@ohos.usbV9';
+import usbManager from '@ohos.usbManager';
 import CheckEmptyUtils from './CheckEmptyUtils';
 import { DeviceAttribute } from '../model/DeviceAttribute';
 import { logger } from '@ohos/common';
@@ -24,7 +24,7 @@ const TAG: string = 'UsbManagerUtil';
 let commonEventSubscriber = undefined;
 
 export function getDeviceList(): DeviceAttribute[] {
-  let usbDevices: usbV9.USBDevice[] = usbV9.getDevices();
+  let usbDevices: usbManager.USBDevice[] = usbManager.getDevices();
   logger.info(TAG, `usb getDeviceList 000 is : ${JSON.stringify(usbDevices)}`);
   if (CheckEmptyUtils.isEmpty(usbDevices)) {
     logger.info(TAG, `usbDevices is null`);

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import type usbV9 from '@ohos.usbV9';
+import usbManager from '@ohos.usbManager';
 
 export default {
   isEmpty(object: Object): boolean {
     return (typeof object === 'undefined' || object === null || object === '');
   },
 
-  isEmptyArray(array: Array<usbV9.USBDevice>): boolean {
+  isEmptyArray(array: Array<usbManager.USBDevice>): boolean {
     return (array.length === 0 ? true : false);
   }
 };
