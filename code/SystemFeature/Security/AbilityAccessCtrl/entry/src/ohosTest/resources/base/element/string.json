@@ -11,6 +11,34 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "title",
+      "value": "Grant permission or not"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "button",
+      "value": "Detect Permissions"
+    },
+    {
+      "name": "authorization",
+      "value": "Permissions have been granted"
+    },
+    {
+      "name": "unauthorization",
+      "value": "Permissions were not granted"
+    },
+    {
+      "name": "AbilityAccessCtrl",
+      "value": "AbilityAccessCtrl "
     }
   ]
 }

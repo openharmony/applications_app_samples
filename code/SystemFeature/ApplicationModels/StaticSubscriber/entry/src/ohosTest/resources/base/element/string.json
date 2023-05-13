@@ -11,6 +11,34 @@
     {
       "name": "TestAbility_label",
       "value": "tvBase"
+    },
+    {
+      "name": "entry_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "StaticSubscriber_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "static subscriber"
+    },
+    {
+      "name": "StaticSubscriber_label",
+      "value": "static subscriber"
+    },
+    {
+      "name": "static_subscriber",
+      "value": "静态订阅"
+    },
+    {
+      "name": "publish",
+      "value": "发布"
     }
   ]
 }

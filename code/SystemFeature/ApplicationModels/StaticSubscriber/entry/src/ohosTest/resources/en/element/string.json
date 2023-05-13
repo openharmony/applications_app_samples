@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "i am an entry for tv"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the tv entry test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "tvBase"
+    },
+    {
+      "name": "entry_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "StaticSubscriber_desc",
+      "value": "static subscriber"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "static subscriber"
+    },
+    {
+      "name": "StaticSubscriber_label",
+      "value": "static subscriber"
+    },
+    {
+      "name": "static_subscriber",
+      "value": "static_subscriber"
+    },
+    {
+      "name": "publish",
+      "value": "publish"
+    }
+  ]
+}

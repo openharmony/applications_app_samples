@@ -17,10 +17,18 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const TAG: string = '[Sample_Upload]'
 const DOMAIN = 0xF811
 const BUNDLE = 'Upload_'
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let resMgr = abilityDelegator.getAppContext().resourceManager;
+  let text = await resMgr.getStringValue(resource);
+  return text;
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -29,7 +37,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
           bundleName: 'ohos.samples.upload',
@@ -41,6 +48,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(expection));
         done();
       }
+      // ability = await abilityDelegator.getCurrentTopAbility();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
 
@@ -117,8 +125,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('2/50'));
       // 点击完成
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 finish');
-      await driver.assertComponentExist(ON.text('完成'));
-      let finish = await driver.findComponent(ON.text('完成'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.complete'))));
+      let finish = await driver.findComponent(ON.text(await getResourceString($r('app.string.complete'))));
       await finish.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('publish'));
@@ -146,11 +154,11 @@ export default function abilityTest() {
           let publishBtn = await driver.findComponent(ON.id('publish'));
           await publishBtn.click();
           await driver.delayMs(5000);
-          await driver.assertComponentExist(ON.text('发表成功'));
+          await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.publish_success'))));
           // 点击确认
           hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 clickConfirm');
-          await driver.assertComponentExist(ON.text('确认'));
-          let confirm = await driver.findComponent(ON.text('确认'));
+          await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm'))));
+          let confirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm'))));
           await confirm.click();
           await driver.delayMs(1000);
           // 检查上传是否成功
