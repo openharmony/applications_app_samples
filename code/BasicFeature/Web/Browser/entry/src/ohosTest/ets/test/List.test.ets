@@ -16,5 +16,5 @@
 import appTest from './App.test';
 
 export default function testsuite() {
-  appTest()
+  appTest();
 }

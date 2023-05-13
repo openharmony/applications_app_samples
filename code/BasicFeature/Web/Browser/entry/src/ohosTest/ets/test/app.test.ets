@@ -38,17 +38,17 @@ async function targetSpecialPage() {
   // 验证是否跳转成功
   let currentUrl = await inputUrl.getText();
   if (!currentUrl) {
-    Logger.info(TAG, 'Target failed')
+    Logger.info(TAG, 'Target failed');
     expect().assertFail();
     return;
   }
 }
 
 export default function appTest() {
-  describe('abilityTest', function () {
+  describe('appTest', function () {
     // 打开应用
     it(BUNDLE + 'StartAbility', 0, async function (done) {
-      Logger.info(TAG, 'StartAbility start')
+      Logger.info(TAG, 'StartAbility start');
       let want = {
         bundleName: 'ohos.samples.browser1',
         abilityName: 'MainAbility'

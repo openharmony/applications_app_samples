@@ -20,7 +20,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import Logger from '../util/Logger';
 
 const TAG = 'AppTest';
-const BUNDLE = 'PattermLock_';
+const BUNDLE = 'PatternLock_';
 let driver: Driver = Driver.create();
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 let ability: UIAbility;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,46 +14,46 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
-    console.log('TestAbility onCreate')
+    console.log('TestAbility onCreate');
   }
 
   onDestroy() {
-    console.log('TestAbility onDestroy')
+    console.log('TestAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage) {
-    console.log('TestAbility onWindowStageCreate')
+    console.log('TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err))
-        return
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
       }
-      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
     })
 
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    console.info('start run testcase!!!')
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+    var abilityDelegator: any;
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    var abilityDelegatorArguments: any;
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    console.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   onWindowStageDestroy() {
-    console.log('TestAbility onWindowStageDestroy')
+    console.log('TestAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    console.log('TestAbility onForeground')
+    console.log('TestAbility onForeground');
   }
 
   onBackground() {
-    console.log('TestAbility onBackground')
+    console.log('TestAbility onBackground');
   }
 }
