@@ -24,13 +24,13 @@ const BUNDLE = 'RunJsInWeb_';
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('abilityTest', function () {
+  describe('ActsAbilityTest', function () {
     // 启动应用
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       let want = {
-        bundleName: "com.samples.runjsinweb",
-        abilityName: "EntryAbility"
+        bundleName: 'com.samples.runjsinweb',
+        abilityName: 'EntryAbility'
       };
       delegator.startAbility(want, (err) => {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);

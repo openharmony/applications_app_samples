@@ -13,69 +13,69 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON} from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import hilog from '@ohos.hilog'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_ZipLib]'
-const DOMAIN = 0xF811
-const BUNDLE = 'ZipLib_'
+const TAG = '[Sample_ZipLib]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'ZipLib_';
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin');
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: "ohos.samples.ziplib",
-          abilityName: "EntryAbility"
+          bundleName: 'ohos.samples.ziplib',
+          abilityName: 'EntryAbility'
         });
         done();
       } catch (err) {
         expect(err.code).assertEqual(0);
         done();
       }
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end');
     })
     /**
      * 添加文件
      */
     it(BUNDLE + 'AddFileFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 clickAddBtn')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 clickAddBtn');
       // 点击添加
-      await driver.assertComponentExist(ON.id('addFileBtn'))
-      let btnAdd = await driver.findComponent(ON.id('addFileBtn'))
-      await btnAdd.click()
-      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('addFileBtn'));
+      let btnAdd = await driver.findComponent(ON.id('addFileBtn'));
+      await btnAdd.click();
+      await driver.delayMs(1000);
       // 输入文件名称
-      await driver.assertComponentExist(ON.id('inputFileName'))
-      let fileNameInput  = await driver.findComponent(ON.id('inputFileName'))
-      await fileNameInput.inputText('fileName')
+      await driver.assertComponentExist(ON.id('inputFileName'));
+      let fileNameInput = await driver.findComponent(ON.id('inputFileName'));
+      await fileNameInput.inputText('fileName');
       // 输入文件内容
-      await driver.assertComponentExist(ON.id('inputFileContent'))
-      let fileContentInput  = await driver.findComponent(ON.id('inputFileContent'))
-      await fileContentInput.inputText('fileContent')
+      await driver.assertComponentExist(ON.id('inputFileContent'));
+      let fileContentInput = await driver.findComponent(ON.id('inputFileContent'));
+      await fileContentInput.inputText('fileContent');
       // 点击确认
-      await driver.assertComponentExist(ON.id('confirmBtn'))
-      let confirmBtn  = await driver.findComponent(ON.id('confirmBtn'))
-      await confirmBtn.click()
-      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('confirmBtn'));
+      let confirmBtn = await driver.findComponent(ON.id('confirmBtn'));
+      await confirmBtn.click();
+      await driver.delayMs(1000);
       // 点击压缩
-      await driver.assertComponentExist(ON.id('compress_0'))
-      let compressBtn = await driver.findComponent(ON.id('compress_0'))
-      await compressBtn.click()
-      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('compress_0'));
+      let compressBtn = await driver.findComponent(ON.id('compress_0'));
+      await compressBtn.click();
+      await driver.delayMs(1000);
       // 点击解压
-      await driver.assertComponentExist(ON.id('compress_1'))
-      let decompressBtn = await driver.findComponent(ON.id('compress_1'))
-      await decompressBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 end')
+      await driver.assertComponentExist(ON.id('compress_1'));
+      let decompressBtn = await driver.findComponent(ON.id('compress_1'));
+      await decompressBtn.click();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFileFunction_001 end');
     })
   })
 }
