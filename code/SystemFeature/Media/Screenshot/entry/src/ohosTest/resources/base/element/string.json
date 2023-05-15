@@ -11,6 +11,10 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "privacy",
+      "value": "隐私窗口不能截屏"
     }
   ]
 }

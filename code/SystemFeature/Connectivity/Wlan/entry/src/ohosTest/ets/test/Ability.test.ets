@@ -85,11 +85,15 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ActivateWlanFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
-      // 开启wifi
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ActivateWlanFunction_001 clickWlanSwitch')
-      await driver.assertComponentExist(ON.id('switch'))
-      let btnToggle = await driver.findComponent(ON.id('switch'))
-      await btnToggle.click()
+      // 判断wifi是否打开
+      let check = await driver.findComponent(ON.id('Wifi0'))
+      if(check == null) {
+        // 开启wifi
+        hilog.info(DOMAIN, TAG, BUNDLE + 'ActivateWlanFunction_001 clickWlanSwitch')
+        await driver.assertComponentExist(ON.id('switch'))
+        let btnToggle = await driver.findComponent(ON.id('switch'))
+        await btnToggle.click()
+      }
       // 可用wlan是否存在
       await driver.assertComponentExist(ON.id('validWlan'))
       await driver.delayMs(5000)
