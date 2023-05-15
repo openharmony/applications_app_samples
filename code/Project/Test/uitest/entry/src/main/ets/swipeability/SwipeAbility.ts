@@ -28,7 +28,6 @@ export default class SwipeAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       // Main window is created, set main page for this ability
       Logger.info('SwipeAbility', '%{public}s', 'Ability onWindowStageCreate');
-
       windowStage.loadContent('pages/Swipe', (err, data) => {
       if (err.code) {
           Logger.error('SwipeAbility', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

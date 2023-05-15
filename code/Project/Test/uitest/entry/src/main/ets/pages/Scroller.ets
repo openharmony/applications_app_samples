@@ -19,7 +19,7 @@
 struct ScrollExample {
   scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  private arr1: String[] = ["test1", "test2", "test3", "test4", "test5", "test6","test7", "test8", "test9", "test10", "test11"];
+  private ListArr: String[] = ["test1", "test2", "test3", "test4", "test5", "test6","test7", "test8", "test9", "test10", "test11"];
   build() {
     Row(){
       Column(){
@@ -77,7 +77,7 @@ struct ScrollExample {
         }.width('100%').height('30%').backgroundColor(0xDCDCDC)
         Stack({ alignContent: Alignment.TopStart }) {
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.arr1, (item) => {
+            ForEach(this.ListArr, (item) => {
               ListItem() {
                 Text('' + item)
                   .id("list_item_text")

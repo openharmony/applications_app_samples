@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import {Driver, ON, } from '@ohos.UiTest'
+import {Driver, ON} from '@ohos.UiTest'
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;

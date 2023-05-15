@@ -23,12 +23,12 @@ struct Mouse {
   private arr: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18.19,20,21,22,23,24,25,26,27,28,29,30]
   @State count: number = 0;
   @State hoverText : string = 'jump'
-  @State hoverText1 : string = 'hoverText'
+  @State hoverMsg : string = 'hoverText'
   build() {
     Row() {
       Column() {
         Button() {
-          Text(this.hoverText1)
+          Text(this.hoverMsg)
             .id("hoverText")
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
@@ -36,7 +36,7 @@ struct Mouse {
         .id("hover_bt")
         .onHover((isHover: boolean) => {
           if (isHover) {
-            this.hoverText1 = 'hover'
+            this.hoverMsg = 'hover'
           }
         })
         Button() {
