@@ -45,6 +45,10 @@
     {
       "name": "base",
       "srcPath": "./base"
+    },
+    {
+      "name": "recents",
+      "srcPath": "./recents"
     }
   ]
 }

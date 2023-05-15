@@ -1,7 +1,7 @@
 {
   "app": {
+    "bundleName": "com.samples.drag",
     "vendor": "samples",
-    "bundleName": "ohos.samples.etsdrag",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -9,11 +9,18 @@
   },
   "deviceConfig": {},
   "module": {
+    "package": "com.samples.drag",
+    "name": ".entry",
     "mainAbility": ".MainAbility",
     "deviceType": [
-      "default",
-      "tablet"
+      "default"
     ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
     "abilities": [
       {
         "skills": [
@@ -27,27 +34,18 @@
           }
         ],
         "orientation": "unspecified",
-        "visible": true,
-        "srcPath": "MainAbility",
+        "formsEnabled": false,
         "name": ".MainAbility",
         "srcLanguage": "ets",
+        "srcPath": "MainAbility",
         "icon": "$media:icon",
         "description": "$string:MainAbility_desc",
-        "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
+        "visible": true,
         "launchType": "standard"
       }
     ],
-    "distro": {
-      "moduleType": "entry",
-      "installationFree": false,
-      "deliveryWithInstall": true,
-      "moduleName": "entry"
-    },
-    "package": "ohos.samples.etsdrag",
-    "srcPath": "",
-    "name": ".entry",
     "js": [
       {
         "mode": {
