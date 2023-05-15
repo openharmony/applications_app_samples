@@ -16,7 +16,7 @@
 import { describe, it, expect, TestType } from '@ohos/hypium'
 import { Driver } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-const delayMS = 1000;
+const DELAYMS = 1000;
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 
@@ -36,10 +36,10 @@ export default function findWindowExampleTest() {
       }
       await delegator.startAbility(want);
       let driver = Driver.create()
-      await driver.delayMs(delayMS)
+      await driver.delayMs(DELAYMS)
       let window = await driver.findWindow({bundleName: bundleName})
       let name = await window.getBundleName()
-      expect(name == bundleName).assertTrue()
+      expect(name === bundleName).assertTrue()
       done()
     })
   })

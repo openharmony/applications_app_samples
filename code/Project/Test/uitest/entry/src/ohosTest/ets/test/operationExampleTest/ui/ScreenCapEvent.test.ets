@@ -15,7 +15,7 @@
 
 import { describe, it, expect, TestType } from '@ohos/hypium'
 import {Driver} from '@ohos.UiTest'
-const waitUiReadyMs = 1000;
+const WAIT_UI_READYMS = 1000;
 export default function ScreenCapEventTest() {
   describe('ScreenCapEvent', function () {
 
@@ -27,10 +27,10 @@ export default function ScreenCapEventTest() {
      */
     it('testScreenCap', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let savePath = '/data/storage/el2/base/cache/1.png'
       let success = await driver.screenCap(savePath)
-      expect(success == true).assertTrue()
+      expect(success === true).assertTrue()
       done()
     })
 
@@ -42,10 +42,10 @@ export default function ScreenCapEventTest() {
      */
     it('testScreenCap_1', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let savePath = '/data/storage/el2/base/cache/2.png'
       let success = await driver.screenCapture(savePath, {left: 0, top: 0, right: 100, bottom: 100})
-      expect(success == true).assertTrue()
+      expect(success === true).assertTrue()
       done()
     })
   })

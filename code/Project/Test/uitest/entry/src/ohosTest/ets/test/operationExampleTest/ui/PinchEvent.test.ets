@@ -18,7 +18,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON} from '@ohos.UiTest'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const WAIT_UI_READYMS = 1000;
 
 export default function PinchEventTest() {
   describe('PinchEventTest', function () {
@@ -38,11 +38,11 @@ export default function PinchEventTest() {
      */
     it('PinchEventTest_In', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds1 = await image1.getBounds()
       await image1.pinchIn(0.5);
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()
       expect(bounds1).not().assertDeepEquals(bounds2);
@@ -58,11 +58,11 @@ export default function PinchEventTest() {
      */
     it('PinchEventTest_Out', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds1 = await image1.getBounds()
       await image1.pinchOut(1.5);
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()
       expect(bounds1).not().assertDeepEquals(bounds2);

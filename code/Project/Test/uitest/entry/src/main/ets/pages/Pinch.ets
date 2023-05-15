@@ -21,7 +21,7 @@ struct Screen {
   build() {
     Column() {
       Text(this.myscale.toString())
-      Image($r('app.media.computer'))
+      Image($r('app.media.icon'))
         .objectFit(ImageFit.Auto)
         .height(200)
         .width(200)

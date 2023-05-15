@@ -18,8 +18,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON} from '@ohos.UiTest'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
-const test ="测试内容";
+const WAIT_UI_READYMS = 1000;
 
 export default function InputEventTest() {
   describe('InputEventTest', function () {
@@ -39,13 +38,13 @@ export default function InputEventTest() {
      */
     it('clickEventTest_Input',TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let input = await driver.findComponent(ON.type('TextInput'))
       await input.inputText('123')
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let input_new = await driver.findComponent(ON.type('TextInput'))
       let text = await input_new.getText()
-      expect(text == '123').assertTrue()
+      expect(text === '123').assertTrue()
       done()
     })
 
@@ -57,13 +56,13 @@ export default function InputEventTest() {
      */
     it('clickEventTest_Input_zh',TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let input = await driver.findComponent(ON.type('TextInput'))
-      await input.inputText(test)
-      await driver.delayMs(waitUiReadyMs)
+      await input.inputText("测试内容")
+      await driver.delayMs(WAIT_UI_READYMS)
       let input_new = await driver.findComponent(ON.type('TextInput'))
       let text = await input_new.getText()
-      expect(text == test).assertTrue()
+      expect(text === "测试内容").assertTrue()
       done()
     })
   })

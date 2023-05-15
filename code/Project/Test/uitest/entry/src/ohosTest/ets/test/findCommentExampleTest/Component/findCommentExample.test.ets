@@ -47,7 +47,7 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const delayMS = 1000;
+const DELAYMS = 1000;
 const  arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default function findExampleTest() {
   describe('findExampleTest', function () {
@@ -67,7 +67,7 @@ export default function findExampleTest() {
      */
     it("findComponent_On_ID", TestType.FUNCTION, async  function (done) {
       let dr = await Driver.create();
-      await dr.delayMs(delayMS)
+      await dr.delayMs(DELAYMS)
       let text  = await dr.findComponent(ON.id("idTest"))
       expect(dr).not().assertNull();
       expect(await text.getId()).assertEqual("idTest");
@@ -82,12 +82,12 @@ export default function findExampleTest() {
      */
     it("findComponents_On_ID", TestType.FUNCTION, async  function (done) {
       let dr = await Driver.create();
-      await dr.delayMs(delayMS)
+      await dr.delayMs(DELAYMS)
       let textArr  = await dr.findComponents(ON.id("scroll_item"));
       expect(dr).not().assertNull();
       for (let index = 0; index < textArr.length; index++) {
         const element = textArr[index];
-        expect(await element.getText() ==  arr[index].toString()).assertTrue();
+        expect(await element.getText() ===  arr[index].toString()).assertTrue();
       }
       done()
     })
@@ -131,7 +131,7 @@ export default function findExampleTest() {
      */
     it('testMatchPattern', TestType.FUNCTION, async function () {
       let driver = Driver.create()
-      await driver.delayMs(delayMS)
+      await driver.delayMs(DELAYMS)
       let Button1 = await driver.findComponent(ON.text('unit_jsunit', MatchPattern.EQUALS))
       expect(await Button1.getText()).assertEqual("unit_jsunit")
       let Button2 = await driver.findComponent(ON.text('unit', MatchPattern.STARTS_WITH))
@@ -146,11 +146,11 @@ export default function findExampleTest() {
      */
     it("findComponents_scrollSearch", TestType.FUNCTION, async  function (done) {
       let dr = await Driver.create();
-      await dr.delayMs(delayMS);
+      await dr.delayMs(DELAYMS);
       let scrollBar = await dr.findComponent(ON.type('Scroll'))
-      await dr.delayMs(delayMS);
+      await dr.delayMs(DELAYMS);
       let button = await scrollBar.scrollSearch(ON.text('5'))
-      await dr.delayMs(delayMS);
+      await dr.delayMs(DELAYMS);
       expect(await button.getText()).assertEqual("5");
       done()
     })

@@ -20,7 +20,7 @@ import { Driver, ON} from '@ohos.UiTest'
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const WAIT_UI_READYMS = 1000;
 
 export default function ScrollerEventTest() {
   describe('ScrollerEvent', function () {
@@ -40,10 +40,10 @@ export default function ScrollerEventTest() {
      */
     it('ScrollerEvent_bottom', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let scroll = await driver.findComponent(ON.type('Scroll'))
       await scroll.scrollToBottom();
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let text = await driver.findComponent(ON.id("scroller_item_text"));
       expect(await text.getText()).not().assertEqual("0");
       done()
@@ -57,10 +57,10 @@ export default function ScrollerEventTest() {
      */
     it('ScrollerEvent_top', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let scroll = await driver.findComponent(ON.type('Scroll'))
       await scroll.scrollToBottom();
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       await scroll.scrollToTop();
       let text = await driver.findComponent(ON.id("scroller_item_text"));
       expect(await text.getText()).assertEqual("0");

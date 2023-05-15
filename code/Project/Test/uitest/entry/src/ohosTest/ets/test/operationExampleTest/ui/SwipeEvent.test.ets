@@ -19,7 +19,7 @@ import {Driver, ON, } from '@ohos.UiTest'
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const WAIT_UI_READYMS = 1000;
 
 export default function SwipeEventTest() {
   describe('SwipeEvent', function () {
@@ -35,15 +35,15 @@ export default function SwipeEventTest() {
      * @tc.number:SwipeEventTest_001
      * @tc.name: testSwipe_h
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测 uitest swipe 水平滑到功能
+     * @tc.desc: 检测 uitest swipe 水平滑到功能 坐标点仅支持RK3568
      */
     it('testSwipe_h', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       await driver.swipe(400, 300, 100, 300)
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       await driver.swipe(400, 300, 100, 300)
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let text = await driver.findComponent(ON.id('swiper_text'))
       expect(await text.getText()).assertEqual("arkUI")
       done()
@@ -53,13 +53,13 @@ export default function SwipeEventTest() {
      * @tc.number:SwipeEventTest_002
      * @tc.name: testSwipe_h
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测 uitest swipe 竖着滑到功能
+     * @tc.desc: 检测 uitest swipe 竖着滑到功能 坐标点仅支持RK3568
      */
     it('testSwipe_v', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       await driver.swipe(400, 700, 400, 500)
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let text = await driver.findComponent(ON.id('scroll_item'))
       expect(await text.getText()).not().assertEqual("0")
       done()

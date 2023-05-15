@@ -18,7 +18,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, MouseButton, ON} from '@ohos.UiTest'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const WAIT_UI_READYMS = 1000;
 
 export default function MouseEventTest() {
   describe('MouseEventTest', function () {
@@ -38,12 +38,12 @@ export default function MouseEventTest() {
      */
     it('testMouseClick1', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.id("mouse_test"));
       let point = await button.getBoundsCenter();
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_LEFT, 2017) //在100，100 鼠标左键点击
       let text = await driver.findComponent(ON.id("mouse_test_result"));
-      expect(await text.getText() == 'left').assertTrue();
+      expect(await text.getText() === 'left').assertTrue();
       done()
     })
 
@@ -55,12 +55,12 @@ export default function MouseEventTest() {
      */
     it('testMouseClick2', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.id("mouse_test"));
       let point = await button.getBoundsCenter();
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_RIGHT, 2017) //在100，100 鼠标右键点击
       let text = await driver.findComponent(ON.id("mouse_test_result"));
-      expect(await text.getText() == 'right').assertTrue();
+      expect(await text.getText() === 'right').assertTrue();
       done()
     })
 
@@ -72,12 +72,12 @@ export default function MouseEventTest() {
      */
     it('testMouseClick3', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.id("mouse_test"));
       let point = await button.getBoundsCenter();
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_MIDDLE, 2017) //在100，100 鼠标右键点击
       let text = await driver.findComponent(ON.id("mouse_test_result"));
-      expect(await text.getText() == 'middle').assertTrue();
+      expect(await text.getText() === 'middle').assertTrue();
       done()
     })
 
@@ -89,13 +89,13 @@ export default function MouseEventTest() {
      */
     it('testMouseMoveTo', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let Button = await driver.findComponent(ON.id('hover_bt'))
       let center = await Button.getBoundsCenter()
       await driver.mouseMoveTo(center)
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let newButton = await driver.findComponent(ON.id('hoverText'))
-      expect(await newButton.getText() == 'hover').assertTrue()
+      expect(await newButton.getText() === 'hover').assertTrue()
       done()
     })
 
@@ -108,12 +108,12 @@ export default function MouseEventTest() {
      */
     it('testMouseScroll', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let scroll = await driver.findComponent(ON.id('scroll_test'))
       let center = await scroll.getBoundsCenter()
       await driver.mouseScroll(center,true,30)
       let button1 = await driver.findComponent(ON.id('scroll_item'))
-      expect(await button1.getText() != '0').assertTrue()
+      expect(await button1.getText() !== '0').assertTrue()
       done()
     })
   })

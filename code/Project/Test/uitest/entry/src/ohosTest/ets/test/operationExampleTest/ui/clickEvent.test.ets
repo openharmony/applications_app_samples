@@ -18,7 +18,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import {Driver, ON} from '@ohos.UiTest'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const WAIT_UI_READYMS = 1000;
 
 export default function clickEventTest() {
   describe('clickEventTest', function () {
@@ -38,13 +38,13 @@ export default function clickEventTest() {
      */
     it('clickEventTest_click',TestType.FUNCTION, async function (done) {
       let dr = await Driver.create();
-      await dr.delayMs(waitUiReadyMs)
+      await dr.delayMs(WAIT_UI_READYMS)
       let button = await dr.findComponent(ON.id("click_bt"));
       let text = await dr.findComponent(ON.id("result_text"));
       expect(await text.getText() == "Hello World").assertTrue();
       await button.click();
        let text1 = await dr.findComponent(ON.id("result_text"));
-      expect(await text1.getText() == "singleClick").assertTrue();
+      expect(await text1.getText() === "singleClick").assertTrue();
       done()
     })
 
@@ -56,13 +56,13 @@ export default function clickEventTest() {
      */
     it('clickEventTest_double_click',TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
       await button.doubleClick()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let newButton = await driver.findComponent(ON.text('doubleClick'))
       let text = await newButton.getText()
-      expect(text == 'doubleClick').assertTrue()
+      expect(text === 'doubleClick').assertTrue()
       await newButton.click()
       done()
     })
@@ -75,13 +75,13 @@ export default function clickEventTest() {
      */
     it('clickEventTest_Long_click', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
       await button.longClick()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let newButton = await driver.findComponent(ON.text('longClick'))
       let text = await newButton.getText()
-      expect(text == 'longClick').assertTrue()
+      expect(text === 'longClick').assertTrue()
       await newButton.click()
       done();
     })
@@ -94,14 +94,14 @@ export default function clickEventTest() {
      */
     it('clickEventTest_PressBack', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
       await button.longClick()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       await driver.pressBack()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button_ori = await driver.findComponent(ON.text('Click twice'))
-      expect(await button_ori.getText() == 'Click twice').assertTrue()
+      expect(await button_ori.getText() === 'Click twice').assertTrue()
       done()
     })
 
@@ -114,15 +114,15 @@ export default function clickEventTest() {
      */
     it('clickEventTest_TriggerKey', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
       await button.longClick()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let keyBack = 2 // back
       await driver.triggerKey(keyBack)
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(WAIT_UI_READYMS)
       let button_ori = await driver.findComponent(ON.text('Click twice'))
-      expect(await button_ori.getText() == 'Click twice').assertTrue()
+      expect(await button_ori.getText() === 'Click twice').assertTrue()
       done()
     })
   })
