@@ -38,6 +38,72 @@ Stage模型的设计基于如下三个出发点：
 
   **abilityAccessCtrl**：程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
+#### 效果预览：
+
+![](./screenshots/device/stage_mode.png)
+
+使用说明：
+
+1.点击**DataShareExtAbility**按钮，跳转到DataShareExtAbility页面；
+
+点击**+**，向rdb数据库中添加单个数据，界面显示添加的数据内容；
+
+点击**删除**按钮删除指定数据；
+
+点击数据列表，弹出dialog框，可对数据进行修改，点击**确认**按钮确认修改；
+
+点击返回键，返回首页。
+
+2.点击各个功能按钮测试各个接口。
+
+
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts                   
+|---DataShareExtensionAbility
+|   |---DataShareExtAbility.ts
+|---feature
+|   |---AbilityAccessCtrlController.ts                   
+|   |---AbilityContextController.ts                      
+|   |---BookModel.ts                         
+|   |---BundleController.ts                   
+|   |---DataShareHelper.ts                      
+|   |---FormExtContextController.ts                         
+|   |---ServiceExtContextController.ts                   
+|   |---WindowController.ts                      
+|---FormAbility
+|   |---FormAbility.ts                      
+|---JumpAbility
+|   |---JumpAbility.ts                      
+|---MainAbility
+|   |---MainAbility.ts                      
+|---pages
+|   |---component
+|   |   |---BookView.ets    // 展示组价
+|   |   |---IndexTitleBar.ets     // 单个页面标题组件
+|   |   |---PublicTitleBar.ets   // 通用的标题组件
+|   |   |---TitleBar.ets        // 标题组件
+|   |   |---UpdateDataDialog.ets
+|   |---AbilityAccessCtrlPage.ets    // 程序访问控制
+|   |---AbilityContextPage.ets       // 提供允许访问特定于ability的资源的能力
+|   |---BundlePage.ets        // 应用信息查询
+|   |---DataShareExtAbilityPage.ets      // 数据共享业务
+|   |---DataShareHelperPage.ets
+|   |---FormExtContextPage.ets      // 提供FormExtension具有的接口和能力
+|   |---Index.ets
+|   |---ServiceExtContextPage.ets  
+|   |---TestPage.ets
+|   |---WindowPage.ets      // 窗口
+|---ServiceExtAbility
+|   |---ServiceExtAbility.ts                      
+|---util
+|   |---Logger.ts                                  
+```
+
+### 具体实现
+
 #### Stage和FA模型的区别
 
 1.在Stage模型中主要有module.json5，需要时对应的ServiceExtAbility等须配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中；对应FA模型中主要配置文件config.json，需要时将对应的Ability配置在config.json中module/abilites。
@@ -138,24 +204,6 @@ Stage模型的设计基于如下三个出发点：
 [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
 
 [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
-
-#### 使用说明：
-
-1.点击**DataShareExtAbility**按钮，跳转到DataShareExtAbility页面；
-
-点击**+**，向rdb数据库中添加单个数据，界面显示添加的数据内容；
-
-点击**删除**按钮删除指定数据；
-
-点击数据列表，弹出dialog框，可对数据进行修改，点击**确认**按钮确认修改；
-
-点击返回键，返回首页。
-
-2.点击各个功能按钮测试各个接口。
-
-#### 效果预览：
-
-![](./screenshots/device/stage_mode.png)
 
 ### 相关权限
 
