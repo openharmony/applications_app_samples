@@ -14,43 +14,41 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-
+import Logger from '../util/Logger'
 export default class PinchAbility extends UIAbility {
     onCreate(want, launchParam) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+      Logger.info('PinchAbility', '%{public}s', 'PinchAbility onCreate');
     }
 
     onDestroy() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+      Logger.info('PinchAbility', '%{public}s', 'PinchAbility onDestroy');
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
       // Main window is created, set main page for this ability
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
+      Logger.info('PinchAbility', '%{public}s', 'PinchAbility onWindowStageCreate');
       windowStage.loadContent('pages/Pinch', (err, data) => {
-          if (err.code) {
-              hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-              return;
-          }
-          hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      if (err.code) {
+          Logger.error('PinchAbility', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+      }
+      Logger.info('PinchAbility', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
 
     onWindowStageDestroy() {
       // Main window is destroyed, release UI related resources
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+      Logger.info('PinchAbility', '%{public}s', 'PinchAbility onWindowStageDestroy');
     }
 
     onForeground() {
       // Ability has brought to foreground
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+      Logger.info('PinchAbility', '%{public}s', 'PinchAbility onForeground');
     }
 
     onBackground() {
       // Ability has back to background
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+      Logger.info('PinchAbility', '%{public}s', 'PinchAbility onBackground');
     }
 }

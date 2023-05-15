@@ -14,15 +14,25 @@
  */
 
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON} from '@ohos.UiTest'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
+let ab: UIAbility;
 
 export default function InputEventTest() {
   describe('InputEventTest', function () {
       beforeAll(async function () {
+      await  delegator.addAbilityMonitor({
+        abilityName: 'InputAbility',
+        moduleName: bundleName,
+        onAbilityCreate(ability : UIAbility) {
+          ab = ability;
+      }
+      });
+
         let want = {
           bundleName : bundleName,
           abilityName : "InputAbility"
@@ -58,11 +68,12 @@ export default function InputEventTest() {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let input = await driver.findComponent(ON.type('TextInput'))
-      await input.inputText("测试内容")
+      let result =  await ab.context.resourceManager.getStringValue($r('app.string.test'));
+      await input.inputText(result)
       await driver.delayMs(WAIT_UI_READYMS)
       let input_new = await driver.findComponent(ON.type('TextInput'))
       let text = await input_new.getText()
-      expect(text === "测试内容").assertTrue()
+      expect(text === result).assertTrue()
       done()
     })
   })

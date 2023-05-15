@@ -18,7 +18,6 @@ import router from '@system.router';
 @Entry
 @Component
 struct Fourth
-
 {
   private content: string = "Fourth Page"
 

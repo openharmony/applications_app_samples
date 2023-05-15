@@ -19,7 +19,7 @@ struct DragExample {
   @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
   @State text: string = ''
   @State bool: boolean = false
-  @State bool1: boolean = false
+  @State dragBool: boolean = false
   @State appleVisible: Visibility = Visibility.Visible
   @State orangeVisible: Visibility = Visibility.Visible
   @State bananaVisible: Visibility = Visibility.Visible
@@ -88,7 +88,7 @@ struct DragExample {
           .onDragStart((event: DragEvent, extraParams: string) => {
             console.log('ListItem onDragStarts, ' + extraParams)
             var jsonString = JSON.parse(extraParams)
-            this.bool1 = true
+            this.dragBool = true
             this.text = this.numbers[jsonString.selectedIndex]
             this.select = jsonString.selectedIndex
             return this.pixelMapBuilder
@@ -112,11 +112,11 @@ struct DragExample {
         if (this.bool) {
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
-        } else if (this.bool1) {
+        } else if (this.dragBool) {
           this.numbers.splice(jsonString.selectedIndex, 1)
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
-          this.bool1 = false
+          this.dragBool = false
         }
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })

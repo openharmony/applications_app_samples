@@ -99,6 +99,10 @@
     {
       "name": "DragAbility_label",
       "value": "label"
+    },
+    {
+      "name": "test",
+      "value": "测试内容"
     }
   ]
 }

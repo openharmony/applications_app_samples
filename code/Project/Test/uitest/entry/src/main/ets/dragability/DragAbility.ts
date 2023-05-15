@@ -18,38 +18,37 @@ import window from '@ohos.window';
 import Logger from '../util/Logger'
 export default class DragAbility extends UIAbility {
     onCreate(want, launchParam) {
-      Logger.info('testTag', '%{public}s', 'Ability onCreate');
+      Logger.info('DragAbility', '%{public}s', 'DragAbility onCreate');
     }
 
     onDestroy() {
-      Logger.info('testTag', '%{public}s', 'Ability onDestroy');
+      Logger.info('DragAbility', '%{public}s', 'DragAbility onDestroy');
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
       // Main window is created, set main page for this ability
-      Logger.info('testTag', '%{public}s', 'Ability onWindowStageCreate');
-
+      Logger.info('DragAbility', '%{public}s', 'DragAbility onWindowStageCreate');
       windowStage.loadContent('pages/Drag', (err, data) => {
-         if (err.code) {
-             Logger.error('testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-             return;
-         }
-         Logger.info('testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      if (err.code) {
+          Logger.error('DragAbility', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+          return;
+      }
+      Logger.info('DragAbility', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
 
     onWindowStageDestroy() {
       // Main window is destroyed, release UI related resources
-      Logger.info('testTag', '%{public}s', 'Ability onWindowStageDestroy');
+      Logger.info('DragAbility', '%{public}s', 'DragAbility onWindowStageDestroy');
     }
 
     onForeground() {
       // Ability has brought to foreground
-      Logger.info('testTag', '%{public}s', 'Ability onForeground');
+      Logger.info('DragAbility', '%{public}s', 'DragAbility onForeground');
     }
 
     onBackground() {
       // Ability has back to background
-      Logger.info('testTag', '%{public}s', 'Ability onBackground');
+      Logger.info('DragAbility', '%{public}s', 'DragAbility onBackground');
     }
 }

@@ -49,7 +49,7 @@
       },
       {
         "name": "clickAbility",
-        "srcEntrance": "./ets/clickability/clickAbility.ts",
+        "srcEntrance": "./ets/clickability/ClickAbility.ts",
         "description": "$string:clickability_desc",
         "icon": "$media:icon",
         "label": "$string:clickability_label",

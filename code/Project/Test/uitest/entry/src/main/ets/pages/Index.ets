@@ -66,7 +66,7 @@ struct Index {
           }.id("btnTest")
           .onClick(() =>{
             router.replaceUrl({
-              url:'pages/scroller'
+              url:'pages/Scroller'
             })
           })
           Button(){

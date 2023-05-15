@@ -43,13 +43,13 @@ struct Click {
         .gesture(
         TapGesture({ count: 2 })
           .onAction(() => {
-            router.push({ uri: 'pages/third' })
+            router.push({ uri: 'pages/Third' })
           })
         )
         .gesture(
         LongPressGesture({ repeat: false })
           .onAction((event: GestureEvent) => {
-            router.push({ uri: 'pages/fourth' })
+            router.push({ uri: 'pages/Fourth' })
           })
         )
       }
