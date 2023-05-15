@@ -9,6 +9,10 @@
 获取截取的图片，使用[弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)
 进行信息的提示。
 
+### 效果预览
+
+![](screenshots/shared/button_dialog.png) ![](screenshots/shared/canvas_dialog.png) ![](screenshots/revieved/text_line.png) ![](screenshots/revieved/image_file.png)
+
 使用说明：
 
 1.启动Share应用，首页展示分享跳转页面，点击分享按钮出现自定义分享弹窗（三方APP的）。
@@ -22,9 +26,22 @@
 ，此时选择[聊天列表](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/entry/src/main/ets/pages/Index.ets)
 中任意的朋友进行分享。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ets                   
+|---MainAbility
+|   |---MainAbility.ts                   
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+```
 
-![](screenshots/shared/button_dialog.png) ![](screenshots/shared/canvas_dialog.png) ![](screenshots/revieved/text_line.png) ![](screenshots/revieved/image_file.png)
+### 具体实现
+
+使用@ohos/sharecomponent组件显示首页，使用数据请求接口获取 网络资源，屏幕截屏方法截取屏幕，文件管理API管理文件和文件目录，媒体库管理API获取截取的图片，弹窗提示信息
 
 ### 相关权限
 
