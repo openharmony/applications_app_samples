@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import rdb from '@ohos.data.rdb'
+import rdb from '@ohos.data.relationalStore'
 import {
-  Contact,
   COLUMNS,
+  Contact,
   getListFromResultSet,
   logger,
-  STORE_CONFIG,
   SQL_CREATE_TABLE,
+  STORE_CONFIG,
   TABLE_NAME
 } from '@ohos/common'
 
@@ -33,7 +33,7 @@ class ContactStore {
 
   async getRdbStore(context: Context) {
     try {
-      rdbStore = await rdb.getRdbStore(context, STORE_CONFIG, 1)
+      rdbStore = await rdb.getRdbStore(context, STORE_CONFIG)
       await rdbStore.executeSql(SQL_CREATE_TABLE, [])
       logger.info(TAG, `ContactStore executeSql done`)
     } catch (err) {
