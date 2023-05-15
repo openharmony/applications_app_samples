@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,39 +13,39 @@
  * limitations under the License.
  */
 
-import Logger from '../model/Logger'
-import Ability from '@ohos.application.Ability'
+import Logger from '../model/Logger';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const TAG: string = '[MainAbility]'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info(TAG, 'MainAbility onCreate')
+    Logger.info(TAG, 'MainAbility onCreate');
   }
 
   onDestroy() {
-    Logger.info(TAG, 'MainAbility onDestroy')
+    Logger.info(TAG, 'MainAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, 'MainAbility onWindowStageCreate')
+    Logger.info(TAG, 'MainAbility onWindowStageCreate');
 
-    windowStage.setUIContent(this.context, "pages/Chats", null)
+    windowStage.setUIContent(this.context, 'pages/Chats', null)
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info(TAG, 'MainAbility onWindowStageDestroy')
+    Logger.info(TAG, 'MainAbility onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info(TAG, 'MainAbility onForeground')
+    Logger.info(TAG, 'MainAbility onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info(TAG, 'MainAbility onBackground')
+    Logger.info(TAG, 'MainAbility onBackground');
   }
 }
