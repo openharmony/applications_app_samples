@@ -56,7 +56,7 @@ export class WifiModel {
   }
 
   connectNetwork(scanInfo: wifi.WifiScanInfo, psw) {
-    prompt.showToast({ message: 'connecting' })
+    prompt.showToast({ message: 'connecting', duration: 5000 })
     Logger.debug(TAG, `connectNetwork bssid=${scanInfo.bssid}`)
     // 这里因为api问题，需要声明为any，已提单
     let deviceConfig: any = {

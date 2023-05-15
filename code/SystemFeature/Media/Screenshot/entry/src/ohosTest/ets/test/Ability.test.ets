@@ -19,6 +19,14 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON } from '@ohos.UiTest';
 
 const DRIVER = Driver.create();
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -124,7 +132,7 @@ export default function abilityTest() {
       let screenShotBtn = await DRIVER.findComponent(ON.id('screenShot'));
       await screenShotBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text('隐私窗口不能截屏'))
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.privacy'))))
       // 再次打开菜单
       await menu.click();
       await DRIVER.delayMs(1000);
@@ -132,7 +140,7 @@ export default function abilityTest() {
       let localScreenShotBtn = await DRIVER.findComponent(ON.id('localScreenShot'));
       await localScreenShotBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text('隐私窗口不能截屏'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.privacy'))));
       hilog.info(0x0000, 'testTag', 'OpenPrivacy_1 end');
     })
   })
