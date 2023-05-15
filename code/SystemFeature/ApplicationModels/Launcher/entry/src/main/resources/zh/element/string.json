@@ -43,6 +43,26 @@
     {
       "name": "start_abilities_from_background",
       "value": "允许应用后台启动"
+    },
+    {
+      "name": "camera",
+      "value": "相机"
+    },
+    {
+      "name": "contacts",
+      "value": "联系人"
+    },
+    {
+      "name": "message",
+      "value": "信息"
+    },
+    {
+      "name": "photo",
+      "value": "图库"
+    },
+    {
+      "name": "telephone",
+      "value": "电话"
     }
   ]
 }
