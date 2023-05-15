@@ -11,6 +11,20 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "Entertainment_card",
+      "value": "娱乐卡片"
     }
+  ,
+    {
+      "name": "Service_card",
+      "value": "服务卡片"
+    },
+    {
+      "name":"Add_to_table",
+      "value": "添加到桌面"
+    }
+
   ]
 }

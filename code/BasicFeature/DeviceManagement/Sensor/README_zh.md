@@ -42,7 +42,7 @@ Math.round(alpha)得出让他的整数角度，配合Image组件的旋转属性r
 
 2.本示例仅支持在标准系统上运行。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
 
 4.本示例需要特殊模块与特定传感器，目前该功能仅支持部分机型。
 
