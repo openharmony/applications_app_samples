@@ -38,7 +38,7 @@ Stage模型的设计基于如下三个出发点：
 
   **abilityAccessCtrl**：程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
-#### 效果预览：
+### 效果预览：
 
 ![](./screenshots/device/stage_mode.png)
 
