@@ -56,6 +56,12 @@ Note:If the text contains special characters, please escape them according to th
 -->
 <configuration>
     <oatconfig>
+        <licensefile></licensefile>
+        <policylist>
+            <policy name="projectPolicy" desc="">
+                <policyitem type="copyright" name="Hunan OpenValley Digital Industry Development Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By OpenValley Digital Co., Ltd."/>
+            </policy>
+        </policylist>
         <filefilterlist>
             <filefilter name="licenseFileNamePolicyFilter" desc="Filters for LICENSE file policies">
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
