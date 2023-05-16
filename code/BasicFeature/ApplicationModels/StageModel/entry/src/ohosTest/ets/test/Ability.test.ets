@@ -24,7 +24,7 @@ const BUNDLE = 'StageModel_';
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('abilityTest', function () {
+  describe('ActsAbilityTest', function () {
     // 启动应用
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
