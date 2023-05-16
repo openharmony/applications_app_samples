@@ -32,7 +32,7 @@ export class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
   mContext
-  WINDOW_TYPE_INPUT_METHOD_FLOAT= 2105;
+  WINDOW_TYPE_INPUT_METHOD_FLOAT= windowManager.WindowType.TYPE_INPUT_METHOD;
   windowName = 'imeWindow';
   isSpecialKeyPress = false;
   keySum = 0;
