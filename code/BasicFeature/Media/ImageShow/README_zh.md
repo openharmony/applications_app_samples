@@ -4,9 +4,11 @@
 
 本示例展示从相册选择图片展示在商品评价页面。
 
-本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本属于，使用 [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 实现图片的获取，选择。
+### 效果预览
 
-使用说明： 
+![](screenshots/devices/zh/index.png) ![](screenshots/devices/zh/not_choice.png) ![](screenshots/devices/zh/choice.png) ![](screenshots/devices/zh/show.png)
+
+使用说明：
 
 1.点击添加图片/照片，页面跳转到图片选择页面。
 
@@ -18,9 +20,21 @@
 
 5.点击返回按钮，退出应用。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts                    
+|---MainAbility
+|   |---MainAbility.ts                    
+|---pages
+|   |---Index.ets                      // 首页
+|   |---ChoicePhoto.ets                // 添加图片/照片
+```
 
-![](screenshots/devices/zh/index.png) ![](screenshots/devices/zh/not_choice.png) ![](screenshots/devices/zh/choice.png) ![](screenshots/devices/zh/show.png)
+### 具体实现
+
+本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本属于，使用 [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 实现图片的获取，选择。
 
 ### 相关权限
 
