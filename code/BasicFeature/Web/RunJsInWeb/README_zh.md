@@ -1,14 +1,33 @@
 # JS注入与执行
 
-### 简介
+### 介绍
 
 本示例基于H5游戏，通过arkui的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。
 
-> 本例的H5游戏页面，由https://yangyunhe369.github.io/h5-game-blockBreaker/ 提供
+### 效果预览
 
 ![](screenshots/device/main.jpg)
 
+使用说明
 
+1.设备连接热点，可访问互联网。
+
+2.打开应用，通过界面中按钮进行游戏控制。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---entryability
+|   |---EntryAbility.ts                    // 弹窗组件
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+```
+
+### 具体实现
+
+本例的H5游戏页面，由https://yangyunhe369.github.io/h5-game-blockBreaker/ 提供
 
 ### 相关概念
 
@@ -18,11 +37,9 @@ NA
 
 网络访问权限: ohos.permission.INTERNET
 
-### 使用说明
+### 依赖
 
-1.设备连接热点，可访问互联网。
-
-2.打开应用，通过界面中按钮进行游戏控制。
+不涉及。
 
 ### 约束与限制
 
