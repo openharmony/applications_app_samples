@@ -2,13 +2,13 @@
 
 ### 介绍
 
-本示例主要展示了公共事件相关的功能，实现了一个检测用户部分行为的应用。具体而言实现了如下几点功能：
+本示例主要展示了公共事件相关的功能，实现了一个检测用户部分行为的应用。
 
-1.通过订阅系统公共事件，实现对用户操作行为（亮灭屏、断联网）的监测；
+### 效果预览
 
-2.通过在用户主动停止监测行为时发布自定义[有序公共事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/common-event-overview.md)，实现对用户主动触发监听行为的持久化记录；
-
-3.通过在用户设置对某一事件的监听状态时发布[粘性事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/common-event-overview.md)，记录下本次应用运行期间允许监听的事件列表，同时在应用退出时将临时允许的修改为不允许。
+| 主页                                 | 监控页面                           | 设置页面                               | 历史记录页面                          |
+| ------------------------------------ | ---------------------------------- | -------------------------------------- | ------------------------------------- |
+| <img src="screenshots/launch.jpg" /> | <img src="screenshots/main.jpg" /> | <img src="screenshots/settings.jpg" /> | <img src="screenshots/history.jpg" /> |
 
 使用说明：
 
@@ -26,20 +26,53 @@
 
 6.返回至应用菜单页面，点击“关于”可查看应用版本信息及本示例的说明。
 
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts                    
+|---component
+|   |---Header.ets                    // 头部组件
+|---feature
+|   |---HistoryFeature.ts                    
+|   |---LaunchFeature.ts                    
+|   |---MainFeature.ts                    
+|   |---SettingFeature.ts                    
+|---LauncherAbility 
+|   |---LauncherAbility.ts
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---Consts.ts                   // 数据定义
+|   |---Logger.ts                      // 日志打印  
+|   |---SurveillanceEventsManager.ts                         // 公共事件模块
+|   |---Utils.ts                        
+|---pages
+|   |---About.ets                      // 关于页面
+|   |---Detail.ets                        // 详情页面
+|   |---History.ets                        // 历史页面
+|   |---Launch.ets                        // 发起页面
+|   |---Main.ets                        // 进入页面
+|   |---Setting.ets                        // 设置页面
+```
+   
+### 具体实现
 
+具体而言实现了如下几点功能：
 
-### 效果预览
+1.通过订阅系统公共事件，实现对用户操作行为（亮灭屏、断联网）的监测；
 
-| 主页                                 | 监控页面                           | 设置页面                               | 历史记录页面                          |
-| ------------------------------------ | ---------------------------------- | -------------------------------------- | ------------------------------------- |
-| <img src="screenshots/launch.jpg" /> | <img src="screenshots/main.jpg" /> | <img src="screenshots/settings.jpg" /> | <img src="screenshots/history.jpg" /> |
+2.通过在用户主动停止监测行为时发布自定义[有序公共事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/common-event-overview.md)，实现对用户主动触发监听行为的持久化记录；
 
-
+3.通过在用户设置对某一事件的监听状态时发布[粘性事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/common-event-overview.md)，记录下本次应用运行期间允许监听的事件列表，同时在应用退出时将临时允许的修改为不允许。
 
 ### 相关权限
 
 [ohos.permission.COMMONEVENT_STICKY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
+### 依赖
+
+不涉及。
 
 
 ### 约束与限制
