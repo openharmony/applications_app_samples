@@ -40,7 +40,6 @@ library/
 
 ### 具体实现
 
-
 * 发声设备查询与切换功能都封装在PreferOutputDevice,源码参考：[PreferOutputDevice.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/PreferOutputDevice.ets)
     * 使用audioRenderer对象来播放一个通话类型的音频，只要进入发声设备查询与选择页面就进行播放，直到退出当前页面
     * 使用audio.getAudioManager()来获取音频管理对象audioManager，再通过audioManager.getRoutingManager()对象获取audioRoutingManager对象
@@ -56,10 +55,14 @@ library/
     * 使用audioRenderer.stop()进行音频的停止播放处理
     * 使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor,接口参考：[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getrawfd9)
     * 根据文件描述对象，使用fs.read()接口进行音频数据读取，读取到的结果用于audioRenderer.write()的写入,接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
-    
+
 ### 相关权限
 
+不涉及。
+
 ### 依赖
+
+不涉及。
 
 ### 约束与限制
 
