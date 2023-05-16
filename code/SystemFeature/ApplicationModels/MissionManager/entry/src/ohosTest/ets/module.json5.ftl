@@ -28,7 +28,7 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/testAbility/TestAbility.ts",
+        "srcEntrance": "./ets/testability/TestAbility.ts",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",
