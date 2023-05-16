@@ -12,7 +12,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import Logger from '../../../../../library/Logger';
+
+import Logger from '../utils/Logger';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 // @ts-ignore
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'

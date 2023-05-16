@@ -65,7 +65,7 @@ notification/src/main/ets/
 
 2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 ### 下载
 

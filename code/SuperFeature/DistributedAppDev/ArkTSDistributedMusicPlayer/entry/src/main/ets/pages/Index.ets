@@ -20,8 +20,16 @@ import mediaQuery from '@ohos.mediaquery'
 import PlayerModel from '../model/PlayerModel'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { DeviceDialog } from '../common/DeviceDialog'
-import { APPLICATION_BUNDLE_NAME, APPLICATION_SERVICE_NAME, MusicSharedEventCode, MusicSharedStatus, MusicConnectEvent } from '../common/MusicSharedDefinition'
+import {
+  APPLICATION_BUNDLE_NAME,
+  APPLICATION_SERVICE_NAME,
+  MusicSharedEventCode,
+  MusicSharedStatus,
+  MusicConnectEvent
+} from '../common/MusicSharedDefinition'
 import rpc from '@ohos.rpc'
+import common from '@ohos.app.ability.common'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'Index'
 const DESIGN_WIDTH: number = 720.0
@@ -117,12 +125,14 @@ struct Index {
           Logger.info(TAG, `Button-clicking callback`)
         }
       },
-      cancel: () => { Logger.info(TAG, `Closed callbacks`) }
+      cancel: () => {
+        Logger.info(TAG, `Closed callbacks`)
+      }
     })
   }
 
   remoteServiceExtensionConnectEvent(event) {
-    if (typeof(event) === 'string') {
+    if (typeof (event) === 'string') {
       if (event === MusicConnectEvent.EVENT_CONNECT) {
         this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
         this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
@@ -159,13 +169,13 @@ struct Index {
 
   exitMusicApp() {
     Logger.info(TAG, `exit music app called`)
-    if (typeof(this.localExtensionRemote) === 'object') {
+    if (typeof (this.localExtensionRemote) === 'object') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
       this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_LOCAL_SERIVCE, data, reply, option)
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`)
     }
   }
 
@@ -192,7 +202,7 @@ struct Index {
   }
 
   startRemoteExtension(deviceId, params) {
-    if (typeof(this.localExtensionRemote) === 'object' && typeof(deviceId) === 'string' && deviceId !== '') {
+    if (typeof (this.localExtensionRemote) === 'object' && typeof (deviceId) === 'string' && deviceId !== '') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
@@ -202,12 +212,12 @@ struct Index {
       this.deviceId = deviceId
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`)
     }
   }
 
   stopRemoteExtension() {
-    if (typeof(this.localExtensionRemote) === 'object' && typeof(this.deviceId) === 'string' && this.deviceId !== '') {
+    if (typeof (this.localExtensionRemote) === 'object' && typeof (this.deviceId) === 'string' && this.deviceId !== '') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
@@ -215,12 +225,12 @@ struct Index {
       this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
       this.deviceId = ''
     } else {
-      Logger.info(TAG, `Remote stopped type is wrong or deviceID is empty, typeof= ${typeof(this.localExtensionRemote)}`)
+      Logger.info(TAG, `Remote stopped type is wrong or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`)
     }
   }
 
   sendMessagePlay() {
-    if(this.localExtensionRemote === null) {
+    if (this.localExtensionRemote === null) {
       Logger.info(TAG, `can not get proxy`)
       return
     }
@@ -233,7 +243,7 @@ struct Index {
   }
 
   sendMessagePause() {
-    if(this.localExtensionRemote === null) {
+    if (this.localExtensionRemote === null) {
       Logger.info(TAG, `can not get proxy`)
       return
     }
@@ -326,7 +336,7 @@ struct Index {
 
   clearSelectState() {
     this.deviceLists = []
-    if(this.dialogController){
+    if (this.dialogController) {
       this.dialogController.close()
       this.dialogController = null
     }
@@ -447,7 +457,7 @@ struct Index {
 
   restoreFromWant() {
     Logger.info(TAG, 'restoreFromWant')
-    let status:any = AppStorage.Get('status')
+    let status: any = AppStorage.Get('status')
     if (status !== null && status.uri !== null) {
       KvStoreModel.broadcastMessage(this.context, REMOTE_ABILITY_STARTED)
       Logger.info(TAG, 'restorePlayingStatus')
@@ -473,11 +483,18 @@ struct Index {
   aboutToAppear() {
     Logger.info(TAG, `begin`)
     Logger.info(TAG, 'grantPermission')
-    this.context = getContext(this) as any
-    let requestCode = 666
-    this.context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], requestCode, function (result) {
-      Logger.info(TAG, `grantPermission,requestPermissionsFromUser,result= ${result}`)
-    })
+    this.context = getContext(this) as common.UIAbilityContext
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
+    let permission: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC']
+    try {
+      atManager.requestPermissionsFromUser(this.context, permission).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+    }
     display.getDefaultDisplay().then((dis) => {
       Logger.info(TAG, `getDefaultDisplay dis= ${JSON.stringify(dis)}`)
       let proportion = DESIGN_WIDTH / dis.width
