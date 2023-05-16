@@ -11,6 +11,10 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "dilog_confirm",
+      "value": "confirm"
     }
   ]
 }
