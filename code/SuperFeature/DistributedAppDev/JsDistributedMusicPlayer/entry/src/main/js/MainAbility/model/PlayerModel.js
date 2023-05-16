@@ -144,7 +144,7 @@ export default class PlayerModel {
   cancelTimer() {
     if (typeof (this.#intervalID) !== 'undefined') {
       logger.info(TAG, `clear update interval ${this.#intervalID}`)
-      clearInterval(this.#intervalID)
+      clearInterval(Number(this.#intervalID))
       this.#intervalID = undefined
     }
   }

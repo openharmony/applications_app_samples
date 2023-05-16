@@ -72,14 +72,14 @@ export default class RemoteDeviceModel {
           break
         }
       }
-      Logger.debug(TAG, `offline, device list= ${JSON.stringify(this.deviceList)}`)
+      logger.debug(TAG, `offline, device list= ${JSON.stringify(this.deviceList)}`)
       this.callback()
     }
   }
 
   changeStateOnline(device) {
     this.deviceList[this.deviceList.length] = device
-    Logger.debug(TAG, `online, device list= ${JSON.stringify(this.deviceList)}`)
+    logger.debug(TAG, `online, device list= ${JSON.stringify(this.deviceList)}`)
     this.callback()
     if (this.authCallback !== null) {
       this.authCallback()
