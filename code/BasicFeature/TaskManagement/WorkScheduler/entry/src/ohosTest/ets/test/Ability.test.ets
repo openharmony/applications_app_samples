@@ -95,6 +95,7 @@ export default function abilityTest() {
       // 点击确定开始装包
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.btn1'))));
       let confirmBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.btn1'))));
+      await DRIVER.delayMs(3000);
       await confirmBtn.click();
       await DRIVER.delayMs(5000);
       Logger.info('UpdateApp_001 end');
