@@ -3,22 +3,35 @@
 ### 介绍
 
 本示例展示了在应用主窗口中创建和拉起子窗口，并对子窗口设置窗口相关属性，以及设置窗口规避区域、窗口沉浸式和小窗口等功能。
- 
- 
- 本实例使用[窗口管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)
- 
- 
+
+### 效果预览
+
+-![home](screenshots/devices/mainWindow.png) ![play1](screenshots/devices/subWindow.png)
+
+使用说明：
+
 1.启动应用,首页展示窗口沉浸式以及设置状态栏和任务栏属性,点击窗口视频跳转到播放页。
 
 2.点击视频屏幕可以拉起小窗口播放视频，小窗口可以拖拽，再次点击视频可以关闭小窗口。
 
 3.点击全屏播放并切换窗口方向按钮可以全屏播放视频并且改变窗口方向。
 
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts                   
+|---MainAbility
+|   |---MainAbility.ts                    
+|---pages
+|   |---Index.ets                      // 首页
+|   |---SubWindowPage.ets              // 全屏播放
+|   |---Video.ets                      // 视频播放
+``` 
 
-### 效果预览
+### 具体实现
 
--![home](screenshots/devices/mainWindow.png) ![play1](screenshots/devices/subWindow.png)
-  
+本实例使用[窗口管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)
 
 ### 相关权限
 
