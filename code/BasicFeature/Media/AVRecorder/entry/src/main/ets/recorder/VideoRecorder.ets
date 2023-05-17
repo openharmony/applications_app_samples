@@ -23,7 +23,7 @@ const TAG: string = 'Sample_VideoRecorder';
 
 @Entry
 @Component
-struct videoRecording {
+struct VideoRecording {
   private surfaceId: string = '';
   xcomponentController: XComponentController = new XComponentController();
   private videoRecorder: media.AVRecorder;
@@ -749,8 +749,8 @@ struct CustomDialogSetting {
             this.controller.close()
             this.cancel()
           })
-          .backgroundColor('#FFFFFF')
-          .fontColor('#007DFF')
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('app.color.button_color'))
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
           .id('videoCancel')
@@ -758,7 +758,7 @@ struct CustomDialogSetting {
         Divider()
           .vertical(true)
           .height(24)
-          .color('#182431')
+          .color($r('app.color.divider_color'))
           .opacity(0.6)
           .margin({ left: 8, right: 8 })
         Button($r('app.string.button_confirm'))
@@ -769,8 +769,8 @@ struct CustomDialogSetting {
             this.controller.close()
             this.confirm()
           })
-          .backgroundColor('#FFFFFF')
-          .fontColor('#007DFF')
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('app.color.button_color'))
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
           .id('videoConfirm')
@@ -781,7 +781,7 @@ struct CustomDialogSetting {
       .margin({left: 24, right: 24, top: 12, bottom: 16})
     }
     .margin({left: 12, right: 12, bottom: 12})
-    .backgroundColor('#FFFFFF')
+    .backgroundColor($r('app.color.button_background'))
     .borderRadius(32)
     .alignItems(HorizontalAlign.Center)
   }

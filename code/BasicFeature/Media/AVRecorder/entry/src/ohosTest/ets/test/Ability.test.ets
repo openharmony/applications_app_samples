@@ -23,6 +23,7 @@ import { logger } from '../util/Logger';
 const TAG = '[Sample_AVRecorder]'
 const BUNDLE = 'AVRecorder'
 const driver = Driver.create();
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -50,8 +51,10 @@ export default function abilityTest() {
     it(BUNDLE + '_Permission', 0, async () => {
       logger.info(TAG, BUNDLE + '_Permission begin');
       await driver.delayMs(1000);
+      let ability = abilityDelegatorRegistry.getAppContext();
+      let manager = ability.resourceManager;
       for (let i = 0; i < 3; i++) {
-        let btnAccept = await driver.findComponent(ON.text('允许'));
+        let btnAccept = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
         if (btnAccept !== undefined) {
           await btnAccept.click();
           await driver.delayMs(500);
@@ -65,7 +68,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + '_TestSetParameter', 0, async () => {
       logger.info(TAG, BUNDLE + '_TestSetParameter begin');
-      let audioRecordPage = await driver.findComponent(ON.text('音频录制'));
+      let audioRecordPage = await driver.findComponent(ON.id('audioRecorderPage'));
       if (audioRecordPage !== undefined) {
         await audioRecordPage.click();
         await driver.delayMs(1000);

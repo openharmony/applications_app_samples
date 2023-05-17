@@ -22,7 +22,7 @@ const TAG: string = 'Sample_AudioRecorder';
 
 @Entry
 @Component
-struct audioRecording {
+struct AudioRecording {
   private audioRecorder: media.AVRecorder;
   private fdPath: string = undefined;
   @State frameRate: number = 15;
@@ -431,8 +431,8 @@ struct CustomDialogSetting {
             this.controller.close()
             this.cancel()
           })
-          .backgroundColor('#FFFFFF')
-          .fontColor('#007DFF')
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('app.color.button_color'))
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
           .id('audioCancel')
@@ -440,7 +440,7 @@ struct CustomDialogSetting {
         Divider()
           .vertical(true)
           .height(24)
-          .color('#182431')
+          .color($r('app.color.divider_color'))
           .opacity(0.6)
           .margin({ left: 8, right: 8 })
         Button($r('app.string.button_confirm'))
@@ -450,8 +450,8 @@ struct CustomDialogSetting {
             this.controller.close()
             this.confirm()
           })
-          .backgroundColor('#FFFFFF')
-          .fontColor('#007DFF')
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('app.color.button_color'))
           .fontFamily('HarmonyHeiTi-Medium')
           .fontSize(16)
           .id('audioConfirm')
@@ -462,7 +462,7 @@ struct CustomDialogSetting {
       .margin({ top: 12, bottom: 16 })
     }
     .margin({ left: 12, right: 12, bottom: 12 })
-    .backgroundColor('#FFFFFF')
+    .backgroundColor($r('app.color.button_background'))
     .borderRadius(32)
     .alignItems(HorizontalAlign.Center)
   }

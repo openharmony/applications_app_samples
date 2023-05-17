@@ -23,7 +23,7 @@ struct ListPage {
       Text($r('app.string.page_title'))
         .fontFamily('HarmonyHeiTi-Bold')
         .fontSize(24)
-        .fontColor("#182431")
+        .fontColor($r('app.color.title_color'))
         .height(33)
         .width(312)
         .margin({left: 24, right:24, top:12, bottom: 12})
@@ -32,16 +32,17 @@ struct ListPage {
           .fontFamily('HarmonyHeiTi-Medium')
           .width(64)
           .height(20)
-          .fontColor('#000000')
+          .fontColor($r('app.color.title_color'))
           .fontSize(16)
           .margin({left: 12, right:336, top:12, bottom: 12})
       }
+      .id('videoRecorderPage')
       .height(48)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor($r('app.color.button_background'))
       .borderRadius(24)
       .onClick(() => {
         router.push({
-          url: 'recorder/VRecorder',
+          url: 'recorder/VideoRecorder',
         })
       })
       .margin({ left: 12, right:12, top: 0, bottom:12})
@@ -50,21 +51,22 @@ struct ListPage {
           .fontFamily('HarmonyHeiTi-Medium')
           .width(64)
           .height(20)
-          .fontColor('#000000')
+          .fontColor($r('app.color.title_color'))
           .fontSize(16)
           .margin({left: 12, right:336, top:12, bottom: 12})
       }
+      .id('audioRecorderPage')
       .height(48)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor($r('app.color.button_background'))
       .borderRadius(24)
       .onClick(() => {
         router.push({
-          url: 'recorder/ARecorder',
+          url: 'recorder/AudioRecorder',
         })
       })
       .margin({ left: 12, right:12, top: 0, bottom:12})
     }
-    .backgroundColor('#F1F3F5')
+    .backgroundColor($r('app.color.homepage_background'))
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
