@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest';
 import featureAbility from '@ohos.ability.featureAbility';
 import hilog from '@ohos.hilog';
 
