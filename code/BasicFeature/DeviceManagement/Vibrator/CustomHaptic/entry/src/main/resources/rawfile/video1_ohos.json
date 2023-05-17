@@ -1,0 +1,1398 @@
+{
+    "MetaData": {
+        "Create": "2023-04-10 14:45:15.977723",
+        "Description": "a json file format demo",
+        "Version": 1.0,
+        "ChannelNumber": 1
+    },
+    "Channels": [
+        {
+            "Parameters": {
+                "Index": 1
+            },
+            "Pattern": [
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 46,
+                        "Parameters": {
+                            "Intensity": 10,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 92,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 122,
+                        "Parameters": {
+                            "Intensity": 26,
+                            "Frequency": 63
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 138,
+                        "Parameters": {
+                            "Intensity": 36,
+                            "Frequency": 63
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 184,
+                        "Parameters": {
+                            "Intensity": 37,
+                            "Frequency": 94
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 230,
+                        "Parameters": {
+                            "Intensity": 34,
+                            "Frequency": 94
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 276,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 94
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 306,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 94
+                        },
+                        "Duration": 61
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 368,
+                        "Parameters": {
+                            "Intensity": 22,
+                            "Frequency": 94
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 414,
+                        "Parameters": {
+                            "Intensity": 19,
+                            "Frequency": 94
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 460,
+                        "Parameters": {
+                            "Intensity": 56,
+                            "Frequency": 94
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 490,
+                        "Parameters": {
+                            "Intensity": 56,
+                            "Frequency": 94
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 506,
+                        "Parameters": {
+                            "Intensity": 58,
+                            "Frequency": 100
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 552,
+                        "Parameters": {
+                            "Intensity": 25,
+                            "Frequency": 95
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 598,
+                        "Parameters": {
+                            "Intensity": 18,
+                            "Frequency": 94
+                        },
+                        "Duration": 184
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 782,
+                        "Parameters": {
+                            "Intensity": 11,
+                            "Frequency": 94
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 828,
+                        "Parameters": {
+                            "Intensity": 43,
+                            "Frequency": 94
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 858,
+                        "Parameters": {
+                            "Intensity": 43,
+                            "Frequency": 94
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 874,
+                        "Parameters": {
+                            "Intensity": 51,
+                            "Frequency": 100
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 920,
+                        "Parameters": {
+                            "Intensity": 31,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 966,
+                        "Parameters": {
+                            "Intensity": 15,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1012,
+                        "Parameters": {
+                            "Intensity": 10,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 1058,
+                        "Parameters": {
+                            "Intensity": 54,
+                            "Frequency": 96
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1088,
+                        "Parameters": {
+                            "Intensity": 54,
+                            "Frequency": 96
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1104,
+                        "Parameters": {
+                            "Intensity": 72,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1150,
+                        "Parameters": {
+                            "Intensity": 54,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1196,
+                        "Parameters": {
+                            "Intensity": 26,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 1242,
+                        "Parameters": {
+                            "Intensity": 38,
+                            "Frequency": 96
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1272,
+                        "Parameters": {
+                            "Intensity": 38,
+                            "Frequency": 96
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1288,
+                        "Parameters": {
+                            "Intensity": 66,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1334,
+                        "Parameters": {
+                            "Intensity": 82,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1380,
+                        "Parameters": {
+                            "Intensity": 79,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1426,
+                        "Parameters": {
+                            "Intensity": 58,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 1472,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 96
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1502,
+                        "Parameters": {
+                            "Intensity": 27,
+                            "Frequency": 96
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 1518,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 96
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1564,
+                        "Parameters": {
+                            "Intensity": 12,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1610,
+                        "Parameters": {
+                            "Intensity": 33,
+                            "Frequency": 96
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 1656,
+                        "Parameters": {
+                            "Intensity": 69,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1686,
+                        "Parameters": {
+                            "Intensity": 69,
+                            "Frequency": 40
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1702,
+                        "Parameters": {
+                            "Intensity": 89,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1748,
+                        "Parameters": {
+                            "Intensity": 91,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1794,
+                        "Parameters": {
+                            "Intensity": 77,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1840,
+                        "Parameters": {
+                            "Intensity": 71,
+                            "Frequency": 63
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 1886,
+                        "Parameters": {
+                            "Intensity": 81,
+                            "Frequency": 74
+                        },
+                        "Duration": 138
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2024,
+                        "Parameters": {
+                            "Intensity": 73,
+                            "Frequency": 70
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2070,
+                        "Parameters": {
+                            "Intensity": 74,
+                            "Frequency": 76
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2116,
+                        "Parameters": {
+                            "Intensity": 72,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2162,
+                        "Parameters": {
+                            "Intensity": 64,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2208,
+                        "Parameters": {
+                            "Intensity": 49,
+                            "Frequency": 78
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2254,
+                        "Parameters": {
+                            "Intensity": 40,
+                            "Frequency": 64
+                        },
+                        "Duration": 92
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2346,
+                        "Parameters": {
+                            "Intensity": 31,
+                            "Frequency": 64
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2392,
+                        "Parameters": {
+                            "Intensity": 34,
+                            "Frequency": 64
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 2438,
+                        "Parameters": {
+                            "Intensity": 76,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2468,
+                        "Parameters": {
+                            "Intensity": 76,
+                            "Frequency": 64
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2484,
+                        "Parameters": {
+                            "Intensity": 84,
+                            "Frequency": 64
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2530,
+                        "Parameters": {
+                            "Intensity": 73,
+                            "Frequency": 64
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2576,
+                        "Parameters": {
+                            "Intensity": 85,
+                            "Frequency": 64
+                        },
+                        "Duration": 92
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2668,
+                        "Parameters": {
+                            "Intensity": 77,
+                            "Frequency": 64
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2714,
+                        "Parameters": {
+                            "Intensity": 63,
+                            "Frequency": 51
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2760,
+                        "Parameters": {
+                            "Intensity": 47,
+                            "Frequency": 51
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 2806,
+                        "Parameters": {
+                            "Intensity": 39,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2836,
+                        "Parameters": {
+                            "Intensity": 39,
+                            "Frequency": 64
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2852,
+                        "Parameters": {
+                            "Intensity": 47,
+                            "Frequency": 64
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2898,
+                        "Parameters": {
+                            "Intensity": 41,
+                            "Frequency": 48
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2944,
+                        "Parameters": {
+                            "Intensity": 25,
+                            "Frequency": 48
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 2990,
+                        "Parameters": {
+                            "Intensity": 27,
+                            "Frequency": 63
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 3036,
+                        "Parameters": {
+                            "Intensity": 36,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3066,
+                        "Parameters": {
+                            "Intensity": 36,
+                            "Frequency": 63
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3082,
+                        "Parameters": {
+                            "Intensity": 67,
+                            "Frequency": 80
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3128,
+                        "Parameters": {
+                            "Intensity": 87,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3174,
+                        "Parameters": {
+                            "Intensity": 84,
+                            "Frequency": 78
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 3220,
+                        "Parameters": {
+                            "Intensity": 88,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3250,
+                        "Parameters": {
+                            "Intensity": 88,
+                            "Frequency": 53
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3266,
+                        "Parameters": {
+                            "Intensity": 91,
+                            "Frequency": 40
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3312,
+                        "Parameters": {
+                            "Intensity": 83,
+                            "Frequency": 39
+                        },
+                        "Duration": 92
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3404,
+                        "Parameters": {
+                            "Intensity": 75,
+                            "Frequency": 39
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3450,
+                        "Parameters": {
+                            "Intensity": 70,
+                            "Frequency": 47
+                        },
+                        "Duration": 92
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3542,
+                        "Parameters": {
+                            "Intensity": 73,
+                            "Frequency": 47
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 3588,
+                        "Parameters": {
+                            "Intensity": 76,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3618,
+                        "Parameters": {
+                            "Intensity": 76,
+                            "Frequency": 47
+                        },
+                        "Duration": 62
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3680,
+                        "Parameters": {
+                            "Intensity": 82,
+                            "Frequency": 79
+                        },
+                        "Duration": 92
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3772,
+                        "Parameters": {
+                            "Intensity": 77,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3818,
+                        "Parameters": {
+                            "Intensity": 67,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3864,
+                        "Parameters": {
+                            "Intensity": 50,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 3910,
+                        "Parameters": {
+                            "Intensity": 31,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 3956,
+                        "Parameters": {
+                            "Intensity": 34,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 3986,
+                        "Parameters": {
+                            "Intensity": 34,
+                            "Frequency": 33
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4002,
+                        "Parameters": {
+                            "Intensity": 66,
+                            "Frequency": 34
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 4048,
+                        "Parameters": {
+                            "Intensity": 83,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4078,
+                        "Parameters": {
+                            "Intensity": 83,
+                            "Frequency": 34
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4094,
+                        "Parameters": {
+                            "Intensity": 83,
+                            "Frequency": 34
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4140,
+                        "Parameters": {
+                            "Intensity": 86,
+                            "Frequency": 34
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4186,
+                        "Parameters": {
+                            "Intensity": 82,
+                            "Frequency": 39
+                        },
+                        "Duration": 184
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4370,
+                        "Parameters": {
+                            "Intensity": 63,
+                            "Frequency": 39
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 4416,
+                        "Parameters": {
+                            "Intensity": 52,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4446,
+                        "Parameters": {
+                            "Intensity": 52,
+                            "Frequency": 47
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4462,
+                        "Parameters": {
+                            "Intensity": 55,
+                            "Frequency": 47
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4508,
+                        "Parameters": {
+                            "Intensity": 57,
+                            "Frequency": 47
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4554,
+                        "Parameters": {
+                            "Intensity": 62,
+                            "Frequency": 47
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 4600,
+                        "Parameters": {
+                            "Intensity": 61,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4630,
+                        "Parameters": {
+                            "Intensity": 61,
+                            "Frequency": 47
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4646,
+                        "Parameters": {
+                            "Intensity": 60,
+                            "Frequency": 74
+                        },
+                        "Duration": 92
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4738,
+                        "Parameters": {
+                            "Intensity": 67,
+                            "Frequency": 79
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 4784,
+                        "Parameters": {
+                            "Intensity": 80,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4814,
+                        "Parameters": {
+                            "Intensity": 80,
+                            "Frequency": 79
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4830,
+                        "Parameters": {
+                            "Intensity": 92,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4876,
+                        "Parameters": {
+                            "Intensity": 86,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4922,
+                        "Parameters": {
+                            "Intensity": 70,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 4968,
+                        "Parameters": {
+                            "Intensity": 59,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5014,
+                        "Parameters": {
+                            "Intensity": 55,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5060,
+                        "Parameters": {
+                            "Intensity": 53,
+                            "Frequency": 52
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5106,
+                        "Parameters": {
+                            "Intensity": 51,
+                            "Frequency": 52
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5152,
+                        "Parameters": {
+                            "Intensity": 45,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5198,
+                        "Parameters": {
+                            "Intensity": 42,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5228,
+                        "Parameters": {
+                            "Intensity": 42,
+                            "Frequency": 52
+                        },
+                        "Duration": 62
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5290,
+                        "Parameters": {
+                            "Intensity": 36,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5336,
+                        "Parameters": {
+                            "Intensity": 34,
+                            "Frequency": 53
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5382,
+                        "Parameters": {
+                            "Intensity": 31,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5428,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5474,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5520,
+                        "Parameters": {
+                            "Intensity": 30,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5566,
+                        "Parameters": {
+                            "Intensity": 60,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 5612,
+                        "Parameters": {
+                            "Intensity": 73,
+                            "Frequency": 80
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5642,
+                        "Parameters": {
+                            "Intensity": 73,
+                            "Frequency": 53
+                        },
+                        "Duration": 16
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5658,
+                        "Parameters": {
+                            "Intensity": 55,
+                            "Frequency": 52
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5704,
+                        "Parameters": {
+                            "Intensity": 38,
+                            "Frequency": 52
+                        },
+                        "Duration": 46
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": 5750,
+                        "Parameters": {
+                            "Intensity": 34,
+                            "Frequency": 52
+                        },
+                        "Duration": 138
+                    }
+                }
+            ]
+        }
+    ]
+}

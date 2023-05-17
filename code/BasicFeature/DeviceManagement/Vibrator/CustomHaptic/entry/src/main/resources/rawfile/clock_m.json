@@ -1,0 +1,135 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 4
+						},
+						"StartTime" : 48,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 59,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 16
+						},
+						"StartTime" : 98,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 80
+						},
+						"StartTime" : 167,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 3
+						},
+						"StartTime" : 1057,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 59,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 15
+						},
+						"StartTime" : 1107,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 80
+						},
+						"StartTime" : 1182,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 3
+						},
+						"StartTime" : 2019,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 58,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 16
+						},
+						"StartTime" : 2069,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 80
+						},
+						"StartTime" : 2138,
+						"Type" : "transient"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-17",
+		"Discription" : "A json file format demo",
+		"Version" : 1.0
+	}
+}

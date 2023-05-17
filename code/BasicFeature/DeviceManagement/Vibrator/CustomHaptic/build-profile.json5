@@ -1,0 +1,40 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_TactilFeedback0412_com.example.tactilfeedback0406.cer",
+          "storePassword": "0000001B7E34BD7ED9D45B425CB5BF52FF08EF6176324028CBAD1A81D06BCC24B472FC78F675BCBA0EBF2E",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BEF5DAAFE9740673EDD834434FCF26D5EDA7C1264AEA0B96140009C937A63629149A745AD80709D",
+          "profile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_TactilFeedback0412_com.example.tactilfeedback0406.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_TactilFeedback0412_com.example.tactilfeedback0406.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
