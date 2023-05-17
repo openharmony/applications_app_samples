@@ -181,10 +181,6 @@
       "value": "修改信息成功"
     },
     {
-      "name": "button_confirm",
-      "value": "确认"
-    },
-    {
       "name": "button_cancel",
       "value": "取消"
     }

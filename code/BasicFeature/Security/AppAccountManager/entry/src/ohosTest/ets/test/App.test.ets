@@ -31,7 +31,7 @@ async function getResourceString(resource: Resource): Promise<string> {
   return text
 }
 //通过id验证有没有这个组件 有的话点击一下
-async function checkButtonAndClickWithID(text:string) {
+async function checkButtonAndClickWithID(text: string) {
   let atom = text
   await driver.assertComponentExist(ON.id(atom))
   let button = await driver.findComponent(ON.id(atom))
@@ -40,12 +40,12 @@ async function checkButtonAndClickWithID(text:string) {
 }
 
 // 登录账号
-async function applicationLogin(username:string, usernameValue:string, password:string, passwordValue:string) {
+async function applicationLogin(username: string, usernameValue: string, password: string, passwordValue: string) {
   // 填写用户名
   let loginUserName = username
   let loginUsernameValue = usernameValue
   await driver.assertComponentExist(ON.id(loginUserName))
-  let usernameInput  = await driver.findComponent(ON.id(loginUserName))
+  let usernameInput = await driver.findComponent(ON.id(loginUserName))
   await usernameInput.inputText(loginUsernameValue)
   // 填写密码
   let loginPassword = password
@@ -57,11 +57,14 @@ async function applicationLogin(username:string, usernameValue:string, password:
 
 // 点击确认
 async function confirmCheck() {
-  await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_confirm'))))
-  let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_confirm'))))
+  // await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm'))))
+  // let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm'))))
+  await driver.assertComponentExist(ON.text('确认'))
+  let button = await driver.findComponent(ON.text('确认'))
   await button.click()
   await driver.delayMs(1000)
 }
+
 export default function appTest() {
   describe('appTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
@@ -89,12 +92,14 @@ export default function appTest() {
       // 注册信息
       // 填写用户名
       await driver.assertComponentExist(ON.id('Register1'))
-      let usernameInput  = await driver.findComponent(ON.id('Register1'))
+      let usernameInput = await driver.findComponent(ON.id('Register1'))
       await usernameInput.inputText('testName_Music')
       // 填写邮箱
       await driver.assertComponentExist(ON.id('Register2'))
       let emailInput = await driver.findComponent(ON.id('Register2'))
       await emailInput.inputText('123456@qq.com')
+      let emailValue = await emailInput.getText()
+      hilog.info(DOMAIN,TAG,`emailValue:${emailValue}`)
       // 填写个性签名
       await driver.assertComponentExist(ON.id('Register3'))
       let signInput = await driver.findComponent(ON.id('Register3'))
@@ -112,9 +117,10 @@ export default function appTest() {
       // 点击弹窗关闭
       let registerClose = await driver.findComponent(ON.type('AlertDialog'))
       await registerClose.click()
+      await driver.delayMs(3000)
       // 输入账号密码
       await applicationLogin('nameInput', 'testName_Music', 'passwordInput', '123456')
-      // 点击登录
+      // // 点击登录
       await checkButtonAndClickWithID('login')
       // 点击修改信息
       await checkButtonAndClickWithID('modify')
@@ -170,7 +176,7 @@ export default function appTest() {
       // 注册信息
       // 填写用户名
       await driver.assertComponentExist(ON.id('Register1'))
-      let usernameInput  = await driver.findComponent(ON.id('Register1'))
+      let usernameInput = await driver.findComponent(ON.id('Register1'))
       await usernameInput.inputText('testName_Video')
       // 填写邮箱
       await driver.assertComponentExist(ON.id('Register2'))
@@ -252,7 +258,7 @@ export default function appTest() {
       // 注册信息
       // 填写用户名
       await driver.assertComponentExist(ON.id('Register1'))
-      let usernameInput  = await driver.findComponent(ON.id('Register1'))
+      let usernameInput = await driver.findComponent(ON.id('Register1'))
       await usernameInput.inputText('testName_Map')
       // 填写邮箱
       await driver.assertComponentExist(ON.id('Register2'))
@@ -262,8 +268,7 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('Register3'))
       let signInput = await driver.findComponent(ON.id('Register3'))
       await signInput.inputText('testMap')
-      // 输入密码
-      await driver.assertComponentExist(ON.id('Register4'))
+       await driver.assertComponentExist(ON.id('Register4'))
       let passwordInput = await driver.findComponent(ON.id('Register4'))
       await passwordInput.inputText('123456')
       // 确认密码
@@ -279,6 +284,13 @@ export default function appTest() {
       await applicationLogin('nameInput', 'testName_Map', 'passwordInput', '123456')
       // 点击登录
       await checkButtonAndClickWithID('login')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickMapFunction_001 end')
+    })
+
+    it(BUNDLE + 'ModifyInfoFunction_001',0,async function(){
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ModifyInfoFunction_001 begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
       // 点击修改信息
       await checkButtonAndClickWithID('modify')
       // 修改信息
@@ -294,12 +306,14 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('Modify3'))
       let modifyPasswordInput = await driver.findComponent(ON.id('Modify3'))
       await modifyPasswordInput.inputText('123456789')
+      await driver.delayMs(200)
       // 确认密码
       await driver.assertComponentExist(ON.id('Modify4'))
       let modifyConfirmPasswordInput = await driver.findComponent(ON.id('Modify4'))
       await modifyConfirmPasswordInput.inputText('123456789')
       // 点击设置完成
       await checkButtonAndClickWithID('modComplete')
+      await driver.delayMs(1000)
       // 点击弹窗关闭
       let modifyRegisterClose = await driver.findComponent(ON.type('AlertDialog'))
       await modifyRegisterClose.click()
@@ -319,7 +333,7 @@ export default function appTest() {
       await checkButtonAndClickWithID('back')
       // 点击确定
       await confirmCheck()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickMapFunction_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ModifyInfoFunction_001 end')
     })
   })
 }

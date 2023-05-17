@@ -181,10 +181,6 @@
       "value": "Modify information successfully"
     },
     {
-      "name": "button_confirm",
-      "value": "Confirm"
-    },
-    {
       "name": "button_cancel",
       "value": "Cancel"
     }

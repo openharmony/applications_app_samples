@@ -23,6 +23,7 @@ const DOMAIN = 0xF811
 const BUNDLE = 'CustomNotification_'
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager
   let text = await manage.getStringValue(resource)
@@ -53,65 +54,73 @@ export default function appTest() {
     it(BUNDLE + 'CreateCustomNotificationFunction_001', 0, async function () {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateCustomNotificationFunction_001 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(1000)
       // 点击允许
       await driver.assertComponentExist(ON.type('Button'))
       let buttonClick = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow_button'))))
       await buttonClick.click()
       // 获取按钮
-      let Button = await driver.findComponents(ON.type('Button').within(ON.type('Scroll')))
+      let btnBasic = await driver.findComponent(ON.text(await getResourceString($r('app.string.basic_notification'))))
       // 点击基本类型通知
-      await Button[0].click()
+      await btnBasic.click()
       // 下拉查看通知 (固定坐标只支持RK3568)
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await driver.click(207, 1245)
       await driver.delayMs(1000)
       // 点击长文本类型通知
-      await Button[1].click()
+      let btnLong = await driver.findComponent(ON.text(await getResourceString($r('app.string.long_text_notification'))))
+      await btnLong.click()
       // 下拉查看通知
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.assertComponentExist(ON.text('CustomNotification'))
       let textButton = await driver.findComponent(ON.text('CustomNotification'))
       await textButton.click()
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await driver.click(207, 1245)
       await driver.delayMs(1000)
       // 点击多行文本类型通知
-      await Button[2].click()
+      let btnMul = await driver.findComponent(ON.text(await getResourceString($r('app.string.multiline_notification'))))
+      await btnMul.click()
       // 下拉查看通知
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await driver.click(207, 1245)
       await driver.delayMs(1000)
-      // 点击图片类型通知
-      await Button[3].click()
-      // 下拉查看通知
+      // // 点击图片类型通知
+      let btnPic = await driver.findComponent(ON.text(await getResourceString($r('app.string.picture_notification'))))
+      await btnPic.click()
+      // // 下拉查看通知
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await driver.click(207, 1245)
       await driver.delayMs(1000)
-      // 点击带按钮的通知
-      await Button[4].click()
-      // 下拉查看通知
+      // // 点击带按钮的通知
+      let btnWith = await driver.findComponent(ON.text(await getResourceString($r('app.string.notification_with_buttons'))))
+      await btnWith.click()
+      // // 下拉查看通知
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await driver.click(207, 1245)
       await driver.delayMs(1000)
-      // 点击可跳转的通知
-      await Button[5].click()
-      // 下拉查看通知
+      // // 点击可跳转的通知
+      let btnClick = await driver.findComponent(ON.text(await getResourceString($r('app.string.clickable_notification'))))
+      await btnClick.click()
+      // // 下拉查看通知
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await textButton.click()
       await driver.delayMs(1000)
-      // 点击取消所有通知
-      await Button[6].click()
-      // 下拉查看通知
+      await driver.click(207, 1245)
+      await driver.delayMs(1000)
+      // // 点击取消所有通知
+      let btnCancel = await driver.findComponent(ON.text(await getResourceString($r('app.string.cancel_all_notifications'))))
+      await btnCancel.click()
+      // // 下拉查看通知
       await driver.swipe(180, 0, 180, 50, 600)
       await driver.delayMs(1000)
-      await driver.swipe(180, 50, 180, 0, 600)
+      await driver.click(207, 1245)
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateCustomNotificationFunction_001 end')
     })

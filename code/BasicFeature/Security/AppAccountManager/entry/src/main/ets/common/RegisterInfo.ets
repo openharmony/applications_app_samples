@@ -92,7 +92,7 @@ class MyDataSource extends BasicDataSource {
     },
     {
       text: $r('app.string.email'),
-      inputType: InputType.Email,
+      inputType: InputType.Normal,
       length: 18,
       event: 1,
       inputFilter: '',
@@ -200,7 +200,10 @@ export struct RegisterInfo {
               .maxLength(20)
               .type(item.inputType)
               .maxLength(item.length)
-              .inputFilter(item.inputFilter)
+                // .inputFilter(item.inputFilter)
+              .inputFilter('', (e) => {
+                console.log(`zhanghong,e:${JSON.stringify(e)}`)
+              })
               .fontWeight(FontWeight.Bold)
               .placeholderFont({ size: 16, weight: FontWeight.Normal })
               .onChange(async (value: string) => {
