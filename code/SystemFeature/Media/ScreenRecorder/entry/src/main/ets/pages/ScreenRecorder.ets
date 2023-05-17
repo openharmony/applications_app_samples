@@ -130,9 +130,9 @@ struct ScreenRecorder {
     const dftDisplay = display.getDefaultDisplaySync()
     const videoProfile: media.VideoRecorderProfile = {
       ...DEFAULT_VIDEO_PROFILE,
-      videoFrameWidth: dftDisplay.width,
-      videoFrameHeight: dftDisplay.height,
-      videoFrameRate: dftDisplay.refreshRate,
+      videoFrameWidth: Number(dftDisplay.width)*3/5,
+      videoFrameHeight: Number(dftDisplay.height)*3/5,
+      videoFrameRate: Number(dftDisplay.refreshRate)*3/5,
     }
     return {
       audioSourceType: AUDIO_SOURCE_MIC,
@@ -171,7 +171,7 @@ struct ScreenRecorder {
     try {
       this.videoRecorder = await media.createVideoRecorder()
       const config = await this.getVideoConfig(`${FD_PREFIX}${this.videoFd}`)
-      this.videoRecorder.prepare(config)
+      await this.videoRecorder.prepare(config)
       const surfaceId = await this.videoRecorder.getInputSurface()
       Logger.info(TAG, 'Get input surface id:', surfaceId)
     } catch (err) {
@@ -184,9 +184,9 @@ struct ScreenRecorder {
       const dftDisplay = display.getDefaultDisplaySync();
       return await screenManager.createVirtualScreen({
         name: VIRTUAL_SCREEN_NAME,
-        width: dftDisplay.width,
-        height: dftDisplay.height,
-        density: dftDisplay.densityDPI,
+        width: Number(dftDisplay.width)*3/5,
+        height: Number(dftDisplay.height)*3/5,
+        density: Number(dftDisplay.densityDPI)*3/5,
         surfaceId,
       })
     } catch (err) {

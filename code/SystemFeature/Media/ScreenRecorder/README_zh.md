@@ -65,6 +65,8 @@ ohos.permission.CAPTURE_SCREEN
 
 6.rk设备由于芯片限制，应用中videoFrameWidth，videoFrameHeight，videoFrameRate需同比缩小3/5, 才能实现rk上的播放效果。
 
+7.库上代码为rk设备所适用代码，其他设备需要修改完应用代码后(应用代码中缩小3/5的地方，在其他设备不需要缩小),单独打包。
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：
