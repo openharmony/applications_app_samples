@@ -4,11 +4,11 @@
 
 本示例使用[audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audio.md)相关接口实现音频录制和播放的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)实现音频文件的管理。
 
-相关概念：
+### 效果预览
 
-AudioRecorder：音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。它允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、文件路径等参数。
-
-AudioPlayer：音频播放的主要工作是将音频数据转码为可听见的音频模拟信号并通过输出设备进行播放，同时对播放任务进行管理。
+|首页|录制界面|
+|--------------------------------|--------------------------------|
+|![main](screenshots/device/main.png)| ![record](screenshots/device/record.png)|
 
 使用说明：
 
@@ -20,11 +20,42 @@ AudioPlayer：音频播放的主要工作是将音频数据转码为可听见的
 
 4.左滑音频文件，可以滑出重命名和删除按钮，点击可以对该音频文件进行重命名和删除操作。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---AnimateView.ets                    // 录音动画组件
+|   |---AudioItem.ets                   // 每项录音组件
+|   |---BasicDataSource.ets              // 计时组件 
+|   |---CheckTitle.ets                    // 是否选择标题
+|   |---HomeView.ets                   // 主页     
+|   |---PlayView.ets                    // 播放组件 
+|   |---RenameDialog.ets                    // 重命名弹窗组件
+|   |---TitleBar.ets                   // 首页标题组件
+|   |---TitleWithBack.ets              // 详情页面标题组件
+|---entryAbility
+|   |---EntryAbility
+|---model
+|   |---AudioModel.ts                  
+|   |---DateTimeUtil.ts                      // 日期工具
+|   |---Logger.ts                         // 日志工具
+|   |---MediaManager.ts                   
+|   |---Record.ets                      // 计时工具
+|   |---RecordModel.ts                         
+|   |---Utils.ts                         
+|---pages
+|   |---Index.ets                      // 首页
+|   |---Play.ets                        // 播放页面
+|   |---RecordPage.ets                        // 录音页面
+```
 
-|首页|录制界面|
-|--------------------------------|--------------------------------|
-|![main](screenshots/device/main.png)| ![record](screenshots/device/record.png)|
+### 具体实现
+
+相关概念：
+
+AudioRecorder：音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。它允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、文件路径等参数。
+
+AudioPlayer：音频播放的主要工作是将音频数据转码为可听见的音频模拟信号并通过输出设备进行播放，同时对播放任务进行管理。
 
 ### 相关权限
 
