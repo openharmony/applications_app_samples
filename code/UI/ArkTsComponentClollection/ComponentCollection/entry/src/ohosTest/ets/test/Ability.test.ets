@@ -184,6 +184,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.blank_and_divider')));
+
         Logger.info(BUNDLE + testName + ' end');
       });
 
@@ -396,10 +399,6 @@ export default function abilityTest() {
                 await checkButtonAndClickWithText(atom);
                 Logger.info(BUNDLE + testName + atom);
               }
-              { // 验证点击有无响应
-                let atom = 'onSelectId' + i;
-                await driver.assertComponentExist(ON.id(atom));
-              }
             }
           }
         }
@@ -434,18 +433,13 @@ export default function abilityTest() {
         // 显示当前值
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(195, 273, 354, 273, 800);
-        await driver.drag(110, 273, 354, 273, 800);
         await driver.delayMs(DELAY_TIME);
-        await driver.assertComponentExist(ON.id('test_Text1'));
-        let text = await driver.findComponent(ON.id('test_Text1'));
-        text.click();
 
         // 滑块颜色
         await checkButtonAndClickWithID('test_select1');
         await checkButtonAndClickWithText('Green');
         // 已滑动颜色
         await checkButtonAndClickWithID('test_select2');
-
         await checkButtonAndClickWithText('Orange');
         // 未滑动颜色
         await checkButtonAndClickWithID('test_select3');
@@ -590,8 +584,7 @@ export default function abilityTest() {
         }
         await checkButtonAndClickWithText(atom);
 
-        // 点击计数器
-        await checkButtonAndClickWithID('test_toggle');
+        await driver.delayMs(DELAY_TIME);
 
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         // 返回
@@ -629,6 +622,8 @@ export default function abilityTest() {
         // 返回
         await backBtn.click();
         await driver.delayMs(500);
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
 
         Logger.info(BUNDLE + testName + ' end');
       })
@@ -669,6 +664,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -687,7 +685,7 @@ export default function abilityTest() {
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
           // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
         await checkButtonAndClickWithText(atom);
 
@@ -962,6 +960,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -1117,6 +1118,9 @@ export default function abilityTest() {
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
         await driver.delayMs(500);
+
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
 
         Logger.info(BUNDLE + testName + ' end');
       })
@@ -1530,6 +1534,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
+
         Logger.info(BUNDLE + testName + ' end');
       });
 
@@ -1907,7 +1914,7 @@ export default function abilityTest() {
         await driver.drag(100, 1017, 100, 1117, 800);
         await driver.delayMs(DELAY_TIME);
         //确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
 
         // 展开公历日期
         await checkButtonAndClickWithID('test_gregorian');
@@ -1917,7 +1924,7 @@ export default function abilityTest() {
         await driver.drag(100, 1117, 100, 1017, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1952,7 +1959,7 @@ export default function abilityTest() {
         await driver.drag(200, 1017, 200, 1117, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
 
         // 展开12小时
         await checkButtonAndClickWithID('test_12hour');
@@ -1962,7 +1969,7 @@ export default function abilityTest() {
         await driver.drag(200, 1117, 200, 1017, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));

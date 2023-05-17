@@ -29,7 +29,7 @@ export default function abilityTest() {
      */
     it('StartAbility_001', 0, async function (done) {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', 'StartAbility_001 begin');
+      hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegatorRegistry.startAbility({
@@ -41,7 +41,7 @@ export default function abilityTest() {
         expect(0).assertEqual(err.code);
         done();
       }
-      hilog.info(0x0000, 'testTag', 'StartAbility_001 end');
+      hilog.info(0xF811, 'testTag', 'StartAbility_001 end');
     })
 
     /**
@@ -49,13 +49,13 @@ export default function abilityTest() {
      */
     it('CheckPage_001', 0, async function () {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', 'CheckPage_001 begin');
+      hilog.info(0xF811, 'testTag', 'CheckPage_001 begin');
       await DRIVER.delayMs(1000);
       // 检查是否存在这三个板块
       await DRIVER.assertComponentExist(ON.text('普通多实例'));
       await DRIVER.assertComponentExist(ON.text('指定多实例'));
       await DRIVER.assertComponentExist(ON.text('单实例'));
-      hilog.info(0x0000, 'testTag', 'CheckPage_001 end');
+      hilog.info(0xF811, 'testTag', 'CheckPage_001 end');
     })
 
     /**
@@ -63,7 +63,7 @@ export default function abilityTest() {
      */
     it('CheckDetailPage_001', 0, async function () {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', 'CheckDetailPage_001 begin');
+      hilog.info(0xF811, 'testTag', 'CheckDetailPage_001 begin');
       await DRIVER.delayMs(1000);
       // 点击番茄
       await DRIVER.assertComponentExist(ON.text('番茄'));
@@ -93,7 +93,7 @@ export default function abilityTest() {
         x: detailPagePoint.x, y: detailPagePoint.y - 100
       }, 100, 200);
       await DRIVER.assertComponentExist(ON.text('黄瓜'));
-      hilog.info(0x0000, 'testTag', 'CheckDetailPage_001 end');
+      hilog.info(0xF811, 'testTag', 'CheckDetailPage_001 end');
     })
 
     /**
@@ -101,14 +101,14 @@ export default function abilityTest() {
      */
     it('CheckDetailPage_002', 0, async function () {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', 'CheckDetailPage_002 begin');
+      hilog.info(0xF811, 'testTag', 'CheckDetailPage_002 begin');
       // 点击黄瓜
       await DRIVER.delayMs(1000);
       let cucumber = await DRIVER.findComponent(ON.text('黄瓜'));
       await cucumber.click();
       await DRIVER.assertComponentExist(ON.text('黄瓜'));
       await DRIVER.assertComponentExist(ON.text('Food Detail'));
-      hilog.info(0x0000, 'testTag', 'CheckDetailPage_002 end');
+      hilog.info(0xF811, 'testTag', 'CheckDetailPage_002 end');
     })
   })
 }

@@ -70,7 +70,7 @@ async function getAlbums() {
 }
 
 export default function appTest() {
-  describe('abilityTest', function () {
+  describe('appTest', function () {
     // 打开应用
     it(BUNDLE + 'StartAbility', 0, async function (done) {
       Logger.info(TAG, 'StartAbility start')
@@ -166,9 +166,8 @@ export default function appTest() {
       await driver.delayMs(5000);
       await cameraIcon.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('back'));
-      let backIndex: Component = await driver.findComponent(ON.id('back'));
-      await backIndex.click();
+      await driver.pressBack();
+      await driver.delayMs(1000);
       Logger.info(TAG, BUNDLE + 'Video_001 end');
     });
     /**

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON, Component } from '@ohos.UiTest';
+import { describe, expect, it } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Logger from '../util/Logger';
@@ -27,24 +27,32 @@ let ability: UIAbility;
 
 export default function appTest() {
   describe('appTest', function () {
-    // 启动应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartProvider_001', 0, async function () {
+      Logger.info(TAG, BUNDLE + 'StartProvider_001 begin');
+      let want1 = {
+        bundleName: 'ohos.samples.crossappdatashare',
+        abilityName: 'ohos.samples.dataprovider.MainAbility'
+      }
+      await abilityDelegatorRegistry.startAbility(want1).then(
+        (err) => {
+          Logger.info(TAG, `_startAbility get err ${JSON.stringify(err)}`);
+        });
+    });
+    it(BUNDLE + 'StartAbility_001', 0, async function () {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let want = {
         bundleName: 'ohos.samples.crossappdatashare',
         abilityName: 'ohos.samples.datauser.MainAbility'
       }
-      abilityDelegatorRegistry.startAbility(want, (err) => {
-        Logger.info(TAG, `_startAbility get err ${JSON.stringify(err)}`);
-        done();
-        Logger.info(TAG, '_startAbility end');
-      });
+      await abilityDelegatorRegistry.startAbility(want).then(
+        (err) => {
+          Logger.info(TAG, `_startAbility get err ${JSON.stringify(err)}`);
+        });
       ability = await abilityDelegatorRegistry.getCurrentTopAbility();
     });
     // 新增联系人
     it(`${BUNDLE}AddContact_001`, 0, async () => {
       Logger.info(TAG, BUNDLE + 'AddContact_001 begin');
-      await driver.delayMs(1000);
       await driver.delayMs(1000);
       // 点击+按钮进入创建联系人页面
       await driver.assertComponentExist(ON.id('addBtn'));
@@ -82,11 +90,11 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('contactMsg0'));
       nameInput = await driver.findComponent(ON.id('contactMsg0'));
       await driver.delayMs(1000);
-      await nameInput.inputText('msh');
+      await nameInput.inputText('ash');
       await driver.delayMs(1000);
       nameText = await nameInput.getText();
       await driver.delayMs(1000);
-      expect('msh').assertEqual(nameText);
+      expect('ash').assertEqual(nameText);
       await driver.delayMs(1000);
       // 输入电话
       await driver.assertComponentExist(ON.id('phoneInput'));
@@ -105,7 +113,7 @@ export default function appTest() {
       await finish.click();
       await driver.delayMs(1000);
       // 校验是否创建成功
-      await driver.assertComponentExist(ON.text('msh'));
+      await driver.assertComponentExist(ON.text('ash'));
       Logger.info(TAG, BUNDLE + 'AddContact_001 end');
     })
     // 联系人助手覆盖联系人，用例只支持RK3568
@@ -131,10 +139,10 @@ export default function appTest() {
       // 点击同步联系人
       await driver.assertComponentExist(ON.id('syncContact'));
       let syncContact = await driver.findComponent(ON.id('syncContact'));
+      Logger.info(TAG, BUNDLE + 'HomeContent, syncContact click');
       await driver.delayMs(1000);
       await syncContact.click();
       await driver.delayMs(1000);
-      // 返回桌面，坐标基于rk3568
       await driver.click(360, 1244);
       let resourceManager = ability.context.resourceManager;
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.contact'))));

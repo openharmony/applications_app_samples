@@ -53,7 +53,7 @@ export class KeyboardController {
   public onDestroy(): void {
     this.inputHandle.addLog('onDestroy');
     this.unRegisterListener();
-    this.mContext.terminateSelf();
+    this.destroyWindow();
   }
 
   private initWindow(): void {
@@ -104,6 +104,21 @@ export class KeyboardController {
         })
       })
     });
+  }
+
+  private destroyWindow(): void {
+    this.inputHandle.addLog('destroyWindow');
+    try {
+      let win = windowManager.findWindow(this.windowName);
+      win.destroyWindow((err) => {
+        if (err) {
+          this.inputHandle.addLog('Failed to destroy the window. Cause:' + JSON.stringify(err));
+          return;
+        }
+      });
+    } catch (exception) {
+      this.inputHandle.addLog('Failed to find the Window. Cause: ' + JSON.stringify(exception));
+    }
   }
 
   private resizeWindow() {
@@ -165,7 +180,7 @@ export class KeyboardController {
     })
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
-        this.onDestroy();
+        this.mContext.destroy();
     });
     InputMethodEngine.on('keyboardShow', () => {
       this.inputHandle.addLog('keyboard show');

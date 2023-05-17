@@ -46,6 +46,96 @@
             ]
           }
         ]
+      },
+      {
+        "name": "clickAbility",
+        "srcEntrance": "./ets/clickability/ClickAbility.ts",
+        "description": "$string:clickability_desc",
+        "icon": "$media:icon",
+        "label": "$string:clickability_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "InputAbility",
+        "srcEntrance": "./ets/inputability/InputAbility.ts",
+        "description": "$string:InputAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:InputAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "MouseAbility",
+        "srcEntrance": "./ets/mouseability/MouseAbility.ts",
+        "description": "$string:MouseAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MouseAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "FlingAbility",
+        "srcEntrance": "./ets/flingability/FlingAbility.ts",
+        "description": "$string:FlingAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FlingAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "SwipeAbility",
+        "srcEntrance": "./ets/swipeability/SwipeAbility.ts",
+        "description": "$string:SwipeAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SwipeAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "PinchAbility",
+        "srcEntrance": "./ets/pinchability/PinchAbility.ts",
+        "description": "$string:PinchAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:PinchAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "PointMatrixAbility",
+        "srcEntrance": "./ets/pointmatrixability/PointMatrixAbility.ts",
+        "description": "$string:PointMatrixAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:PointMatrixAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "ScrollerAbility",
+        "srcEntrance": "./ets/scrollerability/ScrollerAbility.ts",
+        "description": "$string:ScrollerAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ScrollerAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "DragAbility",
+        "srcEntrance": "./ets/dragability/DragAbility.ts",
+        "description": "$string:DragAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:DragAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
       }
     ]
   }

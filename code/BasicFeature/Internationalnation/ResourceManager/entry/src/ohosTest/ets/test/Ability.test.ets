@@ -23,7 +23,7 @@ const DOMAIN = 0xF811
 const BUNDLE = 'ResourceManager_'
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()

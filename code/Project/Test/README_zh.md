@@ -6,7 +6,10 @@
 
 
 ## 效果预览
-不涉及
+
+![](screenshots/1.png)
+![](screenshots/3.png)
+
 
 使用说明
 - 将jsunit或uitest目录下的项目工程整体导入到DevEco Studio开发工具中。

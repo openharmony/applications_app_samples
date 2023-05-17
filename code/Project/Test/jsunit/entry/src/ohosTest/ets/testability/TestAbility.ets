@@ -17,6 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
+import data from '../test/data.json'
 import window from '@ohos.window';
 import Logger from '../util/Logger'
 const TAG = 'testTag'
@@ -28,6 +29,8 @@ export default class TestAbility extends UIAbility {
         var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         Logger.info(TAG, "start run testcase!!!");
+        // 设置数据
+        Hypium.setData(data);
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
     }
 

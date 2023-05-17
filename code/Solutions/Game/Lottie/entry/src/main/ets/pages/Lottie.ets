@@ -28,7 +28,7 @@
  * limitations under the License.
  */
 
-import lottie from '@ohos/lottieETS'
+import lottie from '@ohos/lottie'
 import Logger from '../util/Logger'
 
 const TAG: string = 'Lottie'

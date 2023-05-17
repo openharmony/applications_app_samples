@@ -14,6 +14,26 @@
 */
 
 import basicExampleTest from './basicExampleTest/basicExample.test'
+import findTest from './findCommentExampleTest/Component/findCommentExample.test'
+import click from './operationExampleTest/ui/clickEvent.test'
+import input from './operationExampleTest/ui/InputEvent.test'
+import screenCap from './operationExampleTest/ui/ScreenCapEvent.test'
+import mouse from './operationExampleTest/ui/MouseEvent.test'
+import fling from './operationExampleTest/ui/FlingEvent.test'
+import swipe from './operationExampleTest/ui/SwipeEvent.test'
+import pinch from './operationExampleTest/ui/PinchEvent.test'
+import pointMatrix from './operationExampleTest/ui/PontMatrixEvent.test'
+import scroller from './operationExampleTest/ui/ScrollerEvent.test'
 export default function testsuite() {
   basicExampleTest();
+  findTest();
+  click();
+  input();
+  screenCap();
+  mouse();
+  fling();
+  swipe();
+  pinch();
+  pointMatrix();
+  scroller();
 }

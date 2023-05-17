@@ -170,10 +170,9 @@ export default function abilityTest() {
       await DRIVER.delayMs(1000);
       // 查看两次获取的时间
       let currentTime1 = await DRIVER.findComponent(ON.id('countdownTime'));
-      await DRIVER.delayMs(2000);
-      let currentTime2 = await DRIVER.findComponent(ON.id('countdownTime'));
       let currentTimeSecond1 = parseInt((await currentTime1.getText()).split(':')[2]);
-      let currentTimeSecond2 = parseInt((await currentTime2.getText()).split(':')[2]);
+      await DRIVER.delayMs(2000);
+      let currentTimeSecond2 = parseInt((await currentTime1.getText()).split(':')[2]);
       // 断言第一次获取的时间比第二次的大
       console.info(`LSQ: ${currentTimeSecond1}--${currentTimeSecond2}`)
       expect(currentTimeSecond1).assertLarger(currentTimeSecond2);

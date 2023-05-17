@@ -17,7 +17,8 @@ import router from '@ohos.router'
 
 type DirectoryItem = {
   title: Resource,
-  uri: string
+  uri: string,
+  id: string
 }
 
 @Component
@@ -43,6 +44,7 @@ struct DirectoryList {
           .width('100%')
           .height(80)
           .borderRadius(10)
+          .id(item.id)
           .onClick(() => {
             router.push({
               url: item.uri

@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import Logger from '../../../../main/ets/model/Logger'
+import Logger from '../../../../main/ets/model/Logger';
 
-const TAG = 'UiTestIndex'
+const TAG = 'UiTestIndex';
 
 @Entry
 @Component

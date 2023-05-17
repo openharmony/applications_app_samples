@@ -1,0 +1,172 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "app_name",
+      "value": "分布式设备发现与连接"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTSDeviceManger Ability"
+    },
+    {
+      "name": "refresh_device_list",
+      "value": "刷新设备列表"
+    },
+    {
+      "name": "device_name",
+      "value": "设备名称"
+    },
+    {
+      "name": "device_id",
+      "value": "设备Id"
+    },
+    {
+      "name": "device_type",
+      "value": "设备类型"
+    },
+    {
+      "name": "device_state",
+      "value": "状态"
+    },
+    {
+      "name": "auth_form",
+      "value": "认证类型"
+    },
+    {
+      "name": "is_online",
+      "value": "是否上线"
+    },
+    {
+      "name": "is_trusted",
+      "value": "是否可信"
+    },
+    {
+      "name": "range",
+      "value": "距离"
+    },
+    {
+      "name": "no_filter",
+      "value": "不过滤"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "support_range",
+      "value": "支持距离上报"
+    },
+    {
+      "name": "allowed_discovered",
+      "value": "允许被发现"
+    },
+    {
+      "name": "trusted_devices",
+      "value": "已连接设备"
+    },
+    {
+      "name": "refresh",
+      "value": "刷新"
+    },
+    {
+      "name": "usable_devices",
+      "value": "可用设备"
+    },
+    {
+      "name": "discover",
+      "value": "发现"
+    },
+    {
+      "name": "stop",
+      "value": "停止"
+    },
+    {
+      "name": "filter_options",
+      "value": "过滤条件"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "certified",
+      "value": "已认证"
+    },
+    {
+      "name": "isDelete",
+      "value": "是否删除 "
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "logout",
+      "value": "注销"
+    },
+    {
+      "name": "tablet",
+      "value": "平板"
+    },
+    {
+      "name": "phone",
+      "value": "手机"
+    },
+    {
+      "name": "other",
+      "value": "其他"
+    },
+    {
+      "name": "identical_account",
+      "value": "同账号"
+    },
+    {
+      "name": "across_account",
+      "value": "跨账号"
+    },
+    {
+      "name": "no_account",
+      "value": "无账号"
+    },
+    {
+      "name": "online",
+      "value": "上线"
+    },
+    {
+      "name": "offline",
+      "value": "下线"
+    },
+    {
+      "name": "credible",
+      "value": "可信"
+    },
+    {
+      "name": "incredible",
+      "value": "不可信"
+    },
+    {
+      "name": "is_login",
+      "value": "是否登录？"
+    },
+    {
+      "name": "is_logout",
+      "value": "是否注销？"
+    }
+  ]
+}

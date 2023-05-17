@@ -13,47 +13,47 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import UIAbility from '@ohos.app.ability.UIAbility'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Logger from '../utils/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
+import Logger from '../utils/Logger';
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info('TestAbility onCreate')
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info('start run testcase!!!')
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+    Logger.info('TestAbility onCreate');
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    Logger.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   onDestroy() {
-    Logger.info('TestAbility onDestroy')
+    Logger.info('TestAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage) {
-    Logger.info('TestAbility onWindowStageCreate')
-    windowStage.loadContent("testability/pages/Index", (err, data) => {
+    Logger.info('TestAbility onWindowStageCreate');
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
       }
-      Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
     });
 
     globalThis.abilityContext = this.context;
   }
 
   onWindowStageDestroy() {
-    Logger.info('TestAbility onWindowStageDestroy')
+    Logger.info('TestAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    Logger.info('TestAbility onForeground')
+    Logger.info('TestAbility onForeground');
   }
 
   onBackground() {
-    Logger.info('TestAbility onBackground')
+    Logger.info('TestAbility onBackground');
   }
 }

@@ -20,11 +20,13 @@ import { logger } from '../util/Logger';
 
 const TAG = '[Sample_Recorder]';
 const BUNDLE = 'Recorder_';
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+let ability;
 
 export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
-  describe('AbilityTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       let want = {
@@ -34,6 +36,7 @@ export default function abilityTest() {
       delegator.startAbility(want, (err) => {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
+      ability = await abilityDelegatorRegistry.getCurrentTopAbility();
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
       done();
@@ -154,13 +157,19 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
       if (audios.length > 0) {
+        await driver.swipe(500,248,367,248,500);
+        await driver.delayMs(1000);
+        await audios[0].click();
         // 重命名
-        let point = await audios[0].getBoundsCenter();
-        await driver.swipe(point.x, point.y, point.x - 100, point.y);
         await driver.delayMs(1000);
-        let rect = await audios[0].getBounds();
-        await driver.click(rect.right + 110, rect.bottom - 60)
+        await audios[0].longClick();
         await driver.delayMs(1000);
+        await audios[0].click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('checkedRename'));
+        let checkedRename = await driver.findComponent(ON.id('checkedRename'));
+        await driver.delayMs(1000);
+        await checkedRename.click();
         await driver.assertComponentExist(ON.type('TextInput'));
         let renameInput = await driver.findComponent(ON.type('TextInput'));
         await renameInput.inputText('recorderRenamed');
@@ -171,18 +180,23 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
 
         // 删除
-        await driver.delayMs(500);
-        await driver.swipe(point.x, point.y, point.x - 100, point.y);
         await driver.delayMs(1000);
-        await driver.click(rect.right + 190, rect.bottom - 60);
-        await driver.delayMs(500);
+        await audios[1].longClick();
+        await driver.delayMs(1000);
+        await audios[1].click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('checkedDelete'));
+        let checkedDelete = await driver.findComponent(ON.id('checkedDelete'));
+        await checkedDelete.click();
+        await driver.delayMs(1000);
         await driver.assertComponentExist(ON.type("AlertDialog"));
-        let btnInDailog: Component[] = await driver.findComponents(ON.type('Button'));
-        await btnInDailog[1].click();
+        let resourceManager = ability.context.resourceManager;
+        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
+        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS))
+        await btnInDailog.click();
         await driver.delayMs(1000);
-        let recorder = await driver.findComponent(ON.text('recorderRenamed', MatchPattern.CONTAINS));
+        await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
         await driver.delayMs(500);
-        expect(recorder).assertNull();
       }
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 end');
       done();

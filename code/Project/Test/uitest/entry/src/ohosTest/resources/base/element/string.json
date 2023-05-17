@@ -11,6 +11,10 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "test",
+      "value": "测试描述"
     }
   ]
 }

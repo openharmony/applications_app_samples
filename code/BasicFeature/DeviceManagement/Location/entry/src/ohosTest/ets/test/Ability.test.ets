@@ -17,14 +17,23 @@ import { describe, it, expect } from '@ohos/hypium'
 import Logger from '../../../../../position/src/main/ets/components/util/Logger'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Driver, ON } from '@ohos.UiTest'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const TAG = '[Sample_Location]'
 const BUNDLE = 'Location_'
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
+// æœ¬åœ°åŒ–èµ„æº
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     /**
-     * ´ò¿ªÓ¦ÓÃ
+     * open the application
      */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
@@ -43,38 +52,38 @@ export default function abilityTest() {
     })
 
     /**
-     * »ñÈ¡È¨ÏŞ
+     * è·å–æƒé™
      */
     it(BUNDLE + 'RequestPermissionFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(1000)
-      // »ñÈ¡Î»ÖÃ·ÃÎÊÈ¨ÏŞ
+      await driver.delayMs(2000)
+      // è·å–è®¿é—®ä½ç½®
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission')
-      await driver.assertComponentExist(ON.text('ÔÊĞí'))
-      let btnAccept = await driver.findComponent(ON.text('ÔÊĞí'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.accept'))))
+      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.accept'))))
       await btnAccept.click()
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end')
     })
 
     /**
-     * Ñ¡Ôñ³ÇÊĞ
+     * é€‰æ‹©æ‰€åœ¨çš„åŸå¸‚
      */
     it(BUNDLE + 'SelectCityFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(1000)
-      // µã»÷ÈÈÃÅ³ÇÊĞ
+      await driver.delayMs(2000)
+      // ç‚¹å‡»çƒ­é—¨åŸå¸‚
       Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 clickHeatCity')
       await driver.assertComponentExist(ON.id('city1'))
       let heatCity = await driver.findComponent(ON.id('city1'))
       await heatCity.click()
-      // ÏÖÔÚËùÑ¡³ÇÊĞ
+      // å·²ç»é€‰æ‹©åŸå¸‚
       await driver.assertComponentExist(ON.id('currentLoc'))
       let currentCity = await driver.findComponent(ON.id('currentLoc'))
       let currentValue = await currentCity.getText()
-      expect(currentValue).assertEqual('±±¾©')
-      // µã»÷Ë÷ÒıÑ¡Ôñ³ÇÊĞ
+      expect(currentValue).assertEqual(await getResourceString($r('app.string.beijing')))
+      // ç‚¹å‡»ç´¢å¼•æ¥é€‰æ‹©åŸå¸‚
       Logger.info(TAG, BUNDLE + 'SelectAlphaCityFunction_001 clickCityByAlpha')
       await driver.assertComponentExist(ON.text('A'))
       let alpha = await driver.findComponents(ON.text('A'))
@@ -85,11 +94,11 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('region2'))
       let region = await driver.findComponent(ON.id('region2'))
       await region.click()
-      // ÏÖÔÚËùÑ¡³ÇÊĞ
+      // ç°åœ¨æ‰€é€‰æ‹©çš„åŸå¸‚
       await driver.assertComponentExist(ON.id('currentLoc'))
       let currentSelectCity = await driver.findComponent(ON.id('currentLoc'))
       let currentCityValue = await currentSelectCity.getText()
-      expect(currentCityValue).assertEqual('°²»Õ/°²Çì')
+      expect(currentCityValue).assertEqual(await getResourceString($r('app.string.anhui')))
       Logger.info(TAG, BUNDLE + 'SelectCityFunction_001 end')
     })
   })
