@@ -120,14 +120,14 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>设备管理</strong></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/USBManager">USB管理</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Location">位置服务</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/ScreenDetector">屏幕探测</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator">振动</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集</a></td>  
+  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集</a></td> 
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -326,16 +326,9 @@
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
+  <td height="54" align="center" rowspan="2" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>资源配置</strong></td>
   <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>三方库使用</strong></td>
-  <td x:str><a href="code/Project/ThirdPartyLibrary/Npm">npm的使用</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -413,7 +406,6 @@ code
   |---Tools                        # 工具
 |---Project                    # 工程能力
   |---ResourceAllocation           # 资源配置
-  |---ThirdPartyLibrary            # 三方库使用
   |---ApplicationHap               # 应用程序包
 |---LaunguageBaseClassLibrary  # 语言基础类库
 ```
