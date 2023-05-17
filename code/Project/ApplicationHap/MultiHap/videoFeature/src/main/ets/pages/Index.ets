@@ -39,8 +39,10 @@ struct Index {
           .onStart(() => {
             Logger.info(TAG, "play video  success")
           })
+          .id("videoCard")
       }
       .width('100%')
+      .id("videoCardColumn")
     }
     .height('100%')
   }

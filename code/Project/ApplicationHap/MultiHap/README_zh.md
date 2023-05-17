@@ -12,6 +12,16 @@
 
 3.第三步：点击video，进入video播放页面，可点击播放按钮播放视频
 
+多Hap应用的安装不能经过ide，需要手动执行一下命令
+```
+hdc uninstall com.samples.multihap
+hdc install -r ".\audioFeature\build\default\outputs\default\audioFeature-entry-default-signed.hap"
+hdc install -r ".\videoFeature\build\default\outputs\default\videoFeature-entry-default-signed.hap"
+hdc install .\entry\build\default\outputs\default\entry-default-signed.hap
+hdc install .\entry\build\default\outputs\ohosTest\entry-ohosTest-signed.hap
+hdc shell aa test -b com.samples.multihap -m entry_test -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest -s timeout 100000
+```
+
 ### 效果预览
 
 ![](screenshots/device/home.jpg)

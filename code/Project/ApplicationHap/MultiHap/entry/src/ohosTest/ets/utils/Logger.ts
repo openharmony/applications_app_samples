@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,24 +22,24 @@ class Logger {
 
   constructor(prefix: string) {
     this.prefix = prefix;
-    this.domain = 0xFF00;
+    this.domain = 0xF811;
   }
 
-  debug(...args: any[]) {
+  debug(...args: string[]): void {
     hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
-  info(...args: any[]) {
+  info(...args: string[]): void {
     hilog.info(this.domain, this.prefix, this.format, args);
   }
 
-  warn(...args: any[]) {
+  warn(...args: string[]): void {
     hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
-  error(...args: any[]) {
+  error(...args: string[]): void {
     hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export default new Logger('[Ohos_Test]');
+export default new Logger('Sample_MultiHap');
