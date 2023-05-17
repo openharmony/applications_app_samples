@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('Sample_ComponentCollection');
+export default new Logger('Sample_MultiHap');
