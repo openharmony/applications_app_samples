@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    Logger.info('TestAbility index aboutToAppear');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
 
   @State message: string = 'Hello World'
