@@ -30,7 +30,7 @@ Screen：screen接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏�
 
 2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
 
-3.编译前下载最新日构建中ohos-sdk，解压并替换@ohos.screen.d.ts文件。
+3.编译前下载最新每日构建中ohos-sdk，解压并替换@ohos.screen.d.ts文件。
 
 4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
