@@ -59,7 +59,7 @@ async function getPerferenceData(key: string) {
 }
 
 export default function appTest() {
-  describe('abilityTest', function () {
+  describe('appTest', function () {
     // 打开应用
     it(BUNDLE + 'StartAbility', 0, async function (done) {
       Logger.info(TAG, 'StartAbility start')
@@ -242,16 +242,87 @@ export default function appTest() {
       if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.alarm_clock'))))) {
         Logger.info(TAG, 'No alarm notifications');
         // 坐标基于rk3568
-        await driver.swipe(180, 100, 180, 0, 600);
+        await driver.click(207, 1245);
         await driver.delayMs(1000);
         expect().assertFail();
       } else {
         await driver.delayMs(1000);
         // 坐标基于rk3568
-        await driver.swipe(180, 100, 180, 0, 600);
+        await driver.click(207, 1245);
         await driver.delayMs(1000);
       }
       Logger.info(TAG, BUNDLE + 'setClock_001 end');
+    });
+    // 设置计时器，用例只支持RK3568
+    it(`${BUNDLE}setCalculagraph`, 0, async () => {
+      Logger.info(TAG, BUNDLE + 'calculagraph begin');
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      let resourceManager = ability.context.resourceManager;
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.timer'))));
+      let calculagraphTab: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.timer'))));
+      await driver.delayMs(1000);
+      await calculagraphTab.click();
+      await driver.delayMs(1000);
+      // 设置计时器时间
+      for (let i = 0; i < 6; i++) {
+        // 坐标基于rk3568
+        await driver.swipe(505, 793, 505, 750, 600);
+        await driver.delayMs(1000);
+      }
+      // 启动计时器
+      await driver.assertComponentExist(ON.id('countDown'));
+      let countDown: Component = await driver.findComponent(ON.id('countDown'));
+      await driver.assertComponentExist(ON.id('startCalculagraph'));
+      let startCalculagraph: Component = await driver.findComponent(ON.id('startCalculagraph'));
+      await driver.delayMs(1000);
+      await startCalculagraph.click();
+      await driver.delayMs(1000);
+      let timeTime: string = await countDown.getText();
+      //验证是否在设置的时间之后收到通知
+      await driver.delayMs(9000);
+      // 坐标基于rk3568
+      await driver.swipe(180, 0, 180, 50, 600);
+      await driver.delayMs(1000);
+      if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.timer'))))) {
+        Logger.info(TAG, 'No calendar notifications');
+        // 坐标基于rk3568
+        await driver.click(207, 1245);
+        await driver.delayMs(1000);
+        expect().assertFail();
+      } else {
+        await driver.delayMs(1000);
+        // 坐标基于rk3568
+        await driver.click(207, 1245);
+        await driver.delayMs(1000);
+      }
+      // 再次设置计时器时间
+      for (let i = 0; i < 6; i++) {
+        // 坐标基于rk3568
+        await driver.swipe(505, 793, 505, 740, 600);
+        await driver.delayMs(1000);
+      }
+      await driver.delayMs(1000);
+      await startCalculagraph.click();
+      await driver.delayMs(1000);
+      timeTime = await countDown.getText();
+      await driver.delayMs(1000);
+      // 暂停
+      await startCalculagraph.click();
+      await driver.delayMs(1000);
+      // 重置计时器
+      await driver.assertComponentExist(ON.id('resetCalculagraph'));
+      let resetCalculagraph: Component = await driver.findComponent(ON.id('resetCalculagraph'));
+      await driver.delayMs(1000);
+      await resetCalculagraph.click();
+      await driver.delayMs(1000);
+      timeTime = await countDown.getText();
+      await driver.delayMs(1000);
+      if (timeTime !== '00:00:00') {
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      Logger.info(TAG, BUNDLE + 'calculagraph end');
     });
     /**
      * 设置日历，用例只支持RK3568
@@ -361,94 +432,23 @@ export default function appTest() {
       await driver.delayMs(1000);
       await currentCalendarSwitch.click();
       //验证是否在设置的时间之后收到通知
-      await driver.delayMs(170000);
+      await driver.delayMs(300000);
       // 坐标基于rk3568
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(1000);
       if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.calendar'))))) {
         Logger.info(TAG, 'No calendar notifications');
         // 坐标基于rk3568
-        await driver.swipe(180, 100, 180, 0, 600);
+        await driver.click(207, 1245);
         await driver.delayMs(1000);
         expect().assertFail();
       } else {
         await driver.delayMs(1000);
         // 坐标基于rk3568
-        await driver.swipe(180, 100, 180, 0, 600);
+        await driver.click(207, 1245);
         await driver.delayMs(1000);
       }
       Logger.info(TAG, BUNDLE + 'set end');
-    });
-    // 设置计时器，用例只支持RK3568
-    it(`${BUNDLE}setCalculagraph`, 0, async () => {
-      Logger.info(TAG, BUNDLE + 'calculagraph begin');
-      let driver: Driver = Driver.create();
-      await driver.delayMs(1000);
-      let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.timer'))));
-      let calculagraphTab: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.timer'))));
-      await driver.delayMs(1000);
-      await calculagraphTab.click();
-      await driver.delayMs(1000);
-      // 设置计时器时间
-      for (let i = 0; i < 6; i++) {
-        // 坐标基于rk3568
-        await driver.swipe(505, 793, 505, 750, 600);
-        await driver.delayMs(1000);
-      }
-      // 启动计时器
-      await driver.assertComponentExist(ON.id('countDown'));
-      let countDown: Component = await driver.findComponent(ON.id('countDown'));
-      await driver.assertComponentExist(ON.id('startCalculagraph'));
-      let startCalculagraph: Component = await driver.findComponent(ON.id('startCalculagraph'));
-      await driver.delayMs(1000);
-      await startCalculagraph.click();
-      await driver.delayMs(1000);
-      let timeTime: string = await countDown.getText();
-      //验证是否在设置的时间之后收到通知
-      await driver.delayMs(6000);
-      // 坐标基于rk3568
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(1000);
-      if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.timer'))))) {
-        Logger.info(TAG, 'No calendar notifications');
-        // 坐标基于rk3568
-        await driver.swipe(180, 100, 180, 0, 600);
-        await driver.delayMs(1000);
-        expect().assertFail();
-      } else {
-        await driver.delayMs(1000);
-        // 坐标基于rk3568
-        await driver.swipe(180, 100, 180, 0, 600);
-        await driver.delayMs(1000);
-      }
-      // 再次设置计时器时间
-      for (let i = 0; i < 6; i++) {
-        // 坐标基于rk3568
-        await driver.swipe(505, 793, 505, 740, 600);
-        await driver.delayMs(1000);
-      }
-      await driver.delayMs(1000);
-      await startCalculagraph.click();
-      await driver.delayMs(1000);
-      timeTime = await countDown.getText();
-      await driver.delayMs(1000);
-      // 暂停
-      await startCalculagraph.click();
-      await driver.delayMs(1000);
-      // 重置计时器
-      await driver.assertComponentExist(ON.id('resetCalculagraph'));
-      let resetCalculagraph: Component = await driver.findComponent(ON.id('resetCalculagraph'));
-      await driver.delayMs(1000);
-      await resetCalculagraph.click();
-      await driver.delayMs(1000);
-      timeTime = await countDown.getText();
-      await driver.delayMs(1000);
-      if (timeTime !== '00:00:00') {
-        expect().assertFail();
-      }
-      await driver.delayMs(1000);
-      Logger.info(TAG, BUNDLE + 'calculagraph end');
     });
   })
 }
