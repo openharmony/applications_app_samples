@@ -63,9 +63,13 @@ export default {
   grantPermission() {
     logger.info(TAG, `grantPermission`)
     let context = featureAbility.getContext()
-    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-      logger.debug(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
-    })
+    try {
+      context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+        logger.debug(TAG, `grantPermission,requestPermissionsFromUser,result.requestCode=${result}`)
+      })
+    } catch (err) {
+      logger.debug(TAG, `grantPermission,err=${err}`)
+    }
   },
   dataChange(key, value) {
     logger.info(TAG, `dataChange isDistributed = ${this.isDistributed}`)
@@ -125,7 +129,7 @@ export default {
   showDialog() {
     logger.info(TAG, `showDialog start`)
     this.isShow = true
-    setTimeout(()=>{
+    setTimeout(() => {
       this.deviceList = []
       if (remoteDeviceModel === undefined) {
         remoteDeviceModel = new RemoteDeviceModel()
@@ -156,7 +160,7 @@ export default {
         this.$element('showDialog').close()
         this.$element('showDialog').show()
       })
-    },200)
+    }, 200)
   },
   cancelDialog() {
     this.$element('showDialog').close()
