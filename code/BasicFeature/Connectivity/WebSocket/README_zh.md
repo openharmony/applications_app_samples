@@ -39,4 +39,4 @@ WebSocket连接：使用WebSocket建立服务器与客户端的双向连接，�
 
 3.本示例仅支持API9版本SDK，版本号：3.2.11.9 及以上。
 
-4.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上才可编译运行。
+4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上才可编译运行。
