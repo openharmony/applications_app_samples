@@ -93,6 +93,7 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.id('switch'))
         let btnToggle = await driver.findComponent(ON.id('switch'))
         await btnToggle.click()
+        await driver.delayMs(5000)
       }
       // 可用wlan是否存在
       await driver.assertComponentExist(ON.id('validWlan'))
