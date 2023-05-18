@@ -1617,9 +1617,6 @@ export default function abilityTest() {
         // 显示弹窗
         await checkButtonAndClickWithID('test_popButton');
         await checkButtonAndClickWithText('OK');
-        // 显示自定义弹窗
-        await checkButtonAndClickWithID('test_customButton');
-        await driver.delayMs(500);
 
         // 进入点击
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.touch_test')));

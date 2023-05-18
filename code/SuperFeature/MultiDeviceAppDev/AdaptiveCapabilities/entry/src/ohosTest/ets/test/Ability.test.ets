@@ -319,6 +319,7 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 点击资源文件使用
       await checkButtonAndClickWithID('ResourceQualifier')
+      await driver.delayMs(1000)
       await driver.pressBack()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesFourFunction_001 end')
