@@ -18,11 +18,15 @@ export class DeviceDataModel {
   deviceName: string
   deviceType: number
   checked: boolean
+  networkId: string
+  range: number
 
-  constructor(deviceId: string, deviceName: string, deviceType: number, checked: boolean) {
+  constructor(deviceId: string, deviceName: string, deviceType: number, checked: boolean, networkId: string, range: number) {
     this.deviceId = deviceId
     this.deviceName = deviceName
     this.deviceType = deviceType
     this.checked = checked
+    this.networkId = networkId
+    this.range = range
   }
 }

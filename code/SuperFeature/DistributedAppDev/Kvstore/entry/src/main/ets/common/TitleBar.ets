@@ -22,6 +22,7 @@ import Logger from '../util/Logger'
 const NOTES_CHANGE = 'notesChange'
 const EXIT = 'exit'
 const TAG = 'TitleBar'
+const DEVICE_DISCOVERY_RANGE: number = 1000
 
 @Component
 export struct TitleBar {
@@ -103,7 +104,9 @@ export struct TitleBar {
         deviceId: '0',
         deviceName: 'Local device',
         deviceType: 0,
-        checked: false
+        checked: false,
+        networkId: '',
+        range: DEVICE_DISCOVERY_RANGE
       })
       var deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList;
       for (var i = 0; i < deviceTempList.length; i++) {
@@ -112,7 +115,9 @@ export struct TitleBar {
           deviceId: deviceTempList[i].deviceId,
           deviceName: deviceTempList[i].deviceName,
           deviceType: deviceTempList[i].deviceType,
-          checked: (this.selectedIndex === i)
+          checked: (this.selectedIndex === i),
+          networkId: deviceTempList[i].networkId,
+          range: DEVICE_DISCOVERY_RANGE
         })
       }
       if (this.dialogShow) {
