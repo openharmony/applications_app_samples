@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from '../../../common/BreakpointSystem'
 
 @Entry
 @Component

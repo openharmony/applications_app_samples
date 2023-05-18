@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { BreakpointSystem } from 'common/BreakpointSystem'
+import { BreakpointSystem } from '../../../common/BreakpointSystem'
 
 type ImageData = {
   label: string,
