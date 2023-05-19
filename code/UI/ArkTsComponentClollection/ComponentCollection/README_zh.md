@@ -200,7 +200,7 @@ entry/src/main/ets/
 
     * 通用模块：
         * 通用事件
-            * 用到全局组件STitleBar，IntroductionTitle实现页面
+            * 用到全局组件TitleBar，IntroductionTitle实现页面
             * resetBallMotion，isSideReached，calculateReachedSide，decideMoveDirection方法计算区域坐标，moveBall方法移动球体
 
         * 通用属性
@@ -209,11 +209,11 @@ entry/src/main/ets/
 
     * 动画模块：
         * 转场动画
-            * 用到全局组件STitleBar，IntroductionTitle实现页面
+            * 用到全局组件TitleBar，IntroductionTitle实现页面
             * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
         * 插值计算
-            * 用到全局组件STitleBar，IntroductionTitle实现页面
+            * 用到全局组件TitleBar，IntroductionTitle实现页面
             * 接口参考：[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-curve.md)， [@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
     * 全局方法模块：
