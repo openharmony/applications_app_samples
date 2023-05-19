@@ -1,20 +1,15 @@
 # 拖拽事件
 
-### 简介
+### 介绍
 
 本示例主要展示了拖拽操作的功能。实际效果如下：
 
-![](screenshots/devices/main.png)
+### 效果预览
+|               主页              |
+|--------------------------------|
+|![](screenshots/devices/main.png)|
 
-### 相关概念
-
-拖拽事件：本模块提供了界面元素拖拽的功能。
-
-### 相关权限
-
-不涉及。
-
-### 使用说明
+使用说明
 
 1.按住桌面图标进行拖拽可以与桌面其他图标交换位置。
 
@@ -24,8 +19,46 @@
 
 4.点击底部Dock栏图标可以进行移除，移除的图标可以返回到桌面上。
 
+### 工程目录
+```
+entry/src/main/ets/MainAbility
+|---app.ets              
+|---model
+|   |---HiLogUtil.ets                   // 输出打印
+|   |---IconData.ets                    // 图标数据
+|---pages
+|   |---Index.ets                       // 首页数据展示
+```
+
+### 具体实现
+
+* 本模块提供了界面元素拖拽的功能。
+
+* 创建IconData文件定义图标，源码参考：[IconData.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/Drag/entry/src/main/ets/MainAbility/model/IconData.ets)整改
+
+* onDragStart，onDrop拖拽事件方法实现图标的拖拽
+
+### 相关权限
+
+不涉及。
+
+### 依赖
+
+不涉及。
+
 ### 约束与限制
 
 1.本示例仅支持在标准系统上运行。
 
 2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo /code/UI/ArkTsComponentClollection/Drag > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```
