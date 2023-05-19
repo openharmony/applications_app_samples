@@ -106,6 +106,7 @@ export default class RemoteDeviceModel {
         }
       })
       this.deviceManager.on('deviceFound', (data) => {
+        this.discoverList = []
         logger.debug(TAG, `deviceFound data=${JSON.stringify(data)}`)
         logger.debug(TAG, `deviceFound this.discoverList=${this.discoverList}`)
         for (let i = 0; i < this.discoverList.length; i++) {
