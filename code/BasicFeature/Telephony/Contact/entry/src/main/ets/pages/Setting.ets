@@ -34,7 +34,7 @@ export struct Setting {
           .height(32)
           .margin({ left: 32, top: 32 })
           .objectFit(ImageFit.Contain)
-          .id('back')
+          .id('addBack')
           .onClick(() => {
             router.back()
           })
