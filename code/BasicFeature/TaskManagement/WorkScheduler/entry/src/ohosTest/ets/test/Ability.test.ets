@@ -89,12 +89,11 @@ export default function abilityTest() {
      */
     it('UpdateApp_001', 1, async () => {
       Logger.info('UpdateApp_001 begin');
-      let manager = abilityDelegatorRegistry.getAppContext().resourceManager;
       // 等待文件下载并保存
       await DRIVER.delayMs(12000);
       // 点击确定开始装包
-      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.btn1'))));
-      let confirmBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.btn1'))));
+      await DRIVER.assertComponentExist(ON.id('confirm'));
+      let confirmBtn = await DRIVER.findComponent(ON.id('confirm'));
       await DRIVER.delayMs(1000);
       await confirmBtn.click();
       Logger.info('UpdateApp_001 end');

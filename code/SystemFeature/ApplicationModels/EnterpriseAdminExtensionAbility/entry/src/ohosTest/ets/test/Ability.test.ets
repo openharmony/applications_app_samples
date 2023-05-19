@@ -43,80 +43,92 @@ export default function abilityTest() {
     it(BUNDLE + 'onAdminEnabled_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 点击激活激活设备管理器
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 clickEnableAdmin')
       await driver.assertComponentExist(ON.id('enableAdmin'))
       let enableAdmin = await driver.findComponent(ON.id('enableAdmin'))
+      await driver.delayMs(1000);
       await enableAdmin.click()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 获取激活状态
       await driver.assertComponentExist(ON.id('enableAdminMsg'))
       let connectState = await driver.findComponent(ON.id('enableAdminMsg'))
+      await driver.delayMs(1000);
       let state = await connectState.getText()
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 state')
       expect('enableAdmin success').assertEqual(state)
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminEnabled_001 end')
     })
 
     it(BUNDLE + 'onSubscribeManagedEvent_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 点击订阅应用安装卸载事件
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 clickDisableAdmin')
       await driver.assertComponentExist(ON.id('subscribeManagedEvent'))
       let subscribeManagedEvent = await driver.findComponent(ON.id('subscribeManagedEvent'))
+      await driver.delayMs(1000);
       await subscribeManagedEvent.click()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 获取订阅状态
       await driver.assertComponentExist(ON.id('subscribeManagedEventMsg'))
       let connectState = await driver.findComponent(ON.id('subscribeManagedEventMsg'))
+      await driver.delayMs(1000);
       let state = await connectState.getText()
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 state')
       expect('subscribeManagedEvent success').assertEqual(state)
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onSubscribeManagedEvent_001 end')
     })
 
     it(BUNDLE + 'onUnsubscribeManagedEvent_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 点击取消订阅应用安装卸载事件
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 clickDisableAdmin')
       await driver.assertComponentExist(ON.id('unsubscribeManagedEvent'))
       let unsubscribeManagedEvent = await driver.findComponent(ON.id('unsubscribeManagedEvent'))
+      await driver.delayMs(1000);
       await unsubscribeManagedEvent.click()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 获取取消订阅状态
       await driver.assertComponentExist(ON.id('unsubscribeManagedEventMsg'))
       let connectState = await driver.findComponent(ON.id('unsubscribeManagedEventMsg'))
+      await driver.delayMs(1000);
       let state = await connectState.getText()
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 state')
       expect('unsubscribeManagedEvent success').assertEqual(state)
-      await driver.delayMs(100)
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'onUnsubscribeManagedEvent_001 end')
     })
 
     it(BUNDLE + 'onAdminDisabled_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 点击去激活设备管理器
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 clickDisableAdmin')
       await driver.assertComponentExist(ON.id('disableAdmin'))
       let disableAdmin = await driver.findComponent(ON.id('disableAdmin'))
+      await driver.delayMs(1000);
       await disableAdmin.click()
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       // 获取激活状态
       await driver.assertComponentExist(ON.id('disableAdminMsg'))
       let connectState = await driver.findComponent(ON.id('disableAdminMsg'))
+      await driver.delayMs(1000);
       let state = await connectState.getText()
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 state')
       expect('disableSuperAdmin success').assertEqual(state)
-      await driver.delayMs(100)
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onAdminDisabled_001 end')
     })
   })
