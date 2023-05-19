@@ -11,7 +11,9 @@
 
 ### 效果预览
 
-![](screenshots/shared/button_dialog.png) ![](screenshots/shared/canvas_dialog.png) ![](screenshots/revieved/text_line.png) ![](screenshots/revieved/image_file.png)
+| 主页                               | 点击分享                                      | 分享页面                                      |其它应用分享|
+|----------------------------------|-------------------------------------------|-------------------------------------------|--------------|
+| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialog.png) | ![](screenshots/shared/canvas_dialog.png) |![](screenshots/revieved/image_file.png)|
 
 使用说明：
 
@@ -41,7 +43,17 @@ entry/src/main/ets/
 
 ### 具体实现
 
-使用@ohos/sharecomponent组件显示首页，使用数据请求接口获取 网络资源，屏幕截屏方法截取屏幕，文件管理API管理文件和文件目录，媒体库管理API获取截取的图片，弹窗提示信息
+* 使用[访问控制管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)获取访问控制权限。
+
+* 使用[数据请求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md)接口获取网络资源。
+
+* 使用[屏幕截屏](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)方法截取屏幕。
+
+* 使用[文件管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)API管理文件和文件目录。
+
+* 使用[媒体库管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)API获取截取的图片。
+
+* 使用[弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)提示信息。
 
 ### 相关权限
 
