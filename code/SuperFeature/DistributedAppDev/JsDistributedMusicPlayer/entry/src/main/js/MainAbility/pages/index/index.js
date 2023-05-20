@@ -67,7 +67,7 @@ export default {
   // 获取导航键高度
   getNavHegiht(){
     let windowClass = null;
-    window.getTopWindow((err, data) => {
+    window.getLastWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
         return;
@@ -174,13 +174,9 @@ export default {
   },
   onNewRequest() {
     logger.info(TAG, `onNewRequest`)
-    this.playerModel.pause()
-    this.playerModel.seek(0)
-    this.restoreFromWant()
   },
   onHide() {
     logger.info(TAG, `onHide isDialogShowing=${this.isDialogShowing}`)
-    this.playerModel.pause()
     if (this.isDialogShowing === true) {
       this.dismissDialog()
       return true

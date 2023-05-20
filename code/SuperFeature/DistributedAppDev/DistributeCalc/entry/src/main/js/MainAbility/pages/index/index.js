@@ -42,7 +42,7 @@ export default {
   },
   onInit() {
     let windowClass = null;
-    window.getTopWindow((err, data) => {
+    window.getLastWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
         return;
