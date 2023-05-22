@@ -20,6 +20,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 struct DatePickerSample {
   @State isLunar: boolean = false
   @State selectDate: string = '2022-10-30'
+  // 当前日期选择器组件的日期
+  private currentPickerDate: Date = new Date('2022-10-30');
 
   @Styles itemBorder() {
     .padding(12)
@@ -39,7 +41,7 @@ struct DatePickerSample {
         DatePicker({
           start: new Date('1970-1-1'),
           end: new Date('2200-12-31'),
-          selected: new Date(this.selectDate) // Default date is 2022-10-30
+          selected: this.currentPickerDate // Default date is 2022-10-30
         })
           .height(230)
           .lunar(this.isLunar)
