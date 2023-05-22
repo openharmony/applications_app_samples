@@ -8,9 +8,11 @@
 
 ### 效果预览
    
-| 主页                                               |
-|--------------------------------------------------|
-| ![component](screenshots/devices/component.png)  |
+| 组件                                               | 通用                                              | 动画                                                      | 全局方法                                               |
+|--------------------------------------------------|-------------------------------------------------|---------------------------------------------------------|----------------------------------------------------|
+| ![component](screenshots/devices/components.png) | ![component](screenshots/devices/universal.png) | ![component](screenshots/devices/animation.png)         | ![component](screenshots/devices/globalMethod.png) |
+| 按钮组件                                             | 点击事件                                            | 转场动画                                                    | 弹窗                                                 |
+| ![component](screenshots/devices/button.png)     | ![component](screenshots/devices/click.png)     | ![component](screenshots/devices/pageTransitionOne.png) | ![component](screenshots/devices/dialog.png)       |
 
 使用说明：
 

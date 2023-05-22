@@ -43,17 +43,21 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 使用[访问控制管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)获取访问控制权限。
+* 本示例分为链接分享，应用内文件分享，其它应用分享三个模块： 
+  * 文本+链接分享模块
+    * ButtonDialogBuilder方法展示自定义分享弹窗，@ohos.abilityAccessCtrl接口获取访问控制权限，@ohos.net.http接口获取网络资源。
+    * 源码链接：[MainAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/entry/src/main/ets/MainAbility/MainAbility.ts)，[HttpRequest.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/net/HttpRequest.ets)
+    * 参考接口：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)，[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)，[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md)
+   
+  * 应用内文件分享模块
+    * 使用弹窗，屏幕截屏(截取屏幕)，文件管理(管理文件和文件目录)和媒体库管理(获取截取的图片)接口进行图片、链接，视频的分享
+    * 源码链接：[ShareUtils.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/feature/ShareUtils.ts)，[MediaUtils.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/feature/MediaUtils.ts)，[ShareConst.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/util/ShareConst.ts)
+    * 参考接口：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)，[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)
 
-* 使用[数据请求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md)接口获取网络资源。
-
-* 使用[屏幕截屏](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)方法截取屏幕。
-
-* 使用[文件管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)API管理文件和文件目录。
-
-* 使用[媒体库管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)API获取截取的图片。
-
-* 使用[弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)提示信息。
+  * 其他应用分享模块：
+    * 使用弹窗，屏幕截屏(截取屏幕)，文件管理(管理文件和文件目录)和媒体库管理(获取截取的图片)API，把图片，链接，文件在其他应用内分享
+    * 源码链接：[ShareUtils.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/feature/ShareUtils.ts)，[MediaUtils.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/feature/MediaUtils.ts)，[ShareConst.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/CustomShare/ShareComponent/src/main/ets/util/ShareConst.ts)
+    * 参考接口：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)，[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)
 
 ### 相关权限
 
