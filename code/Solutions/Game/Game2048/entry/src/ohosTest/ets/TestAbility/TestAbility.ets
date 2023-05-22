@@ -13,47 +13,51 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Logger from '../util/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
+import window from '@ohos.window';
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info('TestAbility onCreate')
-    Logger.info(`want param: ${JSON.stringify(want)}, launchParam: ${JSON.stringify(launchParam)}`)
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info('start run testcase!!!')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
+    var abilityDelegator: any
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    var abilityDelegatorArguments: any
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   onDestroy() {
-    Logger.info('TestAbility onDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
-    Logger.info('TestAbility onWindowStageCreate')
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
-        Logger.info('Failed to load the content. Cause: ' + JSON.stringify(err))
-        return
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-      Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-    })
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
+        JSON.stringify(data) ?? '');
+    });
   }
 
   onWindowStageDestroy() {
-    Logger.info('TestAbility onWindowStageDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    Logger.info('TestAbility onForeground')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onForeground');
   }
 
   onBackground() {
-    Logger.info('TestAbility onBackground')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onBackground');
   }
 }
