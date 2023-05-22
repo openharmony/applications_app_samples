@@ -11,7 +11,7 @@
   "module": {
     "package": "com.example.canvas_test",
     "name": ".entry_test",
-    "mainAbility": ".TestAbility",
+    "mainAbility": ".testability",
     "deviceType": [
       "default"
     ],
@@ -35,8 +35,8 @@
         ],
         "orientation": "unspecified",
         "visible": true,
-        "srcPath": "TestAbility",
-        "name": ".TestAbility",
+        "srcPath": "testability",
+        "name": ".testability",
         "srcLanguage": "ets",
         "icon": "$media:icon",
         "description": "$string:TestAbility_desc",
@@ -55,7 +55,7 @@
         "pages": [
           "pages/index"
         ],
-        "name": ".TestAbility",
+        "name": ".testability",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false
