@@ -41,6 +41,10 @@ entry/src/main/ets/
 
 [ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_wifi_info)
 
+### 依赖
+
+不涉及。
+
 ###  约束与限制
 
 1. 本示例仅支持标准系统上运行;
