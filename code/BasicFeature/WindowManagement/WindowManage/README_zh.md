@@ -4,9 +4,13 @@
 
 本示例展示了在应用主窗口中创建和拉起子窗口，并对子窗口设置窗口相关属性，以及设置窗口规避区域、窗口沉浸式和小窗口等功能。
 
+本实例使用[窗口管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)
+
 ### 效果预览
 
--![home](screenshots/devices/mainWindow.png) ![play1](screenshots/devices/subWindow.png)
+|主页| 窗口视频                                        |
+|--------------------------------|---------------------------------------------|
+|![home](screenshots/devices/mainWindow.png) | ![play1](screenshots/devices/subWindow.png) |
 
 使用说明：
 
@@ -31,7 +35,19 @@ entry/src/main/ets/
 
 ### 具体实现
 
-本实例使用[窗口管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)
+* 本示例主要分为三个模块
+  * 首页入口模块
+    * 使用WindowStage实例化一个窗口，引入WindowManger方法设置一个主窗口与子窗口
+    * 源码链接：[WindowManger.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/WindowManagement/WindowManage/WindowComponent/src/main/ets/components/feature/WindowManger.ts)，[WindowConst.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/WindowManagement/WindowManage/WindowComponent/src/main/ets/components/util/WindowConst.ts),
+    * 接口参考：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)，[@ohos.events.emitter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-emitter.md)，[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
+
+  * 窗口视频模块
+    * 这里用到依赖window-components中WindowComponent方法来进行视频的播放
+
+  * 全屏播放窗口并切换窗口方向模块
+    * 通过EventPriority方法表示事件被发送的优先级，emitter.emit方法发送指定的事件进行全屏播放和切换窗口方向
+    * 参考接口：[@ohos.events.emitter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-emitter.md)
+
 
 ### 相关权限
 
