@@ -4,6 +4,12 @@
 
 本示例使用[audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audio.md)相关接口实现音频录制和播放的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)实现音频文件的管理。
 
+相关概念：
+
+AudioRecorder：音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。它允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、文件路径等参数。
+
+AudioPlayer：音频播放的主要工作是将音频数据转码为可听见的音频模拟信号并通过输出设备进行播放，同时对播放任务进行管理。
+
 ### 效果预览
 
 |首页|录制界面|
@@ -25,37 +31,47 @@
 entry/src/main/ets/
 |---common
 |   |---AnimateView.ets                    // 录音动画组件
-|   |---AudioItem.ets                   // 每项录音组件
-|   |---BasicDataSource.ets              // 计时组件 
-|   |---CheckTitle.ets                    // 是否选择标题
-|   |---HomeView.ets                   // 主页     
-|   |---PlayView.ets                    // 播放组件 
-|   |---RenameDialog.ets                    // 重命名弹窗组件
-|   |---TitleBar.ets                   // 首页标题组件
-|   |---TitleWithBack.ets              // 详情页面标题组件
+|   |---AudioItem.ets                      // 每项录音组件
+|   |---BasicDataSource.ets                // 计时组件 
+|   |---CheckTitle.ets                     // 是否选择标题
+|   |---HomeView.ets                       // 主页     
+|   |---PlayView.ets                       // 播放组件 
+|   |---RenameDialog.ets                   // 重命名弹窗组件
+|   |---TitleBar.ets                       // 首页标题组件
+|   |---TitleWithBack.ets                  // 详情页面标题组件
 |---entryAbility
 |   |---EntryAbility
 |---model
 |   |---AudioModel.ts                  
-|   |---DateTimeUtil.ts                      // 日期工具
-|   |---Logger.ts                         // 日志工具
+|   |---DateTimeUtil.ts                    // 日期工具
+|   |---Logger.ts                          // 日志工具
 |   |---MediaManager.ts                   
-|   |---Record.ets                      // 计时工具
+|   |---Record.ets                         // 计时工具
 |   |---RecordModel.ts                         
 |   |---Utils.ts                         
 |---pages
-|   |---Index.ets                      // 首页
-|   |---Play.ets                        // 播放页面
-|   |---RecordPage.ets                        // 录音页面
+|   |---Index.ets                          // 首页
+|   |---Play.ets                           // 播放页面
+|   |---RecordPage.ets                     // 录音页面
 ```
 
 ### 具体实现
 
-相关概念：
+* 本示例分为三个模块：
+    * 录音页面模块：
+        * 使用FileAsset提供封装文件属性的方法，createAudioPlayer同步方式创建音频播放实例实现录音，暂停录音功能
+        * 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/pages/Index.ets)
+        * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-media.md)
 
-AudioRecorder：音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。它允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、文件路径等参数。
+    * 选择图片/照片模块
+        * 调用依赖中ChoicePhotos方法打开相册，mediaquery媒体查询相册，getMediaLibrary获取媒体库的实例，访问用户等个人媒体数据信息并选中图片
+        * 源码链接：[ChoicePhotos.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/imagelibrary/src/main/ets/components/pages/ChoicePhotos.ets)，[MainAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/MainAbility/MainAbility.ts)
+        * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-mediaquery.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)
 
-AudioPlayer：音频播放的主要工作是将音频数据转码为可听见的音频模拟信号并通过输出设备进行播放，同时对播放任务进行管理。
+    * 提交模块
+        * 选中图片后点击下一步按钮，回到发表评价页面，点击提交按钮进行提交
+        * 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/pages/Index.ets)
+        * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
 ### 相关权限
 

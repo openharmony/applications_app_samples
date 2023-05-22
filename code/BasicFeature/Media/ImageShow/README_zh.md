@@ -4,9 +4,12 @@
 
 本示例展示从相册选择图片展示在商品评价页面。
 
-### 效果预览
+本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本属于，使用 [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 实现图片的获取，选择。 
 
-![](screenshots/devices/zh/index.png) ![](screenshots/devices/zh/not_choice.png) ![](screenshots/devices/zh/choice.png) ![](screenshots/devices/zh/show.png)
+### 效果预览
+|主页| 打开相册                                       | 选中图片                                   | 发表评价                                 |
+|--------------------------------|--------------------------------------------|----------------------------------------|--------------------------------------|
+|![](screenshots/devices/zh/index.png) | ![](screenshots/devices/zh/not_choice.png) | ![](screenshots/devices/zh/choice.png) | ![](screenshots/devices/zh/show.png) |
 
 使用说明：
 
@@ -34,7 +37,21 @@ entry/src/main/ets/
 
 ### 具体实现
 
-本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本属于，使用 [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 实现图片的获取，选择。
+* 本示例分为三个模块：
+  * 发表评价页面模块：
+    * 使用scroll，TextArea，Grid等组件开发发表评价页面
+    * 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/pages/Index.ets)
+    * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
+
+  * 选择图片/照片模块
+    * 调用依赖中ChoicePhotos方法打开相册，mediaquery媒体查询相册，getMediaLibrary获取媒体库的实例，访问用户等个人媒体数据信息并选中图片
+    * 源码链接：[ChoicePhotos.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/imagelibrary/src/main/ets/components/pages/ChoicePhotos.ets)，[MainAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/MainAbility/MainAbility.ts)
+    * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-mediaquery.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)
+  
+  * 提交模块
+    * 选中图片后点击下一步按钮，回到发表评价页面，点击提交按钮进行提交
+    * 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/pages/Index.ets)
+    * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
 ### 相关权限
 
