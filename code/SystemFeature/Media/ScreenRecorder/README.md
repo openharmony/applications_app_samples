@@ -12,5 +12,5 @@
 
 1. This sample can only be run on standard-system devices.
 2. Please use the "DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)" or later IDE version
-3. Use the Full SDK is necessary for this sample, please refer the [guide](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md).
+3. Use the Full SDK is necessary for this sample, please refer the [guide](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/).
 4. How to configure the auto signing with system permission, please refer DevEco Studio: File -> Project Structure -> Project -> Signing Configs(TAB page) , on the bottom of this page, please click the hyperlink of "**View the operation guide**".

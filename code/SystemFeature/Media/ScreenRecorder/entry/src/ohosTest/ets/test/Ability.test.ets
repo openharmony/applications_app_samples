@@ -17,7 +17,7 @@ import { describe, expect, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import mediaLibrary from '@ohos.multimedia.medialibrary';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 const TAG: string = 'abilityTest';
 const DRIVER = Driver.create();
