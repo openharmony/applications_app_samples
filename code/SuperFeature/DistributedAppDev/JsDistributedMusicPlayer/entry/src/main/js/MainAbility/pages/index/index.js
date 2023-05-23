@@ -374,7 +374,7 @@ export default {
           logger.info(TAG, `auth and online finished`)
           for (i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
             if (this.remoteDeviceModel.deviceList[i].deviceName === name) {
-              this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].deviceId, this.remoteDeviceModel.deviceList[i].deviceName)
+              this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].networkId, this.remoteDeviceModel.deviceList[i].deviceName)
             }
           }
         })
@@ -382,7 +382,7 @@ export default {
         logger.info(TAG, `continue to authed device`)
         for (i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
           if (this.remoteDeviceModel.deviceList[i].deviceId === e.value) {
-            this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].deviceId, this.remoteDeviceModel.deviceList[i].deviceName)
+            this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].networkId, this.remoteDeviceModel.deviceList[i].deviceName)
           }
         }
       }
