@@ -18,11 +18,19 @@
 
 3.将应用退出到后台后关闭；
 
-4.再次进入应用，页面版本信息由3.1.7.5更新为3.2.8.3。
+4.再次进入应用，页面版本信息由3.1.7.5更新为3.2.8.3；
 
+5.运行自动化测试用例时，必须使用命令行装包，不能使用ide自动装包，安装自动化测试包之前，先编译好未签名的测试包，
+然后在终端执行工程里的脚本[a_sign_hap_release.bat](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/signature/material/a_sign_hap_release.bat)；
+
+6.运行自动化测试应用时需要使用如下命令：
+```
+hdc shell aa test -b ohos.samples.transienttask -m entry_test -s unittest /ets/TestRunner/OpenHarmonyTestRunner -s class ActsAbilityTest -s timeout 150000
+```
 ### 相关权限
 
 [ohos.permission.INSTALL_BUNDLE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+
 [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
 ### 依赖
