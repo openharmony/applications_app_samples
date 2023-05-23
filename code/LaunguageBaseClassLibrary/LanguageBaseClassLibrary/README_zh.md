@@ -129,7 +129,7 @@ LanguageBaseClassLibrary
 
 2.本示例适配API version 10版本SDK，版本号：4.0.5.1。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.200, built on November 3, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
 
 ###  下载
 

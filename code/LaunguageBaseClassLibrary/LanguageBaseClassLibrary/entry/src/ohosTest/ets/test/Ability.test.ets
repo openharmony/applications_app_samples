@@ -168,22 +168,22 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.get_value')), MatchPattern.CONTAINS));
 
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.getDenominator'))));
-      let operation0= await driver.findComponent(ON.text(await getResourceString($r('app.string.getDenominator'))));
+      let operation0 = await driver.findComponent(ON.text(await getResourceString($r('app.string.getDenominator'))));
       await operation0.click();
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.numerator')), MatchPattern.CONTAINS));
 
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.isZero'))));
-      let operation1= await driver.findComponent(ON.text(await getResourceString($r('app.string.isZero'))));
+      let operation1 = await driver.findComponent(ON.text(await getResourceString($r('app.string.isZero'))));
       await operation1.click();
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number_is')), MatchPattern.CONTAINS));
 
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.isNaN'))));
-      let operation2= await driver.findComponent(ON.text(await getResourceString($r('app.string.isNaN'))));
+      let operation2 = await driver.findComponent(ON.text(await getResourceString($r('app.string.isNaN'))));
       await operation2.click();
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number_is_not_nan')), MatchPattern.CONTAINS));
 
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.isFinite'))));
-      let operation3= await driver.findComponent(ON.text(await getResourceString($r('app.string.isFinite'))));
+      let operation3 = await driver.findComponent(ON.text(await getResourceString($r('app.string.isFinite'))));
       await operation3.click();
       await driver.assertComponentExist(ON.text('Finite', MatchPattern.CONTAINS));
 
@@ -278,9 +278,9 @@ export default function abilityTest() {
     })
 
     // Base64Helper (Base64编解码)
-    it(BUNDLE + 'UtilBase64Codec_001', 0, async function () {
+    it(BUNDLE + 'UtilBase64Codec_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(200);
       // 进入Base64编解码
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.base64'))));
@@ -299,19 +299,20 @@ export default function abilityTest() {
       await decodeBtn.click();
       await driver.delayMs(1000);
       await driver.pressBack();
+      done();
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
     })
 
     // TypeCheck (类型检查)
-    it(BUNDLE + 'TypeCheck_001', 0, async function () {
+    it(BUNDLE + 'TypeCheck_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`);
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(200);
       // 进入类型检查
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.type_check'))));
       let typeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.type_check'))));
       await typeBtn.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 点击显示预置值
       await driver.assertComponentExist(ON.id('displayPresetValue'));
       let displayPresetValueBtn = await driver.findComponent(ON.id('displayPresetValue'));
@@ -325,13 +326,15 @@ export default function abilityTest() {
       await driver.delayMs(200);
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`)
     })
 
     // 进入Url字符串解析页面
     it(BUNDLE + 'Url_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Url_001 begin`);
-      let driver: Driver = await Driver.create();
+      let driver: Driver = Driver.create();
       await driver.delayMs(500);
       //find component on text 'Xml'
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
@@ -340,7 +343,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       //check text
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done()
       logger.info(TAG, `${BUNDLE}Url_001 end`);
     })
@@ -348,7 +351,7 @@ export default function abilityTest() {
     // Url字符串解析
     it(BUNDLE + 'ClickUrlStringBtnFunction_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'ClickUrlStringBtnFunction_001 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(1000)
       // 点击插入键值对到查询字符串
       await driver.assertComponentExist(ON.id('item0'))
