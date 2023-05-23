@@ -25,7 +25,7 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'ScreenRecorder_';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 let mediaDataCount: number
-let media: mediaLibrary.getMediaLibrary
+let media: mediaLibrary.MediaLibrary
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
