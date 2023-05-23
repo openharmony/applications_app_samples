@@ -14,6 +14,9 @@
 */
 
 import { describe, it, expect, TestType } from '@ohos/hypium';
+import  Logger from '../../util/Logger'
+const TAG = "CallBack_Test";
+const BUNDLE = "CallBack_"
 function testFun(callBack) {
   callBack();
 }
@@ -21,18 +24,21 @@ export default function callBackExampleTest() {
   describe('callBackExampleTest', function () {
 
     /**
-     * @tc.number:callBackExampleTest_001
-     * @tc.name: singleCallBack_Test
+     * @tc.number:CallBack_001
+     * @tc.name: CallBack_Test_001
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: callback方法回调测试示例
      */
-    it('singleCallBack_Test',TestType.FUNCTION, async function (done) {
+    it(BUNDLE + "Test_001",TestType.FUNCTION, async function (done) {
+      Logger.info(TAG, BUNDLE + "Test_001 start")
       // 异步回调函数中断言，需要使用 try catch 包含断言
       testFun(function () {
         try {
+          // callBack 中执行断言
           expect(true).assertTrue();
         }catch(error) {
         } finally {
+          Logger.info(TAG, BUNDLE + "Test_001 end")
           done();
         }
       })
