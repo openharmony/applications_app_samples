@@ -24,6 +24,9 @@ import swipe from './operationExampleTest/ui/SwipeEvent.test'
 import pinch from './operationExampleTest/ui/PinchEvent.test'
 import pointMatrix from './operationExampleTest/ui/PontMatrixEvent.test'
 import scroller from './operationExampleTest/ui/ScrollerEvent.test'
+import moveWindow from './operationExampleTest/window/MoveToEvent.test'
+import reSizeWindow from './operationExampleTest/window/ReSizeWindow.test'
+import windowAttr from './operationExampleTest/window/WindowAttr.test'
 export default function testsuite() {
   basicExampleTest();
   findTest();
@@ -36,4 +39,7 @@ export default function testsuite() {
   pinch();
   pointMatrix();
   scroller();
+  moveWindow();
+  reSizeWindow();
+  // windowAttr()
 }
