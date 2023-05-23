@@ -8,6 +8,12 @@ RSA加密算法：RSA公开密钥密码体制是一种使用不同的加密密�
 
 AES加密算法：AES密码学中的高级加密标准，又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。
 
+### 效果预览
+
+|主页|加密页面|解密页面|
+|--------------------------------|--------------------------------|--------------------------------|
+|![](screenshots/device/index.png)| ![](screenshots/device/encryption.png) |![](screenshots/device/decrypt.png)|
+
 使用说明
 
 1.点击主页面的**加密**按钮，在加密界面中点击**Encryption Algorithm**下拉选择加密算法，在输入框中输入待加密的内容，点击**加密**
@@ -20,12 +26,35 @@ AES加密算法：AES密码学中的高级加密标准，又称Rijndael加密法
 
 4.点击**重置**按钮，清除文本框中内容。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---Decrypt.ets                       // 解密页面
+|   |---Encryption.ets                    // 加密页面
+|---entryAbility
+|   |---EntryAbility.ts
+|---model
+|   |---CipherModel.ts                    // 加密与解密方法
+|   |---Logger.ts                         // 日志工具
+|---pages
+|   |---Index.ets                         // 首页
+|   |---Second.ets                        // 加密与解密页面
+```
 
-|主页|加密页面|解密页面|
-|--------------------------------|--------------------------------|--------------------------------|
-|![](screenshots/device/index.png)| ![](screenshots/device/encryption.png) |![](screenshots/device/decrypt.png)|
+### 具体实现
 
+* 本示例分成加密与解密两个模块
+  * 加密模块
+    * 使用到rsaEncrypt(RSA算法加密)与aesEncrypt(AES算法加密)两种加密方法进行加密操作。
+    * 源码链接：[Encryption.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/Cipher/entry/src/main/ets/common/Encryption.ets)，[CipherModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/Cipher/entry/src/main/ets/model/CipherModel.ts)
+    * 接口参考：[@system.cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md#cipheraes)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-prompt.md)，[@system.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
+
+  * 解密模块
+    * 使用到rsaDecrypt(RSA算法解密)与aesDecrypt(AES算法解密)两种解密方法进行解密操作。
+    * 源码链接：[Decrypt.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/Cipher/entry/src/main/ets/common/Decrypt.ets)，[CipherModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/Cipher/entry/src/main/ets/model/CipherModel.ts)
+    * 接口参考：[@system.cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md#cipheraes)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-prompt.md)，[@system.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
+  
 ### 相关权限
 
 不涉及。

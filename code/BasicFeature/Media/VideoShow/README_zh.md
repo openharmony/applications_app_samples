@@ -42,6 +42,10 @@ VideoComponent/src/main/ets/components
 
 [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
+### 依赖
+
+不涉及。
+
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行,支持设备:RK3568；
