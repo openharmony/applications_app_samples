@@ -16,6 +16,9 @@
 import common from '@ohos.app.ability.common'
 import historyFeature from '../feature/HistoryFeature'
 import { Header } from '../component/Header'
+import Logger from '../module/Logger'
+
+const TAG: string = '[Sample_CustomCommonEvent_History]'
 
 @Entry
 @Component

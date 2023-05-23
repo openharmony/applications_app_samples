@@ -18,7 +18,7 @@ import consts from '../module/Consts'
 import dataPreferences from '@ohos.data.preferences'
 import Logger from '../module/Logger'
 
-const TAG: string = '[Sample_CustomCommonEvent]'
+const TAG: string = '[Sample_CustomCommonEvent_HistoryFeature]'
 
 export default class HistoryFeature {
   constructor(abilityContext: common.UIAbilityContext) {
@@ -43,7 +43,9 @@ export default class HistoryFeature {
     })
     for (let item of records) {
       await prefer.get(item, []).then((detail: Array<string>) => {
-        this.dataSource.push(detail)
+        if(JSON.stringify(detail) !== '[]'){
+          this.dataSource.push(detail)
+        }
       }).catch((error)=>{
         Logger.info(TAG, `Failed to get value code is ${error.code}`)
       })

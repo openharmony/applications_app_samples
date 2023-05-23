@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import commonEvent from '@ohos.commonEvent'
+import commonEvent from '@ohos.commonEventManager'
 
 export default class consts {
   // definition for database
