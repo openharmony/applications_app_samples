@@ -36,13 +36,9 @@ entry/src/main/ets/
   * 源码链接：[EntryAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Web/RunJsInWeb/entry/src/main/ets/entryability/EntryAbility.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Web/RunJsInWeb/entry/src/main/ets/pages/Index.ets)
   * 接口参考：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)，[@ohos.web.webview](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-webview.md)
 
-### 相关概念
-
-NA
-
 ### 相关权限
 
-网络访问权限: ohos.permission.INTERNET
+网络访问权限: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
 ### 依赖
 
