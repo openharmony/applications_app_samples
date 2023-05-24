@@ -40,9 +40,12 @@ export default function SwipeEventTest() {
     it('testSwipe_h', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
-      await driver.swipe(400, 300, 100, 300)
+      let swiper = await driver.findComponent(ON.id('swiper'))
+      let point = await swiper.getBounds();
       await driver.delayMs(WAIT_UI_READYMS)
-      await driver.swipe(400, 300, 100, 300)
+      await driver.swipe(point.left, 300, point.right, 300)
+      await driver.delayMs(WAIT_UI_READYMS)
+      await driver.swipe(point.left, 300, point.right, 300)
       await driver.delayMs(WAIT_UI_READYMS)
       let text = await driver.findComponent(ON.id('swiper_text'))
       expect(await text.getText()).assertEqual("arkUI")

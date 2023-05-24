@@ -39,6 +39,7 @@ struct Fling {
             Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
           }, item => item)
         }
+        .id("swiper")
         .cachedCount(2)
         .index(0)
         .autoPlay(false)
