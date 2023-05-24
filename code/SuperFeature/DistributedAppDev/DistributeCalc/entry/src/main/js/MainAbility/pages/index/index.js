@@ -212,14 +212,14 @@ export default {
     this.isDistributed = true
     if (remoteDeviceModel === undefined || remoteDeviceModel.discoverList.length <= 0) {
       logger.info(TAG, `continue device:${JSON.stringify(this.deviceList)}`)
-      this.startAbility(this.deviceList[index].deviceId)
+      this.startAbility(this.deviceList[index].networkId)
       this.clearSelectState()
       return
     }
     logger.info(TAG, `start ability1, needAuth`)
     remoteDeviceModel.authenticateDevice(this.deviceList[index], () => {
       logger.info(TAG, ` auth and online finished`)
-      this.startAbility(this.deviceList[index].deviceId)
+      this.startAbility(this.deviceList[index].networkId)
     })
     this.clearSelectState()
     logger.info(TAG, ` start ability end....`)
