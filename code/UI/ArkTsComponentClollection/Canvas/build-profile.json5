@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Admin\\.ohos\\config\\openharmony\\auto_ohos_default_Canvas_ohos.samples.etscanvas.cer",
-          "storePassword": "0000001BE47FB737500DAF12CD8C8D8035D4FC77869879607318B47ACF4367361F47D58CC8231BCD41737B",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BE5F3D5FF8A6787E135812231B0F9B5C47E71001423BC6E3E3ED17F3D2E628A0C6906DE6E4FE69F",
-          "profile": "C:\\Users\\Admin\\.ohos\\config\\openharmony\\auto_ohos_default_Canvas_ohos.samples.etscanvas.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Admin\\.ohos\\config\\openharmony\\auto_ohos_default_Canvas_ohos.samples.etscanvas.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
