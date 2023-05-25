@@ -140,7 +140,7 @@ export default function appTest() {
       await driver.delayMs(500);
       // 校验时间是否为0
       let timeText: string = await countdownTime.getText();
-      expect(timeText).assertEqual('00 : 00 : 00');
+      expect(timeText).assertEqual('00:00:00');
       Logger.info(TAG, BUNDLE + 'ResetCountdownTime_001 end');
     });
   })
