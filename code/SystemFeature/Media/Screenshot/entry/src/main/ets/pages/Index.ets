@@ -169,7 +169,8 @@ struct Index {
           }
           if (result.status === 'success' && result.result) {
             prompt.showToast({
-              message: $r('app.string.private_toast')
+              message: $r('app.string.private_toast'),
+              duration: 10000
             })
             return
           }
@@ -210,7 +211,8 @@ struct Index {
           }
           if (result.status === 'success' && result.result) {
             prompt.showToast({
-              message: $r('app.string.private_toast')
+              message: $r('app.string.private_toast'),
+              duration: 10000
             })
             return
           }
