@@ -39,9 +39,11 @@ export default function FlingEventTest() {
     it('FlingEvent_h', TestType.FUNCTION, async function (done) {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling({x:400, y:300},{x:100, y:300}, 20, 600)
+      let swiper = await driver.findComponent(ON.id('swiper'))
+      let point = await swiper.getBounds();
+      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600)
       await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling({x:400, y:300},{x:100, y:300}, 20, 600)
+      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600)
       await driver.delayMs(WAIT_UI_READYMS)
       let text = await driver.findComponent(ON.id('swiper_text'))
       expect(await text.getText()).assertEqual("arkUI")

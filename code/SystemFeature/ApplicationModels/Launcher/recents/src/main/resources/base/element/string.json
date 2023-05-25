@@ -7,6 +7,14 @@
     {
       "name": "clear_all_missions_message",
       "value": "Cleaned to optimal condition"
+    },
+    {
+      "name": "RecentsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RecentsAbility_label",
+      "value": "label"
     }
   ]
 }

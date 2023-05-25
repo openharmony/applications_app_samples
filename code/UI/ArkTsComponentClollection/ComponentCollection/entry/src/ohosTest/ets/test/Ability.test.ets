@@ -184,6 +184,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.blank_and_divider')));
+
         Logger.info(BUNDLE + testName + ' end');
       });
 
@@ -430,7 +433,6 @@ export default function abilityTest() {
         // 显示当前值
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(195, 273, 354, 273, 800);
-        await driver.drag(110, 273, 354, 273, 800);
         await driver.delayMs(DELAY_TIME);
 
         // 滑块颜色
@@ -620,6 +622,8 @@ export default function abilityTest() {
         // 返回
         await backBtn.click();
         await driver.delayMs(500);
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_and_selection')));
 
         Logger.info(BUNDLE + testName + ' end');
       })
@@ -660,6 +664,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -678,7 +685,7 @@ export default function abilityTest() {
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
           // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_swiper')));
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
         await checkButtonAndClickWithText(atom);
 
@@ -953,6 +960,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -1108,6 +1118,9 @@ export default function abilityTest() {
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
         await driver.delayMs(500);
+
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
 
         Logger.info(BUNDLE + testName + ' end');
       })
@@ -1521,6 +1534,9 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
+
         Logger.info(BUNDLE + testName + ' end');
       });
 
@@ -1601,9 +1617,6 @@ export default function abilityTest() {
         // 显示弹窗
         await checkButtonAndClickWithID('test_popButton');
         await checkButtonAndClickWithText('OK');
-        // 显示自定义弹窗
-        await checkButtonAndClickWithID('test_customButton');
-        await driver.delayMs(500);
 
         // 进入点击
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.touch_test')));

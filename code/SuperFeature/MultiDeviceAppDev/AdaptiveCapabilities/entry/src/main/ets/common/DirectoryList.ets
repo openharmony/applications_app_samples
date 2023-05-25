@@ -46,7 +46,7 @@ struct DirectoryList {
           .borderRadius(10)
           .id(item.id)
           .onClick(() => {
-            router.push({
+            router.pushUrl({
               url: item.uri
             })
           })

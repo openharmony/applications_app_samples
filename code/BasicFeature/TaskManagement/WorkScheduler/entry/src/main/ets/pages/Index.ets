@@ -174,6 +174,7 @@ struct Index {
                 .textAlign(TextAlign.Center)
                 .fontSize(16)
                 .letterSpacing(1)
+                .id('confirm')
                 .backgroundColor($r('app.color.btn1'))
                 .onClick(() => {
                   this.isShowDialog = false

@@ -16,7 +16,7 @@
 import common from '@ohos.app.ability.common';
 import util from '@ohos.util';
 
-export let lruBuffer= new util.LRUCache();
+export let lruBuffer = new util.LRUCache();
 
 export function initLRUCache(): string {
   lruBuffer = new util.LRUCache();
@@ -42,7 +42,7 @@ export function clear(): string {
 }
 
 export function putKeyValue(): string {
-  lruBuffer.put(this.randomString(3), this.randomString(5));
+  lruBuffer.put(randomString(3), randomString(5));
   return getString($r('app.string.put_success'));
 }
 

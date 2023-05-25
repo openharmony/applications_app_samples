@@ -85,7 +85,7 @@ class MyDataSource extends BasicDataSource {
   }> = [
     {
       text: $r('app.string.email'),
-      inputType: InputType.Email,
+      inputType: InputType.Normal,
       length: 18,
       event: 0,
       promptText: $r('app.string.prompt_email')

@@ -25,6 +25,7 @@ export struct UpdateDialog {
   build() {
     Column() {
       Button($r('app.string.check'))
+        .id('check')
         .fontSize(20)
         .margin({ top: 30, bottom: 20 })
         .type(ButtonType.Capsule)

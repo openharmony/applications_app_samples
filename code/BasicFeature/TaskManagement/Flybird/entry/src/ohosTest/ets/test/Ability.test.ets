@@ -161,8 +161,7 @@ export default function appTest() {
       // 等待小鸟降落
       await driver.delayMs(DELAY_TIME * 10)
       // 返回上一页
-      let text = getContext().resourceManager.getStringSync($r('app.string.back'))
-      await checkButtonAndClickWithText(text)
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.back')))
 
       // 返回首页
       await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.back')))

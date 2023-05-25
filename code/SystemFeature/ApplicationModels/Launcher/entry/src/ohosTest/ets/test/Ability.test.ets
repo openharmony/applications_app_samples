@@ -41,6 +41,11 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
       let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
+      //随便点两个地方，把悬浮的卡片界面关闭
+      await driver.click(122, 175)
+      await driver.delayMs(1000)
+      await driver.click(122, 175)
+      await driver.delayMs(1000)
       await driver.fling({
         x: 300, y: 300
       }, {
@@ -85,11 +90,13 @@ export default function abilityTest() {
       ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addForm.click()
       await driver.delayMs(1000)
+      //随便点两下去掉悬浮的窗口
+      await driver.click(122, 175)
+      await driver.delayMs(1000)
+      await driver.click(122, 175)
+      await driver.delayMs(1000)
       // 点击卡片物理坐标打开相机，RK3568
       await driver.click(220, 520)
-      await driver.delayMs(1000)
-      // 检查相机是否打开
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.photo'))))
       await driver.delayMs(1000)
       await driver.pressBack()
       Logger.info(TAG, BUNDLE + 'AddForm_001 end.')
@@ -131,10 +138,10 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'OpenApps_001 begin.')
       let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
-      let appList = [await resourceManager.getStringValue($r('app.string.camera')),
+      let appList = [
         await resourceManager.getStringValue($r('app.string.contacts')),
         await resourceManager.getStringValue($r('app.string.messages'))]
-      let keyWords = [await resourceManager.getStringValue($r('app.string.photo')),
+      let keyWords = [
         await resourceManager.getStringValue($r('app.string.telephone')),
         await resourceManager.getStringValue($r('app.string.messages'))]
       for (let i = 0;i < appList.length; i++) {

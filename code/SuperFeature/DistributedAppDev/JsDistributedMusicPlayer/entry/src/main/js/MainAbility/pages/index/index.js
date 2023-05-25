@@ -67,7 +67,7 @@ export default {
   // 获取导航键高度
   getNavHegiht(){
     let windowClass = null;
-    window.getTopWindow((err, data) => {
+    window.getLastWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
         return;
@@ -174,13 +174,9 @@ export default {
   },
   onNewRequest() {
     logger.info(TAG, `onNewRequest`)
-    this.playerModel.pause()
-    this.playerModel.seek(0)
-    this.restoreFromWant()
   },
   onHide() {
     logger.info(TAG, `onHide isDialogShowing=${this.isDialogShowing}`)
-    this.playerModel.pause()
     if (this.isDialogShowing === true) {
       this.dismissDialog()
       return true
@@ -378,7 +374,7 @@ export default {
           logger.info(TAG, `auth and online finished`)
           for (i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
             if (this.remoteDeviceModel.deviceList[i].deviceName === name) {
-              this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].deviceId, this.remoteDeviceModel.deviceList[i].deviceName)
+              this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].networkId, this.remoteDeviceModel.deviceList[i].deviceName)
             }
           }
         })
@@ -386,7 +382,7 @@ export default {
         logger.info(TAG, `continue to authed device`)
         for (i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
           if (this.remoteDeviceModel.deviceList[i].deviceId === e.value) {
-            this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].deviceId, this.remoteDeviceModel.deviceList[i].deviceName)
+            this.startAbilityContinuation(this.remoteDeviceModel.deviceList[i].networkId, this.remoteDeviceModel.deviceList[i].deviceName)
           }
         }
       }

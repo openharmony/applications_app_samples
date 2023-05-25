@@ -39,6 +39,7 @@ struct Index {
           this.initAudioPlayer()
         }
       })
+      .id('btnAudioPlay')
       .backgroundColor(0xFFFFFF)
       .margin({right: 15})
 
@@ -48,6 +49,7 @@ struct Index {
       .onClick((event) => {
         player.pause()
       })
+      .id('btnAudioStop')
       .backgroundColor(0xFFFFFF)
     }
     .width('100%')

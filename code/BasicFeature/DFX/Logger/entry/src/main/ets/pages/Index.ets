@@ -14,9 +14,7 @@
  */
 
 import common from '@ohos.app.ability.common'
-import { Logger } from '@ohos/log'
-import { LogLevel } from '@ohos/log'
-import { Configure } from '@ohos/log'
+import { Logger, Configure, LogLevel } from '@ohos/log'
 
 let logger = new Logger(getContext(this) as common.UIAbilityContext)
 

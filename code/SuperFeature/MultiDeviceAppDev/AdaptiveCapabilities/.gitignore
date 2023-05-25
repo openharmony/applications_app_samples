@@ -5,3 +5,5 @@
 /.hvigor
 /package-lock.json
 /entry/package-lock.json
+/oh_modules
+**/oh_modules

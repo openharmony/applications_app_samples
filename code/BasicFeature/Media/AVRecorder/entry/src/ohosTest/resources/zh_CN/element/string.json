@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "描述"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "描述"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "测试标签"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
+    }
+  ]
+}

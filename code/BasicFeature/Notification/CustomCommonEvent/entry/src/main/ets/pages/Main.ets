@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import surveillanceEventsManager from '../module/SurveillanceEventsManager'
-import commonEvent from '@ohos.commonEvent'
-import sysTime from '@ohos.systemTime'
+import commonEvent from '@ohos.commonEventManager'
+import sysTime from '@ohos.systemDateTime'
 import utils from '../module/Utils'
 import consts from '../module/Consts'
 import mainFeature from '../feature/MainFeature'
@@ -188,7 +187,7 @@ struct Main {
               validRecEvents.push(element)
             }
           })
-          router.push({
+          router.pushUrl({
             url: 'pages/Detail',
             params: {
               'recEvents': validRecEvents,

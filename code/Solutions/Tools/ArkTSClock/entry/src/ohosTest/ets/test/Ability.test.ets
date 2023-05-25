@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,42 +13,41 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, MatchPattern } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import featureAbility from '@ohos.ability.featureAbility'
-import hilog from '@ohos.hilog'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, MatchPattern } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_Clock]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Clock_'
+const TAG = '[Sample_Clock]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Clock_';
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: "ohos.samples.etsclock",
-          abilityName: "MainAbility"
+          bundleName: 'ohos.samples.etsclock',
+          abilityName: 'MainAbility'
         });
         done();
       } catch (err) {
         expect(err.code).assertEqual(0);
         done();
       }
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
 
     /**
      * 进入应用
      */
     it(BUNDLE + 'CreateFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(3000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end');
     })
   })
 }

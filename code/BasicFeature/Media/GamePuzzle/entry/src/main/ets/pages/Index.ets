@@ -23,7 +23,8 @@ import PictureItem from '../model/PictureItem'
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 import emitter from '@ohos.events.emitter';
 
-const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA',
+                                         'ohos.permission.MEDIA_LOCATION','ohos.permission.MANAGE_MISSIONS'];
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'

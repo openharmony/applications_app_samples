@@ -117,7 +117,7 @@ DeviceManagementCollection
 
 2.本示例适配API version 10版本SDK，版本号：4.0.5.1。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.200, built on November 3, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 4.本示例所配置的REBOOT权限为system_basic或system_core级别(相关权限级别可通过[权限定义列表]( https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案]( https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/ ))。
 

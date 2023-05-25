@@ -44,6 +44,7 @@ struct Index {
               Logger.error(TAG, 'start audio ability failed, error: ' + JSON.stringify(error))
             })
           })
+          .id('btnAudio')
           .margin({bottom: 20})
         Button(VIDEO)
           .fontSize(50)
@@ -58,6 +59,7 @@ struct Index {
               Logger.error(TAG, 'start video ability failed, error: ' + JSON.stringify(error))
             })
           })
+          .id('btnVideo')
       }
       .width('100%')
     }

@@ -43,6 +43,26 @@
     {
       "name": "start_abilities_from_background",
       "value": "Start abilities from background"
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "contacts",
+      "value": "contacts"
+    },
+    {
+      "name": "message",
+      "value": "message"
+    },
+    {
+      "name": "photo",
+      "value": "photo"
+    },
+    {
+      "name": "telephone",
+      "value": "telephone"
     }
   ]
 }
