@@ -30,17 +30,39 @@ export struct QueryItem {
         .height(80).width(80)
         .objectFit(ImageFit.Fill)
       Column() {
-        Text(this.contact.name)
-          .fontSize(30)
-          .margin({ left: 16 })
-          .fontColor(Color.Black)
-          .width('100%')
 
-        Text(this.contact.phone)
-          .fontSize(25)
-          .margin({ left: 16 })
-          .fontColor(Color.Grey)
-          .width('100%')
+        Row() {
+          Text($r("app.string.contact_name"))
+            .fontSize(25)
+            .fontColor(Color.Black)
+          Text(this.contact.name)
+            .fontSize(30)
+            .margin({ left: 16 })
+            .fontColor(Color.Grey)
+        }.width('100%')
+
+        Row() {
+          Text($r("app.string.phone"))
+            .fontSize(25)
+            .fontColor(Color.Black)
+
+
+          Text(this.contact.phone)
+            .fontSize(25)
+            .margin({ left: 16 })
+            .fontColor(Color.Grey)
+        }.width('100%')
+
+        Row() {
+          Text($r("app.string.age"))
+            .fontSize(25)
+            .fontColor(Color.Black)
+
+          Text(this.contact.age == 0 ? "--" : this.contact.age + "")
+            .fontSize(25)
+            .margin({ left: 16 })
+            .fontColor(Color.Grey)
+        }.width('100%')
       }
       .layoutWeight(1)
     }

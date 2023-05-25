@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import data_rdb from '@ohos.data.relationalStore'
+import data_rdb from '@ohos.data.relationalStore';
 
-export const TABLE_NAME = 'contact'
+export const TABLE_NAME = 'contact';
 
-export const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS contact(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, gender INTEGER, phone TEXT NOT NULL, remark TEXT)'
+export const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS contact(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, gender INTEGER, phone TEXT NOT NULL, remark TEXT,age INTEGER)';
 
-export const COLUMNS = ['id', 'name', 'gender', 'phone', 'remark']
+export const COLUMNS = ['id', 'name', 'gender', 'phone', 'remark', 'age'];
 
-export const STORE_CONFIG = { name: 'contact.db', securityLevel: data_rdb.SecurityLevel.S1 }
+export const STORE_CONFIG = { name: 'contact.db', securityLevel: data_rdb.SecurityLevel.S1 };
 
-export const BUNDLE = 'ohos.samples.distributedrdb'
+export const BUNDLE = 'ohos.samples.distributedrdb';
 
-export const ABILITY = 'EntryAbility'
+export const ABILITY = 'EntryAbility';

@@ -23,19 +23,25 @@ export default class ContactDataSource implements IDataSource {
     this.dataArray = dataArray;
   }
 
-  public replaceDataArray(dataArray: Array<Contact>) {
+  public replaceDataArray(dataArray: Array<Contact>): number {
     this.dataArray.splice(0, this.dataArray.length);
     dataArray.forEach(item => {
       this.dataArray.push(item);
     })
     this.notifyDataReload();
+    return this.totalCount()
   }
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getDataArray(): Array<Contact> {
+    return this.dataArray;
+  }
+
+
+  public getData(index: number): Contact {
     return this.dataArray[index];
   }
 
@@ -47,6 +53,11 @@ export default class ContactDataSource implements IDataSource {
   public pushData(data: Contact): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public clear(): void {
+    this.dataArray = [];
+    this.notifyDataReload();
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
