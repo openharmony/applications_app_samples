@@ -57,7 +57,7 @@ export default struct ChatsPage {
           }
           .padding(10)
           .width('100%')
-        }, item => item.message)
+        }, item => item)
       }.width('100%').height('100%')
     }
     .width('100%')
