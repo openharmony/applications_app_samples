@@ -1,4 +1,18 @@
-import Menu from '@ohos.prompt'
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 @Component
 export default struct SelectorIndex {
   @State selectContent:string = '低强度模式'
@@ -6,7 +20,7 @@ export default struct SelectorIndex {
   build() {
     Column({space:30}) {
       Column({space:10}) {
-        Row({ space: 10 }) {
+        Row({space:10}) {
           Image($r("app.media.set")).height(20).width(20)
           Text('振动强度设置:').fontColor(Color.White).fontSize(20)
           Text(this.selectContent).fontSize(16).fontColor("#ffcbc2c2")
@@ -29,15 +43,6 @@ export default struct SelectorIndex {
             alignment: DialogAlignment.Bottom,
             offset: { dx: 0, dy: -10 },
             sheets: [
-/*              {
-                icon:$r("app.media.icon"),
-                title: 'OHOS音频转振动',
-                action: () => {
-                  this.selectContent = 'OHOS'
-                  this.vibrationIntensity = 'OHOS'
-                  console.log('OHOS音频转振动')
-                }
-              },*/
               {
                 icon:$r("app.media.high"),
                 title: '高强度模式',
@@ -72,33 +77,31 @@ export default struct SelectorIndex {
         }.height(1).width("85%").backgroundColor('#ff404048')
       }
       Column({space:10}) {
-        Row({ space: 10 }) {
+        Row({space:10}) {
           Image($r("app.media.banben")).width(20).height(20)
           Text('版本:               ').fontColor(Color.White).fontSize(20).backgroundColor('#cc191a32')
           Text('v1.0').fontSize(20).fontColor("#ff706666")
         }.width("80%")
-
         Row() {
         }.height(1).width("85%").backgroundColor("#ff404048")
       }
       Column({space:10}) {
-        Row({ space: 10 }) {
+        Row({space:10}) {
           Image($r("app.media.bangzhu")).width(20).height(20)
           Text('帮助与支持:    ').fontColor(Color.White).fontSize(20).backgroundColor('#cc191a32')
           Text('无').fontSize(20).fontColor("#ff706666")
         }.width("80%")
         Row() {
-        }.height(1).width("85%").backgroundColor("#ff27272b")
+        }.height(1).width("85%").backgroundColor("#ff404048")
       }
       Column({space:10}) {
-        Row({ space: 10 }) {
+        Row({space:10}) {
           Image($r("app.media.xinxi")).width(20).height(20)
           Text('开发人员信息:').fontColor(Color.White).fontSize(20).backgroundColor('#cc191a32')
           Text('无').fontSize(20).fontColor("#ff706666")
         }.width("80%")
-
         Row() {
-        }.height(1).width("85%").backgroundColor("#ff27272b")
+        }.height(1).width("85%").backgroundColor("#ff404048")
       }
     }
   }

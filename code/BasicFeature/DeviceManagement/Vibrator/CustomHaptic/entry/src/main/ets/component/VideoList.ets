@@ -1,17 +1,33 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import router from '@ohos.router'
-import {changeOrientation,hideTitleBar} from '../moudle/util'
+
 @Component
 export default struct VideoListLayout {
   @State playDis:boolean = false
-  build(){
-    Scroll(){
+
+  build() {
+    Scroll() {
       Row({space:10}) {
-        Stack(){
+        Stack() {
           Image($r("app.media.mate50Image")).width("100%").height("100%").borderRadius(10)
           Image($r("app.media.player2")).width("30%").height("30%")
             .visibility(this.playDis ? Visibility.Hidden:Visibility.Visible)
         }.width("95%").height("30%")
-        .onClick(()=>{
+        .onClick(() => {
           this.playDis = true
           router.pushUrl({
             url:"pages/VideoPage",

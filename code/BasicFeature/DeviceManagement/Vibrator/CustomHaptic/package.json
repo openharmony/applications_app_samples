@@ -1,7 +1,7 @@
 {
   "license": "ISC",
   "devDependencies": {},
-  "name": "tactilfeedback0406",
+  "name": "Haptic Sample",
   "ohos": {
     "org": "huawei",
     "directoryLevel": "project",

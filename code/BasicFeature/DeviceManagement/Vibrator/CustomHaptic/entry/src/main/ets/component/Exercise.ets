@@ -1,27 +1,33 @@
-import {PlayVibrateCustom,avPlayer,getDynamicStates} from '../moudle/util'
-import {getImageExerciseList,ImageDataSource,ImagesData} from '../moudle/ImageData'
-export enum flag {
-  BADMINTON = 0,
-  BASEBALL,
-  BASKETBALL,
-  SKATING,
-  SKIING,
-  TABLE_TENNIS,
-  DIVING
-}
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {PlayVibrateCustom, avPlayer, getDynamicStates} from '../moudle/Util'
+import {getImageExerciseList, ImageDataSource, ImagesData} from '../moudle/ImageData'
 
 @Component
 export default struct ExerciseLayout {
-  @State status:boolean[] = [false,false,false,false,false,false,false]
   private ExerciseList = new ImageDataSource(getImageExerciseList())
+  @State status:boolean[] = [false, false, false, false, false, false, false]
   @Link vibrationIntensity:string
 
-  build(){
-    Column({space:10}){
+  build() {
+    Column({space:10}) {
       List() {
         LazyForEach(this.ExerciseList, (Item: ImagesData) => {
           ListItem() {
-            Row(){
+            Row() {
               Row() {
                 Image(Item.src).width(60).height(50).borderRadius(5).autoResize(false)
               }
@@ -32,30 +38,28 @@ export default struct ExerciseLayout {
               }.layoutWeight(7)
               Image($r("app.media.music")).width(15).height(15)
                 .visibility(this.status[Item.id] ? Visibility.Visible : Visibility.Hidden)
-            } .width("95%").height(70).padding({ top: 5, left: 10, right: 10, bottom: 5 })
+            }.width("95%").height(70).padding({ top: 5, left: 10, right: 10, bottom: 5 })
             .backgroundColor(this.status[Item.id] ? "#1a3e3f56" : "#4d191a32")
             .onClick(() => {
               this.status = getDynamicStates(this.status, Item.id)
+              avPlayer(Item.audioName)
               if(this.vibrationIntensity === 'H') {
-                console.info("振动文件源为：高强度模式")
+                console.info("High intensity mode")
                 PlayVibrateCustom(Item.vibratorFileH)
               } else if(this.vibrationIntensity === 'M') {
-                console.info("振动文件源为：中强度模式")
+                console.info("Middle intensity mode")
                 PlayVibrateCustom(Item.vibratorFileM)
-              } else if(this.vibrationIntensity === 'OHOS') {
-                console.info("振动文件源为：低强度模式")
+              } else if(this.vibrationIntensity === 'L') {
+                console.info("Low intensity mode")
                 PlayVibrateCustom(Item.vibratorFileL)
               } else {
-                console.info("振动文件源为：OHOS音频转换模式")
-                PlayVibrateCustom(Item.vibratorFileOHOS)
+                console.info("Vibration mode error")
               }
-              /*PlayVibrateCustom(Item.vibratorFile)*/
-              console.info(Item.id.toString() +' '+ Item.name + ' ' + Item.audioName)
-              avPlayer(Item.audioName)
+              console.info(Item.id.toString() + ' ' + Item.name + ' ' + Item.audioName)
             })
           }
         }) //LazyForEach
-      } .listDirection(Axis.Vertical)
+      }.listDirection(Axis.Vertical)
       .divider({ strokeWidth: 3, color: "#00f3f3f3", startMargin: 0, endMargin: 0 })
       .height('50%')
       .width('100%')

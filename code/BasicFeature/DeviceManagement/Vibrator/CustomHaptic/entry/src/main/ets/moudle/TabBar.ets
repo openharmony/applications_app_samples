@@ -1,12 +1,33 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+export class TabModel {
+  index: number
+  content: string
+  left: number
+  width: number
+}
 
 @Component
 export default struct TabLayout {
-  private fontSizeNormal = 18 //字体大小
-  private tabMargin = 15// tab左右margin， margin：离栅格容器边缘的距离。可以根据设备的不同尺寸，定义不同的margin值，作为栅格布局的统一规范
+  private fontSizeNormal = 18
+  private tabMargin = 15
 
   @Link titleArr: string[]
   @Link currentIndex:number
-  private left: number= 0
+  private left: number = 0
 
   private tabSelected: (position: number, title: string) => void = (position: number, title: string) => {
     console.log('tabSelected position = ' + position + ', title = ' + title)
@@ -14,24 +35,24 @@ export default struct TabLayout {
   @State private tabDataArr: TabModel[] = []
   private scroller: Scroller = new Scroller()
 
-  aboutToAppear() {//函数在创建自定义组件的新实例后，在执行其 build() 函数之前执行。允许在该函数中改变状态变量，更改将在后续执行 build() 函数中生效
+  aboutToAppear() {
     this.tabDataArr = this.titleArr.map((title, index) => {
-      let tabModel = new TabModel()//页面模型
-      tabModel.index = index//index：页面索引
-      tabModel.content = title//content：内容
-      tabModel.left = this.left//离容器左边的距离
+      let tabModel = new TabModel()
+      tabModel.index = index
+      tabModel.content = title
+      tabModel.left = this.left
       let width = title.length * this.fontSizeNormal + this.tabMargin * 2
-      //宽度 = 字体的宽度*字号 + 容器边缘的距离 *2
       tabModel.width = width
       tabModel.left = this.left
       this.left += width
       return tabModel
     })
   }
+
   build() {
     Scroll(this.scroller) {
       Flex({direction:FlexDirection.Row}) {
-        ForEach(this.tabDataArr, (Item:TabModel)=> {
+        ForEach(this.tabDataArr, (Item:TabModel) => {
           Flex({direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {
             Text(Item.content)
               .fontSize(this.currentIndex == Item.index ? this.fontSizeNormal + 3 : this.fontSizeNormal)
@@ -52,12 +73,4 @@ export default struct TabLayout {
       }
     }.scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off)
   }
-}
-
-
-export class TabModel {
-  index: number
-  content: string
-  left: number
-  width: number
 }

@@ -1,80 +1,98 @@
-import {PlayVibrateCustom,avPlayer,getDynamicStates} from '../moudle/util'
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {PlayVibrateCustom} from '../moudle/Util'
 
 @Component
 export default struct InteractionLayout {
-  @State status:boolean[] = [false,false,false,false]
+  @State status:boolean[] = [false, false, false, false]
   @State state1: AnimationStatus = AnimationStatus.Initial
   @State state2: AnimationStatus = AnimationStatus.Initial
   @State state3: AnimationStatus = AnimationStatus.Initial
   @State state4: AnimationStatus = AnimationStatus.Initial
   @State iterations: number = 1
-  build(){
+
+  build() {
     Column() {
       List({space:20}) {
         ListItem() {
-            Row({ space: 30 }) {
-              Column({space:10}) {
-                Row() {
-                  ImageAnimator()
-                    .images([
-                      { src: $r("app.media.Slide_LeftRight1") },
-                      { src: $r("app.media.Slide_LeftRight2") },
-                      { src: $r("app.media.Slide_LeftRight3") },
-                      { src: $r("app.media.Slide_LeftRight4") },
-                      { src: $r("app.media.Slide_LeftRight5") },
-                      { src: $r("app.media.Slide_LeftRight6") },
-                      { src: $r("app.media.Slide_LeftRight7") },
-                      { src: $r("app.media.Slide_LeftRight8") },
-                      { src: $r("app.media.Slide_LeftRight9") },
-                      { src: $r("app.media.Slide_LeftRight10") },
-                      { src: $r("app.media.Slide_LeftRight11") },
-                      { src: $r("app.media.Slide_LeftRight12") },
-                    ]).borderRadius(10)
-                    .duration(3000)
-                    .state(this.state1)
-                    .fillMode(FillMode.None)
-                    .iterations(this.iterations)
-                    .onFinish(()=>{
-                      this.state1 = AnimationStatus.Initial
-                    })
-                }.width('30%') .borderRadius(20).backgroundColor("#66191a32").height("30%")
-                .onClick(()=>{
-                    this.state1 = AnimationStatus.Running
-                })
-                Text("左右侧滑").fontColor(Color.White).fontSize(18)
-              }
-              Column({space:10}) {
-                Row() {
-                  ImageAnimator()
-                    .images([
-                      { src: $r("app.media.slide_up1") },
-                      { src: $r("app.media.slide_up2") },
-                      { src: $r("app.media.slide_up3") },
-                      { src: $r("app.media.slide_up4") },
-                      { src: $r("app.media.slide_up5") },
-                      { src: $r("app.media.slide_up6") },
-                      { src: $r("app.media.slide_up7") },
-                      { src: $r("app.media.slide_up8") },
-                      { src: $r("app.media.slide_up9") },
-                    ]).borderRadius(10)
-                    .duration(2250)
-                    .state(this.state2)
-                    .fillMode(FillMode.None)
-                    .iterations(this.iterations)
+          Row({space:30}) {
+            Column({space:10}) {
+              Row() {
+                ImageAnimator()
+                  .images([
+                    { src: $r("app.media.Slide_LeftRight1") },
+                    { src: $r("app.media.Slide_LeftRight2") },
+                    { src: $r("app.media.Slide_LeftRight3") },
+                    { src: $r("app.media.Slide_LeftRight4") },
+                    { src: $r("app.media.Slide_LeftRight5") },
+                    { src: $r("app.media.Slide_LeftRight6") },
+                    { src: $r("app.media.Slide_LeftRight7") },
+                    { src: $r("app.media.Slide_LeftRight8") },
+                    { src: $r("app.media.Slide_LeftRight9") },
+                    { src: $r("app.media.Slide_LeftRight10") },
+                    { src: $r("app.media.Slide_LeftRight11") },
+                    { src: $r("app.media.Slide_LeftRight12") },
+                  ]).borderRadius(10)
+                  .duration(3000)
+                  .state(this.state1)
+                  .fillMode(FillMode.None)
+                  .iterations(this.iterations)
+                  .onFinish(()=>{
+                    this.state1 = AnimationStatus.Initial
+                  })
+              }.width('30%') .borderRadius(20).backgroundColor("#66191a32").height("30%")
+              .onClick(()=>{
+                this.state1 = AnimationStatus.Running
+                PlayVibrateCustom("Slide_LeftRight.json")
+              })
+              Text("左右侧滑").fontColor(Color.White).fontSize(18)
+            }
+            Column({space:10}) {
+              Row() {
+                ImageAnimator()
+                  .images([
+                    { src: $r("app.media.slide_up1") },
+                    { src: $r("app.media.slide_up2") },
+                    { src: $r("app.media.slide_up3") },
+                    { src: $r("app.media.slide_up4") },
+                    { src: $r("app.media.slide_up5") },
+                    { src: $r("app.media.slide_up6") },
+                    { src: $r("app.media.slide_up7") },
+                    { src: $r("app.media.slide_up8") },
+                    { src: $r("app.media.slide_up9") },
+                  ]).borderRadius(10)
+                  .duration(2250)
+                  .state(this.state2)
+                  .fillMode(FillMode.None)
+                  .iterations(this.iterations)
                   .onFinish(()=>{
                     this.state2 = AnimationStatus.Initial
                   })
-                }.width('30%') .borderRadius(20).backgroundColor("#66191a32").height("30%")
-                .onClick(()=>{
-                  this.state2 = AnimationStatus.Running
-                  PlayVibrateCustom("Slide_Up.json")
-                })
-                Text("底部上滑").fontColor(Color.White).fontSize(18)
-              }
-            }.justifyContent(FlexAlign.Center)
+              }.width('30%') .borderRadius(20).backgroundColor("#66191a32").height("30%")
+              .onClick(()=>{
+                this.state2 = AnimationStatus.Running
+                PlayVibrateCustom("Slide_Up.json")
+              })
+              Text("底部上滑").fontColor(Color.White).fontSize(18)
+            }
+          }.justifyContent(FlexAlign.Center)
         }.margin({left:"1%"}).width("100%")
+
         ListItem() {
-          Row({ space: 30 }) {
+          Row({space:30}) {
             Column({space:10}) {
               Row() {
                 ImageAnimator()
@@ -108,7 +126,7 @@ export default struct InteractionLayout {
               })
               Text("切换应用").fontColor(Color.White).fontSize(18)
             }
-            Column({ space: 10 }) {
+            Column({space:10}) {
               Row() {
                 ImageAnimator()
                   .images([
@@ -141,8 +159,7 @@ export default struct InteractionLayout {
             }
           }.justifyContent(FlexAlign.Center)
         }.margin({left:"1%"}).width("100%")
-      } .height('50%').width("100%")
-
+      }.height('50%').width("100%")
     }
   }
 }

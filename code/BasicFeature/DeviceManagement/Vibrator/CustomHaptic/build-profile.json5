@@ -1,25 +1,25 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_TactilFeedback0412_com.example.tactilfeedback0406.cer",
-          "storePassword": "0000001B7E34BD7ED9D45B425CB5BF52FF08EF6176324028CBAD1A81D06BCC24B472FC78F675BCBA0EBF2E",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BEF5DAAFE9740673EDD834434FCF26D5EDA7C1264AEA0B96140009C937A63629149A745AD80709D",
-          "profile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_TactilFeedback0412_com.example.tactilfeedback0406.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_TactilFeedback0412_com.example.tactilfeedback0406.p12"
-        }
-      }
-    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
+        "signingConfig": "default"
+      }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_CustomHaptic_com.application.haptic.cer",
+          "storePassword": "0000001B4ADCDD7D1E10040E812BA162C20131FB72C9A334AA2FD6C3A844F6A728A86B299A6C506BEAF70F",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B1E4860D1FB0D022B1BD5415AB73B76E279B470F78C43A78D271E468DA5A6B1803B1D3FB8510164",
+          "profile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_CustomHaptic_com.application.haptic.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_CustomHaptic_com.application.haptic.p12"
+        }
       }
     ]
   },

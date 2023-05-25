@@ -1,13 +1,26 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import router from '@ohos.router'
 
 @Entry
 @Component
 struct VideoListPage {
-
-
   build() {
     Column({space:20}) {
-      Row(){
+      Row() {
         Button({type:ButtonType.Normal}) {
           Text("<")
             .fontColor(Color.White)
@@ -21,13 +34,14 @@ struct VideoListPage {
         Text("触感效果视频").fontColor(Color.White).fontSize(24).layoutWeight(7)
           .padding({right:10})
       }.padding({top:5})
+
       Column({space:20}) {
         List({space:10}) {
           ListItem() {
             Row() {
               Image($r("app.media.mate50Image")).width("50%").height(100).borderRadius(10)
               Column() {
-                Text("mate50").fontSize(18).fontColor(Color.White)
+                Text("Mate旗舰宣传视频").fontSize(18).fontColor(Color.White)
                 Text("难以置信 Mate相信").fontSize(16).fontColor("#ff837979")
               }.alignItems(HorizontalAlign.Start).padding({ left: 5 }).height(100)
             }.width("95%").padding({ left: 10 }).backgroundColor("#00002222")
@@ -44,11 +58,10 @@ struct VideoListPage {
               })
             })
           }
-        } .listDirection(Axis.Vertical)
+        }.listDirection(Axis.Vertical)
         .divider({ strokeWidth: 10, color: "#00f3f3f3", startMargin: 20, endMargin: 20 })
         .height("60%")
       }
     }.width('100%').height('100%').backgroundColor('#f2191a32')
-
   }
 }
