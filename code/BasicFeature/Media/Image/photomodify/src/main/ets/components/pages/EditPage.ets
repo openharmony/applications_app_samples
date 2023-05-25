@@ -20,12 +20,12 @@ import { logger } from '../util/Logger'
 
 const TAG: string = 'EditPage'
 const SAMPLE_SIZE: number = 1
-const DESIRED_WIDTH: number = 3000
-const DESIRED_HEIGHT: number = 4000
-const ROTATE: number = 10
+const DESIRED_WIDTH: number = 600
+const DESIRED_HEIGHT: number = 1000
+const ROTATE: number = 0
 const DESIRED_PIXEL_FORMAT: number = 3
-const DESIRED_REGION_HEIGHT: number = 6000
-const DESIRED_REGION_WIDTH: number = 8000
+const DESIRED_REGION_HEIGHT: number = 2400
+const DESIRED_REGION_WIDTH: number = 1800
 const DESIRED_REGION_X: number = 0
 const DESIRED_REGION_Y: number = 0
 
