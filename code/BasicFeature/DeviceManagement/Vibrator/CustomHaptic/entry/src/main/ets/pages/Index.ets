@@ -21,7 +21,7 @@ import SelectorIndex from '../moudle/MyPage'
 struct Index {
   private controller: TabsController = new TabsController()
   @State barIndex:number = 0
-  @State vibrationIntensity:string = 'ohos'
+  @State vibrationIntensity:string = 'L'
   @Builder Discover() {
     Column({space:5}) {
       Image(this.barIndex === 0 ? $r("app.media.discover1"): $r("app.media.discover")).size({width:25,height:25})

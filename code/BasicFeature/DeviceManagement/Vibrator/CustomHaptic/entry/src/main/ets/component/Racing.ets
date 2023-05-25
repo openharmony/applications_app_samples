@@ -53,7 +53,7 @@ export default struct RacingLayout {
                 console.info("Low intensity mode")
                 PlayVibrateCustom(Item.vibratorFileL)
               } else {
-                console.info("Vibration mode error")
+                console.info("Vibration mode error, vibrationIntensity:" + this.vibrationIntensity)
               }
               console.info(Item.id.toString() + ' ' + Item.name + ' ' + Item.audioName)
             })
