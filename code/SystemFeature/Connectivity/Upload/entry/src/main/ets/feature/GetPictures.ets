@@ -39,6 +39,9 @@ export default class GetPictures {
         let result: Array<string> = param['select-item-list'] as Array<string>
         let select: Array<string> = []
         if (result.length >= 9) {
+          AlertDialog.show({
+            message: $r('app.string.number_limit')
+          })
           for (let i = 0; i < 9; i++) {
             select.push(result[i])
           }
