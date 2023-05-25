@@ -117,7 +117,7 @@ export struct MediaItem {
         Button() {
           Image($r("app.media.icon_rename"))
             .size({
-              width: 60,
+              width: 40,
               height: 40
             })
             .objectFit(ImageFit.Contain)
