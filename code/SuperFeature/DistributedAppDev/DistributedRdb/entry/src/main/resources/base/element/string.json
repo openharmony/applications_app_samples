@@ -53,7 +53,7 @@
       "value": "Gender:"
     },
     {
-      "name": "name",
+      "name": "contact_name",
       "value": "Name"
     },
     {
@@ -63,6 +63,10 @@
     {
       "name": "remark",
       "value": "Remark"
+    },
+    {
+      "name": "age",
+      "value": "Age"
     },
     {
       "name": "automatic",
@@ -91,6 +95,70 @@
     {
       "name": "phone_validate",
       "value": "手机不能为空"
+    },
+    {
+      "name": "ascending",
+      "value": "升序排列"
+    },
+    {
+      "name": "descending",
+      "value": "降序排列"
+    },
+    {
+      "name": "search_placeholder_start",
+      "value": "请输入要搜索的手机号开头"
+    },
+    {
+      "name": "search_placeholder_end",
+      "value": "请输入要搜索的手机号结尾"
+    },
+    {
+      "name": "search_placeholder_content",
+      "value": "请输入要搜索的内容"
+    },
+    {
+      "name": "search_placeholder_age",
+      "value": "请输入要搜索的年龄区间"
+    },
+    {
+      "name": "search_placeholder_name",
+      "value": "请输入要搜索的姓名"
+    },
+    {
+      "name": "search_placeholder_index",
+      "value": "请输入要搜索的索引"
+    },
+    {
+      "name": "search_placeholder_expression",
+      "value": "请输入匹配表达式"
+    },
+    {
+      "name": "sort_the_results",
+      "value": "结果排序"
+    },
+    {
+      "name": "index_query",
+      "value": "指定索引查询"
+    },
+    {
+      "name": "expression_matching",
+      "value": "表达式匹配和不匹配"
+    },
+    {
+      "name": "query_criteria",
+      "value": "查询条件"
+    },
+    {
+      "name": "search_placeholder_age1",
+      "value": "请输入年龄"
+    },
+    {
+      "name": "no_data",
+      "value": "无数据"
+    },
+    {
+      "name": "search",
+      "value": "查询"
     }
   ]
 }
