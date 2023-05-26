@@ -100,6 +100,10 @@
     {
       "name": "media_internet_permission",
       "value": "允许访问网络"
+    },
+    {
+      "name": "number_limit",
+      "value":"本应用仅为上传示例，考虑网络服务器因素影响，一次推荐上传不超过9张图片"
     }
   ]
 }
