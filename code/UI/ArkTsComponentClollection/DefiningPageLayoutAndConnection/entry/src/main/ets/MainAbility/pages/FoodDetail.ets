@@ -23,7 +23,7 @@ struct PageTitle {
       Image($r('app.media.Back'))
         .width(21.8)
         .height(19.6)
-        .key('back')
+        .id('back')
       Text('Food Detail')
         .fontSize(21.8)
         .margin({ left: 17.4 })

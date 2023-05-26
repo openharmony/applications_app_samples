@@ -141,7 +141,7 @@ struct FoodList {
           ListItem() {
             FoodListItem({ foodItem: item })
           }
-          .key('foodListItem' + (index + 1))
+          .id('foodListItem' + (index + 1))
         }, item => item.id.toString())
       }
       .width('100%')
@@ -182,7 +182,7 @@ struct FoodGridItem {
     .height(184)
     .width('100%')
     .onClick(() => {
-      router.push({ url: 'pages/FoodDetail', params: { foodId: this.foodItem } })
+      router.pushUrl({ url: 'pages/FoodDetail', params: { foodId: this.foodItem } })
     })
   }
 }
@@ -206,7 +206,7 @@ struct FoodGrid {
           GridItem() {
             FoodGridItem({ foodItem: item })
           }
-          .key('foodGridItem' + (index + 1))
+          .id('foodGridItem' + (index + 1))
         }, (item: FoodData) => item.id.toString())
       }
       .rowsTemplate(this.gridRowTemplate)
@@ -275,7 +275,7 @@ struct FoodCategoryList {
           .height(40)
           .width(24)
           .objectFit(ImageFit.Contain)
-          .key('switch')
+          .id('switch')
           .margin({ top: 15, right: 10 })
           .onClick(() => {
             this.showList = !this.showList
