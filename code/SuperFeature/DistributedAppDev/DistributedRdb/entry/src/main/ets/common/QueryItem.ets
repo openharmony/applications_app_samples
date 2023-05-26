@@ -34,41 +34,40 @@ export struct QueryItem {
         Row() {
           Text($r("app.string.contact_name"))
             .fontSize(25)
-            .fontColor(Color.Black)
+            .fontColor($r("app.color.grey"))
           Text(this.contact.name)
             .fontSize(30)
             .margin({ left: 16 })
-            .fontColor(Color.Grey)
+            .fontColor($r("app.color.grey"))
         }.width('100%')
 
         Row() {
           Text($r("app.string.phone"))
             .fontSize(25)
-            .fontColor(Color.Black)
-
+            .fontColor($r("app.color.grey"))
 
           Text(this.contact.phone)
             .fontSize(25)
             .margin({ left: 16 })
-            .fontColor(Color.Grey)
+            .fontColor($r("app.color.grey"))
         }.width('100%')
 
         Row() {
           Text($r("app.string.age"))
             .fontSize(25)
-            .fontColor(Color.Black)
+            .fontColor($r("app.color.grey"))
 
           Text(this.contact.age == 0 ? "--" : this.contact.age + "")
             .fontSize(25)
             .margin({ left: 16 })
-            .fontColor(Color.Grey)
+            .fontColor($r("app.color.grey"))
         }.width('100%')
       }
       .layoutWeight(1)
     }
     .width('100%')
     .padding(16)
-    .backgroundColor(Color.White)
+    .backgroundColor($r("app.color.white"))
     .borderRadius(16)
   }
 }

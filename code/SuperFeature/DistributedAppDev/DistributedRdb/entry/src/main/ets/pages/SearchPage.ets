@@ -64,10 +64,10 @@ struct ConditionOption {
           .selected(0)
           .width(320)
           .font({ size: 23, weight: FontWeight.Medium })
-          .fontColor('#182431')
+          .fontColor($r("app.color.color_182431"))
           .selectedOptionFont({ size: 23, weight: FontWeight.Regular })
           .optionFont({ size: 23, weight: FontWeight.Regular })
-          .border({ width: 1, color: Color.Black, radius: 10 })
+          .border({ width: 1, color: $r("app.color.black"), radius: 10 })
           .onSelect((index: number) => {
             this.model.onSelect(index)
           })
@@ -89,10 +89,10 @@ struct ConditionOption {
           .selected(this.model.searchData.isAscending ? 0 : 1)
           .width(180)
           .font({ size: 23, weight: FontWeight.Medium })
-          .fontColor('#182431')
+          .fontColor($r("app.color.color_182431"))
           .selectedOptionFont({ size: 23, weight: FontWeight.Regular })
           .optionFont({ size: 23, weight: FontWeight.Regular })
-          .border({ width: 1, color: Color.Black, radius: 10 })
+          .border({ width: 1, color: $r("app.color.black"), radius: 10 })
           .onSelect(async (index: number) => {
             this.model.searchData.isAscending = (index == 0);
           })
@@ -156,7 +156,7 @@ struct InputArea {
           .width('80%')
           .fontSize(25)
           .margin({ right: 10 })
-          .backgroundColor('#FAFAFA')
+          .backgroundColor($r("app.color.color_fa"))
           .onChange((value: string) => {
             this.model.searchData.searchText = value
           })
@@ -173,7 +173,7 @@ struct InputArea {
             .width('95%')
             .fontSize(25)
             .margin({ right: 10, top: 5 })
-            .backgroundColor('#FAFAFA')
+            .backgroundColor($r("app.color.color_fa"))
             .onChange((value: string) => {
               this.model.searchData.searchTexts[0] = value
             })
@@ -195,7 +195,7 @@ struct InputArea {
             .width('95%')
             .fontSize(25)
             .margin({ right: 10, top: 5 })
-            .backgroundColor('#FAFAFA')
+            .backgroundColor($r("app.color.color_fa"))
             .onChange((value: string) => {
               this.model.searchData.searchTexts[1] = value
             })
@@ -242,7 +242,7 @@ struct DataAndTips {
           Row() {
             Text(this.searchTips[0])
               .fontSize(18)
-              .fontColor(Color.Gray)
+              .fontColor($r("app.color.grey"))
           }
           .width('100%')
           .justifyContent(FlexAlign.Start)
@@ -254,7 +254,7 @@ struct DataAndTips {
             Row() {
               Text($r('app.string.no_data'))
                 .fontSize(18)
-                .fontColor(Color.Gray)
+                .fontColor($r("app.color.grey"))
             }
             .width('100%')
             .justifyContent(FlexAlign.Center)
@@ -274,7 +274,7 @@ struct DataAndTips {
           Row() {
             Text(this.searchTips[1])
               .fontSize(18)
-              .fontColor(Color.Gray)
+              .fontColor($r("app.color.grey"))
           }
           .width('100%')
           .justifyContent(FlexAlign.Start)
@@ -286,7 +286,7 @@ struct DataAndTips {
             Row() {
               Text($r('app.string.no_data'))
                 .fontSize(18)
-                .fontColor(Color.Gray)
+                .fontColor($r("app.color.grey"))
             }
             .width('100%')
             .justifyContent(FlexAlign.Center)
@@ -303,7 +303,7 @@ struct DataAndTips {
     }
     .layoutWeight(1)
     .width("80%")
-    .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
+    .divider({ strokeWidth: 1, color: $r("app.color.grey"), startMargin: 16, endMargin: 16 })
     .alignListItem(ListItemAlign.Center)
   }
 }

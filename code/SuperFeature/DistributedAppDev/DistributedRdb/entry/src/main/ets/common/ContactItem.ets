@@ -35,32 +35,32 @@ export struct ContactItem {
         Row() {
           Text($r("app.string.contact_name"))
             .fontSize(30)
-            .fontColor(Color.Black)
+            .fontColor($r("app.color.black"))
           Text(this.contact.name)
             .fontSize(30)
             .margin({ left: 16 })
-            .fontColor(Color.Grey)
+            .fontColor($r("app.color.grey"))
         }.width('100%')
 
         Row() {
           Text($r("app.string.phone"))
             .fontSize(25)
-            .fontColor(Color.Black)
+            .fontColor($r("app.color.black"))
 
           Text(this.contact.phone)
             .fontSize(25)
             .margin({ left: 16 })
-            .fontColor(Color.Grey)
+            .fontColor($r("app.color.grey"))
         }.width('100%')
 
         Row() {
           Text($r("app.string.age"))
             .fontSize(25)
-            .fontColor(Color.Black)
+            .fontColor($r("app.color.black"))
           Text(this.contact.age == 0 ? "--" : this.contact.age + "")
             .fontSize(25)
             .margin({ left: 16 })
-            .fontColor(Color.Grey)
+            .fontColor($r("app.color.grey"))
         }.width('100%')
       }
       .margin({ left: 16 })

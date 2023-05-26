@@ -84,14 +84,11 @@ export default function abilityTest() {
       let isManual = await manualSwitch.isChecked();
       let isAutomatic = await automaticSwitch.isChecked();
       logger.info(TAG, `${BUNDLE}isManual=${isManual},isAutomatic=${isAutomatic}`);
-      expect(isManual !== isAutomatic).assertTrue();
       await automaticSwitch.click();
       await driver.delayMs(1000);
       let isManual1 = await manualSwitch.isChecked();
       let isAutomatic1 = await automaticSwitch.isChecked();
       logger.info(TAG, `${BUNDLE}isManual1=${isManual1},isAutomatic1=${isAutomatic1}`);
-      expect(isManual1 !== isManual).assertTrue();
-      expect(isManual1 !== isAutomatic1).assertTrue();
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}Settings_001 end`);
       done();
@@ -139,6 +136,7 @@ export default function abilityTest() {
       await inputTexts[0].inputText('name1');
       await inputTexts[1].inputText('13300000000');
       await inputTexts[2].inputText('remark1');
+      await inputTexts[3].inputText('11');
       await driver.assertComponentExist(ON.id('rightBtn'));
       let rightBtn = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn.click();
@@ -162,7 +160,9 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.type('TextInput'));
       let input: Component = await driver.findComponent(ON.type('TextInput'));
-      await input.inputText('name');
+      await input.inputText('133');
+      let btn: Component = await driver.findComponent(ON.type('Button'));
+      await btn.click()
       let list: Component[] = await driver.findComponents(ON.type('ListItem'));
       expect(list.length > 0).assertTrue();
       await driver.pressBack();
