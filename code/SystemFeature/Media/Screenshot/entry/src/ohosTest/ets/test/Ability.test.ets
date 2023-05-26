@@ -139,7 +139,7 @@ export default function abilityTest() {
       // 开始局部截屏
       let localScreenShotBtn = await DRIVER.findComponent(ON.id('localScreenShot'));
       await localScreenShotBtn.click();
-      await DRIVER.delayMs(1000);
+      await DRIVER.delayMs(2000);
       await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.privacy'))));
       hilog.info(0x0000, 'testTag', 'OpenPrivacy_1 end');
     })
