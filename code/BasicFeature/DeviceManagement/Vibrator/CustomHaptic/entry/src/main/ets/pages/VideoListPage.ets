@@ -39,20 +39,20 @@ struct VideoListPage {
         List({space:10}) {
           ListItem() {
             Row() {
-              Image($r("app.media.mate50Image")).width("50%").height(100).borderRadius(10)
+              Image($r("app.media.HapticVideoPreview")).width("50%").height(100).borderRadius(10)
               Column() {
-                Text("Mate旗舰宣传视频").fontSize(18).fontColor(Color.White)
-                Text("难以置信 Mate相信").fontSize(16).fontColor("#ff837979")
+                Text("振感视频").fontSize(18).fontColor(Color.White)
+                Text("为您带来极致协同感受！").fontSize(16).fontColor("#ff837979")
               }.alignItems(HorizontalAlign.Start).padding({ left: 5 }).height(100)
             }.width("95%").padding({ left: 10 }).backgroundColor("#00002222")
             .onClick(() => {
               router.pushUrl({
                 url:"pages/VideoPage",
                 params:{
-                  vibrateFileName:"mate50_audio_decomposition_ohos.json",
-                  videoName:'mate50',
-                  videoSrc: $r("app.media.mate50"),
-                  previewUri: $r("app.media.mate50Image"),
+                  vibrateFileName:"HapticVideo.json",
+                  videoName:'HapticVideo',
+                  videoSrc: $r("app.media.HapticVideo"),
+                  previewUri: $r("app.media.HapticVideoPreview"),
                   pages:"VideoListPage"
                 }
               })

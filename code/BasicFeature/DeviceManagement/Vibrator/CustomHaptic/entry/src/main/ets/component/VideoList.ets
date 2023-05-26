@@ -23,7 +23,7 @@ export default struct VideoListLayout {
     Scroll() {
       Row({space:10}) {
         Stack() {
-          Image($r("app.media.mate50Image")).width("100%").height("100%").borderRadius(10)
+          Image($r("app.media.HapticVideoPreview")).width("100%").height("100%").borderRadius(10)
           Image($r("app.media.player2")).width("30%").height("30%")
             .visibility(this.playDis ? Visibility.Hidden:Visibility.Visible)
         }.width("95%").height("30%")
@@ -32,10 +32,10 @@ export default struct VideoListLayout {
           router.pushUrl({
             url:"pages/VideoPage",
             params:{
-              vibrateFileName:"mate50_audio_decomposition_ohos.json",
-              videoName:'mate50',
-              videoSrc: $r("app.media.mate50"),
-              previewUri: $r("app.media.mate50Image"),
+              vibrateFileName:"HapticVideo.json",
+              videoName:'HapticVideo',
+              videoSrc: $r("app.media.HapticVideo"),
+              previewUri: $r("app.media.HapticVideoPreview"),
               pages:"Index"
             }
           })
