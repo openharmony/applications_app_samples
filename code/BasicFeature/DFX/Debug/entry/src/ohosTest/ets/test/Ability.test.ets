@@ -31,7 +31,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'ohos.samples.debug',
+          bundleName: 'com.samples.debug',
           abilityName: 'MainAbility'
         })
         done()

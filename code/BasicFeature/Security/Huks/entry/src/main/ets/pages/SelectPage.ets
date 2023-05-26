@@ -46,10 +46,6 @@ struct SelectPage {
       .titleMode(NavigationTitleMode.Mini)
       .hideTitleBar(false)
       .hideToolBar(true)
-      .onClick(() => {
-        router.back()
-      })
-      .id('back')
     }
     .width('100%')
     .height('100%')

@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.example.canvas",
-    "vendor": "example",
+    "bundleName": "ohos.samples.etscanvas",
+    "vendor": "samples",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -9,11 +9,13 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.example.canvas_test",
+    "package": "com.example.entry_test",
     "name": ".entry_test",
-    "mainAbility": ".testability",
+    "mainAbility": ".TestAbility",
+    "srcPath": "",
     "deviceType": [
-      "default"
+      "default",
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,
@@ -35,8 +37,8 @@
         ],
         "orientation": "unspecified",
         "visible": true,
-        "srcPath": "testability",
-        "name": ".testability",
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
         "srcLanguage": "ets",
         "icon": "$media:icon",
         "description": "$string:TestAbility_desc",
@@ -55,7 +57,7 @@
         "pages": [
           "pages/Index"
         ],
-        "name": ".testability",
+        "name": ".TestAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false

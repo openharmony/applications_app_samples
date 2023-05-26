@@ -40,7 +40,7 @@ export struct EventsDialog {
 
       Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
         Text($r('app.string.close'))
-          .fontSize('20vp')
+          .fontSize('16vp')
           .textAlign(TextAlign.Center)
           .fontColor('#FFFFFF')
       }

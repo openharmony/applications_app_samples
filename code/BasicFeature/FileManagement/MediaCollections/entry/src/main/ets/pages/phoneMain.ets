@@ -50,7 +50,7 @@ struct Send {
     MediaUtils.mediaLib = await mediaLibrary.getMediaLibrary(this.context)
     let atManager = abilityAccessCtrl.createAtManager()
     try {
-      atManager.requestPermissionsFromUser(this.context, [
+      await atManager.requestPermissionsFromUser(this.context, [
         'ohos.permission.WRITE_MEDIA',
         'ohos.permission.READ_MEDIA',
         'ohos.permission.INTERNET']).then((data) => {

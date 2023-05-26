@@ -52,7 +52,7 @@ class MediaLibraryManager {
         sampleSize: 1,
         editable: true,
         desiredSize: { width: 3000, height: 4000 },
-        rotate: 10,
+        rotate: 0,
         desiredPixelFormat: 3,
         desiredRegion: { size: { height: 6000, width: 8000 }, x: 0, y: 0 },
         index: 0
