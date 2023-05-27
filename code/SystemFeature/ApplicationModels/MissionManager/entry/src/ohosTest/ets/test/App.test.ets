@@ -24,7 +24,15 @@ const BUNDLE = 'MissionManager_';
 
 export default function appTest() {
   let driver = Driver.create();
-  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+  const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
+  // 资源本地化
+  async function getResourceString(resource: Resource): Promise<string> {
+    let manage = delegator.getAppContext().resourceManager
+    let text = await manage.getStringValue(resource)
+    return text
+  }
+
   describe('appTest', function () {
     beforeAll(async function () {
       // 为避免任务列表太长影响自动化测试，在开始测试前，先clear掉除当前应用之外的任务
@@ -106,7 +114,9 @@ export default function appTest() {
         await driver.swipe(point.x, point.y, point.x - 100, point.y);
         await driver.delayMs(1000);
         let rect = await missions[0].getBounds();
-        await driver.click(rect.right + 110, rect.bottom - 140);
+        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.locked_mission'))));
+        let lockButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.locked_mission'))));
+        await lockButton.click();
         await driver.delayMs(2000);
         await driver.assertComponentExist(ON.id('lockState0'));
         await driver.delayMs(500);
@@ -117,7 +127,9 @@ export default function appTest() {
 
         await driver.swipe(point.x, point.y, point.x - 100, point.y);
         await driver.delayMs(1000);
-        await driver.click(rect.right + 110, rect.bottom - 140);
+        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.unlocked_mission'))));
+        let unlockButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.unlocked_mission'))));
+        await unlockButton.click();
         await driver.delayMs(2000);
         await driver.assertComponentExist(ON.id('lockState0'));
         await driver.delayMs(500);
@@ -156,8 +168,9 @@ export default function appTest() {
         let point = await missions[0].getBoundsCenter();
         await driver.swipe(point.x, point.y, point.x - 100, point.y);
         await driver.delayMs(500);
-        let rect = await missions[0].getBounds();
-        await driver.click(rect.right + 260, rect.bottom - 140);
+        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.move_mission'))));
+        let unlockButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.move_mission'))));
+        await unlockButton.click();
         await driver.delayMs(2000);
         let window = await driver.findWindow({
           bundleName: 'ohos.samples.missionmanager'
