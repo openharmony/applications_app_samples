@@ -1,8 +1,14 @@
 # SIM卡管理
 
-### 简介
+### 介绍
 
 本示例使用[sim](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-sim.md)相关接口，展示了电话服务中SIM卡相关功能，包含SIM卡的服务提供商、ISO国家码、归属PLMN号信息，以及默认语音卡功能。
+
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![](screenshots/devices/main.png)|
 
 使用说明：
 
@@ -14,12 +20,28 @@
 
 4.呼叫转移界面功能暂不支持，故点击按钮无实际操作。
 
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---CallView.ets                    // 呼叫
+|   |---InfoView.ets                    // 信息
+|   |---Show.ets                        // 展示
+|   |---ShowView.ets                    // 展示页面
+|   |---SimView.ets                     // sim页面
+|---entryability
+|   |---EntryAbility.ts
+|---model
+|   |---AbilityContextController.ts     // 弹窗
+|   |---Logger.ts                       // 日志工具
+|---pages
+|   |---Index.ets                       // 首页
+```
+### 具体实现
 
-### 效果预览
-
-|主页|
-|--------------------------------|
-|![](screenshots/devices/main.png)|
+* 该示例主要通过hasSimCard方法获取指定卡槽SIM卡是否插卡，getSimState方法获取指定卡槽的SIM卡状态，SimState方法判断SIM卡状态，isSimActive方法获取指定卡槽SIM卡是否激活，getSimSpn方法获取指定卡槽SIM卡的服务提供商名称，getISOCountryCodeForSim方法获取指定卡槽SIM卡的ISO国家码，getSimOperatorNumeric方法获取指定卡槽SIM卡的归属PLMN号，getDefaultVoiceSlotId方法获取默认语音业务的卡槽ID等开发电话服务的相关功能。
+* 源码链接：[InfoView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/SimManager/entry/src/main/ets/common/InfoView.ets)，[ShowView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/SimManager/entry/src/main/ets/common/ShowView.ets)，[SimView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/SimManager/entry/src/main/ets/common/SimView.ets)
+* 接口参考：[@ohos.telephony.sim](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-sim.md)
 
 ### 相关权限
 

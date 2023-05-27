@@ -4,17 +4,35 @@
 
 本示例使用[call](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-call.md)相关接口实现了拨打电话并显示电话相关信息的功能
 
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![image](screenshots/device/call.png)|
+
 使用说明
 
 1.输入电话号码后，点击**电话**按钮，进行拨打电话。
 
 2.拨打电话后文本框会显示拨打是否成功，是否存在通话，通话状态，是否紧急号码，格式化后的电话号码。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---CallView.ets                   // 电话API
+|---entryability
+|   |---EntryAbility.ts
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+```
+### 具体实现
 
-|主页|
-|--------------------------------|
-|![image](screenshots/device/call.png)|
+* 该示例展示拨打电话功能，dial方法拨打电话，可设置通话参数，hasCall方法判断是否存在通话，getCallState方法获取当前通话状态，isEmergencyPhoneNumber方法判断是否是紧急电话号码，formatPhoneNumber方法格式化电话号码，formatPhoneNumberToE164方法将电话号码格式化为E.164表示形式。
+* 源码链接：[CallView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Call/entry/src/main/ets/common/CallView.ets)
+* 接口参考：[@ohos.telephony.call](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-call.md)
 
 ### 相关权限
 
