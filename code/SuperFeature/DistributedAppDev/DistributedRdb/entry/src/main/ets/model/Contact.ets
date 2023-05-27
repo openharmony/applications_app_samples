@@ -15,19 +15,21 @@
 
 @Observed
 export default class Contact {
-  id: number
-  name: string
-  gender: number
-  phone: string
-  remark: string
-  isSelected: boolean
+  id: number;
+  name: string;
+  gender: number;
+  phone: string;
+  remark: string;
+  age: number;
+  isSelected: boolean;
 
-  constructor(id: number, name: string, gender: number, phone: string, remark: string) {
-    this.id = id
-    this.name = name
-    this.gender = gender
-    this.phone = phone
-    this.remark = remark
-    this.isSelected = false
+  constructor(id: number, name: string, gender: number, phone: string, age: number, remark: string) {
+    this.id = id;
+    this.name = name;
+    this.gender = gender;
+    this.phone = phone;
+    this.remark = remark;
+    this.age = age;
+    this.isSelected = false;
   }
 }

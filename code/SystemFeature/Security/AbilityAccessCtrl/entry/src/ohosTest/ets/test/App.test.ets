@@ -88,12 +88,12 @@ export default function appTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm'))));
       let confirmBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm'))));
       await confirmBtn.click();
-      await driver.delayMs(200);
+      await driver.delayMs(2000);
       // 点击检测权限
       await driver.assertComponentExist(ON.id('checkPermission'));
       let checkPermissionBtn = await driver.findComponent(ON.id('checkPermission'));
       await checkPermissionBtn.click();
-      await driver.delayMs(200);
+      await driver.delayMs(2000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 end');
     })
   })

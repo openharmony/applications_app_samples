@@ -13,27 +13,30 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import Logger from '../model/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import Logger from '../model/Logger';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    AppStorage.SetOrCreate('want', want)
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    globalThis.context = this.context;
+    AppStorage.SetOrCreate('want', want);
   }
 
   async onWindowStageCreate(windowStage: Window.WindowStage): Promise<void> {
     // Main window is created, set main page for this ability
-    let atManager = abilityAccessCtrl.createAtManager();
-    await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']);
-
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err, data:void) => {
       if (err.code) {
-        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
-        return
+        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
-    })
+      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']);
   }
 }

@@ -71,8 +71,9 @@ export default class RdbModel {
       'name': contact.name,
       'gender': contact.gender,
       'phone': contact.phone,
-      'remark': contact.remark
-    }
+      'remark': contact.remark,
+      'age': contact.age
+    };
     let ret = await this.rdbStore.insert(this.tableName, valueBucket)
     Logger.info(TAG, `insert done:${ret}`)
   }
@@ -82,8 +83,9 @@ export default class RdbModel {
       'name': contact.name,
       'gender': contact.gender,
       'phone': contact.phone,
-      'remark': contact.remark
-    }
+      'remark': contact.remark,
+      'age': contact.age
+    };
     let predicates = new data_rdb.RdbPredicates(this.tableName)
     Logger.info(TAG, `updateData id=${contact.id}`)
     predicates.equalTo('id', contact.id)
@@ -174,6 +176,7 @@ export default class RdbModel {
         , resultSet.getString(resultSet.getColumnIndex('name'))
         , resultSet.getDouble(resultSet.getColumnIndex('gender'))
         , resultSet.getString(resultSet.getColumnIndex('phone'))
+        , resultSet.getLong(resultSet.getColumnIndex('age'))
         , resultSet.getString(resultSet.getColumnIndex('remark')))
       if (!contacts.includes(contact)) {
         // 如果数据集合中没有这条数据就添加进去

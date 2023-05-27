@@ -242,7 +242,7 @@ struct Index {
             .onClick(() => {
               this.handleClickContact(item, index)
             })
-          },item=> JSON.stringify(item))
+          }, item => JSON.stringify(item))
         }
         .width('100%')
         .layoutWeight(1)
@@ -280,7 +280,7 @@ struct Index {
           Logger.info(TAG, 'onClick')
           router.pushUrl({
             url: 'pages/ContactEdit',
-            params: { contact: new Contact(0, '', 0, '', ''), isInsert: true }
+            params: { contact: new Contact(0, '', 0, '', 0, ''), isInsert: true }
           })
         })
       }
