@@ -62,11 +62,43 @@ export default function appTest() {
     })
 
     /**
+     * 上滑触发小窗，检查小窗是否能关闭
+     */
+    it(BUNDLE + 'SmallVideo', 3, async (done) => {
+      Logger.info(TAG, 'SmallVideo start')
+      let driver = await Driver.create()
+      await driver.fling({
+        x: 500, y: 1000
+      }, {
+        x: 500, y: 200
+      }, 50, 10000)
+      await driver.assertComponentExist(ON.id('smallVideo'))
+      await driver.assertComponentExist(ON.id('closeBtn'))
+      // 点击按钮关闭小窗
+      let closeBtn = await driver.findComponent(ON.id('closeBtn'))
+      await closeBtn.click()
+      // 检查是否已经关闭
+      let smallVideo = await driver.findComponent(ON.id('smallVideo'))
+      await expect(smallVideo).assertNull()
+      // 归位
+      await driver.fling({
+        x: 500, y: 200
+      }, {
+        x: 500, y: 1000
+      }, 60, 10000)
+      Logger.info(TAG, 'SmallVideo end')
+      done()
+    })
+
+    /**
      * 点击视频组件，进入全屏界面，检查播放与暂停功能
      */
     it(BUNDLE + 'FullPage_PlayVideo', 2, async (done) => {
       Logger.info(TAG, 'FullPage_PlayVideo start')
       let driver = await Driver.create()
+      let startBtn = await driver.waitForComponent(ON.id('playBtn'), 13000)
+      await startBtn.click()
+      await driver.delayMs(500)
       await driver.assertComponentExist(ON.id('VideoPage'))
       let playBtn = await driver.findComponent(ON.id('VideoPage'))
       await playBtn.click()
@@ -75,6 +107,7 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('fullVideo'))
       let fullVideo = await driver.findComponent(ON.id('fullVideo'))
       await fullVideo.click()
+      await driver.delayMs(500)
       // 暂停后出现播放键
       await driver.assertComponentExist(ON.id('fullPlayBtn'))
       let fullPlayBtn = await driver.findComponent(ON.id('fullPlayBtn'))
@@ -84,42 +117,6 @@ export default function appTest() {
       await expect(tempBtn).assertNull()
       await driver.pressBack()
       Logger.info(TAG, 'FullPage_PlayVideo end')
-      done()
-    })
-
-    /**
-     * 上滑触发小窗，检查小窗是否能关闭
-     */
-    it(BUNDLE + 'SmallVideo', 3, async (done) => {
-      Logger.info(TAG, 'SmallVideo start')
-      let driver = await Driver.create()
-      // 如果视频暂停了，则点击播放
-      let playBtn = await driver.findComponent(ON.id('playBtn'))
-      if (playBtn !== null) {
-        playBtn.click()
-      }
-      await driver.fling({
-        x: 500, y: 800
-      }, {
-        x: 500, y: 200
-      }, 5, 5000)
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.id('smallVideo'))
-      await driver.assertComponentExist(ON.id('closeBtn'))
-      // 点击按钮关闭小窗
-      let closeBtn = await driver.findComponent(ON.id('closeBtn'))
-      await closeBtn.click()
-      await driver.delayMs(1000)
-      // 检查是否已经关闭
-      let smallVideo = await driver.findComponent(ON.id('smallVideo'))
-      await expect(smallVideo).assertNull()
-      // 归位
-      await driver.fling({
-        x: 500, y: 200
-      }, {
-        x: 500, y: 900
-      }, 5, 5000)
-      Logger.info(TAG, 'SmallVideo end')
       done()
     })
 
@@ -140,8 +137,8 @@ export default function appTest() {
         x: 500, y: 800
       }, {
         x: 500, y: 200
-      }, 5, 10000)
-      await driver.delayMs(500)
+      }, 50, 10000)
+      await driver.delayMs(2000)
       // 检查切换后的直播间人数
       await driver.assertComponentExist(ON.text('360', MatchPattern.CONTAINS))
       let close = await driver.findComponent(ON.id('close'))
