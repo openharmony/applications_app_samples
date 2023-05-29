@@ -23,6 +23,14 @@ const TAG = '[Sample_Image]'
 const DOMAIN = 0xF811
 const BUNDLE = 'Image_'
 
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let resMgr = abilityDelegator.getAppContext().resourceManager;
+  let text = await resMgr.getStringValue(resource);
+  return text;
+}
+
 export default function appTest() {
   describe('appTest', function () {
     /*
@@ -114,8 +122,50 @@ export default function appTest() {
       await driver.delayMs(1000);
       // 获取文件读写权限
       logInfo('RequestPermission_001, requestPermission')
-      await operationComponent(driver, ON.text('允许'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))))
+      let btnAllow = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow'))))
+      await btnAllow.click()
       logInfo('RequestPermission_001, end')
+    })
+    /**
+     * 退出桌面，调用相机拍照或者拍视频
+     */
+    it(BUNDLE + 'UseCamera_001', 0, async function () {
+      logInfo('UseCamera_001,begin')
+      let driver = await createDriver()
+      await driver.delayMs(1000)
+      await driver.pressBack()
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.camera'))))
+      let camera = await driver.findComponent(ON.text(await getResourceString($r('app.string.camera'))))
+      await camera.click()
+      await driver.delayMs(1000)
+      // 点击拍照拍照片
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.take_photo'))))
+      let takePhoto = await driver.findComponent(ON.text(await getResourceString($r('app.string.take_photo'))))
+      await takePhoto.click()
+      await driver.delayMs(1000)
+      // 点击拍照，坐标基于rk3568
+      await driver.click(360, 1095)
+      await driver.delayMs(1000)
+      await driver.click(360, 1095)
+      await driver.delayMs(1000)
+      // 点击录像拍视频
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.video'))))
+      let video = await driver.findComponent(ON.text(await getResourceString($r('app.string.video'))))
+      await video.click()
+      await driver.delayMs(1000)
+      // 点击录像按钮，坐标基于rk3568
+      await driver.click(360, 1095)
+      await driver.delayMs(5000)
+      await driver.click(320, 1100)
+      await driver.delayMs(1000)
+      await driver.click(360, 1095)
+      await driver.delayMs(5000)
+      await driver.click(320, 1100)
+      await driver.delayMs(1000)
+      await abilityDelegator.executeShellCommand('aa start -b ohos.samples.image -a MainAbility')
+      await driver.delayMs(3000)
+      logInfo('UseCamera_001,end')
     })
     /**
      * 选择照片图片,打开相册
