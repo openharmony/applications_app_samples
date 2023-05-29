@@ -1,22 +1,16 @@
-# observer
+ # observer
 
-### 简介
+### 介绍
 
 本示例通过observer接口订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。
 
-![](screenshots/device/observer.png)
+### 效果预览
 
-### 相关概念
+|主页|
+|--------------------------------|
+|![](screenshots/device/observer.png)|
 
-observer: 通过注册相关监听事件，来监听手机网络、信号、通话、sim卡等状态，并返回相应的结果。
-
-### 相关权限
-
-获取网络状态权限:ohos.permission.GET_NETWORK_INFO
-
-获取通话状态权限:ohos.permission.READ_CALL_LOG
-
-### 使用说明
+使用说明
 
 1.打开应用，开启所有订阅事件开关。
 
@@ -27,6 +21,40 @@ observer: 通过注册相关监听事件，来监听手机网络、信号、通�
 4.插拔一次sim卡，触发sim卡状态变化和信号状态变化。
 
 5.点击**查看详情**按钮，跳转详情页，显示监听到的数据结果。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---AbilityStage.ts
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---DetailData.ts                  // 详情数据
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+|   |---Deatil.ets                     // 详情页面
+```
+### 具体实现
+
+* 该示例使用NetworkState方法获取网络注册状态，SignalInformation方法获取网络信号强度信息，RadioTechnology方法获取无线接入技术，CallState方法获取通话状态码，DataConnectState方法描述蜂窝数据链路连接状态，DataFlowType方法描述蜂窝数据流类型，SimStateData方法获取SIM卡类型和状态等方法提供订阅管理功能。
+* 源码链接：[DetailData.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Observer/entry/src/main/ets/modle/DetailData.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Observer/entry/src/main/ets/pages/Index.ets)
+* 接口参考：[@ohos.telephony.radio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-radio.md)，[@ohos.telephony.call](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-call.md)，[@ohos.telephony.data](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-telephony-data.md)，[@ohos.telephony.observer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-observer.md)
+
+#### 相关概念
+
+observer: 通过注册相关监听事件，来监听手机网络、信号、通话、sim卡等状态，并返回相应的结果。
+
+### 相关权限
+
+获取网络状态权限:ohos.permission.GET_NETWORK_INFO
+
+获取通话状态权限:ohos.permission.READ_CALL_LOG
+
+### 依赖
+
+不涉及。
 
 ### 约束与限制
 
