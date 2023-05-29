@@ -45,5 +45,5 @@
 # 约束与限制
 本示例仅支持标准系统上运行，支持设备：RK3568;  
 本示例仅支持API9版本SDK，版本号OpenHarmony3.2 beta3; API与SDK: API Version 9
-本示例需要使用@ohos.multimedia.avsession系统权限的系统接口，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)
+本示例需要使用@ohos.multimedia.avsession系统权限的系统接口，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
 本示例需要使用IDE: DevEco Studio 3.1 Canary1 Build Version: 3.1.0.100, built on November 3, 2022才可以编译运行
