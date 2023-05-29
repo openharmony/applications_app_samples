@@ -120,9 +120,8 @@ export default function abilityTest() {
       // 选择图片,坐标选择
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 pick');
       await driver.click(335, 235);
-      await driver.click(515, 235);
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('2/50'));
+      await driver.assertComponentExist(ON.text('1/50'));
       // 点击完成
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 finish');
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.complete'))));
@@ -145,7 +144,7 @@ export default function abilityTest() {
       let imageList = await driver.findComponents(ON.id('imageShow'));
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 imageList.length=' + imageList.length);
-      if (imageList.length === 3) {
+      if (imageList.length === 2) {
         hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 checkPictureSuccess');
         try {
           // 点击发表
