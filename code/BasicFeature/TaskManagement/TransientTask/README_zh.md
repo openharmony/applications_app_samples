@@ -20,7 +20,7 @@
 
 3.将应用退出到后台后关闭；
 
-4.再次进入应用，页面版本信息由3.1.7.5更新为3.2.8.3。
+4.再次进入应用，页面版本信息由3.1.7.5更新为3.2.8.3；
 
 ### 工程目录
 ```
@@ -63,7 +63,7 @@ entry/src/main/ets/
 
 3.本示例仅支持模块化编译，在build-profile.json5文件的buildOption字段添加"compileMode": "esmodule"；
 
-4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)；
+4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)；
 
 5.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 

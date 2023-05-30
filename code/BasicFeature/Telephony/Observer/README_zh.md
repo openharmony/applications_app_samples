@@ -1,4 +1,4 @@
- # observer
+ # 事件订阅
 
 ### 介绍
 
@@ -48,9 +48,9 @@ observer: 通过注册相关监听事件，来监听手机网络、信号、通�
 
 ### 相关权限
 
-获取网络状态权限:ohos.permission.GET_NETWORK_INFO
+1.获取网络状态权限：[ohos.permission.GET_NETWORK_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_network_info)
 
-获取通话状态权限:ohos.permission.READ_CALL_LOG
+2.获取通话状态权限：[ohos.permission.READ_CALL_LOG](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_call_log)
 
 ### 依赖
 

@@ -52,7 +52,6 @@
       "name": "anyone",
       "value": "anyone"
     },
-
     {
       "name": "choice_number",
       "value": "choice_number"
@@ -119,7 +118,15 @@
     },
     {
       "name": "all_photo",
-      "value":"all_photo"
+      "value": "all_photo"
+    },
+    {
+      "name": "network_not_available",
+      "value": "network not available,please check the config"
+    },
+    {
+      "name": "progress_tip",
+      "value": "2/50"
     }
   ]
 }

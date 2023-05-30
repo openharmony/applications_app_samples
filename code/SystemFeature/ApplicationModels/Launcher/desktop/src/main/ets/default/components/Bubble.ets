@@ -164,10 +164,6 @@ export default struct Bubble {
     let appFormInfo = this.desktopLayoutModel.getAppItemFormInfo(this.appInfo.bundleName)
     if (appFormInfo && appFormInfo.length > 0) {
       this.formInfo = appFormInfo[0]
-      this.customPopup = true
-      setTimeout(() => {
-        this.customPopup = false
-      }, 50)
     }
   }
 

@@ -24,9 +24,7 @@ const BUNDLE = 'Huks_'
 // 返回首页
 async function backToIndexPage(driver) {
   Logger.info(TAG, BUNDLE + 'backToIndexPage begin')
-  await driver.assertComponentExist(ON.id('back'))
-  let btnBack = await driver.findComponent(ON.id('back'))
-  await btnBack.click()
+  await driver.pressBack();
   await driver.delayMs(500)
   await driver.assertComponentExist(ON.id('new_key'))
   await driver.assertComponentExist(ON.id('old_key'))

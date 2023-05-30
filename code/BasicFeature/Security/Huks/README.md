@@ -14,7 +14,7 @@ This sample shows how `@ohos.security.huks` works to implement encryption and de
 button, the encrypted message content will be displayed in the text box below, and then click the **Receive Message** button. The decrypted message content will be displayed in the text box below.
 2. Click the **Back** button in the upper left corner to return to the main interface.
 3. Click on the **Old Key** button on the main page, enter the message content to be sent in the input box of the old key interface, and click **Send Message**
-button, the decrypted message content will be displayed in the text box below. First, click the **Import Key** button, and a pop-up window will prompt that the key was successfully imported. Then, click the **Receive Message** button, and the decrypted message content will be displayed in the text box below.
+button, the encrypted message content will be displayed in the text box below. First, click the **Import Key** button, and a pop-up window will prompt that the key was successfully imported. Then, click the **Receive Message** button, and the decrypted message content will be displayed in the text box below.
 4. Click the **Back** button in the upper left corner to return to the main interface.
 
 ### Constraints

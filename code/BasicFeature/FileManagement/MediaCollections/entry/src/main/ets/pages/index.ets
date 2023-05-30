@@ -28,7 +28,7 @@ import { TitleBar } from '../common/TitleBar'
 import { BroadcastControl } from '../common/BroadcastControl'
 import { Toolkit } from '../common/Toolkit'
 import { StreamingMedia } from '../common/StreamingMedia'
-
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 const TAG: string = 'IndexMain'
 
@@ -68,12 +68,19 @@ struct Index {
 
   async aboutToAppear() {
     MediaUtils.mediaLib = await mediaLibrary.getMediaLibrary(this.context)
-    const PERMISSIONS: Array<string> = [
-      'ohos.permission.WRITE_MEDIA',
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.INTERNET'
-    ]
-    await this.context.requestPermissionsFromUser(PERMISSIONS)
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      await atManager.requestPermissionsFromUser(this.context, [
+        'ohos.permission.WRITE_MEDIA',
+        'ohos.permission.READ_MEDIA',
+        'ohos.permission.INTERNET']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch(err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+    }
     await this.getAudioData()
     await this.getVideoData()
     this.mainDialogController.open()

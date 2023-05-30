@@ -23,6 +23,7 @@ import { RenameDialog } from '../common/RenameDialog'
 import { TitleBar } from '../phoneView/TitleBar'
 import { Toolkit } from '../phoneView/Toolkit'
 import { BroadcastControl } from '../phoneView/BroadcastControl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 const TAG = 'PhoneIndex: '
 
@@ -47,12 +48,19 @@ struct Send {
 
   async aboutToAppear() {
     MediaUtils.mediaLib = await mediaLibrary.getMediaLibrary(this.context)
-    const PERMISSIONS: Array<string> = [
-      'ohos.permission.WRITE_MEDIA',
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.INTERNET'
-    ]
-    await this.context.requestPermissionsFromUser(PERMISSIONS)
+    let atManager = abilityAccessCtrl.createAtManager()
+    try {
+      await atManager.requestPermissionsFromUser(this.context, [
+        'ohos.permission.WRITE_MEDIA',
+        'ohos.permission.READ_MEDIA',
+        'ohos.permission.INTERNET']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      })
+    } catch(err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+    }
     await this.getAudioData()
     await this.getVideoData()
   }

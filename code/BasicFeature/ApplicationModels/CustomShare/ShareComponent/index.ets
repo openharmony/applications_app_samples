@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export  { ButtonDialogBuilder } from './src/main/ets/pages/Dialog'
+export { ButtonDialogBuilder } from './src/main/ets/pages/Dialog';

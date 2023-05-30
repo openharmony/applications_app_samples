@@ -20,6 +20,8 @@ import dataPreferences from '@ohos.data.preferences'
 import Logger from '../module/Logger'
 import router from '@ohos.router'
 
+const TAG: string = '[Sample_CustomCommonEvent_LaunchFeature]'
+
 export default class LaunchFeature {
   private innerContext: common.UIAbilityContext = null
   private pref: dataPreferences.Preferences = null
@@ -82,7 +84,7 @@ export default class LaunchFeature {
   }
 
   private callbackLowFunc = (error, event) => {
-    this.currentRecordTimes = 0
+    this.currentRecordTimes = 1
     this.pref.get(consts.DATA_BASE_KEY_TOTAL_TIMES, []).then((value: Array<string>) => {
       for (let i = 0; i < consts.MAX_RECORD_NUM; i++) {
         this.pref.delete(value[i]).then(() => {
@@ -90,6 +92,9 @@ export default class LaunchFeature {
           this.subscriberLow.finishCommonEvent()
         })
       }
+      let records = value.slice(consts.MAX_RECORD_NUM, consts.MAX_RECORD_NUM + 1)
+      this.pref.put(consts.DATA_BASE_KEY_TOTAL_TIMES, records)
+      this.pref.flush()
     })
   }
 
@@ -133,7 +138,7 @@ export default class LaunchFeature {
 
   jumpToHistory = () => {
     Logger.info("ready to jump to history page")
-    router.push({
+    router.pushUrl({
       url: 'pages/History',
       params: {}
     })
@@ -141,7 +146,7 @@ export default class LaunchFeature {
 
   jumpToSetting = () => {
     Logger.info("ready to jump to setting page")
-    router.push({
+    router.pushUrl({
       url: 'pages/Setting',
       params: {}
     })
@@ -149,7 +154,7 @@ export default class LaunchFeature {
 
   jumpToAbout = () => {
     Logger.info("ready to jump to about page")
-    router.push({
+    router.pushUrl({
       url: 'pages/About',
       params: {}
     })

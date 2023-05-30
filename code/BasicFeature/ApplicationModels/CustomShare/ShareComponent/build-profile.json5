@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
+
 {
-  "apiType": "stageMode",
+  "apiType": 'stageMode',
   "buildOption": {
   },
   "targets": [
     {
-      "name": "default",
+      "name": "default"
     },
     {
       "name": "ohosTest",

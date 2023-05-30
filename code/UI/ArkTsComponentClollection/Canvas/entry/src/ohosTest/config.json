@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.example.canvas",
-    "vendor": "example",
+    "bundleName": "ohos.samples.etscanvas",
+    "vendor": "samples",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -9,11 +9,13 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.example.canvas_test",
+    "package": "com.example.entry_test",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
+    "srcPath": "",
     "deviceType": [
-      "default"
+      "default",
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,
@@ -53,7 +55,7 @@
           "type": "pageAbility"
         },
         "pages": [
-          "pages/index"
+          "pages/Index"
         ],
         "name": ".TestAbility",
         "window": {

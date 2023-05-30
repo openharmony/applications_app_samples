@@ -13,13 +13,19 @@
  * limitations under the License.
  */
 
-import bundleState from '@ohos.bundleState'
+import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 import AppTime from '../model/AppTime'
 import Logger from './Logger'
 import { AppInfo, appInit } from '../model/AppInfo'
 import { getAppName, getAppIcon, getTimStr } from './Util'
 
-const TAG = 'BundleStateUtil'
+const TAG: string = 'BundleStateUtil'
+const BEGIN_HOURS: number = 0
+const BEGIN_MINUTES: number = 0
+const BEGIN_SECONDS: number = 0
+const END_HOURS: number = 23
+const END_MINUTES: number = 59
+const END_SECONDS: number = 59
 
 export class BundleStateUtil {
   private apps: Array<AppInfo> = appInit()
@@ -31,7 +37,7 @@ export class BundleStateUtil {
   async getFreeAppList(): Promise<Array<AppInfo>> {
     for (let appsKey in this.apps) {
       let bundleName = this.apps[appsKey].bundleName
-      let isIdleState = await bundleState.isIdleState(bundleName)
+      let isIdleState = await usageStatistics.isIdleState(bundleName)
       if (isIdleState) {
         this.freeApps.push({ bundleName: bundleName, name: getAppName(bundleName), icon: getAppIcon(bundleName) })
       }
@@ -45,13 +51,18 @@ export class BundleStateUtil {
    */
   async getTotalAppList(): Promise<Array<AppTime>> {
     let dateBegin = new Date()
-    dateBegin.setHours(0)
-    dateBegin.setMinutes(0)
-    dateBegin.setSeconds(0)
+    // 设置开始时间为00:00:00
+    dateBegin.setHours(BEGIN_HOURS)
+    dateBegin.setMinutes(BEGIN_MINUTES)
+    dateBegin.setSeconds(BEGIN_SECONDS)
     Logger.info(TAG, `dateBegin= ${getTimStr(dateBegin)} ${dateBegin.toString()}`)
     let dateEnd = new Date()
+    // 设置结束时间为23:59:59
+    dateEnd.setHours(END_HOURS)
+    dateEnd.setMinutes(END_MINUTES)
+    dateEnd.setSeconds(END_SECONDS)
     Logger.info(TAG, `dateEnd= ${getTimStr(dateEnd)} ${dateEnd.toString()}`)
-    let res = await bundleState.queryBundleStateInfos(Date.parse(dateBegin.toString()), Date.parse(dateEnd.toString()))
+    let res = await usageStatistics.queryBundleStatsInfos(Date.parse(dateBegin.toString()), Date.parse(dateEnd.toString()))
     Logger.info(TAG, `queryBundleStateInfos promise success`)
     let list: Array<AppTime> = []
     for (let key in res) {

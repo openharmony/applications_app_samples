@@ -147,6 +147,7 @@ export default class RemoteDeviceModel {
         if (data === null) {
           return
         }
+        this.discoverList = [];
         logger.info(TAG, `deviceFound data=${JSON.stringify(data)}`)
         logger.info(TAG, `deviceFound this.discoverList=${this.discoverList}`)
         this.deviceFound(data)

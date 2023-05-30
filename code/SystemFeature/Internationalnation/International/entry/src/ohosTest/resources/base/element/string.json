@@ -7,6 +7,14 @@
     {
       "name": "entry_TestAbility",
       "value": "entry_TestAbility"
+    },
+    {
+      "name": "date_and_time",
+      "value": "Date and time"
+    },
+    {
+      "name": "time_zone",
+      "value": "TimeZone"
     }
   ]
 }

@@ -25,7 +25,7 @@ export struct ButtonComponent {
           GridItem() {
             Button({ type: ButtonType.Normal }) {
               Image(item.image)
-                .width('100%')
+                .height('100%')
                 .aspectRatio(index < 3 ? 1 : 0.6)
                 .objectFit(ImageFit.Contain)
             }

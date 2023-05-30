@@ -4,7 +4,20 @@
 
 本实例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。在详情页中通过**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
 
-本实例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
+本实例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。  
+
+本示例用到了延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md) 。  
+
+通知管理的能力接口[@ohos.notification](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notification.md) 。
+
+HTTP数据请求能力接口[@ohos.net.http]( https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md) 。  
+
+媒体查询接口[@system.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-mediaquery.md) 。  
+
+管理窗口能力接口[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md) 。
+
+### 效果预览
+![](screenshots/device/shopping.gif)
 
 使用说明：
 
@@ -20,11 +33,70 @@
 
 6.断开网络链接，“商品详情页”中点击降价通知后，重新连接网络后通知栏有降价通知。
 
-6.新品、购物车、我的目前是静态页面。
+7.新品、购物车、我的目前是静态页面。
 
-效果预览：
+### 工程目录
 
-![](screenshots/device/shopping.gif)
+```
+OrangeShopping
+├── AppScope                                    
+│   └── app.json5                               // APP信息配置文件
+├── entry/src/main                              // 商品主页
+│   ├── ets
+│   │   ├── Application
+│   │   ├── Mainmability                        // 应用入口，在应用创建时进行必要的权限判断
+│   │   ├── pages
+│   │   │   ├── Index.ets                       // 首页的入口，首页加载页面(可点击跳过)
+│   │   │   ├── Detail.ets                      // 商品详情页
+│   │   │   ├── FullPage.ets                    // 商品详情页内的视频组件
+│   │   │   ├── Home.ets                        // 首页
+│   │   │   ├── LivePage.ets                    // 直播页
+│   │   │   ├── ScanPage.ets                    // 二维码扫描组件
+│   │   │   └── Setting.ets                     // 封装http请求页   
+│   │   ├── utils
+│   │   │   ├── RouterUtil.ets                  // 路由跳转配置
+│   │   └── WorkAbility
+│   │       └── WorkAbility.ts
+│   ├── module.json5                            // Module的基本配置信息,应用运行过程中所需的权限信息。
+│   ├── resources/base
+│   │   ├── element                             // 文字信息列表
+│   │   ├── profile                             // 全局路由配置
+│   │   └── media                               // icon图片
+├── feature/detailPage/src/main                 // 商品主页
+│   ├── ets
+│   │   ├── mock                                // mock的数据
+│   │   ├── components                          // 组件模块
+│   │   └── main                                // 商品详情页模块
+├── feature/emitter/src/main                    
+│   ├── ets
+│   │   └── components                          // 订阅购物车模块
+├── feature/navigationHome/src/main             
+│   ├── ets
+│   │   ├── good                                // 商品模块
+│   │   ├── home                                // 首页模块
+│   │   ├── user                                // 用户模块
+│   │   └── shoppingCart                        // 商品购物车模块
+```
+
+### 具体实现
+
+1.应用创建时进行必要的权限判断：在[app.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/entry/src/main/ets/MainAbility/MainAbility.ts )文件中对```"requestPermission"```对象进行权限匹配。如果有如果权限列表中有-1，说明用户拒绝了授权。
+
+2.配置Module信息：
+
+* 在[module.json5]( https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/entry/src/main/module.json5 )文件中配置```"extensionAbilities"```字段
+* 在```"requestPermissions"```标签中添加需要开的权限，例如使用相机拍摄照片和录制视频权限： "name": "ohos.permission.CAMERA"
+
+3.页面跳转: 通过在profile/main_pages.json中先配置好相关路由，并通过router.push()进行页面跳转,例如：跳转到搜索页面router.push({ url: 'pages/Detail' })。
+
+4.多屏监听：在首页加载时会通过mediaquery.matchMediaSync()监听当前屏幕尺寸curBp=[sm代表小屏，md代表中屏，lg代表大屏]，并将当前值存储到Appstorage里，通过AppStorage.SetOrCreate('curBp', this.curBp)。
+
+5.响应式渲染：通过全局的UI状态AppStorage存储，绑定了appstorage的数据会进行响应式屏幕尺寸渲染。  
+
+6.订阅购物车事件：以持久化方式订阅并接收事件回调，持续订阅发布事件。通过emitter.emit(addToShoppingCartId, shoppingCartData)。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/feature/emitter/src/main/ets/components/feature/EmitterClass.ets) 。
+
+
+
 
 ### 相关权限
 
@@ -38,13 +110,13 @@
 
 允许应用在后台运行时获取设备位置信息：[ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
- 允许应用截取屏幕图像 ：[ohos.permission.CAPTURE_SCREEN ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用截取屏幕图像 ：[ohos.permission.CAPTURE_SCREEN ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
- 允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
- 允许应用访问用户媒体文件中的地理位置信息 ：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用访问用户媒体文件中的地理位置信息 ：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
- 允许应用读写用户外部存储中的媒体文件信息  ：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读写用户外部存储中的媒体文件信息  ：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
 ### 依赖
 
@@ -71,7 +143,7 @@
 
 3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
 
-4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 5.本示例需联网运行。
 

@@ -135,7 +135,7 @@ export struct AudioItem {
     .width('100%')
     .height('15%')
     .constraintSize({ minHeight: 100 })
-    .margin({ left: this.translateLeft, right: this.translateRight })
+    .translate({ x: this.translateLeft, y: 0 })
     .gesture(
     GestureGroup(GestureMode.Parallel,
     LongPressGesture({ repeat: true })
