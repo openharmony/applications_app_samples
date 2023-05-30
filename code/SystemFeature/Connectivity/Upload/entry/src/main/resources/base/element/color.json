@@ -17,8 +17,68 @@
       "value": "#B2B2B2"
     },
     {
-      "name": "green",
-      "value": "#08D168"
+      "name": "transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "list_divider",
+      "value": "#eeeeee"
+    },
+    {
+      "name": "color_blend",
+      "value": "#61000000"
+    },
+    {
+      "name": "color_cover",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "request_bar_font",
+      "value": "#191919"
+    },
+    {
+      "name": "font_b2b2b2",
+      "value": "#B2B2B2"
+    },
+    {
+      "name": "completed_color",
+      "value": "#6DD400"
+    },
+    {
+      "name": "download_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "background_fff",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "background_F1F3F5",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "button_available",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "button_disable",
+      "value": "#660A59F7"
+    },
+    {
+      "name": "progress_background",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "download_font_color",
+      "value": "#99000000"
+    },
+    {
+      "name": "progress_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "upload_error_color",
+      "value": "#E84026"
     }
   ]
 }
