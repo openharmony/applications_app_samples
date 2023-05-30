@@ -8,13 +8,13 @@
 2. 音视频播控能力
 3. 音量调节能力
 
-#### 主要实现原理
+### 效果预览
 
-1. 使用媒体库接口进行音视频的扫描，获取音视频详细信息，重命名和删除操作。
-2. 使用媒体服务进行音视频播放，暂停，seek等操作。
-3. 使用屏幕管理接口获取设备宽度进行适配。
+|主页|音频| 视频                                 | 重命名                                 |
+|--------------------------------|--------------------------------|------------------------------------|-------------------------------------|
+|![](screenshots/devices/index.png) |![](screenshots/devices/audio.png)| ![](screenshots/devices/video.png) | ![](screenshots/devices/rename.png) |
 
-#### 使用说明
+使用说明
 
 1. 启动应用，点击音频或视频可以查看本地音视频资源。若本地没有音视频资源，可以push视频到本地媒体库路径，视频路径(storage/media/100/local/files/Videos)  音频路径(storage/media/100/local/files/Audios)，需要先hdc进入storage/media/100/local/files路径下查看是否有Videos/Audios文件夹，没有则需要mkdir Videos/Audios创建文件夹后push音视频资源。
 2. 进入首页，可以通过输入网络地址或点击音频，视频进行播放音视频。
@@ -22,15 +22,64 @@
 4. 点击下一曲、上一曲可以切换音视频，拖动seek可以跳到指定位置播放，点击详细信息可以查看当前音视频信息，视频点击倍速可以开启倍速播放。
 5. 音视频列表左滑可以开启重命名、删除图标，点击对应图标可以进行音视频的重命名和删除。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts
+|---common
+|   |---BroadcastControl.ets                    // 窗口
+|   |---DeleteDialog.ets                        // 删除弹窗
+|   |---IsInformationDialog.ets                 // 信息弹窗
+|   |---mainDialog.ets                          // 弹窗组件
+|   |---MediaItem.ets                           // 音频每一项
+|   |---RenameDialog.ets                        // 重命名
+|   |---StreamingMedia.ets                      // 视频播放
+|   |---TitleBar.ets                            // 首页标题组件
+|   |---Toolkit.ets                             // 工具栏
+|   |---ToolkitItem.ets                         // 工具栏每一项
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---GridData.ts                             // 数据
+|   |---Logger.ts                               // 日志工具
+|   |---MediaUtils.ts                           // 音频方法
+|   |---myMedia.ts                              // 我的
+|   |---Prompt.ts                               // 弹窗
+|   |---TimeTools.ts                            // 时间工具
+|---pages
+|   |---index.ets                               // 首页
+|   |---phoneMain.ets                           // 主页面
+|---phoneView
+|   |---BroadcastControl.ets                    // 窗口
+|   |---GridDataItem.ets                        // 每项数据
+|   |---LoadingDialog.ets                       // 加载
+|   |---TitleBar.ets                            // 标题
+|   |---Toolkit.ets                             // 工具
+```
 
-![](screenshots/devices/index.png)    ![](screenshots/devices/audio.png)    
+### 具体实现
 
-![](screenshots/devices/video.png)    ![](screenshots/devices/rename.png)
+* 获取音频模块
+  * 使用媒体库接口进行音视频的扫描，获取音视频详细信息，重命名和删除操作，使用PixelMap方法读取或写入图像数据以及获取图像信息。
+  * 源码链接：[myMedia.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/model/myMedia.ts)，[IsInformationDialog.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/common/IsInformationDialog.ets)，[DeleteDialog.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/common/DeleteDialog.ets)，[RenameDialog.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/common/RenameDialog.ets)
+  * 接口参考：[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md)
+
+* 音频，视频操作模块
+  * 使用媒体服务进行音视频播放，暂停，seek等操作，其中AudioPlayer方法播放音频，VideoPlayer方法播放视频。
+  * 源码链接：[MediaUtils.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/model/MediaUtils.ts)，[StreamingMedia.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/common/StreamingMedia.ets)
+  * 接口参考：[@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md)，[@ohos.multimedia.audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audio.md)
+
+* 设备适配模块
+  * 使用屏幕管理接口获取设备宽度进行适配。
+  * 源码链接：[MainAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/MainAbility/MainAbility.ts)，[RenameDialog.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/MediaCollections/entry/src/main/ets/common/RenameDialog.ets)
+  * 接口参考：[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md)
 
 ### 相关权限
 
-读取公共媒体文件权限：ohos.permission.READ_MEDIA、读写公共媒体文件权限：ohos.permission.WEITE_MEDIA
+1.读取公共媒体文件权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
+
+2.读写公共媒体文件权限：[ohos.permission.WEITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media)
 
 ### 依赖
 
