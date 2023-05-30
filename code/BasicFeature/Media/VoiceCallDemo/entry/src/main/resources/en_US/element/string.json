@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Voice call sample"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VoiceCallDemo"
+    },
+    {
+      "name": "INTERNET",
+      "value": "INTERNET"
+    },
+    {
+      "name": "MICROPHONE",
+      "value": "MICROPHONE"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "GET_WIFI_INFO"
+    },
+    {
+      "name": "name1",
+      "value": "fengzi"
+    },
+    {
+      "name": "name2",
+      "value": "wenzi"
+    },
+    {
+      "name": "head1",
+      "value": "F"
+    },
+    {
+      "name": "head2",
+      "value": "W"
+    },
+    {
+      "name": "name_default",
+      "value": "none"
+    },
+    {
+      "name": "tips_no_remote",
+      "value": "The other party is not online"
+    },
+    {
+      "name": "tips_call",
+      "value": "Waiting for answering"
+    },
+    {
+      "name": "tips_answer",
+      "value": "Request a call"
+    },
+    {
+      "name": "tips_no_permission",
+      "value": "not grant mic permission"
+    },
+    {
+      "name": "MANAGE_AUDIO_CONFIG",
+      "value": "MANAGE_AUDIO_CONFIG"
+    },
+    {
+      "name": "SYSTEM_FLOAT_WINDOW",
+      "value": "SYSTEM_FLOAT_WINDOW"
+    }
+  ]
+}
