@@ -16,13 +16,18 @@
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import Logger from '../util/Logger'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import type { Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import window from '@ohos.window'
+import display from '@ohos.display'
 
 const TAG: string = '[MainAbility]'
-const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.INTERNET']
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.INTERNET', 'ohos.permission.GET_NETWORK_INFO']
 
 export default class MainAbility extends UIAbility {
+  private windowObj: window.Window
+  private curBp: string
+
   async onCreate(want, launchParam) {
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
@@ -36,6 +41,29 @@ export default class MainAbility extends UIAbility {
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
+  }
+
+  // 根据当前窗口尺寸更新断点
+  private updateBreakpoint(windowWidth) {
+    const dpi = display.getDefaultDisplaySync().densityDPI;
+    // 将长度的单位由px换算为vp
+    let windowWidthVp = windowWidth / (dpi / 160)
+    let newBp: string = ''
+    if (windowWidthVp < 320) {
+      newBp = 'xs'
+    } else if (windowWidthVp < 520) {
+      newBp = 'sm'
+    } else if (windowWidthVp < 840) {
+      newBp = 'md'
+    } else {
+      newBp = 'lg'
+    }
+    if (this.curBp !== newBp) {
+      this.curBp = newBp
+      // 使用状态变量记录当前断点值
+      AppStorage.SetOrCreate('currentBreakpoint', this.curBp)
+    }
+    Logger.info("dpi为：" + dpi + "，窗口更新断点为：" + newBp)
   }
 
   onDestroy() {
@@ -53,11 +81,24 @@ export default class MainAbility extends UIAbility {
       }
       Logger.info(TAG, `Succeeded in loading the content. Data:  ${JSON.stringify(data)}`)
     })
+
+    windowStage.getMainWindow().then((windowObj) => {
+      this.windowObj = windowObj
+      // 获取应用启动时的窗口尺寸
+      this.updateBreakpoint(windowObj.getWindowProperties().windowRect.width)
+      // 注册回调函数，监听窗口尺寸变化
+      windowObj.on('windowSizeChange', (windowSize) => {
+        this.updateBreakpoint(windowSize.width)
+      })
+    });
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
     Logger.info(TAG, `MainAbility onWindowStageDestroy`)
+    if (this.windowObj) {
+      this.windowObj.off('windowSizeChange')
+    }
   }
 
   onForeground() {

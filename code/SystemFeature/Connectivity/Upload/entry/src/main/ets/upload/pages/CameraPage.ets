@@ -14,8 +14,8 @@
  */
 
 import router from '@ohos.router'
-import Logger from '../util/Logger'
-import CameraService from '../feature/CameraService'
+import Logger from '../../util/Logger'
+import CameraService from '../../feature/CameraService'
 
 const TAG: string = '[CameraPage]'
 
@@ -49,23 +49,21 @@ struct CameraPage {
           })
           .height('100%')
           .width('100%')
-          .margin({ bottom: 130 })
+          .margin({ bottom: $r('app.float.camera_page_margin_top') })
         Column() {
           Text($r('app.string.photo'))
-            .id('photo')
             .fontColor(Color.White)
-            .fontSize(18)
-            .margin({ bottom: 20 })
+            .fontSize($r('app.float.camera_page_phone_font_size'))
+            .margin({ bottom: $r('app.float.camera_page_font_bottom_padding') })
           Image($r('app.media.take_photo_normal'))
-            .id('click')
-            .size({ width: 70, height: 70 })
+            .size({ width: $r("app.float.camera_page_image_size"), height: $r("app.float.camera_page_image_size") })
             .onClick(() => {
               this.cameraService.takePicture()
               router.back()
             })
         }
-        .size({ height: 140, width: '100%' })
-        .padding({ bottom: 10 })
+        .size({ height: $r('app.float.camera_page_x_component_height'), width: '100%' })
+        .padding({ bottom: $r('app.float.camera_page_x_component_padding') })
         .backgroundColor(Color.Black)
         .justifyContent(FlexAlign.Center)
       }

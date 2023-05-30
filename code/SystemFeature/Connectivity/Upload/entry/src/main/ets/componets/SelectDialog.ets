@@ -25,30 +25,30 @@ export default struct SelectDialog {
     Column() {
       Text($r('app.string.take_photo'))
         .id('take_photo')
-        .fontSize(18)
+        .fontSize($r('app.float.select_dialog_font_size'))
         .margin({ top: Style.MARGIN_TOP, bottom: Style.MARGIN_BOTTOM })
         .onClick(() => {
           this.controller.close()
-          router.push({
-            url: 'pages/CameraPage',
+          router.pushUrl({
+            url: 'upload/pages/CameraPage',
           })
         })
 
-      Divider().color($r('app.color.gray')).width(1)
+      Divider().color($r('app.color.gray')).width($r('app.float.select_dialog_divider_width'))
 
       Text($r('app.string.pick_album'))
         .id('pick_album')
-        .fontSize(18)
+        .fontSize($r('app.float.select_dialog_font_size'))
         .margin({ top: Style.MARGIN_TOP, bottom: Style.MARGIN_BOTTOM })
         .onClick(() => {
           this.controller.close()
           this.getImage()
         })
 
-      Divider().color($r('app.color.gray')).width(5)
+      Divider().color($r('app.color.gray')).width($r('app.float.select_dialog_divider_width'))
 
       Text($r('app.string.cancel'))
-        .fontSize(18)
+        .fontSize($r('app.float.select_dialog_font_size'))
         .margin({ top: Style.MARGIN_TOP, bottom: Style.MARGIN_BOTTOM })
         .onClick(() => {
           this.controller.close()

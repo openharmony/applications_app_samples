@@ -4,3 +4,7 @@
 **/build
 /.hvigor
 **/package-lock.json
+/entry/.preview/
+/signature/
+/oh_modules/
+oh-package-lock.json5
