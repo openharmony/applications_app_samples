@@ -4,6 +4,12 @@
 
 本示例使用[bundleState](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md)相关接口完成设备中应用时长的统计功能。
 
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![](screenshots/devices/main.png)|
+
 使用说明：
 
 1.顶部的数据面板展示了最常用的五个应用的使用时间占比情况。
@@ -12,11 +18,28 @@
 
 3.底部的横向滑动栏展示了不常用应用列表。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---FreeApps.ets                     // 不常用应用
+|   |---PanelView.ets                    // 使用时长
+|   |---UsageList.ets                    // 使用列表
+|---entryAbility
+|   |---EntryAbility.ts
+|---model
+|   |---HmsTime.ets                      // 时间
+|   |---Logger.ts                        // 日志工具
+|---pages
+|   |---Index.ets                        // 首页
+|---utils
+|   |---DataSource.ets                   // 资源数据
+```
+### 具体实现
 
-|主页|
-|--------------------------------|
-|![](screenshots/devices/main.png)|
+* 该示例使用bundleState接口中isIdleState方法判断指定bundleName的应用当前是否是空闲状态来分类不常用应用列表，queryBundleStateInfos方法通过指定起始和结束时间查询应用使用时长统计信息来获得每个应用的使用总时长。
+* 源码链接：[BundleStateUtil.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/ets/utils/BundleStateUtil.ets)，[FreeApps.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/main/ets/common/FreeApps.ets)，[PanelView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/main/ets/common/PanelView.ets)，[UsageList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/main/ets/common/UsageList.ets)
+* 接口参考：[@ohos.bundleState](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md)
 
 ### 相关权限
 
