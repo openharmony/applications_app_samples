@@ -89,6 +89,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('tab1'));
       let contact = await driver.findComponent(ON.id('tab1'));
       await contact.click();
+      await driver.delayMs(1000);
       // 成功跳转联系人页面(即进入应用主页)
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -177,6 +178,7 @@ export default function abilityTest() {
       expect(legalTelephoneValue).assertEqual('15321465987');
       // 点击确认按钮
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 返回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -201,6 +203,7 @@ export default function abilityTest() {
       // 点击编辑按钮
       let btnEdit = await driver.findComponent(ON.id('editContact'));
       await btnEdit.click();
+      await driver.delayMs(1000);
       // 跳转到编辑联系人页面
       await driver.assertComponentExist(ON.id('cancelEdit'));
       await driver.assertComponentExist(ON.id('confirmEdit'));
@@ -261,6 +264,7 @@ export default function abilityTest() {
       expect(legalUpdatePhoneNumber).assertEqual('15321143568');
       // 点击确认按钮
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 跳转回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -283,6 +287,7 @@ export default function abilityTest() {
       expect(contactInfo).assertEqual('15321143568');
       // 点击键盘回车键跳转到卡片详情页
       await driver.triggerKey(2054);
+      await driver.delayMs(1000);
       // 跳转联系人卡片详情页
       await driver.assertComponentExist(ON.id('back'));
       await driver.assertComponentExist(ON.id('editContact'));
@@ -320,6 +325,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm'))));
       let btnConfirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm'))));
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 跳转回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -351,6 +357,7 @@ export default function abilityTest() {
       // 点击新建联系人
       let addNewContact = await driver.findComponent(ON.id('addContact'));
       await addNewContact.click();
+      await driver.delayMs(1000);
       // 跳转到新建联系人界面
       await driver.assertComponentExist(ON.id('cancel'));
       await driver.assertComponentExist(ON.id('confirm'));
@@ -397,6 +404,7 @@ export default function abilityTest() {
       expect(legalPhoneNumber).assertEqual('17322305685');
       // 点击确认按钮
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 返回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
