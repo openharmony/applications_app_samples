@@ -64,7 +64,7 @@ UDP Socket是面向非连接的协议，它不与对方建立连接，而是直�
 
 1.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
-2.允许应用获取WLAN信息：[ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+2.允许应用获取WLAN信息权限：[ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
 ### 依赖 
 
@@ -72,7 +72,7 @@ UDP Socket是面向非连接的协议，它不与对方建立连接，而是直�
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568。
+1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
 2.本示例仅支持API9版本SDK，版本号：3.2.11.9 及以上。
 
