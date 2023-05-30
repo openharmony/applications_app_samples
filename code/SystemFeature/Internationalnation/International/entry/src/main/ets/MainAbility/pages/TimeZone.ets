@@ -17,40 +17,53 @@ import router from '@ohos.router'
 import systemTime from '@ohos.systemTime'
 import Logger from '../model/Logger'
 import TitleBar from '../view/TitleBar'
+import IntlUtil from '../model/IntlUtil';
 
 
 class TimeZoneInfo {
   key: string
   timeZone: string
-  display: Resource
+  display:  string
 }
 
-const TIME_ZONE_SRC: Array<TimeZoneInfo> = [
-  { key: 'Asia/Shanghai', timeZone: 'GMT+08:00', display: $r('app.string.shanghai') },
-  { key: 'America/New_York', timeZone: 'GMT-05:00', display: $r('app.string.new_york') }
-]
 const TAG: string = 'TimeZone'
 
 @Entry
 @Component
 struct TimeZone {
+  @State timeZoneSrc: TimeZoneInfo[] = [];
+
   async setTimeZone(key) {
-    let timeZone = await systemTime.getTimezone()
-    if (timeZone === key) {
-      router.back()
-      return
+    try {
+      let timeZone = await systemTime.getTimezone();
+      if (timeZone === key) {
+        router.back();
+        return
+      }
+      await systemTime.setTimezone(key);
+      Logger.info(TAG, `setTimezone, ${key}`);
+      router.back();
+    } catch (err) {
+      Logger.error(TAG, JSON.stringify(err));
     }
-    let date = new Date()
-    let currentZone = i18n.getTimeZone(timeZone)
-    let targetZone = i18n.getTimeZone(key)
-    let offsetTime = targetZone.getRawOffset() - currentZone.getRawOffset()
-    Logger.info(TAG, `getOffsetDate getOffset: ${offsetTime}`)
-    let time = date.getTime() + date.getTimezoneOffset() * 60 * 1000 + offsetTime
-    Logger.info(TAG, `getOffsetDate time: ${time}`)
-    await systemTime.setTime(time)
-    await systemTime.setTimezone(key)
-    Logger.info(TAG, `setTimezone, ${key}`)
-    router.back()
+  }
+
+  getTimeZoneSrc() {
+    this.timeZoneSrc = [];
+    let zoneCityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
+    for (let zoneCityId of zoneCityIDs) {
+      let cityDisplayName = i18n.TimeZone.getCityDisplayName(zoneCityId, "zh-Hans");
+      let timeZone = i18n.TimeZone.getTimezoneFromCity(zoneCityId);
+      this.timeZoneSrc.push({
+        key: timeZone.getID(),
+        timeZone: IntlUtil.getTimeZoneShortString(timeZone),
+        display: cityDisplayName
+      })
+    };
+  }
+
+  aboutToAppear() {
+    this.getTimeZoneSrc();
   }
 
   build() {
@@ -58,7 +71,7 @@ struct TimeZone {
       TitleBar({ hasBackPress: true, title: $r('app.string.time_zone') })
       Scroll() {
         Column() {
-          ForEach(TIME_ZONE_SRC, (item, index) => {
+          ForEach(this.timeZoneSrc, (item, index) => {
             Column() {
               if (index !== 0) {
                 Divider()
@@ -78,6 +91,7 @@ struct TimeZone {
                 .width('100%')
                 .margin({ top: 10, bottom: 10 })
             }
+            .id(`time_zone_item${index}`)
             .onClick(() => {
               this.setTimeZone(item.key)
             })
@@ -89,6 +103,7 @@ struct TimeZone {
         .backgroundColor(Color.White)
         .border({ color: Color.White, width: 1, radius: 15 })
       }
+      .height('92%')
     }
     .width('100%')
     .height('100%')
