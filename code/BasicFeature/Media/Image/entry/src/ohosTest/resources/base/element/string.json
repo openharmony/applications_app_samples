@@ -14,23 +14,23 @@
     },
     {
       "name": "camera",
-      "value": "相机"
+      "value": "鐩告満"
     },
     {
       "name": "video",
-      "value": "录像"
+      "value": "褰曞儚"
     },
     {
       "name": "image",
-      "value": "图片处理"
+      "value": "鍥剧墖澶勭悊"
     },
     {
       "name": "take_photo",
-      "value": "拍照"
+      "value": "鎷嶇収"
     },
     {
       "name": "allow",
-      "value": "允许"
+      "value": "鍏佽"
     }
   ]
 }
