@@ -50,7 +50,6 @@
           "pages/index/index",
           "pages/animation/index/index",
           "pages/gradient/index",
-          "pages/customfont/index",
           "pages/transitions/index/index",
           "pages/transitions/sharedelement/sharedelement",
           "pages/transitions/sharedtargetpage/sharedtargetpage",
