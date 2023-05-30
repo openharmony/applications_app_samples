@@ -81,14 +81,6 @@
       "value": "24小时制"
     },
     {
-      "name": "shanghai",
-      "value": "上海（中国）"
-    },
-    {
-      "name": "new_york",
-      "value": "东部时间（美国）"
-    },
-    {
       "name": "screen_direction",
       "value": "屏幕方向:"
     },
