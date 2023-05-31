@@ -13,32 +13,39 @@
  * limitations under the License.
  */
 
-import commonEvent from '@ohos.commonEvent'
-import common from '@ohos.app.ability.common'
-import settingFeature from '../feature/SettingFeature'
-import surveillanceEventsManager from '../module/SurveillanceEventsManager'
-import { Header } from '../component/Header'
+import commonEvent from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
+import settingFeature from '../feature/SettingFeature';
+import { Header } from '../component/Header';
+
+class EventData {
+  event: string;
+  title: Resource
+}
 
 @Entry
 @Component
 struct Setting {
-  private feature:settingFeature = new settingFeature(getContext() as common.UIAbilityContext)
-  private dataSource: Array<Array<any>> = [
-    [commonEvent.Support.COMMON_EVENT_WIFI_POWER_STATE, $r('app.string.enable_wifi')],
-    [commonEvent.Support.COMMON_EVENT_SCREEN_OFF, $r('app.string.enable_screen_off')],
-    [commonEvent.Support.COMMON_EVENT_SCREEN_ON, $r('app.string.enable_screen_on')]
-  ]
+  private feature: settingFeature = new settingFeature(getContext() as common.UIAbilityContext);
+  private dataSource: Array<EventData> = [
+    { event: commonEvent.Support.COMMON_EVENT_WIFI_POWER_STATE, title: $r('app.string.enable_wifi') },
+    { event: commonEvent.Support.COMMON_EVENT_SCREEN_OFF, title: $r('app.string.enable_screen_off') },
+    { event: commonEvent.Support.COMMON_EVENT_SCREEN_ON, title: $r('app.string.enable_screen_on') },
+    { event: commonEvent.Support.COMMON_EVENT_SCREEN_LOCKED, title: $r('app.string.enable_screen_locked') },
+    { event: commonEvent.Support.COMMON_EVENT_SCREEN_UNLOCKED, title: $r('app.string.enable_screen_unlocked') }
+  ];
+
   aboutToAppear() {
-    this.feature.init()
+    this.feature.init();
   }
 
   build() {
     Column({ space: 8 }) {
-      Header({src: 'settingTitle.png'})
+      Header({ src: 'settingTitle.png' })
       Column() {
-        ForEach(this.dataSource, (item: Array<any>) => {
+        ForEach(this.dataSource, (item: EventData) => {
           Column() {
-            Text(item[1])
+            Text(item.title)
               .width('100%')
               .height('20%')
               .fontSize(14)
@@ -47,42 +54,44 @@ struct Setting {
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
               Column() {
                 Text($r('app.string.always')).fontSize(14)
-                Radio({ value: 'always', group: item[0] })
-                  .id(item[0]+'0')
-                  .checked(this.feature.checkStateForAlways(item[0]))
+                Radio({ value: 'always', group: item.event })
+                  .id(item.event + '0')
+                  .checked(this.feature.checkStateForAlways(item.event))
                   .height(20)
                   .width(20)
                   .onChange((value: boolean) => {
                     if (value) {
-                      this.feature.changeStateToAlways(item[0])
+                      this.feature.changeStateToAlways(item.event)
                     }
                   })
               }
+
               Divider().vertical(true).margin(20).height(20)
               Column() {
                 Text($r('app.string.once')).fontSize(14)
-                Radio({ value: 'once', group: item[0] })
-                  .id(item[0]+'1')
-                  .checked(this.feature.checkStateForOnce(item[0]))
+                Radio({ value: 'once', group: item.event })
+                  .id(item.event + '1')
+                  .checked(this.feature.checkStateForOnce(item.event))
                   .height(20)
                   .width(20)
                   .onChange((value: boolean) => {
                     if (value) {
-                      this.feature.changeStateToOnce(item[0])
+                      this.feature.changeStateToOnce(item.event)
                     }
                   })
               }
+
               Divider().vertical(true).margin(20).height(20)
               Column() {
                 Text($r('app.string.never')).fontSize(14)
-                Radio({ value: 'never', group: item[0] })
-                  .id(item[0]+'2')
-                  .checked(this.feature.checkStateForNever(item[0]))
+                Radio({ value: 'never', group: item.event })
+                  .id(item.event + '2')
+                  .checked(this.feature.checkStateForNever(item.event))
                   .height(20)
                   .width(20)
                   .onChange((value: boolean) => {
                     if (value) {
-                      this.feature.changeStateToNever(item[0])
+                      this.feature.changeStateToNever(item.event)
                     }
                   })
               }

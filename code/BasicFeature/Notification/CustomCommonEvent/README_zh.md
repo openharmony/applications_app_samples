@@ -4,7 +4,7 @@
 
 本示例主要展示了公共事件相关的功能，实现了一个检测用户部分行为的应用。具体而言实现了如下几点功能：
 
-1.通过订阅系统公共事件，实现对用户操作行为（亮灭屏、断联网）的监测；
+1.通过订阅系统公共事件，实现对用户操作行为（亮灭屏、锁屏和解锁屏幕、断联网）的监测；
 
 2.通过在用户主动停止监测行为时发布自定义有序公共事件，实现对用户主动触发监听行为的持久化记录；
 
@@ -24,7 +24,7 @@
 
 2.进入应用显示菜单页，可选择“进入”，“历史”，“设置”及“关于”几个选项。
 
-3.点击“进入”后跳转至主页面，点击主页面“开始监控”按钮，将开始监听系统公共事件，并进行计时，此时按钮内容变更为“停止监听”；点击停止监听按钮，页面上将显示本次监听时长及监听期间收到的干扰信息汇总，并在页面右下角显示“查看详情”按钮，点击按钮将跳转至详情页，显示监听期间收到的干扰信息，应用当前仅监听了亮灭屏、断联网等用户可操作的系统公共事件，后续可根据需求快速扩展。
+3.点击“进入”后跳转至主页面，点击主页面“开始监控”按钮，将开始监听系统公共事件，并进行计时，此时按钮内容变更为“停止监听”；点击停止监听按钮，页面上将显示本次监听时长及监听期间收到的干扰信息汇总，并在页面右下角显示“查看详情”按钮，点击按钮将跳转至详情页，显示监听期间收到的干扰信息，应用当前仅监听了亮灭屏、锁屏和解锁屏幕、断联网等用户可操作的系统公共事件，后续可根据需求快速扩展。
 
 4.返回至应用菜单页面，点击“历史”可查看用户操作监听的历史记录，当前支持每次运行期间最多存储20条历史记录，超过20条后将删除历史数据。
 
@@ -76,12 +76,12 @@ entry/src/main/ets/
     * 参考接口：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)
   
   * 设置模块
-    * 本模块分为三个事件，分别为记录联网事件，记录灭屏事件，记录亮屏事件，每一个事件都可进行一直，仅本次和从不的单项选择，使用到应用文上下文吗，CommonEvent.publish发布公共事件，getPreferences方法获取Preferences实例进行功能页面开发
+    * 本模块分为三个事件，分别为记录联网事件，记录灭屏事件，记录亮屏事件，进行锁屏事件、进行解锁屏幕事件，每一个事件都可进行一直，仅本次和从不的单项选择，使用到应用文上下文吗，CommonEvent.publish发布公共事件，getPreferences方法获取Preferences实例进行功能页面开发。
     * 源码链接：[Header.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/component/Header.ets)，[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts)，[SettingFeature.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/feature/SettingFeature.ts)，[SurveillanceEventsManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/SurveillanceEventsManager.ts)
     * 参考接口：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)，[@ohos.commonEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEvent.md),[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.commonEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEvent.md)
   
   * 关于模块
-    * 该模块开发主要介绍了本示例的功能作用以及说明了什么情况下不能使用
+    * 该模块开发主要介绍了本示例的功能作用以及说明了什么情况下不能使用。
     * 源码链接：[Header.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/component/Header.ets)，[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts)
     
 ### 相关权限
@@ -97,7 +97,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例已适配API version 10版本SDK，版本号：4.0.7.2。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
 

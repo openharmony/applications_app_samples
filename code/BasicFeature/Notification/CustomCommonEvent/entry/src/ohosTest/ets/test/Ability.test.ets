@@ -62,10 +62,6 @@ export default function abilityTest() {
       await startOrStop.click();
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('当前监听状态：', MatchPattern.CONTAINS));
-      commonEventManager.publish(commonEventManager.Support.COMMON_EVENT_SCREEN_OFF, () => {
-      })
-      commonEventManager.publish(commonEventManager.Support.COMMON_EVENT_SCREEN_ON, () => {
-      })
       await driver.delayMs(200);
       await startOrStop.click();
       await driver.delayMs(200);
@@ -81,7 +77,7 @@ export default function abilityTest() {
       let nextDetail = await driver.findComponent(ON.id('nextDetail'));
       await nextDetail.click();
       await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text('event.', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.id('onceEventText'));
       // 返回首页
       await driver.pressBack();
       await driver.delayMs(500);
