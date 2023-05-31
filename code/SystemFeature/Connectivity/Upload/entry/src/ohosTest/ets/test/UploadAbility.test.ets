@@ -19,11 +19,13 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import hilog from '@ohos.hilog';
 import { getString } from '../util/ResourceUtil'
 
+
 const TAG: string = '[Sample_Upload]'
 const DOMAIN = 0xF811
 const BUNDLE = 'Upload_'
 const WAITING_TIME = 1000
 const LONG_WAITING_TIME = 3000
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function uploadAbilityTest() {
   describe('uploadAbilityTest', function () {
@@ -248,6 +250,76 @@ export default function uploadAbilityTest() {
       }
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 end');
+    })
+
+    /**
+     * 进入下载界面
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async ()=>{
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      let driver = await Driver.create();
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
+      await driver.pressBack();
+      await driver.delayMs(WAITING_TIME);
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.download_sample'))));
+      let downloadBtn=await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.download_sample'))));
+      await downloadBtn.click();
+      await driver.delayMs(WAITING_TIME);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
+    })
+
+    /**
+     * 网络检查弹窗
+     */
+    it(BUNDLE + 'CheckNetworkAvailable_001', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CheckNetworkAvailable_001 begin');
+      let driver = await Driver.create();
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
+      await driver.delayMs(WAITING_TIME);
+
+      // const tip0 = await getString($r('app.string.network_not_available'))
+      let text = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.get_fileList_fail'))));
+      if (text) {
+        isNetAvailable = false;
+        hilog.info(DOMAIN, TAG, BUNDLE + 'CheckNetworkAvailable_001 network not available');
+        const str = await getString($r('app.string.confirm'));
+        let bt = ON.text(str);
+        await driver.assertComponentExist(bt);
+        let btnAccept = await driver.findComponent(bt);
+        await btnAccept.click();
+        await driver.delayMs(WAITING_TIME);
+        hilog.info(DOMAIN, TAG, BUNDLE + 'CheckNetworkAvailable_001 network not available button confirm');
+      }
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CheckNetworkAvailable_001 end');
+    })
+
+    /**
+     * 点击全部下载按钮
+     */
+    it(BUNDLE + 'StartDownload_001', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartDownload_001 begin');
+      let driver = await Driver.create();
+      let download = ON.id("finish").type("Button");
+      await driver.assertComponentExist(download);
+      let downloadButton = await driver.findComponent(download);
+      await downloadButton.click();
+      await driver.delayMs(WAITING_TIME);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartDownload_001 end');
+    })
+
+    /**
+     * 等待全部下载完成提示
+     */
+    it(BUNDLE + 'DownloadFinish_001', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DownloadFinish_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(WAITING_TIME);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DownloadFinish_001 end');
     })
   })
 }
