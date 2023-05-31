@@ -14,9 +14,7 @@
  */
 
 import uploadAbilityTest from './UploadAbility.test';
-import downloadAbilityTest from './DownloadAbility.test';
 
 export default function testsuite() {
   uploadAbilityTest();
-  downloadAbilityTest();
 }

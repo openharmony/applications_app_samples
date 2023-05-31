@@ -127,6 +127,14 @@
     {
       "name": "progress_tip",
       "value": "2/50"
+    },
+    {
+      "name": "download_sample",
+      "value": "download_sample"
+    },
+    {
+      "name": "get_fileList_fail",
+      "value": "get_fileList_fail"
     }
   ]
 }
