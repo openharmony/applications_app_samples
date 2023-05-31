@@ -230,7 +230,7 @@ struct MyGridItem {
 
   build() {
     Text(`${this.gridData.data === 0 ? '' : this.gridData.data}`)
-      .fontSize(50)
+      .fontSize(30)
       .fontColor(this.gridData.data <= 4 ? '#000' : $r('app.color.score_color'))
       .fontWeight(FontWeight.Bolder)
       .width('100%')
