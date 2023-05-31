@@ -37,6 +37,6 @@
 
 3.本示例不支持点击tab页签，切换网页并刷新页面。
 
-4.本示例涉及使用系统接口：@ohos.systemparameter，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+4.本示例涉及使用系统接口：@ohos.systemparameter，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 5.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version： 3.0.0.992， built on July 14， 2022)才可编译运行。
