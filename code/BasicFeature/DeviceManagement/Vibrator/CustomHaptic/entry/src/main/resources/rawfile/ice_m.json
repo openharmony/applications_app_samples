@@ -1,0 +1,71 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 18
+						},
+						"StartTime" : 68,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 92,
+							"Intensity" : 41
+						},
+						"StartTime" : 103,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 85,
+						"Parameters" : 
+						{
+							"Frequency" : 96,
+							"Intensity" : 68
+						},
+						"StartTime" : 140,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 53,
+						"Parameters" : 
+						{
+							"Frequency" : 88,
+							"Intensity" : 43
+						},
+						"StartTime" : 245,
+						"Type" : "continuous"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-17",
+		"Discription" : "A json file format demo",
+		"Version" : 1.0
+	}
+}
