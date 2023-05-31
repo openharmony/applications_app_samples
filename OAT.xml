@@ -61,6 +61,9 @@ Note:If the text contains special characters, please escape them according to th
             <policy name="projectPolicy" desc="">
                 <policyitem type="copyright" name="Hunan OpenValley Digital Industry Development Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By OpenValley Digital Co., Ltd."/>
             </policy>
+            <policy name="projectPolicy" desc="">
+                <policyitem type="copyright" name="Fujian Newland Auto-ID Tech.Co.,Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By Fujian Newland Auto-ID Tech.Co.,Ltd."/>
+            </policy>
         </policylist>
         <filefilterlist>
             <filefilter name="licenseFileNamePolicyFilter" desc="Filters for LICENSE file policies">
