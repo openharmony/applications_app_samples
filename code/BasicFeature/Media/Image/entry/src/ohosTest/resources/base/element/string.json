@@ -11,6 +11,26 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "camera",
+      "value": "相机"
+    },
+    {
+      "name": "video",
+      "value": "录像"
+    },
+    {
+      "name": "image",
+      "value": "图片处理"
+    },
+    {
+      "name": "take_photo",
+      "value": "拍照"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
     }
   ]
 }

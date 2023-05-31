@@ -21,7 +21,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 const BUNDLE = 'TransientTask_';
 const TAG = '[Sample_TransientTask]';
 const DOMAIN = 0xF811;
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 // 资源本地化
 async function getResourceString(resource: Resource): Promise<string> {
   let resMgr = abilityDelegator.getAppContext().resourceManager;
@@ -61,8 +61,10 @@ export default function abilityTest() {
       await checkBtn.click();
       hilog.info(DOMAIN, TAG, BUNDLE + 'UpgradeFunction_001 clickCheckButton');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.update'))));
-      let okBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.update'))));
+      let test = await getResourceString($r('app.string.update'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'test111:' + test);
+      await driver.assertComponentExist(ON.text(test));
+      let okBtn = await driver.findComponent(ON.text(test));
       await okBtn.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'UpgradeFunction_001 end');

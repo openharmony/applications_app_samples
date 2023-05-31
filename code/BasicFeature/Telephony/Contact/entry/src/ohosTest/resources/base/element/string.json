@@ -11,6 +11,18 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
     }
   ]
 }

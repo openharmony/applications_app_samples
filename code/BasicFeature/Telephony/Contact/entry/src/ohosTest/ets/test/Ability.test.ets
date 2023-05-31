@@ -21,6 +21,14 @@ import Logger from '../../../main/ets/data/Logger';
 const BUNDLE = 'Contact';
 const TAG: string = '[Sample_Contact]';
 
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let resMgr = abilityDelegator.getAppContext().resourceManager;
+  let text = await resMgr.getStringValue(resource);
+  return text;
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     /**
@@ -28,7 +36,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
           bundleName: 'ohos.samples.contact',
@@ -52,8 +59,8 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 获取通讯录访问权限
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission');
-      await driver.assertComponentExist(ON.text('允许'));
-      let btnAccept = await driver.findComponent(ON.text('允许'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))));
+      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow'))));
       await btnAccept.click();
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end');
     })
@@ -82,6 +89,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('tab1'));
       let contact = await driver.findComponent(ON.id('tab1'));
       await contact.click();
+      await driver.delayMs(1000);
       // 成功跳转联系人页面(即进入应用主页)
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -170,6 +178,7 @@ export default function abilityTest() {
       expect(legalTelephoneValue).assertEqual('15321465987');
       // 点击确认按钮
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 返回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -194,6 +203,7 @@ export default function abilityTest() {
       // 点击编辑按钮
       let btnEdit = await driver.findComponent(ON.id('editContact'));
       await btnEdit.click();
+      await driver.delayMs(1000);
       // 跳转到编辑联系人页面
       await driver.assertComponentExist(ON.id('cancelEdit'));
       await driver.assertComponentExist(ON.id('confirmEdit'));
@@ -254,6 +264,7 @@ export default function abilityTest() {
       expect(legalUpdatePhoneNumber).assertEqual('15321143568');
       // 点击确认按钮
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 跳转回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -276,6 +287,7 @@ export default function abilityTest() {
       expect(contactInfo).assertEqual('15321143568');
       // 点击键盘回车键跳转到卡片详情页
       await driver.triggerKey(2054);
+      await driver.delayMs(1000);
       // 跳转联系人卡片详情页
       await driver.assertComponentExist(ON.id('back'));
       await driver.assertComponentExist(ON.id('editContact'));
@@ -295,11 +307,12 @@ export default function abilityTest() {
       let deleteContact = await driver.findComponent(ON.id('deleteContact'));
       await deleteContact.click();
       // 弹出警告弹窗
-      await driver.assertComponentExist(ON.text('确认'));
-      await driver.assertComponentExist(ON.text('取消'));
+
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm'))));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.cancel'))));
       // 点击取消按钮，弹窗消失
-      await driver.assertComponentExist(ON.text('取消'));
-      let btnCancel = await driver.findComponent(ON.text('取消'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.cancel'))));
+      let btnCancel = await driver.findComponent(ON.text(await getResourceString($r('app.string.cancel'))));
       await btnCancel.click();
       // 停留在联系人卡片详情页
       await driver.assertComponentExist(ON.id('back'));
@@ -309,9 +322,10 @@ export default function abilityTest() {
       await deleteContact.click();
       await driver.delayMs(1000);
       // 点击确认
-      await driver.assertComponentExist(ON.text('确认'));
-      let btnConfirm = await driver.findComponent(ON.text('确认'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm'))));
+      let btnConfirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm'))));
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 跳转回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));
@@ -343,6 +357,7 @@ export default function abilityTest() {
       // 点击新建联系人
       let addNewContact = await driver.findComponent(ON.id('addContact'));
       await addNewContact.click();
+      await driver.delayMs(1000);
       // 跳转到新建联系人界面
       await driver.assertComponentExist(ON.id('cancel'));
       await driver.assertComponentExist(ON.id('confirm'));
@@ -389,6 +404,7 @@ export default function abilityTest() {
       expect(legalPhoneNumber).assertEqual('17322305685');
       // 点击确认按钮
       await btnConfirm.click();
+      await driver.delayMs(1000);
       // 返回主页
       await driver.assertComponentExist(ON.id('add'));
       await driver.assertComponentExist(ON.id('setting'));

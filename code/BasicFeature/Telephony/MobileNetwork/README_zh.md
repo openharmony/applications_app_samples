@@ -8,6 +8,12 @@
 
 本示例使用 [SystemCapability.Telephony.CellularData系统能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。
 
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![](screenshots/device/index.png)|
+
 使用说明：
 
 1.默认移动数据的SIM卡背景色显示为蓝色。
@@ -18,9 +24,26 @@
 
 4.显示打开本应用时数据流类型及连接状态。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---AbilityStage.ts
+|---common
+|   |---NetWork.ets                    // 网络连接
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---NetworkMobile.ts               // 蜂窝数据
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+```
+### 具体实现
 
-![](screenshots/device/index.png)
+* 该示例使用蜂窝数据接口，getDefaultCellularDataSlotId方法获取默认移动数据的SIM卡，isCellularDataEnabled方法检查蜂窝数据业务是否启用，isCellularDataRoamingEnabled方法检查蜂窝数据业务是否启用漫游，getCellularDataFlowType方法获取蜂窝数据业务的上下行状态，getCellularDataState方法获取分组交换域（PS域）的连接状态等方法获取SIM卡相关信息，展示打开本应用时网络信息。
+* 源码链接：[NetWork.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/MobileNetwork/entry/src/main/ets/common/NetWork.ets)，[NetworkMobile.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/MobileNetwork/entry/src/main/ets/model/NetworkMobile.ts)
+* 接口参考：[@ohos.telephony.data](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-telephony-data.md)
 
 ### 依赖
 
