@@ -342,7 +342,6 @@ struct PresentPage {
             .width('100%')
             .id('ThirdMusicInQueue')
             .onClick(() => {
-              Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][2].itemId);
               this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][2].itemId);
             })
           }
@@ -387,6 +386,6 @@ struct PresentPage {
     Log.info(TAG, 'get media height : ' + height);
     height += (this.isShowQueue ? 165 : 0); // 165 is the length given from UX designer
     Log.info(TAG, 'get total height : ' + height);
-    return String(height) + 'vp';
+    return String(height + 40) + 'vp';
   }
 }
