@@ -4,9 +4,13 @@
 
  该示例展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
 
+### 效果预览
 
+|获取媒体权限|获取录音权限|应用主界面|录制过程界面|
+|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+|![image](screenshots/device/user_grant1.png)|![image](screenshots/device/user_grant2.png)|![image](screenshots/device/main.png)|![image](screenshots/device/recording.png)|
 
-### 使用说明
+使用说明
 
 1.启动应用，首次启动需要用户授予“**访问媒体和文件**”和“**麦克风**”的权限
 
@@ -18,17 +22,23 @@
 
 5.打开图库应用，在图库中可以看到最新录屏的媒体文件，点击后可支持录屏回放。
 
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---Constants.ts                // 数据初始化
+|   |---Logger.ts                   // 日志工具
+|---MainAbility
+|   |---MainAbility.ts
+|---pages
+|   |---index.ets                   // 首页
+|   |---ScreenRecordre.ets          // 屏幕录制
+```
+### 具体实现
 
-
-### 效果预览
-
-实现效果如下：
-
-|获取媒体权限|获取录音权限|应用主界面|录制过程界面|
-|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![image](screenshots/device/user_grant1.png)|![image](screenshots/device/user_grant2.png)|![image](screenshots/device/main.png)|![image](screenshots/device/recording.png)|
-
-
+* 该示例通过Screen方法获取屏幕实例，createVirtualScreen方法创建一个虚拟屏，getAllScreens方法获取获取所有的屏幕，makeMirror方法将屏幕设置为镜像模式，setVirtualScreenSurface方法设置虚拟屏幕的surface，display接口捕获屏幕显示图形帧，media，mediaLibrary接口完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能。
+* 源码链接：[ScreenRecorder.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Media/ScreenRecorder/entry/src/main/ets/pages/ScreenRecorder.ets)
+* 接口参考：[@ohos.screen](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screen.md)，[@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-media.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md)
 
 ### 相关权限
 
@@ -49,7 +59,9 @@ ohos.permission.CAPTURE_SCREEN
 
 具体[参考指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)。
 
+### 依赖
 
+不涉及。
 
 ### 约束与限制
 
