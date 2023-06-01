@@ -344,7 +344,7 @@
   <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="1" x:str><strong>语言基础类库</strong></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/JsWorker">启动一个worker</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/ConcurrentModule">多线程任务</a></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
   <td ></td>
  </tr>

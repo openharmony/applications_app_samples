@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ConcurrentModule"
+    },
+    {
+      "name": "Text_desc",
+      "value": "请输入待排序字符串，并以逗号分割"
+    },
+    {
+      "name": "Result_desc",
+      "value": "执行结果"
+    },
+    {
+      "name": "SortString_desc",
+      "value": "字符串排序"
+    },
+    {
+      "name": "Clear_desc",
+      "value": "清除"
+    },
+    {
+      "name": "Execute_After_3s_desc",
+      "value": "超时3s执行"
+    },
+    {
+      "name": "Execute_Immediately_desc",
+      "value": "立即执行"
+    },
+    {
+      "name": "Function_Task_desc",
+      "value": "函数任务"
+    },
+    {
+      "name": "Cancel_Task_desc",
+      "value": "取消任务"
+    }
+  ]
+}
