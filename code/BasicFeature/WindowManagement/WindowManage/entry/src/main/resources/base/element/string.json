@@ -42,11 +42,7 @@
     },
     {
       "name": "pages_text",
-      "value": "窗口视频"
-    },
-    {
-      "name": "pages_textTwo",
-      "value": "全屏播放并切换窗口方向"
+      "value": "window video"
     }
   ]
 }

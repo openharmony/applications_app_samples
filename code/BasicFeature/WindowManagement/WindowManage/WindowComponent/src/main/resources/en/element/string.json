@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "foreground",
+      "value": "Foreground"
+    },
+    {
+      "name": "get_focus",
+      "value": "Get Focus"
+    },
+    {
+      "name": "lose_focus",
+      "value": "Lose Focus"
+    },
+    {
+      "name": "unknown",
+      "value": "Unknown"
+    }
+  ]
+}
