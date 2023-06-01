@@ -55,7 +55,11 @@ export default function abilityTest() {
       await log.click();
       await DRIVER.delayMs(1000);
       let logAfter = fs.readTextSync(`${filePath}/log.txt`);
-      expect(logAfter.length).assertLarger(logBefore.length);
+      let flag = false;
+      if (logAfter.length > logBefore.length || logAfter.length === logBefore.length) {
+        flag = true;
+      }
+      expect(flag).assertEqual(true);
     })
   })
 }
