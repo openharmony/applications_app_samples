@@ -53,6 +53,7 @@ export struct WindowComponent {
 struct VideoWindow {
   @State isPlaying: boolean = false
   @Link videoSrc: Resource
+  @StorageLink('focusText') focusText: string = 'unknown';
   videoController: VideoController = new VideoController()
   private context: common.UIAbilityContext
   private subWindow: window.WindowStage
@@ -72,39 +73,39 @@ struct VideoWindow {
 
   build() {
     Column() {
-      Video({
-        src: this.videoSrc,
-        currentProgressRate: PlaybackSpeed.Speed_Forward_1_00_X,
-        controller: this.videoController
-      })
-        .id('mainVideo')
-        .width(400)
-        .height(250)
-        .margin(5)
-        .loop(false)
-        .objectFit(ImageFit.Contain)
-        .muted(false)
-        .controls(true)
-        .autoPlay(true)
-        .onClick(async () => {
-          Logger.info('onClick')
-          if (this.showSubWindow) {
-            this.videoController.start()
-            let windows = await this.subWindow?.getSubWindow()
-            windows[0]?.destroyWindow()
-            this.showSubWindow = false
-          } else {
-            this.videoController.pause()
-            WindowManger.initSubWindow(this.subWindow, windowAttribute)
-            this.showSubWindow = true
-          }
+      Column() {
+        Video({
+          src: this.videoSrc,
+          currentProgressRate: PlaybackSpeed.Speed_Forward_1_00_X,
+          controller: this.videoController
         })
-        .onStart(() => {
-          this.isPlaying = true
-        })
-        .onPause(() => {
-          this.isPlaying = false
-        })
+          .width(400)
+          .height(250)
+          .margin(5)
+          .loop(false)
+          .objectFit(ImageFit.Contain)
+          .muted(false)
+          .controls(true)
+          .autoPlay(true)
+          .onClick(async () => {
+            Logger.info('onClick')
+            if (this.showSubWindow) {
+              this.videoController.start()
+              let windows = await this.subWindow?.getSubWindow()
+              windows[0]?.destroyWindow()
+              this.showSubWindow = false
+            } else {
+              this.videoController.pause()
+              WindowManger.initSubWindow(this.subWindow, windowAttribute)
+              this.showSubWindow = true
+            }
+          })
+          .onStart(() => {
+            this.isPlaying = true
+          })
+          .onPause(() => {
+            this.isPlaying = false
+          })
 
       Button($r("app.string.pages_textTwo"))
         .id('windowBtn')
@@ -117,6 +118,13 @@ struct VideoWindow {
             this.isPortrait = true
           }
         })
+      }
+      .height('75%')
+      Column() {
+        Text(this.focusText)
+          .fontSize(50)
+      }
+      .align(Alignment.Bottom)
     }
   }
 }

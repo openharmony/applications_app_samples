@@ -64,6 +64,55 @@ class WindowManger {
         AppStorage.SetOrCreate<number>("bottomHeight", area.bottomRect.height)
       }
     })
+    try {
+      windowStage.getMainWindow().then((data) => {
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data))
+        data.on('windowEvent', (data) => {
+          console.info('Main Window event happened. Event:' + JSON.stringify(data));
+        });
+      }).catch((err) => {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+      })
+      subWindow.setWindowFocusable(true, (err) => {
+        if (err.code) {
+          console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the window to be focusable.');
+      });
+      subWindow.on('windowEvent', (data) => {
+        console.info('Sub Window event happened. Event:' + JSON.stringify(data));
+        let message =""
+        switch(JSON.stringify(data)){
+          case '1':
+            message = "切到前台";
+            break;
+          case '2':
+            message = "获焦状态";
+            break;
+          case '3':
+            message = "失焦状态";
+            break;
+          default:
+            message = 'unknown';
+            break;
+        }
+        AppStorage.SetOrCreate('focusText', message);
+      });
+    } catch (exception) {
+      console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+    }
+
+    try {
+      windowStage.on('windowStageEvent', (data) => {
+        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+        JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to enable the listener for window stage event changes. Cause:' +
+      JSON.stringify(exception));
+    };
+
     Logger.info('show')
     subWindow.resize(320, 240) // 长320vp，宽240vp
     subWindow.moveWindowTo(10, 500) // 移动至坐标x为10，y为500的位置
