@@ -66,7 +66,7 @@ export default struct BattleLayout {
               Logger.info(TAG, Item.id.toString() + ' ' + Item.name + ' ' + Item.audioName)
             })
           }
-        }) //LazyForEach
+        }) // LazyForEach
       }.listDirection(Axis.Vertical)
       .divider({ strokeWidth: 3, color: "#00f3f3f3", startMargin: 0, endMargin: 0 })
       .height('50%')

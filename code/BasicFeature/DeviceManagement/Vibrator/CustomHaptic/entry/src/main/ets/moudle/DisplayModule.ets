@@ -29,7 +29,7 @@ import TabBar from '../moudle/TabBar'
 
 const TAG = '[DisplayModule]'
 
-export enum tabIndex {
+export enum TabIndex {
   RACING = 0,
   BATTLE,
   SHOOT,
@@ -109,39 +109,39 @@ export default struct DisplayModule {
           Swiper(this.swiperController) {
             ForEach(this.titleArr, (item) => {
               Column() {
-                if (this.currentIndex === tabIndex.RACING) {
+                if (this.currentIndex === TabIndex.RACING) {
                   RacingLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.BATTLE) {
+                } else if (this.currentIndex === TabIndex.BATTLE) {
                   BattleLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.SHOOT) {
+                } else if (this.currentIndex === TabIndex.SHOOT) {
                   ShootLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.INSTRUMENT) {
+                } else if (this.currentIndex === TabIndex.INSTRUMENT) {
                   InstrumentLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.REALISTIC) {
+                } else if (this.currentIndex === TabIndex.REALISTIC) {
                   RealisticLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.FOOTSTEP) {
+                } else if (this.currentIndex === TabIndex.FOOTSTEP) {
                   FootstepLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.ENVIRONMENT) {
+                } else if (this.currentIndex === TabIndex.ENVIRONMENT) {
                   EnvironmentLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.EXERCISE) {
+                } else if (this.currentIndex === TabIndex.EXERCISE) {
                   ExerciseLayout({
                     vibrationIntensity: $vibrationIntensity
                   })
-                } else if (this.currentIndex === tabIndex.INTERACTION) {
+                } else if (this.currentIndex === TabIndex.INTERACTION) {
                   InteractionLayout()
                 } else {
                   Text('Please Waiting！').fontSize(48).fontColor(Color.Black).width("100%").height("100%")

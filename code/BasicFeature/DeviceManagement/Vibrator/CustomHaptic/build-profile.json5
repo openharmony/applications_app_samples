@@ -23,20 +23,6 @@
         "signingConfig": "default"
       }
     ],
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_CustomHaptic_com.samples.haptic.cer",
-          "storePassword": "0000001BF8DBBA5F9FDBADA53423012AFEDF75C7BDC045B281284AD12DAD3477458D2A1DE01A87B19ACC14",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BE700F785AE5FD5B8EEDD168615DAF30846D7A1BEA269D9A16C12161555E361E0B1165A73D95E7D",
-          "profile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_CustomHaptic_com.samples.haptic.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Lee\\.ohos\\config\\openharmony\\auto_ohos_default_CustomHaptic_com.samples.haptic.p12"
-        }
-      }
-    ]
   },
   "modules": [
     {

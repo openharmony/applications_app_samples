@@ -50,6 +50,9 @@ entry/src/main/ets/
 
 [ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
+### 依赖
+不涉及
+
 ### 约束与限制
 
 1. 本示例仅可在支持自定义振动的标准系统上运行； 

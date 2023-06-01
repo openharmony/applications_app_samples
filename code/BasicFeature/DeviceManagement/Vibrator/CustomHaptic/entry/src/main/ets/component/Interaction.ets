@@ -18,10 +18,10 @@ import { playVibrateCustom } from '../moudle/Util'
 @Component
 export default struct InteractionLayout {
   @State status: boolean[] = [false, false, false, false]
-  @State state1: AnimationStatus = AnimationStatus.Initial
-  @State state2: AnimationStatus = AnimationStatus.Initial
-  @State state3: AnimationStatus = AnimationStatus.Initial
-  @State state4: AnimationStatus = AnimationStatus.Initial
+  @State stateSlideLeftRight: AnimationStatus = AnimationStatus.Initial
+  @State stateSlideUp: AnimationStatus = AnimationStatus.Initial
+  @State stateSwitchApp: AnimationStatus = AnimationStatus.Initial
+  @State stateUpSlideStop: AnimationStatus = AnimationStatus.Initial
   @State iterations: number = 1
 
   build() {
@@ -48,13 +48,13 @@ export default struct InteractionLayout {
                   ])
                   .borderRadius(10)
                   .duration(3000)
-                  .state(this.state1)
+                  .state(this.stateSlideLeftRight)
                   .fillMode(FillMode.None)
                   .iterations(this.iterations)
                   .width("100%")
                   .height("100%")
                   .onFinish(() => {
-                    this.state1 = AnimationStatus.Initial
+                    this.stateSlideLeftRight = AnimationStatus.Initial
                   })
               }
               .width('30%')
@@ -62,7 +62,7 @@ export default struct InteractionLayout {
               .backgroundColor("#66191a32")
               .height("60%")
               .onClick(() => {
-                this.state1 = AnimationStatus.Running
+                this.stateSlideLeftRight = AnimationStatus.Running
                 playVibrateCustom("Slide_LeftRight.json")
               })
 
@@ -85,13 +85,13 @@ export default struct InteractionLayout {
                   ])
                   .borderRadius(10)
                   .duration(2250)
-                  .state(this.state2)
+                  .state(this.stateSlideUp)
                   .fillMode(FillMode.None)
                   .iterations(this.iterations)
                   .width("100%")
                   .height("100%")
                   .onFinish(() => {
-                    this.state2 = AnimationStatus.Initial
+                    this.stateSlideUp = AnimationStatus.Initial
                   })
               }
               .width('30%')
@@ -99,7 +99,7 @@ export default struct InteractionLayout {
               .backgroundColor("#66191a32")
               .height("60%")
               .onClick(() => {
-                this.state2 = AnimationStatus.Running
+                this.stateSlideUp = AnimationStatus.Running
                 playVibrateCustom("Slide_Up.json")
               })
 
@@ -131,13 +131,13 @@ export default struct InteractionLayout {
                   ])
                   .borderRadius(10)
                   .duration(3500)
-                  .state(this.state3)
+                  .state(this.stateSwitchApp)
                   .fillMode(FillMode.None)
                   .iterations(this.iterations)
                   .width("100%")
                   .height("100%")
                   .onFinish(() => {
-                    this.state3 = AnimationStatus.Initial
+                    this.stateSwitchApp = AnimationStatus.Initial
                   })
               }
               .width('30%')
@@ -145,7 +145,7 @@ export default struct InteractionLayout {
               .backgroundColor("#66191a32")
               .height("60%")
               .onClick(() => {
-                this.state3 = AnimationStatus.Running
+                this.stateSwitchApp = AnimationStatus.Running
                 playVibrateCustom("Switch_App.json")
               })
 
@@ -171,13 +171,13 @@ export default struct InteractionLayout {
                   ])
                   .borderRadius(10)
                   .duration(3000)
-                  .state(this.state4)
+                  .state(this.stateUpSlideStop)
                   .fillMode(FillMode.None)
                   .iterations(this.iterations)
                   .width("100%")
                   .height("100%")
                   .onFinish(() => {
-                    this.state4 = AnimationStatus.Initial
+                    this.stateUpSlideStop = AnimationStatus.Initial
                   })
               }
               .width('30%')
@@ -185,7 +185,7 @@ export default struct InteractionLayout {
               .backgroundColor("#66191a32")
               .height("60%")
               .onClick(() => {
-                this.state4 = AnimationStatus.Running
+                this.stateUpSlideStop = AnimationStatus.Running
                 playVibrateCustom("UpSlide_Stop.json")
               })
 
