@@ -2,7 +2,15 @@
 
 ### 介绍
 
-本示例展示了在eTS中如何获取应用故障相关信息，测试打点包括应用打点与性能打点两部分，应用打点通过调用`hiAppEvent`接口来记录应用运行过程中发生的各种信息。具体介绍如下：
+本示例展示了在eTS中如何获取应用故障相关信息，测试打点包括应用打点与性能打点两部分，应用打点通过调用`hiAppEvent`接口来记录应用运行过程中发生的各种信息。
+
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![](screenshots/device/main.png)|
+
+使用说明
 
 1.点击"事件写入"按钮，显示成功写入事件。
 
@@ -10,9 +18,21 @@
 
 3.关闭"禁用应用打点"开关，再次点击"事件写入"按钮，显示事件写入成功。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---entryAbility
+|   |---EntryAbility.ts
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---DotTestPage.ets                // 首页
+```
+### 具体实现
 
-![](screenshots/device/main.png)
+* 该示例使用hiAppEvent接口中write方法将事件写入到当天的事件文件中，EventType方法枚举事件类型，configure方法去配置打点开关来实现测试打点。
+* 源码链接：[DotTestPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DFX/DotTest/entry/src/main/ets/pages/DotTestPage.ets)
+* 接口参考：[@ohos.hiAppEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hiappevent.md)
 
 ### 相关权限
 
