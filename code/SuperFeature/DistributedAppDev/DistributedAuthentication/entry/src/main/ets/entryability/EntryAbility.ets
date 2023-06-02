@@ -54,6 +54,7 @@ export default class EntryAbility extends Ability {
 
   onDestroy() {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+    remoteDeviceModel.unregisterDeviceListCallback();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
 
