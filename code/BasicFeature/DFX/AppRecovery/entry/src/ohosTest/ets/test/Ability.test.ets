@@ -43,17 +43,42 @@ export default function abilityTest() {
     });
 
     it('AppRecoverySample_StartAbility_001', 0, function () {
-      Logger.info(TAG, BUNDLE + "StartAbility_001 begin");
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
       try {
         abilityDelegator.startAbility({
-          bundleName: 'com.sample.recovery',
-          abilityName: 'EntryAbility'
+          bundleName: 'com.sample.recovery', abilityName: 'EntryAbility'
         });
       } catch (exception) {
         expect().assertFail();
       }
-      Logger.info(TAG, BUNDLE + "StartAbility_001 end");
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 end');
+    });
+
+    it('AppRecoverySample_StartAbility_002', 0, function () {
+      Logger.info(TAG, BUNDLE + 'StartAbility_002 begin');
+      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        abilityDelegator.startAbility({
+          bundleName: 'com.sample.recovery', abilityName: 'SecondAbility'
+        });
+      } catch (exception) {
+        expect().assertFail();
+      }
+      Logger.info(TAG, BUNDLE + 'StartAbility_002 end');
+    });
+
+    it('AppRecoverySample_StartAbility_003', 0, function () {
+      Logger.info(TAG, BUNDLE + 'StartAbility_003 begin');
+      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        abilityDelegator.startAbility({
+          bundleName: 'com.sample.recovery', abilityName: 'RecoveryAbility'
+        });
+      } catch (exception) {
+        expect().assertFail();
+      }
+      Logger.info(TAG, BUNDLE + 'StartAbility_003 end');
     });
   });
 }

@@ -13,56 +13,92 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-import hilog from '@ohos.hilog';
 @Entry
 @Component
 struct Index {
   storage = LocalStorage.GetShared();
-  @State launchParam : string = "";
-  @State wantParam : string = "";
+  @State launchParam: string = '';
+  @State wantParam: string = '';
+  fromEntryAbility: boolean = false;
+
   aboutToAppear() {
-    this.launchParam = this.storage.get<string>("launchParam") ?? "UnknownLaunchParam";
-    this.wantParam = this.storage.get<string>("wantParam") ?? "UnknownWantParam";
+    this.launchParam = this.storage.get<string>('launchParam') ?? 'UnknownLaunchParam';
+    this.wantParam = this.storage.get<string>('wantParam') ?? 'UnknownWantParam';
+    let abilityName = AppStorage.Get<string>('RecoverAbility');
+    if (abilityName === 'EntryAbility') {
+      this.fromEntryAbility = true;
+    }
   }
 
   build() {
-    Row() {
-      Column() {
-        Text('RecoveryPage')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold);
-        Divider();
-        Button("TextAbility")
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .onClick( () => {
-            if (globalThis.curActiveAbility == undefined) {
-              return;
+    Column() {
+      Text('RecoveryPage')
+        .fontSize('30fp')
+        .fontWeight(FontWeight.Bold)
+        .padding({ left: '24vp', right: '24vp', top: '4vp', bottom: '4vp' })
+        .margin({ top: '24vp' })
+        .textAlign(TextAlign.Start)
+        .height('56vp')
+        .width('100%')
+        .fontColor($r('app.color.text_grey'));
+
+      if (this.fromEntryAbility === false) {
+        List() {
+          ListItem() {
+            Column() {
+              Row() {
+                Text('SecondAbility').fontSize('16fp').width('76.3%');
+                Button($r('app.string.recover'))
+                  .fontSize('12fp')
+                  .width('23.7%')
+                  .fontColor($r('app.color.text_blue_opacity'))
+                  .onClick(() => {
+                    if (globalThis.curActiveAbility == undefined) {
+                      return;
+                    }
+                    let want = { bundleName: 'com.samples.recovery', abilityName: 'SecondAbility' };
+                    globalThis.curActiveAbility.context.startAbility(want);
+                  })
+                  .height('28vp')
+                  .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+              }.height('48vp').align(Alignment.Center).width('100%');
             }
-            let want = {
-              bundleName: "com.samples.recovery",
-              abilityName: "SecondAbility"
-            };
-            globalThis.curActiveAbility.context.startAbility(want);
-          });
-        Divider();
-        Button("EntryAbility")
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .onClick( () => {
-            if (globalThis.curActiveAbility == undefined) {
-              return;
-            }
-            let want = {
-              bundleName: "com.samples.recovery",
-              abilityName: "EntryAbility"
-            };
-            globalThis.curActiveAbility.context.startAbility(want);
-          });
+          }.width('100%')
+        }
+        .margin({ left: '12vp', right: '12vp', top: '12vp' })
+        .width('93.3%')
+        .borderRadius('24vp')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .padding({ left: '12vp', right: '12vp', top: '4vp', bottom: '4vp' })
       }
-      .width('100%')
-    }
-    .height('100%')
+
+      List() {
+        ListItem() {
+          Column() {
+            Row() {
+              Text('EntryAbility').fontSize('16fp').width('76.3%');
+              Button($r('app.string.recover'))
+                .fontSize('12fp')
+                .width('23.7%')
+                .fontColor($r('app.color.text_blue_opacity'))
+                .onClick(() => {
+                  if (globalThis.curActiveAbility == undefined) {
+                    return;
+                  }
+                  let want = { bundleName: 'com.samples.recovery', abilityName: 'EntryAbility' };
+                  globalThis.curActiveAbility.context.startAbility(want);
+                })
+                .height('28vp')
+                .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+            }.height('48vp').align(Alignment.Center).width('100%');
+          }
+        }.width('100%')
+      }
+      .margin({ left: '12vp', right: '12vp', top: '12vp' })
+      .width('93.3%')
+      .borderRadius('24vp')
+      .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+      .padding({ left: '12vp', right: '12vp', top: '4vp', bottom: '4vp' })
+    }.backgroundColor($r('sys.color.ohos_id_color_sub_background')).width('100%').height('100%');
   }
 }
