@@ -341,16 +341,16 @@ export class KeyboardController {
           this.inputHandle.deleteBackward(1);
           return true;
         case "KEYCODE_DPAD_UP":
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_UP);
+          this.inputHandle.moveCursor(inputMethodEngine.CURSOR_UP);
           return true;
         case "KEYCODE_DPAD_DOWN":
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_DOWN);
+          this.inputHandle.moveCursor(inputMethodEngine.CURSOR_DOWN);
           return true;
         case "KEYCODE_DPAD_LEFT":
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_LEFT);
+          this.inputHandle.moveCursor(inputMethodEngine.CURSOR_LEFT);
           return true;
         case "KEYCODE_DPAD_RIGHT":
-          inputMethodEngine.MoveCursor(inputMethodEngine.CURSOR_RIGHT);
+          this.inputHandle.moveCursor(inputMethodEngine.CURSOR_RIGHT);
           return true;
         default:
           return false;
@@ -491,6 +491,14 @@ export class InputHandler {
     }
     if (isDebug) {
       this.refreshInfo();
+    }
+  }
+
+  public moveCursor(direction: inputMethodEngine.Direction): void {
+    if (globalThis.mTextInputClient !== undefined) {
+      globalThis.mTextInputClient.moveCursor(direction);
+    } else {
+      this.addLog('moveCursor globalThis.mTextInputClient is undefined');
     }
   }
 
