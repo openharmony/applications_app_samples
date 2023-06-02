@@ -6,21 +6,40 @@
 
 本示例通过[screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)模块实现屏幕截图 ，通过[window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowprivacymode9)模块实现隐私窗口切换，通过[display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displayhasprivatewindow9)模块查询当前隐私窗口。
 
-使用说明：
-
-1. 点击右上角图标打开弹窗，选择截屏，展示全屏截图；选择局部截屏，选择截屏区域，点击右下角完成，展示局部截屏；
-2. 点击滑块切换窗口隐私模式，隐私模式下截屏会弹出提示，拒绝截屏。
-
 ## 效果预览
 
 |全屏截图|局部截图选择区域|局部截图|
 |----------|----------|----------|
 |![](screenshots/device/full-screenshot.png)|![](screenshots/device/part-select.png)|![](screenshots/device/part-screenshot.png)|
 
+使用说明：
+
+1. 点击右上角图标打开弹窗，选择截屏，展示全屏截图；选择局部截屏，选择截屏区域，点击右下角完成，展示局部截屏；
+2. 点击滑块切换窗口隐私模式，隐私模式下截屏会弹出提示，拒绝截屏。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ets                    
+|---MainAbility
+|   |---MainAbility.ets
+|---pages
+|   |---Index.ets                      // 首页
+```
+### 具体实现
+
+* 本示例通过screenshot接口实现屏幕截图 ，通过window接口实现隐私窗口切换，通过display接口查询当前隐私窗口。
+* 源码链接：[Screenshot.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Media/Screenshot/Feature/src/main/ets/components/utils/Screenshot.ets)，[WindowPrivacy.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Media/Screenshot/Feature/src/main/ets/components/utils/WindowPrivacy.ets)
+* 接口参考：[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowprivacymode9)，[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displayhasprivatewindow9)
 
 ## 相关权限
 
 获取屏幕截图权限：[ohos.permission.CAPTURE_SCREEN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+
+### 依赖
+
+不涉及。
 
 ## 约束与限制
 
