@@ -42,22 +42,17 @@ entry/src/main/ets/
 
 ### 相关权限
 
-**权限一：用户授权，访问媒体和文件**
-ohos.permission.MEDIA_LOCATION
-ohos.permission.WRITE_MEDIA
-ohos.permission.READ_MEDIA
+1.允许应用访问用户媒体文件中的地理位置信息权限：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmedia_location)
 
-**权限二：用户授权，使用麦克风**
-ohos.permission.MICROPHONE
+2.允许应用读写用户外部存储中的媒体文件信息权限：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media)
 
-**权限三：系统授权，需要配置为system_basic类型系统应用**
-ohos.permission.SYSTEM_FLOAT_WINDOW
+3.允许应用读取用户外部存储中的媒体文件信息权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
 
-**权限四：系统授权，需要配置为system_core类型系统应用**
+4.允许应用使用麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
 
-ohos.permission.CAPTURE_SCREEN
+5.允许应用使用悬浮窗的能力权限：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsystem_float_window)
 
-具体[参考指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)。
+6.允许应用截取屏幕图像权限：[ohos.permission.CAPTURE_SCREEN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncapture_screen)
 
 ### 依赖
 
