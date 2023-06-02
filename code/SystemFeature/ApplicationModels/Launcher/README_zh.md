@@ -87,7 +87,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping )
+Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230430/code/Solutions/Shopping/ASOrangeShopping )
 
 ### 约束与限制
 

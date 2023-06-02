@@ -6,7 +6,7 @@
 
 #### Stage和FA模型的区别
 
-1.在Stage模型中主要有module.json5，需要时对应的ServiceExtAbility等须配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中；对应FA模型中主要配置文件config.json，需要时将对应的Ability配置在config.json中module/abilites。
+1.在Stage模型中主要有module.json5，需要时将对应的ServiceExtAbility等配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中；对应FA模型中主要配置文件config.json，需要时将对应的Ability配置在config.json中module/abilites。
 
 2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
 
@@ -16,94 +16,9 @@
 
 5.Stage模型中ServiceExtensionAbility对应FA模型中ServiceAbility，具体实现差异详见方法注释。
 
-6.stage模型DataShareHelper对应FA模型中DataAbilityHelper 。
+6.Stage模型DataShareHelper对应FA模型中DataAbilityHelper 。
 
 7.Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager ；FA模型通过导入@ohos.resourceManager， 获取应用资源信息。
-
-#### FA对应Stage接口（FA——>Stage）
-
-**FeatureAbility——>AbilityContext、dataShare接口：**
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWant——>MainAbility：want
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：startAbilityForResult——>AbilityContextController：startAbilityForResult
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：terminateSelfWithResult——>AbilityContextController：terminateSelfWithResult
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：hasWindowFocus——>Stage模型不支持
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：terminateSelf——>AbilityContextController：terminateSelf
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWindow——>WindowController：getTopWindow
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：startServiceAbility——>AbilityContextController：startAbility
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：connectService——>AbilityContextController：connectAbility
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：disconnectService——>AbilityContextController：disconnectAbility
-
-**context-->AbilityContext、Bundle、Window、abilityAccessCtrl接口：**
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getOrCreateLocalDir——>BundleController：entryDir
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：verifyPermission——>AbilityAccessCtrlController：verifyAccessToken
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：requestPermissionsFromUser——>AbilityContextController：requestPermissionsFromUser
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getApplicationInfo——>BundleController：getApplicationInfo
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getBundleName——>AbilityContextPage：abilityInfo.bundleName（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getDisplayOrientation——>AbilityContextPage：config.direction（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setDisplayOrientation——>WindowController：setPreferredOrientation
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setShowOnLockScreen——>MainAbility：setShowOnLockScreen
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setWakeUpScreen——>WindowController：setWakeUpScreen
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getProcessInfo——>AbilityContextPage：abilityInfo.descriptionId；abilityInfo.name（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getElementName——>BundleController：getAbilityInfo
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getProcessName——>BundleController：process
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getCallingBundle——>want.parameters（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getCacheDir——>AbilityContextPage：cacheDir（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getFilesDir——>AbilityContextPage：filesDir（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getOrCreateDistributedDir——>AbilityContextPage：distributedFilesDir（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAppType——>BundleController：entityType
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getHapModuleInfo——>AbilityContextPage：currentHapModuleInfo（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAppVersionInfo——>BundleController.getDispatcherVersion
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAbilityInfo——>AbilityContextPage：abilityInfo（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getApplicationContext——>AbilityContextPage：getApplicationContext()
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：isUpdatingConfigurations——>Stage模型不支持
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：printDrawnCompleted——>Stage模型不支持
-
-**particleAbility ——>ServiceExtensionContext、dataShare接口：**
-
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
 
 ### 效果预览：
 |主页|
@@ -149,7 +64,7 @@ entry/src/main/ets/
 |   |---MainAbility.ts                      
 |---pages
 |   |---component
-|   |   |---BookView.ets                     // 展示组价
+|   |   |---BookView.ets                     // 展示组件
 |   |   |---IndexTitleBar.ets                // 单个页面标题组件
 |   |   |---PublicTitleBar.ets               // 通用的标题组件
 |   |   |---TitleBar.ets                     // 标题组件
@@ -212,7 +127,7 @@ Stage模型的设计基于如下三个出发点：
 
 ### 依赖
 
-FaModel升级StageModel，对应的FaModel参考[FaModel](../FaModel)。
+不涉及。
 
 ### 约束与限制
 

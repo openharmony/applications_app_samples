@@ -54,91 +54,6 @@ The stage model is designed based on the following considerations:
 
 7. Starting from API version 9, the stage model obtains the **resourceManager** object through the context and then calls the internal interfaces to obtain resources without importing **@ohos.resourceManager**. The FA model obtains application resource information by importing **@ohos.resourceManager**.
 
-#### API Mappings Between FA and Stage Models (FA Model -> Stage Model)
-
-**FeatureAbility - > AbilityContext and dataShare interfaces**:
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): getWant -> MainAbility: want
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): startAbilityForResult -> AbilityContextController: startAbilityForResult
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): acquireDataAbilityHelper -> DataShareHelper: createDataShareHelper
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): terminateSelfWithResult -> AbilityContextController: terminateSelfWithResult
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): hasWindowFocus -> Not supported in the stage model
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): terminateSelf -> AbilityContextController: terminateSelf
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): getWindow -> WindowController: getTopWindow
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): startServiceAbility -> AbilityContextController: startAbility
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): connectService -> AbilityContextController: connectAbility
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts): disconnectService -> AbilityContextController: disconnectAbility
-
-**context -> AbilityContext, Bundle, Window, and abilityAccessCtrl interfaces:**
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getOrCreateLocalDir -> BundleController: entryDir
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): verifyPermission -> AbilityAccessCtrlController: verifyAccessToken
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): requestPermissionsFromUser -> AbilityContextController: requestPermissionsFromUser
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getApplicationInfo -> BundleController: getApplicationInfo
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getBundleName -> AbilityContextPage: abilityInfo.bundleName (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getDisplayOrientation -> AbilityContextPage: config.direction (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): setDisplayOrientation -> WindowController: setPreferredOrientation
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): setShowOnLockScreen -> MainAbility: setShowOnLockScreen
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): setWakeUpScreen -> WindowController: setWakeUpScreen
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getProcessInfo -> AbilityContextPage: abilityInfo.descriptionId; abilityInfo.name (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getElementName -> BundleController: getAbilityInfo
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getProcessName -> BundleController: process
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getCallingBundle -> want.parameters (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getCacheDir -> AbilityContextPage: cacheDir (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getFilesDir -> AbilityContextPage: filesDir (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getOrCreateDistributedDir -> AbilityContextPage: distributedFilesDir (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getAppType -> BundleController: entityType
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getHapModuleInfo -> AbilityContextPage: currentHapModuleInfo (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getAppVersionInfo -> BundleController.getDispatcherVersion
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getAbilityInfo -> AbilityContextPage: abilityInfo (attributes)
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): getApplicationContext -> AbilityContextPage: getApplicationContext()
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): isUpdatingConfigurations -> Not supported in the stage model
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts): printDrawnCompleted -> Not supported in the stage model
-
- **particleAbility -> ServiceExtensionContext and dataShare interfaces**
-
-
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts): startAbility -> ServiceExtContextController: startAbility
-
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts): connectAbility -> ServiceExtContextController: connectAbility
-
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts): disconnectAbility -> ServiceExtContextController: disconnectAbility
-
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts): terminateSelf -> ServiceExtContextController: terminateSelf
-
- [ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts): acquireDataAbilityHelper -> DataShareHelper: createDataShareHelper
-
 #### Usage
 
 1. Touch **DataShareExtAbility**. The **DataShareExtAbility** page is displayed.
@@ -163,12 +78,12 @@ N/A
 
 ### Dependency
 
-The stage model is upgraded from the FA model. For details about the FA model, see [FA Model](../FaModel).
+N/A
 
 ### Constraints
 
 1. This sample can only be run on standard-system devices.
 
-2. **ServiceExtensionAbility** and **DataShareExtensionAbility** are system APIs and require the use of the Full SDK. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/full-sdk-switch-guide.md).
+2. **ServiceExtensionAbility** and **DataShareExtensionAbility** are system APIs and require the use of the Full SDK. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/).
 
 3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
