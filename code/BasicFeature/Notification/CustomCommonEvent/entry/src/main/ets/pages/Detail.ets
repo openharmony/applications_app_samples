@@ -12,15 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import router from '@ohos.router'
-import { Header } from '../component/Header'
+import router from '@ohos.router';
+import { Header } from '../component/Header';
 
 @Entry
 @Component
 struct Detail {
-  private arr: Array<string> = router.getParams()['recEvents']
-  private filteredArr: Array<string> = router.getParams()['onceEvents']
+  private arr: Array<string> = router.getParams()['recEvents'];
+  private filteredArr: Array<string> = router.getParams()['onceEvents'];
 
   build() {
     Column() {
@@ -56,6 +55,7 @@ struct Detail {
           .fontSize(16)
           .textAlign(TextAlign.Start)
           .fontColor(0x000000)
+          .id('onceEventText')
         ForEach(this.filteredArr, (item) => {
           Text(item).size({ width: '100%', height: '20%' })
             .fontSize(14)

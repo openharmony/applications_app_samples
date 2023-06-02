@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,63 +12,80 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import commonEvent from '@ohos.commonEvent'
-import consts from '../module/Consts'
-import surveillanceEventsManager from '../module/SurveillanceEventsManager'
+import commonEventManager from '@ohos.commonEventManager';
+import consts from '../module/Consts';
+import surveillanceEventsManager from '../module/SurveillanceEventsManager';
 
 export default class MainFeature {
-  private onceEvents: Array<string> = []
-  private currentValidEvents: Array<string> = surveillanceEventsManager.surveillanceEvents
+  private onceEvents: Array<string> = [];
+  private currentValidEvents: Array<string> = surveillanceEventsManager.surveillanceEvents;
   private settingSubscriber = null // this subscriber subscribe self defined sticky events
-  private eventsState: Map<string, number> = new Map()
+  private eventsState: Map<string, number> = new Map();
 
   constructor() {
+    this.refreshCurrentState();
   }
 
-  async init() {
+  async init(): Promise<void> {
     if (this.settingSubscriber == null) {
       let settingSubscriberInfo = {
         events: [
-          consts.COMMON_EVENT_SETTING_UPDATE
+        consts.COMMON_EVENT_SETTING_UPDATE
         ]
-      }
-      commonEvent.createSubscriber(settingSubscriberInfo).then((subscriber) => {
-        this.settingSubscriber = subscriber
-        commonEvent.subscribe(subscriber, (error, event) => {
-          this.eventsState.clear()
-          this.currentValidEvents = []
-          this.onceEvents = []
+      };
+      commonEventManager.createSubscriber(settingSubscriberInfo).then((subscriber) => {
+        this.settingSubscriber = subscriber;
+        commonEventManager.subscribe(subscriber, (error, event) => {
+          this.clearEvents();
           surveillanceEventsManager.surveillanceEvents.forEach((element: string) => {
-            this.eventsState.set(element, event.parameters[element])
-          })
-          this.eventsState.forEach((value, key) => {
-            switch (value) {
-              case consts.ENABLE_STATE_ALWAYS:
-                this.currentValidEvents.push(key)
-                break
-              case consts.ENABLE_STATE_ONCE:
-                this.currentValidEvents.push(key)
-                this.onceEvents.push(key)
-                break
-            }
-          })
+            this.eventsState.set(element, event.parameters[element]);
+          });
+          this.refreshEvents();
         })
       })
     }
   }
 
-  async reset() {
-    await commonEvent.unsubscribe(this.settingSubscriber, () => {
-      this.settingSubscriber = null
-    })
+  refreshCurrentState(): void {
+    this.clearEvents();
+    let eventStates = surveillanceEventsManager.getSurveillanceEventStates();
+    surveillanceEventsManager.surveillanceEvents.forEach((element: string) => {
+      this.eventsState.set(element, eventStates[`${element}`]);
+    });
+    this.refreshEvents();
+  }
+
+  refreshEvents(): void {
+    this.eventsState.forEach((value, key) => {
+      switch (value) {
+        case consts.ENABLE_STATE_ALWAYS:
+          this.currentValidEvents.push(key);
+          break;
+        case consts.ENABLE_STATE_ONCE:
+          this.currentValidEvents.push(key);
+          this.onceEvents.push(key);
+          break;
+      }
+    });
+  }
+
+  clearEvents(): void {
+    this.eventsState.clear();
+    this.currentValidEvents = [];
+    this.onceEvents = [];
+  }
+
+  reset(): void {
+    commonEventManager.unsubscribe(this.settingSubscriber, () => {
+      this.settingSubscriber = null;
+    });
   }
 
   getOnceEvents(): Array<string> {
-    return this.onceEvents
+    return this.onceEvents;
   }
 
-  getCurrentValidEvents():Array<string> {
-    return this.currentValidEvents
+  getCurrentValidEvents(): Array<string> {
+    return this.currentValidEvents;
   }
 }
