@@ -24,8 +24,8 @@ import FootstepLayout from '../component/Footstep'
 import EnvironmentLayout from '../component/Environment'
 import ExerciseLayout from '../component/Exercise'
 import InteractionLayout from '../component/Interaction'
-import Logger from '../moudle/Logger'
-import TabBar from '../moudle/TabBar'
+import Logger from './Logger'
+import TabBar from './TabBar'
 
 const TAG = '[DisplayModule]'
 
@@ -75,7 +75,7 @@ export default struct DisplayModule {
           .onClick(() => {
             Logger.info(TAG, 'Show more pressed')
             router.pushUrl({
-              url: 'moudle/VideoListModule'
+              url: 'module/VideoListModule'
             })
           })
       }.padding({ top: 5 })

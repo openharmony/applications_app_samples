@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { playVibrateCustom } from '../moudle/Util'
+import { playVibrateCustom } from '../module/Util'
 
 @Component
 export default struct InteractionLayout {

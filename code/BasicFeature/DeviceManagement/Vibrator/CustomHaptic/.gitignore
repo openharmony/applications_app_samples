@@ -1,8 +1,11 @@
+/.hvigor
+/.idea
 /oh_modules
 /local.properties
-/.idea
+/oh-package-lock.json5
+/entry/oh-package-lock.json5
+**/.preview
 **/build
-/.hvigor
 .cxx
 /.clangd
 /.clang-format

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import DisplayModule from '../moudle/DisplayModule'
-import MyInfoModule from '../moudle/MyInfoModule'
+import DisplayModule from '../module/DisplayModule'
+import MyInfoModule from '../module/MyInfoModule'
 
 @Entry
 @Component

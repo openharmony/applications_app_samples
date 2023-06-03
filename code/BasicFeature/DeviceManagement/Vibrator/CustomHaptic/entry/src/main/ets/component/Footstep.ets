@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { playVibrateCustom, avPlayer, getDynamicStates } from '../moudle/Util'
-import { getImageFootstepList, ImageDataSource, ImagesData } from '../moudle/ImageData'
-import Logger from '../moudle/Logger'
+import { playVibrateCustom, avPlayer, getDynamicStates } from '../module/Util'
+import { getImageFootstepList, ImageDataSource, ImagesData } from '../module/ImageData'
+import Logger from '../module/Logger'
 
 const TAG = '[FootstepLayout]'
 

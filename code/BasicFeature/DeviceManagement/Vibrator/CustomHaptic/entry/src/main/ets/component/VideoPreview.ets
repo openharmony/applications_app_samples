@@ -33,7 +33,7 @@ export default struct VideoListLayout {
         .onClick(() => {
           this.playDis = true
           router.pushUrl({
-            url: "moudle/VideoPlayModule",
+            url: "module/VideoPlayModule",
             params: {
               vibrateFileName: "HapticVideo.json",
               videoName: 'HapticVideo',

@@ -1,8 +1,8 @@
+/.hvigor
+/.idea
 /oh_modules
 /local.properties
-/.idea
-**/build
-/.hvigor
-/package-lock.json
-/entry/package-lock.json
+/oh-package-lock.json5
+/entry/oh-package-lock.json5
 **/.preview
+**/build

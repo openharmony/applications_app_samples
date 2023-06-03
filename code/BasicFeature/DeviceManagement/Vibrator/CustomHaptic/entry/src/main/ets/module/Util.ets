@@ -16,7 +16,7 @@
 import vibrator from '@ohos.vibrator'
 import media from '@ohos.multimedia.media'
 import Window from '@ohos.window'
-import Logger from '../moudle/Logger'
+import Logger from './Logger'
 
 const TAG = '[Util]'
 

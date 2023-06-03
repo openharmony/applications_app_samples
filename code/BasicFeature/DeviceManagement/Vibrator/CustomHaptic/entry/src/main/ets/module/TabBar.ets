@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Logger from '../moudle/Logger'
+import Logger from './Logger'
 
 const TAG = '[TabBar]'
 

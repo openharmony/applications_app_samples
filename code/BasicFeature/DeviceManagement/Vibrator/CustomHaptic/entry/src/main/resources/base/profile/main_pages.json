@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "moudle/VideoPlayModule",
-    "moudle/VideoListModule"
+    "module/VideoPlayModule",
+    "module/VideoListModule"
   ]
 }

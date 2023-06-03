@@ -32,7 +32,7 @@ entry/src/main/ets/
 |   |---DisplayModule.ets                     // "发现"界面，主界面
 |   |---ImageData.ets                         // 资源数据结构
 |   |---Logger.ets                            // 封装的日志
-|   |---MyInfoMoModule.ets                    // "我的"界面
+|   |---MyInfoModule.ets                    // "我的"界面
 |   |---TabBar.ets                            // 振效库场景类别滑动栏
 |   |---Util.ets                              // 工具函数
 |   |---VideoListModule.ets                   // 视频列表模块
@@ -41,10 +41,10 @@ entry/src/main/ets/
 |   |---Index.ets                             // 首页
 ```
 ### 具体实现
-+ 振动强度设置：可以选择振动的强度等级，源码参考[MyInfoMoModule.ets](entry/src/main/ets/module/MyInfoMoModule.ets)；
-+ 振效库：点击振效库中各项，会调用媒体库AVPlayer播放音效，并同时调用vibrator模块startVibration接口启动振动，源码参考[DisplayModule.ets](entry/src/main/ets/module/DisplayModule.ets)以及component目录下振效库场景，比如[Battle.ets](entry/src/main/ets/components/Battle.ets)等;
++ 振动强度设置：可以选择振动的强度等级，源码参考[MyInfoMoModule.ets](entry/src/main/ets/module/MyInfoModule.ets)；
++ 振效库：点击振效库中各项，会调用媒体库AVPlayer播放音效，并同时调用vibrator模块startVibration接口启动振动，源码参考[DisplayModule.ets](entry/src/main/ets/module/DisplayModule.ets)以及component目录下振效库场景，比如[Battle.ets](entry/src/main/ets/component/Battle.ets)等;
 + 振感视频：使用Video控件全屏播放视频，在开始播放同时调用vibrator模块startVibration接口启动振动，源码参考[VideoPlayModule.ets](entry/src/main/ets//module/VideoPlayModule.ets)；
-+ 自定义振动：使用[Vibrator模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-vibrator.md)的startVibration方法播放应用内置的振动资源文件，代码参考[Util.ets](entry/src/main/ets/module/Utils.ets);
++ 自定义振动：使用[Vibrator模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-vibrator.md)的startVibration方法播放应用内置的振动资源文件，代码参考[Util.ets](entry/src/main/ets/module/Util.ets);
 
 ### 相关权限
 
@@ -56,7 +56,7 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅可在支持自定义振动的标准系统上运行； 
-2. 本示例已适配API version 10版本SDK，版本号：4.0.8.2。 
+2. 本示例仅适配API version 10版本SDK，版本号：4.0.8.2，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)；
 3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 ### 下载

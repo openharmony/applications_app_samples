@@ -48,7 +48,7 @@ struct VideoListModule {
             }.width("95%").padding({ left: 10 }).backgroundColor("#00002222")
             .onClick(() => {
               router.pushUrl({
-                url: "moudle/VideoPlayModule",
+                url: "module/VideoPlayModule",
                 params: {
                   vibrateFileName: "HapticVideo.json",
                   videoName: 'HapticVideo',

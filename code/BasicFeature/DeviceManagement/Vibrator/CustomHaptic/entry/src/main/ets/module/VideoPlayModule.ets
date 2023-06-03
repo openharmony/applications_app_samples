@@ -17,7 +17,7 @@ import vibrator from '@ohos.vibrator';
 import media from '@ohos.multimedia.media'
 import router from '@ohos.router'
 import { changeOrientation, showTitleBar, playVibrateCustom, hideTitleBar } from './Util'
-import Logger from '../moudle/Logger'
+import Logger from './Logger'
 
 const TAG = '[VideoPlayModule]'
 
