@@ -57,6 +57,14 @@
       "value": "请不要使用手机，您连接或断开了wifi"
     },
     {
+      "name": "screen_lock_tips",
+      "value": "请不要使用手机，您进行了锁屏操作"
+    },
+    {
+      "name": "screen_unlock_tips",
+      "value": "请不要使用手机，您进行了解锁屏幕操作"
+    },
+    {
       "name": "total_time_tips",
       "value": "本次监控时长："
     },
@@ -75,6 +83,14 @@
     {
       "name": "enable_screen_on",
       "value": "是否记录亮屏事件"
+    },
+    {
+      "name": "enable_screen_locked",
+      "value": "是否记录锁屏事件"
+    },
+    {
+      "name": "enable_screen_unlocked",
+      "value": "是否记录解锁屏幕事件"
     },
     {
       "name": "enable_screen_off",

@@ -2,7 +2,15 @@
 
 ### 介绍
 
-本示例用于验证OpenHarmony提供的Stage模型，Canvas组件做小游戏的能效是否符合预期，以及验证资源调度子系统的API接口是否符合后台规范运行的预期。具体操作如下：
+本示例用于验证OpenHarmony提供的Stage模型，Canvas组件做小游戏的能效是否符合预期，以及验证资源调度子系统的API接口是否符合后台规范运行的预期。
+
+### 效果预览
+
+|首页更新前                                   |首页更新后                                |
+|---------------------------------------|-------------------------------------|
+|![](screenshot/snapshot1.png) |![](screenshot/snapshot2.png)|
+
+使用说明
 
 1.点击**ConnectService**按钮，创建一个ServiceAbility并连接。
 
@@ -16,9 +24,29 @@
 
 6.点**home**按钮后，应用生命周期为onInactive, 在此回调中起一个短时任务，验证短时任务API能否正常执行。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---component
+|   |---OperateView.ets                          // 操作
+|   |---TitleBar.ets                             // 标题
+|---entryability
+|   |---EntryAbility.ts                          
+|---model
+|   |---Logger.ts                                // 日志工具
+|   |---ServiceModel.ets                         // 服务连接
+|---pages
+|   |---Index.ets                                // 首页
+|   |---Game.ets                                 // 绘制游戏
+|   |---Selects.ets                              // 选择关卡
+|---ServiceAbility
+|   |---service.ts                               // 日志工具
+```
+### 具体实现
 
-![](screenshot/snapshot1.png) ![](screenshot/snapshot2.png)
+* 该示例使用ServiceExtension接口验证提供的Stage模型，Canvas组件绘制小游戏，queryBundleStatsInfos接口通过指定起始和结束时间查询应用使用时长统计信息来统计展示游戏在线时长，requestSuspendDelay接口申请后台应用延迟挂起来验证短时任务API能否正常执行，rpc接口提供进程间通信能力，wantAgent接口验证系统能力。
+* 源码链接：[service.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/ServiceAbility/service.ts)，[EntryAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/entryability/EntryAbility.ts)，[ServiceModel.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/model/ServiceModel.ets)，[Game.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/pages/Game.ets)
+* 接口参考[@ohos.resourceschedule.usageStatistics](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)，[@ohos.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md)，[@ohos.wantAgent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-wantAgent.md)，[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-serviceExtensionAbility.md)，[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-rpc.md)
 
 ### 相关权限
 

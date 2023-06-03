@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import commonEvent from '@ohos.commonEvent'
-import common from '@ohos.app.ability.common'
-import consts from '../module/Consts'
-import dataPreferences from '@ohos.data.preferences'
-import Logger from '../module/Logger'
-import surveillanceEventsManager from '../module/SurveillanceEventsManager'
+import commonEvent from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
+import consts from '../module/Consts';
+import dataPreferences from '@ohos.data.preferences';
+import Logger from '../module/Logger';
+import surveillanceEventsManager from '../module/SurveillanceEventsManager';
 
 export default class SettingFeature {
   private innerContext: common.UIAbilityContext = null
@@ -29,19 +29,21 @@ export default class SettingFeature {
   }
 
   async init() {
-    await dataPreferences.getPreferences(this.innerContext, consts.DATA_BASE_NAME, (err, pref) => {
+    await dataPreferences.getPreferences(this.innerContext, consts.DATA_BASE_NAME).then((pref=>{
       this.pref = pref
+    })).catch(err=>{
+      Logger.info(`getPreferences err ${JSON.stringify(err)}`)
     })
   }
 
   changeState(group: string, state: number) {
-    globalThis.settings.set(group, state)
+    globalThis.settings.set(group, state);
     let options = {
       isSticky: true,
       parameters: surveillanceEventsManager.getSurveillanceEventStates()
     }
     commonEvent.publish(consts.COMMON_EVENT_SETTING_UPDATE, options, () => {
-      Logger.info("success to publish setting update event")
+      Logger.info('success to publish setting update event')
     })
     this.pref.put(group, state).then(() => {
       this.pref.flush()

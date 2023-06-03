@@ -29,17 +29,17 @@ export default class EntryAbility extends UIAbility {
 
   // Read previous saved status from want if we are launched by appRecovery
   restoreLocalStorage(want: Want) {
-    Logger.info(TAG, 'RestoreLocalStorage String:${want.parameters["Page1Str"]} Counter:${want.parameters["Page2Counter"]}');
-    this.storage.setOrCreate<string>("FaultTriggerPageString", want.parameters["FaultTriggerPageString"] as string);
-    this.storage.setOrCreate<number>("FaultTriggerPageCounter", want.parameters["FaultTriggerPageCounter"] as number);
+    Logger.info(TAG, "RestoreLocalStorage String:${want.parameters['Page1Str']} Counter:${want.parameters['Page2Counter']}");
+    this.storage.setOrCreate<string>('FaultTriggerPageString', want.parameters['FaultTriggerPageString'] as string);
+    this.storage.setOrCreate<number>('FaultTriggerPageCounter', want.parameters['FaultTriggerPageCounter'] as number);
   }
 
   onCreate(want: Want, launchParam) {
     Logger.info(TAG, 'onCreate Want:${JSON.stringify(want)} launchParam: ${JSON.stringify(launchParam)}');
     this.isRecoverLaunch = (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY);
-    this.storage.setOrCreate<string>("CurrentAbilityName", "EntryAbility");
-    this.storage.setOrCreate<string>("launchReason", launchParam.launchReason.toString());
-    this.storage.setOrCreate<string>("lastExitReason", launchParam.lastExitReason.toString());
+    this.storage.setOrCreate<string>('CurrentAbilityName', 'EntryAbility');
+    this.storage.setOrCreate<string>('launchReason', launchParam.launchReason.toString());
+    this.storage.setOrCreate<string>('lastExitReason', launchParam.lastExitReason.toString());
     if (this.isRecoverLaunch) {
       // savedState is in wantParams
       this.restoreLocalStorage(want);
@@ -73,10 +73,10 @@ export default class EntryAbility extends UIAbility {
 
   onSaveState(reason, wantParam: { [key: string]: any }) {
     Logger.info(TAG, 'onDestroy');
-    let string = this.storage.get<string>("FaultTriggerPageString");
-    let counter = this.storage.get<number>("FaultTriggerPageCounter");
-    wantParam["FaultTriggerPageString"] = string ?? "Empty";
-    wantParam["FaultTriggerPageCounter"] = counter;
+    let string = this.storage.get<string>('FaultTriggerPageString');
+    let counter = this.storage.get<number>('FaultTriggerPageCounter');
+    wantParam['FaultTriggerPageString'] = string ?? 'Empty';
+    wantParam['FaultTriggerPageCounter'] = counter;
     Logger.info(TAG, 'SavedText:${string} SavedCounter:${counter}');
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }

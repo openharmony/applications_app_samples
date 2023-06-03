@@ -34,11 +34,11 @@
     },
     {
       "name": "launch_reason",
-      "value": "启动原因:"
+      "value": "启动原因"
     },
     {
       "name": "last_exit_reason",
-      "value": "上次退出原因:"
+      "value": "上次退出原因"
     },
     {
       "name": "current_status",
@@ -50,31 +50,31 @@
     },
     {
       "name": "trigger_fault_items",
-      "value": "触发故障:"
+      "value": "触发故障"
     },
     {
       "name": "trigger_js_error",
-      "value": "触发JsError"
+      "value": "JsError"
     },
     {
       "name": "trigger_freeze_in_js_code",
-      "value": "触发Js代码卡死"
+      "value": "Js代码卡死"
     },
     {
       "name": "trigger_freeze_in_native_code",
-      "value": "触发Native代码卡死"
+      "value": "Native代码卡死"
     },
     {
       "name": "recover_settings",
-      "value": "应用恢复设置:"
+      "value": "应用恢复设置"
     },
     {
       "name": "save_all_ability_status",
-      "value": "保存所有Ability状态"
+      "value": "所有Ability状态"
     },
     {
       "name": "save_current_ability_status",
-      "value": "保存当前Ability状态"
+      "value": "当前Ability状态"
     },
     {
       "name": "route_to_second_ability",
@@ -82,11 +82,39 @@
     },
     {
       "name": "set_recovery_ability",
-      "value": "设置恢复Ability"
+      "value": "恢复Ability"
     },
     {
       "name": "counter_name",
       "value": "点击"
+    },
+    {
+      "name": "save_state",
+      "value": "保存"
+    },
+    {
+      "name": "set_config",
+      "value": "设置"
+    },
+    {
+      "name": "save_state_done",
+      "value": "已保存"
+    },
+    {
+      "name": "set_config_done",
+      "value": "已设置"
+    },
+    {
+      "name": "launch_ability",
+      "value": "启动"
+    },
+    {
+      "name": "trigger",
+      "value": "触发"
+    },
+    {
+      "name": "recover",
+      "value": "恢复"
     }
   ]
 }

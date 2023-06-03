@@ -7,7 +7,7 @@
 5. 新增Sample需要遵循[代码提交规范](#section1)、[工程结构规范](#section2)、[PR提交格式规范](#section3)、[ReadMe编写规范](#section4)和[UI自动化用例编写规范](#section5)；
 6. 新增Sample的UX设计需要符合[一多规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/Readme-CN.md) ；
 7. 新增Sample推荐使用当前最新版本IDE和SDK版本；
-8. 工程合入时，需要提供测试用例报告([参考示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/ohosTest.md)) ，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
+8. 工程合入时，需要提供测试用例报告([参考示例](ohosTestTemplate.md)) ，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
 
 ## 代码规范<a name="section1"></a>
 

@@ -4,6 +4,12 @@
 
 企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。
 
+### 效果预览
+
+| 未激活                                                 | 订阅应用安装事件失败                                    | 已激活                                                 | 订阅应用安装卸载事件成功                                |
+| ------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
+| <img src="screenshots/device/first.jpg" width="300" /> | <img src="screenshots/device/second.jpg" width="300" /> | <img src="screenshots/device/third.jpg" width="300" /> | <img src="screenshots/device/fourth.jpg" width="300" /> |
+
 使用说明
 
 1.启动应用后，点击激活设备管理器，会显示激活成功。由企业管理员或者员工部署MDM应用，激活设备管理器，系统通知MDM应用已激活DeviceAdmin权限。MDM应用可在onAdminEnable回调函数中进行初始化策略设置。
@@ -14,17 +20,33 @@
 
 4.点击取消订阅应用安装卸载事件，会显示取消订阅成功。企业应用管理场景下，企业管理员取消订阅应用安装卸载事件。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---common
+|   |---Logger.ts                      // 日志工具
+|---enterpriseextability
+|   |---EnterpriseAdminAbility.ts      // 数据类型
+|---entryAbility
+|   |---EntryAbility.ts                
+|---pages
+|   |---Index.ets                      // 首页
+```
+### 具体实现
 
-| 未激活                                                 | 订阅应用安装事件失败                                    | 已激活                                                 | 订阅应用安装卸载事件成功                                |
-| ------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
-| <img src="screenshots/device/first.jpg" width="300" /> | <img src="screenshots/device/second.jpg" width="300" /> | <img src="screenshots/device/third.jpg" width="300" /> | <img src="screenshots/device/fourth.jpg" width="300" /> |
+* 该示例通过EnterpriseAdminExtensionAbility接口实现了系统管理状态变化通知功能，adminManager接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
+* 源码链接：[EnterpriseAdminAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility/entry/src/main/ets/enterpriseextability/EnterpriseAdminAbility.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility/entry/src/main/ets/pages/Index.ets)
+* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md)，[@ohos.app.ability.Want]()
 
 ### 相关权限
 
-[ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+1.允许应用激活设备管理员应用权限：[ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 
-[ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+2.允许设备管理员应用订阅管理事件权限：[ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+
+### 依赖
+
+不涉及。
 
 ### 约束与限制
 

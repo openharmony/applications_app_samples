@@ -1,6 +1,6 @@
 # 仿桌面应用
 
-### 简介
+### 介绍
 
 本示例实现了一个简单桌面应用，实现了以下几点功能：
 
@@ -10,33 +10,13 @@
 
 3.实现最近任务管理功能，包括任务卡片加锁、解锁、清理和清理所有任务功能。
 
-实现效果如下：
+### 效果预览
 
-![home](./screenshots/zh/home.png) ![recents](./screenshots/zh/recents.png)
+|主页| 重置页面                                     |
+|--------------------------------|------------------------------------------|
+|![home](./screenshots/zh/home.png) | ![recents](./screenshots/zh/recents.png) |
 
-### 相关概念
-
-1.**使用 launcherBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework）**，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
-
-2.**使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework）**，调用uninstall接口实现应用卸载功能。
-
-3.**使用formHost接口（系统能力：SystemCapability.Ability.Form）**，获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。
-
-4.使用关系型数据库rdb接口（系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core），实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
-
-5.**使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission）**，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
-
-### 相关权限
-
-| 权限名                                     | 权限说明                                         | 级别         |
-| ------------------------------------------ | ------------------------------------------------ | ------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | 允许应用查询其他应用的信息。                     | system_basic |
-| ohos.permission.LISTEN_BUNDLE_CHANGE       | 允许应用监听其他应用安装、更新、卸载状态的变化。 | system_basic |
-| ohos.permission.INSTALL_BUNDLE             | 允许应用安装、卸载其他应用。                     | system_core  |
-| ohos.permission.MANAGE_MISSIONS            | 允许用户管理元能力任务栈。                       | system_core  |
-| ohos.permission.REQUIRE_FORM               | 允许应用获取Ability Form。                       | system_basic |
-
-### 使用说明
+使用说明
 
 1.安装编译的hap包，使用hdc shell aa start -b ohos.samples.launcher -a MainAbility命令启动应用，应用启动后显示系统安装的应用。
 
@@ -52,9 +32,62 @@
 
 7.在桌面空白处上滑，可以进入最近任务管理界面，下滑任务卡片可以加锁/解锁，上滑卡片可以清理该后台任务，点击垃圾桶可以清除所有后台任务（加锁的应用不会被清理掉）。
 
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts
+|---components
+|   |---FormManagerComponent.ets               // 弹窗组件
+|---MainAbility
+|   |---MainAbility.ts
+|---manager
+|   |---WindowManager.ts                       // 数据类型
+|---pages
+|   |---FormPage.ets                           // 首页
+|   |---Home.ets                               // 详情页面
+|   |---RecentsPage.ets                        // 详情页面
+```
+### 具体实现
+
+* 获取应用功能模块
+  * 使用launcherBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework），获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
+  * 源码链接：[LauncherAbilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 接口参考：[@ohos.bundle.launcherBundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md)
+
+* 应用卸载功能模块
+  * 使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework），调用uninstall接口实现应用卸载功能。
+  * 源码链接：[LauncherAbilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 接口参考：[@ohos.bundle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md)
+  
+* 添加卡片功能模块
+  * 使用formHost接口（系统能力：SystemCapability.Ability.Form），获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。
+  * 源码链接：[FormManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/FormManager.ts)
+  * 接口参考：[@ohos.app.form.formHost](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formHost.md)
+
+* 桌面数据持久化存储功能模块
+  * 使用关系型数据库rdb接口（系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core），实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
+  * 源码链接：[RdbManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/RdbManager.ts)
+  * 接口参考：[@ohos.data.relationalStore](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md)
+
+* 加锁、解锁、清理后台任务功能模块
+  * 使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission），获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
+  * 源码链接：[MissionModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/recents/src/main/ets/default/model/MissionModel.ts)
+  * 接口参考：[@ohos.application.missionManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-missionManager.md)
+
+### 相关权限
+
+| 权限名                                     | 权限说明                                         | 级别         |
+| ------------------------------------------ | ------------------------------------------------ | ------------ |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | 允许应用查询其他应用的信息。                     | system_basic |
+| ohos.permission.LISTEN_BUNDLE_CHANGE       | 允许应用监听其他应用安装、更新、卸载状态的变化。 | system_basic |
+| ohos.permission.INSTALL_BUNDLE             | 允许应用安装、卸载其他应用。                     | system_core  |
+| ohos.permission.MANAGE_MISSIONS            | 允许用户管理元能力任务栈。                       | system_core  |
+| ohos.permission.REQUIRE_FORM               | 允许应用获取Ability Form。                       | system_basic |
+
 ### 依赖
 
-Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/ASOrangeShopping )
+Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230430/code/Solutions/Shopping/ASOrangeShopping )
 
 ### 约束与限制
 

@@ -71,14 +71,14 @@ export default function appTest() {
       Logger.info(TAG, BUNDLE + 'TimeZone_001 begin');
       //进入时间和日期页面
       await driver.delayMs(1000);
-      await checkButtonAndClickWithText(await ResourceUtil.getString($r('app.string.date_and_time').id));
+      await checkButtonAndClickWithText('日期和时间');
       //进入时区设置页面
       await driver.delayMs(1000);
-      await checkButtonAndClickWithText(await ResourceUtil.getString($r('app.string.time_zone').id));
+      await checkButtonAndClickWithText('时区');
       //设置时区
       await checkButtonAndClickWithID('time_zone_item0');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await ResourceUtil.getString($r('app.string.time_zone').id)));
+      await driver.assertComponentExist(ON.text('时区'));
       done();
       Logger.info(TAG, BUNDLE + 'TimeZone_001 end');
     })
