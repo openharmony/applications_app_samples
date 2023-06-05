@@ -1,25 +1,31 @@
 # 相机和媒体库
 
-### 简介
+### 介绍
 
-此Demo展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。实现效果如下：
+此Demo展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。  
 
-![main](screenshots/devices/main.png)
+本示例用到了权限管理能力[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md )
 
-### 相关概念
+相机模块能力接口[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-camera.md )  
 
-媒体库管理：媒体库管理提供接口对公共媒体资源文件进行管理，包括文件的增、删、改、查等。
-相机：相机模块支持相机相关基础功能的开发，主要包括预览、拍照、录像等。。
+图片处理接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md ) 
 
-### 相关权限
+音视频相关媒体业务能力接口[@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-media.md )  
 
-相机权限：ohos.permission.CAMERA
-麦克风权限：ohos.permission.MICROPHONE
-访问媒体文件地理位置信息权限：ohos.permission.MEDIA_LOCATION
-读取公共媒体文件权限：ohos.permission.READ_MEDIA
-读写公共媒体文件权限：ohos.permission.WRITE_MEDIA
+媒体库管理接口[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md )  
 
-### 使用说明
+设备信息能力接口[@ohos.deviceInfo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-info.md )  
+
+文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md )  
+
+弹窗能力接口[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-prompt.md )  
+
+### 效果预览
+|首页|
+|-------|
+|![main](screenshots/devices/main.png)|
+
+使用说明
 
 1.启动应用，在权限弹窗中授权后返回应用，首页显示当前设备的相册信息，首页监听相册变化会刷新相册列表。
 
@@ -34,6 +40,56 @@
 6.点击相册进入文件列表界面，展示相册内的文件，列表中有**删除**和**重命名**按钮，点击可以删除文件和重命名文件。
 
 7.安装视频播放VideoPlayer应用后，点击视频文件可以调起视频播放界面播放该视频。
+
+#### 相关概念
+
+媒体库管理：媒体库管理提供接口对公共媒体资源文件进行管理，包括文件的增、删、改、查等。
+相机：相机模块支持相机相关基础功能的开发，主要包括预览、拍照、录像等。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---MainAbility
+|   |---MainAbility.ts                      // 主程序入口，应用启动时获取相应权限
+|---pages
+|   |---index.ets                           // 首页
+|   |---AlbumPage.ets                       // 相册页面
+|   |---CameraPage.ets                      // 相机页面
+|   |---RecordPage.ets                      // 录音页面
+|   |---DocumentPage.ets                    // 存储文件页面
+|---model                                  
+|   |---CameraService.ts                    // 相机模块（拍照录像模式）
+|   |---DateTimeUtil.ts                     // 日期工具包
+|   |---MediaUtils.ts                       // 媒体工具模块
+|   |---RecordModel.ts                      // 录音模块（底层能力实现）
+|   |---TimeUtils.ts                        // 时间工具包
+|---view                                    
+|   |---BasicDataSource.ets                 // 初始化媒体服务数组
+|   |---MediaItem.ets                       // 定义具体的某一媒体模块页面 
+|   |---MediaView.ets                       // 媒体模块的前置模块(判断是否有展示的媒体内容)
+|   |---RenameDialog.ets                    // 重命名文件模块 
+|   |---TitleBar.ets                        // 标题栏                                                           
+```
+
+### 具体实现
+
+* 布局原理：定义@ObjectLink 装饰的数组变量album存放资源文件，使用list()组件中ListItem()循环数组展示，加号Button()，点击后触发 animateTo({ duration: 500, curve: Curve.Ease })控制动画展示,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/Solutions/Media/MultiMedia/entry/src/main/ets/pages/Index.ets )。    
+* 获取资源文件：通过引入媒体库实例（入口）接口@ohos.multimedia.medialibrary，例如通过this.getFileAssetsFromType(mediaLibrary.MediaType.FILE)获取FILE类型的文件资源，并通过albums.push()添加至album数组中。  
+* 展示系统资源文件：当album内的值被修改时，只会让用 @ObjectLink 装饰的变量album所在的组件被刷新，当前组件不会刷新。
+* 录音功能：通过引入音视频接口@ohos.multimedia.media，例如通过media.createAudioRecorder()创建音频录制的实例来控制音频的录制，通过this.audioRecorder.on('prepare', () => {this.audioRecorder.start()})异步方式开始音频录制,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/Solutions/Media/MultiMedia/entry/src/main/ets/model/RecordModel.ts )。
+* 拍照录像功能：通过引入相机模块接口@ohos.multimedia.camera，例如通过this.cameraManager.createCaptureSession()创建相机入口的实例来控制拍照和录像，通过this.captureSession.start()开始会话工作,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/Solutions/Media/MultiMedia/entry/src/main/ets/model/CameraService.ts )。
+  
+
+### 相关权限
+相机权限：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )  
+麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )    
+访问媒体文件地理位置信息权限：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )   
+读取公共媒体文件权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )   
+读写公共媒体文件权限：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )
+
+### 依赖
+
+不涉及
 
 ### 约束与限制
 
