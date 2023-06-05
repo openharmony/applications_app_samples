@@ -27,6 +27,7 @@ struct MusicCard {
   @State widthSize: Array<number> = [60, 60, 60, 60];
   @State heightSize: Array<number> = [60, 60, 60, 60];
   @State rotateAngle: Array<number> = [0, 0, 0, 0];
+  @State ID: Array<string> = ["previous", "play", "pause", "next"];
 
   onPlayClick(): void {
     postCardAction(this, {
@@ -110,6 +111,7 @@ struct MusicCard {
             Image(item)
               .size({ width: this.widthSize[index], height: this.heightSize[index] })
               .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle[index] })
+              .id(this.ID[index])
               .onClick(() => {
                 animateTo({
                   curve: Curve.EaseOut,

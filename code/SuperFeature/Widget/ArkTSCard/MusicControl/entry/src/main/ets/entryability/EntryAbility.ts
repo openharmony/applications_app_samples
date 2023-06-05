@@ -19,9 +19,9 @@ import commonEvent from '@ohos.commonEventManager';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 import avSession from '@ohos.multimedia.avsession';
+import rpc from '@ohos.rpc';
 import PlayerModel from '../feature/BackgroundPlayerFeature';
 import Logger from '../util/Logger';
-import rpc from '@ohos.rpc';
 
 const TAG: string = 'EntryAbility';
 const ONE_HUNDRED: number = 100; // Convert Milliseconds
