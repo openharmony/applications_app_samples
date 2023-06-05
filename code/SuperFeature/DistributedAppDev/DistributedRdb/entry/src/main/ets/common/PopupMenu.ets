@@ -116,6 +116,7 @@ export struct PopupMenu {
         deviceType: 0,
         networkId: '0',
         range: 0,
+        authForm: 0,
       })
       let deviceTempList = RemoteDeviceModel.discoverList.length > 0 ? RemoteDeviceModel.discoverList : RemoteDeviceModel.deviceList
       for (let i = 0; i < deviceTempList.length; i++) {
