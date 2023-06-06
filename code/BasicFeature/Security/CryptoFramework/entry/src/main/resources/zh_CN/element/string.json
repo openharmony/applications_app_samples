@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "加解密算法库框架"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "加解密算法库框架"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "加解密算法库框架"
+    },
+    {
+      "name": "open_file",
+      "value": "打开文件"
+    },
+    {
+      "name": "file_name",
+      "value": "文件名"
+    },
+    {
+      "name": "select_key_file",
+      "value": "选择密钥"
+    },
+    {
+      "name": "select_signature_file",
+      "value": "选择签名文件"
+    },
+    {
+      "name": "text_context",
+      "value": "文件内容"
+    },
+    {
+      "name": "encrypt",
+      "value": "加密"
+    },
+    {
+      "name": "encrypted_context",
+      "value": "加密内容"
+    },
+    {
+      "name": "decrypt",
+      "value": "解密"
+    },
+    {
+      "name": "decrypted_context",
+      "value": "解密内容"
+    },
+    {
+      "name": "generate_rsa_key_randomly",
+      "value": "随机生成RSA密钥"
+    },
+    {
+      "name": "generate_aes_key_randomly",
+      "value": "随机生成AES密钥"
+    },
+    {
+      "name": "sign",
+      "value": "签名"
+    },
+    {
+      "name": "verify",
+      "value": "验签"
+    }
+  ]
+}

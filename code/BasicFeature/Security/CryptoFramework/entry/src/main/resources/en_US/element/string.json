@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Crypto Framework"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Crypto Framework"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Crypto Framework"
+    },
+    {
+      "name": "open_file",
+      "value": "Open File"
+    },
+    {
+      "name": "file_name",
+      "value": "File Name"
+    },
+    {
+      "name": "select_key_file",
+      "value": "Select Key File"
+    },
+    {
+      "name": "select_signature_file",
+      "value": "Select Signature File"
+    },
+    {
+      "name": "text_context",
+      "value": "Text Context"
+    },
+    {
+      "name": "encrypt",
+      "value": "Encrypt"
+    },
+    {
+      "name": "encrypted_context",
+      "value": "Encrypted Context"
+    },
+    {
+      "name": "decrypt",
+      "value": "Decrypt"
+    },
+    {
+      "name": "decrypted_context",
+      "value": "Decrypted Context"
+    },
+    {
+      "name": "generate_rsa_key_randomly",
+      "value": "Generate RSA Key randomly"
+    },
+    {
+      "name": "generate_aes_key_randomly",
+      "value": "Generate AES Key randomly"
+    },
+    {
+      "name": "sign",
+      "value": "Sign"
+    },
+    {
+      "name": "verify",
+      "value": "Verify"
+    }
+  ]
+}

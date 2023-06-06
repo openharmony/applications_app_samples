@@ -1,0 +1,52 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\hxt\\.ohos\\config\\openharmony\\auto_ohos_default_filePickTest2_com.samples.cryptoFramework.cer",
+          "storePassword": "0000001B10268FF3E1399899CDF7C3E74913644C76E13231351C81DC63E381EE75BA76A63F00200C6A4F6A",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B1C83304FA32D400D3155043246541362C62A9133262D9053D76740F2FD29D4441DC3942D766A39",
+          "profile": "C:\\Users\\hxt\\.ohos\\config\\openharmony\\auto_ohos_default_filePickTest2_com.samples.cryptoFramework.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\hxt\\.ohos\\config\\openharmony\\auto_ohos_default_filePickTest2_com.samples.cryptoFramework.p12"
+        }
+      },
+      {
+        "name": "debug_default",
+        "material": {
+          "certpath": "C:\\Users\\hxt\\.ohos\\config\\openharmony\\auto_ohos_debug_default_filePickTest2_com.samples.cryptoFramework.cer",
+          "storePassword": "0000001B3071A2BD3CA9C1B3C3CF540AD4CCB28FA883D44099B21C493D0986CE65953052554CF4A8770E91",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B37D8A17EAD95B69F57CDF5840EBAB509A2DA656F0919AB1446C14106A4CFF17AEDA32957C2C59E",
+          "profile": "C:\\Users\\hxt\\.ohos\\config\\openharmony\\auto_ohos_debug_default_filePickTest2_com.samples.cryptoFramework.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\hxt\\.ohos\\config\\openharmony\\auto_ohos_debug_default_filePickTest2_com.samples.cryptoFramework.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "debug_default"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
