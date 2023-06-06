@@ -96,9 +96,9 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 退回首页
       await driver.pressBack()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       await driver.pressBack()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + "_WLAN end")
     })
 
@@ -126,9 +126,9 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 退回首页
       await driver.pressBack()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       await driver.pressBack()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + "_MoreConnection end")
     })
 
