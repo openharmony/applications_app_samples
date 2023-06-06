@@ -13,14 +13,26 @@
  * limitations under the License.
  */
 
-import jsQR from 'jsqr'
 import fileio from '@ohos.fileio'
 import image from '@ohos.multimedia.image'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import common from '@ohos.app.ability.common'
+import prompt from '@ohos.promptAction';
+import {
+  BarcodeFormat,
+  MultiFormatWriter,
+  BitMatrix,
+  ZXingStringEncoding,
+  EncodeHintType,
+  MultiFormatReader,
+  DecodeHintType,
+  RGBLuminanceSource,
+  BinaryBitmap,
+  HybridBinarizer
+} from '@ohos/zxing';
 import DateTimeUtil from '../utils/DateTimeUtil'
 import { CameraService } from './CameraService'
-import { QRCodeScanConst } from './QRCodeScanConst'
+import { QRCodeScanConst, ImageAttribute, DecodeResultAttribute } from './QRCodeScanConst';
 import Logger from '../utils/Logger'
 import Want from '@ohos.app.ability.Want'
 
@@ -38,11 +50,10 @@ class QRCodeParser {
    * @param canvasContext
    */
   parseQRCodeImageFromCamera(cameraService: CameraService,
-                             canvasContext: CanvasRenderingContext2D,
                              imageComponentType?: image.ComponentType): void {
     Logger.info("parseQRCodeImageFromCamera start")
     let fileName = this.getRandomFileName(QRCodeScanConst.IMG_FILE_PREFIX, QRCodeScanConst.IMG_SUFFIX_JPG)
-    this.parseQRCodeImageWithNameFromCamera(cameraService, canvasContext, fileName, imageComponentType)
+    this.parseQRCodeImageWithNameFromCamera(cameraService, fileName, imageComponentType);
     Logger.info("parseQRCodeImageFromCamera end")
   }
 
@@ -53,7 +64,6 @@ class QRCodeParser {
    * @param canvasContext
    */
   parseQRCodeImageWithNameFromCamera(cameraService: CameraService,
-                                     canvasContext: CanvasRenderingContext2D,
                                      fileDisplayName: string,
                                      imageComponentType?: image.ComponentType): void {
     Logger.info("parseQRCodeImageWithNameFromCamera...")
@@ -66,78 +76,99 @@ class QRCodeParser {
       let imageComponent = await targetImage.getComponent(imgComponentType)
       // 将image的ArrayBuffer写入指定文件中，返回文件uri
       let imageUri = await this.createPublicDirFileAsset(fileDisplayName, mediaLibrary.MediaType.IMAGE,
-      mediaLibrary.DirectoryType.DIR_IMAGE, imageComponent.byteBuffer)
+                     mediaLibrary.DirectoryType.DIR_IMAGE, imageComponent.byteBuffer);
       // 释放已读取的image资源，以便处理下一个资源
       await targetImage.release()
 
       // 解析二维码
-      let qrCodeParseRlt = this.parseImageQRCode(canvasContext, new ImageBitmap(imageUri))
-      if (qrCodeParseRlt == null) {
+      let qrCodeParseRlt = await this.parseImageQRCode(imageUri);
+      if (!qrCodeParseRlt.isSucess) {
         Logger.error("parseQRCodeImageWithNameFromCamera qrCodeParseRlt is null")
+        prompt.showToast({
+          message: $r('app.string.qrCodeNotRecognized')
+        })
+        return;
       }
       // 拼接解析结果
-      AppStorage.SetOrCreate(QRCodeScanConst.QR_CODE_PARSE_RESULT, qrCodeParseRlt)
+      AppStorage.SetOrCreate(QRCodeScanConst.QR_CODE_PARSE_RESULT, qrCodeParseRlt.decodeResult);
       Logger.info("parseQRCodeImageWithNameFromCamera imageArrival end")
     })
   }
 
   /**
-   * 从相册中获取单张图片
-   */
-  async getSingleImageFromAlbum(context: common.UIAbilityContext): Promise<ImageBitmap> {
-    Logger.info(TAG, "getSingleImageFromAlbum start")
-    var want: Want = {
-      bundleName: 'com.ohos.photos',
-      abilityName: 'com.ohos.photos.MainAbility',
-      parameters: {
-        uri: 'singleselect' // 只选取单个文件
-      }
-    }
-
-    try {
-      context.startAbilityForResult(want, (error, result) => {
-        if (error.code) {
-          // 处理业务逻辑错误
-          Logger.error(TAG, 'startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-          return
-        }
-        // 执行正常业务
-        Logger.info(TAG, 'startAbilityForResult succeed, result.resultCode = ' +
-        result.resultCode)
-        return result.want.parameters['select-item-list']
-      })
-    } catch (paramError) {
-      // 处理入参错误异常
-      Logger.error(TAG, 'error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
-    }
-    return
-  }
-
-  /**
    * 解析图片二维码信息
    * @param canvasContext
-   * @param imageBitmap
+   * @param imageSrc
    */
-  parseImageQRCode(canvasContext: CanvasRenderingContext2D, imageBitmap: ImageBitmap): string {
-    Logger.info(`parseImageQRCode start`)
-    // 创建画布
-    canvasContext.clearRect(0, 0, QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
-    // 绘制画布
-    canvasContext.drawImage(imageBitmap, 0, 0, QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
-    // 获取util8格式的图片
-    let imageData = canvasContext.getImageData(0, 0, QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
-    // 解析二维码
-    let jsQRRlt = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: 'dontInvert' })
-    if (jsQRRlt === null) {
-      Logger.error("parseImageQRCode: jsQR result QRCode is null")
-      return null
+  async parseImageQRCode(imageSrc: string): Promise<DecodeResultAttribute> {
+    Logger.info(`parseImageQRCode start`);
+    // 获取图片的宽高
+    let imageSource = await this.getImageSource(imageSrc);
+    let imageWidth = imageSource.width;
+    let imageHeight = imageSource.height;
+    // 获取PixelMap图片数据
+    let pixMapData = imageSource.pixelMap;
+    let pixelBytesNumber = pixMapData.getPixelBytesNumber();
+    let arrayBuffer: ArrayBuffer = new ArrayBuffer(pixelBytesNumber);
+    // 读取图像像素数据，结果写入ArrayBuffer里
+    await pixMapData.readPixelsToBuffer(arrayBuffer);
+    let int32Array = new Int32Array(arrayBuffer);
+    let luminanceSource = new RGBLuminanceSource(int32Array, imageWidth, imageHeight);
+    let binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
+    let mltiFormatReader = new MultiFormatReader();
+    let hints = new Map();
+    hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.QR_CODE]);
+    mltiFormatReader.setHints(hints);
+    try {
+      // 解析二维码
+      let decodeResult = mltiFormatReader.decode(binaryBitmap);
+      let decodeText = decodeResult.getText();
+      Logger.info(`parseImageQRCode end`);
+      return { isSucess: true, decodeResult: decodeText };
+    } catch (err) {
+      let error = `The error is ${err}`;
+      Logger.info(`parseImageQRCode end`);
+      return { isSucess: false, decodeResult: error };
     }
-    Logger.debug("parseImageQRCode: jsQR result data: " + jsQRRlt.data)
-    return jsQRRlt.data
   }
-
+  /**
+   * 获取图片的属性
+   * @param context
+   * @param imageSrc
+   */
+  async getImageSource(imageSrc: string): Promise<ImageAttribute> {
+    Logger.info(`getImageSource start`);
+    let media = mediaLibrary.getMediaLibrary(AppStorage.Get<common.UIAbilityContext>('context'));
+    let fileKeyObj = mediaLibrary.FileKey;
+    let srcIndex = imageSrc.lastIndexOf('/');
+    // 提取id，图库获取到的uri数据为media/image/id,通过这个id在媒体库中查找数据
+    let srcId = imageSrc.substring(srcIndex + 1, imageSrc.length);
+    let imagesIdFetchOp = {
+      selections: `${fileKeyObj.ID}= ?`,
+      selectionArgs: [srcId.toString()],
+    }
+    // 获取图片文件资源
+    let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
+    let fileIdAsset = await fetchIdFileResult.getFirstObject();
+    // 将字符串分割，下标为1的数据即为图片类型
+    let imgType = fileIdAsset.displayName.split('.')[1];
+    // 获取文件描述符
+    let fd = await fileIdAsset.open('RW');
+    let context = AppStorage.Get<common.UIAbilityContext>('context');
+    // 获取当前时间
+    let time = new Date().getTime();
+    // 拼接路径
+    let imagePath = `${context.cacheDir}/${time.toString()}_note.${imgType}`;
+    // 将图片copy到此路径当中
+    await fileio.copyFile(fd, imagePath);
+    // 创建一个图片源类
+    let imageSource = image.createImageSource(imagePath);
+    // 创建PixelMap数组
+    let pixelMap = await imageSource.createPixelMap();
+    // 4、关闭安fd,Asset
+    await fileIdAsset.close(fd);
+    return { width: fileIdAsset.width, height: fileIdAsset.height, pixelMap: pixelMap };
+  }
   /**
    * 在媒体公共资源目录下的创建指定类型的资源对象
    */
