@@ -52,7 +52,7 @@ entry/src/main/ets/
 |   |---applylevelstagemanagement                             // 应用级状态管理
 |   |   |---abilityglobaldatasync                             // Ability内全局数据与UI之间的状态同步             
 |   |   |   |---AbilityGlobalDataSync.ets                    
-|   |   |   |---AbilityGlobalDataSyncCode.ets                 // bility内全局数据与UI之间的状态同步主页
+|   |   |   |---AbilityGlobalDataSyncCode.ets                 // Ability内全局数据与UI之间的状态同步主页
 |   |   |   |---AbilityOutOfSyncPage.ets                      // 跨Ability页面
 |   |   |   |---LocalStorageLinkPage.ets                      // 展示LocalStorageLink效果页面
 |   |   |   |---LocalStoragePropPage.ets                      // 展示LocalStorageProp效果页面

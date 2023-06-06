@@ -52,7 +52,7 @@
 
 2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 4.本示例在开发板上运行时，可以修改开发板系统配置文件以使能应用窗口能力。
 

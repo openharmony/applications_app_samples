@@ -45,7 +45,7 @@
 
 # 7月8日-7月14日新增Sample（总计28个分类，163个sample）
 
-1.删除[`AdaptiveCapabilities`：多设备自适应能力（ArkTS）（API9）](ArkTSUI/AdaptiveCapabilities)
+1.删除`AdaptiveCapabilities`：`多设备自适应能力（ArkTS）（API9）`
 
 # 7月14日-9月5日新增Sample（总计28个分类，174个sample）
 1.[`CustomShare`：自定义分享（ArkTS）（API9）（Full SDK）](code/BasicFeature/ApplicationModels/CustomShare)
@@ -69,12 +69,12 @@
 3.[`MediaCollections`：媒体管理合集（ArkTS）（API9）（Full SDK）](code/BasicFeature/FileManagement/MediaCollections)
 
 删除Sample：
-1.[`JsRecorder`：录音机（ArkTS）（API8）（Full SDK）](media/JsRecorder)
-2.[`FlashLight`：手电筒（ArkTS）（API8）（Full SDK）](Preset/FlashLight) 
-3.[`AirQuality`：空气质量（ArkTS）（API9）](Preset/AirQuality) 
-4.[`ECG`：心率检测（JS）（API8）](common/ECG) 
-5.[`Flashlight`：手电筒（JS）（API8）](common/Flashlight) 
-6.[`AirQuality`：空气质量（JS）（API8）](common/AirQuality) 
+1.`JsRecorder`：`录音机（JS）（API8）（Full SDK）`
+2.`FlashLight`：`手电筒（ArkTS）（API8）（Full SDK）`
+3.`AirQuality`：`空气质量（ArkTS）（API9）`
+4.`ECG`：`心率检测（JS）（API8）`
+5.`Flashlight`：`手电筒（JS）（API8）`
+6.`AirQuality`：`空气质量（JS）（API8）`
 
 # 9月16日-10月21日新增Sample（总计28个分类，175个sample）
 1.[`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](code/BasicFeature/IDL/AbilityConnectServiceExtension)
@@ -84,12 +84,12 @@
 5.[`JsComponentCollection`：组件集合（JS）（API9）](code/UI/JsComponentClollection/JsComponentCollection)
 
 # 11月7日删除Sample（总计27个分类，173个sample）
-1.[`NativeAPI`：NativeAPI（ArkTS）（API8）](Native/NativeAPI)
-2.[`XComponent`：XComponent（ArkTS）（API9）](ArkTSUI/XComponent)
+1.`NativeAPI`：`NativeAPI（ArkTS）（API8）`
+2.`XComponent`：`XComponent（ArkTS）（API9）`
 
 # 11月11日删除sample（总计27个分类，171个sample）
-1.[`Notification`：通知（ArkTS）（API8）](common/Notification)
-2.[`StageCallAbility`：StageCallAbility的创建与使用（ArkTS）（API9）（Full SDK）](ability/StageCallAbility)
+1.`Notification`：`通知（ArkTS）（API8）`
+2.`StageCallAbility`：`StageCallAbility的创建与使用（ArkTS）（API9）（Full SDK）`
 
 # 12月到1月新增Sample（总计27个分类，178个sample）
 1.[`FormGame`：Stage模型卡片JS与C++通信（ArkTS）（API9）](code/SuperFeature/Widget/FormGame)

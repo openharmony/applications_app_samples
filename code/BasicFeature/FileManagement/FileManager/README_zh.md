@@ -84,7 +84,7 @@ Library/src/main/ets/
 * MyPhone模块中的文件增删、复制移动、查找功能封装在FileSystem，源码参考：[FileIoManager.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/fileio/FileIoManager.ets) 。
   * 读取文件列表：使用fileio.opendirSync()打开指定目录dir，然后使用dir.readSync()读取文件内容dirent，在调用dirent中相关api获取想要的文件参数;
   * 创建目录：使用fileio.mkdirSync()创建文件夹；
-  * 创建文件：使用fileio.openSync()床架文件；
+  * 创建文件：使用fileio.openSync()创建文件；
   * 删除选中内容：使用fileio.rmdirSync()删除文件夹，使用fileio.unlinkSync()删除文件；
   * 复制文件：使用fileio.copyFileSync()复制目标文件；
   * 移动文件：使用fileio.mkdirSync()创建指定目录，再递归选中目录中的文件，将内部的文件创建到指定的位置。
@@ -118,7 +118,7 @@ Library/src/main/ets/
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
 2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) ；
 3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行；
-4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
+4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
 ### 下载
 

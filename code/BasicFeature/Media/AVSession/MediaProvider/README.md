@@ -54,7 +54,7 @@ entry/src/main/ets/
     ```ets
     import { ProviderFeature } from '../feature/ProviderFeature';
     private providerFeature: ProviderFeature = new ProviderFeature(); // 创建对象
-
+    
     Button() {
       // 按钮的内容
     }
@@ -97,7 +97,7 @@ entry/src/main/ets/
 
   * 切换歌曲
 
-    在切换歌曲时，除了需要设置媒体提供方自身的状态，还需要将使用接口`setAVPlaybackState()`与接口`setAVMetadata()`将当前播放状态与元数据同步给媒体控制方。
+    在切换歌曲时，除了需要设置媒体提供方自身的状态，还需要使用接口`setAVPlaybackState()`与接口`setAVMetadata()`将当前播放状态与元数据同步给媒体控制方。
 
   * 发送自定义数据包
 
