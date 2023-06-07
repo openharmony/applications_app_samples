@@ -73,9 +73,6 @@ export default function appTest() {
       await addScreen.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('smallRect1'));
-      await addScreen.click();
-      await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.id('smallRect2'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreen_001 end')
     })
 
@@ -92,7 +89,7 @@ export default function appTest() {
       await DRIVER.assertComponentExist(ON.id('smallRectId'));
       let screenDetail = await DRIVER.findComponent(ON.id('smallRectId'));
       let smallRectIdArray = (await screenDetail.getText()).trimStart().split(' ');
-      expect(smallRectIdArray.length).assertEqual(3);
+      expect(smallRectIdArray.length).assertEqual(2);
       await screenDetail.click();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SmallDeviceInfo_001 end');
@@ -108,16 +105,10 @@ export default function appTest() {
       let removeScreen = await DRIVER.findComponent(ON.id('removeScreen'));
       await removeScreen.click();
       await DRIVER.delayMs(1000);
-      let smallRect2 = await DRIVER.findComponent(ON.id('smallRect2'));
-      expect(smallRect2).assertNull();
-      await DRIVER.assertComponentExist(ON.id('smallRect1'));
       let smallRect1 = await DRIVER.findComponent(ON.id('smallRect1'));
-      await smallRect1.click();
-      await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.id('smallRectId'));
+      expect(smallRect1).assertNull();
       let screenDetail = await DRIVER.findComponent(ON.id('smallRectId'));
-      let smallRectIdArray = (await screenDetail.getText()).trimStart().split(' ');
-      expect(smallRectIdArray.length).assertEqual(2);
+      expect(screenDetail).assertNull();
       hilog.info(DOMAIN, TAG, BUNDLE + 'DeleteSmallDevice_001 end');
     })
   })

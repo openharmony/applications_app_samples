@@ -39,7 +39,7 @@ export struct DisplayDevice {
 
   addWatch() {
     display.on('add', (data) => {
-      if (this.devices.length < 3) {
+      if (this.devices.length < 1) {
         this.devices.push(this.screenIds[this.screenIds.length - 1])
         Logger.info(TAG, `this push devices = ${JSON.stringify(this.devices)} this id = ${data}`)
       } else {
@@ -76,10 +76,10 @@ export struct DisplayDevice {
   build() {
     Column() {
       Row() {
-        Rect({ width: '34%', height: '17%' })
-          .margin({ top: '10%', left: 4, right: 4, bottom: 4 })
+        Rect({ width: '40%', height: '23%' })
+          .margin({ top: '56px', left: '1%', right: '2%' })
           .id('bigRect')
-          .fill('#5dbbff')
+          .fill('#007dff')
           .onClick(async () => {
             await this.getDefaultScreen()
             Logger.info(TAG, `defaultOrAllScreen = ${this.defaultOrAllScreen}`)
@@ -88,9 +88,9 @@ export struct DisplayDevice {
 
 
         ForEach(this.devices, (item, index) => {
-          Rect({ width: '18%', height: '9%' })
-            .margin({ top: '10%', left: 4, right: 4, bottom: 4 })
-            .fill('#5dbbff')
+          Rect({ width: '40%', height: '23%' })
+            .margin({ top: '56px', left: '5%', right: '1%' })
+            .fill('#007dff')
             .id('smallRect' + (index + 1))
             .onClick(async () => {
               await this.getAllScreen()
@@ -99,14 +99,15 @@ export struct DisplayDevice {
             })
         })
       }
-      .margin({ top: 10, bottom: '8%' })
 
       Button($r('app.string.add_screen'))
-        .width('58%')
-        .height('6%')
+        .width('86%')
+        .height('5%')
         .id('addScreen')
-        .fontSize(18)
-        .margin({ top: 10, left: 4, right: 4, bottom: '8%' })
+        .fontSize(22)
+        .backgroundColor('#007dff')
+        .type(ButtonType.Capsule)
+        .margin({top: '86%', left: '6%', right: '6%', bottom: '3%' })
         .onClick(async () => {
           let result = await this.displayModel.createVirtualScreen(this.screenIds.length)
           Logger.info(TAG, `this createVirtualScreen screen id = ${JSON.stringify(this.screenIds)}`)
@@ -114,15 +115,19 @@ export struct DisplayDevice {
         })
 
       Button($r('app.string.remove_screen'))
-        .width('58%')
-        .height('6%')
+        .width('86%')
+        .height('5%')
         .id('removeScreen')
-        .fontSize(18)
-        .margin({ top: 10, left: 4, right: 4, bottom: 4 })
+        .fontSize(22)
+        .backgroundColor('#007dff')
+        .type(ButtonType.Capsule)
+        .margin({  left: '6%', right: '6%'})
         .onClick(async () => {
           await this.displayModel.destroyVirtualScreen(this.screenIds[this.screenIds.length - 1])
           Logger.info(TAG, `this after destroyVirtualScreen screen id = ${JSON.stringify(this.screenIds)}`)
         })
     }
+    .width('100%')
+    .height('100%')
   }
 }
