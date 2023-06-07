@@ -5,9 +5,9 @@
 本示例使用[@ohos.data.relationalStore](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md) 接口和[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md) 接口展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步同能。
 
 ### 效果预览
-|首页|编辑联系人|设置|数据同步|
-|------|-------|-------|-------|
-|![home](screenshots/devices/home.png)|![home](screenshots/devices/edit.png)|![home](screenshots/devices/setting.png)|![home](screenshots/devices/sync.png)|
+| 首页                                     | 编辑联系人                                  |设置| 数据同步                                   |
+|----------------------------------------|----------------------------------------|-------|----------------------------------------|
+| ![home](screenshots/devices/home.jpeg) | ![home](screenshots/devices/edit.jpeg) |![home](screenshots/devices/setting.png)| ![home](screenshots/devices/sync.jpeg) |
 
 使用说明:
 1. 启动应用后点击“**+**”按钮可以添加联系人;

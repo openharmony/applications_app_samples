@@ -25,6 +25,14 @@ export struct ContactItem {
   @ObjectLink contact: Contact
   @Link isMultiCheck: boolean
 
+  aboutToAppear() {
+    if(this.contact){
+      let phone: string = this.contact.phone;
+      phone = phone.replace(phone.substring(3, 7), '****');
+      this.contact.phone = phone;
+    }
+  }
+
   build() {
     Row() {
       Image(this.contact.gender === Gender.MALE ? $r('app.media.contact_photo_male') : $r('app.media.contact_photo_female'))
