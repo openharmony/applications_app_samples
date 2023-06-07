@@ -34,12 +34,18 @@
   <td width="680" colspan="4" align="center" x:str><strong>应用示例</strong></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td width="140" align="center" rowspan="2" style='height:27.00pt' x:str><strong>UI</strong></td>
-  <td width="170" x:str><strong>声明式开发范式</strong></td>
+  <td width="140" align="center" rowspan="3" style='height:27.00pt' x:str><strong>UI</strong></td>
+  <td rowspan="2" x:str><strong>声明式开发范式</strong></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/ComponentCollection">ArkTS组件集</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/MediaQuery">媒体查询</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/StateManagement">状态管理</a></td>
-  <td width="170"></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/Canvas">画布组件</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/DefiningPageLayoutAndConnection">页面布局和连接</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/Drag">拖拽事件</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/UI/ArkTsComponentClollection/MediaQuery">横竖屏切换</a></td>
+  <td x:str><a href="code/UI/ArkTsComponentClollection/StateManagement">状态管理</a></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>类Web开发范式</strong></td>
@@ -49,18 +55,18 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="20" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="21" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
-  <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">使用want分享数据</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">自定义分享</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>通知</strong></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomEmitter">自定义Emitter</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotification">自定义通知</a></td>
-  <td x:str><a href="code/BasicFeature/Notification/CustomCommonEvent">公共事件的订阅和发布</a></td>
+  <td x:str><a href="code/BasicFeature/Notification/CustomCommonEvent">公共事件的订阅和发布（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -78,15 +84,21 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="2" x:str><strong>媒体</strong></td>
+  <td rowspan="3" x:str><strong>媒体</strong></td>
   <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoShow">视频播放</a></td>
   <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Media/ImageShow">图片显示</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Media/Recorder">录音机</a></td>
   <td x:str><a href="code/BasicFeature/Media/QRCodeScan">二维码扫描</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AVSession/MediaController">媒体会话——控制方（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AVSession/MediaProvider">媒体会话——提供方（API 10）</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
+  <td x:str><a href="code/BasicFeature/Media/Audio">音频管理（API 10）</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -101,8 +113,8 @@
   <td x:str><strong>网络与连接</strong></td>
   <td x:str><a href="code/BasicFeature/Connectivity/Http">Http</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/RPC">RPC通信</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/Socket">网络管理-Socket连接</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/WebSocket">WebSocket</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
@@ -126,7 +138,7 @@
   <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集</a></td> 
+  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td> 
   <td ></td>
   <td ></td>
  </tr>
@@ -171,8 +183,8 @@
   <td ><a href="code/BasicFeature/DFX/Logger">日志打印</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>国际化</strong></td>
-  <td x:str><a href="code/BasicFeature/Internationalnation/ResourceManager">资源管理</a></td>
+  <td x:str><strong>资源</strong></td>
+  <td x:str><a href="code/BasicFeature/Resource/ResourceManager">资源管理</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -236,9 +248,9 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备管理</strong></td>
-  <td x:str><a href="code/SystemFeature/DeviceManagement/PowerManager">系统电源管理</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性</a></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -251,7 +263,7 @@
   <td height="90" align="center" rowspan="5" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合</a></td>
-  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合（Js）（API 8）</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/HealthyDiet">典型页面场景：健康饮食</a></td>
  </tr>
@@ -264,19 +276,19 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>分布式</strong></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">Js分布式音乐播放（Js）（API 9）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">Js分布式音乐播放（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributeCalc">Js分布式计算器（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库</a></td>
+ <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证</a></td>
-  <td x:str></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>卡片</strong></td>
-  <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">Js多设备自适应服务卡片（Js）（API 8）</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">Js多设备自适应服务卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信</a></td>
   <td></td>
@@ -291,7 +303,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>输入法</strong></td>
-  <td x:str><a href="code/Solutions/InputMethod/KikaInput">轻量级输入法</a></td>
+  <td x:str><a href="code/Solutions/InputMethod/KikaInput">轻量级输入法（API 10）</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -322,7 +334,7 @@
   <td x:str><strong>工具</strong></td>
   <td x:str><a href="code/Solutions/Tools/PatternLock">图案密码锁</a></td>
   <td x:str><a href="code/Solutions/Tools/FlipClock">翻页时钟</a></td>
-  <td x:str><a href="code/Solutions/Tools/JsClock">Js时钟（Js）（API 9）</a></td>
+  <td x:str><a href="code/Solutions/Tools/JsClock">Js时钟（API 10）</a></td>
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -343,7 +355,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="1" x:str><strong>语言基础类库</strong></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库（API 10）</a></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/ConcurrentModule">多线程任务</a></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
   <td ></td>
