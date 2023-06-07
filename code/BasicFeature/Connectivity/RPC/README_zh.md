@@ -44,7 +44,7 @@ entry/src/main/ets/
   我们的处理过的购物数据写入MessageSequence对象中，通过rpc.RemoteObject.sendMessageRequest()将我们得出总价所需要的参数发送到进程中，
   源码参考：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/RPC/entry/src/main/ets/pages/Index.ets) ;
 
-* 读取数据：处理MessageRequest请求的接口封装在ReceivedData里面，在这里接收传递的来数据，然后经过处理得出总价，
+* 读取数据：处理MessageRequest请求的接口封装在ReceivedData里面，在这里接收传递来的数据，然后经过处理得出总价，
   并通过rpc.MessageParcel.writeInt()写入MessageParcel对象，源码参考：[ReceivedData.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/RPC/entry/src/main/ets/model/ReceivedData.ets) 。
 
 ### 相关权限

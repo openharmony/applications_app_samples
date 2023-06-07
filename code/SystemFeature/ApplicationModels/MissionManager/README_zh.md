@@ -39,12 +39,12 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 任务执行锁定、解锁、清理、切换到前台等操作的功能结构主要封装再在Index、MissionInfoComponent，源码参考:[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/MissionManager/entry/src/main/ets/pages/Index.ets) ，[MissionInfoComponent.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/MissionManager/entry/src/main/ets/common/MissionInfoComponent.ets)
+* 任务执行锁定、解锁、清理、切换到前台等操作的功能结构主要封装在Index、MissionInfoComponent，源码参考:[Index.ets](entry/src/main/ets/pages/Index.ets) ，[MissionInfoComponent.ets](entry/src/main/ets/common/MissionInfoComponent.ets)
     * 获取任务信息：在Index页面中通过missionManager.getMissionInfos()方法来获取所有的mission；
     * 执行或者解锁锁定任务：在MissionInfoComponent组件当中可以通过missionManager.lockMission(missionId)方法来锁定指定的mission，而missionManager.unlockMission(missionId)用来解锁mission;
     * 移动指定的任务：将指定的任务移动到前台执行可以使用missionManager.moveMissionToFront(missionId)方法；
     * 删除指定的任务：删除指定的任务可以通过missionManager.clearMission(missionId)方法实现。
-  
+
 ### 相关权限
 
 [ohos.permission.MANAGE_MISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)

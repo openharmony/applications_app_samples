@@ -32,4 +32,4 @@ ohos.permission.MANAGE_MISSIONS
 
 3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 
-4. The permission **ohos.permission.MANAGE_MISSIONS** is at the system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/security/hapsigntool-overview.md/).
+4. The permission **ohos.permission.MANAGE_MISSIONS** is at the system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2/en/application-dev/security/hapsigntool-overview.md/).

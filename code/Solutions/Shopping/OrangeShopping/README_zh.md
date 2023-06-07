@@ -2,9 +2,9 @@
 
 ### 介绍
 
-本实例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。在详情页中通过**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
+本示例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。在详情页中通过**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
 
-本实例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。  
+本示例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。  
 
 本示例用到了延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md) 。  
 
@@ -120,15 +120,11 @@ OrangeShopping
 
 ### 依赖
 
-[转场动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/TransitionAnimation) 本示例的进场动画依赖此示例。
+[数据请求](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http) 本示例的网络配置服务依赖此示例。
 
-[数据请求](https://gitee.com/openharmony/app_samples/tree/master/Network/Http) 本示例的网络配置服务依赖此示例。
+[位置服务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location) 本示例的详情页中的位置服务功能依赖此示例。
 
-[位置服务](https://gitee.com/openharmony/app_samples/tree/master/device/Location) 本示例的详情页中的位置服务功能依赖此示例。
-
-[自定义弹窗](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/UpgradePopup) 本示例的升级弹窗功能依赖此示例。
-
-[媒体库视频](https://gitee.com/openharmony/app_samples/tree/master/media/VideoShow) 本示例的详情页中的视频功能依赖此示例。
+[媒体库视频](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow) 本示例的详情页中的视频功能依赖此示例。
 
 [分享](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare) 本示例的详情页中的分享功能依赖此示例。
 

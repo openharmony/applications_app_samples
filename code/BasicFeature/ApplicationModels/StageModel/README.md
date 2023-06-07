@@ -84,6 +84,7 @@ N/A
 
 1. This sample can only be run on standard-system devices.
 
-2. **ServiceExtensionAbility** and **DataShareExtensionAbility** are system APIs and require the use of the Full SDK. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/).
+2. **ServiceExtensionAbility** and **DataShareExtensionAbility** are system APIs and require the use of the Full SDK. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://docs.openharmony.cn/pages/v3.2/en/application-dev/quick-start/full-sdk-switch-guide.md/).
 
-3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
+3. DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023) must be used.
+

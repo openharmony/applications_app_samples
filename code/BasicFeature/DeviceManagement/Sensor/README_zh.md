@@ -26,7 +26,7 @@ entry/src/main/ets/
 ### 具体实现
 
 * 指南针：在主页直接引入sensor对象，使用sensor.on()监听传感器变化，当传感器发生变化时会返回数据data，其中包含alpha属性，使用
-Math.round(alpha)得出让他的整数角度，配合Image组件的旋转属性rotate来展示到界面中。源码参考[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/Sensor/entry/src/main/ets/pages/Index.ets) 。
+Math.round(alpha)得出他的整数角度，配合Image组件的旋转属性rotate来展示到界面中。源码参考[Index.ets](entry/src/main/ets/pages/Index.ets) 。
 
 ### 相关权限
 

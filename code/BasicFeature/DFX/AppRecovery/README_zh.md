@@ -8,7 +8,7 @@
 在EntryAbility的故障触发页面触发故障，自动重启回到故障触发页面。
 
 二.多Ability自动恢复 \
-应用中启动了EntryAbility和SecondAbility，在第二个启动的SecondAbilit的故障触发页面触发故障。 \
+应用中启动了EntryAbility和SecondAbility，在第二个启动的SecondAbility的故障触发页面触发故障。 \
 自动重启到SecondAbility的故障触发页面。 \
 从任务管理中将EntryAbility切回前台，预期能回到故障触发页面，并恢复页面上点击次数信息。
 

@@ -33,8 +33,8 @@ entry/src/main/ets/
     * 设置表盘大小：通过Index中的display.getDefaultDisplay()方法来获取设备宽高计算表盘大小；
     * 获取当前时间：调用updateTime函数，执行new Date().getHours()、new Date().getMinutes()、new Date().getSeconds()获取当前时间。
     * 绘制表盘内容：通过[CanvasRenderingContext2D](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-canvasrenderingcontext2d.md) 来画表盘背景、时针、分针、秒针、圆心以及表盘下方文本；
-    * 启动时钟：添加setInterval定时器，每隔1s执行一次upDateTime函数。
-  
+    * 启动时钟：添加setInterval定时器，每隔1s执行一次updateTime函数。
+
 ### 相关权限
 
 不涉及。

@@ -70,7 +70,7 @@ Navigation组件通常搭配NavRouter组件以及NavDestination组件一起使�
 * NavDestination组件用于实际刷新Navigation组件Content区域的显示。
 * 例如：在本示例中wlan功能项为NavRouter的第一个孩子节点，跳转的子页面WLAN为NavRouter的第二个孩子节点，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Settings/features/settingitems/src/main/ets/wlan/WlanSettingItem.ets )。
 #### 实现多级跳转
-Navigation组件支持自动切换单栏和双栏的显示效果，同时可以根据当前状态自动添加返回键及响应系统的返回键事件。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Settings/features/settingitems/src/main/ets/wlan/WlanMoreSettingItem.ets )。  
+Navigation组件支持自动切换单栏和双栏的显示效果，同时可以根据当前状态自动添加返回键及响应系统的返回键事件。[源码参考](features/settingitems/src/main/ets/wlan/WlanMoreSetting.ets )。  
 1、通过激活SettingList中的WLANSettingItem，可以加载及显示WlanSetting。  
 2、激活WlanSetting中的WlanMoreSettingItem，可以加载及显示WlanMoreSetting。
 

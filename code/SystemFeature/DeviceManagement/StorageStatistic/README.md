@@ -41,4 +41,4 @@ N/A
 
 4. This sample uses the **@ohos.bundle.innerBundleManager**, **@ohos.volumeManager**, and **@ohos.storageStatistics** system APIs. To use the full SDK, obtain it from a mirror site and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/).
 
-5. This example uses the **system_core** permissions (see [App Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)). You need to [configure a high-level permission signature](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md).
+5. This example uses the **system_core** permissions (see [App Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)). You need to [configure a high-level permission signature](https://docs.openharmony.cn/pages/v3.2/en/application-dev/security/hapsigntool-overview.md/).

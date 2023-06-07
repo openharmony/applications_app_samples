@@ -4,7 +4,7 @@
 
 本示例展示从相册选择图片展示在商品评价页面。
 
-本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本属于，使用 [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 实现图片的获取，选择。 
+本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本输入，使用 [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 实现图片的获取，选择。 
 
 ### 效果预览
 |主页| 打开相册                                       | 选中图片                                   | 发表评价                                 |
@@ -67,7 +67,7 @@ entry/src/main/ets/
 
 2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100, built on November 3, 2022)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 ### 下载
 
