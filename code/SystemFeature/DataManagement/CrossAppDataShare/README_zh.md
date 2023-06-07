@@ -7,11 +7,11 @@
 注：
 1.联系人指的是内置联系人应用，为dataProvider生成的hap包，需要手动安装，由于联系人和联系人助手共用一个bundleName，因此打包之前需要更改bundleName，保证两个包的bundleName不同，这样两个应用打开才不会出问题。
 
-实现：
+### 效果预览
 
-1. 使用[DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md) 实现数据共享。
-2. 使用[关系型数据库](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-rdb.md) 实现数据的增、删、改、查接口。
-3. 使用[DataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md) 管理和访问数据库数据变化。
+|主页| 联系人详情                                                               | 联系人                                                                                  | 设置                                                                                           |
+|--------------------------------|---------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+|![contact_home](screenshots/device/zh/DataProvider/contact_home.jpg)| ![contact_detail](screenshots/device/zh/DataProvider/contact_detail.jpg) | ![contact_assistant_home](screenshots/device/zh/DataUser/contact_assistant_home.jpg) | ![contact_assistant_settings](screenshots/device/zh/DataUser/contact_assistant_settings.jpg) |
 
 使用说明：
 
@@ -21,13 +21,29 @@
 4. 联系人助手首页点击**+**按钮，可以新增联系人。
 5. 联系人助手设置页面可以设置同步策略，根据不同的同步策略，每次点击首页的同步联系人按钮会同步一次联系人数据，默认使用联系人覆盖联系人助手策略。
 
-### 效果预览
+### 工程目录
+```
+dataProvider/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts                        
+|---DataShareAbility
+|   |---DataShareAbility.ts                      // 数据共享
+|---MainAbility 
+|   |---MainAbility.ts                               
+|---pages
+|   |   |---ContactDetail.ets                    // 联系人详情
+|   |   |---ContactEdit.ets                      // 联系人编辑
+|   |   |---Home.ets                             // 首页
+|   |---Home
+|   |   |---Contacts.ets                         // 联系人                    
+|   |   |---HomeContent.ets                      // 首页列表
+|   |   |---SearchContact.ets                    // 搜索
+```
+### 具体实现
 
-![contact_home](screenshots/device/zh/DataProvider/contact_home.jpg)![contact_detail](screenshots/device/zh/DataProvider/contact_detail.jpg)
-
-![contact_assistant_home](screenshots/device/zh/DataUser/contact_assistant_home.jpg)![contact_assistant_settings](screenshots/device/zh/DataUser/contact_assistant_settings.jpg)
-
-
+* 使用DataShareExtensionAbility实现数据共享，关系型数据库实现数据的增、删、改、查接口，DataShare管理和访问数据库数据变化。
+* 源码链接：[DataShareAbility.ts](code/SystemFeature/DataManagement/CrossAppDataShare/dataProvider/src/main/ets/DataShareAbility/DataShareAbility.ts)，[ContactEdit.ets](code/SystemFeature/DataManagement/CrossAppDataShare/dataProvider/src/main/ets/pages/ContactEdit.ets)，[ContactStore.ets](code/SystemFeature/DataManagement/CrossAppDataShare/dataUser/src/main/ets/feature/ContactStore.ets)
+* 接口参考：[@ohos.data.DataShareResultSet](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md)，[@ohos.data.relationalStore](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md)，[@ohos.data.rdb](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-rdb.md)
 
 ### 相关权限
 

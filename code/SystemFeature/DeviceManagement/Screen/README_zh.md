@@ -1,20 +1,14 @@
 # 屏幕属性
 
-### 简介
+### 介绍
 
-本示例监听屏幕数量变化，创建、销毁虚拟屏幕模拟屏幕增减，读取屏幕属性并显示。效果图如下：
+本示例监听屏幕数量变化，创建、销毁虚拟屏幕模拟屏幕增减，读取屏幕属性并显示。
 
-![](screenshots/device/index.png)![](screenshots/device/defaultInfo.png)
+### 效果预览
 
-### 相关概念
-
-屏幕属性：屏幕属性接口提供获取默认display对象、获取所有display对象，开启监听、关闭监听功能。
-
-Screen：screen接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏幕、镜像屏幕等功能。
-
-### 相关权限
-
-不涉及。
+|主页| 屏幕详情页面                                  |
+|--------------------------------|-----------------------------------------|
+|![](screenshots/device/index.png)| ![](screenshots/device/defaultInfo.png) |
 
 ### 使用说明
 
@@ -23,6 +17,36 @@ Screen：screen接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏�
 2.点击**增加屏幕**按钮，监听到屏幕增加，增加小矩形代表新增屏幕（因界面空间有效，增加超过三个屏幕，只显示三个小矩形）。
 
 3.点击**移除屏幕**按钮，监听到屏幕销毁，减少小矩形代表移除屏幕。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---AbilityStage.ts
+|---common
+|   |---DisplayDevice.ets                    // 显示屏幕
+|   |---ShowInfo.ets                         // 显示屏幕信息
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---DisplayModel.ts                      // 显示数据
+|   |---Logger.ts                            // 日志工具
+|---pages
+|   |---Index.ets                            // 首页
+```
+### 具体实现
+
+* 该示例屏幕属性接口提供获取默认display对象、获取所有display对象，开启监听、关闭监听功能，screen接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏幕、镜像屏幕等功能。
+* 源码链接：[DisplayDevice.ets](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/common/DisplayDevice.ets)，[DisplayModel.ts](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/model/DisplayModel.ts)，[ShowInfo.ets](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/common/ShowInfo.ets)
+* 接口参考：[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md)，[@ohos.screen](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screen.md)
+
+### 相关权限
+
+不涉及。
+
+### 依赖
+
+不涉及。
 
 ### 约束与限制
 

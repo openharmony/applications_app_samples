@@ -1,8 +1,14 @@
 # 系统电源管理
 
-### 简介
+### 介绍
 
 本示例通过[power](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-power.md)接口实现了关机、重启以及检测亮灭屏状态的功能。
+
+### 效果预览
+
+|主页|
+|--------------------------------|
+|![](screenshot/device/main.png)|
 
 使用说明：
 
@@ -12,11 +18,21 @@
 
 3.点击**检测亮灭屏状态**按钮，将会把检测的结果信息展示在显示窗口中。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---entryability
+|   |---EntryAbility.ts                    
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+```
+### 具体实现
 
-|主页|
-|--------------------------------|
-|![](screenshot/device/main.png)|
+* 该示例使用power接口中shutdown方法实现系统关机功能，reboot方法实现设备重启功能，isScreenOn方法检测当前设备的亮灭屏状态功能。
+* 源码链接：[Index.ets](code/SystemFeature/DeviceManagement/PowerManager/entry/src/main/ets/pages/Index.ets)
+* 接口参考：[@ohos.power](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-power.md)
 
 ### 相关权限
 
