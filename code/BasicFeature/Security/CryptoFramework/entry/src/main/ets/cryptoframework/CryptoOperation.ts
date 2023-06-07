@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework'
 import promptAction from '@ohos.promptAction';
 import Logger from '../util/Logger';
 
@@ -169,36 +169,36 @@ export class CryptoOperation {
     let textString = aesEncryptJson.encryptedText;
     let globalGcmParams = genGcmParamsSpec();
     globalGcmParams.authTag = { data: fromHexString(authTagStr) };
-    console.info("success, decrypt authTag string" + authTagStr);
-    console.info("success, decrypt authTag blob" + globalGcmParams.authTag.data);
-    console.info('success, decrypt authTag blob.length = ' + globalGcmParams.authTag.data.length)
+    Logger.info("success, decrypt authTag string" + authTagStr);
+    Logger.info("success, decrypt authTag blob" + globalGcmParams.authTag.data);
+    Logger.info('success, decrypt authTag blob.length = ' + globalGcmParams.authTag.data.length)
     try {
       decode = cryptoFramework.createCipher(cipherAlgName);
     } catch (error) {
-      console.error(`createCipher failed, ${error.code}, ${error.message}`);
+      Logger.error(`createCipher failed, ${error.code}, ${error.message}`);
       return;
     }
     let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
     try {
       await decode.init(mode, globalKey, globalGcmParams);
     } catch (error) {
-      console.error(`init decode failed, ${error.code}, ${error.message}`);
+      Logger.error(`init decode failed, ${error.code}, ${error.message}`);
       return;
     }
     let cipherText = { data: fromHexString(textString) };
-    console.info(`success, cipher text: ${cipherText.data}`);
+    Logger.info(`success, cipher text: ${cipherText.data}`);
     try {
       plainTextBlob = await decode.update(cipherText);
       plainText = arrayBufferToString(plainTextBlob.data);
-      console.info(`success, plain text: ${plainText}`);
+      Logger.info(`success, plain text: ${plainText}`);
     } catch (error) {
-      console.error(`update decode failed, ${error.code}, ${error.message}`);
+      Logger.error(`update decode failed, ${error.code}, ${error.message}`);
       return;
     }
     try {
       let finalOut = await decode.doFinal(null);
     } catch (error) {
-      console.error(`doFinal decode failed, ${error.code}, ${error.message}`);
+      Logger.error(`doFinal decode failed, ${error.code}, ${error.message}`);
       return;
     }
     return plainText;
@@ -254,13 +254,13 @@ export class CryptoOperation {
       // 获取非对称密钥的二进制数据
       let encodedPriKey = keyPair.priKey.getEncoded();
       let priKeyData = encodedPriKey.data;
-      console.info('success, gen rsa pri key str length:' + uint8ArrayToShowStr(priKeyData).length);
+      Logger.info('success, gen rsa pri key str length:' + uint8ArrayToShowStr(priKeyData).length);
       let encodedPubKey = keyPair.pubKey.getEncoded();
       let pubKeyData = encodedPubKey.data;
-      console.info('success, gen rsa pub key str length:' + uint8ArrayToShowStr(pubKeyData).length);
+      Logger.info('success, gen rsa pub key str length:' + uint8ArrayToShowStr(pubKeyData).length);
       let rsaKeyJson = ({ priKey: uint8ArrayToShowStr(priKeyData), pubKey: uint8ArrayToShowStr(pubKeyData) });
       jsonStr = JSON.stringify(rsaKeyJson);
-      console.info('success, key string: ' + jsonStr.length);
+      Logger.info('success, key string: ' + jsonStr.length);
       return jsonStr;
     } catch (error) {
       Logger.error(TAG, 'create symKey failed');
@@ -271,22 +271,22 @@ export class CryptoOperation {
   async convertRsaKey(rsaJsonString: string): Promise<cryptoFramework.KeyPair> {
     let globalKey = null;
     let rsaKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA3072");
-    console.info('success, read key string' + rsaJsonString.length);
+    Logger.info('success, read key string' + rsaJsonString.length);
     let jsonRsaKeyBlob = JSON.parse(rsaJsonString);
     let priKeyStr = jsonRsaKeyBlob.priKey;
     let pubKeyStr = jsonRsaKeyBlob.pubKey;
-    console.info('success, read rsa pri str ' + priKeyStr.length);
-    console.info('success, read rsa pub str ' + pubKeyStr.length);
+    Logger.info('success, read rsa pri str ' + priKeyStr.length);
+    Logger.info('success, read rsa pub str ' + pubKeyStr.length);
     let priKeyBlob = fromHexString(priKeyStr);
     let pubKeyBlob = fromHexString(pubKeyStr);
-    console.info('success, read rsa pri blob key ' + priKeyBlob.length);
-    console.info('success, read rsa pub blob key ' + pubKeyBlob.length);
+    Logger.info('success, read rsa pri blob key ' + priKeyBlob.length);
+    Logger.info('success, read rsa pub blob key ' + pubKeyBlob.length);
     try {
       let key = await rsaKeyGenerator.convertKey({ data: pubKeyBlob }, { data: priKeyBlob });
       globalKey = key;
-      console.info('success, read and convert key');
+      Logger.info('success, read and convert key');
     } catch (error) {
-      console.error(`convert rsa key failed, ${error.code}, ${error.message}`);
+      Logger.error(`convert rsa key failed, ${error.code}, ${error.message}`);
       return null;
     }
     return globalKey;
@@ -300,16 +300,16 @@ export class CryptoOperation {
       let signBlob = stringToUint8Array(textString);
       try {
         let signedBlob = await signer.sign({ data: signBlob });
-        console.info("success,RSA sign output is " + signedBlob.data.length);
+        Logger.info("success,RSA sign output is " + signedBlob.data.length);
         let rsaSignedBlobString = uint8ArrayToShowStr(signedBlob.data);
-        console.info("success,RSA sign string is " + rsaSignedBlobString);
+        Logger.info("success,RSA sign string is " + rsaSignedBlobString);
         return rsaSignedBlobString
       } catch (error1) {
-        console.error(`sign text failed, ${error1.code}, ${error1.message}`);
+        Logger.error(`sign text failed, ${error1.code}, ${error1.message}`);
         return;
       }
     } catch (error) {
-      console.error(`sign init failed, ${error.code}, ${error.message}`);
+      Logger.error(`sign init failed, ${error.code}, ${error.message}`);
       return;
     }
   }
@@ -319,15 +319,15 @@ export class CryptoOperation {
     let keyPair = globalKey;
     let signBlob = stringToUint8Array(textString);
     let signedBlob = fromHexString(rsaSignedText);
-    console.info("success,RSA sign input is " + signBlob);
-    console.info("success,RSA signed file length" + signedBlob.length);
+    Logger.info("success,RSA sign input is " + signBlob);
+    Logger.info("success,RSA signed file length" + signedBlob.length);
     await verifyer.init(keyPair.pubKey);
     let result = await verifyer.verify({ data: signBlob }, { data: signedBlob });
     if (result == false) {
       // flag = false;
-      console.error(" RSA Verify result = fail");
+      Logger.error(" RSA Verify result = fail");
     } else {
-      console.info(" success, RSA Verify result = success");
+      Logger.info(" success, RSA Verify result = success");
     }
     return result;
   }

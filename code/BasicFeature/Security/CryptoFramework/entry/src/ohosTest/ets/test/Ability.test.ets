@@ -73,7 +73,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'CipherDecrypt_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'CipherDecrypt_001 begin');
-      Logger.info(TAG, BUNDLE + 'CipherDecrypt_001 encryption');
+      Logger.info(TAG, BUNDLE + 'CipherDecrypt_001 decryption');
       await driver.delayMs(1000);
       // 界面选择为加密
       await driver.assertComponentExist(ON.id(TAB_DECRYPT));
@@ -81,8 +81,8 @@ export default function abilityTest() {
       await tabButton.click();
       // 未选择文本文件和密钥文件时，点击解密按钮，弹出弹窗提示信息：message or key is null,toast弹窗信息暂不支持测试
       await driver.assertComponentExist(ON.id('decryptionBtn'));
-      let encryptionBtn = await driver.findComponent(ON.id('decryptionBtn'));
-      await encryptionBtn.click();
+      let decryptionBtn = await driver.findComponent(ON.id('decryptionBtn'));
+      await decryptionBtn.click();
       done();
     })
 
@@ -91,7 +91,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'Sign_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'Sign_001 begin');
-      Logger.info(TAG, BUNDLE + 'Sign_001 encryption');
+      Logger.info(TAG, BUNDLE + 'Sign_001 sign');
       await driver.delayMs(1000);
       // 界面选择为加密
       await driver.assertComponentExist(ON.id(TAB_SIGN));
@@ -99,8 +99,8 @@ export default function abilityTest() {
       await tabButton.click();
       // 未选择文本文件和密钥文件时，点击签名按钮，弹出弹窗提示信息：message or key is null,toast弹窗信息暂不支持测试
       await driver.assertComponentExist(ON.id('signBtn'));
-      let encryptionBtn = await driver.findComponent(ON.id('signBtn'));
-      await encryptionBtn.click();
+      let signBtn = await driver.findComponent(ON.id('signBtn'));
+      await signBtn.click();
       done();
     })
 
@@ -109,7 +109,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'Verify_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'Verify_001 begin');
-      Logger.info(TAG, BUNDLE + 'Verify_001 encryption');
+      Logger.info(TAG, BUNDLE + 'Verify_001 verify');
       await driver.delayMs(1000);
       // 界面选择为加密
       await driver.assertComponentExist(ON.id(TAB_VERIFY));
@@ -117,8 +117,8 @@ export default function abilityTest() {
       await tabButton.click();
       // 未选择文本文件和密钥文件和签名文件时，点击验签按钮，弹出弹窗提示信息：message or key is null,toast弹窗信息暂不支持测试
       await driver.assertComponentExist(ON.id('verifyBtn'));
-      let encryptionBtn = await driver.findComponent(ON.id('verifyBtn'));
-      await encryptionBtn.click();
+      let verifyBtn = await driver.findComponent(ON.id('verifyBtn'));
+      await verifyBtn.click();
       done();
     })
   })

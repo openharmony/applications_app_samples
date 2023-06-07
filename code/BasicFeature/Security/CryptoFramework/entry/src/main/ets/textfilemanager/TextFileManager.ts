@@ -14,11 +14,9 @@
  */
 
 import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import cryptoFramework from "@ohos.security.cryptoFramework"
-import promptAction from '@ohos.promptAction';
 import Logger from '../util/Logger';
 
+const TAG: string = '[Crypto_Framework]';
 // filePicker在OH 4.0.8.2镜像版本，读取uri后，无法直接read、write文件内容，需要sleep几十ms，这里sleep100毫秒
 function sleep(time): Promise<number> {
   return new Promise((resolve) => setTimeout(resolve, time));
@@ -33,7 +31,7 @@ class TextFileManager {
     await sleep(100);
     let file = fs.openSync(textFileUri, fs.OpenMode.READ_ONLY);
     // 写入
-    console.info("success, read only file " + file.fd);
+    Logger.info(TAG, "success, read only file " + file.fd);
     // 从文件读取一段内容，限制最大长度为8192
     let buf = new ArrayBuffer(8192);
     let readLen = fs.readSync(file.fd, buf, { offset: 0 });
@@ -47,9 +45,9 @@ class TextFileManager {
     fs.closeSync(file);
     file = fs.openSync(textFileUri, fs.OpenMode.READ_WRITE);
     // 写入
-    console.info("success,read write file " + file.fd);
+    Logger.info(TAG, "success,read write file " + file.fd);
     let writeLen = fs.writeSync(file.fd, textString);
-    console.info("success, The length of str is: " + writeLen);
+    Logger.info(TAG, "success, The length of str is: " + writeLen);
     fs.closeSync(file);
     TextFileManager.writeResult = writeLen;
   }
