@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,66 +14,79 @@
  */
 
 import router from '@ohos.router';
-import { TitleBar } from '../common/TitleBar'
 
 @Entry
 @Component
 struct FirstPage {
   storage = LocalStorage.GetShared();
-  @State launchReason : string = "";
-  @State lastExitReason : string = "";
-  @State callerAbility : string = "";
+  @State launchReason: string = '';
+  @State lastExitReason: string = '';
+  @State callerAbility: string = '';
+
   aboutToAppear() {
-    this.launchReason = this.storage.get<string>("launchReason") ?? "Unknown";
-    this.lastExitReason = this.storage.get<string>("lastExitReason") ?? "Unknown";
-    this.callerAbility = this.storage.get<string>("CurrentAbilityName") ?? "Unknown";
+    this.launchReason = this.storage.get<string>('launchReason') ?? 'Unknown';
+    this.lastExitReason = this.storage.get<string>('lastExitReason') ?? 'Unknown';
+    this.callerAbility = this.storage.get<string>('CurrentAbilityName') ?? 'Unknown';
   }
 
   build() {
-    Row() {
-      Column() {
-        TitleBar()
-        Column() {
-          Row() {
-            Text($r('app.string.current_ability'))
-              .fontSize(40)
-              .textAlign(TextAlign.Center)
-              .margin({ left: 2, right: 4 })
-            Text(this.callerAbility)
-              .fontSize(40)
-              .margin({ left: 4, right: 2 })
-              .textAlign(TextAlign.Center)
-          }.height('30%')
-          Row() {
-            Text($r('app.string.launch_reason'))
-              .fontSize(40)
-              .textAlign(TextAlign.Center)
-              .margin({ left: 2, right: 4 })
-            Text(this.launchReason)
-              .fontSize(40)
-              .margin({ left: 4, right: 2 })
-              .textAlign(TextAlign.Center)
-          }.height('30%')
-          Row() {
-            Text($r('app.string.last_exit_reason'))
-              .fontSize(40)
-              .textAlign(TextAlign.Center)
-              .margin({ left: 2, right: 4 })
-            Text(this.lastExitReason)
-              .fontSize(40)
-              .margin({ left: 4, right: 2 })
-              .textAlign(TextAlign.Center)
-          }.height('30%')
-        }.height('50%')
-        Column() {
-          Button($r('app.string.trigger_fault'))
-            .fontSize(40)
-            .fontWeight(FontWeight.Bold)
-            .onClick( () => {
-              router.push({ url: "pages/FaultTriggerPage"});
-            });
-        }.height('90%')
-      }.width('100%')
-    }
+    Column() {
+      Text(this.callerAbility)
+        .fontSize('30fp')
+        .fontWeight(FontWeight.Bold)
+        .padding({ left: '24vp', right: '24vp', top: '7vp', bottom: '8vp' })
+        .margin({ top: '24vp' })
+        .textAlign(TextAlign.Start)
+        .height('56vp')
+        .width('100%')
+        .fontColor($r('app.color.text_grey'));
+
+      List() {
+        ListItem() {
+          Column() {
+            Row() {
+              Text($r('app.string.launch_reason')).fontSize('16fp').width('86%');
+              Text('0' + this.launchReason)
+                .fontSize('14fp')
+                .width('14%')
+                .fontColor($r('app.color.text_grey'))
+                .opacity(0.6)
+                .textAlign(TextAlign.End);
+            }
+          }
+        }.width('100%').height('48vp').align(Alignment.Center);
+
+        ListItem() {
+          Column() {
+            Row() {
+              Text($r('app.string.last_exit_reason')).fontSize('16fp').width('86%');
+              Text('0' + this.lastExitReason)
+                .fontSize('14fp')
+                .width('14%')
+                .fontColor($r('app.color.text_grey'))
+                .opacity(0.6)
+                .textAlign(TextAlign.End);
+            }
+          }
+        }.width('100%').height('48vp').align(Alignment.Center);
+      }
+      .alignListItem(ListItemAlign.Center)
+      .margin({ left: '12vp', right: '12vp', top: '8vp' })
+      .width('93.3%')
+      .borderRadius('24vp')
+      .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+      .padding({ left: '12vp', right: '12vp', top: '4vp', bottom: '4vp' })
+      .divider({ strokeWidth: '0.5vp', color: $r('app.color.text_grey_opacity') });
+
+      Button($r('app.string.trigger_fault'))
+        .fontSize('16fp')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/FaultTriggerPage' });
+        })
+        .width('88.9%')
+        .margin({ top: '520vp', right: '24vp', left: '24vp', bottom: '24vp' })
+        .height('40vp')
+        .backgroundColor($r('app.color.text_blue_opacity'));
+    }.backgroundColor($r('sys.color.ohos_id_color_sub_background')).width('100%').height('100%');
   }
 }

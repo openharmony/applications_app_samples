@@ -131,6 +131,7 @@ export struct MissionInfoComponent {
       .padding(10)
       .backgroundColor('#f5f5f5')
       .borderRadius(20)
+      .translate({ x: this.translateLeft, y: 0 })
 
       Row() {
         if (this.isOn) {
@@ -149,11 +150,11 @@ export struct MissionInfoComponent {
           this.onClickClearMission(this.mission.missionId);
         })
       }
+      .translate({ x: this.translateLeft, y: 0 })
       .margin({ left: 20 })
     }
     .width('100%')
     .padding({ left: 10, right: 10 })
-    .margin({ left: this.translateLeft })
     .gesture(
     PanGesture({ fingers: 1, direction: this.panDirection, distance: 20 })
       .onActionStart(() => {

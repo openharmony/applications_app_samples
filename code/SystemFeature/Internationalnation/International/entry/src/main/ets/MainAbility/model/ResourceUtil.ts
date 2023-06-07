@@ -17,19 +17,19 @@ import resourceManager from '@ohos.resourceManager'
 class ResourceUtil {
     async getString(id: number) {
         let rscManager = await resourceManager.getResourceManager()
-        let str = await rscManager.getString(id)
+        let str = await rscManager.getStringValue(id)
         return str
     }
 
     async getStringArray(id: number) {
         let rscManager = await resourceManager.getResourceManager()
-        let strArray = await rscManager.getStringArray(id)
+        let strArray = await rscManager.getStringArrayValue(id)
         return strArray
     }
 
     async getPluralString(id: number, num: number) {
         let rscManager = await resourceManager.getResourceManager()
-        let plural = await rscManager.getPluralString(id, num)
+        let plural = await rscManager.getPluralStringValue(id, num)
         return plural
     }
 

@@ -17,7 +17,7 @@
   "module": {
     "name": "entry_test",
     "type": "feature",
-    "srcEntrance": "./ets/testability/TestAbility.ts",
+    "srcEntrance": "./ets/testability/TestAbility.ets",
     "description": "$string:entry_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [
@@ -31,9 +31,11 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/testability/TestAbility.ts",
+        "srcEntrance": "./ets/testability/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
         "label": "$string:TestAbility_label",
         "visible": true,
         "skills": [

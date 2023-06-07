@@ -11,6 +11,18 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "locked_mission",
+      "value": "锁定"
+    },
+    {
+      "name": "unlocked_mission",
+      "value": "解锁"
+    },
+    {
+      "name": "move_mission",
+      "value": "移动"
     }
   ]
 }

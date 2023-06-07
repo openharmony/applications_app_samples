@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "ShareComponentAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ShareComponentAbility_label",
+      "value": "label"
+    }
+  ]
+}

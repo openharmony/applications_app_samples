@@ -1,28 +1,48 @@
 # JS注入与执行
 
-### 简介
+### 介绍
 
 本示例基于H5游戏，通过arkui的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。
 
-> 本例的H5游戏页面，由https://yangyunhe369.github.io/h5-game-blockBreaker/ 提供
+本例的H5游戏页面，由https://yangyunhe369.github.io/h5-game-blockBreaker/ 提供
 
-![](screenshots/device/main.jpg)
+### 效果预览
 
+|主页|
+|--------------------------------|
+|![](screenshots/device/main.jpg)|
 
-
-### 相关概念
-
-NA
-
-### 相关权限
-
-网络访问权限: ohos.permission.INTERNET
-
-### 使用说明
+使用说明
 
 1.设备连接热点，可访问互联网。
 
 2.打开应用，通过界面中按钮进行游戏控制。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---entryability
+|   |---EntryAbility.ts                // 弹窗组件
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+```
+
+### 具体实现
+
+* 本示例分成一个模块
+  * 通过button实现对游戏的基本控制，WebviewController方法控制Web组件各种行为，使用webview注入JS与执行能力。
+  * 源码链接：[EntryAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Web/RunJsInWeb/entry/src/main/ets/entryability/EntryAbility.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Web/RunJsInWeb/entry/src/main/ets/pages/Index.ets)
+  * 接口参考：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)，[@ohos.web.webview](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-webview.md)
+
+### 相关权限
+
+网络访问权限: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+
+### 依赖
+
+不涉及。
 
 ### 约束与限制
 

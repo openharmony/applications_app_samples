@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
+import { Driver, ON } from '@ohos.UiTest'
 import featureAbility from '@ohos.ability.featureAbility'
 import hilog from '@ohos.hilog'
 
@@ -44,20 +44,20 @@ export default function appTest() {
      * Grid布局 查看详情
      */
     it(BUNDLE + 'FoodGridFunction_001', 0, async function () {
-      // create UiDriver
+      // create Driver
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodGridFunction_001 begin')
-      let driver = await UiDriver.create()
+      let driver = await Driver.create()
       await driver.delayMs(1000)
       // foodDetail
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodGridFunction_001 foodDetail')
-      await driver.assertComponentExist(BY.key('foodGridItem1'))
-      let foodGridItem1 = await driver.findComponent(BY.key('foodGridItem1'))
+      await driver.assertComponentExist(ON.id('foodGridItem1'))
+      let foodGridItem1 = await driver.findComponent(ON.id('foodGridItem1'))
       await foodGridItem1.click()
       await driver.delayMs(1000)
       // 返回上一级
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodGridFunction_001 back')
-      await driver.assertComponentExist(BY.key('back'))
-      let backBtn = await driver.findComponent(BY.key('back'))
+      await driver.assertComponentExist(ON.id('back'))
+      let backBtn = await driver.findComponent(ON.id('back'))
       await backBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodGridFunction_001 end')
@@ -67,14 +67,14 @@ export default function appTest() {
      * 切换布局
      */
     it(BUNDLE + 'SwitchLayoutFunction_001', 0, async function () {
-      // create UiDriver
+      // create Driver
       hilog.info(DOMAIN, TAG, BUNDLE + 'SwitchLayoutFunction_001 begin')
-      let driver = await UiDriver.create()
+      let driver = await Driver.create()
       await driver.delayMs(1000)
       // switchLayout
       hilog.info(DOMAIN, TAG, BUNDLE + 'SwitchLayoutFunction_001 switchLayout')
-      await driver.assertComponentExist(BY.key('switch'))
-      let switchBtn = await driver.findComponent(BY.key('switch'))
+      await driver.assertComponentExist(ON.id('switch'))
+      let switchBtn = await driver.findComponent(ON.id('switch'))
       await switchBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'SwitchLayoutFunction_001 end')
@@ -84,20 +84,20 @@ export default function appTest() {
      * List布局 查看详情
      */
     it(BUNDLE + 'FoodListFunction_001', 0, async function () {
-      // create UiDriver
+      // create Driver
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodListFunction_001 begin')
-      let driver = await UiDriver.create()
+      let driver = await Driver.create()
       await driver.delayMs(1000)
       // foodDetail
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodListFunction_001 foodDetail')
-      await driver.assertComponentExist(BY.key('foodListItem1'))
-      let foodListItem1 = await driver.findComponent(BY.key('foodListItem1'))
+      await driver.assertComponentExist(ON.id('foodListItem1'))
+      let foodListItem1 = await driver.findComponent(ON.id('foodListItem1'))
       await foodListItem1.click()
       await driver.delayMs(1000)
       // 返回上一级
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodListFunction_001 back')
-      await driver.assertComponentExist(BY.key('back'))
-      let backBtn = await driver.findComponent(BY.key('back'))
+      await driver.assertComponentExist(ON.id('back'))
+      let backBtn = await driver.findComponent(ON.id('back'))
       await backBtn.click()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'FoodListFunction_001 end')

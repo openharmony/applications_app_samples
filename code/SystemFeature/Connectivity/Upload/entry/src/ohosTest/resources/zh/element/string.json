@@ -52,7 +52,6 @@
       "name": "anyone",
       "value": "谁可以看"
     },
-
     {
       "name": "choice_number",
       "value": "最多选择九张图片"
@@ -119,7 +118,23 @@
     },
     {
       "name": "all_photo",
-      "value":"所有照片"
+      "value": "所有照片"
+    },
+    {
+      "name": "network_not_available",
+      "value": "当前网络不可用，请检查网络"
+    },
+    {
+      "name": "progress_tip",
+      "value": "2/50"
+    },
+    {
+      "name": "download_sample",
+      "value": "下载示例"
+    },
+    {
+      "name": "get_fileList_fail",
+      "value": "获取文件列表失败，请检查网络和服务器配置"
     }
   ]
 }

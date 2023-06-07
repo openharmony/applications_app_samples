@@ -344,7 +344,7 @@
   <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="1" x:str><strong>语言基础类库</strong></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/JsWorker">启动一个worker</a></td>
+  <td x:str><a href="code/LaunguageBaseClassLibrary/ConcurrentModule">多线程任务</a></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
   <td ></td>
  </tr>
@@ -417,10 +417,9 @@ code
 
 ## 使用方法<a name="section17988202503116"></a>
 
-1.  本仓默认下载全量工程代码，如需下载单个应用工程代码，请先下载并执行工具[【Windows版本】](DirCloneTool/CloneSpecifyDirForWindows.bat)、[【macOS版本】]()、[【Linux版本】]()
-2.  将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
-3.  部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
-4.  安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
+1.  将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
+2.  部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
+3.  安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
 
 ## Changlog<a name="section17988202503117"></a>
 

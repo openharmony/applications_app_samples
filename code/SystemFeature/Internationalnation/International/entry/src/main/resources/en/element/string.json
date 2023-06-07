@@ -81,14 +81,6 @@
       "value": "24-hour system"
     },
     {
-      "name": "shanghai",
-      "value": "ShangHai(China)"
-    },
-    {
-      "name": "new_york",
-      "value": "Eastern time (US)"
-    },
-    {
       "name": "screen_direction",
       "value": "Screen Direction:"
     },

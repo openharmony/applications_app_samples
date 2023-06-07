@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 {
   "module": {
-    "name": "entry_test",
+    "name": "ShareComponent_test",
     "type": "feature",
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
@@ -28,11 +29,11 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/testability/TestAbility.ets",
+        "srcEntry": "./ets/testability/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",
-        "visible": true,
+        "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "skills": [

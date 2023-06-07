@@ -4,6 +4,89 @@
 
 [Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md) 的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
 
+#### Stage和FA模型的区别
+
+1.在Stage模型中主要有module.json5，需要时将对应的ServiceExtAbility等配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中；对应FA模型中主要配置文件config.json，需要时将对应的Ability配置在config.json中module/abilites。
+
+2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
+
+3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/fa-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) 。
+
+4.Stage模型中DataShareExtensionAbility对应FA模型中dataAbility，具体实现差异详见方法注释。
+
+5.Stage模型中ServiceExtensionAbility对应FA模型中ServiceAbility，具体实现差异详见方法注释。
+
+6.Stage模型DataShareHelper对应FA模型中DataAbilityHelper 。
+
+7.Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager ；FA模型通过导入@ohos.resourceManager， 获取应用资源信息。
+
+### 效果预览：
+|主页|
+|--------------------------------|
+|![](./screenshots/device/stage_mode.png)|
+
+使用说明：
+
+1.点击**DataShareExtAbility**按钮，跳转到DataShareExtAbility页面；
+
+点击**+**，向rdb数据库中添加单个数据，界面显示添加的数据内容；
+
+点击**删除**按钮删除指定数据；
+
+点击数据列表，弹出dialog框，可对数据进行修改，点击**确认**按钮确认修改；
+
+点击返回键，返回首页。
+
+2.点击各个功能按钮测试各个接口。
+
+
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts                   
+|---DataShareExtensionAbility
+|   |---DataShareExtAbility.ts
+|---feature
+|   |---AbilityAccessCtrlController.ts                   
+|   |---AbilityContextController.ts                      
+|   |---BookModel.ts                         
+|   |---BundleController.ts                   
+|   |---DataShareHelper.ts                      
+|   |---FormExtContextController.ts                         
+|   |---ServiceExtContextController.ts                   
+|   |---WindowController.ts                      
+|---FormAbility
+|   |---FormAbility.ts                      
+|---JumpAbility
+|   |---JumpAbility.ts                      
+|---MainAbility
+|   |---MainAbility.ts                      
+|---pages
+|   |---component
+|   |   |---BookView.ets                     // 展示组件
+|   |   |---IndexTitleBar.ets                // 单个页面标题组件
+|   |   |---PublicTitleBar.ets               // 通用的标题组件
+|   |   |---TitleBar.ets                     // 标题组件
+|   |   |---UpdateDataDialog.ets
+|   |---AbilityAccessCtrlPage.ets            // 程序访问控制
+|   |---AbilityContextPage.ets               // 提供允许访问特定于ability的资源的能力
+|   |---BundlePage.ets                       // 应用信息查询
+|   |---DataShareExtAbilityPage.ets          // 数据共享业务
+|   |---DataShareHelperPage.ets
+|   |---FormExtContextPage.ets               // 提供FormExtension具有的接口和能力
+|   |---Index.ets
+|   |---ServiceExtContextPage.ets  
+|   |---TestPage.ets
+|   |---WindowPage.ets                       // 窗口
+|---ServiceExtAbility
+|   |---ServiceExtAbility.ts                      
+|---util
+|   |---Logger.ts                                  
+```
+
+### 具体实现
+
 Stage模型的设计基于如下三个出发点：
 
 - **应用的能力与系统总体功能和功耗的平衡**
@@ -38,138 +121,19 @@ Stage模型的设计基于如下三个出发点：
 
   **abilityAccessCtrl**：程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
-#### Stage和FA模型的区别
-
-1.在Stage模型中主要有module.json5，需要时对应的ServiceExtAbility等须配置在module.json5中的extensionAbilities中，Page页面的Ability在abilites中；对应FA模型中主要配置文件config.json，需要时将对应的Ability配置在config.json中module/abilites。
-
-2.Stage模型中卡片的创建需要的配置文件在resources/base/profile/form_config.json。
-
-3.Stage模型中ability生命周期与FA模型生命周期见[Stage模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/stage-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) ，[FA模型生命周期](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability-deprecated/fa-brief.md#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) 。
-
-4.Stage模型中DataShareExtensionAbility对应FA模型中dataAbility，具体实现差异详见方法注释。
-
-5.Stage模型中ServiceExtensionAbility对应FA模型中ServiceAbility，具体实现差异详见方法注释。
-
-6.stage模型DataShareHelper对应FA模型中DataAbilityHelper 。
-
-7.Stage模型从API Version9开始，通过context获取resourceManager对象的方式，再调用其内部获取资源的接口， 无需再导入 @ohos.resourceManager ；FA模型通过导入@ohos.resourceManager， 获取应用资源信息。
-
-#### FA对应Stage接口（FA——>Stage）
-
-**FeatureAbility——>AbilityContext、dataShare接口：**
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWant——>MainAbility：want
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：startAbilityForResult——>AbilityContextController：startAbilityForResult
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：terminateSelfWithResult——>AbilityContextController：terminateSelfWithResult
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：hasWindowFocus——>Stage模型不支持
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：terminateSelf——>AbilityContextController：terminateSelf
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：getWindow——>WindowController：getTopWindow
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：startServiceAbility——>AbilityContextController：startAbility
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：connectService——>AbilityContextController：connectAbility
-
-[FeatureAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/FeatureAbilityHelper.ts)：disconnectService——>AbilityContextController：disconnectAbility
-
-**context-->AbilityContext、Bundle、Window、abilityAccessCtrl接口：**
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getOrCreateLocalDir——>BundleController：entryDir
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：verifyPermission——>AbilityAccessCtrlController：verifyAccessToken
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：requestPermissionsFromUser——>AbilityContextController：requestPermissionsFromUser
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getApplicationInfo——>BundleController：getApplicationInfo
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getBundleName——>AbilityContextPage：abilityInfo.bundleName（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getDisplayOrientation——>AbilityContextPage：config.direction（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setDisplayOrientation——>WindowController：setPreferredOrientation
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setShowOnLockScreen——>MainAbility：setShowOnLockScreen
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：setWakeUpScreen——>WindowController：setWakeUpScreen
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getProcessInfo——>AbilityContextPage：abilityInfo.descriptionId；abilityInfo.name（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getElementName——>BundleController：getAbilityInfo
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getProcessName——>BundleController：process
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getCallingBundle——>want.parameters（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getCacheDir——>AbilityContextPage：cacheDir（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getFilesDir——>AbilityContextPage：filesDir（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getOrCreateDistributedDir——>AbilityContextPage：distributedFilesDir（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAppType——>BundleController：entityType
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getHapModuleInfo——>AbilityContextPage：currentHapModuleInfo（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAppVersionInfo——>BundleController.getDispatcherVersion
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getAbilityInfo——>AbilityContextPage：abilityInfo（属性）
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：getApplicationContext——>AbilityContextPage：getApplicationContext()
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：isUpdatingConfigurations——>Stage模型不支持
-
-[AppContext](../FaModel/entry/src/main/ets/MainAbility/feature/AppContext.ts)：printDrawnCompleted——>Stage模型不支持
-
-**particleAbility ——>ServiceExtensionContext、dataShare接口：**
-
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：startAbility——>ServiceExtContextController：startAbility
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：connectAbility——>ServiceExtContextController：connectAbility
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：disconnectAbility——>ServiceExtContextController：disconnectAbility
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts)：terminateSelf——>ServiceExtContextController：terminateSelf
-
-[ParticleAbilityHelper](../FaModel/entry/src/main/ets/MainAbility/feature/ParticleAbilityHelper.ts) ：acquireDataAbilityHelper——>DataShareHelper：createDataShareHelper
-
-#### 使用说明：
-
-1.点击**DataShareExtAbility**按钮，跳转到DataShareExtAbility页面；
-
-点击**+**，向rdb数据库中添加单个数据，界面显示添加的数据内容；
-
-点击**删除**按钮删除指定数据；
-
-点击数据列表，弹出dialog框，可对数据进行修改，点击**确认**按钮确认修改；
-
-点击返回键，返回首页。
-
-2.点击各个功能按钮测试各个接口。
-
-#### 效果预览：
-
-![](./screenshots/device/stage_mode.png)
-
 ### 相关权限
 
 不涉及。
 
 ### 依赖
 
-FaModel升级StageModel，对应的FaModel参考[FaModel](../FaModel)。
+不涉及。
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility等相关系统接口，需要替换Full SDK，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility等相关系统接口，需要替换Full SDK，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 3.本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility，需要在签名证书UnsgnedReleasedProfileTemplate.json中配置"app-privilege-capabilities": ["AllowAppUsePrivilegeExtension"]，否则安装失败。具体操作指南可参考[应用特权配置指南](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 

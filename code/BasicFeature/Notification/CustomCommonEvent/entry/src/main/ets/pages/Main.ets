@@ -12,97 +12,98 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import surveillanceEventsManager from '../module/SurveillanceEventsManager'
-import commonEvent from '@ohos.commonEvent'
-import sysTime from '@ohos.systemTime'
-import utils from '../module/Utils'
-import consts from '../module/Consts'
-import mainFeature from '../feature/MainFeature'
-import router from '@ohos.router'
-import Logger from '../module/Logger'
+import commonEvent from '@ohos.commonEventManager';
+import sysTime from '@ohos.systemDateTime';
+import utils from '../module/Utils';
+import consts from '../module/Consts';
+import mainFeature from '../feature/MainFeature';
+import router from '@ohos.router';
+import Logger from '../module/Logger';
+import surveillanceEventsManager from '../module/SurveillanceEventsManager';
 
 @Entry
 @Component
 struct Main {
-  @State btnSrc: Resource = $rawfile('start.png')
-  @State btnState: boolean = false
-  @State startTime: number = 0
-  @State totalTimeInString: string = ''
-  @State totalEvents: number = 0
-  @State totalEventsInString: string = ''
-  @State recTimesArray: Array<number> = [0, 0, 0, 0]
-  @State recEventsArray: Array<string> = []
-  @State currentEvent: string = ''
-  @State detailState: Visibility = Visibility.None
-  @State currentState: Visibility = Visibility.None
-  private validEventsSubscriber = null // this subscriber subscribe system defined ordinary events
-  private feature:mainFeature = new mainFeature()
+  @State btnSrc: Resource = $rawfile('start.png');
+  @State btnState: boolean = false;
+  @State startTime: number = 0;
+  @State totalTimeInString: string = '';
+  @State totalEvents: number = 0;
+  @State totalEventsInString: string = '';
+  @State recTimesArray: Array<number> = [0, 0, 0, 0, 0, 0];
+  @State recEventsArray: Array<string> = [];
+  @State currentEvent: string = '';
+  @State detailState: Visibility = Visibility.None;
+  @State currentState: Visibility = Visibility.None;
+  private validEventsSubscriber = null; // this subscriber subscribe system defined ordinary events
+  private feature: mainFeature = new mainFeature();
 
   async onPageShow() {
-    Logger.info("enter onPageShow")
-    await this.feature.init()
+    Logger.info("enter onPageShow");
+    await this.feature.init();
   }
 
   async onPageHide() {
-    Logger.info("enter onPageHide")
-    await this.feature.reset()
+    Logger.info("enter onPageHide");
+    this.feature.reset();
   }
 
   private getMsg(event: string): Resource {
     switch (event) {
       case commonEvent.Support.COMMON_EVENT_SCREEN_ON:
-        return $r('app.string.screen_on_tips')
+        return $r('app.string.screen_on_tips');
       case commonEvent.Support.COMMON_EVENT_SCREEN_OFF:
-        return $r('app.string.screen_off_tips')
+        return $r('app.string.screen_off_tips');
       case commonEvent.Support.COMMON_EVENT_WIFI_POWER_STATE:
-        return $r('app.string.wifi_tips')
+        return $r('app.string.wifi_tips');
+      case commonEvent.Support.COMMON_EVENT_SCREEN_LOCKED:
+        return $r('app.string.screen_lock_tips');
+      case commonEvent.Support.COMMON_EVENT_SCREEN_UNLOCKED:
+        return $r('app.string.screen_unlock_tips');
       default:
         return $r('app.string.no_interrupt_tips')
     }
   }
 
   private systemEventCallback = (error, event) => {
-    let index = this.feature.getCurrentValidEvents().indexOf(event.event)
-    this.recTimesArray[index]++
-    this.recEventsArray[index] = event.event + ' : ' + this.recTimesArray[index].toString()
-    this.totalEvents++
-    this.currentEvent = event.event
+    let index = this.feature.getCurrentValidEvents().indexOf(event.event);
+    this.recTimesArray[index]++;
+    this.recEventsArray[index] = event.event + ' : ' + this.recTimesArray[index].toString();
+    this.totalEvents++;
+    this.currentEvent = event.event;
   }
-
   private handleStart = () => {
-    this.btnState = true
-    this.btnSrc = $rawfile('stop.png')
-    this.detailState = Visibility.None
-    this.currentState = Visibility.Visible
-    this.totalEventsInString = ''
-    this.totalEvents = 0
-    this.totalTimeInString = ''
+    this.btnState = true;
+    this.btnSrc = $rawfile('stop.png');
+    this.detailState = Visibility.None;
+    this.currentState = Visibility.Visible;
+    this.totalEventsInString = '';
+    this.totalEvents = 0;
+    this.totalTimeInString = '';
     sysTime.getCurrentTime().then((curTime) => {
-      this.startTime = curTime
+      this.startTime = curTime;
       // start subscribe
       let subscriberInfo = {
         events: this.feature.getCurrentValidEvents()
-      }
+      };
       commonEvent.createSubscriber(subscriberInfo, (error, subscriber) => {
-        this.validEventsSubscriber = subscriber
-        commonEvent.subscribe(subscriber, this.systemEventCallback)
-      })
+        this.validEventsSubscriber = subscriber;
+        commonEvent.subscribe(subscriber, this.systemEventCallback);
+      });
     })
   }
-
   private handleStop = () => {
-    this.btnState = false
-    this.btnSrc = $rawfile('start.png')
-    this.detailState = Visibility.Visible
-    this.currentState = Visibility.None
-    this.totalEventsInString = this.totalEvents.toString()
+    this.btnState = false;
+    this.btnSrc = $rawfile('start.png');
+    this.detailState = Visibility.Visible;
+    this.currentState = Visibility.None;
+    this.totalEventsInString = this.totalEvents.toString();
     // refresh time
     sysTime.getCurrentTime().then((curTime) => {
-      this.totalTimeInString = utils.convertTimeToFormatString(curTime - this.startTime)
+      this.totalTimeInString = utils.convertTimeToFormatString(curTime - this.startTime);
       // unsubscribe
       commonEvent.unsubscribe(this.validEventsSubscriber, () => {
-        Logger.info("unsubscribe called")
+        Logger.info("unsubscribe called");
       })
       let options = {
         isOrdered: true,
@@ -112,18 +113,17 @@ struct Main {
           'totalTime': this.totalTimeInString,
           'totalEvents': this.totalEventsInString,
         }
-      }
+      };
       commonEvent.publish(consts.COMMON_EVENT_FINISH_MEDITATION, options, () => {
-        Logger.info("success to publish COMMON_EVENT_FINISH_MEDITATION")
-      })
+        Logger.info("success to publish COMMON_EVENT_FINISH_MEDITATION");
+      });
     })
   }
-
   private executeCallBack = () => {
     if (!this.btnState) {
-      this.handleStart()
+      this.handleStart();
     } else {
-      this.handleStop()
+      this.handleStop();
     }
   }
 
@@ -155,6 +155,7 @@ struct Main {
           }.size({ width: '80%', height: '50%' })
           .offset({ x: '0%', y: '5%' })
           .visibility(this.detailState)
+
           Row() {
             Text($r('app.string.total_interrupt_tips')).size({ width: '70%', height: '100%' })
               .fontSize(20)
@@ -182,19 +183,19 @@ struct Main {
         .position({ x: '60%', y: '85%' })
         .visibility(this.detailState)
         .onClick(() => {
-          let validRecEvents: Array<string> = []
+          let validRecEvents: Array<string> = [];
           this.recEventsArray.forEach((element: string) => {
             if (element != '') {
-              validRecEvents.push(element)
+              validRecEvents.push(element);
             }
-          })
-          router.push({
+          });
+          router.pushUrl({
             url: 'pages/Detail',
             params: {
               'recEvents': validRecEvents,
               'onceEvents': this.feature.getOnceEvents()
             }
-          })
+          });
         })
     }.size({ width: '100%', height: '100%' })
     .backgroundImage($rawfile('vbg720.png'))

@@ -18,10 +18,12 @@ import  assert from  './assertExampleTest/assertExample.test'
 import param from './paramExampleTest/paramExample.test'
 import custom from './customExampleTest/customExample.test'
 import cover from './coverExampleTest/coverExample.test'
+import callBack from './callBackExampleTest/callBackExample.test'
 export default function testsuite() {
   basicTest();
   assert();
   param();
   custom();
-  cover()
+  cover();
+  callBack()
 }

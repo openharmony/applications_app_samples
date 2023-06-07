@@ -11,6 +11,22 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "update_message",
+      "value": "当前版本为3.1.7.5"
+    },
+    {
+      "name": "update",
+      "value": "更新"
+    },
+    {
+      "name": "update_after",
+      "value": "当前版本为3.2.8.3"
+    },
+    {
+      "name": "short_task",
+      "value": "短时任务"
     }
   ]
 }

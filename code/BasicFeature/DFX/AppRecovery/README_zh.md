@@ -35,7 +35,7 @@
 点击首页点击``跳转到故障触发页面`` \
 在故障触发页面点击按钮``点击``，再点击``保存当前Ability状态``以及``触发JsError``。 \
 以上场景预期：\
-能够回到``故障触发页面``页面，并恢复页面上的点击次数信息。
+能够回到``故障触发页面``页面，页面上的点击次数与触发保存状态时的一致。
 
 二.多Ability自动恢复 \
 点击首页点击跳转到``故障触发页面`` \
@@ -44,7 +44,7 @@
 在故障触发页面点击按钮``点击``，再点击``保存当前Ability状态``以及``触发JsError``。 \
 以上场景预期：\
 立即回到SecondAbility的故障触发页面，并恢复页面的点击次数信息。\
-从任务管理中将EntryAbility切回前台，预期能回到故障触发页面，并恢复页面上的点击次数信息。
+从任务管理中将EntryAbility切回前台，预期能回到故障触发页面，页面上的点击次数与触发保存状态时的一致。
 
 三.多Ability主动恢复 \
 点击首页点击跳转到``故障触发页面`` \
@@ -57,12 +57,13 @@
 四.Ability后台强制终止恢复 \
 点击首页点击跳转到``故障触发页面`` \
 在``故障触发页面``点击``启动SecondAbility``
-在SecondAbility的故障触发页面点击Counter，并切入后台 \
+在SecondAbility的故障触发页面点击Counter，点击``保存当前Ability状态``,并切入后台 \
 使用kill命令强制终止当前应用 \
 以上场景预期：\
 从任务管理中将EntryAbility切回前台，预期能回到故障触发页面，并恢复页面上的点击次数信息。\
 从任务管理中将SecondAbility切回前台，预期能回到故障触发页面，并恢复页面上的点击次数信息。
 
+为避免反复拉起，两次测试的间隔至少为60秒(自动拉起的间隔为60秒)。
 ### 工程目录
 ```
 entry/src/main/
@@ -113,7 +114,7 @@ entry/src/main/
 DevEco Studio 3.1 Beta2
 Build Version: 3.1.0.400, built on April 7, 2023
 ```
-3.本示例编译sdk的API Level要求为10+，需要替换4.0分支编译的sdk，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)
+3.本示例编译sdk的API Level要求为10+，需要替换4.0分支编译的sdk，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
 
 ### 下载
 

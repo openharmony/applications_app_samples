@@ -53,8 +53,8 @@
       "value": "Gender:"
     },
     {
-      "name": "name",
-      "value": "name"
+      "name": "contact_name",
+      "value": "Name"
     },
     {
       "name": "phone",
@@ -63,6 +63,10 @@
     {
       "name": "remark",
       "value": "remark"
+    },
+    {
+      "name": "age",
+      "value": "Age"
     },
     {
       "name": "automatic",
@@ -91,6 +95,70 @@
     {
       "name": "phone_validate",
       "value": "Phone number cannot be empty"
+    },
+    {
+      "name": "ascending",
+      "value": "Ascending"
+    },
+    {
+      "name": "descending",
+      "value": "Descending"
+    },
+    {
+      "name": "search_placeholder_start",
+      "value": "Please enter the beginning of the phone number"
+    },
+    {
+      "name": "search_placeholder_end",
+      "value": "Please enter the ending of the phone number"
+    },
+    {
+      "name": "search_placeholder_content",
+      "value": "Please enter what you want to search for"
+    },
+    {
+      "name": "search_placeholder_age",
+      "value": "Please enter the age range you want to search for"
+    },
+    {
+      "name": "search_placeholder_name",
+      "value": "Please enter the name you want to search for"
+    },
+    {
+      "name": "search_placeholder_index",
+      "value": "Please enter the index you want to search"
+    },
+    {
+      "name": "search_placeholder_expression",
+      "value": "Please enter a matching expression"
+    },
+    {
+      "name": "index_query",
+      "value": "Specifies the index query"
+    },
+    {
+      "name": "sort_the_results",
+      "value": "SortResults"
+    },
+    {
+      "name": "expression_matching",
+      "value": "Expression matching and mismatching"
+    },
+    {
+      "name": "query_criteria",
+      "value": "QueryCriteria"
+    },
+    {
+      "name": "search_placeholder_age1",
+      "value": "Please enter age"
+    },
+    {
+      "name": "no_data",
+      "value": "No Data"
+    },
+    {
+      "name": "search",
+      "value": "search"
     }
   ]
 }

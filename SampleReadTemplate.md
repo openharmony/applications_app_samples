@@ -14,7 +14,7 @@
 
 |主页|悬浮模式|列表|悬浮模式|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![image](FileManager/FileManager/screenshots/main.png)|![image](FileManager/FileManager/screenshots/image_file_list.png)|![image](FileManager/FileManager/screenshots/image_preview.png)|![image](FileManager/FileManager/screenshots/document_list.png)|
+|![image](code/BasicFeature/FileManagement/FileManager/screenshots/main.png)|![image](code/BasicFeature/FileManagement/FileManager/screenshots/image_file_list.png)|![image](code/BasicFeature/FileManagement/FileManager/screenshots/image_preview.png)|![image](code/BasicFeature/FileManagement/FileManager/screenshots/document_list.png)|
 
 使用说明
 
@@ -69,22 +69,22 @@ Library/src/main/ets/
 ### 具体实现
 
 先描述功能都在哪个模块，再具体描述如何实现这些功能的，以及在哪里使用他们，附上文件链接；示例如下：
-* 增添文件、删除文件、查找指定类型文件文件和预览图片的功能接口封装在MediaLibraryManager，源码参考：[MediaLibraryManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/medialibrary/MediaLibraryManager.ts)
+* 增添文件、删除文件、查找指定类型文件文件和预览图片的功能接口封装在MediaLibraryManager，源码参考：[MediaLibraryManager.ts](code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/medialibrary/MediaLibraryManager.ts)
     * 使用mediaLibrary.getMediaLibrary来获取MediaLibrary对象;
     * 读取每个文件的数据：使用MediaLibrary.getFileAssets读取满足条件的文件集合FetchFileResult，然后调用FetchFileResult.getFirstObject();
     * 创建模拟文件：使用MediaLibrary.getPublicDirectory()获取系统预定的目录，然后使用MediaLibrary.createAsset();
     * 删除指定路径的文件：使用MediaLibrary.deleteAsset();
     * 获取预览图：使用image.createImageSource()创建指定的文件资源ImageSource，然后调用ImageSource.createPixelMap()，接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md) 。
 
-* 在Library模块中通过封装FileManager向外提供功能接口，如MediaLibraryManager.getPixelMapByFileAsset()，源码参考：[FileManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/FileManager.ts)
-    * 如效果预览中的**图片列表**，读取指定类型的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+* 在Library模块中通过封装FileManager向外提供功能接口，如MediaLibraryManager.getPixelMapByFileAsset()，源码参考：[FileManager.ts](code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/FileManager.ts)
+    * 如效果预览中的**图片列表**，读取指定类型的文件：在[FileList.ets](code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
       中调用FileManager.getFileAssets()；
-    * 创建模拟文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+    * 创建模拟文件：在[FileList.ets](code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
       中调用FileManager.createTxtFileAsset()；
-    * 删除指定路径的文件：在[FileList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
+    * 删除指定路径的文件：在[FileList.ets](code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/common/FileList.ets)
       中调用FileManager.deleteFileAsset()；
-    * 获取缩略图：在[ThumbnailImage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
-    * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
+    * 获取缩略图：在[ThumbnailImage.ets](code/BasicFeature/FileManagement/FileManager/Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
+    * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](code/BasicFeature/FileManagement/FileManager/entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
     
 ### 相关权限
 
@@ -103,7 +103,7 @@ Library/src/main/ets/
 描述一些设备、SDK版本、IDE版本、接口限制、签名等约束和限制，示例如下：
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例仅支持API9版本SDK，版本号：3.2.7.5，本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md) ；
+2. 本示例仅支持API9版本SDK，版本号：3.2.7.5，镜像版本号：OpenHarmony 4.0.7.2。本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) ；
 3. 本示例需要使用DevEco Studio 3.0 Release (Build Version: 3.0.0.993)才可编译运行；
 4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 

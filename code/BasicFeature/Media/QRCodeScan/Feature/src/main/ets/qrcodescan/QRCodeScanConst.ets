@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import image from '@ohos.multimedia.image';
 /**
  * 二维码扫描解析常量
  */
@@ -42,4 +43,21 @@ export class QRCodeScanConst {
 
   // 同时访问的最大图像数
   static readonly MAX_IMAGE_CAPACITY = 8
+}
+
+/**
+ * 图片属性
+ */
+export interface ImageAttribute {
+  width: number;
+  height: number;
+  pixelMap: image.PixelMap;
+}
+
+/**
+ * 解析结果属性
+ */
+export interface DecodeResultAttribute {
+  isSucess: boolean;
+  decodeResult: string;
 }

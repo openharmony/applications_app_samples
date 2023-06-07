@@ -72,6 +72,11 @@ class IntlUtil {
         return `GMT${offset > 0 ? '+' : '-'}${this.getTimeString(offset)}  ${timeZone.getDisplayName(i18n.getSystemLanguage())}`
     }
 
+    getTimeZoneShortString(timeZone: i18n.TimeZone) {
+        let offset = timeZone.getRawOffset()
+        return `GMT${offset > 0 ? '+' : '-'}${this.getTimeString(offset)}`
+    }
+
     getTimeString(duration: number) {
         let time = duration
         if (time < 0) {

@@ -1,70 +1,93 @@
-# 上传
+# 上传和下载
 
 ### 介绍
 
-本示例主要展示Request服务向三方应用提供系统上传服务能力，通过[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)等接口去实现图片的选取与上传。
+本示例主要展示Request服务向三方应用提供系统上传和下载服务能力，通过[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)
+等接口去实现图片的选取与上传，通过[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)，[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md) 等接口获取下载列表和开始下载任务。
 
 ### 效果预览
 
-|首页                                    |添加图片                                |上传图片                                |
-|---------------------------------------|-------------------------------------|-------------------------------------|
-|![image](screenshots/device/Add.png) |![image](screenshots/device/Selected.png)|![image](screenshots/device/Upload.png)|
+| 首页                                     | 上传首页                                      | 添加图片                                      |
+|----------------------------------------|-------------------------------------------|-------------------------------------------|
+| ![image](screenshots/device/home.jpeg) | ![image](screenshots/device/upload0.jpeg) | ![image](screenshots/device/upload1.jpeg) |
+
+| 已添加图片                                     | 上传中                                       | 上传成功                                      |
+|-------------------------------------------|-------------------------------------------|-------------------------------------------|
+| ![image](screenshots/device/upload2.jpeg) | ![image](screenshots/device/upload3.jpeg) | ![image](screenshots/device/upload4.jpeg) |
+
+| 下载首页                                        | 下载中                                         | 下载成功                                        |
+|---------------------------------------------|---------------------------------------------|---------------------------------------------|
+| ![image](screenshots/device/download0.jpeg) | ![image](screenshots/device/download1.jpeg) | ![image](screenshots/device/download2.jpeg) |
 
 使用说明
 
 1.安装应用前，先本地配置好服务器；
 
-2.将[NavigationBar.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/pages/NavigationBar.ets) 文件中的服务器地址替换成配置好的服务器地址；
+2.将[config.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/config/config.ets)
+文件中的服务器地址替换成配置好的服务器地址；
 
 3.启动应用，点击允许访问权限进入；
 
-4.点击加号，出现弹出框，点击拍摄进行拍照，点击从图库选择进行选取照片；
+4.点击上传示例，点击加号，点击拍摄进行拍照，点击从图库选择进行选取照片，图片会进行上传，上传成功后会有弹窗提示；
 
-5.点击发表，图片会进行上传，上传成功后会有弹窗提示。
+5.返回，点击下载示例，如果服务器有文件，点击全部下载，会下载所有列表文件。
 
 ### 工程目录
+
 ```
 entry/src/main/ets/
-|---Application
-|   |---MyAbilityStage.ts
-|---MainAbility
-|   |---MainAbility.ts
-|---componets
-|   |---AddPictures.ets                     // 添加图片
-|   |---DownloadController.ets              // 下载
-|   |---NavigationBar.ets                   // 切换
-|   |---RequestBar.ets                      // 请求
-|   |---SelectDialog.ets                    // 选择弹窗
-|   |---ServiceConfigDialog.ets             // 服务
-|   |---UploadController.ets                // 上传
-|---config
-|   |---config.ets                         
-|---download
-|   |---pages                          
-|   |   |---Download.ets                    // 下载     
-|---feature
-|   |---CameraService.ts                    // 相册服务
-|   |---CostTimeCompute.ets                 // 时间计算
-|   |---DateTimeUtil.ts                     // 时间
-|   |---GetPictures.ets                     // 获取相册
-|   |---MediaUtils.ets                      // 媒体
-|   |---UploadFile.ets                      // 文件上传
-|---pages
-|   |---Index.ets                           // 首页
-|---upload
-|   |---pages                          
-|   |   |---CameraPage.ets                  // 相机          
-|   |   |---Upload.ets                      // 上传      
-|---util
-|   |---ConfigUtil.ets                           
-|   |---Logger.ts                           // 日志工具
-|   |---Style.ts                            
+|	├─Application
+|	│      MyAbilityStage.ets       
+|	│      
+|	├─componets
+|	│      AddPictures.ets              //图片添加
+|	│      DownloadController.ets       //下载交互控件
+|	│      NavigationBar.ets            //导航栏
+|	│      RequestBar.ets               //上传工具栏
+|	│      SelectDialog.ets             //选择弹窗
+|	│      UploadController.ets         //上传交互控件
+|	│      
+|	├─config
+|	│      config.ets                   //配置文件
+|	│      
+|	├─download
+|	│  └─pages
+|	│          Download.ets             //下载首页
+|	│          
+|	├─feature
+|	│      CameraService.ts             //相机服务
+|	│      CostTimeCompute.ets          //耗时计算
+|	│      DateTimeUtil.ts              //日期工具
+|	│      GetPictures.ets              //获取图片
+|	│      MediaUtils.ts                //媒体工具
+|	│      UploadFile.ts                //上传文件
+|	│      
+|	├─MainAbility
+|	│      MainAbility.ets              //主Ability
+|	│      
+|	├─pages
+|	│      Index.ets                    //首页
+|	│      
+|	├─upload    
+|	│  └─pages      
+|	│          CameraPage.ets           //相机页
+|	│          Upload.ets               //上传页
+|	│          
+|	└─util
+|	        Logger.ts                   //日志工具
+|	        Style.ts                    //样式
 ```
+
 ### 具体实现
 
-* 该示例通过camera接口实现相机管理，image接口提供图片处理效果，mediaLibrary接口实现媒体库管理，fileio接口提供文件存储管理能力request接口给应用提供上传下载文件的基础能力等去实现图片的选取与上传。
-* 源码链接：[CameraService.ts](code/SystemFeature/Connectivity/Upload/entry/src/main/ets/feature/CameraService.ts)，[MediaUtils.ts](code/SystemFeature/Connectivity/Upload/entry/src/main/ets/feature/MediaUtils.ts)，[DownloadController.ets](code/SystemFeature/Connectivity/Upload/entry/src/main/ets/componets/DownloadController.ets)
-* 接口参考：[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-camera.md)，[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)，[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-request.md)
+* 上传控件，源码参考：[UploadController.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/components/UploadController.ets)
+    * 使用 @ohos.request.uploadFile 开启上传任务
+    * 使用 UploadTask.on('progress') 监听上传进度
+    * 使用 UploadTask.on('complete'|'fail') 监听上传结果
+* 下载控件，源码参考：[DownloadController.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/components/DownloadController.ets)
+    * 使用 @ohos.request.downloadFile 开启下载任务
+    * 使用 DownloadTask.on('progress') 监听下载进度
+    * 使用 DownloadTask.on('complete'|'fail') 监听下载结果
 
 ### 相关权限
 
@@ -80,21 +103,24 @@ entry/src/main/ets/
 
 ### 依赖
 
-不涉及。
+1.需要本地配置好HFS服务器，创建好支持上传的文件目录；
+
+2.执行uiTest时，相册需要有两张图片可供选择；
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行，支持设备:RK3568；
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
+2.本示例已适配API version 9版本SDK，版本号：3.2.11.10；
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行；
 
-4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。
+4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
+
 ```
 git init
 git config core.sparsecheckout true

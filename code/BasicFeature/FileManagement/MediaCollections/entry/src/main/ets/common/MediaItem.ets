@@ -117,7 +117,7 @@ export struct MediaItem {
         Button() {
           Image($r("app.media.icon_rename"))
             .size({
-              width: 60,
+              width: 40,
               height: 40
             })
             .objectFit(ImageFit.Contain)
@@ -164,10 +164,7 @@ export struct MediaItem {
       })
     }
     .width('120%')
-    .margin({
-      left: this.translateLeft,
-      right: 110
-    })
+    .translate({ x: this.translateLeft, y: 0 })
     .priorityGesture(
     GestureGroup(
       GestureMode.Parallel,

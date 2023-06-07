@@ -13,40 +13,75 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
-import { Driver } from '@ohos.UiTest'
-import featureAbility from '@ohos.ability.featureAbility'
-import hilog from '@ohos.hilog'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Logger from '../Logger';
+import ResourceUtil from '../../../main/ets/MainAbility/model/ResourceUtil';
 
-const TAG = '[Sample_International]'
-const DOMAIN = 0xF811
+const TAG: string = '[Sample_International]'
 const BUNDLE = 'International_'
+
+let driver: Driver = Driver.create();
+
+//通过id验证有没有这个组件 有的话点击一下
+async function checkButtonAndClickWithID(text: string) {
+  let atom = text;
+  await driver.assertComponentExist(ON.id(atom));
+  let button = await driver.findComponent(ON.id(atom));
+  await button.click();
+  await driver.delayMs(1000);
+}
+
+//通过text验证有没有这个组件 有的话点击一下
+async function checkButtonAndClickWithText(text: string) {
+  let atom = text;
+  await driver.assertComponentExist(ON.text(atom));
+  let button = await driver.findComponent(ON.text(atom));
+  await button.click();
+  await driver.delayMs(1000);
+}
 
 export default function appTest() {
   describe('appTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
-      let parameter = {
-        "want": {
-          bundleName: "ohos.samples.international",
-          abilityName: "ohos.samples.international.MainAbility"
-        }
-      }
-      await featureAbility.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001,err.code:' + err.code)
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
-      })
-    })
     /**
-     * 进入页面
+     * 拉起应用
      */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 end')
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.international',
+          abilityName: 'ohos.samples.international.MainAbility'
+        });
+        done();
+      } catch (error) {
+        Logger.info(TAG, `StartAbility end ${JSON.stringify(error)}`);
+        expect(0).assertEqual(error.code);
+        done();
+      }
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 end');
     })
+
+    /**
+     * 测试时区设置
+     */
+    it(BUNDLE + 'TimeZone_001', 0, async (done) => {
+      Logger.info(TAG, BUNDLE + 'TimeZone_001 begin');
+      //进入时间和日期页面
+      await driver.delayMs(1000);
+      await checkButtonAndClickWithText('日期和时间');
+      //进入时区设置页面
+      await driver.delayMs(1000);
+      await checkButtonAndClickWithText('时区');
+      //设置时区
+      await checkButtonAndClickWithID('time_zone_item0');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('时区'));
+      done();
+      Logger.info(TAG, BUNDLE + 'TimeZone_001 end');
+    })
+
   })
 }
