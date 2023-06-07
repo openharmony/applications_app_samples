@@ -19,38 +19,64 @@ import router from '@ohos.router';
 struct Index {
   build() {
     Column() {
-      Column() {
-        Image($r('app.media.png01')).width(120).height(120).margin({ top: 24 })
-        Button() {
-          Text($r('app.string.SelectOutputDevice')).fontColor(Color.White).fontSize(18)
-        }.width(312).height(40).margin({ top: 24 })
-      }
-      .id('select_output_device_card')
-      .backgroundColor(Color.White)
-      .margin({ top: 40 })
-      .borderRadius(30)
-      .width('100%')
-      .height(232)
-      .onClick(async () => {
-        await router.pushUrl({ url: 'pages/PreferOutputDevice' })
-      })
+      Row() {
+        Column() {
+          Image($r('app.media.png01_findxhdpi')).width(72).height(72).margin({ top: 36 })
+          Text($r('app.string.SelectOutputDevice')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+        }
+        .id('select_output_device_card')
+        .backgroundColor(Color.White)
+        .margin({ right: 12 })
+        .width(174)
+        .height(188)
+        .borderRadius(30)
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/PreferOutputDevice' })
+        })
 
-      Column() {
-        Image($r('app.media.png02')).width(120).height(120).margin({ top: 24 })
-        Button() {
-          Text($r('app.string.AudioFocus')).fontColor(Color.White).fontSize(18)
-        }.width(312).height(40).margin({ top: 24 })
+        Column() {
+          Image($r('app.media.png01_audioxhdpi')).width(72).height(72).margin({ top: 36 })
+          Text($r('app.string.AudioFocus')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+        }
+        .id('audio_focus_card')
+        .backgroundColor(Color.White)
+        .borderRadius(30)
+        .width(174)
+        .height(188)
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/Focus' })
+        })
       }
-      .id('audio_focus_card')
-      .backgroundColor(Color.White)
-      .margin({ top: 40 })
-      .borderRadius(30)
-      .width('100%')
-      .height(232)
-      .onClick(async () => {
-        await router.pushUrl({ url: 'pages/Focus' })
-      })
+      .margin({ top: 32 })
+      .justifyContent(FlexAlign.SpaceBetween)
+
+
+      Row() {
+        Column() {
+          Image($r('app.media.png01_Soundeffectsxhdpi')).width(72).height(72).margin({ top: 36 })
+          Text($r('app.string.AudioEffectManager')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+        }
+        .id('audio_effect_manager_card')
+        .backgroundColor(Color.White)
+        .borderRadius(30)
+        .margin({ right: 12 })
+        .width(174)
+        .height(188)
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/PresetEffect' })
+        })
+
+        Column() {
+        }
+        .backgroundColor('#F1F2F3')
+        .borderRadius(30)
+        .width(174).height(188)
+      }
+      .margin({ top: 12 })
+      .justifyContent(FlexAlign.SpaceBetween)
+
     }
-    .height('100%').width('100%').backgroundColor('#c4c4c4').padding({ left: 20, right: 20 })
+    .height('100%').width('100%').backgroundColor('#F1F3F5')
+
   }
 }

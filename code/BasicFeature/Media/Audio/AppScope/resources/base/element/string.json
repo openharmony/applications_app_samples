@@ -38,7 +38,11 @@
     },
     {
       "name": "SelectOutputDevice",
-      "value": "发声设备查询与选择"
+      "value": "发声设备查询"
+    },
+    {
+      "name": "AudioEffectManager",
+      "value": "音效管理"
     },
     {
       "name": "AudioFocus",
@@ -55,6 +59,114 @@
     {
       "name": "RingtoneType",
       "value": "铃声类型"
+    },
+    {
+      "name": "EffectManager",
+      "value": "音效管理"
+    },
+    {
+      "name": "CONTENT_TYPE_UNKNOWN",
+      "value": "未知类型"
+    },
+    {
+      "name": "CONTENT_TYPE_SPEECH",
+      "value": "演讲类型"
+    },
+    {
+      "name": "CONTENT_TYPE_MUSIC",
+      "value": "音乐类型"
+    },
+    {
+      "name": "CONTENT_TYPE_MOVIE",
+      "value": "视频类型"
+    },
+    {
+      "name": "CONTENT_TYPE_SONIFICATION",
+      "value": "声波化类型"
+    },
+    {
+      "name": "CONTENT_TYPE_RINGTONE",
+      "value": "铃声类型"
+    },
+    {
+      "name": "CONTENT_TYPE_ULTRASONIC",
+      "value": "超声波类型"
+    },
+    {
+      "name": "STREAM_USAGE_UNKNOWN",
+      "value": "未知场景"
+    },
+    {
+      "name": "STREAM_USAGE_MEDIA",
+      "value": "音频场景"
+    },
+    {
+      "name": "STREAM_USAGE_VOICE_COMMUNICATION",
+      "value": "语音通信场景"
+    },
+    {
+      "name": "STREAM_USAGE_VOICE_ASSISTANT",
+      "value": "语音播报场景"
+    },
+    {
+      "name": "STREAM_USAGE_ALARM",
+      "value": "闹钟场景"
+    },
+    {
+      "name": "STREAM_USAGE_NOTIFICATION_RINGTONE",
+      "value": "通知铃声场景"
+    },
+    {
+      "name": "STREAM_USAGE_ACCESSIBILITY",
+      "value": "无障碍场景"
+    },
+    {
+      "name": "STREAM_USAGE_SYSTEM",
+      "value": "系统音场景"
+    },
+    {
+      "name": "EFFECT_NONE_AND_DEFAULT",
+      "value": "直通/默认"
+    },
+    {
+      "name": "EFFECT_NONE",
+      "value": "直通"
+    },
+    {
+      "name": "EFFECT_DEFAULT",
+      "value": "默认"
+    },
+    {
+      "name": "CURRENT_AUDIO_EFFECT",
+      "value": "当前音频流音效"
+    },
+    {
+      "name": "QUERY",
+      "value": "查询"
+    },
+    {
+      "name": "QUERY_RESULT",
+      "value": "查询结果"
+    },
+    {
+      "name": "AUDIO_EFFECT_MODE_SETTING",
+      "value": "音频流音效模式设置"
+    },
+    {
+      "name": "PRESET_AUDIO_EFFECT_QUERY",
+      "value": "预置音效"
+    },
+    {
+      "name": "REALTIME_AUDIO_EFFECT_SETTING",
+      "value": "实时音效"
+    },
+    {
+      "name": "SYSTEM_PRESET_AUDIO_EFFECT",
+      "value": "系统预置音效"
+    },
+    {
+      "name": "BLANK",
+      "value": "--"
     }
   ]
 }
