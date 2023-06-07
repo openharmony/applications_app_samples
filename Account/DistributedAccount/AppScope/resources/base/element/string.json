@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "DistributedAccount"
+    },
+    {
+      "name": "distributed_datasync_permission_reason",
+      "value": "用于获取分布式帐号信息"
+    }
+  ]
+}
