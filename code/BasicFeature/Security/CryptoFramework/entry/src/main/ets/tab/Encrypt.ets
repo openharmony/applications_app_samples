@@ -245,61 +245,21 @@ export struct Encrypt {
   }
 
   async createTextFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['cipherText.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['cipherText.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    this.encryptedFileUri = DocumentSaveResult[0];
+    let documentSaveResult = await documentPicker.save(documentSaveOptions);
+    this.encryptedFileUri = documentSaveResult[0];
     await TextFileManager.writeTextFile(this.encryptedFileUri, this.cipherText);
   }
 
   async createKeyFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['aesKey.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['aesKey.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    this.createKeyUri = DocumentSaveResult[0];
+    let documentSaveResult = await documentPicker.save(documentSaveOptions);
+    this.createKeyUri = documentSaveResult[0];
     await TextFileManager.writeTextFile(this.createKeyUri, this.keyString);
-  }
-
-  async createShortFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['textShort.txt'];
-    let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    let uri = DocumentSaveResult[0];
-    let short = 'hello world'
-    await TextFileManager.writeTextFile(uri, short);
-  }
-
-  async createMidFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['textMid.txt'];
-    let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    let uri = DocumentSaveResult[0];
-    let mid = 'hello world'
-    await TextFileManager.writeTextFile(uri, mid);
-  }
-
-  async createChFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['中文.txt'];
-    let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    let uri = DocumentSaveResult[0];
-    let mid = '0x9f255d8bf9e15ca86fa3f1620c4b78c44466e6e1e1f7299c0fd7d1405746151a1b93eaf28d13b6223ec6982ef547d283976a2e6043b2fe8b7ef73632ce2749b50x9f255d8bf9e15ca86fa3f1620c4b78c44466e6e1e1f7299c0fd7d1405746151a1b93eaf28d13b6223ec6982ef547d283976a2e6043b2fe8b7ef73632ce2749b5'
-    await TextFileManager.writeTextFile(uri, mid);
-  }
-
-  async createLongFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['textLong.txt'];
-    let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    let uri = DocumentSaveResult[0];
-    let long = '0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a250x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25'
-    await TextFileManager.writeTextFile(uri, long);
   }
 
   async encryptFunc() {

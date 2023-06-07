@@ -230,11 +230,11 @@ export struct Decrypt {
   }
 
   async createTextFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['plainText.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['plainText.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    this.decryptedFileUri = DocumentSaveResult[0];
+    let documentSaveResult = await documentPicker.save(documentSaveOptions);
+    this.decryptedFileUri = documentSaveResult[0];
     await TextFileManager.writeTextFile(this.decryptedFileUri, this.plainText);
   }
 

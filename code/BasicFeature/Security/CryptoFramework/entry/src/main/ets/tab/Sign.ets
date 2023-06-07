@@ -215,21 +215,21 @@ export struct Sign {
   }
 
   async createTextFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['signText.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['signText.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-    this.signFileUri = DocumentSaveResult[0];
+    let documentSaveResult = await documentPicker.save(documentSaveOptions);
+    this.signFileUri = documentSaveResult[0];
     await TextFileManager.writeTextFile(this.signFileUri, this.cipherText);
   }
 
   async createKeyFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['rsaKey.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['rsaKey.txt'];
     let documentPicker = new picker.DocumentViewPicker();
     try {
-      let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-      this.createKeyUri = DocumentSaveResult[0];
+      let documentSaveResult = await documentPicker.save(documentSaveOptions);
+      this.createKeyUri = documentSaveResult[0];
       await TextFileManager.writeTextFile(this.createKeyUri, this.keyString);
     } catch (error) {
       Logger.error(TAG, `save key failed, ${error.code}, ${error.message}`);

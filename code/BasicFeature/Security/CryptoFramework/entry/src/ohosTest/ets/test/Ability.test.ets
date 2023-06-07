@@ -25,8 +25,6 @@ const TAB_DECRYPT = '1'
 const TAB_SIGN = '2'
 const TAB_VERIFY = '3'
 
-// import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-
 export default function abilityTest() {
   let driver = Driver.create();
   describe('ActsAbilityTest', function () {
@@ -110,7 +108,6 @@ export default function abilityTest() {
     it(BUNDLE + 'Verify_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'Verify_001 begin');
       Logger.info(TAG, BUNDLE + 'Verify_001 verify');
-      // await driver.delayMs(1000);
       // 界面选择为加密
       await driver.assertComponentExist(ON.id(TAB_VERIFY));
       let tabButton = await driver.findComponent(ON.id(TAB_VERIFY));

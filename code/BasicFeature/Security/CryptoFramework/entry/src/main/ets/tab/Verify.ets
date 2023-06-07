@@ -257,12 +257,12 @@ export struct Verify {
   }
 
   async createKeyFileAndWrite() {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['rsaKey.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['rsaKey.txt'];
     let documentPicker = new picker.DocumentViewPicker();
     try {
-      let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
-      this.createKeyUri = DocumentSaveResult[0];
+      let documentSaveResult = await documentPicker.save(documentSaveOptions);
+      this.createKeyUri = documentSaveResult[0];
       await TextFileManager.writeTextFile(this.createKeyUri, this.keyString);
     } catch (error) {
       Logger.error(TAG, `save key failed, ${error.code}, ${error.message}`);
