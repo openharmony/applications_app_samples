@@ -26,7 +26,9 @@ struct Index {
   @Builder Discover() {
 
     Column({ space: 5 }) {
-      Text($r("app.string.index_find")).fontSize(16).fontColor(this.barIndex === 0 ? "#2AEFCC" : Color.White)
+      Text($r("app.string.index_find"))
+        .fontSize(16)
+        .fontColor(this.barIndex === 0 ? "#2AEFCC" : Color.White)
     }
     .id('indexDiscover')
     .height('100%')
@@ -40,7 +42,9 @@ struct Index {
 
   @Builder My() {
     Column({ space: 5 }) {
-      Text($r("app.string.index_my")).fontSize(16).fontColor(this.barIndex === 1 ? "#2AEFCC" : Color.White)
+      Text($r("app.string.index_my"))
+        .fontSize(16)
+        .fontColor(this.barIndex === 1 ? "#2AEFCC" : Color.White)
     }
     .id('indexMy')
     .height('100%')
@@ -61,28 +65,42 @@ struct Index {
         DisplayModule({
           vibrationIntensity: $vibrationIntensity
         })
-      }.tabBar(this.Discover())
+      }
+      .tabBar(this.Discover())
 
       TabContent() {
         Column({ space: 100 }) {
           Column({ space: 50 }) {
-            Image($r("app.media.icon5")).objectFit(ImageFit.ScaleDown).height("50%").width("50%")
+            Image($r("app.media.icon5"))
+              .objectFit(ImageFit.ScaleDown)
+              .height("50%")
+              .width("50%")
             Text($r("app.string.index_welcome"))
               .fontColor(Color.White)
               .fontSize(20)
               .width("100%")
               .height("10%")
               .textAlign(TextAlign.Center)
-          }.height("30%").width("100%").justifyContent(FlexAlign.Center)
+          }
+          .height("30%")
+          .width("100%")
+          .justifyContent(FlexAlign.Center)
 
           Column({ space: 20 }) {
             MyInfoModule({
               vibrationIntensity: $vibrationIntensity
             })
-          }.height("5%").alignItems(HorizontalAlign.Center)
-        }.width('100%').height('100%').backgroundColor('#f2191a32')
-      }.tabBar(this.My())
-    }.backgroundColor('#e6191a32')
+          }
+          .height("5%")
+          .alignItems(HorizontalAlign.Center)
+        }
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#f2191a32')
+      }
+      .tabBar(this.My())
+    }
+    .backgroundColor('#e6191a32')
     .onChange((index: number) => {
       this.barIndex = index;
     })

@@ -58,22 +58,27 @@ export default struct TabBar {
         ForEach(this.tabDataArr, (Item: TabModel) => {
           Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Text(Item.content)
-              .fontSize(this.currentIndex == Item.index ? this.fontSizeNormal + 3 : this.fontSizeNormal)
-              .fontColor(this.currentIndex == Item.index ? "#2AEFCC" : Color.White)
-              .fontWeight(this.currentIndex == Item.index ? FontWeight.Bold : FontWeight.Normal)
+              .fontSize(this.currentIndex === Item.index ? this.fontSizeNormal + 3 : this.fontSizeNormal)
+              .fontColor(this.currentIndex === Item.index ? "#2AEFCC" : Color.White)
+              .fontWeight(this.currentIndex === Item.index ? FontWeight.Bold : FontWeight.Normal)
               .textAlign(TextAlign.Center)
             Column()
               .height(3)
               .width(Item.width - this.tabMargin * 2)
               .margin({ top: 10 })
               .backgroundColor("#2AEFCC")
-              .visibility(this.currentIndex == Item.index ? Visibility.Visible : Visibility.Hidden)
-          }.width(Item.width).height('100%').backgroundColor("#00002222")
+              .visibility(this.currentIndex === Item.index ? Visibility.Visible : Visibility.Hidden)
+          }
+          .width(Item.width)
+          .height('100%')
+          .backgroundColor("#00002222")
           .onClick(() => {
             this.currentIndex = Item.index
           })
         }, Item => Item.index)
       }
-    }.scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off)
+    }
+    .scrollable(ScrollDirection.Horizontal)
+    .scrollBar(BarState.Off)
   }
 }

@@ -78,7 +78,8 @@ export default struct DisplayModule {
               url: 'module/VideoListModule'
             })
           })
-      }.padding({ top: 5 })
+      }
+      .padding({ top: 5 })
 
       VideoListLayout()
 
@@ -100,7 +101,8 @@ export default struct DisplayModule {
             this.swiperController.showNext()
           },
         })
-      }.width('100%')
+      }
+      .width('100%')
       .height(this.tabHeight)
       .zIndex(10)
 
@@ -144,7 +146,11 @@ export default struct DisplayModule {
                 } else if (this.currentIndex === TabIndex.INTERACTION) {
                   InteractionLayout()
                 } else {
-                  Text('Please Waiting！').fontSize(48).fontColor(Color.Black).width("100%").height("100%")
+                  Text('Please Waiting！')
+                    .fontSize(48)
+                    .fontColor(Color.Black)
+                    .width("100%")
+                    .height("100%")
                 }
               }
             }, item => item)
@@ -163,7 +169,11 @@ export default struct DisplayModule {
             this.currentIndex = index
           })
         }
-      }.scrollBar(BarState.Off)
-    }.width('100%').height('100%').backgroundColor('#f2191a32')
+      }
+      .scrollBar(BarState.Off)
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#f2191a32')
   }
 }

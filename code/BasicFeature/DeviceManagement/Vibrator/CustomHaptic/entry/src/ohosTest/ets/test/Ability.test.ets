@@ -94,8 +94,8 @@ export default function abilityTest() {
     it(BUNDLE + 'VerifyVibrationFunction_005', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_005 begin');
       let driver = Driver.create();
-      await driver.assertComponentExist(ON.id('racingItem'));
-      let racingItem = await driver.findComponent(ON.id('racingItem'));
+      await driver.assertComponentExist(ON.id('audioHaptic'));
+      let racingItem = await driver.findComponent(ON.id('audioHaptic'));
       await racingItem.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_005 end');

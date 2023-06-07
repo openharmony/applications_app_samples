@@ -19,6 +19,7 @@
 ```
 entry/src/main/ets/
 |---component
+|   |---Common.ets                            // 振效库场景公共组件
 |   |---Battle.ets                            // 振效库"战斗"场景
 |   |---Environment.ets                       // 振效库"环境"场景
 |   |---Exercise.ets                          // 振效库"运动"场景
@@ -26,13 +27,14 @@ entry/src/main/ets/
 |   |---Instrument.ets                        // 振效库"乐器"场景
 |   |---Interaction.ets                       // 振效库"互动"场景
 |   |---Racing.ets                            // 振效库"竞速"场景
+|   |---Realistic.ets                         // 振效库"拟真"场景
 |   |---Shooting.ets                          // 振效库"射击"场景
 |   |---VideoPreview.ets                      // 视频频预览界面
 |---module
 |   |---DisplayModule.ets                     // "发现"界面，主界面
 |   |---ImageData.ets                         // 资源数据结构
 |   |---Logger.ets                            // 封装的日志
-|   |---MyInfoModule.ets                    // "我的"界面
+|   |---MyInfoModule.ets                      // "我的"界面
 |   |---TabBar.ets                            // 振效库场景类别滑动栏
 |   |---Util.ets                              // 工具函数
 |   |---VideoListModule.ets                   // 视频列表模块

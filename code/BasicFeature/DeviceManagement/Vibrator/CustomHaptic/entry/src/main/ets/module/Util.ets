@@ -22,7 +22,7 @@ const TAG = '[Util]'
 
 export function getDynamicStates(dis: boolean[], id: number): boolean[] {
   for (let i = 0; i < dis.length; i++) {
-      i == id ? dis[i] = true : dis[i] = false
+      i === id ? dis[i] = true : dis[i] = false
     Logger.info(TAG, dis[i].toString())
   }
   return dis
@@ -52,7 +52,7 @@ export async function playVibrateCustom(fileName: string) {
   }
 }
 
-export function setAVPlayerCallback(avPlayer) {
+export function setAVPlayerCallback(avPlayer): void {
   avPlayer.reset()
   avPlayer.on('stateChange', async (state) => {
     switch (state) {
@@ -111,7 +111,7 @@ export async function avPlayer(audioName: string) {
   avPlayer.fdSrc = rawFd
 }
 
-export function changeOrientationInternal(lastWindow: Window.Window, portrait: boolean) {
+export function changeOrientationInternal(lastWindow: Window.Window, portrait: boolean): void {
   if (portrait) {
     lastWindow.setPreferredOrientation(Window.Orientation.LANDSCAPE).then(() => {
       Logger.info(TAG, "setPreferredOrientation success")
@@ -127,7 +127,7 @@ export function changeOrientationInternal(lastWindow: Window.Window, portrait: b
   }
 }
 
-export function changeOrientation(portrait: boolean) {
+export function changeOrientation(portrait: boolean):void {
   Window.getLastWindow(getContext()).then((lastWindow) => {
     changeOrientationInternal(lastWindow, portrait)
   }).catch((error) => {
@@ -135,7 +135,7 @@ export function changeOrientation(portrait: boolean) {
   })
 }
 
-export function hideTitleBar() {
+export function hideTitleBar(): void {
   Window.getLastWindow(getContext()).then((lastWindow) => {
     if (lastWindow) {
       lastWindow.setWindowSystemBarEnable([], (err) => {
@@ -151,7 +151,7 @@ export function hideTitleBar() {
   })
 }
 
-export function showTitleBar() {
+export function showTitleBar(): void {
   Window.getLastWindow(getContext()).then((lastWindow) => {
     if (lastWindow) {
       lastWindow.setWindowSystemBarEnable(['status', 'navigation'], (err) => {

@@ -112,7 +112,9 @@ struct VideoPlayModule {
         })
         .autoPlay(true)
       Row() {
-        Button('<').fontSize(15).backgroundColor("#00222222")
+        Button('<')
+          .fontSize(15)
+          .backgroundColor("#00222222")
           .id('videoBack')
           .onClick(() => {
             changeOrientation(false)
@@ -121,8 +123,13 @@ struct VideoPlayModule {
             router.back()
           })
         Text(this.videoName).fontSize(15).fontColor(Color.White)
-      }.width("100%").height("10%").backgroundColor('#80191a32')
+      }
+      .width("100%")
+      .height("10%")
+      .backgroundColor('#80191a32')
       .visibility(this.portrait ? Visibility.Visible : Visibility.Hidden)
-    }.width('100%').height('100%').backgroundColor('#f2191a32')
+    }.width('100%')
+    .height('100%')
+    .backgroundColor('#f2191a32')
   }
 }

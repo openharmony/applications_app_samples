@@ -26,9 +26,15 @@ export default struct MyInfoModule {
     Column({ space: 30 }) {
       Column({ space: 10 }) {
         Row({ space: 10 }) {
-          Image($r("app.media.set")).height(20).width(20)
-          Text($r("app.string.my_settings")).fontColor(Color.White).fontSize(20)
-          Text(this.selectContent).fontSize(16).fontColor("#ffcbc2c2")
+          Image($r("app.media.set"))
+            .height(20)
+            .width(20)
+          Text($r("app.string.my_settings"))
+            .fontColor(Color.White)
+            .fontSize(20)
+          Text(this.selectContent)
+            .fontSize(16)
+            .fontColor("#ffcbc2c2")
         }
         .id('intensitySelect')
         .height("100%")
@@ -83,40 +89,76 @@ export default struct MyInfoModule {
         .width("80%")
 
         Row() {
-        }.height(1).width("85%").backgroundColor('#ff404048')
+        }
+        .height(1)
+        .width("85%")
+        .backgroundColor('#ff404048')
       }
 
       Column({ space: 10 }) {
         Row({ space: 10 }) {
-          Image($r("app.media.Verison")).width(20).height(20)
-          Text($r("app.string.my_version")).fontColor(Color.White).fontSize(20).backgroundColor('#cc191a32')
-          Text('v1.0').fontSize(20).fontColor("#ff706666")
-        }.width("80%")
+          Image($r("app.media.Verison"))
+            .width(20)
+            .height(20)
+          Text($r("app.string.my_version"))
+            .fontColor(Color.White)
+            .fontSize(20)
+            .backgroundColor('#cc191a32')
+          Text('v1.0')
+            .fontSize(20)
+            .fontColor("#ff706666")
+        }
+        .width("80%")
 
         Row() {
-        }.height(1).width("85%").backgroundColor("#ff404048")
+        }
+        .height(1)
+        .width("85%")
+        .backgroundColor("#ff404048")
       }
 
       Column({ space: 10 }) {
         Row({ space: 10 }) {
-          Image($r("app.media.bangzhu")).width(20).height(20)
-          Text($r("app.string.my_help")).fontColor(Color.White).fontSize(20).backgroundColor('#cc191a32')
-          Text('Please Waiting!').fontSize(20).fontColor("#ff706666")
-        }.width("80%")
+          Image($r("app.media.bangzhu"))
+            .width(20)
+            .height(20)
+          Text($r("app.string.my_help"))
+            .fontColor(Color.White)
+            .fontSize(20)
+            .backgroundColor('#cc191a32')
+          Text('Please Waiting!')
+            .fontSize(20)
+            .fontColor("#ff706666")
+        }
+        .width("80%")
 
         Row() {
-        }.height(1).width("85%").backgroundColor("#ff404048")
+        }
+        .height(1)
+        .width("85%")
+        .backgroundColor("#ff404048")
       }
 
       Column({ space: 10 }) {
         Row({ space: 10 }) {
-          Image($r("app.media.xinxi")).width(20).height(20)
-          Text($r("app.string.my_develop")).fontColor(Color.White).fontSize(20).backgroundColor('#cc191a32')
-          Text('Please Waiting!').fontSize(20).fontColor("#ff706666")
-        }.width("80%")
+          Image($r("app.media.xinxi"))
+            .width(20)
+            .height(20)
+          Text($r("app.string.my_develop"))
+            .fontColor(Color.White)
+            .fontSize(20)
+            .backgroundColor('#cc191a32')
+          Text('Please Waiting!')
+            .fontSize(20)
+            .fontColor("#ff706666")
+        }
+        .width("80%")
 
         Row() {
-        }.height(1).width("85%").backgroundColor("#ff404048")
+        }
+        .height(1)
+        .width("85%")
+        .backgroundColor("#ff404048")
       }
     }
   }

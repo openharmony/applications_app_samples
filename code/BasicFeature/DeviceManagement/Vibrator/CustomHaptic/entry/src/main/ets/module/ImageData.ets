@@ -709,7 +709,7 @@ export abstract class BaseDataSource<T> implements IDataSource {
   }
 
   totalCount(): number {
-    return this.mDataSource == null ? 0 : this.mDataSource.length
+    return this.mDataSource === null ? 0 : this.mDataSource.length
   }
 
   getData(index: number): T {

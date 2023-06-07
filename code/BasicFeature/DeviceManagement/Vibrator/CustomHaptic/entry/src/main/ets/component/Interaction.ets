@@ -66,7 +66,9 @@ export default struct InteractionLayout {
                 playVibrateCustom("Slide_LeftRight.json")
               })
 
-              Text($r("app.string.interaction_slide_left_right")).fontColor(Color.White).fontSize(18)
+              Text($r("app.string.interaction_slide_left_right"))
+                .fontColor(Color.White)
+                .fontSize(18)
             }
 
             Column({ space: 10 }) {
@@ -103,10 +105,15 @@ export default struct InteractionLayout {
                 playVibrateCustom("Slide_Up.json")
               })
 
-              Text($r("app.string.interaction_slide_up")).fontColor(Color.White).fontSize(18)
+              Text($r("app.string.interaction_slide_up"))
+                .fontColor(Color.White)
+                .fontSize(18)
             }
-          }.justifyContent(FlexAlign.Center)
-        }.margin({ left: "1%" }).width("100%")
+          }
+          .justifyContent(FlexAlign.Center)
+        }
+        .margin({ left: "1%" })
+        .width("100%")
 
         ListItem() {
           Row({ space: 30 }) {
@@ -149,7 +156,9 @@ export default struct InteractionLayout {
                 playVibrateCustom("Switch_App.json")
               })
 
-              Text($r("app.string.interaction_switch_app")).fontColor(Color.White).fontSize(18)
+              Text($r("app.string.interaction_switch_app"))
+                .fontColor(Color.White)
+                .fontSize(18)
             }
 
             Column({ space: 10 }) {
@@ -189,11 +198,18 @@ export default struct InteractionLayout {
                 playVibrateCustom("UpSlide_Stop.json")
               })
 
-              Text($r("app.string.interaction_slide_stop")).fontColor(Color.White).fontSize(18)
+              Text($r("app.string.interaction_slide_stop"))
+                .fontColor(Color.White)
+                .fontSize(18)
             }
-          }.justifyContent(FlexAlign.Center)
-        }.margin({ left: "1%" }).width("100%")
-      }.height('50%').width("100%")
+          }
+          .justifyContent(FlexAlign.Center)
+        }
+        .margin({ left: "1%" })
+        .width("100%")
+      }
+      .height('50%')
+      .width("100%")
     }
   }
 }

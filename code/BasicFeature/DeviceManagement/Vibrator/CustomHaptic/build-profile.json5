@@ -22,7 +22,7 @@
         "name": "default",
         "signingConfig": "default"
       }
-    ],
+    ]
   },
   "modules": [
     {

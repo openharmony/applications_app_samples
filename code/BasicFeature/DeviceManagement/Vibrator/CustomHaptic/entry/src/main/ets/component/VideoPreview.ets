@@ -23,8 +23,13 @@ export default struct VideoListLayout {
     Scroll() {
       Row({ space: 10 }) {
         Stack() {
-          Image($r("app.media.HapticVideoPreview")).width("100%").height("100%").borderRadius(10)
-          Image($r("app.media.player2")).width("30%").height("30%")
+          Image($r("app.media.HapticVideoPreview"))
+            .width("100%")
+            .height("100%")
+            .borderRadius(10)
+          Image($r("app.media.player2"))
+            .width("30%")
+            .height("30%")
             .visibility(this.playDis ? Visibility.Hidden : Visibility.Visible)
         }
         .id("videoPreview")
@@ -45,6 +50,7 @@ export default struct VideoListLayout {
         })
         .padding({ left: 10 })
       }
-    }.scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off)
+    }
+    .scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off)
   }
 }
