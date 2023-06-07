@@ -84,6 +84,7 @@ struct Focus {
         console.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
         return
       }
+
     })
   }
 
@@ -298,6 +299,6 @@ struct Focus {
         }
       })
     }
-    .height('100%').width('100%').backgroundColor('#ccc').padding({ left: 20, right: 20 })
+    .height('100%').width('100%').backgroundColor('#c4c4c4').padding({ left: 20, right: 20 })
   }
 }
