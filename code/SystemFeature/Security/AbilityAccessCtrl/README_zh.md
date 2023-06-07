@@ -4,6 +4,12 @@
 
 本示例使用@ohos.abilityAccessCtrl，展示了应用申请权限场景。
 
+### 效果预览
+
+|主页|授权弹窗|
+|------------|-------------------|
+|![](screenshots/device/main.png)| ![](screenshots/device/dialog.png)|
+
 使用说明
 
 1.打开应用，页面出现弹窗，点击 **取消** 按钮。
@@ -16,25 +22,39 @@
 
 5.关闭应用再次打开，页面不出现弹窗，点击 **检测权限** 按钮，点击检测权限，出现提示信息“权限已授予”。
 
-### 效果预览
+### 工程目录
+```
+entry/src/main/ets/
+|---entryability
+|   |---EntryAbility.ets
+|---model
+|   |---Logger.ts                      // 日志工具
+|---pages
+|   |---Index.ets                      // 首页
+|---verifyability
+|   |---VerifyAbility.ets              
+|   |---pages
+|   |   |---Index.ets                  // 检测权限
+```
+### 具体实现
 
-|主页|授权弹窗|
-|------------|-------------------|
-|![](screenshots/device/main.png)| ![](screenshots/device/dialog.png)|
+* 该示例使用abilityAccessCtrl接口中abilityAccessCtrl方法获取访问控制模块对象，GrantStatus.PERMISSION_GRANTED方法表示已授权状态，bundleManager接口中getApplicationInfo方法根据包名获取ApplicationInfo等展示应用申请权限场景
+* 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/AbilityAccessCtrl/entry/src/main/ets/verifyability/pages/Index.ets)
+* 接口参考：[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bundleManager.md)
 
 ### 相关权限
 
-[ohos.permission.GET_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_sensitive_permissions)
+1.允许应用读取其他应用的敏感权限的状态权限：[ohos.permission.GET_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_sensitive_permissions)
 
-[ohos.permission.REVOKE_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrevoke_sensitive_permissions)
+2.允许应用撤销给其他应用授予的敏感信息权限：[ohos.permission.REVOKE_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrevoke_sensitive_permissions)
 
-[ohos.permission.GRANT_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiongrant_sensitive_permissions)
+3.允许应用为其他应用授予敏感权限：[ohos.permission.GRANT_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiongrant_sensitive_permissions)
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+4.允许应用同时查询其他多个应用的信息权限：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
 
-[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+5.允许应用查询其他单个应用的信息权限：[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
 
-[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
+6.允许应用使用麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
 
 ### 依赖
 
