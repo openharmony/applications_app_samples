@@ -21,43 +21,43 @@ import testsuite from '../test/List.test';
 import window from '@ohos.window';
 
 export default class TestAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        Logger.info('testTag', 'TestAbility onCreate');
-        Logger.info('testTag', 'want param:' + JSON.stringify(want) ?? '');
-        Logger.info('testTag', 'launchParam:'+ JSON.stringify(launchParam) ?? '');
-        var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        Logger.info('testTag', 'start run testcase!!!');
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-    }
+  onCreate(want, launchParam) {
+    Logger.info('testTag', 'TestAbility onCreate');
+    Logger.info('testTag', 'want param:' + JSON.stringify(want) ?? '');
+    Logger.info('testTag', 'launchParam:' + JSON.stringify(launchParam) ?? '');
+    var abilityDelegator: any
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    var abilityDelegatorArguments: any
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    Logger.info('testTag', 'start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+  }
 
-    onDestroy() {
-        Logger.info('testTag', 'TestAbility onDestroy');
-    }
+  onDestroy() {
+    Logger.info('testTag', 'TestAbility onDestroy');
+  }
 
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        Logger.info('testTag', 'TestAbility onWindowStageCreate');
-        windowStage.loadContent('testability/pages/Index', (err, data) => {
-            if (err.code) {
-                Logger.error('testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-                return;
-            }
-            Logger.info('testTag', 'Succeeded in loading the content. Data: %{public}s',
-                JSON.stringify(data) ?? '');
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    Logger.info('testTag', 'TestAbility onWindowStageCreate');
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
+      if (err.code) {
+        Logger.error('testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      Logger.info('testTag', 'Succeeded in loading the content. Data: %{public}s',
+        JSON.stringify(data) ?? '');
+    });
+  }
 
-    onWindowStageDestroy() {
-        Logger.info('testTag', 'TestAbility onWindowStageDestroy');
-    }
+  onWindowStageDestroy() {
+    Logger.info('testTag', 'TestAbility onWindowStageDestroy');
+  }
 
-    onForeground() {
-        Logger.info('testTag', 'TestAbility onForeground');
-    }
+  onForeground() {
+    Logger.info('testTag', 'TestAbility onForeground');
+  }
 
-    onBackground() {
-        Logger.info('testTag', 'TestAbility onBackground');
-    }
+  onBackground() {
+    Logger.info('testTag', 'TestAbility onBackground');
+  }
 }

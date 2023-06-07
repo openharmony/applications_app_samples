@@ -21,13 +21,14 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
+const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Sign {
-  @State keyFileName: string = '请选择';
+  @State keyFileName: string = WAIT_CHOSEN;
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = '请选择';
+  @State textFileName: string = WAIT_CHOSEN;
   @State keyString: string = '';
   @State cipherText: string = '';
   @State plainText: string = '';
@@ -49,12 +50,10 @@ export struct Sign {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.textFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.textFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -78,12 +77,10 @@ export struct Sign {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.keyFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.keyFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -133,7 +130,7 @@ export struct Sign {
         .height('100')
         .backgroundColor(0xFFFFFF)
 
-        Column({}) {
+        Column() {
           Button() {
             Text($r('app.string.generate_rsa_key_randomly')).fontSize(16).fontWeight(500)
               .lineHeight(22)
@@ -234,7 +231,7 @@ export struct Sign {
       let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
       this.createKeyUri = DocumentSaveResult[0];
       await TextFileManager.writeTextFile(this.createKeyUri, this.keyString);
-    } catch(error) {
+    } catch (error) {
       Logger.error(TAG, `save key failed, ${error.code}, ${error.message}`);
     }
 
@@ -249,10 +246,10 @@ export struct Sign {
     }
     try {
       this.cipherText = await this.CryptoOperation.rsaConvertAndSign(this.keyString, this.plainText);
-    } catch(error) {
+    } catch (error) {
       Logger.error(TAG, `sign failed, ${error.code}, ${error.message}`);
     }
-    if (this.cipherText === '' || typeof(this.cipherText) == 'undefined') {
+    if (this.cipherText === '' || typeof (this.cipherText) == 'undefined') {
       promptAction.showToast({
         message: 'sign failed'
       });
@@ -288,7 +285,7 @@ export struct Sign {
     } else {
       try {
         await this.createKeyFileAndWrite();
-      } catch(error) {
+      } catch (error) {
         Logger.error(TAG, `write rsa key failed, ${error.code}, ${error.message}`);
       }
     }

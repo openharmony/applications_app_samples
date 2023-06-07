@@ -21,18 +21,19 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
+const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Verify {
-  @State keyFileName: string = '请选择';
+  @State keyFileName: string = WAIT_CHOSEN;
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = '请选择';
+  @State textFileName: string = WAIT_CHOSEN;
   @State keyString: string = '';
   @State plainText: string = '';
   @State message: string = '';
   @State signFileUri: string = '';
-  @State signFileName: string = '请选择';
+  @State signFileName: string = WAIT_CHOSEN;
   @State signText: string = '';
   @State createKeyUri: string = '';
   private CryptoOperation: CryptoOperation = new CryptoOperation();
@@ -50,12 +51,10 @@ export struct Verify {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.textFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.textFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -114,12 +113,10 @@ export struct Verify {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.signFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.signFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -129,7 +126,7 @@ export struct Verify {
             .backgroundColor(0xFFFFFF)
             .width('336')
             .height('48')
-            .padding({ left: 12, right: 12, top: 4,  bottom: 4})
+            .padding({ left: 12, right: 12, top: 4, bottom: 4 })
           }.onClick(() => {
             this.selectSignFileAndRead();
           })
@@ -152,12 +149,11 @@ export struct Verify {
           .height('48')
 
           Row() {
-            Text() {
-              Span(this.plainText)
-                .fontSize(16)
-                .fontWeight(400)
-                .fontColor('#182431')
-            }.textAlign(TextAlign.Start)
+            Text(this.plainText)
+              .fontSize(16)
+              .fontWeight(400)
+              .fontColor('#182431')
+              .textAlign(TextAlign.Start)
           }
           .padding({ left: 12, right: 12, bottom: 4 })
           .width('336')
@@ -169,7 +165,7 @@ export struct Verify {
         .height('100')
         .backgroundColor(0xFFFFFF)
 
-        Column({}) {
+        Column() {
           Button() {
             Text($r('app.string.verify')).fontSize(16).fontWeight(500)
               .lineHeight(22)
@@ -268,7 +264,7 @@ export struct Verify {
       let DocumentSaveResult = await documentPicker.save(DocumentSaveOptions);
       this.createKeyUri = DocumentSaveResult[0];
       await TextFileManager.writeTextFile(this.createKeyUri, this.keyString);
-    } catch(error) {
+    } catch (error) {
       Logger.error(TAG, `save key failed, ${error.code}, ${error.message}`);
     }
 
@@ -284,7 +280,7 @@ export struct Verify {
     }
     try {
       verifyRes = await this.CryptoOperation.rsaConvertAndVerify(this.keyString, this.plainText, this.signText);
-    } catch(error) {
+    } catch (error) {
       Logger.error(TAG, `verify failed, ${error.code}, ${error.message}`);
     }
     if (verifyRes != true) {
@@ -297,35 +293,5 @@ export struct Verify {
         message: '验签成功'
       });
     }
-  }
-
-  async genRsaKey() {
-    try {
-      this.keyString = await this.CryptoOperation.generateRsaKey();
-    } catch (error) {
-      Logger.error(TAG, `gen rsa key failed, ${error.code}, ${error.message}`);
-    }
-    if (this.keyString === '' || typeof (this.keyString) == 'undefined') {
-      promptAction.showToast({
-        message: 'gen rsa key failed'
-      });
-      return;
-    } else {
-      try {
-        await this.createKeyFileAndWrite();
-      } catch(error) {
-        Logger.error(TAG, `write rsa key failed, ${error.code}, ${error.message}`);
-      }
-    }
-    if (this.createKeyUri === '' || typeof (this.createKeyUri) == 'undefined') {
-      promptAction.showToast({
-        message: 'create rsa key file failed'
-      });
-    } else {
-      promptAction.showToast({
-        message: '已生成RSA密钥'
-      });
-    }
-
   }
 }

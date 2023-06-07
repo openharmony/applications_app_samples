@@ -21,13 +21,14 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
+const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Decrypt {
-  @State keyFileName: string = '请选择';
+  @State keyFileName: string = WAIT_CHOSEN;
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = '请选择';
+  @State textFileName: string = WAIT_CHOSEN;
   @State keyString: string = '';
   @State cipherText: string = '';
   @State plainText: string = '';
@@ -48,12 +49,10 @@ export struct Decrypt {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.textFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.textFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -77,12 +76,10 @@ export struct Decrypt {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.keyFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.keyFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -162,7 +159,7 @@ export struct Decrypt {
         .height('100')
         .backgroundColor(0xFFFFFF)
 
-        Column({}) {
+        Column() {
           Button() {
             Text($r('app.string.decrypt')).fontSize(16).fontWeight(500)
               .lineHeight(22)
@@ -250,11 +247,11 @@ export struct Decrypt {
     }
     try {
       this.plainText = await this.CryptoOperation.aesConvertAndDecrypt(this.keyString, this.cipherText);
-    } catch(error) {
+    } catch (error) {
       Logger.error(TAG, `decrypt failed, ${error.code}, ${error.message}`);
       return;
     }
-    if (this.plainText === '' || typeof(this.plainText) == 'undefined') {
+    if (this.plainText === '' || typeof (this.plainText) == 'undefined') {
       promptAction.showToast({
         message: 'decrypt failed'
       });
@@ -262,7 +259,7 @@ export struct Decrypt {
     } else {
       try {
         await this.createTextFileAndWrite();
-      } catch(error) {
+      } catch (error) {
         Logger.error(TAG, `decrypt failed, ${error.code}, ${error.message}`);
       }
     }

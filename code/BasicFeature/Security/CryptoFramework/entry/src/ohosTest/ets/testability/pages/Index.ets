@@ -17,6 +17,7 @@
 @Component
 struct Index {
   @State message: string = 'Hello World'
+
   build() {
     Row() {
       Column() {
@@ -35,7 +36,7 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .width('35%')
         .height('5%')
-        .onClick(()=>{
+        .onClick(() => {
         })
       }
       .width('100%')
