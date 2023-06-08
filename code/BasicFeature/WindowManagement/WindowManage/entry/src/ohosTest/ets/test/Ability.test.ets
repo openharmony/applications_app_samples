@@ -97,13 +97,16 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'SmallVideo_001 begin');
       let driver = Driver.create();
       // 找到视频窗口
+      await driver.assertComponentExist(ON.id('mainVideo'));
       let originVideo = await driver.findComponent(ON.id('mainVideo'));
       await originVideo.click();
       await driver.delayMs(1000);
       // 检查小窗是否存在
       await driver.assertComponentExist(ON.id('smallVideo'));
       await driver.delayMs(1000);
-      await originVideo.click();
+      await driver.assertComponentExist(ON.id('mainVideo'));
+      let originVideo2 = await driver.findComponent(ON.id('mainVideo'));
+      await originVideo2.click();
       await driver.delayMs(1000);
       // 检查小窗是否已经正常关闭
       let smallVideo = await driver.findComponent(ON.id('smallVideo'));
@@ -141,7 +144,8 @@ export default function abilityTest() {
       Logger.info(TAG, `startX:${centerStart.x}, startY:${centerStart.y}`);
       Logger.info(TAG, `endX:${centerEnd.x}, endY:${centerEnd.y}`);
       // 关闭小窗视频
-      await mainVideo.click();
+      let mainVideo2 = await driver.findComponent(ON.id('mainVideo'));
+      await mainVideo2.click();
       await driver.delayMs(1000);
       Logger.info(TAG, BUNDLE + 'DragSmallVideo_001 end');
     })
