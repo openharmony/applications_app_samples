@@ -21,14 +21,13 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
-const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Decrypt {
-  @State keyFileName: string = WAIT_CHOSEN;
+  @State keyFileName: string = '';
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = WAIT_CHOSEN;
+  @State textFileName: string = '';
   @State keyString: string = '';
   @State cipherText: string = '';
   @State plainText: string = '';
@@ -49,7 +48,7 @@ export struct Decrypt {
 
               Blank()
 
-              Text(this.textFileName)
+              Text(this.textFileName === '' ? $r('app.string.please_choose') : this.textFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -76,7 +75,7 @@ export struct Decrypt {
 
               Blank()
 
-              Text(this.keyFileName)
+              Text(this.keyFileName === '' ? $r('app.string.please_choose') : this.keyFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -174,7 +173,7 @@ export struct Decrypt {
           .onClick(() => {
             if (this.textFileUri === '' || this.keyFileUri === '') {
               promptAction.showToast({
-                message: 'message or key is null'
+                message: $r('app.string.null_message')
               });
             } else {
               this.decryptFunc();
@@ -241,7 +240,7 @@ export struct Decrypt {
   async decryptFunc() {
     if (this.cipherText === '' || this.keyFileUri === '') {
       promptAction.showToast({
-        message: 'message or key is null'
+        message: $r('app.string.null_message')
       });
       return;
     }
@@ -253,7 +252,7 @@ export struct Decrypt {
     }
     if (this.plainText === '' || typeof (this.plainText) == 'undefined') {
       promptAction.showToast({
-        message: 'decrypt failed'
+        message: $r('app.string.decrypt_fail')
       });
       return;
     } else {
@@ -265,11 +264,11 @@ export struct Decrypt {
     }
     if (this.decryptedFileUri === '' || typeof (this.decryptedFileUri) == 'undefined') {
       promptAction.showToast({
-        message: '解密失败'
+        message: $r('app.string.decrypt_fail')
       });
     } else {
       promptAction.showToast({
-        message: '解密成功并保存'
+        message: $r('app.string.decrypt_success')
       });
     }
   }

@@ -21,14 +21,13 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
-const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Sign {
-  @State keyFileName: string = WAIT_CHOSEN;
+  @State keyFileName: string = '';
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = WAIT_CHOSEN;
+  @State textFileName: string = '';
   @State keyString: string = '';
   @State cipherText: string = '';
   @State plainText: string = '';
@@ -50,7 +49,7 @@ export struct Sign {
 
               Blank()
 
-              Text(this.textFileName)
+              Text(this.textFileName === '' ? $r('app.string.please_choose') : this.textFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -77,7 +76,7 @@ export struct Sign {
 
               Blank()
 
-              Text(this.keyFileName)
+              Text(this.keyFileName === '' ? $r('app.string.please_choose') : this.keyFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -159,7 +158,7 @@ export struct Sign {
           .onClick(() => {
             if (this.textFileUri === '' || this.keyFileUri === '') {
               promptAction.showToast({
-                message: 'message or key is null'
+                message: $r('app.string.null_message')
               });
             } else {
               this.signFunc();
@@ -240,7 +239,7 @@ export struct Sign {
   async signFunc() {
     if (this.plainText === '' || this.keyFileUri === '') {
       promptAction.showToast({
-        message: 'message or key is null'
+        message: $r('app.string.null_message')
       });
       return;
     }
@@ -251,7 +250,7 @@ export struct Sign {
     }
     if (this.cipherText === '' || typeof (this.cipherText) == 'undefined') {
       promptAction.showToast({
-        message: 'sign failed'
+        message: $r('app.string.sign_fail')
       });
       return;
     } else {
@@ -259,18 +258,18 @@ export struct Sign {
     }
     if (this.signFileUri === '' || typeof (this.signFileUri) == 'undefined') {
       promptAction.showToast({
-        message: 'create rsa sign file failed'
+        message: $r('app.string.sign_fail')
       });
     } else {
       promptAction.showToast({
-        message: '签名完成，已生成签名文件'
+        message: $r('app.string.sign_success')
       });
     }
   }
 
   async genRsaKey() {
     promptAction.showToast({
-      message: 'RSA密钥生成较慢，请稍等'
+      message: $r('app.string.slow_rsa_key_gen')
     });
     try {
       this.keyString = await this.CryptoOperation.generateRsaKey();
@@ -279,7 +278,7 @@ export struct Sign {
     }
     if (this.keyString === '' || typeof (this.keyString) == 'undefined') {
       promptAction.showToast({
-        message: 'gen rsa key failed'
+        message: $r('app.string.gen_key_fail')
       });
       return;
     } else {
@@ -291,11 +290,11 @@ export struct Sign {
     }
     if (this.createKeyUri === '' || typeof (this.createKeyUri) == 'undefined') {
       promptAction.showToast({
-        message: 'create rsa key file failed'
+        message: $r('app.string.gen_key_fail')
       });
     } else {
       promptAction.showToast({
-        message: '已生成RSA密钥'
+        message: $r('app.string.gen_key_success')
       });
     }
 

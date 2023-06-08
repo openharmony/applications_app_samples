@@ -21,14 +21,13 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
-const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Encrypt {
-  @State keyFileName: string = WAIT_CHOSEN;
+  @State keyFileName: string = '';
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = WAIT_CHOSEN;
+  @State textFileName: string = '';
   @State keyString: string = '';
   @State cipherText: string = '';
   @State plainText: string = '';
@@ -50,7 +49,7 @@ export struct Encrypt {
 
               Blank()
 
-              Text(this.textFileName)
+              Text(this.textFileName === '' ? $r('app.string.please_choose') : this.textFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -77,7 +76,7 @@ export struct Encrypt {
 
               Blank()
 
-              Text(this.keyFileName)
+              Text(this.keyFileName === '' ? $r('app.string.please_choose') : this.keyFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -189,7 +188,7 @@ export struct Encrypt {
           .onClick(() => {
             if (this.textFileUri === '' || this.keyFileUri === '') {
               promptAction.showToast({
-                message: 'message or key is null'
+                message: $r('app.string.null_message')
               });
             } else {
               this.encryptFunc();
@@ -265,7 +264,7 @@ export struct Encrypt {
   async encryptFunc() {
     if (this.plainText === '' || this.keyFileUri === '') {
       promptAction.showToast({
-        message: 'message or key is null'
+        message: $r('app.string.null_message')
       });
       return;
     }
@@ -276,7 +275,7 @@ export struct Encrypt {
     }
     if (this.cipherText === '' || typeof (this.cipherText) == 'undefined') {
       promptAction.showToast({
-        message: 'encrypt failed'
+        message: $r('app.string.encrypt_fail')
       });
       return;
     } else {
@@ -288,11 +287,11 @@ export struct Encrypt {
     }
     if (this.encryptedFileUri === '' || typeof (this.encryptedFileUri) == 'undefined') {
       promptAction.showToast({
-        message: '加密失败'
+        message: $r('app.string.encrypt_fail')
       });
     } else {
       promptAction.showToast({
-        message: '加密成功并保存'
+        message: $r('app.string.encrypt_success')
       });
     }
   }
@@ -305,7 +304,7 @@ export struct Encrypt {
     }
     if (this.keyString === '' || typeof (this.keyString) == 'undefined') {
       promptAction.showToast({
-        message: 'gen aes key failed'
+        message: $r('app.string.gen_key_fail')
       });
       return;
     } else {
@@ -317,11 +316,11 @@ export struct Encrypt {
     }
     if (this.createKeyUri === '' || typeof (this.createKeyUri) == 'undefined') {
       promptAction.showToast({
-        message: 'create aes key file failed'
+        message: $r('app.string.gen_key_fail')
       });
     } else {
       promptAction.showToast({
-        message: '已生成AES密钥'
+        message: $r('app.string.gen_key_success')
       });
     }
   }

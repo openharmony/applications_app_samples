@@ -21,19 +21,18 @@ import TextFileManager from '../textfilemanager/TextFileManager';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Crypto_Framework]';
-const WAIT_CHOSEN: string = '请选择'
 
 @Component
 export struct Verify {
-  @State keyFileName: string = WAIT_CHOSEN;
+  @State keyFileName: string = '';
   @State keyFileUri: string = '';
   @State textFileUri: string = '';
-  @State textFileName: string = WAIT_CHOSEN;
+  @State textFileName: string = '';
   @State keyString: string = '';
   @State plainText: string = '';
   @State message: string = '';
   @State signFileUri: string = '';
-  @State signFileName: string = WAIT_CHOSEN;
+  @State signFileName: string = '';
   @State signText: string = '';
   @State createKeyUri: string = '';
   private CryptoOperation: CryptoOperation = new CryptoOperation();
@@ -51,7 +50,7 @@ export struct Verify {
 
               Blank()
 
-              Text(this.textFileName)
+              Text(this.textFileName === '' ? $r('app.string.please_choose') : this.textFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -78,12 +77,10 @@ export struct Verify {
 
               Blank()
 
-              Text('请选择') {
-                Span(this.keyFileName)
-                  .fontSize(14)
-              }
-              .textAlign(TextAlign.Start)
-              .lineHeight(19)
+              Text(this.keyFileName === '' ? $r('app.string.please_choose') : this.keyFileName)
+                .fontSize(14)
+                .textAlign(TextAlign.Start)
+                .lineHeight(19)
 
               Image($r('app.media.right_arrow'))
                 .height(24)
@@ -113,7 +110,7 @@ export struct Verify {
 
               Blank()
 
-              Text(this.signFileName)
+              Text(this.signFileName === '' ? $r('app.string.please_choose') : this.signFileName)
                 .fontSize(14)
                 .textAlign(TextAlign.Start)
                 .lineHeight(19)
@@ -180,7 +177,7 @@ export struct Verify {
           .onClick(() => {
             if (this.textFileUri === '' || this.keyFileUri === '' || this.signFileUri === '') {
               promptAction.showToast({
-                message: 'message or key is null'
+                message: $r('app.string.null_message')
               });
             } else {
               this.verifyFunc();
@@ -274,7 +271,7 @@ export struct Verify {
     let verifyRes;
     if (this.plainText === '' || this.keyFileUri === '' || this.signText === '') {
       promptAction.showToast({
-        message: 'message or key is null'
+        message: $r('app.string.null_message')
       });
       return;
     }
