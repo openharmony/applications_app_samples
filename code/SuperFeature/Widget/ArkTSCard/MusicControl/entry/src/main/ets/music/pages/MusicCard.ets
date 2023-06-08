@@ -27,12 +27,14 @@ struct MusicCard {
   @State widthSize: Array<number> = [60, 60, 60, 60];
   @State heightSize: Array<number> = [60, 60, 60, 60];
   @State rotateAngle: Array<number> = [0, 0, 0, 0];
+  @State ID: Array<string> = ["previous", "play", "pause", "next"];
 
   onPlayClick(): void {
     postCardAction(this, {
-      'action': 'message',
+      'action': 'call',
+      'abilityName': 'EntryAbility',
       'params': {
-        'message': 'play'
+        'method': 'play'
       }
     });
     console.info(TAG, 'postCardAction onPlayClick');
@@ -40,9 +42,10 @@ struct MusicCard {
 
   onPauseClick(): void {
     postCardAction(this, {
-      'action': 'message',
+      'action': 'call',
+      'abilityName': 'EntryAbility',
       'params': {
-        'message': 'pause'
+        'method': 'pause'
       }
     });
     console.info(TAG, 'postCardAction onPauseClick');
@@ -55,9 +58,10 @@ struct MusicCard {
     }
     this.albumSrc = (this.selectedIndex % 2 === 0) ? $r('app.media.album') : $r('app.media.album2');
     postCardAction(this, {
-      'action': 'message',
+      'action': 'call',
+      'abilityName': 'EntryAbility',
       'params': {
-        'message': 'prev'
+        'method': 'prev'
       }
     });
   }
@@ -69,9 +73,10 @@ struct MusicCard {
     }
     this.albumSrc = (this.selectedIndex % 2 === 0) ? $r('app.media.album') : $r('app.media.album2');
     postCardAction(this, {
-      'action': 'message',
+      'action': 'call',
+      'abilityName': 'EntryAbility',
       'params': {
-        'message': 'next'
+        'method': 'next'
       }
     });
   }
@@ -92,8 +97,8 @@ struct MusicCard {
         .onClick(() => {
           postCardAction(this, {
             'action': 'router',
-            'bundleName': 'com.samples.etscardmusic',
-            'abilityName': 'com.samples.etscardmusic.MainAbility',
+            'bundleName': 'com.samples.musiccontrol',
+            'abilityName': 'EntryAbility',
             'params': {
               'message': 'routerEvent'
             }
@@ -106,20 +111,13 @@ struct MusicCard {
             Image(item)
               .size({ width: this.widthSize[index], height: this.heightSize[index] })
               .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle[index] })
+              .id(this.ID[index])
               .onClick(() => {
                 animateTo({
                   curve: Curve.EaseOut,
                   playMode: PlayMode.Normal,
                   onFinish: () => {
-                    animateTo({
-                      curve: Curve.EaseOut,
-                      playMode: PlayMode.Normal,
-                      onFinish: () => {
-                        this.rotateAngle[index] = 0;
-                      }
-                    }, () => {
-                      this.rotateAngle[index] = 360;
-                    })
+                    this.rotateAngle[index] = 0;
                   }
                 }, () => {
                   this.rotateAngle[index] = 180;
@@ -160,13 +158,6 @@ struct MusicCard {
 
   aboutToAppear() {
     console.info('etsCard aboutToDisappear');
-    postCardAction(this, {
-      'action': 'call',
-      'abilityName': 'com.samples.etscardmusic.MainAbility',
-      'params': {
-        'message': 'backgroundEvent'
-      }
-    });
   }
 
   aboutToDisappear() {

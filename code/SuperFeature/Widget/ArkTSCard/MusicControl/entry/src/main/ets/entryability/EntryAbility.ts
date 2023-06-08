@@ -19,6 +19,7 @@ import commonEvent from '@ohos.commonEventManager';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 import avSession from '@ohos.multimedia.avsession';
+import rpc from '@ohos.rpc';
 import PlayerModel from '../feature/BackgroundPlayerFeature';
 import Logger from '../util/Logger';
 
@@ -41,6 +42,84 @@ export default class EntryAbility extends UIAbility {
   private backgroundShow: boolean = false;
   private subscriberContext = null;
 
+  onPlayClick(): void {
+    if (this.isSwitching) {
+      Logger.info(TAG, 'onPlayClick ignored, isSwitching');
+      return null;
+    }
+
+    this.isSwitching = true;
+    Logger.info(TAG, 'onPlayClick isPlaying= ${PlayerModel.isPlaying}');
+    if (!PlayerModel.isPlaying) {
+      // start continuous task
+      PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+        PlayerModel.playMusic(-1, true);
+      });
+      this.startContinuousTask();
+    }
+    this.isSwitching = false;
+    return null;
+  }
+
+  onPauseClick(): void {
+    if (this.isSwitching) {
+      Logger.info(TAG, 'onPauseClick ignored, isSwitching');
+      return null;
+    }
+    this.isSwitching = true;
+    Logger.info(TAG, 'onPauseClick isPlaying= ${PlayerModel.isPlaying}');
+    if (PlayerModel.isPlaying) {
+      PlayerModel.pauseMusic();
+      // cancel continuous task
+      this.stopContinuousTask();
+    }
+    this.isSwitching = false;
+    return null;
+  }
+
+  onPreviousClick(): void {
+    if (this.isSwitching) {
+      Logger.info(TAG, 'onPreviousClick ignored, isSwitching');
+      return null;
+    }
+    Logger.info(TAG, 'onPreviousClick');
+    PlayerModel.playerIndex--;
+    if (PlayerModel.playerIndex < 0 && PlayerModel.playlist.audioFiles.length >= 1) {
+      PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1;
+    }
+    this.currentProgress = 0;
+    this.isSwitching = true;
+    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+      this.refreshSongInfo(PlayerModel.playerIndex as number);
+      PlayerModel.playMusic(0, true);
+      this.isSwitching = false;
+    });
+    this.startContinuousTask();
+    return null;
+  }
+
+  // next
+  onNextClick(): void {
+    if (this.isSwitching) {
+      Logger.info(TAG, 'onNextClick ignored, isSwitching');
+      return null;
+    }
+    Logger.info(TAG, 'onNextClick');
+    PlayerModel.playerIndex++;
+    if (PlayerModel.playerIndex >= PlayerModel.playlist.audioFiles.length) {
+      PlayerModel.playerIndex = 0;
+    }
+    this.currentProgress = 0;
+    this.isSwitching = true;
+    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+      this.refreshSongInfo(PlayerModel.playerIndex as number);
+      PlayerModel.playMusic(0, true);
+      this.isSwitching = false;
+    });
+    this.startContinuousTask();
+    return null;
+  }
+
   onTime(): number {
     return (new Date()).getTime();
   }
@@ -51,7 +130,7 @@ export default class EntryAbility extends UIAbility {
       wants: [
         {
           bundleName: 'com.samples.musiccontrol',
-          abilityName: 'com.samples.musiccontrol.EntryAbility',
+          abilityName: 'EntryAbility',
         }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
@@ -131,6 +210,7 @@ export default class EntryAbility extends UIAbility {
     let subscriberInfo = {
       events: ['music.event']
     };
+
     commonEvent.createSubscriber(subscriberInfo, (err, subscriber) => {
       if (err) {
         Logger.error(TAG, 'createSubscriber error. Cause:' + JSON.stringify(err));
@@ -149,15 +229,7 @@ export default class EntryAbility extends UIAbility {
           Logger.error(TAG, 'subscribe error. Cause:' + JSON.stringify(err));
         } else {
           Logger.info(TAG, 'subscribe success');
-          if (data.data === 'play') {
-            this.onPlayClick();
-          } else if (data.data === 'pause') {
-            this.onPauseClick();
-          } else if (data.data === 'next') {
-            this.onNextClick();
-          } else if (data.data === 'prev') {
-            this.onPreviousClick();
-          } else if (data.data === 'delete') {
+          if (data.data === 'delete') {
             this.stopContinuousTask();
             PlayerModel.stopMusic();
           }
@@ -167,86 +239,41 @@ export default class EntryAbility extends UIAbility {
   }
 
   onCreate(want, launchParam): void {
+
     Logger.info(TAG, 'onCreate');
     this.backgroundShow = true;
-  }
-
-  onPlayClick(): boolean {
-    if (this.isSwitching) {
-      Logger.info(TAG, 'onPlayClick ignored, isSwitching');
-      return;
-    }
-    this.isSwitching = true;
-    Logger.info(TAG, 'onPlayClick isPlaying= ${PlayerModel.isPlaying}');
-    if (!PlayerModel.isPlaying) {
-      // start continuous task
-      PlayerModel.preLoad(PlayerModel.playerIndex, () => {
-        PlayerModel.playMusic(-1, true);
+    try {
+      this.callee.on('play', (data: rpc.MessageSequence)=>{
+        this.onPlayClick();
+        return null;
       });
-      this.startContinuousTask();
+      this.callee.on('pause', (data: rpc.MessageSequence)=>{
+        this.onPauseClick();
+        return null;
+      });
+      this.callee.on('prev', (data: rpc.MessageSequence)=>{
+        this.onPreviousClick();
+        return null;
+      });
+      this.callee.on('next', (data: rpc.MessageSequence)=>{
+        this.onNextClick();
+        return null;
+      });
+    } catch (error) {
+      console.error('Failed to register callee on. Cause:' + JSON.stringify(error));
     }
-    this.isSwitching = false;
-  }
-
-  onPauseClick(): boolean {
-    if (this.isSwitching) {
-      Logger.info(TAG, 'onPlayClick ignored, isSwitching');
-      return;
-    }
-    this.isSwitching = true;
-    Logger.info(TAG, 'onPlayClick isPlaying= ${PlayerModel.isPlaying}');
-    if (PlayerModel.isPlaying) {
-      PlayerModel.pauseMusic();
-      // cancel continuous task
-      this.stopContinuousTask();
-    }
-    this.isSwitching = false;
-  }
-
-  onPreviousClick(): boolean {
-    if (this.isSwitching) {
-      Logger.info(TAG, 'onPreviousClick ignored, isSwitching');
-      return;
-    }
-    Logger.info(TAG, 'onPreviousClick');
-    PlayerModel.playerIndex--;
-    if (PlayerModel.playerIndex < 0 && PlayerModel.playlist.audioFiles.length >= 1) {
-      PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1;
-    }
-    this.currentProgress = 0;
-    this.isSwitching = true;
-    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
-      this.refreshSongInfo(PlayerModel.playerIndex as number);
-      PlayerModel.playMusic(0, true);
-      this.isSwitching = false;
-    });
-    this.startContinuousTask();
-  }
-
-  // next
-  onNextClick(): boolean {
-    if (this.isSwitching) {
-      Logger.info(TAG, 'onNextClick ignored, isSwitching');
-      return true;
-    }
-    Logger.info(TAG, 'onNextClick');
-    PlayerModel.playerIndex++;
-    if (PlayerModel.playerIndex >= PlayerModel.playlist.audioFiles.length) {
-      PlayerModel.playerIndex = 0;
-    }
-    this.currentProgress = 0;
-    this.isSwitching = true;
-    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
-      this.refreshSongInfo(PlayerModel.playerIndex as number);
-      PlayerModel.playMusic(0, true);
-      this.isSwitching = false;
-    });
-    this.startContinuousTask();
-    return true;
   }
 
   onDestroy(): void {
     Logger.info(TAG, 'onDestroy');
+    try {
+      this.callee.off('play');
+      this.callee.off('pause');
+      this.callee.off('prev');
+      this.callee.off('next');
+    } catch (error) {
+      console.error('Failed to register callee off. Cause:' + JSON.stringify(error));
+    }
   }
 
   onWindowStageCreate(windowStage: Window.WindowStage): void {
@@ -274,10 +301,6 @@ export default class EntryAbility extends UIAbility {
 
   onBackground(): void {
     Logger.info(TAG, 'onBackground');
-    if (this.backgroundShow) {
-      return;
-    }
-    this.backgroundShow = true;
     this.createSubscriber();
     avSession.createAVSession(this.context, 'AVSessionPlayer', 'audio').then(async (session) => {
       Logger.info(TAG, 'createAVSession success');
