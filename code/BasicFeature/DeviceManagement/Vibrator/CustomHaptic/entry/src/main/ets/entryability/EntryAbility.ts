@@ -18,36 +18,36 @@ import type Window from '@ohos.window';
 import vibrator from '@ohos.vibrator';
 import Logger from '../module/Logger';
 
-const TAG = '[EntryAbility]'
+const TAG = '[EntryAbility]';
 
 export default class EntryAbility extends Ability {
   onCreate(want, launchParam) {
-    Logger.info(TAG, "Ability onCreate");
+    Logger.info(TAG, 'Ability onCreate');
     Logger.info(TAG, 'want param:' + JSON.stringify(want) ?? '');
     Logger.info(TAG, 'launchParam:' + JSON.stringify(launchParam) ?? '');
 
-    vibrator.isSupportEffect("haptic.clock.timer", (error, data) => {
+    vibrator.isSupportEffect('haptic.clock.timer', (error, data) => {
       if (data) {
         vibrator.startVibration({
-          type: "preset",
-          effectId: "haptic.clock.timer",
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
           count: 1,
         }, {
-          usage: "notification"
+          usage: 'notification'
         });
       } else {
-        Logger.info(TAG, "Failed to vibrate onCreate");
+        Logger.info(TAG, 'Failed to vibrate onCreate');
       }
     });
   }
 
   onDestroy() {
-    Logger.info(TAG, "Ability onDestroy");
+    Logger.info(TAG, 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, "Ability onWindowStageCreate");
+    Logger.info(TAG, 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
