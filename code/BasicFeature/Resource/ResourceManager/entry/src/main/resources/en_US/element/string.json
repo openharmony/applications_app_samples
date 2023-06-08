@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "etsResourceManager"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "eTSResourceManager"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTSResourceManager Ability"
+    },
+    {
+      "name": "title",
+      "value": "ResourceManager"
+    },
+    {
+      "name": "get_info",
+      "value": "get info from ResourceManager"
+    },
+    {
+      "name": "string_str",
+      "value": "string:eTSResourceManager"
+    },
+    {
+      "name": "capability",
+      "value": "DeviceCapability:"
+    },
+    {
+      "name": "configuration",
+      "value": "Configuration:"
+    },
+    {
+      "name": "media",
+      "value": "Media size:"
+    },
+    {
+      "name": "media_base",
+      "value": "MediaBase64 string length:"
+    }
+  ]
+}
