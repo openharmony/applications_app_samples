@@ -22,9 +22,8 @@ const TAG = '[EntryAbility]';
 
 export default class EntryAbility extends Ability {
   onCreate(want, launchParam) {
-    Logger.info(TAG, 'Ability onCreate');
-    Logger.info(TAG, 'want param:' + JSON.stringify(want) ?? '');
-    Logger.info(TAG, 'launchParam:' + JSON.stringify(launchParam) ?? '');
+    Logger.info(TAG, 'Ability onCreate, want param: %{public}s, launchParam: %{public}s',
+      JSON.stringify(want) ?? '', JSON.stringify(launchParam) ?? '');
 
     vibrator.isSupportEffect('haptic.clock.timer', (error, data) => {
       if (data) {
