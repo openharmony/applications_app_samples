@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "set_OK",
+      "value": "OK"
+    },
+    {
+      "name": "windowRatios",
+      "value": "Window Ratio"
+    },
+    {
+      "name": "windowWidth",
+      "value": "Window Width"
+    },
+    {
+      "name": "windowHeight",
+      "value": "Window Height"
+    }
+  ]
+}

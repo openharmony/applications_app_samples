@@ -164,5 +164,24 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('失焦状态'));
       Logger.info(TAG, BUNDLE + 'GetFocus_001 end');
     })
+
+    /**
+     * 检查是否正常拉起悬浮应用
+     */
+    it(BUNDLE + 'StartNewAbility_001', 5, async () => {
+      Logger.info(TAG, BUNDLE + 'GetFocus_001 begin');
+      let driver = Driver.create();
+      // 找到视频窗口
+      let originVideo = await driver.findComponent(ON.id('mainVideo'));
+      await originVideo.click();
+      await driver.delayMs(1000);
+      // 检查小窗是否存在
+      await driver.assertComponentExist(ON.id('smallVideo'));
+      await driver.assertComponentExist(ON.id('startAbility'));
+      let startNewAbility = await driver.findComponent(ON.id('startAbility'));
+      await startNewAbility.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, BUNDLE + 'StartNewAbility_001 end');
+    })
   })
 }

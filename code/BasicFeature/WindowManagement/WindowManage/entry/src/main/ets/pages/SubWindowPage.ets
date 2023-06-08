@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import emitter from "@ohos.events.emitter"
+import emitter from '@ohos.events.emitter';
+import common from '@ohos.app.ability.common';
 
 @Entry
 @Component
@@ -21,8 +22,39 @@ struct SubWindowPage {
   SUB_WINDOW_INNER_EVENT_ID: number = 1001
   videoController: VideoController = new VideoController()
 
+  async startNewAbility() {
+    let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+    let want = {
+      bundleName: 'com.samples.windowratio',
+      abilityName: 'MainAbility',
+    };
+    try {
+      context.startAbility(want)
+        .then((data) => {
+          console.log('startAbility succeed');
+        })
+        .catch((error) => {
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        });
+    } catch (paramError) {
+      console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+    }
+  }
+
   build() {
     Column() {
+      Button($r("app.string.startNewAbility")).onClick(async() => {
+        await this.startNewAbility()
+      })
+        .backgroundColor('#007dff')
+        .id('startAbility')
+        .fontSize('22px')
+        .width('80%')
+        .height('40px')
+        .borderRadius(15)
+
       Video({
         src: $rawfile('video.mp4'),
         currentProgressRate: PlaybackSpeed.Speed_Forward_1_00_X,
