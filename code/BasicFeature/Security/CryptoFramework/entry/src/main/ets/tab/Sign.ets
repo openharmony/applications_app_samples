@@ -180,13 +180,25 @@ export struct Sign {
     }
     let context = getContext(this) as common.UIAbilityContext;
     let result = await context.startAbilityForResult(config);
+    if (result === null || result === undefined) {
+      Logger.error(TAG, `result is null or undefined!`);
+      return;
+    }
     if (result.resultCode !== 0) {
       Logger.error(TAG, `DocumentPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
       return;
     }
-    // 获取到文档文件的URI
+    if (result.want.parameters.select_item_list === null || result.want.parameters.select_item_list === undefined) {
+      Logger.error(TAG, `result uri is null or undefined!`);
+      return;
+    }
+    if (result.want.parameters.file_name_list === null || result.want.parameters.file_name_list === undefined) {
+      Logger.error(TAG, `result file name is null or undefined!`);
+      return;
+    }
+    // 获取到密钥文档文件的URI
     this.keyFileUri = result.want.parameters.select_item_list.toString();
-    // 获取到文档文件的文件名称
+    // 获取到密钥文档文件的文件名称
     this.keyFileName = result.want.parameters.file_name_list.toString();
     await TextFileManager.readTextFile(this.keyFileUri);
     this.keyString = TextFileManager.getString();
@@ -201,8 +213,20 @@ export struct Sign {
     }
     let context = getContext(this) as common.UIAbilityContext;
     let result = await context.startAbilityForResult(config);
+    if (result === null || result === undefined) {
+      Logger.error(TAG, `result is null or undefined!`);
+      return;
+    }
     if (result.resultCode !== 0) {
       Logger.error(TAG, `DocumentPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
+      return;
+    }
+    if (result.want.parameters.select_item_list === null || result.want.parameters.select_item_list === undefined) {
+      Logger.error(TAG, `result uri is null or undefined!`);
+      return;
+    }
+    if (result.want.parameters.file_name_list === null || result.want.parameters.file_name_list === undefined) {
+      Logger.error(TAG, `result file name is null or undefined!`);
       return;
     }
     // 获取到文档文件的URI

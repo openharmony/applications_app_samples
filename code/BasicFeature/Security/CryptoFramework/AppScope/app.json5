@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
- {
+{
   "app": {
-    "bundleName": "com.samples.cryptoFramework",
+    "bundleName": "com.samples.cryptoframework",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

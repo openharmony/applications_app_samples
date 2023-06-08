@@ -19,7 +19,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import Logger from '../../../main/ets/util/Logger'
 
 const TAG = '[Sample_Crypto_Framework]'
-const BUNDLE = 'cryptoFramework_'
+const BUNDLE = 'cryptoframework_'
 const TAB_ENCRYPT = '0'
 const TAB_DECRYPT = '1'
 const TAB_SIGN = '2'
@@ -36,7 +36,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.cryptoFramework',
+          bundleName: 'com.samples.cryptoframework',
           abilityName: 'EntryAbility'
         });
         done();

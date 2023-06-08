@@ -29,27 +29,45 @@ class TextFileManager {
 
   async readTextFile(textFileUri: string): Promise<void> {
     await sleep(100);
-    let file = fs.openSync(textFileUri, fs.OpenMode.READ_ONLY);
-    // 写入
-    Logger.info(TAG, "success, read only file " + file.fd);
-    // 从文件读取一段内容，限制最大长度为8192
-    let buf = new ArrayBuffer(8192);
-    let readLen = fs.readSync(file.fd, buf, { offset: 0 });
-    TextFileManager.readString = String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen)));
-    TextFileManager.readResult = readLen;
+    try {
+      // 读取
+      let file = fs.openSync(textFileUri, fs.OpenMode.READ_ONLY);
+      Logger.info(TAG, "success, read only file " + file.fd);
+      // 从文件读取一段内容，限制最大长度为8192
+      let buf = new ArrayBuffer(8192);
+      try {
+        let readLen = fs.readSync(file.fd, buf, { offset: 0 });
+        TextFileManager.readString = String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen)));
+        TextFileManager.readResult = readLen;
+      } catch (error1) {
+        Logger.error(TAG, `file read failed, ${error1.code}, ${error1.message}`);
+      }
+      fs.closeSync(file);
+    } catch (error) {
+      Logger.error(TAG, `file open failed, ${error.code}, ${error.message}`);
+      return;
+    }
   }
 
   async writeTextFile(textFileUri: string, textString: string): Promise<void> {
     await sleep(100);
-    let file = fs.openSync(textFileUri, fs.OpenMode.READ_WRITE | fs.OpenMode.TRUNC);
-    fs.closeSync(file);
-    file = fs.openSync(textFileUri, fs.OpenMode.READ_WRITE);
-    // 写入
-    Logger.info(TAG, "success,read write file " + file.fd);
-    let writeLen = fs.writeSync(file.fd, textString);
-    Logger.info(TAG, "success, The length of str is: " + writeLen);
-    fs.closeSync(file);
-    TextFileManager.writeResult = writeLen;
+    try {
+      // 读写
+      let file = fs.openSync(textFileUri, fs.OpenMode.READ_WRITE);
+      Logger.info(TAG, "success, read write file " + file.fd);
+      try {
+        // 写入
+        let writeLen = fs.writeSync(file.fd, textString);
+        Logger.info(TAG, "success, The length of str is: " + writeLen);
+        TextFileManager.writeResult = writeLen;
+      } catch (error1) {
+        Logger.error(TAG, `file write failed, ${error1.code}, ${error1.message}`);
+      }
+      fs.closeSync(file);
+    } catch (error) {
+      Logger.error(TAG, `file open failed, ${error.code}, ${error.message}`);
+      return;
+    }
   }
 
   getString(): string {
