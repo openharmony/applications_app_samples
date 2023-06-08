@@ -95,7 +95,7 @@ export struct Decrypt {
         }
         .width('336')
         .height('100')
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
 
         Column() {
@@ -122,7 +122,7 @@ export struct Decrypt {
           .width('336')
           .height('48')
         }
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
         .width('336')
         .height('100')
@@ -152,7 +152,7 @@ export struct Decrypt {
           .width('336')
           .height('48')
         }
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
         .width('336')
         .height('100')
@@ -169,6 +169,7 @@ export struct Decrypt {
           .margin(8)
           .width('312')
           .height('40')
+          .borderRadius(20)
           .backgroundColor('#007DFF')
           .onClick(() => {
             if (this.textFileUri === '' || this.keyFileUri === '') {

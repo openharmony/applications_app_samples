@@ -96,7 +96,7 @@ export struct Sign {
         }
         .width('336')
         .height('100')
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
 
         Column() {
@@ -123,7 +123,7 @@ export struct Sign {
           .width('336')
           .height('48')
         }
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
         .width('336')
         .height('100')
@@ -140,6 +140,7 @@ export struct Sign {
           .width('312')
           .height('40')
           .backgroundColor('#007DFF')
+          .borderRadius(20)
           .onClick(() => {
             this.genRsaKey();
           });
@@ -155,6 +156,7 @@ export struct Sign {
           .width('312')
           .height('40')
           .backgroundColor('#007DFF')
+          .borderRadius(20)
           .onClick(() => {
             if (this.textFileUri === '' || this.keyFileUri === '') {
               promptAction.showToast({

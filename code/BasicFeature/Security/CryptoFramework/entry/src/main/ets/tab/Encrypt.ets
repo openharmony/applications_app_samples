@@ -96,7 +96,7 @@ export struct Encrypt {
         }
         .width('336')
         .height('100')
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
 
         Column() {
@@ -123,7 +123,7 @@ export struct Encrypt {
           .width('336')
           .height('48')
         }
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
         .width('336')
         .height('100')
@@ -153,7 +153,7 @@ export struct Encrypt {
           .width('336')
           .height('48')
         }
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
         .width('336')
         .height('100')
@@ -166,6 +166,7 @@ export struct Encrypt {
               .fontColor('#FFFFFF')
           }
           .id('encryptAesGenKey')
+          .borderRadius(20)
           .type(ButtonType.Capsule)
           .margin(8)
           .width('312')
@@ -179,6 +180,7 @@ export struct Encrypt {
               .lineHeight(22)
               .fontColor('#FFFFFF')
           }
+          .borderRadius(20)
           .id('encryptionBtn')
           .type(ButtonType.Capsule)
           .margin(8)

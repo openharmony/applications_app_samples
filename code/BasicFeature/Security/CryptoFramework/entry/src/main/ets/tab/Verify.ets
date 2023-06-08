@@ -97,7 +97,7 @@ export struct Verify {
         }
         .width('336')
         .height('100')
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
 
         List() {
@@ -130,7 +130,7 @@ export struct Verify {
         }
         .width('336')
         .height('56')
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
 
         Column() {
@@ -156,7 +156,7 @@ export struct Verify {
           .width('336')
           .height('48')
         }
-        .borderRadius(15)
+        .borderRadius(16)
         .margin({ bottom: 12 })
         .width('336')
         .height('100')
@@ -168,6 +168,7 @@ export struct Verify {
               .lineHeight(22)
               .fontColor('#FFFFFF')
           }
+          .borderRadius(20)
           .id('verifyBtn')
           .type(ButtonType.Capsule)
           .margin(8)

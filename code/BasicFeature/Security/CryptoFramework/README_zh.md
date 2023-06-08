@@ -23,25 +23,25 @@
 
 使用说明
 
-1.点击主页面tab栏的**加密**，在加密界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回加密界面，其内容显示在*
-*文件内容**文本框中，
+1.点击主页面tab栏的**加密**，在加密界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回加密界面，
+其内容显示在**文件内容**文本框中，
 点击**选择密钥**，选择密钥文件，如果没有密钥文件，可以通过在加密界面点击**随机生成AES密钥**，生成并通过文件选择器保存密钥文件。
 选择完文本文件和密钥文件后，点击**加密**按钮，完成加密，并通过文件选择器保存密文文件。
 下方**加密内容**文本框中显示加密后的消息内容。
 
-2.点击主页面tab栏的**解密**，在解密界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回解密界面，其内容显示在*
-*文件内容**文本框中，
+2.点击主页面tab栏的**解密**，在解密界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回解密界面，
+其内容显示在**文件内容**文本框中，
 点击**选择密钥**，选择和**加密相同**的密钥文件。
 选择完文本文件和密钥文件后，点击**解密**按钮，完成解密，并通过文件选择器保存明文文件。
 下方**解密内容**文本框中显示解密后的消息内容。
 
-3.点击主页面tab栏的**签名**，在签名界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回签名界面，其内容显示在*
-*文件内容**文本框中，
+3.点击主页面tab栏的**签名**，在签名界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回签名界面，
+其内容显示在**文件内容**文本框中，
 点击**选择密钥**，选择密钥文件，如果没有密钥文件，可以通过在签名界面点击**随机生成RSA密钥**，生成并通过文件选择器保存密钥文件，注意RSA密钥生成耗时较长。
 选择完文本文件和密钥文件后，点击**签名**按钮，完成完整性签名，并通过文件选择器保存签名文件。
 
-4.点击主页面tab栏的**验签**，在验签界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回验签界面，其内容显示在*
-*文件内容**文本框中，
+4.点击主页面tab栏的**验签**，在验签界面点击**打开文件**，通过文件选择器选择文本文件，选择完毕自动返回验签界面，
+其内容显示在**文件内容**文本框中，
 点击**选择密钥**，选择和签名一致的密钥文件。点击**选择签名文件**，通过文件选择器选择签名时保存的签名文件，
 选择完文本文件、密钥文件和签名文件后，点击**验签**按钮，完成验签。
 
@@ -99,17 +99,25 @@ entry/src/main/ets/
 
 ### 依赖
 
-* filePicker文件选择器[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
-* 文件管理[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
-* 应用上下文Context[@ohos.app.ability.common](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis#/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
+*
+
+filePicker文件选择器[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+
+*
+
+文件管理[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+
+*
+
+应用上下文Context[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9，镜像版本号：OpenHarmony 4.0.7.2、
+2.本示例已适配API version 9版本SDK，版本号：3.2.12.2，镜像版本号：OpenHarmony 4.0.7.2。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.500)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)及以上版本才可编译运行。
 
 ### 下载
 
