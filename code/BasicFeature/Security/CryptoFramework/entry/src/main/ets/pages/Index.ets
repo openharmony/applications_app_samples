@@ -26,7 +26,7 @@ struct Index {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder TabBuilder(index: number, name: Resource) {
     Column() {
       Text(name)
         .id(index.toString())
@@ -57,19 +57,19 @@ struct Index {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
           Encrypt()
-        }.tabBar(this.TabBuilder(0, '加密'))
+        }.tabBar(this.TabBuilder(0, $r('app.string.encrypt')))
 
         TabContent() {
           Decrypt()
-        }.tabBar(this.TabBuilder(1, '解密'))
+        }.tabBar(this.TabBuilder(1, $r('app.string.decrypt')))
 
         TabContent() {
           Sign()
-        }.tabBar(this.TabBuilder(2, '签名'))
+        }.tabBar(this.TabBuilder(2, $r('app.string.sign')))
 
         TabContent() {
           Verify();
-        }.tabBar(this.TabBuilder(3, '验签'))
+        }.tabBar(this.TabBuilder(3, $r('app.string.verify')))
       }
       .vertical(false)
       .barMode(BarMode.Fixed)
