@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "international/pages/Language",
+    "international/pages/AddLanguage",
+    "international/pages/Region",
+    "international/pages/EditPreferred",
+    "international/pages/DateAndTime",
+    "international/pages/TimeZone",
+    "international/pages/Examples"
+  ]
+}
