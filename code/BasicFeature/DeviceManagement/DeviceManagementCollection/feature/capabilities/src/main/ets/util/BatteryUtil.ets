@@ -25,18 +25,18 @@ export class BatteryUtil {
     switch (batteryInfo.chargingStatus) {
       case batteryInfo.BatteryChargeState.NONE:
         value = 'NONE';
-        break;
+        break
       case batteryInfo.BatteryChargeState.ENABLE:
         value = 'ENABLE';
-        break;
+        break
       case batteryInfo.BatteryChargeState.DISABLE:
         value = 'DISABLE';
-        break;
+        break
       case batteryInfo.BatteryChargeState.FULL:
         value = 'FULL';
-        break;
+        break
       default:
-        break;
+        break
     }
     return value;
   }
@@ -46,24 +46,24 @@ export class BatteryUtil {
     switch (batteryInfo.healthStatus) {
       case batteryInfo.BatteryHealthState.UNKNOWN:
         value = 'UNKNOWN';
-        break;
+        break
       case batteryInfo.BatteryHealthState.GOOD:
         value = 'GOOD';
-        break;
+        break
       case batteryInfo.BatteryHealthState.OVERVOLTAGE:
         value = 'OVERVOLTAGE';
-        break;
+        break
       case batteryInfo.BatteryHealthState.OVERHEAT:
         value = 'OVERHEAT';
-        break;
+        break
       case batteryInfo.BatteryHealthState.COLD:
         value = 'COLD';
-        break;
+        break
       case batteryInfo.BatteryHealthState.DEAD:
         value = 'DEAD';
-        break;
+        break
       default:
-        break;
+        break
     }
     return value;
   }
@@ -73,18 +73,18 @@ export class BatteryUtil {
     switch (batteryInfo.pluggedType) {
       case batteryInfo.BatteryPluggedType.NONE:
         value = 'NONE';
-        break;
+        break
       case batteryInfo.BatteryPluggedType.AC:
         value = 'AC';
-        break;
+        break
       case batteryInfo.BatteryPluggedType.USB:
         value = 'USB';
-        break;
+        break
       case batteryInfo.BatteryPluggedType.WIRELESS:
         value = 'WIRELESS';
-        break;
+        break
       default:
-        break;
+        break
     }
     return value;
   }
@@ -110,21 +110,21 @@ export class BatteryUtil {
     switch (batteryInfo.batteryCapacityLevel) {
       case batteryInfo.BatteryCapacityLevel.LEVEL_FULL:
         value = 'LEVEL_FULL';
-        break;
+        break
       case batteryInfo.BatteryCapacityLevel.LEVEL_HIGH:
         value = 'LEVEL_HIGH';
-        break;
+        break
       case batteryInfo.BatteryCapacityLevel.LEVEL_NORMAL:
         value = 'LEVEL_NORMAL';
-        break;
+        break
       case batteryInfo.BatteryCapacityLevel.LEVEL_LOW:
         value = 'LEVEL_LOW';
-        break;
+        break
       case batteryInfo.BatteryCapacityLevel.LEVEL_CRITICAL:
         value = 'LEVEL_CRITICAL';
-        break;
+        break
       default:
-        break;
+        break
     }
     return value;
   }

@@ -17,6 +17,10 @@
       "value": "Battery Information"
     },
     {
+      "name": "running_lock",
+      "value": "Runninglock"
+    },
+    {
       "name": "thermal",
       "value": "Thermal Management"
     },
@@ -26,7 +30,15 @@
     },
     {
       "name": "power_manager",
-      "value": "PowerManager"
+      "value": "System Power Management"
     },
+    {
+      "name": "settings",
+      "value": "Data Item Settings"
+    },
+    {
+      "name": "stationary",
+      "value": "Device Status Awareness Framework"
+    }
   ]
 }

@@ -89,24 +89,36 @@
       "value": "Cancel"
     },
     {
-      "name":"turnOff",
-      "value": "turn off"
-    },
-    {
-      "name":"questionTurnOff",
-      "value": "Are you sure you want to turn it off ?"
-    },
-    {
-      "name":"restart",
-      "value": "restart"
-    },
-    {
-      "name":"questionRestart",
-      "value": "Are you sure you want to reboot ?"
-    },
-    {
-      "name":"screen_state",
+      "name": "screen_state",
       "value": "The screen state:"
+    },
+    {
+      "name": "power_mode",
+      "value": "current power mode:"
+    },
+    {
+      "name": "running_lock_proximity_screen_control",
+      "value": "proximity screen control:"
+    },
+    {
+      "name": "running_lock_background",
+      "value": "Background:"
+    },
+    {
+      "name": "airplane_status",
+      "value": "Airplane status:"
+    },
+    {
+      "name": "thermal_warning",
+      "value": "The current device battery temperature is too high!"
+    },
+    {
+      "name": "no_usb_device",
+      "value": "No USB Device"
+    },
+    {
+      "name": "show_floating_status",
+      "value": "show floating status:"
     }
   ]
 }

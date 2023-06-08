@@ -13,12 +13,10 @@
  * limitations under the License.
  */
 
-import power from '@ohos.power';
 import { ColumnOperation } from '../components/ColumnOperation';
 import { getString } from '@ohos/common';
-import { showAlertDialog } from '../util/AlertDialogUtil';
+import { PowerManagerUtil } from '../util/PowerManagerUtil';
 
-@Preview
 @Component
 export struct PowerManager {
   @State result: string = '';
@@ -26,43 +24,46 @@ export struct PowerManager {
   build() {
     Scroll() {
       Column() {
-        Text(this.result)
-          .width('100%')
-          .height(100)
-          .backgroundColor('#DFDFDF')
-          .fontSize(20)
-          .margin({ top: 20 })
-          .textAlign(TextAlign.Start)
-          .padding(10)
+        Row() {
+          Text(this.result)
+            .fontWeight(FontWeight.Medium)
+            .fontSize(20)
+        }
+        .alignItems(VerticalAlign.Top)
+        .width('100%')
+        .backgroundColor($r("app.color.white"))
+        .height(160)
+        .padding(16)
+        .borderRadius(20)
+        .margin({ top: 16 })
         ColumnOperation({ operationRes: $r('app.strarray.power_operations'), doOperation: this.doOperation })
       }
       .width('100%')
-      .padding(16)
+      .padding(4)
     }
     .scrollBar(BarState.Off)
-    .align(Alignment.Start)
   }
 
-  doOperation = (index: number) => {
+  doOperation = async (index: number) => {
     switch (index) {
       case 0:
-        showAlertDialog($r('app.string.turnOff'), $r('app.string.questionTurnOff'), ()=>{
-          this.result = getString($r('app.string.turnOff'));
-          power.shutdown('shutdown_test');
-        })
-        break;
+        try {
+          let isActive = PowerManagerUtil.isActive();
+          this.result = `${getString($r('app.string.screen_state'))}${isActive}`;
+        } catch (err) {
+          this.result = `isActive fail:${err}`;
+        }
+        break
       case 1:
-        showAlertDialog($r('app.string.restart'), $r('app.string.questionRestart'), ()=>{
-          this.result = getString($r('app.string.restart'));
-          power.reboot('reboot_test')
-        })
-        break;
-      case 2:
-        let isActive = power.isActive();
-        this.result = `${getString($r('app.string.screen_state'))}${isActive}`
-        break;
+        try {
+          let modeName = await PowerManagerUtil.getPowerModeName();
+          this.result = `${getString($r('app.string.power_mode'))}${modeName}`;
+        } catch (err) {
+          this.result = `getPowerModeName fail:${err}`;
+        }
+        break
       default:
-        break;
+        break
     }
   }
 }

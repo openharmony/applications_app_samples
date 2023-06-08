@@ -7,12 +7,6 @@
           "value": "Battery Information"
         },
         {
-          "value": "Battery Statistics"
-        },
-        {
-          "value": "Screen Brightness"
-        },
-        {
           "value": "Charging Type"
         },
         {
@@ -29,12 +23,6 @@
         },
         {
           "value": "Device Status Awareness Framework"
-        },
-        {
-          "value": "SystemCapability"
-        },
-        {
-          "value": "System Parameter"
         },
         {
           "value": "Thermal Management"

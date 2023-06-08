@@ -22,23 +22,17 @@ export struct MenuList {
   @BuilderParam childNavDestination: () => void;
   private menuList: Resource = undefined;
 
-  @Builder CustomDivider() {
-    Divider()
-      .strokeWidth('1px')
-      .color($r('sys.color.ohos_id_color_list_separator'))
-      .margin({ left: 8, right: 8 })
-  }
-
   build() {
-    List({ space: 12 }) {
+    List() {
       ListItem() {
         if (this.menuListData.length > 0) {
           MenuNavRouter({ childList: this.menuListData }) {
-            this.childNavDestination()
+            this.childNavDestination();
           }
         }
       }
     }
+    .borderRadius(20)
     .width('100%')
     .scrollBar(BarState.Off)
     .backgroundColor($r('sys.color.ohos_id_color_sub_background'))

@@ -20,3 +20,9 @@ export { PowerManager } from './src/main/ets/capabilities/PowerManager';
 export { BatteryInfo } from './src/main/ets/capabilities/BatteryInfo';
 
 export { Thermal } from './src/main/ets/capabilities/Thermal';
+
+export { RunningLockManager } from './src/main/ets/capabilities/RunningLockManager';
+
+export { SettingsManager } from './src/main/ets/capabilities/SettingsManager';
+
+export { StationaryManager } from './src/main/ets/capabilities/StationaryManager';

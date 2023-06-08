@@ -42,6 +42,6 @@ export struct InfoItemView {
     .width('100%')
     .height(56)
     .borderRadius(20)
-    .padding({left: 8, right: 8})
+    .padding({ left: 8, right: 8 })
   }
 }
