@@ -10,6 +10,8 @@
 
 3.实现最近任务管理功能，包括任务卡片加锁、解锁、清理和清理所有任务功能。
 
+4.通过点击仿桌面应用图标或点击长按仿桌面图标弹出菜单打开应用，是以打开最近任务方式拉起应用Ability。
+
 ### 效果预览
 
 |主页| 重置页面                                     |
@@ -75,6 +77,10 @@ entry/src/main/ets/
   * 源码链接：[MissionModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/recents/src/main/ets/default/model/MissionModel.ts)
   * 接口参考：[@ohos.application.missionManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-missionManager.md)
 
+* 点击桌面应用拉起最近任务至前台功能模块
+  * 使用ServiceExtensionContext模块的startRecentAbility接口（系统能力：SystemCapability.Ability.AbilityRuntime.Core）**，拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
+  * 源码链接：[LauncherAbilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 接口参考：[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)
 ### 相关权限
 
 | 权限名                                     | 权限说明                                         | 级别         |

@@ -144,6 +144,24 @@ export class LauncherAbilityManager {
   }
 
   /**
+   * 通过桌面图标启动应用
+   *
+   * @params paramAbilityName Ability名
+   * @params paramBundleName 应用包名
+   */
+  startLauncherAbilityFromRecent(paramAbilityName, paramBundleName) {
+    Logger.info(TAG, `startApplication abilityName: ${paramAbilityName}, bundleName: ${paramBundleName}`)
+    this.context.startRecentAbility({
+      bundleName: paramBundleName,
+      abilityName: paramAbilityName
+    }).then(() => {
+      Logger.info(TAG, 'startApplication promise success')
+    }, (err) => {
+      Logger.error(TAG, `startApplication promise error: ${JSON.stringify(err)}`)
+    })
+  }
+
+  /**
    * 卸载应用
    *
    * @params bundleName 应用包名
