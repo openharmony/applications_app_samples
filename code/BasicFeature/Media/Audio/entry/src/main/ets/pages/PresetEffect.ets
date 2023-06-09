@@ -1,42 +1,140 @@
-import common from '@ohos.app.ability.common'
+/*
+* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 import audio from '@ohos.multimedia.audio'
 import router from '@ohos.router'
+
+export class ModeType {
+  id: number
+  name: string
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
+// 单个选择项的渲染
+@Component
+struct ModeItem_1 {
+  private mode: ModeType
+  @Consume contentTypeIndex: number
+  @Builder renderModeItem(fontColor: string, bgColor: string, value: string) {
+    Flex({ direction: FlexDirection.Column }) {
+      Flex() {
+        Text(value)
+          .fontSize(16)
+          .fontWeight(400)
+          .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+          .fontColor(fontColor)
+      }
+      .height(44)
+      .width(148)
+      .backgroundColor(bgColor)
+      .borderRadius(12)
+      .padding({ left: 14, top: 14, bottom: 14 })
+      // 最后一项不显示分隔线
+      if (this.mode.id != 5) {
+        Flex() {
+          Flex() {
+          }.height(1).width('100%')
+          .backgroundColor('#F3F3F3')
+        }
+        .padding({ left: 12, right: 12 })
+      }
+    }
+    .width(156)
+  }
+
+  build() {
+    Flex() {
+      // 选中项和其他选项的样式有不同
+      if (this.contentTypeIndex == this.mode.id) {
+        this.renderModeItem('#007DFF', 'rgba(0,125,255,0.20)', this.mode.name)
+      } else {
+        this.renderModeItem('rgba(0,0,0,0.9)', '', this.mode.name)
+      }
+    }.height(48).width(156)
+  }
+}
+
+@Component
+struct ModeItem_2 {
+  private mode: ModeType
+  @Consume streamUsageIndex: number
+  @Builder renderModeItem(fontColor: string, bgColor: string, value: string) {
+    Flex({ direction: FlexDirection.Column }) {
+      Flex() {
+        Text(value)
+          .fontSize(16)
+          .fontColor(fontColor)
+          .fontWeight(400)
+          .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+      }
+      .height(44)
+      .width(148)
+      .backgroundColor(bgColor)
+      .borderRadius(12)
+      .padding({ left: 14, top: 14, bottom: 14 })
+      // 最后一项不显示分隔线
+      if (this.mode.id != 6) {
+        Flex() {
+          Flex() {
+          }.height(1).width('100%').backgroundColor('#F3F3F3')
+        }
+        .padding({ left: 12, right: 12 })
+      }
+    }
+    .width(156)
+  }
+
+  build() {
+    Flex() {
+      // 选中项和其他选项的样式有不同
+      if (this.streamUsageIndex == this.mode.id) {
+        this.renderModeItem('#007DFF', 'rgba(0,125,255,0.20)', this.mode.name)
+      } else {
+        this.renderModeItem('rgba(0,0,0,0.9)', '', this.mode.name)
+      }
+    }.height(48).width(156)
+  }
+}
 
 @Entry
 @Component
 struct DetectPresetEffect {
-  private contentTypeString = ''
-  private streamUsageString = ''
-  private appContext: common.Context
   private audioEffectInfoArray = [null, null]
   private audioManager = undefined
   private audioStreamManager = undefined
+  private contentTypeOptions = [{ id: 0, name: $r('app.string.CONTENT_TYPE_UNKNOWN') },
+    { id: 1, name: $r('app.string.CONTENT_TYPE_SPEECH') },
+    { id: 2, name: $r('app.string.CONTENT_TYPE_MUSIC') },
+    { id: 3, name: $r('app.string.CONTENT_TYPE_MOVIE') },
+    { id: 4, name: $r('app.string.CONTENT_TYPE_SONIFICATION') },
+    { id: 5, name: $r('app.string.CONTENT_TYPE_RINGTONE') }]
+  private streamUsageOptions = [{ id: 0, name: $r('app.string.STREAM_USAGE_UNKNOWN') },
+    { id: 1, name: $r('app.string.STREAM_USAGE_MEDIA') },
+    { id: 2, name: $r('app.string.STREAM_USAGE_VOICE_COMMUNICATION') },
+    { id: 3, name: $r('app.string.STREAM_USAGE_VOICE_ASSISTANT') },
+    { id: 4, name: $r('app.string.STREAM_USAGE_ALARM') },
+    { id: 5, name: $r('app.string.STREAM_USAGE_NOTIFICATION_RINGTONE') },
+    { id: 6, name: $r('app.string.STREAM_USAGE_ACCESSIBILITY') }]
+  @State showSelector_1: boolean = false
+  @State showSelector_2: boolean = false
   @State queryResult: Resource = $r('app.string.BLANK')
-  @State contentTypeIndex: number = 0
-  @State streamUsageIndex: number = 0
-  private contentTypeOptions = [{ value: $r('app.string.CONTENT_TYPE_UNKNOWN') },
-    { value: $r('app.string.CONTENT_TYPE_SPEECH') },
-    { value: $r('app.string.CONTENT_TYPE_MUSIC') },
-    { value: $r('app.string.CONTENT_TYPE_MOVIE') },
-    { value: $r('app.string.CONTENT_TYPE_SONIFICATION') },
-    { value: $r('app.string.CONTENT_TYPE_RINGTONE') }
-  // { value: $r('app.string.CONTENT_TYPE_ULTRASONIC')}
-  ]
-  private streamUsageOptions = [{ value: $r('app.string.STREAM_USAGE_UNKNOWN') },
-    { value: $r('app.string.STREAM_USAGE_MEDIA') },
-    { value: $r('app.string.STREAM_USAGE_VOICE_COMMUNICATION') },
-    { value: $r('app.string.STREAM_USAGE_VOICE_ASSISTANT') },
-    { value: $r('app.string.STREAM_USAGE_ALARM') },
-    { value: $r('app.string.STREAM_USAGE_NOTIFICATION_RINGTONE') },
-    { value: $r('app.string.STREAM_USAGE_ACCESSIBILITY') }
-  // { value: $r('app.string.STREAM_USAGE_SYSTEM')}
-  ]
-
-  async aboutToAppear() {
-    this.appContext = getContext()
-    this.contentTypeString = this.appContext.resourceManager.getStringSync(this.contentTypeOptions[this.contentTypeIndex].value.id)
-    this.streamUsageString = this.appContext.resourceManager.getStringSync(this.streamUsageOptions[this.streamUsageIndex].value.id)
-  }
+  @Provide contentTypeIndex: number = 0
+  @Provide streamUsageIndex: number = 0
 
   mapContentIndexToType(index) {
     // map the index of options to the content type in @ohos.multimedia.audio
@@ -68,61 +166,148 @@ struct DetectPresetEffect {
     Column() {
       Column() {
         Row() {
-          Image($r('app.media.ic_back')).width(20).height(18).margin({ left: 2 })
-          Text($r('app.string.EffectManager')).fontSize(20).fontWeight(FontWeight.Bold).margin({ left: 16 })
+          Navigation() {
+          }
+          .height(56)
+          .hideBackButton(false)
+          .titleMode(NavigationTitleMode.Mini)
+          .title('音效管理')
+          .mode(NavigationMode.Stack)
+          .backgroundColor('#F1F3F5')
         }
         .onClick(async () => {
           await router.pushUrl({ url: 'pages/Index' })
         })
         .id('back_btn_preset')
-        .height(28)
+        .height(56)
         .width('100%')
-        .margin({ top: 12 })
         .onClick(async () => {
           await router.pushUrl({ url: 'pages/Index' })
         })
-        .width(360)
-
+        .width(384)
 
         Row() {
-          Select(this.contentTypeOptions)
-            .selected(this.contentTypeIndex)
-            .value(this.contentTypeString)
-            .font({ size: 16, weight: 500, family: 'serif', style: FontStyle.Normal })
-            .selectedOptionFont({ size: 16, weight: 400, family: 'serif', style: FontStyle.Normal })
-            .optionFont({ size: 16, weight: 400, family: 'serif', style: FontStyle.Normal })
-            .selectedOptionFontColor('#007DFF')
-            .onSelect((index: number) => {
-              console.info("Select:" + index)
-              this.contentTypeIndex = index
-              this.queryResult = $r('app.string.BLANK')
-              this.contentTypeString = this.appContext.resourceManager.getStringSync(this.contentTypeOptions[index].value.id)
-            })
-            .backgroundColor('#F1F3F5')
-            .id('select_content_preset')
-            .height(40)
-            .margin({ left: 12, right: 12 })
+          //CONTENT TYPE
+          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+            Row() {
+              Text(this.contentTypeOptions[this.contentTypeIndex].name)
+                .textAlign(TextAlign.Center)
+                .textOverflow({ overflow: TextOverflow.None })
+                .fontSize(16)
+                .fontWeight(500)
+                .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              if (this.showSelector_1) {
+                Image($r('app.media.ic_arrow_up_small')).height(7).width(10)
+                  .margin({ left: 8 })
+              } else {
+                Image($r('app.media.ic_arrow_down_small')).height(7).width(10)
+                  .margin({ left: 8 })
+              }
+            }
 
-          Select(this.streamUsageOptions)
-            .selected(this.streamUsageIndex)
-            .value(this.streamUsageString)
-            .font({ size: 16, weight: 500, family: 'serif', style: FontStyle.Normal })
-            .selectedOptionFont({ size: 16, weight: 400, family: 'serif', style: FontStyle.Normal })
-            .optionFont({ size: 16, weight: 400, family: 'serif', style: FontStyle.Normal })
-            .selectedOptionFontColor('#007DFF')
-            .onSelect((index: number) => {
-              console.info("Select:" + index)
-              this.streamUsageIndex = index
-              console.info("StreamUsage:" + this.streamUsageIndex)
-              this.queryResult = $r('app.string.BLANK')
-              this.streamUsageString = this.appContext.resourceManager.getStringSync(this.streamUsageOptions[index].value.id)
-            })
-            .backgroundColor('#F1F3F5')
-            .height(40)
-            .margin({ left: 12, right: 12 })
-            .id('select_usage_preset')
+          }
+          .height(40)
+          .width(140)
+          .backgroundColor('#F1F3F5')
+          .borderRadius(16)
+          .margin({ left: 37, right: 6 })
+          .padding({
+            left: 16,
+            right: 16
+          })
+          .id('select_content_preset')
+          .onClick(() => {
+            this.showSelector_1 = !this.showSelector_1
+            this.showSelector_2 = false
+          })
+          if (this.showSelector_1) {
+            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+              // 循环产生下拉菜单
+              ForEach(this.contentTypeOptions, item => {
+                Flex() {
+                  ModeItem_1({ mode: item })
+                }.width(156)
+                // 为每一项绑定点击事件
+                .onClick(() => {
+                  if (this.contentTypeIndex !== item.id) {
+                    this.contentTypeIndex = item.id
+                    console.info('this.contentTypeIndex===' + this.contentTypeIndex)
+                    this.queryResult = $r('app.string.BLANK')
+                  }
+                  this.showSelector_1 = false
+                })
+              }, item => item.id.toString())
+            }
+            .height(296)
+            .width(156)
+            .backgroundColor('#fff')
+            .borderRadius(16)
+            .shadow({ radius: 50, color: 'rgba(0,0,30,0.1500)' })
+            .padding({ left: 4, right: 4, top: 4, bottom: 4 })
+            .position({ x: 54, y: 40 })
+            .zIndex(1)
+          }
+          //STREAM USAGE
+          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+            Row() {
+              Text(this.streamUsageOptions[this.streamUsageIndex].name)
+                .textAlign(TextAlign.Center)
+                .fontSize(16)
+                .fontWeight(500)
+                .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              if (this.showSelector_2) {
+                Image($r('app.media.ic_arrow_up_small')).height(7).width(10)
+                  .margin({ left: 8 })
+              } else {
+                Image($r('app.media.ic_arrow_down_small')).height(7).width(10)
+                  .margin({ left: 8 })
+              }
+            }
+
+          }
+          .height(40)
+          .width(140)
+          .margin({ right: 37 })
+          .backgroundColor('#F1F3F5')
+          .borderRadius(16)
+          .padding({
+            left: 16,
+            right: 16
+          })
+          .id('select_usage_preset')
+          .onClick(() => {
+            this.showSelector_1 = false
+            this.showSelector_2 = !this.showSelector_2;
+          })
+          if (this.showSelector_2) {
+            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+              ForEach(this.streamUsageOptions, item => {
+                Flex() {
+                  ModeItem_2({ mode: item })
+                }.width(156)
+                .onClick(() => {
+                  if (this.streamUsageIndex !== item.id) {
+                    this.streamUsageIndex = item.id
+                    console.info('this.contentTypeIndex===' + this.streamUsageIndex)
+                    this.queryResult = $r('app.string.BLANK')
+                  }
+                  this.showSelector_2 = false
+                })
+
+              }, item => item.id.toString())
+            }
+            .height(344)
+            .width(156)
+            .backgroundColor('#fff')
+            .borderRadius(16)
+            .shadow({ radius: 50, color: 'rgba(0,0,30,0.1500)' })
+            .padding({ left: 4, right: 4, top: 4, bottom: 4 })
+            .position({ x: 145, y: 40 })
+            .zIndex(1)
+          }
         }
-        .margin({ top: 15 })
+        .width(360)
+        .zIndex(1)
 
         Column() {
           Row() {
@@ -132,15 +317,14 @@ struct DetectPresetEffect {
               .height(20)
               .width(96)
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-              .margin({ left: 12 })
             Button($r('app.string.QUERY'), { type: ButtonType.Capsule, stateEffect: true })
-              .backgroundColor(0xF5F5F5)
-              .fontColor(0x1E90FF)
+              .backgroundColor('rgba(24,36,49,0.05)')
+              .fontColor('#007DFF')
               .fontSize(12)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
               .fontWeight(500)
               .height(28)
               .width(72)
-              .margin({ right: 12 })
               .onClick(async () => {
                 console.info('Button onClick')
                 this.audioManager = audio.getAudioManager()
@@ -150,41 +334,35 @@ struct DetectPresetEffect {
                 console.info('audioEffectInfoArray:' + this.audioEffectInfoArray)
                 if (this.audioEffectInfoArray.indexOf(1) == -1) {
                   this.queryResult = $r('app.string.EFFECT_NONE')
-
                 } else {
                   this.queryResult = $r('app.string.EFFECT_NONE_AND_DEFAULT')
                 }
-
-                this.audioEffectInfoArray.sort()
                 console.info('query result:' + this.queryResult)
               })
               .id('query_btn_preset')
-
           }
-          //.margin({ left:12,right: 12 })
           .justifyContent(FlexAlign.SpaceBetween)
           .height('50%')
           .width('100%')
 
           Row() {
           }
-          .height(1).width(312)
+          .height(1).width('100%')
           .backgroundColor('#F1F3F5')
 
           Row() {
             Text($r('app.string.QUERY_RESULT'))
               .fontSize(16)
               .fontWeight(500)
-              .margin({ left: 12 })
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
             Text(this.queryResult)
-              .fontSize(16)
+              .fontSize(14)
               .fontWeight(400)
               .enabled(false)
               .fontColor(Color.Grey)
-              .margin({ right: 12 })
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
               .id('query_result_preset')
           }
-          // .margin({ left:12,right: 12 })
           .justifyContent(FlexAlign.SpaceBetween)
           .height('50%')
           .width('100%')
@@ -193,10 +371,10 @@ struct DetectPresetEffect {
         .height(104)
         .width(360)
         .backgroundColor(Color.White)
-        //.margin({left: 12, right: 12 })
+        .padding({ left: 12, right: 12 })
         .borderRadius(20)
+        .zIndex(0)
       }
-
 
       Row() {
         Column() {
@@ -240,7 +418,12 @@ struct DetectPresetEffect {
     .width('100%')
     .justifyContent(FlexAlign.SpaceBetween)
     .backgroundColor('#F1F3F5')
-
+    .onClick(() => {
+      this.showSelector_1 = false
+      this.showSelector_2 = false
+    })
   }
 }
+
+
 
