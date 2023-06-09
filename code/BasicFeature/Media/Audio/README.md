@@ -6,9 +6,13 @@
 
 ### 效果预览
 
-| 主页  | 发声设备查询与选择页面  | 音频焦点页面 | 音效管理页面-<br>预置音效查询 | 音效管理页面-<br>实时音效设置 |
-|-------------------------------------------|-----------------------------------------|------------------------------------------------------|------------------------|------------------------------------------------------|
-| ![Index](screenshots/device/index_v2.png) | ![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) | ![PresetEffect](screenshots/device/PresetEffect.png) | ![RealtimeEffect](screenshots/device/RealtimeEffect.png) |
+| 主页                                     | 发声设备查询与选择页面  | 音频焦点页面 |
+|----------------------------------------|-----------------------------------------|------------------------------------------------------|
+| ![Index](screenshots/device/index.jpg) | ![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) |
+
+| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             |
+|-----------------------------------------|----------------------------------------|
+| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) |
 
 使用说明
 
