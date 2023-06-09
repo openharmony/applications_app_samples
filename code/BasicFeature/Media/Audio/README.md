@@ -74,7 +74,7 @@ library/
     * 使用audioRenderer.stop()进行音频的停止播放处理
     * 使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor,接口参考：[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getrawfd9)
     * 根据文件描述对象，使用fs.read()接口进行音频数据读取，读取到的结果用于audioRenderer.write()的写入,接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
-    
+
 * 预置音效查询功能都封装在PresetEffect, 源码参考：[PresetEffect.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/PresetEffect.ets)
     *  在选择框中的类型和场景映射为数字后, 作为之后调用的getAudioEffectInfoArray(content type:number, stream usage:number)的两个入参
     *  点击”查询“按钮后, 使用audio.getAudioManager()获取音频管理对象audioManager, 再通过audioManager.getStreamManager()对象获取audioStreamManager
@@ -90,8 +90,12 @@ library/
     *  调用组件的.enabled(enabled: boolean)方法控制其置灰与使能
 ### 相关权限
 
+- 不涉及。
+-
 ### 依赖
 
+- 不涉及。
+-
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
