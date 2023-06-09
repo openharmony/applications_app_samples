@@ -13,20 +13,24 @@
  * limitations under the License.
  */
 
-import cryptoFramework from '@ohos.security.cryptoFramework'
+import cryptoFramework from '@ohos.security.cryptoFramework';
 import promptAction from '@ohos.promptAction';
 import Logger from '../util/Logger';
+
+const TAG: string = '[Crypto_Framework]';
+const BASE_16: number = 16;
+const SLICE_NUMBER: number = -2;
 
 // 字节流以16进制字符串输出
 function uint8ArrayToShowStr(uint8Array: Uint8Array): string {
   return Array.prototype.map
-    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .call(uint8Array, (x) => ('00' + x.toString(BASE_16)).slice(SLICE_NUMBER))
     .join('');
 }
 
 // 16进制字符串转字节流
 function fromHexString(hexString: string): Uint8Array {
-  return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+  return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, BASE_16)));
 }
 
 
@@ -57,13 +61,12 @@ function genGcmParamsSpec(): cryptoFramework.GcmParamsSpec {
   let dataTag = new Uint8Array(arr);
   let tagBlob = { data: dataTag }; // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
 
-  let gcmParamsSpec = { iv: ivBlob, aad: aadBlob, authTag: tagBlob, algName: "GcmParamsSpec" };
+  let gcmParamsSpec = { iv: ivBlob, aad: aadBlob, authTag: tagBlob, algName: 'GcmParamsSpec' };
   return gcmParamsSpec;
 }
 
-const TAG: string = '[Crypto_Framework]';
-
 export class CryptoOperation {
+
   async generateAesKey(): Promise<string> {
     let symKeyGenerator;
     let encodedKey;
@@ -72,7 +75,7 @@ export class CryptoOperation {
       symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
     } catch (error) {
       Logger.error(TAG, 'create generator failed');
-      return;
+      return null;
     }
 
     // 通过密钥生成器随机生成对称密钥
@@ -80,16 +83,15 @@ export class CryptoOperation {
       let symKey = await symKeyGenerator.generateSymKey();
       // 获取对称密钥的二进制数据，输出长度为256bit的字节流
       encodedKey = symKey.getEncoded();
+      let data = encodedKey.data;
+      Logger.info('success, key bytes: ' + data);
+      Logger.info('success, key hex:' + uint8ArrayToShowStr(data));
+      // 将二进制数据转为16进制string。
+      return uint8ArrayToShowStr(data);
     } catch (error) {
       Logger.error(TAG, 'create symKey failed');
-      return;
+      return null;
     }
-
-    let data = encodedKey.data;
-    Logger.info('success, key bytes: ' + data);
-    Logger.info('success, key hex:' + uint8ArrayToShowStr(data));
-    // 将二进制数据转为16进制string。
-    return uint8ArrayToShowStr(data);
   }
 
   async convertAesKey(aesKeyBlobString: string): Promise<cryptoFramework.SymKey> {
@@ -101,11 +103,11 @@ export class CryptoOperation {
     try {
       let key = await symKeyGenerator.convertKey(symKeyBlob);
       globalKey = key;
+      return globalKey;
     } catch (error) {
       Logger.error(TAG, `convert aes key failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
-    return globalKey;
   }
 
   async aesGcmEncrypt(globalKey, textString: string): Promise<string> {
@@ -114,20 +116,20 @@ export class CryptoOperation {
     let cipherTextBlob;
     let cipherText;
     let globalGcmParams = genGcmParamsSpec();
-    let aesEncryptJsonStr;
+    let aesEncryptJsonStr = null;
     try {
       cipher = cryptoFramework.createCipher(cipherAlgName);
       Logger.info(TAG, `cipher algName: ${cipher.algName}`);
     } catch (error) {
       Logger.error(TAG, `createCipher failed, ${error.code}, ${error.message}`);
-      return;
+      return aesEncryptJsonStr;
     }
     let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     try {
       await cipher.init(mode, globalKey, globalGcmParams);
     } catch (error) {
       Logger.error(TAG, `init cipher failed, ${error.code}, ${error.message}`);
-      return;
+      return aesEncryptJsonStr;
     }
     let plainText = { data: stringToUint8Array(textString) };
     Logger.info(TAG, `plain text: ${plainText.data}`);
@@ -137,20 +139,19 @@ export class CryptoOperation {
       Logger.info(TAG, `cipher text: ${cipherText}`);
     } catch (error) {
       Logger.error(TAG, `update cipher failed, ${error.code}, ${error.message}`);
-      return;
+      return aesEncryptJsonStr;
     }
     try {
       let authTag = await cipher.doFinal(null);
       let aesEncryptJson = ({ aesGcmTag: uint8ArrayToShowStr(authTag.data), encryptedText: cipherText });
       aesEncryptJsonStr = JSON.stringify(aesEncryptJson);
       Logger.info(TAG, `success, authTag blob ${authTag.data}`);
-      Logger.info(TAG, `success, authTag string ${uint8ArrayToShowStr(authTag.data)}`);
-      Logger.info(TAG, 'success, authTag blob.length = ' + authTag.data.length)
+      Logger.info(TAG, `success, authTag blob.length = ${authTag.data.length}`)
+      return aesEncryptJsonStr;
     } catch (error) {
       Logger.error(TAG, `doFinal cipher failed, ${error.code}, ${error.message}`);
-      return;
+      return aesEncryptJsonStr;
     }
-    return aesEncryptJsonStr;
   }
 
   async aesGcmDecrypt(globalKey, aesEncryptJsonStr: string): Promise<string> {
@@ -163,27 +164,27 @@ export class CryptoOperation {
       aesEncryptJson = JSON.parse(aesEncryptJsonStr);
     } catch (error) {
       Logger.error(TAG, `trans from json string failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     let authTagStr = aesEncryptJson.aesGcmTag;
     let textString = aesEncryptJson.encryptedText;
     let globalGcmParams = genGcmParamsSpec();
     globalGcmParams.authTag = { data: fromHexString(authTagStr) };
-    Logger.info(TAG, "success, decrypt authTag string" + authTagStr);
-    Logger.info(TAG, "success, decrypt authTag blob" + globalGcmParams.authTag.data);
+    Logger.info(TAG, 'success, decrypt authTag string' + authTagStr);
+    Logger.info(TAG, 'success, decrypt authTag blob' + globalGcmParams.authTag.data);
     Logger.info(TAG, 'success, decrypt authTag blob.length = ' + globalGcmParams.authTag.data.length)
     try {
       decode = cryptoFramework.createCipher(cipherAlgName);
     } catch (error) {
       Logger.error(TAG, `createCipher failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
     try {
       await decode.init(mode, globalKey, globalGcmParams);
     } catch (error) {
       Logger.error(TAG, `init decode failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     let cipherText = { data: fromHexString(textString) };
     Logger.info(TAG, `success, cipher text: ${cipherText.data}`);
@@ -193,13 +194,13 @@ export class CryptoOperation {
       Logger.info(TAG, `success, plain text: ${plainText}`);
     } catch (error) {
       Logger.error(TAG, `update decode failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     try {
       let finalOut = await decode.doFinal(null);
     } catch (error) {
       Logger.error(TAG, `doFinal decode failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     return plainText;
   }
@@ -216,7 +217,7 @@ export class CryptoOperation {
       }
     } catch (error) {
       Logger.error(TAG, `convert key error, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
   }
 
@@ -231,7 +232,7 @@ export class CryptoOperation {
       }
     } catch (error) {
       Logger.error(TAG, `convert key error, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     return plainText;
   }
@@ -245,7 +246,7 @@ export class CryptoOperation {
       rsaKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA3072');
     } catch (error) {
       Logger.error(TAG, 'create generator failed');
-      return;
+      return null;
     }
     // 通过密钥生成器随机生成非对称密钥
     try {
@@ -264,13 +265,13 @@ export class CryptoOperation {
       return jsonStr;
     } catch (error) {
       Logger.error(TAG, 'create symKey failed');
-      return;
+      return null;
     }
   }
 
   async convertRsaKey(rsaJsonString: string): Promise<cryptoFramework.KeyPair> {
     let globalKey = null;
-    let rsaKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA3072");
+    let rsaKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA3072');
     Logger.info(TAG, 'success, read key string' + rsaJsonString.length);
     let jsonRsaKeyBlob = JSON.parse(rsaJsonString);
     let priKeyStr = jsonRsaKeyBlob.priKey;
@@ -293,43 +294,51 @@ export class CryptoOperation {
   }
 
   async rsaSign(globalKey, textString: string): Promise<string> {
-    let signer = cryptoFramework.createSign("RSA3072|PKCS1|SHA256");
+    let signer = cryptoFramework.createSign('RSA3072|PKCS1|SHA256');
     let keyPair = globalKey;
     try {
       await signer.init(keyPair.priKey);
       let signBlob = stringToUint8Array(textString);
       try {
         let signedBlob = await signer.sign({ data: signBlob });
-        Logger.info(TAG, "success,RSA sign output is " + signedBlob.data.length);
+        Logger.info(TAG, 'success,RSA sign output is'  + signedBlob.data.length);
         let rsaSignedBlobString = uint8ArrayToShowStr(signedBlob.data);
-        Logger.info(TAG, "success,RSA sign string is " + rsaSignedBlobString);
-        return rsaSignedBlobString
+        Logger.info(TAG, 'success,RSA sign string is' + rsaSignedBlobString);
+        return rsaSignedBlobString;
       } catch (error1) {
         Logger.error(TAG, `sign text failed, ${error1.code}, ${error1.message}`);
-        return;
+        return null;
       }
     } catch (error) {
       Logger.error(TAG, `sign init failed, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
   }
 
   async rsaVerify(globalKey, textString: string, rsaSignedText: string): Promise<Boolean> {
-    let verifyer = cryptoFramework.createVerify("RSA3072|PKCS1|SHA256");
+    let verifyer = cryptoFramework.createVerify('RSA3072|PKCS1|SHA256');
     let keyPair = globalKey;
     let signBlob = stringToUint8Array(textString);
     let signedBlob = fromHexString(rsaSignedText);
-    Logger.info("success,RSA sign input is " + signBlob);
-    Logger.info("success,RSA signed file length" + signedBlob.length);
-    await verifyer.init(keyPair.pubKey);
-    let result = await verifyer.verify({ data: signBlob }, { data: signedBlob });
-    if (result == false) {
-      // flag = false;
-      Logger.error(" RSA Verify result = fail");
-    } else {
-      Logger.info(" success, RSA Verify result = success");
+    Logger.info('success,RSA sign input is ' + signBlob);
+    Logger.info('success,RSA signed file length ' + signedBlob.length);
+    try {
+      await verifyer.init(keyPair.pubKey);
+      try {
+        let result = await verifyer.verify({ data: signBlob }, { data: signedBlob });
+        if (result === false) {
+          // flag = false;
+          Logger.error(TAG, 'RSA Verify result = fail');
+        } else {
+          Logger.info(TAG, 'success, RSA Verify result = success');
+        }
+        return result;
+      } catch(error) {
+        Logger.error(TAG, `verify dofinal failed, ${error.code}, ${error.message}`);
+      }
+    } catch(err) {
+      Logger.error(TAG, `verify init failed, ${err.code}, ${err.message}`);
     }
-    return result;
   }
 
   async rsaConvertAndSign(rsaJsonString: string, textString: string): Promise<string> {
@@ -340,11 +349,11 @@ export class CryptoOperation {
         rsaSignString = await this.rsaSign(key, textString);
       } catch (error) {
         Logger.error(TAG, `sign error, ${error.code}, ${error.message}`);
-        return;
+        return null;
       }
     } catch (error) {
       Logger.error(TAG, `convert rsa key error, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     return rsaSignString;
   }
@@ -357,11 +366,11 @@ export class CryptoOperation {
         rsaVerifyRes = await this.rsaVerify(key, textString, rsaSignedText);
       } catch (error) {
         Logger.error(TAG, `sign error, ${error.code}, ${error.message}`);
-        return;
+        return null;
       }
     } catch (error) {
       Logger.error(TAG, `convert rsa key error, ${error.code}, ${error.message}`);
-      return;
+      return null;
     }
     return rsaVerifyRes;
   }
