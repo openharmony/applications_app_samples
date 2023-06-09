@@ -286,8 +286,11 @@ export struct Encrypt {
       this.cipherText = await this.CryptoOperation.aesConvertAndEncrypt(this.keyString, this.plainText);
     } catch (error) {
       Logger.error(TAG, `encrypt failed, ${error.code}, ${error.message}`);
+      promptAction.showToast({
+        message: $r('app.string.encrypt_fail')
+      });
     }
-    if (this.cipherText === '' || typeof (this.cipherText) == 'undefined') {
+    if (this.cipherText === '' || this.cipherText === undefined || this.cipherText === null) {
       promptAction.showToast({
         message: $r('app.string.encrypt_fail')
       });

@@ -273,9 +273,12 @@ export struct Decrypt {
       this.plainText = await this.CryptoOperation.aesConvertAndDecrypt(this.keyString, this.cipherText);
     } catch (error) {
       Logger.error(TAG, `decrypt failed, ${error.code}, ${error.message}`);
+      promptAction.showToast({
+        message: $r('app.string.decrypt_fail')
+      });
       return;
     }
-    if (this.plainText === '' || typeof (this.plainText) == 'undefined') {
+    if (this.plainText === '' || this.plainText === null || this.plainText === undefined) {
       promptAction.showToast({
         message: $r('app.string.decrypt_fail')
       });

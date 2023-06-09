@@ -103,7 +103,8 @@ export class CryptoOperation {
     let symKeyBlob = { data: fromHexString(aesKeyBlobString) };
     try {
       let key = await symKeyGenerator.convertKey(symKeyBlob);
-      return key;
+      let aesKey: cryptoFramework.SymKey = key;
+      return aesKey;
     } catch (error) {
       Logger.error(TAG, `convert aes key failed, ${error.code}, ${error.message}`);
       return null;
@@ -113,7 +114,6 @@ export class CryptoOperation {
   async aesGcmEncrypt(globalKey, textString: string): Promise<string> {
     let cipherAlgName = 'AES256|GCM|PKCS7';
     let cipher;
-    let cipherTextBlob;
     let cipherText: string;
     let globalGcmParams = genGcmParamsSpec();
     let aesEncryptJsonStr = null;
@@ -134,8 +134,9 @@ export class CryptoOperation {
     let plainText = { data: stringToUint8Array(textString) };
     Logger.info(TAG, `plain text: ${plainText.data}`);
     try {
-      cipherTextBlob = await cipher.update(plainText);
-      cipherText = uint8ArrayToShowStr(cipherTextBlob.data);
+      let cipherTextBlob = await cipher.update(plainText);
+      let tmpArr: Uint8Array = cipherTextBlob.data;
+      cipherText = uint8ArrayToShowStr(tmpArr);
       Logger.info(TAG, `cipher text: ${cipherText}`);
     } catch (error) {
       Logger.error(TAG, `update cipher failed, ${error.code}, ${error.message}`);
@@ -143,7 +144,8 @@ export class CryptoOperation {
     }
     try {
       let authTag = await cipher.doFinal(null);
-      let aesEncryptJson = ({ aesGcmTag: uint8ArrayToShowStr(authTag.data), encryptedText: cipherText });
+      let tmoTagArr: Uint8Array = authTag.data;
+      let aesEncryptJson = ({ aesGcmTag: uint8ArrayToShowStr(tmoTagArr), encryptedText: cipherText });
       aesEncryptJsonStr = JSON.stringify(aesEncryptJson);
       Logger.info(TAG, `success, authTag blob ${authTag.data}`);
       Logger.info(TAG, `success, authTag blob.length = ${authTag.data.length}`);
@@ -190,7 +192,8 @@ export class CryptoOperation {
     Logger.info(TAG, `success, cipher text: ${cipherText.data}`);
     try {
       plainTextBlob = await decode.update(cipherText);
-      plainText = arrayBufferToString(plainTextBlob.data);
+      let tmpArr: Uint8Array = plainTextBlob.data
+      plainText = arrayBufferToString(tmpArr);
       Logger.info(TAG, `success, plain text: ${plainText}`);
     } catch (error) {
       Logger.error(TAG, `update decode failed, ${error.code}, ${error.message}`);
@@ -206,7 +209,7 @@ export class CryptoOperation {
   }
 
   async aesConvertAndEncrypt(aesKeyBlobString: string, textString: string): Promise<string> {
-    let aesEncryptJsonStr;
+    let aesEncryptJsonStr = '';
     try {
       let key = await this.convertAesKey(aesKeyBlobString);
       try {
@@ -254,9 +257,9 @@ export class CryptoOperation {
       let keyPair = await rsaKeyGenerator.generateKeyPair();
       // 获取非对称密钥的二进制数据
       let encodedPriKey = keyPair.priKey.getEncoded();
-      let priKeyData = encodedPriKey.data;
+      let priKeyData: Uint8Array = encodedPriKey.data;
       let encodedPubKey = keyPair.pubKey.getEncoded();
-      let pubKeyData = encodedPubKey.data;
+      let pubKeyData: Uint8Array = encodedPubKey.data;
       let rsaKeyJson = ({ priKey: uint8ArrayToShowStr(priKeyData), pubKey: uint8ArrayToShowStr(pubKeyData) });
       jsonStr = JSON.stringify(rsaKeyJson);
       Logger.info(TAG, 'success, key string: ' + jsonStr.length);
@@ -268,7 +271,6 @@ export class CryptoOperation {
   }
 
   async convertRsaKey(rsaJsonString: string): Promise<cryptoFramework.KeyPair> {
-    let globalKey = null;
     let rsaKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA3072');
     Logger.info(TAG, 'success, read key string' + rsaJsonString.length);
     let jsonRsaKeyBlob = JSON.parse(rsaJsonString);
@@ -281,14 +283,13 @@ export class CryptoOperation {
     Logger.info(TAG, 'success, read rsa pri blob key ' + priKeyBlob.length);
     Logger.info(TAG, 'success, read rsa pub blob key ' + pubKeyBlob.length);
     try {
-      let key = await rsaKeyGenerator.convertKey({ data: pubKeyBlob }, { data: priKeyBlob });
-      globalKey = key;
+      let key: cryptoFramework.KeyPair = await rsaKeyGenerator.convertKey({ data: pubKeyBlob }, { data: priKeyBlob });
+      return key;
       Logger.info(TAG, 'success, read and convert key');
     } catch (error) {
       Logger.error(TAG, `convert rsa key failed, ${error.code}, ${error.message}`);
       return null;
     }
-    return globalKey;
   }
 
   async rsaSign(globalKey, textString: string): Promise<string> {
@@ -338,6 +339,7 @@ export class CryptoOperation {
     } catch (err) {
       Logger.error(TAG, `verify init failed, ${err.code}, ${err.message}`);
     }
+    return null;
   }
 
   async rsaConvertAndSign(rsaJsonString: string, textString: string): Promise<string> {

@@ -272,9 +272,12 @@ export struct Sign {
     try {
       this.cipherText = await this.CryptoOperation.rsaConvertAndSign(this.keyString, this.plainText);
     } catch (error) {
+      promptAction.showToast({
+        message: $r('app.string.sign_fail')
+      });
       Logger.error(TAG, `sign failed, ${error.code}, ${error.message}`);
     }
-    if (this.cipherText === '' || typeof (this.cipherText) == 'undefined') {
+    if (this.cipherText === '' || this.cipherText === null || this.cipherText === undefined) {
       promptAction.showToast({
         message: $r('app.string.sign_fail')
       });
