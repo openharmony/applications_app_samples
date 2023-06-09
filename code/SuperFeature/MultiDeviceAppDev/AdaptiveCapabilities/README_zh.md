@@ -20,7 +20,13 @@
 >   * 将应用安装到开发板等设备中，开启设备的自由窗口能力，查看不同窗口尺寸下的运行效果。
 >   * 通过创建不同屏幕尺寸多个预览器，或者通过拖拽的方式改变预览器的屏幕尺寸，查看不同情况下的运行效果。
 
-### 使用说明：
+### 效果预览：
+
+|首页|自适应布局|响应式布局|典型场景|
+|-----|-----|----|-----|
+|![](screenshots/devices/img1.png)|![](screenshots/devices/img2.png)|![](screenshots/devices/img3.png)|![](screenshots/devices/img4.png)|
+
+使用说明
 
 1. 启动应用，首页展示了自适应布局、响应式布局、典型布局场景和资源限定词四个按钮。
 
@@ -32,19 +38,95 @@
 
 5. 点击"资源限定词"进入新页面，展示字符串和图片资源的使用。
 
-### 效果预览：
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---AbilityStage.ts
+|---common
+|   |---BreakpointSystem.ets                    
+|   |---DirectoryList.ets                  
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---Logger.ts                                       // 日志工具
+|---pages
+|   |---Index.ets                                       // 首页
+|   |---atomicLayoutCapability                          
+|   |   |---equipartitionCapability
+|   |   |   |---EquipartitionCapability.ets             // 均分能力
+|   |   |---extensionCapability
+|   |   |   |---ExtensionCapability1.ets                // 延伸能力1
+|   |   |   |---ExtensionCapability2.ets                // 延伸能力2
+|   |   |---flexibleCapability
+|   |   |   |---FlexibleCapability1.ets                 // 拉伸能力2
+|   |   |   |---FlexibleCapability2.ets                 // 拉伸能力2
+|   |   |---hiddenCapability
+|   |   |   |---HiddenCapability.ets                    // 隐藏能力
+|   |   |---proportionCapability
+|   |   |   |---ProportionCapability.ets                // 占比能力
+|   |   |---scaleCapability
+|   |   |   |---ScaleCapability.ets                     // 缩放能力
+|   |   |---wrapCapability
+|   |   |   |---WrapCapability.ets                      // 拆行能力
+|   |   |---AtomicLayoutCapabilityIndex.ets             // 自适应布局
+|   |---gridRow                       
+|   |   |---gridRow
+|   |   |   |---GridRowSample1.ets                      // 栅格断点1
+|   |   |   |---GridRowSample2.ets                      // 栅格断点2
+|   |   |   |---GridRowSample3.ets                      // 栅格columns和gutter
+|   |   |   |---GridRowSample4.ets                      // 栅格margin
+|   |   |   |---GridRowSample5.ets                      // 栅格span
+|   |   |   |---GridRowSample6.ets                      // 栅格offset
+|   |   |   |---GridRowSample7.ets                      // 栅格order
+|   |   |   |---GridRowSample8.ets                      // 栅格span/offset/order继承性
+|   |   |   |---GridRowSample9.ets                      // 栅格嵌套
+|   |   |---GridRowLayoutIndex.ets                      // 栅格布局
+|   |---resourceQualifier
+|   |   |---ResourceQualifier.ets                        // 资源文件使用
+|   |---responsiveLayout
+|   |   |---breakpoint
+|   |   |   |---BreakpointSample.ets                     // 断点
+|   |   |---mediaQuery
+|   |   |   |---MediaQuerySample.ets                     // 媒体查询
+|   |   |---typicalScene
+|   |   |   |---banner
+|   |   |   |   |---BannerSample.ets                     // 广告栏
+|   |   |   |---bigImage
+|   |   |   |   |---BigImageSample.ets                   // 大图浏览
+|   |   |   |---diversion
+|   |   |   |   |---DiversionSample.ets                  // 挪移布局
+|   |   |   |---header
+|   |   |   |   |---HeaderSample.ets                     // 顶部布局
+|   |   |   |---indentation
+|   |   |   |   |---IndentationSample.ets                // 缩进布局
+|   |   |   |---multiLaneList
+|   |   |   |   |---MultiLaneListSample.ets              // 多列列表
+|   |   |   |---operationEntries
+|   |   |   |   |---OperationEntriesSample.ets           // 操作入口
+|   |   |   |---repeat
+|   |   |   |   |---RepeatSample.ets                     // 重复布局
+|   |   |   |---responsiveGrid
+|   |   |   |   |---ResponsiveGridSample.ets             // 网格视图
+|   |   |   |---sidebar
+|   |   |   |   |---SidebarSample.ets                    // 侧边栏
+|   |   |   |---tabs
+|   |   |   |   |---TabsSample.ets                       // 页签布局
+|   |   |   |---TypicalSceneIndex.ets                    // 典型布局场景
+```
+### 具体实现
 
-|首页|自适应布局|响应式布局|典型场景|
-|-----|-----|----|-----|
-|![](screenshots/devices/img1.png)|![](screenshots/devices/img2.png)|![](screenshots/devices/img3.png)|![](screenshots/devices/img4.png)|
-
-
+* 该示例使用了路由跳转接口，实现了各个不同布局之间的页面跳转，通过MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件。
+* 源码链接：[BreakpointSystem.ets](code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/ets/common/BreakpointSystem.ets)，[DirectoryList.ets](code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/ets/common/DirectoryList.ets)
+* 接口参考：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)
 
 ### 相关权限
 
 不涉及。
 
+### 依赖
 
+不涉及。
 
 ### 约束与限制
 
