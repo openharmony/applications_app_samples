@@ -652,9 +652,5 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'Realtime_009 end')
       done()
     })
-
-
   })
-
 }
-
