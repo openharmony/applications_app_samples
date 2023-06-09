@@ -54,19 +54,20 @@ entry/src/main/ets/
 在分布式音乐播放器中，分布式设备管理包含了分布式设备搜索、分布式设备列表弹窗、远端设备拉起三部分。  
 首先在分布式组网内搜索设备，然后把设备展示到分布式设备列表弹窗中，最后根据用户的选择拉起远端设备。
 #### 分布式设备搜索
-通过SUBSCRIBE_ID搜索分布式组网内的远端设备，详见registerDeviceListCallback_(callback) {}模块[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer/entry/src/main/js/MainAbility/model/RemoteDeviceModel.js )。
+通过SUBSCRIBE_ID搜索分布式组网内的远端设备，详见registerDeviceListCallback_(callback) {}模块[源码参考](entry/src/main/js/MainAbility/model/RemoteDeviceModel.js )。
 #### 分布式设备列表弹窗
 使用continueAbilityDialog弹出分布式设备列表弹窗，参考首页。
 #### 远端设备拉起
-通过startAbility(deviceId)方法拉起远端设备的包，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer/entry/src/main/js/MainAbility/pages/index/index.js )。
+通过startAbility(deviceId)方法拉起远端设备的包，[源码参考](entry/src/main/js/MainAbility/pages/index/index.js )。
 #### 分布式数据管理
 (1) 管理分布式数据库  
 创建一个KVManager对象实例，用于管理分布式数据库对象。通过distributedData.createKVManager(config)，并通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法，例如this.kvManager.getKVStore(STORE_ID, options).then((store) => {})  
 (2) 订阅分布式数据变化  
-通过订阅分布式数据库所有（本地及远端）数据变化实现数据协同[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer/entry/src/main/js/MainAbility/model/KvStoreModel.js )。
+通过订阅分布式数据库所有（本地及远端）数据变化实现数据协同[源码参考](entry/src/main/js/MainAbility/model/KvStoreModel.js )。
+
 #### 跨设备播放操作
 (1)分布式设备管理器绑定应用包
-deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer/entry/src/main/ets/model/RemoteDeviceModel.ts )。  
+deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码参考](entry/src/main/js/MainAbility/model/RemoteDeviceModel.js )。  
 (2) 初始化播放器
 构造函数中通过'@ohos.multimedia.media'组件对播放器进行实例化，并调用播放器初始化函数，通过播放器的on函数，监听error、finish、timeUpdate  
 (3) 同步当前播放数据

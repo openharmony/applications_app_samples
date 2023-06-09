@@ -67,9 +67,9 @@ code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities
 ### 具体实现
 1、index下定义三个box，分别资源限定词resourceQualifier、原子布局atomicLayoutCapability、响应式布局responsiveLayout，并通过onclick路由到各自的组件。  
 2、资源限定词组件： 在MainAbility.resource下定义需要访问的资源，在资源限定词resourceQualifier组件中，使用$r('')即可实现不同形态和规格访问到不同的资源。  
-3、原子布局atomicLayoutCapability组件：该布局下，通过slide滑动控制样式的展示比率rate,例如下面这个样例，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities/entry/src/main/js/MainAbility/pages/atomicLayoutCapability/extensionCapability/extensionCapability2/extensionCapability2.hml )。  
-4、响应式布局responsiveLayout ：该布局下需要相对应的媒体资源，比如sm、md、lg，然后监听媒体的变化，从而对资源进行响应式的调整。 例如栅格布局，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities/entry/src/main/js/MainAbility/pages/responsiveLayout/gridContainer/gridContainer.hml )。本案例定义了xs、sm、md、lg下的栅格宽度，根据系统的规格自动选择相应的属性。  
-5、使用mediaQuery对规格进行监听，判断当前系统的横竖屏，从而加载相应的资源，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities/entry/src/main/js/MainAbility/pages/responsiveLayout/mediaQuery/mediaQuery.hml )。  
+3、原子布局atomicLayoutCapability组件：该布局下，通过slide滑动控制样式的展示比率rate,例如下面这个样例，[源码参考](entry/src/main/js/MainAbility/pages/atomicLayoutCapability/extensionCapability/extensionCapability2/extensionCapability2.hml )。  
+4、响应式布局responsiveLayout ：该布局下需要相对应的媒体资源，比如sm、md、lg，然后监听媒体的变化，从而对资源进行响应式的调整。 例如栅格布局，[源码参考](entry/src/main/js/MainAbility/pages/responsiveLayout/gridContainer/gridContainer.hml )。本案例定义了xs、sm、md、lg下的栅格宽度，根据系统的规格自动选择相应的属性。  
+5、使用mediaQuery对规格进行监听，判断当前系统的横竖屏，从而加载相应的资源，[源码参考](entry/src/main/js/MainAbility/pages/responsiveLayout/mediaQuery/mediaQuery.hml )。  
 
 ### 相关权限
 

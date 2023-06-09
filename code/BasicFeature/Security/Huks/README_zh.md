@@ -47,15 +47,15 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 使用新密钥和旧密钥进行消息的加密和解密的功能接口封装在HuksModel中，源码参考：[HuksModel.ts](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks/entry/src/main/ets/model/HuksModel.ts)
-    * 使用新密钥加密：在[NewKey.ets](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks/entry/src/main/ets/common/NewKey.ets)文件中通过HuksModel.encryptData方式调用加密函数实现对发送的消息内容进行加密，设置好生成密钥和解密密钥的密钥属性信息，加密前会先调用生成密钥接口
+* 使用新密钥和旧密钥进行消息的加密和解密的功能接口封装在HuksModel中，源码参考：[HuksModel.ts](entry/src/main/ets/model/HuksModel.ts)
+    * 使用新密钥加密：在[NewKey.ets](entry/src/main/ets/common/NewKey.ets)文件中通过HuksModel.encryptData方式调用加密函数实现对发送的消息内容进行加密，设置好生成密钥和解密密钥的密钥属性信息，加密前会先调用生成密钥接口
       [huks.generateKeyItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#huksgeneratekeyitem9-1)
       生成用于加密的密钥，对消息加密的过程中采用三段式接口[huks.initSession,huks.updateSession,huks.finishSession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#huksinitsession9-1)
       完成加密操作。
-    * 使用新密钥解密：在[NewKey.ets](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks/entry/src/main/ets/common/NewKey.ets)文件中通过HuksModel.decryptData方式调用解密函数实现对发送消息的解密，设置好解密密钥的密钥属性信息，使用加密时的密钥对消息进行解密，仍然是采用三段式接口完成解密操作，解密动作完成后调用删除密钥接口
+    * 使用新密钥解密：在[NewKey.ets](entry/src/main/ets/common/NewKey.ets)文件中通过HuksModel.decryptData方式调用解密函数实现对发送消息的解密，设置好解密密钥的密钥属性信息，使用加密时的密钥对消息进行解密，仍然是采用三段式接口完成解密操作，解密动作完成后调用删除密钥接口
       [huks.deleteKeyItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#huksdeletekeyitem9-1)清除本地保存的密钥。
-    * 使用旧密钥加密：在[OldKey.ets](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks/entry/src/main/ets/common/OldKey.ets)文件中通过HuksModel.encryptDataUserOldKey方式调用加密函数对发送的消息内容进行加密，设置好加密密钥的密钥属性信息，采用三段式接口使用本地已保存的旧密钥完成加密操作。
-    * 使用旧密钥解密：在[OldKey.ets](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks/entry/src/main/ets/common/OldKey.ets)文件中通过HuksModel.decryptDataUserOldKey方式调用解密函数对发送的消息内容进行解密，首先模拟在新设备上导入旧设备的加密密钥，同样采用三段式接口完成解密操作，解密完成后删除密钥。
+    * 使用旧密钥加密：在[OldKey.ets](entry/src/main/ets/common/OldKey.ets)文件中通过HuksModel.encryptDataUserOldKey方式调用加密函数对发送的消息内容进行加密，设置好加密密钥的密钥属性信息，采用三段式接口使用本地已保存的旧密钥完成加密操作。
+    * 使用旧密钥解密：在[OldKey.ets](entry/src/main/ets/common/OldKey.ets)文件中通过HuksModel.decryptDataUserOldKey方式调用解密函数对发送的消息内容进行解密，首先模拟在新设备上导入旧设备的加密密钥，同样采用三段式接口完成解密操作，解密完成后删除密钥。
 
 ### 相关权限
 

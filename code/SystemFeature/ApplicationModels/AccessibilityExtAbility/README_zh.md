@@ -19,7 +19,7 @@
 
 ## 具体实现
 
-* 获取界面元素、查询元素指定信息、通过text查找元素和获取元素执行指定动作的功能封装在AccessibilityManager，源码参考: [AccessibilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility/entry/src/main/ets/AccessibilityExtAbility/AccessibilityManager.ts)
+* 获取界面元素、查询元素指定信息、通过text查找元素和获取元素执行指定动作的功能封装在AccessibilityManager，源码参考: [AccessibilityManager.ts](entry/src/main/ets/AccessibilityExtAbility/AccessibilityManager.ts)
   * 使用 [getWindowRootElement()](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontextgetwindowrootelement) 获取界面根节点；
   * 获取元素属性值：使用AccessibilityUtils.getAttributeValue()；
   * 获取界面所有元素：基于获取的根元素，使用AccessibilityUtils.createElementArray()获取界面所有元素；

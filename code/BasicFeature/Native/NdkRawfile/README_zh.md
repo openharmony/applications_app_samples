@@ -47,7 +47,7 @@ entry/src/main/
 通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口为getFileList、getRawFileContent、getRawFileDescriptor，映射C++接口分别为GetFileList、GetRawFileContent、GetRawFileDescriptor。
 通过获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}。
 在Js侧导入"libentry.so"，通过getContext().resourceManager获取资源管理对象。调用src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象和相关参数获取对于rawfile相关资源信息。
-源码参考：[rawfile_demo.cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/NdkRawfile/entry/src/main/cpp/rawfile_demo.cpp)
+源码参考：[rawfile_demo.cpp](entry/src/main/cpp/rawfile_demo.cpp)
 。 涉及到的相关接口：
 
 | 接口名                            | 描述                                                                                                     |

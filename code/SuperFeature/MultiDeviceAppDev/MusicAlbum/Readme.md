@@ -61,15 +61,15 @@ AppMarket/entry/src/main/ets/
 由于在不同断点下，标题栏始终只显示“返回按钮”、“歌单”以及“更多按钮”，但“歌单”与“更多按钮”之间的间距不同。  
 通过栅格实现：将标题栏划分为“返回按钮及歌单”和“更多按钮”两部分，这两部分在不同断点下占据的列数不同。
 #### 歌单封面
-通过栅格实现歌单封面，它由封面图片、歌单介绍及常用操作三部分组成这三部分的布局在md和lg断点下完全相同，但在sm断点下有较大差异，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/MusicAlbum/entry/src/main/ets/common/PlayListCover.ets )。  
+通过栅格实现歌单封面，它由封面图片、歌单介绍及常用操作三部分组成这三部分的布局在md和lg断点下完全相同，但在sm断点下有较大差异，[源码参考](entry/src/main/ets/common/PlayListCover.ets )。  
 1、在sm断点下，封面图片和歌单介绍占满12列，常用操作此时会自动换行显示。  
 2、在lg和md断点下，封面图片，歌单和常用操作各占一行中显示。
 #### 歌单列表
-通过List组件的lanes属性实现：在不同断点下，歌单列表的样式一致，但sm和md断点下是歌单列表是单列显示，lg断点下是双列显示，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/MusicAlbum/entry/src/main/ets/common/PlayList.ets )。  
+通过List组件的lanes属性实现：在不同断点下，歌单列表的样式一致，但sm和md断点下是歌单列表是单列显示，lg断点下是双列显示，[源码参考](entry/src/main/ets/common/PlayList.ets )。  
 #### 播放控制栏
 通过Blank组件实现拉伸能力：在不同断点下，播放控制栏显示的内容完全一致，唯一的区别是歌曲信息与播放控制按钮之间的间距有差异。
 #### 总体运行效果
-通过在首页Column()中引用上述各组件后，可实现首页的组件整合渲染，即可完成整体页面开发，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/MusicAlbum/entry/src/main/ets/common/PlayList.ets )。
+通过在首页Column()中引用上述各组件后，可实现首页的组件整合渲染，即可完成整体页面开发，[源码参考](entry/src/main/ets/common/PlayList.ets )。
 
 ### 相关权限
 

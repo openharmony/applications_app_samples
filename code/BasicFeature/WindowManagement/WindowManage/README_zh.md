@@ -38,7 +38,7 @@ entry/src/main/ets/
 * 本示例主要分为三个模块
   * 首页入口模块
     * 使用WindowStage实例化一个窗口，引入WindowManger方法设置一个主窗口与子窗口
-    * 源码链接：[WindowManger.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/WindowManagement/WindowManage/WindowComponent/src/main/ets/components/feature/WindowManger.ts)，[WindowConst.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/WindowManagement/WindowManage/WindowComponent/src/main/ets/components/util/WindowConst.ts),
+    * 源码链接：[WindowManger.ts](WindowComponent/src/main/ets/components/feature/WindowManger.ts)，[WindowConst.ts](WindowComponent/src/main/ets/components/util/WindowConst.ts),
     * 接口参考：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)，[@ohos.events.emitter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-emitter.md)，[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
   * 窗口视频模块
@@ -53,7 +53,7 @@ entry/src/main/ets/
 
 本示例需要在module.json5中配置如下权限:
 
-允许应用使用悬浮窗的能力：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用使用悬浮窗的能力：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsystem_float_window)
 
 
 ### 依赖

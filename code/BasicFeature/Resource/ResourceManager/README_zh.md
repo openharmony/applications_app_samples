@@ -27,7 +27,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-使用getContext()接口获取context对象，使用context.resourceManager获取资源管理对象，然后调用resourceManager内部的相关接口获取对应资源信息,源码参考：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Internationalnation/ResourceManager/entry/src/main/ets/pages/Index.ets)
+使用getContext()接口获取context对象，使用context.resourceManager获取资源管理对象，然后调用resourceManager内部的相关接口获取对应资源信息,源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)
 。例如：
 * 获取字符串资源：resourceManager.getStringValue()
 * 获取字符串数组资源：resourceManager.getStringValue()

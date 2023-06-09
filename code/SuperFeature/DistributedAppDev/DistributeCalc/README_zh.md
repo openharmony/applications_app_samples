@@ -61,9 +61,10 @@ entry/src/main/ets/
 selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉起远端设备的包，调用dataChange(key, value)改变kvstore的值。
 #### 分布式数据管理
 (1) 管理分布式数据库  
-创建一个KVManager对象实例，用于管理分布式数据库对象。通过distributedData.createKVManager(config)，并通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法，例如this.kvManager.getKVStore(STORE_ID, options).then((store) => {})，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributeCalc/entry/src/main/js/MainAbility/common/kvstoreModel.js )。  
+创建一个KVManager对象实例，用于管理分布式数据库对象。通过distributedData.createKVManager(config)，并通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法，例如this.kvManager.getKVStore(STORE_ID, options).then((store) => {})，[源码参考](entry/src/main/js/MainAbility/common/kvstoreModel.js )。  
 (2) 订阅分布式数据变化  
-通过订阅分布式数据库所有（本地及远端）数据变化实现数据协同，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributeCalc/entry/src/main/js/MainAbility/common/kvstoreModel.js )。
+通过订阅分布式数据库所有（本地及远端）数据变化实现数据协同，[源码参考](entry/src/main/js/MainAbility/common/kvstoreModel.js )。
+
 #### 分布式计算器模块
 1、计算器监听变化数据：onShow() 中监听表达式变化，如果变化就更新kvstore的值，并且featureAbility.getWant((error, want)获取接收到的其他设备的指令，重新渲染数据。
 2、计算逻辑：
@@ -86,15 +87,13 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 1.本示例只实现简单的加减乘除功能，后续开发者可基于当前框架考虑在calc页面中实现更多的功能，如开方、立方、三角函数等科学计算功能。
 
-2.本示例在编译前需安装三方mathjs库，具体安装步骤见[npm](https://gitee.com/openharmony/app_samples/blob/master/EngineeringCapability/Npm/README_zh.md)。
+2.分布式计算功能使用的前提是分布式组网。
 
-3.分布式计算功能使用的前提是分布式组网。
+3.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
 
-4.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
-5.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
-
-6.如果安装本示例报错为error：install sign info inconsistent，则有可能本应用被设置为系统预置应用，已安装在系统中，此时需使用命令进行替换安装，并在替换安装后对设备进行重启操作，具体命令如下：
+5.如果安装本示例报错为error：install sign info inconsistent，则有可能本应用被设置为系统预置应用，已安装在系统中，此时需使用命令进行替换安装，并在替换安装后对设备进行重启操作，具体命令如下：
 
 hdc shell mount -o rw,remount /
 

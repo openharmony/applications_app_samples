@@ -72,12 +72,6 @@
         "name": "ohos.permission.READ_MEDIA"
       },
       {
-        "name": "ohos.permission.READ_USER_STORAGE"
-      },
-      {
-        "name": "ohos.permission.WRITE_USER_STORAGE"
-      },
-      {
         "name": "ohos.permission.PUBLISH_AGENT_REMINDER"
       }
     ]

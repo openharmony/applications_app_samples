@@ -41,13 +41,13 @@ http/src/main/ets/
 
 ### 具体实现
 
-* 本示例将发送http请求的接口封装在Http模块，源码参考：[http.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Http/http/src/main/ets/components/model/http.ts)
-  * 发起请求：在[MainPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Http/http/src/main/ets/components/MainPage/MainPage.ets)
+* 本示例将发送http请求的接口封装在Http模块，源码参考：[http.ts](http/src/main/ets/components/model/http.ts)
+  * 发起请求：在[MainPage.ets](http/src/main/ets/components/MainPage/MainPage.ets)
   通过TextInput组件获取参数，点击“确认”按钮后通过Http.request()方法调用http.createHttp().request()接口向指定的地址发送请求。
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
 ### 依赖
 

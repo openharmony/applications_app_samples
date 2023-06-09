@@ -38,7 +38,7 @@ entry/src/main/ets/
 * 切换主题：在首页预先设置好几套主体数据，使用preferences.getPreferences获取使用Preferences对象，调用Preferences.get()
 读取缓存中的参数，得到当前应该展示哪一套主体。每次点击切换按钮都会调用Preferences.put()来重新修改参数，然后使用
 Preferences.flush()保存并刷新文件内容。
-源码参考:[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DataManagement/Preferences/entry/src/main/ets/pages/Index.ets) 。
+源码参考:[Index.ets](entry/src/main/ets/pages/Index.ets) 。
 
 ### 相关权限
 

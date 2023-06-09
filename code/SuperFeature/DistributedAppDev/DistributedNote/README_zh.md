@@ -59,22 +59,23 @@ entry/src/main/ets/
 在分布式笔记应用中，分布式设备管理包含了分布式设备搜索、分布式设备列表弹窗、远端设备拉起三部分。  
 首先在分布式组网内搜索设备，然后把设备展示到分布式设备列表弹窗中，最后根据用户的选择拉起远端设备。
 #### 分布式设备搜索
-通过SUBSCRIBE_ID搜索分布式组网内的设备，详见startDeviceDiscovery(){}模块[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/model/RemoteDeviceModel.ts )。
+通过SUBSCRIBE_ID搜索分布式组网内的设备，详见startDeviceDiscovery(){}模块[源码参考](entry/src/main/ets/model/RemoteDeviceModel.ts )。
 #### 分布式设备列表弹窗
-使用@CustomDialog装饰器来装饰分布式设备列表弹窗，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/common/DeviceDialog.ets )。
+使用@CustomDialog装饰器来装饰分布式设备列表弹窗，[源码参考](entry/src/main/ets/common/DeviceDialog.ets )。
 #### 远端设备拉起
-通过startAbility(deviceId)方法拉起远端设备的包，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/pages/Index.ets )。  
+通过startAbility(deviceId)方法拉起远端设备的包，[源码参考](entry/src/main/ets/pages/Index.ets )。  
 #### 分布式数据管理
 (1) 管理分布式数据库  
-创建一个distributedObject分布式数据对象实例，用于管理分布式数据对象。详见distributedObject.createDistributedObject()，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/model/DistributedObjectModel.ts )。  
+创建一个distributedObject分布式数据对象实例，用于管理分布式数据对象。详见distributedObject.createDistributedObject()，[源码参考](entry/src/main/ets/model/DistributedObjectModel.ts )。  
 (2) 订阅分布式数据变化  
 通过this.distributedObject.on('status', this.statusCallback)监听分布式数据对象的变更。
+
 #### 笔记
-(1)UIAbility拉起弹框请求用户授权:在onCreate()时通过abilityAccessCtrl.createAtManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data)=> {})获取不同设备间的数据交换权限，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/MainAbility/MainAbility.ts )。  
+(1)UIAbility拉起弹框请求用户授权:在onCreate()时通过abilityAccessCtrl.createAtManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data)=> {})获取不同设备间的数据交换权限，[源码参考](entry/src/main/ets/MainAbility/MainAbility.ts )。  
 (2)将sessionID存在应用全局的UI状态存储AppStorage内：在onCreate(want, launchParam) {}时拿到sessionId并存储在AppStorage内，并把同时把sessionId绑定到@StorageLink上实现双向数据绑定。
 (3)对笔记内容进行存储在dataArray:note[]中：通过this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents。
-(4)笔记内容更新：通过绑定Button的onClick事件指定this.globalObject.update(index, this.note.title, this.note.content, this.note.mark)进行笔记内容和状态更新，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/pages/Edit.ets )。  
-(5)实现分布式数据自动同步：通过this.globalObject.distributedObject.setSessionId(this.sessionId)，从而实现当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId的笔记数据自动同步，并将其封装在share()函数内，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/DistributedAppDev/DistributedNote/entry/src/main/ets/pages/Index.ets )。  
+(4)笔记内容更新：通过绑定Button的onClick事件指定this.globalObject.update(index, this.note.title, this.note.content, this.note.mark)进行笔记内容和状态更新，[源码参考](entry/src/main/ets/pages/Edit.ets )。  
+(5)实现分布式数据自动同步：通过this.globalObject.distributedObject.setSessionId(this.sessionId)，从而实现当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId的笔记数据自动同步，并将其封装在share()函数内，[源码参考](entry/src/main/ets/pages/Index.ets )。  
 (6)在首页的onPageShow()钩子中，调用share()实现首页在分布式设备上同步渲染组件。
 ### 相关权限
 

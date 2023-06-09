@@ -51,10 +51,10 @@ entry/src/main
 
 ### 具体实现
 
-1、在module.json5文件添加拓展能力，类型为卡片，并设置卡片入口srcEntrance和卡片元数据metadata，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/Widget/FormGame/entry/src/main/module.json5 )。 
+1、在module.json5文件添加拓展能力，类型为卡片，并设置卡片入口srcEntrance和卡片元数据metadata，[源码参考](entry/src/main/module.json5 )。 
 2、配置卡片：用js编写相应的卡片，将卡片配置到resources/base/profile/form_config。  
 3、定义小游戏逻辑：实现FormExtensionAbility中addform时初始化数据（本sample中使用的是mock数据)，并将数据存储到dataStore，通过调用c++随机数，将成语顺序打乱显示，
-4、监听卡片变化：通过onformEvent()监听卡片事件，更新已选择的成语数据，并随机替换成语待选列表的已被选掉的word，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/Widget/FormGame/entry/src/main/ets/FormAbility/FormAbility.ts )。
+4、监听卡片变化：通过onformEvent()监听卡片事件，更新已选择的成语数据，并随机替换成语待选列表的已被选掉的word，[源码参考](entry/src/main/ets/FormAbility/FormAbility.ts )。
 
 ### 相关权限
 
