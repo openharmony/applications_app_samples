@@ -39,7 +39,7 @@ TextClock：TextClock组件通过文本将当前系统时间显示在设备上�
 
 ### 具体实现
 
-1、在首页设置一个定时器（timer），定时调用接口从index.js刷新最新消息通知，更新首页通知列表,[源码](https://gitee.com/openharmony/applications_app_samples/blob/e0029bb97bdb721c53ab59cd779eecb2b5179262/code/Solutions/Tools/JsClock/entry/src/main/js/default/pages/index/index.js )参考;
+1、在首页设置一个定时器（timer），定时调用接口从index.js刷新最新消息通知，更新首页通知列表,[源码](entry/src/main/js/default/pages/index/index.js )参考;
 
 2、捕捉用户动作，当用户离开首页时（onHide事件）定时器注销（clearInverval）定时器;
 

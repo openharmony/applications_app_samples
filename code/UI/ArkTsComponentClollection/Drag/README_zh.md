@@ -34,7 +34,7 @@ entry/src/main/ets/MainAbility
 
 * 本模块提供了界面元素拖拽的功能。
 
-* 创建IconData文件定义图标，源码参考：[IconData.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/Drag/entry/src/main/ets/MainAbility/model/IconData.ets)整改
+* 创建IconData文件定义图标，源码参考：[IconData.ets](entry/src/main/ets/MainAbility/model/IconData.ets)整改
 
 * onDragStart，onDrop拖拽事件方法实现图标的拖拽
 

@@ -31,12 +31,12 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例展示拨打电话功能，dial方法拨打电话，可设置通话参数，hasCall方法判断是否存在通话，getCallState方法获取当前通话状态，isEmergencyPhoneNumber方法判断是否是紧急电话号码，formatPhoneNumber方法格式化电话号码，formatPhoneNumberToE164方法将电话号码格式化为E.164表示形式。
-* 源码链接：[CallView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Call/entry/src/main/ets/common/CallView.ets)
+* 源码链接：[CallView.ets](entry/src/main/ets/common/CallView.ets)
 * 接口参考：[@ohos.telephony.call](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-call.md)
 
 ### 相关权限
 
-拨打电话权限: [ohos.permission.PLACE_CALL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+拨打电话权限: [ohos.permission.PLACE_CALL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionplace_call)
 
 ### 依赖
 

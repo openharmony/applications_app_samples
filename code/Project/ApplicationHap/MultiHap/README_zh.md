@@ -68,7 +68,7 @@ feature：应用的特性模块，一个应用中可以包含一个或者多个f
 
 ### 具体实现
 
-* 新创建两个Module作为将被跳转的hap，分别命名为videoFeature，audioFeature。源码参考[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/ApplicationHap/MultiHap/entry/src/main/ets/pages/Index.ets)
+* 新创建两个Module作为将被跳转的hap，分别命名为videoFeature，audioFeature。源码参考[Index.ets](entry/src/main/ets/pages/Index.ets)
     * 配置每个hap的type：把entry文件夹下的module.json5中"type": "entry",videoFeature和audioFeature文件夹下的module.json5中"type": "feature"；
     * 使用Want跳转到其他的Ability：在entry模块的index.ets中通过common.UIAbilityContext()配置Want，作为多hap间信息传递的载体，用于应用组件间的信息传递；
     * want的配置：通过指定bundleName和abilityName可以唯一确定一个Ability。

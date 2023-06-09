@@ -39,15 +39,15 @@ entry/src/main/ets/
 
 ### 具体实现
 * 管理分布式设备（节点）  
-  1、创建设备管理对象，并指定参数kvstore应用包deviceManager.createDeviceManager("ohos.samples.distributeddatagobang", (error, value) => {}),[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Game/DistributedDataGobang/entry/src/main/ets/Model/RemoteDeviceModel.ts ) 。  
+  1、创建设备管理对象，并指定参数kvstore应用包deviceManager.createDeviceManager("ohos.samples.distributeddatagobang", (error, value) => {}),[源码参考](entry/src/main/ets/Model/RemoteDeviceModel.ts ) 。  
   2、获取可信设备列表"this.deviceManager.getTrustedDeviceListSync()"。  
   3、监听设备状态"this.deviceManager.on('deviceStateChange', (data) => {})"。
 * 分布式数据管理  
   1、页面初始化时获取此应用所需能力，引入@ohos.data.distributedData初始化分布式数据库，并使用kvstore.on对数据change进行监听，通过appstorge判断获取相应的key判断是否是分布式节点。  
-  2、如果是分布式节点，如果数据发生变化处理数据，使用this.kvManager.getKVStore()通过指定Options和storeId，创建并获取KVStore数据库。以及添加键值对到数据库this.kvStore.put(key, value) ,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Game/DistributedDataGobang/entry/src/main/ets/Model/KvStoreModel.ts ) 。    
+  2、如果是分布式节点，如果数据发生变化处理数据，使用this.kvManager.getKVStore()通过指定Options和storeId，创建并获取KVStore数据库。以及添加键值对到数据库this.kvStore.put(key, value) ,[源码参考](entry/src/main/ets/Model/KvStoreModel.ts ) 。    
   3、页面通过kvStore对象进行增删改查会触发其他已连接设备的kvStore.on监听。  
 * 游戏规则编写  
-  1、init()函数初始化游戏规则，通过canvas组件绘制棋盘背景和棋子，游戏状态为开始，共计回合为0，并生成棋盘。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Game/DistributedDataGobang/entry/src/main/ets/pages/Index.ets )
+  1、init()函数初始化游戏规则，通过canvas组件绘制棋盘背景和棋子，游戏状态为开始，共计回合为0，并生成棋盘。[源码参考](entry/src/main/ets/pages/Index.ets )
   2、触发onClick函数，每click一次，清除一次canvas，数组中添加当前棋子，重绘。
   3、当在A盘，且步长是偶数，表示B下的棋子会在A盘显示，绘制确定好的棋子，例如：this.deviceFlag === 'A' && this.distributedData.step % 2 === 0;
   4、当在B盘，且步长是奇数，表示A下的棋子会在B盘显示，绘制确定好的棋子，例如：this.deviceFlag === 'B' && this.distributedData.step % 2 !== 0;

@@ -39,15 +39,15 @@ notification/src/main/ets/
 
 ### 具体实现
 
-* 允许发送通知、发送通知、取消通知的功能接口封装在NotificationUtil，源码参考：[NotificationUtil.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/notification/src/main/ets/notification/NotificationUtil.ets)
-  * 允许发送通知：在进入[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/pages/Index.ets)
+* 允许发送通知、发送通知、取消通知的功能接口封装在NotificationUtil，源码参考：[NotificationUtil.ets](notification/src/main/ets/notification/NotificationUtil.ets)
+  * 允许发送通知：在进入[Index.ets](entry/src/main/ets/pages/Index.ets)
     前通过notificationUtil.enableNotification()调用notification.requestEnableNotification()接口向用户请求发送通知；
   * 发送通知：通过publishNotification()封装发布通知的接口；
-  * 取消通知：在[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/pages/Index.ets)
+  * 取消通知：在[Index.ets](entry/src/main/ets/pages/Index.ets)
     页面中通过点击事件调用cancelAllNotifications()取消所有的通知或者通过cancelNotificationById()取消指定id的通知；
 
-* NotificationOperations向外提供接口，在页面中调用它们来实现功能，源码参考：[NotificationOperations.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/feature/NotificationOperations.ets)
-  * 发布通知：在[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/pages/Index.ets)
+* NotificationOperations向外提供接口，在页面中调用它们来实现功能，源码参考：[NotificationOperations.ets](entry/src/main/ets/feature/NotificationOperations.ets)
+  * 发布通知：在[Index.ets](entry/src/main/ets/pages/Index.ets)
     页面中通过点击事件调用NotificationOperations中封装的对应的方法，然后从NotificationContentUtil中获取对应的主体内容content，将
     content传递给NotificationRequestUtil得到完整的发布信息，最后调用NotificationUtil.publishNotification()发布内容；
 

@@ -34,14 +34,14 @@ photomodify/src/main/ets/components
 + 图片选择功能在ChoicePhoto中实现，源码参考[ChoicePhoto.ets](photomodify/src/main/ets/components/pages/ChoicePhoto.ets):
   + 图片选择：首先使用getMediaLibrary获取媒体库实例，然后使用getFileAssets获取资源文件集，接着使用getAllObject获取文件检索结果中的所有文件资产，展示到页面便于选择，选择完跳转到图片编辑，传递目标图片的uri；
 + 图片编辑功能在EditPage中实现，源码参考[EditPage.ets](photomodify/src/main/ets/components/pages/EditPage.ets):
-  + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/monthly_20221018/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)申请，源码参考[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建图片源实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。
+  + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请，源码参考[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建图片源实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。
 ### 相关权限
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
 
-[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media)
 
-[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionlocation)
 
 ### 依赖
 

@@ -44,12 +44,12 @@ entry/src/main/ets/
 
 * wlan激活和关闭功能：点击首页的切换按钮，如果是打开，使用wifi.enableWifi()开启wifi；如果是关闭，则使用wifi.disconnect()断开wifi，
 然后使用wifi.disableWifi()关闭wifi，
-源码参考：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Wlan/entry/src/main/ets/pages/Index.ets) 。
+源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets) 。
 
-* wifi的连接、扫描、获取详细信息等功能封装在WifiModel模块中，源码参考：[WifiModel.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Wlan/entry/src/main/ets/model/WifiModel.ets) 。
-  * wifi的连接功能：点击wifi列表中加密的wifi，并在弹窗中输入密码后，会在[AvailableWifi.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Wlan/entry/src/main/ets/component/AvailableWifi.ets) 中通过WifiModule.connectNetwork()调用wifi.connectToDevice()连接wifi，如图中的**连接wifi**。
-  * wifi的扫描功能：进入[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Wlan/entry/src/main/ets/pages/Index.ets) 后就会间歇性的调用wifi.scan()开启扫描，然后通过WifiModel模块中的getScanInfos()调用wifi.getScanResults()来获取扫描的结果，如图中的**主页**。
-  * 获取wifi的详细信息：在[About.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Wlan/entry/src/main/ets/pages/About.ets) 中通过WiFiModel中的getIpInfo()、getCountryCode()、getFeatureSupport()分别调用wifi.getIpInfo()、wifi.getCountryCode()、wifi.isFeatureSupported()来获取对应信息。
+* wifi的连接、扫描、获取详细信息等功能封装在WifiModel模块中，源码参考：[WifiModel.ets](entry/src/main/ets/model/WifiModel.ets) 。
+  * wifi的连接功能：点击wifi列表中加密的wifi，并在弹窗中输入密码后，会在[AvailableWifi.ets](entry/src/main/ets/component/AvailableWifi.ets) 中通过WifiModule.connectNetwork()调用wifi.connectToDevice()连接wifi，如图中的**连接wifi**。
+  * wifi的扫描功能：进入[Index.ets](entry/src/main/ets/pages/Index.ets) 后就会间歇性的调用wifi.scan()开启扫描，然后通过WifiModel模块中的getScanInfos()调用wifi.getScanResults()来获取扫描的结果，如图中的**主页**。
+  * 获取wifi的详细信息：在[About.ets](entry/src/main/ets/pages/About.ets) 中通过WiFiModel中的getIpInfo()、getCountryCode()、getFeatureSupport()分别调用wifi.getIpInfo()、wifi.getCountryCode()、wifi.isFeatureSupported()来获取对应信息。
   如图中的**wifi详情**。
 
 ### 相关权限

@@ -47,17 +47,17 @@ entry/src/main/ets/
 * 本示例分为三个模块：
   * 语言和地区模块
     * 使用i18n接口中getDisplayCountry方法获取指定国家的本地化显示文本，getSystemRegion方法获取系统地区，getSystemLocale方法设置系统Locale，getSystemLanguage方法获取系统支持的语言列表，getPreferredLanguageList方法获取系统偏好语言列表，removePreferredLanguage方法删除系统偏好语言列表中指定位置的偏好语言。
-    * 源码链接：[IntlUtil.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/model/IntlUtil.ts)，[Language.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/Language.ets)，[EditPreferred.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/EditPreferred.ets)
+    * 源码链接：[IntlUtil.ts](entry/src/main/ets/MainAbility/model/IntlUtil.ts)，[Language.ets](entry/src/main/ets/MainAbility/pages/Language.ets)，[EditPreferred.ets](entry/src/main/ets/MainAbility/pages/EditPreferred.ets)
     * 接口参考：[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-i18n.md)，[@ohos.intl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-intl.md)
     
   * 日期和时间模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，getTimeZone方法获取日历对象的时区，set24HourClock方法修改系统时间的24小时制设置，setTime方法设置系统时间，setDate方法设置系统日期，getTimezone方法获取系统时区。
-    * 源码链接：[DateAndTime.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/DateAndTime.ets)，[TimeZone.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/TimeZone.ets)
+    * 源码链接：[DateAndTime.ets](entry/src/main/ets/MainAbility/pages/DateAndTime.ets)，[TimeZone.ets](entry/src/main/ets/MainAbility/pages/TimeZone.ets)
     * 接口参考：[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-i18n.md)，[@ohos.systemTime](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-time.md)
  
   * 区域格式示例模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，NumberFormat方法创建一个NumberFormat对象，getResourceManager方法获取当前应用的资源管理对。
-    * 源码链接：[Examples.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/Examples.ets)，[ResourceUtil.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/model/ResourceUtil.ts)
+    * 源码链接：[Examples.ets](entry/src/main/ets/MainAbility/pages/Examples.ets)，[ResourceUtil.ts](entry/src/main/ets/MainAbility/model/ResourceUtil.ts)
     * 接口参考：[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-i18n.md)，[@ohos.intl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-intl.md)，[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md)
 
 #### 相关概念
