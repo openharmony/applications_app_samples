@@ -84,7 +84,6 @@ struct Focus {
         console.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
         return
       }
-
     })
   }
 
