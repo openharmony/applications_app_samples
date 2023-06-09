@@ -35,6 +35,14 @@
     {
       "name": "FullScrenn_label",
       "value": "label"
+    },
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "pages_text",
+      "value": "window video"
     }
   ]
 }

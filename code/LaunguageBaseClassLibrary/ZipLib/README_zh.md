@@ -37,7 +37,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 添加文件、解压和压缩文件的接口都在首页调用，源码参考[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/ets/pages/Index.ets)
+* 添加文件、解压和压缩文件的接口都在首页调用，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets)
   * 添加文件：通过调用fileio.openSync()创建文件并调用fileio.writeSync()向文件中写入内容；
   * 压缩文件：通过调用zlib.zipFile()压缩文件；
   * 解压文件：通过zlib.unzipFile解压文件。

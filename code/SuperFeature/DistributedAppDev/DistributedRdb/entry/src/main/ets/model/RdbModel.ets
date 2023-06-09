@@ -74,7 +74,7 @@ export default class RdbModel {
       'remark': contact.remark,
       'age': contact.age
     };
-    let ret = await this.rdbStore.insert(this.tableName, valueBucket)
+    let ret = await this.rdbStore.insert(this.tableName, valueBucket, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
     Logger.info(TAG, `insert done:${ret}`)
   }
 

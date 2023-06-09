@@ -31,12 +31,12 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例展示拨打电话功能，dial方法拨打电话，可设置通话参数，hasCall方法判断是否存在通话，getCallState方法获取当前通话状态，isEmergencyPhoneNumber方法判断是否是紧急电话号码，formatPhoneNumber方法格式化电话号码，formatPhoneNumberToE164方法将电话号码格式化为E.164表示形式。
-* 源码链接：[CallView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Call/entry/src/main/ets/common/CallView.ets)
+* 源码链接：[CallView.ets](entry/src/main/ets/common/CallView.ets)
 * 接口参考：[@ohos.telephony.call](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-call.md)
 
 ### 相关权限
 
-拨打电话权限: [ohos.permission.PLACE_CALL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+拨打电话权限: [ohos.permission.PLACE_CALL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionplace_call)
 
 ### 依赖
 
@@ -52,7 +52,7 @@ entry/src/main/ets/
 
 4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
-5.本示例所配置的权限ohos.permission.PLACE_CALL为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+5.本示例所配置的权限ohos.permission.PLACE_CALL为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 
 ### 下载
 

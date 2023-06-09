@@ -172,6 +172,69 @@ export default function abilityTest() {
     })
 
     /**
+     * 添加联系人并解决联系人冲突（电话号码一样，联系人名称不一样）
+     */
+    it(BUNDLE + 'AddContactConflictFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}AddContactConflictFunction_001 begin`);
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.id('btnAdd'));
+      let btnAdd = await driver.findComponent(ON.id('btnAdd'));
+      await btnAdd.click();
+      await driver.delayMs(500);
+
+      // 添加联系人zhangsan
+      await driver.assertComponentExist(ON.text('性别', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.type('TextInput'));
+      let inputTexts: Component[] = await driver.findComponents(ON.type('TextInput'));
+      await inputTexts[0].inputText('zhangsan');
+      await inputTexts[1].inputText('12345678901');
+      await inputTexts[2].inputText('remark1');
+      await inputTexts[3].inputText('18');
+      await driver.assertComponentExist(ON.id('rightBtn'));
+      let rightBtn = await driver.findComponent(ON.id('rightBtn'));
+      await rightBtn.click();
+      await driver.delayMs(500);
+      let list: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(list.length > 0).assertTrue();
+
+      // 添加联系人lisi
+      await btnAdd.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('性别', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.type('TextInput'));
+
+      let inputTexts1: Component[] = await driver.findComponents(ON.type('TextInput'));
+      await inputTexts1[0].inputText('lisi');
+      await inputTexts1[1].inputText('12345678901'); // 电话号码和zhangsan一样
+      await inputTexts1[2].inputText('remark2');
+      await inputTexts1[3].inputText('25');
+      await driver.assertComponentExist(ON.id('rightBtn'));
+      let rightBtn1 = await driver.findComponent(ON.id('rightBtn'));
+      await rightBtn1.click();
+      await driver.delayMs(500);
+      let list1: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(list1.length > 0).assertTrue();
+      await driver.delayMs(500);
+
+      // 点击搜索是否存在电话号码为12345678901的联系人lisi
+      await driver.assertComponentExist(ON.id('searchBar'))
+      let searchBar = await driver.findComponent(ON.id('searchBar'))
+      await searchBar.click()
+      await driver.delayMs(500)
+      await driver.assertComponentExist(ON.type('TextInput'));
+      let input: Component = await driver.findComponent(ON.type('TextInput'));
+      await input.inputText('12345678901');
+      let btn: Component = await driver.findComponent(ON.type('Button'));
+      await btn.click()
+      let list2: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(list2.length > 0).assertTrue();
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}AddContactConflictFunction_001 end`);
+      done();
+    })
+
+    /**
      * 长按联系人进入多选、退出多选
      */
     it(BUNDLE + 'LongClickFunction_001', 0, async function (done) {

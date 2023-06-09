@@ -1,0 +1,420 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "振感体验"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "振感体验"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "振感体验"
+    },
+    {
+      "name": "interaction_slide_left_right",
+      "value": "左右侧滑"
+    },
+    {
+      "name": "interaction_slide_up",
+      "value": "底部上滑"
+    },
+    {
+      "name": "interaction_switch_app",
+      "value": "切换应用"
+    },
+    {
+      "name": "interaction_slide_stop",
+      "value": "上滑停止"
+    },
+    {
+      "name": "display_haptic_video",
+      "value": "触感效果视频"
+    },
+    {
+      "name": "display_show_more",
+      "value": "显示更多"
+    },
+    {
+      "name": "display_haptic_library",
+      "value": "振效库"
+    },
+    {
+      "name": "display_racing",
+      "value": "竞速"
+    },
+    {
+      "name": "display_racing_car_crash",
+      "value": "撞击"
+    },
+    {
+      "name": "display_racing_ignite",
+      "value": "启动"
+    },
+    {
+      "name": "display_racing_skid",
+      "value": "漂移"
+    },
+    {
+      "name": "display_racing_drifting_jet",
+      "value": "漂移喷射"
+    },
+    {
+      "name": "display_racing_jet_n2o",
+      "value": "氮气喷射"
+    },
+    {
+      "name": "display_racing_start",
+      "value": "比赛开始"
+    },
+    {
+      "name": "display_racing_speed_up",
+      "value": "加速"
+    },
+    {
+      "name": "display_battle",
+      "value": "战斗"
+    },
+    {
+      "name": "display_battle_tumble",
+      "value": "翻滚"
+    },
+    {
+      "name": "display_battle_punch",
+      "value": "拳击"
+    },
+    {
+      "name": "display_battle_kick",
+      "value": "踢腿"
+    },
+    {
+      "name": "display_battle_hurt",
+      "value": "受伤"
+    },
+    {
+      "name": "display_battle_blast",
+      "value": "爆炸"
+    },
+    {
+      "name": "display_battle_bomb",
+      "value": "炸弹"
+    },
+    {
+      "name": "display_shoot",
+      "value": "枪击"
+    },
+    {
+      "name": "display_shoot_AK47",
+      "value": "AK47"
+    },
+    {
+      "name": "display_shoot_HK416",
+      "value": "HK416"
+    },
+    {
+      "name": "display_shoot_M4",
+      "value": "M4"
+    },
+    {
+      "name": "display_shoot_MP5",
+      "value": "MP5"
+    },
+    {
+      "name": "display_shoot_CZ75",
+      "value": "CZ75"
+    },
+    {
+      "name": "display_shoot_winchester",
+      "value": "来福"
+    },
+    {
+      "name": "display_shoot_rifle",
+      "value": "步枪"
+    },
+    {
+      "name": "display_shoot_assault_rifle",
+      "value": "冲锋枪"
+    },
+    {
+      "name": "display_shoot_hit_sand",
+      "value": "枪击地面"
+    },
+    {
+      "name": "display_shoot_hit_water",
+      "value": "枪击水面"
+    },
+    {
+      "name": "display_shoot_hit_metal",
+      "value": "枪击金属"
+    },
+    {
+      "name": "display_shoot_hit_wood",
+      "value": "枪击木板"
+    },
+    {
+      "name": "display_shoot_hit_glass",
+      "value": "枪击玻璃"
+    },
+    {
+      "name": "display_instrument",
+      "value": "乐器"
+    },
+    {
+      "name": "display_instrument_cymbals",
+      "value": "钹"
+    },
+    {
+      "name": "display_instrument_cymbals2",
+      "value": "大镲"
+    },
+    {
+      "name": "display_instrument_kick_drum",
+      "value": "底鼓"
+    },
+    {
+      "name": "display_instrument_kick_drum2",
+      "value": "底鼓2"
+    },
+    {
+      "name": "display_instrument_guitar",
+      "value": "吉他"
+    },
+    {
+      "name": "display_instrument_tambourine",
+      "value": "手鼓"
+    },
+    {
+      "name": "display_instrument_bell",
+      "value": "钟"
+    },
+    {
+      "name": "display_instrument_claves",
+      "value": "节奏棒"
+    },
+    {
+      "name": "display_instrument_gong",
+      "value": "锣"
+    },
+    {
+      "name": "display_instrument_triangle",
+      "value": "三角铁"
+    },
+    {
+      "name": "display_realistic",
+      "value": "拟真"
+    },
+    {
+      "name": "display_realistic_ice",
+      "value": "冰块"
+    },
+    {
+      "name": "display_realistic_keyboard",
+      "value": "键盘"
+    },
+    {
+      "name": "display_realistic_typewriter",
+      "value": "打字机"
+    },
+    {
+      "name": "display_realistic_coin_drop",
+      "value": "金币掉落"
+    },
+    {
+      "name": "display_realistic_timer",
+      "value": "定时器"
+    },
+    {
+      "name": "display_realistic_walk",
+      "value": "走路"
+    },
+    {
+      "name": "display_realistic_camerashutter",
+      "value": "相机"
+    },
+    {
+      "name": "display_realistic_camerashutter2",
+      "value": "相机2"
+    },
+    {
+      "name": "display_realistic_clock",
+      "value": "时钟"
+    },
+    {
+      "name": "display_realistic_water",
+      "value": "落水"
+    },
+    {
+      "name": "display_realistic_heartbeat",
+      "value": "心跳"
+    },
+    {
+      "name": "display_realistic_firework",
+      "value": "烟花"
+    },
+    {
+      "name": "display_realistic_picker",
+      "value": "选择器"
+    },
+    {
+      "name": "display_footstep",
+      "value": "脚步"
+    },
+    {
+      "name": "display_footstep_on_carpet",
+      "value": "地毯"
+    },
+    {
+      "name": "display_footstep_on_concrete",
+      "value": "水泥地面"
+    },
+    {
+      "name": "display_footstep_on_grass",
+      "value": "草地"
+    },
+    {
+      "name": "display_footstep_on_board",
+      "value": "木板"
+    },
+    {
+      "name": "display_footstep_on_gravel",
+      "value": "沙地"
+    },
+    {
+      "name": "display_footstep_on_mud",
+      "value": "泥地"
+    },
+    {
+      "name": "display_footstep_on_snow",
+      "value": "雪地"
+    },
+    {
+      "name": "display_environment",
+      "value": "环境"
+    },
+    {
+      "name": "display_environment_rain",
+      "value": "雨水"
+    },
+    {
+      "name": "display_environment_snowdrift",
+      "value": "风雪"
+    },
+    {
+      "name": "display_environment_campfire",
+      "value": "燃烧"
+    },
+    {
+      "name": "display_environment_creek",
+      "value": "溪流"
+    },
+    {
+      "name": "display_environment_wave",
+      "value": "冰川风暴"
+    },
+    {
+      "name": "display_environment_wind",
+      "value": "沙漠风暴"
+    },
+    {
+      "name": "display_environment_thunder",
+      "value": "闪电雷鸣"
+    },
+    {
+      "name": "display_exercise",
+      "value": "运动"
+    },
+    {
+      "name": "display_exercise_badminton",
+      "value": "羽毛球"
+    },
+    {
+      "name": "display_exercise_baseball",
+      "value": "棒球"
+    },
+    {
+      "name": "display_exercise_basketball",
+      "value": "篮球"
+    },
+    {
+      "name": "display_exercise_skating",
+      "value": "滑冰"
+    },
+    {
+      "name": "display_exercise_skiing",
+      "value": "滑雪"
+    },
+    {
+      "name": "display_exercise_tabletennis",
+      "value": "兵乓球"
+    },
+    {
+      "name": "display_exercise_diving",
+      "value": "跳水"
+    },
+    {
+      "name": "display_interaction",
+      "value": "互动"
+    },
+    {
+      "name": "index_find",
+      "value": "发现"
+    },
+    {
+      "name": "index_my",
+      "value": "我的"
+    },
+    {
+      "name": "index_welcome",
+      "value": "欢迎使用OHOS触觉反馈"
+    },
+    {
+      "name": "my_settings",
+      "value": "振动强度设置:"
+    },
+    {
+      "name": "my_version",
+      "value": "版本:               "
+    },
+    {
+      "name": "my_help",
+      "value": "帮助与支持:    "
+    },
+    {
+      "name": "my_develop",
+      "value": "开发人员信息:"
+    },
+    {
+      "name": "my_high_mode",
+      "value": "高强度模式"
+    },
+    {
+      "name": "my_middle_mode",
+      "value": "中强度模式"
+    },
+    {
+      "name": "my_low_mode",
+      "value": "低强度模式"
+    },
+    {
+      "name": "my_select_msg",
+      "value": "强度等级"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "video_list_haptic_video",
+      "value": "触感效果视频"
+    },
+    {
+      "name": "video_list_haptic_video_msg",
+      "value": "为您带来极致协同感受！"
+    }
+  ]
+}

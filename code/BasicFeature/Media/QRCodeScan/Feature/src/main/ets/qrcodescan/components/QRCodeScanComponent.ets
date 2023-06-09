@@ -18,7 +18,7 @@ import image from '@ohos.multimedia.image'
 import prompt from '@ohos.promptAction'
 import common from '@ohos.app.ability.common'
 import { CameraService } from '../CameraService'
-import { QRCodeScanConst } from '../QRCodeScanConst'
+import { QRCodeScanConst, ImageAttribute } from '../QRCodeScanConst';
 import { QRCodeParser } from '../QRCodeParser'
 
 /**
@@ -29,7 +29,6 @@ export default struct QRCodeScanComponent {
   private cameraService: CameraService = new CameraService()
   private qrCodeParser: QRCodeParser = new QRCodeParser()
   private xComponentController: XComponentController = new XComponentController()
-  private canvasContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(new RenderingContextSettings(true))
   @StorageProp('qrCodeParseResult') @Watch('showQrCodeResult') qrCodeParseResult: string = ''
   @State qrCodeImage: image.PixelMap | undefined = undefined
   @State animationOrdinate: number = QRCodeScanConst.SCAN_TO_TOP_HEIGHT
@@ -57,7 +56,7 @@ export default struct QRCodeScanComponent {
     // 设置扫描动画
     this.setQRCodeScanAnimation()
     // 解析二维码图片信息
-    this.qrCodeParser.parseQRCodeImageFromCamera(this.cameraService, this.canvasContext)
+    this.qrCodeParser.parseQRCodeImageFromCamera(this.cameraService);
   }
 
   build() {
@@ -110,21 +109,6 @@ export default struct QRCodeScanComponent {
             .fontSize(18)
             .fontColor(Color.White)
             .margin({ top: 24 })
-
-          Canvas(this.canvasContext)
-            .width(QRCodeScanConst.QR_CODE_SIZE)
-            .aspectRatio(1)
-            .backgroundColor(Color.White)
-            .position({ x: '100%' })
-            .onReady(() => {
-              this.canvasContext.imageSmoothingEnabled = false
-              this.canvasContext.clearRect(0, 0, QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
-              if (this.qrCodeImage === undefined) {
-                return
-              }
-              this.canvasContext.drawImage(this.qrCodeImage, 0, 0,
-              QRCodeScanConst.QR_CODE_SIZE, QRCodeScanConst.QR_CODE_SIZE)
-            })
         }
         .width('100%')
         .height('100%')
@@ -148,25 +132,43 @@ export default struct QRCodeScanComponent {
                 // 打开相册获取图片
                 this.isQRCodeScanStopped = true
                 let context = AppStorage.Get('context') as common.UIAbilityContext
-                let image = await this.qrCodeParser.getSingleImageFromAlbum(context)
-                if (image === null) {
-                  prompt.showToast({
-                    message: $r('app.string.queryImageFailed'),
-                    duration: 1000
-                  })
-                  return
-                }
-                let qrCodeParseRlt = this.qrCodeParser.parseImageQRCode(this.canvasContext, image)
-                if (qrCodeParseRlt) {
-                  prompt.showDialog({
-                    title: $r('app.string.qrcodeResult'),
-                    message: qrCodeParseRlt
-                  })
-                } else {
-                  prompt.showToast({
-                    message: $r('app.string.qrCodeNotRecognized')
-                  })
-                }
+                await context.startAbilityForResult({
+                  parameters: { uri: 'singleselect' },
+                  bundleName: 'com.ohos.photos',
+                  abilityName: 'com.ohos.photos.MainAbility',
+                }).then(data => {
+                  // 获取want数据
+                  let want = data['want'];
+                  if (want) {
+                    // param代表want参数中的paramters
+                    let param = want['parameters'];
+                    if (param) {
+                      // 被选中的图片路径media/image/8
+                      let selectedUri = param['select-item-list'];
+                      setTimeout(async () => {
+                        if (!selectedUri) {
+                          prompt.showToast({
+                            message: $r('app.string.queryImageFailed'),
+                            duration: 1000
+                          })
+                          return;
+                        }
+                        // 获取解析数据
+                        let qrCodeParseRlt = await this.qrCodeParser.parseImageQRCode(selectedUri[0]);
+                        if (qrCodeParseRlt.isSucess) {
+                          prompt.showDialog({
+                            title: $r('app.string.qrcodeResult'),
+                            message: qrCodeParseRlt.decodeResult
+                          })
+                        } else {
+                          prompt.showToast({
+                            message: $r('app.string.qrCodeNotRecognized')
+                          })
+                        }
+                      }, 50)
+                    }
+                  }
+                })
               })
 
             Image($r('app.media.scan_more'))

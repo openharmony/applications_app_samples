@@ -1,0 +1,28 @@
+{
+    "version-name": "2.0.0",
+    "version-code": 2,
+    "app-distribution-type": "os_integration",
+    "uuid": "5027b99e-5f9e-465d-9508-a9e0134ffe18",
+    "validity": {
+        "not-before": 1594865258,
+        "not-after": 1689473258
+    },
+    "type": "release",
+    "bundle-info": {
+        "developer-id": "OpenHarmony",
+        "distribution-certificate": "-----BEGIN CERTIFICATE-----\nMIICRDCCAcmgAwIBAgIED+E4izAMBggqhkjOPQQDAwUAMGgxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEoMCYGA1UEAxMfT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gUm9vdCBDQTAeFw0y\nMTAyMDIxMjE0MThaFw00OTEyMzExMjE0MThaMGgxCzAJBgNVBAYTAkNOMRQwEgYD\nVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVhbTEoMCYG\nA1UEAxMfT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gUm9vdCBDQTB2MBAGByqGSM49\nAgEGBSuBBAAiA2IABE023XmRaw2DnO8NSsb+KG/uY0FtS3u5LQucdr3qWVnRW5ui\nQIL6ttNZBEeLTUeYcJZCpayg9Llf+1SmDA7dY4iP2EcRo4UN3rilovtfFfsmH4ty\n3SApHVFzWUl+NwdH8KNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMC\nAQYwHQYDVR0OBBYEFBc6EKGrGXzlAE+s0Zgnsphadw7NMAwGCCqGSM49BAMDBQAD\nZwAwZAIwd1p3JzHN93eoPped1li0j64npgqNzwy4OrkehYAqNXpcpaEcLZ7UxW8E\nI2lZJ3SbAjAkqySHb12sIwdSFKSN9KCMMEo/eUT5dUXlcKR2nZz0MJdxT5F51qcX\n1CumzkcYhgU=\n-----END CERTIFICATE-----\n",
+        "bundle-name": "com.example.kikakeyboard",
+        "apl": "normal",
+        "app-feature": "hos_system_app"
+    },
+    "acls": {
+        "allowed-acls": [
+            "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED","ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        ]
+    },
+    "permissions": {
+        "restricted-permissions": []
+    },
+    "issuer": "pki_internal",
+    "app-privilege-capabilities": ["AllowAppDesktopIconHide"]
+}

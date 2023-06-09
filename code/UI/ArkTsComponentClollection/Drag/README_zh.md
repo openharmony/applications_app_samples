@@ -34,7 +34,7 @@ entry/src/main/ets/MainAbility
 
 * 本模块提供了界面元素拖拽的功能。
 
-* 创建IconData文件定义图标，源码参考：[IconData.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/Drag/entry/src/main/ets/MainAbility/model/IconData.ets)整改
+* 创建IconData文件定义图标，源码参考：[IconData.ets](entry/src/main/ets/MainAbility/model/IconData.ets)整改
 
 * onDragStart，onDrop拖拽事件方法实现图标的拖拽
 
@@ -50,7 +50,7 @@ entry/src/main/ets/MainAbility
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022)才可编译运行。
+2.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 ### 下载
 

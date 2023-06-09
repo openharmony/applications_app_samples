@@ -38,12 +38,12 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用bundleState接口中isIdleState方法判断指定bundleName的应用当前是否是空闲状态来分类不常用应用列表，queryBundleStateInfos方法通过指定起始和结束时间查询应用使用时长统计信息来获得每个应用的使用总时长。
-* 源码链接：[BundleStateUtil.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/ets/utils/BundleStateUtil.ets)，[FreeApps.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/main/ets/common/FreeApps.ets)，[PanelView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/main/ets/common/PanelView.ets)，[UsageList.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/main/ets/common/UsageList.ets)
+* 源码链接：[BundleStateUtil.ets](Library/src/main/ets/utils/BundleStateUtil.ets)，[FreeApps.ets](entry/src/main/ets/common/FreeApps.ets)，[PanelView.ets](entry/src/main/ets/common/PanelView.ets)，[UsageList.ets](entry/src/main/ets/common/UsageList.ets)
 * 接口参考：[@ohos.bundleState](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md)
 
 ### 相关权限
 
-应用信息权限：[ohos.permission.BUNDLE_ACTIVE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+应用信息权限：[ohos.permission.BUNDLE_ACTIVE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionbundle_active_info)
 
 ### 依赖
 
@@ -59,7 +59,7 @@ entry/src/main/ets/
 
 4.本示例涉及使用系统接口：queryBundleStateInfos()，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
-5.本示例所配置的权限为ohos.permission.BUNDLE_ACTIVE_INFO为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+5.本示例所配置的权限为ohos.permission.BUNDLE_ACTIVE_INFO为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 
 ### 下载
 如需单独下载本工程，执行如下命令：

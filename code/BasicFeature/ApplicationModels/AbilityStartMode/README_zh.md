@@ -61,11 +61,11 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 本示例启动standard、singleton、specificed三种模式的方法主要封装在Util当中，源码参考:[Util.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/ApplicationModels/AbilityStartMode/entry/src/main/ets/common/Util.ts) 。
+* 本示例启动standard、singleton、specified三种模式的方法主要封装在Util当中，源码参考:[Util.ts](entry/src/main/ets/common/Util.ts) 。
     * 新建Ability：创建三个代表standard、singleton、specified模式的Ability，如工程目录中的SingletonAbility、SpecifiedAbility、StandardAbility，并在module.json文件中将launchType属性修改为对应的启动模式属性。
     * 启动指定Ability：通过Util中的startMode函数根据页面所传的abilityName，启动对应的ability并进入详情页面。
     * specified多实例功能实现：specified模式则是根据MyAbilityStage中的onAcceptWant函数给用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。
-   
+
 ### 相关权限
 
 不涉及。

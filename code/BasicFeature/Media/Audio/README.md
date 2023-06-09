@@ -66,7 +66,7 @@ library/
     * 使用audioRoutingManager.getPreferOutputDeviceForRendererInfo()获取当前发声设备
     * 使用audioRoutingManager.on('deviceChange',audio.DeviceFlag.OUTPUT_DEVICES_FLAG)来监听设备上下线
     * 当收到监听消息后，重新调用audioRoutingManager.getPreferOutputDeviceForRendererInfo()接口来查询当前发声设备
-* 音频焦点功能都封装Focus，源码参考：[Focus.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/Focus.ets)
+* 音频焦点功能都封装Focus，源码参考：[Focus.ets](entry/src/main/ets/pages/Focus.ets)
     * 使用audio.createAudioRenderer()接口分别创建音乐类型和铃声类型的audioRenderer对象
     * 对每个render对象都调用audioRenderer.setInterruptMode(audio.InterruptMode.INDEPENDENT_MODE),完成独立焦点的设置
     * 对每个render对象都监听audioRenderer.on('audioInterrupt'),收到回调时，说明上前renderer对象被暂停或者恢复播放，据此更新UI状态，如果是恢复，则需要再次调用audioRenderer.start()和wirte()进行恢复播放

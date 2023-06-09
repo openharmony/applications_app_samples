@@ -58,7 +58,7 @@ feature/emitter/src/main/ets/
 
 ### 依赖
 
-[UpgradePopup](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/UpgradePopup) 本示例的升级弹窗功能依赖此示例。
+不涉及。
 
 ### 约束与限制
 

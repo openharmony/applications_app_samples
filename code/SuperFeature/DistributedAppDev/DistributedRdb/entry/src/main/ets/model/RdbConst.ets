@@ -17,7 +17,7 @@ import data_rdb from '@ohos.data.relationalStore';
 
 export const TABLE_NAME = 'contact';
 
-export const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS contact(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, gender INTEGER, phone TEXT NOT NULL, remark TEXT,age INTEGER)';
+export const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS contact(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, gender INTEGER, phone TEXT NOT NULL UNIQUE, remark TEXT,age INTEGER)';
 
 export const COLUMNS = ['id', 'name', 'gender', 'phone', 'remark', 'age'];
 

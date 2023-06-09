@@ -160,6 +160,11 @@ export default function appTest() {
       // 再次新建一个闹钟
       await addClock.click();
       await driver.delayMs(1000);
+      let date = new Date;
+      if (date.getMinutes() >= 56) {
+        await driver.swipe(122, 950, 122, 900, 600);
+        await driver.delayMs(1000);
+      }
       // 坐标基于rk3568
       await driver.swipe(522, 950, 522, 900, 600);
       await driver.delayMs(1000);
@@ -391,7 +396,12 @@ export default function appTest() {
       await driver.delayMs(1000);
       await calendarTime.click();
       await driver.delayMs(1000);
+      let date = new Date;
       // 坐标基于rk3568
+      if (date.getMinutes() >= 57) {
+        await driver.swipe(122, 950, 122, 900, 600);
+        await driver.delayMs(1000);
+      }
       await driver.swipe(522, 950, 522, 900, 600);
       await driver.delayMs(1000);
       await driver.swipe(522, 950, 522, 900, 600);

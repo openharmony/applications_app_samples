@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "cardName",
+      "value": "音乐卡片"
+    },
+    {
+      "name": "cardButton",
+      "value": "服务卡片"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "AddForm",
+      "value": "添加到桌面"
+    }
+  ]
+}
