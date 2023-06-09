@@ -9,3 +9,7 @@
 |卸载预置应用| 已安装相机应用 | 长按相机图标，在弹出的菜单中，点击“卸载” | 弹出确认卸载弹框，卸载按钮正常点击 |Pass|
 |通过Launcher打开不同应用| 位于Launcher第一页 | 点击不同应用的图标 | 正常打开对应的应用 |Pass|
 |清除近期任务| 位于Launcher第一页 | 在Launcher空白处上滑，点击底部清理图标 | 近期任务列表被成功清除 |Pass|
+|启动最近的组件实例 | 已安装startRecent应用 | 点击应用图标，打开应用后点击home键回到桌面，再次点击应用图标 | 把最近的一个Ability实例拉到前台，不会新建Ability实例 |Pass|
+|启动最近的组件实例 | 已安装startRecent应用 | 长按应用图标，在弹出的菜单中，点击“打开”，打开应用后点击home键回到桌面，再次长按应用图标，在弹出的菜单中，点击“打开” | 把最近的一个Ability实例拉到前台，不会新建Ability实例 |Pass|
+|启动最近的主组件实例 | 已安装startRecent应用 | 点击应用图标，点击MainAbility中的按钮打开SecondAbility，点击home键回到桌面，再次点击应用图标 | 把最近的一个EntryAbility实例拉到前台，不会新建Ability实例，不会打开SecondAbility |Pass|
+|跨任务链返回 | 已安装crossChain应用 | 点击应用图标，点击按钮打开SecondAbility，点击back键 | 返回到EntryAbility上，而不是返回桌面 |Pass|
