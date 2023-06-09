@@ -38,7 +38,7 @@ class TextFileManager {
       // 从文件读取一段内容，限制最大长度为8192
       let buf = new ArrayBuffer(TEXT_MAX_READ_LEN);
       try {
-        let readLen = fs.readSync(file.fd, buf, { offset: 0 });
+        let readLen: number = fs.readSync(file.fd, buf, { offset: 0 });
         TextFileManager.readString = String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen)));
         TextFileManager.readResult = readLen;
       } catch (error1) {
@@ -77,4 +77,4 @@ class TextFileManager {
   }
 }
 
-export default new TextFileManager()
+export default new TextFileManager();
