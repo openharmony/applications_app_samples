@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "music"
+    },
+    {
+      "name": "Card_Button",
+      "value": "add widget to desktop"
+    },
+    {
+      "name": "AddForm",
+      "value": "add to desktop"
+    }
+  ]
+}

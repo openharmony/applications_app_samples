@@ -9,20 +9,20 @@
       "value": "the test ability"
     },
     {
-      "name": "cardName",
-      "value": "音乐卡片"
-    },
-    {
-      "name": "cardButton",
-      "value": "服务卡片"
-    },
-    {
       "name": "TestAbility_label",
       "value": "test label"
     },
     {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Card_Button",
+      "value": "add weight to desktop"
+    },
+    {
       "name": "AddForm",
-      "value": "添加到桌面"
+      "value": "add to desktop"
     }
   ]
 }

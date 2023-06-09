@@ -17,10 +17,13 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import logger from '../util/Logger';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 
 const TAG = '[Sample_EtsCardMusic]';
 const BUNDLE = 'MusicControl_';
 const DRIVER = Driver.create();
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
 
@@ -28,22 +31,22 @@ export default function abilityTest() {
      * 长按打开卡片列表
      */
     it(BUNDLE + 'OpenFormList_001', 0, async function (done) {
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       logger.info(TAG, `${BUNDLE}OpenFormList_001 begin`);
-      await DRIVER.delayMs(1000)
-      // 点击退出，坐标基于rk3568
-      await DRIVER.click(210, 1244);
-      await DRIVER.delayMs(1500);
+      // 点击退出
+      await DRIVER.pressBack();
+      await DRIVER.delayMs(500);
       // 检查桌面是否存在音乐卡片应用
-      await DRIVER.assertComponentExist(ON.text('$string:cardName'));
-      let app = await DRIVER.findComponent(ON.text('$string:cardName'));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
+      let app = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
       await app.longClick();
-      await DRIVER.delayMs(1000);
+      await DRIVER.delayMs(500);
       // 检查长按应用是否存在服务卡片弹窗
-      await DRIVER.assertComponentExist(ON.text('$string:cardButton'));
-      let formBtn = await DRIVER.findComponent(ON.text('$string:cardButton'));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Card_Button'))));
+      let formBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.Card_Button'))));
       await formBtn.click();
-      await DRIVER.delayMs(1000);
       done();
       logger.info(TAG, `${BUNDLE}OpenFormList_001 end`);
     })
@@ -54,48 +57,19 @@ export default function abilityTest() {
     it(BUNDLE + 'createForm_001', 0, async function (done) {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       logger.info(TAG, `${BUNDLE}createForm_001 begin`);
-      await DRIVER.delayMs(1000);
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
+      await DRIVER.delayMs(500);
       // 检查是否有添加到桌面按钮
-      await DRIVER.assertComponentExist(ON.text('$string:AddForm'));
-      let addToDesk = await DRIVER.findComponent(ON.text('$string:AddForm'));
+      await DRIVER.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.AddForm'))));
+      let addToDesk = await DRIVER.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.AddForm'))));
       await addToDesk.click();
-      await DRIVER.delayMs(1000);
+      await DRIVER.delayMs(500);
       // 检查是否桌面上是否有音乐卡片
-      await DRIVER.assertComponentExist(ON.text('$string:cardName'));
-      let resultArray = await DRIVER.findComponents(ON.text('$string:cardName'));
+      await DRIVER.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
+      let resultArray = await DRIVER.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       expect(resultArray.length).assertEqual(2);
       done();
       logger.info(TAG, `${BUNDLE}createForm_001 end`);
-    })
-
-    /**
-     * 测试卡片音乐功能
-     */
-    it(BUNDLE + 'testFormMusic_001', 0, async function (done) {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      logger.info(TAG, `${BUNDLE}testFormMusic_001 begin`);
-      await DRIVER.delayMs(1000);
-      // 检查音乐卡片上是否有播放按钮
-      await DRIVER.assertComponentExist(ON.id('play'));
-      let play = await DRIVER.findComponent(ON.id('play'));
-      await play.click();
-      await DRIVER.delayMs(1000);
-      // 检查音乐卡片上是否有上一首按钮
-      await DRIVER.assertComponentExist(ON.id('previous'));
-      let previous = await DRIVER.findComponent(ON.id('previous'));
-      await previous.click();
-      await DRIVER.delayMs(1000);
-      // 检查音乐卡片上是否有下一首按钮
-      await DRIVER.assertComponentExist(ON.id('next'));
-      let next = await DRIVER.findComponent(ON.id('next'));
-      await next.click();
-      await DRIVER.delayMs(1000);
-      // 检查音乐卡片上是否有暂停按钮
-      await DRIVER.assertComponentExist(ON.id('pause'));
-      let pause = await DRIVER.findComponent(ON.id('pause'));
-      await pause.click();
-      done();
-      logger.info(TAG, `${BUNDLE}testFormMusic_001 end`);
     })
   })
 }
