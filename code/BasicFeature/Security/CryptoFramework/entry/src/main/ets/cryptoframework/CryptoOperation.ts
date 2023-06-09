@@ -192,7 +192,7 @@ export class CryptoOperation {
     Logger.info(TAG, `success, cipher text: ${cipherText.data}`);
     try {
       plainTextBlob = await decode.update(cipherText);
-      let tmpArr: Uint8Array = plainTextBlob.data
+      let tmpArr: Uint8Array = plainTextBlob.data;
       plainText = arrayBufferToString(tmpArr);
       Logger.info(TAG, `success, plain text: ${plainText}`);
     } catch (error) {
@@ -214,7 +214,6 @@ export class CryptoOperation {
       let key = await this.convertAesKey(aesKeyBlobString);
       try {
         aesEncryptJsonStr = await this.aesGcmEncrypt(key, textString);
-        return aesEncryptJsonStr;
       } catch (error) {
         Logger.error(TAG, `encrypt error, ${error.code}, ${error.message}`);
       }
@@ -222,6 +221,7 @@ export class CryptoOperation {
       Logger.error(TAG, `convert key error, ${error.code}, ${error.message}`);
       return null;
     }
+    return aesEncryptJsonStr;
   }
 
   async aesConvertAndDecrypt(aesKeyBlobString: string, textString: string): Promise<string> {
