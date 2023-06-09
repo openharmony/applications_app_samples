@@ -66,7 +66,6 @@ function genGcmParamsSpec(): cryptoFramework.GcmParamsSpec {
 }
 
 export class CryptoOperation {
-
   async generateAesKey(): Promise<string> {
     let symKeyGenerator;
     let encodedKey;
@@ -301,7 +300,7 @@ export class CryptoOperation {
       let signBlob = stringToUint8Array(textString);
       try {
         let signedBlob = await signer.sign({ data: signBlob });
-        Logger.info(TAG, 'success,RSA sign output is'  + signedBlob.data.length);
+        Logger.info(TAG, 'success,RSA sign output is' + signedBlob.data.length);
         let rsaSignedBlobString = uint8ArrayToShowStr(signedBlob.data);
         Logger.info(TAG, 'success,RSA sign string is' + rsaSignedBlobString);
         return rsaSignedBlobString;
@@ -333,10 +332,10 @@ export class CryptoOperation {
           Logger.info(TAG, 'success, RSA Verify result = success');
         }
         return result;
-      } catch(error) {
+      } catch (error) {
         Logger.error(TAG, `verify dofinal failed, ${error.code}, ${error.message}`);
       }
-    } catch(err) {
+    } catch (err) {
       Logger.error(TAG, `verify init failed, ${err.code}, ${err.message}`);
     }
   }
