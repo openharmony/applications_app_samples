@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,6 +26,9 @@ export default {
     },
     value: {
       default: 0
+    },
+    sliderName: {
+      default: ''
     }
   },
 
@@ -33,7 +36,8 @@ export default {
     sliderLeftText: '',
     sliderMinValue: 1,
     sliderMaxValue: 10,
-    sliderValue: 0
+    sliderValue: 0,
+    currentSliderName: ''
   },
 
   onInit() {
@@ -41,6 +45,7 @@ export default {
     this.sliderMinValue = this.min
     this.sliderMaxValue = this.max
     this.sliderValue = this.value
+    this.currentSliderName = this.sliderName
   },
 
   setValue(sliderValueData) {
