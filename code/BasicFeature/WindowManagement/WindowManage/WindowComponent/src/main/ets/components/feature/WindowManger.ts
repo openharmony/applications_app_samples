@@ -79,14 +79,6 @@ class WindowManger {
       }
     });
     try {
-      windowStage.getMainWindow().then((data) => {
-        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        data.on('windowEvent', (data) => {
-          console.info('Main Window event happened. Event:' + JSON.stringify(data));
-        });
-      }).catch((err) => {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-      });
       subWindow.setWindowFocusable(true, (err) => {
         if (err.code) {
           console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
@@ -96,7 +88,7 @@ class WindowManger {
       });
       subWindow.on('windowEvent', (data) => {
         console.info('Sub Window event happened. Event:' + JSON.stringify(data));
-        let message = '';
+        let message = null;
         switch (JSON.stringify(data)) {
           case '1':
             message = $r('app.string.foreground');
@@ -106,6 +98,9 @@ class WindowManger {
             break;
           case '3':
             message = $r('app.string.lose_focus');
+            break;
+          case '4':
+            message = $r('app.string.background');
             break;
           default:
             message = $r('app.string.unknown');

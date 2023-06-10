@@ -13,6 +13,10 @@
       "value": "失焦状态"
     },
     {
+      "name": "background",
+      "value": "切到后台"
+    },
+    {
       "name": "unknown",
       "value": "Unknown"
     }

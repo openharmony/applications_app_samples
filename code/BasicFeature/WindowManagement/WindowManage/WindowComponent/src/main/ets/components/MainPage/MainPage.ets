@@ -123,8 +123,15 @@ struct VideoWindow {
       .height('75%')
       Column() {
         Text(this.focusText)
+          .id('focus')
+          .width(300)
+          .height(150)
+          .textAlign(TextAlign.Center)
           .fontSize(50)
+          .fontColor(Color.Black)
       }
+      .width(500)
+      .height(300)
       .align(Alignment.Bottom)
     }
   }
