@@ -1,19 +1,21 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *sss
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_MyApplication_com.acts.abilityabacktoabilityb.cer",
-          "storePassword": "0000001BC9238BA956BBE468698780FA5BA60FB854B0804AFCDC1C66E9AF5204DDBB8743375F48CD7311DB",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B6896D9E90AD4287E432BBB030CBD342607E2274A9663558D16AFAF36B93D3DD4205409188CCAC9",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_MyApplication_com.acts.abilityabacktoabilityb.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_MyApplication_com.acts.abilityabacktoabilityb.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

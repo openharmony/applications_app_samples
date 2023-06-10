@@ -58,4 +58,4 @@ class LoggerModel {
   }
 }
 
-export let Logger =  new LoggerModel('[Sample_startresentability]')
+export let Logger =  new LoggerModel('[Sample_CrossChainBack]')
