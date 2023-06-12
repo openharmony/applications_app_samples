@@ -575,7 +575,7 @@ export default function abilityTest() {
         ' data:' + fileAsset.dateAdded, +', ' + fileAsset.dateModified)
         await FileManager.deleteFileAsset(ability.context, fileAsset)
       }
-      for (let i = 0;i < TYPE.length; i++) {
+      for (let i = 0; i < TYPE.length; i++) {
         let originalResult = await FileManager.getFileAssets(ability.context, TYPE[i][0])
         let originalNum: number = await originalResult.getCount()
         let addNum: number = 0
@@ -626,7 +626,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'GetFileAssetsByNameFunction_001', 0, async function () {
       Logger.info(TAG, BUNDLE + 'GetFileAssetsByNameFunction_001 begin')
-      for (let i = 0;i < TYPE.length; i++) {
+      for (let i = 0; i < TYPE.length; i++) {
         let name = 'newFile' + Date.now().toString() + TYPE[i][1]
         let createFile = await FileManager.createFileAsset(ability.context, TYPE[i][0], TYPE[i][2], name)
         let getFile = await FileManager.getFileAssetsByName(ability.context, name)
@@ -645,7 +645,7 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'CreateTxtFileAssetFunction_001 begin')
       let result = await FileManager.getFileAssets(ability.context, TYPE[2][0])
       let num = await result.getCount()
-      for (let i = 0;i < TEST_NUM; i++) {
+      for (let i = 0; i < TEST_NUM; i++) {
         await FileManager.createTxtFileAsset(ability.context)
         let newResult = await FileManager.getFileAssets(ability.context, TYPE[2][0])
         let newNum = newResult.getCount()
