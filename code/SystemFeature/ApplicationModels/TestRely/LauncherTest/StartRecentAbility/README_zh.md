@@ -1,6 +1,6 @@
 # 启动最近的组件实例
 
-### **介绍**
+### 介绍
 
 本示例为一个仿桌面应用测试demo，测试的功能为：
 
@@ -12,7 +12,7 @@
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | ![entryAbility1](.\screenshots\zh\entryAbility1.jpeg) | ![entryAbility2](.\screenshots\zh\entryAbility2.jpeg) | ![secondAbility](.\screenshots\zh\secondAbility.jpeg) |
 
-### 使用说明
+使用说明
 
 1.安装编译的hap包，将应用安装在仿桌面上。（仅在仿桌面中使用才会有以下情况）
 
@@ -24,7 +24,7 @@
 
 5.打开EntryAbility页面，会有时间戳显示，点击”startSingletonAbility“打开单实例的SecondAbility（页面中显示”SingletonAbility“），当打开SecondAbility后，返回桌面并再次打开应用，显示为EntryAbility且时间戳内容未改变。
 
-###  工程目录
+### 工程目录
 
 ```
 entry/src/main/ets/

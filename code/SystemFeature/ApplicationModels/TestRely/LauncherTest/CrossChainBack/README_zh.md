@@ -1,6 +1,6 @@
 # 跨任务链返回
 
-### **介绍**
+### 介绍
 
 本示例为一个仿桌面应用测试demo，测试的功能为：
 
@@ -12,7 +12,7 @@
 | --------------------------------------------------- | ----------------------------------------------------- |
 | ![entryAbility](.\screenshots\zh\entryAbility.jpeg) | ![secondAbility](.\screenshots\zh\secondAbility.jpeg) |
 
-### 使用说明
+使用说明
 
 1.安装编译的hap包。
 
@@ -24,7 +24,7 @@
 
 5.当打开SecondAbility后，点击返回键，回到EntryAbility而不是桌面。
 
-###  工程目录
+### 工程目录
 
 ```
 entry/src/main/ets/

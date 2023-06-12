@@ -29,7 +29,6 @@ class StubTest extends rpc.RemoteObject {
 }
 
 export default class ServiceAbility extends ServiceExtensionAbility {
-
   onCreate(want) {
     Logger.debug("ServiceExtensionAbility has been onCreate");
   }

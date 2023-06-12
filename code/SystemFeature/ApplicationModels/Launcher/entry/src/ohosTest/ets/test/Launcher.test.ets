@@ -19,7 +19,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import hilog from '@ohos.hilog'
 
 const TAG = '[Sample_Launcher_Test]'
-const DOMAIN = 0xF811;
+const DOMAIN = 0xF811
 const BUNDLE = 'LauncherTest_'
 let appStartRecent = 'startRecent'
 let timeStampId = 'time'
@@ -29,11 +29,15 @@ let appCrossChain = 'crossChain'
 let crossChainButtonId = 'startSecondAbility'
 let entryAbilityText = 'EntryAbility'
 let secondAbilityText = 'SecondAbility'
+// Return desktop coordinates based on rk3568
+let pressHome_x = 360
+let pressHome_y = 1270
+// Open the recent task list coordinates based on rk3568
+let pressRecent_x = 576
+let pressRecent_y = 1270
 
 export default function launcherTest() {
-
   describe('ActsLauncherTest', () => {
-
     /**
      * Scene:Start the most recent component instance.
      * Input:Click to open the application, return to the desktop, and then click the icon to open the application again.
@@ -44,7 +48,7 @@ export default function launcherTest() {
       let driver = Driver.create()
       await driver.delayMs(1000)
       // Open the recent task list
-      await driver.click(576, 1270)
+      await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(300)
       // Find the number of ability instances that have been opened
       let appCount = 1
@@ -66,7 +70,7 @@ export default function launcherTest() {
       let firstTimeStamp = JSON.stringify(await firstTimeStampComponent.getText())
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 getFirstTimeStamp, firstTimeStamp: ' + firstTimeStamp)
       // Click the home button to return to the desktop
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
       // open the test application again
       await app.click()
@@ -79,15 +83,15 @@ export default function launcherTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
       expect(firstTimeStamp).assertEqual(secondTimeStamp)
       // Open the recent task list
-      await driver.click(576, 1270)
+      await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(300)
       // Verify that no new instance has been created
       let secondAppList = await driver.findComponents(ON.text(appStartRecent))
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 confirmAbilityNotAdd, secondAppList: ' + secondAppList.length)
       expect(secondAppList.length).assertEqual(appCount)
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 end')
       done()
@@ -104,7 +108,7 @@ export default function launcherTest() {
       let driver = Driver.create()
       await driver.delayMs(1000)
       // Open the recent task list
-      await driver.click(576, 1270)
+      await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(500)
       // Find the number of ability instances that have been opened
       let appCount = 1
@@ -131,7 +135,7 @@ export default function launcherTest() {
       let firstTimeStamp = JSON.stringify(await firstTimeStampComponent.getText())
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 getFirstTimeStamp, firstTimeStamp: ' + firstTimeStamp)
       // Click the home button to return to the desktop
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
       // open the test application with a long click again
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 openApplicationByLongClickAgain')
@@ -146,15 +150,15 @@ export default function launcherTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
       expect(firstTimeStamp).assertEqual(secondTimeStamp)
       // Open the recent task list
-      await driver.click(576, 1270)
+      await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(300)
       // Verify that no new instance has been created
       let secondAppList = await driver.findComponents(ON.text(appStartRecent))
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 confirmAbilityNotAdd, secondAppList: ' + secondAppList.length)
       expect(secondAppList.length).assertEqual(appCount)
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 end')
       done()
@@ -171,7 +175,7 @@ export default function launcherTest() {
       let driver = Driver.create()
       await driver.delayMs(1000)
       // Open the recent task list
-      await driver.click(576, 1270)
+      await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(500)
       // Find the number of ability instances that have been opened
       let appList = await driver.findComponents(ON.text(appStartRecent))
@@ -200,7 +204,7 @@ export default function launcherTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 confirmIsUIAbility2, singletonAbilityText: ' + singletonAbilityText)
       await driver.assertComponentExist(ON.text(singletonAbilityText))
       // Click the home key
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
       // Find and open the test application again
       await app.click()
@@ -213,15 +217,15 @@ export default function launcherTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
       expect(secondTimeStamp).assertEqual(firstTimeStamp)
       // Open the recent task list
-      await driver.click(576, 1270)
+      await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(300)
       // Verify that no new instance has been created
       let secondAppList = await driver.findComponents(ON.text(appStartRecent))
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 confirmAbilityNotAdd, appList2: ' + secondAppList.length)
       expect(secondAppList.length).assertEqual(appCount)
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 end')
       done()
@@ -259,7 +263,7 @@ export default function launcherTest() {
       // Verify back to EntryAbility instead of to the desktop
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskChainBack_001 assertIsEntryAbility, entryAbilityText: ' + entryAbilityText)
       await driver.assertComponentExist(ON.text(entryAbilityText))
-      await driver.click(360, 1270)
+      await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskChainBack_001 end')
       done()
