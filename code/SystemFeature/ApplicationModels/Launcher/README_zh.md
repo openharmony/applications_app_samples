@@ -79,7 +79,7 @@ entry/src/main/ets/
 
 * 点击桌面应用拉起最近任务至前台功能模块
   * 使用ServiceExtensionContext模块的startRecentAbility接口（系统能力：SystemCapability.Ability.AbilityRuntime.Core），拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
-  * 源码链接：[LauncherAbilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 源码链接：[LauncherAbilityManager.ts](./base/src/main/ets/default/manager/LauncherAbilityManager.ts)
   * 接口参考：[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)
 ### 相关权限
 
