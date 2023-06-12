@@ -1,0 +1,47 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Duration" : 41,
+						"Parameters" : 
+						{
+							"Frequency" : 68,
+							"Intensity" : 54
+						},
+						"StartTime" : 130,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 55,
+						"Parameters" : 
+						{
+							"Frequency" : 90,
+							"Intensity" : 78
+						},
+						"StartTime" : 202,
+						"Type" : "continuous"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-17",
+		"Discription" : "A json file format demo",
+		"Version" : 1.0
+	}
+}

@@ -59,7 +59,8 @@ features/settingitems/src/main/ets/
 通过Navigation组件实现单/双栏展示，由Navbar(设置主页面)和Content(跳转子页面)两部分区域组成，Navigation组件支持Stack、Split以及Auto三种模式。    
 1、stack模式：导航栏与内容区独立显示，相当于多个页面。展示效果：从Navbar(设置主页面)跳转到Content1(WLAN页面)跳转到Content2(更多WLAN模式)。  
 2、Split模式：导航栏与内容区分两栏显示。展示效果：Navbar+Content1。  
-3、auto模式：Navigation组件可以根据应用窗口尺寸，自动选择合适的模式：窗口宽度小于520vp时，采用Stack模式显示；窗口宽度大于等于520vp时，采用Split模式显示。当窗口尺寸发生改变时，Navigation组件也会自动在Stack模式和Split模式之间切换。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Settings/products/default/src/main/ets/pages/Index.ets )。
+3、auto模式：Navigation组件可以根据应用窗口尺寸，自动选择合适的模式：窗口宽度小于520vp时，采用Stack模式显示；窗口宽度大于等于520vp时，采用Split模式显示。当窗口尺寸发生改变时，Navigation组件也会自动在Stack模式和Split模式之间切换。[源码参考](products/default/src/main/ets/pages/Index.ets )。
+
 #### 实现点击跳转或刷新
 Navigation组件通常搭配NavRouter组件以及NavDestination组件一起使用：
 * NavRouter组件用于控制Navigation组件Content区域的显示和刷新逻辑：其必须包含两个孩子节点。  
@@ -68,9 +69,9 @@ Navigation组件通常搭配NavRouter组件以及NavDestination组件一起使�
 3、NavRouter组件通过onStateChange回调事件，用于通知开发者NavRouter的状态：用户点击NavRouter，激活NavRouter并加载对应的NavDestination子组件时，回调onStateChange(true)；  
 4、NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。
 * NavDestination组件用于实际刷新Navigation组件Content区域的显示。
-* 例如：在本示例中wlan功能项为NavRouter的第一个孩子节点，跳转的子页面WLAN为NavRouter的第二个孩子节点，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Settings/features/settingitems/src/main/ets/wlan/WlanSettingItem.ets )。
+* 例如：在本示例中wlan功能项为NavRouter的第一个孩子节点，跳转的子页面WLAN为NavRouter的第二个孩子节点，[源码参考](features/settingitems/src/main/ets/wlan/WlanSettingItem.ets )。
 #### 实现多级跳转
-Navigation组件支持自动切换单栏和双栏的显示效果，同时可以根据当前状态自动添加返回键及响应系统的返回键事件。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Settings/features/settingitems/src/main/ets/wlan/WlanMoreSettingItem.ets )。  
+Navigation组件支持自动切换单栏和双栏的显示效果，同时可以根据当前状态自动添加返回键及响应系统的返回键事件。[源码参考](features/settingitems/src/main/ets/wlan/WlanMoreSetting.ets )。  
 1、通过激活SettingList中的WLANSettingItem，可以加载及显示WlanSetting。  
 2、激活WlanSetting中的WlanMoreSettingItem，可以加载及显示WlanMoreSetting。
 

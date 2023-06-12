@@ -41,7 +41,7 @@
 3.Util中有二级菜单，点击进入对应的二级界面，包含：
 
 * StringCode：字符串编解码，点击功能按钮完成各个功能。
-* RationnalNumber：有理数比较，点击功能按钮完成各个功能。
+* RationalNumber：有理数比较，点击功能按钮完成各个功能。
 * LRUCache：LRU缓冲区，点击功能按钮完成各个功能。
 * ScopeHelper：范围判断，点击功能按钮完成各个功能。
 * Base64Helper：Base64编解码，点击功能按钮完成各个功能。
@@ -107,7 +107,7 @@ LanguageBaseClassLibrary
 5.Util，使用util中不同的功能函数实现以下功能：
 
 * StringCode：字符串编解码。
-* RationnalNumber：有理数比较。
+* RationalNumber：有理数比较。
 * LRUCache：LRU缓冲区。
 * ScopeHelper：范围判断。
 * Base64Helper：Base64编解码。

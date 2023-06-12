@@ -45,20 +45,16 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用ServiceExtension接口验证提供的Stage模型，Canvas组件绘制小游戏，queryBundleStatsInfos接口通过指定起始和结束时间查询应用使用时长统计信息来统计展示游戏在线时长，requestSuspendDelay接口申请后台应用延迟挂起来验证短时任务API能否正常执行，rpc接口提供进程间通信能力，wantAgent接口验证系统能力。
-* 源码链接：[service.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/ServiceAbility/service.ts)，[EntryAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/entryability/EntryAbility.ts)，[ServiceModel.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/model/ServiceModel.ets)，[Game.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/Flybird/entry/src/main/ets/pages/Game.ets)
+* 源码链接：[service.ts](entry/src/main/ets/ServiceAbility/service.ts)，[EntryAbility.ts](entry/src/main/ets/entryability/EntryAbility.ts)，[ServiceModel.ets](entry/src/main/ets/model/ServiceModel.ets)，[Game.ets](entry/src/main/ets/pages/Game.ets)
 * 接口参考[@ohos.resourceschedule.usageStatistics](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)，[@ohos.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md)，[@ohos.wantAgent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-wantAgent.md)，[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-serviceExtensionAbility.md)，[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-rpc.md)
 
 ### 相关权限
 
-后台持续运行: [ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+后台持续运行: [ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionkeep_background_running)
 
-查询其他应用的运行时间: [ohos.permission.BUNDLE_ACTIVE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+查询其他应用的运行时间: [ohos.permission.BUNDLE_ACTIVE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionbundle_active_info)
 
-读取用户存储: [ohos.permission.READ_USER_STORAGE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
-
-写入用户存储: [ohos.permission.WRITE_USER_STORAGE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
-
-后台代理提醒: [ohos.permission.PUBLISH_AGENT_REMINDER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+后台代理提醒: [ohos.permission.PUBLISH_AGENT_REMINDER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionpublish_agent_reminder)
 
 ### 依赖
 
@@ -72,7 +68,7 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
 
-4.本示例所配置的权限ohos.permission.BUNDLE_ACTIVE_INFO为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看) ，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)) 。
+4.本示例所配置的权限ohos.permission.BUNDLE_ACTIVE_INFO为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看) ，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) 。
 
 5.本示例需要使用@ohos.resourceschedule.usageStatistics、@ohos.app.ability.ServiceExtensionAbility系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 

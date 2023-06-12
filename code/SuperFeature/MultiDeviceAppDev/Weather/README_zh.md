@@ -75,8 +75,8 @@
 ### 具体实现
 1、home.ets中引入SideContent()和homeContent()。  
 2、定义showSideBar来判断是否展示侧边栏，定义mediaquery.MediaQueryListener媒体监听器smListener、mdListener、lgListener。  
-3、在aboutToAppear调用mediaquery对界面进行监听,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Weather/product/default/src/main/ets/pages/Home.ets )。     
-4、监听到当前屏幕大小，调用this.isBreakpoint断点，对curBp、showSideBar进行赋值,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/Weather/product/default/src/main/ets/pages/Home.ets )。  
+3、在aboutToAppear调用mediaquery对界面进行监听,[源码参考](product/default/src/main/ets/pages/Home.ets )。     
+4、监听到当前屏幕大小，调用this.isBreakpoint断点，对curBp、showSideBar进行赋值,[源码参考](product/default/src/main/ets/pages/Home.ets )。  
 
 ### 相关权限
 

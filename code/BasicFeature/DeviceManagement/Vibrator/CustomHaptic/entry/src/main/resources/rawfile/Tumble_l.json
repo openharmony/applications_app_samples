@@ -1,0 +1,138 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Duration" : 84,
+						"Parameters" : 
+						{
+							"Frequency" : 73,
+							"Intensity" : 42
+						},
+						"StartTime" : 96,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 75,
+							"Intensity" : 29
+						},
+						"StartTime" : 193,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 51,
+						"Parameters" : 
+						{
+							"Frequency" : 75,
+							"Intensity" : 19
+						},
+						"StartTime" : 243,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 68,
+							"Intensity" : 1
+						},
+						"StartTime" : 298,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 68,
+							"Intensity" : 12
+						},
+						"StartTime" : 348,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 68,
+							"Intensity" : 21
+						},
+						"StartTime" : 398,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 68,
+							"Intensity" : 10
+						},
+						"StartTime" : 448,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 66,
+							"Intensity" : 12
+						},
+						"StartTime" : 498,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 67,
+							"Intensity" : 4
+						},
+						"StartTime" : 548,
+						"Type" : "continuous"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-31",
+		"Discription" : "A json file format demo",
+		"Version" : 1.0
+	}
+}

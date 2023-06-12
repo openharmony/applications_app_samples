@@ -51,18 +51,18 @@ entry/src/main/ets/
 
 * 本示例分为音乐，视频，地图三个模块
   * 音乐模块
-    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 源码链接：[AccountData.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/AppAccountManager/entry/src/main/ets/model/AccountData.ts)，[AccountModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/AppAccountManager/entry/src/main/ets/model/AccountModel.ts)
+    * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面， createAppAccountManager方法创建应用帐号管理器对象
+    * 源码链接：[AccountData.ts](entry/src/main/ets/model/AccountData.ts)，[AccountModel.ts](entry/src/main/ets/model/AccountModel.ts)
     * 接口参考：[@ohos.account.appAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
 
   * 视频模块
     * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 源码链接：[AccountData.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/AppAccountManager/entry/src/main/ets/model/AccountData.ts)，[AccountModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/AppAccountManager/entry/src/main/ets/model/AccountModel.ts)
+    * 源码链接：[AccountData.ts](entry/src/main/ets/model/AccountData.ts)，[AccountModel.ts](entry/src/main/ets/model/AccountModel.ts)
     * 接口参考：[@ohos.account.appAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
 
   * 地图模块
     * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 源码链接：[AccountData.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/AppAccountManager/entry/src/main/ets/model/AccountData.ts)，[AccountModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Security/AppAccountManager/entry/src/main/ets/model/AccountModel.ts)
+    * 源码链接：[AccountData.ts](entry/src/main/ets/model/AccountData.ts)，[AccountModel.ts](entry/src/main/ets/model/AccountModel.ts)
     * 接口参考：[@ohos.account.appAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
 
 #### 相关概念

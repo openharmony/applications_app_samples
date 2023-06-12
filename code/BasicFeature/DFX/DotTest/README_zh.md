@@ -31,7 +31,7 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用hiAppEvent接口中write方法将事件写入到当天的事件文件中，EventType方法枚举事件类型，configure方法去配置打点开关来实现测试打点。
-* 源码链接：[DotTestPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DFX/DotTest/entry/src/main/ets/pages/DotTestPage.ets)
+* 源码链接：[DotTestPage.ets](entry/src/main/ets/pages/DotTestPage.ets)
 * 接口参考：[@ohos.hiAppEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hiappevent.md)
 
 ### 相关权限

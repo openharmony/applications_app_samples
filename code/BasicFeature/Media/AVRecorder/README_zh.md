@@ -1,6 +1,6 @@
 # 音视频录制
 
-## 介绍
+### 介绍
 
 音视频录制应用是基于AVRecorder接口开发的实现音频录制和视频录制功能的应用，音视频录制的主要工作是捕获音频信号，接收视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能，包括开始录制、暂停录制、恢复录制、停止录制、释放资源等功能控制。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
 
@@ -27,8 +27,8 @@ entry/src/main/ets/
 |---pages
 |   |---ListPage.ets                       // 首页，选择音频录制或者视频录制
 |---recorder
-|   |---AudioRecorder.ets                      // 音频录制页面
-|   |---VideoRecorder.ets                      // 视频录制页面
+|   |---AudioRecorder.ets                  // 音频录制页面
+|   |---VideoRecorder.ets                  // 视频录制页面
 |---utils
 |   |---DateTimeUtils                      // 录制显示时间转换函数
 |   |---SaveCameraAsset.ets                // 创建录制文件相关函数
@@ -39,8 +39,8 @@ entry/src/main/ets/
 
 * 录控功能接口调用实现参考工程目录中的音频录制页面和视频录制页面
   * 调用create()、prepare()、getInputSurface()、start()、pause()、resume()、stop()、reset()、release()接口实现录制器的创建、准备、录控操作、重置、销毁实例等功能；
-  * 视频录制VRecorder.ets调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口@ohos.multimedia.camera
-* 调用MediaLibrary实现创建录制文件代码在SaveCameraAsset.ets，实现方法参考@ohos.multimedia.medialibrary接口说明
+  * 视频录制[VRecorder.ets](code/BasicFeature/Media/AVRecorder/entry/src/main/ets/recorder/VideoRecorder.ets)调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-camera.md)
+* 调用MediaLibrary实现创建录制文件代码在[SaveCameraAsset.ets](code/BasicFeature/Media/AVRecorder/entry/src/main/ets/utils/SaveCameraAsset.ets)，实现方法参考[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)接口说明
 
 ### 相关权限
 
@@ -48,19 +48,19 @@ entry/src/main/ets/
 
 音视频录制涉及的权限包括：
 
-ohos.permission.MICROPHONE
+1.允许应用使用麦克风：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
 
-ohos.permission.CAMERA
+2.允许应用使用相机拍摄照片和录制视频：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncamera)
 
-ohos.permission.READ_MEDIA
+3.允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
 
-ohos.permission.WRITE_MEDIA
+4.允许应用读写用户外部存储中的媒体文件信息：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media)
 
-ohos.permission.LOCATION
+5.允许应用获取设备位置信息：[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionlocation)
 
 ### 依赖
 
-无
+不涉及
 
 ### 约束与限制
 
@@ -70,7 +70,7 @@ ohos.permission.LOCATION
 
 3.本示例使用的IDE版本信息：DevEco Studio 3.1 Beta2 (Build Version:3.1.0.400, built on April 7, 2023)。
 
-4.相机、媒体库为系统接口，需要配置高权限签名，相关权限级别可查阅权限列表，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2Beta%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F)。
+4.相机、媒体库为系统接口，需要配置高权限签名，相关权限级别可查阅权限列表，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 
 ### 下载
 

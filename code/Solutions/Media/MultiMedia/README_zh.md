@@ -73,19 +73,19 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 布局原理：定义@ObjectLink 装饰的数组变量album存放资源文件，使用list()组件中ListItem()循环数组展示，加号Button()，点击后触发 animateTo({ duration: 500, curve: Curve.Ease })控制动画展示,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/Solutions/Media/MultiMedia/entry/src/main/ets/pages/Index.ets )。    
+* 布局原理：定义@ObjectLink 装饰的数组变量album存放资源文件，使用list()组件中ListItem()循环数组展示，加号Button()，点击后触发 animateTo({ duration: 500, curve: Curve.Ease })控制动画展示,[源码参考](entry/src/main/ets/pages/Index.ets )。    
 * 获取资源文件：通过引入媒体库实例（入口）接口@ohos.multimedia.medialibrary，例如通过this.getFileAssetsFromType(mediaLibrary.MediaType.FILE)获取FILE类型的文件资源，并通过albums.push()添加至album数组中。  
 * 展示系统资源文件：当album内的值被修改时，只会让用 @ObjectLink 装饰的变量album所在的组件被刷新，当前组件不会刷新。
-* 录音功能：通过引入音视频接口@ohos.multimedia.media，例如通过media.createAudioRecorder()创建音频录制的实例来控制音频的录制，通过this.audioRecorder.on('prepare', () => {this.audioRecorder.start()})异步方式开始音频录制,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/Solutions/Media/MultiMedia/entry/src/main/ets/model/RecordModel.ts )。
-* 拍照录像功能：通过引入相机模块接口@ohos.multimedia.camera，例如通过this.cameraManager.createCaptureSession()创建相机入口的实例来控制拍照和录像，通过this.captureSession.start()开始会话工作,[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/Solutions/Media/MultiMedia/entry/src/main/ets/model/CameraService.ts )。
+* 录音功能：通过引入音视频接口@ohos.multimedia.media，例如通过media.createAudioRecorder()创建音频录制的实例来控制音频的录制，通过this.audioRecorder.on('prepare', () => {this.audioRecorder.start()})异步方式开始音频录制,[源码参考](entry/src/main/ets/model/RecordModel.ts )。
+* 拍照录像功能：通过引入相机模块接口@ohos.multimedia.camera，例如通过this.cameraManager.createCaptureSession()创建相机入口的实例来控制拍照和录像，通过this.captureSession.start()开始会话工作,[源码参考](entry/src/main/ets/model/CameraService.ts )。
   
 
 ### 相关权限
-相机权限：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )  
-麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )    
-访问媒体文件地理位置信息权限：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )   
-读取公共媒体文件权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )   
-读写公共媒体文件权限：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )
+相机权限：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncamera )  
+麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)    
+访问媒体文件地理位置信息权限：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmedia_location )   
+读取公共媒体文件权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media )   
+读写公共媒体文件权限：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media )
 
 ### 依赖
 
@@ -99,7 +99,7 @@ entry/src/main/ets/
 
 3.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
 
-4.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 5.本示例需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 

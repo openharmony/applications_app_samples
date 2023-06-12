@@ -50,7 +50,7 @@ entry/src/main/resources/
 
 
 ### 具体实现
-* 三种模式资源统一放在ThemeConst内，在ThemeGet中定义全局变量theme控制主题模式(0:黑夜 1：白天 3：自定义主题)，源码参考[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/e0029bb97bdb721c53ab59cd779eecb2b5179262/code/Project/ResourceAllocation/ApplicationThemeSwitch/entry/src/main/ets/pages/Index.ets) ，步骤如下，
+* 三种模式资源统一放在ThemeConst内，在ThemeGet中定义全局变量theme控制主题模式(0:黑夜 1：白天 3：自定义主题)，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets) ，步骤如下，
   * 1）整理主题资源：例如创建系统主题dark,light和自定义主题custom相关目录，并完善需要切换的资源比如icon、color等，系统主题下的相同资源，资源名称必须相同，比如dark下title.icon和light下title.icon
   * 2）定义资源池函数引用需要切换的主题资源，需要主题切换的资源通过getTheme(this.theme).资源名，实现组件对资源的动态引用和动态渲染。
   * 3）定义全局变量@storagelink('theme')
@@ -62,7 +62,7 @@ entry/src/main/resources/
 
 ### 相关权限
 
-允许更新系统配置：[ohos.permission.UPDATE_CONFIGURATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许更新系统配置：[ohos.permission.UPDATE_CONFIGURATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionupdate_configuration)
 
 ### 依赖
 
@@ -72,7 +72,7 @@ entry/src/main/resources/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 2. 本示例已适配 API version 9 版本 SDK，本示例涉及使用系统接口：@ohos.application.abilityManager，需要手动替换 Full SDK 才能编译通过，具体操作可以参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
-3. 本示例需要使用 DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+3. 本示例需要使用 DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 4. 本示例所配置的权限 ohos.permission.UPDATE_CONFIGURATION 为 system_basic 级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) 查看),需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))
 
 ### 下载

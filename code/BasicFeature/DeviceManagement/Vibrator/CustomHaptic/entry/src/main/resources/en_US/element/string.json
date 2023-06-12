@@ -1,0 +1,418 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Haptic Sample"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Haptic Sample"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Haptic Sample"
+    },
+    {
+      "name": "interaction_slide_left_right",
+      "value": "Slide Left Right"
+    },
+    {
+      "name": "interaction_slide_up",
+      "value": "Slide Up"
+    },
+    {
+      "name": "interaction_switch_app",
+      "value": "Switch App"
+    },
+    {
+      "name": "interaction_slide_stop",
+      "value": "Slide Stop"
+    },
+    {
+      "name": "display_haptic_video",
+      "value": "Haptic Video"
+    },
+    {
+      "name": "display_show_more",
+      "value": "Show More"
+    },{
+      "name": "display_haptic_library",
+      "value": "Haptic Library"
+    },
+    {
+      "name": "display_racing",
+      "value": "Racing"
+    },
+    {
+      "name": "display_racing_car_crash",
+      "value": "Car Crash"
+    },
+    {
+      "name": "display_racing_ignite",
+      "value": "Ignite"
+    },
+    {
+      "name": "display_racing_skid",
+      "value": "Skid"
+    },
+    {
+      "name": "display_racing_drifting_jet",
+      "value": "Drifting Jet"
+    },
+    {
+      "name": "display_racing_jet_n2o",
+      "value": "Jet N2O"
+    },
+    {
+      "name": "display_racing_start",
+      "value": "Racing Start"
+    },
+    {
+      "name": "display_racing_speed_up",
+      "value": "Speed Up"
+    },
+    {
+      "name": "display_battle",
+      "value": "Battle"
+    },
+    {
+      "name": "display_battle_tumble",
+      "value": "Tumble"
+    },
+    {
+      "name": "display_battle_punch",
+      "value": "Punch"
+    },
+    {
+      "name": "display_battle_kick",
+      "value": "Kick"
+    },
+    {
+      "name": "display_battle_hurt",
+      "value": "Hurt"
+    },
+    {
+      "name": "display_battle_blast",
+      "value": "Blast"
+    },
+    {
+      "name": "display_battle_bomb",
+      "value": "Bomb"
+    },
+    {
+      "name": "display_shoot",
+      "value": "Shoot"
+    },
+    {
+      "name": "display_shoot_AK47",
+      "value": "AK47"
+    },
+    {
+      "name": "display_shoot_HK416",
+      "value": "HK416"
+    },
+    {
+      "name": "display_shoot_M4",
+      "value": "M4"
+    },
+    {
+      "name": "display_shoot_MP5",
+      "value": "MP5"
+    },
+    {
+      "name": "display_shoot_CZ75",
+      "value": "CZ75"
+    },
+    {
+      "name": "display_shoot_winchester",
+      "value": "Winchester"
+    },
+    {
+      "name": "display_shoot_rifle",
+      "value": "Rifle"
+    },
+    {
+      "name": "display_shoot_assault_rifle",
+      "value": "AssaultRifle"
+    },
+    {
+      "name": "display_shoot_hit_sand",
+      "value": "HitSand"
+    },
+    {
+      "name": "display_shoot_hit_water",
+      "value": "HitWater"
+    },
+    {
+      "name": "display_shoot_hit_metal",
+      "value": "HitMetal"
+    },
+    {
+      "name": "display_shoot_hit_wood",
+      "value": "HitWood"
+    },
+    {
+      "name": "display_shoot_hit_glass",
+      "value": "HitGlass"
+    },
+    {
+      "name": "display_instrument",
+      "value": "Instrument"
+    },
+    {
+      "name": "display_instrument_cymbals",
+      "value": "Cymbals"
+    },
+    {
+      "name": "display_instrument_cymbals2",
+      "value": "Cymbals2"
+    },
+    {
+      "name": "display_instrument_kick_drum",
+      "value": "KickDrum"
+    },
+    {
+      "name": "display_instrument_kick_drum2",
+      "value": "KickDrum2"
+    },
+    {
+      "name": "display_instrument_guitar",
+      "value": "Guitar"
+    },
+    {
+      "name": "display_instrument_tambourine",
+      "value": "Tambourine"
+    },
+    {
+      "name": "display_instrument_bell",
+      "value": "Bell"
+    },
+    {
+      "name": "display_instrument_claves",
+      "value": "Claves"
+    },
+    {
+      "name": "display_instrument_gong",
+      "value": "Gong"
+    },
+    {
+      "name": "display_instrument_triangle",
+      "value": "Triangle"
+    },
+    {
+      "name": "display_realistic",
+      "value": "Realistic"
+    },
+    {
+      "name": "display_realistic_ice",
+      "value": "Ice"
+    },
+    {
+      "name": "display_realistic_keyboard",
+      "value": "Keyboard"
+    },
+    {
+      "name": "display_realistic_typewriter",
+      "value": "Typewriter"
+    },
+    {
+      "name": "display_realistic_coin_drop",
+      "value": "CoinDrop"
+    },
+    {
+      "name": "display_realistic_timer",
+      "value": "Timer"
+    },
+    {
+      "name": "display_realistic_walk",
+      "value": "Walk"
+    },
+    {
+      "name": "display_realistic_camerashutter",
+      "value": "Camerashutter"
+    },
+    {
+      "name": "display_realistic_camerashutter2",
+      "value": "Camerashutter2"
+    },
+    {
+      "name": "display_realistic_clock",
+      "value": "Clock"
+    },
+    {
+      "name": "display_realistic_water",
+      "value": "Water"
+    },
+    {
+      "name": "display_realistic_heartbeat",
+      "value": "Heartbeat"
+    },
+    {
+      "name": "display_realistic_firework",
+      "value": "Firework"
+    },
+    {
+      "name": "display_realistic_picker",
+      "value": "Picker"
+    },
+    {
+      "name": "display_footstep",
+      "value": "Footstep"
+    },
+    {
+      "name": "display_footstep_on_carpet",
+      "value": "OnCarpet"
+    },
+    {
+      "name": "display_footstep_on_concrete",
+      "value": "OnConcrete"
+    },
+    {
+      "name": "display_footstep_on_grass",
+      "value": "OnGrass"
+    },
+    {
+      "name": "display_footstep_on_board",
+      "value": "OnBoard"
+    },
+    {
+      "name": "display_footstep_on_gravel",
+      "value": "OnGravel"
+    },
+    {
+      "name": "display_footstep_on_mud",
+      "value": "OnMud"
+    },
+    {
+      "name": "display_footstep_on_snow",
+      "value": "OnSnow"
+    },
+    {
+      "name": "display_environment",
+      "value": "Environment"
+    },
+    {
+      "name": "display_environment_rain",
+      "value": "Rain"
+    },
+    {
+      "name": "display_environment_snowdrift",
+      "value": "Snowdrift"
+    },
+    {
+      "name": "display_environment_campfire",
+      "value": "Campfire"
+    },
+    {
+      "name": "display_environment_creek",
+      "value": "Creek"
+    },
+    {
+      "name": "display_environment_wave",
+      "value": "Wave"
+    },
+    {
+      "name": "display_environment_wind",
+      "value": "Wind"
+    },
+    {
+      "name": "display_environment_thunder",
+      "value": "Thunder"
+    },
+    {
+      "name": "display_exercise",
+      "value": "Exercise"
+    },
+    {
+      "name": "display_exercise_badminton",
+      "value": "Badminton"
+    },
+    {
+      "name": "display_exercise_baseball",
+      "value": "Baseball"
+    },
+    {
+      "name": "display_exercise_basketball",
+      "value": "Basketball"
+    },
+    {
+      "name": "display_exercise_skating",
+      "value": "Skating"
+    },
+    {
+      "name": "display_exercise_skiing",
+      "value": "Skiing"
+    },
+    {
+      "name": "display_exercise_tabletennis",
+      "value": "Tabletennis"
+    },
+    {
+      "name": "display_exercise_diving",
+      "value": "Diving"
+    },
+    {
+      "name": "display_interaction",
+      "value": "Interaction"
+    },
+    {
+      "name": "index_find",
+      "value": "Find"
+    },
+    {
+      "name": "index_my",
+      "value": "My"
+    },
+    {
+      "name": "index_welcome",
+      "value": "Welcome to OHOS Haptic"
+    },{
+      "name": "my_settings",
+      "value": "Settings:"
+    },
+    {
+      "name": "my_version",
+      "value": "Version:               "
+    },
+    {
+      "name": "my_help",
+      "value": "Help:    "
+    },
+    {
+      "name": "my_develop",
+      "value": "Develop:"
+    },
+    {
+      "name": "my_high_mode",
+      "value": "HighMode"
+    },
+    {
+      "name": "my_middle_mode",
+      "value": "MiddleMode"
+    },
+    {
+      "name": "my_low_mode",
+      "value": "LowMode"
+    },
+    {
+      "name": "my_select_msg",
+      "value": "Intensity Level"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "back",
+      "value": "back"
+    },
+    {
+      "name": "video_list_haptic_video",
+      "value": "Haptic Video"
+    },
+    {
+      "name": "video_list_haptic_video_msg",
+      "value": "Bring you the ultimate sense of collaboration!"
+    }
+  ]
+}

@@ -5,9 +5,9 @@
 本示例使用[@ohos.data.relationalStore](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md) 接口和[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md) 接口展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步同能。
 
 ### 效果预览
-|首页|编辑联系人|设置|数据同步|
-|------|-------|-------|-------|
-|![home](screenshots/devices/home.png)|![home](screenshots/devices/edit.png)|![home](screenshots/devices/setting.png)|![home](screenshots/devices/sync.png)|
+| 首页                                     | 编辑联系人                                  |设置| 数据同步                                   |
+|----------------------------------------|----------------------------------------|-------|----------------------------------------|
+| ![home](screenshots/devices/home.jpeg) | ![home](screenshots/devices/edit.jpeg) |![home](screenshots/devices/setting.png)| ![home](screenshots/devices/sync.jpeg) |
 
 使用说明:
 1. 启动应用后点击“**+**”按钮可以添加联系人;
@@ -65,7 +65,7 @@ entry/src/main/ets/
 2. 本示例仅支持标准系统上运行;
 3. 本示例已适配API version 10版本SDK，版本号：4.0.7.3;
 4. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行;
-5. 本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用[Full SDK](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/release-notes/OpenHarmony-v3.2-beta5.md/)时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+5. 本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 ### 下载
 

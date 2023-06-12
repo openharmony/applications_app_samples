@@ -44,7 +44,7 @@ entry/src/main/ets/
 ### 具体实现
 
 * 本示例通过窗口扩展能力设置不同Ability，使用AbilityComponent组件加载各个Ability，matchMediaSync方法设置媒体查询的查询条件，RemoteObject方法实现远程对象。
-* 源码链接：[WlanExtAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/WindowManagement/WindowExtAbility/entry/src/main/ets/MainAbility/WlanExtAbility.ts)，[BluetoothExtAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/WindowManagement/WindowExtAbility/entry/src/main/ets/MainAbility/BluetoothExtAbility.ts)，[MobileDataExtAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/WindowManagement/WindowExtAbility/entry/src/main/ets/MainAbility/MobileDataExtAbility.ts)，[Rpc.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/WindowManagement/WindowExtAbility/entry/src/main/ets/feature/Rpc.ts)
+* 源码链接：[WlanExtAbility.ts](entry/src/main/ets/MainAbility/WlanExtAbility.ts)，[BluetoothExtAbility.ts](entry/src/main/ets/MainAbility/BluetoothExtAbility.ts)，[MobileDataExtAbility.ts](entry/src/main/ets/MainAbility/MobileDataExtAbility.ts)，[Rpc.ts](entry/src/main/ets/feature/Rpc.ts)
 * 接口参考：[@ohos.application.WindowExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-windowExtensionAbility.md)，[AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-ability-component.md)，[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-rpc.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)
 
 ### 相关权限

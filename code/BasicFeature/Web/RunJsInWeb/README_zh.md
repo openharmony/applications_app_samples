@@ -33,7 +33,7 @@ entry/src/main/ets/
 
 * 本示例分成一个模块
   * 通过button实现对游戏的基本控制，WebviewController方法控制Web组件各种行为，使用webview注入JS与执行能力。
-  * 源码链接：[EntryAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Web/RunJsInWeb/entry/src/main/ets/entryability/EntryAbility.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Web/RunJsInWeb/entry/src/main/ets/pages/Index.ets)
+  * 源码链接：[EntryAbility.ts](entry/src/main/ets/entryability/EntryAbility.ts)，[Index.ets](entry/src/main/ets/pages/Index.ets)
   * 接口参考：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)，[@ohos.web.webview](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-webview.md)
 
 ### 相关权限

@@ -39,7 +39,7 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用NetworkState方法获取网络注册状态，SignalInformation方法获取网络信号强度信息，RadioTechnology方法获取无线接入技术，CallState方法获取通话状态码，DataConnectState方法描述蜂窝数据链路连接状态，DataFlowType方法描述蜂窝数据流类型，SimStateData方法获取SIM卡类型和状态等方法提供订阅管理功能。
-* 源码链接：[DetailData.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Observer/entry/src/main/ets/modle/DetailData.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/Observer/entry/src/main/ets/pages/Index.ets)
+* 源码链接：[DetailData.ts](entry/src/main/ets/modle/DetailData.ts)，[Index.ets](entry/src/main/ets/pages/Index.ets)
 * 接口参考：[@ohos.telephony.radio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-radio.md)，[@ohos.telephony.call](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-call.md)，[@ohos.telephony.data](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-telephony-data.md)，[@ohos.telephony.observer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-observer.md)
 
 #### 相关概念
@@ -66,7 +66,7 @@ observer: 通过注册相关监听事件，来监听手机网络、信号、通�
 
 4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
-5.本示例所配置的权限ohos.permission.READ_CALL_LOG为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+5.本示例所配置的权限ohos.permission.READ_CALL_LOG为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 
 ### 下载
 

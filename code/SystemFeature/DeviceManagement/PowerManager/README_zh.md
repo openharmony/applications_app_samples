@@ -36,7 +36,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-电源管理权限：[ohos.permission.REBOOT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) 
+电源管理权限：[ohos.permission.REBOOT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionreboot) 
 
 ### 依赖
 

@@ -1,0 +1,167 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Duration" : 43,
+						"Parameters" : 
+						{
+							"Frequency" : 72,
+							"Intensity" : 52
+						},
+						"StartTime" : 0,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 94,
+							"Intensity" : 60
+						},
+						"StartTime" : 64,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 46
+						},
+						"StartTime" : 130,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 27
+						},
+						"StartTime" : 163,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 36
+						},
+						"StartTime" : 197,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 54,
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 31
+						},
+						"StartTime" : 256,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 23
+						},
+						"StartTime" : 339,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 15
+						},
+						"StartTime" : 397,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 29
+						},
+						"StartTime" : 585,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 21
+						},
+						"StartTime" : 617,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 15
+						},
+						"StartTime" : 652,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 97,
+							"Intensity" : 10
+						},
+						"StartTime" : 687,
+						"Type" : "transient"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-31",
+		"Discription" : "A json file format demo",
+		"Version" : 1.0
+	}
+}

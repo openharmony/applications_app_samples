@@ -23,7 +23,7 @@
 
 1.安装应用前，先本地配置好服务器；
 
-2.将[config.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/config/config.ets)
+2.将[config.ets](entry/src/main/ets/config/config.ets)
 文件中的服务器地址替换成配置好的服务器地址；
 
 3.启动应用，点击允许访问权限进入；
@@ -80,11 +80,11 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 上传控件，源码参考：[UploadController.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/components/UploadController.ets)
+* 上传控件，源码参考：[UploadController.ets](entry/src/main/ets/componets/UploadController.ets)
     * 使用 @ohos.request.uploadFile 开启上传任务
     * 使用 UploadTask.on('progress') 监听上传进度
     * 使用 UploadTask.on('complete'|'fail') 监听上传结果
-* 下载控件，源码参考：[DownloadController.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Upload/entry/src/main/ets/components/DownloadController.ets)
+* 下载控件，源码参考：[DownloadController.ets](entry/src/main/ets/componets/DownloadController.ets)
     * 使用 @ohos.request.downloadFile 开启下载任务
     * 使用 DownloadTask.on('progress') 监听下载进度
     * 使用 DownloadTask.on('complete'|'fail') 监听下载结果

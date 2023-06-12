@@ -35,14 +35,14 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例通过EnterpriseAdminExtensionAbility接口实现了系统管理状态变化通知功能，adminManager接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
-* 源码链接：[EnterpriseAdminAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility/entry/src/main/ets/enterpriseextability/EnterpriseAdminAbility.ts)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility/entry/src/main/ets/pages/Index.ets)
-* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md)，[@ohos.app.ability.Want]()
+* 源码链接：[EnterpriseAdminAbility.ts](entry/src/main/ets/enterpriseextability/EnterpriseAdminAbility.ts)，[Index.ets](entry/src/main/ets/pages/Index.ets)
+* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md)，[@ohos.app.ability.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-want.md)
 
 ### 相关权限
 
-1.允许应用激活设备管理员应用权限：[ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+1.允许应用激活设备管理员应用权限：[ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_enterprise_device_admin)
 
-2.允许设备管理员应用订阅管理事件权限：[ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+2.允许设备管理员应用订阅管理事件权限：[ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionenterprise_subscribe_managed_event)
 
 ### 依赖
 

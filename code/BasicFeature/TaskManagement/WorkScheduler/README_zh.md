@@ -49,18 +49,17 @@ entry/src/main/ets/
 ### 具体实现
 
 * 设置延时任务、下载更新包、保存更新包、发送通知、安装更新包的功能接口都封装在WorkSchedulerSystem中，
-源码参考：[WorkSchedulerSystem.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/feature/WorkSchedulerSystem.ets)
-  
-  * 设置延时任务：在运行示例时会在[MainAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/MainAbility/MainAbility.ets)
+  源码参考：[WorkSchedulerSystem.ets](entry/src/main/ets/feature/WorkSchedulerSystem.ets)
+  * 设置延时任务：在运行示例时会在[MainAbility.ets](entry/src/main/ets/MainAbility/MainAbility.ets)
   通过WorkSchedulerSystem.startUpdateSample()方法调用workScheduler.startWork()建立任务；
-  * 下载更新包：当任务条件满足后，会在[WorkSchedulerAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
+  * 下载更新包：当任务条件满足后，会在[WorkSchedulerAbility.ets](entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
   通过WorkSchedulerSystem.getNewHap()方法调用http.createHttp().request()接口下载需要的文件；
   * 保存更新包：通过WorkSchedulerSystem.saveFile()来实现，受限调用fileio.openSync()创建文件，然后调用fileio.writeSync()将下载的内容写入指定文件内；
-  * 发送通知：在[WorkSchedulerAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
+  * 发送通知：在[WorkSchedulerAbility.ets](entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
   中通过WorkSchedulerSystem.publishNotification()方法，调用Notification.publish()接口发送指定内容的信息；
-  * 接收通知：在[MainAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/MainAbility/MainAbility.ets)
+  * 接收通知：在[MainAbility.ets](entry/src/main/ets/MainAbility/MainAbility.ets)
   中通过WorkSchedulerSystem.handleNotification()方法调用Notification.subscribe()接口获取信息，根据信息内容决定是否提示用户升级；
-  * 安装更新包：在[WorkSchedulerAbility.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/WorkScheduler/entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
+  * 安装更新包：在[WorkSchedulerAbility.ets](entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
   通过WorkSchedulerSystem.installBundle()方法实现，首先调用bundle.getBundleInstaller()获取Installer对象，然后调用bundleInstall.install()接口实现装包，完成升级。
 
 ### 相关权限

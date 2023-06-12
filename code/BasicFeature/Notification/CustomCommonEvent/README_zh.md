@@ -67,26 +67,26 @@ entry/src/main/ets/
 * 该示例分为四个模块：
   * 进入模块
     * 使用到应用文上下文，createSubscriber方法创建订阅者，getCurrentTime获取获取自Unix纪元以来经过的时间进行对用户操作行为的监测功能页面开发。
-    * 源码链接：[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts)，[LaunchFeature.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/feature/LaunchFeature.ts)，[LauncherAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/LauncherAbility/LauncherAbility.ts)，[SurveillanceEventsManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/SurveillanceEventsManager.ts)
+    * 源码链接：[Consts.ts](entry/src/main/ets/module/Consts.ts)，[LaunchFeature.ts](entry/src/main/ets/feature/LaunchFeature.ts)，[LauncherAbility.ts](entry/src/main/ets/LauncherAbility/LauncherAbility.ts)，[SurveillanceEventsManager.ts](entry/src/main/ets/module/SurveillanceEventsManager.ts)
     * 参考接口：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)，[@ohos.commonEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEvent.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.systemTime](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-time.md)
   
   * 历史模块
     * 使用到应用文上下文，getPreferences方法获取Preferences实例，组件Header进行历史页面开发。
-    * 源码链接：[Header.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/component/Header.ets)，[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts),[HistoryFeature.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/feature/HistoryFeature.ts)
+    * 源码链接：[Header.ets](entry/src/main/ets/component/Header.ets)，[Consts.ts](entry/src/main/ets/module/Consts.ts),[HistoryFeature.ts](entry/src/main/ets/feature/HistoryFeature.ts)
     * 参考接口：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)
   
   * 设置模块
     * 本模块分为三个事件，分别为记录联网事件，记录灭屏事件，记录亮屏事件，进行锁屏事件、进行解锁屏幕事件，每一个事件都可进行一直，仅本次和从不的单项选择，使用到应用文上下文吗，CommonEvent.publish发布公共事件，getPreferences方法获取Preferences实例进行功能页面开发。
-    * 源码链接：[Header.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/component/Header.ets)，[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts)，[SettingFeature.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/feature/SettingFeature.ts)，[SurveillanceEventsManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/SurveillanceEventsManager.ts)
+    * 源码链接：[Header.ets](entry/src/main/ets/component/Header.ets)，[Consts.ts](entry/src/main/ets/module/Consts.ts)，[SettingFeature.ts](entry/src/main/ets/feature/SettingFeature.ts)，[SurveillanceEventsManager.ts](entry/src/main/ets/module/SurveillanceEventsManager.ts)
     * 参考接口：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)，[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)，[@ohos.commonEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEvent.md),[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.commonEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEvent.md)
   
   * 关于模块
     * 该模块开发主要介绍了本示例的功能作用以及说明了什么情况下不能使用。
-    * 源码链接：[Header.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/component/Header.ets)，[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts)
+    * 源码链接：[Header.ets](entry/src/main/ets/component/Header.ets)，[Consts.ts](entry/src/main/ets/module/Consts.ts)
     
 ### 相关权限
 
-[ohos.permission.COMMONEVENT_STICKY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.COMMONEVENT_STICKY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncommonevent_sticky)
 
 ### 依赖
 

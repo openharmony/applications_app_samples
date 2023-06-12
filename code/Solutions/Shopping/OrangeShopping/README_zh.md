@@ -2,9 +2,9 @@
 
 ### 介绍
 
-本实例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。在详情页中通过**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
+本示例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。在详情页中通过**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
 
-本实例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。  
+本示例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。  
 
 本示例用到了延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md) 。  
 
@@ -80,11 +80,11 @@ OrangeShopping
 
 ### 具体实现
 
-1.应用创建时进行必要的权限判断：在[app.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/entry/src/main/ets/MainAbility/MainAbility.ts )文件中对```"requestPermission"```对象进行权限匹配。如果有如果权限列表中有-1，说明用户拒绝了授权。
+1.应用创建时进行必要的权限判断：在[app.json5](entry/src/main/ets/MainAbility/MainAbility.ts )文件中对```"requestPermission"```对象进行权限匹配。如果有如果权限列表中有-1，说明用户拒绝了授权。
 
 2.配置Module信息：
 
-* 在[module.json5]( https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/entry/src/main/module.json5 )文件中配置```"extensionAbilities"```字段
+* 在[module.json5]( entry/src/main/module.json5 )文件中配置```"extensionAbilities"```字段
 * 在```"requestPermissions"```标签中添加需要开的权限，例如使用相机拍摄照片和录制视频权限： "name": "ohos.permission.CAMERA"
 
 3.页面跳转: 通过在profile/main_pages.json中先配置好相关路由，并通过router.push()进行页面跳转,例如：跳转到搜索页面router.push({ url: 'pages/Detail' })。
@@ -93,42 +93,38 @@ OrangeShopping
 
 5.响应式渲染：通过全局的UI状态AppStorage存储，绑定了appstorage的数据会进行响应式屏幕尺寸渲染。  
 
-6.订阅购物车事件：以持久化方式订阅并接收事件回调，持续订阅发布事件。通过emitter.emit(addToShoppingCartId, shoppingCartData)。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/feature/emitter/src/main/ets/components/feature/EmitterClass.ets) 。
+6.订阅购物车事件：以持久化方式订阅并接收事件回调，持续订阅发布事件。通过emitter.emit(addToShoppingCartId, shoppingCartData)。[源码参考](feature/emitter/src/main/ets/components/feature/EmitterClass.ets) 。
 
 
 
 
 ### 相关权限
 
-允许使用Internet网络: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许使用Internet网络: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
-允许应用控制马达振动：[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用控制马达振动：[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
 
-允许应用使用相机拍摄照片和录制视频：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用使用相机拍摄照片和录制视频：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncamera)
 
-允许应用获取设备位置信息：[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用获取设备位置信息：[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionlocation)
 
-允许应用在后台运行时获取设备位置信息：[ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用在后台运行时获取设备位置信息：[ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionlocation_in_background)
 
-允许应用截取屏幕图像 ：[ohos.permission.CAPTURE_SCREEN ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用截取屏幕图像 ：[ohos.permission.CAPTURE_SCREEN ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncapture_screen)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
 
-允许应用访问用户媒体文件中的地理位置信息 ：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用访问用户媒体文件中的地理位置信息 ：[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmedia_location)
 
-允许应用读写用户外部存储中的媒体文件信息  ：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读写用户外部存储中的媒体文件信息  ：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media)
 
 ### 依赖
 
-[转场动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/TransitionAnimation) 本示例的进场动画依赖此示例。
+[数据请求](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http) 本示例的网络配置服务依赖此示例。
 
-[数据请求](https://gitee.com/openharmony/app_samples/tree/master/Network/Http) 本示例的网络配置服务依赖此示例。
+[位置服务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location) 本示例的详情页中的位置服务功能依赖此示例。
 
-[位置服务](https://gitee.com/openharmony/app_samples/tree/master/device/Location) 本示例的详情页中的位置服务功能依赖此示例。
-
-[自定义弹窗](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/UpgradePopup) 本示例的升级弹窗功能依赖此示例。
-
-[媒体库视频](https://gitee.com/openharmony/app_samples/tree/master/media/VideoShow) 本示例的详情页中的视频功能依赖此示例。
+[媒体库视频](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow) 本示例的详情页中的视频功能依赖此示例。
 
 [分享](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare) 本示例的详情页中的分享功能依赖此示例。
 

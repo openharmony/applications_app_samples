@@ -31,7 +31,7 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 本实例获取Debug信息的功能结主要封装在Index，源码参考:[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DFX/Debug/entry/src/main/ets/pages/Index.ets) 。
+* 本实例获取Debug信息的功能结主要封装在Index，源码参考:[Index.ets](entry/src/main/ets/pages/Index.ets) 。
     * 获取Debug信息：在Index页面中通过点击事件调用hidebug.getPss()、hidebug.getSharedDirty()、hidebug.getPrivateDirty()等方法能够获取应用进程实际使用的物理内存大小、进程的共享脏内存大小、进程的私有脏内存大小。
   
 ### 相关权限
