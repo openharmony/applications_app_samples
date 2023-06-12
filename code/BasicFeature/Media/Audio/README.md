@@ -59,13 +59,14 @@ library/
 
 ### 具体实现
 
-* 发声设备查询与切换功能都封装在PreferOutputDevice,源码参考：[PreferOutputDevice.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/PreferOutputDevice.ets)
+*
+发声设备查询与切换功能都封装在PreferOutputDevice,源码参考：[PreferOutputDevice.ets](entry/src/main/ets/pages/PreferOutputDevice.ets)
     * 使用audioRenderer对象来播放一个通话类型的音频，只要进入发声设备查询与选择页面就进行播放，直到退出当前页面
     * 使用audio.getAudioManager()来获取音频管理对象audioManager，再通过audioManager.getRoutingManager()对象获取audioRoutingManager对象
     * 使用audioRoutingManager.getPreferOutputDeviceForRendererInfo()获取当前发声设备
     * 使用audioRoutingManager.on('deviceChange',audio.DeviceFlag.OUTPUT_DEVICES_FLAG)来监听设备上下线
     * 当收到监听消息后，重新调用audioRoutingManager.getPreferOutputDeviceForRendererInfo()接口来查询当前发声设备
-* 音频焦点功能都封装Focus，源码参考：[Focus.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/Focus.ets)
+* 音频焦点功能都封装Focus，源码参考：[Focus.ets](entry/src/main/ets/pages/Focus.ets)
     * 使用audio.createAudioRenderer()接口分别创建音乐类型和铃声类型的audioRenderer对象
     * 对每个render对象都调用audioRenderer.setInterruptMode(audio.InterruptMode.INDEPENDENT_MODE),完成独立焦点的设置
     * 对每个render对象都监听audioRenderer.on('audioInterrupt'),收到回调时，说明上前renderer对象被暂停或者恢复播放，据此更新UI状态，如果是恢复，则需要再次调用audioRenderer.start()和wirte()进行恢复播放
@@ -75,11 +76,11 @@ library/
     * 使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor,接口参考：[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getrawfd9)
     * 根据文件描述对象，使用fs.read()接口进行音频数据读取，读取到的结果用于audioRenderer.write()的写入,接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
 
-* 预置音效查询功能都封装在PresetEffect, 源码参考：[PresetEffect.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/PresetEffect.ets)
+* 预置音效查询功能都封装在PresetEffect, 源码参考：[PresetEffect.ets](entry/src/main/ets/pages/PresetEffect.ets)
     *  在选择框中的类型和场景映射为数字后, 作为之后调用的getAudioEffectInfoArray(content type:number, stream usage:number)的两个入参
     *  点击”查询“按钮后, 使用audio.getAudioManager()获取音频管理对象audioManager, 再通过audioManager.getStreamManager()对象获取audioStreamManager
     *  使用audioStreamManager.getAudioEffectInfoArray()获取当前的预置音效模式, api返回数字, 映射后显示在查询结果一栏
-* 实时音效设置功能都封装在RealtimeEffect, 源码参考：[RealtimeEffect.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/Audio/entry/src/main/ets/pages/RealtimeEffect.ets)
+* 实时音效设置功能都封装在RealtimeEffect, 源码参考：[RealtimeEffect.ets](entry/src/main/ets/pages/RealtimeEffect.ets)
     *  点击播放调用createAudioRenderer(audioRendererOptions),其中的audioRendererOptions使用了在选择框中的类型和场景映射成的数字
     *  使用audioRenderer.start()方法和audioRenderer.write()进行音频的播放处理, 写入字节的长度由audioRenderer.getBufferSize()接口来决定
     *  使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor

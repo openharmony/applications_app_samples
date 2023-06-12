@@ -25,7 +25,7 @@ export class ModeType {
     this.name = name;
   }
 }
-// 单个选择项的渲染
+
 @Component
 struct ModeItem_1 {
   private mode: ModeType
@@ -44,7 +44,7 @@ struct ModeItem_1 {
       .backgroundColor(bgColor)
       .borderRadius(12)
       .padding({ left: 14, top: 14, bottom: 14 })
-      // 最后一项不显示分隔线
+
       if (this.mode.id != 5) {
         Flex() {
           Flex() {
@@ -59,7 +59,6 @@ struct ModeItem_1 {
 
   build() {
     Flex() {
-      // 选中项和其他选项的样式有不同
       if (this.contentTypeIndex == this.mode.id) {
         this.renderModeItem('#007DFF', 'rgba(0,125,255,0.20)', this.mode.name)
       } else {
@@ -87,7 +86,7 @@ struct ModeItem_2 {
       .backgroundColor(bgColor)
       .borderRadius(12)
       .padding({ left: 14, top: 14, bottom: 14 })
-      // 最后一项不显示分隔线
+
       if (this.mode.id != 6) {
         Flex() {
           Flex() {
@@ -101,7 +100,6 @@ struct ModeItem_2 {
 
   build() {
     Flex() {
-      // 选中项和其他选项的样式有不同
       if (this.streamUsageIndex == this.mode.id) {
         this.renderModeItem('#007DFF', 'rgba(0,125,255,0.20)', this.mode.name)
       } else {
@@ -167,27 +165,26 @@ struct DetectPresetEffect {
       Column() {
         Row() {
           Navigation() {
+            NavRouter() {
+              NavDestination() {
+              }
+            }
+            .onStateChange(async (isActivated: boolean) => {
+              console.info("hello")
+              await router.pushUrl({ url: 'pages/Index' })
+            })
           }
+          .id('back_btn_preset')
           .height(56)
+          .width(384)
           .hideBackButton(false)
           .titleMode(NavigationTitleMode.Mini)
-          .title('音效管理')
+          .title($r('app.string.EffectManager'))
           .mode(NavigationMode.Stack)
           .backgroundColor('#F1F3F5')
         }
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/Index' })
-        })
-        .id('back_btn_preset')
-        .height(56)
-        .width('100%')
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/Index' })
-        })
-        .width(384)
 
         Row() {
-          //CONTENT TYPE
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Row() {
               Text(this.contentTypeOptions[this.contentTypeIndex].name)
@@ -204,7 +201,6 @@ struct DetectPresetEffect {
                   .margin({ left: 8 })
               }
             }
-
           }
           .height(40)
           .width(140)
@@ -220,14 +216,13 @@ struct DetectPresetEffect {
             this.showSelector_1 = !this.showSelector_1
             this.showSelector_2 = false
           })
+
           if (this.showSelector_1) {
             Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-              // 循环产生下拉菜单
               ForEach(this.contentTypeOptions, item => {
                 Flex() {
                   ModeItem_1({ mode: item })
                 }.width(156)
-                // 为每一项绑定点击事件
                 .onClick(() => {
                   if (this.contentTypeIndex !== item.id) {
                     this.contentTypeIndex = item.id
@@ -247,7 +242,7 @@ struct DetectPresetEffect {
             .position({ x: 54, y: 40 })
             .zIndex(1)
           }
-          //STREAM USAGE
+
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Row() {
               Text(this.streamUsageOptions[this.streamUsageIndex].name)
@@ -263,7 +258,6 @@ struct DetectPresetEffect {
                   .margin({ left: 8 })
               }
             }
-
           }
           .height(40)
           .width(140)
@@ -279,6 +273,7 @@ struct DetectPresetEffect {
             this.showSelector_1 = false
             this.showSelector_2 = !this.showSelector_2;
           })
+
           if (this.showSelector_2) {
             Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
               ForEach(this.streamUsageOptions, item => {
@@ -293,7 +288,6 @@ struct DetectPresetEffect {
                   }
                   this.showSelector_2 = false
                 })
-
               }, item => item.id.toString())
             }
             .height(344)

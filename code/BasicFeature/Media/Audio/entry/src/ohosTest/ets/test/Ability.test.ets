@@ -74,7 +74,7 @@ export default function abilityTest() {
     it(BUNDLE + 'IndexShow_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'IndexShow_001 begin')
       try {
-        driver = await Driver.create()
+        driver = Driver.create()
         await driver.delayMs(1000)
         Logger.info(TAG, BUNDLE + 'select_output_device_card')
         await driver.assertComponentExist(ON.id('select_output_device_card'))
@@ -263,8 +263,6 @@ export default function abilityTest() {
       try {
         let backComponent = await driver.findComponent(ON.id('back_btn_focus'))
         await backComponent.click()
-        driver = await Driver.create()
-
         await driver.delayMs(500)
         Logger.info(TAG, BUNDLE + 'audio_effect_manager_card')
         await driver.assertComponentExist(ON.id('audio_effect_manager_card'))
@@ -316,12 +314,12 @@ export default function abilityTest() {
         let selectContentPreset = await driver.findComponent(ON.id('select_content_preset'))
         await selectContentPreset.click()
         await driver.delayMs(500)
-        await driver.click(180,400)
+        await driver.click(180, 400) // only for rk3568
         await driver.delayMs(500)
         let selectUsagePreset = await driver.findComponent(ON.id('select_usage_preset'))
         await selectUsagePreset.click()
         await driver.delayMs(500)
-        await driver.click(500,500)
+        await driver.click(500, 500) // only for rk3568
         await driver.delayMs(2000)
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'Preset_002 err:' + JSON.stringify(err))
@@ -329,7 +327,7 @@ export default function abilityTest() {
       }
       Logger.info(TAG, BUNDLE + 'Preset_002 end')
       done()
-  })
+    })
 
     /**
      * [Preset]
@@ -366,7 +364,7 @@ export default function abilityTest() {
         let selectUsagePreset = await driver.findComponent(ON.id('select_usage_preset'))
         await selectUsagePreset.click()
         await driver.delayMs(500)
-        await driver.click(500,300)
+        await driver.click(500, 300) // only for rk3568
         await driver.delayMs(500)
         let queryResultPreset = await driver.findComponent(ON.id('query_result_preset'))
         let queryResultText = await queryResultPreset.getText()
@@ -463,11 +461,11 @@ export default function abilityTest() {
         let selectUsageRealtime = await driver.findComponent(ON.id('select_usage_realtime'))
         await selectContentRealtime.click()
         await driver.delayMs(500)
-        await driver.click(180,400)
+        await driver.click(180, 400) // only for rk3568
         await driver.delayMs(500)
         await selectUsageRealtime.click()
         await driver.delayMs(500)
-        await driver.click(500,500)
+        await driver.click(500, 500) // only for rk3568
         await driver.delayMs(500)
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'Realtime_003:' + JSON.stringify(err))
@@ -578,7 +576,7 @@ export default function abilityTest() {
         let selectContentRealtime = await driver.findComponent(ON.id('select_content_realtime'))
         await selectContentRealtime.click()
         await driver.delayMs(500)
-        await driver.click(180,500)
+        await driver.click(180, 500) // only for rk3568
         await driver.delayMs(500)
 
         let queryResultRealtime = await driver.findComponent(ON.id('query_result_realtime'))
@@ -632,7 +630,7 @@ export default function abilityTest() {
         let selectMode = await driver.findComponent(ON.id('select_mode_realtime'))
         await selectMode.click()
         await driver.delayMs(500)
-        await driver.click(600,500)
+        await driver.click(600, 500) // only for rk3568
         let queryBtnRealtime = await driver.findComponent(ON.id('query_btn_realtime'))
         await queryBtnRealtime.click()
         let queryResultRealtime = await driver.findComponent(ON.id('query_result_realtime'))
@@ -642,9 +640,8 @@ export default function abilityTest() {
         let queryResultText = await queryResultRealtime.getText()
         Logger.info(TAG, BUNDLE + 'queryResultText:' + queryResultText)
         expect(queryResultText === selectModeText).assertTrue()
-        let backBtnRealtime = await driver.findComponent(ON.id('back_btn_realtime'))
-        await backBtnRealtime.click()
-
+        await driver.click(100, 100) // only for rk3568
+        await driver.delayMs(2000)
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'Realtime_009:' + JSON.stringify(err))
         expect(false).assertTrue()
