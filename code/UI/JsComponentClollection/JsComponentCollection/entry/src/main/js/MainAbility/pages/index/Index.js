@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { TOPRECTHEIGHT, BOTTOMRECTHEIGHT } from '../../util/AttributeData';
 
 export default {
   data: {
@@ -19,7 +20,7 @@ export default {
     haveSecondTitle: 'haveSecondTitle',
     tabIndex: 0,
     tabArr: [],
-    iconArr:[
+    iconArr: [
       {
         unselect: 'common/image/ic_unselect_component.png',
         select: 'common/image/ic_select_component.png'
@@ -36,7 +37,10 @@ export default {
         unselect: 'common/image/ic_unselect_global.png',
         select: 'common/image/ic_select_global.png'
       }
-    ]
+    ],
+    // 防止沉浸，添加两个变量距离顶层和底层的距离为72
+    topRectHeight: TOPRECTHEIGHT,
+    bottomRectHeight: BOTTOMRECTHEIGHT
   },
 
   onInit() {
@@ -52,7 +56,7 @@ export default {
   },
 
   getIcon(index) {
-    if(index === this.tabIndex) {
+    if (index === this.tabIndex) {
       return this.iconArr[index].select
     }
     return this.iconArr[index].unselect

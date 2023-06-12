@@ -1,5 +1,5 @@
 <!--
- Copyright (c) 2022 Huawei Device Co., Ltd.
+ Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -15,34 +15,41 @@
 
 <element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
 <div class="container">
+  <div style="height: {{ topRectHeight }} px; width: 100%"></div>
   <titleBar title="{{ clickEventsTitle }}"></titleBar>
   <div class="click-events-box">
     <text class="introduce">{{ $t('strings.click_stop_events_bubble_up') }}</text>
     <div class="white-background-color-column">
       <div class="parent-box" onclick="stopBubbleUpParentClick">
-
-        <!-- Click stop bubble up start -->
-        <text class="effervescence-text" grab:click.bubble="stopBubbleUpChildClick">{{ $t('strings.click_stop_bubble_up') }}</text>
-        <!-- Click stop bubble up end -->
-
+      
+      <!-- Click stop bubble up start -->
+        <text class="effervescence-text"
+              grab:click.bubble="stopBubbleUpChildClick"
+              id="noEffervescence">{{ $t('strings.click_stop_bubble_up') }}</text>
+      
+      <!-- Click stop bubble up end -->
+      
       </div>
-      <text class="click-events-description">{{ stopBubbleUpParentMessage }}</text>
+      <text class="click-events-description" id="noEffervescenceText">{{ stopBubbleUpParentMessage }}</text>
       <text class="click-events-description">{{ $t('strings.click_stop_bubble_up_description') }}</text>
     </div>
   </div>
-
+  
   <div class="click-events-box bottom-margin">
     <text class="introduce">{{ $t('strings.click_start_events_bubble_up') }}</text>
     <div class="white-background-color-column">
       <div class="parent-box" onclick="startBubbleUpParentClick">
-
-        <!-- Click start bubble up start -->
-        <button class="not-effervescence-button" type="text" onclick="startBubbleUpChildClick">{{ $t('strings.click_start_bubble_up') }}</button>
-        <!-- Click start bubble up end -->
-
+      
+      <!-- Click start bubble up start -->
+        <button class="not-effervescence-button" type="text" id="effervescence" onclick="startBubbleUpChildClick">{{
+          $t('strings.click_start_bubble_up') }}</button>
+      
+      <!-- Click start bubble up end -->
+      
       </div>
-      <text class="click-events-description">{{ startBubbleUpParentMessage }}</text>
+      <text class="click-events-description" id="effervescenceText">{{ startBubbleUpParentMessage }}</text>
       <text class="click-events-description">{{ $t('strings.click_start_bubble_up_description') }}</text>
     </div>
   </div>
+  <div style="height: {{ bottomRectHeight }} px; width: 100%"></div>
 </div>
