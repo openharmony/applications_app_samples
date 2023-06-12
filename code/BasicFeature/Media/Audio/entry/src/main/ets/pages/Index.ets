@@ -30,8 +30,8 @@ struct Index {
         .width(174)
         .height(188)
         .borderRadius(30)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/PreferOutputDevice' })
+        .onClick(async() => {
+          await router.pushUrl({ url:'pages/PreferOutputDevice' })
         })
 
         Column() {
@@ -43,13 +43,12 @@ struct Index {
         .borderRadius(30)
         .width(174)
         .height(188)
-        .onClick(async () => {
+        .onClick(async() => {
           await router.pushUrl({ url: 'pages/Focus' })
         })
       }
       .margin({ top: 32 })
       .justifyContent(FlexAlign.SpaceBetween)
-
 
       Row() {
         Column() {
@@ -74,9 +73,7 @@ struct Index {
       }
       .margin({ top: 12 })
       .justifyContent(FlexAlign.SpaceBetween)
-
     }
     .height('100%').width('100%').backgroundColor('#F1F3F5')
-
   }
 }

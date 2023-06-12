@@ -90,6 +90,7 @@ struct ModeItem_2 {
       .backgroundColor(bgColor)
       .borderRadius(12)
       .padding({ left: 14, top: 14, bottom: 14 })
+
       if (this.mode.id != 6) {
         Flex() {
           Flex() {
@@ -131,6 +132,7 @@ struct ModeItem_3 {
       .backgroundColor(bgColor)
       .borderRadius(12)
       .padding({ left: 14, top: 14, bottom: 14 })
+
       if (this.mode.id != 1) {
         Flex() {
           Flex() {
@@ -251,7 +253,6 @@ struct RealtimeAudioEffectQuery {
   }
 
   async createAudioEffectAndPlay() {
-
     let audioRendererOptions =
       {
         streamInfo: {
@@ -266,7 +267,6 @@ struct RealtimeAudioEffectQuery {
           rendererFlags: 0
         }
       }
-
     try {
       this.audioRenderer = await audio.createAudioRenderer(audioRendererOptions)
       console.info("createAudioRenderer:SUCCEED")
@@ -274,9 +274,7 @@ struct RealtimeAudioEffectQuery {
       console.error(`audioRenderer create ,Error: ${JSON.stringify(err)}`)
       return
     }
-
     await this.audioRenderer.setAudioEffectMode(this.audioEffectModeSettingIndex)
-
     try {
       await this.audioRenderer.start()
       console.info(" audioRenderer.start:SUCCEED")
@@ -284,6 +282,7 @@ struct RealtimeAudioEffectQuery {
       console.error(`audioRenderer start ,Error: ${JSON.stringify(err)}`)
       return
     }
+
     let bufferSize
     try {
       bufferSize = await this.audioRenderer.getBufferSize()
@@ -292,7 +291,6 @@ struct RealtimeAudioEffectQuery {
       console.error(`get Buffer Size ,Error: ${JSON.stringify(err)}`)
       return
     }
-
     console.info("buffer size:" + bufferSize)
     await this.getStageFileDescriptor(this.audioSource).then((res) => {
       this.fileDescriptor = res
@@ -364,9 +362,7 @@ struct RealtimeAudioEffectQuery {
       console.info('The audio renderer has been paused.')
       this.optionsButtonState = true
       this.selectColor = Color.Black
-
     }
-
   }
 
   build() {
@@ -374,25 +370,27 @@ struct RealtimeAudioEffectQuery {
       Column() {
         Row() {
           Navigation() {
+            NavRouter() {
+              NavDestination() {
+              }
+            }.onStateChange(async (isActivated: boolean) => {
+              console.info("hello")
+              if (this.audioRenderer != null) {
+                await this.audioRenderer.stop()
+                await this.audioRenderer.release()
+              }
+              await router.pushUrl({ url: 'pages/Index' })
+            })
           }
+          .id('back_btn_realtime')
           .height(56)
+          .width(384)
           .hideBackButton(false)
           .titleMode(NavigationTitleMode.Mini)
-          .title('音效管理')
+          .title($r('app.string.EffectManager'))
           .mode(NavigationMode.Stack)
           .backgroundColor('#F1F3F5')
         }
-        .id('back_btn_realtime')
-        .height(56)
-        .width(336)
-        .onClick(async () => {
-          if (this.audioRenderer != null) {
-            await this.audioRenderer.stop()
-            await this.audioRenderer.release()
-          }
-          await router.pushUrl({ url: 'pages/Index' })
-        })
-        .width(384)
 
         Row() {
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -404,8 +402,6 @@ struct RealtimeAudioEffectQuery {
                 .fontSize(16)
                 .fontWeight(500)
                 .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-
-
               if (this.showSelector_1) {
                 Image($r('app.media.ic_arrow_up_big')).height(7).width(10)
                   .fillColor(this.selectColor)
@@ -436,12 +432,10 @@ struct RealtimeAudioEffectQuery {
 
           if (this.showSelector_1) {
             Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-              // 循环产生下拉菜单
               ForEach(this.contentTypeOptions, item => {
                 Flex() {
                   ModeItem_1({ mode: item })
                 }.width(156)
-                // 为每一项绑定点击事件
                 .onClick(() => {
                   if (this.contentTypeIndex !== item.id) {
                     this.contentTypeIndex = item.id
@@ -464,7 +458,6 @@ struct RealtimeAudioEffectQuery {
             .zIndex(1)
           }
 
-          //STREAM USAGE
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Row() {
               Text(this.streamUsageOptions[this.streamUsageIndex].name)
@@ -473,7 +466,6 @@ struct RealtimeAudioEffectQuery {
                 .fontWeight(500)
                 .fontColor(this.selectColor)
                 .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-
               if (this.showSelector_2) {
                 Image($r('app.media.ic_arrow_up_small')).height(7).width(10)
                   .fillColor(this.selectColor)
@@ -504,12 +496,10 @@ struct RealtimeAudioEffectQuery {
 
           if (this.showSelector_2) {
             Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-              // 循环产生下拉菜单
               ForEach(this.streamUsageOptions, item => {
                 Flex() {
                   ModeItem_2({ mode: item })
                 }.width(156)
-                // 为每一项绑定点击事件
                 .onClick(() => {
                   if (this.streamUsageIndex !== item.id) {
                     this.streamUsageIndex = item.id
@@ -580,7 +570,6 @@ struct RealtimeAudioEffectQuery {
                     this.currentAudioEffect = $r('app.string.EFFECT_DEFAULT')
                   }
                   this.queryResult = this.currentAudioEffect
-
                 }
               })
           }
@@ -614,7 +603,6 @@ struct RealtimeAudioEffectQuery {
           .height(1).width('100%')
           .backgroundColor('#F1F3F5')
 
-
           Row() {
             Text($r('app.string.AUDIO_EFFECT_MODE_SETTING'))
               .fontSize(16)
@@ -630,7 +618,6 @@ struct RealtimeAudioEffectQuery {
                   .fontSize(16)
                   .fontWeight(500)
                   .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-
 
                 if (this.showSelector_3) {
                   Image($r('app.media.ic_arrow_up_small')).height(7).width(10)
@@ -653,24 +640,20 @@ struct RealtimeAudioEffectQuery {
 
             if (this.showSelector_3) {
               Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-                // 循环产生下拉菜单
                 ForEach(this.audioEffectModeSettingOptions, item => {
                   Flex() {
                     ModeItem_3({ mode: item })
                   }.width(156)
-                  // 为每一项绑定点击事件
                   .onClick(async () => {
                     if (this.audioEffectModeSettingIndex !== item.id) {
                       this.audioEffectModeSettingIndex = item.id
                       console.info('this.audioEffectModeSettingIndex===' + this.audioEffectModeSettingIndex)
-
                       if (this.audioRenderer !== null && this.audioRenderer.state !== audio.AudioState.STATE_RELEASED) {
                         await this.audioRenderer.setAudioEffectMode(item.id)
                       }
                     }
                     this.showSelector_3 = false
                   })
-
                 }, item => item.id.toString())
               }
               .height(105)
@@ -702,7 +685,6 @@ struct RealtimeAudioEffectQuery {
             .width(24)
             .height(24)
             .margin({ top: 7, bottom: 4 })
-
           Text($r('app.string.PRESET_AUDIO_EFFECT_QUERY'))
             .fontSize(10)
             .height(14)
@@ -725,7 +707,6 @@ struct RealtimeAudioEffectQuery {
             .width(24)
             .height(24)
             .margin({ top: 7, bottom: 4 })
-
           Text($r('app.string.REALTIME_AUDIO_EFFECT_SETTING'))
             .fontSize(10)
             .height(14)
