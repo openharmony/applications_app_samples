@@ -47,7 +47,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本测试demo需要安装在仿桌面应用上进行测试。[Launcher](code/SystemFeature/ApplicationModels/Launcher · OpenHarmony/applications_app_samples - 码云 - 开源中国 (gitee.com))
+本测试demo需要安装在仿桌面应用上进行测试。[Launcher](../../../Launcher)
 
 ### 约束与限制
 
