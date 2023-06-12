@@ -18,20 +18,24 @@
 struct Index {
   @State message: string = 'EntryAbility'
 
-  build() {
+ build() {
     Row() {
       Column() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .id('EntryAbility')
+        Text('')
+          .height(25)
         Button("startSecondAbility")
-          .fontSize(50)
+          .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             globalThis.startAbility();
           })
           .id("startSecondAbility")
+          .width(400)
+          .height(50)
       }
       .width('100%')
     }

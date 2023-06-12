@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import systemDateTime from '@ohos.systemDateTime';
 import { Logger } from '../logger/Logger';
 
@@ -22,23 +22,28 @@ struct Index {
   @State message: string = 'EntryAbility'
   @State date: string = '--:--:--'
   @State time: string = '--:--:--'
-  @State detailDate: string = '--:--:--'
   private context
 
   build() {
     Row() {
       Column() {
         Text(this.date)
-          .fontSize(50)
+          .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .id("date")
+        Text('')
+          .fontSize(35)
         Text(this.time)
-          .fontSize(50)
+          .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .id("time")
+        Text('')
+          .fontSize(35)
         Button("StartEntryAbility")
-          .fontSize(50)
+          .fontSize(35)
           .fontWeight(FontWeight.Bold)
+          .width(400)
+          .height(50)
           .onClick(() => {
             this.context.startAbility({
               bundleName: "com.acts.startrecentability",
@@ -50,9 +55,14 @@ struct Index {
             })
           })
           .id("startEntryAbility")
-        Button("startSingletonAbility")
-          .fontSize(50)
+        Text('')
+          .fontSize(35)
+          .height(15)
+        Button("StartSingletonAbility")
+          .fontSize(35)
           .fontWeight(FontWeight.Bold)
+          .width(400)
+          .height(50)
           .onClick(() => {
             this.context.startAbility({
               bundleName: "com.acts.startrecentability",
@@ -64,10 +74,6 @@ struct Index {
             })
           })
           .id("startSingletonAbility")
-        Text(this.detailDate)
-          .fontSize(15)
-          .fontWeight(FontWeight.Bold)
-          .id("detailDate")
       }
       .width('100%')
     }
@@ -78,7 +84,6 @@ struct Index {
     this.context = getContext(this) as any
     systemDateTime.getDate().then((date) => {
       let dateStr = JSON.stringify(date);
-      this.detailDate = dateStr;
       this.date = dateStr.substr(1, dateStr.indexOf('T') - 1);
       this.time = dateStr.substr(dateStr.indexOf('T') + 1, dateStr.length - (dateStr.indexOf('T') + 1) -2);
     });
