@@ -59,8 +59,7 @@ library/
 
 ### 具体实现
 
-*
-发声设备查询与切换功能都封装在PreferOutputDevice,源码参考：[PreferOutputDevice.ets](entry/src/main/ets/pages/PreferOutputDevice.ets)
+* 发声设备查询与切换功能都封装在PreferOutputDevice,源码参考：[PreferOutputDevice.ets](entry/src/main/ets/pages/PreferOutputDevice.ets)
     * 使用audioRenderer对象来播放一个通话类型的音频，只要进入发声设备查询与选择页面就进行播放，直到退出当前页面
     * 使用audio.getAudioManager()来获取音频管理对象audioManager，再通过audioManager.getRoutingManager()对象获取audioRoutingManager对象
     * 使用audioRoutingManager.getPreferOutputDeviceForRendererInfo()获取当前发声设备
