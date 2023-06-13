@@ -21,7 +21,7 @@ import { Logger } from '../logger/Logger';
 export default class SecondAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    Logger.debug("SecondAbility onCreate");
+    Logger.debug('SecondAbility onCreate');
   }
 
   onDestroy() {

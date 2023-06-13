@@ -7,7 +7,7 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -29,7 +29,7 @@ class LoggerModel {
    * debug
    * @param args
    */
-  debug(...args: any[]) {
+  debug(...args: any[]): void {
     hilog.debug(this.domain, this.prefix, this.format, args)
   }
 
@@ -37,7 +37,7 @@ class LoggerModel {
    * info
    * @param args
    */
-  info(...args: any[]) {
+  info(...args: any[]): void {
     hilog.info(this.domain, this.prefix, this.format, args)
   }
 
@@ -45,7 +45,7 @@ class LoggerModel {
    * warn
    * @param args
    */
-  warn(...args: any[]) {
+  warn(...args: any[]): void {
     hilog.warn(this.domain, this.prefix, this.format, args)
   }
 
@@ -53,9 +53,9 @@ class LoggerModel {
    * error
    * @param args
    */
-  error(...args: any[]) {
+  error(...args: any[]): void {
     hilog.error(this.domain, this.prefix, this.format, args)
   }
 }
 
-export let Logger =  new LoggerModel('[Sample_StartRecentAbility]')
+export let logger = new LoggerModel('[Sample_StartRecentAbility]')

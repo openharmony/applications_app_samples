@@ -2,15 +2,13 @@
 
 ### 介绍
 
-本示例为一个仿桌面应用测试demo，测试的功能为：
-
-点击仿桌面应用上的应用图标，若应用未启动则启动应用，若应用已经被启动并创建多个实例则启动最近拉起的实例。
+本示例为一个仿桌面应用测试demo，测试的功能为：点击仿桌面应用上的应用图标，若应用未启动则启动应用，若应用已经被启动并创建多个实例则启动最近拉起的实例。
 
 ### 效果预览
 
 | EntryAbility                                          | EntryAbility（通过点击按钮打开的）                    | SecondAbility                                         |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| ![entryAbility1](.\screenshots\zh\entryAbility1.jpeg) | ![entryAbility2](.\screenshots\zh\entryAbility2.jpeg) | ![secondAbility](.\screenshots\zh\secondAbility.jpeg) |
+| ![entryAbility1](./screenshots/zh/entryAbility1.jpg) | ![entryAbility2](./screenshots/zh/entryAbility2.jpg) | ![secondAbility](./screenshots/zh/secondAbility.jpg) |
 
 使用说明
 
@@ -41,13 +39,16 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 启动最近的组件实例
-  - 当新建多个主Ability实例时，返回桌面并再次打开应用，会将最近的主Ability实例拉至前台，不会新建Ability实例。
-  - 当在主Ability上打开一个单实例Ability，返回桌面并点击应用图标再次打开应用后，将最近的主Ability拉至前台，不会新建实例也不会打开单实例Ability。
+- 应用启动的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](./base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  - 启动最近的组件实例：拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
+  
+### 相关权限
+
+不涉及
 
 ### 依赖
 
-本测试demo需要安装在仿桌面应用上进行测试。[Launcher](../../../Launcher)
+本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher)
 
 ### 约束与限制
 
@@ -56,3 +57,14 @@ entry/src/main/ets/
 2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+```
+git init
+git config core.sparsecheckout true
+echo code/SystemFeature/ApplicationModels/TestRely/LauncherTest/StartRecentAbility/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```

@@ -149,7 +149,7 @@ export class LauncherAbilityManager {
    * @params paramAbilityName Ability名
    * @params paramBundleName 应用包名
    */
-  startLauncherAbilityFromRecent(paramAbilityName, paramBundleName) {
+  startLauncherAbilityFromRecent(paramAbilityName, paramBundleName): void {
     Logger.info(TAG, `startApplication abilityName: ${paramAbilityName}, bundleName: ${paramBundleName}`)
     this.context.startRecentAbility({
       bundleName: paramBundleName,

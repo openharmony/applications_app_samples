@@ -27,13 +27,13 @@ struct Index {
           .id('EntryAbility')
         Text('')
           .height(25)
-        Button("startSecondAbility")
+        Button('startSecondAbility')
           .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             globalThis.startAbility();
           })
-          .id("startSecondAbility")
+          .id('startSecondAbility')
           .width(400)
           .height(50)
       }
