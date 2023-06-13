@@ -21,7 +21,6 @@ import { Logger } from '../logger/Logger';
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    AppStorage.SetOrCreate('', '')
 
     globalThis.startAbility = () => {
       if (globalThis.remoteConnectId !== undefined) {
@@ -33,7 +32,7 @@ export default class EntryAbility extends UIAbility {
             let connectWant = {
               'bundleName': 'com.acts.abilityabacktoabilityb',
               'abilityName': 'ServiceAbility'
-            }
+            };
             let context = this.context;
             let connectOptions = {
               onConnect(elementName, remote) {
@@ -45,18 +44,18 @@ export default class EntryAbility extends UIAbility {
               onFailed(code) {
                 Logger.debug('ServiceExtensionAbility has been onFailed');
               }
-            }
+            };
             globalThis.remoteConnectId = context.connectServiceExtensionAbility(connectWant, connectOptions);
           } catch (err) {
             Logger.debug('connectServiceExtensionAbility failed');
           }
-        })
+        });
       } else {
         try {
           let connectWant = {
             'bundleName': 'com.acts.abilityabacktoabilityb',
             'abilityName': 'ServiceAbility'
-          }
+          };
           let context = this.context;
           let connectOptions = {
             onConnect(elementName, remote) {
@@ -68,7 +67,7 @@ export default class EntryAbility extends UIAbility {
             onFailed(code) {
               Logger.debug('ServiceExtensionAbility has been onFailed');
             }
-          }
+          };
           globalThis.remoteConnectId = context.connectServiceExtensionAbility(connectWant, connectOptions);
         } catch (err) {
           Logger.debug('connectServiceExtensionAbility failed');

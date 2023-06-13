@@ -20,7 +20,7 @@ import { Logger } from '../logger/Logger';
 
 class StubTest extends rpc.RemoteObject {
   constructor(des) {
-    super(des)
+    super(des);
   }
 
   onRemoteRequest(code, data, reply, option): boolean {
@@ -49,13 +49,13 @@ export default class ServiceAbility extends ServiceExtensionAbility {
       parameters: {
         [wantConstant.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK]: true
       }
-    }
-    globalThis.context = this.context
+    };
+    globalThis.context = this.context;
     this.context.startAbility(secUIAbilityWant).then(() => {
       Logger.debug('startAbility successful.');
     }).catch((err) => {
       Logger.debug('startAbility failed.');
-    })
+    });
     return new StubTest('test');
   }
 }

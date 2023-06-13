@@ -20,7 +20,6 @@ import systemDateTime from '@ohos.systemDateTime';
 import { Logger } from '../logger/Logger';
 
 export default class EntryAbility extends UIAbility {
-  
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     systemDateTime.getDate().then((date) => {
