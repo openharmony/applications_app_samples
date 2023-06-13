@@ -14,71 +14,8 @@
  */
 
 import vibrator from '@ohos.vibrator';
-import media from '@ohos.multimedia.media'
 import router from '@ohos.router'
 import { changeOrientation, showTitleBar, playVibrateCustom, hideTitleBar } from './Util'
-import Logger from './Logger'
-
-const TAG = '[VideoPlayModule]'
-
-export function setAVPlayerCallback(avPlayer, surfaceID: string) {
-  avPlayer.reset()
-  avPlayer.on('stateChange', async (state, reason) => {
-    switch (state) {
-      case 'idle':
-        Logger.info(TAG, 'state idle called')
-        break;
-      case 'initialized':
-        Logger.info(TAG, 'state initialized called ')
-        avPlayer.surfaceId = surfaceID
-        avPlayer.prepare().then(() => {
-          Logger.info(TAG, 'prepare success');
-        }, (err) => {
-          Logger.info(TAG, 'prepare filed,error message is :' + err.message)
-        })
-        break;
-      case 'prepared':
-        Logger.info(TAG, 'state prepared called')
-        avPlayer.play()
-        break;
-      case 'playing':
-        Logger.info(TAG, 'state playing called')
-        break;
-      case 'completed':
-        Logger.info(TAG, 'state completed called')
-        avPlayer.stop()
-        avPlayer.reset()
-        break;
-      case 'stopped':
-        Logger.info(TAG, 'state stopped called')
-        avPlayer.release()
-        break;
-      case 'error':
-        Logger.info(TAG, 'state error called')
-        break;
-      default:
-        Logger.info(TAG, 'unkown state :' + state)
-        break;
-    }
-  })
-}
-
-export async function videoPlayer(audioName: string, surfaceID: string) {
-  let avPlayer = await media.createAVPlayer()
-  setAVPlayerCallback(avPlayer, surfaceID)
-  let rawFd = undefined
-  await globalThis.getContext()
-    .resourceManager
-    .getRawFd(audioName)
-    .then((value) => {
-      rawFd = value
-      Logger.info(TAG, "rawFd:" + rawFd.fd.toString() + " " + rawFd.offset.toString() + " " + rawFd.length.toString())
-    })
-    .catch((err) => {
-      Logger.info(TAG, "getRawFd failed, err:" + err)
-    })
-  avPlayer.fdSrc = rawFd
-}
 
 @Entry
 @Component
