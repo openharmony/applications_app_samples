@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,6 +30,7 @@ export default struct BindServiceIp {
         .width('70%')
         .margin({ top: 20 })
         .key('ipInput')
+        .id('text_ip_input')
         .onChange((value: string) => {
           this.ipAddress = `ws://${value}/string`
         })
@@ -38,6 +39,7 @@ export default struct BindServiceIp {
           .fontSize(20)
           .fontColor(Color.White)
       }
+      .id('btn_bind')
       .margin({ top: 20 })
       .width(200)
       .height(50)

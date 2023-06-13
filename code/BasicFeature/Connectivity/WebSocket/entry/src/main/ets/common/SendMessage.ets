@@ -23,6 +23,7 @@ export default struct SendMessage {
       TextArea({ placeholder: this.message, text: this.message })
         .height(50)
         .fontSize(25)
+        .id('text_input')
         .layoutWeight(3)
         .backgroundColor(Color.White)
         .margin({ left: 2, right: 2 })
@@ -35,6 +36,7 @@ export default struct SendMessage {
           .fontSize(23)
           .fontColor(Color.White)
       }
+      .id('btn_send')
       .height(50)
       .layoutWeight(1)
       .borderRadius(10)

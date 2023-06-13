@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt';
+import prompt from '@ohos.promptAction';
 import webSocket from '@ohos.net.webSocket';
 import Logger from '../model/Logger';
 import TopBar from '../common/TopBar';
