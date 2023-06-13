@@ -19,10 +19,10 @@ import { Logger } from '../logger/Logger';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'EntryAbility'
-  @State date: string = '--:--:--'
-  @State time: string = '--:--:--'
-  private context
+  @State message: string = 'EntryAbility';
+  @State date: string = '--:--:--';
+  @State time: string = '--:--:--';
+  private context;
 
   build() {
     Row() {

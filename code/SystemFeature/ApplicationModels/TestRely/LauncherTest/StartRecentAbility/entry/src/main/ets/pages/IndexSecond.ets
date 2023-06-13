@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct IndexSecond {
-  @State message: string = 'SingletonAbility'
+  @State message: string = 'SingletonAbility';
 
   build() {
     Row() {
