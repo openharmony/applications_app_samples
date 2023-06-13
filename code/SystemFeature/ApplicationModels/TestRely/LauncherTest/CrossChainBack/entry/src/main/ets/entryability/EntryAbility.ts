@@ -73,7 +73,7 @@ export default class EntryAbility extends UIAbility {
           Logger.debug('connectServiceExtensionAbility failed');
         }
       }
-    }
+    };
   }
 
   onDestroy() {
