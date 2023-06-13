@@ -50,7 +50,7 @@ export struct TaskPoolTab {
         .padding({ top: "8vp" , left: "16vp", right: "16vp", bottom: "21vp" })
         .onChange((value: string) => {
           this.taskPoolInPutStr = value;
-          this.taskPoolInPutArr = value.trim().split(',');
+          this.taskPoolInPutArr = this.taskPoolInPutStr.trim().split(',');
           this.taskPoolOutPutStr = '';
         })
 
@@ -187,6 +187,7 @@ export struct TaskPoolTab {
           .backgroundColor("rgba(24,36,49,0.05)")
           .onClick(()=>{
             this.taskPoolInPutStr = '';
+            this.taskPoolInPutArr = this.taskPoolInPutStr.trim().split(',');
             this.taskPoolOutPutStr = '';
           })
         }
@@ -202,7 +203,7 @@ export struct TaskPoolTab {
   }
 
   async executeImmediately() {
-    if (!this.taskPoolInPutArr.length) {
+    if (!this.taskPoolInPutStr.length) {
       this.taskPoolOutPutStr = "No input for the string to be sorted.\n";
       return;
     }
@@ -218,7 +219,7 @@ export struct TaskPoolTab {
   }
 
   async executeDelay() {
-    if (!this.taskPoolInPutArr.length) {
+    if (!this.taskPoolInPutStr.length) {
       this.taskPoolOutPutStr = "No input for the string to be sorted.\n";
       return;
     }
@@ -234,7 +235,7 @@ export struct TaskPoolTab {
   }
 
   async executeFunc() {
-    if (!this.taskPoolInPutArr.length) {
+    if (!this.taskPoolInPutStr.length) {
       this.taskPoolOutPutStr = "No input for the string to be sorted.\n";
       return;
     }
