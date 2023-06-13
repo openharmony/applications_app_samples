@@ -20,7 +20,7 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct PreferOutputDevice {
-  private appContext: common.Context
+  private appContext: common.Context = null
   private audioRendererOption = {
     streamInfo: {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -41,6 +41,13 @@ struct PreferOutputDevice {
   @State preferOutputDeviceName: string = ''
 
   async aboutToAppear() {
+    this.init()
+  }
+
+  async init() {
+    if (this.appContext !== null) {
+      return
+    }
     this.appContext = getContext()
     let audioManager = audio.getAudioManager()
     this.audioRoutingManager = audioManager.getRoutingManager()
@@ -54,8 +61,29 @@ struct PreferOutputDevice {
     await this.renderPlay()
   }
 
+  async over() {
+    this.appContext = null
+    if (this.audioRenderer !== null) {
+      await this.audioRenderer.release()
+      this.audioRenderer = null
+    }
+    if (this.fileDescriptor !== null) {
+      this.closeResource(this.audioSource)
+      this.fileDescriptor = null
+    }
+    this.audioRoutingManager = null
+  }
+
   async onBackPress() {
-    await this.audioRenderer.release()
+    this.over()
+  }
+
+  async onPageHide() {
+    this.over()
+  }
+
+  onPageShow() {
+    this.init()
   }
 
   async getStageFileDescriptor(fileName) {
@@ -68,6 +96,15 @@ struct PreferOutputDevice {
       console.log('case getRawFileDescriptor err: ' + error)
     })
     return fileDescriptor
+  }
+
+  async closeResource(fileName) {
+    let mgr = this.appContext.resourceManager
+    await mgr.closeRawFd(fileName).then(() => {
+      console.log('case closeRawFd success fileName: ' + fileName)
+    }).catch(error => {
+      console.log('case closeRawFd err: ' + error)
+    })
   }
 
   getPreferOutputDeviceForRendererInfo() {
@@ -111,6 +148,9 @@ struct PreferOutputDevice {
   }
 
   async renderPlay() {
+    if (this.audioRenderer !== null) {
+      return
+    }
     try {
       this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOption)
     } catch (err) {
@@ -131,11 +171,15 @@ struct PreferOutputDevice {
       let cur = startOffset
       let buf = new ArrayBuffer(bufferSize)
       while (true) {
-        //when render released,state is changed to STATE_RELEASED
+        // when render released,state is changed to STATE_RELEASED
         if (this.audioRenderer.state === audio.AudioState.STATE_RELEASED) {
           break
         }
         while (cur <= startOffset + this.fileDescriptor.length) {
+          // when render released,state is changed to STATE_RELEASED
+          if (this.audioRenderer.state === audio.AudioState.STATE_RELEASED) {
+            break
+          }
           let options = {
             offset: cur,
             length: bufferSize
@@ -154,32 +198,52 @@ struct PreferOutputDevice {
   build() {
     Column() {
       Row() {
-        Image($r('app.media.ic_back')).width(24).height(24)
-        Text($r('app.string.Back')).fontSize(24).fontWeight(FontWeight.Bold).margin({ left: 16 })
-      }
-      .id('back_btn')
-      .height(56).width('100%')
+        Navigation() {
+          NavRouter() {
+            NavDestination() {
+            }
+          }
+        }
+        .height('100%')
+        .width('100%')
+        .hideBackButton(false)
+        .titleMode(NavigationTitleMode.Mini)
+        .title($r('app.string.SelectOutputDevice'))
+        .mode(NavigationMode.Stack)
+      }.height(56).width('100%').id('back_btn')
       .onClick(async () => {
         await router.pushUrl({ url: 'pages/Index' })
-        await this.audioRenderer.release()
       })
 
-      Row() {
+      Column() {
         Row() {
-          Image($r('app.media.ic_call')).width(48).height(48).margin({ left: 10 })
-          Text($r('app.string.VoiceCallType')).fontSize(20).margin({ left: 16 })
-        }
+          Row() {
+            Image($r('app.media.ic_call')).width(48).height(48)
+            Text($r('app.string.VoiceCallType'))
+              .fontSize(16)
+              .margin({ left: 12 })
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontColor('#182431')
+              .fontWeight(500)
+          }
 
-        Row() {
-          Text(this.preferOutputDeviceName).id('device_name_text').fontWeight(FontWeight.Bold).padding({ right: 10 })
+          Row() {
+            Text(this.preferOutputDeviceName)
+              .id('device_name_text')
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontColor('#182431')
+              .fontWeight(400)
+              .opacity(0.6)
+          }
         }
-      }
-      .justifyContent(FlexAlign.SpaceBetween)
-      .height(72)
-      .width('100%')
-      .backgroundColor(Color.White)
-      .borderRadius(30)
+        .justifyContent(FlexAlign.SpaceBetween)
+        .height(72)
+        .width('100%')
+        .padding({ left: '3.35%', right: '3.35%' })
+        .backgroundColor(Color.White)
+        .borderRadius(24)
+      }.padding({ left: '3.35%', right: '3.35%' })
     }
-    .height('100%').width('100%').backgroundColor('#c4c4c4').padding({ left: 20, right: 20 })
+    .height('100%').width('100%').backgroundColor('#f1f3f5')
   }
 }

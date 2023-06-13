@@ -244,6 +244,11 @@ export default function abilityTest() {
         let musicStateTextComponent = await driver.findComponent(ON.id('music_state_text'))
         expect('ic_play_no').assertEqual(await musicStateTextComponent.getText())
 
+        await driver.delayMs(500)
+        let backComponent = await driver.findComponent(ON.id('back_btn_focus'))
+        await backComponent.click()
+        await driver.delayMs(500)
+
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'Focus_004 err:' + JSON.stringify(err))
         expect(false).assertTrue()
@@ -261,8 +266,6 @@ export default function abilityTest() {
     it(BUNDLE + 'IndexShow_003', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'IndexShow_003 begin')
       try {
-        let backComponent = await driver.findComponent(ON.id('back_btn_focus'))
-        await backComponent.click()
         await driver.delayMs(500)
         Logger.info(TAG, BUNDLE + 'audio_effect_manager_card')
         await driver.assertComponentExist(ON.id('audio_effect_manager_card'))
