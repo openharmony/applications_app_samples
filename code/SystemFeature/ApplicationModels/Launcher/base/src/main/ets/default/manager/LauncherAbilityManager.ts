@@ -150,15 +150,15 @@ export class LauncherAbilityManager {
    * @params paramBundleName 应用包名
    */
   startLauncherAbilityFromRecent(paramAbilityName, paramBundleName): void {
-    Logger.info(TAG, `startApplication abilityName: ${paramAbilityName}, bundleName: ${paramBundleName}`)
+    Logger.info(TAG, `startApplication abilityName: ${paramAbilityName}, bundleName: ${paramBundleName}`);
     this.context.startRecentAbility({
       bundleName: paramBundleName,
       abilityName: paramAbilityName
     }).then(() => {
-      Logger.info(TAG, 'startApplication promise success')
+      Logger.info(TAG, 'startApplication promise success');
     }, (err) => {
-      Logger.error(TAG, `startApplication promise error: ${JSON.stringify(err)}`)
-    })
+      Logger.error(TAG, `startApplication promise error: ${JSON.stringify(err)}`);
+    });
   }
 
   /**

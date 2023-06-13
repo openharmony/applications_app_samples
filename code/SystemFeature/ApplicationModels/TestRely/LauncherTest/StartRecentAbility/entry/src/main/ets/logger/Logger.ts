@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 
 class LoggerModel {
-  private domain: number
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xFF00
+    this.prefix = prefix;
+    this.domain = 0xFF00;
   }
 
   /**
@@ -30,7 +30,7 @@ class LoggerModel {
    * @param args
    */
   debug(...args: any[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
   /**
@@ -38,7 +38,7 @@ class LoggerModel {
    * @param args
    */
   info(...args: any[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
   /**
@@ -46,7 +46,7 @@ class LoggerModel {
    * @param args
    */
   warn(...args: any[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
   /**
@@ -54,8 +54,8 @@ class LoggerModel {
    * @param args
    */
   error(...args: any[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args)
+    hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export let logger = new LoggerModel('[Sample_StartRecentAbility]')
+export let logger = new LoggerModel('[Sample_StartRecentAbility]');
