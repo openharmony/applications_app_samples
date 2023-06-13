@@ -34,7 +34,7 @@ class AudioPlayer {
             Logger.info(TAG, 'prepare success');
           }, (err) => {
             Logger.info(TAG, 'prepare filed,error message is :' + err.message);
-          })
+          });
           break;
         case 'prepared':
           Logger.info(TAG, 'state prepared called');
@@ -58,10 +58,10 @@ class AudioPlayer {
           Logger.info(TAG, 'unknown state :' + state);
           break;
       }
-    })
+    });
   }
 
-  async playAudio(audioName: string) {
+  async playAudio(audioName: string): Promise<void> {
     if (this.avPlayer) {
       await this.avPlayer.reset();
     } else {
@@ -75,11 +75,11 @@ class AudioPlayer {
       .then(value => {
         rawFd = value;
         Logger.info(TAG, 'get audio resource successful');
-        Logger.info(TAG, "rawFd of audio:" + " fd:" + rawFd.fd + ", offset:" + rawFd.offset + ", length: " + rawFd.length);
+        Logger.info(TAG, 'rawFd of audio:' + ' fd:' + rawFd.fd + ', offset:' + rawFd.offset + ', length: ' + rawFd.length);
       })
       .catch((error) => {
         Logger.info(TAG, 'get audio resource failed, err code:' + error.code + ' err msg:' + error.message);
-      })
+      });
     this.avPlayer.fdSrc = rawFd;
   }
 }
