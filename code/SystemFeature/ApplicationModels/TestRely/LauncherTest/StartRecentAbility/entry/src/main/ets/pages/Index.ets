@@ -52,7 +52,7 @@ struct Index {
               Logger.debug("startAbility successful");
             }).catch((err) => {
               Logger.debug("startAbility failed");
-            })
+            });
           })
           .id("startEntryAbility")
         Text('')
@@ -71,7 +71,7 @@ struct Index {
               Logger.debug("EntryAbility startAbility successful.");
             }).catch((err) => {
               Logger.debug("EntryAbility startAbility dailed.");
-            })
+            });
           })
           .id("startSingletonAbility")
       }
@@ -81,7 +81,7 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as any
+    this.context = getContext(this) as any;
     systemDateTime.getDate().then((date) => {
       let dateStr = JSON.stringify(date);
       this.date = dateStr.substr(1, dateStr.indexOf('T') - 1);
