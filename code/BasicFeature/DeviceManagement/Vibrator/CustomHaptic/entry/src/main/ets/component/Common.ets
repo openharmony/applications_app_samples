@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { playVibrateCustom, avPlayer, getDynamicStates } from '../module/Util'
+import { playVibrateCustom, getDynamicStates } from '../module/Util'
 import { ImageDataSource, ImagesData } from '../module/ImageData'
+import AudioPlayer from '../module/AudioPlayer'
 import Logger from '../module/Logger'
 
 const TAG = '[CommonLayout]'
@@ -62,7 +63,7 @@ export default struct CommonLayout {
             .backgroundColor(this.status[Item.id] ? "#1a3e3f56" : "#4d191a32")
             .onClick(() => {
               this.status = getDynamicStates(this.status, Item.id)
-              avPlayer(Item.audioName)
+              AudioPlayer.playAudio(Item.audioName)
               if (this.vibrationIntensity === 'H') {
                 Logger.info(TAG, "High intensity mode")
                 playVibrateCustom(Item.vibratorFileH)

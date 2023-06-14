@@ -31,6 +31,7 @@ entry/src/main/ets/
 |   |---Shooting.ets                          // 振效库"射击"场景
 |   |---VideoPreview.ets                      // 视频频预览界面
 |---module
+|   |---AudioPlayer.ets                       // 音频播放模块
 |   |---DisplayModule.ets                     // "发现"界面，主界面
 |   |---ImageData.ets                         // 资源数据结构
 |   |---Logger.ets                            // 封装的日志
