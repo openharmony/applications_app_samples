@@ -55,6 +55,7 @@ export default struct ChatsPage {
               this.ChatsMessage($r('app.string.me'), item.message, Direction.Rtl);
             }
           }
+          .id('text_list')
           .padding(10)
           .width('100%')
         }, item => item)
