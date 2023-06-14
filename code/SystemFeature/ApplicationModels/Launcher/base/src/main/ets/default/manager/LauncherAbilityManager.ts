@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -141,6 +141,24 @@ export class LauncherAbilityManager {
     }, (err) => {
       Logger.error(TAG, `startApplication promise error: ${JSON.stringify(err)}`)
     })
+  }
+
+  /**
+   * 通过桌面图标启动应用
+   *
+   * @params paramAbilityName Ability名
+   * @params paramBundleName 应用包名
+   */
+  startLauncherAbilityFromRecent(paramAbilityName, paramBundleName): void {
+    Logger.info(TAG, `startApplication abilityName: ${paramAbilityName}, bundleName: ${paramBundleName}`);
+    this.context.startRecentAbility({
+      bundleName: paramBundleName,
+      abilityName: paramAbilityName
+    }).then(() => {
+      Logger.info(TAG, 'startApplication promise success');
+    }, (err) => {
+      Logger.error(TAG, `startApplication promise error: ${JSON.stringify(err)}`);
+    });
   }
 
   /**

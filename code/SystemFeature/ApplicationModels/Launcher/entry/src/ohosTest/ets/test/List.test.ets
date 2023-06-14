@@ -14,7 +14,9 @@
  */
 
 import abilityTest from './Ability.test'
+import launcherTest from './Launcher.test'
 
 export default function testsuite() {
   abilityTest()
+  launcherTest()
 }
