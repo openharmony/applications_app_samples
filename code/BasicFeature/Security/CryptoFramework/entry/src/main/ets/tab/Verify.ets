@@ -59,8 +59,8 @@ export struct Verify {
                       .lineHeight(19)
 
                     Image($r('app.media.right_arrow'))
-                      .height('12.81vp')
-                      .width('6.74vp')
+                      .height('19vp')
+                      .width('10vp')
                       .margin({ left: 9, right: 9, top: 6, bottom: 6 })
                   }
                   .backgroundColor(0xFFFFFF)
@@ -86,8 +86,8 @@ export struct Verify {
                       .lineHeight(19)
 
                     Image($r('app.media.right_arrow'))
-                      .height('12.81vp')
-                      .width('6.74vp')
+                      .height('19vp')
+                      .width('10vp')
                       .margin({ left: 9, right: 9, top: 6, bottom: 6 })
                   }
                   .backgroundColor(0xFFFFFF)
@@ -126,8 +126,8 @@ export struct Verify {
                       .lineHeight(19)
 
                     Image($r('app.media.right_arrow'))
-                      .height('12.81vp')
-                      .width('6.74vp')
+                      .height('19vp')
+                      .width('10vp')
                       .margin({ left: 9, right: 9, top: 6, bottom: 6 })
                   }
                   .backgroundColor(0xFFFFFF)
