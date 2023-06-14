@@ -3,6 +3,38 @@
     {
       "name": "white",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "open",
+      "value": "#E71A0D"
+    },
+    {
+      "name": "close",
+      "value": "#0cc5ce"
+    },
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "title_black",
+      "value": "#000000"
+    },
+    {
+      "name": "blackground",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "button_background",
+      "value": "#e5e7e9"
+    },
+    {
+      "name": "button_fontColor",
+      "value": "#E84026"
+    },
+    {
+      "name": "blue",
+      "value": "#007dff"
     }
   ]
 }
