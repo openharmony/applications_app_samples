@@ -5,11 +5,11 @@
       "value": "CustomNotification"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "mainAbility_desc",
       "value": "CustomNotification"
     },
     {
-      "name": "MainAbility_label",
+      "name": "mainAbility_label",
       "value": "CustomNotification"
     },
     {
@@ -71,6 +71,26 @@
     {
       "name": "second_button",
       "value": "Second button"
+    },
+    {
+      "name": "testAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "testAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "sound",
+      "value": "sound"
+    },
+    {
+      "name": "vibration_effect",
+      "value": "Vibration effect"
+    },
+    {
+      "name": "allow",
+      "value": "allow"
     }
   ]
 }

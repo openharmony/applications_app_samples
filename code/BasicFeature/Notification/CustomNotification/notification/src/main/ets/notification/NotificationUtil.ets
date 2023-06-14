@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,18 +16,31 @@
 import notification from '@ohos.notificationManager'
 import { logger } from '../util/Logger'
 
-const TAG: string = 'NotificationUtilModel'
+const TAG: string = 'NotificationUtil'
 
 class NotificationUtil {
+  private isPromptTone: boolean = false;
+  private isVibrationEffect: boolean = false;
+
+  promptTone(flag: boolean = this.isPromptTone): boolean {
+    this.isPromptTone = flag;
+    return this.isPromptTone;
+  }
+
+  vibrationEffect(flag: boolean = this.isVibrationEffect): boolean {
+    this.isVibrationEffect = flag;
+    return this.isVibrationEffect;
+  }
+
   /**
    * enable notification
    */
   async enableNotification() {
     try {
-      await notification.requestEnableNotification()
-      logger.info(TAG, `enableNotification success`)
+      await notification.requestEnableNotification();
+      logger.info(TAG, `enableNotification success`);
     } catch (err) {
-      logger.info(TAG, `enableNotification err ${JSON.stringify(err)}`)
+      logger.info(TAG, `enableNotification err ${JSON.stringify(err)}`);
     }
   }
 
@@ -38,14 +51,27 @@ class NotificationUtil {
    */
   async publishNotification(notificationRequest: notification.NotificationRequest, id?: number) {
     if (id && id > 0) {
-      notificationRequest.id = id
+      notificationRequest.id = id;
     }
     try {
-      await notification.publish(notificationRequest)
-      logger.info(TAG, `publish notification success`)
+      let notificationSlot: notification.NotificationSlot = {
+        type: notification.SlotType.CONTENT_INFORMATION,
+        level: notification.SlotLevel.LEVEL_DEFAULT
+      };
+      if (this.isPromptTone) {
+        notificationSlot.sound = 'file:///system/etc/capture.ogg';
+      }
+      if (this.isVibrationEffect) {
+        notificationSlot.vibrationEnabled = true;
+        notificationSlot.vibrationValues = [200];
+      }
+      await notification.removeAllSlots();
+      await notification.addSlot(notificationSlot);
+      await notification.publish(notificationRequest);
+      logger.info(TAG, `publish notification success`);
     } catch (err) {
       if (err) {
-        logger.info(TAG, `publishNotification err ${JSON.stringify(err)}`)
+        logger.error(TAG, `publishNotification err ${JSON.stringify(err)}`);
       }
     }
   }
@@ -55,11 +81,11 @@ class NotificationUtil {
    */
   async cancelNotificationById(id: number) {
     try {
-      await notification.cancel(id)
-      logger.info(TAG, `cancel success`)
+      await notification.cancel(id);
+      logger.info(TAG, `cancel success`);
     } catch (err) {
       if (err) {
-        logger.info(TAG, `cancel err ${JSON.stringify(err)}`)
+        logger.info(TAG, `cancel err ${JSON.stringify(err)}`);
       }
     }
   }
@@ -69,14 +95,14 @@ class NotificationUtil {
    */
   async cancelAllNotifications() {
     try {
-      await notification.cancelAll()
-      logger.info(TAG, `cancel all success`)
+      await notification.cancelAll();
+      logger.info(TAG, `cancel all success`);
     } catch (err) {
       if (err) {
-        logger.info(TAG, `cancel all err ${JSON.stringify(err)}`)
+        logger.info(TAG, `cancel all err ${JSON.stringify(err)}`);
       }
     }
   }
 }
 
-export let notificationUtil = new NotificationUtil()
+export let notificationUtil = new NotificationUtil();

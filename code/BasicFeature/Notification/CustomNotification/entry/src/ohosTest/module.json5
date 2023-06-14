@@ -30,9 +30,9 @@
       {
         "name": "TestAbility",
         "srcEntrance": "./ets/testability/TestAbility.ets",
-        "description": "$string:TestAbility_desc",
+        "description": "$string:testAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:TestAbility_label",
+        "label": "$string:testAbility_label",
         "visible": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",

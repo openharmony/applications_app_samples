@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,41 +17,41 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 import { logger } from '@ohos/notification'
 
-const TAG: string = 'MainAbility'
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    logger.info(TAG, 'Ability onCreate')
+    logger.info(TAG, 'Ability onCreate');
   }
 
   onDestroy() {
-    logger.info(TAG, 'Ability onDestroy')
+    logger.info(TAG, 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
-    logger.info(TAG, 'Ability onWindowStageCreate')
+    logger.info(TAG, 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        logger.info(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
+        logger.info(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
+      logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    logger.info(TAG, 'Ability onWindowStageDestroy')
+    logger.info(TAG, 'Ability onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    logger.info(TAG, 'Ability onForeground')
+    logger.info(TAG, 'Ability onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    logger.info(TAG, 'Ability onBackground')
+    logger.info(TAG, 'Ability onBackground');
   }
 }

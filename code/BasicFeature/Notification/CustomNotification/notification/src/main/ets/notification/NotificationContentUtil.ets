@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -84,7 +84,7 @@ class NotificationContentUtil {
    */
   initNotificationPictureContent(basicContent: notification.NotificationBasicContent, notificationBriefText: string, notificationExpandedTitle: string, notificationPicture: image.PixelMap) {
     return {
-      contentType: notification.ContentType.NOTIFICATION_CONTENT_PICTURE,  // 通知内容类型
+      contentType: notification.ContentType.NOTIFICATION_CONTENT_PICTURE, // 通知内容类型
       picture: {
         title: basicContent.title, // 通知标题
         text: basicContent.text, // 通知内容
@@ -97,4 +97,4 @@ class NotificationContentUtil {
   }
 }
 
-export let notificationContentUtil = new NotificationContentUtil()
+export let notificationContentUtil = new NotificationContentUtil();

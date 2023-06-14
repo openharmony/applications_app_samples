@@ -37,9 +37,9 @@
       {
         "name": "MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
-        "description": "$string:MainAbility_desc",
+        "description": "$string:mainAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:MainAbility_label",
+        "label": "$string:mainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
         "visible": true,
@@ -53,6 +53,26 @@
             ]
           }
         ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.VIBRATE",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.NOTIFICATION_CONTROLLER",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
       }
     ]
   }
