@@ -15,12 +15,15 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
+import type common from '@ohos.app.ability.common';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import historyFeature from '../../../main/ets/feature/HistoryFeature';
 import { logger } from '../util/Logger';
 
 const TAG = '[Sample_CustomCommonEvent]';
 const BUNDLE = 'CustomCommonEvent_';
+let ability;
 const RADIO_ID: Array<string> = [
 commonEventManager.Support.COMMON_EVENT_WIFI_POWER_STATE,
 commonEventManager.Support.COMMON_EVENT_SCREEN_OFF,
@@ -42,7 +45,7 @@ export default function abilityTest() {
       })
       await driver.delayMs(1000);
       await delegator.getCurrentTopAbility().then((Ability) => {
-        console.info("get top ability");
+        ability = Ability;
         expect(Ability.context.abilityInfo.name).assertEqual('LauncherAbility');
       })
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
@@ -50,24 +53,30 @@ export default function abilityTest() {
     })
 
     // 进入监听界面，监听
-    it(BUNDLE + 'Main_001', 0, async function (done) {
+    it(BUNDLE + 'Main_001', 0, async function () {
       logger.info(TAG, `${BUNDLE}Main_001 begin`);
-      // 进入监听界面
-      await driver.assertComponentExist(ON.id('jumpToStart'));
-      let jumpToStart = await driver.findComponent(ON.id('jumpToStart'));
-      await jumpToStart.click();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.id('startMonitor'));
-      let startOrStop = await driver.findComponent(ON.id('startMonitor'));
-      await startOrStop.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('当前监听状态：', MatchPattern.CONTAINS));
-      await driver.delayMs(200);
-      await startOrStop.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('本次监控时长：', MatchPattern.CONTAINS));
+      // 进入监听界面，进行试11次监听
+      for (let i = 0;i < 11; i++) {
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('jumpToStart'));
+        let jumpToStart = await driver.findComponent(ON.id('jumpToStart'));
+        await jumpToStart.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('startMonitor'));
+        let startOrStop = await driver.findComponent(ON.id('startMonitor'));
+        await startOrStop.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('当前监听状态：', MatchPattern.CONTAINS));
+        await driver.delayMs(1000);
+        await startOrStop.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('本次监控时长：', MatchPattern.CONTAINS));
+        if (i < 10) {
+          await driver.pressBack();
+          await driver.delayMs(500);
+        }
+      }
       logger.info(TAG, `${BUNDLE}Main_001 end`);
-      done();
     })
 
     // 进入详情界面
@@ -97,7 +106,17 @@ export default function abilityTest() {
       await jumpToHistory.click();
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text('开始于', MatchPattern.CONTAINS));
+      let feature: historyFeature = new historyFeature(ability.context);
+      let recorderArray = await feature.getData().then((data: Array<Array<string>>) => {
+        return data;
+      })
+      // 判断添加20条数据之后的历史记录
+      if (recorderArray.length > 1) {
+        logger.info(TAG, 'Empty failed');
+        expect().assertFail();
+      }
       // 返回首页
+      await driver.delayMs(2000);
       await driver.pressBack();
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('jumpToSetting'));
@@ -122,7 +141,7 @@ export default function abilityTest() {
     it(BUNDLE + 'Setting_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Setting_002 begin`);
       await driver.delayMs(200);
-       await driver.assertComponentExist(ON.id(RADIO_ID[1] + '1'));
+      await driver.assertComponentExist(ON.id(RADIO_ID[1] + '1'));
       let screenOffRadio2 = await driver.findComponent(ON.id(RADIO_ID[1] + '1'));
       await screenOffRadio2.click();
       let screenOffCheck = await screenOffRadio2.isChecked();

@@ -127,7 +127,7 @@ LanguageBaseClassLibrary
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例适配API version 10版本SDK，版本号：4.0.5.1。
+2.本示例适配API version 10版本SDK，版本号：4.0.8.1。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
 

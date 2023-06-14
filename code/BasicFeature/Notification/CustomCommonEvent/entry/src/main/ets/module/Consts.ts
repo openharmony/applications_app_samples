@@ -34,7 +34,7 @@ export default class consts {
   static readonly ENABLE_STATE_NEVER : number = 2
 
   // definition for record volume
-  static readonly MAX_RECORD_NUM: number = 20
+  static readonly MAX_RECORD_NUM: number = 10;
 
   // definition for self defined common events
   static readonly COMMON_EVENT_FINISH_MEDITATION: string = "finish_meditation"
