@@ -21,6 +21,7 @@ export struct WorkerTab {
   @State jsWorkerInPutStr: string = '';
   jsWorkerInPutArr: string[] = [];
   isDone: boolean = false;
+  myWorker: worker.ThreadWorker = new worker.ThreadWorker("entry/ets/workers/Worker.ts");
 
   build() {
     Column() {
@@ -142,14 +143,12 @@ export struct WorkerTab {
       this.jsWorkerOutPutStr = "No input for the string to be sorted.\n";
       return;
     }
-    var myWorker = new worker.ThreadWorker("entry/ets/workers/Worker.ts");
-    myWorker.postMessage(inPutArr);
+    this.myWorker.postMessage(inPutArr);
     var strFlag = false;
     var outPutStr = '';
-    myWorker.onmessage = function(e) {
+    this.myWorker.onmessage = function(e) {
       outPutStr = e.data.toString();
       strFlag = true;
-      myWorker.terminate();
     }
     while(!strFlag) {
       await promiseCase();
