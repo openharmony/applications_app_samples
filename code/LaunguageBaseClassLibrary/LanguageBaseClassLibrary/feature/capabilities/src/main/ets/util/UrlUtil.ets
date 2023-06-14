@@ -16,7 +16,7 @@
 import url from '@ohos.url';
 import { getString } from '@ohos/common';
 
-let urlObject = url.URL.parseURL('https://gitee.com/openharmony/');
+let urlObject = url.URL.parseURL('https://gitee.com/openharmony/?fod=1');
 let paramsObject = new url.URLParams(urlObject.search.slice(1));
 let nodeValue: string = 'nodeValue';
 let nodeKey: string = 'node';

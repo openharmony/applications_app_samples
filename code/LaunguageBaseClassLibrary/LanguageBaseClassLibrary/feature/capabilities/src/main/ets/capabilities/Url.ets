@@ -16,7 +16,7 @@
 import { ColumnOperation } from '../components/ColumnOperation';
 import { changeValue, deleteNode, getFirstNode, insertNode } from '../util/UrlUtil';
 
-const URL_NET: string = "https://gitee.com/openharmony";
+const URL_NET: string = 'https://gitee.com/openharmony/?fod=1';
 
 @Preview
 @Component

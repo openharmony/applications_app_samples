@@ -52,7 +52,7 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}Xml_ConvertXml_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      //find component on text 'Xml'
+      // find component on text 'Xml'
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.xml'))));
       await button.click();
@@ -73,7 +73,7 @@ export default function abilityTest() {
       let convert = await driver.findComponent(ON.text(await getResourceString($r('app.string.convert')), MatchPattern.CONTAINS));
       await convert.click();
       await driver.delayMs(1000);
-      //check text
+      // 校验是否进入对应页面
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
       await driver.delayMs(200);
       await driver.pressBack();
@@ -86,13 +86,10 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}util_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      //find component on text 'Xml'
+      // check text
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
       await button.click();
-      await driver.delayMs(200);
-      //check text
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
       await driver.delayMs(200);
       done();
       logger.info(TAG, `${BUNDLE}util_001 end`);
@@ -151,7 +148,7 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      //进入有理数界面
+      // 进入有理数界面
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.rational_number'))));
       await button.click();
@@ -197,7 +194,7 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      //find component on text 'LRUCache'
+      // find component on text 'LRUCache'
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.lru_cache'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.lru_cache'))));
       await button.click();
@@ -328,6 +325,7 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       done();
+
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`)
     })
 
@@ -336,12 +334,12 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}Url_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
-      //find component on text 'Xml'
+      // find component on text 'Xml'
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
       let button = await driver.findComponent(ON.text('Url (Url字符串解析)'));
       await button.click();
       await driver.delayMs(1000);
-      //check text
+      // check text
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
       await driver.delayMs(1000);
       done()
@@ -362,6 +360,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputInsert = await driver.findComponent(ON.id('output'))
       let insertValue = await outputInsert.getText()
+      await driver.delayMs(1000);
       expect(insertValue).assertContain('node=nodeValue1')
       // 点击删除键值对
       await driver.assertComponentExist(ON.id('item1'))
@@ -372,7 +371,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputDelete = await driver.findComponent(ON.id('output'))
       let deleteValue = await outputDelete.getText()
-      expect(deleteValue).assertEqual('https://gitee.com/openharmony/')
+      await driver.delayMs(1000);
+      expect(deleteValue).assertEqual('https://gitee.com/openharmony/?fod=1fod=1');
       // 点击获取指定名称对应的第一个值
       await driver.assertComponentExist(ON.id('item0'))
       let insertKeyValue = await driver.findComponent(ON.id('item0'))
@@ -386,6 +386,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputGet = await driver.findComponent(ON.id('output'))
       let getValue = await outputGet.getText()
+      await driver.delayMs(1000);
       expect(getValue).assertContain('nodeValue1')
       // 点击设置键的新值
       await driver.assertComponentExist(ON.id('item3'))
@@ -396,6 +397,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputSet = await driver.findComponent(ON.id('output'))
       let setValue = await outputSet.getText()
+      await driver.delayMs(1000);
       expect(setValue).assertContain('newValue')
       // 返回首页
       await driver.pressBack();

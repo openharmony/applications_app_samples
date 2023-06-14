@@ -29,12 +29,14 @@ struct History {
   async onPageShow() {
     this.feature.getData().then((data: Array<Array<string>>) => {
       this.arr = data
+      Logger.info('mst arr is ' + JSON.stringify(this.arr.length))
+      Logger.info('mst arr is ' + JSON.stringify(this.arr))
     })
   }
 
   build() {
     Column() {
-      Header({src: 'historyTitle.png'})
+      Header({ src: 'historyTitle.png' })
       Column() {
         List({ space: 10, initialIndex: 0 }) {
           ForEach(this.arr, (item: Array<string>, index: number) => {
@@ -50,6 +52,7 @@ struct History {
                     .textAlign(TextAlign.Start)
                     .fontColor(0x000000)
                 }.size({ width: '80%', height: '30%' })
+
                 Row() {
                   Text($r('app.string.end_time')).size({ width: '20%', height: '100%' })
                     .fontSize(12)
@@ -60,6 +63,7 @@ struct History {
                     .textAlign(TextAlign.Center)
                     .fontColor(0x000000)
                 }.size({ width: '80%', height: '20%' })
+
                 Row() {
                   Text($r('app.string.total_time')).size({ width: '20%', height: '100%' })
                     .fontSize(12)
@@ -70,6 +74,7 @@ struct History {
                     .textAlign(TextAlign.Center)
                     .fontColor(0x000000)
                 }.size({ width: '80%', height: '20%' })
+
                 Row() {
                   Text($r('app.string.total_interrupt')).size({ width: '20%', height: '100%' })
                     .fontSize(12)
@@ -85,7 +90,7 @@ struct History {
             .backgroundColor(0xFFFFFF)
             .borderRadius(10)
             .opacity(0.8)
-          })
+          }, item => JSON.stringify(item))
         }
         .listDirection(Axis.Vertical)
         .chainAnimation(false)
