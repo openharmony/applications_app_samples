@@ -41,7 +41,7 @@ struct Index {
         .color('#007DFF')
         .width('32vp')
         .opacity(this.currentIndex === index ? 1 : 0)
-        .margin({ bottom: 8})
+        .margin({ bottom: 8 })
     }
   }
 

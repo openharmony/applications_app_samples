@@ -105,7 +105,7 @@ export struct Verify {
           }
         }
         .height('100vp')
-        .margin({ left: 12, right: 12, bottom: 12})
+        .margin({ left: 12, right: 12, bottom: 12 })
 
         GridRow() {
           GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
