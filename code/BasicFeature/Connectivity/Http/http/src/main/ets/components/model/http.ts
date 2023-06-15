@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,7 +23,7 @@ class Http {
   constructor() {
     this.url = ''
     this.options = {
-      method:  http.RequestMethod.GET,
+      method: http.RequestMethod.GET,
       extraData: this.extraData,
       header: { 'Content-Type': 'application/json' },
       readTimeout: 50000,
@@ -40,14 +40,26 @@ class Http {
       case 'GET':
         this.options.method = http.RequestMethod.GET
         break
+      case 'HEAD':
+        this.options.method = http.RequestMethod.HEAD
+        break
+      case 'OPTIONS':
+        this.options.method = http.RequestMethod.OPTIONS
+        break
+      case 'TRACE':
+        this.options.method = http.RequestMethod.TRACE
+        break
+      case 'DELETE':
+        this.options.method = http.RequestMethod.DELETE
+        break
       case 'POST':
         this.options.method = http.RequestMethod.POST
         break
       case 'PUT':
         this.options.method = http.RequestMethod.PUT
         break
-      case 'DELETE':
-        this.options.method = http.RequestMethod.DELETE
+      case 'CONNECT':
+        this.options.method = http.RequestMethod.CONNECT
         break
       default:
         this.options.method = http.RequestMethod.GET
@@ -82,9 +94,21 @@ class Http {
   }
 
   async request() {
+    let ResCode = 0
     let httpRequest = http.createHttp()
-    let result = await httpRequest.request(this.url, this.options)
-    return result
+    httpRequest.on("dataReceive", function (data) {
+      globalThis.dataLength = data.byteLength
+      console.info("[ Demo dataReceive ]  ReceivedDataLength: " + data.byteLength)
+    })
+    httpRequest.on("dataProgress", function (data) {
+      globalThis.receiveSize = data.receiveSize
+      globalThis.totalSize = data.totalSize
+      console.info("[ Demo dataProgress ]  ReceivedSize: " + data.receiveSize + " TotalSize: " + data.totalSize)
+    })
+    httpRequest.request2(this.url, this.options).then(function (Code) {
+      ResCode = Code
+    })
+    return ResCode
   }
 }
 

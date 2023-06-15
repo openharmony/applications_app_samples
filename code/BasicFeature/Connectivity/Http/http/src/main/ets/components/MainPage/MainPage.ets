@@ -16,6 +16,10 @@
 import router from '@ohos.router'
 import Http from '../model/http'
 
+globalThis.receiveSize = 0
+globalThis.totalSize = 0
+globalThis.dataLength = 0
+
 @Entry
 @Component
 export struct setting {
@@ -31,7 +35,8 @@ export struct setting {
   @State method: string = 'GET'
   @State showPage: boolean = false
   @State resultInfo: string = ''
-  @State methods: Array<{ name: string }> = [{ name: 'GET' }, { name: 'POST' }, { name: 'PUT' }, { name: 'DELETE' }]
+  @State methods: Array<{ name: string }> = [{ name: 'GET' }, { name: 'HEAD' }, { name: 'OPTIONS' }, {
+    name: 'TRACE' }, { name: 'DELETE' }, { name: 'POST' }, { name: 'PUT' }, { name: 'CONNECT' }]
 
   @Builder MenuBuilder() {
     Column() {
@@ -56,6 +61,14 @@ export struct setting {
     Http.setUrl(this.url)
     let context: any = getContext(this)
     this.resultInfo = context.resourceManager.getStringSync($r('app.string.result').id)
+    setInterval(() => {
+      if(Http.url !== '') {
+        this.result = "\r\nThe length of the data received by this callback: " + JSON.stringify(globalThis.dataLength) + "\r\n" + "The length of the data received: " +
+        JSON.stringify(globalThis.receiveSize) + "\r\n" + "Total length of data: " + JSON.stringify(globalThis.totalSize) + "\r\n" + "Percentage: " + JSON.stringify(Math.floor(globalThis.receiveSize / globalThis.totalSize * 10000) / 100) + '%'
+      } else {
+        this.result = 'Failed'
+      }
+    }, 10)
   }
 
   build() {
@@ -163,12 +176,7 @@ export struct setting {
                 Http.setMethod(this.method)
                 Http.setExtraData(Http.setParameter(this.keys, this.values))
                 try {
-                  let info = await Http.request()
-                  if (info.responseCode === 200) {
-                    this.result = JSON.stringify(info.result)
-                  } else {
-                    this.result = 'Failed'
-                  }
+                  Http.request()
                 } catch (err) {
                   this.result = 'Failed'
                 }
@@ -202,6 +210,9 @@ export struct setting {
           Button($r('app.string.back'))
             .fontSize(25)
             .onClick(() => {
+              globalThis.receiveSize = 0
+              globalThis.totalSize = 0
+              globalThis.dataLength = 0
               this.url = ''
               this.flag = 1
               this.keys = []
