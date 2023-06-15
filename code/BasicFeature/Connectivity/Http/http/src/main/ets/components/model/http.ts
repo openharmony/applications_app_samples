@@ -16,7 +16,6 @@
 import http from '@ohos.net.http'
 
 class Http {
-  resCode: number
   url: string
   extraData: Object
   options: http.HttpRequestOptions
