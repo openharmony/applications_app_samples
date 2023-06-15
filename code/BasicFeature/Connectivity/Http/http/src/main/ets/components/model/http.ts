@@ -97,14 +97,14 @@ class Http {
     let httpRequest = http.createHttp()
     httpRequest.on('dataReceive', function (data) {
       AppStorage.SetOrCreate('dataLength', data.byteLength);
-      console.info("[ Demo dataReceive ]  ReceivedDataLength: " + data.byteLength);
+      console.info('[ Demo dataReceive ]  ReceivedDataLength: ' + data.byteLength);
     });
     httpRequest.on('dataProgress', function (data) {
       AppStorage.SetOrCreate('receiveSize', data.receiveSize);
       AppStorage.SetOrCreate('totalSize', data.totalSize);
       console.info('[ Demo dataProgress ]  ReceivedSize: ' + data.receiveSize + ' TotalSize: ' + data.totalSize);
     });
-    httpRequest.request2(this.url, this.options)
+    httpRequest.request2(this.url, this.options);
   }
 }
 
