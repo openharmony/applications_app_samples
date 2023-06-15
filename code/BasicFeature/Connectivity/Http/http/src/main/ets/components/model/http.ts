@@ -23,7 +23,7 @@ class Http {
   constructor() {
     this.url = ''
     this.options = {
-      method:  http.RequestMethod.GET,
+      method: http.RequestMethod.GET,
       extraData: this.extraData,
       header: { 'Content-Type': 'application/json' },
       readTimeout: 50000,
@@ -38,19 +38,31 @@ class Http {
   setMethod(method: string) {
     switch (method) {
       case 'GET':
-        this.options.method = http.RequestMethod.GET
+        this.options.method = http.RequestMethod.GET;
         break
-      case 'POST':
-        this.options.method = http.RequestMethod.POST
+      case 'HEAD':
+        this.options.method = http.RequestMethod.HEAD;
         break
-      case 'PUT':
-        this.options.method = http.RequestMethod.PUT
+      case 'OPTIONS':
+        this.options.method = http.RequestMethod.OPTIONS;
+        break
+      case 'TRACE':
+        this.options.method = http.RequestMethod.TRACE;
         break
       case 'DELETE':
-        this.options.method = http.RequestMethod.DELETE
+        this.options.method = http.RequestMethod.DELETE;
+        break
+      case 'POST':
+        this.options.method = http.RequestMethod.POST;
+        break
+      case 'PUT':
+        this.options.method = http.RequestMethod.PUT;
+        break
+      case 'CONNECT':
+        this.options.method = http.RequestMethod.CONNECT;
         break
       default:
-        this.options.method = http.RequestMethod.GET
+        this.options.method = http.RequestMethod.GET;
         break
     }
   }
@@ -83,8 +95,16 @@ class Http {
 
   async request() {
     let httpRequest = http.createHttp()
-    let result = await httpRequest.request(this.url, this.options)
-    return result
+    httpRequest.on('dataReceive', function (data) {
+      AppStorage.SetOrCreate('dataLength', data.byteLength);
+      console.info('[ Demo dataReceive ]  ReceivedDataLength: ' + data.byteLength);
+    });
+    httpRequest.on('dataProgress', function (data) {
+      AppStorage.SetOrCreate('receiveSize', data.receiveSize);
+      AppStorage.SetOrCreate('totalSize', data.totalSize);
+      console.info('[ Demo dataProgress ]  ReceivedSize: ' + data.receiveSize + ' TotalSize: ' + data.totalSize);
+    });
+    httpRequest.request2(this.url, this.options);
   }
 }
 
