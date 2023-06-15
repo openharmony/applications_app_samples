@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,7 @@
 import http from '@ohos.net.http'
 
 class Http {
+  resCode: number
   url: string
   extraData: Object
   options: http.HttpRequestOptions
@@ -94,21 +95,18 @@ class Http {
   }
 
   async request() {
-    let ResCode = 0
+    let ResCode: number = 0
     let httpRequest = http.createHttp()
     httpRequest.on("dataReceive", function (data) {
-      globalThis.dataLength = data.byteLength
+      AppStorage.SetOrCreate('dataLength', data.byteLength)
       console.info("[ Demo dataReceive ]  ReceivedDataLength: " + data.byteLength)
     })
     httpRequest.on("dataProgress", function (data) {
-      globalThis.receiveSize = data.receiveSize
-      globalThis.totalSize = data.totalSize
+      AppStorage.SetOrCreate('receiveSize', data.receiveSize)
+      AppStorage.SetOrCreate('totalSize', data.totalSize)
       console.info("[ Demo dataProgress ]  ReceivedSize: " + data.receiveSize + " TotalSize: " + data.totalSize)
     })
-    httpRequest.request2(this.url, this.options).then(function (Code) {
-      ResCode = Code
-    })
-    return ResCode
+    httpRequest.request2(this.url, this.options)
   }
 }
 
