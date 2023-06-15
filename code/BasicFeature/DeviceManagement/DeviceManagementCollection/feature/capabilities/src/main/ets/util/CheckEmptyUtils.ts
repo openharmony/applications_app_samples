@@ -24,4 +24,3 @@ export default {
     return (array.length === 0 ? true : false);
   }
 };
- 

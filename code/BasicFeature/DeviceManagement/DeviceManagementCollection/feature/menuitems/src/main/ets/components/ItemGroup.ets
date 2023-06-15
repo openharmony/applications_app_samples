@@ -19,12 +19,11 @@ export struct ItemGroup {
 
   build() {
     Column() {
-      this.noParam()
+      this.noParam();
     }
     .width('100%')
-    .borderRadius(24)
+    .borderRadius(20)
     .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
-    .padding(4)
     .margin({ bottom: 12 })
   }
 }

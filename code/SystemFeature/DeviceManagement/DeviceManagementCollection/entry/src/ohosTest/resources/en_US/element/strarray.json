@@ -1,0 +1,65 @@
+{
+  "strarray": [
+    {
+      "name": "power_operations",
+      "value": [
+        {
+          "value": "suspend"
+        },
+        {
+          "value": "turn off"
+        },
+        {
+          "value": "restart"
+        },
+        {
+          "value": "Set Power Mode"
+        }
+      ]
+    },
+    {
+      "name": "power_mode",
+      "value": [
+        {
+          "value": "normal"
+        },
+        {
+          "value": "power save"
+        },
+        {
+          "value": "performance"
+        },
+        {
+          "value": "extreme power save"
+        }
+      ]
+    },
+    {
+      "name": "settings_operations",
+      "value": [
+        {
+          "value": "Set Settings Uri"
+        }
+      ]
+    },
+    {
+      "name": "system_capability",
+      "value": [
+        {
+          "value": "Obtain a collection of system capabilities"
+        }
+      ]
+    },
+    {
+      "name": "system_parameter",
+      "value": [
+        {
+          "value": "Set system parameters"
+        },
+        {
+          "value": "Obtain system parameters"
+        }
+      ]
+    }
+  ]
+}

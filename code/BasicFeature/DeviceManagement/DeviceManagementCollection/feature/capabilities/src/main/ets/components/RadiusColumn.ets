@@ -19,12 +19,17 @@ export struct RadiusColumn {
 
   build() {
     Column() {
-      this.noParam()
+      this.noParam();
     }
     .width('100%')
     .borderRadius(24)
     .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
-    .padding(12)
-    .margin({ bottom: 12 })
+    .padding({
+      left: 12,
+      right: 12,
+      top: 6,
+      bottom: 6
+    })
+    .margin({ top: 6, bottom: 6 })
   }
 }

@@ -29,35 +29,31 @@ struct Index {
 
   build() {
     Navigation() {
-      Divider()
-        .strokeWidth('1px')
-        .color($r('sys.color.ohos_id_color_list_separator'))
-      Column({ space: 12 }) {
+      Column() {
         MenuList({ menuList: $r('app.strarray.device_management_list') }) {
           Capabilities()
         }
       }
-      .padding({ left: 12, right: 12, top: 12 })
+      .padding(16)
     }
     .title(this.CustomTitle())
     .mode(this.isSplitMode ? NavigationMode.Split : NavigationMode.Stack)
     .navBarWidth(0.4 * this.windowWidth)
-    .titleMode(NavigationTitleMode.Mini)
+    .titleMode(NavigationTitleMode.Full)
     .hideToolBar(true)
     .width('100%')
     .height('100%')
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .backgroundColor($r("app.color.list_background"))
   }
 
   @Builder
   CustomTitle() {
     Row() {
       Text(this.title)
-        .fontColor(Color.Black)
+        .fontColor($r("app.color.list_title"))
         .fontSize(26)
-        .fontWeight(FontWeight.Bold)
+        .fontWeight(FontWeight.Medium)
     }
-    .height(56)
     .width('100%')
   }
 }

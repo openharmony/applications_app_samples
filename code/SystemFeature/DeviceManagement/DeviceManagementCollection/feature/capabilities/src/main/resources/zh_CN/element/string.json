@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "power_manager",
+      "value": "系统电源管理"
+    },
+    {
+      "name": "battery_statistics",
+      "value": "耗电统计"
+    },
+    {
+      "name": "brightness_manager",
+      "value": "屏幕亮度"
+    },
+    {
+      "name": "settings",
+      "value": "设置数据项名称"
+    },
+    {
+      "name": "system_capability",
+      "value": "系统能力"
+    },
+    {
+      "name": "system_parameter",
+      "value": "系统参数"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "turnOff",
+      "value": "关机"
+    },
+    {
+      "name": "questionTurnOff",
+      "value": "确定要关机吗？"
+    },
+    {
+      "name": "restart",
+      "value": "重启"
+    },
+    {
+      "name": "questionRestart",
+      "value": "确定要重启吗？"
+    },
+    {
+      "name": "battery_stats_type_invalid",
+      "value": "未知"
+    },
+    {
+      "name": "battery_stats_type_bluetooth",
+      "value": "蓝牙"
+    },
+    {
+      "name": "battery_stats_type_idle",
+      "value": "CPU空闲"
+    },
+    {
+      "name": "battery_stats_type_phone",
+      "value": "通话"
+    },
+    {
+      "name": "battery_stats_type_radio",
+      "value": "无线通讯"
+    },
+    {
+      "name": "battery_stats_type_screen",
+      "value": "屏幕"
+    },
+    {
+      "name": "battery_stats_type_user",
+      "value": "用户"
+    },
+    {
+      "name": "battery_stats_type_wifi",
+      "value": "WIFI"
+    },
+    {
+      "name": "battery_stats_hardware",
+      "value": "硬件(%s%)"
+    },
+    {
+      "name": "battery_stats_software",
+      "value": "软件(%s%)"
+    },
+    {
+      "name": "suspend",
+      "value": "休眠"
+    },
+    {
+      "name": "suspend_status",
+      "value": "休眠状态:"
+    },
+    {
+      "name": "power_mode",
+      "value": "当前电源模式:"
+    }
+  ]
+}

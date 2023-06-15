@@ -14,25 +14,42 @@
  */
 
 import { getString } from '@ohos/common';
-import { BatteryInfo, PowerManager, Thermal, UsbManager } from '@ohos/capabilities';
+import {
+  BatteryInfo,
+  RunningLockManager,
+  PowerManager,
+  SettingsManager,
+  Thermal,
+  UsbManager,
+  StationaryManager
+} from '@ohos/capabilities';
 
 @Component
 export struct Capabilities {
   @StorageLink('selectedLabel') selectedLabel: string = '';
+  @State label: string = '';
+
+  aboutToAppear() {
+    // StorageLink会触发多次刷新，用State接收
+    this.label = this.selectedLabel;
+  }
 
   build() {
     Column() {
-      //  此处根据选中的菜单，显示对应的页面内容
-      if (this.selectedLabel === getString($r('app.string.battery_info'))) {
+      // 此处根据选中的菜单，显示对应的页面内容
+      if (this.label === getString($r('app.string.battery_info'))) {
         BatteryInfo()
-      }
-      if (this.selectedLabel === getString($r('app.string.power_manager'))) {
+      } else if (this.label === getString($r('app.string.running_lock'))) {
+        RunningLockManager()
+      } else if (this.label === getString($r('app.string.power_manager'))) {
         PowerManager()
-      }
-      if (this.selectedLabel === getString($r('app.string.thermal'))) {
+      } else if (this.label === getString($r('app.string.settings'))) {
+        SettingsManager()
+      } else if (this.label === getString($r('app.string.stationary'))) {
+        StationaryManager()
+      } else if (this.label === getString($r('app.string.thermal'))) {
         Thermal()
-      }
-      if (this.selectedLabel === getString($r('app.string.usb_manager'))) {
+      } else if (this.label === getString($r('app.string.usb_manager'))) {
         UsbManager()
       }
     }

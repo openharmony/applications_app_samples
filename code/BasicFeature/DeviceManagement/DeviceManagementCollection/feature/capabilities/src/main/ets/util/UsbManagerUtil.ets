@@ -35,7 +35,7 @@ export function getDeviceList(): DeviceAttribute[] {
     return [];
   }
   let devices: DeviceAttribute[] = [];
-  for (let index = 0; index < usbDevices.length; index++) {
+  for (let index = 0;index < usbDevices.length; index++) {
     logger.info(TAG, `usb devices ${index} : ${JSON.stringify(devices)}`);
     let deviceAttribute = {
       version: usbDevices[index].version,
@@ -75,7 +75,7 @@ export function createUsbSubscribe(callback: () => void) {
       promptAction.showToast({ message: $r('app.string.toast_removed') });
     }
     callback();
-  }
+  };
   promise.then((data) => {
     promptAction.showToast({ message: $r('app.string.toast_start_listening') });
     logger.info(TAG, 'usb CreateSubscriberCallBack....');
@@ -92,9 +92,13 @@ export function cancelUsbSubscribe(): void {
     logger.info(TAG, 'usb event already subscribed');
     return;
   }
-  promptAction.showToast({ message: $r('app.string.toast_listening_cancel') });
-  logger.info(TAG, `usb event unsubscribed`);
-  commonEventManager.unsubscribe(commonEventSubscriber, () => {
-    logger.info(TAG, `usb event unsubscribed`);
-  })
+  try {
+    commonEventManager.unsubscribe(commonEventSubscriber, () => {
+      logger.info(TAG, `usb event unsubscribed`);
+      commonEventSubscriber = undefined;
+      promptAction.showToast({ message: $r('app.string.toast_listening_cancel') });
+    })
+  } catch (err) {
+    logger.error(TAG, `usb event unsubscribed fail:${JSON.parse(err)}`);
+  }
 }

@@ -21,33 +21,33 @@ export class ThermalUtil {
   }
 
   static getStrLevel(level: Number) {
-    let value = "NONE"
+    let value = "NONE";
     switch (level) {
       case thermal.ThermalLevel.COOL:
         value = 'COOL 0';
-        break;
+        break
       case thermal.ThermalLevel.NORMAL:
         value = 'NORMAL 1';
-        break;
+        break
       case thermal.ThermalLevel.WARM:
         value = 'WARM 2';
-        break;
+        break
       case thermal.ThermalLevel.HOT:
         value = 'HOT 3';
-        break;
+        break
       case thermal.ThermalLevel.OVERHEATED:
         value = 'OVERHEATED 4';
-        break;
+        break
       case thermal.ThermalLevel.WARNING:
         value = 'WARNING 5';
-        break;
+        break
       case thermal.ThermalLevel.EMERGENCY:
         value = 'EMERGENCY 6';
-        break;
+        break
       default:
-        break;
+        break
     }
-    return value;
+    return value
   }
 
   static registerThermalLevelCallback(callback: any) {
