@@ -9,7 +9,7 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "ohos.samples.jsadaptivecapabilities_test",
+    "package": "com.example.entry_test",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
     "deviceType": [
