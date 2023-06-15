@@ -23,6 +23,14 @@
     {
       "name": "keep_running",
       "value": "长时任务权限"
+    },
+    {
+      "name": "Card_Button",
+      "value": "服务卡片"
+    },
+    {
+      "name": "AddForm",
+      "value": "添加到桌面"
     }
   ]
 }

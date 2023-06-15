@@ -19,6 +19,14 @@
     {
       "name": "EntryFormAbility_label",
       "value": "form_label"
+    },
+    {
+      "name": "Card_Button",
+      "value": "card service"
+    },
+    {
+      "name": "AddForm",
+      "value": "AddForm"
     }
   ]
 }
