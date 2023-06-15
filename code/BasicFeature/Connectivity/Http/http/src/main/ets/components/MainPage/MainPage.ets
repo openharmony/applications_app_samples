@@ -16,9 +16,9 @@
 import router from '@ohos.router'
 import Http from '../model/http'
 
-globalThis.receiveSize = 0
-globalThis.totalSize = 0
-globalThis.dataLength = 0
+AppStorage.SetOrCreate('receiveSize', 0)
+AppStorage.SetOrCreate('totalSize', 0)
+AppStorage.SetOrCreate('dataLength', 0)
 
 @Entry
 @Component
@@ -62,9 +62,14 @@ export struct setting {
     let context: any = getContext(this)
     this.resultInfo = context.resourceManager.getStringSync($r('app.string.result').id)
     setInterval(() => {
-      if(Http.url !== '') {
-        this.result = "\r\nThe length of the data received by this callback: " + JSON.stringify(globalThis.dataLength) + "\r\n" + "The length of the data received: " +
-        JSON.stringify(globalThis.receiveSize) + "\r\n" + "Total length of data: " + JSON.stringify(globalThis.totalSize) + "\r\n" + "Percentage: " + JSON.stringify(Math.floor(globalThis.receiveSize / globalThis.totalSize * 10000) / 100) + '%'
+      if (Http.url !== '') {
+        this.result = "\r\nThe length of the data received by this callback: " +
+        JSON.stringify(AppStorage.Get('dataLength')) +
+        "\r\n" + "The length of the data received: " +
+        JSON.stringify(AppStorage.Get('receiveSize')) + "\r\n" + "Total length of data: " +
+        JSON.stringify(AppStorage.Get('totalSize')) + "\r\n" + "Percentage: " +
+        JSON.stringify(Math.floor((AppStorage.Get('receiveSize') as number) /
+        (AppStorage.Get('totalSize') as number) * 10000) / 100) + '%'
       } else {
         this.result = 'Failed'
       }
@@ -210,9 +215,9 @@ export struct setting {
           Button($r('app.string.back'))
             .fontSize(25)
             .onClick(() => {
-              globalThis.receiveSize = 0
-              globalThis.totalSize = 0
-              globalThis.dataLength = 0
+              AppStorage.SetOrCreate('receiveData', 0)
+              AppStorage.SetOrCreate('totalSize', 0)
+              AppStorage.SetOrCreate('dataLength', 0)
               this.url = ''
               this.flag = 1
               this.keys = []
