@@ -14,7 +14,7 @@
  */
 
 import systemDateTime from '@ohos.systemDateTime';
-import { Logger } from '../logger/Logger';
+import Logger from '../logger/Logger';
 
 @Entry
 @Component

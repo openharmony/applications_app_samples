@@ -15,7 +15,7 @@
 
 import hilog from '@ohos.hilog';
 
-class LoggerModel {
+class Logger {
   private domain: number;
   private prefix: string;
   private format: string = '%{public}s, %{public}s';
@@ -58,4 +58,4 @@ class LoggerModel {
   }
 }
 
-export let logger = new LoggerModel('[Sample_CrossChainBack]');
+export default new Logger('[Sample_CrossChainBack]');

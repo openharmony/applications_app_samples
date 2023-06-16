@@ -16,7 +16,7 @@
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import rpc from '@ohos.rpc';
-import { Logger } from '../logger/Logger';
+import Logger from '../logger/Logger';
 
 class StubTest extends rpc.RemoteObject {
   constructor(des) {

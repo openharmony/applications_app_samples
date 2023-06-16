@@ -40,8 +40,8 @@ export default function launcherTest() {
   describe('ActsLauncherTest', () => {
     /**
      * Scene:Start the most recent component instance.
-     * Input:Click to open the application, return to the desktop, and then click the icon to open the application again.
-     * Expected output:Pull the most recent ability to the foreground, no new ability instance will be created.
+     * Input:Click to open the application, return to the desktop, and then click the icon again.
+     * Expected output:Pull the most recent ability to the foreground, no new ability instance be created.
      */
     it(BUNDLE + 'StartRecentAbility_001', 0, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 begin')
@@ -77,7 +77,7 @@ export default function launcherTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 openApplicationAgain')
       await driver.delayMs(500)
       // Read the timestamp
-      // verify that clicking the application icon again opens the most recent instance, not the new one
+      // verify that clicking the application icon again opened the most recent instance, not a new one
       let secondTimeStampComponent = await driver.findComponent(ON.id(timeStampId))
       let secondTimeStamp = JSON.stringify(await secondTimeStampComponent.getText())
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
@@ -144,7 +144,7 @@ export default function launcherTest() {
       await open.click()
       await driver.delayMs(500)
       // Read the timestamp
-      // verify that clicking the application icon again opens the most recent instance, not the new one
+      // verify that clicking the application icon again opened the most recent instance, not a new one
       let secondTimeStampComponent = await driver.findComponent(ON.id(timeStampId))
       let secondTimeStamp = JSON.stringify(await secondTimeStampComponent.getText())
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
@@ -168,7 +168,7 @@ export default function launcherTest() {
      * Scene:Start the most recent component instance.
      * Input:Click to open the application, click button to open SecondAbility, return to the desktop.
      *       Click the icon to open the application again.
-     * Expected output:Pull MainAbility to the foreground, no new ability instance will be created.
+     * Expected output:Pull EntryAbility to the foreground, no new ability instance will be created.
      */
     it(BUNDLE + 'StartRecentAbility_003', 2, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 begin')
@@ -194,14 +194,14 @@ export default function launcherTest() {
       // Read the timestamp on the current UIAbility
       let firstTimeStampComponent = await driver.findComponent(ON.id(timeStampId))
       let firstTimeStamp = JSON.stringify(await firstTimeStampComponent.getText())
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 getFirstTimeStamp, text1: ' + firstTimeStamp)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 getFirstTimeStamp, firstTimeStamp: ' + firstTimeStamp)
       // Find the button and click,open singletonAbility
       let startRecentButton = await driver.findComponent(ON.id(startRecentButtonId))
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 clickstartRecentButton')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 clickStartRecentButton')
       await startRecentButton.click()
       await driver.delayMs(300)
       // Verify singletonAbility is opened.
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 confirmIsUIAbility2, singletonAbilityText: ' + singletonAbilityText)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 confirmIsSingletonAbility, singletonAbilityText: ' + singletonAbilityText)
       await driver.assertComponentExist(ON.text(singletonAbilityText))
       // Click the home key
       await driver.click(pressHome_x, pressHome_y)
@@ -214,14 +214,14 @@ export default function launcherTest() {
       // Verify open current EntryAbility instead of to the desktop
       let secondTimeStampComponent = await driver.findComponent(ON.id(timeStampId))
       let secondTimeStamp = JSON.stringify(await secondTimeStampComponent.getText())
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 compareTimeStampEqual, secondTimeStamp: ' + secondTimeStamp)
       expect(secondTimeStamp).assertEqual(firstTimeStamp)
       // Open the recent task list
       await driver.click(pressRecent_x, pressRecent_y)
       await driver.delayMs(300)
       // Verify that no new instance has been created
       let secondAppList = await driver.findComponents(ON.text(appStartRecent))
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 confirmAbilityNotAdd, appList2: ' + secondAppList.length)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 confirmAbilityNotAdd, secondAppList: ' + secondAppList.length)
       expect(secondAppList.length).assertEqual(appCount)
       await driver.click(pressHome_x, pressHome_y)
       await driver.delayMs(300)
@@ -232,7 +232,7 @@ export default function launcherTest() {
     })
 
     /**
-     * Scene:Return across task chain.s
+     * Scene:Return across task chain.
      * Input:Click to open the application, click the button in EntryAbility.
      *       Click the back button after opening SecondAbility.
      * Expected output:Return to EntryAbility instead of to the desktop.
