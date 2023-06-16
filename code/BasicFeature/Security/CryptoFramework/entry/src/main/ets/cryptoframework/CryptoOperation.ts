@@ -273,7 +273,13 @@ export class CryptoOperation {
   async convertRsaKey(rsaJsonString: string): Promise<cryptoFramework.KeyPair> {
     let rsaKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA3072');
     Logger.info(TAG, 'success, read key string' + rsaJsonString.length);
-    let jsonRsaKeyBlob = JSON.parse(rsaJsonString);
+    let jsonRsaKeyBlob;
+    try {
+      jsonRsaKeyBlob = JSON.parse(rsaJsonString);
+    } catch (error) {
+      Logger.error(TAG, `trans from json string failed, ${error.code}, ${error.message}`);
+      return null;
+    }
     let priKeyStr: string = jsonRsaKeyBlob.priKey;
     let pubKeyStr: string = jsonRsaKeyBlob.pubKey;
     Logger.info(TAG, 'success, read rsa pri str ' + priKeyStr.length);

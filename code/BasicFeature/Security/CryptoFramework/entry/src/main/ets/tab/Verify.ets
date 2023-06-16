@@ -40,151 +40,178 @@ export struct Verify {
   build() {
     Stack({ alignContent: Alignment.Center }) {
       Column() {
-        List() {
-          ListItem() {
-            Row() {
-              Text($r('app.string.open_file'))
-                .fontSize(16)
-                .textAlign(TextAlign.Start)
-                .lineHeight(22)
+        GridRow() {
+          GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              List() {
+                ListItem() {
+                  Row() {
+                    Text($r('app.string.open_file'))
+                      .fontSize(16)
+                      .textAlign(TextAlign.Start)
+                      .lineHeight(22)
 
-              Blank()
+                    Blank()
 
-              Text(this.textFileName === '' ? $r('app.string.please_choose') : this.textFileName)
-                .fontSize(14)
-                .textAlign(TextAlign.Start)
-                .lineHeight(19)
+                    Text(this.textFileName === '' ? $r('app.string.please_choose') : this.textFileName)
+                      .fontSize(14)
+                      .textAlign(TextAlign.Start)
+                      .lineHeight(19)
 
-              Image($r('app.media.right_arrow'))
-                .height(24)
-                .width(24)
-                .padding({ left: 9, right: 9, top: 6, bottom: 6 })
+                    Image($r('app.media.right_arrow'))
+                      .height('19vp')
+                      .width('10vp')
+                      .margin({ left: 9, right: 9, top: 6, bottom: 6 })
+                  }
+                  .backgroundColor(0xFFFFFF)
+                  .width('100%')
+                  .height('52vp')
+                  .padding({ top: 4, left: 12, right: 12 })
+                }.onClick(() => {
+                  this.selectTextFileAndRead();
+                })
+
+                ListItem() {
+                  Row() {
+                    Text($r('app.string.select_key_file'))
+                      .fontSize(16)
+                      .textAlign(TextAlign.Start)
+                      .lineHeight(22)
+
+                    Blank()
+
+                    Text(this.keyFileName === '' ? $r('app.string.please_choose') : this.keyFileName)
+                      .fontSize(14)
+                      .textAlign(TextAlign.Start)
+                      .lineHeight(19)
+
+                    Image($r('app.media.right_arrow'))
+                      .height('19vp')
+                      .width('10vp')
+                      .margin({ left: 9, right: 9, top: 6, bottom: 6 })
+                  }
+                  .backgroundColor(0xFFFFFF)
+                  .width('100%')
+                  .height('48vp')
+                  .padding({ left: 12, right: 12 })
+                }.onClick(() => {
+                  this.selectRsaKeyFileAndRead();
+                })
+              }
+              .width('100%')
+              .height('100%')
+              .borderRadius(16)
             }
-            .backgroundColor(0xFFFFFF)
-            .width('336')
-            .height('48')
-            .padding({ top: 4, left: 12, right: 12 })
-          }.onClick(() => {
-            this.selectTextFileAndRead();
-          })
-
-          ListItem() {
-            Row() {
-              Text($r('app.string.select_key_file'))
-                .fontSize(16)
-                .textAlign(TextAlign.Start)
-                .lineHeight(22)
-
-              Blank()
-
-              Text(this.keyFileName === '' ? $r('app.string.please_choose') : this.keyFileName)
-                .fontSize(14)
-                .textAlign(TextAlign.Start)
-                .lineHeight(19)
-
-              Image($r('app.media.right_arrow'))
-                .height(24)
-                .width(24)
-                .padding({ left: 9, right: 9, top: 6, bottom: 6 })
-            }
-            .backgroundColor(0xFFFFFF)
-            .width('336')
-            .height('48')
-            .padding({ left: 12, right: 12 })
-          }.onClick(() => {
-            this.selectRsaKeyFileAndRead();
-          })
+          }
         }
-        .width('336')
-        .height('100')
-        .borderRadius(16)
-        .margin({ bottom: 12 })
+        .height('100vp')
+        .margin({ left: 12, right: 12, bottom: 12 })
 
-        List() {
-          ListItem() {
-            Row() {
-              Text($r('app.string.select_signature_file'))
-                .fontSize(16)
-                .textAlign(TextAlign.Start)
-                .lineHeight(22)
+        GridRow() {
+          GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              List() {
+                ListItem() {
+                  Row() {
+                    Text($r('app.string.select_signature_file'))
+                      .fontSize(16)
+                      .textAlign(TextAlign.Start)
+                      .lineHeight(22)
 
-              Blank()
+                    Blank()
 
-              Text(this.signFileName === '' ? $r('app.string.please_choose') : this.signFileName)
-                .fontSize(14)
-                .textAlign(TextAlign.Start)
-                .lineHeight(19)
+                    Text(this.signFileName === '' ? $r('app.string.please_choose') : this.signFileName)
+                      .fontSize(14)
+                      .textAlign(TextAlign.Start)
+                      .lineHeight(19)
 
-              Image($r('app.media.right_arrow'))
-                .height(24)
-                .width(24)
-                .padding({ left: 9, right: 9, top: 6, bottom: 6 })
+                    Image($r('app.media.right_arrow'))
+                      .height('19vp')
+                      .width('10vp')
+                      .margin({ left: 9, right: 9, top: 6, bottom: 6 })
+                  }
+                  .backgroundColor(0xFFFFFF)
+                  .width('100%')
+                  .height('56vp')
+                  .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+                }.onClick(() => {
+                  this.selectSignFileAndRead();
+                })
+              }
+              .width('100%')
+              .borderRadius(16)
             }
-            .backgroundColor(0xFFFFFF)
-            .width('336')
-            .height('48')
-            .padding({ left: 12, right: 12, top: 4, bottom: 4 })
-          }.onClick(() => {
-            this.selectSignFileAndRead();
-          })
+          }
         }
-        .width('336')
-        .height('56')
-        .borderRadius(16)
-        .margin({ bottom: 12 })
+        .height('56vp')
+        .margin({ left: 12, right: 12, bottom: 12 })
+
+        GridRow() {
+          GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              Column() {
+                Row() {
+                  Text($r('app.string.text_context'))
+                    .fontSize(16)
+                    .textAlign(TextAlign.Start)
+                    .fontWeight(500)
+                    .lineHeight(22)
+                }
+                .padding({ left: 12, right: 12 })
+                .width('100%')
+                .height('48vp')
+
+                Row() {
+                  Text() {
+                    Span(this.plainText)
+                      .fontSize(16)
+                      .fontWeight(400)
+                      .fontColor('#182431')
+                  }.textAlign(TextAlign.Start)
+                }
+                .padding({ left: 12, right: 12, bottom: 4 })
+                .width('100%')
+                .height('52vp')
+              }
+              .borderRadius(16)
+              .width('100%')
+              .height('100')
+              .backgroundColor(0xFFFFFF)
+            }
+          }
+        }
+        .height('100vp')
+        .margin({ left: 12, right: 12, bottom: 12 })
 
         Column() {
-          Row() {
-            Text($r('app.string.text_context'))
-              .fontSize(16)
-              .textAlign(TextAlign.Start)
-              .fontWeight(500)
-              .lineHeight(22)
-          }
-          .padding({ left: 12, right: 12 })
-          .width('336')
-          .height('48')
-
-          Row() {
-            Text(this.plainText)
-              .fontSize(16)
-              .fontWeight(400)
-              .fontColor('#182431')
-              .textAlign(TextAlign.Start)
-          }
-          .padding({ left: 12, right: 12, bottom: 4 })
-          .width('336')
-          .height('48')
-        }
-        .borderRadius(16)
-        .margin({ bottom: 12 })
-        .width('336')
-        .height('100')
-        .backgroundColor(0xFFFFFF)
-
-        Column() {
-          Button() {
-            Text($r('app.string.verify')).fontSize(16).fontWeight(500)
-              .lineHeight(22)
-              .fontColor('#FFFFFF')
-          }
-          .borderRadius(20)
-          .id('verifyBtn')
-          .type(ButtonType.Capsule)
-          .margin(8)
-          .width('312')
-          .height('40')
-          .backgroundColor('#007DFF')
-          .onClick(() => {
-            if (this.textFileUri === '' || this.keyFileUri === '' || this.signFileUri === '') {
-              promptAction.showToast({
-                message: $r('app.string.null_message')
-              });
-            } else {
-              this.verifyFunc();
+          GridRow() {
+            GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+              Column() {
+                Button() {
+                  Text($r('app.string.verify')).fontSize(16).fontWeight(500)
+                    .lineHeight(22)
+                    .fontColor('#FFFFFF')
+                }
+                .borderRadius(20)
+                .id('verifyBtn')
+                .type(ButtonType.Capsule)
+                .margin({ left: 24, right: 24 })
+                .width('100%')
+                .height('40vp')
+                .backgroundColor('#007DFF')
+                .onClick(() => {
+                  if (this.textFileUri === '' || this.keyFileUri === '' || this.signFileUri === '') {
+                    promptAction.showToast({
+                      message: $r('app.string.null_message')
+                    });
+                  } else {
+                    this.verifyFunc();
+                  }
+                });
+              }
             }
-          });
-        }.width('100%').height(248).justifyContent(FlexAlign.End)
+          }.margin({ left: 24, right: 24 })
+        }.width('100%').height('340vp').justifyContent(FlexAlign.End)
       }
       .width('100%')
       .height('100%')

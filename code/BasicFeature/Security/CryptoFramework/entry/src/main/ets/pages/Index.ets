@@ -35,11 +35,13 @@ struct Index {
         .fontWeight(this.currentIndex === index ? 500 : 400)
         .lineHeight(22)
         .textAlign(TextAlign.Center)
-        .margin({ top: 18, bottom: 18, left: 8, right: 8 })
+        .margin({ top: 18, left: 8, right: 8 })
       Divider()
         .strokeWidth(2)
         .color('#007DFF')
+        .width('32vp')
         .opacity(this.currentIndex === index ? 1 : 0)
+        .margin({ bottom: 8 })
     }
   }
 
@@ -79,8 +81,6 @@ struct Index {
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('100%')
-      .height('100%')
       .backgroundColor('#F1F3F5')
     }.width('100%')
     .height('100%')
