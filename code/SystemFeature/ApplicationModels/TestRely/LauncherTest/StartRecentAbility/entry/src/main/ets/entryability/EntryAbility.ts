@@ -17,13 +17,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import systemDateTime from '@ohos.systemDateTime';
-import { logger } from '../logger/Logger';
+import Logger from '../logger/Logger';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     systemDateTime.getDate().then((date) => {
-      logger.debug('getDate successful');
+      Logger.debug('getDate successful');
     });
   }
 

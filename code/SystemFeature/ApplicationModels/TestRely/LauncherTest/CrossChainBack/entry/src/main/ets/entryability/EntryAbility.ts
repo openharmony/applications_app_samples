@@ -16,7 +16,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import { logger } from '../logger/Logger';
+import Logger from '../logger/Logger';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -36,18 +36,18 @@ export default class EntryAbility extends UIAbility {
             let context = this.context;
             let connectOptions = {
               onConnect(elementName, remote) {
-                logger.debug('ServiceExtensionAbility has been onConnect');
+                Logger.debug('ServiceExtensionAbility has been onConnect');
               },
               onDisconnect(elementName) {
-                logger.debug('ServiceExtensionAbility has been onDisconnect');
+                Logger.debug('ServiceExtensionAbility has been onDisconnect');
               },
               onFailed(code) {
-                logger.debug('ServiceExtensionAbility has been onFailed');
+                Logger.debug('ServiceExtensionAbility has been onFailed');
               }
             };
             globalThis.remoteConnectId = context.connectServiceExtensionAbility(connectWant, connectOptions);
           } catch (err) {
-            logger.debug('connectServiceExtensionAbility failed');
+            Logger.debug('connectServiceExtensionAbility failed');
           }
         });
       } else {
@@ -59,18 +59,18 @@ export default class EntryAbility extends UIAbility {
           let context = this.context;
           let connectOptions = {
             onConnect(elementName, remote) {
-              logger.debug('ServiceExtensionAbility has been onConnect');
+              Logger.debug('ServiceExtensionAbility has been onConnect');
             },
             onDisconnect(elementName) {
-              logger.debug('ServiceExtensionAbility has been onDisconnect');
+              Logger.debug('ServiceExtensionAbility has been onDisconnect');
             },
             onFailed(code) {
-              logger.debug('ServiceExtensionAbility has been onFailed');
+              Logger.debug('ServiceExtensionAbility has been onFailed');
             }
           };
           globalThis.remoteConnectId = context.connectServiceExtensionAbility(connectWant, connectOptions);
         } catch (err) {
-          logger.debug('connectServiceExtensionAbility failed');
+          Logger.debug('connectServiceExtensionAbility failed');
         }
       }
     };

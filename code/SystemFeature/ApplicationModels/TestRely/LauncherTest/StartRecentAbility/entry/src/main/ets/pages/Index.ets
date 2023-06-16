@@ -14,7 +14,7 @@
  */
 
 import systemDateTime from '@ohos.systemDateTime';
-import { logger } from '../logger/Logger';
+import Logger from '../logger/Logger';
 
 @Entry
 @Component
@@ -49,9 +49,9 @@ struct Index {
               bundleName: "com.acts.startrecentability",
               abilityName: "EntryAbility",
             }).then(() => {
-              logger.debug("startAbility successful");
+              Logger.debug("startAbility successful");
             }).catch((err) => {
-              logger.debug("startAbility failed");
+              Logger.debug("startAbility failed");
             });
           })
           .id("startEntryAbility")
@@ -68,9 +68,9 @@ struct Index {
               bundleName: "com.acts.startrecentability",
               abilityName: "SecondAbility",
             }).then(() => {
-              logger.debug("EntryAbility startAbility successful.");
+              Logger.debug("EntryAbility startAbility successful.");
             }).catch((err) => {
-              logger.debug("EntryAbility startAbility dailed.");
+              Logger.debug("EntryAbility startAbility dailed.");
             });
           })
           .id("startSingletonAbility")

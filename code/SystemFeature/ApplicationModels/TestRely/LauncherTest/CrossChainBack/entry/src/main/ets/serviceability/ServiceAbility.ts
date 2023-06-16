@@ -16,7 +16,7 @@
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import rpc from '@ohos.rpc';
-import { logger } from '../logger/Logger';
+import Logger from '../logger/Logger';
 
 class StubTest extends rpc.RemoteObject {
   constructor(des) {
@@ -30,15 +30,15 @@ class StubTest extends rpc.RemoteObject {
 
 export default class ServiceAbility extends ServiceExtensionAbility {
   onCreate(want) {
-    logger.debug('ServiceExtensionAbility has been onCreate');
+    Logger.debug('ServiceExtensionAbility has been onCreate');
   }
 
   onDestroy() {
-    logger.debug('ServiceExtensionAbility has been onDestroy');
+    Logger.debug('ServiceExtensionAbility has been onDestroy');
   }
 
   onRequest(want, startId) {
-    logger.debug('ServiceExtensionAbility has been onRequest');
+    Logger.debug('ServiceExtensionAbility has been onRequest');
   }
 
   onConnect(want) {
@@ -52,9 +52,9 @@ export default class ServiceAbility extends ServiceExtensionAbility {
     };
     globalThis.context = this.context;
     this.context.startAbility(secUIAbilityWant).then(() => {
-      logger.debug('startAbility successful.');
+      Logger.debug('startAbility successful.');
     }).catch((err) => {
-      logger.debug('startAbility failed.');
+      Logger.debug('startAbility failed.');
     });
     return new StubTest('test');
   }
