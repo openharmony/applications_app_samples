@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 {
-  "license": "ISC",
+  "license": "",
   "devDependencies": {
     "@ohos/hypium": "1.0.6"
   },
-  "name": "wallpaper",
-  "description": "example description",
-  "repository": {},
+  "author": "",
+  "name": "international",
+  "description": "Please describe the basic information.",
+  "main": "",
   "version": "1.0.0",
   "dependencies": {}
 }
