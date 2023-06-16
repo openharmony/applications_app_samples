@@ -38,7 +38,7 @@ export default function abilityTest() {
     it(BUNDLE + '_startAbility', 0, async (done) => {
       Logger.info(TAG, BUNDLE + '_startAbility start')
       let want = {
-        bundleName: 'ohos.samples.chat',
+        bundleName: 'com.samples.chat',
         abilityName: 'EntryAbility'
       }
       await delegator.startAbility(want, (err, data) => {
