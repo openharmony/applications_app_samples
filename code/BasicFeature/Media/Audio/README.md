@@ -68,8 +68,8 @@ library/
 * 音频焦点功能都封装Focus，源码参考：[Focus.ets](entry/src/main/ets/pages/Focus.ets)
     * 使用audio.createAudioRenderer()接口分别创建音乐类型和铃声类型的audioRenderer对象
     * 对每个render对象都调用audioRenderer.setInterruptMode(audio.InterruptMode.INDEPENDENT_MODE),完成独立焦点的设置
-    * 对每个render对象都监听audioRenderer.on('audioInterrupt'),收到回调时，说明上前renderer对象被暂停或者恢复播放，据此更新UI状态，如果是恢复，则需要再次调用audioRenderer.start()和wirte()进行恢复播放
-    * 对每个render对象都监听audioRenderer.on('stateChange'),收到回调时，说明上前renderer对象的状态被改变，据此更新UI状态
+    * 对每个render对象都监听audioRenderer.on('audioInterrupt'),收到回调时，说明当前renderer对象被暂停或者恢复播放，据此更新UI状态，如果是恢复，则需要再次调用audioRenderer.start()和wirte()进行恢复播放
+    * 对每个render对象都监听audioRenderer.on('stateChange'),收到回调时，说明当前renderer对象的状态被改变，据此更新UI状态
     * 使用audioRenderer.start()方法和audioRenderer.write()进行音频的播放处理，写入字节的长度由audioRenderer.getBufferSize()接口来决定
     * 使用audioRenderer.stop()进行音频的停止播放处理
     * 使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor,接口参考：[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getrawfd9)
