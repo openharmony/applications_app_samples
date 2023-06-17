@@ -19,7 +19,7 @@ import { getDurationString } from '../model/TimeUtils'
 export struct MediaItem {
   private media: mediaLibrary.FileAsset = undefined
   private index: number = 0
-  private btnAction: (operate: string, index: number) => void
+  private btnAction: (operate: string, index: number, mediaItemId) => void
 
   tempNum(number) {
     if (number < 10) {
@@ -86,7 +86,7 @@ export struct MediaItem {
       .size({ width: 50, height: 50 })
       .backgroundColor('#F5F5F5')
       .onClick(() => {
-        this.btnAction('rename', this.index)
+        this.btnAction('rename', this.index, this.media.id);
       })
 
       Button({ type: ButtonType.Circle, stateEffect: true }) {
@@ -101,7 +101,7 @@ export struct MediaItem {
       .margin({ left: 15, right: 10 })
       .backgroundColor('#F5F5F5')
       .onClick(() => {
-        this.btnAction('delete', this.index)
+        this.btnAction('delete', this.index, this.media.id);
       })
     }
     .padding({ top: 10, bottom: 10, left: 10, right: 10 })
