@@ -17,10 +17,18 @@ import { describe, it, expect } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
+import wifi from '@ohos.wifi'
 
 const TAG = '[Sample_Wlan]'
 const DOMAIN = 0xFF00
 const BUNDLE = 'Wlan_'
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -86,8 +94,8 @@ export default function abilityTest() {
       let driver = await Driver.create()
       await driver.delayMs(1000)
       // 判断wifi是否打开
-      let check = await driver.findComponent(ON.id('Wifi0'))
-      if(check == null) {
+      let check = await driver.findComponent(ON.text(await getResourceString($r('app.string.available_wlan'))))
+      if (check === null || check === undefined) {
         // 开启wifi
         hilog.info(DOMAIN, TAG, BUNDLE + 'ActivateWlanFunction_001 clickWlanSwitch')
         await driver.assertComponentExist(ON.id('switch'))
@@ -96,13 +104,14 @@ export default function abilityTest() {
         await driver.delayMs(5000)
       }
       // 可用wlan是否存在
+      await driver.delayMs(5000)
       await driver.assertComponentExist(ON.id('validWlan'))
       await driver.delayMs(5000)
       // 点击可用wifi列表项
       hilog.info(DOMAIN, TAG, BUNDLE + 'ActivateWlanFunction_001 clickAvaliableWlan')
-      await driver.assertComponentExist(ON.id('Wifi0'))
-      let wifiAvaliable = await driver.findComponent(ON.id('Wifi0'))
-      await wifiAvaliable.click()
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.encrypt'))))
+      let WiFi = await driver.findComponents(ON.text(await getResourceString($r('app.string.encrypt'))))
+      await WiFi[0].click()
       await driver.delayMs(1000)
       // 弹框是否存在
       await driver.assertComponentExist(ON.id('sure'))
