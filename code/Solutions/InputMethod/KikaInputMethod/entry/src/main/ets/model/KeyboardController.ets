@@ -486,6 +486,7 @@ export class InputHandler {
 
   public moveCursor(direction: inputMethodEngine.Direction): void {
     if (globalThis.mTextInputClient !== undefined) {
+      this.addLog(`moveCursor direction = ${direction}`);
       globalThis.mTextInputClient.moveCursor(direction);
     } else {
       this.addLog('moveCursor globalThis.mTextInputClient is undefined');
