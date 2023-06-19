@@ -20,6 +20,7 @@ import { KeyStyle } from '../common/StyleConfiguration';
 @Extend(Image) function arrowStyle(isSelection: boolean, inputStyle: KeyStyle) {
   .size({ width: inputStyle.editImageSize, height: inputStyle.editImageSize })
   .objectFit(ImageFit.Contain)
+  .responseRegion({ x: -20, y: -20, width: 64, height: 64 })
   .backgroundColor(Color.White)
   .borderRadius(20)
   .colorBlend(isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
