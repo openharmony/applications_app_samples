@@ -789,6 +789,26 @@
       "name": "share_element_transition",
       "value": "sharedTransition 共享元素转场"
     },
+    {
+      "name": "Multiplex_interface",
+      "value": "多任务"
+    },
+    {
+      "name": "Floating_window",
+      "value": "悬浮窗"
+    },
+    {
+      "name": "Folder_expansion",
+      "value": "文件夹展开"
+    },
+    {
+      "name": "Shop_card_expansion",
+      "value": "商店卡片展开"
+    },
+    {
+      "name": "Gallery_card_expansion",
+      "value": "图库卡片展开"
+    },
     // Size
     {
       "name": "size_width",

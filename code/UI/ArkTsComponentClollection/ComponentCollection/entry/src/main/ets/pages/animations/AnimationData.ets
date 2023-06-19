@@ -27,6 +27,26 @@ const TRANSITION_ANIMATION: ThirdLevelCategory =
       {
         title: $r('app.string.share_element_transition'),
         url: 'pages/animations/TransitionAnimations/shareElementTransitionSample/ShareElementTransitionSample'
+      },
+      {
+        title: $r('app.string.Multiplex_interface'),
+        url: 'pages/animations/TransitionAnimations/multiplexSample/MultiplexSample',
+      },
+      {
+        title: $r('app.string.Floating_window'),
+        url: 'pages/animations/TransitionAnimations/floatingSample/FloatingWindowSample',
+      },
+      {
+        title: $r('app.string.Folder_expansion'),
+        url: 'pages/animations/TransitionAnimations/folderSample/FolderSample',
+      },
+      {
+        title: $r('app.string.Shop_card_expansion'),
+        url: 'pages/animations/TransitionAnimations/shopSample/ShopCardSample',
+      },
+      {
+        title: $r('app.string.Gallery_card_expansion'),
+        url: 'pages/animations/TransitionAnimations/gallerySample/GalleryCardSample',
       }
     ]
   }
