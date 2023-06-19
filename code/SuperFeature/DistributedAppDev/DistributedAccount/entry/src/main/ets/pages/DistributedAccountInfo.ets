@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../common/component/TitleBar'
 import router from '@ohos.router'
 import distributedAccount from '@ohos.account.distributedAccount'
-import { ListItemComponent } from '../common/component/ListItemComponent'
 import promptAction from '@ohos.promptAction'
+import relationalStore from '@ohos.data.relationalStore'
+import { TitleBar } from '../common/component/TitleBar'
+import { ListItemComponent } from '../common/component/ListItemComponent'
 import Logger from '../model/Logger'
 import DistributedAccountModel from '../model/DistributedAccountModel'
 import DatabaseUtils from '../common/utils/DatabaseUtils'
 import CommonConstants from '../common/constants/CommonConstants'
-import relationalStore from '@ohos.data.relationalStore'
 
 const TAG: string = `[DistributedAccountInfo]`
 let distributedInfo: distributedAccount.DistributedInfo = router.getParams()['distributedInfo']
@@ -85,7 +85,7 @@ struct DistributedAccountInfo {
                     DatabaseUtils.queryAccountData(distributedInfo.name, globalThis.rdbStore)
                       .then((accountData: relationalStore.ResultSet) => {
                         accountData.goToFirstRow()
-                        distributedAccountModel.Unbind(accountData.getLong(accountData.getColumnIndex(CommonConstants.FIELD_LOCAL_ID)), accountData.getString(accountData.getColumnIndex(CommonConstants.FIELD_DISTRIBUTED_ACCOUNT_ID)), distributedInfo.name)
+                        distributedAccountModel.unBind(accountData.getLong(accountData.getColumnIndex(CommonConstants.FIELD_LOCAL_ID)), accountData.getString(accountData.getColumnIndex(CommonConstants.FIELD_DISTRIBUTED_ACCOUNT_ID)), distributedInfo.name)
                           .then(() => {
                             router.replaceUrl({
                               url: 'pages/Index'

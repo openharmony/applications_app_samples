@@ -35,13 +35,13 @@ struct Index {
   @State distributedAccountNickName: string = ''
 
   // 选择头像
-  PhotoSelect() {
+  photoSelect() {
     try {
-      let PhotoSelectOptions = new picker.PhotoSelectOptions();
-      PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-      PhotoSelectOptions.maxSelectNumber = 1;
+      let photoSelectOptions = new picker.PhotoSelectOptions();
+      photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+      photoSelectOptions.maxSelectNumber = 1;
       let photoPicker = new picker.PhotoViewPicker();
-      photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+      photoPicker.select(photoSelectOptions).then((PhotoSelectResult) => {
         Logger.info(TAG, 'PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
         this.photoSelectUri = PhotoSelectResult.photoUris[0]
         Logger.info(TAG, 'PhotoViewPicker：' + this.photoSelectUri);
@@ -68,12 +68,12 @@ struct Index {
     try {
       this.accountArr = await accountManager.queryAllCreatedOsAccounts()
       Logger.info(TAG, 'queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(this.accountArr));
-      let OsAccountArray = []
+      let osAccountArray = []
       for (let i = 0; i < this.accountArr.length; i++) {
-        OsAccountArray.push({ value: this.accountArr[i].localName, icon: this.accountArr[i].photo })
+        osAccountArray.push({ value: this.accountArr[i].localName, icon: this.accountArr[i].photo })
       }
-      Logger.info(TAG, 'queryAllCreatedOsAccounts OsAccountArray:' + JSON.stringify(this.accountSelectArr));
-      this.accountSelectArr = OsAccountArray
+      Logger.info(TAG, 'queryAllCreatedOsAccounts osAccountArray:' + JSON.stringify(this.accountSelectArr));
+      this.accountSelectArr = osAccountArray
     } catch (e) {
       Logger.error(TAG, 'queryAllCreatedOsAccounts exception:' + JSON.stringify(e));
     }
@@ -93,7 +93,7 @@ struct Index {
             .backgroundColor($r('sys.color.ohos_id_color_background'))
             .borderRadius(36)
             .onClick(() => {
-              this.PhotoSelect()
+              this.photoSelect()
             })
         } else {
           Image(this.photoSelectUri)
@@ -138,7 +138,7 @@ struct Index {
           .id('Bind')
           .width('100%')
           .onClick(() => {
-            distributedAccountModel.Bind(this.localIdSelect, this.distributedAccountName, this.distributedAccountNickName, this.photoSelectUri)
+            distributedAccountModel.bind(this.localIdSelect, this.distributedAccountName, this.distributedAccountNickName, this.photoSelectUri)
               .then(() => {
                 router.replaceUrl({
                   url: 'pages/DistributedAccountList'

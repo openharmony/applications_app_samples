@@ -14,11 +14,10 @@
  */
 
 import router from '@ohos.router';
-import { TitleBar } from '../common/component/TitleBar'
 import distributedAccount from '@ohos.account.distributedAccount';
+import osAccount from '@ohos.account.osAccount';
 import Logger from '../model/Logger';
 import DistributedAccountModel from '../model/DistributedAccountModel';
-import osAccount from '@ohos.account.osAccount';
 import DistributedAccountDataSource from '../model/BasicDataSource';
 
 const TAG: string = `[DistributedAccountList]`
