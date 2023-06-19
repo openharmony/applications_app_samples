@@ -13,15 +13,11 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 @Component
 export struct ListItemComponent {
   private title: string | Resource;
   private endText: string | Resource;
   private endArrowIsShow: boolean;
-  private targetPage: string;
-  private paramInfo: any;
 
   aboutToAppear() {
     if (this.endText === 'true') {
@@ -55,13 +51,5 @@ export struct ListItemComponent {
     }
     .width('100%')
     .padding($r('sys.float.ohos_id_card_margin_middle'))
-    .onClick(() => {
-      router.pushUrl({
-        url: this.targetPage,
-        params: {
-          paramInfo: this.paramInfo
-        }
-      })
-    })
   }
 }
