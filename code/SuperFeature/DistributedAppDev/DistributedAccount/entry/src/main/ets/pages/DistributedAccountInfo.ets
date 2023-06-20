@@ -17,6 +17,7 @@ import router from '@ohos.router'
 import distributedAccount from '@ohos.account.distributedAccount'
 import promptAction from '@ohos.promptAction'
 import relationalStore from '@ohos.data.relationalStore'
+import osAccount from '@ohos.account.osAccount'
 import { TitleBar } from '../common/component/TitleBar'
 import { ListItemComponent } from '../common/component/ListItemComponent'
 import Logger from '../model/Logger'
@@ -31,6 +32,19 @@ let distributedAccountModel = new DistributedAccountModel();
 @Entry
 @Component
 struct DistributedAccountInfo {
+  @State localName: string = ''
+
+  aboutToAppear() {
+    DatabaseUtils.queryAccountData(distributedInfo.name, globalThis.rdbStore)
+      .then(async (accountData: relationalStore.ResultSet) => {
+        accountData.goToFirstRow()
+        let accountManager = osAccount.getAccountManager();
+        let accountInfo = await accountManager.queryOsAccountById(accountData.getLong(accountData.getColumnIndex(CommonConstants.FIELD_LOCAL_ID)))
+        this.localName = accountInfo.localName
+        accountData.close()
+      })
+  }
+
   build() {
     Scroll() {
       Column({ space: 16 }) {
@@ -40,25 +54,29 @@ struct DistributedAccountInfo {
             .width(64)
             .aspectRatio(1)
             .borderRadius(32)
-            .fillColor($r('sys.color.ohos_id_color_primary'))
         } else {
           Image(distributedInfo.avatar)
-            .width(64)
+            .width(56)
             .aspectRatio(1)
-            .borderRadius(32)
+            .borderRadius(28)
         }
 
         Text($r('app.string.DistributedAccount_info'))
           .width('100%')
           .align(Alignment.Start)
-          .fontSize(14)
+          .padding({ left: 12 })
+          .fontSize(16)
+          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
 
         Column() {
           ListItemComponent({ title: $r('app.string.AccountName'), endText: distributedInfo.name })
           ListItemComponent({ title: $r('app.string.NickName'), endText: distributedInfo.nickname })
-          ListItemComponent({ title: '绑定的系统帐号', endText: 'user' })
+          if (this.localName !== '') {
+            ListItemComponent({ title: $r('app.string.Bound_System_Account'), endText: this.localName })
+          }
         }
-        .borderRadius(15)
+        .padding({ left: 12, right: 12, top: 4 })
+        .borderRadius(24)
         .backgroundColor($r('sys.color.ohos_id_color_background'))
 
         Button($r('app.string.Unbind'))

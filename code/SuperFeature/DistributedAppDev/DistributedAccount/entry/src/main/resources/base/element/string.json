@@ -13,10 +13,6 @@
       "value": "DistributedAccount"
     },
     {
-      "name": "select_avatar",
-      "value": "select a avatar"
-    },
-    {
       "name": "AccountName_input",
       "value": "Please enter an account name"
     },
@@ -87,6 +83,10 @@
     {
       "name": "Null",
       "value": "Null"
+    },
+    {
+      "name": "Bound_System_Account",
+      "value": "Bound System Account"
     }
   ]
 }

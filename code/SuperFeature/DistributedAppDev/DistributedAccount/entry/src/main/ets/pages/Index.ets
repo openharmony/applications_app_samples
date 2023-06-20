@@ -17,8 +17,10 @@ import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
 import picker from '@ohos.file.picker';
 import osAccount from '@ohos.account.osAccount';
+import relationalStore from '@ohos.data.relationalStore';
 import Logger from '../model/Logger';
 import DistributedAccountModel from '../model/DistributedAccountModel';
+import DatabaseUtils from '../common/utils/DatabaseUtils';
 
 const TAG: string = `[Index]`
 let distributedAccountModel = new DistributedAccountModel();
@@ -26,12 +28,13 @@ let distributedAccountModel = new DistributedAccountModel();
 @Entry
 @Component
 struct Index {
+  @State clickable: boolean = false
   @State photoSelectUri: string = ''
-  @State osAccountSelect: string = ''
+  @State @Watch('setClickable') osAccountSelect: string = ''
   localIdSelect: number
   @State accountArr: Array<osAccount.OsAccountInfo> = []
   @State accountSelectArr: Array<SelectOption> = []
-  @State distributedAccountName: string = ''
+  @State @Watch('setClickable') distributedAccountName: string = ''
   @State distributedAccountNickName: string = ''
 
   // 选择头像
@@ -50,6 +53,13 @@ struct Index {
       });
     } catch (err) {
       Logger.error(TAG, 'PhotoViewPicker failed with err: ' + err);
+    }
+  }
+
+  // 设置clickable标识值
+  setClickable() {
+    if (this.distributedAccountName !== '' && this.osAccountSelect !== '') {
+      this.clickable = true
     }
   }
 
@@ -82,46 +92,55 @@ struct Index {
   build() {
     Scroll() {
       Column({ space: 20 }) {
-        if (this.photoSelectUri === '') {
-          Text($r('app.string.select_avatar'))
-            .id('select_avatar')
-            .width(72)
-            .align(Alignment.Center)
-            .aspectRatio(1)
-            .fontSize(16)
-            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        Image(this.photoSelectUri === '' ? $r('app.media.ic_user_portrait') : this.photoSelectUri)
+          .id('select_avatar')
+          .width(64)
+          .aspectRatio(1)
+          .margin({ top: 60 })
+          .borderRadius(32)
+          .onClick(() => {
+            this.photoSelect()
+          })
+
+        Column() {
+          TextInput({ placeholder: $r('app.string.AccountName_input'), text: this.distributedAccountName })
+            .id('distributedAccountName')
             .backgroundColor($r('sys.color.ohos_id_color_background'))
-            .borderRadius(36)
-            .onClick(() => {
-              this.photoSelect()
+            .padding({ top: 15, bottom: 15, left: 12, right: 12 })
+            .onChange((value: string) => {
+              DatabaseUtils.queryAccountData(value, globalThis.rdbStore)
+                .then((result: relationalStore.ResultSet) => {
+                  if (result.rowCount === 0) {
+                    this.distributedAccountName = value
+                  } else {
+                    this.clickable = false
+                  }
+                  result.close()
+                })
             })
-        } else {
-          Image(this.photoSelectUri)
-            .width(72)
-            .aspectRatio(1)
-            .borderRadius(36)
+
+          Divider().padding({ left: 12, right: 12 })
+
+          TextInput({ placeholder: $r('app.string.AccountNickName_input'), text: this.distributedAccountNickName })
+            .id('distributedAccountNickName')
+            .backgroundColor($r('sys.color.ohos_id_color_background'))
+            .padding({ top: 15, bottom: 15, left: 12, right: 12 })
+            .onChange((value: string) => {
+              this.distributedAccountNickName = value
+            })
         }
-
-        TextInput({ placeholder: $r('app.string.AccountName_input'), text: this.distributedAccountName })
-          .id('distributedAccountName')
-          .onChange((value: string) => {
-            this.distributedAccountName = value
-          })
-
-        TextInput({ placeholder: $r('app.string.AccountNickName_input'), text: this.distributedAccountNickName })
-          .id('distributedAccountNickName')
-          .onChange((value: string) => {
-            this.distributedAccountNickName = value
-          })
+        .borderRadius(24)
+        .backgroundColor($r('sys.color.ohos_id_color_background'))
 
         Row() {
           Text($r('app.string.select_osAccount'))
             .fontSize(16)
-            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
           Blank()
           if (this.accountSelectArr.length !== 0) {
             Select(this.accountSelectArr)
               .id('select')
+              .backgroundColor('#00000000')
               .font({ size: 16, weight: FontWeight.Regular })
               .fontColor($r('sys.color.ohos_id_color_text_primary'))
               .selectedOptionFont({ size: 16, weight: FontWeight.Normal })
@@ -133,10 +152,13 @@ struct Index {
           }
         }
         .width('100%')
+        .padding({ left: 12 })
 
         Button($r('app.string.Bind'))
           .id('Bind')
           .width('100%')
+          .backgroundColor(this.clickable ? '#007DFF' : '#99007DFF')
+          .enabled(this.clickable ? true : false)
           .onClick(() => {
             distributedAccountModel.bind(this.localIdSelect, this.distributedAccountName, this.distributedAccountNickName, this.photoSelectUri)
               .then(() => {
@@ -164,5 +186,6 @@ struct Index {
         right: $r('sys.float.ohos_id_max_padding_end')
       })
     }
+    .scrollBar(BarState.Off)
   }
 }
