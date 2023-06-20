@@ -22,3 +22,37 @@ export { Process } from './src/main/ets/capabilities/Process';
 export { Url } from './src/main/ets/capabilities/Url';
 
 export { Util } from './src/main/ets/capabilities/Util';
+
+export { TaskPool } from './src/main/ets/capabilities/TaskPool';
+
+export { DequeView } from './src/main/ets/capabilities/DequeView';
+
+export { HashMapView } from './src/main/ets/capabilities/HashMapView';
+
+export { HashSetView } from './src/main/ets/capabilities/HashSetView';
+
+export { LightWeightMapView } from './src/main/ets/capabilities/LightWeightMapView';
+
+export { LightWeightSetView } from './src/main/ets/capabilities/LightWeightSetView';
+
+export { LinkedListView } from './src/main/ets/capabilities/LinkedListView';
+
+export { ListView } from './src/main/ets/capabilities/ListView';
+
+export { PlainArrayView } from './src/main/ets/capabilities/PlainArrayView';
+
+export { QueueView } from './src/main/ets/capabilities/QueueView';
+
+export { StackView } from './src/main/ets/capabilities/StackView';
+
+export { TreeMapView } from './src/main/ets/capabilities/TreeMapView';
+
+export { TreeSetView } from './src/main/ets/capabilities/TreeSetView';
+
+export { VectorView } from './src/main/ets/capabilities/VectorView';
+
+export { KeyValuePair } from './src/main/ets/model/KeyValuePair';
+
+export { Information } from './src/main/ets/model/Information';
+
+export { Constant as Constant } from './src/main/ets/Constant';

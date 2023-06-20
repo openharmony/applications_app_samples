@@ -17,11 +17,13 @@
 export class Information {
   name: string;
   age: number;
-  phone:string;
+  phone: string;
+  clickAble?: boolean;
 
-  constructor(name: string, age: number, phone: string) {
+  constructor(name: string, age: number, phone: string, clickAble?: boolean) {
     this.name = name;
     this.age = age;
     this.phone = phone;
+    this.clickAble = clickAble;
   }
 }
