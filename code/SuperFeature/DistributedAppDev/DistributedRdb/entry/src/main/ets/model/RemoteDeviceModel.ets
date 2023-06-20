@@ -33,15 +33,19 @@ class RemoteDeviceModel {
       return
     }
     Logger.info(TAG, 'deviceManager.createDeviceManager begin')
-    deviceManager.createDeviceManager(BUNDLE, (error, value) => {
-      if (error) {
-        Logger.error(TAG, 'createDeviceManager failed.')
-        return
-      }
-      this.deviceManager = value
-      this.registerDeviceListCallbackImplement(callback)
-      Logger.info(TAG, `createDeviceManager callback returned,value=${value}`)
-    })
+    try {
+      deviceManager.createDeviceManager(BUNDLE, (error, value) => {
+        if (error) {
+          Logger.error(TAG, 'createDeviceManager failed.')
+          return
+        }
+        this.deviceManager = value
+        this.registerDeviceListCallbackImplement(callback)
+        Logger.info(TAG, `createDeviceManager callback returned,value=${value}`)
+      })
+    } catch (error) {
+      Logger.error(TAG, `createDeviceManager throw error, code=${error.code} message=${error.message}`)
+    }
     Logger.info(TAG, 'deviceManager.createDeviceManager end')
   }
 
