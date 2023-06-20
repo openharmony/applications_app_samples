@@ -57,6 +57,12 @@
       },
       {
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.sec.ACCESS_UDID"
+      },
+      {
+        "name": "ohos.permission.INPUT_MONITORING"
       }
     ]
   }

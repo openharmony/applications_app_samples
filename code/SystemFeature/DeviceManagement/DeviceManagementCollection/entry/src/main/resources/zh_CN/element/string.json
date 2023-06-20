@@ -11,6 +11,34 @@
     {
       "name": "device_management",
       "value": "设备管理"
+    },
+    {
+      "name": "battery_info",
+      "value": "电量信息"
+    },
+    {
+      "name": "device_info",
+      "value": "设备信息"
+    },
+    {
+      "name": "input_consumer",
+      "value": "组合按键"
+    },
+    {
+      "name": "mouse_pointer",
+      "value": "鼠标指针"
+    },
+    {
+      "name": "input_event",
+      "value": "输入事件"
+    },
+    {
+      "name": "input_device",
+      "value": "输入设备"
+    },
+    {
+      "name": "input_key_event",
+      "value": "输入按键事件"
     }
   ]
 }

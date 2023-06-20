@@ -25,3 +25,16 @@ export { SystemCapability } from './src/main/ets/capabilities/SystemCapability';
 
 export { SystemParameter } from './src/main/ets/capabilities/SystemParameter';
 
+export { DeviceInfo } from './src/main/ets/capabilities/DeviceInfo';
+
+export { InputConsumer } from './src/main/ets/capabilities/InputConsumer';
+
+export { BatteryView } from './src/main/ets/capabilities/BatteryView';
+
+export { MouseManager } from './src/main/ets/capabilities/MouseManager';
+
+export { InputEventManager } from './src/main/ets/capabilities/InputEventManager';
+
+export { InputDeviceManager } from './src/main/ets/capabilities/InputDeviceManager';
+
+export { InputKeyEventManager } from './src/main/ets/capabilities/InputKeyManager';

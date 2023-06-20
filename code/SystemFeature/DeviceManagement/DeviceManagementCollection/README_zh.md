@@ -10,15 +10,32 @@
 - [@ohos.settings (设置数据项名称)](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-settings.md/)
 - [@ohos.systemCapability (系统能力)](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-system-capability.md/)
 - [@ohos.systemParameterEnhance (系统参数)](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-system-parameterEnhance.md/)
+- [@ohos.batteryInfo (电量信息)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-battery-info.md)
+- [@ohos.deviceInfo (设备信息)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-info.md)
+- [@ohos.multimodalInput.inputConsumer (组合按键)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md)
+- [@ohos.multimodalInput.inputDevice (输入设备)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputdevice.md)
+- [@ohos.multimodalInput.inputEvent (输入事件)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputevent.md)
+- [@ohos.multimodalInput.inputEventClient (按键注入)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md)
+- [@ohos.multimodalInput.inputMonitor (输入监听)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md)
+- [@ohos.multimodalInput.keyCode (键值)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-keycode.md)
+- [@ohos.multimodalInput.keyEvent (按键输入事件)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-keyevent.md)
+- [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mouseevent.md)
+- [@ohos.multimodalInput.pointer (鼠标指针)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pointer.md)
+- [@ohos.multimodalInput.touchEvent (触摸输入事件)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-touchevent.md)
 
 ### 效果预览
 
-|                    **耗电统计**                     |                    **屏幕亮度**                    |                   **系统电源管理**                   |
-|:-----------------------------------------------:|:----------------------------------------------:|:----------------------------------------------:|
-| ![power](screenshots/devices/battery_stats.jpg) |   ![usb](screenshots/devices/brightness.jpg)   |     ![home](screenshots/devices/power.jpg)     |
-|                   **设置数据项名称**                   |                    **系统能力**                    |                    **系统参数**                    |
-|   ![power](screenshots/devices/settings.jpg)    | ![usb](screenshots/devices/sys_capability.jpg) | ![home](screenshots/devices/sys_parameter.jpg) |
-
+|                    **耗电统计**                     |                      **屏幕亮度**                       |                        **系统电源管理**                         |
+|:-----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------------:|
+| ![power](screenshots/devices/battery_stats.jpg) |     ![usb](screenshots/devices/brightness.jpg)      |          ![home](screenshots/devices/power.jpg)           |
+|                   **设置数据项名称**                   |                      **系统能力**                       |                         **系统参数**                          |
+|   ![power](screenshots/devices/settings.jpg)    |   ![usb](screenshots/devices/sys_capability.jpg)    |      ![home](screenshots/devices/sys_parameter.jpg)       |
+|                   **电量信息**                   |                      **设备信息**                       |                         **组合按键**                          |
+|   ![battery](screenshots/devices/battery.jpg)    | ![device_info](screenshots/devices/device_info.jpg) | ![input_consumer](screenshots/devices/input_consumer.jpg) |
+|                   **输入设备**                   |                      **输入事件**                       |                         **鼠标指针**                          |
+|   ![input_device](screenshots/devices/input_device.jpg)    | ![input_event](screenshots/devices/input_event.jpg) |          ![mouse](screenshots/devices/mouse.jpg)          |
+|                   **输入按键事件**                   |                                             |                                                 |
+|   ![input_key](screenshots/devices/input_key.jpg)   |                                                     |                                                           |
 使用说明
 
 1.首页展示语言基础类库各个子模块菜单，点击进入对应的模块页面。
@@ -36,6 +53,20 @@
 7.系统能力：获取系统能力集合的字符串并显示。
 
 8.系统参数：点击按钮分别实现设置一个系统参数、获取并展示系统参数功能。
+
+9.电量信息：进入设备电量信息页面，页面主要显示电量信息，包括：当前设备是否支持电池或电池是否在位的查询、剩余电池电量百分比、充电状态、电池健康状态、充电器类型、电池电压、电池技术型号、电池温度、电量等级等信息。
+
+10.设备基础信息：打开设备信息管理页面，展示基础信息。
+
+11.组合按键：进入组合按键管理页面，包括显示组合按键信息，组合按键的订阅状态，在订阅状态下，组合按键被触发时显示组合按键的信息。
+
+12.输入设备：进入设备输入管理页面，展示设备输入列表，可以查看输入设备详情，同时可以监听设备的热插拔状态。
+
+13.输入事件：进入全屏监听页面，实现启动或取消全屏输入事件，在启动全屏输入事件监听时，可以查看当前触屏的详细信息，模拟注入返回事件，实现返回能力。
+
+14.输入按键事件：进入输入按键事件管理页面，显示由外部设备如软键盘输入触发的消息。
+
+15.鼠标指针：进入鼠标管理页面，实现鼠标状态、鼠标指针信息、设置鼠标速度和显示样式，启动鼠标事件监听时，可以查看鼠标在界面上操作的详细信息。
 
 ### 工程目录
 
@@ -57,6 +88,7 @@ DeviceManagementCollection
 │   │   ├── components
 │   │   │   └── CustomDataSource.ets            //自定义DataSource，LazyForEach时使用
 │   │   ├── util
+│   │   │   └── JSONUtils                       //JSON数据格式化
 │   │   │   ├── Logger.ets                      //日志工具类
 │   │   │   └── ResourceUtil.ets                //资源管理工具类
 │   └── module.json5
@@ -73,7 +105,14 @@ DeviceManagementCollection
 │   ├── ets
 │   │   ├── capabilities                        //各个子模块功能组件
 │   │   │   ├── BatteryStats.ets                //耗电统计
+│   │   │   ├── BatteryView.ets                 //电量信息
 │   │   │   ├── BrightnessManager.ets           //屏幕亮度
+│   │   │   ├── DeviceInfo.ets                  //设备信息
+│   │   │   ├── InputConsumer.ets               //组合按键
+│   │   │   ├── InputDeviceManager.ets          //输入设备管理
+│   │   │   ├── InputEventManager.ets           //输入事件管理
+│   │   │   ├── InputKeyEventManager.ets        //输入按键事件
+│   │   │   ├── MouseManager.ets                //鼠标事件
 │   │   │   ├── PowerManager.ets                //系统电源管理
 │   │   │   ├── SettingsManager.ets             //设置数据项名称
 │   │   │   ├── SystemCapability.ets            //系统能力
@@ -110,6 +149,20 @@ DeviceManagementCollection
 7.系统参数：使用[@ohos.systemParameterEnhance.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-system-parameterEnhance.md/)
 实现设置一个系统参数、获取并展示系统参数功能。
 
+8.电量信息：使用[@ohos.batteryInfo.d.ts](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-battery-info.md)接口获取电池和充放电状态信息
+
+9.设备信息：使用[@ohos.deviceInfo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-info.md)获取设备相关信息。
+
+10.组合按键：使用[@ohos.multimodalInput.inputConsumer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md) 订阅组合按键，当组合按键被触发时展示组合按键回调信息。
+
+11.输入设备：使用[@ohos.multimodalInput.inputDevice](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputdevice.md) 获取输入设备列表，并显示输入设备信息，实现设备的热插拔监听。
+
+12.输入事件：使用[@ohos.multimodalInput.inputMonitor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md)开启监听全局触屏事件，当触发触屏事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
+
+13.鼠标指针：使用[@ohos.multimodalInput.mouseEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mouseevent.md)监听鼠标事件，并显示鼠标操作回调信息，使用[@ohos.multimodalInput.pointer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pointer.md)实现鼠标指针的显示或隐藏状态，设置鼠标移动速度和显示样式。
+
+14.输入按键事件：使用 [@ohos.multimodalInput.keyEvent (按键输入事件)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-keyevent.md)监听按键输入的信息。
+
 ### 相关权限
 
 1.允许应用重启设备权限：[ohos.permission.REBOOT](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/security/permission-list.md#ohospermissionreboot)
@@ -118,6 +171,9 @@ DeviceManagementCollection
 
 3.允许应用查询已安装应用的信息权限：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
 
+4.允许系统应用获取UDID权限：[ohos.permission.sec.ACCESS_UDID](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsecaccess_udid)
+
+5.允许应用监听输入事件权限：[ohos.permission.INPUT_MONITORING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninput_monitoring)
 ### 依赖
 
 不涉及。

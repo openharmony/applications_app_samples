@@ -20,7 +20,14 @@ import {
   PowerManager,
   SettingsManager,
   SystemCapability,
-  SystemParameter
+  SystemParameter,
+  BatteryView,
+  DeviceInfo,
+  InputConsumer,
+  MouseManager,
+  InputEventManager,
+  InputDeviceManager,
+  InputKeyEventManager
 } from '@ohos/capabilities';
 
 @Component
@@ -48,6 +55,20 @@ export struct Capabilities {
         SystemCapability()
       } else if (this.label === getString($r('app.string.system_parameter'))) {
         SystemParameter()
+      } else if (this.label === getString($r('app.string.battery_info'))) {
+        BatteryView()
+      } else if (this.label === getString($r('app.string.device_info'))) {
+        DeviceInfo()
+      } else if (this.label === getString($r('app.string.input_consumer'))) {
+        InputConsumer()
+      } else if (this.label === getString($r('app.string.mouse_pointer'))) {
+        MouseManager()
+      } else if (this.label === getString($r('app.string.input_event'))) {
+        InputEventManager()
+      } else if (this.label === getString($r('app.string.input_device'))) {
+        InputDeviceManager()
+      } else if (this.label === getString($r('app.string.input_key_event'))) {
+        InputKeyEventManager()
       }
     }
     .padding({ left: 12, right: 12 })

@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "battery_info_value_text",
+      "value": "#99000000"
+    },
+    {
+      "name": "battery_soc_text",
+      "value": "#000000"
+    },
+    {
+      "name": "input_consumer_hint",
+      "value": "#99000000"
+    },
+    {
+      "name": "btn_normal_bg",
+      "value": "#007DFF"
+    },
+    {
+      "name": "btn_press_bg",
+      "value": "#254FF7"
+    }
+  ]
+}
