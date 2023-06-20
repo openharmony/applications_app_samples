@@ -24,6 +24,13 @@ const BUNDLE = 'distributedAccount_'
 
 const DELAY_TIME = 1000;
 let driver: Driver = Driver.create();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 
 // 通过text验证有没有这个组件 有的话点击一下
 async function checkButtonAndClickWithText(text: string) {
@@ -90,11 +97,15 @@ export default function abilityTest() {
       let selectAvatar = await driver.findComponent(ON.id('select_avatar'))
       await selectAvatar.click()
       await driver.delayMs(DELAY_TIME)
-      // 选择图片 固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(300, 178)
-      await driver.delayMs(DELAY_TIME)
+      // 拍照
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.take_photo'))))
+      let takephoto = await driver.findComponent(ON.text(await getResourceString($r('app.string.take_photo'))))
+      await takephoto.click()
+      await driver.delayMs(2000)
+      await driver.click(357, 1100) // 点击拍照
+      await driver.delayMs(2000)
       // 点击右上角确定 固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(700, 20)
+      await driver.click(664, 84)
       await driver.delayMs(DELAY_TIME)
       // 输入分布式帐号名
       await driver.assertComponentExist(ON.id('distributedAccountName'))

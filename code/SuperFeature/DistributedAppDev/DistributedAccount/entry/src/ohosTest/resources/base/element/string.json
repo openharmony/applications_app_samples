@@ -11,6 +11,10 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "take_photo",
+      "value": "take photo"
     }
   ]
 }
