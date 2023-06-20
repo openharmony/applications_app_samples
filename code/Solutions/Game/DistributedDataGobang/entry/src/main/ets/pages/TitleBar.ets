@@ -47,7 +47,7 @@ export struct TitleBar {
     this.isDistributed = true
     if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverList.length <= 0) {
       Logger.info(TAG, `continue unauthed device: ${JSON.stringify(this.devices)}`)
-      this.startAbility(this.devices[this.selectedIndex].deviceId)
+      this.startAbility(this.devices[this.selectedIndex].networkId)
       this.clearSelectState()
       return
     }
@@ -56,7 +56,7 @@ export struct TitleBar {
       Logger.info(TAG, `auth and online finished`)
       for (let i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
         if (this.remoteDeviceModel.deviceList[i].deviceName === this.devices[this.selectedIndex].deviceName) {
-          this.startAbility(this.remoteDeviceModel.deviceList[i].deviceId)
+          this.startAbility(this.remoteDeviceModel.deviceList[i].networkId)
         }
       }
     })
