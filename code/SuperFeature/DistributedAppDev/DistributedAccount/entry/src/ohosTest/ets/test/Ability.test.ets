@@ -15,12 +15,11 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import Logger from '../../../main/ets/model/Logger'
 import { Driver, ON } from '@ohos.UiTest'
-import osAccount from '@ohos.account.osAccount'
+import Logger from '../../../main/ets/model/Logger'
 
 const TAG = '[Sample_DistributedAccount]'
-const BUNDLE = 'distributedAccount_'
+const BUNDLE = 'DistributedAccount_'
 
 const DELAY_TIME = 1000;
 let driver: Driver = Driver.create();
@@ -82,7 +81,7 @@ export default function abilityTest() {
     /**
      * 绑定分布式帐号
      */
-    it(BUNDLE + 'setOsAccountDistributedInfoByLocalId_001', 0, async function () {
+    it(BUNDLE + 'SetOsAccountDistributedInfoByLocalId_001', 0, async function () {
       Logger.info(TAG, BUNDLE + 'setOsAccountDistributedInfoByLocalId_001 begin')
       await driver.delayMs(DELAY_TIME)
       // 点击选择头像
@@ -107,10 +106,12 @@ export default function abilityTest() {
       await distributedAccountNickName.inputText('zs');
       await driver.delayMs(DELAY_TIME)
       // 点击选择框 固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(683, 425)
+      await driver.click(683, 485)
       await driver.delayMs(DELAY_TIME)
-      // 选择绑定系统帐号 固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(683, 505)
+      // 选择绑定系统帐号
+      await driver.assertComponentExist(ON.text('user'))
+      let selectOption = await driver.findComponent(ON.text('user'))
+      await selectOption.click()
       await driver.delayMs(DELAY_TIME)
       // 点击绑定
       await driver.assertComponentExist(ON.id('Bind'))
@@ -123,7 +124,7 @@ export default function abilityTest() {
     /**
      * 选择分布式帐号
      */
-    it(BUNDLE + 'selectDistributedAccount_001', 0, async function () {
+    it(BUNDLE + 'SelectDistributedAccount_001', 0, async function () {
       Logger.info(TAG, BUNDLE + 'selectDistributedAccount_001 begin')
       await driver.delayMs(DELAY_TIME)
       // 点击分布式帐号
@@ -137,7 +138,7 @@ export default function abilityTest() {
     /**
      * 解绑分布式帐号
      */
-    it(BUNDLE + 'setOsAccountDistributedInfoByLocalId_002', 0, async function () {
+    it(BUNDLE + 'SetOsAccountDistributedInfoByLocalId_002', 0, async function () {
       Logger.info(TAG, BUNDLE + 'setOsAccountDistributedInfoByLocalId_002 begin')
       await driver.delayMs(DELAY_TIME)
       // 点击解绑
