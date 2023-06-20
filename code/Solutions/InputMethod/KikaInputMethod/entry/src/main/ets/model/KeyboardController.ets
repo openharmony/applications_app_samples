@@ -548,6 +548,14 @@ export class InputHandler {
     }
   }
 
+  public sendExtendAction(action: inputMethodEngine.ExtendAction): void {
+    if (globalThis.mTextInputClient !== undefined) {
+      globalThis.mTextInputClient.sendExtendAction(action);
+    } else {
+      this.addLog('sendExtendAction globalThis.mTextInputClient is undefined');
+    }
+  }
+
   public setSelectInfo(info): void {
     globalThis.selectInfo = info;
     this.addLog(`setSelectInfo info = ${info}`);
