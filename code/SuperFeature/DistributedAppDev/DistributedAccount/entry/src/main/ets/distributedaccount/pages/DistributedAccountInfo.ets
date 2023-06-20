@@ -18,12 +18,12 @@ import distributedAccount from '@ohos.account.distributedAccount'
 import promptAction from '@ohos.promptAction'
 import relationalStore from '@ohos.data.relationalStore'
 import osAccount from '@ohos.account.osAccount'
-import { TitleBar } from '../common/component/TitleBar'
-import { ListItemComponent } from '../common/component/ListItemComponent'
-import Logger from '../model/Logger'
-import DistributedAccountModel from '../model/DistributedAccountModel'
-import DatabaseUtils from '../common/utils/DatabaseUtils'
-import CommonConstants from '../common/constants/CommonConstants'
+import { TitleBar } from '../../common/component/TitleBar'
+import { ListItemComponent } from '../../common/component/ListItemComponent'
+import Logger from '../../model/Logger'
+import DistributedAccountModel from '../../model/DistributedAccountModel'
+import DatabaseUtils from '../../common/utils/DatabaseUtils'
+import CommonConstants from '../../common/constants/CommonConstants'
 
 const TAG: string = `[DistributedAccountInfo]`
 let distributedInfo: distributedAccount.DistributedInfo = router.getParams()['distributedInfo']
