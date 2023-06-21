@@ -69,7 +69,7 @@ struct Index {
       // 已绑定直接跳转
       if (data.name !== 'ohosAnonymousName') {
         router.replaceUrl({
-          url: 'pages/DistributedAccountList'
+          url: 'distributedaccount/pages/DistributedAccountList'
         })
       }
     })
@@ -163,7 +163,7 @@ struct Index {
             distributedAccountModel.bind(this.localIdSelect, this.distributedAccountName, this.distributedAccountNickName, this.photoSelectUri)
               .then(() => {
                 router.replaceUrl({
-                  url: 'pages/DistributedAccountList'
+                  url: 'distributedaccount/pages/DistributedAccountList'
                 })
                 setTimeout(() => {
                   promptAction.showToast({ message: $r('app.string.Bind_successful') })

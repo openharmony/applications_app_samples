@@ -16,9 +16,9 @@
 import router from '@ohos.router';
 import distributedAccount from '@ohos.account.distributedAccount';
 import osAccount from '@ohos.account.osAccount';
-import Logger from '../model/Logger';
-import DistributedAccountModel from '../model/DistributedAccountModel';
-import DistributedAccountDataSource from '../model/BasicDataSource';
+import Logger from '../../model/Logger';
+import DistributedAccountModel from '../../model/DistributedAccountModel';
+import DistributedAccountDataSource from '../../model/BasicDataSource';
 
 const TAG: string = `[DistributedAccountList]`
 let distributedAccountModel = new DistributedAccountModel();
@@ -78,7 +78,7 @@ struct DistributedAccountList {
             .padding({ top: 16, bottom: 16, left: 12, right: 12 })
             .onClick(() => {
               router.pushUrl({
-                url: 'pages/DistributedAccountInfo',
+                url: 'distributedaccount/pages/DistributedAccountInfo',
                 params: {
                   distributedInfo: item
                 }
