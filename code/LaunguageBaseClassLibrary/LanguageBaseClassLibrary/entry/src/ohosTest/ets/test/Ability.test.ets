@@ -14,8 +14,8 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import { describe, expect, it } from '@ohos/hypium';
+import { Driver, MatchPattern, ON } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
 const TAG: string = 'Sample_LanguageBaseClassLibraryTest';
@@ -27,6 +27,87 @@ async function getResourceString(resource: Resource): Promise<string> {
   let manage = delegator.getAppContext().resourceManager
   let text = await manage.getStringValue(resource)
   return text
+}
+
+async function addContact(driver: Driver, name: string, phone: string) {
+  // 进入新增联系人
+  await driver.assertComponentExist(ON.id('add'));
+  let addBtn = await driver.findComponent(ON.id('add'));
+  await addBtn.click();
+  await driver.delayMs(200);
+  // 点击姓名输入框
+  await driver.assertComponentExist(ON.id('add_name'));
+  let addNameTextInput = await driver.findComponent(ON.id('add_name'));
+  await addNameTextInput.inputText(name);
+  await driver.delayMs(200);
+  // 点击年龄输入框
+  await driver.assertComponentExist(ON.id('add_age'));
+  let addAgeComponent = await driver.findComponent(ON.id('add_age'));
+  await addAgeComponent.click();
+  await driver.delayMs(200);
+  // 点击确定按钮
+  await driver.assertComponentExist(ON.id('add_sure'));
+  let addSureBtn = await driver.findComponent(ON.id('add_sure'));
+  await addSureBtn.click();
+  await driver.delayMs(200);
+  // 点击电话输入框
+  await driver.assertComponentExist(ON.id('add_phone'));
+  let addPhoneTextInput = await driver.findComponent(ON.id('add_phone'));
+  await addPhoneTextInput.inputText(phone);
+  await driver.delayMs(200);
+  // 点击完成按钮
+  await driver.assertComponentExist(ON.id('add_confirm'));
+  let addConfirmBtn = await driver.findComponent(ON.id('add_confirm'));
+  await addConfirmBtn.click();
+  await driver.delayMs(200);
+}
+
+async function deleteItem(driver: Driver, id: string) {
+  await driver.assertComponentExist(ON.id(id));
+  let deleteBtn = await driver.findComponent(ON.id(id));
+  await deleteBtn.click();
+  await driver.delayMs(200);
+}
+
+async function addKeyValue(driver: Driver, key: string, value: string) {
+  // 进入新增Key/Value
+  await driver.assertComponentExist(ON.id('add'));
+  let addBtn = await driver.findComponent(ON.id('add'));
+  await addBtn.click();
+  await driver.delayMs(200);
+  // 点击Key输入框
+  await driver.assertComponentExist(ON.id('add_key'));
+  let addKeyTextInput = await driver.findComponent(ON.id('add_key'));
+  await addKeyTextInput.inputText(key);
+  await driver.delayMs(200);
+  // 点击Value输入框
+  await driver.assertComponentExist(ON.id('add_value'));
+  let addValueTextInput = await driver.findComponent(ON.id('add_value'));
+  await addValueTextInput.inputText(value);
+  await driver.delayMs(200);
+  // 点击完成按钮
+  await driver.assertComponentExist(ON.id('add_confirm'));
+  let addConfirmBtn = await driver.findComponent(ON.id('add_confirm'));
+  await addConfirmBtn.click();
+  await driver.delayMs(200);
+}
+
+async function addValue(driver: Driver, value: string) {
+  // 进入新增Value
+  await driver.assertComponentExist(ON.id('add'));
+  let addBtn = await driver.findComponent(ON.id('add'));
+  await addBtn.click();
+  await driver.delayMs(200);
+  // 点击Value输入框
+  await driver.assertComponentExist(ON.id('add_value'));
+  let addValueTextInput = await driver.findComponent(ON.id('add_value'));
+  await addValueTextInput.inputText(value);
+  await driver.delayMs(200);
+  // 点击完成按钮
+  await driver.assertComponentExist(ON.id('add_confirm'));
+  let addConfirmBtn = await driver.findComponent(ON.id('add_confirm'));
+  await addConfirmBtn.click();
+  await driver.delayMs(200);
 }
 
 export default function abilityTest() {
@@ -73,7 +154,7 @@ export default function abilityTest() {
       let convert = await driver.findComponent(ON.text(await getResourceString($r('app.string.convert')), MatchPattern.CONTAINS));
       await convert.click();
       await driver.delayMs(1000);
-      // 校验是否进入对应页面
+      // check text
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
       await driver.delayMs(200);
       await driver.pressBack();
@@ -86,10 +167,13 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}util_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      // check text
+      // find component on text 'Xml'
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
       await button.click();
+      await driver.delayMs(200);
+      // check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
       await driver.delayMs(200);
       done();
       logger.info(TAG, `${BUNDLE}util_001 end`);
@@ -143,12 +227,29 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE} StringCodeFunction_001 end`);
     })
 
+    // 进入Util界面
+    it(BUNDLE + 'util_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}util_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'Xml'
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}util_001 end`);
+    })
+
     // RationalNumber(有理数)
     it(BUNDLE + 'RationalNumber_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      // 进入有理数界面
+      //进入有理数界面
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.rational_number'))));
       await button.click();
@@ -189,12 +290,29 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 end`);
     })
 
+    // 进入Util界面
+    it(BUNDLE + 'util_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}util_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'Xml'
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}util_001 end`);
+    })
+
     // 进入到LRUCache (缓冲区)
     it(BUNDLE + 'UtilLruBuffer_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      // find component on text 'LRUCache'
+      //find component on text 'LRUCache'
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.lru_cache'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.lru_cache'))));
       await button.click();
@@ -274,8 +392,25 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 end`);
     })
 
+    // 进入Util界面
+    it(BUNDLE + 'util_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}util_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'Xml'
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}util_001 end`);
+    })
+
     // Base64Helper (Base64编解码)
-    it(BUNDLE + 'UtilBase64Codec_001', 0, async function (done) {
+    it(BUNDLE + 'UtilBase64Codec_001', 0, async function () {
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -296,12 +431,28 @@ export default function abilityTest() {
       await decodeBtn.click();
       await driver.delayMs(1000);
       await driver.pressBack();
-      done();
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
     })
 
+    // 进入Util界面
+    it(BUNDLE + 'util_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}util_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'Xml'
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}util_001 end`);
+    })
+
     // TypeCheck (类型检查)
-    it(BUNDLE + 'TypeCheck_001', 0, async function (done) {
+    it(BUNDLE + 'TypeCheck_001', 0, async function () {
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -309,7 +460,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.type_check'))));
       let typeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.type_check'))));
       await typeBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(200);
       // 点击显示预置值
       await driver.assertComponentExist(ON.id('displayPresetValue'));
       let displayPresetValueBtn = await driver.findComponent(ON.id('displayPresetValue'));
@@ -323,9 +474,6 @@ export default function abilityTest() {
       await driver.delayMs(200);
       await driver.pressBack();
       await driver.pressBack();
-      await driver.delayMs(1000);
-      done();
-
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`)
     })
 
@@ -334,14 +482,14 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}Url_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
-      // find component on text 'Xml'
+      //find component on text 'Xml'
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
       let button = await driver.findComponent(ON.text('Url (Url字符串解析)'));
       await button.click();
       await driver.delayMs(1000);
-      // check text
+      //check text
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
-      await driver.delayMs(1000);
+      await driver.delayMs(200);
       done()
       logger.info(TAG, `${BUNDLE}Url_001 end`);
     })
@@ -360,7 +508,6 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputInsert = await driver.findComponent(ON.id('output'))
       let insertValue = await outputInsert.getText()
-      await driver.delayMs(1000);
       expect(insertValue).assertContain('node=nodeValue1')
       // 点击删除键值对
       await driver.assertComponentExist(ON.id('item1'))
@@ -371,8 +518,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputDelete = await driver.findComponent(ON.id('output'))
       let deleteValue = await outputDelete.getText()
-      await driver.delayMs(1000);
-      expect(deleteValue).assertEqual('https://gitee.com/openharmony/?fod=1fod=1');
+      expect(deleteValue).assertEqual('https://gitee.com/openharmony/')
       // 点击获取指定名称对应的第一个值
       await driver.assertComponentExist(ON.id('item0'))
       let insertKeyValue = await driver.findComponent(ON.id('item0'))
@@ -386,7 +532,6 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputGet = await driver.findComponent(ON.id('output'))
       let getValue = await outputGet.getText()
-      await driver.delayMs(1000);
       expect(getValue).assertContain('nodeValue1')
       // 点击设置键的新值
       await driver.assertComponentExist(ON.id('item3'))
@@ -397,12 +542,437 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputSet = await driver.findComponent(ON.id('output'))
       let setValue = await outputSet.getText()
-      await driver.delayMs(1000);
       expect(setValue).assertContain('newValue')
       // 返回首页
       await driver.pressBack();
       done();
       logger.info(TAG, BUNDLE + 'ClickUrlStringBtnFunction_001 end')
+    })
+
+    // 进入TaskPool页面
+    it(BUNDLE + 'TaskPool_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}TaskPool_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到TaskPool
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'TaskPool'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.task_pool'))));
+      await button.click();
+      await driver.delayMs(200);
+      // 点击Execute task
+      await driver.assertComponentExist(ON.id('execute_task'));
+      let executeTask = await driver.findComponent(ON.id('execute_task'));
+      await executeTask.click();
+      await driver.delayMs(1000);
+      logger.info(TAG, BUNDLE + 'ClickTaskPoolFunction_001 clickExecuteTask');
+      // 点击Cancel task
+      await driver.assertComponentExist(ON.id('cancel_task'));
+      let parser = await driver.findComponent(ON.id('cancel_task'));
+      await parser.click();
+      await driver.delayMs(1000);
+      logger.info(TAG, BUNDLE + 'ClickTaskPoolFunction_001 clickCancelTask');
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE}TaskPool_001 end`);
+    })
+
+    // 进入Deque界面
+    it(BUNDLE + 'deque_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}deque_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到Deque
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'Deque'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.deque'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.deque'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}deque_001 end`);
+    })
+
+    // 新增数据
+    it(BUNDLE + 'DequeAddFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} DequeAddFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 添加三条数据
+      await addContact(driver, '1', '1');
+      await addContact(driver, '2', '2');
+      await addContact(driver, '3', '3');
+      // 删除三条数据
+      await deleteItem(driver, 'delete2');
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      // 返回上一页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} DequeAddFunction_001 end`);
+    })
+
+    // 进入HashMap界面
+    it(BUNDLE + 'hash_map_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}hash_map_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到HashMap
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'HashMap'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.hash_map'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.hash_map'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}hash_map_001 end`);
+    })
+
+    // 新增数据
+    it(BUNDLE + 'HashMapAddFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} HashMapAddFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 添加三条数据
+      await addKeyValue(driver, '1', '1');
+      await addKeyValue(driver, '2', '2');
+      await addKeyValue(driver, '3', '3');
+      // 删除三条数据
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      // 返回上一页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} HashMapAddFunction_001 end`);
+    })
+
+    // 进入HashSet界面
+    it(BUNDLE + 'hash_set_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}hash_set_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到HashSet
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'HashSet'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.hash_set'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.hash_set'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}hash_set_001 end`);
+    })
+
+    // 新增数据
+    it(BUNDLE + 'HashSetAddFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} HashSetAddFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 添加三条数据
+      await addValue(driver, '1');
+      await addValue(driver, '2');
+      await addValue(driver, '3');
+      // 删除三条数据
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      // 返回上一页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} HashSetAddFunction_001 end`);
+    })
+
+    // 进入LightWeightMap界面
+    it(BUNDLE + 'light_weight_map_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}light_weight_map_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到LightWeightMap
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'LightWeightMap'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.light_weight_map'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.light_weight_map'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}light_weight_map_001 end`);
+    })
+
+    // 新增数据
+    it(BUNDLE + 'LightWeightMapAddFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} LightWeightMapAddFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 添加三条数据
+      await addKeyValue(driver, '1', '1');
+      await addKeyValue(driver, '2', '2');
+      await addKeyValue(driver, '3', '3');
+      // 删除三条数据
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      // 返回上一页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} LightWeightMapAddFunction_001 end`);
+    })
+
+    // 进入LightWeightSet界面
+    it(BUNDLE + 'light_weight_set_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}light_weight_set_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到LightWeightSet
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'LightWeightSet'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.light_weight_set'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.light_weight_set'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}light_weight_set_001 end`);
+    })
+
+    // 新增数据
+    it(BUNDLE + 'LightWeightSetAddFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} LightWeightSetAddFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 添加三条数据
+      await addValue(driver, '1');
+      await addValue(driver, '2');
+      await addValue(driver, '3');
+      // 删除三条数据
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      // 返回上一页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} LightWeightSetAddFunction_001 end`);
+    })
+
+    // 进入LinkedList界面
+    it(BUNDLE + 'linked_list_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE}linked_list_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // 滚动到LinkedList
+      await driver.assertComponentExist(ON.id('menu_list'));
+      let menuList = await driver.findComponent(ON.id('menu_list'));
+      //find component on text 'LinkedList'
+      let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.linked_list'))));
+      await button.click();
+      await driver.delayMs(200);
+      //check text
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.linked_list'))));
+      await driver.delayMs(200);
+      done();
+      logger.info(TAG, `${BUNDLE}linked_list_001 end`);
+    })
+
+    // 新增数据
+    it(BUNDLE + 'LinkedListAddFunction_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} LinkedListAddFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 添加三条数据
+      await addContact(driver, '1', '1');
+      await addContact(driver, '2', '2');
+      await addContact(driver, '3', '3');
+      // 删除三条数据
+      await deleteItem(driver, 'delete2');
+      await deleteItem(driver, 'delete0');
+      await deleteItem(driver, 'delete0');
+      // 返回上一页
+      await driver.pressBack();
+      done();
+      logger.info(TAG, `${BUNDLE} LinkedListAddFunction_001 end`);
+    })
+
+    // 进入List页面
+    it(BUNDLE + 'list_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} list_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'list'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.list'))));
+      await button.click()
+      await driver.delayMs(200);
+      // list添加数据
+      await addContact(driver, '1', '1');
+      await addContact(driver, '2', '2');
+      await addContact(driver, '3', '3');
+      // list删除数据
+      await deleteItem(driver, 'delete2')
+      await deleteItem(driver, 'delete1')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} list_001 end`);
+    })
+
+    // 进入plain_array页面
+    it(BUNDLE + 'plain_array_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} plain_array_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'plain_array'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.plain_array'))));
+      await button.click()
+      await driver.delayMs(200);
+      // PlainArray添加数据
+      await addKeyValue(driver, '1', '1');
+      await addKeyValue(driver, '2', '2');
+      await addKeyValue(driver, '3', '3');
+      // PlainArray删除数据
+      await deleteItem(driver, 'delete2')
+      await deleteItem(driver, 'delete1')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} plain_array_001 end`);
+    })
+
+    // 进入queue页面
+    it(BUNDLE + 'queue_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} queue_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'queue'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.queue'))));
+      await button.click()
+      await driver.delayMs(200);
+      // queue添加数据
+      await addContact(driver, '1', '1');
+      await addContact(driver, '2', '2');
+      await addContact(driver, '3', '3');
+      // queue删除数据
+      await deleteItem(driver, 'delete0')
+      await deleteItem(driver, 'delete0')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} queue_001 end`);
+    })
+
+    // 进入stack页面
+    it(BUNDLE + 'stack_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} stack_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      // find component on text 'stack'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.stack'))));
+      await button.click()
+      await driver.delayMs(200);
+      // stack添加数据
+      await addContact(driver, '1', '1');
+      await addContact(driver, '2', '2');
+      await addContact(driver, '3', '3');
+      // stack删除数据
+      await deleteItem(driver, 'delete2')
+      await deleteItem(driver, 'delete1')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} stack_001 end`);
+    })
+
+
+    // 进入tree_map页面
+    it(BUNDLE + 'tree_map_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} tree_map_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'tree_map'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.tree_map'))));
+      await button.click()
+      await driver.delayMs(200);
+      // tree_map添加数据
+      await addKeyValue(driver, '1', '1');
+      await addKeyValue(driver, '2', '2');
+      await addKeyValue(driver, '3', '3');
+      // tree_map删除数据
+      await deleteItem(driver, 'delete2')
+      await deleteItem(driver, 'delete1')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} tree_map_001 end`);
+    })
+
+    // 进入tree_set页面
+    it(BUNDLE + 'tree_set_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} tree_set_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'tree_set'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.tree_set'))));
+      await button.click()
+      await driver.delayMs(200);
+      // tree_set添加数据
+      await addValue(driver, '1');
+      await addValue(driver, '2');
+      await addValue(driver, '3');
+      // tree_set删除数据
+      await deleteItem(driver, 'delete2')
+      await deleteItem(driver, 'delete1')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} tree_set_001 end`);
+    })
+
+    // 进入vector页面
+    it(BUNDLE + 'vector_001', 0, async function (done) {
+      logger.info(TAG, `${BUNDLE} vector_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(200);
+      //find component on text 'vector'
+      let scrollBar = await driver.findComponent(ON.id('menu_list'));
+      let button = await scrollBar.scrollSearch(ON.text(await getResourceString($r('app.string.vector'))));
+      await button.click()
+      await driver.delayMs(200);
+      // vector添加数据
+      await addContact(driver, '1', '1');
+      await addContact(driver, '2', '2');
+      await addContact(driver, '3', '3');
+      // vector删除数据
+      await deleteItem(driver, 'delete2')
+      await deleteItem(driver, 'delete1')
+      await deleteItem(driver, 'delete0')
+      await driver.pressBack();
+      await driver.delayMs(3000);
+      done();
+      logger.info(TAG, `${BUNDLE} vector_001 end`);
     })
   })
 }

@@ -334,7 +334,7 @@
     },
     {
       "name": "contact_phone",
-      "value": "Phone:"
+      "value": "Phone"
     },
     {
       "name": "button_delete",
@@ -375,6 +375,18 @@
     {
       "name": "phone_null",
       "value": "The phone number cannot be empty"
+    },
+    {
+      "name": "click_exec_add_one",
+      "value": "Click execute task to make numberOfExecutions++"
+    },
+    {
+      "name": "old",
+      "value": "years old"
+    },
+    {
+      "name": "key_limit",
+      "value": "key must be a number"
     }
   ]
 }

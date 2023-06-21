@@ -21,17 +21,19 @@ export struct MenuList {
   @State menuListData: Array<string> = [];
   @BuilderParam childNavDestination: () => void;
   private menuList: Resource = undefined;
+  private addAction?: (title) => void;
 
   build() {
     List({ space: 12 }) {
       ListItem() {
         if (this.menuListData.length > 0) {
-          MenuNavRouter({ childList: this.menuListData }) {
+          MenuNavRouter({ childList: this.menuListData, addAction: this.addAction }) {
             this.childNavDestination()
           }
         }
       }
     }
+    .id('menu_list')
     .width('100%')
     .padding({ left: 12, right: 12 })
     .margin({ top: 12 })

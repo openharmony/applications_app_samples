@@ -16,7 +16,7 @@
 import url from '@ohos.url';
 import { getString } from '@ohos/common';
 
-let urlObject = url.URL.parseURL('https://gitee.com/openharmony/?fod=1');
+let urlObject = url.URL.parseURL('https://gitee.com/openharmony/');
 let paramsObject = new url.URLParams(urlObject.search.slice(1));
 let nodeValue: string = 'nodeValue';
 let nodeKey: string = 'node';
@@ -40,7 +40,7 @@ export function deleteNode(): string {
 
 export function getFirstNode(): string {
   if (paramsObject.has(nodeKey)) {
-    var fod = paramsObject.get(nodeKey);
+    let fod = paramsObject.get(nodeKey);
     return fod.toString();
   } else {
     return getString($r('app.string.please_insert'));
