@@ -43,6 +43,10 @@
     {
       "name": "message_no_mission",
       "value": "No apps running recently"
+    },
+    {
+      "name": "service_card",
+      "value": "service card"
     }
   ]
 }

@@ -43,6 +43,10 @@
     {
       "name": "message_no_mission",
       "value": "最近无运行应用"
+    },
+    {
+      "name": "service_card",
+      "value": "服务卡片"
     }
   ]
 }
