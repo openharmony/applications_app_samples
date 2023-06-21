@@ -11,6 +11,7 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 
+@Echo off
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem

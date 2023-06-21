@@ -14,18 +14,30 @@
 
 使用说明
 
-- 两台设备启动[聊天应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket/),通过左下方语音按钮发起语音通话。
-- 方发起语音通话请求，对方选择同意或拒绝
-- 对方同意后，进行通话
-- 通话页或请求通话页可以选择关闭麦克风或扬声器
-- 对方拒接或同意后挂断，则返回聊天页面
-- 仅体验语音通话功能时，也可以两台设备分别启动语音通话应用，分别点击接听按钮进入通话页面
-- 语音通话需要运行服务端代码模拟启动流媒体服务端，连接成功后服务端会在终端打印client连接数，如下图：
-- ![img_1.png](screenshots/img1.png)
-- 服务端和两台设备在局域网内组成socket网络，运行时需要注意修改ip地址：
-   - 服务端地址在[socket.js](./script/socket.js)第19行修改
-   - 客户端地址在[BufferModel.ets](./entry/src/main/ets/model/BufferModel.ets)，将serverIp替换为服务端IP地址即可。
-   - ![img.png](screenshots/img2.png)
+1.语音通话需要运行服务端代码模拟启动流媒体服务端，连接成功后服务端会在终端打印client连接数，如下图：
+
+![img_1.png](screenshots/img1.png)
+
+2.服务端和两台设备在局域网内组成socket网络，运行时需要注意修改ip地址：
+
+- 服务端地址在[socket.js](./script/socket.js)第19行修改
+- 客户端地址在[BufferModel.ets](./entry/src/main/ets/model/BufferModel.ets)，将serverIp替换为服务端IP地址即可
+  
+![img.png](screenshots/img2.png)
+
+3.仅体验语音通话功能时，可以两台设备都手动启动语音通话应用，分别点击接听按钮进入通话页面
+
+4.体验场景所有功能时，需要两台设备启动[聊天应用](../../Connectivity/StageSocket/),通过左下方语音按钮发起语音通话
+
+5.一方发起语音通话请求，对方选择同意或拒绝
+
+6.对方同意后，进行通话
+
+7.通话页或请求通话页可以选择关闭麦克风或扬声器
+
+8.对方拒接或同意后挂断，则返回聊天页面
+
+
 
 ### 工程目录
 
@@ -94,21 +106,27 @@
 ### 依赖
 
 1. windows上启动node socket服务，模拟流媒体服务，音频数据使用pcm传输，未编解码. [代码](./script/socket.js)
-2. 需要使用[聊天示例]()启动音频通话功能
+2. 需要使用[聊天示例](../../Connectivity/StageSocket/)启动音频通话功能
 
 ![main](screenshots/img.png)
 
 ### 约束与限制
 
-- 本示例仅支持标准系统上运行
-- 本示例仅支持API9版本SDK，版本号：3.2.11.10 Release
-- 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version： 3.1.0.400, built on April 7, 2023)才可编译运行
-- 本示例涉及使用系统接口@ohos.multimedia.audio：setAudioScene，需要手动替换Full
+1.本示例仅支持标准系统上运行
+
+2.本示例仅支持API9版本SDK，版本号：3.2.11.10 Release
+
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version： 3.1.0.400, built on April 7, 2023)才可编译运行
+
+4.本示例涉及使用系统接口@ohos.multimedia.audio：setAudioScene，需要手动替换Full
   SDK才能编译通过，具体操作可参考[替换指南](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
-- 本示例所配置的权限为system_basic级别(
+
+5.本示例所配置的权限为system_basic级别(
   相关权限级别可通过[权限定义列表](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)
-  查看)需要手动配置对应级别的权限签名(
+  查看),需要手动配置对应级别的权限签名(
   具体操作可查看[自动化签名方案](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))
+
+6.本示例有使用系统特性api，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)
 
 ### 下载
 
