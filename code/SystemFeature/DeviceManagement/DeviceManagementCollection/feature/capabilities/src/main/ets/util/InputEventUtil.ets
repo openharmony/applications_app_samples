@@ -16,7 +16,7 @@ import { logger, formatJson } from '@ohos/common'
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
-const TAG: string = 'InputEventUtil'
+const TAG: string = 'Sample_InputEventUtil'
 
 /**
  * 注入返回按键事件

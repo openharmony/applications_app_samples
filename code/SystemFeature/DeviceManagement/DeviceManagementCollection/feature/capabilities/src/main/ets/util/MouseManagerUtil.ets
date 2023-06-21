@@ -23,7 +23,7 @@ import window from '@ohos.window';
  * 鼠标管理器
  */
 
-const TAG: string = 'MouseManagerUtil'
+const TAG: string = 'Sample_MouseManagerUtil'
 
 /**
  * 设置鼠标指针显示或者隐藏

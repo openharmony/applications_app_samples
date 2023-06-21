@@ -18,7 +18,7 @@ import { ItemGroup } from './ItemGroup';
 import { logger } from '@ohos/common';
 import { MainItem } from './MainItem';
 
-const TAG: string = 'MenuNavRouter';
+const TAG: string = 'Sample_MenuNavRouter';
 
 @Component
 export struct MenuNavRouter {

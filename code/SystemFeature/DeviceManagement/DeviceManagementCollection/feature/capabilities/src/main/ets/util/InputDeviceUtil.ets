@@ -16,7 +16,7 @@ import { InputDeviceInfo } from '../model/InputDeviceInfo'
 import { logger } from '@ohos/common'
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 
-const TAG: string = 'InputDeviceUtil'
+const TAG: string = 'Sample_InputDeviceUtil'
 
 /**
  *  获取设备列表

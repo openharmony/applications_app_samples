@@ -20,7 +20,7 @@ import { logger, getString } from '@ohos/common';
  * 用于显示电池基础信息，包括：电池剩余电量、充电状态、健康状态、充电器类型、电压、技术型号、温度、电量等级、充电类型
  */
 
-const TAG: string = 'BatteryView'
+const TAG: string = 'Sample_BatteryView'
 
 @Component
 struct BatteryInfoView {
