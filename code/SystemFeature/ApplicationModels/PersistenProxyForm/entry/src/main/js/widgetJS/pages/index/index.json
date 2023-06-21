@@ -1,0 +1,16 @@
+{
+  "data": {
+    "list": [{
+      "city_name": "沈阳",
+      "city_temper": "-30 ℃"
+    }]
+  },
+  "actions": {
+    "messageEvent": {
+      "action": "message",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}
