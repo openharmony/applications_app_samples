@@ -32,17 +32,15 @@ export struct ListItemComponent {
   build() {
     Row() {
       Text(this.title)
-        .minFontSize(16)
-        .maxFontSize(24)
+        .fontSize(20)
+        .fontWeight(500)
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
       Blank()
       Text(this.endText)
         .width('50%')
-        .maxLines(2)
-        .minFontSize(16)
-        .maxFontSize(24)
+        .fontSize(16)
         .textAlign(TextAlign.End)
-        .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        .fontColor($r('sys.color.ohos_id_color_text_secondary'))
       if (this.endArrowIsShow) {
         Image($r('app.media.ic_arrow'))
           .width(24)
@@ -50,6 +48,6 @@ export struct ListItemComponent {
       }
     }
     .width('100%')
-    .padding($r('sys.float.ohos_id_card_margin_middle'))
+    .padding({ top: 15, bottom: 15 })
   }
 }

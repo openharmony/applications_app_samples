@@ -14,11 +14,10 @@
  */
 
 import router from '@ohos.router';
-import { TitleBar } from '../common/component/TitleBar'
 import distributedAccount from '@ohos.account.distributedAccount';
+import osAccount from '@ohos.account.osAccount';
 import Logger from '../model/Logger';
 import DistributedAccountModel from '../model/DistributedAccountModel';
-import osAccount from '@ohos.account.osAccount';
 import DistributedAccountDataSource from '../model/BasicDataSource';
 
 const TAG: string = `[DistributedAccountList]`
@@ -52,16 +51,19 @@ struct DistributedAccountList {
       Row() {
         Text($r('app.string.Logged_DistributedAccount_management'))
           .fontSize(24)
+          .fontWeight(FontWeight.Bold)
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
-          .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
       }
       .width('100%')
+      .padding({ left: 12 })
 
       List({ space: 16 }) {
         LazyForEach(this.distributedAccountArr, (item: distributedAccount.DistributedInfo, index: number) => {
           ListItem() {
             Row() {
               Text(item.name)
+                .fontSize(16)
+                .fontWeight(500)
                 .fontColor($r('sys.color.ohos_id_color_text_primary'))
               Blank()
               Image($r('app.media.ic_arrow'))
@@ -71,12 +73,9 @@ struct DistributedAccountList {
             .id('distributedAccount' + index)
             .width('100%')
             .height(64)
-            .borderRadius(15)
+            .borderRadius(24)
             .backgroundColor($r('sys.color.ohos_id_color_background'))
-            .padding({
-              left: $r('sys.float.ohos_id_default_padding_start'),
-              right: $r('sys.float.ohos_id_default_padding_end')
-            })
+            .padding({ top: 16, bottom: 16, left: 12, right: 12 })
             .onClick(() => {
               router.pushUrl({
                 url: 'pages/DistributedAccountInfo',

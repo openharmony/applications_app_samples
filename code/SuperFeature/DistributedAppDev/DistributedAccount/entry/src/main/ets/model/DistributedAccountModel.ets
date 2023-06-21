@@ -23,7 +23,7 @@ const TAG: string = `[DistributedAccountModel]`
 let accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
 
 export default class DistributedAccountModel {
-  Bind(localId, distributedAccountName, distributedAccountNickName, distributedAccountAvatar): Promise<void> {
+  bind(localId, distributedAccountName, distributedAccountNickName, distributedAccountAvatar): Promise<void> {
     return new Promise((resolve, reject) => {
       let accountInfo = {
         id: Math.floor(Math.random() * 10000 + 1000).toString(),
@@ -53,7 +53,7 @@ export default class DistributedAccountModel {
     })
   }
 
-  Unbind(localId, distributedAccountID, distributedAccountName): Promise<void> {
+  unBind(localId, distributedAccountID, distributedAccountName): Promise<void> {
     return new Promise((resolve, reject) => {
       let accountInfo = {
         id: distributedAccountID,

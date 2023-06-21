@@ -94,7 +94,7 @@ export class DatabaseUtils {
    */
   deleteAccountData(localId: number, rdbStore: DataRdb.RdbStore) {
     let predicates: DataRdb.RdbPredicates = new DataRdb.RdbPredicates(CommonConstants.TABLE_ACCOUNT);
-    predicates.equalTo(CommonConstants.FIELD_DISTRIBUTED_ACCOUNT_ID, localId);
+    predicates.equalTo(CommonConstants.FIELD_LOCAL_ID, localId);
     rdbStore.delete(predicates).then(() => {
       Logger.info(TAG, 'deleteAccountData delete successful ');
     }).catch((error) => {

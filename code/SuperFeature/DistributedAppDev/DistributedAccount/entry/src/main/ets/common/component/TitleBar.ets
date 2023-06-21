@@ -24,12 +24,14 @@ export struct TitleBar {
       Image($r('app.media.ic_back'))
         .width(24)
         .aspectRatio(1)
+        .margin({ right: 18 })
         .fillColor($r('sys.color.ohos_id_color_primary'))
         .onClick(() => {
           router.back()
         })
       Text(this.title)
-        .fontSize(24)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
         .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
     }
