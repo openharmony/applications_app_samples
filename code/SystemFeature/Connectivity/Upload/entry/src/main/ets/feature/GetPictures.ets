@@ -19,14 +19,15 @@ import Logger from '../util/Logger'
 const TAG: string = '[GetPictures]'
 
 export default class GetPictures {
-  async getImage(): Promise<void> {
+  async getImage(maxCount: number): Promise<void> {
     let mContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
     let abilityResult = await mContext.startAbilityForResult(
       {
         bundleName: 'com.ohos.photos',
         abilityName: 'com.ohos.photos.MainAbility',
         parameters: {
-          uri: 'multipleselect'
+          uri: 'multipleselect',
+          maxSelectCount: maxCount
         }
       }
     )
@@ -38,18 +39,9 @@ export default class GetPictures {
       if (param !== null && param !== undefined) {
         let result: Array<string> = param['select-item-list'] as Array<string>
         let select: Array<string> = []
-        if (result.length >= 9) {
-          AlertDialog.show({
-            message: $r('app.string.number_limit')
-          })
-          for (let i = 0; i < 9; i++) {
-            select.push(result[i])
-          }
-        } else {
-          result.forEach(item => {
-            select.push(item)
-          })
-        }
+        result.forEach(item => {
+          select.push(item)
+        })
         let imageList = AppStorage.Get('imageList') as Array<string>
         AppStorage.SetOrCreate<Array<string>>('imageList', imageList.concat(select))
       }
