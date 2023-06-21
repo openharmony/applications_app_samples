@@ -26,6 +26,7 @@ export default class DistributedAccountModel {
   bind(localId, distributedAccountName, distributedAccountNickName, distributedAccountAvatar): Promise<void> {
     return new Promise((resolve, reject) => {
       let accountInfo = {
+        // 随机生成帐号id
         id: Math.floor(Math.random() * 10000 + 1000).toString(),
         name: distributedAccountName,
         nickname: distributedAccountNickName,
