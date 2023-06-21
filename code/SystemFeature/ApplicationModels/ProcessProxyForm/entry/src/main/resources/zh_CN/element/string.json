@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "主界面"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "数据代理卡片"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "卡片提供方"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "卡片提供方"
+    },
+    {
+      "name": "modify_data",
+      "value": "修改数据"
+    },
+    {
+      "name": "modify_subscription_conditions",
+      "value": "修改订阅条件"
+    },
+    {
+      "name": "city_selection",
+      "value": "城市选择"
+    },
+    {
+      "name": "city_sy",
+      "value": "沈阳"
+    },
+    {
+      "name": "city_hz",
+      "value": "杭州"
+    },
+    {
+      "name": "published_data",
+      "value": "发布数据"
+    }
+  ]
+}
