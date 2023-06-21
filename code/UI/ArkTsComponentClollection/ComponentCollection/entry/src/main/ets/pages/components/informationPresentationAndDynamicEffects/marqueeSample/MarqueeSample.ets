@@ -53,7 +53,7 @@ struct MarqueeSample {
   @State start: boolean = false
   @State fromStart: boolean = true
   @State step: number = 50
-  @State loop: number = -1
+  @State loop: number = 0
   @State marqueeSrc: string = getStringData($r('app.string.marquee_src'))
   @State mColor: Color = Color.Gray
 
@@ -70,7 +70,7 @@ struct MarqueeSample {
           fromStart: this.fromStart,
           src: this.marqueeSrc
         })
-          .width(400)
+          .width(300)
           .fontColor(Color.White)
           .fontSize(30)
           .allowScale(false)
@@ -85,6 +85,8 @@ struct MarqueeSample {
           })
           .onFinish(() => {
             Logger.info('Marquee animation complete onFinish')
+            this.start = false
+            this.loop = 0
           })
         Button(this.start ? 'stop' : 'start')
           .onClick(() => {
