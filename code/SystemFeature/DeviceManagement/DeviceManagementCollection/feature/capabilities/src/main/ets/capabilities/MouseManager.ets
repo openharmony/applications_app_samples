@@ -20,9 +20,10 @@ import {
   setPointerStyle,
   getPointerStyle
 } from '../util/MouseManagerUtil'
-import pointer from '@ohos.multimodalInput.pointer';
 import { pointerStyleArr, PointerStyleData } from '../model/PointerStyleData'
 import { getString } from '@ohos/common';
+import pointer from '@ohos.multimodalInput.pointer';
+
 /**
  * 鼠标管理视图
  */

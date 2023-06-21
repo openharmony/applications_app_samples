@@ -15,10 +15,10 @@
 
 
 import { ColumnOperation } from '../components/ColumnOperation';
-import { getString, getStringArray } from '@ohos/common';
 import { showAlertDialog } from '../util/AlertDialogUtil';
 import { PowerManagerUtil } from '../util/PowerManagerUtil';
 import { SelectDialog } from '../components/SelectDialog';
+import { getString, getStringArray } from '@ohos/common';
 import power from '@ohos.power';
 
 @Preview

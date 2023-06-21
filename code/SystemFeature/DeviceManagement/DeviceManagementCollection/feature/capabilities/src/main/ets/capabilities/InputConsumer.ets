@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 import InputConsumerUtil from '../util/InputConsumerUtil'
 import keyCode from '@ohos.multimodalInput.keyCode';
 import { formatJson } from '@ohos/common'
+import inputConsumer from '@ohos.multimodalInput.inputConsumer';
+
 /**
  * 组合按键
  */
