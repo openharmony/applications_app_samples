@@ -53,7 +53,7 @@ struct MarqueeSample {
   @State start: boolean = false
   @State fromStart: boolean = true
   @State step: number = 50
-  @State loop: number = 3
+  @State loop: number = -1
   @State marqueeSrc: string = getStringData($r('app.string.marquee_src'))
   @State mColor: Color = Color.Gray
 
