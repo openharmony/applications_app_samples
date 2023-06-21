@@ -29,7 +29,7 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
 
 @Extend(Row) function rowStyle() {
   .height(50)
-  .padding(12)
+  .padding(6)
   .width('100%')
   .borderRadius(24)
   .margin({ top: 12, bottom: 12 })
