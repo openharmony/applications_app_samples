@@ -99,7 +99,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-* filePicker文件选择器[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+* filePicker文件选择器[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)
 
 * 文件管理[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
 
@@ -112,6 +112,10 @@ entry/src/main/ets/
 2.本示例已适配API version 9版本SDK，版本号：3.2.12.2，镜像版本号：OpenHarmony 4.0.7.2。
 
 3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)及以上版本才可编译运行。
+
+4.本示例所选择文件，用filePicker文件选择器保存的文件，比如新增的密钥，能够实时更新，如直接推送至文件夹，需要重启后刷新显示。
+
+5.本示例所选择文本文件内容当前只支持英文字符，作为演示，能成功使用的文本长度不超过8000字节。
 
 ### 下载
 
