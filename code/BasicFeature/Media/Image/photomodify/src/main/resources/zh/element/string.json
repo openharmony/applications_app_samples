@@ -20,7 +20,6 @@
       "name": "choice_video",
       "value": "选视频"
     },
-
     {
       "name": "photograph",
       "value": "拍照"
@@ -55,15 +54,15 @@
     },
     {
       "name": "proportion_three_four",
-      "value": "3:4"
+      "value": "4:3"
     },
     {
       "name": "proportion_nine_sixth",
-      "value": "9:16"
+      "value": "16:9"
     },
     {
       "name": "proportion_one_one",
-      "value": "正方形"
+      "value": "1:1"
     },
     {
       "name": "choice_number",
@@ -80,6 +79,126 @@
     {
       "name": "amplification",
       "value": "放大"
+    },
+    {
+      "name": "filter",
+      "value": "滤镜"
+    },
+    {
+      "name": "toning",
+      "value": "调色"
+    },
+    {
+      "name": "text",
+      "value": "文字"
+    },
+    {
+      "name": "sticker",
+      "value": "贴纸"
+    },
+    {
+      "name": "input_content",
+      "value": "输入内容"
+    },
+    {
+      "name": "opacity",
+      "value": "透明度"
+    },
+    {
+      "name": "edit_image_adjust",
+      "value": "调整"
+    },
+    {
+      "name": "edit_image_mark",
+      "value": "标记"
+    },
+    {
+      "name": "edit_image_rotate_90",
+      "value": "顺势针旋转90°"
+    },
+    {
+      "name": "edit_image_rotate_down_90",
+      "value": "逆势针旋转90°"
+    },
+    {
+      "name": "edit_image_resolution",
+      "value": "分辨率"
+    },
+    {
+      "name": "input_text_dialog_text",
+      "value": "文字"
+    },
+    {
+      "name": "input_text_dialog_inputText",
+      "value": "请输入文字"
+    },
+    {
+      "name": "input_text_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "input_text_dialog_sure",
+      "value": "确定"
+    },
+    {
+      "name": "update_page_edit",
+      "value": "编辑"
+    },
+    {
+      "name": "update_page_delete",
+      "value": "删除"
+    },
+    {
+      "name": "material_font_color_one",
+      "value": "#ffffff"
+    },
+    {
+      "name": "material_font_color_two",
+      "value": "#000000"
+    },
+    {
+      "name": "material_font_color_three",
+      "value": "#6259DE"
+    },
+    {
+      "name": "material_font_color_four",
+      "value": "#4694C2"
+    },
+    {
+      "name": "material_font_color_five",
+      "value": "#5AADA0"
+    },
+    {
+      "name": "material_font_color_six",
+      "value": "#5BA854"
+    },
+    {
+      "name": "material_font_color_seven",
+      "value": "#86AD53"
+    },
+    {
+      "name": "material_font_color_eight",
+      "value": "#8C55C2"
+    },
+    {
+      "name": "material_font_color_nine",
+      "value": "#CC5286"
+    },
+    {
+      "name": "material_font_color_ten",
+      "value": "#D94E38"
+    },
+    {
+      "name": "material_font_color_eleven",
+      "value": "#DB6B42"
+    },
+    {
+      "name": "material_font_color_twelve",
+      "value": "#E08C3A"
+    },
+    {
+      "name": "material_font_color_thirteen",
+      "value": "#D1A738"
     }
   ]
 }

@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "entry_desc",
-      "value": "image processing"
+      "value": "Image editing"
     },
     {
       "name": "MainAbility_desc",
-      "value": "image processing"
+      "value": "Image editing"
     },
     {
       "name": "MainAbility_label",
-      "value": "ImageProcessing"
+      "value": "Image editing"
     },
     {
       "name": "publish_comments",

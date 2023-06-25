@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/ChoicePhotos",
-    "pages/EditPages"
+    "pages/UpdatePages",
+    "pages/EditImages"
   ]
 }
