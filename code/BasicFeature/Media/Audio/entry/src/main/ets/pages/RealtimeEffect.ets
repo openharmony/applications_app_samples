@@ -184,7 +184,7 @@ struct RealtimeAudioEffectQuery {
   @State showSelector_2: boolean = false
   @State showSelector_3: boolean = false
   @State queryResult: Resource = $r('app.string.BLANK')
-  @State queryButtonState: boolean = true
+  @State queryButtonState: boolean = false
   @State stateTextIndex: number = 0
   @State stateImgIndex: number = 0
   @State optionsButtonState: boolean = true
@@ -298,13 +298,13 @@ struct RealtimeAudioEffectQuery {
 
     let buf = new ArrayBuffer(bufferSize)
     let startOffset = this.fileDescriptor.offset
-    let cur = startOffset
+    let cur = startOffset + bufferSize
     while (true) {
       // when render released,state is changed to STATE_RELEASED
       if (this.audioRenderer.state === audio.AudioState.STATE_RELEASED) {
         break
       }
-      while (cur <= startOffset + this.fileDescriptor.length) {
+      while (cur <= startOffset + this.fileDescriptor.length - bufferSize) {
         let options = {
           offset: cur,
           length: bufferSize
@@ -313,7 +313,7 @@ struct RealtimeAudioEffectQuery {
         await this.audioRenderer.write(buf)
         cur += bufferSize
       }
-      cur = startOffset
+      cur = startOffset + bufferSize
     }
   }
 
