@@ -28,9 +28,9 @@ struct WidgetCard {
   build() {
     Row() {
       Column() {
-        Text('城市：' + JSON.stringify(this.city_name))
+        Text('城市：' + this.city_name)
           .fontSize($r('app.float.font_size'))
-        Text('温度：' + JSON.stringify(this.city_temper))
+        Text('温度：' + this.city_temper + ' ℃')
           .fontSize($r('app.float.font_size'))
       }
       .width(this.FULL_WIDTH_PERCENT)

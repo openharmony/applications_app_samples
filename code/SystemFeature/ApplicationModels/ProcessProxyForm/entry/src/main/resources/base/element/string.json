@@ -21,16 +21,24 @@
       "value": "formProvider"
     },
     {
-      "name": "modify_data",
-      "value": "modify data"
+      "name": "modify_publish_data",
+      "value": "modify publish data"
     },
     {
       "name": "modify_subscription_conditions",
-      "value": "modify subscription conditions"
+      "value": "Please select which city to subscribe to for weather information:"
+    },
+    {
+      "name": "subscription_conditions",
+      "value": "Modify subscription conditions"
     },
     {
       "name": "city_selection",
       "value": "city selection"
+    },
+    {
+      "name": "selection_city",
+      "value": "Please select a city:"
     },
     {
       "name": "city_sy",

@@ -70,131 +70,82 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
-  @State temperatureDATA: string = '-30 ℃';
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
   build() {
     Row() {
-      Column() {
-        Row() {
-          Text($r('app.string.city_selection'))
-            .fontSize(40)
-          Column() {
-            Text($r('app.string.city_sy'))
-              .fontSize(10)
-            Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
-              .height(30)
-              .width(30)
-              .onChange((isChecked: boolean) => {
-                Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
-                if (isChecked) {
-                  conditionID = '110000';
-                  conditionCity = '沈阳';
-                }
-              })
-          }
-          Column() {
-            Text($r('app.string.city_hz'))
-              .fontSize(10)
-            Radio({ value: 'hz', group: 'cityGroup' })
-              .height(30)
-              .width(30)
-              .onChange((isChecked: boolean) => {
-                Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
-                if (isChecked) {
-                  conditionID = '310000';
-                  conditionCity = '杭州';
-                }
-              })
-          }
+      Column({ space: 200 }) {
+        Column({ space: 5 }) {
+          Text($r('app.string.modify_publish_data'))
+            .fontColor('#182431')
+            .fontSize(30)
+            .lineHeight(41)
+            .fontWeight(500)
         }
         Column() {
-          Text(this.temperatureDATA)
-            .fontSize(40)
           Row() {
+            Text($r('app.string.selection_city'))
+              .fontSize(40)
             Column() {
-              Text('-30 ℃')
+              Text($r('app.string.city_sy'))
                 .fontSize(10)
-              Radio({ value: 'firstData', group: 'DataGroup' }).checked(true)
+              Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
                 .height(30)
                 .width(30)
                 .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `firstData status is ${JSON.stringify(isChecked)}`);
+                  Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
                   if (isChecked) {
-                    conditionData = '-30 ℃';
-                    this.temperatureDATA = conditionData;
+                    conditionID = '110000';
+                    conditionCity = '沈阳';
                   }
                 })
             }
             Column() {
-              Text('-15 ℃')
+              Text($r('app.string.city_hz'))
                 .fontSize(10)
-              Radio({ value: 'secondData', group: 'DataGroup' })
+              Radio({ value: 'hz', group: 'cityGroup' })
                 .height(30)
                 .width(30)
                 .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `secondData status is ${JSON.stringify(isChecked)}`);
+                  Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
                   if (isChecked) {
-                    conditionData = '-15 ℃';
-                    this.temperatureDATA = conditionData;
-                  }
-                })
-            }
-            Column() {
-              Text('0 ℃')
-                .fontSize(10)
-              Radio({ value: 'thirdData', group: 'DataGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `thirdData status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionData = '0 ℃';
-                    this.temperatureDATA = conditionData;
-                  }
-                })
-            }
-            Column() {
-              Text('15 ℃')
-                .fontSize(10)
-              Radio({ value: 'fourthData', group: 'DataGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `fourthData status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionData = '15 ℃';
-                    this.temperatureDATA = conditionData;
-                  }
-                })
-            }
-            Column() {
-              Text('30 ℃')
-                .fontSize(10)
-              Radio({ value: 'fifthData', group: 'DataGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `fifthData status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionData = '30 ℃';
-                    this.temperatureDATA = conditionData;
+                    conditionID = '310000';
+                    conditionCity = '杭州';
                   }
                 })
             }
           }
+          Row() {
+            Text('请输入温度：')
+              .fontSize(30)
+              .width(200)
+              .height(60)
+            TextInput({ text: '-30' })
+              .fontSize(30)
+              .width(100)
+              .height(60)
+              .type(InputType.Normal)
+              .onChange((text) => {
+                if (Number(text) > -40 && Number(text) < 60) {
+                  conditionData = text + ' ℃';
+                } else {
+                  prompt.showToast({ message: `Please enter the correct temperature`, duration: 5000 });
+                }
+              })
+          }
+          Button($r('app.string.published_data'))
+            .fontSize(30)
+            .width(300)
+            .type(ButtonType.Capsule)
+            .margin({ top: 20 })
+            .backgroundColor('#0D9FFB')
+            .onClick(() => {
+              publish()
+            })
+          Text(' ')
+            .fontSize(10)
+          Text(this.runningFormInfo)
+            .fontSize(15)
         }
-        Button($r('app.string.published_data'))
-          .fontSize(40)
-          .type(ButtonType.Capsule)
-          .margin({ top: 20 })
-          .backgroundColor('#0D9FFB')
-          .onClick(() => {
-            publish()
-          })
-        Text(' ')
-          .fontSize(10)
-        Text(this.runningFormInfo)
-          .fontSize(15)
       }
       .width('100%')
     }

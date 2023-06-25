@@ -17,7 +17,7 @@
     <stack>
         <div class="container-inner">
             <text class="detail_text">城市：{{ city_name }}</text>
-            <text class="detail_text">温度：{{ city_temper }}</text>
+            <text class="detail_text">温度：{{ city_temper }} ℃</text>
         </div>
     </stack>
 </div>

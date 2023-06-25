@@ -21,17 +21,19 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button($r('app.string.modify_data'))
-          .fontSize(40)
+        Button($r('app.string.modify_publish_data'))
+          .fontSize(30)
           .type(ButtonType.Capsule)
+          .width(300)
           .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .onClick(() => {
             router.pushUrl({ url: 'pages/IndexSec' });
           })
-        Button($r('app.string.modify_subscription_conditions'))
-          .fontSize(40)
+        Button($r('app.string.subscription_conditions'))
+          .fontSize(30)
           .type(ButtonType.Capsule)
+          .width(300)
           .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .onClick(() => {

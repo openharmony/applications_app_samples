@@ -60,40 +60,47 @@ function modifyCondition(): void {
 struct IndexThi {
   build() {
     Row() {
-      Column() {
-        Text($r('app.string.modify_subscription_conditions'))
-          .fontSize(40)
-          .margin({ bottom: 20 })
-        Row() {
-          Column() {
-            Text($r('app.string.city_sy'))
-            Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(true)
-              .height(50)
-              .width(50)
-              .onChange((isChecked: boolean) => {
-                Logger.info('firstRadio status is ' + isChecked);
-                if (isChecked) {
-                  conditionID = '110000';
-                  modifyCondition();
-                }
-              })
-          }
-          Column() {
-            Text($r('app.string.city_hz'))
-            Radio({ value: 'hz', group: 'modifyConditionGroup' }).checked(false)
-              .height(50)
-              .width(50)
-              .onChange((isChecked: boolean) => {
-                Logger.info('secondRadio status is ' + isChecked);
-                if (isChecked) {
-                  conditionID = '310000';
-                  modifyCondition();
-                }
-              })
+      Column({ space: 200 }) {
+        Text($r('app.string.subscription_conditions'))
+          .fontColor('#182431')
+          .fontSize(30)
+          .lineHeight(41)
+          .fontWeight(500)
+        Column() {
+          Text($r('app.string.modify_subscription_conditions'))
+            .fontSize(30)
+            .margin({ bottom: 20 })
+          Row() {
+            Column() {
+              Text($r('app.string.city_sy'))
+              Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(true)
+                .height(50)
+                .width(50)
+                .onChange((isChecked: boolean) => {
+                  Logger.info('firstRadio status is ' + isChecked);
+                  if (isChecked) {
+                    conditionID = '110000';
+                    modifyCondition();
+                  }
+                })
+            }
+            Column() {
+              Text($r('app.string.city_hz'))
+              Radio({ value: 'hz', group: 'modifyConditionGroup' }).checked(false)
+                .height(50)
+                .width(50)
+                .onChange((isChecked: boolean) => {
+                  Logger.info('secondRadio status is ' + isChecked);
+                  if (isChecked) {
+                    conditionID = '310000';
+                    modifyCondition();
+                  }
+                })
+            }
           }
         }
+        .width('100%')
       }
-      .width('100%')
     }
     .height('100%')
   }
