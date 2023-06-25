@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export const logger = new Logger('Sample_DeviceManagement_test');
+export const logger = new Logger('[Sample_DeviceManagement_test]');

@@ -19,7 +19,7 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 import { getString, getStringArray } from '../util/ResourceUtil';
 
-const TAG: string = 'Sample_DeviceManagementSys';
+const TAG: string = '[Sample_DeviceManagementSys]';
 const BUNDLE = 'DeviceManagementSys_';
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 const manage = delegator.getAppContext().resourceManager

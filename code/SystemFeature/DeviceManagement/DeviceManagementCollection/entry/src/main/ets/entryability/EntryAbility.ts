@@ -21,7 +21,7 @@ import { logger } from '@ohos/common';
 const BREAKPOINT_MD: number = 600;
 const BREAKPOINT_BIG: number = 840;
 const PARAMS_PX_TO_VP: number = 160;
-const TAG: string = 'Sample_EntryAbility';
+const TAG: string = '[Sample_EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam): void {

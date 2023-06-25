@@ -18,7 +18,7 @@ import { BatteryStatsModel } from '../model/BatteryStatsModel';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { logger } from '@ohos/common';
 
-const TAG: string = 'Sample_BatteryStatsUtil';
+const TAG: string = '[Sample_BatteryStatsUtil]';
 
 /**
  * Binds battery data to components and provides interfaces.

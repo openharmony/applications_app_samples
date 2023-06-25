@@ -16,7 +16,7 @@ import { InputDeviceInfo } from '../model/InputDeviceInfo'
 import { logger } from '@ohos/common'
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 
-const TAG: string = 'Sample_InputDeviceUtil'
+const TAG: string = '[Sample_InputDeviceUtil]'
 
 /**
  *  获取设备列表
@@ -114,7 +114,7 @@ class InputDevice {
   private callback = null
   private deviceList: InputDeviceInfo[] = []
 
-  public registerChange(callback) : void {
+  public registerChange(callback): void {
     logger.info(`${TAG} registerChange`)
     try {
       this.callback = callback
@@ -124,7 +124,7 @@ class InputDevice {
     }
   }
 
-  public unregisterChange() : void {
+  public unregisterChange(): void {
     try {
       inputDevice.off('change')
       this.deviceList = []
@@ -164,10 +164,10 @@ class InputDevice {
     }
     // 根据状态修改
     let type: inputDevice.ChangedType = data.type
-    if (type == 'add') {
+    if (type === 'add') {
       // 连接
       deviceInfo.connect = true
-    } else if (type == 'remove') {
+    } else if (type === 'remove') {
       // 断开
       deviceInfo.connect = false
     }

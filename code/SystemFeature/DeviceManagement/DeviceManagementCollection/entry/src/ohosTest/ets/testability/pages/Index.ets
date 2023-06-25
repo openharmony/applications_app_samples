@@ -15,7 +15,7 @@
 
 import { logger } from '../../util/Logger';
 
-const TAG: string = 'Sample_TestIndex';
+const TAG: string = '[Sample_TestIndex]';
 
 @Entry
 @Component
