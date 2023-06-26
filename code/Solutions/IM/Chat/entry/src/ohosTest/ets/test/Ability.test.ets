@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -6,303 +6,114 @@
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required ON applicable law or agreed to in writing, software
+ * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import featureAbility from '@ohos.ability.featureAbility'
-import hilog from '@ohos.hilog'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import { describe, it, expect } from '@ohos/hypium'
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest'
+import Logger from '../util/Logger'
 
-const TAG = '[Sample_Chat]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Chat_'
+const BUNDLE = 'Chat'
+const TAG = '[Sample_Chat_Test]'
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
+// ËµÑÊ∫êÊú¨Âú∞Âåñ
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
+
     /**
-     * ¥Úø™”¶”√
+     * ÊâìÂºÄÂ∫îÁî®
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin')
-      let parameter = {
-        'want': {
-          bundleName: 'ohos.samples.chat',
-          abilityName: 'ohos.samples.chat.MainAbility'
-        }
+    it(BUNDLE + '_startAbility', 0, async (done) => {
+      Logger.info(TAG, BUNDLE + '_startAbility start')
+      let want = {
+        bundleName: 'com.samples.chat',
+        abilityName: 'EntryAbility'
       }
-      featureAbility.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001,err.code:' + JSON.stringify(err.code))
-        expect(0).assertEqual(err.code)
-        done()
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end')
+      await delegator.startAbility(want, (err, data) => {
+        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
+        expect(err).assertNull()
       })
+      Logger.info(TAG, BUNDLE + '_startAbility end')
+      done()
     })
 
     /**
-     * µ„ª˜Ω¯»Î¡ƒÃÏ–≈œ¢“≥√Ê
-     */
-    it(BUNDLE + 'EnterChatNewsFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 clickChatList')
-      // µ„ª˜¡ƒÃÏ¡–±Ì
-      await driver.assertComponentExist(ON.text('≈Û”—0', MatchPattern.CONTAINS))
-      let chatList = await driver.findComponent(ON.text('≈Û”—0', MatchPattern.CONTAINS))
-      await chatList.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 clickMoreBtn')
-      // µ„ª˜∏¸∂‡
-      await driver.assertComponentExist(ON.id('moreBtn'))
-      let moreBtn = await driver.findComponent(ON.id('moreBtn'))
-      await moreBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 clickLeftBtn')
-      // µ„ª˜∑µªÿ¡ƒÃÏƒ⁄»›“≥
-      await driver.assertComponentExist(ON.id('leftBtn'))
-      let leftBtn = await driver.findComponent(ON.id('leftBtn'))
-      await leftBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 clickReturnBtn')
-      // µ„ª˜∑µªÿ÷˜“≥
-      await driver.assertComponentExist(ON.id('returnBtn'))
-      let returnChatListPageBtn = await driver.findComponent(ON.id('returnBtn'))
-      await returnChatListPageBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 existAddBtn')
-      await driver.assertComponentExist(ON.id('addBtn'))
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EnterChatNewsFunction_001 end')
-    })
-
-    /**
-     * µ„ª˜À—À˜Ω¯»ÎÀ—À˜“≥√Ê
-     */
-    it(BUNDLE + 'ClickSearchFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickSearchFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickSearchFunction_001 clickSearch')
-      // µ„ª˜À—À˜
-      await driver.assertComponentExist(ON.id('search'))
-      let searchBtn = await driver.findComponent(ON.id('search'))
-      await searchBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickSearchFunction_001 clickCancelSearch')
-      // µ„ª˜»°œ˚
-      await driver.assertComponentExist(ON.id('cancelSearchBtn'))
-      let cancelSearchBtn = await driver.findComponent(ON.id('cancelSearchBtn'))
-      await cancelSearchBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickSearchFunction_001 end')
-    })
-
-    /**
-     * µ„ª˜ÃÌº”∞¥≈•Ω¯»ÎÃÌº”∫√”—∫Õ∑¢∆»∫¡ƒ“≥√Ê
-     */
-    it(BUNDLE + 'ClickAddFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001°°begin')
-      let driver = await Driver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickAddBtn')
-      // µ„ª˜ÃÌº”∞¥≈•
-      await driver.assertComponentExist(ON.id('addBtn'))
-      let btnAdd = await driver.findComponent(ON.id('addBtn'))
-      await btnAdd.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickAddFriend')
-      // µ„ª˜ÃÌº”∫√”—
-      await driver.assertComponentExist(ON.text('ÃÌº”∫√”—', MatchPattern.CONTAINS))
-      let addFriend = await driver.findComponent(ON.text('ÃÌº”∫√”—', MatchPattern.CONTAINS))
-      await addFriend.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickLeftAddFriendPageBtn')
-      // µ„ª˜∑µªÿ
-      await driver.assertComponentExist(ON.id('leftAddFriendPageBtn'))
-      let leftAddFriendPageBtn = await driver.findComponent(ON.id('leftAddFriendPageBtn'))
-      await leftAddFriendPageBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickAddBtn')
-      // µ„ª˜ÃÌº”∞¥≈•
-      await btnAdd.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickGroupChat')
-      // µ„ª˜∑¢∆»∫¡ƒ
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text('∑¢∆»∫¡ƒ', MatchPattern.CONTAINS))
-      let groupChat = await driver.findComponent(ON.text('∑¢∆»∫¡ƒ', MatchPattern.CONTAINS))
-      await groupChat.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 clickLeftCurrentPage')
-      // µ„ª˜∑µªÿ
-      await driver.assertComponentExist(ON.id('leftCurrentPageBtn'))
-      let leftCurrentPageBtn = await driver.findComponent(ON.id('leftCurrentPageBtn'))
-      await leftCurrentPageBtn.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAddFunction_001 end')
-    })
-
-    /**
-     * µ„ª˜Ω¯»Î¡ƒÃÏƒ⁄»›“≥ ‰»Î–≈œ¢∫Õ∑¢ÀÕ±Ì«È
+     * ËÅäÂ§©ÁïåÈù¢ÊµãËØï
      */
     it(BUNDLE + 'SendMessageFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001°°begin')
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 begin')
       let driver = await Driver.create()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 clickChatList')
-      // µ„ª˜¡ƒÃÏ¡–±Ì
-      await driver.assertComponentExist(ON.text('≈Û”—0', MatchPattern.CONTAINS))
-      let chatList = await driver.findComponent(ON.text('≈Û”—0', MatchPattern.CONTAINS))
+      await driver.delayMs(2000)
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 clickChatList')
+      // ÁÇπÂáªËÅäÂ§©ÂàóË°®
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.friend'))))
+      let chatList = await driver.findComponent(ON.text(await getResourceString($r('app.string.friend'))))
       await chatList.click()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 inputText')
-      // µ◊≤ø ‰»ÎøÚ ‰»Îƒ⁄»›
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 inputText')
+      // Â∫ïÈÉ®ËæìÂÖ•Ê°ÜÂÜÖÂÆπ
       await driver.assertComponentExist(ON.id('bottomTextInput'))
       let bottomTextInput = await driver.findComponent(ON.id('bottomTextInput'))
       await bottomTextInput.inputText('good')
       let inputValue = await bottomTextInput.getText()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 inputValue=' + inputValue)
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 inputValue=' + inputValue)
       expect('good').assertEqual(inputValue)
       await driver.triggerKey(2054)
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 clickChatExpression')
-      // µ„ª˜±Ì«ÈÕº±Í
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 clickChatExpression')
+      // ÁÇπ‰∫ÆË°®ÊÉÖÂõæÊ†á
       await driver.assertComponentExist(ON.id('chatExpression'))
       let chatExpression = await driver.findComponent(ON.id('chatExpression'))
       await chatExpression.click()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 clickReturnBtn')
-      // µ„ª˜∑µªÿ÷˜“≥
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 clickReturnBtn')
+      // ÁÇπÂáªËøîÂõû‰∏ªÈ°µ
       await driver.assertComponentExist(ON.id('returnBtn'))
       let returnChatListPageBtn = await driver.findComponent(ON.id('returnBtn'))
       await returnChatListPageBtn.click()
       await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 existAddBtn')
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 existAddBtn')
       await driver.assertComponentExist(ON.id('addBtn'))
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SendMessageFunction_001 end')
+      Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 end')
     })
 
     /**
-     * µ„ª˜∑¢œ÷Ω¯»Î¡ƒÃÏ…Á«¯
+     * ÊúãÂèãÂúàÊµãËØï
      */
     it(BUNDLE + 'ChatCommunityFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001°°begin')
+      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
-      // µ„ª˜∑¢œ÷
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 clickDiscover')
-      await driver.assertComponentExist(ON.text('∑¢œ÷'))
-      let discover = await driver.findComponent(ON.text('∑¢œ÷'))
+      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 clickDiscover')
+      // ÁÇπÂáªÂèëÁé∞
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.discovery'))))
+      let discover = await driver.findComponent(ON.text(await getResourceString($r('app.string.discovery'))))
       await discover.click()
       await driver.delayMs(1000)
-      // µ„ª˜¡ƒÃÏ…Á«¯
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 clickChatCommunity')
+      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 clickChatCommunity')
+      // ÁÇπÂáªÊúãÂèãÂúà
       await driver.assertComponentExist(ON.id('chatCommunity'))
       let chatCommunity = await driver.findComponent(ON.id('chatCommunity'))
       await chatCommunity.click()
       await driver.delayMs(1000)
-      // µ„ª˜Õº∆¨
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 clickImageList')
-      await driver.assertComponentExist(ON.id('3'))
-      let imageList = await driver.findComponent(ON.id('3'))
-      await imageList.click()
-      await driver.delayMs(1000)
-      // ƒÛ∫œÕº∆¨
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 pinchImage')
-      await driver.assertComponentExist(ON.id('pinchImage'))
-      let pinchImage = await driver.findComponent(ON.id('pinchImage'))
-      await pinchImage.pinchOut(1.5)
-      await driver.delayMs(1000)
-      await pinchImage.pinchIn(0.5)
-      await driver.delayMs(1000)
-      // ∑µªÿµΩ¡ƒÃÏ…Á«¯“≥√Ê
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 backToChatCommunity')
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.circle'))))
+      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 backToDiscover')
       await driver.pressBack()
-      await driver.assertComponentExist(ON.id('1'))
-      // ∑µªÿµΩ∑¢œ÷“≥√Ê
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 backToDiscover')
-      await driver.pressBack()
+      await driver.delayMs(1000)
       await driver.assertComponentExist(ON.id('chatCommunity'))
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ChatCommunityFunction_001 end')
-    })
-
-    /**
-     * µ„ª˜Œ“Ω¯»Î“≥√Ê
-     */
-    it(BUNDLE + 'MyPageFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001°°begin')
-      let driver = await Driver.create()
-      await driver.delayMs(1000)
-      // µ„ª˜Œ“
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 clickMine')
-      await driver.assertComponentExist(ON.text('Œ“'))
-      let mine = await driver.findComponent(ON.text('Œ“'))
-      await mine.click()
-      await driver.delayMs(1000)
-      // µ„ª˜◊‘º∫≤Èø¥–≈œ¢
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 clickMineMessage')
-      await driver.assertComponentExist(ON.id('mineMessage'))
-      let mineMessage = await driver.findComponent(ON.id('mineMessage'))
-      await mineMessage.click()
-      await driver.delayMs(1000)
-      // ∑µªÿµΩŒ““≥√Ê
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 backToMine')
-      await driver.pressBack()
-      await driver.assertComponentExist(ON.id('mineMessage'))
-      // µ„ª˜…Ë÷√
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 clickSetting')
-      await driver.assertComponentExist(ON.id('setting'))
-      let setting = await driver.findComponent(ON.id('setting'))
-      await setting.click()
-      await driver.delayMs(1000)
-      // µ„ª˜∏∫‘ÿø™πÿ
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 clickLoadSwitch')
-      await driver.assertComponentExist(ON.id('loadSwitch'))
-      let loadSwitch = await driver.findComponent(ON.id('loadSwitch'))
-      await loadSwitch.click()
-      await driver.delayMs(1000)
-      // µ„ª˜∆Ù∂Øº”‘ÿ5000¿‡
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 clickFirstSwitch')
-      await driver.assertComponentExist(ON.id('firstSwitch'))
-      let firstSwitch = await driver.findComponent(ON.id('firstSwitch'))
-      await firstSwitch.click()
-      await driver.delayMs(1000)
-      // ∑µªÿµΩ…Ë÷√“≥√Ê
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 backToSetting')
-      await driver.pressBack()
-      await driver.assertComponentExist(ON.id('loadSwitch'))
-      // ∑µªÿµΩŒ““≥√Ê
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 backToMine')
-      await driver.pressBack()
-      await driver.assertComponentExist(ON.id('setting'))
-      // ∑µªÿµΩ◊¿√Ê
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 backToHome')
-      await driver.pressBack()
-      await driver.delayMs(2000)
-      // ‘Ÿ¥ŒΩ¯»Î”¶”√≤Èø¥∏∫‘ÿ«Èøˆ
-      let parameter = {
-        'want': {
-          bundleName: 'ohos.samples.chat',
-          abilityName: 'ohos.samples.chat.MainAbility'
-        }
-      }
-      featureAbility.startAbility(parameter, (err, data) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 enterAgain, err.code:' + JSON.stringify(err.code))
-        expect(0).assertEqual(err.code)
-        hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 enterAgain end')
-      })
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 clickMineAgain')
-      await mine.click()
-      await driver.delayMs(1000)
-      await setting.click()
-      await driver.delayMs(1000)
-      await loadSwitch.click()
-      await driver.delayMs(1000)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MyPageFunction_001 end')
+      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 end')
     })
   })
 }

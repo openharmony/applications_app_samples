@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,9 +16,9 @@
 import hilog from '@ohos.hilog'
 
 class Logger {
-  private domain: number
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
     this.prefix = prefix
@@ -30,20 +30,20 @@ class Logger {
   }
 
   debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
   info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
   warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
   error(...args: any[]) {
-    hilog.error(this.domain, this.prefix, this.format, args)
+    hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export let logger = new Logger('[Sample_CustomNotification]')
+export let logger = new Logger('[Sample_CustomNotification]');

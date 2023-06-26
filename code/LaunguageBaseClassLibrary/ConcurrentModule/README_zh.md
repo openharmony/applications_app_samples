@@ -51,11 +51,11 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* worker页签的实现在首页调用，源码参考[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/LaunguageBaseClassLibrary/ConcurrentModule/entry/src/main/ets/pages/Index.ets)
+* worker页签的实现在首页调用，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets)
   * 字符串排序：通过调用executeWorkerFunc()创建一个worker线程，把待排序字符串发送给worker线程，等worker线程排序完成后再把结果返回。
   * 清除：把字符串输入框和结果都清除。
 
-* taskpool页签的实现在首页调用，源码参考[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/LaunguageBaseClassLibrary/ConcurrentModule/entry/src/main/ets/pages/Index.ets)
+* taskpool页签的实现在首页调用，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets)
   * 立即执行：通过调用executeImmediately()创建一个task任务，这个任务是立即执行字符串排序。
   * 超时3s执行：通过调用executeDelay()创建一个task任务，这个任务是延迟3s后执行字符串排序。
   * 函数任务：调用executeFunc()接口，不创建task任务，直接调用taskpool.execute()执行字符串排序。

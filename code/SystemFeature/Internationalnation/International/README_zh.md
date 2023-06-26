@@ -20,44 +20,43 @@
 
 ### 工程目录
 ```
-entry/src/main/ets/
-|---MainAbility
-|   |---app.ets                                 // 数据类型
-|   |---model
-|   |   |---IntUtil.ts                          // 数据类型转换
-|   |   |---LazyDataSource.ets                  // 基础数据
-|   |   |---Logger.ts                           // 日志工具
-|   |   |---ResourceUtil.ts                     // 资源数据
-|   |---pages
-|   |   |---AddLanguage.ets                     // 添加语言
-|   |   |---DateAndTime.ets                     // 时间和日期
-|   |   |---EditPreferred.ets                   // 编辑功能
-|   |   |---Examples.ets                        // 区域格式示例
-|   |   |---Index.ets                           // 首页
-|   |   |---Language.ets                        // 语言
-|   |   |---Region.ets                          // 地区
-|   |   |---TimeZone.ets                        // 区域
-|   |---view
-|   |   |---OperationListView.ets               // 首页数据列表
-|   |   |---OperationView.ets                   // 数据
-|   |   |---TitleBar.ets                        // 标题栏
+International
+├── AppScope                                    
+│   └── app.json5                               //APP信息配置文件
+├── entry/src/main                              //国际化应用
+│   ├── ets
+│   │   ├── entryability
+│   │   ├── compnents                           //公共组件
+│   │   ├── international                       //国际化业务
+│   │   │   └── pages                           //国际化业务页面
+│   │   │   │   ├── AddLanguage.ets             //添加语言
+│   │   │   │   ├── DateAndTime.ets             //时间和日期
+│   │   │   │   ├── EditPreferred.ets           //编辑功能
+│   │   │   │   ├── Examples.ets                //区域格式示例
+│   │   │   │   ├── Language.ets                //语言
+│   │   │   │   ├── Region.ets                  //地区
+│   │   │   │   └── TimeZone.ets                //区域
+│   │   ├── pages
+│   │   │   └──Index.ets                        //主页入口
+│   │   ├── utils                               //工具类
+│   └── module.json5
 ```
 ### 具体实现
 
 * 本示例分为三个模块：
   * 语言和地区模块
     * 使用i18n接口中getDisplayCountry方法获取指定国家的本地化显示文本，getSystemRegion方法获取系统地区，getSystemLocale方法设置系统Locale，getSystemLanguage方法获取系统支持的语言列表，getPreferredLanguageList方法获取系统偏好语言列表，removePreferredLanguage方法删除系统偏好语言列表中指定位置的偏好语言。
-    * 源码链接：[IntlUtil.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/model/IntlUtil.ts)，[Language.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/Language.ets)，[EditPreferred.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/EditPreferred.ets)
+    * 源码链接：[IntlUtil.ts](entry/src/main/ets/MainAbility/model/IntlUtil.ts)，[Language.ets](entry/src/main/ets/MainAbility/pages/Language.ets)，[EditPreferred.ets](entry/src/main/ets/MainAbility/pages/EditPreferred.ets)
     * 接口参考：[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-i18n.md)，[@ohos.intl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-intl.md)
     
   * 日期和时间模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，getTimeZone方法获取日历对象的时区，set24HourClock方法修改系统时间的24小时制设置，setTime方法设置系统时间，setDate方法设置系统日期，getTimezone方法获取系统时区。
-    * 源码链接：[DateAndTime.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/DateAndTime.ets)，[TimeZone.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/TimeZone.ets)
+    * 源码链接：[DateAndTime.ets](entry/src/main/ets/MainAbility/pages/DateAndTime.ets)，[TimeZone.ets](entry/src/main/ets/MainAbility/pages/TimeZone.ets)
     * 接口参考：[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-i18n.md)，[@ohos.systemTime](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-time.md)
  
   * 区域格式示例模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，NumberFormat方法创建一个NumberFormat对象，getResourceManager方法获取当前应用的资源管理对。
-    * 源码链接：[Examples.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/pages/Examples.ets)，[ResourceUtil.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Internationalnation/International/entry/src/main/ets/MainAbility/model/ResourceUtil.ts)
+    * 源码链接：[Examples.ets](entry/src/main/ets/MainAbility/pages/Examples.ets)，[ResourceUtil.ts](entry/src/main/ets/MainAbility/model/ResourceUtil.ts)
     * 接口参考：[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-i18n.md)，[@ohos.intl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-intl.md)，[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md)
 
 #### 相关概念
@@ -82,7 +81,7 @@ entry/src/main/ets/
 
 2.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
-3.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+3.本示例已适配API version 10版本SDK，版本号：4.0.7.5，镜像版本号：OpenHarmony 4.0.7.5。
 
 4.本示例需要使用 @ohos.i18n 系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
@@ -94,7 +93,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/SystemFeature/International/International/ > .git/info/sparse-checkout
+echo code/SystemFeature/Internationalnation/International/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 

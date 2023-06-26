@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import  HiLog  from '../model/HiLogUtil'
-import { Icon, iconInit } from '../model/IconData'
+import HiLog from '../model/HiLogUtil';
+import { Icon, iconInit } from '../model/IconData';
 
 const TAG = '[Index]'
 
-@Extend(Image) function preferFancy (imageFit: ImageFit, padding: number) {
+@Extend(Image) function preferFancy(imageFit: ImageFit, padding: number) {
   .width(70)
   .height(70)
   .objectFit(imageFit)
@@ -58,7 +58,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
 
       List() {
-        ForEach(this.desktopIcons, item => {
+        ForEach(this.desktopIcons, (item, index) => {
           ListItem() {
             Column() {
               Image(item.icon)
@@ -66,12 +66,17 @@ struct Index {
                 .height(70)
                 .layoutWeight(1)
                 .objectFit(ImageFit.Fill)
-              Text(item.name).fontSize(15).height(30).fontWeight(FontWeight.Bold)
+              Text(item.name)
+                .fontSize(15)
+                .height(30)
+                .fontWeight(FontWeight.Bold)
+                .id(`iconNameComp${index}`)
             }
             .width('20%')
             .height(100)
             .margin(5)
           }
+          .id(`deskTopIcon${index}`)
           .onDragStart((event: DragEvent, extraParams: string) => {
             HiLog.info(TAG, `bool-onStart:extraParams = ${JSON.stringify(extraParams)}`)
             let jsonString = JSON.parse(extraParams)
@@ -127,6 +132,7 @@ struct Index {
                 }
               ])
           }
+          .id(`dockIcon${index}`)
           .onDragStart((event: DragEvent, extraParams: string) => {
             HiLog.info(TAG, `boolBottom-onStart:extraParams = ${JSON.stringify(extraParams)}`)
             let jsonString = JSON.parse(extraParams)

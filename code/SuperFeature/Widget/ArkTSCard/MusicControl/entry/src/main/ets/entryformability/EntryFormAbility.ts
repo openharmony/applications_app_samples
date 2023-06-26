@@ -46,13 +46,6 @@ export default class EntryFormAbility extends FormExtension {
 
   onFormEvent(formId, message): void {
     Logger.info('FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}');
-    let msgObj = JSON.parse(message);
-    let params = msgObj.params;
-    let msg: string = params.message;
-    let options = {
-      data: msg
-    };
-    publish(options);
   }
 
   onRemoveForm(formId): void {

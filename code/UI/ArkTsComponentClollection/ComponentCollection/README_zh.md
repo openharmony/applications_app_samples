@@ -181,22 +181,22 @@ entry/src/main/ets/
 
         * 按钮与选择
             * 使用全局组件ShowToast,TitleBar,IntroductionTitle实现按钮，时间选择器，单选按钮，选择菜单，滑动条，切换按钮，勾选框，文本选择器，时间选择器，计数器，评分条组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/ComponentCollection/entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 滚动与滑动
             * 使用全局组件TitleBar实现滚动，翻页组件功能
 
         * 信息展示与功效
             * 使用全局组件TitleBar，AttributeModificationTool实现二维码，进度条，跑马灯，文字计时器，文字时钟，仪表盘，数据面板组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/ComponentCollection/entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 文本与输入
             * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，文本输入，文本，富文本组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/ComponentCollection/entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 辅助
             * 使用全局组件TitleBar实现标记，滚动条，下拉刷新，弹出面板，字母索引条组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/ComponentCollection/entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
     * 通用模块：
         * 通用事件
@@ -219,7 +219,7 @@ entry/src/main/ets/
     * 全局方法模块：
         * 弹窗
             * 使用全局组件ShowToast，TitleBar，IntroductionTitle实现弹窗组件页面
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/ComponentCollection/entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
 ### 相关权限
 

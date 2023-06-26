@@ -41,11 +41,6 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
       let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
-      //随便点两个地方，把悬浮的卡片界面关闭
-      await driver.click(122, 175)
-      await driver.delayMs(1000)
-      await driver.click(122, 175)
-      await driver.delayMs(1000)
       await driver.fling({
         x: 300, y: 300
       }, {
@@ -82,18 +77,14 @@ export default function abilityTest() {
       let camera = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
       await camera.longClick()
       await driver.delayMs(500)
-      // 在RK3568上点击物理坐标，尝试添加卡片
-      await driver.click(244, 350)
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+      let service_card=await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+      await service_card.click()
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       let addForm = await driver.findComponent(
       ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addForm.click()
-      await driver.delayMs(1000)
-      //随便点两下去掉悬浮的窗口
-      await driver.click(122, 175)
-      await driver.delayMs(1000)
-      await driver.click(122, 175)
       await driver.delayMs(1000)
       // 点击卡片物理坐标打开相机，RK3568
       await driver.click(220, 520)

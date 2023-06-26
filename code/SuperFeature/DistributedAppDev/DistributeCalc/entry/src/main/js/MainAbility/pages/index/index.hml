@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2022 Huawei Device Co., Ltd.
+Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -24,70 +24,70 @@ limitations under the License.
         </text>
       </div>
       <image if="{{ isFA == false }}" class="calc-icon-normal calc-select-device-btn" @click="showDialog"
-             src="/common/ic_hop_normal.svg"/>
+             src="/common/ic_hop_normal.svg" id="btn_hop"/>
     </stack>
-    <text class="calc-expr">
+    <text class="calc-expr" id="text_expression">
       {{ expression }}
     </text>
-    <text class="calc-rsl">
+    <text class="calc-rsl" id="text_result">
       {{ result }}
     </text>
   </div>
   <div class="input">
     <stack class="input-area">
-      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-1" @click="handleInput('7')">
+      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-1" @click="handleInput('7')" id="btn_seven">
         <text class="text-number">7</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-2" @click="handleInput('8')">
+      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-2" @click="handleInput('8')" id="btn_eight">
         <text class="text-number">8</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-3" @click="handleInput('9')">
+      <div class="calc-text-btn calc-btn-row-1 calc-btn-col-3" @click="handleInput('9')" id="btn_nine">
         <text class="text-number">9</text>
       </div>
-      <div class="calc-op-btn calc-btn-row-1 calc-btn-col-4" @click="handleInput('/')">
+      <div class="calc-op-btn calc-btn-row-1 calc-btn-col-4" @click="handleInput('/')" id="btn_divide">
         <image class="calc-icon" src="/common/ic_cal_devide.svg"></image>
       </div>
-      <div class="calc-op-btn calc-btn-row-1 calc-btn-col-5" @click="handleBackspace()">
+      <div class="calc-op-btn calc-btn-row-1 calc-btn-col-5" @click="handleBackspace()" id="btn_del">
         <image class="calc-icon" src="/common/ic_cal_delete.svg"></image>
       </div>
-      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-1" @click="handleInput('4')">
+      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-1" @click="handleInput('4')" id="btn_four">
         <text class="text-number">4</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-2" @click="handleInput('5')">
+      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-2" @click="handleInput('5')" id="btn_five">
         <text class="text-number">5</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-3" @click="handleInput('6')">
+      <div class="calc-text-btn calc-btn-row-2 calc-btn-col-3" @click="handleInput('6')" id="btn_six">
         <text class="text-number">6</text>
       </div>
-      <div class="calc-op-btn calc-btn-row-2 calc-btn-col-4" @click="handleInput('*')">
+      <div class="calc-op-btn calc-btn-row-2 calc-btn-col-4" @click="handleInput('*')" id="btn_mul">
         <image class="calc-icon" src="/common/ic_cal_multiply.svg"></image>
       </div>
-      <div class="calc-op-btn calc-btn-row-2 calc-btn-col-5" @click="handleClear">
+      <div class="calc-op-btn calc-btn-row-2 calc-btn-col-5" @click="handleClear" id="btn_c">
         <image class="calc-icon" src="/common/ic_cal_c.svg"></image>
       </div>
-      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-1" @click="handleInput('1')">
+      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-1" @click="handleInput('1')" id="btn_one">
         <text class="text-number">1</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-2" @click="handleInput('2')">
+      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-2" @click="handleInput('2')" id="btn_two">
         <text class="text-number">2</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-3" @click="handleInput('3')">
+      <div class="calc-text-btn calc-btn-row-3 calc-btn-col-3" @click="handleInput('3')" id="btn_three">
         <text class="text-number">3</text>
       </div>
-      <div class="calc-op-btn calc-btn-row-3 calc-btn-col-4" @click="handleInput('-')">
+      <div class="calc-op-btn calc-btn-row-3 calc-btn-col-4" @click="handleInput('-')" id="btn_sub">
         <image class="calc-icon" src="/common/ic_cal_minus.svg"></image>
       </div>
       <div class="calc-equals-btn calc-btn-row-3 calc-btn-col-5 calc-btn-col-span-2"
-           @click="handleEqual">
+           @click="handleEqual" id="btn_eq">
         <image class="calc-icon" src="/common/ic_cal_equal.svg"></image>
       </div>
-      <div class="calc-text-btn calc-btn-row-4 calc-btn-col-1 calc-btn-row-span-2" @click="handleInput('0')">
+      <div class="calc-text-btn calc-btn-row-4 calc-btn-col-1 calc-btn-row-span-2" @click="handleInput('0')" id="btn_zero">
         <text class="text-number">0</text>
       </div>
-      <div class="calc-text-btn calc-btn-row-4 calc-btn-col-3" @click="handleInput('.')">
+      <div class="calc-text-btn calc-btn-row-4 calc-btn-col-3" @click="handleInput('.')" id="btn_point">
         <text class="text-number">.</text>
       </div>
-      <div class="calc-op-btn calc-btn-row-4 calc-btn-col-4" @click="handleInput('+')">
+      <div class="calc-op-btn calc-btn-row-4 calc-btn-col-4" @click="handleInput('+')" id="btn_add">
         <image class="calc-icon" src="/common/ic_cal_plus.svg"></image>
       </div>
     </stack>

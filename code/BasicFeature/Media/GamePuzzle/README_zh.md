@@ -31,14 +31,14 @@ VideoComponent/src/main/ets/components
 ### 具体实现
 + 游戏中图片裁剪分割的效果实现在ImageModel中，源码参考[ImageModel](entry/src/main/ets/model/ImageModel.ts):
   + 获取本地图片：首先使用getMediaLibrary获取媒体库实例，然后使用getFileAssets方法获取文件资源，最后使用getAllObject获取检索结果中的所有文件资产方便展示；
-  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/monthly_20221018/zh-cn/application-dev/reference/apis/js-apis-inner-application-uiAbilityContext.md)申请，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets);
+  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets);
   + 图片编辑：首先使用createImagePacker创建ImagePacker实例，然后使用fileAsset.open打开文件，调用createImageSource接口创建图片源实例方便操作图片，接下来使用getImageInfo方法获取图片大小便于分割，最后使用createPixelMap方法传入每一份的尺寸参数完成图片裁剪。
 
 ### 相关权限
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
 
-[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionlocation)
 
 ### 依赖
 

@@ -5,28 +5,28 @@
       "value": "CustomNotification"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "mainAbility_desc",
       "value": "CustomNotification"
     },
     {
-      "name": "MainAbility_label",
+      "name": "mainAbility_label",
       "value": "CustomNotification"
     },
     {
       "name": "basic_notification",
-      "value": "基本类型通知"
+      "value": "基本型通知"
     },
     {
       "name": "long_text_notification",
-      "value": "长文本类型通知"
+      "value": "长文本型通知"
     },
     {
       "name": "multiline_notification",
-      "value": "多行文本类型通知"
+      "value": "多行文本型通知"
     },
     {
       "name": "picture_notification",
-      "value": "图片类型通知"
+      "value": "图片型通知"
     },
     {
       "name": "notification_with_buttons",
@@ -62,7 +62,7 @@
     },
     {
       "name": "cancel_all_notifications",
-      "value": "取消所有通知"
+      "value": "清空所有通知"
     },
     {
       "name": "first_button",
@@ -71,6 +71,26 @@
     {
       "name": "second_button",
       "value": "第二个按钮"
+    },
+    {
+      "name": "testAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "testAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "sound",
+      "value": "提示音"
+    },
+    {
+      "name": "vibration_effect",
+      "value": "震动效果"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
     }
   ]
 }

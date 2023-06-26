@@ -38,7 +38,7 @@ entry/src/main
 ```
 
 ### 具体实现
-1、在module.json5文件添加拓展能力，类型为卡片，并设置卡片入口srcEntrance和卡片元数据metadata。[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SuperFeature/Widget/AdaptiveServiceWidget/entry/src/main/module.json5) 例如："metadata": [
+1、在module.json5文件添加拓展能力，类型为卡片，并设置卡片入口srcEntrance和卡片元数据metadata。[源码参考](entry/src/main/module.json5) 例如："metadata": [
 {
 "name": "ohos.extension.form",
 "resource": "$profile:form_config"
@@ -46,7 +46,7 @@ entry/src/main
 2、初始化卡片：通过实现@ohos.app.form.FormExtensionAbility卡片操作类，在卡片对象首次被创建时，初始化卡片绑定数据为空，并将卡片状态设置为就绪状态READY。 例如：onCreate(){
 formBindingData.createFormBindingData({}) onAcquireFormState(want) {
 return formInfo.FormState.READY }。   
-3、配置卡片：用js编写相应的卡片，将卡片配置到resources/base/profile/form_config, [源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SuperFeature/Widget/AdaptiveServiceWidget/entry/src/main/resources/base/profile/form_config.json) 。
+3、配置卡片：用js编写相应的卡片，将卡片配置到resources/base/profile/form_config, [源码参考](entry/src/main/resources/base/profile/form_config.json) 。
 
 ### 相关权限
 

@@ -40,7 +40,7 @@ export function deleteNode(): string {
 
 export function getFirstNode(): string {
   if (paramsObject.has(nodeKey)) {
-    var fod = paramsObject.get(nodeKey);
+    let fod = paramsObject.get(nodeKey);
     return fod.toString();
   } else {
     return getString($r('app.string.please_insert'));

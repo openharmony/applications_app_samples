@@ -40,12 +40,12 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例主要通过hasSimCard方法获取指定卡槽SIM卡是否插卡，getSimState方法获取指定卡槽的SIM卡状态，SimState方法判断SIM卡状态，isSimActive方法获取指定卡槽SIM卡是否激活，getSimSpn方法获取指定卡槽SIM卡的服务提供商名称，getISOCountryCodeForSim方法获取指定卡槽SIM卡的ISO国家码，getSimOperatorNumeric方法获取指定卡槽SIM卡的归属PLMN号，getDefaultVoiceSlotId方法获取默认语音业务的卡槽ID等开发电话服务的相关功能。
-* 源码链接：[InfoView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/SimManager/entry/src/main/ets/common/InfoView.ets)，[ShowView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/SimManager/entry/src/main/ets/common/ShowView.ets)，[SimView.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Telephony/SimManager/entry/src/main/ets/common/SimView.ets)
+* 源码链接：[InfoView.ets](entry/src/main/ets/common/InfoView.ets)，[ShowView.ets](entry/src/main/ets/common/ShowView.ets)，[SimView.ets](entry/src/main/ets/common/SimView.ets)
 * 接口参考：[@ohos.telephony.sim](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-sim.md)
 
 ### 相关权限
 
-电话权限：[ohos.permission.GET_TELEPHONY_STATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+电话权限：[ohos.permission.GET_TELEPHONY_STATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_telephony_state)
 
 ### 依赖
 

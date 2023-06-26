@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,17 +22,22 @@ export default {
     },
     selectOptions: {
       default: []
-    }
+    },
+    selectName: {
+      default: ''
+    },
   },
 
   data: {
     selectedLeftText: '',
-    selectedOptions: ''
+    selectedOptions: '',
+    selectedValue: ''
   },
 
   onInit() {
     this.selectedLeftText = this.leftText
     this.selectedOptions = this.selectOptions
+    this.selectedValue = this.selectName;
   },
 
   changeSelectedValue(selectedValueObj) {

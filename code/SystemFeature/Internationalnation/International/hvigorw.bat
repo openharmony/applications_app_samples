@@ -12,7 +12,6 @@
 :: limitations under the License.
 
 @echo off
-
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
@@ -68,5 +67,12 @@ goto fail
 @rem Execute hvigor
 "%NODE_EXE%" %WRAPPER_MODULE_PATH% %*
 
+if "%ERRORLEVEL%" == "0" goto hvigorwEnd
+
 :fail
 exit /b 1
+
+:hvigorwEnd
+if "%OS%" == "Windows_NT" endlocal
+
+:end

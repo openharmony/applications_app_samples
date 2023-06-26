@@ -21,7 +21,7 @@ export default {
       default: 'title',
     }
   },
-  
+
   back() {
     router.back()
   }

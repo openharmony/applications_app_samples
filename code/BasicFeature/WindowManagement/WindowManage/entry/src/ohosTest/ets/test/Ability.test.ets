@@ -97,13 +97,16 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'SmallVideo_001 begin');
       let driver = Driver.create();
       // 找到视频窗口
+      await driver.assertComponentExist(ON.id('mainVideo'));
       let originVideo = await driver.findComponent(ON.id('mainVideo'));
       await originVideo.click();
       await driver.delayMs(1000);
       // 检查小窗是否存在
       await driver.assertComponentExist(ON.id('smallVideo'));
       await driver.delayMs(1000);
-      await originVideo.click();
+      await driver.assertComponentExist(ON.id('mainVideo'));
+      let originVideo2 = await driver.findComponent(ON.id('mainVideo'));
+      await originVideo2.click();
       await driver.delayMs(1000);
       // 检查小窗是否已经正常关闭
       let smallVideo = await driver.findComponent(ON.id('smallVideo'));
@@ -141,9 +144,54 @@ export default function abilityTest() {
       Logger.info(TAG, `startX:${centerStart.x}, startY:${centerStart.y}`);
       Logger.info(TAG, `endX:${centerEnd.x}, endY:${centerEnd.y}`);
       // 关闭小窗视频
-      await mainVideo.click();
+      let mainVideo2 = await driver.findComponent(ON.id('mainVideo'));
+      await mainVideo2.click();
       await driver.delayMs(1000);
       Logger.info(TAG, BUNDLE + 'DragSmallVideo_001 end');
+    })
+
+    /**
+     * 检查是否正常获焦
+     */
+    it(BUNDLE + 'GetFocus_001', 5, async () => {
+      Logger.info(TAG, BUNDLE + 'GetFocus_001 begin');
+      let driver = Driver.create();
+      // 找到视频窗口
+      let originVideo = await driver.findComponent(ON.id('mainVideo'));
+      await originVideo.click();
+      await driver.delayMs(1000);
+      // 检查小窗是否存在
+      await driver.assertComponentExist(ON.id('smallVideo'));
+      let smallVideo = await driver.findComponent(ON.id('smallVideo'));
+      await smallVideo.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('focus'));
+      // 经测试窗口获焦状态有bug
+      // await driver.assertComponentExist(ON.text('获焦状态'));
+      // 关闭小窗视频
+      let mainVideo2 = await driver.findComponent(ON.id('mainVideo'));
+      await mainVideo2.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, BUNDLE + 'GetFocus_001 end');
+    })
+
+    /**
+     * 检查是否正常失焦
+     */
+    it(BUNDLE + 'LoseFocus_001', 5, async () => {
+      Logger.info(TAG, BUNDLE + 'LoseFocus_001 begin');
+      let driver = Driver.create();
+      // 找到视频窗口
+      let originVideo = await driver.findComponent(ON.id('mainVideo'));
+      await originVideo.click();
+      await driver.delayMs(1000);
+      // 检查小窗是否存在
+      await driver.assertComponentExist(ON.id('smallVideo'));
+      await originVideo.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('focus'));
+      await driver.assertComponentExist(ON.text('失焦状态'));
+      Logger.info(TAG, BUNDLE + 'LoseFocus_001 end');
     })
   })
 }

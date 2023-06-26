@@ -21,7 +21,6 @@ export default struct TopBar {
   build() {
     Row() {
       Text($r('app.string.server'))
-        .width('20%')
         .fontSize(20)
         .margin({ left: '40%' })
         .textAlign(TextAlign.Center)
@@ -32,6 +31,7 @@ export default struct TopBar {
           .fontSize(15)
           .fontColor(Color.White)
       }
+      .id('btn_connect')
       .width(70)
       .height(40)
       .margin({ left: '20%' })

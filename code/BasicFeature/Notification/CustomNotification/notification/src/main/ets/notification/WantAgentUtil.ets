@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import wantAgent from '@ohos.wantAgent'
+import wantAgent from '@ohos.app.ability.wantAgent'
 
 const REQUEST_CODE: number = 0 // WantAgentInfo的请求码，默认定义成0
 class WantAgentUtil {
@@ -35,7 +35,7 @@ class WantAgentUtil {
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: REQUEST_CODE // requestCode是WantAgentInfo的请求码，是使用者定义的一个私有值
     }
-    return await wantAgent.getWantAgent(wantAgentInfo)
+    return await wantAgent.getWantAgent(wantAgentInfo);
   }
 
   /**
@@ -50,8 +50,8 @@ class WantAgentUtil {
       operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
       requestCode: REQUEST_CODE // requestCode是WantAgentInfo的请求码，是使用者定义的一个私有值
     }
-    return await wantAgent.getWantAgent(wantAgentInfo)
+    return await wantAgent.getWantAgent(wantAgentInfo);
   }
 }
 
-export let wantAgentUtil = new WantAgentUtil()
+export let wantAgentUtil = new WantAgentUtil();

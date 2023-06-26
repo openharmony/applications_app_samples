@@ -34,18 +34,20 @@ struct AlbumPage {
   private mediaDataSource: MediaDataSource = new MediaDataSource()
   @State selectMedia: mediaLibrary.FileAsset = undefined
 
-  btnAction(operate, index) {
+  btnAction(operate, index, mediaItemId) {
     Logger.info(this.tag, `btnAction callback,operate: ${operate}, index: ${index}`)
-    this.selectMedia = this.mediaDataSource['dataArray'][index]
+    let selectMediaArray = this.mediaDataSource['dataArray'].filter((item) => {
+      return item.id === mediaItemId;
+    });
+    this.selectMedia = selectMediaArray[0];
     if (operate === 'delete') {
       this.deleteMedia(() => {
-        let deleteResult = this.mediaUtils.deleteFile(this.selectMedia)
-        deleteResult.then(() => {
-          Logger.info(this.tag, 'deleteFile callback')
-          this.mediaDataSource['dataArray'].splice(index, 1)
-          this.mediaDataSource.notifyDataReload()
-        }).catch(err => {
-          Logger.error(this.tag, `deleteFile err,err: ${err}`)
+        this.mediaUtils.deleteFile(this.selectMedia);
+        this.mediaDataSource['dataArray'].forEach((item: mediaLibrary.FileAsset, index: number) => {
+          if (item.id === mediaItemId) {
+            this.mediaDataSource['dataArray'].splice(index, 1);
+            this.mediaDataSource.notifyDataReload();
+          }
         })
       })
     } else {
@@ -135,7 +137,7 @@ struct AlbumPage {
               )
             }
           })
-        }, item => item.title)
+        }, item => JSON.stringify(item.title))
       }
       .layoutWeight(1)
     }

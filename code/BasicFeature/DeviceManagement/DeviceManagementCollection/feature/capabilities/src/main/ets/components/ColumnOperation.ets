@@ -27,23 +27,30 @@ export struct ColumnOperation {
         Row() {
           Button() {
             Text(item)
-              .fontSize(16)
-              .fontColor(Color.White)
+              .fontSize(20)
+              .fontWeight(FontWeight.Medium)
+              .fontColor($r("app.color.list_title"))
+              .width('100%')
+              .padding({
+                left: 16
+              })
+              .textAlign(TextAlign.Start)
           }
           .width('100%')
-          .height(50)
-          .type(ButtonType.Capsule)
-          .margin({ right: 15, top: 15 })
+          .height(68)
+          .borderRadius(20)
+          .type(ButtonType.Normal)
+          .backgroundColor($r("app.color.white"))
+          .margin({ top: 16 })
           .onClick(() => {
-            this.doOperation(index);
+            this.doOperation(index)
           })
         }
         .width('100%')
-        .justifyContent(FlexAlign.Center)
+        .justifyContent(FlexAlign.Start)
       }, index => index)
     }
     .width('100%')
-    .padding({ bottom: 15 })
   }
 
   async aboutToAppear() {

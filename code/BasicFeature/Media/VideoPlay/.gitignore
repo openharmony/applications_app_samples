@@ -1,0 +1,14 @@
+/node_modules
+/local.properties
+/.idea
+**/build
+/.hvigor
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+/package-lock.json
+**/.preview
+**/package-lock.json
+/oh_modules
+**/oh_module

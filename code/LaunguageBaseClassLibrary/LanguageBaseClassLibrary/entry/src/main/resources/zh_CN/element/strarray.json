@@ -31,19 +31,19 @@
           "value": "Deque (线性容器Deque)"
         },
         {
-          "value": "HashMap (线性容器Deque)"
+          "value": "HashMap (非线性容器HashMap)"
         },
         {
           "value": "HashSet (非线性容器HashSet)"
         },
         {
-          "value": "LightWeightMap (非线性容器HashSet)"
+          "value": "LightWeightMap (非线性容器LightWeightMap)"
         },
         {
-          "value": "LightWeightSet (非线性容器HashSet)"
+          "value": "LightWeightSet (非线性容器LightWeightSet)"
         },
         {
-          "value": "LinkedList (非线性容器HashSet)"
+          "value": "LinkedList (线性容器LinkedList)"
         },
         {
           "value": "List (线性容器List)"

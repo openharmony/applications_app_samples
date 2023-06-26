@@ -39,7 +39,7 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用abilityAccessCtrl接口中abilityAccessCtrl方法获取访问控制模块对象，GrantStatus.PERMISSION_GRANTED方法表示已授权状态，bundleManager接口中getApplicationInfo方法根据包名获取ApplicationInfo等展示应用申请权限场景
-* 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Security/AbilityAccessCtrl/entry/src/main/ets/verifyability/pages/Index.ets)
+* 源码链接：[Index.ets](entry/src/main/ets/verifyability/pages/Index.ets)
 * 接口参考：[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bundleManager.md)
 
 ### 相关权限

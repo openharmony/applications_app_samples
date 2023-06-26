@@ -40,12 +40,12 @@ entry/src/main/ets/
 
 * 真实屏幕模块
   * 首字母显示为R，且不能进行删除，点击跳转屏幕属性页面展示真实屏幕属性
-  * 源码链接：[Detector.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/ScreenDetector/entry/src/main/ets/common/Detector.ets)，[ShowInfo.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/ScreenDetector/entry/src/main/ets/common/ShowInfo.ets)
+  * 源码链接：[Detector.ets](entry/src/main/ets/common/Detector.ets)，[ShowInfo.ets](entry/src/main/ets/common/ShowInfo.ets)
   * 接口参考：[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
 
 * 新增和删除虚拟屏幕模块
   * getAllDisplay获取当前所有的display对象，getDefaultDisplay获取当前默认的display对象,push方法新增虚拟屏幕，增加超过5个虚拟屏幕时，给出警告，pop方法删除虚拟屏幕，全部删除虚拟屏幕后，点击给出警告，点击虚拟屏幕展示虚拟屏幕属性
-  * 源码链接：[Detector.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/ScreenDetector/entry/src/main/ets/common/Detector.ets)，[ShowInfo.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/ScreenDetector/entry/src/main/ets/common/ShowInfo.ets)，[Warn.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/ScreenDetector/entry/src/main/ets/common/Warn.ets)
+  * 源码链接：[Detector.ets](entry/src/main/ets/common/Detector.ets)，[ShowInfo.ets](entry/src/main/ets/common/ShowInfo.ets)，[Warn.ets](entry/src/main/ets/common/Warn.ets)
   * 接口参考：[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
 
 ### 相关权限

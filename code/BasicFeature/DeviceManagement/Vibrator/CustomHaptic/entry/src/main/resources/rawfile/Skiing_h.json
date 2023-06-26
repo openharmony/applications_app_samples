@@ -1,0 +1,800 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 3
+						},
+						"StartTime" : 128,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 14
+						},
+						"StartTime" : 178,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 24
+						},
+						"StartTime" : 228,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 29
+						},
+						"StartTime" : 278,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 33
+						},
+						"StartTime" : 328,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 39
+						},
+						"StartTime" : 378,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 49
+						},
+						"StartTime" : 428,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 54
+						},
+						"StartTime" : 478,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 52
+						},
+						"StartTime" : 528,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 53
+						},
+						"StartTime" : 578,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 57
+						},
+						"StartTime" : 628,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 79,
+							"Intensity" : 62
+						},
+						"StartTime" : 678,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 64
+						},
+						"StartTime" : 728,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 81,
+							"Intensity" : 67
+						},
+						"StartTime" : 778,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 63
+						},
+						"StartTime" : 828,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 58
+						},
+						"StartTime" : 878,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 79,
+							"Intensity" : 52
+						},
+						"StartTime" : 928,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 42
+						},
+						"StartTime" : 978,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 35
+						},
+						"StartTime" : 1028,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 31
+						},
+						"StartTime" : 1078,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 35
+						},
+						"StartTime" : 1128,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 38
+						},
+						"StartTime" : 1178,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 38
+						},
+						"StartTime" : 1228,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 40
+						},
+						"StartTime" : 1278,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 49
+						},
+						"StartTime" : 1328,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 79,
+							"Intensity" : 56
+						},
+						"StartTime" : 1378,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 79,
+							"Intensity" : 60
+						},
+						"StartTime" : 1428,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 62
+						},
+						"StartTime" : 1478,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 81,
+							"Intensity" : 64
+						},
+						"StartTime" : 1528,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 81,
+							"Intensity" : 61
+						},
+						"StartTime" : 1578,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 58
+						},
+						"StartTime" : 1628,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 54
+						},
+						"StartTime" : 1678,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 79,
+							"Intensity" : 51
+						},
+						"StartTime" : 1728,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 79,
+							"Intensity" : 48
+						},
+						"StartTime" : 1778,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 44
+						},
+						"StartTime" : 1828,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 34
+						},
+						"StartTime" : 1878,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 55,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 20
+						},
+						"StartTime" : 1928,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 72,
+							"Intensity" : 70
+						},
+						"StartTime" : 2005,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 74,
+							"Intensity" : 98
+						},
+						"StartTime" : 2055,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 75,
+							"Intensity" : 96
+						},
+						"StartTime" : 2105,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 76,
+							"Intensity" : 62
+						},
+						"StartTime" : 2155,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 60,
+						"Parameters" : 
+						{
+							"Frequency" : 73,
+							"Intensity" : 83
+						},
+						"StartTime" : 2205,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 57,
+							"Intensity" : 31
+						},
+						"StartTime" : 2296,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 72,
+							"Intensity" : 48
+						},
+						"StartTime" : 2378,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 74,
+							"Intensity" : 67
+						},
+						"StartTime" : 2428,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 75,
+							"Intensity" : 66
+						},
+						"StartTime" : 2478,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 76,
+							"Intensity" : 44
+						},
+						"StartTime" : 2528,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 60,
+						"Parameters" : 
+						{
+							"Frequency" : 73,
+							"Intensity" : 52
+						},
+						"StartTime" : 2578,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 25
+						},
+						"StartTime" : 2638,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 29
+						},
+						"StartTime" : 2688,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 31
+						},
+						"StartTime" : 2738,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 81,
+							"Intensity" : 29
+						},
+						"StartTime" : 2788,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 31
+						},
+						"StartTime" : 2838,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 28
+						},
+						"StartTime" : 2888,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 21
+						},
+						"StartTime" : 2938,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 22
+						},
+						"StartTime" : 2988,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 77,
+							"Intensity" : 22
+						},
+						"StartTime" : 3038,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 80,
+							"Intensity" : 17
+						},
+						"StartTime" : 3088,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 50,
+						"Parameters" : 
+						{
+							"Frequency" : 81,
+							"Intensity" : 13
+						},
+						"StartTime" : 3138,
+						"Type" : "continuous"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Duration" : 86,
+						"Parameters" : 
+						{
+							"Frequency" : 78,
+							"Intensity" : 9
+						},
+						"StartTime" : 3188,
+						"Type" : "continuous"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-17",
+		"Discription" : "A json file format demo",
+		"Version" : 1.0
+	}
+}

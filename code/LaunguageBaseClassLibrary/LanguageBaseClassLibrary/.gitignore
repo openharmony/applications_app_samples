@@ -2,9 +2,11 @@
 /local.properties
 /.idea
 **/build
-**/package-lock.json
 /.hvigor
 .cxx
 /.clangd
 /.clang-format
 /.clang-tidy
+**/oh_modules
+**/oh-package-lock.json5
+/build-profile.json5

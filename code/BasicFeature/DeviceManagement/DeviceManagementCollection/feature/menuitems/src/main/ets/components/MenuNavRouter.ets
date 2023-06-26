@@ -29,8 +29,8 @@ export struct MenuNavRouter {
   @Builder CustomDivider() {
     Divider()
       .strokeWidth('1px')
-      .color($r('sys.color.ohos_id_color_list_separator'))
-      .margin({ left: 8, right: 8 })
+      .color($r("app.color.divider"))
+      .margin({ left: 16, right: 16 })
   }
 
   build() {
@@ -38,7 +38,7 @@ export struct MenuNavRouter {
       Column() {
         ForEach(this.childList, (item: string, index: number) => {
           if (index > 0) {
-            this.CustomDivider()
+            this.CustomDivider();
           }
           NavRouter() {
             MainItem({
@@ -46,10 +46,7 @@ export struct MenuNavRouter {
             })
             NavDestination() {
               Column() {
-                Divider()
-                  .strokeWidth('1px')
-                  .color($r('sys.color.ohos_id_color_list_separator'))
-                this.navDestination()
+                this.navDestination();
               }
             }
             .title(item)

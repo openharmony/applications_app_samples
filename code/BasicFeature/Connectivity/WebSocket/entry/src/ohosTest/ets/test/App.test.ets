@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Component, Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
 const BUNDLE = 'WebSocket'
@@ -27,7 +28,7 @@ export default function appTest() {
      * 打开应用
      */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + ' StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
@@ -37,10 +38,162 @@ export default function appTest() {
         done();
       } catch (expection) {
         expect(0).assertEqual(expection.code);
-        hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(expection));
+        hilog.info(DOMAIN, TAG, ' StartAbility end err:' + JSON.stringify(expection));
         done();
       }
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + ' StartAbility_001 end');
+    })
+    /**
+     * 绑定服务器
+     */
+    it(BUNDLE + 'bindServer_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + ' bindServer begin')
+      let driver = await Driver.create()
+      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' bindServer input ip address')
+      // 输入服务器地址
+      await driver.assertComponentExist(ON.id('text_ip_input'))
+      let ipInput = await driver.findComponent(ON.id('text_ip_input'))
+      await ipInput.inputText("xxx.xxx.xxx.xxx")
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' bindServer bind server')
+      // 点击绑定按钮
+      await driver.assertComponentExist(ON.id('btn_bind'))
+      let btnBind = await driver.findComponent(ON.id('btn_bind'))
+      await btnBind.click()
+      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' bindServer end')
+    })
+    /**
+     * 发送信息
+     */
+    it(BUNDLE + 'sendMessage_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(500)
+
+      // 输入内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_001 input message')
+      await driver.assertComponentExist(ON.id('text_input'))
+      let mesInput = await driver.findComponent(ON.id('text_input'))
+      await mesInput.inputText("hello")
+      await driver.delayMs(1000)
+
+      // 发送信息
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_001 send')
+      await driver.assertComponentExist(ON.id('btn_send'))
+      let btnBind = await driver.findComponent(ON.id('btn_send'))
+      await btnBind.click()
+      await driver.delayMs(500)
+
+      // 校验内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_001 check message')
+      await driver.assertComponentExist(ON.text('hello'))
+      let replyList = await driver.findComponents(ON.text("\"StringHandler\""))
+      expect(replyList).assertNull()
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_001 end')
+    })
+    /**
+     * 连接服务器
+     */
+    it(BUNDLE + 'connectServer_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + ' connectServer begin')
+      let driver = await Driver.create()
+      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' connectServer connect')
+      // 点击连接按钮
+      await driver.assertComponentExist(ON.id('btn_connect'))
+      let btnBind = await driver.findComponent(ON.id('btn_connect'))
+      await btnBind.click()
+      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' connectServer end')
+    })
+    /**
+     * 发送信息
+     */
+    it(BUNDLE + 'sendMessage_002', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(500)
+
+      // 输入内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 input message')
+      await driver.assertComponentExist(ON.id('text_input'))
+      let mesInput = await driver.findComponent(ON.id('text_input'))
+      await mesInput.inputText("hello1")
+      await driver.delayMs(1000)
+
+      // 发送信息
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 send')
+      await driver.assertComponentExist(ON.id('btn_send'))
+      let btnBind = await driver.findComponent(ON.id('btn_send'))
+      await btnBind.click()
+      await driver.delayMs(500)
+
+      // 输入内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 input message')
+      await mesInput.inputText("hello2")
+      await driver.delayMs(1000)
+
+      // 发送信息
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 send')
+      await btnBind.click()
+      await driver.delayMs(500)
+
+      // 校验内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 check message')
+      await driver.assertComponentExist(ON.text('hello1'))
+      await driver.assertComponentExist(ON.text('hello2'))
+      let replyList = await driver.findComponents(ON.text("\"StringHandler\""))
+      expect(2).assertEqual(replyList.length)
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage end')
+    })
+    /**
+     * 断开服务器
+     */
+    it(BUNDLE + 'disconnectServer_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + ' disconnectServer_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' disconnectServer_001 connect')
+      // 点击连接按钮
+      await driver.assertComponentExist(ON.id('btn_connect'))
+      let btnBind = await driver.findComponent(ON.id('btn_connect'))
+      await btnBind.click()
+      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' disconnectServer_001 end')
+    })
+    /**
+     * 发送信息
+     */
+    it(BUNDLE + 'sendMessage_003', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_003 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(500)
+
+      // 输入内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_003 input message')
+      await driver.assertComponentExist(ON.id('text_input'))
+      let mesInput = await driver.findComponent(ON.id('text_input'))
+      await mesInput.inputText("hello3")
+      await driver.delayMs(1000)
+
+      // 发送信息
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_003 send')
+      await driver.assertComponentExist(ON.id('btn_send'))
+      let btnBind = await driver.findComponent(ON.id('btn_send'))
+      await btnBind.click()
+      await driver.delayMs(500)
+
+      // 校验内容
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_003 check message')
+      await driver.assertComponentExist(ON.text('hello3'))
+      let replyList = await driver.findComponents(ON.text("\"StringHandler\""))
+      expect(2).assertEqual(replyList.length)
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_003 end')
     })
   })
 }

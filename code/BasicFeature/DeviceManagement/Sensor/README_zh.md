@@ -30,7 +30,7 @@ Math.round(alpha)得出他的整数角度，配合Image组件的旋转属性rota
 
 ### 相关权限
 
-[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
 
 ### 依赖
 

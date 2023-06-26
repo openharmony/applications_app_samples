@@ -39,7 +39,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionkeep_background_running)
 
 ### 依赖
 

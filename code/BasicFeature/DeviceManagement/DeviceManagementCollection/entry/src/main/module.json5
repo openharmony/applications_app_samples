@@ -50,7 +50,7 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.REBOOT"
+        "name": "ohos.permission.RUNNING_LOCK"
       }
     ]
   }

@@ -5,28 +5,28 @@
       "value": "test ability description"
     },
     {
-      "name": "TestAbility_desc",
+      "name": "testAbility_desc",
       "value": "the test ability"
     },
     {
-      "name": "TestAbility_label",
+      "name": "testAbility_label",
       "value": "test label"
     },
     {
       "name": "basic_notification",
-      "value": "基本类型通知"
+      "value": "基本型通知"
     },
     {
       "name": "long_text_notification",
-      "value": "长文本类型通知"
+      "value": "长文本型通知"
     },
     {
       "name": "multiline_notification",
-      "value": "多行文本类型通知"
+      "value": "多行文本型通知"
     },
     {
       "name": "picture_notification",
-      "value": "图片类型通知"
+      "value": "图片型通知"
     },
     {
       "name": "notification_with_buttons",
@@ -62,7 +62,7 @@
     },
     {
       "name": "cancel_all_notifications",
-      "value": "取消所有通知"
+      "value": "清空所有通知"
     },
     {
       "name": "first_button",

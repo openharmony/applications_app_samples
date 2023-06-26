@@ -14,7 +14,7 @@
 
 使用说明
 
-1.安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本[b_sign_hap_release.bat](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/signature/material/b_sign_hap_release.bat) 去生成签名的应用包，再将此签名应用包进行安装即可；
+1.安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本[b_sign_hap_release.bat](signature/material/b_sign_hap_release.bat) 去生成签名的应用包，再将此签名应用包进行安装即可；
 
 2.进入应用，点击检查更新按钮，点击弹出框更新按钮会进行下载补丁包；
 
@@ -42,14 +42,14 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用cancelSuspendDelay方法取消延迟挂起，applyQuickFix方法快速修复补丁，createHttp方法创建一个HTTP请求，openSync方法同步打开文件，writeSync方法同步将数据写入文件，closeSync方法同步关闭文件流等接口实现应用热更新的方式去展现短时任务机制。
-* 源码链接：[MainAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/entry/src/main/ets/MainAbility/MainAbility.ts)，[LoadFile.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/entry/src/main/ets/feature/LoadFile.ts)，[SaveFile.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/entry/src/main/ets/feature/SaveFile.ts)，[UpdateDialog.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/TransientTask/entry/src/main/ets/pages/UpdateDialog.ets)
+* 源码链接：[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)，[LoadFile.ts](entry/src/main/ets/feature/LoadFile.ts)，[SaveFile.ts](entry/src/main/ets/feature/SaveFile.ts)，[UpdateDialog.ets](entry/src/main/ets/pages/UpdateDialog.ets)
 * 接口参考：[@ohos.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-quickFixManager.md)，[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)
 
 ### 相关权限
 
-1.允许应用安装、卸载其他应用权限：[ohos.permission.INSTALL_BUNDLE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+1.允许应用安装、卸载其他应用权限：[ohos.permission.INSTALL_BUNDLE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninstall_bundle)
 
-2.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+2.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
 ### 依赖
 

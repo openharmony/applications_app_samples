@@ -1,20 +1,56 @@
 {
   "string": [
     {
-      "name": "description_TestAbility",
-      "value": "eTS_Empty Ability"
+      "name": "module_test_desc",
+      "value": "test ability description"
     },
     {
-      "name": "entry_TestAbility",
-      "value": "entry_TestAbility"
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test international"
+    },
+    {
+      "name": "language_region",
+      "value": "Language and region"
+    },
+    {
+      "name": "add_language",
+      "value": "Add language"
+    },
+    {
+      "name": "current_region",
+      "value": "Current region"
+    },
+    {
+      "name": "united_states",
+      "value": "United States"
     },
     {
       "name": "date_time",
       "value": "Date and time"
     },
     {
+      "name": "date",
+      "value": "Date"
+    },
+    {
+      "name": "time",
+      "value": "Time"
+    },
+    {
+      "name": "ok",
+      "value": "OK"
+    },
+    {
       "name": "time_zone",
       "value": "TimeZone"
+    },
+    {
+      "name": "format_example",
+      "value": "Locale format example"
     }
   ]
 }

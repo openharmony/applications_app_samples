@@ -21,9 +21,9 @@ export function hmsToString(time: number) {
   let hour = getContext().resourceManager.getStringSync($r('app.string.hour').id)
   let minute = getContext().resourceManager.getStringSync($r('app.string.minute').id)
   let second = getContext().resourceManager.getStringSync($r('app.string.second').id)
-  if (Math.floor(time / 60 / 60 % 24) > 1) {
+  if (Math.floor(time / 60 / 60 % 24) >= 1) {
     timeStr = `${Math.floor(time / 60 / 60 % 24)} ${hour} ${Math.floor(time / 60 % 60)} ${minute} ${Math.floor(time % 60)} ${second}`
-  } else if (Math.floor(time / 60 % 60) > 1) {
+  } else if (Math.floor(time / 60 % 60) >= 1) {
     timeStr = `${Math.floor(time / 60 % 60)} ${minute} ${Math.floor(time % 60)} ${second}`
   } else {
     timeStr = `${Math.floor(time % 60)} ${second}`

@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "分布式帐号"
+    },
+    {
+      "name": "AccountName_input",
+      "value": "请输入帐号名"
+    },
+    {
+      "name": "AccountNickName_input",
+      "value": "请输入帐号昵称"
+    },
+    {
+      "name": "select_osAccount",
+      "value": "选择绑定的系统帐号"
+    },
+    {
+      "name": "Bind",
+      "value": "绑定"
+    },
+    {
+      "name": "Unbind",
+      "value": "解绑"
+    },
+    {
+      "name": "Bind_successful",
+      "value": "绑定成功"
+    },
+    {
+      "name": "Bind_failed",
+      "value": "绑定失败"
+    },
+    {
+      "name": "Unbind_successful",
+      "value": "解绑成功"
+    },
+    {
+      "name": "Unbind_failed",
+      "value": "解绑失败"
+    },
+    {
+      "name": "Logged_DistributedAccount_management",
+      "value": "已登录分布式帐号管理"
+    },
+    {
+      "name": "DistributedAccount_info",
+      "value": "分布式帐号信息"
+    },
+    {
+      "name": "AccountName",
+      "value": "帐号名"
+    },
+    {
+      "name": "NickName",
+      "value": "昵称"
+    },
+    {
+      "name": "unbind",
+      "value": "解绑帐号"
+    },
+    {
+      "name": "Cancel",
+      "value": "取消"
+    },
+    {
+      "name": "Yes",
+      "value": "是"
+    },
+    {
+      "name": "No",
+      "value": "否"
+    },
+    {
+      "name": "Null",
+      "value": "空"
+    },
+    {
+      "name": "Bound_System_Account",
+      "value": "绑定的系统帐号"
+    }
+  ]
+}

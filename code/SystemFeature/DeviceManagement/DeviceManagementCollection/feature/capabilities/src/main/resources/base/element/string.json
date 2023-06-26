@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "power_manager",
+      "value": "System Power Management"
+    },
+    {
+      "name": "battery_statistics",
+      "value": "Battery Statistics"
+    },
+    {
+      "name": "brightness_manager",
+      "value": "Screen Brightness"
+    },
+    {
+      "name": "settings",
+      "value": "Data Item Settings"
+    },
+    {
+      "name": "system_capability",
+      "value": "SystemCapability"
+    },
+    {
+      "name": "system_parameter",
+      "value": "System Parameter"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "suspend",
+      "value": "suspend"
+    },
+    {
+      "name": "turnOff",
+      "value": "turn off"
+    },
+    {
+      "name": "questionTurnOff",
+      "value": "Are you sure you want to turn it off ?"
+    },
+    {
+      "name": "restart",
+      "value": "restart"
+    },
+    {
+      "name": "questionRestart",
+      "value": "Are you sure you want to reboot ?"
+    },
+    {
+      "name": "battery_stats_type_invalid",
+      "value": "Unknown"
+    },
+    {
+      "name": "battery_stats_type_bluetooth",
+      "value": "BlueTooth"
+    },
+    {
+      "name": "battery_stats_type_idle",
+      "value": "IDLE"
+    },
+    {
+      "name": "battery_stats_type_phone",
+      "value": "Phone"
+    },
+    {
+      "name": "battery_stats_type_radio",
+      "value": "Radio"
+    },
+    {
+      "name": "battery_stats_type_screen",
+      "value": "Screen"
+    },
+    {
+      "name": "battery_stats_type_user",
+      "value": "User"
+    },
+    {
+      "name": "battery_stats_type_wifi",
+      "value": "WIFI"
+    },
+    {
+      "name": "battery_stats_hardware",
+      "value": "Hardware(%s%)"
+    },
+    {
+      "name": "battery_stats_software",
+      "value": "Software(%s%)"
+    },
+    {
+      "name": "suspend_status",
+      "value": "suspend status:"
+    },
+    {
+      "name": "power_mode",
+      "value": "current power mode:"
+    }
+  ]
+}

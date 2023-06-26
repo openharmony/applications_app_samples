@@ -56,16 +56,28 @@ struct Focus {
     }
   ]
   private fileDescriptors = [null, null]
-  private appContext: common.Context
+  private appContext: common.Context = null
   private audioSources = ['test1.wav', 'test2.wav']
-  @State stateImg: Array<Resource> = [$r('app.media.ic_pause'), $r('app.media.ic_pause_no')]
+  @State stateImg: Array<Resource> = [$r('app.media.ic_pause_y'), $r('app.media.ic_pause_no')]
   @State stateText: Array<string> = ['ic_pause', 'ic_pause_no']
   @State starts: Array<number> = [0, 0]
   @State curTimeSecs: Array<number> = [0, 0]
   @State musicIsClicked: boolean = false
-  private playerContainer = [MUSIC_INDEX, RINGTONE_INDEX]
 
-  async aboutToAppear() {
+  aboutToAppear() {
+    this.init()
+  }
+
+  async init() {
+    if (this.appContext !== null) {
+      return
+    }
+    this.fileDescriptors = [null, null]
+    this.stateImg = [$r('app.media.ic_pause_y'), $r('app.media.ic_pause_no')]
+    this.stateText = ['ic_pause', 'ic_pause_no']
+    this.starts = [0, 0]
+    this.curTimeSecs = [0, 0]
+    this.musicIsClicked = false
     this.appContext = getContext(this)
     await this.getStageFileDescriptor(this.audioSources[MUSIC_INDEX]).then((res) => {
       this.fileDescriptors[MUSIC_INDEX] = res
@@ -74,7 +86,7 @@ struct Focus {
       this.fileDescriptors[RINGTONE_INDEX] = res
     })
 
-    PLAYER_CONTAINER.forEach(async (index) => {
+    for (let index = 0; index < PLAYER_CONTAINER.length; index++) {
       try {
         this.audioRenderers[index] = await audio.createAudioRenderer(this.audioRendererOptions[index])
         await this.audioRenderers[index].setInterruptMode(audio.InterruptMode.INDEPENDENT_MODE)
@@ -84,13 +96,39 @@ struct Focus {
         console.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
         return
       }
-    })
+    }
   }
 
-  onBackPress() {
-    PLAYER_CONTAINER.forEach(async (index) => {
-      await this.audioRenderers[index].release()
-    })
+  async over() {
+    this.appContext = null
+    if (this.audioRenderers[MUSIC_INDEX] !== null) {
+      await this.audioRenderers[MUSIC_INDEX].release()
+      this.audioRenderers[MUSIC_INDEX] = null
+    }
+    if (this.audioRenderers[RINGTONE_INDEX] !== null) {
+      await this.audioRenderers[RINGTONE_INDEX].release()
+      this.audioRenderers[RINGTONE_INDEX] = null
+    }
+    if (this.fileDescriptors[MUSIC_INDEX] !== null) {
+      await this.closeResource(this.audioSources[MUSIC_INDEX])
+      this.fileDescriptors[MUSIC_INDEX] = null
+    }
+    if (this.fileDescriptors[RINGTONE_INDEX] !== null) {
+      await this.closeResource(this.audioSources[RINGTONE_INDEX])
+      this.fileDescriptors[RINGTONE_INDEX] = null
+    }
+  }
+
+  async onBackPress() {
+    this.over()
+  }
+
+  async onPageHide() {
+    this.over()
+  }
+
+  onPageShow() {
+    this.init()
   }
 
   listenFocus(index) {
@@ -115,12 +153,12 @@ struct Focus {
           this.stateImg[index] = $r('app.media.ic_play_no')
           this.stateText[index] = 'ic_play_no'
         } else {
-          this.stateImg[index] = $r('app.media.ic_play')
+          this.stateImg[index] = $r('app.media.ic_play_y')
           this.stateText[index] = 'ic_play'
         }
       }
       if (state === audio.AudioState.STATE_PAUSED) {
-        this.stateImg[index] = $r('app.media.ic_pause')
+        this.stateImg[index] = $r('app.media.ic_pause_y')
         this.stateText[index] = 'ic_pause'
       }
       if (state === audio.AudioState.STATE_STOPPED) {
@@ -146,7 +184,19 @@ struct Focus {
     return fileDescriptor
   }
 
+  async closeResource(fileName) {
+    let mgr = this.appContext.resourceManager
+    await mgr.closeRawFd(fileName).then(() => {
+      console.log('case closeRawFd success fileName: ' + fileName)
+    }).catch(error => {
+      console.log('case closeRawFd err: ' + error)
+    })
+  }
+
   async play(index) {
+    if (this.audioRenderers[index] === null) {
+      return
+    }
     let bufferSize
     try {
       bufferSize = await this.audioRenderers[index].getBufferSize()
@@ -163,12 +213,16 @@ struct Focus {
       }
       let cur = this.starts[index]
       while (cur < start + this.fileDescriptors[index].length) {
-        //when render paused,state is changed to STATE_PAUSED
+        // when render released,state is changed to STATE_RELEASED
+        if (this.audioRenderers[index].state === audio.AudioState.STATE_RELEASED) {
+          break
+        }
+        // when render paused,state is changed to STATE_PAUSED
         if (this.audioRenderers[index].state === audio.AudioState.STATE_PAUSED) {
           this.starts[index] = cur
           break
         }
-        //when render stopped,state is changed to STATE_STOPPED
+        // when render stopped,state is changed to STATE_STOPPED
         if (this.audioRenderers[index].state === audio.AudioState.STATE_STOPPED) {
           this.starts[index] = this.fileDescriptors[index].length
           this.curTimeSecs[index] = TOTAL_SECOND
@@ -180,11 +234,11 @@ struct Focus {
         }
         await fs.read(this.fileDescriptors[index].fd, buf, options)
         await this.audioRenderers[index].write(buf)
-        //update progress
+        // update progress
         this.curTimeSecs[index] = this.getCurTimeSec(TOTAL_SECOND, parseInt(this.fileDescriptors[index].length), cur - start)
         cur += bufferSize
       }
-      //when audio play completed,update state to stopped
+      // when audio play completed,update state to stopped
       if (cur >= this.fileDescriptors[index].length) {
         await this.audioRenderers[index].stop()
         this.curTimeSecs[index] = TOTAL_SECOND
@@ -206,98 +260,132 @@ struct Focus {
   build() {
     Column() {
       Row() {
-        Image($r('app.media.ic_back')).width(24).height(24)
-        Text($r('app.string.Back')).fontSize(24).fontWeight(FontWeight.Bold).margin({ left: 10 })
-      }
-      .id('back_btn_focus')
-      .height(56).width('100%')
+        Navigation() {
+          NavRouter() {
+            NavDestination() {
+            }
+          }
+        }
+        .height('100%')
+        .width('100%')
+        .hideBackButton(false)
+        .titleMode(NavigationTitleMode.Mini)
+        .title($r('app.string.AudioFocus'))
+        .mode(NavigationMode.Stack)
+      }.height(56).width('100%').id('back_btn_focus')
       .onClick(async () => {
         await router.pushUrl({ url: 'pages/Index' })
-        await this.audioRenderers[MUSIC_INDEX].release()
-        await this.audioRenderers[RINGTONE_INDEX].release()
       })
 
       Column() {
-        Row() {
+        Column() {
           Row() {
-            Image($r('app.media.ic_music')).width(48).height(48)
-            Text($r('app.string.MusicType')).fontSize(20).margin({ left: 10 })
-          }.margin({ left: 10 })
-
-          Text(this.stateText[MUSIC_INDEX]).id('music_state_text').fontSize(10).fontColor(Color.White)
-          Image(this.stateImg[MUSIC_INDEX]).id('music_state_img').width(36).height(36).margin({ right: 10 })
-        }.justifyContent(FlexAlign.SpaceBetween).width('100%').margin({ top: 10 })
-
-        Row() {
-          Column() {
             Row() {
-              Progress({ value: this.curTimeSecs[MUSIC_INDEX], total: TOTAL_SECOND, type: ProgressType.Linear })
-                .color(Color.Blue)
-                .value(this.curTimeSecs[MUSIC_INDEX])
-                .width('94%')
-            }.margin({ top: 20, bottom: 10 })
+              Image($r('app.media.ic_music')).width(48).height(48)
+              Text($r('app.string.MusicType'))
+                .fontSize(16)
+                .margin({ left: 12 })
+                .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+                .fontColor('#182431')
+                .fontWeight(500)
+            }
 
-            Row() {
-              Text(this.curTimeSecs[MUSIC_INDEX] + 's').margin({ left: 10 }).fontSize(16)
-              Text(TOTAL_SECOND + 's').margin({ right: 10 }).fontSize(16)
-            }.justifyContent(FlexAlign.SpaceBetween).width('100%')
+            Text(this.stateText[MUSIC_INDEX]).id('music_state_text').fontSize(10).fontColor(Color.White)
+            Image(this.stateImg[MUSIC_INDEX]).id('music_state_img').width(36).height(36)
+          }.justifyContent(FlexAlign.SpaceBetween).width('100%').margin({ top: 12 })
 
-          }
-        }
-      }
-      .id('music_player_item')
-      .height(126)
-      .width('100%')
-      .backgroundColor(Color.White)
-      .margin({ bottom: 20 })
-      .onClick(() => {
-        if (this.audioRenderers[MUSIC_INDEX].state === audio.AudioState.STATE_PREPARED) {
-          this.play(MUSIC_INDEX)
-          this.musicIsClicked = true
-          this.stateText[RINGTONE_INDEX] = 'ic_pause'
-          this.stateImg[RINGTONE_INDEX] = $r('app.media.ic_pause')
-        }
-      })
-
-      Column() {
-        Row() {
           Row() {
-            Image($r('app.media.ic_ring')).width(48).height(48)
-            Text($r('app.string.RingtoneType')).fontSize(20).margin({ left: 10 })
-          }.margin({ left: 10 })
+            Progress({ value: this.curTimeSecs[MUSIC_INDEX], total: TOTAL_SECOND, type: ProgressType.Linear })
+              .color('#007DFF')
+              .value(this.curTimeSecs[MUSIC_INDEX])
+              .width('100%')
+              .height(4)
+          }.margin({ top: 24, bottom: 3 }).width('100%')
 
-          Text(this.stateText[RINGTONE_INDEX]).id('ringtone_state_text').fontSize(10).fontColor(Color.White)
-          Image(this.stateImg[RINGTONE_INDEX]).id('ringtone_state_img').width(36).height(36).margin({ right: 10 })
-        }.justifyContent(FlexAlign.SpaceBetween).width('100%').margin({ top: 10 })
-
-        Row() {
-          Column() {
-            Row() {
-              Progress({ value: this.curTimeSecs[RINGTONE_INDEX], total: TOTAL_SECOND, type: ProgressType.Linear })
-                .color(Color.Blue)
-                .value(this.curTimeSecs[RINGTONE_INDEX])
-                .width('94%')
-            }.margin({ top: 20, bottom: 10 })
-
-            Row() {
-              Text(this.curTimeSecs[RINGTONE_INDEX] + 's').margin({ left: 10 }).fontSize(16)
-              Text(TOTAL_SECOND + 's').margin({ right: 10 }).fontSize(16)
-            }.justifyContent(FlexAlign.SpaceBetween).width('100%')
+          Row() {
+            Text(this.curTimeSecs[MUSIC_INDEX] + 's')
+              .fontSize(12)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontColor('#182431')
+              .opacity(0.6)
+              .fontWeight(400)
+            Text(TOTAL_SECOND + 's')
+              .fontSize(12)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontColor('#182431')
+              .opacity(0.6)
+              .fontWeight(400)
+          }.justifyContent(FlexAlign.SpaceBetween).width('100%')
+        }
+        .id('music_player_item')
+        .height(126)
+        .width('100%')
+        .padding({ left: '3.35%', right: '3.35%' })
+        .backgroundColor(Color.White)
+        .margin({ bottom: 20 })
+        .borderRadius(24)
+        .onClick(() => {
+          if (this.audioRenderers[MUSIC_INDEX].state === audio.AudioState.STATE_PREPARED) {
+            this.play(MUSIC_INDEX)
+            this.musicIsClicked = true
+            this.stateText[RINGTONE_INDEX] = 'ic_pause'
+            this.stateImg[RINGTONE_INDEX] = $r('app.media.ic_pause_y')
           }
+        })
+
+        Column() {
+          Row() {
+            Row() {
+              Image($r('app.media.ic_ring')).width(48).height(48)
+              Text($r('app.string.RingtoneType'))
+                .fontSize(16)
+                .margin({ left: 12 })
+                .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+                .fontColor('#182431')
+                .fontWeight(500)
+            }
+
+            Text(this.stateText[RINGTONE_INDEX]).id('ringtone_state_text').fontSize(10).fontColor(Color.White)
+            Image(this.stateImg[RINGTONE_INDEX]).id('ringtone_state_img').width(36).height(36)
+          }.justifyContent(FlexAlign.SpaceBetween).width('100%').margin({ top: 10 })
+
+          Row() {
+            Progress({ value: this.curTimeSecs[RINGTONE_INDEX], total: TOTAL_SECOND, type: ProgressType.Linear })
+              .color('#007DFF')
+              .value(this.curTimeSecs[RINGTONE_INDEX])
+              .width('100%')
+              .height(4)
+          }.margin({ top: 24, bottom: 3 })
+
+          Row() {
+            Text(this.curTimeSecs[RINGTONE_INDEX] + 's')
+              .fontSize(12)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontColor('#182431')
+              .opacity(0.6)
+              .fontWeight(400)
+            Text(TOTAL_SECOND + 's')
+              .fontSize(12)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontColor('#182431')
+              .opacity(0.6)
+              .fontWeight(400)
+          }.justifyContent(FlexAlign.SpaceBetween).width('100%')
         }
-      }
-      .id('ringtone_player_item')
-      .width('100%')
-      .height(126)
-      .backgroundColor(Color.White)
-      .onClick(() => {
-        if (this.audioRenderers[RINGTONE_INDEX].state === audio.AudioState.STATE_RUNNING) {
-          this.stop(RINGTONE_INDEX)
-        } else if (this.audioRenderers[RINGTONE_INDEX].state === audio.AudioState.STATE_PREPARED && this.musicIsClicked === true) {
-          this.play(RINGTONE_INDEX)
-        }
-      })
-    }
-    .height('100%').width('100%').backgroundColor('#ccc').padding({ left: 20, right: 20 })
+        .id('ringtone_player_item')
+        .width('100%')
+        .padding({ left: '3.35%', right: '3.35%' })
+        .height(126)
+        .backgroundColor(Color.White)
+        .borderRadius(24)
+        .onClick(() => {
+          if (this.audioRenderers[RINGTONE_INDEX].state === audio.AudioState.STATE_RUNNING) {
+            this.stop(RINGTONE_INDEX)
+          } else if (this.audioRenderers[RINGTONE_INDEX].state === audio.AudioState.STATE_PREPARED && this.musicIsClicked === true) {
+            this.play(RINGTONE_INDEX)
+          }
+        })
+      }.width('100%').padding({ left: '3.35%', right: '3.35%' })
+    }.height('100%').width('100%').backgroundColor('#f1f3f5')
   }
 }
