@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/NewLogin",
+    "pages/NewIndex",
+    "pages/CreateRoom"
+  ]
+}
