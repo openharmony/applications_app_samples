@@ -22,7 +22,7 @@
     },
     {
       "name": "image",
-      "value": "图片处理"
+      "value": "图片编辑"
     },
     {
       "name": "take_photo",
@@ -31,6 +31,62 @@
     {
       "name": "allow",
       "value": "允许"
+    },
+    {
+      "name": "completed",
+      "value": "完成"
+    },
+    {
+      "name": "crop",
+      "value": "裁剪"
+    },
+    {
+      "name": "percent43",
+      "value": "4:3"
+    },
+    {
+      "name": "percent169",
+      "value": "16:9"
+    },
+    {
+      "name": "percent11",
+      "value": "1:1"
+    },
+    {
+      "name": "origin",
+      "value": "原图"
+    },
+    {
+      "name": "rotate",
+      "value": "旋转"
+    },
+    {
+      "name": "scale",
+      "value": "缩放"
+    },
+    {
+      "name": "zoomIn",
+      "value": "放大"
+    },
+    {
+      "name": "zoomOut",
+      "value": "缩小"
+    },
+    {
+      "name": "mark",
+      "value": "标记"
+    },
+    {
+      "name": "sticker",
+      "value": "贴纸"
+    },
+    {
+      "name": "text",
+      "value": "文字"
+    },
+    {
+      "name": "toning",
+      "value": "调色"
     }
   ]
 }

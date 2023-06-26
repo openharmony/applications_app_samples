@@ -12,42 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { logger } from '@ohos/photomodify';
+import router from '@ohos.router';
+import GetPictures from '../pages/GetPictures';
 
-import router from '@ohos.router'
-import image from '@ohos.multimedia.image'
-import { logger } from '@ohos/photomodify'
-
-const TAG: string = 'Index'
-// 96为需要创建的像素buffer大小，取值为height*width*4
-const BUFFERSIZE: number = 96
-// 图片像素格式，3表示格式为RGBA_8888
-const PIXELMAPFORMAT: number = 3
+const TAG: string = '[Sample_Index]';
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('pixelMaps') pixelMaps: Array<image.PixelMap> = []
-  @State isShowCamera: boolean = false
-  @State isShowComment: boolean = true
+  @State isShowComment: boolean = true;
+  @State isShowCamera: boolean = false;
+  @State isLand: boolean = false;
+  @State pixelMaps: Array<PixelMap> = [];
+  @StorageLink('imageList') imageList: Array<string> = [];
+  @StorageLink('fileFd') fileSrc: string = null;
+  @StorageLink('isUpdate') isUpdate: boolean = false;
+  private GetPictures: GetPictures = new GetPictures();
+  scroller: Scroller = new Scroller();
 
-  terminateSelf(context: any) {
-    context.terminateSelf()
+  terminateSelf(context: any): void {
+    context.terminateSelf();
   }
 
-  aboutToAppear() {
-    logger.info(TAG, 'enter aboutToAppear')
-    const color = new ArrayBuffer(BUFFERSIZE)
-    let opts = { editable: true, pixelFormat: PIXELMAPFORMAT, size: { height: 4, width: 6 } }
-    image.createPixelMap(color, opts, (error, pixelmap) => {
-      if (error) {
-        logger.info(TAG, `Failed to create pixelmap.`);
-      } else {
-        this.pixelMaps.push(pixelmap)
-        logger.info(TAG, 'Succeeded in creating pixelmap.');
-      }
-    })
-    if (router.getParams() && router.getParams()['isShowCamera']) {
-      this.isShowCamera = true
+  aboutToAppear(): void {
+    logger.info(TAG, 'enter aboutToAppear');
+    if (AppStorage.Get('pixelMaps')) {
+      this.pixelMaps.push(undefined);
     }
   }
 
@@ -55,34 +46,33 @@ struct Index {
     Column() {
       Row() {
         Image($r('app.media.back'))
-          .width(46)
-          .height(26)
+          .width($r('app.float.size_46'))
+          .height($r('app.float.size_26'))
           .objectFit(ImageFit.Contain)
           .onClick(() => {
-            let context = getContext(this)
-            this.terminateSelf(context)
+            let context: Context = getContext(this);
+            this.terminateSelf(context);
           })
-          .id('btnBack')
 
         Text($r('app.string.publish_comments'))
-          .fontSize(22)
-          .margin({ left: 130 })
+          .fontSize($r('app.float.size_22'))
+          .margin({ left: $r('app.float.size_130') })
           .textAlign(TextAlign.Center)
 
         Blank()
 
         Button($r('app.string.submit'))
-          .fontSize(20)
-          .height(32)
-          .width(80)
-          .backgroundColor('#E92F4F')
-          .borderRadius(20)
-          .margin({ right: 10 })
+          .fontSize($r('app.float.size_20'))
+          .height($r('app.float.size_32'))
+          .width($r('app.float.size_80'))
+          .backgroundColor($r('app.color.index_commit'))
+          .borderRadius($r('app.float.size_20'))
+          .margin({ right: $r('app.float.size_10') })
       }
       .width('100%')
-      .height(32)
-      .padding({ left: 14 })
-      .margin({ top: 20 })
+      .height($r('app.float.size_32'))
+      .padding({ left: $r('app.float.size_14') })
+      .margin({ top: $r('app.float.size_20') })
 
       Scroll() {
         Column() {
@@ -90,116 +80,102 @@ struct Index {
             Column() {
               Stack() {
                 TextArea({ placeholder: $r('app.string.tip') })
-                  .height(150)
-                  .backgroundColor('#fffffff')
+                  .height($r('app.float.size_150'))
+                  .backgroundColor(Color.White)
                   .onChange((value) => {
                     if (value.length === 0) {
-                      this.isShowComment = true
+                      this.isShowComment = true;
                     } else {
-                      this.isShowComment = false
+                      this.isShowComment = false;
                     }
                   })
-                  .id('textAreaTip')
 
                 if (this.isShowComment) {
                   Image($r('app.media.comment'))
-                    .height(20)
-                    .width(20)
-                    .margin({ top: 8, left: 16 })
+                    .height($r('app.float.size_20'))
+                    .width($r('app.float.size_20'))
+                    .margin({ top: $r('app.float.size_8'), left: $r('app.float.size_16') })
                 }
               }
               .alignContent(Alignment.TopStart)
-              .margin({ top: 40 })
+              .margin({ top: $r('app.float.size_40') })
 
-              if (this.isShowCamera) {
+              if (this.imageList.length > 0) {
                 Grid() {
-                  ForEach(this.pixelMaps, (item, index) => {
+                  ForEach(this.imageList, (imgUrl: string, index) => {
                     GridItem() {
-                      if (index < this.pixelMaps.length - 1) {
-                        Image(item)
-                          .width('100%')
-                          .height(100)
-                          .borderRadius(10)
-
-                      } else {
-                        Column() {
-                          Image($r('app.media.photo'))
-                            .height(40)
-                            .width(40)
-                            .onClick(() => {
-                              router.push({
-                                url: 'pages/ChoicePhotos'
-                              })
+                      if (index < this.imageList.length) {
+                        Image(imgUrl)
+                          .onClick(() => {
+                            AppStorage.SetOrCreate('selectIndex', index);
+                            this.isLand = true
+                            router.pushUrl({
+                              url: 'pages/UpdatePages',
+                              params: { mediaUri: imgUrl }
                             })
-                            .id('choicePhotos')
-                          Text($r('app.string.add_picture'))
-                            .fontSize(13)
-                        }
-                        .alignItems(HorizontalAlign.Center)
-                        .justifyContent(FlexAlign.Center)
-                        .width('100%')
-                        .height(100)
-                        .borderRadius(10)
-                        .backgroundColor('#F1F3F5')
+                          })
+                          .id('Photo')
+                          .width('100%')
+                          .height($r('app.float.size_100'))
+                          .borderRadius($r('app.float.size_10'))
+                          .backgroundColor(Color.Blue)
                       }
                     }
                   })
                 }
                 .columnsTemplate('1fr 1fr 1fr 1fr')
-                .columnsGap(8)
-                .rowsGap(8)
-                .margin({ top: 8 })
+                .columnsGap($r('app.float.size_8'))
+                .rowsGap($r('app.float.size_8'))
+                .margin({ top: $r('app.float.size_8') })
                 .width('94%')
                 .height(105 * (this.pixelMaps.length > 4 ? 2 : 1))
               } else {
                 Column() {
                   Image($r('app.media.camera'))
-                    .width(40)
-                    .height(40)
+                    .width($r('app.float.size_40'))
+                    .height($r('app.float.size_40'))
 
                   Text($r('app.string.add_picture'))
-                    .fontSize(16)
+                    .fontSize($r('app.float.size_16'))
                 }
+                .id('add')
                 .onClick(() => {
-                  router.push({
-                    url: 'pages/ChoicePhotos'
-                  })
+                  this.GetPictures.getImage()
                 })
                 .width('94%')
-                .height(130)
-                .margin({ top: 10 })
-                .borderRadius(10)
+                .height($r('app.float.size_130'))
+                .margin({ top: $r('app.float.size_10') })
+                .borderRadius($r('app.float.size_10'))
                 .justifyContent(FlexAlign.Center)
                 .backgroundColor('#F1F3F5')
-                .id('choicePhotos')
               }
               Text($r('app.string.anonymous_display'))
-                .fontSize(15)
+                .fontSize($r('app.float.size_15'))
                 .fontColor('#99182431')
                 .alignSelf(ItemAlign.Start)
-                .margin({ left: 16, top: 16 })
+                .margin({ left: $r('app.float.size_16'), top: $r('app.float.size_16') })
             }
             .width('100%')
             .height('100%')
-            .margin({ top: 22 })
-            .borderRadius(20)
+            .margin({ top: $r('app.float.size_22') })
+            .borderRadius($r('app.float.size_20'))
             .backgroundColor('#fffffff')
 
             Image($r('app.media.commodity'))
-              .width(44)
-              .height(44)
+              .width($r('app.float.size_44'))
+              .height($r('app.float.size_44'))
           }
-          .backgroundColor('#f1f3f5')
+          .backgroundColor($r('app.color.index_stack'))
           .height('100%')
           .width('94%')
-          .margin({ top: 10 })
+          .margin({ top: $r('app.float.size_10') })
         }
         .width('100%')
-        .height(this.isShowCamera === false ? 380 : 300 + (this.pixelMaps.length / 4 > 1 ? 160 : 60))
+        .height($r('app.float.size_380'))
       }
-      .margin({ top: 20 })
+      .margin({ top: $r('app.float.size_20') })
       .constraintSize({ maxHeight: '94%', minHeight: '94%' })
-      .backgroundColor('#f1f3f5')
+      .backgroundColor($r('app.color.index_stack'))
     }
     .width('100%')
     .height('100%')
