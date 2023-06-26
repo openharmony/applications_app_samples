@@ -25,29 +25,29 @@
 ```
 entry/src/main/
 |---common
-|  |---Logger.ts
+|  └---Logger.ts
 |---ets
 |  |---entryability
-|  |  |---EntryAbility.ts
+|  |  └---EntryAbility.ts
 |  |---entryformability
-|  |  |---EntryFormAbility.ts                         
+|  |  └---EntryFormAbility.ts                         
 |  |---pages
 |  |  |---Index.ets                          // EntryAbilit页面
 |  |  |---IndexSec.ets                       // 发布数据页面
-|  |  |---IndexThi.ets                       // 修改订阅条件页面
-|  |---widget
-|  |  |---pages
-|  |  |  |---WidgetCard.ets                  // ArkTS卡片
+|  |  └---IndexThi.ets                       // 修改订阅条件页面
+|  └---widget
+|     └---pages
+|        └---WidgetCard.ets                  // ArkTS卡片
 |---js
 |  |---common
 |  |---i18n
-|  |---JsWidget
-|  |  |---pages
-|  |  |  |---index
-|  |  |  |  |---index.css                       // JS卡片样式
-|  |  |  |  |---index.hml                       // JS卡片
-|  |  |  |  |---index.json                      // JS卡片默认值
-|---resources                                   // 资源信息
+|  └---JsWidget
+|     └---pages
+|        └---index
+|           |---index.css                       // JS卡片样式
+|           |---index.hml                       // JS卡片
+|           └---index.json                      // JS卡片默认值
+└---resources                                   // 资源信息
 ```
 
 ### 具体实现
