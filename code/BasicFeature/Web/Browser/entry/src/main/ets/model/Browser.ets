@@ -87,7 +87,9 @@ export class Browser {
     this.webArray.push(new WebKey(this.webArray.length, new Date().getTime()))
     this.tabArrayIndex = this.webArray.length - 1
     Logger.info(TAG, `add tab index= ${this.tabArrayIndex}`)
-    this.tabsController.changeIndex(this.tabArrayIndex)
+    setTimeout(() => {
+      this.tabsController.changeIndex(this.tabArrayIndex)
+    }, 50)
   }
 
   setTabArrayIndex(tabArrayIndex: number) {
