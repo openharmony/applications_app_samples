@@ -22,28 +22,28 @@
 
 ```
 entry/src/main/
-|---ets
-|  |---entryability
-|  |  |---EntryAbility.ts
-|  |---entryformability
-|  |  |---EntryFormAbility.ts                         
-|  |---logger                   
-|  |  |---Logger.ts
-|  |---pages
-|  |  |---Index.ets                             // EntryAbilit页面
-|  |---widget
-|     |---pages
-|        |---WidgetCard.ets                     // ArkTS卡片
-|---js
-|  |---common
-|  |---i18n
-|  |---JsWidget
-|     |---pages
-|        |---index
-|           |---index.css                       // JS卡片样式
-|           |---index.hml                       // JS卡片
-|           |---index.json                      // JS卡片默认值
-|---resources                                   // 资源信息
+├──ets
+|  ├──entryability
+|  |  └──EntryAbility.ts
+|  ├──entryformability
+|  |  └──EntryFormAbility.ts                         
+|  ├──logger                   
+|  |  └──Logger.ts
+|  ├──pages
+|  |  └──Index.ets                             // EntryAbilit页面
+|  └──widget
+|     └──pages
+|        └──WidgetCard.ets                     // ArkTS卡片
+├──js
+|  ├──common
+|  ├──i18n
+|  └──JsWidget
+|     └──pages
+|        └──index
+|           ├──index.css                       // JS卡片样式
+|           ├──index.hml                       // JS卡片
+|           └──index.json                      // JS卡片默认值
+└──resources                                   // 资源信息
 ```
 
 ### 具体实现
