@@ -32,7 +32,7 @@ export struct WorkSpace {
       Swiper(this.swiperController) {
         ForEach(this.appPages, item => {
           LauncherGridLayout({ gridInfos: item })
-        }, item => item.length.toString())
+        }, item => JSON.stringify(item))
       }
       .indicatorStyle({
         selectedColor: Color.White

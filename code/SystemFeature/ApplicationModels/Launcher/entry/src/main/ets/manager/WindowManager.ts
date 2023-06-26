@@ -98,8 +98,8 @@ export default class WindowManager {
  * @param width 窗口高度
  */
   async setWindowSize(width: number, height: number): Promise<void> {
-    const abilityWindow = await Window.getTopWindow()
-    void abilityWindow.resetSize(width, height)
+    const abilityWindow = await Window.getLastWindow(this.context);
+    void abilityWindow.resetSize(width, height);
   }
 
   async createWindow(windowName: string, page: string, isFullScreen) {
@@ -135,17 +135,17 @@ export default class WindowManager {
       let window = await Window.find(windowName);
       await window.destroy();
     } catch (error) {
-      Logger.error(TAG, `showWindow, show error: ${JSON.stringify(error)}`);
+      Logger.error(TAG, `hideWindow, show error: ${JSON.stringify(error)}`);
     }
   }
 
   async destoryWindow(windowName: string) {
     Logger.info(TAG, 'destoryWindow')
     try {
-      let window = await Window.find(windowName)
-      await window.destroy()
+      let window = await Window.find(windowName);
+      await window.destroy();
     } catch (error) {
-      Logger.error(TAG, `showWindow, show error: ${JSON.stringify(error)}`)
+      Logger.error(TAG, `destoryWindow, show error: ${JSON.stringify(error)}`);
     }
   }
 }
