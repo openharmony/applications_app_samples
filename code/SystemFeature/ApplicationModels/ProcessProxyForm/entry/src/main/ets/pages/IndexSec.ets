@@ -131,6 +131,9 @@ struct IndexSec {
                   prompt.showToast({ message: `Please enter the correct temperature`, duration: 5000 });
                 }
               })
+            Text('℃')
+              .fontSize(30)
+              .height(60)
           }
           Button($r('app.string.published_data'))
             .fontSize(30)
