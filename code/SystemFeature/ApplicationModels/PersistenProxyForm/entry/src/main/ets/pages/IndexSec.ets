@@ -23,6 +23,7 @@ const TAG = '[Push_Index]';
 let conditionCity = '沈阳';
 let conditionID = '110000';
 let conditionData = '-30 ℃';
+let conditionDataToNumber;
 const formInstanceFilter = {
   bundleName: 'com.samples.PersistentProxyForm',
 };
@@ -70,132 +71,90 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
-  @State temperatureDATA: string = '-30 ℃';
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
   build() {
     Row() {
-      Column() {
-        Row() {
-          Text('城市选择')
-            .fontSize(40)
-          Column() {
-            Text('沈阳')
-              .fontSize(10)
-            Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
-              .height(30)
-              .width(30)
-              .onChange((isChecked: boolean) => {
-                Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
-                if (isChecked) {
-                  conditionID = '110000';
-                  conditionCity = '沈阳';
-                }
-              })
-          }
-          Column() {
-            Text('杭州')
-              .fontSize(10)
-            Radio({ value: 'hz', group: 'cityGroup' })
-              .height(30)
-              .width(30)
-              .onChange((isChecked: boolean) => {
-                Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
-                if (isChecked) {
-                  conditionID = '310000';
-                  conditionCity = '杭州';
-                };
-              })
-          }
+      Column({ space: 200 }) {
+        Column({ space: 5 }) {
+          Text($r('app.string.modify_publish_data'))
+            .fontColor('#182431')
+            .fontSize(30)
+            .lineHeight(41)
+            .fontWeight(500)
         }
         Column() {
-          Text('选择数据: ' + this.temperatureDATA)
-            .fontSize(40)
           Row() {
+            Text($r('app.string.selection_city'))
+              .fontSize(40)
             Column() {
-              Text('-30 ℃')
+              Text($r('app.string.city_sy'))
                 .fontSize(10)
-              Radio({ value: 'data1', group: 'DataGroup' }).checked(true)
+              Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
                 .height(30)
                 .width(30)
                 .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `data1 status is ${JSON.stringify(isChecked)}`);
+                  Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
                   if (isChecked) {
-                    conditionData = '-30 ℃';
-                    this.temperatureDATA = conditionData;
+                    conditionID = '110000';
+                    conditionCity = '沈阳';
                   }
                 })
             }
             Column() {
-              Text('-15 ℃')
+              Text($r('app.string.city_hz'))
                 .fontSize(10)
-              Radio({ value: 'data2', group: 'DataGroup' })
+              Radio({ value: 'hz', group: 'cityGroup' })
                 .height(30)
                 .width(30)
                 .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `data2 status is ${JSON.stringify(isChecked)}`);
+                  Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
                   if (isChecked) {
-                    conditionData = '-15 ℃';
-                    this.temperatureDATA = conditionData;
-                  };
-                })
-            }
-            Column() {
-              Text('0 ℃')
-                .fontSize(10)
-              Radio({ value: 'data3', group: 'DataGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `data3 status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionData = '0 ℃';
-                    this.temperatureDATA = conditionData;
+                    conditionID = '310000';
+                    conditionCity = '杭州';
                   }
-                })
-            }
-            Column() {
-              Text('15 ℃')
-                .fontSize(10)
-              Radio({ value: 'data4', group: 'DataGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `data4 status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionData = '15 ℃';
-                    this.temperatureDATA = conditionData;
-                  }
-                })
-            }
-            Column() {
-              Text('30 ℃')
-                .fontSize(10)
-              Radio({ value: 'data5', group: 'DataGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `data5 status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionData = '30 ℃';
-                    this.temperatureDATA = conditionData;
-                  };
                 })
             }
           }
+          Row() {
+            Text($r('app.string.input_temperature'))
+              .fontSize(30)
+              .width(200)
+              .height(60)
+            TextInput({ text: '-30' })
+              .fontSize(30)
+              .width(100)
+              .height(60)
+              .type(InputType.Normal)
+              .onChange((text) => {
+                conditionData = text + ' ℃';
+              })
+            Text('℃')
+              .fontSize(30)
+              .height(60)
+          }
+          Button($r('app.string.published_data'))
+            .fontSize(30)
+            .width(300)
+            .type(ButtonType.Capsule)
+            .margin({ top: 20 })
+            .backgroundColor('#0D9FFB')
+            .onClick(() => {
+              conditionDataToNumber = conditionData.split(/[℃]/);
+              if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
+                Logger.info(`${TAG}`, `correct temperature is ${conditionDataToNumber[0]}`);
+                publish()
+                updateRDB()
+              } else {
+                Logger.info(`${TAG}`, `incorrect temperature is ${conditionDataToNumber[0]}`);
+                prompt.showToast({ message: `The temperature you entered is: ${conditionDataToNumber[0]},\ Please enter
+                the correct temperature value from -40 to 60`, duration: 5000 });
+              }
+            })
+          Text(' ')
+            .fontSize(10)
+          Text(this.runningFormInfo)
+            .fontSize(15)
         }
-        Button('发布数据')
-          .fontSize(40)
-          .type(ButtonType.Capsule)
-          .margin({ top: 20 })
-          .backgroundColor('#0D9FFB')
-          .onClick(() => {
-            publish()
-            updateRDB()
-          })
-        Text(' ')
-          .fontSize(10)
-        Text(this.runningFormInfo)
-          .fontSize(15)
       }
       .width('100%')
     }

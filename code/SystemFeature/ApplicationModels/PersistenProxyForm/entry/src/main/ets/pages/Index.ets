@@ -18,32 +18,26 @@ import router from '@ohos.router';
 @Entry
 @Component
 struct Index {
-  @State bundleName: string = 'com.samples.PersistentProxyForm';
-  @State abilityName: string = 'EntryFormAbility';
-  @State moduleName: string = 'entry';
-  @State formName: string = 'widget';
-  @State dimension: FormDimension = FormDimension.Dimension_2_2;
-  @State message: string = 'Load Card';
-  @State formId: number = 0;
-
   build() {
     Row() {
       Column() {
-        Button('发布数据')
-          .fontSize(40)
+        Button($r('app.string.modify_publish_data'))
+          .fontSize(30)
           .type(ButtonType.Capsule)
+          .width(300)
           .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .onClick(() => {
-            router.pushUrl({url: 'pages/IndexSec'})
+            router.pushUrl({ url: 'pages/IndexSec' });
           })
-        Button('修改订阅条件')
-          .fontSize(40)
+        Button($r('app.string.subscription_conditions'))
+          .fontSize(30)
           .type(ButtonType.Capsule)
+          .width(300)
           .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .onClick(() => {
-            router.pushUrl({url: 'pages/IndexThi'})
+            router.pushUrl({ url: 'pages/IndexThi' });
           })
       }
       .width('100%')

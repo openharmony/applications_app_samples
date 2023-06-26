@@ -25,30 +25,30 @@
 ```
 entry/src/main/
 |---common
-|  |---Logger.ts
+|  └---Logger.ts
 |---ets
-|  |---dataShare
-|  | |---dataShare.ts
+|  └---dataShare
+|  | └---dataShare.ts
 |  |---entryability
-|  |  |---EntryAbility.ts
+|  |  └---EntryAbility.ts
 |  |---entryformability
-|  |  |---EntryFormAbility.ts                         
+|  |  └---EntryFormAbility.ts
 |  |---pages
 |  |  |---Index.ets                          // EntryAbility页面
 |  |  |---IndexSec.ets                       // 发布数据页面
-|  |  |---IndexThi.ets                       // 修改订阅条件页面
-|  |---widget
-|  |  |---pages
-|  |  |  |---WidgetCard.ets                  // ArkTS卡片
+|  |  └---IndexThi.ets                       // 修改订阅条件页面
+|  └---widget
+|     └---pages
+|        └---WidgetCard.ets                  // ArkTS卡片
 |---js
 |  |---common
 |  |---i18n
-|  |---widgetJS
-|  |  |---pages
-|  |  |  |---index
-|  |  |  |  |---index.css                       // JS卡片样式
-|  |  |  |  |---index.hml                       // JS卡片
-|  |  |  |  |---index.json                      // JS卡片默认值
+|  └---widgetJS
+|     └---pages
+|        └---index
+|           |---index.css                       // JS卡片样式
+|           |---index.hml                       // JS卡片
+|           └---index.json                      // JS卡片默认值
 |---resources                                   // 资源信息
 ```
 
