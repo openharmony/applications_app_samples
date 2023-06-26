@@ -67,9 +67,7 @@
         "label": "$string:dataShare_desc",
         "description": "$string:dataShare_label",
         "type": "dataShare",
-        // "uri":"datashare://com.example.formprovider.DataShare",
         "uri":"datashareproxy://com.samples.PersistentProxyForm/test",
-        //        "uri":"datashareproxy://com.acts.actsmyapplication.DataShare",
         "exported": true
       }
     ],

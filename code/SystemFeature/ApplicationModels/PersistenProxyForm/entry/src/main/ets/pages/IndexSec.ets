@@ -142,12 +142,11 @@ struct IndexSec {
               conditionDataToNumber = conditionData.split(/[℃]/);
               if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
                 Logger.info(`${TAG}`, `correct temperature is ${conditionDataToNumber[0]}`);
-                publish()
-                updateRDB()
+                publish();
+                updateRDB();
               } else {
                 Logger.info(`${TAG}`, `incorrect temperature is ${conditionDataToNumber[0]}`);
-                prompt.showToast({ message: `The temperature you entered is: ${conditionDataToNumber[0]},\ Please enter
-                the correct temperature value from -40 to 60`, duration: 5000 });
+                prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
               }
             })
           Text(' ')
