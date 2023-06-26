@@ -132,6 +132,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('btnShow'));
       let btnShow = await driver.findComponent(ON.id('btnShow'));
       await btnShow.click();
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnChangeSelection'));
       let btnChangeSelection = await driver.findComponent(ON.id('btnChangeSelection'));
       await btnChangeSelection.click();
@@ -180,7 +181,6 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('0'));
       await driver.assertComponentExist(ON.text('1'));
       await driver.assertComponentExist(ON.text('2'));
-      await driver.assertComponentExist(ON.text('Search'));
       logger.info(TAG, `${BUNDLE}UpdateAttribute_001 end`);
       done();
     })

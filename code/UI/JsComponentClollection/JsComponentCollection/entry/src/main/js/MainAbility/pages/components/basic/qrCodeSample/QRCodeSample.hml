@@ -1,5 +1,5 @@
 <!--
- Copyright (c) 2022 Huawei Device Co., Ltd.
+ Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -15,48 +15,52 @@
 
 <element name='titleBar' src='../../../../common/titleBar/TitleBar.hml'></element>
 <div class="container">
+  <div style="height: {{ topRectHeight }} px; width: 100%"></div>
   <titleBar title="{{ qrcodeTitle }}"></titleBar>
   <div class="qrcode-style">
-
-    <!-- Qrcode style start -->
+  
+  <!-- Qrcode style start -->
     <qrcode class="qrcode"
             value="{{ qrcodeValue }}"
             type="{{ qrcodeType }}"
             style="color: {{ qrcodeColor }};">
     </qrcode>
-    <!-- Qrcode style end -->
-
+  
+  <!-- Qrcode style end -->
+  
   </div>
-
+  
   <div class="qrcode-change-box">
     <div class="qrcode-value-left">
       <text>{{ $t('strings.qrcode_value_left') }}</text>
     </div>
     <div class="qrcode-value-right">
-      <input class="qrcode-value-input" type="text" value="" placeholder="{{ $t('strings.qrcode_value_right') }}" onchange="changeQrcodeValue"></input>
+      <input class="qrcode-value-input" type="text" value="" placeholder="{{ $t('strings.qrcode_value_right') }}"
+             onchange="changeQrcodeValue" id="inputComp"></input>
     </div>
   </div>
-
+  
   <div class="qrcode-change-box">
     <div class="qrcode-value-left">
       <text>{{ $t('strings.qrcode_color_left') }}</text>
     </div>
     <div class="qrcode-right">
-      <select @change="changeQrcodeColor">
+      <select @change="changeQrcodeColor" id="qrcodeColor">
         <option for="item in qrcodeColorList" value="{{ item.value }}">{{ item.name }}</option>
       </select>
     </div>
   </div>
-
+  
   <div class="qrcode-change-box bottom-margin">
     <div class="qrcode-value-left">
       <text>{{ $t('strings.qrcode_shape_left') }}</text>
     </div>
     <div class="qrcode-right">
-      <select @change="changeQrcodeShape">
+      <select @change="changeQrcodeShape" id="qrcodeShape">
         <option for="item in qrcodeShapeList" value="{{ item.value }}">{{ item.name }}</option>
       </select>
     </div>
   </div>
+  <div style="height: {{ bottomRectHeight }} px; width: 100%"></div>
 </div>
 

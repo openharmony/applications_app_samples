@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,14 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
+import { TOPRECTHEIGHT, BOTTOMRECTHEIGHT } from '../../../util/AttributeData';
 
 export default {
   data: {
-    handlers: []
+    handlers: [],
+    // 防止沉浸，添加两个变量距离顶层和底层的距离为72
+    topRectHeight: TOPRECTHEIGHT,
+    bottomRectHeight: BOTTOMRECTHEIGHT
   },
   onInit() {
     this.handlers = this.$t('strings.page_transition_handlers')

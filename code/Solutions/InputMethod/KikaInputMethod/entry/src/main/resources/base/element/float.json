@@ -1,0 +1,311 @@
+{
+  "float": [
+    {
+      "name": "landSpace_basic_button_width",
+      "value": "112vp"
+    },
+    {
+      "name": "landSpace_basic_button_height",
+      "value": "66vp"
+    },
+    {
+      "name": "landSpace_feature_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "landSpace_switch_button_width",
+      "value": "166vp"
+    },
+    {
+      "name": "landSpace_return_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "landSpace_return_button_widthType_1",
+      "value": "292vp"
+    },
+    {
+      "name": "landSpace_return_button_widthType_2",
+      "value": "166vp"
+    },
+    {
+      "name": "landSpace_space_button_width_1",
+      "value": "490vp"
+    },
+    {
+      "name": "landSpace_space_button_width_2",
+      "value": "490vp"
+    },
+    {
+      "name": "landSpace_padding_top",
+      "value": "16vp"
+    },
+    {
+      "name": "landSpace_padding_left_right",
+      "value": "27vp"
+    },
+    {
+      "name": "landSpace_downMenu_height",
+      "value": "62vp"
+    },
+    {
+      "name": "landSpace_downMenu_pic_width",
+      "value": "32vp"
+    },
+    {
+      "name": "landSpace_downMenu_pic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "landSpace_downMenu_width",
+      "value": "62vp"
+    },
+    {
+      "name": "landSpace_litter_number_fontSize",
+      "value": "10fp"
+    },
+    {
+      "name": "landSpace_en_fontSize",
+      "value": "32fp"
+    },
+    {
+      "name": "landSpace_symbol_fontSize",
+      "value": "27fp"
+    },
+    {
+      "name": "landSpace_switch_number_fontSize",
+      "value": "24fp"
+    },
+    {
+      "name": "landSpace_keyboard_height",
+      "value": "338vp"
+    },
+    {
+      "name": "portrait_basic_button_width",
+      "value": "70vp"
+    },
+    {
+      "name": "portrait_basic_button_height",
+      "value": "64vp"
+    },
+    {
+      "name": "portrait_feature_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "portrait_switch_button_width",
+      "value": "104vp"
+    },
+    {
+      "name": "portrait_return_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "portrait_return_button_widthType_1",
+      "value": "182vp"
+    },
+    {
+      "name": "portrait_return_button_widthType_2",
+      "value": "182vp"
+    },
+    {
+      "name": "portrait_space_button_width_1",
+      "value": "310vp"
+    },
+    {
+      "name": "portrait_space_button_width_2",
+      "value": "230vp"
+    },
+    {
+      "name": "portrait_padding_top",
+      "value": "24vp"
+    },
+    {
+      "name": "portrait_padding_left_right",
+      "value": "12vp"
+    },
+    {
+      "name": "portrait_downMenu_height",
+      "value": "62vp"
+    },
+    {
+      "name": "portrait_downMenu_pic_width",
+      "value": "32vp"
+    },
+    {
+      "name": "portrait_downMenu_pic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "portrait_downMenu_width",
+      "value": "62vp"
+    },
+    {
+      "name": "portrait_litter_number_fontSize",
+      "value": "10fp"
+    },
+    {
+      "name": "portrait_en_fontSize",
+      "value": "32fp"
+    },
+    {
+      "name": "portrait_switch_number_fontSize",
+      "value": "24fp"
+    },
+    {
+      "name": "portrait_keyboard_height",
+      "value": "376vp"
+    },
+    {
+      "name": "rk_basic_button_width",
+      "value": "40vp"
+    },
+    {
+      "name": "rk_basic_button_height",
+      "value": "58.67vp"
+    },
+    {
+      "name": "rk_feature_picSize",
+      "value": "32vp"
+    },
+    {
+      "name": "rk_switch_button_width",
+      "value": "58.67vp"
+    },
+    {
+      "name": "rk_return_picSize",
+      "value": "37.3vp"
+    },
+    {
+      "name": "rk_return_button_widthType_1",
+      "value": "106.93vp"
+    },
+    {
+      "name": "rk_return_button_widthType_2",
+      "value": "106.93vp"
+    },
+    {
+      "name": "rk_space_button_width_1",
+      "value": "184.8vp"
+    },
+    {
+      "name": "rk_space_button_width_2",
+      "value": "136.26vp"
+    },
+    {
+      "name": "rk_padding_top",
+      "value": "16vp"
+    },
+    {
+      "name": "rk_padding_left_right",
+      "value": "8vp"
+    },
+    {
+      "name": "rk_downMenu_height",
+      "value": "56vp"
+    },
+    {
+      "name": "rk_downMenu_pic_width",
+      "value": "32vp"
+    },
+    {
+      "name": "rk_downMenu_pic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "rk_downMenu_width",
+      "value": "56vp"
+    },
+    {
+      "name": "rk_litter_number_fontSize",
+      "value": "10.6fp"
+    },
+    {
+      "name": "rk_en_fontSize",
+      "value": "26.67fp"
+    },
+    {
+      "name": "rk_switch_number_fontSize",
+      "value": "21.3fp"
+    },
+    {
+      "name": "rk_number_1234_fontSize",
+      "value": "18.67fp"
+    },
+    {
+      "name": "rk_keyboard_height",
+      "value": "316vp"
+    },{
+      "name": "downMenu_height",
+      "value": "62vp"
+    },
+    {
+      "name": "downMenu_pic_width",
+      "value": "32vp"
+    },
+    {
+      "name": "downMenu_pic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "downMenu_width",
+      "value": "62vp"
+    },
+    {
+      "name": "litter_number_fontSize",
+      "value": "10fp"
+    },
+    {
+      "name": "en_fontSize",
+      "value": "32fp"
+    },
+    {
+      "name": "switch_number_fontSize",
+      "value": "24fp"
+    },
+    {
+      "name": "number_1234_fontSize",
+      "value": "21fp"
+    },
+    {
+      "name": "keyboard_height",
+      "value": "338vp"
+    },
+    {
+      "name": "rk_edit_pic_size",
+      "value": "40vp"
+    },
+    {
+      "name": "rk_edit_font_size",
+      "value": "12fp"
+    },
+    {
+      "name": "rk_edit_driver_left",
+      "value": "28vp"
+    },
+    {
+      "name": "rk_sub_menu_width",
+      "value": "20vp"
+    },
+    {
+      "name": "rk_edit_circle_size",
+      "value": "200vp"
+    },
+    {
+      "name": "rk_edit_small_circle_size",
+      "value": "70vp"
+    },
+    {
+      "name": "rk_edit_small_circle_margin",
+      "value": "138vp"
+    },
+    {
+      "name": "rk_edit_button_size",
+      "value": "46vp"
+    },
+    {
+      "name": "rk_edit_img_size",
+      "value": "36vp"
+    }
+  ]
+}

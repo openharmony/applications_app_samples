@@ -15,13 +15,12 @@
 
 import { ListModel } from '../model/ListModel';
 import { BatteryUtil } from '../util/BatteryUtil';
-import { RadiusColumn } from '../components/RadiusColumn';
 
 @Extend(Text) function fancy() {
   .height(50)
   .fontSize(16)
   .fontWeight(500)
-};
+}
 
 @Component
 export struct BatteryInfo {
@@ -41,22 +40,42 @@ export struct BatteryInfo {
     List() {
       ForEach(this.table, (item) => {
         ListItem() {
-          RadiusColumn() {
-            Row() {
-              Text(item.title)
-                .textAlign(TextAlign.Start)
-                .fancy()
-              Blank()
-              Text(item.getValue())
-                .textAlign(TextAlign.End)
-                .fancy()
-            }
-            .width('100%')
+          Row() {
+            Text(item.title)
+              .textAlign(TextAlign.Start)
+              .fontSize(20)
+              .fontWeight(FontWeight.Medium)
+              .fontColor($r("app.color.list_title"))
+            Blank()
+            Text(item.getValue())
+              .textAlign(TextAlign.End)
+              .fontSize(18)
+              .fontWeight(FontWeight.Regular)
+              .fontColor($r("app.color.list_sub_content"))
           }
+          .padding({
+            left: 16,
+            right: 16
+          })
+          .height(62)
+          .width('100%')
         }
       })
     }
-    .margin({ top: 12, bottom: 12 })
+    .divider({
+      strokeWidth: px2vp(1),
+      color: $r("app.color.divider"),
+      startMargin: 16,
+      endMargin: 16
+    })
+    .margin({
+      top: 16,
+      bottom: 16,
+      left: 4,
+      right: 4
+    })
     .width('100%')
+    .backgroundColor($r("app.color.white"))
+    .borderRadius(20)
   }
 }

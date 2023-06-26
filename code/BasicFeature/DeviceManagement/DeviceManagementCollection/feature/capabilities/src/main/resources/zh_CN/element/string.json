@@ -89,24 +89,36 @@
       "value": "取消"
     },
     {
-      "name":"turnOff",
-      "value": "关机"
-    },
-    {
-      "name":"questionTurnOff",
-      "value": "确定要关机吗？"
-    },
-    {
-      "name":"restart",
-      "value": "重启"
-    },
-    {
-      "name":"questionRestart",
-      "value": "确定要重启吗？"
-    },
-    {
-      "name":"screen_state",
+      "name": "screen_state",
       "value": "亮灭屏状态:"
+    },
+    {
+      "name": "power_mode",
+      "value": "当前电源模式:"
+    },
+    {
+      "name": "running_lock_background",
+      "value": "阻止系统休眠的锁:"
+    },
+    {
+      "name": "running_lock_proximity_screen_control",
+      "value": "通过接近或者远离状态来控制亮灭屏的锁:"
+    },
+    {
+      "name": "airplane_status",
+      "value": "飞行模式状态:"
+    },
+    {
+      "name": "thermal_warning",
+      "value": "当前设备电池温度过高！"
+    },
+    {
+      "name": "no_usb_device",
+      "value": "暂无USB设备"
+    },
+    {
+      "name": "show_floating_status",
+      "value": "应用是否能以悬浮窗形式显示:"
     }
   ]
 }

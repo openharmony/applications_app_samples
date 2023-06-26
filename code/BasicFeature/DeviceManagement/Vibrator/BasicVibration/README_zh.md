@@ -36,7 +36,7 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 本示例实现振动的方法主要封装在TextTimerComponent中，源码参考: [TextTimerComponent](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/DeviceManagement/Vibrator/entry/src/main/ets/MainAbility/common/TextTimerComponent.ets) 。
+* 本示例实现振动的方法主要封装在TextTimerComponent中，源码参考: [TextTimerComponent](entry/src/main/ets/MainAbility/common/TextTimerComponent.ets) 。
     * 设置倒计时间：Timepicker文件中通过TextPicker组件来设置倒计的时间，并将设定的时间数据双向绑定到TextTimerComponent组件当中。
     * 启动倒计时：点击start按钮通过setInterval执行倒计时，每隔一段时间Process组件的进度值会被此代码this.progressValue += TOTAL / this.duration进行处理同步刷新。
     * 触发振动：当时间为0的时候，则执行vibrator.vibrate()方法去触发振动效果。
@@ -44,7 +44,7 @@ entry/src/main/ets/
   
 ### 相关权限
 
-[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
 
 ### 依赖
 

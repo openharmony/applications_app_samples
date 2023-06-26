@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,12 +13,17 @@
  * limitations under the License.
  */
 
+import { TOPRECTHEIGHT, BOTTOMRECTHEIGHT } from '../../../../util/AttributeData';
+
 export default {
   data: {
     imageXTranslate: 0,
     imageYTranslate: 0,
     containerXTranslate: 0,
-    containerYTranslate: 0
+    containerYTranslate: 0,
+    // 防止沉浸，添加两个变量距离顶层和底层的距离为72
+    topRectHeight: TOPRECTHEIGHT,
+    bottomRectHeight: BOTTOMRECTHEIGHT
   },
 
   onInit() {

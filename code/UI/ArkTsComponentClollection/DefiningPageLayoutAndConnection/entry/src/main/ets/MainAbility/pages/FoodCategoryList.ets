@@ -217,6 +217,8 @@ struct FoodGrid {
     }
     .scrollBar(BarState.Off)
     .padding({ left: 16, right: 16 })
+    .height('100%')
+    .align(Alignment.Top)
   }
 }
 

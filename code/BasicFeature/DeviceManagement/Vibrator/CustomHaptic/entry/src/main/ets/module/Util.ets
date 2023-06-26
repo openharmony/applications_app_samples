@@ -14,7 +14,6 @@
  */
 
 import vibrator from '@ohos.vibrator'
-import media from '@ohos.multimedia.media'
 import Window from '@ohos.window'
 import Logger from './Logger'
 
@@ -52,65 +51,6 @@ export async function playVibrateCustom(fileName: string) {
   }
 }
 
-export function setAVPlayerCallback(avPlayer): void {
-  avPlayer.reset()
-  avPlayer.on('stateChange', async (state) => {
-    switch (state) {
-      case 'idle':
-        Logger.info(TAG, 'state idle called')
-        break;
-      case 'initialized':
-        Logger.info(TAG, 'state initialized called ')
-        avPlayer.prepare().then(() => {
-          Logger.info(TAG, 'prepare success');
-        }, (err) => {
-          Logger.info(TAG, 'prepare filed,error message is :' + err.message)
-        })
-        break;
-      case 'prepared':
-        Logger.info(TAG, 'state prepared called')
-        avPlayer.play()
-        break;
-      case 'playing':
-        Logger.info(TAG, 'state playing called')
-        break;
-      case 'completed':
-        Logger.info(TAG, 'state completed called')
-        avPlayer.stop()
-        avPlayer.reset()
-        break;
-      case 'stopped':
-        Logger.info(TAG, 'state stopped called')
-        avPlayer.release()
-        break;
-      case 'error':
-        Logger.info(TAG, 'state error called')
-        break;
-      default:
-        Logger.info(TAG, 'unkown state :' + state)
-        break;
-    }
-  })
-}
-
-export async function avPlayer(audioName: string) {
-  let avPlayer = await media.createAVPlayer()
-  setAVPlayerCallback(avPlayer)
-  let rawFd = undefined
-  await globalThis.getContext()
-    .resourceManager
-    .getRawFd(audioName)
-    .then(value => {
-      rawFd = value
-      Logger.info(TAG, 'get audio resource successful');
-      Logger.info(TAG, "rawFd of audio:" + " fd:" + rawFd.fd + ", offset:" + rawFd.offset + ", length: " + rawFd.length)
-    })
-    .catch((error) => {
-      Logger.info(TAG, 'get audio resource failed, err code:' + error.code + ' err msg:' + error.message)
-    })
-  avPlayer.fdSrc = rawFd
-}
-
 export function changeOrientationInternal(lastWindow: Window.Window, portrait: boolean): void {
   if (portrait) {
     lastWindow.setPreferredOrientation(Window.Orientation.LANDSCAPE).then(() => {
@@ -127,7 +67,7 @@ export function changeOrientationInternal(lastWindow: Window.Window, portrait: b
   }
 }
 
-export function changeOrientation(portrait: boolean):void {
+export function changeOrientation(portrait: boolean): void {
   Window.getLastWindow(getContext()).then((lastWindow) => {
     changeOrientationInternal(lastWindow, portrait)
   }).catch((error) => {

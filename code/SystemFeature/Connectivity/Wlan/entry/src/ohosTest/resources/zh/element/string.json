@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "available_wlan",
+      "value": "可用WLAN"
+    },
+    {
+      "name": "encrypt",
+      "value": "加密"
+    }
+  ]
+}

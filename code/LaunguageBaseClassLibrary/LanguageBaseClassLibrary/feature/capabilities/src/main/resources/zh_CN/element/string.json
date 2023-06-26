@@ -334,7 +334,7 @@
     },
     {
       "name": "contact_phone",
-      "value": "电话："
+      "value": "电话"
     },
     {
       "name": "button_delete",
@@ -375,6 +375,18 @@
     {
       "name": "phone_null",
       "value": "电话号码不能为空"
+    },
+    {
+      "name": "click_exec_add_one",
+      "value": "点击execute task使numberOfExecutions++"
+    },
+    {
+      "name": "old",
+      "value": "岁"
+    },
+    {
+      "name": "key_limit",
+      "value": "key必须为数字"
     }
   ]
 }

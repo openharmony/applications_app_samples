@@ -15,14 +15,15 @@
 
 import systemTime from '@ohos.systemDateTime';
 import { ListModel } from '../model/ListModel';
-import { RadiusColumn } from '../components/RadiusColumn';
-import { ThermalUtil} from '../util/ThermalUtil';
+import thermal from '@ohos.thermal';
+import { ThermalUtil } from '../util/ThermalUtil';
+import promptAction from '@ohos.promptAction';
 
 @Extend(Text) function fancy() {
   .height(50)
   .fontSize(16)
   .fontWeight(500)
-};
+}
 
 @Component
 export struct Thermal {
@@ -44,22 +45,39 @@ export struct Thermal {
     List() {
       ForEach(this.table, (item) => {
         ListItem() {
-          RadiusColumn() {
-            Row() {
-              Text(item.title)
-                .textAlign(TextAlign.Start)
-                .fancy()
-              Blank()
-              Text(item.getValue())
-                .textAlign(TextAlign.End)
-                .fancy()
-            }
-            .width('100%')
+          Row() {
+            Text(item.title)
+              .fontSize(20)
+              .fontWeight(FontWeight.Medium)
+              .fontColor($r("app.color.list_title"))
+              .textAlign(TextAlign.Start)
+            Blank()
+            Text(item.getValue())
+              .fontSize(18)
+              .fontWeight(FontWeight.Medium)
+              .fontColor($r("app.color.list_sub_content"))
+              .textAlign(TextAlign.End)
           }
+          .padding({ left: 16, right: 16 })
+          .height(62)
+          .width('100%')
         }
       })
     }
-    .margin({ top: 12, bottom: 12 })
+    .divider({
+      strokeWidth: px2vp(1),
+      color: $r("app.color.divider"),
+      startMargin: 16,
+      endMargin: 16
+    })
+    .borderRadius(20)
+    .backgroundColor($r("app.color.white"))
+    .margin({
+      top: 16,
+      bottom: 16,
+      left: 4,
+      right: 4
+    })
     .width('100%')
   }
 
@@ -70,13 +88,23 @@ export struct Thermal {
       this.table[INDEX_0] = new ListModel('Thermal level', null, ThermalUtil.getLevel());
       this.table[INDEX_1] = new ListModel('Callback level', null, ThermalUtil.getStrLevel(level));
       this.getCurrentTime();
-    });
+      if (level === thermal.ThermalLevel.WARNING) {
+        try {
+          promptAction.showToast({
+            message: $r('app.string.thermal_warning'),
+            duration: 2000,
+          });
+        } catch (error) {
+          console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+        }
+      }
+    })
   }
 
   getCurrentTime() {
     const INDEX_2 = 2;
     systemTime.getCurrentTime().then((date: number) => {
       this.table[INDEX_2] = new ListModel('Last callback time', null, ThermalUtil.timestampToTime(date));
-    });
+    })
   }
 }

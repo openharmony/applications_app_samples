@@ -21,6 +21,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../utils/Logger';
 import { getStringData } from '../../../main/ets/data/ResourceDataHandle';
+
 const BUNDLE = 'ComponentCollection_';
 
 const DELAY_TIME = 1000;
@@ -284,15 +285,42 @@ export default function abilityTest() {
         }
         await checkButtonAndClickWithText(atom);
 
-        // 选择十一月
-        await checkButtonAndClickWithID('Checkbox');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.november')));
-
+        // 滑动一次
+        await driver.assertComponentExist(ON.id('datePicker'));
+        let datePicker = await driver.findComponent(ON.id('datePicker'));
+        let point = await datePicker.getBoundsCenter();
+        await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 20);
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('dateValue'));
+        let dateValue = await driver.findComponent(ON.id('dateValue'));
+        if (await dateValue.getText() !== '2022-11-30') {
+          Logger.info(`Date error,dateValueText：${await dateValue.getText()}`);
+          expect().assertFail();
+        }
+        await driver.delayMs(1000);
+        // 使时间计时器上滑6次
+        for (let i = 0; i < 6; i++) {
+          await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 20);
+          await driver.delayMs(1000);
+        }
+        if (await dateValue.getText() !== '2023-05-28') {
+          Logger.info(`Date error,dateValueText：${await dateValue.getText()}`);
+          expect().assertFail();
+        }
+        await driver.delayMs(1000);
+        // 切换农历
+        await driver.assertComponentExist(ON.id('Checkbox'));
+        let checkbox = await driver.findComponent(ON.id('Checkbox'));
+        await driver.delayMs(1000);
+        await checkbox.click();
+        await driver.delayMs(1000);
+        // 验证农历是否切换成功
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.april'))));
+        await driver.delayMs(1000);
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
         await driver.delayMs(500);
-
         Logger.info(BUNDLE + testName + ' end');
       })
 

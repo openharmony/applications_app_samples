@@ -35,12 +35,12 @@ entry/src/main/ets/
 
 ### 具体实现
 * 在pages/Home.ets中定义密码锁组件，通过定义两个变量isHasPass：是否已经设过密码;isReset：是否需要重置密码;
-* 密码验证分为几种情况：[源码](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Tools/PatternLock/entry/src/main/ets/pages/Home.ets) 参考。
+* 密码验证分为几种情况：[源码](entry/src/main/ets/pages/Home.ets) 参考。
   1. 首次进入页面， 通过aboutToAppear()初始化调用preferences.getPreferences()获取密码，此时defaultPassword='null'，isHassPass=false，需设置密码并确认密码；
   2. 已经设过密码： 通过aboutToAppear()初始化调用preferences.getPreferences()获取密码，此时defaultPassword='oldPassword'，isHassPass=true，页面渲染重置密码text()。
      需输入密码和defaultPassword比较，正确后跳转相应页面，若失败提示密码错误，需重新输入密码。
   3. 点击重置密码，此时组件清除旧密码，即defaultPassword='null'，此时无密码，走首次无密码流程。
-* 在pages/index.ets中定义密码通过后的首页页面，[源码](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Tools/PatternLock/entry/src/main/ets/pages/Index.ets) 参考。
+* 在pages/index.ets中定义密码通过后的首页页面，[源码](entry/src/main/ets/pages/Index.ets) 参考。
 
 ### 相关权限
 

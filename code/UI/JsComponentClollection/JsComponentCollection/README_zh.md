@@ -85,53 +85,53 @@ entry/src/main/js/MainAbility
     * 组件模块：
         * 空白与分隔
             * 使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar),[commonItemSlider](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/commonItemSlider),[commonItemSelect](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/commonItemSelect)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar),[commonItemSlider](entry/src/main/js/MainAbility/common/commonItemSlider),[commonItemSelect](entry/src/main/js/MainAbility/common/commonItemSelect)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
 
         * 按钮与选择
             * 使用全局组件TitleBar，引入全局样式搭建按钮，日期选择器，单选按钮，选择菜单，滑动条，切换按钮组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
             * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
         * 信息展示与功效
             * 使用全局组件TitleBar，引入全局样式搭建二维码组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-      
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+        
         * 文本与输入
             * 使用全局组件TitleBar，引入全局样式搭建行内文本，输入框，文本组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
             * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
         * 辅助
             * 使用全局组件TitleBar，引入全局样式搭建标记组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
-  
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
+    
     * 通用模块：
         * 通用事件
             * 用到全局组件TitleBar，全局样式实现点击事件组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
 
         * 通用属性
             * 使用全局组件TitleBar，全局样式实现组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
             * 使用Math.trunc()方法将参数隐式转换成数字类型后，纯粹的去除小数部分
-            
+        
     * 动画模块：
         * 转场动画
             * 用到全局组件TitleBar实现动画转场组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
             * 接口参考：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
     * 全局方法模块：
         * 弹窗
             * 使用全局组件TitleBar，全局样式实现弹窗组件页面
-            * 全局封装组件源文件：[titleBar](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/titleBar)
-            * 全局样式源文件：[common.css](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection/entry/src/main/js/MainAbility/common/css)
+            * 全局封装组件源文件：[titleBar](entry/src/main/js/MainAbility/common/titleBar)
+            * 全局样式源文件：[common.css](entry/src/main/js/MainAbility/common/css)
 
 ### 相关权限
 
@@ -147,7 +147,7 @@ entry/src/main/js/MainAbility
 
 2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
-3.本示例需要使用DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 ### 下载
 

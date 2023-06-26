@@ -41,8 +41,8 @@ export class ShareUtils {
     try {
       Logger.info(TAG, `begin to start ability explicitly, ${JSON.stringify(contextCaller)}`)
       await contextCaller.startAbility({
-        bundleName: "ohos.samples.chat",
-        abilityName: "ohos.samples.chat.MainAbility", // 未设置ability名称，代表该want为隐式
+        bundleName: "com.samples.chat",
+        abilityName: 'EntryAbility',
         parameters: { // 分享的内容
           "kindId": ShareConst.KIND_ID_NUMBER,
           "text": title,
@@ -112,8 +112,8 @@ export class ShareUtils {
       }
 
       let want = {
-        bundleName: 'ohos.samples.chat',
-        abilityName: 'ohos.samples.chat.MainAbility', // 未设置ability名称，代表该want为隐式，
+        bundleName: 'com.samples.chat',
+        abilityName: 'EntryAbility',
         parameters: { // 分享的内容
           'kindId': ShareConst.KIND_ID,
           'keyFd': { 'type': 'FD', 'value': fdImage }

@@ -43,17 +43,17 @@ entry/src/main/ets/MainAbility
 * 本示例分为三个模块
   * 输入对端IP模块 
     * 使用wifi.getIpInfo()方法获取IP地址，constructUDPSocketInstance方法创建一个UDPSocket对象
-    * 源码链接：[Login.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/pages/Login.ets)，[Util.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/Utils/Util.ets)
+    * 源码链接：[Login.ets](entry/src/main/ets/MainAbility/pages/Login.ets)，[Util.ets](entry/src/main/ets/MainAbility/Utils/Util.ets)
     * 接口参考：[@ohos.wifi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-wifi.md)，[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-socket.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
   
   * 创建房间模块
     * 点击创建房间按钮，弹出创建房间框，输入房间号，点击确定，进入聊天页面
-    * 源码链接：[Login.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/pages/Login.ets)，[Util.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/Utils/Util.ets)
+    * 源码链接：[Login.ets](entry/src/main/ets/MainAbility/pages/Login.ets)，[Util.ets](entry/src/main/ets/MainAbility/Utils/Util.ets)
     * 接口参考：[@ohos.wifi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-wifi.md)，[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-socket.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
     
   * 聊天模块
     * bindOption方法监听消息，设置在线与离线
-    * 源码链接：[ChatBox.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/model/ChatBox.ets)，[DataSource.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/model/DataSource.ets)，[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Socket/entry/src/main/ets/MainAbility/pages/Index.ets)
+    * 源码链接：[ChatBox.ets](entry/src/main/ets/MainAbility/model/ChatBox.ets)，[DataSource.ets](entry/src/main/ets/MainAbility/model/DataSource.ets)，[Index.ets](entry/src/main/ets/MainAbility/pages/Index.ets)
     * 接口参考：[@ohos.wifi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-wifi.md)，[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-socket.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
 
 #### 相关概念
@@ -62,9 +62,9 @@ UDP Socket是面向非连接的协议，它不与对方建立连接，而是直�
 
 ### 相关权限
 
-1.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+1.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
-2.允许应用获取WLAN信息权限：[ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+2.允许应用获取WLAN信息权限：[ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_wifi_info)
 
 ### 依赖 
 

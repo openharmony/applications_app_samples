@@ -33,7 +33,7 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 蓝牙设备发现、配对、取消配对等操作的功能结构主要封装在Index、PinDialog，源码参考:[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Bluetooth/entry/src/main/ets/pages/Index.ets) ，[PinDialog.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/Connectivity/Bluetooth/entry/src/main/ets/Commom/PinDialog.ets)
+* 蓝牙设备发现、配对、取消配对等操作的功能结构主要封装在Index、PinDialog，源码参考:[Index.ets](entry/src/main/ets/pages/Index.ets) ，[PinDialog.ets](entry/src/main/ets/Commom/PinDialog.ets)
     * 启动和关闭蓝牙：在Index页面中通过Toggle组件的onChange函数来控制蓝牙的开关，开关打开的情况下会执行initBluetooth函数，关闭的情况下执行bluetooth.disableBluetooth()方法来断开蓝牙；
     * 验证蓝牙是否处于连接状态：蓝牙打开的时候通过bluetooth.on('stateChange')方法来监听蓝牙连接状态改变事件，确认已打开，则执行foundDevices()函数来查找设备接口，确认已关闭则执行bluetooth.stopBluetoothDiscovery()方法来停止查询接口。
     * 发现设备：在foundDevices()函数中通过bluetooth.on('bluetoothDeviceFind')方法来监听设备发现事件，并且通过bluetooth.getPairedDevices()方法来更新已配对蓝牙地址，然后通过bluetooth.startBluetoothDiscovery()方法开启蓝牙扫描，去发现远端设备，并且通过bluetooth.setBluetoothScanMode()方法来被远端设备发现。
@@ -42,15 +42,15 @@ entry/src/main/ets/
   
 ### 相关权限
 
-[ohos.permission.USE_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.USE_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionuse_bluetooth)
 
-[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionlocation)
 
-[ohos.permission.DISCOVER_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.DISCOVER_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiondiscover_bluetooth)
 
-[ohos.permission.MANAGE_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.MANAGE_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_bluetooth)
 
-[ohos.permission.APPROXIMATELY_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.APPROXIMATELY_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionapproximately_location)
 
 ### 依赖
 

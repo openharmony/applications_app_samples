@@ -22,27 +22,24 @@ export struct MainItem {
   build() {
     Row() {
       Text(this.title)
-        .fontSize(16)
+        .fontSize(20)
         .lineHeight(22)
         .fontWeight(FontWeight.Medium)
-        .fontFamily('HarmonyHeiTi')
-        .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        .fontColor($r("app.color.list_title"))
         .align(Alignment.Start)
-        .margin({ left: 16 })
 
       Blank()
 
       Image($r('app.media.ic_arrow'))
-        .width(12)
-        .height(24)
-        .margin({ left: 4 })
+        .width(16)
+        .height(32)
         .fillColor($r('sys.color.ohos_id_color_fourth'))
     }
     .alignItems(VerticalAlign.Center)
     .width('100%')
-    .height(56)
+    .height(62)
     .borderRadius(20)
-    .padding({ left: 8, right: 8 })
+    .padding({ left: 16, right: 16 })
     .backgroundColor(this.isTouched ? $r('app.color.itemActivated') : $r('app.color.itemInactivated'))
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {

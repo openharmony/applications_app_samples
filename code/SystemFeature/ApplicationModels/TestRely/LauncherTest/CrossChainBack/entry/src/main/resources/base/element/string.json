@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "crossChain"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "label"
+    }
+  ]
+}

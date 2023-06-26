@@ -13,7 +13,7 @@
 1. 在"我的"界面中包含开发信息及基本设置，点击振动强度设置，可选择振动强度等级，本步骤可选，默认为低强度模式；
 2. 在"发现"界面，振效库中罗列了不同体验场景，可点击各条目享受音效与振动的协同感受；
 3. 在"发现"界面，触感效果视频可体验视频与振动的协同，点击视频预览图片进入全屏播放界面；
-4. "展示更多"中罗列了当前的振感视频列表。
+4. "显示更多"中罗列了当前的振感视频列表。
 
 ### 目录结构
 ```
@@ -31,6 +31,7 @@ entry/src/main/ets/
 |   |---Shooting.ets                          // 振效库"射击"场景
 |   |---VideoPreview.ets                      // 视频频预览界面
 |---module
+|   |---AudioPlayer.ets                       // 音频播放模块
 |   |---DisplayModule.ets                     // "发现"界面，主界面
 |   |---ImageData.ets                         // 资源数据结构
 |   |---Logger.ets                            // 封装的日志
@@ -50,7 +51,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
 
 ### 依赖
 不涉及

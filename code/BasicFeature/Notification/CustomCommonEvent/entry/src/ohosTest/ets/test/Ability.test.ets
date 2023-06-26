@@ -15,12 +15,15 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
+import type common from '@ohos.app.ability.common';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import historyFeature from '../../../main/ets/feature/HistoryFeature';
 import { logger } from '../util/Logger';
 
 const TAG = '[Sample_CustomCommonEvent]';
 const BUNDLE = 'CustomCommonEvent_';
+let ability;
 const RADIO_ID: Array<string> = [
 commonEventManager.Support.COMMON_EVENT_WIFI_POWER_STATE,
 commonEventManager.Support.COMMON_EVENT_SCREEN_OFF,
@@ -42,7 +45,7 @@ export default function abilityTest() {
       })
       await driver.delayMs(1000);
       await delegator.getCurrentTopAbility().then((Ability) => {
-        console.info("get top ability");
+        ability = Ability;
         expect(Ability.context.abilityInfo.name).assertEqual('LauncherAbility');
       })
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
@@ -50,24 +53,29 @@ export default function abilityTest() {
     })
 
     // 进入监听界面，监听
-    it(BUNDLE + 'Main_001', 0, async function (done) {
+    it(BUNDLE + 'Main_001', 0, async function () {
       logger.info(TAG, `${BUNDLE}Main_001 begin`);
-      // 进入监听界面
+      // 进入监听界面，进行试11次监听
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('jumpToStart'));
       let jumpToStart = await driver.findComponent(ON.id('jumpToStart'));
       await jumpToStart.click();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.id('startMonitor'));
-      let startOrStop = await driver.findComponent(ON.id('startMonitor'));
-      await startOrStop.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('当前监听状态：', MatchPattern.CONTAINS));
-      await driver.delayMs(200);
-      await startOrStop.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('本次监控时长：', MatchPattern.CONTAINS));
+      for (let i = 0;i < 11; i++) {
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('startMonitor'));
+        let startBtn = await driver.findComponent(ON.id('startMonitor'));
+        await driver.delayMs(1000);
+        await startBtn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('当前监听状态：', MatchPattern.CONTAINS));
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('startMonitor'));
+        let stopBtn = await driver.findComponent(ON.id('startMonitor'));
+        await stopBtn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('本次监控时长：', MatchPattern.CONTAINS));
+      }
       logger.info(TAG, `${BUNDLE}Main_001 end`);
-      done();
     })
 
     // 进入详情界面
@@ -89,30 +97,38 @@ export default function abilityTest() {
     })
 
     // 进入历史页面
-    it(BUNDLE + 'History_001', 0, async function (done) {
+    it(BUNDLE + 'History_001', 0, async function () {
       logger.info(TAG, `${BUNDLE}History_001 begin`);
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('jumpToHistory'));
       let jumpToHistory = await driver.findComponent(ON.id('jumpToHistory'));
       await jumpToHistory.click();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text('开始于', MatchPattern.CONTAINS));
+      await driver.delayMs(1000);
+      let feature: historyFeature = new historyFeature(ability.context);
+      let recorderArray = await feature.getData().then((data: Array<Array<string>>) => {
+        return data;
+      })
+      // 判断添加10条数据之后的历史记录
+      if (recorderArray.length > 1) {
+        logger.info(TAG, 'Empty failed');
+        expect().assertFail();
+      }
+
       // 返回首页
+      await driver.delayMs(2000);
       await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.id('jumpToSetting'));
       logger.info(TAG, `${BUNDLE}History_001 end`);
-      done();
     })
 
     // 进入设置页面
     it(BUNDLE + 'Setting_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Setting_001 begin`);
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('jumpToSetting'));
       let jumpToHistory = await driver.findComponent(ON.id('jumpToSetting'));
+      await driver.delayMs(1000);
       await jumpToHistory.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('是否记录联网事件', MatchPattern.CONTAINS));
       logger.info(TAG, `${BUNDLE}Setting_001 end`);
       done();
@@ -121,18 +137,20 @@ export default function abilityTest() {
     // 设置功能
     it(BUNDLE + 'Setting_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Setting_002 begin`);
-      await driver.delayMs(200);
-       await driver.assertComponentExist(ON.id(RADIO_ID[1] + '1'));
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id(RADIO_ID[1] + '1'));
       let screenOffRadio2 = await driver.findComponent(ON.id(RADIO_ID[1] + '1'));
+      await driver.delayMs(1000);
       await screenOffRadio2.click();
       let screenOffCheck = await screenOffRadio2.isChecked();
       await driver.assertComponentExist(ON.id(RADIO_ID[2] + '1'));
       let screenOnRadio2 = await driver.findComponent(ON.id(RADIO_ID[2] + '1'));
+      await driver.delayMs(1000);
       await screenOnRadio2.click();
       let screenOnCheck = await screenOnRadio2.isChecked();
       expect(screenOffCheck && screenOnCheck).assertTrue();
       // 返回首页
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}Setting_002 end`);
       done();
@@ -141,7 +159,7 @@ export default function abilityTest() {
     // 进入关于页面
     it(BUNDLE + 'About_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}About_001 begin`);
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       // 点击进入关于页面
       await driver.assertComponentExist(ON.id('jumpToAbout'));
       let jumpToHistory = await driver.findComponent(ON.id('jumpToAbout'));
@@ -149,7 +167,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('本示例用于', MatchPattern.CONTAINS));
       // 返回首页
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('jumpToSetting'));
       logger.info(TAG, `${BUNDLE}About_001 end`);
       done();

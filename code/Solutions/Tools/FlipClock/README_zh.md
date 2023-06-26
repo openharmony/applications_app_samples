@@ -51,7 +51,7 @@ entry/src/main/ets/
 后台代理提醒：后台代理提醒主要提供后台提醒发布接口，开发者在应用开发时，可以调用这些接口去创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
 
 ### 具体实现
-* 在entry/pages/index.ets中通过tabArray.TabType.num的值来加载每个TabContent()的资源，num:[0,1,2,3]分别加载翻页时钟，闹钟，倒计时，设置组件。[源码参考]( https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Tools/FlipClock/entry/src/main/ets/pages/Index.ets) 。
+* 在entry/pages/index.ets中通过tabArray.TabType.num的值来加载每个TabContent()的资源，num:[0,1,2,3]分别加载翻页时钟，闹钟，倒计时，设置组件。[源码参考]( entry/src/main/ets/pages/Index.ets) 。
 * 页面编写步骤：  
   1、定义以下四个页面组件 FlipClock()//翻转时钟 AlarmClock()// 闹钟CountDown()// 倒计时Setting()//设置  
   2、使用tabs()标签，将四个组件封装。

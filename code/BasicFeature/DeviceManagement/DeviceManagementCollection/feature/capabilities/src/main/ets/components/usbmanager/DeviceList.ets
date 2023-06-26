@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
- * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,32 +26,43 @@ export struct DeviceList {
   build() {
     Column() {
       Text($r('app.string.device_list'))
-        .fontSize(25)
-        .margin({ top: 30 })
-        .fontWeight(FontWeight.Bold)
+        .fontSize(16)
+        .fontColor($r('app.color.list_sub_content'))
+        .fontWeight(FontWeight.Medium)
+        .margin({
+          left: 16,
+          top: 24,
+          bottom: 12
+        })
+        .width('100%')
 
       Refresh({ refreshing: this.isRefreshing, offset: 120, friction: 100 }) {
         List() {
           ForEach(this.devices, (item: DeviceAttribute, index) => {
             ListItem() {
               Text(`${item.manufacturerName} ${item.productName}`)
-                .height(50)
+                .height(60)
                 .fontSize(20)
+                .fontWeight(FontWeight.Medium)
                 .width('100%')
-                .borderRadius(30)
-                .fontColor(Color.Black)
-                .textAlign(TextAlign.Center)
+                .fontColor($r("app.color.black"))
+                .backgroundColor($r("app.color.white"))
+                .padding({ left: 16, right: 16 })
             }
-            .margin({ top: 12 })
             .onClick(() => {
-              this.device = this.devices[index];
-              this.openDialog();
+              this.device = this.devices[index]
+              this.openDialog()
             })
           })
         }
-        .height('100%')
-        .width('80%')
-        .divider({ strokeWidth: 1, color: Color.Black, startMargin: 16, endMargin: 16 })
+        .width('100%')
+        .borderRadius(20)
+        .divider({
+          strokeWidth: px2vp(1),
+          color: $r("app.color.divider"),
+          startMargin: 16,
+          endMargin: 16
+        })
       }
       .width('100%')
       .margin({ bottom: 20 })
@@ -62,7 +72,7 @@ export struct DeviceList {
         this.getDeviceList();
         setTimeout(() => {
           this.isRefreshing = false;
-        }, 1000);
+        }, 1000)
       })
     }
     .width('100%')

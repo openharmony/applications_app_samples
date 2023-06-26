@@ -10,6 +10,8 @@
 
 3.实现最近任务管理功能，包括任务卡片加锁、解锁、清理和清理所有任务功能。
 
+4.通过点击应用图标或点击由长按图标弹出的菜单栏中的打开按钮的方式打开应用，是以打开最近任务方式拉起应用Ability。
+
 ### 效果预览
 
 |主页| 重置页面                                     |
@@ -52,29 +54,33 @@ entry/src/main/ets/
 
 * 获取应用功能模块
   * 使用launcherBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework），获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
-  * 源码链接：[LauncherAbilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 源码链接：[LauncherAbilityManager.ts](base/src/main/ets/default/manager/LauncherAbilityManager.ts)
   * 接口参考：[@ohos.bundle.launcherBundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md)
 
 * 应用卸载功能模块
   * 使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework），调用uninstall接口实现应用卸载功能。
-  * 源码链接：[LauncherAbilityManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 源码链接：[LauncherAbilityManager.ts](base/src/main/ets/default/manager/LauncherAbilityManager.ts)
   * 接口参考：[@ohos.bundle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md)
   
 * 添加卡片功能模块
   * 使用formHost接口（系统能力：SystemCapability.Ability.Form），获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。
-  * 源码链接：[FormManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/FormManager.ts)
+  * 源码链接：[FormManager.ts](base/src/main/ets/default/manager/FormManager.ts)
   * 接口参考：[@ohos.app.form.formHost](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formHost.md)
 
 * 桌面数据持久化存储功能模块
   * 使用关系型数据库rdb接口（系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core），实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
-  * 源码链接：[RdbManager.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/base/src/main/ets/default/manager/RdbManager.ts)
+  * 源码链接：[RdbManager.ts](base/src/main/ets/default/manager/RdbManager.ts)
   * 接口参考：[@ohos.data.relationalStore](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md)
 
 * 加锁、解锁、清理后台任务功能模块
   * 使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission），获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
-  * 源码链接：[MissionModel.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SystemFeature/ApplicationModels/Launcher/recents/src/main/ets/default/model/MissionModel.ts)
+  * 源码链接：[MissionModel.ts](recents/src/main/ets/default/model/MissionModel.ts)
   * 接口参考：[@ohos.application.missionManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-missionManager.md)
 
+* 点击桌面应用拉起最近任务至前台功能模块
+  * 使用ServiceExtensionContext模块的startRecentAbility接口（系统能力：SystemCapability.Ability.AbilityRuntime.Core），拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
+  * 源码链接：[LauncherAbilityManager.ts](./base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+  * 接口参考：[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)
 ### 相关权限
 
 | 权限名                                     | 权限说明                                         | 级别         |

@@ -57,7 +57,7 @@
         "reason": "$string:keep_running",
         "usedScene": {
           "abilities": [
-            "com.samples.etscardmusic.MainAbility"
+            "EntryAbility"
           ],
           "when": "always"
         }

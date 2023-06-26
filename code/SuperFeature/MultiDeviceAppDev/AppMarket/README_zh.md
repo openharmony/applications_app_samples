@@ -55,9 +55,10 @@ AppMarket/entry/src/main/ets/
 本示例介绍如何使用自适应布局能力和响应式布局能力适配不同尺寸窗口，将页面分拆为5个部分。   
 #### 底部/侧边导航栏
 1、在sm和md断点下，导航栏在底部；在lg断点下，导航栏在左侧。   
-2、通过Tab组件的barPosition和vertical属性控制TabBar的位置在主轴方向起始或结尾位置和水平或垂直方向，同时还可以通过barWidth和barHeight属性控制TabBar的尺寸，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/AppMarket/entry/src/main/ets/pages/index.ets )。
+2、通过Tab组件的barPosition和vertical属性控制TabBar的位置在主轴方向起始或结尾位置和水平或垂直方向，同时还可以通过barWidth和barHeight属性控制TabBar的尺寸，[源码参考](entry/src/main/ets/pages/index.ets )。
+
 #### 标题栏与搜索栏
-通过栅格实现标题栏和搜索栏：在sm和md断点下分两行显示，在lg断点下单行显示，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/AppMarket/entry/src/main/ets/common/IndexHeader.ets )。  
+通过栅格实现标题栏和搜索栏：在sm和md断点下分两行显示，在lg断点下单行显示，[源码参考](entry/src/main/ets/common/IndexHeader.ets )。  
 2、在sm和md断点下，标题栏和搜索栏占满12列，此时会自动换行显示。  
 3、在lg断点下，标题栏占8列而搜索栏占4列，此时标题栏和搜索栏在同一行中显示。
 #### 运营横幅
@@ -65,7 +66,7 @@ AppMarket/entry/src/main/ets/
 #### 快捷入口
 通过将justifyContent参数配置为FlexAlign.SpaceEvenly实现均分布局：在不同的断点下，快捷入口的5个图标始终均匀排布。
 #### 精品应用
-通过List组件能力，实现延伸能力场景：随着可用显示区域的增加，精品应用中显示的图标数量也不断增加，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/117e134dd0d4393f5d1d089a50e4ebbb552d596a/code/SuperFeature/MultiDeviceAppDev/AppMarket/entry/src/main/ets/common/IndexApps.ets )。
+通过List组件能力，实现延伸能力场景：随着可用显示区域的增加，精品应用中显示的图标数量也不断增加，[源码参考](entry/src/main/ets/common/IndexApps.ets )。
 #### 总体运行效果
 通过将上述各页面在List() {}中引用组件后，可实现首页的组件整合渲染，即可完成整体页面开发。  
 

@@ -36,7 +36,7 @@ entry/src/main/ets/MainAbility
 
 ### 具体实现
 
-* 创建定义数据类型文件，源码参考：[FoodData.ets](https://gitee.com/yan-huan369/applications_app_samples_readmeRetify/blob/master/code/UI/ArkTsComponentClollection/DefiningPageLayoutAndConnection/entry/src/main/ets/MainAbility/model/FoodData.ets)
+* 创建定义数据类型文件，源码参考：[FoodData.ets](entry/src/main/ets/MainAbility/model/FoodData.ets)
 
 * List布局：创建食物数据模型，ForEach循环渲染ListItem。
 

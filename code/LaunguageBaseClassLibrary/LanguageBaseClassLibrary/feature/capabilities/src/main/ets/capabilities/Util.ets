@@ -49,7 +49,7 @@ export struct Util {
   }
 
   build() {
-    Column(){
+    Column() {
       MenuList({ menuList: $r('app.strarray.util_menu') }) {
         Column() {
           Divider()

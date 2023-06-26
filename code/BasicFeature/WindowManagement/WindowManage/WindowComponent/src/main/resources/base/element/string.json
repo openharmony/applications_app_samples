@@ -25,6 +25,10 @@
       "value": "Lose Focus"
     },
     {
+      "name": "background",
+      "value": "Background"
+    },
+    {
       "name": "unknown",
       "value": "Unknown"
     }

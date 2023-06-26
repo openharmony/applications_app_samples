@@ -34,7 +34,7 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 横竖屏切换功能接口封装在Index，源码参考:[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/UI/ArkTsComponentClollection/MediaQuery/entry/src/main/ets/pages/Index.ets)
+* 横竖屏切换功能接口封装在Index，源码参考:[Index.ets](entry/src/main/ets/pages/Index.ets)
     * 获取监听句柄：通过mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')方法来获取有一个监听横竖屏的句柄，接口参考：[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) ；
     * 执行控制横竖屏切换效果的函数：调用this.listener.on('change', this.onLand.bind(this))函数来实现横竖屏下不同的功能或者页面效果；
 

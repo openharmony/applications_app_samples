@@ -38,11 +38,13 @@ struct DatePickerSample {
           .width('100%')
           .margin(12)
           .textAlign(TextAlign.Center)
+          .id('dateValue')
         DatePicker({
           start: new Date('1970-1-1'),
           end: new Date('2200-12-31'),
           selected: this.currentPickerDate // Default date is 2022-10-30
         })
+          .id('datePicker')
           .height(230)
           .lunar(this.isLunar)
           .onChange((date: DatePickerResult) => {
@@ -55,13 +57,13 @@ struct DatePickerSample {
             if (date.day < 10) {
               day = `0${date.day}`
             }
-            this.selectDate = `${date.year}-${month}-${day}`
+            this.selectDate = `${date.year}-${month}-${day}`;
+            this.currentPickerDate.setFullYear(date.year, date.month, date.day);
           })
         Row() {
           Checkbox()
-            .select(this.isLunar)
-            .onChange((isSelect: boolean) => {
-              this.isLunar = isSelect
+            .onChange(() => {
+              this.isLunar = !this.isLunar;
             }).id('Checkbox')
           Text($r('app.string.date_picker_lunar'))
         }

@@ -40,22 +40,22 @@ entry/src/main/ets/
 * 本示例分为三个模块：
   * 发表评价页面模块：
     * 使用scroll，TextArea，Grid等组件开发发表评价页面
-    * 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/pages/Index.ets)
+    * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)
     * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
   * 选择图片/照片模块
     * 调用依赖中ChoicePhotos方法打开相册，mediaquery媒体查询相册，getMediaLibrary获取媒体库的实例，访问用户等个人媒体数据信息并选中图片
-    * 源码链接：[ChoicePhotos.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/imagelibrary/src/main/ets/components/pages/ChoicePhotos.ets)，[MainAbility.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/MainAbility/MainAbility.ts)
+    * 源码链接：[ChoicePhotos.ets](imagelibrary/src/main/ets/components/pages/ChoicePhotos.ets)，[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)
     * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)，[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-mediaquery.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)，[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md)
   
   * 提交模块
     * 选中图片后点击下一步按钮，回到发表评价页面，点击提交按钮进行提交
-    * 源码链接：[Index.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow/entry/src/main/ets/pages/Index.ets)
+    * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)
     * 参考接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
 
 ### 相关权限
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
 
 ### 依赖
 

@@ -1,4 +1,7 @@
 /node_modules
+/oh_modules
+/oh-package-lock.json5
+/signature
 /local.properties
 /.idea
 /.hvigor

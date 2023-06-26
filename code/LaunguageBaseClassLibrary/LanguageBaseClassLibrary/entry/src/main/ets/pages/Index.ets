@@ -13,8 +13,12 @@
  * limitations under the License.
  */
 
+import router from '@ohos.router';
 import { Capabilities } from './components/Capabilities';
 import { MenuList } from '@ohos/menuitems';
+import { getString, logger } from '@ohos/common';
+
+const TAG: string = 'Index';
 
 @Entry
 @Component
@@ -32,7 +36,33 @@ struct Index {
       Divider()
         .strokeWidth('1px')
         .color($r('sys.color.ohos_id_color_list_separator'))
-      MenuList({ menuList: $r('app.strarray.language_base_class_library_list') }) {
+      MenuList({
+        menuList: $r('app.strarray.language_base_class_library_list'),
+        addAction: (title) => {
+          logger.info(TAG, `addAction: title = ${title}`)
+          switch (title) {
+            case getString($r('app.string.deque')):
+            case getString($r('app.string.linked_list')):
+            case getString($r('app.string.list')):
+            case getString($r('app.string.queue')):
+            case getString($r('app.string.stack')):
+            case getString($r('app.string.vector')):
+              router.pushUrl({ url: 'pages/AddInformationView', params: { 'title': title } })
+              break;
+            case getString($r('app.string.hash_map')):
+            case getString($r('app.string.light_weight_map')):
+            case getString($r('app.string.plain_array')):
+            case getString($r('app.string.tree_map')):
+              router.pushUrl({ url: 'pages/AddKeyValuePairView', params: { 'title': title } })
+              break;
+            case getString($r('app.string.hash_set')):
+            case getString($r('app.string.light_weight_set')):
+            case getString($r('app.string.tree_set')):
+              router.pushUrl({ url: 'pages/AddStringView', params: { 'title': title } })
+              break;
+          }
+        }
+      }) {
         Capabilities()
       }
     }
@@ -50,7 +80,7 @@ struct Index {
   CustomTitle() {
     Row() {
       Text(this.title)
-        .fontColor(Color.Black)
+        .fontColor($r('app.color.black'))
         .fontSize(26)
         .fontWeight(FontWeight.Bold)
     }

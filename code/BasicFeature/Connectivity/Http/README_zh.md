@@ -41,13 +41,13 @@ http/src/main/ets/
 
 ### 具体实现
 
-* 本示例将发送http请求的接口封装在Http模块，源码参考：[http.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Http/http/src/main/ets/components/model/http.ts)
-  * 发起请求：在[MainPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/Http/http/src/main/ets/components/MainPage/MainPage.ets)
+* 本示例将发送http请求的接口封装在Http模块，源码参考：[http.ts](http/src/main/ets/components/model/http.ts)
+  * 发起请求：在[MainPage.ets](http/src/main/ets/components/MainPage/MainPage.ets)
   通过TextInput组件获取参数，点击“确认”按钮后通过Http.request()方法调用http.createHttp().request()接口向指定的地址发送请求。
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
 ### 依赖
 
@@ -57,7 +57,7 @@ http/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9 及以上。
+2.本示例已适配API version 10 版本SDK，版本号：4.0.6.2 及以上。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
 

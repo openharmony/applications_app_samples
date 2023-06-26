@@ -17,9 +17,7 @@ import { DeviceAttribute } from '../model/DeviceAttribute';
 import { DeviceCustomDialog } from '../components/usbmanager/DeviceCustomDialog';
 import { DeviceList } from '../components/usbmanager/DeviceList';
 import { createUsbSubscribe, cancelUsbSubscribe, getDeviceList } from '../util/UsbManagerUtil';
-import { RadiusColumn } from '../components/RadiusColumn';
 
-@Preview
 @Component
 export struct UsbManager {
   @State isListener: boolean = false;
@@ -29,30 +27,28 @@ export struct UsbManager {
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: DeviceCustomDialog({ device: this.device }),
     autoCancel: true,
-    cancel: () => {
-    }
+    cancel: () => {}
   });
 
   build() {
     Column({ space: 12 }) {
-      RadiusColumn() {
-        Row() {
-          Text($r('app.string.usb_listener'))
-            .fontSize(25)
-            .fontWeight(FontWeight.Bold)
-          Blank()
-          Toggle({ type: ToggleType.Switch, isOn: this.isListener })
-            .key('startUSBMonitorSwitch')
-            .selectedColor(0xed6f21)
-            .switchPointColor(0xe5ffffff)
-            .onChange((isOn: boolean) => {
-              this.isListener = !this.isListener;
-              this.listenerSwitch(this.isListener);
-            })
-        }
-        .width('100%')
-        .height(50)
+      Row() {
+        Text($r('app.string.usb_listener'))
+          .fontSize(20)
+          .fontWeight(FontWeight.Medium)
+        Blank()
+        Toggle({ type: ToggleType.Switch, isOn: this.isListener })
+          .onChange((isOn: boolean) => {
+            this.isListener = !this.isListener
+            this.listenerSwitch(this.isListener)
+          })
       }
+      .backgroundColor($r("app.color.white"))
+      .borderRadius(20)
+      .padding({ left: 16, right: 16 })
+      .width('100%')
+      .height(60)
+
 
       DeviceList({
         isRefreshing: $isRefreshing,
@@ -89,9 +85,10 @@ export struct UsbManager {
 
   listenerSwitch(isListener: boolean) {
     if (isListener) {
-      createUsbSubscribe(()=>{
+      this.devices = getDeviceList();
+      createUsbSubscribe(() => {
         this.devices = getDeviceList();
-      });
+      })
     } else {
       cancelUsbSubscribe();
     }

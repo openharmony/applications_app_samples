@@ -46,7 +46,7 @@ entry/src/main/ets/
 
 ### 具体实现
 #### 管理kvStore
-1、页面初始化时获取此应用所需能力：引入@ohos.data.distributedKVStore初始化kvstore数据库并对使用kvstore.on数据change进行监听，通过appstorge判断获取相应的key判断是否是分布式节点，[源码](https://gitee.com/openharmony/applications_app_samples/blob/master/code/SuperFeature/DistributedAppDev/Kvstore/entry/src/main/ets/pages/Index.ets) 。
+1、页面初始化时获取此应用所需能力：引入@ohos.data.distributedKVStore初始化kvstore数据库并对使用kvstore.on数据change进行监听，通过appstorge判断获取相应的key判断是否是分布式节点，[源码](entry/src/main/ets/pages/Index.ets) 。
 2、如果是分布式节点，如果数据发生变化，处理数据并使用.noteDataSource()进行reload数据。  
 3、页面通过kvStore对象进行增删改查会触发其他已连接设备的kvStore.on监听。
 #### 管理分布式设备（节点）
@@ -57,7 +57,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-允许不同设备间的数据交换：[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) 。
+允许不同设备间的数据交换：[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiondistributed_datasync) 。
 
 允许系统应用获取分布式设备的认证组网能力：[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionaccess_service_dm)
 

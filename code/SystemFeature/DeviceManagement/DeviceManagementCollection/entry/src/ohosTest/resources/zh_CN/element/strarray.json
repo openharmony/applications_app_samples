@@ -1,0 +1,65 @@
+{
+  "strarray": [
+    {
+      "name": "power_operations",
+      "value": [
+        {
+          "value": "休眠"
+        },
+        {
+          "value": "关机"
+        },
+        {
+          "value": "重启"
+        },
+        {
+          "value": "设置电源模式"
+        }
+      ]
+    },
+    {
+      "name": "power_mode",
+      "value": [
+        {
+          "value": "标准模式"
+        },
+        {
+          "value": "省电模式"
+        },
+        {
+          "value": "性能模式"
+        },
+        {
+          "value": "超级省电模式"
+        }
+      ]
+    },
+    {
+      "name": "settings_operations",
+      "value": [
+        {
+          "value": "设置数据项"
+        }
+      ]
+    },
+    {
+      "name": "system_capability",
+      "value": [
+        {
+          "value": "获取系统能力集合的字符串"
+        }
+      ]
+    },
+    {
+      "name": "system_parameter",
+      "value": [
+        {
+          "value": "设置系统参数"
+        },
+        {
+          "value": "获取系统参数"
+        }
+      ]
+    }
+  ]
+}

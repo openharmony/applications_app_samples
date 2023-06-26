@@ -191,7 +191,7 @@ export class DesktopLayoutModel {
    * @param abilityName target ability name
    */
   jumpTo(abilityName: string, bundleName: string): void {
-    this.mLauncherAbilityManager.startLauncherAbility(abilityName, bundleName)
+    this.mLauncherAbilityManager.startLauncherAbilityFromRecent(abilityName, bundleName);
   }
 
   /**

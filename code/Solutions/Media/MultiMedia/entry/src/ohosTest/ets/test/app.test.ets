@@ -23,9 +23,10 @@ import Logger from '../util/Logger';
 const BUNDLE = 'MultiMedia_';
 const TAG = 'MultiMediaAppTestPage';
 const TIME_OUT = 1000;
-let ability: UIAbility = undefined;
+let ability: UIAbility;
 let driver: Driver = Driver.create();
 let mediaTest: mediaLibrary.MediaLibrary = undefined;
+let uiAbility: UIAbility;
 
 async function getFileAssetsFromType(mediaType: number) {
   Logger.info(TAG, `getFileAssetsFromType,mediaType = ${mediaType}`);
@@ -65,8 +66,8 @@ async function getAlbums() {
   albums.push({
     albumName: 'Audios', count: audios.length, mediaType: mediaLibrary.MediaType.AUDIO
   });
-  return albums;
   Logger.info(TAG, `getAlbums end`);
+  return albums;
 }
 
 export default function appTest() {
@@ -93,8 +94,9 @@ export default function appTest() {
         abilityName: 'MainAbility',
         onAbilityCreate: onAbilityCreateCallback
       }
-      ability = await abilityDelegator.waitAbilityMonitor(monitor, TIME_OUT);
-      mediaTest = mediaLibrary.getMediaLibrary(ability.context);
+      uiAbility = await abilityDelegator.waitAbilityMonitor(monitor, TIME_OUT);
+      ability = await abilityDelegator.getCurrentTopAbility();
+      mediaTest = mediaLibrary.getMediaLibrary(uiAbility.context);
       Logger.info(TAG, 'StartAbility end');
     });
     /**
@@ -209,24 +211,27 @@ export default function appTest() {
       Logger.info(TAG, BUNDLE + 'TxtEdit_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('addBtn'));
-      let addBtn: Component = await driver.findComponent(ON.id('addBtn'));
-      await addBtn.click();
-      await driver.delayMs(1000);
-      // 进入文本编辑页面
-      await driver.assertComponentExist(ON.id('document'));
-      let document: Component = await driver.findComponent(ON.id('document'));
-      await document.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('textArea'));
-      let textArea: Component = await driver.findComponent(ON.id('textArea'));
-      await textArea.inputText(`mst`);
-      // 保存文本
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('saveBtn'));
-      let saveBtn: Component = await driver.findComponent(ON.id('saveBtn'));
-      await saveBtn.click();
-      await driver.delayMs(1000);
+      // 添加五个文件
+      for (let i = 0; i < 5; i++) {
+        await driver.assertComponentExist(ON.id('addBtn'));
+        let addBtn: Component = await driver.findComponent(ON.id('addBtn'));
+        await addBtn.click();
+        await driver.delayMs(1000);
+        // 进入文本编辑页面
+        await driver.assertComponentExist(ON.id('document'));
+        let document: Component = await driver.findComponent(ON.id('document'));
+        await document.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('textArea'));
+        let textArea: Component = await driver.findComponent(ON.id('textArea'));
+        await textArea.inputText(`mst`);
+        // 保存文本
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('saveBtn'));
+        let saveBtn: Component = await driver.findComponent(ON.id('saveBtn'));
+        await saveBtn.click();
+        await driver.delayMs(1000);
+      }
       Logger.info(TAG, BUNDLE + 'TxtEdit_001 end');
     });
     /**
@@ -237,6 +242,7 @@ export default function appTest() {
       await driver.delayMs(1000);
       // 校验数据是否添加成功，每次操作添加一次数据，成功数据为非空
       let mediaAlbums = await getAlbums();
+      let resourceManager = ability.context.resourceManager;
       mediaAlbums.forEach((item) => {
         if (item.count === 0) {
           Logger.info(TAG, `${item.albumName} obtaining data error`);
@@ -261,22 +267,27 @@ export default function appTest() {
         await driver.delayMs(1000);
         // 输入文本
         await inputRename.inputText('mst');
-        await driver.assertComponentExist(ON.text('确定'));
-        let confirm: Component = await driver.findComponent(ON.text('确定'));
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+        let confirm: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+        await driver.delayMs(1000);
         await confirm.click();
         await driver.delayMs(1000);
         // 校验文本
         await driver.assertComponentExist(ON.id('fileName'));
         let fileName: Component = await driver.findComponent(ON.id('fileName'));
+        await driver.delayMs(1000);
         expect('mst').assertEqual(await fileName.getText());
         // 删除数据
         await driver.assertComponentExist(ON.id('delete0'));
         await driver.delayMs(1000);
         let deleteData: Component = await driver.findComponent(ON.id('delete0'));
+        await driver.delayMs(1000);
         await deleteData.click();
         await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text('确定'));
-        let confirmBtn: Component = await driver.findComponent(ON.text('确定'));
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+        let confirmBtn: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+        await driver.delayMs(1000);
         await confirmBtn.click();
         await driver.delayMs(1000);
         // 校验是否删除成功
@@ -290,6 +301,41 @@ export default function appTest() {
         await backIndex.click();
       }
       Logger.info(TAG, BUNDLE + 'BaseFeature_001 end');
+    });
+    /**
+     * 删除多条数据操作
+     */
+    it(`${BUNDLE}DeleteMultipleData_001`, 0, async () => {
+      Logger.info(TAG, BUNDLE + 'DeleteMultipleData_001 begin');
+      await driver.delayMs(1000);
+      // 校验数据是否添加成功，每次操作添加一次数据，成功数据为非空
+      let mediaAlbums = await getAlbums();
+      let resourceManager = ability.context.resourceManager;
+      await driver.assertComponentExist(ON.id(`mediaType0`));
+      let mediaType: Component = await driver.findComponent(ON.id(`mediaType0`));
+      await mediaType.click();
+      await driver.delayMs(1000);
+      // 获取当前文件数据的个数，并依次删除
+      for (let i = 0; i < mediaAlbums[0].count; i++) {
+        let medias = await getAlbums();
+        await driver.delayMs(1000);
+        // 删除数据
+        await driver.assertComponentExist(ON.id(`delete${i}`));
+        let deleteData: Component = await driver.findComponent(ON.id(`delete${i}`));
+        await deleteData.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+        let confirmBtn: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+        await confirmBtn.click();
+        await driver.delayMs(1000);
+        // 校验是否删除成功
+        let mediaAblumsDeleted = await getAlbums();
+        if (mediaAblumsDeleted[0].count !== medias[0].count - 1) {
+          Logger.info(TAG, `Type deletion failed`)
+          expect().assertFail();
+        }
+      }
+      Logger.info(TAG, BUNDLE + 'DeleteMultipleData_001 end');
     });
   });
 }

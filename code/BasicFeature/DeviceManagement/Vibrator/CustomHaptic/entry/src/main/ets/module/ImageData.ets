@@ -526,7 +526,7 @@ export function getImageFootstepList(): Array<ImagesData> {
     {
       "id": 3,
       "src": $r("app.media.Footstep4"),
-      "name": $r("app.string.display_shoot_hit_wood"),
+      "name": $r("app.string.display_footstep_on_board"),
       "vibratorFileL": "OnWood_l.json",
       "vibratorFileM": "OnWood_m.json",
       "vibratorFileH": "OnWood_h.json",

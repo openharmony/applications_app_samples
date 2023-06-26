@@ -60,8 +60,8 @@ export class CustomDataSource extends BasicDataSource {
   public dataArray: string[] = [];
 
   constructor(ele) {
-    super();
-    for (var index = 0;index < ele.length; index++) {
+    super()
+    for (let index = 0; index < ele.length; index++) {
       this.dataArray.push(ele[index]);
     }
   }

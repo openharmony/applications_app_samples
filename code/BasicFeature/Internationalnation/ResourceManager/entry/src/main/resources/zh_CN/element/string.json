@@ -21,24 +21,56 @@
       "value": "通过资源管理获取信息"
     },
     {
+      "name": "stringDesc",
+      "value": "字符串: "
+    },
+    {
+      "name": "stringArrayDesc",
+      "value": "字符串数组: "
+    },
+    {
+      "name": "pluralStringDesc",
+      "value": "单复数字符串: "
+    },
+    {
       "name": "string_str",
-      "value": "string:eTS资源管理"
+      "value": "ETS资源管理"
     },
     {
-      "name": "capability",
-      "value": "设备支持能力:"
+      "name": "capabilityDesc",
+      "value": "设备支持能力: "
     },
     {
-      "name": "configuration",
-      "value": "设备状态:"
+      "name": "configurationDesc",
+      "value": "设备状态: "
     },
     {
-      "name": "media",
-      "value": "图片字节数:"
+      "name": "mediaDesc",
+      "value": "图片字节数: "
     },
     {
-      "name": "media_base",
-      "value": "Base64编码字符串长度:"
+      "name": "mediaBase64Desc",
+      "value": "Base64编码字符串长度: "
+    },
+    {
+      "name": "formatStr",
+      "value": "你好，%s"
+    },
+    {
+      "name": "world",
+      "value": "世界！"
+    },
+    {
+      "name": "formatStrDesc",
+      "value": "格式化字符串: "
+    },
+    {
+      "name": "densityMediaDesc",
+      "value": "特定屏幕密度媒体查询: "
+    },
+    {
+      "name": "systemResDesc",
+      "value": "系统资源查询: "
     }
   ]
 }
