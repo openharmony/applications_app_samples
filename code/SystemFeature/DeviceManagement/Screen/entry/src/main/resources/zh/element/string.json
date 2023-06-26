@@ -17,6 +17,10 @@
       "value": "设备Id"
     },
     {
+      "name": "devname",
+      "value": "设备名称"
+    },
+    {
       "name": "refreshRate",
       "value": "设备刷新率"
     },
@@ -35,6 +39,54 @@
     {
       "name": "remove_screen",
       "value": "移除屏幕"
+    },
+    {
+      "name": "alive",
+      "value": "启用状态"
+    },
+    {
+      "name": "state",
+      "value": "设备状态"
+    },
+    {
+      "name": "rotation",
+      "value": "屏幕旋转角度"
+    },
+    {
+      "name": "densityDPI",
+      "value": "屏幕密度"
+    },
+    {
+      "name": "orientation",
+      "value": "屏幕方向"
+    },
+    {
+      "name": "densityPixels",
+      "value": "逻辑密度"
+    },
+    {
+      "name": "scaledDensity",
+      "value": "缩放因子"
+    },
+    {
+      "name": "xDPI",
+      "value": "xDPI"
+    },
+    {
+      "name": "yDPI",
+      "value": "yDPI"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "yes",
+      "value": "是"
+    },
+    {
+      "name": "no",
+      "value": "否"
     }
   ]
 }

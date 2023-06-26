@@ -21,6 +21,7 @@ const TAG: string = '[MainAbility]'
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
+    globalThis.mainContext = this.context
     Logger.info(TAG, `[Demo] MainAbility onCreate`)
   }
 
