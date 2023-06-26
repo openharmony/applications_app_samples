@@ -25,6 +25,7 @@ let uri = ('datashareproxy://com.samples.processproxyform');
 let conditionCity = '沈阳';
 let conditionID = '110000';
 let conditionData = '-30 ℃';
+let conditionDataToNumber;
 let formInstanceFilter = {
   bundleName: 'com.samples.processproxyform'
 };
@@ -125,11 +126,7 @@ struct IndexSec {
               .height(60)
               .type(InputType.Normal)
               .onChange((text) => {
-                if (Number(text) > -40 && Number(text) < 60) {
-                  conditionData = text + ' ℃';
-                } else {
-                  prompt.showToast({ message: `Please enter the correct temperature`, duration: 5000 });
-                }
+                conditionData = text + '℃';
               })
             Text('℃')
               .fontSize(30)
@@ -142,7 +139,15 @@ struct IndexSec {
             .margin({ top: 20 })
             .backgroundColor('#0D9FFB')
             .onClick(() => {
-              publish()
+              conditionDataToNumber = conditionData.split(/[℃]/);
+              if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
+                Logger.info(`${TAG}`, `correct temperature is ${conditionDataToNumber[0]}`);
+                publish()
+              } else {
+                Logger.info(`${TAG}`, `incorrect temperature is ${conditionDataToNumber[0]}`);
+                prompt.showToast({ message: `The temperature you entered is: ${conditionDataToNumber[0]},\ Please enter
+                  the correct temperature value from -40 to 60`, duration: 5000 });
+              }
             })
           Text(' ')
             .fontSize(10)
