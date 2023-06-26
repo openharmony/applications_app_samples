@@ -187,6 +187,7 @@ struct HeatHistogramContent {
 @Component
 struct MealFoodDetail {
   @Consume("dataChange") notifyDataChange: number
+  @Consume("dietData") dietStatisticsData: Array<OneMealStatisticsInfo>
   @State shown: boolean = true
   @State translateX: number = 0
   private mealFoodInfo: MealFoodInfo
@@ -249,6 +250,8 @@ struct MealFoodDetail {
                     item.weight = 0
                   }
                 })
+                AppStorage.Set<Array<DietRecord>>('dietRecords', dietRecords)
+                this.dietStatisticsData = statistics()
               })
             })
         }
