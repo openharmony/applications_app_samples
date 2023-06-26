@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "set_OK",
+      "value": "确定"
+    },
+    {
+      "name": "windowRatios",
+      "value": "当前比例"
+    },
+    {
+      "name": "windowWidth",
+      "value": "窗口宽度:"
+    },
+    {
+      "name": "windowHeight",
+      "value": "窗口高度:"
+    }
+  ]
+}
