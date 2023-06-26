@@ -37,7 +37,7 @@ export struct MouseManager {
   // 鼠标样式
   @State mPointerStyleVal: string = getString($r('app.string.mouse_style_default'))
   @State mSpeedIndex: number = 4
-  @State mSpeedVal: string = this.mPointerSpeedArr[this.mSpeedIndex]
+  @State mSpeedVal: string = this.mPointerSpeedArr[4]
   @State mStyleIndex: number = 0
   private mSheetArr: Array<SheetInfo> = []
   private mPointerStyleArr: Array<PointerStyleData> = pointerStyleArr
@@ -84,8 +84,10 @@ export struct MouseManager {
       range: this.mPointerSpeedArr,
       selected: this.mSpeedIndex,
       onAccept: (result: TextPickerResult) => {
-        this.mSpeedIndex = result.index
-        this.mSpeedVal = result.value
+        let indexTemp:any = result.index
+        let speedTemp: any = result.value
+        this.mSpeedIndex = indexTemp
+        this.mSpeedVal = speedTemp
         setPointerSpeed(Number(this.mSpeedVal))
         console.info("TextPickerDialog:onAccept()" + JSON.stringify(result))
       }
