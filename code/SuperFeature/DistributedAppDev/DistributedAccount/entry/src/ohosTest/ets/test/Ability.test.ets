@@ -100,7 +100,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.take_photo'))))
       let takephoto = await driver.findComponent(ON.text(await getResourceString($r('app.string.take_photo'))))
       await takephoto.click()
-      await driver.delayMs(2000)
+      await driver.delayMs(5000)
       await driver.click(357, 1100) // 点击拍照
       await driver.delayMs(2000)
       // 点击右上角确定 固定坐标只支持RK3568，其他设备需要调整
