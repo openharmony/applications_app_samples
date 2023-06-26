@@ -24,8 +24,10 @@
 entry/src/main/ets/
 |---pages
 |   |---Index.ets                           // 首页
-|   |---DistributedAccountList.ets          // 帐号列表
-|   |---DistributedAccountInfo.ets          // 帐号信息
+|---distributedaccount
+|   |---pages
+|   |   |---DistributedAccountList.ets      // 帐号列表
+|   |   |---DistributedAccountInfo.ets      // 帐号信息
 |---common
 |   |---component
 |   |   |---ListItemComponent.ets           // 列表项
