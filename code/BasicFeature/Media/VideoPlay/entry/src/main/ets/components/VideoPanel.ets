@@ -39,7 +39,7 @@ export struct VideoPanel {
   }
 
   async isInternet(): Promise<void> {
-    if (!await this.checkWifiState() && this.videoSelect == VIDEOSELECT) {
+    if (!await this.checkWifiState() && this.videoSelect === VIDEOSELECT) {
       this.toast();
     }
   }
@@ -49,9 +49,9 @@ export struct VideoPanel {
       message: $r('app.string.video_warn'),
       duration: 2000,
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       globalThis.context.terminateSelf();
-    },1000)
+    }, 1000)
   }
 
   async aboutToAppear() {
@@ -59,7 +59,7 @@ export struct VideoPanel {
       try {
         await this.isInternet();
       } catch (err) {
-        if(!wf.isConnected() && this.videoSelect == VIDEOSELECT){
+        if (!wf.isConnected() && this.videoSelect === VIDEOSELECT) {
           this.toast();
         }
       }
@@ -104,7 +104,7 @@ export struct VideoPanel {
 
                   Blank()
 
-                  if (this.videoSelect == index) {
+                  if (this.videoSelect === index) {
                     Text($r('app.string.playing'))
                       .fontSize($r('app.float.size_20'))
                       .fontColor(Color.White)
@@ -117,7 +117,7 @@ export struct VideoPanel {
               }
               .width("100%")
             }
-            .backgroundColor(this.videoSelect == index ? $r('app.color.video_play_selected') : "")
+            .backgroundColor(this.videoSelect === index ? $r('app.color.video_play_selected') : "")
             .width("100%")
             .height($r('app.float.size_64'))
             .onClick(async () => {
