@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction';
 import Logger from '../util/Logger'
 import type common from '@ohos.app.ability.common'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
@@ -28,6 +28,12 @@ let want = {
   bundleName: 'ohos.samples.stagemodel',
   abilityName: 'JumpAbility',
   moduleName: 'entry'
+};
+
+let serviceWant = {
+  deviceId: '',
+  bundleName: 'ohos.samples.stagemodel',
+  abilityName: 'ServiceExtAbility',
 };
 
 export default class AbilityContextController {
@@ -185,7 +191,7 @@ export default class AbilityContextController {
         })
       }
     }
-    const result = this.context.connectServiceExtensionAbility(want, options)
+    const result = this.context.connectServiceExtensionAbility(serviceWant, options);
     Logger.info(TAG, `connectAbilityResult: ${JSON.stringify(result)}`)
     prompt.showToast({
       message: `connectAbilityResult: ${JSON.stringify(result)}`
@@ -214,7 +220,7 @@ export default class AbilityContextController {
         })
       }
     }
-    const result = this.context.connectServiceExtensionAbility(want, options)
+    const result = this.context.connectServiceExtensionAbilityWithAccount(serviceWant, accountId, options);
     Logger.info(TAG, `connectAbilityResult: ${JSON.stringify(result)}`)
     prompt.showToast({
       message: `connectAbilityResult: ${JSON.stringify(result)}`
