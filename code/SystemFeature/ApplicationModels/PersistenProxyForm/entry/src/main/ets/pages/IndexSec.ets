@@ -41,7 +41,7 @@ function updateRDB(): void {
     try {
       let uri = 'datashareproxy://com.samples.PersistentProxyForm/test';
       dataShareHelper.update(uri, da, va, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
           Logger.info(`${TAG}`, `update error1: code: ${err.code}, message: ${err.message} `);
           return;
         };

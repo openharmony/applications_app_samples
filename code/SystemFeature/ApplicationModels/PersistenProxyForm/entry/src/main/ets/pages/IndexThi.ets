@@ -26,8 +26,8 @@ let conditionID = '110000';
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`${TAG} updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let template = {
-    predicates : {
-      'list' : `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${conditionID}`
+    predicates: {
+      'list': `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${conditionID}`
     },
     scheduler: ''
   };

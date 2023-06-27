@@ -14,7 +14,7 @@
  */
 
 import rdb from '@ohos.data.relationalStore';
-import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
+import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility';
 import Logger from '../../common/Logger';
 
 const DB_NAME = 'DB00.db';
@@ -53,7 +53,7 @@ extends DataShareExtensionAbility {
 
     async update(uri, predicates, value, callback) {
         console.info('[ttt] [DataShareTest] <<Provider>> [update] enter');
-        if (predicates == null || predicates == undefined) {
+        if (predicates === null || predicates === undefined) {
             console.info('[ttt] [DataShareTest] <<Provider>> [update] invalid predicates');
             return;
         }
@@ -63,7 +63,7 @@ extends DataShareExtensionAbility {
             await rdbStore.update(TBL_NAME,value, predicates, function (err, ret) {
                 Logger.info(`${TAG}`, `[update] callback ret: ${ret}`);
                 Logger.info(`${TAG}`, `[update] callback err: ${err}`);
-                if (callback != undefined) {
+                if (callback !== undefined) {
                     callback(err, ret);
                 }
             });

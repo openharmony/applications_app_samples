@@ -16,13 +16,13 @@
 import hilog from '@ohos.hilog'
 
 class Logger {
-  private domain: number
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xFF00
+    this.prefix = prefix;
+    this.domain = 0xFF00;
   }
 
   /**
@@ -30,7 +30,7 @@ class Logger {
    * @param args
    */
   debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
   /**
@@ -38,7 +38,7 @@ class Logger {
    * @param args
    */
   info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
   /**
@@ -46,7 +46,7 @@ class Logger {
    * @param args
    */
   warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
   /**

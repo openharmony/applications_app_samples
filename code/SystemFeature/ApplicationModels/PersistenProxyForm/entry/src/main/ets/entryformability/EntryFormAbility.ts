@@ -20,7 +20,6 @@ import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
 
 const TAG = '[EntryFormAbility]';
-
 let dataShareHelper;
 
 export default class EntryFormAbility extends FormExtensionAbility {
@@ -29,8 +28,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
     Logger.info(`${TAG}`, `onAddForm want: ${JSON.stringify(want)}`);
     let subscriberId = '110000';
     let template = {
-      predicates : {
-        'list' : `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${subscriberId}`
+      predicates: {
+        'list': `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${subscriberId}`
       },
       scheduler: ''
     };

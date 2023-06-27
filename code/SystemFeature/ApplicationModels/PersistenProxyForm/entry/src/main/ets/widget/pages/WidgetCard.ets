@@ -14,6 +14,7 @@
  */
 
 let storage = new LocalStorage();
+
 @Entry(storage)
 @Component
 struct WidgetCard {
