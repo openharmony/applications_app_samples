@@ -32,7 +32,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    FloatWindowController.initWindowStage(this.context,windowStage);
+    FloatWindowController.initWindowStage(this.context, windowStage);
     // Main window is created, set main page for this ability
     Logger.info(`${TAG} Ability onWindowStageCreate`);
 
