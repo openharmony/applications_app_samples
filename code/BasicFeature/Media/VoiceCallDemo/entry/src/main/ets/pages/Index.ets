@@ -23,6 +23,7 @@ import emitter from '@ohos.events.emitter';
 import grantPermission from '../utils/PermissionUtils';
 import Logger from '../utils/Logger';
 import promptAction from '@ohos.promptAction';
+import common from '@ohos.app.ability.common';
 
 /**
  * 首页，通过emitter完成UI切换
@@ -45,11 +46,11 @@ struct Index {
       this.onUIEvent(Constants.EVENT_UI_VOICE);
     });
 
-    if (!this.controller.beforeInit()) {
+    if (!this.controller.beforeInit(getContext(this) as common.UIAbilityContext)) {
       return;
     }
 
-    grantPermission().then(result => {
+    grantPermission(getContext(this) as common.UIAbilityContext).then(result => {
       if (!result) {
         promptAction.showToast({ message: $r('app.string.tips_no_permission'), duration: 2000 });
       }
@@ -67,9 +68,7 @@ struct Index {
       emitter.off(Constants.EVENT_UI_VOICE);
       this.controller.destroy();
     } catch (e) {
-
     }
-
   }
 
   onUIEvent(eventId: number, data?: { [key: string]: number }) {
@@ -90,7 +89,6 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-
   }
 }
 

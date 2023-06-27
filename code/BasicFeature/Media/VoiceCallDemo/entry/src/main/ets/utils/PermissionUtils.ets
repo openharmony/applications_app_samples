@@ -16,6 +16,7 @@
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
+import common from '@ohos.app.ability.common';
 import Logger from './Logger';
 
 const TAG = 'PermissionUtils';
@@ -23,7 +24,7 @@ const PERMISSIONS: Array<Permissions> = [
   'ohos.permission.MICROPHONE'
 ];
 
-export default async function grantPermission(): Promise<boolean> {
+export default async function grantPermission(context:common.UIAbilityContext): Promise<boolean> {
 
   try {
     // 获取应用程序的accessTokenID
@@ -43,7 +44,7 @@ export default async function grantPermission(): Promise<boolean> {
     }
     if (pems.length > 0) {
       Logger.log(` ${TAG} grantPermission  requestPermissionsFromUser ${JSON.stringify(pems)}  `);
-      let result = await atManager.requestPermissionsFromUser(globalThis.abilityContext, pems);
+      let result = await atManager.requestPermissionsFromUser(context, pems);
 
       let grantStatus: Array<number> = result.authResults;
       let length: number = grantStatus.length;

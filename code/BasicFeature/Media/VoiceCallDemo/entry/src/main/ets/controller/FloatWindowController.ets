@@ -15,6 +15,7 @@
 import Logger from '../utils/Logger';
 import createOrGet from '../utils/SingleInstanceUtil';
 import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 import display from '@ohos.display';
 
 const TAG = 'FloatWindowController';
@@ -28,7 +29,7 @@ class FloatWindowController {
   private windowStage: window.WindowStage;
 
   //ability调用，监听windowStage状态变化
-  async initWindowStage(windowStage: window.WindowStage) {
+  async initWindowStage(context:common.UIAbilityContext,windowStage: window.WindowStage) {
     this.windowStage = windowStage;
     let mainWin = await this.windowStage.getMainWindow();
 
@@ -42,7 +43,7 @@ class FloatWindowController {
       if (event === window.WindowStageEventType.SHOWN) {
         that.destroyFloatWindow();
       } else if (event === window.WindowStageEventType.HIDDEN) {
-        that.createAndShowFloatWindow();
+        that.createAndShowFloatWindow(context);
       }
     });
   }
@@ -53,8 +54,8 @@ class FloatWindowController {
   }
 
   //创建悬浮窗
-  private async createAndShowFloatWindow() {
-    if (globalThis.abilityContext.isTerminating()) {
+  private async createAndShowFloatWindow(context:common.UIAbilityContext) {
+    if (context.isTerminating()) {
       return;
     }
 
@@ -65,7 +66,7 @@ class FloatWindowController {
       this.floatWindow = await window.createWindow({
         name: 'DemoFloatWindow',
         windowType: window.WindowType.TYPE_FLOAT,
-        ctx: globalThis.abilityContext
+        ctx: context
       });
       await this.floatWindow.moveWindowTo(w - FLOAT_SIZE, FLOAT_SIZE * 2);
       await this.floatWindow.resize(FLOAT_SIZE, FLOAT_SIZE);

@@ -31,17 +31,18 @@ const TAG = 'IndexController';
  */
 export default class IndexController implements OptCallback {
   private observer: Observer;
+  private ctx: common.UIAbilityContext;
 
   // -----------------初始化和销毁---------------------
-  beforeInit(): boolean {
+  beforeInit(ctx: common.UIAbilityContext): boolean {
     Logger.info(`${TAG} beforeInit`);
+    this.ctx = ctx;
     let event = OptionModel.readWant();
     if (event > 0) {
       emitter.emit({
         eventId: event
       });
     } else {
-      let ctx: common.UIAbilityContext = globalThis.abilityContext;
       ctx.terminateSelf();
       return false;
     }
@@ -85,8 +86,7 @@ export default class IndexController implements OptCallback {
     OptionModel.destroy();
     setTimeout(() => {
       BufferModel.destroy(); // 停止线程延迟200ms，给stop执行一些时间
-      let ctx: common.UIAbilityContext = globalThis.abilityContext;
-      ctx.terminateSelf(); // 停止应用
+      this.ctx.terminateSelf(); // 停止应用
     }, 400);
   }
 
@@ -148,8 +148,7 @@ export default class IndexController implements OptCallback {
   }
 
   async playSound(): Promise<void> {
-    let ctx: common.UIAbilityContext = globalThis.abilityContext;
-    let fd = await ctx.resourceManager.getRawFd('wechat_voice_ring.mp3');
+    let fd = await this.ctx.resourceManager.getRawFd('wechat_voice_ring.mp3');
     SoundUtil.playFd(fd);
   }
 

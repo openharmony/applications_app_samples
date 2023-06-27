@@ -120,6 +120,5 @@ export default function callUITest() {
       hilog.info(DOMAIN, TAG, '%{public}s', 'Switch_window_001 end');
     });
 
-
   });
 }

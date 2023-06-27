@@ -40,10 +40,10 @@ struct Float {
     .width('100%')
     .height('100%')
     .onClick(() => {
-      let ctx: common.UIAbilityContext = globalThis.abilityContext
-      ctx.startAbility({
-        bundleName: ctx.abilityInfo.bundleName,
-        abilityName: ctx.abilityInfo.name
+      let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+      context.startAbility({
+        bundleName: context.abilityInfo.bundleName,
+        abilityName: context.abilityInfo.name
       })
     })
   }
@@ -62,7 +62,6 @@ struct FloatComponent {
         .width('40%')
         .height('40%')
 
-
       if (this.tips) {
         Text(this.tips)
           .fontSize(14)
@@ -70,9 +69,7 @@ struct FloatComponent {
           .fontWeight(FontWeight.Regular)
           .fontFamily('HarmonyOS Sans SC')
       } else {
-
         ComponentSingletonTimer({ mTextColor: $r('app.color.color_green'), mTextSize: 14 })
-
       }
     }
     .backgroundColor($r('app.color.color_fff'))

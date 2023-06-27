@@ -74,7 +74,6 @@ export default function answerUITest() {
         await sureBtn.click();
         hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_002 allow permission success');
 
-
         // 判断页面元素是否正常出现
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.text(answer, MatchPattern.EQUALS));
@@ -87,7 +86,6 @@ export default function answerUITest() {
       }
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_002 end');
     });
-
 
     // 接听
     it('Answer_001', 0, async function (done) {
@@ -116,7 +114,6 @@ export default function answerUITest() {
       }
       hilog.info(DOMAIN, TAG, '%{public}s', 'Answer_001 end');
     });
-
 
     // 挂断
     it('Hangup_001', 0, async function (done) {
@@ -147,7 +144,6 @@ export default function answerUITest() {
       hilog.info(DOMAIN, TAG, '%{public}s', 'Hangup_001 end');
 
     });
-
 
   });
 }
