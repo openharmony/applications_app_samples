@@ -30,7 +30,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     let subscriberId = '110000';
     let template = {
       predicates : {
-        'list' : `select city_temper as city_temper, city_name as city_name from TBL00 where city_id = ${subscriberId}`
+        'list' : `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${subscriberId}`
       },
       scheduler: ''
     };
@@ -45,8 +45,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
         'subscriberId': '110000'
       }
     ];
-    let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding['proxies'] = proxies;
+    let formBinding = {
+      data: JSON.stringify(formData),
+      proxies: proxies
+    };
     Logger.info(`${TAG}`, `formBinding: ${JSON.stringify(formBinding)}`);
     return formBinding;
   }

@@ -18,8 +18,8 @@
         <div class="container-inner">
             <list class="todo-wrapper">
                 <list-item for="{{list}}" class="todo-item">
-                    <text class="todo-title">城市：{{$item.city_name}}</text>
-                    <text class="todo-title">温度：{{$item.city_temper}}</text>
+                    <text class="todo-title">城市：{{$item.cityName}}</text>
+                    <text class="todo-title">温度：{{$item.cityTemper}}</text>
                 </list-item>
             </list>
         </div>

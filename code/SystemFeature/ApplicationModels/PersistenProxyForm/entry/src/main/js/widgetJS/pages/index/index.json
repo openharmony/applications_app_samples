@@ -1,8 +1,8 @@
 {
   "data": {
     "list": [{
-      "city_name": "沈阳",
-      "city_temper": "-30 ℃"
+      "cityName": "沈阳",
+      "cityTemper": "-30 ℃"
     }]
   },
   "actions": {

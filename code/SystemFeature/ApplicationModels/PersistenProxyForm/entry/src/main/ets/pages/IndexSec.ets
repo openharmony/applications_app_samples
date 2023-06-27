@@ -33,10 +33,10 @@ function updateRDB(): void {
     Logger.info(`${TAG}`, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
     let dataShareHelper = data;
     let da = new dataSharePredicates.DataSharePredicates();
-    da.equalTo('city_id', conditionID);
+    da.equalTo('cityId', conditionID);
     let va = {
-      'city_name': conditionCity,
-      'city_temper': conditionData
+      'cityName': conditionCity,
+      'cityTemper': conditionData
     };
     try {
       let uri = 'datashareproxy://com.samples.PersistentProxyForm/test';
