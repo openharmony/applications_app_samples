@@ -20,12 +20,10 @@ import Logger from '../../common/Logger';
 
 const TAG = '[Push_Index]';
 let dataShareHelper;
-let version = 10;
 let uri = ('datashareproxy://com.samples.processproxyform');
 let conditionCity = '沈阳';
 let conditionID = '110000';
 let conditionData = '-30 ℃';
-let conditionDataToNumber;
 let formInstanceFilter = {
   bundleName: 'com.samples.processproxyform'
 };
@@ -43,7 +41,7 @@ function updateCardDisplayContent(runningFormInfo): void {
         {key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID},
         {key: 'cityTemper', data: JSON.stringify(conditionData), subscriberId: conditionID}
       ];
-      dataShareHelper.publish(publishedItemData, runningFormInfo.hostBundleName, version).then((data) => {
+      dataShareHelper.publish(publishedItemData, 'com.samples.processproxyform').then((data) => {
         Logger.info(`${TAG}`, `publish success, data is ${JSON.stringify(data)}`);
         prompt.showToast(
           { message: `publish success ${conditionCity} ${conditionData} ${conditionID}`, duration: 5000 });
@@ -126,7 +124,7 @@ struct IndexSec {
               .height(60)
               .type(InputType.Normal)
               .onChange((text) => {
-                conditionData = text + '℃';
+                conditionData = text;
               })
             Text('℃')
               .fontSize(30)
@@ -139,12 +137,11 @@ struct IndexSec {
             .margin({ top: 20 })
             .backgroundColor('#0D9FFB')
             .onClick(() => {
-              conditionDataToNumber = conditionData.split(/[℃]/);
-              if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
-                Logger.info(`${TAG}`, `correct temperature is ${conditionDataToNumber[0]}`);
+              if (Number(conditionData) >= -40 && Number(conditionData) <= 60) {
+                Logger.info(`${TAG}`, `correct temperature is ${conditionData}`);
                 publish();
               } else {
-                Logger.info(`${TAG}`, `incorrect temperature is ${conditionDataToNumber[0]}`);
+                Logger.info(`${TAG}`, `incorrect temperature is ${conditionData}`);
                 prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
               }
             })

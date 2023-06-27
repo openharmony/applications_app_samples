@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_ProcessProxyForm_com.samples.processproxyform.cer",
-          "storePassword": "0000001A61307A2E8810A61692C9CBFDC2A13ABDCBC9FA3E8C9749CF2A7929120FF8FA62A532DC17F3C5",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A59F9D252ED07650438F0BD43474513E5A0B0DE74C1425BC6DBDD402D3C1B6974FFB98FC57AE6",
-          "profile": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_ProcessProxyForm_com.samples.processproxyform.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_ProcessProxyForm_com.samples.processproxyform.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
