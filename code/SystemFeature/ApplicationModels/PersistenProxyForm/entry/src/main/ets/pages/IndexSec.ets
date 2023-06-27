@@ -57,7 +57,7 @@ function updateRDB(): void {
 }
 
 function publish(): void {
-  Logger.info(`${TAG}`, `publish called`);
+  Logger.info(`${TAG}`, 'publish called');
   formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data => {
     Logger.info(`${TAG}`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));

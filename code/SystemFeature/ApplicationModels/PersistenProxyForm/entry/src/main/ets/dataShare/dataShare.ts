@@ -19,20 +19,19 @@ import Logger from '../../common/Logger';
 
 const DB_NAME = 'DB00.db';
 const TBL_NAME = 'TBL00';
-const DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS ' + TBL_NAME
-+ ' (cityId INTEGER PRIMARY KEY, cityName TEXT, cityTemper INTEGER)';
+const DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS ' + TBL_NAME +
+' (cityId INTEGER PRIMARY KEY, cityName TEXT, cityTemper INTEGER)';
 let rdbStore;
 const TAG = '[dataShare]';
 
-export default class
-extends DataShareExtensionAbility {
+export default class DataShareExtAbility extends DataShareExtensionAbility {
     async onCreate(want, callback) {
         Logger.info(`${TAG}`, `DataShareExtAbility onCreate this.context.databaseDir: ${this.context.databaseDir}`);
         // @ts-ignore
         rdbStore = await rdb.getRdbStore(this.context, { name: DB_NAME, securityLevel: rdb.SecurityLevel.S1 });
-        Logger.info(`${TAG}`, `DataShareExtAbility getRdbStore done.`);
+        Logger.info(`${TAG}`, 'DataShareExtAbility getRdbStore done.');
         await rdbStore.executeSql(DDL_TBL_CREATE, []);
-        Logger.info(`${TAG}`, `DataShareExtAbility executeSql multiple tables done.`);
+        Logger.info(`${TAG}`, 'DataShareExtAbility executeSql multiple tables done.');
         let err = {'code':0};
         callback(err);
         let rdata = {
@@ -60,7 +59,7 @@ extends DataShareExtensionAbility {
         Logger.info(`${TAG}`, `[update]  values = ${value}`);
         Logger.info(`${TAG}`, `[update]  [update]  predicates = ${predicates}`);
         try {
-            await rdbStore.update(TBL_NAME,value, predicates, function (err, ret) {
+            await rdbStore.update(TBL_NAME, value, predicates, function (err, ret) {
                 Logger.info(`${TAG}`, `[update] callback ret: ${ret}`);
                 Logger.info(`${TAG}`, `[update] callback err: ${err}`);
                 if (callback !== undefined) {
@@ -70,6 +69,6 @@ extends DataShareExtensionAbility {
         } catch (err) {
             Logger.error(`${TAG}`, `[update] error: ${err}`);
         };
-        Logger.info(`${TAG}`, `[update] leave`);
+        Logger.info(`${TAG}`, '[update] leave');
     }
 };
