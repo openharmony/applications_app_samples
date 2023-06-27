@@ -22,15 +22,15 @@ struct WidgetCard {
   readonly MESSAGE: string = 'add detail';
   readonly FULL_WIDTH_PERCENT: string = '100%';
   readonly FULL_HEIGHT_PERCENT: string = '100%';
-  @LocalStorageProp('city_name') city_name: string = '沈阳';
-  @LocalStorageProp('city_temper') city_temper: number = -30;
+  @LocalStorageProp('cityName') cityName: string = '沈阳';
+  @LocalStorageProp('cityTemper') cityTemper: number = -30;
 
   build() {
     Row() {
       Column() {
-        Text('城市：' + this.city_name)
+        Text('城市：' + this.cityName)
           .fontSize($r('app.float.font_size'))
-        Text('温度：' + this.city_temper + ' ℃')
+        Text('温度：' + this.cityTemper + ' ℃')
           .fontSize($r('app.float.font_size'))
       }
       .width(this.FULL_WIDTH_PERCENT)

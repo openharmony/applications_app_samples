@@ -40,8 +40,8 @@ function updateCardDisplayContent(runningFormInfo): void {
       prompt.showToast({ message: `createDataShareHelper:` + err.message, duration: 5000 });
     } else {
       let publishedItemData : Array<dataShare.PublishedItem> = [
-        {key: 'city_name', data: JSON.stringify(conditionCity), subscriberId: conditionID},
-        {key: 'city_temper', data: JSON.stringify(conditionData), subscriberId: conditionID}
+        {key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID},
+        {key: 'cityTemper', data: JSON.stringify(conditionData), subscriberId: conditionID}
       ];
       dataShareHelper.publish(publishedItemData, runningFormInfo.hostBundleName, version).then((data) => {
         Logger.info(`${TAG}`, `publish success, data is ${JSON.stringify(data)}`);

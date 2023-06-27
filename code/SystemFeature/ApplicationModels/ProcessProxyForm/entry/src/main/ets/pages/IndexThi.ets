@@ -25,11 +25,11 @@ function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`${TAG}`, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let proxies = [
     {
-      'key': 'city_name',
+      'key': 'cityName',
       'subscriberId': '310000'
     },
     {
-      'key': 'city_temper',
+      'key': 'cityTemper',
       'subscriberId': '310000'
     }
   ];

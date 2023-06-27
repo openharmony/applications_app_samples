@@ -24,21 +24,23 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
     Logger.info(`${TAG}`, `onAddForm want: ${JSON.stringify(want)}`);
     let formData = {
-      'city_name': '沈阳',
-      'city_temper': -30
+      'cityName': '沈阳',
+      'cityTemper': -30
     };
-    let proxies = [
+    let formProxies = [
       {
-        'key': 'city_name',
+        'key': 'cityName',
         'subscriberId': '110000'
       },
       {
-        'key': 'city_temper',
+        'key': 'cityTemper',
         'subscriberId': '110000'
       }
     ];
-    let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding['proxies'] = proxies;
+    let formBinding = {
+      data: JSON.stringify(formData),
+      proxies: formProxies
+    };
     Logger.info(`${TAG}`, `onAddForm return formBinding: ${JSON.stringify(formBinding)}`);
     return formBinding;
   }
