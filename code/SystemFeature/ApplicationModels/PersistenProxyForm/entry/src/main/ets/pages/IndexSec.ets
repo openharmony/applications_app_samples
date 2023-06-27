@@ -29,17 +29,17 @@ const formInstanceFilter = {
 };
 
 function updateRDB(): void {
-  dataShare.createDataShareHelper(globalThis.context.getApplicationContext(), "datashareproxy://com.samples.PersistentProxyForm", {isProxy : true}).then((data) => {
+  dataShare.createDataShareHelper(globalThis.context.getApplicationContext(), 'datashareproxy://com.samples.PersistentProxyForm', {isProxy : true}).then((data) => {
     Logger.info(`${TAG}`, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
     let dataShareHelper = data;
     let da = new dataSharePredicates.DataSharePredicates();
-    da.equalTo("city_id", conditionID);
-    const va = {
-      "city_name": conditionCity,
-      "city_temper": conditionData
+    da.equalTo('city_id', conditionID);
+    let va = {
+      'city_name': conditionCity,
+      'city_temper': conditionData
     };
     try {
-      let uri = "datashareproxy://com.samples.PersistentProxyForm/test";
+      let uri = 'datashareproxy://com.samples.PersistentProxyForm/test';
       dataShareHelper.update(uri, da, va, (err, data) => {
         if (err != undefined) {
           Logger.info(`${TAG}`, `update error1: code: ${err.code}, message: ${err.message} `);

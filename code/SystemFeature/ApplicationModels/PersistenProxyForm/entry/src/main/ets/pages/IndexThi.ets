@@ -27,15 +27,15 @@ function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`${TAG} updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let template = {
     predicates : {
-      "list" : `select city_temper as city_temper, city_name as city_name from TBL00 where city_id = ${conditionID}`
+      'list' : `select city_temper as city_temper, city_name as city_name from TBL00 where city_id = ${conditionID}`
     },
-    scheduler: ""
+    scheduler: ''
   };
-  dataShare.createDataShareHelper(globalThis.context, "datashareproxy://com.samples.PersistentProxyForm", {isProxy : true}).then((data) => {
+  dataShare.createDataShareHelper(globalThis.context, 'datashareproxy://com.samples.PersistentProxyForm', {isProxy : true}).then((data) => {
     dataShareHelper = data;
-    dataShareHelper.addTemplate("datashareproxy://com.samples.PersistentProxyForm/test", conditionID, template);
+    dataShareHelper.addTemplate('datashareproxy://com.samples.PersistentProxyForm/test', conditionID, template);
   });
-  let proxies = [{"key": "datashareproxy://com.samples.PersistentProxyForm/test", "subscriberId": conditionID}];
+  let proxies = [{'key': 'datashareproxy://com.samples.PersistentProxyForm/test', 'subscriberId': conditionID}];
   let formData;
   Logger.info(`${TAG}`, `formData: ${JSON.stringify(formData)}`);
   let formBinding =  formBindingData.createFormBindingData(formData);

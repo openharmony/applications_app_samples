@@ -17,7 +17,7 @@ let storage = new LocalStorage();
 @Entry(storage)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('list') list: Array<object> = [{"city_temper":"-30 ℃", "city_name": "沈阳"}];
+  @LocalStorageProp('list') list: Array<object> = [{'city_temper':'-30 ℃', 'city_name': '沈阳'}];
 
   /*
    * The action type.
@@ -47,9 +47,9 @@ struct WidgetCard {
   build() {
     Row() {
       Column() {
-        Text("城市:" + (this.list[0]["city_name"]))
+        Text('城市:' + (this.list[0]['city_name']))
           .fontSize($r('app.float.font_size'))
-        Text("温度:" + (this.list[0]["city_temper"]))
+        Text('温度:' + (this.list[0]['city_temper']))
           .fontSize($r('app.float.font_size'))
           .textAlign(TextAlign.Start)
       }

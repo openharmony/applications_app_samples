@@ -17,11 +17,10 @@ import rdb from '@ohos.data.relationalStore';
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
 import Logger from '../../common/Logger';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
-+ TBL_NAME
-+ " (city_id INTEGER PRIMARY KEY, city_name TEXT, city_temper INTEGER)";
+const DB_NAME = 'DB00.db';
+const TBL_NAME = 'TBL00';
+const DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS ' + TBL_NAME
++ ' (city_id INTEGER PRIMARY KEY, city_name TEXT, city_temper INTEGER)';
 let rdbStore;
 const TAG = '[dataShare]';
 
@@ -34,15 +33,15 @@ extends DataShareExtensionAbility {
         Logger.info(`${TAG}`, `DataShareExtAbility getRdbStore done.`);
         await rdbStore.executeSql(DDL_TBL_CREATE, []);
         Logger.info(`${TAG}`, `DataShareExtAbility executeSql multiple tables done.`);
-        let err = {"code":0};
+        let err = {'code':0};
         callback(err);
         let rdata = {
-            "city_id": 310000,
-            "city_name": "杭州"
+            'city_id': 310000,
+            'city_name': '杭州'
         };
         let rdata2 = {
-            "city_id": 110000,
-            "city_name": "沈阳"
+            'city_id': 110000,
+            'city_name': '沈阳'
         };
         await rdbStore.insert(TBL_NAME, rdata, function (err, ret) {
             Logger.info(`${TAG}`, `[insert] callback ret: ${JSON.stringify(ret)}`);
@@ -57,7 +56,7 @@ extends DataShareExtensionAbility {
         if (predicates == null || predicates == undefined) {
             console.info('[ttt] [DataShareTest] <<Provider>> [update] invalid predicates');
             return;
-        };
+        }
         Logger.info(`${TAG}`, `[update]  values = ${value}`);
         Logger.info(`${TAG}`, `[update]  [update]  predicates = ${predicates}`);
         try {
@@ -66,11 +65,11 @@ extends DataShareExtensionAbility {
                 Logger.info(`${TAG}`, `[update] callback err: ${err}`);
                 if (callback != undefined) {
                     callback(err, ret);
-                };
+                }
             });
         } catch (err) {
             Logger.error(`${TAG}`, `[update] error: ${err}`);
-        }
+        };
         Logger.info(`${TAG}`, `[update] leave`);
     }
 };

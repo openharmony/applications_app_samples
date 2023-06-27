@@ -27,26 +27,26 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
     // Called to return a FormBindingData object.
     Logger.info(`${TAG}`, `onAddForm want: ${JSON.stringify(want)}`);
-    let subscriberId = "110000";
+    let subscriberId = '110000';
     let template = {
       predicates : {
-        "list" : `select city_temper as city_temper, city_name as city_name from TBL00 where city_id = ${subscriberId}`
+        'list' : `select city_temper as city_temper, city_name as city_name from TBL00 where city_id = ${subscriberId}`
       },
-      scheduler: ""
+      scheduler: ''
     };
-    dataShare.createDataShareHelper(this.context, "datashareproxy://com.samples.PersistentProxyForm", {isProxy : true}).then((data) => {
+    dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.PersistentProxyForm', {isProxy : true}).then((data) => {
       dataShareHelper = data;
-      dataShareHelper.addTemplate("datashareproxy://com.samples.PersistentProxyForm/test", subscriberId, template);
+      dataShareHelper.addTemplate('datashareproxy://com.samples.PersistentProxyForm/test', subscriberId, template);
     });
     let formData = {};
     let proxies = [
       {
-        "key": "datashareproxy://com.samples.PersistentProxyForm/test",
-        "subscriberId": "110000"
+        'key': 'datashareproxy://com.samples.PersistentProxyForm/test',
+        'subscriberId': '110000'
       }
     ];
     let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding["proxies"] = proxies;
+    formBinding['proxies'] = proxies;
     Logger.info(`${TAG}`, `formBinding: ${JSON.stringify(formBinding)}`);
     return formBinding;
   }
