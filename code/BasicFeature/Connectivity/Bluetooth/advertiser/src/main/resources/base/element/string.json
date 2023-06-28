@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AdvertiserAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AdvertiserAbility_label",
+      "value": "模拟心率设备"
+    },
+    {
+      "name": "permission_reason_use_bluetooth",
+      "value": "允许应用查看蓝牙的配置。"
+    },
+    {
+      "name": "permission_reason_discovery_bluetooth",
+      "value": "允许应用配置本地蓝牙，查找远端设备且与之配对连接。"
+    },
+    {
+      "name": "permission_reason_manage_bluetooth",
+      "value": "允许应用配对蓝牙设备，并对设备的电话簿或消息进行访问。"
+    },
+    {
+      "name": "permission_reason_approximately_location",
+      "value": "允许应用获取设备模糊位置信息。"
+    },
+    {
+      "name": "permission_reason_location",
+      "value": "允许应用获取设备位置信息。"
+    },
+    {
+      "name": "toast_enable_bluetooth",
+      "value": "正在开启蓝牙，请稍后..."
+    },
+    {
+      "name": "btn_start_advertiser",
+      "value": "开启BLE心率广播"
+    },
+    {
+      "name": "btn_stop_advertiser",
+      "value": "关闭BLE心率广播"
+    },
+    {
+      "name": "text_bluetooth_name",
+      "value": "蓝牙名称：%s"
+    },
+    {
+      "name": "text_heart_rate_current",
+      "value": "当前心率：%s bpm"
+    }
+  ]
+}
