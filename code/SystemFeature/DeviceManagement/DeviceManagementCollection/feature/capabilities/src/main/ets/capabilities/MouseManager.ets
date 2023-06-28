@@ -31,7 +31,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 @Component
 export struct MouseManager {
   @State mMouseEvent: string = ''
-  @State isVisible: boolean = false
+  @State mIsVisible: boolean = false
   // 鼠标速度
   private mPointerSpeedArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
   // 鼠标样式
@@ -41,10 +41,10 @@ export struct MouseManager {
   @State mStyleIndex: number = 0
   private mSheetArr: Array<SheetInfo> = []
   private mPointerStyleArr: Array<PointerStyleData> = pointerStyleArr
-  @State isShowMouseData: boolean = false // 是否显示鼠标详情，在开启监听后才显示
+  @State mIsShowMouseData: boolean = false // 是否显示鼠标详情，在开启监听后才显示
 
   async aboutToAppear() {
-    this.isVisible = await isPointerVisible()
+    this.mIsVisible = await isPointerVisible()
     let pointerStyle = await getPointerStyle()
     this.initPointerStyle(pointerStyle)
   }
@@ -134,7 +134,7 @@ export struct MouseManager {
             Blank()
             Toggle({
               type: ToggleType.Switch,
-              isOn: this.isVisible
+              isOn: this.mIsVisible
             })
               .width(42)
               .onChange((isOn) => {
@@ -227,7 +227,7 @@ export struct MouseManager {
             })
               .width(42)
               .onChange((isOn) => {
-                this.isShowMouseData = isOn
+                this.mIsShowMouseData = isOn
                 if (isOn) {
                   MouseManagerUtil.registerMouse(this.onMouseEvent.bind(this))
                 } else {
@@ -251,7 +251,7 @@ export struct MouseManager {
         })
         .id('columnMouseListener')
 
-        if (this.isShowMouseData) {
+        if (this.mIsShowMouseData) {
           Text($r('app.string.mouse_event_info_title'))
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
             .fontSize($r('sys.float.ohos_id_text_size_body2'))

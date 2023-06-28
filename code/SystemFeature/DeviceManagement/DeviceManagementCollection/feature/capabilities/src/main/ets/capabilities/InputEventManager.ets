@@ -20,7 +20,7 @@ import { injectBackEvent } from '../util/InputEventUtil'
 @Preview
 @Component
 export struct InputEventManager {
-  @State isShowTouchData: boolean = false // 是否显示触屏事件详情
+  @State mIsShowTouchData: boolean = false // 是否显示触屏事件详情
   @State mTouchData: string = '' // 触屏数据
   @State mBtnBg: Resource = $r('app.color.btn_normal_bg')
 
@@ -29,7 +29,7 @@ export struct InputEventManager {
   }
 
   touchCallback(touchData: string) {
-    if (this.isShowTouchData) {
+    if (this.mIsShowTouchData) {
       this.mTouchData = touchData
     }
   }
@@ -50,7 +50,7 @@ export struct InputEventManager {
             })
               .width(42)
               .onChange((isOn) => {
-                this.isShowTouchData = isOn
+                this.mIsShowTouchData = isOn
                 if (isOn) {
                   TouchManagerUtil.registerTouch(this.touchCallback.bind(this))
                 } else {
@@ -73,7 +73,7 @@ export struct InputEventManager {
         })
         .id('columnInputListener')
 
-        if (this.isShowTouchData) {
+        if (this.mIsShowTouchData) {
           Text($r('app.string.input_touch_event_data_title'))
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
             .fontSize($r('sys.float.ohos_id_text_size_body2'))

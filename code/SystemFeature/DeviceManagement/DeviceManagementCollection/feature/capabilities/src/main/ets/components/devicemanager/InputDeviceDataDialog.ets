@@ -19,14 +19,14 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
  */
 @CustomDialog
 export struct InputDeviceDataDialog {
-  @Link deviceInfo: InputDeviceInfo
-  controller: CustomDialogController
+  @Link mDeviceInfo: InputDeviceInfo
+  mController: CustomDialogController
   cancel?: () => void
 
   build() {
     Scroll() {
       Column() {
-        Text(this.deviceInfo.name)
+        Text(this.mDeviceInfo.name)
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .fontSize($r('sys.float.ohos_id_text_size_dialog_tittle'))
           .fontWeight(FontWeight.Medium)
@@ -37,24 +37,24 @@ export struct InputDeviceDataDialog {
 
         DeviceData({
           title: $r('app.string.input_device_id'),
-          context: this.deviceInfo.id.toString()
+          context: this.mDeviceInfo.id.toString()
         })
 
         DeviceData({
           title: $r('app.string.input_device_uniq'),
-          context: this.deviceInfo.uniq
+          context: this.mDeviceInfo.uniq
         })
 
         DeviceData({
           title: $r('app.string.input_device_style'),
-          context: this.deviceInfo.sources.join(',')
+          context: this.mDeviceInfo.sources.join(',')
         })
 
         DeviceData({
           title: $r('app.string.input_device_axis_ranges'),
         })
 
-        ForEach(this.deviceInfo.axisRanges, (item: inputDevice.AxisRange) => {
+        ForEach(this.mDeviceInfo.axisRanges, (item: inputDevice.AxisRange) => {
           Column() {
             DeviceData({
               title: $r('app.string.input_device_source_style'),
@@ -98,22 +98,22 @@ export struct InputDeviceDataDialog {
 
         DeviceData({
           title: $r('app.string.input_device_bus'),
-          context: this.deviceInfo.bus.toString()
+          context: this.mDeviceInfo.bus.toString()
         })
 
         DeviceData({
           title: $r('app.string.input_device_product'),
-          context: this.deviceInfo.product.toString()
+          context: this.mDeviceInfo.product.toString()
         })
 
         DeviceData({
           title: $r('app.string.input_device_vendor'),
-          context: this.deviceInfo.vendor.toString()
+          context: this.mDeviceInfo.vendor.toString()
         })
 
         DeviceData({
           title: $r('app.string.input_device_version'),
-          context: this.deviceInfo.version.toString(),
+          context: this.mDeviceInfo.version.toString(),
           isShowDivider: false
         })
       }

@@ -24,10 +24,10 @@ const TAG: string = '[Sample_BatteryView]'
 
 @Component
 struct BatteryInfoView {
-  private name: string | Resource
-  private isLine?: boolean = true
-  private viewID?: string = ''
-  @Prop value: string
+  private mName: string | Resource
+  private mIsLine?: boolean = true
+  private mViewID?: string = ''
+  @Prop mValue: string
 
   @Builder CustomDivider() {
     Divider()
@@ -41,7 +41,7 @@ struct BatteryInfoView {
   build() {
     Column() {
       Row() {
-        Text(this.name)
+        Text(this.mName)
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
           .fontWeight(FontWeight.Regular)
@@ -50,9 +50,9 @@ struct BatteryInfoView {
           .textOverflow({
             overflow: TextOverflow.Ellipsis
           })
-          .id(this.viewID)
+          .id(this.mViewID)
         Blank()
-        Text(this.value)
+        Text(this.mValue)
           .fontColor($r('app.color.battery_info_value_text'))
           .fontSize($r('sys.float.ohos_id_text_size_sub_title3'))
           .width('40%')
@@ -63,7 +63,7 @@ struct BatteryInfoView {
       .justifyContent(FlexAlign.Start)
       .alignItems(VerticalAlign.Center)
 
-      if (this.isLine) {
+      if (this.mIsLine) {
         Blank()
         this.CustomDivider()
       }
@@ -167,40 +167,40 @@ export struct BatteryView {
             space: px2vp(8)
           }) {
             BatteryInfoView({
-              name: $r('app.string.battery_charging_status'),
-              value: this.mChargingStatus.toString(),
-              viewID: 'batteryChargingStatus'
+              mName: $r('app.string.battery_charging_status'),
+              mValue: this.mChargingStatus.toString(),
+              mViewID: 'batteryChargingStatus'
             })
 
             BatteryInfoView({
-              name: $r('app.string.battery_plugged_type'),
-              value: this.mPluggedType.toString(),
-              viewID: 'batteryPluggedType'
+              mName: $r('app.string.battery_plugged_type'),
+              mValue: this.mPluggedType.toString(),
+              mViewID: 'batteryPluggedType'
             })
 
             BatteryInfoView({
-              name: $r('app.string.battery_voltage'),
-              value: `${this.mVoltage} ${this.BATTERY_VOLTAGE_SYMBOL}`,
-              viewID: 'batteryVoltage'
+              mName: $r('app.string.battery_voltage'),
+              mValue: `${this.mVoltage} ${this.BATTERY_VOLTAGE_SYMBOL}`,
+              mViewID: 'batteryVoltage'
             })
 
             BatteryInfoView({
-              name: $r('app.string.battery_technology'),
-              value: this.mTechnology.toString(),
-              viewID: 'batteryTechnology'
+              mName: $r('app.string.battery_technology'),
+              mValue: this.mTechnology.toString(),
+              mViewID: 'batteryTechnology'
             })
 
             BatteryInfoView({
-              name: $r('app.string.battery_temperature'),
-              value: `${this.mTemperature} ${this.BATTERY_TEMPERATURE_SYMBOL}`,
-              viewID: 'batteryTemperature'
+              mName: $r('app.string.battery_temperature'),
+              mValue: `${this.mTemperature} ${this.BATTERY_TEMPERATURE_SYMBOL}`,
+              mViewID: 'batteryTemperature'
             })
 
             BatteryInfoView({
-              name: $r('app.string.battery_capacity_level'),
-              isLine: false,
-              value: this.mCapacityLevel.toString(),
-              viewID: 'batteryCapacityLevel'
+              mName: $r('app.string.battery_capacity_level'),
+              mIsLine: false,
+              mValue: this.mCapacityLevel.toString(),
+              mViewID: 'batteryCapacityLevel'
             })
           }
           .padding(px2vp(24))

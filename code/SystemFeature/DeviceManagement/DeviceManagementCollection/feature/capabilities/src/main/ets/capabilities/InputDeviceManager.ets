@@ -19,9 +19,9 @@ import InputDevice from '../util/InputDeviceUtil'
 
 @Component
 struct InputDeviceList {
-  isShowIcon: boolean
-  isShowStyle: boolean
-  @Link inputDevices: InputDeviceInfo[]
+  mIsShowIcon: boolean
+  mIsShowStyle: boolean
+  @Link mInputDevices: InputDeviceInfo[]
   onClickItem: (deviceInfo: InputDeviceInfo) => void
 
   @Builder CustomDivider() {
@@ -35,9 +35,9 @@ struct InputDeviceList {
 
   build() {
     Column({ space: 12 }) {
-      ForEach(this.inputDevices, (item: InputDeviceInfo, index: number) => {
+      ForEach(this.mInputDevices, (item: InputDeviceInfo, index: number) => {
         Row() {
-          if (this.isShowIcon) {
+          if (this.mIsShowIcon) {
             Image(item.icon_source)
               .width(24)
               .height(24)
@@ -67,7 +67,7 @@ struct InputDeviceList {
               .alignItems(HorizontalAlign.Start)
 
               Blank()
-              if (this.isShowStyle) {
+              if (this.mIsShowStyle) {
                 Text(item.connect ? $r('app.string.input_device_connect') : $r('app.string.input_device_disconnect'))
                   .fontColor($r('app.color.battery_info_value_text'))
                   .fontSize($r('sys.float.ohos_id_text_size_body2'))
@@ -78,12 +78,12 @@ struct InputDeviceList {
             .justifyContent(FlexAlign.Start)
             .alignItems(VerticalAlign.Center)
 
-            if (index != this.inputDevices?.length - 1) {
+            if (index != this.mInputDevices?.length - 1) {
               this.CustomDivider()
             }
 
           }
-          .width(this.isShowStyle ? '100%' : '90%')
+          .width(this.mIsShowStyle ? '100%' : '90%')
         }
         .height(48)
         .justifyContent(FlexAlign.Center)
@@ -112,11 +112,11 @@ export struct InputDeviceManager {
   @State mInputDevices: InputDeviceInfo[] = []
   @State mCurDevice: InputDeviceInfo = null
   @State mInputDeviceList: InputDeviceInfo[] = []
-  @State isListener: boolean = false
-  @State isRefreshing: boolean = false
+  @State mIsListener: boolean = false
+  @State mIsRefreshing: boolean = false
   dialogController: CustomDialogController = new CustomDialogController({
     builder: InputDeviceDataDialog({
-      deviceInfo: $mCurDevice
+      mDeviceInfo: $mCurDevice
     }),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
@@ -137,7 +137,7 @@ export struct InputDeviceManager {
     this.mInputDevices = []
     this.mInputDeviceList = []
     this.mCurDevice = null
-    this.isListener = false
+    this.mIsListener = false
   }
 
   getDevices() {
@@ -160,7 +160,7 @@ export struct InputDeviceManager {
 
   build() {
     Refresh({
-      refreshing: $$this.isRefreshing,
+      refreshing: $$this.mIsRefreshing,
       friction: 100
     }) {
       Scroll() {
@@ -174,11 +174,11 @@ export struct InputDeviceManager {
               Blank()
               Toggle({
                 type: ToggleType.Switch,
-                isOn: this.isListener
+                isOn: this.mIsListener
               })
                 .width(42)
                 .onChange((isOn) => {
-                  this.isListener = isOn
+                  this.mIsListener = isOn
                   if (isOn) {
                     InputDevice.registerChange(this.onDeviceChange.bind(this))
                   } else {
@@ -194,7 +194,7 @@ export struct InputDeviceManager {
             radius: $r('sys.float.ohos_id_corner_radius_default_l')
           })
 
-          if (this.isListener) {
+          if (this.mIsListener) {
             Text($r('app.string.input_device_status'))
               .fontColor($r('sys.color.ohos_id_color_text_secondary'))
               .fontSize($r('sys.float.ohos_id_text_size_body2'))
@@ -202,9 +202,9 @@ export struct InputDeviceManager {
               .fontFamily('HarmonyHeiTi')
 
             InputDeviceList({
-              inputDevices: $mInputDeviceList,
-              isShowIcon: false,
-              isShowStyle: true
+              mInputDevices: $mInputDeviceList,
+              mIsShowIcon: false,
+              mIsShowStyle: true
             })
           }
 
@@ -215,9 +215,9 @@ export struct InputDeviceManager {
             .fontFamily('HarmonyHeiTi')
 
           InputDeviceList({
-            inputDevices: $mInputDevices,
-            isShowIcon: true,
-            isShowStyle: false,
+            mInputDevices: $mInputDevices,
+            mIsShowIcon: true,
+            mIsShowStyle: false,
             onClickItem: this.onClickItem.bind(this)
           })
 
@@ -231,10 +231,10 @@ export struct InputDeviceManager {
     }
     .width('100%')
     .onRefreshing(() => {
-      this.isRefreshing = true
+      this.mIsRefreshing = true
       this.getDevices()
       setTimeout(() => {
-        this.isRefreshing = false
+        this.mIsRefreshing = false
       }, 500)
     })
   }

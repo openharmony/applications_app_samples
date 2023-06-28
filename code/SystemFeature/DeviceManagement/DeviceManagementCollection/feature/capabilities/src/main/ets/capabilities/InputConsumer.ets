@@ -24,8 +24,8 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 @Preview
 @Component
 export struct InputConsumer {
-  @State isShowImage: boolean = false
-  @State isShowInputConsumerInfo: boolean = false
+  @State mIsShowImage: boolean = false
+  @State mIsShowInputConsumerInfo: boolean = false
   @State mInputConsumerInfo: string = ''
 
   callback(KeyOptions: inputConsumer.KeyOptions) {
@@ -33,11 +33,11 @@ export struct InputConsumer {
     const finalKey: number = KeyOptions.finalKey
     switch (finalKey) {
       case keyCode.KeyCode.KEYCODE_S: {
-        this.isShowImage = true
+        this.mIsShowImage = true
         break
       }
       case keyCode.KeyCode.KEYCODE_D: {
-        this.isShowImage = false
+        this.mIsShowImage = false
         break
       }
       default: {
@@ -53,8 +53,8 @@ export struct InputConsumer {
   clear() {
     InputConsumerUtil.unsubscribe()
     this.mInputConsumerInfo = ''
-    this.isShowImage = false
-    this.isShowInputConsumerInfo = false
+    this.mIsShowImage = false
+    this.mIsShowInputConsumerInfo = false
   }
 
   build() {
@@ -73,7 +73,7 @@ export struct InputConsumer {
             .width(42)
             .onChange((isOn) => {
               if (isOn) {
-                this.isShowInputConsumerInfo = true
+                this.mIsShowInputConsumerInfo = true
                 InputConsumerUtil.subscribe(this.callback.bind(this))
               } else {
                 this.clear()
@@ -88,7 +88,7 @@ export struct InputConsumer {
           .fontSize($r('sys.float.ohos_id_text_size_sub_title3'))
           .width('100%')
 
-        if (this.isShowInputConsumerInfo) {
+        if (this.mIsShowInputConsumerInfo) {
           Text(this.mInputConsumerInfo.length > 0 ? this.mInputConsumerInfo : $r('app.string.input_wait'))
             .fontColor($r('app.color.input_consumer_hint'))
             .fontSize(14)
@@ -100,7 +100,7 @@ export struct InputConsumer {
             .id('textInputConsumerInfo')
         }
       }
-      if (this.isShowImage) {
+      if (this.mIsShowImage) {
         Image($r('app.media.img_openatom'))
           .height('10%')
           .objectFit(ImageFit.Contain)
