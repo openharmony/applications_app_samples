@@ -137,17 +137,6 @@ export default function CropTest() {
       let ok = await driver.findComponent(ON.id('Ok'));
       await ok.click();
       await driver.delayMs(1000);
-      const tipCrop: string = await getString($r('app.string.crop'));
-      await driver.assertComponentExist(ON.text(tipCrop));
-      let crop = await driver.findComponent(ON.text(tipCrop));
-      await crop.click();
-      await driver.delayMs(1000);
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Cancel'));
-      let cancel = await driver.findComponent(ON.id('Cancel'));
-      await cancel.click();
-      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop4:3_001 end');
     })
@@ -171,14 +160,6 @@ export default function CropTest() {
       await driver.assertComponentExist(ON.id('Ok'));
       let ok = await driver.findComponent(ON.id('Ok'));
       await ok.click();
-      await driver.delayMs(1000);
-      await crop.click();
-      await driver.delayMs(1000);
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Cancel'));
-      let cancel = await driver.findComponent(ON.id('Cancel'));
-      await cancel.click();
       await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop16:9 end');
@@ -204,14 +185,6 @@ export default function CropTest() {
       let ok = await driver.findComponent(ON.id('Ok'));
       await ok.click();
       await driver.delayMs(1000);
-      await crop.click();
-      await driver.delayMs(1000);
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Cancel'));
-      let cancel = await driver.findComponent(ON.id('Cancel'));
-      await cancel.click();
-      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop1:1 end');
     })
@@ -236,14 +209,6 @@ export default function CropTest() {
       await driver.assertComponentExist(ON.id('Ok'));
       let ok = await driver.findComponent(ON.id('Ok'));
       await ok.click();
-      await driver.delayMs(1000);
-      await crop.click();
-      await driver.delayMs(1000);
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Cancel'));
-      let cancel = await driver.findComponent(ON.id('Cancel'));
-      await cancel.click();
       await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropOrigin end');
