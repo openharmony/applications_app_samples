@@ -124,7 +124,7 @@ export struct AudioItem {
         .backgroundColor('#FF0000')
         .margin({ left: 5 })
         .onClick(() => {
-          Logger.info(TAG, 'delete clicked');
+          Logger.info(TAG, 'Recorder delete clicked ,id= deleteAudio' + this.index);
           this.clickItem(this.record, 'delete');
           this.leftSliderIndex = -1;
         })
