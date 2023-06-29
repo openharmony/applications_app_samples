@@ -61,8 +61,9 @@ export default function StickerTest() {
       await driver.assertComponentExist(ON.id('add'));
       let stack = await driver.findComponent(ON.id('add'));
       await stack.click();
+      await driver.delayMs(1000);
       // 选择图片,坐标选择,固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(535, 235);
+      await driver.click(335, 235);
       await driver.delayMs(1000);
       // 点击完成
       const completed: string = await getString($r('app.string.completed'));
@@ -121,31 +122,11 @@ export default function StickerTest() {
     })
 
     /**
-     * 点击贴纸
-     */
-    it(BUNDLE + 'Sticker_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Text_001 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(1000);
-      const sticker: string = await getString($r('app.string.sticker'));
-      await driver.assertComponentExist(ON.text(sticker));
-      let stack = await driver.findComponent(ON.text(sticker));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Sticker_001 end');
-    })
-
-    /**
      * 添加贴纸
      */
     it(BUNDLE + 'AddSticker_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddSticker_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Cancel'));
-      let cancel = await driver.findComponent(ON.id('Cancel'));
-      await cancel.click();
       await driver.delayMs(1000);
       const sticker: string = await getString($r('app.string.sticker'));
       await driver.assertComponentExist(ON.text(sticker));

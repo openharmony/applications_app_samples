@@ -15,13 +15,9 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let context: Context;
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-export async function getString(str: Resource) {
-  if (context === null) {
-    const abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-    context = await abilityDelegatorRegistry.getAppContext();
-  }
-  let manager = context.resourceManager;
-  return await manager.getStringValue(str);
+export function getString(resourceData: Resource): string {
+  let manage = delegator.getAppContext().resourceManager
+  return manage.getStringSync(resourceData)
 }

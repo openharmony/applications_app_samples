@@ -61,8 +61,9 @@ export default function CropTest() {
       await driver.assertComponentExist(ON.id('add'));
       let stack = await driver.findComponent(ON.id('add'));
       await stack.click();
+      await driver.delayMs(1000);
       // 选择图片,坐标选择,固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(435, 235);
+      await driver.click(335, 235);
       await driver.delayMs(1000);
       // 点击完成
       const tipCompleted: string = await getString($r('app.string.completed'));
