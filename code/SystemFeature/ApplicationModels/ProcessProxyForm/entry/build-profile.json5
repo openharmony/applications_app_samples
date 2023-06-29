@@ -21,6 +21,9 @@
     {
       "name": "default",
       "runtimeOS": "OpenHarmony"
+    },
+    {
+      "name": "ohosTest",
     }
   ]
 }
