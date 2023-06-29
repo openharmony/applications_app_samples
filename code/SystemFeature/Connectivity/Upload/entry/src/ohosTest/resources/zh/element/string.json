@@ -125,8 +125,12 @@
       "value": "当前网络不可用，请检查网络"
     },
     {
-      "name": "progress_tip",
-      "value": "2/50"
+      "name": "progress_tip_2_9",
+      "value": "2/9"
+    },
+    {
+      "name": "progress_tip_1_9",
+      "value": "1/9"
     },
     {
       "name": "download_sample",
