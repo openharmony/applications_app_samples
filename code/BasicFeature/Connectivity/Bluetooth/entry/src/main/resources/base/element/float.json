@@ -1,0 +1,36 @@
+{
+  "float": [
+    {
+      "name": "text_size_least",
+      "value": "10"
+    },
+    {
+      "name": "text_size_small",
+      "value": "12"
+    },
+    {
+      "name": "text_size_normal",
+      "value": "14"
+    },
+    {
+      "name": "text_size_medium",
+      "value": "16"
+    },
+    {
+      "name": "text_size_big",
+      "value": "18"
+    },
+    {
+      "name": "text_size_bigger",
+      "value": "20"
+    },
+    {
+      "name": "text_size_title",
+      "value": "22"
+    },
+    {
+      "name": "text_size_master",
+      "value": "32"
+    }
+  ]
+}
