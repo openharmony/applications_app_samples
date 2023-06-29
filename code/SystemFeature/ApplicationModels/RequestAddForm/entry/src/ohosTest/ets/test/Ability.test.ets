@@ -24,7 +24,6 @@ const DOMAIN = 0xF811
 const BUNDLE = 'AppStoreTest_'
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 let resourceManager = abilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
-let appName = await resourceManager.getStringValue($r('app.string.app_name'))
 let addArkTsButtonId = 'addArkTsCard'
 let addJsButtonId = 'addJsCard'
 let formArkTs = 'widget'
@@ -55,6 +54,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err))
       })
       // Find and open the test application
+      let appName = await resourceManager.getStringValue($r('app.string.app_name'))
       let app = await driver.findComponent(ON.text(appName))
       await app.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 open appStore')
@@ -103,6 +103,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err))
       })
       // Find and open the test application
+      let appName = await resourceManager.getStringValue($r('app.string.app_name'))
       let app = await driver.findComponent(ON.text(appName))
       await app.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 open appStore')
