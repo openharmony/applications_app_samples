@@ -29,10 +29,12 @@ import {
   RdbManager,
   ResourceManager
 } from '@ohos/base';
+import formHost from '@ohos.app.form.formHost';
 
 const TAG: string = 'LayoutInfoModel';
 
 export const SHOPPING_BUNDLE: string = 'com.samples.asorangeshopping';
+
 const SYSTEM_APPLICATIONS: string = 'com.ohos.adminprovisioning,com.ohos.launcher,ohos.samples.launcher,com.ohos.systemui,com.ohos.devicemanagerui,com.ohos.callui,com.example.kikakeyboard,com.ohos.contactdataability,com.ohos.telephonydataability,com.ohos.medialibrary.MediaLibraryDataA,com.ohos.medialibrary.MediaScannerAbilityA'
 const KEY_NAME = 'name';
 
@@ -478,6 +480,13 @@ export class DesktopLayoutModel {
     }
     this.layoutInfo = pageInfos
     await RdbManager.deleteItemByPosition(item.page, item.row, item.column)
+    formHost.deleteForm(item.cardId.toString(), (err) => {
+      if (err) {
+        Logger.info(TAG, `deleteForm err: ${JSON.stringify(err)}`)
+      } else {
+        Logger.info(TAG, 'deleteForm success')
+      }
+    })
     Logger.info(TAG, `removeCardFromDeskTop item= ${JSON.stringify(item)}`)
     AppStorage.SetOrCreate('isRefresh', true)
   }
