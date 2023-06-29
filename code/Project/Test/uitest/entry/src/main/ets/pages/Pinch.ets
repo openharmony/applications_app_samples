@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct Screen {
+struct ScreenExample {
   @State  myscale: number = 1
 
   build() {
