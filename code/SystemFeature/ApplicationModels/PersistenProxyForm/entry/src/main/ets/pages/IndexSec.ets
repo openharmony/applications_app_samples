@@ -74,46 +74,53 @@ struct IndexSec {
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
   build() {
     Row() {
-      Column({ space: 200 }) {
+      Column({ space: 150 }) {
         Column({ space: 5 }) {
           Text($r('app.string.modify_publish_data'))
             .fontColor('#182431')
-            .fontSize(30)
+            .fontSize(40)
             .lineHeight(41)
-            .fontWeight(500)
+            .fontWeight('100%')
+          Text(this.runningFormInfo)
+            .fontSize(15)
+            .margin({top:10, bottom:10})
         }
         Column() {
           Row() {
             Text($r('app.string.selection_city'))
-              .fontSize(40)
-            Column() {
-              Text($r('app.string.city_sy'))
-                .fontSize(10)
-              Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionID = '110000';
-                    conditionCity = '沈阳';
-                  }
-                })
+              .fontSize(30)
+            Row() {
+              Column() {
+                Text($r('app.string.city_sy'))
+                  .fontSize(15)
+                Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
+                  .height(30)
+                  .width(30)
+                  .onChange((isChecked: boolean) => {
+                    Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
+                    if (isChecked) {
+                      conditionID = '110000';
+                      conditionCity = '沈阳';
+                    }
+                  })
+              }
+
+              Column() {
+                Text($r('app.string.city_hz'))
+                  .fontSize(15)
+                Radio({ value: 'hz', group: 'cityGroup' })
+                  .height(30)
+                  .width(30)
+                  .onChange((isChecked: boolean) => {
+                    Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
+                    if (isChecked) {
+                      conditionID = '310000';
+                      conditionCity = '杭州';
+                    }
+                  })
+              }
             }
-            Column() {
-              Text($r('app.string.city_hz'))
-                .fontSize(10)
-              Radio({ value: 'hz', group: 'cityGroup' })
-                .height(30)
-                .width(30)
-                .onChange((isChecked: boolean) => {
-                  Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
-                  if (isChecked) {
-                    conditionID = '310000';
-                    conditionCity = '杭州';
-                  }
-                })
-            }
+            .margin({left:10})
           }
           Row() {
             Text($r('app.string.input_temperature'))
@@ -149,11 +156,9 @@ struct IndexSec {
                 prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
               }
             })
-          Text(' ')
-            .fontSize(10)
-          Text(this.runningFormInfo)
-            .fontSize(15)
         }
+        .alignItems(HorizontalAlign.Start)
+        .height('30%')
       }
       .width('100%')
     }

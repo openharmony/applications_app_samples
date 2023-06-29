@@ -81,15 +81,15 @@ function modifyCondition(): void {
 struct IndexThi {
   build() {
     Row() {
-      Column({ space: 200 }) {
+      Column({ space: 150 }) {
         Text($r('app.string.subscription_conditions'))
           .fontColor('#182431')
-          .fontSize(30)
+          .fontSize(40)
           .lineHeight(41)
-          .fontWeight(500)
+          .fontWeight('100%')
         Column() {
           Text($r('app.string.modify_subscription_conditions'))
-            .fontSize(30)
+            .fontSize(28)
             .margin({ bottom: 20 })
           Row() {
             Column() {
