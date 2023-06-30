@@ -41,7 +41,7 @@ struct Index {
     Row() {
       Column() {
         Button() {
-          Text('添加ArkTs卡片到桌面')
+          Text($r('app.string.add_arkTsCard'))
             .fontColor(Color.White)
             .fontSize(17)
         }
@@ -81,7 +81,7 @@ struct Index {
         Text("")
           .height(25)
         Button() {
-          Text('添加Js卡片到桌面')
+          Text($r('app.string.add_jsCard'))
             .fontColor(Color.White)
             .fontSize(17)
         }

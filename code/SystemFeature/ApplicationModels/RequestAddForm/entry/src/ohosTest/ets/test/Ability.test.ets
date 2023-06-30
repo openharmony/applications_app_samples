@@ -53,6 +53,7 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err))
       })
+
       // Find and open the test application
       let appName = await resourceManager.getStringValue($r('app.string.app_name'))
       let app = await driver.findComponent(ON.text(appName))
@@ -64,6 +65,7 @@ export default function abilityTest() {
       await button.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 click the button')
       await driver.delayMs(500)
+
       // Verify a card has been added to the desktop
       let cardArkTsCountSecond = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then(data => {
@@ -73,10 +75,12 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err))
       })
+
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 assert an ArkTs card has been added, ' +
       'cardArkTsCountSecond:' + cardArkTsCountSecond)
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 ' + (cardArkTsCountSecond - cardArkTsCount) + ' ArkTs card be added')
+      
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 end')
       done()
@@ -102,19 +106,21 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err))
       })
+
       // Find and open the test application
       let appName = await resourceManager.getStringValue($r('app.string.app_name'))
       let app = await driver.findComponent(ON.text(appName))
       await app.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 open appStore')
       await driver.delayMs(500)
+
       // Find the button and click
       let button = await driver.findComponent(ON.id(addJsButtonId))
       await button.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 click the button')
       await driver.delayMs(500)
+
       // Verify a card has been added to the desktop
-      let abilityNameCountSecond = 0
       let formJsCountSecond = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then(data => {
         let result = JSON.stringify(data)
@@ -123,10 +129,12 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err))
       })
+
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 assert an Js card has been added, ' +
       'formJsCountSecond:' + formJsCountSecond)
       expect(cardJsCount + 1).assertEqual(formJsCountSecond)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 ' + (formJsCountSecond - cardJsCount) + ' Js card be added')
+      
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 end')
       done()

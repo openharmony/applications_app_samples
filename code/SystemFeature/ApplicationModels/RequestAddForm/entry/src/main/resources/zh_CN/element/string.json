@@ -19,6 +19,14 @@
     {
       "name": "EntryFormAbility_label",
       "value": "form_label"
+    },
+    {
+      "name": "add_jsCard",
+      "value": "添加Js卡片到桌面"
+    },
+    {
+      "name": "add_arkTsCard",
+      "value": "添加ArkTs卡片到桌面"
     }
   ]
 }

@@ -19,6 +19,14 @@
     {
       "name": "EntryFormAbility_label",
       "value": "form_label"
+    },
+    {
+      "name": "add_jsCard",
+      "value": "add a Js card to desktop"
+    },
+    {
+      "name": "add_arkTsCard",
+      "value": "add an ArkTs card to desktop"
     }
   ]
 }
