@@ -43,6 +43,7 @@ export struct ButtonDialogBuilder {
               .margin({
                 bottom: $r('app.float.margin_bottom_ten')
               })
+              .id('Shared')
             Text($r('app.string.UiExtension'))
               .fontSize($r('app.float.fontSize_eighteen'))
               .fontWeight(FontWeight.Normal)
@@ -68,6 +69,7 @@ export struct ButtonDialogBuilder {
             Text($r('app.string.cancel'))
               .fontSize($r('app.float.fontSize_twenty'))
               .fontWeight(FontWeight.Normal)
+              .id('cancellation')
           }
           .margin({
             top: $r('app.float.margin_twenty'),

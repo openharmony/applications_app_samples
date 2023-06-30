@@ -40,6 +40,7 @@ struct Index {
         Button() {
           Text(this.shareLinkResource)
             .fontSize(20)
+            .id('shareLinkResource')
             .fontWeight(FontWeight.Bold)
         }
         .id('share')
