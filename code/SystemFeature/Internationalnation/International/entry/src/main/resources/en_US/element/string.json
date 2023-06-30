@@ -77,6 +77,10 @@
       "value": "TimeZone"
     },
     {
+      "name": "coordinate",
+      "value": "Coordinate"
+    },
+    {
       "name": "hours_24",
       "value": "24-hour system"
     },
