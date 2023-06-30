@@ -12,15 +12,17 @@
 
 使用说明
 
-1.安装编译的hap包，将应用安装在仿桌面（Launcher）上。（功能在仿桌面上实现）
+1.基于CrossChainBack工程（com.acts.abilityabacktoabilityb），对该工程编译产生的hap包进行手动签名。（仅CrossChainBack工程可实现跨任务链返回功能）
 
-2.点击应用主界面上的应用图标，可以启动应用。
+2.安装签名成功后的hap包，启动仿桌面（Launcher）。
 
-3.长按应用图标弹出菜单，点击打开，可以正常启动应用。
+3.点击应用主界面上的应用图标，可以启动应用。
 
-4.本应用包含：EntryAbility页面（页面中显示有"EntryAbility"文本）和SecondAbility页面（页面中显示有"SecondAbility"文本）
+4.长按应用图标弹出菜单，点击打开，可以正常启动应用。
 
-5.在EntryAbility页面上点击StartSecondAbility按钮，打开SecondAbility，此时点击返回键，回到EntryAbility页面而不是桌面。
+5.本应用包含：EntryAbility页面（页面中显示有"EntryAbility"文本）和SecondAbility页面（页面中显示有"SecondAbility"文本）
+
+6.在EntryAbility页面上点击StartSecondAbility按钮，打开SecondAbility，此时点击返回键，回到EntryAbility页面而不是桌面。
 
 
 ### 工程目录
