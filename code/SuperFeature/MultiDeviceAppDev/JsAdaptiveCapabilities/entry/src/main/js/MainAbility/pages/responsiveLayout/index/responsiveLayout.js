@@ -35,7 +35,7 @@ export default {
     ]
   },
   onclick: function (uri) {
-    router.push({
+    router.pushUrl({
       url: uri
     });
   }

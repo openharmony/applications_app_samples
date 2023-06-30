@@ -54,7 +54,7 @@ export default {
 
   listCategoryOnClick(listChild) {
     if (listChild.values.length === 0 && listChild.url) {
-      router.push({
+      router.pushUrl({
         url: listChild.url
       })
     } else {
@@ -67,7 +67,7 @@ export default {
   },
 
   handlerOnClick(item) {
-    router.push({
+    router.pushUrl({
       url: item.url
     })
   }
