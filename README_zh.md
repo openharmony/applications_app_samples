@@ -55,7 +55,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="21" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="24" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
@@ -110,11 +110,16 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>网络与连接</strong></td>
+  <td rowspan="2" x:str><strong>网络与连接</strong></td>
   <td x:str><a href="code/BasicFeature/Connectivity/Http">Http</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/RPC">RPC通信</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/Socket">网络管理-Socket连接</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/WebSocket">WebSocket</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Connectivity/StageSocket">Socket连接</a></td> 
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
@@ -134,12 +139,12 @@
   <td rowspan="2" x:str><strong>设备管理</strong></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Location">位置服务</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/ScreenDetector">屏幕探测</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator">振动</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td> 
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator/BasicVibration">振动</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic">自定义振动（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -176,15 +181,22 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>DFX</strong></td>
+  <td rowspan="2" x:str><strong>DFX</strong></td>
   <td x:str><a href="code/BasicFeature/DFX/Debug">Debug调试</a></td>
   <td ><a href="code/BasicFeature/DFX/DotTest">测试打点</a></td>
   <td ><a href="code/BasicFeature/DFX/FaultLogger">故障日志获取</a></td>
   <td ><a href="code/BasicFeature/DFX/Logger">日志打印</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/DFX/AppRecovery">应用故障恢复（API 10）</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>资源</strong></td>
-  <td x:str><a href="code/BasicFeature/Resource/ResourceManager">资源管理</a></td>
+  <td x:str><a href="code/BasicFeature/Resource/ResourceManager">资源管理（API 10）</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -197,6 +209,13 @@
   <td x:str></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>Native</strong></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性</strong></td>
   <td rowspan="2" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用</a></td>
@@ -206,15 +225,15 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility">企业设备管理扩展</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/TestRely/LauncherTest/CrossChainBack">跨任务链返回</a></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/TestRely/LauncherTest/StartRecentAbility">启动上一次的组件实例</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>媒体</strong></td>
   <td x:str><a href="code/SystemFeature/Media/Screenshot">截屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/ScreenRecorder">录屏</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Media/Camera">相机和媒体库</a></td>
   <td ></td>
  </tr>
  </tr>
@@ -250,17 +269,17 @@
   <td x:str><strong>设备管理</strong></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
-  <td x:str><a href="code/SystemFeature/Internationalnation/International">时区和语言设置</a></td>
+  <td x:str><a href="code/SystemFeature/Internationalnation/International">时区和语言设置（API 10）</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="5" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
+  <td height="90" align="center" rowspan="7" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合</a></td>
@@ -274,7 +293,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="2" x:str><strong>分布式</strong></td>
+  <td rowspan="3" x:str><strong>分布式</strong></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">Js分布式音乐播放（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器</a></td>
@@ -287,16 +306,28 @@
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>卡片</strong></td>
+ <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="2" x:str><strong>卡片</strong></td>
   <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">Js多设备自适应服务卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/Calculator">ArkTS卡片计算器</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/CanvasGame">ArkTS卡片Canvas小游戏</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/MusicControl">ArkTs音乐卡片</a></td>
+  <td></td>
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="6" style='height:67.50pt' x:str><strong>行业解决方案</strong></td>
   <td x:str><strong>即时通信</strong></td>
-  <td x:str><a href="code/Solutions/IM/Chat">聊天实例应用</a></td>
+  <td x:str><a href="code/Solutions/IM/Chat">聊天实例应用（API 10）</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -304,8 +335,8 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>输入法</strong></td>
   <td x:str><a href="code/Solutions/InputMethod/KikaInput">轻量级输入法（API 10）</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/Solutions/InputMethod/CustomInputText">自绘编辑框（API 10）</a></td>
+  <td x:str><a href="code/Solutions/InputMethod/KikaInputMethod">Kika输入法应用（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -338,7 +369,7 @@
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="54" align="center" rowspan="2" style='height:40.50pt' x:str><strong>工程能力</strong></td>
+  <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>资源配置</strong></td>
   <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
   <td ></td>
@@ -348,6 +379,13 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>应用程序包</strong></td>
   <td x:str><a href="code/Project/ApplicationHap/MultiHap">多hap</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>Test</strong></td>
+  <td x:str><a href="code/Project/Test">测试框架</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -395,8 +433,9 @@ code
   |---DeviceManagement             # 设备管理
   |---DeviceUsageStatistics        # 设备使用信息统计
   |---DFX                          # DFX
-  |---Internationalnation          # 国际化
+  |---Resource                     # 资源
   |---IDL                          # IDL
+  |---Native                       # Native c++
 |---SystemFeature              # 系统特性
   |---ApplicationModels            # 应用模型
   |---WindowManagement             # 窗口管理
@@ -419,6 +458,7 @@ code
 |---Project                    # 工程能力
   |---ResourceAllocation           # 资源配置
   |---ApplicationHap               # 应用程序包
+  |---Test                         # 测试框架
 |---LaunguageBaseClassLibrary  # 语言基础类库
 ```
 
