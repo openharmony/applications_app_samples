@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_share_com.samples.share.cer",
+          "storePassword": "0000001BDCF0BB8994AA1D021CA193DC97C6081E514A5034ABD387AB212CBFD040BCFCC6520F02BA9FB78C",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BF80CCC4F8A42A2BBEE63495CC10417BD6181AE67C88DCF6A278D3E380EF37964198EA51029F072",
+          "profile": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_share_com.samples.share.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_share_com.samples.share.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
