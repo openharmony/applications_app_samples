@@ -31,7 +31,7 @@ export struct AddKeyValueView {
       return;
     }
     this.flag = tem;
-    this.title = getString($r('app.string.add_title', `${tem.match(/.*(?=\(|（)/)[0]}`));
+    this.title = `${getString($r('app.string.add'))}${tem.match(/.*(?=\(|（)/)[0]}`;
   }
 
   build() {

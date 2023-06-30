@@ -1,4 +1,3 @@
-/node_modules
 /local.properties
 /.idea
 **/build
@@ -9,4 +8,3 @@
 /.clang-tidy
 **/oh_modules
 **/oh-package-lock.json5
-/build-profile.json5
