@@ -39,15 +39,31 @@ export struct VideoPanel {
   }
 
   async isInternet(): Promise<void> {
-    if (!await this.checkWifiState() && this.videoSelect == VIDEOSELECT) {
-      promptAction.showToast({
-        message: $r('app.string.video_warn'),
-        duration: 2000,
-      });
-      setInterval(() => {
-        globalThis.context.terminateSelf();
-      }, 1000);
+    if (!await this.checkWifiState() && this.videoSelect === VIDEOSELECT) {
+      this.toast();
     }
+  }
+
+  async toast() {
+    promptAction.showToast({
+      message: $r('app.string.video_warn'),
+      duration: 2000,
+    });
+    setTimeout(() => {
+      globalThis.context.terminateSelf();
+    }, 1000)
+  }
+
+  async aboutToAppear() {
+    setInterval(async () => {
+      try {
+        await this.isInternet();
+      } catch (err) {
+        if (!wf.isConnected() && this.videoSelect === VIDEOSELECT) {
+          this.toast();
+        }
+      }
+    }, 2000)
   }
 
   build() {
@@ -88,7 +104,7 @@ export struct VideoPanel {
 
                   Blank()
 
-                  if (this.videoSelect == index) {
+                  if (this.videoSelect === index) {
                     Text($r('app.string.playing'))
                       .fontSize($r('app.float.size_20'))
                       .fontColor(Color.White)
@@ -101,7 +117,7 @@ export struct VideoPanel {
               }
               .width("100%")
             }
-            .backgroundColor(this.videoSelect == index ? $r('app.color.video_play_selected') : "")
+            .backgroundColor(this.videoSelect === index ? $r('app.color.video_play_selected') : "")
             .width("100%")
             .height($r('app.float.size_64'))
             .onClick(async () => {
@@ -110,7 +126,6 @@ export struct VideoPanel {
               AppStorage.SetOrCreate('videoIndex', this.videoSelect);
               this.show = false;
               let str = await globalThis.context.resourceManager.getStringValue(this.videoList[this.videoSelect]);
-              this.isInternet();
               this.avPlayManage.videoChoose(str, this.videoSelect, (avPlayer: media.AVPlayer) => {
               });
             })
