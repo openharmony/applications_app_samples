@@ -77,6 +77,10 @@
       "value": "时区"
     },
     {
+      "name": "coordinate",
+      "value": "坐标"
+    },
+    {
       "name": "hours_24",
       "value": "24小时制"
     },

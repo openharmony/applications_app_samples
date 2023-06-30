@@ -17,6 +17,9 @@ import IntlUtil from '../../utils/IntlUtil';
 import TitleBar from '../../components/TitleBar';
 import ResourceUtil from '../../utils/ResourceUtil';
 
+const LONGITUDE = 116.20;
+const LATITUDE = 39.56;
+
 @Entry
 @Component
 struct Examples {
@@ -26,10 +29,14 @@ struct Examples {
   @State numberFormat: Array<string> = [];
   @State pluralFormat: string = '';
   @State mDirection: string = '';
+  @State timeZoneDetect: string = '';
+  @State normalizer: string = '';
 
   aboutToAppear() {
     this.getLanguage();
     this.getTimeDisplay();
+    this.getTimeZoneDetect();
+    this.getNormalizer();
     this.numberFormat = IntlUtil.getNumberFormatString();
     this.getPluralFormat();
   }
@@ -44,6 +51,17 @@ struct Examples {
     let timeInfo = IntlUtil.getDateString();
     this.date = timeInfo[0];
     this.time = timeInfo[1];
+  }
+
+  async getTimeZoneDetect() {
+    this.timeZoneDetect = await ResourceUtil.getString($r('app.string.coordinate').id);
+    this.timeZoneDetect += '(' + LONGITUDE + ',' + LATITUDE + ') ' +
+      i18n.TimeZone.getTimezonesByLocation(LONGITUDE, LATITUDE)[0].getDisplayName();
+  }
+
+  getNormalizer() {
+    let nl = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+    this.normalizer = '\u1100 +\u1161 +\u11A8 = ' + nl.normalize('\u1100\u1161\u11A8');
   }
 
   getLanguage() {
@@ -70,6 +88,8 @@ struct Examples {
           this.TextView({ text: item });
         }, item => item)
         this.TextView({ text: this.pluralFormat })
+        this.TextView({ text: this.timeZoneDetect })
+        this.TextView({ text: this.normalizer })
         this.TextView({ text: this.mDirection })
       }
       .width('95%')
