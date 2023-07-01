@@ -2,171 +2,223 @@
   "string": [
     {
       "name": "entry_desc",
-      "value": "入口描述"
+      "value": "entry_desc"
     },
     {
       "name": "MainAbility_desc",
-      "value": "描述"
+      "value": "MainAbility_desc"
     },
     {
       "name": "MainAbility_label",
-      "value": "标签"
+      "value": "MainAbility_label"
     },
     {
       "name": "file_manager",
-      "value": "文件管理"
+      "value": "file_manager"
     },
     {
       "name": "image",
-      "value": "图片"
+      "value": "image"
     },
     {
       "name": "image_preview",
-      "value": "图片预览"
+      "value": "image_preview"
     },
     {
       "name": "video",
-      "value": "视频"
+      "value": "video"
     },
     {
       "name": "document",
-      "value": "文档"
+      "value": "document"
     },
     {
       "name": "audio",
-      "value": "音频"
+      "value": "audio"
     },
     {
       "name": "compressed_package",
-      "value": "压缩包"
+      "value": "compressed_package"
     },
     {
       "name": "my_phone",
-      "value": "我的手机"
+      "value": "my_phone"
     },
     {
       "name": "read_reason",
-      "value": "应用需要文件读取权限"
+      "value": "read_reason"
     },
     {
       "name": "write_reason",
-      "value": "应用需要文件写权限"
+      "value": "write_reason"
     },
     {
       "name": "storage_reason",
-      "value": "应用需要获取空间使用状态权限"
+      "value": "storage_reason"
     },
     {
       "name": "file_access_reason",
-      "value": "应用需要文件访问权限"
+      "value": "file_access_reason"
     },
     {
       "name": "no_file",
-      "value": "没有相关文件"
+      "value": "no_file"
     },
     {
       "name": "not_supported_tip",
-      "value": "暂不支持，功能开发中..."
+      "value": "not_supported_tip"
     },
     {
       "name": "test_tip",
-      "value": "测试文件，不支持预览"
+      "value": "test_tip"
     },
     {
       "name": "mock_tip",
-      "value": "模拟文件，不支持预览"
+      "value": "mock_tip"
     },
     {
       "name": "tip_input_name",
-      "value": "请输入名称"
+      "value": "tip_input_name"
     },
     {
       "name": "title",
-      "value": "我的手机"
+      "value": "title"
     },
     {
       "name": "label_memory",
-      "value": "内存"
+      "value": "label_memory"
     },
     {
       "name": "label_current_directory",
-      "value": "当前目录名"
+      "value": "label_current_directory"
     },
     {
       "name": "label_cancel",
-      "value": "取消"
+      "value": "label_cancel"
     },
     {
       "name": "label_item",
-      "value": "项"
+      "value": "label_item"
     },
     {
       "name": "label_move_to",
-      "value": "移动到这"
+      "value": "label_move_to"
     },
     {
       "name": "label_copy_move",
-      "value": "复制和移动"
+      "value": "label_copy_move"
     },
     {
       "name": "tip_choose_one",
-      "value": "请至少选中一项"
+      "value": "tip_choose_one"
     },
     {
       "name": "label_rename",
-      "value": "重命名"
+      "value": "label_rename"
     },
     {
       "name": "label_share",
-      "value": "分享"
+      "value": "label_share"
     },
     {
       "name": "tip_develop",
-      "value": "功能尚在开发..."
+      "value": "tip_develop"
     },
     {
       "name": "label_make_directory",
-      "value": "新建文件夹"
+      "value": "label_make_directory"
     },
     {
       "name": "label_make_file",
-      "value": "新建文件"
+      "value": "label_make_file"
     },
     {
       "name": "label_sort",
-      "value": "排序"
+      "value": "label_sort"
     },
     {
       "name": "label_clean",
-      "value": "清理"
+      "value": "label_clean"
     },
     {
       "name": "label_nothing",
-      "value": "空空如也"
+      "value": "label_nothing"
     },
     {
       "name": "label_no_move",
-      "value": "不能移动到自己的子目录下"
+      "value": "label_no_move"
     },
     {
       "name": "label_is_delete",
-      "value": "是否删除选中项?"
+      "value": "label_is_delete"
     },
     {
       "name": "label_delete",
-      "value": "删除"
+      "value": "label_delete"
     },
     {
       "name": "label_delete_success",
-      "value": "删除成功"
+      "value": "label_delete_success"
     },
     {
       "name": "label_input",
-      "value": "请输入文件名称"
+      "value": "label_input"
     },
     {
       "name": "label_confirm",
-      "value": "确定"
+      "value": "label_confirm"
+    },
+    {
+      "name": "watcherFileText",
+      "value": "watcherFileText"
+    },
+    {
+      "name": "watcherTitleText",
+      "value": "watcherTitleText"
+    },
+    {
+      "name": "addFile",
+      "value": "addFile"
+    },
+    {
+      "name": "logTitle",
+      "value": "logTitle"
+    },
+    {
+      "name": "addWatcher",
+      "value": "addWatcher"
+    },
+    {
+      "name": "stopWatcher",
+      "value": "stopWatcher"
+    },
+    {
+      "name": "isDelFile",
+      "value": "delFile"
+    },
+    {
+      "name": "deleteFile",
+      "value": "deleteFile"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "fileContent1",
+      "value": "File Content1"
+    },
+    {
+      "name": "fileContent2",
+      "value": "File Content2"
+    },
+    {
+      "name": "fileContent3",
+      "value": "File Content3"
+    },
+    {
+      "name": "fileContent4",
+      "value": "File Content4"
     }
   ]
 }

@@ -2,10 +2,9 @@
 
 ### 介绍
 
-本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)
-、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md)
-、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)
-等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件和预览图片的功能;
+本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md) 、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md) 、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+
+等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件和预览图片、监听文件的功能;
 
 ### 效果预览
 
@@ -28,15 +27,33 @@
    4. 点击右上角多选按钮，选择需要复制和移动的文件（可多选，并且不可移动到本身的子目录下），选中后点击左下角“复制和移动”按钮，在页面中点击目标目录会进入该目录，在目标目录下点击“移动到这”按钮，完成文件复制和移动。
 
    5. 点击右上角多选按钮，选择需要删除的文件，选中后点击右下角“删除”按钮，在弹窗中点击“删除”，即可删除文件。
+6. 在主页点击“监听文件”，进入文件监听页面。
+   1.  点击**添加监听**按钮，选择**IN_CREATE**监听，然后点击**确定**按钮，成功添加IN_CREATE监听。
+   2. 点击**添加**按钮，成功添加一个文件，触发事件后日志显示为相应日志：event：256，fileName为新增文件的路径。
+   3. 点击**停止监听**按钮，选择**IN_CREATE**监听，然后点击**确定**按钮，成功停止IN_CREATE监听。
+   4. 点击**添加**按钮，成功添加一个文件，触发事件后日志无变化。
+   5. 点击**添加监听**按钮，选择**IN_DELETE**监听，然后点击**确定**按钮，成功添加IN_DELETE监听。
+   6. 选择要删除的文件item，左滑后点击删除图标，成功删除一个文件，触发事件后日志显示为相应日志：event：512，fileName为删除文件的路径。
+   7. 点击**停止监听**按钮，选择**IN_DELETE**监听，然后点击**确定**按钮，成功停止IN_CREATE监听。
+   8. 选择要删除的文件item，左滑后点击删除图标，成功删除一个文件，触发事件后日志无变化。
+   9. 点击**添加监听**按钮，选择**IN_MODIFY**监听，然后点击**确定**按钮，成功添加IN_MODIFY监听。
+   10. 选择要编辑的文件item，左滑后点击编辑图标，进入文件编辑界面，修改文件名和文件内容，修改之后点击保存图标，页面显示的文件文件大小发生变化，然后点击返回图标后返回文件监听界面，查看触发事件后日志显示为相应日志：event：2，fileName为修改后文件的路径。IN_MODIFY监听只监听文件内容是否发生变化，若单独修改文件名，则不会更新监听日志。
+   11. 点击**停止监听**按钮，选择**IN_MODIFY**监听，然后点击**确定**按钮，成功停止IN_MODIFY监听。
+   12. 选择要编辑的文件item，左滑后点击编辑图标，进入文件编辑界面，修改文件名和文件内容，修改之后点击保存图标，页面显示的文件文件大小发生变化，然后点击返回图标后返回文件监听界面，查看触发事件后日志无变化。
 
 ### 工程目录
 
 ```
 entry/src/main/ets/
 |---Application
+|---common
+|   |---Common.ts             // 公用方法，如bufferToString
+|   |---Logger.ts             // 监听文件日志
 |---filemanager
 |   |---data
 |   |   |---FileDataSource.ets             // 懒加载数据格式
+|   |---fileFs
+|   |   |---MyWatcher.ts      // 预制10个文件进行监听，并对文件增删改进行处理，以及对添加watcher和删除watcher进行处理
 |   |---pages
 |   |   |---audio
 |   |   |   |---AudioFileList.ets          // 音频列表页面
@@ -56,7 +73,9 @@ entry/src/main/ets/
 |   |   |---FileManagerHome.ets            // 首页主体内容
 |---MainAbility
 |---pages
-|   |---index.ets                          // 首页
+|   |---WatcherFile.ets       // 监听文件页面，可对当前目录添加监听和停止监听，同时可以添加文件和删除文件并显示触发事件后日志
+|   |---Index.ets             // 首页
+|   |---EditFile.ets          // 文件编辑界面，可对文件名和文件内容进行修改，并可对文件的修改进行撤销
 Library/src/main/ets/
 |---filemanager
 |   |---components
@@ -98,6 +117,15 @@ Library/src/main/ets/
       中调用FileManager.deleteFileAsset()；
     * 获取缩略图：在[ThumbnailImage.ets](Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
     * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
+    
+* 监听文件模块中的文件增删、查找、修改、监听功能封装在MyWatcher，源码参考：[MyWatcher.ts](ets/src/main/ets/filemanager/fileFs/MyWatcher.ts)
+
+    * 增加文件、删除文件、监听文件、停止监听文件：在[WatcherFile.ets](entry/src/main/ets/pages/WatcherFile.ets)
+      中调用MyWathcer.addFileToWatcher()、MyWathcer.deleteFileToWatcher()、MyWathcer.startWatcher(watcherName)、MyWathcer.stopWatcher()；
+
+    * 修改文件：在[EditFile.ets](entry/src/main/ets/pages/EditFile.ets)
+
+      中调用MyWatcher.modifyFileToWatcher()。
 
 ### 相关权限
 
@@ -116,9 +144,10 @@ Library/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9，本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) ；
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行；
-4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
+2. 本示例为Stage模型，仅支持API10版本SDK，版本号：4.0.8.2，镜像版本号：OpenHarmony 4.0.8.5。
+3. 本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) ；
+4. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上版本才可编译运行。
+5. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“ohos_system_app”，再将“apl”字段信息改为“system_core”。
 
 ### 下载
 

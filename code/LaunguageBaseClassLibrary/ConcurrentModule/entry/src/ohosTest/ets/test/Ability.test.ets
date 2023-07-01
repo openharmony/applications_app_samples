@@ -22,6 +22,14 @@ const TAG = '[Sample_JSConcurrent]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'JSConcurrent_';
 
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
+
 export default function abilityTest() {
   describe('abilityTest', function () {
     it('StartAbilityFunction_001', 0, async function (done) {
@@ -38,6 +46,78 @@ export default function abilityTest() {
         done();
       }
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 end');
+    })
+
+    /**
+     * Worker 批量拷贝文件
+     */
+    // 点击拷贝文件按钮
+    it('WorkerCopyFileFunction_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('fileCopy'));
+      let fileCopy = await driver.findComponent(ON.id('fileCopy'));
+      await fileCopy.click();
+      await driver.delayMs(200);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_001 end');
+    })
+
+    /**
+     * Worker 批量拷贝文件
+     */
+    // 选择文件拷贝
+    it('WorkerCopyFileFunction_002', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(200);
+      // 使用id寻找组件并点击，时间超过3min，因此采用坐标点击
+      await driver.click(630, 272);
+      await driver.click(630, 372);
+      await driver.click(630, 472);
+      await driver.delayMs(200);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 end');
+    })
+
+    /**
+     * Worker 批量拷贝文件
+     */
+    // 拷贝文件
+    it('WorkerCopyFileFunction_003', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_003 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('copyFile'));
+      let copyFile = await driver.findComponent(ON.id('copyFile'));
+      await copyFile.click();
+      let copyFileLog1 = await getResourceString($r('app.string.copyFileLog1'))
+      let copyFileLog2 = await getResourceString($r('app.string.copyFileLog2'))
+      await driver.assertComponentExist(ON.text(copyFileLog1));
+      await driver.assertComponentExist(ON.text(copyFileLog2));
+      await driver.assertComponentExist(ON.id('backIndex2'));
+      let backIndex = await driver.findComponent(ON.id('backIndex2'));
+      await backIndex.click();
+      await driver.delayMs(200);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_003 end');
+    })
+
+    /**
+     * Worker 字符串排序
+     */
+    // 点击字符串排序按钮
+    it('WorkerFunction_000', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_000 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('strSort'));
+      let strSortBt = await driver.findComponent(ON.id('strSort'));
+      await strSortBt.click();
+      await driver.delayMs(200);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_000 end');
     })
 
     /**
