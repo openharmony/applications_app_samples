@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要实现了点击分享按钮发起分享，罗列出支持分享的服务，选择对应服务可以发起分享；使用startAbility等接口，实现了点击分享按钮发起分享，查看支持分享的服务列表并选择对应服务跳转的功能。
+本示例主要实现了点击分享按钮发起分享，罗列出支持分享的服务，选择对应服务可以发起分享；点击分享按钮发起分享，查看支持分享的服务列表并选择对应服务跳转的功能。
 
 ### 效果预览
 
@@ -43,13 +43,9 @@ entry/src/main/
 
 ### 依赖
 
-本应用需Template应用配合使用，Template应用地址：[template](code/SystemFeature/ApplicationModels/Template)
+本应用需Template应用配合使用，Template应用地址：[Template](code/SystemFeature/ApplicationModels/Template)
 
 ### 约束与限制
-
-1.本示例仅支持标准系统上运行，支持设备：RK3568。
-
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
