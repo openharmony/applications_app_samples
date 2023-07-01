@@ -37,12 +37,12 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
     let rdata = {
       'cityId': 310000,
       'cityName': '杭州',
-      'cityTemper': -30
+      'cityTemper': '-30 ℃'
     };
     let rdata2 = {
       'cityId': 110000,
       'cityName': '沈阳',
-      'cityTemper': -30
+      'cityTemper': '-30 ℃'
     };
     await rdbStore.insert(TBL_NAME, rdata, function (err, ret) {
       Logger.info(`${TAG}`, `[insert] callback ret: ${JSON.stringify(ret)}`);

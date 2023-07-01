@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了数据代理卡片的功能，使用[@ohos.application.DataShareExtensionAbility]([zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md))、[@ohos.data.dataShare]([zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md))、[@ohos.data.dataSharePredicates](ohos.data.dataSharePredicates)等接口，实现了修改卡片订阅信息后，当rdb数据库中的数据发生变化时，卡片中对应信息也发生相应变化的功能。
+本示例主要展示了数据代理卡片的功能，使用[@ohos.application.DataShareExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-dataShareExtensionAbility.md)、[@ohos.data.dataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md)、[@ohos.data.dataSharePredicates](ohos.data.dataSharePredicates)等接口，实现了修改卡片订阅信息后，当rdb数据库中的数据发生变化时，卡片中对应信息也发生相应变化的功能。
 
 ### 效果预览
 

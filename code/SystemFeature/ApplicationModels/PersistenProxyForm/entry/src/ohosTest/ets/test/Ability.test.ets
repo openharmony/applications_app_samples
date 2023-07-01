@@ -22,10 +22,7 @@ const TAG = '[Sample_DataShare_Test]'
 const DOMAIN = 0xF811
 const BUNDLE = 'DataShareTest_'
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-let cardProvider = 'formProvider'
-let cardText = '服务卡片'
-let removeText = '移除'
-let addCardText = '添加到桌面'
+let resourceManager = abilityDelegator.getAppContext().resourceManager
 let cardJs = 'widgetJS'
 let cardArkTs = 'widget'
 let driver = Driver.create()
@@ -33,7 +30,6 @@ let driver = Driver.create()
 let start_x = 700
 let finish_x = 50
 let y = 300
-
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -70,19 +66,20 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog err is: ' + JSON.stringify(err))
       })
       await driver.delayMs(1000)
+
       // Long click the application and add an ArkTs card to launcher
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 driver.findComponent start')
-      let app = await driver.findComponent(ON.text(cardProvider))
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 find appName: ' + cardProvider)
+      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       await app.longClick()
       await driver.delayMs(100)
-      let serviceCard = await driver.findComponent(ON.text(cardText))
+      let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(1000)
-      let addCard = await driver.findComponent(ON.text(addCardText))
+      let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addCard.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 addCardToDesktop')
       await driver.delayMs(1000)
+
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.PersistentProxyForm'").then(data => {
@@ -98,12 +95,14 @@ export default function abilityTest() {
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card be added')
       await driver.delayMs(1000)
+
       // Remove the card
-      let appList = await driver.findComponents(ON.text(cardProvider))
+      let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       await appList[appList.length-1].longClick()
+      let removeText = await resourceManager.getStringValue($r('app.string.remove'))
       let removeCard = await driver.findComponent(ON.text(removeText))
       await removeCard.click()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       let remove = await driver.findComponent(ON.text(removeText))
       await remove.click()
       await driver.delayMs(500)
@@ -119,15 +118,16 @@ export default function abilityTest() {
     it(BUNDLE + 'DataProxyForm_007', 1, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 begin')
       await Driver.create().delayMs(1000)
-      let app = await driver.findComponent(ON.text(cardProvider))
+      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       await app.longClick()
       await driver.delayMs(100)
-      let serviceCard = await driver.findComponent(ON.text(cardText))
+      let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(500)
-      let addCard = await driver.findComponent(ON.text(addCardText))
+      let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addCard.click()
       await driver.delayMs(500)
+
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
@@ -140,19 +140,22 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err))
       })
+      
       // Find and remove the card
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 driver.findComponents start`)
-      let appList = await driver.findComponents(ON.text(cardProvider))
+      let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 driver.findComponents start : + ${JSON.stringify(appList)}`)
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 driver.findComponents start  length: + ${appList.length}`)
       await appList[appList.length-1].longClick()
+      let removeText = await resourceManager.getStringValue($r('app.string.remove'))
       let removeCard = await driver.findComponent(ON.text(removeText))
       await removeCard.click()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       let remove = await driver.findComponent(ON.text(removeText))
       await remove.click()
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 removeCardToDesktop')
+
       // Verify that one card has been deleted
       let cardArkTsCountSecond = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
@@ -163,8 +166,6 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err))
       })
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 assert an ArkTs card has been deleted, ' +
-      'cardArkTsCount:' + cardArkTsCount)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 assert an ArkTs card has been deleted, ' +
       'cardArkTsCountSecond:' + cardArkTsCountSecond)
       expect(cardArkTsCount - 1).assertEqual(cardArkTsCountSecond)
@@ -182,6 +183,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DataProxyForm_004', 2, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 begin')
       await driver.delayMs(1000)
+
       // Confirm the number of cards
       let cardJsCount = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
@@ -194,11 +196,12 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err))
       })
+
       // long click the application
-      let app = await driver.findComponent(ON.text(cardProvider))
+      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       await app.longClick()
       await driver.delayMs(100)
-      let serviceCard = await driver.findComponent(ON.text(cardText))
+      let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(500)
       await driver.fling({
@@ -207,10 +210,11 @@ export default function abilityTest() {
         x: finish_x, y: y
       }, 5, 100)
       await driver.delayMs(500)
-      let addCard = await driver.findComponent(ON.text(addCardText))
+      let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addCard.click()
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 addCardToDesktop')
       await driver.delayMs(500)
+
       // Verify that a Js card has been added
       let cardJsCountSecond = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
@@ -222,17 +226,18 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err))
       })
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 assert an ArkTs card has been added, ' +
-      'cardJsCount:' + cardJsCount)
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 assert an ArkTs card has been added, ' +
       'cardJsCountSecond:' + cardJsCountSecond)
       expect(cardJsCount + 1).assertEqual(cardJsCountSecond)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 ' + (cardJsCountSecond - cardJsCount) + ' card be added')
       await driver.delayMs(1000)
-      let appList = await driver.findComponents(ON.text(cardProvider))
+
+      // Remove the card
+      let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       await appList[appList.length-1].longClick()
+      let removeText = await resourceManager.getStringValue($r('app.string.remove'))
       let removeCard = await driver.findComponent(ON.text(removeText))
       await removeCard.click()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       let remove = await driver.findComponent(ON.text(removeText))
       await remove.click()
       await driver.delayMs(500)
@@ -248,10 +253,10 @@ export default function abilityTest() {
     it(BUNDLE + 'DataProxyForm_008', 1, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 begin')
       await Driver.create().delayMs(1000)
-      let app = await driver.findComponent(ON.text(cardProvider))
+      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       await app.longClick()
       await driver.delayMs(100)
-      let serviceCard = await driver.findComponent(ON.text(cardText))
+      let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(500)
       await driver.fling({
@@ -260,8 +265,9 @@ export default function abilityTest() {
         x: finish_x, y: y
       }, 5, 100)
       await driver.delayMs(500)
-      let addCard = await driver.findComponent(ON.text(addCardText))
+      let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addCard.click()
+
       // Confirm the number of cards
       let cardJsCount = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
@@ -274,19 +280,22 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err))
       })
+
       // Find and remove the card
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 driver.findComponents start`)
-      let appList = await driver.findComponents(ON.text(cardProvider))
+      let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 driver.findComponents start : + ${JSON.stringify(appList)}`)
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 driver.findComponents start  length: + ${appList.length}`)
       await appList[appList.length-1].longClick()
+      let removeText = await resourceManager.getStringValue($r('app.string.remove'))
       let removeCard = await driver.findComponent(ON.text(removeText))
       await removeCard.click()
-      await driver.delayMs(500)
+      await driver.delayMs(1000)
       let remove = await driver.findComponent(ON.text(removeText))
       await remove.click()
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 removeCardToDesktop')
+
       // Verify that one card has been deleted
       let cardJsCountSecond = 0
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
@@ -297,8 +306,6 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err))
       })
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 assert an ArkTs card has been deleted, ' +
-      'cardJsCount:' + cardJsCount)
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 assert an ArkTs card has been deleted, ' +
       'cardJsCountSecond:' + cardJsCountSecond)
       expect(cardJsCount - 1).assertEqual(cardJsCountSecond)
