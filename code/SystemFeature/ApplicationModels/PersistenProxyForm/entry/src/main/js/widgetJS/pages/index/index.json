@@ -1,13 +1,14 @@
 {
   "data": {
     "list": [{
-      "cityName": "沈阳",
-      "cityTemper": "-30 ℃"
+      "cityName": "",
+      "cityTemper": ""
     }]
   },
   "actions": {
-    "messageEvent": {
-      "action": "message",
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "EntryAbility",
       "params": {
         "message": "add detail"
       }

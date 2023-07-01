@@ -18,7 +18,7 @@ let storage = new LocalStorage();
 @Entry(storage)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('list') list: Array<object> = [{'cityTemper':'-30 ℃', 'cityName': '沈阳'}];
+  @LocalStorageProp('list') list: Array<object> = [{'cityTemper':'', 'cityName': ''}];
 
   /*
    * The action type.

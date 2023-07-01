@@ -20,16 +20,19 @@ import formHost from '@ohos.app.form.formHost';
 import prompt from '@ohos.promptAction';
 
 const TAG = '[Push_Index]';
-let conditionCity = '沈阳';
+let conditionCity;
 let conditionID = '110000';
 let conditionData = '-30 ℃';
 let conditionDataToNumber;
+let context;
+let shenYang;
+let hangZhou;
 const formInstanceFilter = {
   bundleName: 'com.samples.PersistentProxyForm',
 };
 
-function updateRDB(): void {
-  dataShare.createDataShareHelper(globalThis.context.getApplicationContext(), 'datashareproxy://com.samples.PersistentProxyForm', {isProxy : true}).then((data) => {
+function updateRDB(context): void {
+  dataShare.createDataShareHelper(context, 'datashareproxy://com.samples.PersistentProxyForm', {isProxy : true}).then((data) => {
     Logger.info(`${TAG}`, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
     let dataShareHelper = data;
     let da = new dataSharePredicates.DataSharePredicates();
@@ -71,6 +74,12 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
+  aboutToAppear() {
+    context = getContext(this) as any;
+    shenYang = context.resourceManager.getStringSync($r('app.string.city_sy'));
+    hangZhou = context.resourceManager.getStringSync($r('app.string.city_hz'));
+    conditionCity = shenYang;
+  }
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
   build() {
     Row() {
@@ -100,7 +109,7 @@ struct IndexSec {
                     Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '110000';
-                      conditionCity = '沈阳';
+                      conditionCity = shenYang;
                     }
                   })
               }
@@ -115,7 +124,7 @@ struct IndexSec {
                     Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '310000';
-                      conditionCity = '杭州';
+                      conditionCity = hangZhou;
                     }
                   })
               }
@@ -150,7 +159,7 @@ struct IndexSec {
               if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
                 Logger.info(`${TAG}`, `correct temperature is ${conditionDataToNumber[0]}`);
                 publish();
-                updateRDB();
+                updateRDB(context);
               } else {
                 Logger.info(`${TAG}`, `incorrect temperature is ${conditionDataToNumber[0]}`);
                 prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });

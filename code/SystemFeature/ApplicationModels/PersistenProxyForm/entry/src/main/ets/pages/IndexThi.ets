@@ -94,7 +94,7 @@ struct IndexThi {
           Row() {
             Column() {
               Text($r('app.string.city_sy'))
-              Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(true)
+              Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(false)
                 .height(50)
                 .width(50)
                 .onChange((isChecked: boolean) => {

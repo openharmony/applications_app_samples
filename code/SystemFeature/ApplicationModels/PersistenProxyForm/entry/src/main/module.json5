@@ -63,7 +63,7 @@
       },
       {
         "name": "dataShare",
-        "srcEntry": "./ets/dataShare/dataShare.ts",
+        "srcEntry": "./ets/dataShare/DataShare.ts",
         "label": "$string:dataShare_desc",
         "description": "$string:dataShare_label",
         "type": "dataShare",

@@ -34,20 +34,20 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
     Logger.info(`${TAG}`, 'DataShareExtAbility executeSql multiple tables done.');
     let err = {'code':0};
     callback(err);
-    let rdata = {
+    let dataHangZhou = {
       'cityId': 310000,
-      'cityName': '杭州',
-      'cityTemper': '-30 ℃'
+      'cityName': '',
+      'cityTemper': ''
     };
-    let rdata2 = {
+    let dataShenYang = {
       'cityId': 110000,
-      'cityName': '沈阳',
-      'cityTemper': '-30 ℃'
+      'cityName': '',
+      'cityTemper': ''
     };
-    await rdbStore.insert(TBL_NAME, rdata, function (err, ret) {
+    await rdbStore.insert(TBL_NAME, dataHangZhou, function (err, ret) {
       Logger.info(`${TAG}`, `[insert] callback ret: ${JSON.stringify(ret)}`);
     });
-    await rdbStore.insert(TBL_NAME, rdata2, function (err, ret) {
+    await rdbStore.insert(TBL_NAME, dataShenYang, function (err, ret) {
       Logger.info(`${TAG}`, `[insert] callback ret: ${JSON.stringify(ret)}`);
     });
   }
