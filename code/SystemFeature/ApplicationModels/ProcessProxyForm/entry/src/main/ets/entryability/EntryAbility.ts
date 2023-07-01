@@ -19,7 +19,6 @@ import Logger from '../../common/Logger';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    globalThis.context = this.context;
     Logger.info('[EntryAbility]', `Ability onCreate. want: ${JSON.stringify(want)}`);
   }
 

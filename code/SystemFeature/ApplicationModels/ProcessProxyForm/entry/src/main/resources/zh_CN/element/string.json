@@ -51,6 +51,18 @@
     {
       "name": "published_data",
       "value": "发布数据"
+    },
+    {
+      "name": "input_temper",
+      "value": "请输入温度："
+    },
+    {
+      "name": "city",
+      "value": "城市："
+    },
+    {
+      "name": "temper",
+      "value": "温度："
     }
   ]
 }

@@ -22,16 +22,24 @@ struct WidgetCard {
   readonly MESSAGE: string = 'add detail';
   readonly FULL_WIDTH_PERCENT: string = '100%';
   readonly FULL_HEIGHT_PERCENT: string = '100%';
-  @LocalStorageProp('cityName') cityName: string = '沈阳';
-  @LocalStorageProp('cityTemper') cityTemper: number = -30;
+  @LocalStorageProp('cityName') cityName: string = '';
+  @LocalStorageProp('cityTemper') cityTemper: string = '';
 
   build() {
     Row() {
       Column() {
-        Text('城市：' + this.cityName)
-          .fontSize($r('app.float.font_size'))
-        Text('温度：' + this.cityTemper + ' ℃')
-          .fontSize($r('app.float.font_size'))
+        Row() {
+          Text($r('app.string.city'))
+            .fontSize($r('app.float.font_size'))
+          Text(this.cityName)
+            .fontSize($r('app.float.font_size'))
+        }
+        Row() {
+          Text($r('app.string.temper'))
+            .fontSize($r('app.float.font_size'))
+          Text(this.cityTemper + ' ℃')
+            .fontSize($r('app.float.font_size'))
+        }
       }
       .width(this.FULL_WIDTH_PERCENT)
     }

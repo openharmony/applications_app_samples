@@ -14,19 +14,15 @@
  */
 
 import formInfo from '@ohos.app.form.formInfo';
-import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Logger from '../../common/Logger';
 
-const TAG = '[EntryFormAbility]';
+const TAG = '[Sample_EntryFormAbility]';
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
     Logger.info(`${TAG}`, `onAddForm want: ${JSON.stringify(want)}`);
-    let formData = {
-      'cityName': '沈阳',
-      'cityTemper': -30
-    };
+    let formData = {};
     let formProxies = [
       {
         'key': 'cityName',

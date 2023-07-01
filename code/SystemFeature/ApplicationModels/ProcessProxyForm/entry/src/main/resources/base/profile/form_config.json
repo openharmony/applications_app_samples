@@ -21,7 +21,7 @@
       "dataProxyEnabled": true
     },
     {
-      "name": "JsWidget",
+      "name": "jsWidget",
       "description": "This is a service widget.",
       "src": "./js/JsWidget/pages/index/index",
       "window": {

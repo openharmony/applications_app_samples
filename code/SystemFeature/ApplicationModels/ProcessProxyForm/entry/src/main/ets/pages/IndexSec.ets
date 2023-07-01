@@ -19,9 +19,10 @@ import prompt from '@ohos.promptAction';
 import Logger from '../../common/Logger';
 
 const TAG = '[Push_Index]';
+let context;
 let dataShareHelper;
 let uri = ('datashareproxy://com.samples.processproxyform');
-let conditionCity = '沈阳';
+let conditionCity = '';
 let conditionID = '110000';
 let conditionData = '-30 ℃';
 let formInstanceFilter = {
@@ -30,7 +31,7 @@ let formInstanceFilter = {
 
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`${TAG}`, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
-  dataShare.createDataShareHelper(globalThis.context, uri, { isProxy: true }, (err, dataHelper) => {
+  dataShare.createDataShareHelper(context, uri, { isProxy: true }, (err, dataHelper) => {
     Logger.info(`${TAG}`, `dataShareHelper err: ${err}`, `data: ${dataShareHelper}`);
     dataShareHelper = dataHelper;
     if (err !== undefined) {
@@ -70,6 +71,12 @@ function publish(): void {
 @Component
 struct IndexSec {
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
+
+  aboutToAppear() {
+    context = getContext(this) as any;
+    conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
+  }
+
   build() {
     Row() {
       Column({ space: 150 }) {
@@ -98,7 +105,7 @@ struct IndexSec {
                     Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '110000';
-                      conditionCity = '沈阳';
+                      conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
                     }
                   })
               }
@@ -113,7 +120,7 @@ struct IndexSec {
                     Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '310000';
-                      conditionCity = '杭州';
+                      conditionCity = context.resourceManager.getStringSync($r('app.string.city_hz'));
                     }
                   })
               }
@@ -121,7 +128,7 @@ struct IndexSec {
             .margin({left:10})
           }
           Row() {
-            Text('请输入温度：')
+            Text($r('app.string.input_temper'))
               .fontSize(30)
               .width(200)
               .height(60)

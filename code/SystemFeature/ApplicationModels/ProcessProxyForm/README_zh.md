@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了使用push应用形式的数据代理卡片功能，使用[@ohos.data.dataShare]([zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md))等接口，实现了数据代理卡片的修改订阅条件功能及卡片的发布数据功能。
+本示例主要展示了使用push应用形式的数据代理卡片功能，使用[@ohos.data.dataShare](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md)等接口，实现了数据代理卡片的修改订阅条件功能及卡片的发布数据功能。
 
 ### 效果预览
 
@@ -41,7 +41,7 @@ entry/src/main/
 |---js
 |  |---common
 |  |---i18n
-|  └---JsWidget
+|  └---jsWidget
 |     └---pages
 |        └---index
 |           |---index.css                       // JS卡片样式

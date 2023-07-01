@@ -26,11 +26,11 @@ function updateCardDisplayContent(runningFormInfo): void {
   let proxies = [
     {
       'key': 'cityName',
-      'subscriberId': '310000'
+      'subscriberId': conditionID
     },
     {
       'key': 'cityTemper',
-      'subscriberId': '310000'
+      'subscriberId': conditionID
     }
   ];
   let formBinding =  formBindingData.createFormBindingData();
@@ -73,7 +73,7 @@ struct IndexThi {
           Row() {
             Column() {
               Text($r('app.string.city_sy'))
-              Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(true)
+              Radio({ value: 'sy', group: 'modifyConditionGroup' })
                 .height(50)
                 .width(50)
                 .onChange((isChecked: boolean) => {
