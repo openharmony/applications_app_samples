@@ -27,6 +27,10 @@
     {
       "name": "UiExtension",
       "value": "分享Demo"
+    },
+    {
+      "name": "ability_fail",
+      "value": "分享Demo启动失败！"
     }
   ]
 }

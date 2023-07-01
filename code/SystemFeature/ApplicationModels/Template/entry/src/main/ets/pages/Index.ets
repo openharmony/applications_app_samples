@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import Want from '@ohos.app.ability.Want';
 import { TemplateBuilder } from '../pages/picker';
 
 @Entry

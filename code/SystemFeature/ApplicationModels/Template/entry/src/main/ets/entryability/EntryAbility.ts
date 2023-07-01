@@ -22,14 +22,14 @@ const TAG = '[EntryAbility]';
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(`${TAG}`,`onCreate, want: ${JSON.stringify(want)},`, `launchParam: ${JSON.stringify(launchParam)}`);
-    let flag = (typeof(want.parameters.sharedFlag) == 'boolean') ? want.parameters.sharedFlag : false;
+    let flag = (typeof(want.parameters.sharedFlag) === 'boolean') ? want.parameters.sharedFlag : false;
     AppStorage.SetOrCreate('messages', want.parameters.shareMessages);
     AppStorage.SetOrCreate('sharedFlag', flag);
   }
 
   onNewWant(want, launchParam) {
     Logger.info(`${TAG}`,`onNewWant, want: ${JSON.stringify(want)},`, `launchParam: ${JSON.stringify(launchParam)}`);
-    let flag = (typeof(want.parameters.sharedFlag) == 'boolean') ? want.parameters.sharedFlag : false;
+    let flag = (typeof(want.parameters.sharedFlag) === 'boolean') ? want.parameters.sharedFlag : false;
     AppStorage.SetOrCreate('messages', want.parameters.shareMessages);
     AppStorage.SetOrCreate('sharedFlag', flag);
   }

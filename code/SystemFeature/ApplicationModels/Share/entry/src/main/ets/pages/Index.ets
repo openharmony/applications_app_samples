@@ -21,7 +21,7 @@ struct Index {
   @State shareLinkResource: Resource = $r('app.string.share_button');
   private shareDialog: CustomDialogController;
 
-  homeBtn() {
+  homeBtn(): void {
     this.shareDialog = new CustomDialogController({
       builder: ButtonDialogBuilder({
         controller: this.shareDialog

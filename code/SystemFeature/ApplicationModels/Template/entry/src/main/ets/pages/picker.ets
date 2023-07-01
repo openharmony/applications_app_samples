@@ -26,8 +26,6 @@ export struct TemplateBuilder {
   private context = getContext(this) as any;
   private want: Want;
 
-
-
   build() {
     Column() {
         Column({space: 50}) {
@@ -55,7 +53,7 @@ export struct TemplateBuilder {
               this.context.terminateSelf((err, data) =>{
                 Logger.info(`${TAG}`, `terminateSelf, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
                 if (err.code) {
-                  prompt.showToast({ message: '返回share应用失败！', duration: 3000 });
+                  prompt.showToast({ message: $r('app.string.terminateSelf_fail'), duration: 3000 });
                 }
               });
             })

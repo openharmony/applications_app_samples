@@ -41,7 +41,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         'session': session,
         'messages': this.message
       });
-    session.loadContent('pages/UiExtenIndex', this.storage);
+    session.loadContent('pages/UIExtenIndex', this.storage);
   }
 
   onDestroy() {

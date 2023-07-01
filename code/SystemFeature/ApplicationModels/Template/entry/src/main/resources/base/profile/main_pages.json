@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/UiExtenIndex",
+    "pages/UIExtenIndex",
     "pages/picker"
   ]
 }

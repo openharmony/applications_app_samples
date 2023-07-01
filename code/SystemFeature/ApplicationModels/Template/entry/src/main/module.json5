@@ -54,7 +54,7 @@
         "description": "UIExtAbility",
         "type": "ui",
         "visible": true,
-        "srcEntry": "./ets/UIExtensionAbility/UIExtAbility.ts"
+        "srcEntry": "./ets/uiextensionability/UIExtAbility.ts"
       }
     ]
   }

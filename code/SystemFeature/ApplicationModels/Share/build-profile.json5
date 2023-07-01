@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_share_com.samples.share.cer",
-          "storePassword": "0000001BDCF0BB8994AA1D021CA193DC97C6081E514A5034ABD387AB212CBFD040BCFCC6520F02BA9FB78C",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BF80CCC4F8A42A2BBEE63495CC10417BD6181AE67C88DCF6A278D3E380EF37964198EA51029F072",
-          "profile": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_share_com.samples.share.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\l-bingneu\\.ohos\\config\\openharmony\\auto_ohos_default_share_com.samples.share.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

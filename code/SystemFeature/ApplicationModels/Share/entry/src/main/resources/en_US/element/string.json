@@ -27,6 +27,10 @@
     {
       "name": "UiExtension",
       "value": "share Demo"
+    },
+    {
+      "name": "ability_fail",
+      "value": "Failed to start the sharing Demo!"
     }
   ]
 }

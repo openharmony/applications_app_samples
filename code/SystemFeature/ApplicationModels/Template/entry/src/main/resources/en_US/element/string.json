@@ -19,6 +19,10 @@
     {
       "name": "Stay_application",
       "value": "stay UIExtension"
+    },
+    {
+      "name": "terminateSelf_fail",
+      "value": "Failed to return to the share application!"
     }
   ]
 }

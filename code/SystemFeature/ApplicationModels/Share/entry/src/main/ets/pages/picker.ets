@@ -58,9 +58,9 @@ export struct ButtonDialogBuilder {
                 'sharedFlag': true
               }
             }, (err, data) =>{
-              Logger.info(`${TAG}`, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
+              Logger.info(TAG, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
               if(err.code != 0) {
-                prompt.showToast({ message: '分享Demo启动失败！', duration: 3000 });
+                prompt.showToast({ message: $r('app.string.ability_fail'), duration: 3000 });
               }
             });
           })

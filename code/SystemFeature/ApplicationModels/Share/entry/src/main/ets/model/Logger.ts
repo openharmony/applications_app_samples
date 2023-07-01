@@ -18,7 +18,7 @@ import hilog from '@ohos.hilog';
 export class Logger {
   private domain: number;
   private prefix: string;
-  private format: string = `%{public}s, %{public}s`;
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
     this.prefix = prefix;
