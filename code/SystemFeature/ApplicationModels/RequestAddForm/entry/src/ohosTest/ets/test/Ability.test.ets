@@ -75,7 +75,6 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err))
       })
-
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 assert an ArkTs card has been added, ' +
       'cardArkTsCountSecond:' + cardArkTsCountSecond)
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond)
@@ -129,7 +128,6 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err))
       })
-
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 assert an Js card has been added, ' +
       'formJsCountSecond:' + formJsCountSecond)
       expect(cardJsCount + 1).assertEqual(formJsCountSecond)

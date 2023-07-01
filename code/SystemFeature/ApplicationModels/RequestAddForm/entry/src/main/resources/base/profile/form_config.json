@@ -23,7 +23,7 @@
     {
       "name": "JsWidget",
       "description": "This is a service widget.",
-      "src": "./js/jswidget/pages/index/index",
+      "src": "./js/widgetJs/pages/index/index",
       "window": {
         "designWidth": 720,
         "autoDesignWidth": true
