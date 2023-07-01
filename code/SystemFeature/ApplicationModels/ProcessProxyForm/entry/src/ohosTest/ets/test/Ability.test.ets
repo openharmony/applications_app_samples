@@ -23,7 +23,7 @@ const DOMAIN = 0xF811
 const BUNDLE = 'PushTest_'
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 let resourceManager = abilityDelegator.getAppContext().resourceManager
-let cardJs = 'JsWidget'
+let cardJs = 'jsWidget'
 let cardArkTs = 'widget'
 let driver = Driver.create()
 // Sliding coordinate
