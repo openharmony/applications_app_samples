@@ -11,6 +11,22 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "app_name",
+      "value": "formProvider"
+    },
+    {
+      "name": "service_card",
+      "value": "service card"
+    },
+    {
+      "name": "remove",
+      "value": "remove"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "Add to desktop"
     }
   ]
 }
