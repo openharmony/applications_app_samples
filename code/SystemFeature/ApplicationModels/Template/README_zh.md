@@ -1,8 +1,8 @@
-# template
+# 接收分享结果应用
 
 ### 介绍
 
-本示例主要实现了基于UIExtension实现简单的分享功能。支持取消分享，点击“返回Share”按钮，返回调用方应用；支持完成分享，点击“留在UIExtension”按钮，留在当前分享Demo应用。
+本示例主要实现了基于UIExtension实现简单的分享功能。支持取消分享，点击“返回Share”按钮，返回调用方应用；支持完成分享，点击“留在UIExtension”按钮，留在当前接收分享结果应用。
 
 ### 效果预览
 
@@ -14,11 +14,11 @@
 
 1.使用Share应用点击“分享”按钮，点击的弹出本应用图标，跳转到当前应用；
 
-2.当前应用通过UIExtension组件显示Share应用分享的信息及“返回Share”和“留在UIExtension”按钮；
+2.当前应用通过UIExtension组件显示发起分享应用（Share应用）分享的信息及“返回Share”和“留在UIExtension”按钮；
 
 3.点击“返回Share”按钮，返回Share应用；
 
-4.点击“留在UIExtension”按钮，留在当前应用并显示Share应用分享的信息。
+4.点击“留在UIExtension”按钮，留在当前应用并显示发起分享应用（Share应用）分享的信息。
 
 ### 工程目录
 
@@ -32,7 +32,7 @@ entry/src/main/
 |  |---pages
 |  |  |---Index.ets                          // EntryAbility页面
 |  |  |---picker.ets                         // 自定义组件页面
-|  |  └---UIExtenIndex.ets					 // UIExtension页面
+|  |  └---UIExtenIndex.ets                   // UIExtension页面
 |  └---uiextensionability
 |     └---UIExtAbility.ts 
 └---resources                                // 资源信息
@@ -51,7 +51,7 @@ entry/src/main/
 
 ### 依赖
 
-本应用需Share应用配合使用，Share应用地址：[Share](code/SystemFeature/ApplicationModels/Share)
+本应用需发起分享应用（Share应用）配合使用，Share应用地址：[Share](../../ApplicationModels/Share/)
 
 ### 约束与限制
 

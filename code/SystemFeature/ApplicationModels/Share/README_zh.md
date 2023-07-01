@@ -1,8 +1,8 @@
-# share
+# 发起分享应用
 
 ### 介绍
 
-本示例主要实现了点击分享按钮发起分享，罗列出支持分享的服务，选择对应服务可以发起分享；点击分享按钮发起分享，查看支持分享的服务列表并选择对应服务跳转的功能。
+本示例主要实现了点击“分享”按钮发起分享，显示出接收分享结果应用图标，点击其图标可以发起分享并跳转到接收分享结果应用的功能。
 
 ### 效果预览
 
@@ -14,7 +14,7 @@
 
 1.点击“分享”按钮，弹出支持分享的应用列表；
 
-2.选择对应想要分享的应用图标进行点击，跳转到对应的应用。
+2.选择接收分享结果应用图标进行点击，跳转到对应的应用。
 
 ### 工程目录
 
@@ -22,7 +22,7 @@
 entry/src/main/
 |---ets
 |  |---entryability
-|  |  └---EntryAbility.ts                   
+|  |  └---EntryAbility.ts
 |  └---pages
 |     |---Index.ets                          // EntryAbility页面
 |     └---picker.ets                         // 自定义弹窗页面
@@ -43,7 +43,7 @@ entry/src/main/
 
 ### 依赖
 
-本应用需Template应用配合使用，Template应用地址：[Template](code/SystemFeature/ApplicationModels/Template)
+本应用需接收分享结果应用（Template应用）配合使用，Template应用地址：[Template](../../ApplicationModels/Template/)
 
 ### 约束与限制
 
