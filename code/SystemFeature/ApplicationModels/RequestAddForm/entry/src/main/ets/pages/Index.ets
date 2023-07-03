@@ -31,12 +31,15 @@ struct Index {
       Column() {
         Button() {
           Text($r('app.string.add_arkTsCard'))
-            .fontColor(Color.White)
-            .fontSize(17)
+            .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+            .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            .fontWeight(FontWeight.Bold)
         }
         .id(this.addArkTsButtonId)
         .width(220)
-        .height(60)
+        .height(40)
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
         .onClick(() => {
           let want = {
             abilityName: 'EntryFormAbility',
@@ -57,16 +60,21 @@ struct Index {
           });
           Logger.debug('=====> want is ' + JSON.stringify(want));
         })
-        Text("")
-          .height(25)
+
         Button() {
           Text($r('app.string.add_jsCard'))
-            .fontColor(Color.White)
-            .fontSize(17)
+            .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+            .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            .fontWeight(FontWeight.Bold)
         }
+        .margin({
+          'top': 20
+        })
         .id(this.addJsButtonId)
         .width(220)
-        .height(60)
+        .height(40)
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
         .onClick(() => {
           let want = {
             abilityName: 'EntryFormAbility',
@@ -86,6 +94,8 @@ struct Index {
           Logger.debug('=====> want is ' + JSON.stringify(want));
         })
       }
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
       .width('100%')
     }
     .height('100%')

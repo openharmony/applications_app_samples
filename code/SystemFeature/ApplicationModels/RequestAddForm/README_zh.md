@@ -8,7 +8,7 @@
 
 | 应用主页面                          | 添加Js与ArkTs数据代理卡片到桌面        |
 | ------- | ------- |
-| ![AppStor_main](./screenshots/zh/AppStor_main.png) | ![AppStor_preview](./screenshots/zh/AppStor_preview.png) |
+| ![AppStor_main](./screenshots/zh/menu.jpeg) | ![AppStor_preview](./screenshots/zh/card.jpeg) |
 
 使用说明
 
