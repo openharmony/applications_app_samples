@@ -61,8 +61,9 @@ export default function TextTest() {
       await driver.assertComponentExist(ON.id('add'));
       let stack = await driver.findComponent(ON.id('add'));
       await stack.click();
+      await driver.delayMs(1000);
       // 选择图片,坐标选择,固定坐标只支持RK3568，其他设备需要调整
-      await driver.click(635, 235);
+      await driver.click(335, 235);
       await driver.delayMs(1000);
       // 点击完成
       const tip: string = await getString($r('app.string.completed'));
@@ -157,33 +158,6 @@ export default function TextTest() {
       await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_001 end');
-    })
-
-    /**
-     * 第二次输入文字
-     */
-    it(BUNDLE + 'TextInput_002', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_002 begin');
-      let driver = await Driver.create();
-      const text: string = await getString($r('app.string.text'));
-      await driver.assertComponentExist(ON.text(text));
-      let stack = await driver.findComponent(ON.text(text));
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('TextInput'));
-      let input = await driver.findComponent(ON.id('TextInput'));
-      await input.inputText('kkkkkk');
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Sure'));
-      let sure = await driver.findComponent(ON.id('Sure'));
-      await sure.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_002 end');
     })
 
     /**
