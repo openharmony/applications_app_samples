@@ -18,22 +18,11 @@ import formBindingData from '@ohos.app.form.formBindingData';
 import Logger from '../logger/Logger';
 
 let conditionID = '110000';
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-  @State bundleName: string = 'com.example.formprovider';
   @State abilityName: string = 'EntryFormAbility';
-  @State moduleName: string = 'entry';
-  @State formName: string = 'widget';
-  @State dimension: FormDimension = FormDimension.Dimension_2_2;
-  @State formId: number = 0;
-  @State bundleNameAppStore: string = 'com.ohos.hag.famanager';
-  @State abilityNameAppStore: string = 'EntryFormAbility';
-  @State moduleNameAppStore: string = 'entry';
-  @State formNameAppStore: string = 'widget';
-  @State dimensionAppStore: FormDimension = FormDimension.Dimension_2_2;
-  @State formIdAppStore: number = 0;
   @State addArkTsButtonId: string = 'addArkTsCard';
   @State addJsButtonId: string = 'addJsCard';
 
@@ -57,20 +46,10 @@ struct Index {
               'ohos.extra.param.key.module_name': 'entry'
             }
           };
-          let weather = [
-            { 'city': '沈阳', 'temperature': '-10 ℃' },
-            { 'city': '杭州', 'temperature': '10 ℃' }
-          ];
-          let infoData = {
-            ['110000']: { weather: JSON.stringify(weather[0]) },
-            ['310000']: { weather: JSON.stringify(weather[1]) }
-          };
-          let formData = JSON.stringify(infoData[conditionID]);
-          let bindingData = formBindingData.createFormBindingData(formData);
+          let bindingData = formBindingData.createFormBindingData();
           let proxies = [{key: 'weather', subscriberid: conditionID}];
           bindingData['proxies'] = proxies;
           Logger.debug(`RequestPublishForm want: ${JSON.stringify(want)}`);
-          Logger.debug(`RequestPublishForm bindingData: ${JSON.stringify(bindingData)}`);
           formProvider.requestPublishForm(want, bindingData).then((str) => {
             Logger.debug(`RequestPublishForm success : ${str}`);
           }).catch((err) => {
@@ -97,20 +76,8 @@ struct Index {
               'ohos.extra.param.key.module_name': 'entry'
             }
           };
-          let weather = [
-            { 'city': '沈阳', 'temperature': '-10 ℃' },
-            { 'city': '杭州', 'temperature': '10 ℃' }
-          ];
-          let infoData = {
-            ['110000']: { weather: JSON.stringify(weather[0]) },
-            ['310000']: { weather: JSON.stringify(weather[1]) }
-          };
-          let formData = JSON.stringify(infoData[conditionID]);
-          let bindingData = formBindingData.createFormBindingData(formData);
-          let proxies = [{key: 'weather', subscriberid: conditionID}];
-          bindingData['proxies'] = proxies;
+          let bindingData = formBindingData.createFormBindingData();
           Logger.debug(`RequestPublishForm want: ${JSON.stringify(want)}`);
-          Logger.debug(`RequestPublishForm bindingData: ${JSON.stringify(bindingData)}`);
           formProvider.requestPublishForm(want, bindingData).then((str) => {
             Logger.debug(`RequestPublishForm success : ${str}`);
           }).catch((err) => {

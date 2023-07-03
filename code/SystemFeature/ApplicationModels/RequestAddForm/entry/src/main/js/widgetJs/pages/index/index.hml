@@ -15,8 +15,8 @@
 
 <div onclick="routerEvent">
     <div id="wrapper">
-        <div id="div1">
-            <text id="text1">{{title}}</text>
+        <div id="div">
+            <text id="text">{{title}}</text>
         </div>
     </div>
 </div>

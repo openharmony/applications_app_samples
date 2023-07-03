@@ -20,7 +20,7 @@ struct WidgetCard {
    * The title.
    */
   readonly TITLE: string = 'App Store';
-  readonly TITLE2: string = 'ArkTs Widget Card';
+  readonly TITLE_CARD: string = 'ArkTs Widget Card';
 
   /*
    * The action type.
@@ -52,7 +52,7 @@ struct WidgetCard {
       Column() {
         Text(this.TITLE)
           .fontSize($r('app.float.font_size'))
-        Text(this.TITLE2)
+        Text(this.TITLE_CARD)
           .fontSize($r('app.float.font_size'))
       }
       .width(this.FULL_WIDTH_PERCENT)
