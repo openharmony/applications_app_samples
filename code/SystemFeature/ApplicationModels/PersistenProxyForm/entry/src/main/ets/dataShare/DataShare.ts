@@ -71,6 +71,6 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
     } catch (err) {
       Logger.error(`${TAG}`, `[update] error: ${err}`);
     };
-      Logger.info(`${TAG}`, '[update] leave');
+    Logger.info(`${TAG}`, '[update] leave');
   }
 };
