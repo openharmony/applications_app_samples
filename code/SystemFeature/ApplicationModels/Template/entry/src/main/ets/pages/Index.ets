@@ -14,13 +14,14 @@
  */
 
 import { TemplateBuilder } from '../pages/picker';
+import common from '@ohos.app.ability.common';
 
 @Entry
 @Component
 struct Index {
   @StorageLink('messages') messages: string = 'No shared information on the current page';
   @StorageLink('sharedFlag') sharedFlag: boolean = false;
-  private context = getContext(this) as any;
+  private context = getContext(this) as common.UIAbilityContext;
   private shareDialog: CustomDialogController;
 
   build() {

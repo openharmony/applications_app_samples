@@ -16,25 +16,25 @@
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import Logger from '../model/Logger';
 
-const TAG: string = '[UIExtensionAbility]';
+const TAG: string = '[Sample_UIExtensionAbility]';
 
 export default class UIExtAbility extends UIExtensionAbility {
   storage: LocalStorage;
   message: string;
   onCreate() {
-    Logger.info(`${TAG}`, 'onCreate');
+    Logger.info(TAG, 'onCreate');
   }
 
   onForeground() {
-    Logger.info(`${TAG}`, 'onForeground');
+    Logger.info(TAG, 'onForeground');
   }
 
   onBackground() {
-    Logger.info(`${TAG}`, 'onBackground');
+    Logger.info(TAG, 'onBackground');
   }
 
   onSessionCreate(want, session) {
-    Logger.info(`${TAG}`, `onSessionCreate, want: ${JSON.stringify(want)},`, `session: ${session}`);
+    Logger.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)},`, `session: ${session}`);
     this.message = want.parameters.shareMessages;
     this.storage = new LocalStorage(
       {
@@ -45,10 +45,10 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 
   onDestroy() {
-    Logger.info(`${TAG}`, 'onDestroy');
+    Logger.info(TAG, 'onDestroy');
   }
 
   onSessionDestroy(session) {
-    Logger.info(`${TAG}`, 'onSessionDestroy');
+    Logger.info(TAG, 'onSessionDestroy');
   }
 };

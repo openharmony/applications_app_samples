@@ -17,7 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import Logger from '../model/Logger';
 
-const TAG = '[EntryAbility]';
+const TAG = '[Sample_EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {

@@ -17,38 +17,38 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import Logger from '../model/Logger';
 
-const TAG: string = '[EntryAbility]';
+const TAG: string = '[Sample_EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info(`${TAG}`, `onCreate want is ${want},`, `launchParam is ${launchParam}`);
+    Logger.info(TAG, `onCreate want is ${want},`, `launchParam is ${launchParam}`);
   }
 
   onDestroy() {
-    Logger.info(`${TAG}`, 'onDestroy');
+    Logger.info(TAG, 'onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    Logger.info(`${TAG}`, `onWindowStageCreate, windowStage: ${windowStage}`);
+    Logger.info(TAG, `onWindowStageCreate, windowStage: ${windowStage}`);
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`${TAG}`, `Failed to load the content, Cause: ${err}`);
+        Logger.error(TAG, `Failed to load the content, Cause: ${err}`);
         return;
       }
-      Logger.info(`${TAG}`, `Succeeded in loading the content, Data: ${data}`);
+      Logger.info(TAG, `Succeeded in loading the content, Data: ${data}`);
     });
   }
 
   onWindowStageDestroy() {
-    Logger.info(`${TAG}`, 'onWindowStageDestroy');
+    Logger.info(TAG, 'onWindowStageDestroy');
   }
 
   onForeground() {
-    Logger.info(`${TAG}`, 'onForeground');
+    Logger.info(TAG, 'onForeground');
   }
 
   onBackground() {
-    Logger.info(`${TAG}`, 'onBackground');
+    Logger.info(TAG, 'onBackground');
   }
 }

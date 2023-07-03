@@ -16,14 +16,15 @@
 import Logger from '../model/Logger';
 import prompt from '@ohos.promptAction';
 import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
 
-const TAG: string = '[picker]';
+const TAG: string = '[Sample_picker]';
 
 @Entry
 @Component
 export struct TemplateBuilder {
   private shareDialog: CustomDialogController;
-  private context = getContext(this) as any;
+  private context = getContext(this) as common.UIAbilityContext;
   private want: Want;
 
   build() {

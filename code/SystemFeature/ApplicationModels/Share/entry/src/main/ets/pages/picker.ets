@@ -15,13 +15,14 @@
 
 import Logger from '../model/Logger';
 import prompt from '@ohos.promptAction';
+import common from '@ohos.app.ability.common';
 
-const TAG: string = '[picker]';
+const TAG: string = '[Sample_picker]';
 
 @CustomDialog
 export struct ButtonDialogBuilder {
   private controller?: CustomDialogController;
-  private context = getContext(this) as any;
+  private context = getContext(this) as common.UIAbilityContext;
   private messages: string = 'It is a shared message';
 
   build() {
