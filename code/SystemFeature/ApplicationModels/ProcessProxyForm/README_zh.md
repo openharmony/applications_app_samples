@@ -33,8 +33,8 @@ entry/src/main/
 |  |  └---EntryFormAbility.ts                         
 |  |---pages
 |  |  |---Index.ets                          // EntryAbilit页面
-|  |  |---IndexSec.ets                       // 发布数据页面
-|  |  └---IndexThi.ets                       // 修改订阅条件页面
+|  |  |---ModifyConditionIndex.ets           // 修改订阅条件页面
+|  |  └---PushIndex.ets                      // 发布数据页面
 |  └---widget
 |     └---pages
 |        └---WidgetCard.ets                  // ArkTS卡片

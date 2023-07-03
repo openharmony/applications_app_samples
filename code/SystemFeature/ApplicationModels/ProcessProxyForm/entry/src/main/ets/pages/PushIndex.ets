@@ -18,7 +18,7 @@ import formHost from '@ohos.app.form.formHost';
 import prompt from '@ohos.promptAction';
 import Logger from '../../common/Logger';
 
-const TAG = '[Push_Index]';
+const TAG = '[Sample_PushIndex]';
 let context;
 let dataShareHelper;
 let uri = ('datashareproxy://com.samples.processproxyform');
@@ -30,12 +30,12 @@ let formInstanceFilter = {
 };
 
 function updateCardDisplayContent(runningFormInfo): void {
-  Logger.info(`${TAG}`, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
+  Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   dataShare.createDataShareHelper(context, uri, { isProxy: true }, (err, dataHelper) => {
-    Logger.info(`${TAG}`, `dataShareHelper err: ${err}`, `data: ${dataShareHelper}`);
+    Logger.info(TAG, `dataShareHelper err: ${err}`, `data: ${dataShareHelper}`);
     dataShareHelper = dataHelper;
     if (err !== undefined) {
-      Logger.error(`${TAG}`, `createDataShareHelper error code: ${err.code}`, `message: ${err.message} `);
+      Logger.error(TAG, `createDataShareHelper error code: ${err.code}`, `message: ${err.message} `);
       prompt.showToast({ message: `createDataShareHelper:` + err.message, duration: 5000 });
     } else {
       let publishedItemData : Array<dataShare.PublishedItem> = [
@@ -43,11 +43,11 @@ function updateCardDisplayContent(runningFormInfo): void {
         {key: 'cityTemper', data: JSON.stringify(conditionData), subscriberId: conditionID}
       ];
       dataShareHelper.publish(publishedItemData, 'com.samples.processproxyform').then((data) => {
-        Logger.info(`${TAG}`, `publish success, data is ${JSON.stringify(data)}`);
+        Logger.info(TAG, `publish success, data is ${JSON.stringify(data)}`);
         prompt.showToast(
           { message: `publish success ${conditionCity} ${conditionData} ${conditionID}`, duration: 5000 });
       }).catch((err) => {
-        Logger.error(`${TAG}`, `publish error: ${JSON.stringify(err)}`);
+        Logger.error(TAG, `publish error: ${JSON.stringify(err)}`);
         prompt.showToast({ message: `publish err: ${JSON.stringify(err)}`, duration: 5000 });
       });
     }
@@ -55,13 +55,13 @@ function updateCardDisplayContent(runningFormInfo): void {
 }
 
 function publish(): void {
-  Logger.info(`${TAG}`, `publish called`);
+  Logger.info(TAG, `publish called`);
   formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data => {
-    Logger.info(`${TAG}`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
+    Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
   }).catch((err) => {
-    Logger.error(`${TAG}`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
+    Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
     prompt.showToast(
       { message: `publish err, getRunningFormInfosByFilter failed ${JSON.stringify(err)}`, duration: 5000 });
   });
@@ -73,7 +73,7 @@ struct IndexSec {
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
 
   aboutToAppear() {
-    context = getContext(this) as any;
+    context = getContext(this) as Context;
     conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
   }
 
@@ -102,7 +102,7 @@ struct IndexSec {
                   .height(30)
                   .width(30)
                   .onChange((isChecked: boolean) => {
-                    Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
+                    Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '110000';
                       conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
@@ -117,7 +117,7 @@ struct IndexSec {
                   .height(30)
                   .width(30)
                   .onChange((isChecked: boolean) => {
-                    Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
+                    Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '310000';
                       conditionCity = context.resourceManager.getStringSync($r('app.string.city_hz'));
@@ -152,10 +152,10 @@ struct IndexSec {
             .backgroundColor('#0D9FFB')
             .onClick(() => {
               if (Number(conditionData) >= -40 && Number(conditionData) <= 60) {
-                Logger.info(`${TAG}`, `correct temperature is ${conditionData}`);
+                Logger.info(TAG, `correct temperature is ${conditionData}`);
                 publish();
               } else {
-                Logger.info(`${TAG}`, `incorrect temperature is ${conditionData}`);
+                Logger.info(TAG, `incorrect temperature is ${conditionData}`);
                 prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
               }
             })

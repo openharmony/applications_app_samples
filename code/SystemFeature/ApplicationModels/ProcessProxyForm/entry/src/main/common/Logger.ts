@@ -29,7 +29,7 @@ class Logger {
    * debug
    * @param args
    */
-  debug(...args: any[]): void {
+  debug(...args: string[]): void {
     hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
@@ -37,7 +37,7 @@ class Logger {
    * info
    * @param args
    */
-  info(...args: any[]): void {
+  info(...args: string[]): void {
     hilog.info(this.domain, this.prefix, this.format, args);
   }
 
@@ -45,7 +45,7 @@ class Logger {
    * warn
    * @param args
    */
-  warn(...args: any[]): void {
+  warn(...args: string[]): void {
     hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
@@ -53,7 +53,7 @@ class Logger {
    * error
    * @param args
    */
-  error(...args: any[]): void {
+  error(...args: string[]): void {
     hilog.error(this.domain, this.prefix, this.format, args);
   }
 }

@@ -18,18 +18,18 @@ import { Driver, ON } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_Push_Test]'
+const TAG = '[Sample_ProcessProxyForm_Test]'
 const DOMAIN = 0xF811
-const BUNDLE = 'PushTest_'
+const BUNDLE = 'ProcessProxyForm_'
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 let resourceManager = abilityDelegator.getAppContext().resourceManager
 let cardJs = 'jsWidget'
 let cardArkTs = 'widget'
 let driver = Driver.create()
 // Sliding coordinate
-let start_x = 700
-let finish_x = 50
-let y = 300
+const START_SLIDING_X = 700
+const FINISH_SLIDING_X = 50
+const SLIDING_COORDINATE_Y = 300
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -67,11 +67,20 @@ export default function abilityTest() {
       })
       await driver.delayMs(1000)
 
-      // Long click the application and add an ArkTs card to launcher
+      // Long click the application
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 driver.findComponent start')
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
-      await app.longClick()
+      // Get the text control border
+      let rect = await app.getBounds()
+      // Calculate the height of the text control
+      let height =rect.bottom - rect.top
+      // Get the center point of the text control
+      let point = await app.getBoundsCenter()
+      await driver.longClick(point.x, point.y - height)
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_001 long click app, coordinate:(${point.x},` + `${point.y - height})`)
       await driver.delayMs(100)
+
+      // add an ArkTs card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(1000)
@@ -90,6 +99,7 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog err is: ' + JSON.stringify(err))
       })
+
       // assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 assert an ArkTs card has been added, ' +
       'cardArkTsCountSecond:' + cardArkTsCountSecond)
@@ -121,9 +131,17 @@ export default function abilityTest() {
     it(BUNDLE + 'DataProxyForm_005', 1, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 begin')
       await Driver.create().delayMs(1000)
+      // Long click the application
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 driver.findComponent start')
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
-      await app.longClick()
+      let rect = await app.getBounds()
+      let height =rect.bottom - rect.top
+      let point = await app.getBoundsCenter()
+      await driver.longClick(point.x, point.y - height)
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 long click app, coordinate:(${point.x},` + `${point.y - height})`)
       await driver.delayMs(100)
+
+      // add an ArkTs card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(1000)
@@ -201,17 +219,24 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog err is: ' + JSON.stringify(err))
       })
 
-      // long click the application and add a Js card
+      // Long click the application
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 driver.findComponent start')
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
-      await app.longClick()
+      let rect = await app.getBounds()
+      let height =rect.bottom - rect.top
+      let point = await app.getBoundsCenter()
+      await driver.longClick(point.x, point.y - height)
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_002 long click app, coordinate:(${point.x},` + `${point.y - height})`)
       await driver.delayMs(100)
+
+      // add a Js card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(1000)
       await driver.fling({
-        x: start_x, y: y
+        x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
       }, {
-        x: finish_x, y: y
+        x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
       }, 5, 100)
       await driver.delayMs(1000)
       let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
@@ -229,6 +254,7 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog err is: ' + JSON.stringify(err))
       })
+
       // assert a Js card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 assert an ArkTs card has been added, ' +
       'cardJsCountSecond:' + cardJsCountSecond)
@@ -260,17 +286,24 @@ export default function abilityTest() {
     it(BUNDLE + 'DataProxyForm_006', 3, async (done) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 begin')
       await Driver.create().delayMs(1000)
-      // add a Js card to the desktop
+      // Long click the application
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 driver.findComponent start')
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
-      await app.longClick()
+      let rect = await app.getBounds()
+      let height =rect.bottom - rect.top
+      let point = await app.getBoundsCenter()
+      await driver.longClick(point.x, point.y - height)
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 long click app, coordinate:(${point.x},` + `${point.y - height})`)
       await driver.delayMs(100)
+
+      // add a Js card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await serviceCard.click()
       await driver.delayMs(1000)
       await driver.fling({
-        x: start_x, y: y
+        x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
       }, {
-        x: finish_x, y: y
+        x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
       }, 5, 100)
       await driver.delayMs(1000)
       let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
@@ -315,6 +348,7 @@ export default function abilityTest() {
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog err is: ' + JSON.stringify(err))
       })
+
       // assert a Js card has been removed
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 assert an ArkTs card has been deleted, ' +
       'cardJsCountSecond:' + cardJsCountSecond)

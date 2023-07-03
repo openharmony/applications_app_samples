@@ -21,7 +21,7 @@ const TAG = '[Sample_EntryFormAbility]';
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
-    Logger.info(`${TAG}`, `onAddForm want: ${JSON.stringify(want)}`);
+    Logger.info(TAG, `onAddForm want: ${JSON.stringify(want)}`);
     let formData = {};
     let formProxies = [
       {
@@ -37,32 +37,32 @@ export default class EntryFormAbility extends FormExtensionAbility {
       data: JSON.stringify(formData),
       proxies: formProxies
     };
-    Logger.info(`${TAG}`, `onAddForm return formBinding: ${JSON.stringify(formBinding)}`);
+    Logger.info(TAG, `onAddForm return formBinding: ${JSON.stringify(formBinding)}`);
     return formBinding;
   }
 
   onCastToNormalForm(formId) {
-    Logger.info(`${TAG}`, `onCastToNormalForm formId: ${JSON.stringify(formId)}`);
+    Logger.info(TAG, `onCastToNormalForm formId: ${JSON.stringify(formId)}`);
   }
 
   onUpdateForm(formId) {
-    Logger.info(`${TAG}`, `onUpdateForm formId: ${JSON.stringify(formId)}`);
+    Logger.info(TAG, `onUpdateForm formId: ${JSON.stringify(formId)}`);
   }
 
   onChangeFormVisibility(newStatus) {
-    Logger.info(`${TAG}`, `onChangeFormVisibility newStatus: ${JSON.stringify(newStatus)}`);
+    Logger.info(TAG, `onChangeFormVisibility newStatus: ${JSON.stringify(newStatus)}`);
   }
 
   onFormEvent(formId, message) {
-    Logger.info(`${TAG}`, `onFormEvent formId: ${JSON.stringify(formId)}`, `message: ${JSON.stringify(message)}`);
+    Logger.info(TAG, `onFormEvent formId: ${JSON.stringify(formId)}`, `message: ${JSON.stringify(message)}`);
   }
 
   onRemoveForm(formId) {
-    Logger.info(`${TAG}`, `onRemoveForm formId: ${JSON.stringify(formId)}`);
+    Logger.info(TAG, `onRemoveForm formId: ${JSON.stringify(formId)}`);
   }
 
   onAcquireFormState(want) {
-    Logger.info(`${TAG}`, `onAcquireFormState want: ${JSON.stringify(want)}`);
+    Logger.info(TAG, `onAcquireFormState want: ${JSON.stringify(want)}`);
     return formInfo.FormState.READY;
   }
 };
