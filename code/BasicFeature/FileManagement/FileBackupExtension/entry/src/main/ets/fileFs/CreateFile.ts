@@ -18,12 +18,13 @@ import fs from '@ohos.file.fs';
 import fileAccess from '@ohos.file.fileAccess';
 
 export default class CreatFile {
-   TAG: string = "[FileFS].[MyFile]";
-   baseDir: string = globalThis.filesDir + '/TextDir';
+  TAG: string = "[FileFS].[MyFile]";
+  baseDir: string =  AppStorage.Get('sanBoxFileDir') + '/TextDir';
 
   constructor() {
   }
-  async  createTestFiles() {
+
+  async createTestFiles() {
     try {
       // let fileAccessHelper = fileAccess.createFileAccessHelper(globalThis.context);
       let num = Math.floor(Math.random() * 10) + 1;
@@ -31,7 +32,7 @@ export default class CreatFile {
         fs.mkdirSync(this.baseDir);
       }
       let dpath = this.baseDir;
-      Logger.info(this.TAG, 'globalThis.filesDir = ' + dpath);
+      Logger.info(this.TAG, 'sanBoxFileDir = ' + dpath);
       Logger.info(this.TAG, 'num is  = ' + num);
       for (let i = 0; i < num; i++) {
         let myFile = dpath + `/TestFile_${i}.txt`;

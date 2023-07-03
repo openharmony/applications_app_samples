@@ -6,7 +6,7 @@
 
 BackupExtensionAbility，是[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/stage-model-development-overview.md)中扩展组件[ExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/extensionability-overview.md)的派生类。开发者可以通过修改配置文件定制备份恢复框架的行为，包括是否允许备份恢复，备份哪些文件等。
 
-本sample主要给备份流程提供应用生成数据和显示数据功能。
+本sample主要给备份流程提供应用，用于生成数据和显示数据。
 
 ### 效果预览
 
@@ -16,9 +16,9 @@ BackupExtensionAbility，是[Stage模型](https://gitee.com/openharmony/docs/blo
 
 使用说明
 
-1.生成文件数据为生成随机2~10个txt文件，大小在1~1024Byte之间，用于校验备份和恢复的数据为同一数据。
+1. 点击按钮“生成文件数据”，应用会随机生成2~10个txt文件，大小在1~1024Byte之间，用于校验备份和恢复的数据为同一数据。
 
-2.本应用仅适用于生成和显示数据，具体的备份和恢复的操作目前需要使用hdc shell命令操作。
+2. 本应用仅适用于生成和显示数据，具体的备份和恢复的操作目前需要使用hdc shell命令操作。
 
 ### 工程目录
 ```
@@ -124,7 +124,7 @@ async  createTestFiles() {
 
 ```
 应用备份
-backup_tool backup --isLocal=true --bundle com.example.backupextension  --pathCapFile /data/backup/tmp
+backup_tool backup --isLocal=true --bundle com.sample.backupextension  --pathCapFile /data/backup/tmp
 备份成功提示：
 BundleStarted errCode = 0, BundleName = com.example.backupextension
 FileReady owner = com.example.backupextension, fileName = manage.json, sn = 0, fd = 9
@@ -133,7 +133,7 @@ BundleFinished errCode = 0, BundleName = com.example.backupextension
 backup successful
 
 应用恢复
-backup_tool restore --bundle com.example.backupextension --pathCapFile /data/backup/tmp
+backup_tool restore --bundle com.sample.backupextension --pathCapFile /data/backup/tmp
 恢复成功提示：
 BundleStarted errCode = 0, BundleName = com.example.backupextension
 FileReady owner = com.example.backupextension, fileName = 1.tar, sn = 0, fd = 8

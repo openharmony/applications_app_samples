@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.example.backupextension",
+    "bundleName": "com.sample.backupextension",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

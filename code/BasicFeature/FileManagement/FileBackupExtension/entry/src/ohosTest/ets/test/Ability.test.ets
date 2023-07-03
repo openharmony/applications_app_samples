@@ -14,7 +14,7 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { describe,  it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 
 const TAG = '[Sample_BackupExtension]';
@@ -49,18 +49,18 @@ export default function abilityTest() {
     /**
      * 点击按钮生成文件
      */
-   it(BUNDLE + 'CreateFiles_001', 2, async () => {
-     console.info(TAG, BUNDLE + 'CreateFiles_001 begin');
-     let driver = Driver.create();
-     // 判断是否有按键
-     await driver.assertComponentExist(ON.id('createFiles'));
-     let createFilesBtn = await driver.findComponent(ON.id('createFiles'));
-     // 点击生成文件按钮
-     await createFilesBtn.click();
-     await driver.delayMs(1000);
-     // 文件至少两个文件，所以file1必须有
-     await driver.assertComponentExist(ON.id('file1'));
-     console.info(TAG, BUNDLE + 'CreateFiles_001 end');
-   })
+    it(BUNDLE + 'CreateFiles_001', 2, async () => {
+      console.info(TAG, BUNDLE + 'CreateFiles_001 begin');
+      let driver = Driver.create();
+      // 判断是否有按键
+      await driver.assertComponentExist(ON.id('createFiles'));
+      let createFilesBtn = await driver.findComponent(ON.id('createFiles'));
+      // 点击生成文件按钮
+      await createFilesBtn.click();
+      await driver.delayMs(1000);
+      // 文件至少两个文件，所以file1必须有
+      await driver.assertComponentExist(ON.id('file1'));
+      console.info(TAG, BUNDLE + 'CreateFiles_001 end');
+    })
   })
 }
