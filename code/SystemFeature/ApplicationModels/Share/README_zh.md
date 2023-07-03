@@ -49,9 +49,11 @@ entry/src/main/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例已适配API version 10版本SDK，版本号：4.0.8.5。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
+
+4.本示例需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 ### 下载
 
