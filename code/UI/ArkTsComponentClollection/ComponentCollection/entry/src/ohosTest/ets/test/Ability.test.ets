@@ -76,6 +76,15 @@ async function clickSelectIDAndSelectText(toggleId: string, selectText: string) 
   }
 }
 
+// 根据id拿到组件并拖动至目标组件旁
+async function checkAndDragById(id: string, targetId: string) {
+  await driver.assertComponentExist(ON.id(id));
+  let res = await driver.findComponent(ON.id(id));
+  await driver.assertComponentExist(ON.id(targetId));
+  let targetComponent = await driver.findComponent(ON.id(targetId));
+  await res.dragTo(targetComponent);
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -1777,105 +1786,22 @@ export default function abilityTest() {
       })
 
       /**
-       * Interpolation Calculation 插值计算
+       * 多任务
        */
-      it(BUNDLE + 'InterpolationFunction_001', 0, async function () {
-        let testName = 'InterpolationFunction';
+      it(BUNDLE + 'MultiplexFunction_001', 0, async function () {
+        let testName = 'MultiplexFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
-        // 进入页面
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.interpolation_calculation')));
-
-        // 点击Go!
-        await checkButtonAndClickWithID('test_goButton');
-        await driver.delayMs(DELAY_TIME);
-
-        // 返回
-        let backBtn = await driver.findComponent(ON.id('backBtn'));
-        await backBtn.click();
-        await driver.delayMs(500);
-
-        Logger.info(BUNDLE + testName + ' end');
-
-      })
-
-      /**
-       * TarBar 全局方法
-       */
-      it(BUNDLE + 'TarBarGlobalFunction_001', 0, async function () {
-        let testName = 'TarBarGlobalFunction';
-        Logger.info(BUNDLE + testName + ' begin');
-
-        let driver: Driver = Driver.create();
-        await driver.delayMs(DELAY_TIME);
-
-        // 切换到全局
-        let testAtomName = 'switch to global'
-        await driver.assertComponentExist(ON.id('tabBar3'));
-        let bar = await driver.findComponent(ON.id('tabBar3'));
-        await bar.click();
-        await driver.delayMs(DELAY_TIME);
-        Logger.info(BUNDLE + testName + testAtomName);
-
-        Logger.info(BUNDLE + testName + ' end');
-      })
-
-      /**
-       * AlertDialog 警告弹窗
-       */
-      it(BUNDLE + 'AlertDialogFunction_001', 0, async function () {
-        let testName = 'AlertDialogFunction';
-        Logger.info(BUNDLE + testName + ' begin');
-
-        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.alert_dialog'))));
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.Multiplex_interface'))));
         if (!button) {
           // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.popup_window')));
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
         }
 
         // 进入页面
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.Multiplex_interface')));
 
-        // 点击单按钮弹窗并确认
-        await checkButtonAndClickWithID('test_oneButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击双按钮弹窗并确认
-        await checkButtonAndClickWithID('test_twoButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-
-        // 点击垂直顶部弹窗并确认
-        await checkButtonAndClickWithID('test_topButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击垂直居中弹窗并确认
-        await checkButtonAndClickWithID('test_centerButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击垂直底部弹窗并确认
-        await checkButtonAndClickWithID('test_bottomButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-
-        // 点击可关闭弹窗并确认
-        await checkButtonAndClickWithID('test_closeableButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击不可关闭弹窗并确认
-        await checkButtonAndClickWithID('test_noCloseButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-
-        // 点击左上偏移弹窗并确认
-        await checkButtonAndClickWithID('test_upperLeftButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击右下偏移弹窗并确认
-        await checkButtonAndClickWithID('test_lowRightButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-
-        // 点击2栅格弹窗并确认
-        await checkButtonAndClickWithID('test_2GridButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击3栅格弹窗并确认
-        await checkButtonAndClickWithID('test_3GridButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
-        // 点击4栅格弹窗并确认
-        await checkButtonAndClickWithID('test_4GridButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 上滑删除卡片
+        await checkAndDragById('1', 'target');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1887,24 +1813,22 @@ export default function abilityTest() {
       })
 
       /**
-       * CustomDialog 自定义弹窗
+       * 悬浮窗
        */
-      it(BUNDLE + 'CustomDialogFunction_001', 0, async function () {
-        let testName = 'CustomDialogFunction';
+      it(BUNDLE + 'FloatingFunction_001', 0, async function () {
+        let testName = 'FloatingFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
-        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.custom_dialog'))));
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.Floating_window'))));
         if (!button) {
           // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
         }
 
         // 进入页面
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.custom_dialog')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.Floating_window')));
 
-        // 点击单按钮弹窗并确认
-        await checkButtonAndClickWithID('test_dialogButton');
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.custom_dialog_start')));
+        // 拖动悬浮窗
+        await checkAndDragById('floatingWindowComponent', 'target');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1912,44 +1836,28 @@ export default function abilityTest() {
         await driver.delayMs(500);
 
         Logger.info(BUNDLE + testName + ' end');
-
       })
 
       /**
-       * DatePickerDialog 日期选择弹窗
+       * 文件夹展开
        */
-      it(BUNDLE + 'DatePickerDialogFunction_001', 0, async function () {
-        let testName = 'DatePickerDialogFunction';
+      it(BUNDLE + 'FolderFunction_001', 0, async function () {
+        let testName = 'FolderFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
-        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.date_picker_dialog'))));
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.Folder_expansion'))));
         if (!button) {
           // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
         }
 
         // 进入页面
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.date_picker_dialog')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.Folder_expansion')));
 
-        // 展开农历日期
-        await checkButtonAndClickWithID('test_lunar');
-        // 滚动日期 可能是年-2020
-        await driver.delayMs(DELAY_TIME);
-        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(100, 1017, 100, 1117, 800);
-        await driver.delayMs(DELAY_TIME);
-        //确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+        // 点击文件夹展开
+        await checkButtonAndClickWithID('folderComponent');
 
-        // 展开公历日期
-        await checkButtonAndClickWithID('test_gregorian');
-        // 滚动日期 可能是年-2024
-        await driver.delayMs(DELAY_TIME);
-        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(100, 1117, 100, 1017, 800);
-        await driver.delayMs(DELAY_TIME);
-        // 确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+        // 点击文件夹内应用
+        await checkButtonAndClickWithID('folderComponent');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -1957,44 +1865,28 @@ export default function abilityTest() {
         await driver.delayMs(500);
 
         Logger.info(BUNDLE + testName + ' end');
-
       })
 
       /**
-       * TimePickerDialog 时间选择弹窗
+       * 商店卡片展开
        */
-      it(BUNDLE + 'TimePickerDialogFunction_001', 0, async function () {
-        let testName = 'TimePickerDialogFunction';
+      it(BUNDLE + 'ShopCardFunction_001', 0, async function () {
+        let testName = 'ShopCardFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
-        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.time_picker_dialog'))));
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.Shop_card_expansion'))));
         if (!button) {
           // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
         }
 
         // 进入页面
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.time_picker_dialog')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.Shop_card_expansion')));
 
-        // 展开24小时
-        await checkButtonAndClickWithID('test_24hour');
-        // 滚动小时
-        await driver.delayMs(DELAY_TIME);
-        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(200, 1017, 200, 1117, 800);
-        await driver.delayMs(DELAY_TIME);
-        // 确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+        // 点击展开商店卡片
+        await checkButtonAndClickWithID('shopCardUnexpanded');
 
-        // 展开12小时
-        await checkButtonAndClickWithID('test_12hour');
-        // 滚动小时
-        await driver.delayMs(DELAY_TIME);
-        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(200, 1117, 200, 1017, 800);
-        await driver.delayMs(DELAY_TIME);
-        // 确定
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+        // 点击还原
+        await checkButtonAndClickWithID('shopCardExpanded');
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -2002,10 +1894,267 @@ export default function abilityTest() {
         await driver.delayMs(500);
 
         Logger.info(BUNDLE + testName + ' end');
-
       })
 
-      Logger.info("Sample_ComponentCollection test end");
+      /**
+       * 图片卡片展开
+       */
+      it(BUNDLE + 'GalleryCardFunction_001', 0, async function () {
+        let testName = 'GalleryCardFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.Gallery_card_expansion'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.Gallery_card_expansion')));
+
+        // 点击展开图库卡片
+        await checkButtonAndClickWithID('galleryUnexpanded');
+
+        // 点击还原
+        await checkButtonAndClickWithID('galleryExpanded');
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
     })
+
+    /**
+     * Interpolation Calculation 插值计算
+     */
+    it(BUNDLE + 'InterpolationFunction_001', 0, async function () {
+      let testName = 'InterpolationFunction';
+      Logger.info(BUNDLE + testName + ' begin');
+
+      // 进入页面
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.interpolation_calculation')));
+
+      // 点击Go!
+      await checkButtonAndClickWithID('test_goButton');
+      await driver.delayMs(DELAY_TIME);
+
+      // 返回
+      let backBtn = await driver.findComponent(ON.id('backBtn'));
+      await backBtn.click();
+      await driver.delayMs(500);
+
+      Logger.info(BUNDLE + testName + ' end');
+
+    })
+
+    /**
+     * TarBar 全局方法
+     */
+    it(BUNDLE + 'TarBarGlobalFunction_001', 0, async function () {
+      let testName = 'TarBarGlobalFunction';
+      Logger.info(BUNDLE + testName + ' begin');
+
+      let driver: Driver = Driver.create();
+      await driver.delayMs(DELAY_TIME);
+
+      // 切换到全局
+      let testAtomName = 'switch to global'
+      await driver.assertComponentExist(ON.id('tabBar3'));
+      let bar = await driver.findComponent(ON.id('tabBar3'));
+      await bar.click();
+      await driver.delayMs(DELAY_TIME);
+      Logger.info(BUNDLE + testName + testAtomName);
+
+      Logger.info(BUNDLE + testName + ' end');
+    })
+
+    /**
+     * AlertDialog 警告弹窗
+     */
+    it(BUNDLE + 'AlertDialogFunction_001', 0, async function () {
+      let testName = 'AlertDialogFunction';
+      Logger.info(BUNDLE + testName + ' begin');
+
+      let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.alert_dialog'))));
+      if (!button) {
+        // 如果没展开 就展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.popup_window')));
+      }
+
+      // 进入页面
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog')));
+
+      // 点击单按钮弹窗并确认
+      await checkButtonAndClickWithID('test_oneButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击双按钮弹窗并确认
+      await checkButtonAndClickWithID('test_twoButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+
+      // 点击垂直顶部弹窗并确认
+      await checkButtonAndClickWithID('test_topButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击垂直居中弹窗并确认
+      await checkButtonAndClickWithID('test_centerButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击垂直底部弹窗并确认
+      await checkButtonAndClickWithID('test_bottomButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+
+      // 点击可关闭弹窗并确认
+      await checkButtonAndClickWithID('test_closeableButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击不可关闭弹窗并确认
+      await checkButtonAndClickWithID('test_noCloseButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+
+      // 点击左上偏移弹窗并确认
+      await checkButtonAndClickWithID('test_upperLeftButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击右下偏移弹窗并确认
+      await checkButtonAndClickWithID('test_lowRightButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+
+      // 点击2栅格弹窗并确认
+      await checkButtonAndClickWithID('test_2GridButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击3栅格弹窗并确认
+      await checkButtonAndClickWithID('test_3GridButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+      // 点击4栅格弹窗并确认
+      await checkButtonAndClickWithID('test_4GridButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+
+      // 返回
+      let backBtn = await driver.findComponent(ON.id('backBtn'));
+      await backBtn.click();
+      await driver.delayMs(500);
+
+      Logger.info(BUNDLE + testName + ' end');
+
+    })
+
+    /**
+     * CustomDialog 自定义弹窗
+     */
+    it(BUNDLE + 'CustomDialogFunction_001', 0, async function () {
+      let testName = 'CustomDialogFunction';
+      Logger.info(BUNDLE + testName + ' begin');
+
+      let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.custom_dialog'))));
+      if (!button) {
+        // 如果没展开 就展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+      }
+
+      // 进入页面
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.custom_dialog')));
+
+      // 点击单按钮弹窗并确认
+      await checkButtonAndClickWithID('test_dialogButton');
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.custom_dialog_start')));
+
+      // 返回
+      let backBtn = await driver.findComponent(ON.id('backBtn'));
+      await backBtn.click();
+      await driver.delayMs(500);
+
+      Logger.info(BUNDLE + testName + ' end');
+
+    })
+
+    /**
+     * DatePickerDialog 日期选择弹窗
+     */
+    it(BUNDLE + 'DatePickerDialogFunction_001', 0, async function () {
+      let testName = 'DatePickerDialogFunction';
+      Logger.info(BUNDLE + testName + ' begin');
+
+      let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.date_picker_dialog'))));
+      if (!button) {
+        // 如果没展开 就展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+      }
+
+      // 进入页面
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.date_picker_dialog')));
+
+      // 展开农历日期
+      await checkButtonAndClickWithID('test_lunar');
+      // 滚动日期 可能是年-2020
+      await driver.delayMs(DELAY_TIME);
+      // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+      await driver.drag(100, 1017, 100, 1117, 800);
+      await driver.delayMs(DELAY_TIME);
+      //确定
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+
+      // 展开公历日期
+      await checkButtonAndClickWithID('test_gregorian');
+      // 滚动日期 可能是年-2024
+      await driver.delayMs(DELAY_TIME);
+      // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+      await driver.drag(100, 1117, 100, 1017, 800);
+      await driver.delayMs(DELAY_TIME);
+      // 确定
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+
+      // 返回
+      let backBtn = await driver.findComponent(ON.id('backBtn'));
+      await backBtn.click();
+      await driver.delayMs(500);
+
+      Logger.info(BUNDLE + testName + ' end');
+
+    })
+
+    /**
+     * TimePickerDialog 时间选择弹窗
+     */
+    it(BUNDLE + 'TimePickerDialogFunction_001', 0, async function () {
+      let testName = 'TimePickerDialogFunction';
+      Logger.info(BUNDLE + testName + ' begin');
+
+      let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.time_picker_dialog'))));
+      if (!button) {
+        // 如果没展开 就展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+      }
+
+      // 进入页面
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.time_picker_dialog')));
+
+      // 展开24小时
+      await checkButtonAndClickWithID('test_24hour');
+      // 滚动小时
+      await driver.delayMs(DELAY_TIME);
+      // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+      await driver.drag(200, 1017, 200, 1117, 800);
+      await driver.delayMs(DELAY_TIME);
+      // 确定
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+
+      // 展开12小时
+      await checkButtonAndClickWithID('test_12hour');
+      // 滚动小时
+      await driver.delayMs(DELAY_TIME);
+      // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+      await driver.drag(200, 1117, 200, 1017, 800);
+      await driver.delayMs(DELAY_TIME);
+      // 确定
+      await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+
+      // 返回
+      let backBtn = await driver.findComponent(ON.id('backBtn'));
+      await backBtn.click();
+      await driver.delayMs(500);
+
+      Logger.info(BUNDLE + testName + ' end');
+
+    })
+
+    Logger.info("Sample_ComponentCollection test end");
   })
 }
