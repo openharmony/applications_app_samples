@@ -178,25 +178,6 @@ export default function abilityTest() {
         await sure.click();
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
-
-        // 删除
-        await driver.delayMs(1000);
-        await audios[1].longClick();
-        await driver.delayMs(1000);
-        await audios[1].click();
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.id('checkedDelete'));
-        let checkedDelete = await driver.findComponent(ON.id('checkedDelete'));
-        await checkedDelete.click();
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.type("AlertDialog"));
-        let resourceManager = ability.context.resourceManager;
-        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
-        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS))
-        await btnInDailog.click();
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
-        await driver.delayMs(500);
       }
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 end');
       done();
@@ -252,6 +233,33 @@ export default function abilityTest() {
       }
       done();
       logger.info(TAG, BUNDLE + 'CheckState_001 end');
+    })
+
+    /**
+     * 删除录音文件
+     */
+    it(BUNDLE + 'DeleteRecord_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'DeleteRecord_001 begin');
+      await driver.delayMs(1000);
+      let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      if (audios.length > 0) {
+        await audios[1].longClick();
+        await driver.delayMs(1000);
+        await audios[1].click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('checkedDelete'));
+        let checkedDelete = await driver.findComponent(ON.id('checkedDelete'));
+        await checkedDelete.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.type("AlertDialog"));
+        let resourceManager = ability.context.resourceManager;
+        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
+        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS));
+        await btnInDailog.click();
+        await driver.delayMs(1000);
+      }
+      logger.info(TAG, BUNDLE + 'DeleteRecord_001 end');
+      done();
     })
   })
 }
