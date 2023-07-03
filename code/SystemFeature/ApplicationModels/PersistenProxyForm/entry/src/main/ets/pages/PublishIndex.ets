@@ -19,7 +19,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import formHost from '@ohos.app.form.formHost';
 import prompt from '@ohos.promptAction';
 
-const TAG = '[Push_Index]';
+const TAG = '[Sample_PublishIndex]';
 let conditionCity;
 let conditionID = '110000';
 let conditionData = '-30 ℃';
@@ -33,7 +33,7 @@ const formInstanceFilter = {
 
 function updateRDB(context): void {
   dataShare.createDataShareHelper(context, 'datashareproxy://com.samples.PersistentProxyForm', {isProxy : true}).then((data) => {
-    Logger.info(`${TAG}`, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
+    Logger.info(`TAG`, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
     let dataShareHelper = data;
     let da = new dataSharePredicates.DataSharePredicates();
     da.equalTo('cityId', conditionID);
@@ -45,27 +45,27 @@ function updateRDB(context): void {
       let uri = 'datashareproxy://com.samples.PersistentProxyForm/test';
       dataShareHelper.update(uri, da, va, (err, data) => {
         if (err !== undefined) {
-          Logger.info(`${TAG}`, `update error1: code: ${err.code}, message: ${err.message} `);
+          Logger.info(`TAG`, `update error1: code: ${err.code}, message: ${err.message} `);
           return;
         };
-        Logger.info(`${TAG}`, `update succeed, data : ${data}`);
+        Logger.info(`TAG`, `update succeed, data : ${data}`);
       });
       dataShareHelper.notifyChange(uri);
     } catch (err) {
-      Logger.info(`${TAG}`, `update error2: code: ${err.code}, message: ${err.message} `);
+      Logger.info(`TAG`, `update error2: code: ${err.code}, message: ${err.message} `);
     };
   }).catch((err) => {
-    Logger.info(`${TAG}`, `createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+    Logger.info(`TAG`, `createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
   });
 }
 
 function publish(): void {
-  Logger.info(`${TAG}`, 'publish called');
+  Logger.info(`TAG`, 'publish called');
   formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data => {
-    Logger.info(`${TAG}`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
+    Logger.info(`TAG`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
   }).catch((err) => {
-    Logger.error(`${TAG}`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
+    Logger.error(`TAG`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
     prompt.showToast(
       { message: `publish err, getRunningFormInfosByFilter1 failed ${JSON.stringify(err)}`, duration: 5000 });
   });
@@ -106,7 +106,7 @@ struct IndexSec {
                   .height(30)
                   .width(30)
                   .onChange((isChecked: boolean) => {
-                    Logger.info(`${TAG}`, `sy status is ${JSON.stringify(isChecked)}`);
+                    Logger.info(`TAG`, `sy status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '110000';
                       conditionCity = shenYang;
@@ -121,7 +121,7 @@ struct IndexSec {
                   .height(30)
                   .width(30)
                   .onChange((isChecked: boolean) => {
-                    Logger.info(`${TAG}`, `hz status is ${JSON.stringify(isChecked)}`);
+                    Logger.info(`TAG`, `hz status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
                       conditionID = '310000';
                       conditionCity = hangZhou;
@@ -157,11 +157,11 @@ struct IndexSec {
             .onClick(() => {
               conditionDataToNumber = conditionData.split(/[℃]/);
               if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
-                Logger.info(`${TAG}`, `correct temperature is ${conditionDataToNumber[0]}`);
+                Logger.info(`TAG`, `correct temperature is ${conditionDataToNumber[0]}`);
                 publish();
                 updateRDB(context);
               } else {
-                Logger.info(`${TAG}`, `incorrect temperature is ${conditionDataToNumber[0]}`);
+                Logger.info(`TAG`, `incorrect temperature is ${conditionDataToNumber[0]}`);
                 prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
               }
             })
