@@ -71,6 +71,34 @@
     {
       "name": "systemResDesc",
       "value": "系统资源查询: "
+    },
+    {
+      "name": "test_string",
+      "value": "测试"
+    },
+    {
+      "name": "unEnableFailed",
+      "value": "overlay 去使能失败"
+    },
+    {
+      "name": "unEnableSuccess",
+      "value": "overlay 去使能成功"
+    },
+    {
+      "name": "enableFailed",
+      "value": "overlay 使能失败"
+    },
+    {
+      "name": "enableSuccess",
+      "value": "overlay 使能成功"
+    },
+    {
+      "name": "testResources",
+      "value": "资源API调用示例"
+    },
+    {
+      "name": "testOverlay",
+      "value": "Overlay使用示例"
     }
   ]
 }
