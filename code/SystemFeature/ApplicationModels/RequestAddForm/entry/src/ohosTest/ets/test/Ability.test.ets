@@ -19,9 +19,9 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import formManagerAbility from '@ohos.app.form.formHost';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_AppStore_Test]'
+const TAG = '[Sample_RequestAddForm_Test]'
 const DOMAIN = 0xF811
-const BUNDLE = 'AppStoreTest_'
+const BUNDLE = 'RequestAddForm_'
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 let resourceManager = abilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
 let addArkTsButtonId = 'addArkTsCard'
@@ -55,11 +55,18 @@ export default function abilityTest() {
       })
 
       // Find and open the test application
-      let appName = await resourceManager.getStringValue($r('app.string.app_name'))
-      let app = await driver.findComponent(ON.text(appName))
-      await app.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 open appStore')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 driver.findComponent start')
+      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
+      // Get the text control border
+      let rect = await app.getBounds()
+      // Calculate the height of the text control
+      let height =rect.bottom - rect.top
+      // Get the center point of the text control
+      let point = await app.getBoundsCenter()
+      await driver.click(point.x, point.y - height)
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_017 open appStore, coordinate:(${point.x},` + `${point.y - height})`)
       await driver.delayMs(500)
+
       // Find the button and click
       let button = await driver.findComponent(ON.id(addArkTsButtonId))
       await button.click()
@@ -107,11 +114,13 @@ export default function abilityTest() {
       })
 
       // Find and open the test application
-      let appName = await resourceManager.getStringValue($r('app.string.app_name'))
-      let app = await driver.findComponent(ON.text(appName))
-      await app.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 open appStore')
-      await driver.delayMs(500)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 driver.findComponent start')
+      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))))
+      let rect = await app.getBounds()
+      let height =rect.bottom - rect.top
+      let point = await app.getBoundsCenter()
+      await driver.click(point.x, point.y - height)
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_018 open appStore, coordinate:(${point.x},` + `${point.y - height})`)
 
       // Find the button and click
       let button = await driver.findComponent(ON.id(addJsButtonId))
