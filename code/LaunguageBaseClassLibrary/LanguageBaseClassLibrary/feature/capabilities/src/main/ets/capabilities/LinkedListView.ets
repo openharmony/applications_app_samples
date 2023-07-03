@@ -53,7 +53,7 @@ export struct LinkedListView {
                   if (index === 0) {
                     this.dataSource.deleteFirst();
                     this.totalCount = this.dataSource.totalCount();
-                  } else if (index == this.totalCount - 1) {
+                  } else if (index === this.totalCount - 1) {
                     this.dataSource.deleteLast();
                     this.totalCount = this.dataSource.totalCount();
                   } else {

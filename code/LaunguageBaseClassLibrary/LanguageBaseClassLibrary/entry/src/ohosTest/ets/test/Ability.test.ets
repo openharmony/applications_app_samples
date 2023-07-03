@@ -14,13 +14,14 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { describe, expect, it } from '@ohos/hypium';
-import { Driver, MatchPattern, ON } from '@ohos.UiTest';
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
 const TAG: string = 'Sample_LanguageBaseClassLibraryTest';
 const BUNDLE = 'LanguageBaseClassLibrary';
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+const driver: Driver = Driver.create();
 
 // 资源本地化
 async function getResourceString(resource: Resource): Promise<string> {
@@ -119,7 +120,6 @@ export default function abilityTest() {
         bundleName: 'com.samples.languagebaseclasslibrary',
         abilityName: 'EntryAbility'
       };
-      let driver: Driver = Driver.create();
       delegator.startAbility(want, (err) => {
         logger.info(TAG, `${BUNDLE}_startAbility end err ${JSON.stringify(err)}`);
       })
@@ -131,7 +131,6 @@ export default function abilityTest() {
     // 进入xml解析、生成与转换页面
     it(BUNDLE + 'Xml_ConvertXml_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Xml_ConvertXml_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // find component on text 'Xml'
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
@@ -154,7 +153,7 @@ export default function abilityTest() {
       let convert = await driver.findComponent(ON.text(await getResourceString($r('app.string.convert')), MatchPattern.CONTAINS));
       await convert.click();
       await driver.delayMs(1000);
-      // check text
+      // 校验是否进入对应页面
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.xml'))));
       await driver.delayMs(200);
       await driver.pressBack();
@@ -165,15 +164,11 @@ export default function abilityTest() {
     // 进入Util界面
     it(BUNDLE + 'util_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}util_001 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(200);
-      // find component on text 'Xml'
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
-      await button.click();
       await driver.delayMs(200);
       // check text
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
+      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
+      await button.click();
       await driver.delayMs(200);
       done();
       logger.info(TAG, `${BUNDLE}util_001 end`);
@@ -182,7 +177,6 @@ export default function abilityTest() {
     // StringCode(字符串编码)
     it(BUNDLE + 'StringCodeFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} StringCodeFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 进入字符串编解码界面
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.string_code'))));
@@ -227,29 +221,11 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE} StringCodeFunction_001 end`);
     })
 
-    // 进入Util界面
-    it(BUNDLE + 'util_001', 0, async function (done) {
-      logger.info(TAG, `${BUNDLE}util_001 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(200);
-      //find component on text 'Xml'
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
-      await button.click();
-      await driver.delayMs(200);
-      //check text
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      await driver.delayMs(200);
-      done();
-      logger.info(TAG, `${BUNDLE}util_001 end`);
-    })
-
     // RationalNumber(有理数)
     it(BUNDLE + 'RationalNumber_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      //进入有理数界面
+      // 进入有理数界面
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.rational_number'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.rational_number'))));
       await button.click();
@@ -290,29 +266,11 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 end`);
     })
 
-    // 进入Util界面
-    it(BUNDLE + 'util_001', 0, async function (done) {
-      logger.info(TAG, `${BUNDLE}util_001 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(200);
-      //find component on text 'Xml'
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
-      await button.click();
-      await driver.delayMs(200);
-      //check text
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      await driver.delayMs(200);
-      done();
-      logger.info(TAG, `${BUNDLE}util_001 end`);
-    })
-
     // 进入到LRUCache (缓冲区)
     it(BUNDLE + 'UtilLruBuffer_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
-      //find component on text 'LRUCache'
+      // find component on text 'LRUCache'
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.lru_cache'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.lru_cache'))));
       await button.click();
@@ -392,27 +350,9 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 end`);
     })
 
-    // 进入Util界面
-    it(BUNDLE + 'util_001', 0, async function (done) {
-      logger.info(TAG, `${BUNDLE}util_001 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(200);
-      //find component on text 'Xml'
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
-      await button.click();
-      await driver.delayMs(200);
-      //check text
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      await driver.delayMs(200);
-      done();
-      logger.info(TAG, `${BUNDLE}util_001 end`);
-    })
-
     // Base64Helper (Base64编解码)
-    it(BUNDLE + 'UtilBase64Codec_001', 0, async function () {
+    it(BUNDLE + 'UtilBase64Codec_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 进入Base64编解码
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.base64'))));
@@ -431,36 +371,19 @@ export default function abilityTest() {
       await decodeBtn.click();
       await driver.delayMs(1000);
       await driver.pressBack();
+      done();
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
     })
 
-    // 进入Util界面
-    it(BUNDLE + 'util_001', 0, async function (done) {
-      logger.info(TAG, `${BUNDLE}util_001 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(200);
-      //find component on text 'Xml'
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.util'))));
-      await button.click();
-      await driver.delayMs(200);
-      //check text
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.util'))));
-      await driver.delayMs(200);
-      done();
-      logger.info(TAG, `${BUNDLE}util_001 end`);
-    })
-
     // TypeCheck (类型检查)
-    it(BUNDLE + 'TypeCheck_001', 0, async function () {
+    it(BUNDLE + 'TypeCheck_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 进入类型检查
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.type_check'))));
       let typeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.type_check'))));
       await typeBtn.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 点击显示预置值
       await driver.assertComponentExist(ON.id('displayPresetValue'));
       let displayPresetValueBtn = await driver.findComponent(ON.id('displayPresetValue'));
@@ -474,22 +397,24 @@ export default function abilityTest() {
       await driver.delayMs(200);
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`)
     })
 
     // 进入Url字符串解析页面
     it(BUNDLE + 'Url_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Url_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(500);
-      //find component on text 'Xml'
+      // find component on text 'Xml'
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
       let button = await driver.findComponent(ON.text('Url (Url字符串解析)'));
       await button.click();
       await driver.delayMs(1000);
-      //check text
+      // check text
       await driver.assertComponentExist(ON.text('Url (Url字符串解析)'));
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done()
       logger.info(TAG, `${BUNDLE}Url_001 end`);
     })
@@ -497,7 +422,6 @@ export default function abilityTest() {
     // Url字符串解析
     it(BUNDLE + 'ClickUrlStringBtnFunction_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'ClickUrlStringBtnFunction_001 begin')
-      let driver = Driver.create()
       await driver.delayMs(1000)
       // 点击插入键值对到查询字符串
       await driver.assertComponentExist(ON.id('item0'))
@@ -508,6 +432,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputInsert = await driver.findComponent(ON.id('output'))
       let insertValue = await outputInsert.getText()
+      await driver.delayMs(1000);
       expect(insertValue).assertContain('node=nodeValue1')
       // 点击删除键值对
       await driver.assertComponentExist(ON.id('item1'))
@@ -518,7 +443,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputDelete = await driver.findComponent(ON.id('output'))
       let deleteValue = await outputDelete.getText()
-      expect(deleteValue).assertEqual('https://gitee.com/openharmony/')
+      await driver.delayMs(1000);
+      expect(deleteValue).assertEqual('https://gitee.com/openharmony/');
       // 点击获取指定名称对应的第一个值
       await driver.assertComponentExist(ON.id('item0'))
       let insertKeyValue = await driver.findComponent(ON.id('item0'))
@@ -532,6 +458,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputGet = await driver.findComponent(ON.id('output'))
       let getValue = await outputGet.getText()
+      await driver.delayMs(1000);
       expect(getValue).assertContain('nodeValue1')
       // 点击设置键的新值
       await driver.assertComponentExist(ON.id('item3'))
@@ -542,6 +469,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('output'))
       let outputSet = await driver.findComponent(ON.id('output'))
       let setValue = await outputSet.getText()
+      await driver.delayMs(1000);
       expect(setValue).assertContain('newValue')
       // 返回首页
       await driver.pressBack();
@@ -552,12 +480,11 @@ export default function abilityTest() {
     // 进入TaskPool页面
     it(BUNDLE + 'TaskPool_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}TaskPool_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到TaskPool
       await driver.assertComponentExist(ON.id('menu_list'));
       let menuList = await driver.findComponent(ON.id('menu_list'));
-      //find component on text 'TaskPool'
+      // find component on text 'TaskPool'
       let button = await menuList.scrollSearch(ON.text(await getResourceString($r('app.string.task_pool'))));
       await button.click();
       await driver.delayMs(200);
@@ -581,7 +508,6 @@ export default function abilityTest() {
     // 进入Deque界面
     it(BUNDLE + 'deque_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}deque_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到Deque
       await driver.assertComponentExist(ON.id('menu_list'));
@@ -600,7 +526,6 @@ export default function abilityTest() {
     // 新增数据
     it(BUNDLE + 'DequeAddFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} DequeAddFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 添加三条数据
       await addContact(driver, '1', '1');
@@ -619,7 +544,6 @@ export default function abilityTest() {
     // 进入HashMap界面
     it(BUNDLE + 'hash_map_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}hash_map_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到HashMap
       await driver.assertComponentExist(ON.id('menu_list'));
@@ -638,7 +562,6 @@ export default function abilityTest() {
     // 新增数据
     it(BUNDLE + 'HashMapAddFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} HashMapAddFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 添加三条数据
       await addKeyValue(driver, '1', '1');
@@ -657,7 +580,6 @@ export default function abilityTest() {
     // 进入HashSet界面
     it(BUNDLE + 'hash_set_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}hash_set_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到HashSet
       await driver.assertComponentExist(ON.id('menu_list'));
@@ -676,7 +598,6 @@ export default function abilityTest() {
     // 新增数据
     it(BUNDLE + 'HashSetAddFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} HashSetAddFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 添加三条数据
       await addValue(driver, '1');
@@ -695,7 +616,6 @@ export default function abilityTest() {
     // 进入LightWeightMap界面
     it(BUNDLE + 'light_weight_map_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}light_weight_map_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到LightWeightMap
       await driver.assertComponentExist(ON.id('menu_list'));
@@ -714,7 +634,6 @@ export default function abilityTest() {
     // 新增数据
     it(BUNDLE + 'LightWeightMapAddFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} LightWeightMapAddFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 添加三条数据
       await addKeyValue(driver, '1', '1');
@@ -733,7 +652,6 @@ export default function abilityTest() {
     // 进入LightWeightSet界面
     it(BUNDLE + 'light_weight_set_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}light_weight_set_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到LightWeightSet
       await driver.assertComponentExist(ON.id('menu_list'));
@@ -752,7 +670,6 @@ export default function abilityTest() {
     // 新增数据
     it(BUNDLE + 'LightWeightSetAddFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} LightWeightSetAddFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 添加三条数据
       await addValue(driver, '1');
@@ -771,7 +688,6 @@ export default function abilityTest() {
     // 进入LinkedList界面
     it(BUNDLE + 'linked_list_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}linked_list_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // 滚动到LinkedList
       await driver.assertComponentExist(ON.id('menu_list'));
@@ -790,7 +706,6 @@ export default function abilityTest() {
     // 新增数据
     it(BUNDLE + 'LinkedListAddFunction_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} LinkedListAddFunction_001 begin`);
-      let driver = Driver.create();
       await driver.delayMs(200);
       // 添加三条数据
       await addContact(driver, '1', '1');
@@ -809,7 +724,6 @@ export default function abilityTest() {
     // 进入List页面
     it(BUNDLE + 'list_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} list_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'list'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));
@@ -833,7 +747,6 @@ export default function abilityTest() {
     // 进入plain_array页面
     it(BUNDLE + 'plain_array_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} plain_array_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'plain_array'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));
@@ -857,7 +770,6 @@ export default function abilityTest() {
     // 进入queue页面
     it(BUNDLE + 'queue_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} queue_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'queue'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));
@@ -881,7 +793,6 @@ export default function abilityTest() {
     // 进入stack页面
     it(BUNDLE + 'stack_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} stack_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       // find component on text 'stack'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));
@@ -902,11 +813,9 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE} stack_001 end`);
     })
 
-
     // 进入tree_map页面
     it(BUNDLE + 'tree_map_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} tree_map_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'tree_map'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));
@@ -930,7 +839,6 @@ export default function abilityTest() {
     // 进入tree_set页面
     it(BUNDLE + 'tree_set_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} tree_set_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'tree_set'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));
@@ -954,7 +862,6 @@ export default function abilityTest() {
     // 进入vector页面
     it(BUNDLE + 'vector_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE} vector_001 begin`);
-      let driver: Driver = Driver.create();
       await driver.delayMs(200);
       //find component on text 'vector'
       let scrollBar = await driver.findComponent(ON.id('menu_list'));

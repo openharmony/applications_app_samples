@@ -117,10 +117,6 @@
       "value": "新增"
     },
     {
-      "name": "add_title",
-      "value": "新增%s"
-    },
-    {
       "name": "input_key",
       "value": "请输入key"
     },

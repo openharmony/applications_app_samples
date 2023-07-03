@@ -117,10 +117,6 @@
       "value": "Add"
     },
     {
-      "name": "add_title",
-      "value": "Add %s"
-    },
-    {
       "name": "input_key",
       "value": "Please input key"
     },
