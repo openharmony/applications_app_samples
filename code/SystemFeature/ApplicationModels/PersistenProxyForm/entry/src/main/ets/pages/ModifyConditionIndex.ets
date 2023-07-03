@@ -19,12 +19,12 @@ import formHost from '@ohos.app.form.formHost';
 import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
 
-const TAG = '[Modify_Condition_Index]';
+const TAG = '[Sample_ModifyConditionIndex]';
 let dataShareHelper;
 let conditionID = '110000';
 
 function updateCardDisplayContent(runningFormInfo): void {
-  Logger.info(`${TAG} updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
+  Logger.info(`TAG updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let template = {
     predicates: {
       'list': `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${conditionID}`
@@ -37,13 +37,13 @@ function updateCardDisplayContent(runningFormInfo): void {
   });
   let proxies = [{'key': 'datashareproxy://com.samples.PersistentProxyForm/test', 'subscriberId': conditionID}];
   let formData;
-  Logger.info(`${TAG}`, `formData: ${JSON.stringify(formData)}`);
+  Logger.info(`TAG`, `formData: ${JSON.stringify(formData)}`);
   let formBinding =  formBindingData.createFormBindingData(formData);
   formBinding['proxies'] = proxies;
   formProvider.updateForm(runningFormInfo.formId, formBinding).then(() => {
-    Logger.info(`${TAG}`, `update Form OK formData is ${JSON.stringify(formBinding)}`);
+    Logger.info(`TAG`, `update Form OK formData is ${JSON.stringify(formBinding)}`);
   }).catch((err) => {
-    Logger.error(`${TAG}`, `update Form Failed ${JSON.stringify(err)}`);
+    Logger.error(`TAG`, `update Form Failed ${JSON.stringify(err)}`);
   });
 }
 
@@ -61,18 +61,18 @@ function modifyCondition(): void {
     moduleName: 'entry'
   };
   formHost.getRunningFormInfosByFilter(formInstanceFilterArkTS).then(data => {
-    Logger.info(`${TAG}`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
+    Logger.info(`TAG`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
   }).catch((err) => {
-    Logger.error(`${TAG}`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
+    Logger.error(`TAG`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
   formHost.getRunningFormInfosByFilter(formInstanceFilterJS).then(data => {
-    Logger.info(`${TAG}`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
+    Logger.info(`TAG`, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
   }).catch((err) => {
-    Logger.error(`${TAG}`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
+    Logger.error(`TAG`, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
 }
 

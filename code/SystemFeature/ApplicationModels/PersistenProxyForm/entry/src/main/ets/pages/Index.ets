@@ -28,7 +28,7 @@ struct Index {
           .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .onClick(() => {
-            router.pushUrl({ url: 'pages/IndexSec' });
+            router.pushUrl({ url: 'pages/PublishIndex' });
           })
         Button($r('app.string.subscription_conditions'))
           .fontSize(30)
@@ -37,7 +37,7 @@ struct Index {
           .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .onClick(() => {
-            router.pushUrl({ url: 'pages/IndexThi' });
+            router.pushUrl({ url: 'pages/ModifyConditionIndex' });
           })
       }
       .width('100%')

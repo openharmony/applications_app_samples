@@ -25,7 +25,7 @@ let dataShareHelper;
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
     // Called to return a FormBindingData object.
-    Logger.info(`${TAG}`, `onAddForm want: ${JSON.stringify(want)}`);
+    Logger.info(`TAG`, `onAddForm want: ${JSON.stringify(want)}`);
     let subscriberId = '110000';
     let template = {
       predicates: {
@@ -48,7 +48,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       data: JSON.stringify(formData),
       proxies: proxies
     };
-    Logger.info(`${TAG}`, `formBinding: ${JSON.stringify(formBinding)}`);
+    Logger.info(`TAG`, `formBinding: ${JSON.stringify(formBinding)}`);
     return formBinding;
   }
 

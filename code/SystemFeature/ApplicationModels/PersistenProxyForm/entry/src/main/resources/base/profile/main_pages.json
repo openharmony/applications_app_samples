@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/IndexSec",
-    "pages/IndexThi"
+    "pages/PublishIndex",
+    "pages/ModifyConditionIndex"
   ]
 }
