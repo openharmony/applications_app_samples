@@ -14,14 +14,16 @@
  */
 
 let storage = new LocalStorage();
+
+const ACTION_TYPE: string = 'router';
+const ABILITY_NAME: string = 'EntryAbility';
+const MESSAGE: string = 'add detail';
+const FULL_WIDTH_PERCENT: string = '100%';
+const FULL_HEIGHT_PERCENT: string = '100%';
+
 @Entry(storage)
 @Component
 struct WidgetCard {
-  readonly ACTION_TYPE: string = 'router';
-  readonly ABILITY_NAME: string = 'EntryAbility';
-  readonly MESSAGE: string = 'add detail';
-  readonly FULL_WIDTH_PERCENT: string = '100%';
-  readonly FULL_HEIGHT_PERCENT: string = '100%';
   @LocalStorageProp('cityName') cityName: string = '';
   @LocalStorageProp('cityTemper') cityTemper: string = '';
 
@@ -30,30 +32,37 @@ struct WidgetCard {
       Column() {
         Row() {
           Text($r('app.string.city'))
-            .fontSize($r('app.float.font_size'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontWeight('medium')
           Text(this.cityName)
-            .fontSize($r('app.float.font_size'))
+            .fontSize($r('sys.float.ohos_id_text_size_body3'))
+            .fontWeight('regular')
         }
         Row() {
           Text($r('app.string.temper'))
-            .fontSize($r('app.float.font_size'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontWeight('medium')
           Text(this.cityTemper + ' ℃')
-            .fontSize($r('app.float.font_size'))
+            .fontSize($r('sys.float.ohos_id_text_size_body3'))
+            .fontWeight('regular')
         }
       }
-      .width(this.FULL_WIDTH_PERCENT)
+      .width(FULL_WIDTH_PERCENT)
     }
     .backgroundColor(0xAFEEEE)
+    .width((FULL_WIDTH_PERCENT))
+    .borderStyle(12)
     .opacity(0.5)
-    .height(this.FULL_HEIGHT_PERCENT)
+    .height(FULL_HEIGHT_PERCENT)
     .onClick(() => {
       postCardAction(this, {
-        'action': this.ACTION_TYPE,
-        'abilityName': this.ABILITY_NAME,
+        'action': ACTION_TYPE,
+        'abilityName': ABILITY_NAME,
         'params': {
-          'message': this.MESSAGE
+          'message': MESSAGE
         }
       });
     })
+    .borderRadius(0)
   }
 }

@@ -16,8 +16,8 @@
 <div class="container" onclick="routerEvent">
     <stack>
         <div class="container-inner">
-            <text class="lang">{{ $t('strings.city') }}{{ cityName }}</text>
-            <text class="detail_text">{{ $t('strings.temperature') }}{{cityTemper}} ℃</text>
+            <text class="detail_text">{{ $t('strings.city') }}{{ cityName }}</text>
+            <text class="detail_text">{{ $t('strings.temperature') }}{{ cityTemper }} ℃</text>
         </div>
     </stack>
 </div>

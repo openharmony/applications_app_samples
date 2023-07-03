@@ -64,7 +64,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 cardArkTsCount:' + cardArkTsCount);
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog err is: ' + JSON.stringify(err));
-      })
+      });
       await driver.delayMs(1000);
 
       // Long click the application
@@ -98,7 +98,7 @@ export default function abilityTest() {
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog err is: ' + JSON.stringify(err));
-      })
+      });
 
       // assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 assert an ArkTs card has been added, ' +
@@ -187,7 +187,7 @@ export default function abilityTest() {
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 hilog err is: ' + JSON.stringify(err));
-      })
+      });
       // assert an ArkTs card has been removed
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 assert an ArkTs card has been deleted, ' +
       'cardArkTsCountSecond:' + cardArkTsCountSecond);
@@ -217,7 +217,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 cardJsCount:' + cardJsCount);
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog err is: ' + JSON.stringify(err));
-      })
+      });
 
       // Long click the application
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 driver.findComponent start');
@@ -320,7 +320,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 cardJsCount:' + cardJsCount);
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog err is: ' + JSON.stringify(err));
-      })
+      });
 
       // Find and remove the card
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 driver.findComponents start`);
@@ -347,7 +347,7 @@ export default function abilityTest() {
         cardJsCountSecond = result.split(cardJs).length - 1;
       }).catch(err => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog err is: ' + JSON.stringify(err));
-      })
+      });
 
       // assert a Js card has been removed
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 assert an ArkTs card has been deleted, ' +

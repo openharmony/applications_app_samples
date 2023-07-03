@@ -21,24 +21,36 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button($r('app.string.modify_publish_data'))
-          .fontSize(30)
-          .type(ButtonType.Capsule)
-          .width(300)
-          .margin({ top: 20 })
-          .backgroundColor('#0D9FFB')
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/PushIndex' });
-          })
-        Button($r('app.string.subscription_conditions'))
-          .fontSize(30)
-          .type(ButtonType.Capsule)
-          .width(300)
-          .margin({ top: 20 })
-          .backgroundColor('#0D9FFB')
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/ModifyConditionIndex' });
-          })
+        Button() {
+          Text($r('app.string.modify_publish_data'))
+            .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+            .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            .fontWeight(FontWeight.Bold)
+        }
+        .height(40)
+        .width(220)
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/PushIndex' });
+        })
+        Button() {
+          Text($r('app.string.subscription_conditions'))
+            .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+            .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            .fontWeight(FontWeight.Bold)
+        }
+        .height(40)
+        .width(220)
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/ModifyConditionIndex' });
+        })
       }
       .width('100%')
     }

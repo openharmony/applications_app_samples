@@ -134,9 +134,12 @@ struct IndexSec {
               .height(60)
             TextInput({ text: '-30' })
               .fontSize(30)
+              .fontColor($r('sys.color.ohos_id_color_text_primary'))
               .width(100)
-              .height(60)
+              .height(40)
               .type(InputType.Normal)
+              .borderRadius(16)
+              .backgroundColor($r('sys.color.ohos_id_color_text_field_sub_bg'))
               .onChange((text) => {
                 conditionData = text;
               })
@@ -144,21 +147,27 @@ struct IndexSec {
               .fontSize(30)
               .height(60)
           }
-          Button($r('app.string.published_data'))
-            .fontSize(30)
-            .width(300)
-            .type(ButtonType.Capsule)
-            .margin({ top: 20 })
-            .backgroundColor('#0D9FFB')
-            .onClick(() => {
-              if (Number(conditionData) >= -40 && Number(conditionData) <= 60) {
-                Logger.info(TAG, `correct temperature is ${conditionData}`);
-                publish();
-              } else {
-                Logger.info(TAG, `incorrect temperature is ${conditionData}`);
-                prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
-              }
-            })
+          Button() {
+            Text($r('app.string.published_data'))
+              .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+              .fontSize($r('sys.float.ohos_id_text_size_button1'))
+              .fontWeight(FontWeight.Bold)
+          }
+          .height(40)
+          .width(220)
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+          .type(ButtonType.Capsule)
+          .margin({ top: 20 })
+          .onClick(() => {
+            if (Number(conditionData) >= -40 && Number(conditionData) <= 60) {
+              Logger.info(TAG, `correct temperature is ${conditionData}`);
+              publish();
+            } else {
+              Logger.info(TAG, `incorrect temperature is ${conditionData}`);
+              prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
+            }
+          })
         }
         .alignItems(HorizontalAlign.Start)
         .height('30%')
