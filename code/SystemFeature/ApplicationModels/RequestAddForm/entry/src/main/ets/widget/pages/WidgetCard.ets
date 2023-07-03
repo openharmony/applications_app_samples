@@ -51,13 +51,20 @@ struct WidgetCard {
     Row() {
       Column() {
         Text(this.TITLE)
-          .fontSize($r('app.float.font_size'))
+          .fontSize($r('sys.float.ohos_id_text_size_body2'))
+          .fontWeight('medium')
         Text(this.TITLE_CARD)
-          .fontSize($r('app.float.font_size'))
+          .fontSize($r('sys.float.ohos_id_text_size_body3'))
+          .fontWeight('regular')
+          .margin({
+            'top': 10
+          })
       }
       .width(this.FULL_WIDTH_PERCENT)
     }
     .height(this.FULL_HEIGHT_PERCENT)
+    .width((this.FULL_WIDTH_PERCENT))
+    .borderStyle(12)
     .onClick(() => {
       postCardAction(this, {
         "action": this.ACTION_TYPE,
@@ -67,5 +74,6 @@ struct WidgetCard {
         }
       });
     })
+    .borderRadius(0)
   }
 }

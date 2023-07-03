@@ -19,9 +19,9 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import formManagerAbility from '@ohos.app.form.formHost';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_RequestAddForm_Test]';
+const TAG = '[Sample_RequestAdd_Test]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'RequestAddForm_';
+const BUNDLE = 'RequestAdd_';
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let resourceManager = abilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
 let addArkTsButtonId = 'addArkTsCard';
@@ -44,13 +44,13 @@ export default function abilityTest() {
       await driver.delayMs(500);
       // Find the number of application
       let cardArkTsCount = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_017 getFormData ArkTs : + ${JSON.stringify(data)}`);
         let result = JSON.stringify(data);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(formArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 cardArkTsCount:' + cardArkTsCount);
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -75,11 +75,11 @@ export default function abilityTest() {
 
       // Verify a card has been added to the desktop
       let cardArkTsCountSecond = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_017 getFormData ArkTs : + ${JSON.stringify(data)}`);
         let result = JSON.stringify(data);
         cardArkTsCountSecond = result.split(formArkTs).length - 1;
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 assert an ArkTs card has been added, ' +
@@ -103,13 +103,13 @@ export default function abilityTest() {
       await driver.delayMs(500);
       // Find the number of application
       let cardJsCount = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_018 getFormData Js: + ${JSON.stringify(data)}`);
         let result = JSON.stringify(data);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(formJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 cardJsCount:' + cardJsCount);
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -131,11 +131,11 @@ export default function abilityTest() {
 
       // Verify a card has been added to the desktop
       let formJsCountSecond = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.ohos.hag.famanager'").then((data) => {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_018 getFormData Js: + ${JSON.stringify(data)}`);
         formJsCountSecond = result.split(formJs).length - 1;
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 assert an Js card has been added, ' +
