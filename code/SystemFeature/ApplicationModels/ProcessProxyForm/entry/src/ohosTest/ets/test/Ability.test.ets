@@ -18,9 +18,9 @@ import { Driver, ON } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_ProcessProxyForm_Test]';
+const TAG = '[Sample_ProcessProxy_Test]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessProxyForm_';
+const BUNDLE = 'ProcessProxy_';
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let resourceManager = abilityDelegator.getAppContext().resourceManager;
 let cardJs = 'jsWidget';
