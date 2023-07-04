@@ -65,8 +65,8 @@
       "value": "city:"
     },
     {
-      "name": "temper",
-      "value": "temper£º"
+      "name": "temperature",
+      "value": "temperature:"
     }
   ]
 }

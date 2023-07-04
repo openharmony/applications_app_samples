@@ -38,15 +38,15 @@ export default function abilityTest() {
       await driver.pressBack();
       await Driver.create().delayMs(1000);
       // Open Launcher
-      await abilityDelegator.executeShellCommand('aa start -b ohos.samples.launcher -a MainAbility').then(result =>{
+      await abilityDelegator.executeShellCommand('aa start -b ohos.samples.launcher -a MainAbility').then((result) =>{
         hilog.info(DOMAIN, TAG, BUNDLE + 'start launcher success');
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'start launcher fail');
       });
     })
 
     /**
-     * Scene:Add cards to launcher desktop.
+     * Scene:Add cards to launcher.
      * Input:Long click on the application icon, select 'service card' from the pop-up menu and select 'Add a card to the desktop' button.
      * Expected output:An ArkTs card is added to the desktop successfully.
      */
@@ -55,14 +55,14 @@ export default function abilityTest() {
       await driver.delayMs(3000);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog data successDataProxyForm_003 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data : + ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(cardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 cardArkTsCount:' + cardArkTsCount);
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog err is: ' + JSON.stringify(err));
       });
       await driver.delayMs(1000);
@@ -80,7 +80,7 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 long click app, coordinate:(${point.x},` + `${point.y - height})`);
       await driver.delayMs(100);
 
-      // add an ArkTs card to launcher
+      // Add an ArkTs card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))));
       await serviceCard.click();
       await driver.delayMs(1000);
@@ -91,12 +91,12 @@ export default function abilityTest() {
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data : + ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 assert an ArkTs card has been added, ' +
@@ -120,7 +120,7 @@ export default function abilityTest() {
     })
 
     /**
-     * Scene:Delete cards from launcher desktop.
+     * Scene:Delete cards from launcher.
      * Input:Long click on the card, select 'delete' from the pop-up menu,and confirm to remove.
      * Expected output:An ArkTs card is deleted from the desktop successfully.
      */
@@ -137,7 +137,7 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 long click app, coordinate:(${point.x},` + `${point.y - height})`);
       await driver.delayMs(100);
 
-      // add an ArkTs card to launcher
+      // Add an ArkTs card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))));
       await serviceCard.click();
       await driver.delayMs(500);
@@ -147,14 +147,14 @@ export default function abilityTest() {
 
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data : + ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(cardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 cardArkTsCount:' + cardArkTsCount);
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -175,12 +175,12 @@ export default function abilityTest() {
 
       // Verify that one card has been deleted
       let cardArkTsCountSecond = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data : + ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 assert an ArkTs card has been deleted, ' +
@@ -193,7 +193,7 @@ export default function abilityTest() {
     })
 
     /**
-     * Scene:Add cards to launcher desktop.
+     * Scene:Add cards to launcher.
      * Input:Long click on the application icon, select 'service card' from the pop-up menu and select 'service card' button.
      * Expected output:A Js card is added to the desktop successfully.
      */
@@ -202,14 +202,14 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // Confirm the number of cards
       let cardJsCount = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 getFormData data : + ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(cardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 cardJsCount:' + cardJsCount);
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -223,7 +223,7 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 long click app, coordinate:(${point.x},` + `${point.y - height})`);
       await driver.delayMs(100);
 
-      // add a Js card to launcher
+      // Add a Js card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))));
       await serviceCard.click();
       await driver.delayMs(500);
@@ -240,12 +240,12 @@ export default function abilityTest() {
 
       // Verify that a Js card has been added
       let cardJsCountSecond = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 getFormData data : + ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(cardJs).length - 1;
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 assert an ArkTs card has been added, ' +
@@ -269,7 +269,7 @@ export default function abilityTest() {
     })
 
     /**
-     * Scene:Delete cards from launcher desktop.
+     * Scene:Delete cards from launcher.
      * Input:Long click on the card, select 'delete' from the pop-up menu.
      * Expected output:A Js card is deleted from the desktop successfully.
      */
@@ -286,7 +286,7 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 long click app, coordinate:(${point.x},` + `${point.y - height})`);
       await driver.delayMs(100);
 
-      // add a Js card to launcher
+      // Add a Js card to launcher
       let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))));
       await serviceCard.click();
       await driver.delayMs(500);
@@ -301,14 +301,14 @@ export default function abilityTest() {
 
       // Confirm the number of cards
       let cardJsCount = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data : + ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(cardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 cardJsCount:' + cardJsCount);
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -329,12 +329,12 @@ export default function abilityTest() {
 
       // Verify that one card has been deleted
       let cardJsCountSecond = 0;
-      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then(data => {
+      await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n com.samples.PersistentProxyForm'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog data success');
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data : + ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(cardJs).length - 1;
-      }).catch(err => {
+      }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 assert an ArkTs card has been deleted, ' +

@@ -20,7 +20,7 @@ import Logger from '../../common/Logger';
 const DB_NAME = 'DB00.db';
 const TBL_NAME = 'TBL00';
 const DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS ' + TBL_NAME +
-' (cityId INTEGER PRIMARY KEY, cityName TEXT, cityTemper INTEGER)';
+' (cityId INTEGER PRIMARY KEY, cityName TEXT, cityTemperature INTEGER)';
 let rdbStore;
 const TAG = '[sample_dataShare]';
 
@@ -37,12 +37,12 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
     let dataHangZhou = {
       'cityId': 310000,
       'cityName': '',
-      'cityTemper': ''
+      'cityTemperature': ''
     };
     let dataShenYang = {
       'cityId': 110000,
       'cityName': '',
-      'cityTemper': ''
+      'cityTemperature': ''
     };
     await rdbStore.insert(TBL_NAME, dataHangZhou, function (err, ret) {
       Logger.info(TAG, `[insert] callback ret: ${JSON.stringify(ret)}`);

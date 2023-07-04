@@ -18,7 +18,7 @@ let storage = new LocalStorage();
 @Entry(storage)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('list') list: Array<object> = [{'cityTemper':'', 'cityName': ''}];
+  @LocalStorageProp('list') list: Array<object> = [{'cityTemperature':'', 'cityName': ''}];
 
   /*
    * The action type.
@@ -58,10 +58,10 @@ struct WidgetCard {
         }
         .height(40)
         Row() {
-          Text($r('app.string.temper'))
+          Text($r('app.string.temperature'))
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontWeight('medium')
-          Text(this.list[0]['cityTemper'])
+          Text(this.list[0]['cityTemperature'])
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontWeight('medium')
         }

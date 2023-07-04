@@ -39,7 +39,7 @@ function updateRDB(context): void {
     da.equalTo('cityId', conditionID);
     let va = {
       'cityName': conditionCity,
-      'cityTemper': conditionData
+      'cityTemperature': conditionData
     };
     try {
       let uri = 'datashareproxy://com.samples.PersistentProxyForm/test';
@@ -61,7 +61,7 @@ function updateRDB(context): void {
 
 function publish(): void {
   Logger.info(TAG, 'publish called');
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
   }).catch((err) => {
@@ -102,9 +102,15 @@ struct IndexSec {
               Column() {
                 Text($r('app.string.city_sy'))
                   .fontSize(15)
+                  .margin({ bottom: 10 })
                 Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
-                  .height(30)
-                  .width(30)
+                  .height(24)
+                  .width(24)
+                  .radioStyle({
+                    checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                    uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
+                    indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
+                  })
                   .onChange((isChecked: boolean) => {
                     Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
@@ -117,9 +123,15 @@ struct IndexSec {
               Column() {
                 Text($r('app.string.city_hz'))
                   .fontSize(15)
+                  .margin({ bottom: 10 })
                 Radio({ value: 'hz', group: 'cityGroup' })
-                  .height(30)
-                  .width(30)
+                  .height(24)
+                  .width(24)
+                  .radioStyle({
+                    checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                    uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
+                    indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
+                  })
                   .onChange((isChecked: boolean) => {
                     Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
@@ -128,8 +140,9 @@ struct IndexSec {
                     }
                   })
               }
+              .margin({ left:20 })
             }
-            .margin({left:10})
+            .margin({ left:10 })
           }
           Row() {
             Text($r('app.string.input_temperature'))
@@ -137,10 +150,13 @@ struct IndexSec {
               .width(200)
               .height(60)
             TextInput({ text: '-30' })
-              .fontSize(30)
+              .fontSize(20)
+              .fontColor($r('sys.color.ohos_id_color_text_primary'))
               .width(100)
-              .height(60)
+              .height(40)
               .type(InputType.Normal)
+              .borderRadius(16)
+              .backgroundColor($r('sys.color.ohos_id_color_text_field_sub_bg'))
               .onChange((text) => {
                 conditionData = text + ' ℃';
               })

@@ -29,7 +29,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     let subscriberId = '110000';
     let template = {
       predicates: {
-        'list': `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${subscriberId}`
+        'list': `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${subscriberId}`
       },
       scheduler: ''
     };

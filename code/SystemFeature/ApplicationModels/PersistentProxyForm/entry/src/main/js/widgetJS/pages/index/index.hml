@@ -19,7 +19,7 @@
             <list class="todo-wrapper">
                 <list-item for="{{list}}" class="todo-item">
                     <text class="todo-title">{{ $t('strings.city') }}{{$item.cityName}}</text>
-                    <text class="todo-title">{{ $t('strings.temperature') }}{{$item.cityTemper}}</text>
+                    <text class="todo-title">{{ $t('strings.temperature') }}{{$item.cityTemperature}}</text>
                 </list-item>
             </list>
         </div>

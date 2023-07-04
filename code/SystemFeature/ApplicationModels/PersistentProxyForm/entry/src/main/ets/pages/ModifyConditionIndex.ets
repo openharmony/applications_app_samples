@@ -28,7 +28,7 @@ function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`TAG updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let template = {
     predicates: {
-      'list': `select cityTemper as cityTemper, cityName as cityName from TBL00 where cityId = ${conditionID}`
+      'list': `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${conditionID}`
     },
     scheduler: ''
   };
@@ -61,14 +61,14 @@ function modifyCondition(): void {
     formName: 'widgetJS',
     moduleName: 'entry'
   };
-  formHost.getRunningFormInfosByFilter(formInstanceFilterArkTS).then(data => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilterArkTS).then((data) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
   }).catch((err) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
-  formHost.getRunningFormInfosByFilter(formInstanceFilterJS).then(data => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilterJS).then((data) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
@@ -89,8 +89,7 @@ struct IndexThi {
         Text($r('app.string.subscription_conditions'))
           .fontColor('#182431')
           .fontSize(40)
-          .lineHeight(41)
-          .fontWeight('100%')
+          .fontWeight('Bold')
         Column() {
           Text($r('app.string.modify_subscription_conditions'))
             .fontSize(28)
@@ -98,9 +97,15 @@ struct IndexThi {
           Row() {
             Column() {
               Text($r('app.string.city_sy'))
+                .margin({ bottom :10 })
               Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(false)
-                .height(50)
-                .width(50)
+                .height(24)
+                .width(24)
+                .radioStyle({
+                  checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                  uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
+                  indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
+                })
                 .onChange((isChecked: boolean) => {
                   Logger.info('firstRadio status is ' + isChecked);
                   if (isChecked) {
@@ -111,9 +116,15 @@ struct IndexThi {
             }
             Column() {
               Text($r('app.string.city_hz'))
+                .margin({bottom :10})
               Radio({ value: 'hz', group: 'modifyConditionGroup' }).checked(false)
-                .height(50)
-                .width(50)
+                .height(24)
+                .width(24)
+                .radioStyle({
+                  checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                  uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
+                  indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
+                })
                 .onChange((isChecked: boolean) => {
                   Logger.info('secondRadio status is ' + isChecked);
                   if (isChecked) {
@@ -122,6 +133,7 @@ struct IndexThi {
                   }
                 })
             }
+            .margin({ left :30 })
           }
         }
         .width('100%')
