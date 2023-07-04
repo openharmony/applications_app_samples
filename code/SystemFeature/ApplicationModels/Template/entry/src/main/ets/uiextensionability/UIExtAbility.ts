@@ -18,7 +18,7 @@ import Logger from '../model/Logger';
 
 const TAG: string = '[Sample_UIExtensionAbility]';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class UiExtAbility extends UIExtensionAbility {
   storage: LocalStorage;
   message: string;
   onCreate() {

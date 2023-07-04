@@ -85,11 +85,11 @@ export default function abilityTest() {
     })
 
     /*
-     * @tc.number: Acts_ShareTemplate_0300
-     * @tc.name: Test the ability to provide shared templates
-     * @tc.desc: Click on the share button to jump to the interface, then click on the share demo to jump to the
-     *           interface, and then click on stay in UIExtension
-     */
+    * @tc.number: Acts_ShareTemplate_0300
+    * @tc.name: Test the ability to provide shared templates
+    * @tc.desc: Click the share button to jump to the interface, then click the share demonstration to jump to
+    *           the interface, and then click to stay in the shared text
+    */
     it('Acts_ShareTemplate_0300', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0300 start');
       let driver = Driver.create();
@@ -107,6 +107,32 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('messages'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0300 end');
+      done();
+    })
+
+    /*
+    * @tc.number: Acts_ShareTemplate_0400
+    * @tc.name: Test the ability to provide shared templates
+    * @tc.desc: Click the share button to jump to the interface, then click the share demonstration to jump to
+    *           the interface, and then click to stay in the share editing mode
+    */
+    it('Acts_ShareTemplate_0400', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0400 start');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      let button = await driver.findComponent(ON.id('share'));
+      await button.click();
+      await driver.delayMs(1000);
+      let shared = await driver.findComponent(ON.id('shareToReceiver'));
+      await shared.click();
+      await driver.delayMs(1000);
+      let stay = await driver.findComponent(ON.id('stay'));
+      await stay.click();
+      await driver.delayMs(1000);
+      await driver.findComponent(ON.text('It is a shared message'));
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('messagesTextArea'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0400 end');
       done();
     })
   })

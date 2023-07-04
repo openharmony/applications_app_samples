@@ -31,6 +31,7 @@ struct Index {
           TextArea({text:this.messages})
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
+            .id('messagesTextArea')
             .width('100%')
             .height('100%')
         } else {
@@ -46,7 +47,7 @@ struct Index {
             }
           })
             .id('receiverBuilder')
-            .width('70%')
+            .width('75%')
             .height('70%')
         }
       }

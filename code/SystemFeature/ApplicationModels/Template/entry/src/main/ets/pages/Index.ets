@@ -30,7 +30,7 @@ struct Index {
         if (!this.sharedFlag) {
           Text(this.messages)
             .id('messages')
-            .fontSize(50)
+            .fontSize(20)
             .fontWeight(FontWeight.Bold)
         } else {
           TemplateBuilder({
@@ -45,7 +45,7 @@ struct Index {
             }
           })
             .id('templateBuilder')
-            .width('70%')
+            .width('75%')
             .height('70%')
         }
       }

@@ -19,20 +19,26 @@ let storage = LocalStorage.GetShared();
 @Component
 struct Index {
   @LocalStorageLink('messages') messages: string = '';
+  @State focus: boolean = false;
 
   build() {
     Row() {
       Column() {
-        TextArea({text:this.messages})
+        TextArea({ text: this.messages })
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
           .width('100%')
           .height('100%')
+          .focusable(this.focus)
+          .borderRadius(16)
+          .onClick(() => {
+            this.focus = true;
+          })
       }
       .width('100%')
     }
     .height('100%')
     .backgroundColor('#e0ffff')
-    .borderRadius(10)
+    .borderRadius(16)
   }
 }

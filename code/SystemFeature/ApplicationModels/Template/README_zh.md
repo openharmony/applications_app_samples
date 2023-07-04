@@ -63,6 +63,21 @@ entry/src/main/
 
 4.本示例需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
+5.当前4.0.8.5版本的Full SDK。因为不支持UIExtension类型编译，所以需要手动修改SDK中“10/toolchains/modulecheck/module.json"文件。在对应的extensionAbilities的type属性中，追加”ui“枚举值。
+
+```json
+"extensionAbilities": {
+    "type": {
+        "type": "string",
+        "enum": [
+            "ui"
+        ]
+    }
+}
+```
+
+
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：

@@ -29,21 +29,22 @@ export struct TemplateBuilder {
 
   build() {
     Column() {
-        Column({space: 50}) {
-            UIExtensionComponent(this.want)
-              .size({width:'100%', height:'100'})
-              .width('80%')
-              .height('60%')
-              .margin({top: 50})
+      Column({ space: 50 }) {
+        UIExtensionComponent(this.want)
+          .size({ width: '100%', height: '100' })
+          .width('75%')
+          .height('70%')
+          .margin({ top: 50 })
 
-          Row() {
+        Row() {
+          Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
             Button() {
               Text($r('app.string.Return_application'))
                 .fontSize($r('app.float.fontSize_twenty'))
                 .fontWeight(300)
-                .constraintSize({maxWidth: 160})
+                .constraintSize({ maxWidth: 160 })
                 .maxLines(1)
-                .textOverflow({overflow: TextOverflow.Ellipsis})
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
             }
             .id('returnShare')
             .width('45%')
@@ -51,7 +52,7 @@ export struct TemplateBuilder {
             .margin({ bottom: $r('app.float.fontSize_eighteen') })
             .onClick(() => {
               AppStorage.SetOrCreate('sharedFlag', false);
-              this.context.terminateSelf((err, data) =>{
+              this.context.terminateSelf((err, data) => {
                 Logger.info(`${TAG}`, `terminateSelf, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
                 if (err.code) {
                   prompt.showToast({ message: $r('app.string.terminateSelf_fail'), duration: 3000 });
@@ -63,9 +64,9 @@ export struct TemplateBuilder {
               Text($r('app.string.Stay_application'))
                 .fontSize($r('app.float.fontSize_twenty'))
                 .fontWeight(300)
-                .constraintSize({maxWidth: 160})
+                .constraintSize({ maxWidth: 160 })
                 .maxLines(1)
-                .textOverflow({overflow: TextOverflow.Ellipsis})
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
             }
             .id('stay')
             .width('45%')
@@ -76,6 +77,7 @@ export struct TemplateBuilder {
             })
           }
         }
+      }
     }
     .width("100%")
     .backgroundColor('#ffffff')
