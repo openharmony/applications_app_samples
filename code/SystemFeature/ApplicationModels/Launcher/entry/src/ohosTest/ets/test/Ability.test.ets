@@ -21,6 +21,123 @@ import { Logger } from '@ohos/base'
 const BUNDLE = 'LauncherTest'
 const TAG = '[Sample_Launcher_Test]'
 
+let driver: Driver = Driver.create();
+// 点击图库添加服务卡片
+async function addCard() {
+  let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
+  await driver.delayMs(1000)
+  // 第一次添加
+  let gallery = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.gallery'))))
+  await gallery.longClick()
+  await driver.delayMs(500)
+  await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  let service_card = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  await service_card.click()
+  await driver.delayMs(1000)
+  await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+  let addForm = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+  await addForm.click()
+  await driver.delayMs(1000)
+  // 向右滑动
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  // 向左滑动
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 500, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  // 第二次添加
+  let gallerySecond = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.gallery'))))
+  await gallerySecond.longClick()
+  await driver.delayMs(500)
+  await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  let service_card_second=await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  await service_card_second.click()
+  await driver.delayMs(1000)
+  // 选择第二张卡片
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+  let addFormSecond = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+  await addFormSecond.click()
+  await driver.delayMs(1000)
+  // 向右滑动
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  // 向左滑动
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 500, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  // 第三次添加
+  let galleryThird = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.gallery'))))
+  await galleryThird.longClick()
+  await driver.delayMs(500)
+  await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  let service_card_third=await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  await service_card_third.click()
+  await driver.delayMs(1000)
+  // 选择第三张卡片
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+  let addFormThird = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+  await addFormThird.click()
+  await driver.delayMs(1000)
+  // 向右滑动
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 100, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  // 向左滑动
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 500, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+  await driver.fling({
+    x: 300, y: 300
+  }, {
+    x: 500, y: 300
+  }, 5, 200)
+  await driver.delayMs(1000)
+}
+
 export default function abilityTest() {
 
   beforeAll(async () => {
@@ -39,7 +156,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'ShowDesktop_001', 0, async (done) => {
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
-      let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.fling({
         x: 300, y: 300
@@ -71,7 +187,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'AddForm_001', 1, async (done) => {
       Logger.info(TAG, BUNDLE + 'AddForm_001 begin.')
-      let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
       let camera = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
@@ -86,6 +201,7 @@ export default function abilityTest() {
       ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addForm.click()
       await driver.delayMs(1000)
+      await addCard()
       // 点击卡片物理坐标打开相机，RK3568
       await driver.click(220, 520)
       await driver.delayMs(1000)
@@ -101,7 +217,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'UninstallApp_001', 2, async (done) => {
       Logger.info(TAG, BUNDLE + 'UninstallApp_001 begin.')
-      let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
       let camera = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
@@ -127,7 +242,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'OpenApps_001', 3, async (done) => {
       Logger.info(TAG, BUNDLE + 'OpenApps_001 begin.')
-      let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       let appList = [
         await resourceManager.getStringValue($r('app.string.contacts')),
@@ -157,28 +271,22 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'CleanRecent_001', 4, async (done) => {
       Logger.info(TAG, BUNDLE + 'CleanRecent_001 begin.')
-      let driver = await Driver.create()
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
-      await driver.fling({
-        x: 500, y: 480
-      }, {
-        x: 500, y: 200
-      }, 5, 1200)
+      // 打开最近任务
+      let image = await driver.findComponents(ON.type('Image'))
+      await image[2].click()
       await driver.delayMs(1000)
-
       // 检查最近任务中是否有相机和联系人
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.messages'))))
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.contacts'))))
-      let deleteIc = await driver.findComponent(ON.id('ic_delete'))
-      await deleteIc.click()
+      // 点击清空按钮
+      let deleteIc = await driver.findComponents(ON.type('Image'))
+      await deleteIc[6].click()
       await driver.delayMs(1000)
-      await driver.fling({
-        x: 500, y: 480
-      }, {
-        x: 500, y: 200
-      }, 5, 1200)
+      // 打开后台
+      let images = await driver.findComponents(ON.type('Image'))
+      await images[2].click()
       await driver.delayMs(1000)
-
       // 检查任务是否清空
       await driver.assertComponentExist(
         ON.text(await resourceManager.getStringValue($r('app.string.message_no_mission'))))

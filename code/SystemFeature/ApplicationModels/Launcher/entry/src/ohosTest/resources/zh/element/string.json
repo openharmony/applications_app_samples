@@ -47,6 +47,10 @@
     {
       "name": "service_card",
       "value": "服务卡片"
+    },
+    {
+      "name": "gallery",
+      "value": "图库"
     }
   ]
 }

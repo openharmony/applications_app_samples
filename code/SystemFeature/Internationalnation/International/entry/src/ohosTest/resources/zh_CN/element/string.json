@@ -51,6 +51,10 @@
     {
       "name": "format_example",
       "value": "区域格式示例"
+    },
+    {
+      "name": "edit_language",
+      "value": "编辑"
     }
   ]
 }
