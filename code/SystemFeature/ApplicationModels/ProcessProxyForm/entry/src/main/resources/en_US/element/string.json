@@ -53,16 +53,16 @@
       "value": "published data"
     },
     {
-      "name": "input_temper",
-      "value": "Please input temper:"
+      "name": "input_temperature",
+      "value": "Please input temperature:"
     },
     {
       "name": "city",
       "value": "city:"
     },
     {
-      "name": "temper",
-      "value": "temper:"
+      "name": "temperature",
+      "value": "temperature:"
     }
   ]
 }

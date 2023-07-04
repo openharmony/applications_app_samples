@@ -29,7 +29,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
         'subscriberId': '110000'
       },
       {
-        'key': 'cityTemper',
+        'key': 'cityTemperature',
         'subscriberId': '110000'
       }
     ];

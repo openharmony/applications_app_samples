@@ -40,7 +40,7 @@ function updateCardDisplayContent(runningFormInfo): void {
     } else {
       let publishedItemData : Array<dataShare.PublishedItem> = [
         {key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID},
-        {key: 'cityTemper', data: JSON.stringify(conditionData), subscriberId: conditionID}
+        {key: 'cityTemperature', data: JSON.stringify(conditionData), subscriberId: conditionID}
       ];
       dataShareHelper.publish(publishedItemData, 'com.samples.processproxyform').then((data) => {
         Logger.info(TAG, `publish success, data is ${JSON.stringify(data)}`);
@@ -56,7 +56,7 @@ function updateCardDisplayContent(runningFormInfo): void {
 
 function publish(): void {
   Logger.info(TAG, `publish called`);
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
@@ -99,8 +99,12 @@ struct IndexSec {
                 Text($r('app.string.city_sy'))
                   .fontSize(15)
                 Radio({ value: 'sy', group: 'cityGroup' }).checked(true)
-                  .height(30)
-                  .width(30)
+                  .height(24)
+                  .width(24)
+                  .radioStyle({
+                    checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                    indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
+                    uncheckedBorderColor:$r('sys.color.ohos_id_color_switch_outline_off')})
                   .onChange((isChecked: boolean) => {
                     Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
@@ -114,8 +118,12 @@ struct IndexSec {
                 Text($r('app.string.city_hz'))
                   .fontSize(15)
                 Radio({ value: 'hz', group: 'cityGroup' })
-                  .height(30)
-                  .width(30)
+                  .height(24)
+                  .width(24)
+                  .radioStyle({
+                    checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                    indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
+                    uncheckedBorderColor:$r('sys.color.ohos_id_color_switch_outline_off')})
                   .onChange((isChecked: boolean) => {
                     Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                     if (isChecked) {
@@ -128,12 +136,12 @@ struct IndexSec {
             .margin({left:10})
           }
           Row() {
-            Text($r('app.string.input_temper'))
+            Text($r('app.string.input_temperature'))
               .fontSize(30)
               .width(200)
               .height(60)
             TextInput({ text: '-30' })
-              .fontSize(30)
+              .fontSize(20)
               .fontColor($r('sys.color.ohos_id_color_text_primary'))
               .width(100)
               .height(40)
@@ -169,7 +177,7 @@ struct IndexSec {
             }
           })
         }
-        .alignItems(HorizontalAlign.Start)
+        .alignItems(HorizontalAlign.Center)
         .height('30%')
       }
       .width('100%')

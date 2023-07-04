@@ -25,7 +25,7 @@ const FULL_HEIGHT_PERCENT: string = '100%';
 @Component
 struct WidgetCard {
   @LocalStorageProp('cityName') cityName: string = '';
-  @LocalStorageProp('cityTemper') cityTemper: string = '';
+  @LocalStorageProp('cityTemperature') cityTemperature: string = '';
 
   build() {
     Row() {
@@ -39,10 +39,10 @@ struct WidgetCard {
             .fontWeight('regular')
         }
         Row() {
-          Text($r('app.string.temper'))
+          Text($r('app.string.temperature'))
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontWeight('medium')
-          Text(this.cityTemper + ' ℃')
+          Text(this.cityTemperature + ' ℃')
             .fontSize($r('sys.float.ohos_id_text_size_body3'))
             .fontWeight('regular')
         }

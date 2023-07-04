@@ -17,7 +17,7 @@
     <stack>
         <div class="container-inner">
             <text class="detail_text">{{ $t('strings.city') }}{{ cityName }}</text>
-            <text class="detail_text">{{ $t('strings.temperature') }}{{ cityTemper }} ℃</text>
+            <text class="detail_text">{{ $t('strings.temperature') }}{{ cityTemperature }} ℃</text>
         </div>
     </stack>
 </div>

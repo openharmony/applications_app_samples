@@ -29,7 +29,7 @@ function updateCardDisplayContent(runningFormInfo): void {
       'subscriberId': conditionID
     },
     {
-      'key': 'cityTemper',
+      'key': 'cityTemperature',
       'subscriberId': conditionID
     }
   ];
@@ -46,7 +46,7 @@ function modifyCondition(): void {
   let formInstanceFilter = {
     bundleName: 'com.samples.processproxyform'
   };
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
@@ -74,8 +74,12 @@ struct IndexThi {
             Column() {
               Text($r('app.string.city_sy'))
               Radio({ value: 'sy', group: 'modifyConditionGroup' })
-                .height(50)
-                .width(50)
+                .height(24)
+                .width(24)
+                .radioStyle({
+                  checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                  indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
+                  uncheckedBorderColor:$r('sys.color.ohos_id_color_switch_outline_off')})
                 .onChange((isChecked: boolean) => {
                   Logger.info('firstRadio status is ' + isChecked);
                   if (isChecked) {
@@ -86,9 +90,13 @@ struct IndexThi {
             }
             Column() {
               Text($r('app.string.city_hz'))
-              Radio({ value: 'hz', group: 'modifyConditionGroup' }).checked(false)
-                .height(50)
-                .width(50)
+              Radio({ value: 'hz', group: 'modifyConditionGroup' })
+                .height(24)
+                .width(24)
+                .radioStyle({
+                  checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                  indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
+                  uncheckedBorderColor:$r('sys.color.ohos_id_color_switch_outline_off')})
                 .onChange((isChecked: boolean) => {
                   Logger.info('secondRadio status is ' + isChecked);
                   if (isChecked) {

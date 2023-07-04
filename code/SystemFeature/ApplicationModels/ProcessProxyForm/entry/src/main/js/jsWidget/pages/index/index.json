@@ -1,7 +1,7 @@
 {
   "data": {
     "cityName": "",
-    "cityTemper": ""
+    "cityTemperature": ""
   },
   "actions": {
     "routerEvent": {
