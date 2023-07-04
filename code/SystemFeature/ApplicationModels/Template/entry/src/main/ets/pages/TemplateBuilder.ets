@@ -18,7 +18,7 @@ import prompt from '@ohos.promptAction';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 
-const TAG: string = '[Sample_picker]';
+const TAG: string = '[Sample_TemplateBuilder]';
 
 @Entry
 @Component
