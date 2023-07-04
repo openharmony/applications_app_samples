@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "formProvider"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "dataShare_desc",
+      "value": "dataShare_description"
+    },
+    {
+      "name": "dataShare_label",
+      "value": "dataShare_label"
+    },
+    {
+      "name": "modify_publish_data",
+      "value": "modify publish data"
+    },
+    {
+      "name": "subscription_conditions",
+      "value": "Modify subscription conditions"
+    },
+    {
+      "name": "selection_city",
+      "value": "Please select a city:"
+    },
+    {
+      "name": "city_sy",
+      "value": "ShenYang"
+    },
+    {
+      "name": "city_hz",
+      "value": "HangZhou"
+    },
+    {
+      "name": "published_data",
+      "value": "published data"
+    },
+    {
+      "name": "input_temperature",
+      "value": "Please input the temperture:"
+    },
+    {
+      "name": "modify_subscription_conditions",
+      "value": "Please select which city to subscribe to for weather information:"
+    },
+    {
+      "name": "city",
+      "value": "city:"
+    },
+    {
+      "name": "temperature",
+      "value": "temperature:"
+    }
+  ]
+}
