@@ -14,11 +14,11 @@ BackupExtensionAbility，是[Stage模型](https://gitee.com/openharmony/docs/blo
 |--------------------------------|--------------------------------|--------------------------------|
 |![](screenshots/mainEntry.jpeg)|![](screenshots/fileList.jpeg)|![](screenshots/fileList.jpeg)|
 
-使用说明
+使用说明：
 
-1. 点击按钮“生成文件数据”，应用会随机生成2~10个txt文件，大小在1~1024Byte之间，用于校验备份和恢复的数据为同一数据。
-
+1. 点击按钮“生成文件数据”，应用会随机生成2个到10个txt文件，大小在1Byte到1024Byte之间，用于校验备份和恢复的数据为同一数据。
 2. 本应用仅适用于生成和显示数据，具体的备份和恢复的操作目前需要使用hdc shell命令操作。
+3. 具体操作方面，进入应用点击按钮生成文件数据后，进入hdc shell，使用backup_tool backup --isLocal=true --bundle com.sample.backupextension  --pathCapFile /data/backup/tmp命令进行备份。然后可以把应用删掉，重新安装应用后进入hdc shell，使用backup_tool restore --bundle com.sample.backupextension --pathCapFile /data/backup/tmp，提示成功后，重新打开应用可以看到备份的文件显示在列表里。
 
 ### 工程目录
 ```
