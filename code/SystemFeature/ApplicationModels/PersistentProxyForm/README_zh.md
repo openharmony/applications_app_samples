@@ -6,7 +6,7 @@
 
 ### 效果预览
 
-| 应用主界面 | 修改订阅条件 | 发布数据                                          | 卡片样式                                      |
+| 应用主界面 | 修改订阅条件 | 发布数据 | 卡片样式 |
 | ------- | ------- | ------- | ------- |
 | ![mainInterface](./screenshots/zh/mainInterface.jpeg) | ![modifySubscriptionConditions](./screenshots/zh/modifySubscriptionConditions.jpeg) | ![dataRelease](./screenshots/zh/dataRelease.jpeg) | ![cardStyle](./screenshots/zh/cardStyle.jpeg) |
 
@@ -54,10 +54,10 @@ entry/src/main/
 
 ### 具体实现
 
-- 修改数据卡片的订阅条件的功能封装在IndexThi中，源码参考：[IndexThi.ets](./entry/src/main/ets/pages/IndexThi.ets)。
+- 修改数据卡片的订阅条件的功能封装在ModifyConditionIndex.ets中，源码参考：[ModifyConditionIndex.ets](./entry/src/main/ets/pages/ModifyConditionIndex.ets)。
   - 使用modifyCondition来获取所有已经建立出的卡片对象。
   - 修改订阅条件：使用updateCardDisplayContent遍历所有卡片对象，并根据界面获取的订阅条件数据修改订阅条件。
-- 发布数据的功能封装在IndexSec中，源码参考：[IndexSec.ets](./entry/src/main/ets/pages/IndexSec.ets)。
+- 发布数据的功能封装在PublishIndex.ets中，源码参考：[PublishIndex.ets](./entry/src/main/ets/pages/PublishIndex.ets)。
   - 使用updateRDB来修改rdb数据库中的对应数据。
 - 在dataShare模块中，建立rdb数据库，并提供对应update方法。
   - 在onCreate中初始化数据库中的数据。
@@ -83,7 +83,7 @@ entry/src/main/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.8.5。
+2.本示例已适配API version 10版本SDK，版本号：4.0.8.5,镜像版本号：OpenHarmony_4.0.8.5。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
 

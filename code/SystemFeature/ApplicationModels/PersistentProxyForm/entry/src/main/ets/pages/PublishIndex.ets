@@ -75,7 +75,7 @@ function publish(): void {
 @Component
 struct IndexSec {
   aboutToAppear() {
-    context = getContext(this) as any;
+    context = getContext(this) as Context;
     shenYang = context.resourceManager.getStringSync($r('app.string.city_sy'));
     hangZhou = context.resourceManager.getStringSync($r('app.string.city_hz'));
     conditionCity = shenYang;
