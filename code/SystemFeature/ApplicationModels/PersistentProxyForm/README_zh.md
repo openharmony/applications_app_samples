@@ -28,7 +28,7 @@ entry/src/main/
 |  └---Logger.ts
 |---ets
 |  └---dataShare
-|  | └---dataShare.ts
+|  | └---DataShare.ts
 |  |---entryability
 |  |  └---EntryAbility.ts
 |  |---entryformability
