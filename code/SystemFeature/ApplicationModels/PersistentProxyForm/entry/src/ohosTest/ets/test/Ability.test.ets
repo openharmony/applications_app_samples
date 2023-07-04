@@ -18,9 +18,9 @@ import { Driver, ON } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_PersistentProxyForm_Test]';
+const TAG = '[Sample_PersistentProxy_Test]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'PersistentProxyForm_';
+const BUNDLE = 'PersistentProxy_';
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let resourceManager = abilityDelegator.getAppContext().resourceManager;
 let cardJs = 'widgetJS';
@@ -214,13 +214,13 @@ export default function abilityTest() {
       });
 
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 driver.findComponent start');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
-      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 long click app, coordinate:(${point.x},` + `${point.y - height})`);
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 long click app, coordinate:(${point.x},` + `${point.y - height})`);
       await driver.delayMs(100);
 
       // add a Js card to launcher
@@ -277,13 +277,13 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 begin');
       await Driver.create().delayMs(1000);
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 driver.findComponent start');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
-      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 long click app, coordinate:(${point.x},` + `${point.y - height})`);
+      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 long click app, coordinate:(${point.x},` + `${point.y - height})`);
       await driver.delayMs(100);
 
       // add a Js card to launcher
