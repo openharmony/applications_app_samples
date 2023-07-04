@@ -44,7 +44,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 拉起任务至前台显示的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](../../../Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+- 拉起任务至前台显示的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](../../../Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)。
   - 跨任务链返回：在ServiceExtensionAbility，使用ServiceExtensionContext.startRecentAbility(),将Want中将"ABILITY_BACK_TO_OTHER_MISSION_STACK"(返回当前任务链字段)设置为"true",以实现返回至打开ServiceExtensionAbility的ability的功能。
   - 接口参考：[@ohos.app.ability.wantConstant](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.wantConstant.d.ts)、[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)
 
