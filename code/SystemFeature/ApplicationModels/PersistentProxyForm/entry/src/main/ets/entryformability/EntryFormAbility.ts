@@ -19,7 +19,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
 
-const TAG = '[EntryFormAbility]';
+const TAG = '[sample_entryFormAbility]';
 let dataShareHelper;
 
 export default class EntryFormAbility extends FormExtensionAbility {

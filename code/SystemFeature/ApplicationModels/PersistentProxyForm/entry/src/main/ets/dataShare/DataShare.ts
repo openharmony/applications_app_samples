@@ -22,7 +22,7 @@ const TBL_NAME = 'TBL00';
 const DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS ' + TBL_NAME +
 ' (cityId INTEGER PRIMARY KEY, cityName TEXT, cityTemper INTEGER)';
 let rdbStore;
-const TAG = '[dataShare]';
+const TAG = '[sample_dataShare]';
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   async onCreate(want, callback) {
