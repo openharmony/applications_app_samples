@@ -37,34 +37,69 @@ export struct ButtonDialogBuilder {
           .id('toShare')
           .margin({ top: $r('app.float.margin_twenty'), bottom: $r('app.float.margin_twenty') })
 
-          Column() {
-            Image($r('app.media.icon'))
-              .width($r('app.float.width_height_value'))
-              .height($r('app.float.width_height_value'))
-              .margin({
-                bottom: $r('app.float.margin_bottom_ten')
+          Row() {
+            Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+              Column() {
+                Image($r('app.media.icon'))
+                  .width($r('app.float.width_height_value'))
+                  .height($r('app.float.width_height_value'))
+                  .margin({
+                    bottom: $r('app.float.margin_bottom_ten')
+                  })
+                  .id('Shared')
+                Text($r('app.string.UiExtension'))
+                  .fontSize($r('app.float.fontSize_eighteen'))
+                  .fontWeight(FontWeight.Normal)
+              }
+              .margin({ top: $r('app.float.margin_twenty'), bottom: $r('app.float.margin_twenty') })
+              .onClick(() => {
+                this.controller.close();
+                this.context.startAbility({
+                  bundleName: "com.samples.template",
+                  abilityName: "EntryAbility",
+                  parameters: {
+                    'shareMessages': this.messages,
+                    'sharedFlag': true
+                  }
+                }, (err, data) => {
+                  Logger.info(TAG, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
+                  if (err.code != 0) {
+                    prompt.showToast({ message: $r('app.string.ability_fail'), duration: 3000 });
+                  }
+                });
               })
-              .id('Shared')
-            Text($r('app.string.UiExtension'))
-              .fontSize($r('app.float.fontSize_eighteen'))
-              .fontWeight(FontWeight.Normal)
+
+              Column() {
+                Image($r('app.media.icon'))
+                  .width($r('app.float.width_height_value'))
+                  .height($r('app.float.width_height_value'))
+                  .margin({
+                    bottom: $r('app.float.margin_bottom_ten')
+                  })
+                  .id('shareToReceiver')
+                Text($r('app.string.share_edit'))
+                  .fontSize($r('app.float.fontSize_eighteen'))
+                  .fontWeight(FontWeight.Normal)
+              }
+              .margin({ top: $r('app.float.margin_twenty'), bottom: $r('app.float.margin_twenty') })
+              .onClick(() => {
+                this.controller.close();
+                this.context.startAbility({
+                  bundleName: "com.samples.receiver",
+                  abilityName: "EntryAbility",
+                  parameters: {
+                    'shareMessages': this.messages,
+                    'sharedFlag': true
+                  }
+                }, (err, data) => {
+                  Logger.info(TAG, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
+                  if (err.code != 0) {
+                    prompt.showToast({ message: $r('app.string.receiver_fail'), duration: 3000 });
+                  }
+                });
+              })
+            }
           }
-          .onClick(() => {
-            this.controller.close();
-            this.context.startAbility({
-              bundleName: "com.samples.template",
-              abilityName: "EntryAbility",
-              parameters: {
-                'shareMessages': this.messages,
-                'sharedFlag': true
-              }
-            }, (err, data) =>{
-              Logger.info(TAG, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
-              if(err.code != 0) {
-                prompt.showToast({ message: $r('app.string.ability_fail'), duration: 3000 });
-              }
-            });
-          })
 
           Row() {
             Text($r('app.string.cancel'))

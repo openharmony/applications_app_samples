@@ -26,11 +26,19 @@
     },
     {
       "name": "UiExtension",
-      "value": "分享Demo"
+      "value": "分享文本"
     },
     {
       "name": "ability_fail",
       "value": "分享Demo启动失败！"
+    },
+    {
+      "name": "share_edit",
+      "value": "分享编辑"
+    },
+    {
+      "name": "receiver_fail",
+      "value": "分享receiver启动失败！"
     }
   ]
 }

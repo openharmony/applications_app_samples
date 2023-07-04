@@ -10,15 +10,15 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "share Demo"
+      "value": "Share Text"
     },
     {
       "name": "Return_application",
-      "value": "return Share"
+      "value": "Return Share"
     },
     {
       "name": "Stay_application",
-      "value": "stay UIExtension"
+      "value": "Stay Share Text"
     },
     {
       "name": "terminateSelf_fail",

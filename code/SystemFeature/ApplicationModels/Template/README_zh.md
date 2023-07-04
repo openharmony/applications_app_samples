@@ -1,8 +1,8 @@
-# 接收分享结果应用
+# 文本应用
 
 ### 介绍
 
-本示例主要实现了基于UIExtension实现简单的分享功能。支持取消分享，点击“返回Share”按钮，返回调用方应用；支持完成分享，点击“留在UIExtension”按钮，留在当前接收分享结果应用。
+本示例主要实现了基于UIExtension实现简单的分享功能。支持取消分享，点击“返回Share”按钮，返回调用方应用；支持完成分享，点击“留在文本应用”按钮，留在当前文本应用。
 
 ### 效果预览
 
@@ -14,11 +14,11 @@
 
 1.使用Share应用点击“分享”按钮，点击的弹出本应用图标，跳转到当前应用；
 
-2.当前应用通过UIExtension组件显示发起分享应用（Share应用）分享的信息及“返回Share”和“留在UIExtension”按钮；
+2.当前应用通过UIExtension组件显示发起分享应用（Share应用）分享的信息及“返回Share”和“留在文本应用”按钮；
 
 3.点击“返回Share”按钮，返回Share应用；
 
-4.点击“留在UIExtension”按钮，留在当前应用并显示发起分享应用（Share应用）分享的信息。
+4.点击“留在文本应用”按钮，留在当前应用并显示发起分享应用（Share应用）分享的信息。
 
 ### 工程目录
 
@@ -31,7 +31,7 @@ entry/src/main/
 |  |  └---Logger.ts
 |  |---pages
 |  |  |---Index.ets                          // EntryAbility页面
-|  |  |---picker.ets                         // 自定义组件页面
+|  |  |---TemplateBuilder.ets                // 自定义组件页面
 |  |  └---UIExtenIndex.ets                   // UIExtension页面
 |  └---uiextensionability
 |     └---UIExtAbility.ts 
@@ -41,9 +41,9 @@ entry/src/main/
 ### 具体实现
 
 - 在Index.ets中加载TemplateBuilder自定义组件并显示分享信息,  源码参考[Index.ets](./entry/src/main/ets/pages/Index.ets)。
-  - 在Index页面中根据是否通过分享应用拉起来显示不同画面效果，通过判断选择是否打开TemplateBuilder自定义组件。
-- TemplateBuilder组件内容封装在picker.ets中，源码参考：[picker.ets](./entry/src/main/ets/pages/picker.ets)。
-  - 在TemplateBuilder组件中包含UIExtAbility组件、及“返回Share”和“留在UIExtension”按钮。
+  - 在加载Index页面中，如果是被分享方拉起，则加载TemplateBuilder自定义组件。若不是被分享拉起，则显示Ability设置内容。
+- TemplateBuilder组件内容封装在TemplateBuilder.ets中，源码参考：[TemplateBuilder.ets](./entry/src/main/ets/pages/TemplateBuilder.ets)。
+  - 在TemplateBuilder组件中包含UIExtAbility组件、及“返回Share”和“留在文本应用”按钮。
 
 ### 相关权限
 

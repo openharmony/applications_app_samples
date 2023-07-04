@@ -31,6 +31,14 @@
     {
       "name": "ability_fail",
       "value": "Failed to start the sharing Demo!"
+    },
+    {
+      "name": "share_edit",
+      "value": "Share edit"
+    },
+    {
+      "name": "receiver_fail",
+      "value": "Failed to start the receiver!"
     }
   ]
 }

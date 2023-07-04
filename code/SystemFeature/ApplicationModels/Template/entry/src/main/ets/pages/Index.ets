@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { TemplateBuilder } from '../pages/picker';
+import { TemplateBuilder } from './TemplateBuilder';
 import common from '@ohos.app.ability.common';
 
 @Entry

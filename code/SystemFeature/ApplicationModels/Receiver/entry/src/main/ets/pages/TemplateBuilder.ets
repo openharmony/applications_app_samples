@@ -45,7 +45,7 @@ export struct TemplateBuilder {
                 .maxLines(1)
                 .textOverflow({overflow: TextOverflow.Ellipsis})
             }
-            .id('return')
+            .id('returnShare')
             .width('45%')
             .height('6%')
             .margin({ bottom: $r('app.float.fontSize_eighteen') })

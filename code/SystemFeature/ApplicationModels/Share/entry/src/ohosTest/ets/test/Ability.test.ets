@@ -13,20 +13,25 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON, } from '@ohos.UiTest'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON, } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
 
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const TAG = '[Sample_Share_Test]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Share_';
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     beforeEach(async function () {
       await delegator.executeShellCommand('aa start -b com.samples.share -a EntryAbility').then(() => {
-        console.log("====>  executeShellCommand result ====>");
+        const BUNDLE = 'RequestAddForm_';
+        hilog.info(DOMAIN, TAG, BUNDLE + 'executeShellCommand result');
       }).catch(err => {
-        console.log("====> executeShellCommand  ====>" + err.code);
-      })
+        hilog.info(DOMAIN, TAG, BUNDLE + `executeShellCommand result ${err.code}`);
+      });
     })
 
     /*
@@ -35,7 +40,7 @@ export default function abilityTest() {
      * @tc.desc: Click the share button to jump to the interface, and then click the cancel button
      */
     it('Acts_ShareTemplate_0100', 0, async function (done) {
-      console.log("====> Acts_ShareTemplate_0100 start ====>");
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0100 start');
       let driver = Driver.create();
       await driver.delayMs(500);
       let button = await driver.findComponent(ON.id('share'));
@@ -47,7 +52,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('share'));
       await driver.pressBack();
       await driver.delayMs(1000);
-      console.log("====> Acts_ShareTemplate_0100 end ====>");
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0100 end');
       done();
     })
 
@@ -58,7 +63,7 @@ export default function abilityTest() {
     *           interface, and then click on the return to share button
     */
     it('Acts_ShareTemplate_0200', 0, async function (done) {
-      console.log("====> Acts_ShareTemplate_0200 start ====>");
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0200 start');
       let driver = Driver.create();
       await driver.delayMs(500);
       let button = await driver.findComponent(ON.id('share'));
@@ -75,7 +80,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-      console.log("====> Acts_ShareTemplate_0200 end ====>");
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0200 end');
       done();
     })
 
@@ -86,7 +91,7 @@ export default function abilityTest() {
      *           interface, and then click on stay in UIExtension
      */
     it('Acts_ShareTemplate_0300', 0, async function (done) {
-      console.log("====> Acts_ShareTemplate_0300 start ====>");
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0300 start');
       let driver = Driver.create();
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.id('share'));
@@ -101,7 +106,7 @@ export default function abilityTest() {
       await driver.findComponent(ON.text('It is a shared message'));
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('messages'));
-      console.log("====> Acts_ShareTemplate_0300 end ====>");
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0300 end');
       done();
     })
   })

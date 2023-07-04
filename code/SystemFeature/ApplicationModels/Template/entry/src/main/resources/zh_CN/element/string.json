@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "分享Demo"
+      "value": "文本"
     },
     {
       "name": "Return_application",
@@ -18,7 +18,7 @@
     },
     {
       "name": "Stay_application",
-      "value": "留在UIExtension"
+      "value": "留在文本应用"
     },
     {
       "name": "terminateSelf_fail",

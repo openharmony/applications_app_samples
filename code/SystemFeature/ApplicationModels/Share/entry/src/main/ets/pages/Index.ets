@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-import { ButtonDialogBuilder } from '../pages/picker';
+import { ButtonDialogBuilder } from './Picker';
 
 @Entry
 @Component
 struct Index {
-  @State shareLinkResource: Resource = $r('app.string.share_button');
   private shareDialog: CustomDialogController;
 
   homeBtn(): void {
@@ -38,7 +37,7 @@ struct Index {
     Row() {
       Column() {
         Button() {
-          Text(this.shareLinkResource)
+          Text($r('app.string.share_button'))
             .fontSize(20)
             .id('shareLinkResource')
             .fontWeight(FontWeight.Bold)

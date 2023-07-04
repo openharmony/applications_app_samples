@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要实现了点击“分享”按钮发起分享，显示出接收分享结果应用图标，点击其图标可以发起分享并跳转到接收分享结果应用的功能。
+本示例主要实现了点击“分享”按钮发起分享，显示出分享文本应用图标和分享编辑应用图标，点击相对应应用图标可以发起分享并跳转到其对应应用显示。
 
 ### 效果预览
 
@@ -14,7 +14,7 @@
 
 1.点击“分享”按钮，弹出支持分享的应用列表；
 
-2.选择接收分享结果应用图标进行点击，跳转到对应的应用。
+2.选择应用图标进行点击，跳转到对应的应用。
 
 ### 工程目录
 
@@ -25,7 +25,7 @@ entry/src/main/
 |  |  └---EntryAbility.ts
 |  └---pages
 |     |---Index.ets                          // EntryAbility页面
-|     └---picker.ets                         // 自定义弹窗页面
+|     └---Picker.ets                         // 自定义弹窗页面
 |---model
 |  └---Logger.ts
 └---resources                                // 资源信息
@@ -34,8 +34,8 @@ entry/src/main/
 ### 具体实现
 
 - ”分享“按钮显示并实现在Index.ets中,  源码参考[Index.ets](./entry/src/main/ets/pages/Index.ets)。
-  - 在“分享”按钮的点击事件中，创建CustomDialogController对象，并调用open打开自定义ButtonDialogBuilder对话框容器。
-- 弹出的对话框样式及内容封装在picker.ets中，源码参考：[picker.ets](./entry/src/main/ets/pages/picker.ets)。
+  - 在“分享”按钮的点击事件中，通过创建CustomDialogController对象并将对应Picker组件绑定，然后调用open接口打开自定义ButtonDialogBuilder对话框容器。
+- 弹出的对话框样式及内容封装在picker.ets中，源码参考：[Picker.ets](./entry/src/main/ets/pages/Picker.ets)。
 
 ### 相关权限
 
@@ -43,7 +43,7 @@ entry/src/main/
 
 ### 依赖
 
-本应用需接收分享结果应用（Template应用）配合使用，Template应用地址：[Template](../../ApplicationModels/Template/)
+本应用需分享文本应用（Template应用）及分享编辑应用（Receiver应用）配合使用，Template应用地址：[Template](../../ApplicationModels/Template/)，Receiver应用地址：[Receiver](../../ApplicationModels/Receiver/)。
 
 ### 约束与限制
 

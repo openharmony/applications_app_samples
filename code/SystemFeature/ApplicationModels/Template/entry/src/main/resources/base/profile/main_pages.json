@@ -2,6 +2,6 @@
   "src": [
     "pages/Index",
     "pages/UIExtenIndex",
-    "pages/picker"
+    "pages/TemplateBuilder"
   ]
 }

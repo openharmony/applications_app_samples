@@ -21,44 +21,44 @@ const TAG = '[Sample_EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info(`${TAG}`, `onCreate, want: ${JSON.stringify(want)},`, `launchParam: ${JSON.stringify(launchParam)}`);
+    Logger.info(TAG, `onCreate, want: ${JSON.stringify(want)},`, `launchParam: ${JSON.stringify(launchParam)}`);
     let flag = (typeof(want.parameters.sharedFlag) === 'boolean') ? want.parameters.sharedFlag : false;
     AppStorage.SetOrCreate('messages', want.parameters.shareMessages);
     AppStorage.SetOrCreate('sharedFlag', flag);
   }
 
   onNewWant(want, launchParam) {
-    Logger.info(`${TAG}`, `onNewWant, want: ${JSON.stringify(want)},`, `launchParam: ${JSON.stringify(launchParam)}`);
+    Logger.info(TAG, `onNewWant, want: ${JSON.stringify(want)},`, `launchParam: ${JSON.stringify(launchParam)}`);
     let flag = (typeof(want.parameters.sharedFlag) === 'boolean') ? want.parameters.sharedFlag : false;
     AppStorage.SetOrCreate('messages', want.parameters.shareMessages);
     AppStorage.SetOrCreate('sharedFlag', flag);
   }
 
   onDestroy() {
-    Logger.info(`${TAG}`, 'onDestroy');
+    Logger.info(TAG, 'onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    Logger.info(`${TAG}`, `onWindowStageCreate, windowStage: ${JSON.stringify(windowStage)}`);
+    Logger.info(TAG, `onWindowStageCreate, windowStage: ${JSON.stringify(windowStage)}`);
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`${TAG}`, `Failed to load the content, Cause: ${JSON.stringify(err)}`);
+        Logger.error(TAG, `Failed to load the content, Cause: ${JSON.stringify(err)}`);
         return;
       }
-      Logger.info(`${TAG}`, `Succeeded in loading the content, Data: ${JSON.stringify(data)}`);
+      Logger.info(TAG, `Succeeded in loading the content, Data: ${JSON.stringify(data)}`);
     });
   }
 
   onWindowStageDestroy() {
-    Logger.info(`${TAG}`, 'onWindowStageDestroy');
+    Logger.info(TAG, 'onWindowStageDestroy');
   }
 
   onForeground() {
-    Logger.info(`${TAG}`, 'onForeground');
+    Logger.info(TAG, 'onForeground');
   }
 
   onBackground() {
-    Logger.info(`${TAG}`, 'onBackground');
+    Logger.info(TAG, 'onBackground');
   }
 }
