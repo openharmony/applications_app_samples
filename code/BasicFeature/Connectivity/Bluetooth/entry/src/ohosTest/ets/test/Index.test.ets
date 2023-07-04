@@ -77,8 +77,8 @@ export default function IndexTest() {
         let driver = Driver.create()
         await driver.delayMs(2000)
         // 点击允许
-        await driver.assertComponentExist(await getResourceString($r('app.string.allow')))
-        let btn = await driver.findComponent(await getResourceString($r('app.string.allow')))
+        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))))
+        let btn = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow'))))
         await btn.click()
         await driver.delayMs(2000)
       } catch (err) {
