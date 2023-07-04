@@ -52,10 +52,10 @@ entry/src/main/
 
 ### 具体实现
 
-- 修改数据卡片的订阅条件的功能封装在IndexThi中,  源码参考[IndexThi.ets](./entry/src/main/ets/pages/IndexThi.ets)。
+- 修改数据卡片的订阅条件的功能封装在IndexThi中,  源码参考[ModifyConditionIndex.ets](./entry/src/main/ets/pages/ModifyConditionIndex.ets)。
   - 使用getRunningFormInfosByFilter获取已经建立出的卡片对象。
   - 使用updateCardDisplayContent遍历所有卡片对象，并根据界面获取的订阅条件使用updateForm实现修改订阅条件的功能。
-- 发布数据的功能封装在IndexSec中，源码参考：[IndexSec.ets](./entry/src/main/ets/pages/IndexSec.ets)。
+- 发布数据的功能封装在IndexSec中，源码参考：[PushIndex.ets](./entry/src/main/ets/pages/PushIndex.ets)。
   - 使用getRunningFormInfosByFilter获取已经建立出的卡片对象，并使用updateCardDisplayContent遍历所有卡片对象。
   - 使用createDataShareHelper创建DataShareHelper对象，并根据界面获取的数据信息使用publish进行数据的发布以实现发布数据的功能。
 
