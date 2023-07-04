@@ -12,7 +12,7 @@
 
 使用说明
 
-1.基于StartRecentAbility工程（com.acts.startrecentability），对该工程编译产生的hap包进行手动签名。（仅StartRecentAbility工程可实现启动上一次的组件实例功能）
+1.基于StartRecentAbility工程（com.acts.startrecentability），对该工程编译产生的hap包进行手动签名。（仅StartRecentAbility工程可实现启动上一次的组件实例功能）。
 
 2.安装签名成功后的hap包，启动仿桌面（Launcher）。
 
@@ -41,7 +41,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 应用启动的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](./base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+- 应用启动的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](../../../Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
   - 启动上次打开的的组件实例：拉起上次打开的任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
   
 ### 相关权限
@@ -50,7 +50,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher)
+本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher/)
 
 ### 约束与限制
 

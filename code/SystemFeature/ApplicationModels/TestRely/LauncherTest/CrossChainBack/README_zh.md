@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例为一个仿桌面应用测试demo，使用ServiceExtensionContext模块的startRecentAbility接口（系统能力：SystemCapability.Ability.AbilityRuntime.Core），实现了跨任务链返回的功能。
+本示例为一个仿桌面应用测试demo，使用[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)接口中ServiceExtensionContext类的startRecentAbility能力（系统能力：SystemCapability.Ability.AbilityRuntime.Core），实现了跨任务链返回的功能。
 
 ### 效果预览
 
@@ -20,7 +20,7 @@
 
 4.长按应用图标弹出菜单，点击打开，可以正常启动应用。
 
-5.本应用包含：EntryAbility页面（页面中显示有"EntryAbility"文本）和SecondAbility页面（页面中显示有"SecondAbility"文本）
+5.本应用包含：EntryAbility页面（页面中显示有"EntryAbility"文本）和SecondAbility页面（页面中显示有"SecondAbility"文本）。
 
 6.在EntryAbility页面上点击StartSecondAbility按钮，打开SecondAbility，此时点击返回键，回到EntryAbility页面而不是桌面。
 
@@ -44,9 +44,9 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 拉起任务至前台显示的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](./base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+- 拉起任务至前台显示的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](../../../Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
   - 跨任务链返回：在ServiceExtensionAbility，使用ServiceExtensionContext.startRecentAbility(),将Want中将"ABILITY_BACK_TO_OTHER_MISSION_STACK"(返回当前任务链字段)设置为"true",以实现返回至打开ServiceExtensionAbility的ability的功能。
-  - 接口参考：[@ohos.app.ability.wantConstant](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.wantConstant.d.ts)
+  - 接口参考：[@ohos.app.ability.wantConstant](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.wantConstant.d.ts)、[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)
 
 ### 相关权限
 
@@ -54,7 +54,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher)
+本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher/)
 
 ### 约束与限制
 
