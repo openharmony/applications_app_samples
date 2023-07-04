@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "主界面"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "卡片"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "卡片提供方"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "卡片提供方"
+    },
+    {
+      "name": "modify_publish_data",
+      "value": "修改发布数据"
+    },
+    {
+      "name": "modify_subscription_conditions",
+      "value": "请选择要订阅哪个城市的天气信息:"
+    },
+    {
+      "name": "subscription_conditions",
+      "value": "修改订阅条件"
+    },
+    {
+      "name": "city_selection",
+      "value": "城市选择"
+    },
+    {
+      "name": "selection_city",
+      "value": "请选择城市："
+    },
+    {
+      "name": "city_sy",
+      "value": "沈阳"
+    },
+    {
+      "name": "city_hz",
+      "value": "杭州"
+    },
+    {
+      "name": "published_data",
+      "value": "发布数据"
+    },
+    {
+      "name": "input_temperature",
+      "value": "请输入温度："
+    },
+    {
+      "name": "city",
+      "value": "城市："
+    },
+    {
+      "name": "temperature",
+      "value": "温度："
+    }
+  ]
+}
