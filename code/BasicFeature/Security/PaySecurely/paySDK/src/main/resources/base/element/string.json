@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "PaySDKAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PaySDKAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "pay",
+      "value": "Pay"
+    },
+    {
+      "name": "please_pay",
+      "value": "please pay"
+    },
+    {
+      "name": "merchant_tracking_number",
+      "value": "Merchant tracking number"
+    },
+    {
+      "name": "pay_now",
+      "value": "Pay now"
+    },
+    {
+      "name": "pay_success",
+      "value": "Payment successful"
+    },
+    {
+      "name": "pay_fail",
+      "value": "Wrong password"
+    },
+    {
+      "name": "pay_exception",
+      "value": "Payment exceptions"
+    },
+    {
+      "name": "enter_password",
+      "value": "Please enter your payment password"
+    },
+    {
+      "name": "pay_to",
+      "value": "Pay to"
+    },
+    {
+      "name": "platform_merchants",
+      "value": "platform merchants"
+    },
+    {
+      "name": "return_to_merchant",
+      "value": "Return to the merchant interface"
+    }
+  ]
+}
