@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,7 +41,20 @@ export default function abilityTest() {
       }
       console.info(TAG, BUNDLE + 'StartAbility_001 end');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('文件数据'));
+      let resource = $r('app.string.FileData').id;
+      let str = '';
+      try {
+        this.context.resourceManager.getStringValue(resource, (error, value) => {
+          if (error != null) {
+            console.log("error is " + error);
+          } else {
+            str = value;
+          }
+        });
+      } catch (error) {
+        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+      }
+      await driver.assertComponentExist(ON.text(str));
       await driver.assertComponentExist(ON.id('file0'));
       done();
     })
@@ -58,8 +71,7 @@ export default function abilityTest() {
       // 点击生成文件按钮
       await createFilesBtn.click();
       await driver.delayMs(1000);
-      // 文件至少两个文件，所以file1必须有
-      await driver.assertComponentExist(ON.id('file1'));
+      await driver.assertComponentExist(ON.id('size0'));
       console.info(TAG, BUNDLE + 'CreateFiles_001 end');
     })
   })

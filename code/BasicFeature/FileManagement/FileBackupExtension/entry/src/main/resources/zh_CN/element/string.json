@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "FileData",
+      "value": "文件数据"
+    },
+    {
+      "name": "CreateFiles",
+      "value": "生成文件数据"
+    },
+    {
+      "name": "Filelist_waiting_to_be_generated",
+      "value": "文件列表等待生成中..."
     }
   ]
 }

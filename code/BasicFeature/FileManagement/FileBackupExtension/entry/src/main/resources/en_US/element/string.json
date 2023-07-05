@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "FileData",
+      "value": "file data"
+    },
+    {
+      "name": "CreateFiles",
+      "value": "Generate file data"
+    },
+    {
+      "name": "Filelist_waiting_to_be_generated",
+      "value": "File list waiting to be generated..."
     }
   ]
 }
