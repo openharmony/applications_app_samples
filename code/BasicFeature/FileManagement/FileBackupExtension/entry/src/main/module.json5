@@ -60,7 +60,7 @@
             "resource": "$profile:backup_config"
           }
         ],
-        "srcEntrance": "",
+        "srcEntrance": "./ets/common/BackupExtension.ts",
       }
     ],
     "requestPermissions": [
