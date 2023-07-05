@@ -27,7 +27,8 @@ struct Index {
     { title: $r('app.string.grid_layout6'), uri: 'pages/gridRow/gridRow/GridRowSample6', id:'GridRowSample6' },
     { title: $r('app.string.grid_layout7'), uri: 'pages/gridRow/gridRow/GridRowSample7', id:'GridRowSample7' },
     { title: $r('app.string.grid_layout8'), uri: 'pages/gridRow/gridRow/GridRowSample8', id:'GridRowSample8' },
-    { title: $r('app.string.grid_layout9'), uri: 'pages/gridRow/gridRow/GridRowSample9', id:'GridRowSample9' }
+    { title: $r('app.string.grid_layout9'), uri: 'pages/gridRow/gridRow/GridRowSample9', id:'GridRowSample9' },
+    { title: $r('app.string.grid_layout10'), uri: 'pages/gridRow/gridRow/GridRowSample10', id:'GridRowSample10' }
   ]
 
   build() {

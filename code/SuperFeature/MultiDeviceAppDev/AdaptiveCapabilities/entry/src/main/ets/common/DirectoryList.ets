@@ -27,33 +27,31 @@ struct DirectoryList {
   private title: Resource
 
   build() {
-    Column() {
-      Text(this.title)
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-        .height(100)
+    Scroll() {
+      Column() {
+        Text(this.title)
+          .fontSize(24)
+          .fontWeight(FontWeight.Bold)
+          .height(100);
 
-      List({ space: 5 }) {
         ForEach(this.directory, (item) => {
-          ListItem() {
-            Text(item.title)
-              .fontSize(20)
-              .padding({ left: 20 })
-          }
-          .backgroundColor('#66CCFF')
-          .width('100%')
-          .height(80)
-          .borderRadius(10)
+          Button(item.title)
           .id(item.id)
+          .fontSize(20)
+          .width('90%')
+          .height(55)
+          .margin(12)
+          .backgroundColor('#007DFF')
           .onClick(() => {
             router.pushUrl({
               url: item.uri
             })
-          })
+          });
         })
       }
-      .padding({ top: 10, left: 10, right: 10, bottom: 100 })
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .padding({left: 10, right: 10, bottom: 100});
   }
 }
 

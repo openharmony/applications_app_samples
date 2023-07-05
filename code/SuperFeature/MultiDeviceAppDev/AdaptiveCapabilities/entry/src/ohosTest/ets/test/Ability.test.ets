@@ -40,6 +40,25 @@ async function checkButtonAndClickWithText(text: string) {
   await driver.delayMs(1000)
 }
 
+// 获取AbilityDelegator
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+// 启动后获取app上下文
+let context;
+// 启动后获取resourceManager
+let manager;
+
+async function checkRadioAndClickWithID(text: string) {
+  await driver.assertComponentExist(ON.id(text));
+  let component = await driver.findComponent(ON.id(text));
+  await component.click();
+}
+
+async function checkRadioAndClickWithText(text: string) {
+  await driver.assertComponentExist(ON.text(text));
+  let component = await driver.findComponent(ON.text(text));
+  await component.click();
+}
+
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager
@@ -49,16 +68,22 @@ async function getResourceString(resource: Resource): Promise<string> {
 
 export default function appTest() {
   describe('ActsAbilityTest', function () {
+    /**
+     * 打开应用
+     */
     it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: "ohos.samples.AdaptiveCapabilities",
-          abilityName: "MainAbility"
+          bundleName: 'ohos.samples.AdaptiveCapabilities',
+          abilityName: 'MainAbility'
         });
+        context = abilityDelegatorRegistry.getAppContext();
+        manager = context.resourceManager;
         done();
       } catch (err) {
-        expect(err.code).assertEqual(0);
+        expect(0).assertEqual(err.code);
         done();
       }
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
@@ -218,6 +243,14 @@ export default function appTest() {
       await checkButtonAndClickWithID('GridRowSample9')
       await driver.pressBack()
       await driver.delayMs(1000)
+      // 点击栅格对齐
+      await checkButtonAndClickWithID('GridRowSample10');
+      await checkRadioAndClickWithID('rdo11');
+      await checkRadioAndClickWithID('rdo22');
+      await checkRadioAndClickWithID('rdo33');
+      await checkRadioAndClickWithID('rdo41');
+      await driver.pressBack();
+      await driver.delayMs(1000);
       await driver.pressBack()
       await driver.delayMs(1000)
       await driver.pressBack()

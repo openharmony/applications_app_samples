@@ -14,37 +14,25 @@
  */
 
 import window from '@ohos.window'
+import getValueOnBreakpoint from '../../../common/GetValueOnBreakpoint';
 
 @Entry
 @Component
 struct BreakpointSample {
-  @State currentBreakpoint: string = 'sm'
+  @State currentBreakpoint: string = 'small';
 
-  private updateBreakpoint(windowWidth) {
-    if (windowWidth < 320) {
-      this.currentBreakpoint = 'xs'
-      return
-    }
-    if (windowWidth < 600) {
-      this.currentBreakpoint = 'sm'
-      return
-    }
-    if (windowWidth < 840) {
-      this.currentBreakpoint = 'md'
-      return
-    }
-    this.currentBreakpoint = 'lg'
+  listenOnBreakpoint(windowObj: window.Window) {
+    const breakpointsLabels: string[] = ['xSmall', 'small', 'medium', 'large'];
+    const breakpoints = { xs: 0, sm: 320, md: 600, lg: 840 };
+    this.currentBreakpoint = getValueOnBreakpoint(breakpointsLabels, breakpoints);
+    windowObj.on('windowSizeChange', () => {
+      this.currentBreakpoint = getValueOnBreakpoint(breakpointsLabels, breakpoints);
+    });
   }
 
   aboutToAppear() {
     let windowObj: window.Window = AppStorage.Get('windowObj')
-    windowObj.getProperties().then(windowProperties => {
-      this.updateBreakpoint(px2vp(windowProperties.windowRect.width))
-    })
-
-    windowObj.on('windowSizeChange', data => {
-      this.updateBreakpoint(px2vp(data.width))
-    })
+    this.listenOnBreakpoint(windowObj);
   }
 
   aboutToDisappear() {

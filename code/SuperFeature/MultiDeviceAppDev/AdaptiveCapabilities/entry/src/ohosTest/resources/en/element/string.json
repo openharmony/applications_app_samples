@@ -13,6 +13,18 @@
       "value": "eTSAdaptiveCapabilities"
     },
     {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
       "name": "my_string",
       "value": "phone"
     },
@@ -115,6 +127,10 @@
     {
       "name": "grid_layout9",
       "value": "Grid nested"
+    },
+    {
+      "name": "grid_layout10",
+      "value": "Grid alignItem"
     },
     {
       "name": "typical_scenario",
@@ -251,6 +267,22 @@
     {
       "name": "breakpoint",
       "value": "breakpoint"
+    },
+    {
+      "name": "Radio_GridRow_All_LCR",
+      "value": "All GridColl L-C-R"
+    },
+    {
+      "name": "Radio_GridRow_All_TMB",
+      "value": "All GridColl T-M-B"
+    },
+    {
+      "name": "Radio_GridRow_Sg_LCR",
+      "value": "Second GridCol L-C-R"
+    },
+    {
+      "name": "Radio_GridRow_Sg_TMB",
+      "value": "Second GridCol T-M-B"
     }
   ]
 }
