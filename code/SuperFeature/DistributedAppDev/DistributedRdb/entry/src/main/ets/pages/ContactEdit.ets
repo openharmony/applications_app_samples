@@ -50,6 +50,7 @@ struct ContactEdit {
         .backgroundColor(Color.White)
         .onChange(onChange)
         .type(type)
+        .enableKeyboardOnFocus(false)
     }
     .width('95%')
     .padding(16)

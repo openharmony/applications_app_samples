@@ -157,6 +157,7 @@ struct InputArea {
           .fontSize(25)
           .margin({ right: 10 })
           .backgroundColor($r("app.color.color_fa"))
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.model.searchData.searchText = value
           })
@@ -174,6 +175,7 @@ struct InputArea {
             .fontSize(25)
             .margin({ right: 10, top: 5 })
             .backgroundColor($r("app.color.color_fa"))
+            .enableKeyboardOnFocus(false)
             .onChange((value: string) => {
               this.model.searchData.searchTexts[0] = value
             })
@@ -196,6 +198,7 @@ struct InputArea {
             .fontSize(25)
             .margin({ right: 10, top: 5 })
             .backgroundColor($r("app.color.color_fa"))
+            .enableKeyboardOnFocus(false)
             .onChange((value: string) => {
               this.model.searchData.searchTexts[1] = value
             })
