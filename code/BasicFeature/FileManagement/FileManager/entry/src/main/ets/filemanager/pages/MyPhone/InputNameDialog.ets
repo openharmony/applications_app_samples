@@ -56,6 +56,7 @@ export struct InputNameDialog {
         .margin({ top: 20, bottom: 20 })
         .fontSize(14)
         .fontColor(Color.Black)
+        .enableKeyboardOnFocus(false)
         .onChange((value: string) => {
           AppStorage.SetOrCreate('name', value)
         })
