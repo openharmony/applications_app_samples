@@ -16,10 +16,12 @@
 import Logger from '../common/Logger';
 import fs from '@ohos.file.fs';
 
-const TAG: string = '[Sample_FileBackDemo]';
-const kbSize: number = 1024;
-const fileMax: number = 10;
-const fileMin: number = 1;
+const TAG: string = '[Sample_FileBackDemo]'
+
+//1k = 1024B
+const ONE_KILOBYTE: number = 1024;
+const FILE_NUM_MAX: number = 10;
+const FILE_NUM_MIN: number = 1;
 
 export default class CreatFile {
   baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
@@ -29,7 +31,7 @@ export default class CreatFile {
 
   async createTestFiles(): Promise<void> {
     try {
-      let num = Math.floor(Math.random() * fileMax) + fileMin;
+      let num = Math.floor(Math.random() * FILE_NUM_MAX) + FILE_NUM_MIN;
       if (!fs.accessSync(this.baseDir)) {
         fs.mkdirSync(this.baseDir);
       }
@@ -40,7 +42,7 @@ export default class CreatFile {
         let myFile = dpath + `/TestFile_${i}.txt`;
         Logger.info(TAG, 'readyFile myFile = ' + myFile);
         let file = fs.openSync(myFile, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-        fs.writeSync(file.fd, new ArrayBuffer(kbSize * Math.random()));
+        fs.writeSync(file.fd, new ArrayBuffer(ONE_KILOBYTE * Math.random()));
         fs.closeSync(file);
       }
     } catch (e) {
