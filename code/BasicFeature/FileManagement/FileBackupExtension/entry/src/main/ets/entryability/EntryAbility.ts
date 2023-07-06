@@ -37,7 +37,7 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
-    let filesDir  = this.context.filesDir;
+    let filesDir = this.context.filesDir;
     AppStorage.SetOrCreate('sanBoxFileDir', filesDir);
   }
 

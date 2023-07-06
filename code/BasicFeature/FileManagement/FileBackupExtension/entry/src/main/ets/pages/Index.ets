@@ -17,11 +17,12 @@ import CreateFile from '../fileFs/CreateFile';
 import Logger from '../common/Logger';
 import fs from '@ohos.file.fs';
 
+const TAG: string = '[Sample_FileBackDemo]';
+
 @Entry
 @Component
 struct BackupExample {
   createFile = new CreateFile();
-  TAG: string = '[Sample_FileBackDemo]';
   baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
   @State filePathSize: Array<string> = [];
   @State showFilePath: Array<string> = [];
@@ -34,17 +35,17 @@ struct BackupExample {
         this.filePathSize[0] = '';
         return;
       }
-      Logger.info(this.TAG, `readyFileToFileFs successful`);
+      Logger.info(TAG, `readyFileToFileFs successful`);
     } catch (e) {
-      Logger.error(this.TAG, `readyFileToFileFs has failed for: {message: ${e.message}, code: ${e.code}}`);
+      Logger.error(TAG, `readyFileToFileFs has failed for: {message: ${e.message}, code: ${e.code}}`);
     }
     let filenames = fs.listFileSync(this.baseDir);
     for (let i = 0; i < filenames.length; i++) {
-      Logger.info(this.TAG, "filename:" + filenames[i]);
+      Logger.info(TAG, "filename:" + filenames[i]);
       this.showFilePath[i] = filenames[i];
       let filePath = this.baseDir + '/' + filenames[i]
       this.filePathSize[i] = fs.statSync(filePath).size.toString() + 'Byte';
-      Logger.info(this.TAG, "arrayfilename: " + i + this.showFilePath[i].toString());
+      Logger.info(TAG, "arrayfilename: " + i + this.showFilePath[i].toString());
     }
   }
 

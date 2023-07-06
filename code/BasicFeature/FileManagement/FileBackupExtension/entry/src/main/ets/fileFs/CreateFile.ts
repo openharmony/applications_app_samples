@@ -16,8 +16,12 @@
 import Logger from '../common/Logger';
 import fs from '@ohos.file.fs';
 
+const TAG: string = '[Sample_FileBackDemo]';
+const kbSize: number = 1024;
+const fileMax: number = 10;
+const fileMin: number = 1;
+
 export default class CreatFile {
-  TAG: string = '[Sample_FileBackDemo]';
   baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
 
   constructor() {
@@ -25,22 +29,22 @@ export default class CreatFile {
 
   async createTestFiles(): Promise<void> {
     try {
-      let num = Math.floor(Math.random() * 10) + 1;
+      let num = Math.floor(Math.random() * fileMax) + fileMin;
       if (!fs.accessSync(this.baseDir)) {
         fs.mkdirSync(this.baseDir);
       }
       let dpath = this.baseDir;
-      Logger.info(this.TAG, 'sanBoxFileDir = ' + dpath);
-      Logger.info(this.TAG, 'num is  = ' + num);
+      Logger.info(TAG, 'sanBoxFileDir = ' + dpath);
+      Logger.info(TAG, 'num is  = ' + num);
       for (let i = 0; i < num; i++) {
         let myFile = dpath + `/TestFile_${i}.txt`;
-        Logger.info(this.TAG, 'readyFile myFile = ' + myFile);
+        Logger.info(TAG, 'readyFile myFile = ' + myFile);
         let file = fs.openSync(myFile, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-        fs.writeSync(file.fd, new ArrayBuffer(1024 * Math.random()));
+        fs.writeSync(file.fd, new ArrayBuffer(kbSize * Math.random()));
         fs.closeSync(file);
       }
     } catch (e) {
-      Logger.error(this.TAG, 'Failed to prepare media files, error:' + e.message + e.code);
+      Logger.error(TAG, 'Failed to prepare media files, error:' + e.message + e.code);
     }
   }
 }
