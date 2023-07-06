@@ -47,6 +47,10 @@
     {
       "name": "service_card",
       "value": "service card"
+    },
+    {
+      "name": "gallery",
+      "value": "Gallery"
     }
   ]
 }

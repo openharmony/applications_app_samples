@@ -109,6 +109,10 @@ export default function abilityTest() {
       // 进入语言和地区页面
       await driver.delayMs(1000);
       await checkButtonAndClickWithText(getString($r('app.string.language_region')));
+      // 点击编辑
+      await checkButtonAndClickWithText(getString($r('app.string.edit_language')));
+      await driver.pressBack();
+      await driver.delayMs(1000);
       // 进入添加语言页面
       await checkButtonAndClickWithText(getString($r('app.string.add_language')));
       // 添加语言
@@ -119,6 +123,9 @@ export default function abilityTest() {
       await checkScrollAndClickWithType('Scroll', getString($r('app.string.united_states')));
       Logger.info(TAG, BUNDLE + 'TimeZone_001 end');
       await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
       done();
     })
 
