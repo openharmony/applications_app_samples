@@ -13,15 +13,15 @@
       "value": "label"
     },
     {
-      "name": "FileData",
+      "name": "fileData",
       "value": "file data"
     },
     {
-      "name": "CreateFiles",
+      "name": "createFiles",
       "value": "Generate file data"
     },
     {
-      "name": "Filelist_waiting_to_be_generated",
+      "name": "filelistWaitingToBeGenerated",
       "value": "File list waiting to be generated..."
     }
   ]

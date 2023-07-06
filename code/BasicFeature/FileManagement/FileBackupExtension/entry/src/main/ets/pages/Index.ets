@@ -20,8 +20,8 @@ import fs from '@ohos.file.fs';
 @Entry
 @Component
 struct BackupExample {
-  CreateFile = new CreateFile();
-  TAG: string = "[Pages].[MyFile]";
+  createFile = new CreateFile();
+  TAG: string = '[Sample_FileBackDemo]';
   baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
   @State filePathSize: Array<string> = [];
   @State showFilePath: Array<string> = [];
@@ -50,21 +50,21 @@ struct BackupExample {
 
   build() {
     Column() {
-      Text($r('app.string.FileData'))
+      Text($r('app.string.fileData'))
         .fontSize(14)
         .fontColor('#182431')
         .margin({ top: 8, left: 48, bottom: 8 })
         .id('filedata')
         .opacity(0.6)
         .align(Alignment.TopStart)
-        .width('93.3%')
+        .width('93%')
 
       List({ space: 10, initialIndex: 0 }) {
         ForEach(this.showFilePath, (item, index) => {
           ListItem() {
             Column() {
-              if (this.showFilePath[0] == '') {
-                Text($r('app.string.Filelist_waiting_to_be_generated'))
+              if (this.showFilePath[0] === '') {
+                Text($r("app.string.filelistWaitingToBeGenerated"))
                   .fontSize(16)
                   .margin({ top: 8 })
                   .fontColor('#182431')
@@ -107,20 +107,20 @@ struct BackupExample {
           }
         }, item => item)
       }
-      .height('79.5%')
-      .width('93.3%')
+      .height('80%')
+      .width('93%')
       .borderRadius(24)
       .backgroundColor(0xFFFFFF)
       .align(Alignment.Center)
 
-      Button($r('app.string.CreateFiles'))
+      Button($r("app.string.createFiles"))
         .id('createFiles')
         .backgroundColor('#007DFF')
         .margin(15)
-        .width('86.7%')
+        .width('87%')
         .borderRadius(20)
         .onClick(async () => {
-          await this.CreateFile.createTestFiles();
+          await this.createFile.createTestFiles();
           this.onPageShow();
         })
         .align(Alignment.Center)

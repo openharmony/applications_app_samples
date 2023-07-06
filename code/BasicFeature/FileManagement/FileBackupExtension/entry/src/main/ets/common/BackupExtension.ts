@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
 export default class BackupExtension {
   onBackup(): void {
     console.info('onBackup');

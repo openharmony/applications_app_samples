@@ -13,7 +13,7 @@
       "value": "test label"
     },
     {
-      "name": "FileData",
+      "name": "fileData",
       "value": "文件数据"
     }
   ]

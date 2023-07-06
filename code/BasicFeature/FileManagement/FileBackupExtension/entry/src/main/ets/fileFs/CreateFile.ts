@@ -15,16 +15,15 @@
 
 import Logger from '../common/Logger';
 import fs from '@ohos.file.fs';
-import fileAccess from '@ohos.file.fileAccess';
 
 export default class CreatFile {
-  TAG: string = "[FileFS].[MyFile]";
-  baseDir: string =  AppStorage.Get('sanBoxFileDir') + '/TextDir';
+  TAG: string = '[Sample_FileBackDemo]';
+  baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
 
   constructor() {
   }
 
-  async createTestFiles() {
+  async createTestFiles(): Promise<void> {
     try {
       let num = Math.floor(Math.random() * 10) + 1;
       if (!fs.accessSync(this.baseDir)) {

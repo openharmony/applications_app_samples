@@ -41,7 +41,7 @@ export default function abilityTest() {
       }
       console.info(TAG, BUNDLE + 'StartAbility_001 end');
       await driver.delayMs(1000);
-      let resource = $r('app.string.FileData').id;
+      let resource = $r('app.string.fileData').id;
       let str = '';
       try {
         this.context.resourceManager.getStringValue(resource, (error, value) => {

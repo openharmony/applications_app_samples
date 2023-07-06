@@ -53,5 +53,5 @@ export class Logger {
   }
 }
 
-export default new Logger('[FileBackDemo]');
+export default new Logger('[Sample_FileBackDemo]');
 
