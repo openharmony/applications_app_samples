@@ -39,102 +39,58 @@ async function addCard() {
   await addForm.click()
   await driver.delayMs(1000)
   // 向右滑动
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   // 向左滑动
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 500, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 500, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   // 第二次添加
   let gallerySecond = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.gallery'))))
   await gallerySecond.longClick()
   await driver.delayMs(500)
   await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
-  let service_card_second=await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  let service_card_second = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
   await service_card_second.click()
   await driver.delayMs(1000)
   // 选择第二张卡片
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
   let addFormSecond = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
   await addFormSecond.click()
   await driver.delayMs(1000)
   // 向右滑动
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   // 向左滑动
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 500, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 500, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   // 第三次添加
   let galleryThird = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.gallery'))))
   await galleryThird.longClick()
   await driver.delayMs(500)
   await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
-  let service_card_third=await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+  let service_card_third = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
   await service_card_third.click()
   await driver.delayMs(1000)
   // 选择第三张卡片
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
   let addFormThird = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
   await addFormThird.click()
   await driver.delayMs(1000)
   // 向右滑动
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 100, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
   await driver.delayMs(1000)
   // 向左滑动
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 500, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 500, y: 300 }, 5, 200)
   await driver.delayMs(1000)
-  await driver.fling({
-    x: 300, y: 300
-  }, {
-    x: 500, y: 300
-  }, 5, 200)
+  await driver.fling({ x: 300, y: 300 }, { x: 500, y: 300 }, 5, 200)
   await driver.delayMs(1000)
 }
 
@@ -157,17 +113,9 @@ export default function abilityTest() {
     it(BUNDLE + 'ShowDesktop_001', 0, async (done) => {
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
-      await driver.fling({
-        x: 300, y: 300
-      }, {
-        x: 500, y: 300
-      }, 5, 200)
+      await driver.fling({ x: 300, y: 300 }, { x: 500, y: 300 }, 5, 200)
       await driver.delayMs(1000)
-      await driver.fling({
-        x: 300, y: 300
-      }, {
-        x: 100, y: 300
-      }, 5, 200)
+      await driver.fling({ x: 300, y: 300 }, { x: 100, y: 300 }, 5, 200)
       await driver.delayMs(1000)
       // 滑动结束后，检查是否回到桌面第一页
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
@@ -193,12 +141,12 @@ export default function abilityTest() {
       await camera.longClick()
       await driver.delayMs(500)
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
-      let service_card=await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
+      let service_card = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.service_card'))))
       await service_card.click()
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       let addForm = await driver.findComponent(
-      ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
+        ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))))
       await addForm.click()
       await driver.delayMs(1000)
       await addCard()
