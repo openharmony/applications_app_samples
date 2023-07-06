@@ -217,7 +217,7 @@ struct FileListItemComponent {
               pressed: this.itemPressedStyles
             })
             .onClick(() => {
-              FileManager.deleteFileAsset(getContext(this), this.fileListItem)
+              FileManager.deleteFileAsset(this.fileListItem)
               this.itemFileList.deleteData(this.itemId)
               this.itemShowDeleteButton = false
               if (this.itemFileList.totalCount() === 0) {
