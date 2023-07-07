@@ -14,12 +14,13 @@
 */
 
 import Logger from '../utils/Logger';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 // @ts-ignore
-import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import audio from '@ohos.multimedia.audio'
-import App from '@system.app';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let manager = null
 
 export default function abilityTest() {
   const TAG = '[Sample_Audio]'
@@ -52,7 +53,6 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.audio',
@@ -67,6 +67,26 @@ export default function abilityTest() {
     })
 
     /**
+     * Allow Microsoft Permission
+     */
+    it(BUNDLE + '_Permission', 0, async () => {
+      driver = Driver.create();
+      Logger.info(TAG, BUNDLE + '_Permission begin');
+      await driver.delayMs(3000);
+      let ability = abilityDelegator.getAppContext();
+      manager = ability.resourceManager;
+      for (let i = 0; i < 1; i++) {
+        let btnAccept = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
+        console.log('btnAccept' + JSON.stringify(btnAccept))
+        if (btnAccept !== undefined) {
+          await btnAccept.click();
+          await driver.delayMs(500);
+        }
+      }
+      Logger.info(TAG, BUNDLE + '_Permission end');
+    })
+
+    /**
      * [Index]
      * Display two entry card
      * Click select_output_device_card
@@ -74,7 +94,6 @@ export default function abilityTest() {
     it(BUNDLE + 'IndexShow_001', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'IndexShow_001 begin')
       try {
-        driver = Driver.create()
         await driver.delayMs(1000)
         Logger.info(TAG, BUNDLE + 'select_output_device_card')
         await driver.assertComponentExist(ON.id('select_output_device_card'))
@@ -651,6 +670,229 @@ export default function abilityTest() {
       }
       Logger.info(TAG, BUNDLE + 'Realtime_009 end')
       done()
+    })
+
+    /**
+     * [CapturerHome] display CapturerHome page
+     */
+    it(BUNDLE + 'CapturerHome_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'CapturerHome_001 begin')
+      try {
+        let audioCapturerComponent = await driver.findComponent(ON.id('audio_capturer_card'))
+        await audioCapturerComponent.click()
+        await driver.delayMs(1000)
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.NORMAL_CAPTURER'))))
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.PARALLEL_CAPTURER'))))
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'CapturerHome_001:' + JSON.stringify(err))
+        expect(false).assertTrue()
+      }
+      Logger.info(TAG, BUNDLE + 'CapturerHome_001 end')
+      done()
+    })
+
+    /**
+     * [NormalCapturer] display NormalCapturer page,and click start record btn
+     */
+    it(BUNDLE + 'NormalCapturer_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_001 begin');
+      try {
+        let startRecordBtnComponent = await driver.findComponent(ON.id('normal_start_record_btn'));
+        await startRecordBtnComponent.click();
+        await driver.delayMs(3000);
+        await driver.assertComponentExist(ON.id('normal_show_time_txt'));
+        await driver.assertComponentExist(ON.id('normal_stop_record_btn'));
+        await driver.assertComponentExist(ON.id('normal_pause_record_btn'));
+        startRecordBtnComponent = await driver.findComponent(ON.id('normal_start_record_btn'));
+        expect(startRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'NormalCapturer_001:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_001 end');
+      done();
+    })
+
+    /**
+     * [NormalCapturer] display NormalCapturer page,and click pause record btn
+     */
+    it(BUNDLE + 'NormalCapturer_002', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_002 begin');
+      try {
+        let pauseRecordBtnComponent = await driver.findComponent(ON.id('normal_pause_record_btn'));
+        await pauseRecordBtnComponent.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('normal_continue_record_btn'));
+        pauseRecordBtnComponent = await driver.findComponent(ON.id('normal_pause_record_btn'));
+        console.log(`pauseRecordBtnComponent=${JSON.stringify(pauseRecordBtnComponent)}`);
+        expect(pauseRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'NormalCapturer_002:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_002 end');
+      done();
+    })
+
+    /**
+     * [NormalCapturer] display NormalCapturer page,and click continue record btn
+     */
+    it(BUNDLE + 'NormalCapturer_003', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_003 begin');
+      try {
+        let continueRecordBtnComponent = await driver.findComponent(ON.id('normal_continue_record_btn'));
+        await continueRecordBtnComponent.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('normal_pause_record_btn'));
+        continueRecordBtnComponent = await driver.findComponent(ON.id('normal_continue_record_btn'));
+        expect(continueRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'NormalCapturer_003:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_003 end');
+      done();
+    })
+
+    /**
+     * [NormalCapturer] display NormalCapturer page,and click stop record btn
+     *  show result
+     */
+    it(BUNDLE + 'NormalCapturer_004', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_004 begin');
+      try {
+        let stopRecordBtnComponent = await driver.findComponent(ON.id('normal_stop_record_btn'));
+        await stopRecordBtnComponent.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('normal_player'));
+        await driver.assertComponentExist(ON.id('disalbe_btn'));
+        stopRecordBtnComponent = await driver.findComponent(ON.id('normal_stop_record_btn'));
+        console.log('stopRecordBtnComponent==' + JSON.stringify(stopRecordBtnComponent));
+        expect(stopRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'NormalCapturer_004:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_004 end');
+      done();
+    })
+
+    /**
+     * [NormalCapturer] click record_player to play and pause
+     *  show result
+     */
+    it(BUNDLE + 'NormalCapturer_005', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_005 begin');
+      try {
+        let normal_player = await driver.findComponent(ON.id('normal_player'));
+        await normal_player.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('playing_state'));
+        await driver.delayMs(2000);
+        await normal_player.click();
+        await driver.assertComponentExist(ON.id('paused_state'));
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'NormalCapturer_005:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'NormalCapturer_005 end');
+      done();
+    })
+
+    /**
+     * [ParallelCapturer] display ParallelCapturer page
+     */
+    it(BUNDLE + 'ParallelCapturer_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_001 begin');
+      try {
+        let parallelCapturerBtnComponent = await driver.findComponent(ON.id('btn_parallel_capturer'));
+        await parallelCapturerBtnComponent.click();
+        await driver.delayMs(1000);
+
+        await driver.assertComponentExist(ON.id('music_player_card'));
+        await driver.assertComponentExist(ON.id('parallel_start_btn'));
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'ParallelCapturer_001:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_001 end');
+      done();
+    })
+
+    /**
+     * [ParallelCapturer] click music_player_card to play music,then and click record_btn to start record
+     */
+    it(BUNDLE + 'ParallelCapturer_002', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_002 begin');
+      try {
+        let musicPlayerComponent = await driver.findComponent(ON.id('music_player_card'));
+        await musicPlayerComponent.click();
+        await driver.delayMs(1000);
+
+        // start record
+        let startBtnComponent = await driver.findComponent(ON.id('parallel_start_btn'));
+        await startBtnComponent.click();
+        await driver.delayMs(6000);
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'ParallelCapturer_002:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_002 end');
+      done();
+    })
+
+    /**
+     * [ParallelCapturer] click stop record btn,show result
+     */
+    it(BUNDLE + 'ParallelCapturer_003', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_003 begin');
+      try {
+        // stop record
+        let stopBtnComponent = await driver.findComponent(ON.id('parallel_stop_btn'));
+        await stopBtnComponent.click();
+        await driver.delayMs(500);
+
+        await driver.assertComponentExist(ON.id('record_result'));
+        await driver.assertComponentExist(ON.id('record_player0'));
+        await driver.assertComponentExist(ON.id('record_player1'));
+        await driver.delayMs(1000);
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'ParallelCapturer_003:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_003 end');
+      done();
+    })
+
+    /**
+     * [ParallelCapturer] click 2 record_player
+     *  play,pause,back
+     */
+    it(BUNDLE + 'ParallelCapturer_004', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_004 begin');
+      try {
+        let record_player0 = await driver.findComponent(ON.id('record_player0'));
+        let record_player1 = await driver.findComponent(ON.id('record_player1'));
+        await record_player0.click();
+        await record_player1.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('playing_state0'));
+        await driver.assertComponentExist(ON.id('playing_state1'));
+
+        await record_player0.click();
+        await record_player1.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('paused_state0'));
+        await driver.assertComponentExist(ON.id('paused_state1'));
+        let parallel_capturer_back_btn = await driver.findComponent(ON.id('parallel_capturer_back_btn'));
+        await parallel_capturer_back_btn.click();
+        await driver.delayMs(3000);
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'ParallelCapturer_004:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'ParallelCapturer_004 end');
+      done();
     })
   })
 }

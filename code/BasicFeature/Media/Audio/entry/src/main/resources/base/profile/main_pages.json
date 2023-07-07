@@ -4,6 +4,8 @@
     "pages/PreferOutputDevice",
     "pages/Focus",
     "pages/PresetEffect",
-    "pages/RealtimeEffect"
+    "pages/RealtimeEffect",
+    "pages/NormalCapturer",
+    "pages/ParallelCapturer"
   ]
 }

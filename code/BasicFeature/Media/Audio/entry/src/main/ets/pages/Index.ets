@@ -66,10 +66,17 @@ struct Index {
         })
 
         Column() {
+          Image($r('app.media.png01_Recordingxxxhdpi')).width(72).height(72).margin({ top: 36 })
+          Text($r('app.string.AUDIO_CAPTURER')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
         }
-        .backgroundColor('#F1F2F3')
+        .id('audio_capturer_card')
+        .backgroundColor(Color.White)
         .borderRadius(30)
-        .width(174).height(188)
+        .width(174)
+        .height(188)
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/NormalCapturer' });
+        })
       }
       .margin({ top: 12 })
       .justifyContent(FlexAlign.SpaceBetween)
