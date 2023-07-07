@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "CustomNotificationPush"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "CustomNotificationPush"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CustomNotificationPush"
+    },
+    {
+      "name": "basic_notification",
+      "value": "Basic notification"
+    },
+    {
+      "name": "long_text_notification",
+      "value": "Long text notification"
+    },
+    {
+      "name": "multiline_notification",
+      "value": "Multiline notification"
+    },
+    {
+      "name": "picture_notification",
+      "value": "Picture notification"
+    },
+    {
+      "name": "notification_management_title",
+      "value": "Notifications Management"
+    },
+    {
+      "name": "notification_filter_text",
+      "value": "Notifications filter text"
+    }
+  ]
+}
