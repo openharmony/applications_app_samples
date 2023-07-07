@@ -17,7 +17,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import data_preferences from '@ohos.data.preferences'
-import reminderAgent from '@ohos.reminderAgent'
+import reminderAgent from '@ohos.reminderAgentManager';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../util/Logger';
 
@@ -36,10 +36,13 @@ interface Reminder {
 const BUNDLE = 'reminderAgentManagerTest_';
 const TAG = 'ReminderAgentAppTestPage';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-let ability: UIAbility;
-const TIME_OUT = 1000;
 let uiAbility: UIAbility = undefined;
 
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegatorRegistry.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 // 获取存储数据
 async function getPerferenceData(key: string) {
@@ -81,8 +84,7 @@ export default function appTest() {
         abilityName: 'MainAbility',
         onAbilityCreate: onAbilityCreateCallback
       }
-      uiAbility = await abilityDelegatorRegistry.waitAbilityMonitor(monitor, TIME_OUT);
-      ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      uiAbility = await abilityDelegatorRegistry.waitAbilityMonitor(monitor);
       Logger.info(TAG, 'StartAbility end')
     })
     /**
@@ -92,9 +94,8 @@ export default function appTest() {
       Logger.info(TAG, BUNDLE + 'RequestEnableNotification begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(3000);
-      let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
-      let agreeNotication: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.agree')))));
+      let agreeNotication: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.agree')))));
       await driver.delayMs(1000);
       await agreeNotication.click();
       await driver.delayMs(1000);
@@ -110,6 +111,141 @@ export default function appTest() {
       }
       Logger.info(TAG, BUNDLE + 'RequestEnableNotification end');
     })
+
+    /**
+     * 设置日历，用例只支持RK3568
+     */
+    it(`${BUNDLE}setCalendar`, 0, async () => {
+      Logger.info(TAG, BUNDLE + 'createCalendar begin');
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.calendar')))));
+      let calendarTab: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.calendar')))));
+      await driver.delayMs(1000);
+      await calendarTab.click();
+      await driver.delayMs(1000);
+      // 新建一个日历
+      await driver.assertComponentExist(ON.id('addCalendar'));
+      let addCalendar: Component = await driver.findComponent(ON.id('addCalendar'));
+      await driver.delayMs(1000);
+      await addCalendar.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.determine')))));
+      let confirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.determine')))));
+      await driver.delayMs(1000);
+      await confirm.click();
+      await driver.delayMs(1000);
+      // 开启开关
+      await driver.assertComponentExist(ON.id('calendarSwitch0'));
+      let calendarSwitch: Component = await driver.findComponent(ON.id('calendarSwitch0'));
+      await driver.delayMs(1000);
+      await calendarSwitch.click();
+      await driver.delayMs(3000);
+      // 获取日历数据
+      let calenderData: Reminder[] = await getPerferenceData('Calendar');
+      let lastReminderName: string = calenderData[calenderData.length-1].reminderName;
+      // 删除日历
+      await driver.delayMs(1000);
+      // 坐标基于rk3568
+      await driver.swipe(473, 197, 373, 197, 800);
+      await driver.delayMs(1000);
+      // 校验删除功能
+      let calenderDataDel: Reminder[] = await getPerferenceData('Calendar');
+      if (calenderDataDel !== undefined) {
+        let isExistName = calenderDataDel.find(element => element.reminderName === lastReminderName) !== undefined;
+        if (isExistName) {
+          expect().assertFail();
+        } else {
+          Logger.info(TAG, 'mst success')
+        }
+      }
+      // 再次新建一个日历
+      await driver.delayMs(1000);
+      await addCalendar.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.determine')))));
+      let confirmBtn: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.determine')))));
+      await confirmBtn.click();
+      await driver.delayMs(1000);
+      // 打开日历并设置时间
+      await driver.assertComponentExist(ON.id('calendar0'));
+      let calendarComp: Component = await driver.findComponent(ON.id('calendar0'));
+      await driver.delayMs(1000);
+      await calendarComp.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('calendarTime0'));
+      let calendarTime: Component = await driver.findComponent(ON.id('calendarTime0'));
+      await driver.delayMs(1000);
+      await calendarTime.click();
+      await driver.delayMs(1000);
+      let date = new Date;
+      // 坐标基于rk3568
+      if (date.getMinutes() >= 57) {
+        await driver.swipe(122, 950, 122, 900, 600);
+        await driver.delayMs(1000);
+      }
+      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.delayMs(1000);
+      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.delayMs(1000);
+      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.determine')))));
+      let timeConfirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.determine')))));
+      await driver.delayMs(1000);
+      await timeConfirm.click();
+      await driver.delayMs(1000);
+      // 打开震动
+      await driver.assertComponentExist(ON.id('vibrationSwitch0'));
+      let vibrationSwitch: Component = await driver.findComponent(ON.id('vibrationSwitch0'));
+      await driver.delayMs(1000);
+      await vibrationSwitch.click();
+      await driver.delayMs(1000);
+      // 选择音乐
+      await driver.assertComponentExist(ON.id('music0'));
+      let selectMusic: Component = await driver.findComponent(ON.id('music0'));
+      await driver.delayMs(1000);
+      await selectMusic.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Demo'));
+      let music: Component = await driver.findComponent(ON.text('Demo'));
+      await driver.delayMs(1000);
+      await music.click();
+
+      await driver.delayMs(1000);
+      // 完成配置点击确定
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.confirm')))));
+      let calendarConfirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.confirm')))));
+      await driver.delayMs(1000);
+      await calendarConfirm.click();
+      await driver.delayMs(1000);
+      // 开启开关
+      await driver.assertComponentExist(ON.id('calendarSwitch0'));
+      let currentCalendarSwitch: Component = await driver.findComponent(ON.id('calendarSwitch0'));
+      await driver.delayMs(1000);
+      await currentCalendarSwitch.click();
+      //验证是否在设置的时间之后收到通知
+      await driver.delayMs(300000);
+      // 坐标基于rk3568
+      await driver.swipe(180, 0, 180, 50, 600);
+      await driver.delayMs(1000);
+      let calendar: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.calendar')))))
+      await driver.delayMs(1000);
+      if (!calendar) {
+        Logger.info(TAG, 'No calendar notifications');
+        // 坐标基于rk3568
+        await driver.click(207, 1245);
+        await driver.delayMs(1000);
+        expect().assertFail();
+      } else {
+        await driver.delayMs(1000);
+        // 坐标基于rk3568
+        await driver.click(207, 1245);
+        await driver.delayMs(1000);
+      }
+      Logger.info(TAG, BUNDLE + 'set end');
+    });
+
     /**
      * 设置闹钟，用例只支持RK3568
      */
@@ -117,6 +253,12 @@ export default function appTest() {
       Logger.info(TAG, BUNDLE + 'setClock_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(5000);
+      // 点击闹钟
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.alarm_clock')))));
+      let clockTab: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.alarm_clock')))));
+      await driver.delayMs(1000);
+      await clockTab.click();
+      await driver.delayMs(1000);
       // 添加时钟并设置时间
       await driver.assertComponentExist(ON.id('addClock'));
       let addClock: Component = await driver.findComponent(ON.id('addClock'));
@@ -126,9 +268,8 @@ export default function appTest() {
       // 坐标基于rk3568
       await driver.swipe(522, 950, 522, 900, 600);
       await driver.delayMs(1000);
-      let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      let confirm: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.determine'))));
+      let confirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.determine')))));
       await driver.delayMs(1000);
       await confirm.click();
       await driver.delayMs(1000);
@@ -174,8 +315,8 @@ export default function appTest() {
       await driver.delayMs(1000);
       await driver.swipe(522, 950, 522, 900, 600);
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      let confirmBtn: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.determine'))));
+      let confirmBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.determine'))));
       await driver.delayMs(1000);
       await confirmBtn.click();
       await driver.delayMs(1000);
@@ -230,8 +371,8 @@ export default function appTest() {
       await music.click();
       await driver.delayMs(1000);
       // 完成配置点击确定
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.confirm'))));
-      let clockConfirm: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.confirm'))));
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.confirm')))));
+      let clockConfirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.confirm')))));
       await driver.delayMs(1000);
       await clockConfirm.click();
       await driver.delayMs(1000);
@@ -244,7 +385,7 @@ export default function appTest() {
       // 坐标基于rk3568
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(1000);
-      if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.alarm_clock'))))) {
+      if (!await driver.findComponent(ON.text(await getResourceString($r('app.string.alarm_clock'))))) {
         Logger.info(TAG, 'No alarm notifications');
         // 坐标基于rk3568
         await driver.click(207, 1245);
@@ -258,14 +399,14 @@ export default function appTest() {
       }
       Logger.info(TAG, BUNDLE + 'setClock_001 end');
     });
+
     // 设置计时器，用例只支持RK3568
     it(`${BUNDLE}setCalculagraph`, 0, async () => {
       Logger.info(TAG, BUNDLE + 'calculagraph begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
-      let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.timer'))));
-      let calculagraphTab: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.timer'))));
+      await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.timer')))));
+      let calculagraphTab: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.timer')))));
       await driver.delayMs(1000);
       await calculagraphTab.click();
       await driver.delayMs(1000);
@@ -289,7 +430,7 @@ export default function appTest() {
       // 坐标基于rk3568
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(1000);
-      if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.timer'))))) {
+      if (!await driver.findComponent(ON.text(await getResourceString(($r('app.string.timer')))))) {
         Logger.info(TAG, 'No calendar notifications');
         // 坐标基于rk3568
         await driver.click(207, 1245);
@@ -328,137 +469,6 @@ export default function appTest() {
       }
       await driver.delayMs(1000);
       Logger.info(TAG, BUNDLE + 'calculagraph end');
-    });
-    /**
-     * 设置日历，用例只支持RK3568
-     */
-    it(`${BUNDLE}setCalendar`, 0, async () => {
-      Logger.info(TAG, BUNDLE + 'createCalendar begin');
-      let driver: Driver = Driver.create();
-      await driver.delayMs(1000);
-      let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.calendar'))));
-      let calendarTab: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.calendar'))));
-      await driver.delayMs(1000);
-      await calendarTab.click();
-      await driver.delayMs(1000);
-      // 新建一个日历
-      await driver.assertComponentExist(ON.id('addCalendar'));
-      let addCalendar: Component = await driver.findComponent(ON.id('addCalendar'));
-      await driver.delayMs(1000);
-      await addCalendar.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      let confirm: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      await driver.delayMs(1000);
-      await confirm.click();
-      await driver.delayMs(1000);
-      // 开启开关
-      await driver.assertComponentExist(ON.id('calendarSwitch0'));
-      let calendarSwitch: Component = await driver.findComponent(ON.id('calendarSwitch0'));
-      await driver.delayMs(1000);
-      await calendarSwitch.click();
-      await driver.delayMs(3000);
-      // 获取日历数据
-      let calenderData: Reminder[] = await getPerferenceData('Calendar');
-      let lastReminderName: string = calenderData[calenderData.length-1].reminderName;
-      // 删除日历
-      await driver.delayMs(1000);
-      // 坐标基于rk3568
-      await driver.swipe(473, 197, 373, 197, 800);
-      await driver.delayMs(1000);
-      // 校验删除功能
-      let calenderDataDel: Reminder[] = await getPerferenceData('Calendar');
-      if (calenderDataDel !== undefined) {
-        let isExistName = calenderDataDel.find(element => element.reminderName === lastReminderName) !== undefined;
-        if (isExistName) {
-          expect().assertFail();
-        } else {
-          Logger.info(TAG, 'mst success')
-        }
-      }
-      // 再次新建一个日历
-      await driver.delayMs(1000);
-      await addCalendar.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      let confirmBtn: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      await confirmBtn.click();
-      await driver.delayMs(1000);
-      // 打开日历并设置时间
-      await driver.assertComponentExist(ON.id('calendar0'));
-      let calendarComp: Component = await driver.findComponent(ON.id('calendar0'));
-      await driver.delayMs(1000);
-      await calendarComp.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('calendarTime0'));
-      let calendarTime: Component = await driver.findComponent(ON.id('calendarTime0'));
-      await driver.delayMs(1000);
-      await calendarTime.click();
-      await driver.delayMs(1000);
-      let date = new Date;
-      // 坐标基于rk3568
-      if (date.getMinutes() >= 57) {
-        await driver.swipe(122, 950, 122, 900, 600);
-        await driver.delayMs(1000);
-      }
-      await driver.swipe(522, 950, 522, 900, 600);
-      await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
-      await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      let timeConfirm: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.determine'))));
-      await driver.delayMs(1000);
-      await timeConfirm.click();
-      await driver.delayMs(1000);
-      // 打开震动
-      await driver.assertComponentExist(ON.id('vibrationSwitch0'));
-      let vibrationSwitch: Component = await driver.findComponent(ON.id('vibrationSwitch0'));
-      await driver.delayMs(1000);
-      await vibrationSwitch.click();
-      await driver.delayMs(1000);
-      // 选择音乐
-      await driver.assertComponentExist(ON.id('music0'));
-      let selectMusic: Component = await driver.findComponent(ON.id('music0'));
-      await driver.delayMs(1000);
-      await selectMusic.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Demo'));
-      let music: Component = await driver.findComponent(ON.text('Demo'));
-      await driver.delayMs(1000);
-      await music.click();
-      await driver.delayMs(1000);
-      // 完成配置点击确定
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.confirm'))));
-      let calendarConfirm: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.confirm'))));
-      await driver.delayMs(1000);
-      await calendarConfirm.click();
-      await driver.delayMs(1000);
-      // 开启开关
-      await driver.assertComponentExist(ON.id('calendarSwitch0'));
-      let currentCalendarSwitch: Component = await driver.findComponent(ON.id('calendarSwitch0'));
-      await driver.delayMs(1000);
-      await currentCalendarSwitch.click();
-      //验证是否在设置的时间之后收到通知
-      await driver.delayMs(300000);
-      // 坐标基于rk3568
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(1000);
-      if (!await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.calendar'))))) {
-        Logger.info(TAG, 'No calendar notifications');
-        // 坐标基于rk3568
-        await driver.click(207, 1245);
-        await driver.delayMs(1000);
-        expect().assertFail();
-      } else {
-        await driver.delayMs(1000);
-        // 坐标基于rk3568
-        await driver.click(207, 1245);
-        await driver.delayMs(1000);
-      }
-      Logger.info(TAG, BUNDLE + 'set end');
     });
   })
 }
