@@ -25,6 +25,7 @@ import {
   MenuInfo,
   ResourceManager
 } from '@ohos/base'
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 const TAG: string = 'Bubble'
 
@@ -38,6 +39,7 @@ export default struct Bubble {
   @State customPopup: boolean = false
   @State formInfo: CardItemInfo | undefined = undefined
   @State icon: string = ''
+  @State badgeNum: number = 0;
   dialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteDialog({
       confirm: () => {
@@ -103,11 +105,18 @@ export default struct Bubble {
 
   build() {
     Column() {
-      Image(this.icon)
-        .height('50%')
-        .aspectRatio(1)
-        .objectFit(ImageFit.Cover)
-        .borderRadius(10)
+      Badge({
+        count: this.badgeNum,
+        position: BadgePosition.RightTop,
+        style: {badgeSize: 16, badgeColor: '#FA2A2D'}
+      })
+      {
+        Image(this.icon)
+          .height('50%')
+          .aspectRatio(1)
+          .objectFit(ImageFit.Cover)
+          .borderRadius(10)
+      }
       if (this.formInfo) {
         Text(this.appInfo.appName)
           .fontColor(Color.White)
@@ -165,7 +174,36 @@ export default struct Bubble {
     if (appFormInfo && appFormInfo.length > 0) {
       this.formInfo = appFormInfo[0]
     }
+    let subscriber = {
+      onConsume: this.onConsumeCallback,
+      onCancel: this.onCancelCallback,
+      onBadgeChanged: this.onBadgeChangedCallback
+    }
+    let info = {
+      bundleNames: [this.appInfo.bundleName]
+    };
+    notificationSubscribe.subscribe(subscriber, info).then(() => {
+      console.info(JSON.stringify(this.appInfo.bundleName) + "subscribe success");
+    })
   }
+
+  onConsumeCallback = (data) => {
+    this.badgeNum += 1;
+    console.info("Consume callback : " + JSON.stringify(data));
+  }
+
+  onCancelCallback = (data) => {
+    console.info("Cancel callback" + JSON.stringify(data));
+  }
+
+  onBadgeChangedCallback = (data) => {
+    if (data.bundle === this.appInfo.bundleName) {
+      this.badgeNum = data.badgeNumber;
+      console.info("bundle: ", data.bundle);
+      console.info("uid: ", data.uid);
+      console.info("badgeNumber: ", data.badgeNumber);
+    }
+  };
 
   iconLoadCallback = (image: string) => {
     this.icon = image

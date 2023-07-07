@@ -37,6 +37,10 @@
       "value": "用于请求卡片信息"
     },
     {
+      "name": "notification_scribe_permission",
+      "value": "用于订阅应用通知"
+    },
+    {
       "name": "clear_all_missions_message",
       "value": "已清理至最佳状态"
     },
