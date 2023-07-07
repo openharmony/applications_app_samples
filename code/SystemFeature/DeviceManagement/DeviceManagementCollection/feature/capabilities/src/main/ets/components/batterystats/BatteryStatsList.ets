@@ -44,7 +44,7 @@ export struct BatteryStatsList {
                 overflow: TextOverflow.Ellipsis
               })
               .layoutWeight(1)
-            Text(item.percent.toFixed(2) + '%')
+            Text((item.percent * 100).toFixed(0) + '%')
               .fontSize(18)
               .fontColor($r("app.color.list_content"))
               .textOverflow({

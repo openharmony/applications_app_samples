@@ -26,7 +26,7 @@ export default {
     this.handlers = this.$t('strings.page_transition_handlers')
   },
   handleClick(url) {
-    router.push({
+    router.pushUrl({
       url: url
     })
   }

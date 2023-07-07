@@ -109,7 +109,7 @@ export class BatteryStatsUtil {
     list.forEach(item => {
       total += item.percent;
     })
-    return total.toFixed(2);
+    return (total * 100).toFixed(0);
   }
 
   /**

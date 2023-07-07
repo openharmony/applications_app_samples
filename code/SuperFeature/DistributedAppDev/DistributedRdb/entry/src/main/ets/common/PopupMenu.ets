@@ -48,14 +48,14 @@ export struct PopupMenu {
     Logger.info(TAG, 'start ability ......')
     if (RemoteDeviceModel === null || RemoteDeviceModel.discoverList.length <= 0) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.deviceList)}`)
-      this.startAbility(this.deviceList[this.state.selectedIndex].deviceId)
+      this.startAbility(this.deviceList[this.state.selectedIndex].networkId)
       this.clearSelectState()
       return
     }
     Logger.info(TAG, 'start ability, needAuth')
     RemoteDeviceModel.authenticateDevice(this.deviceList[this.state.selectedIndex], (device) => {
       Logger.info(TAG, 'auth and online finished')
-      this.startAbility(device.deviceId)
+      this.startAbility(device.networkId)
     })
     Logger.info(TAG, 'start ability2 ......')
     this.clearSelectState()
@@ -165,7 +165,7 @@ export struct PopupMenu {
           .onClick(() => {
             this.state.popupMenu = false
             if (index === 0) {
-              router.push({
+              router.pushUrl({
                 url: 'pages/Settings'
               })
             } else {

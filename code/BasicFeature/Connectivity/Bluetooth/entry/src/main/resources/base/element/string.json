@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "蓝牙心率"
+    },
+    {
+      "name": "title_main",
+      "value": "蓝牙心率"
+    },
+    {
+      "name": "title_heart_rate",
+      "value": "实时心率图"
+    },
+    {
+      "name": "permission_reason_use_bluetooth",
+      "value": "允许应用查看蓝牙的配置。"
+    },
+    {
+      "name": "permission_reason_discovery_bluetooth",
+      "value": "允许应用配置本地蓝牙，查找远端设备且与之配对连接。"
+    },
+    {
+      "name": "permission_reason_manage_bluetooth",
+      "value": "允许应用配对蓝牙设备，并对设备的电话簿或消息进行访问。"
+    },
+    {
+      "name": "permission_reason_approximately_location",
+      "value": "允许应用获取设备模糊位置信息。"
+    },
+    {
+      "name": "permission_reason_location",
+      "value": "允许应用获取设备位置信息。"
+    },
+    {
+      "name": "toast_enable_bluetooth",
+      "value": "正在开启蓝牙，请稍后..."
+    },
+    {
+      "name": "toast_connecting",
+      "value": "正在连接中..."
+    },
+    {
+      "name": "tv_no_device",
+      "value": "暂无设备"
+    },
+    {
+      "name": "btn_start_scan_be",
+      "value": "搜索设备"
+    },
+    {
+      "name": "btn_connect",
+      "value": "连接"
+    },
+    {
+      "name": "btn_connecting",
+      "value": "连接中"
+    },
+    {
+      "name": "btn_connected",
+      "value": "已连接"
+    },
+    {
+      "name": "btn_disconnect",
+      "value": "断开连接"
+    },
+    {
+      "name": "btn_disconnecting",
+      "value": "断连中"
+    },
+    {
+      "name": "tv_heart_rate_top_and_bottom",
+      "value": "最高心率：%d bpm \t 最低心率：%d bpm"
+    },
+    {
+      "name": "tv_heart_rate_average_current",
+      "value": "平均心率：%d bpm \t 当前心率：%d bpm"
+    }
+  ]
+}

@@ -14,7 +14,27 @@
  */
 
 import { getString } from '@ohos/common';
-import { ArrayListView, ConvertXml, Url, Util, Process } from '@ohos/capabilities';
+import {
+  ArrayListView,
+  ConvertXml,
+  Url,
+  Util,
+  Process,
+  TaskPool,
+  DequeView,
+  HashMapView,
+  HashSetView,
+  LightWeightMapView,
+  LightWeightSetView,
+  LinkedListView,
+  ListView,
+  PlainArrayView,
+  QueueView,
+  StackView,
+  TreeMapView,
+  TreeSetView,
+  VectorView
+} from '@ohos/capabilities';
 
 @Component
 export struct Capabilities {
@@ -26,7 +46,7 @@ export struct Capabilities {
         .strokeWidth('1px')
         .color($r('sys.color.ohos_id_color_list_separator'))
       Column() {
-        //  此处根据选中的菜单，显示对应的页面内容
+        // 此处根据选中的菜单，显示对应的页面内容
         if (this.selectedLabel === getString($r('app.string.xml'))) {
           ConvertXml()
         }
@@ -41,6 +61,48 @@ export struct Capabilities {
         }
         if (this.selectedLabel === getString($r('app.string.array_list'))) {
           ArrayListView()
+        }
+        if (this.selectedLabel === getString($r('app.string.task_pool'))) {
+          TaskPool()
+        }
+        if (this.selectedLabel === getString($r('app.string.deque'))) {
+          DequeView()
+        }
+        if (this.selectedLabel === getString($r('app.string.hash_map'))) {
+          HashMapView()
+        }
+        if (this.selectedLabel === getString($r('app.string.hash_set'))) {
+          HashSetView()
+        }
+        if (this.selectedLabel === getString($r('app.string.light_weight_map'))) {
+          LightWeightMapView()
+        }
+        if (this.selectedLabel === getString($r('app.string.light_weight_set'))) {
+          LightWeightSetView()
+        }
+        if (this.selectedLabel === getString($r('app.string.linked_list'))) {
+          LinkedListView()
+        }
+        if (this.selectedLabel === getString($r('app.string.list'))) {
+          ListView()
+        }
+        if (this.selectedLabel === getString($r('app.string.plain_array'))) {
+          PlainArrayView()
+        }
+        if (this.selectedLabel === getString($r('app.string.queue'))) {
+          QueueView()
+        }
+        if (this.selectedLabel === getString($r('app.string.stack'))) {
+          StackView()
+        }
+        if (this.selectedLabel === getString($r('app.string.tree_map'))) {
+          TreeMapView()
+        }
+        if (this.selectedLabel === getString($r('app.string.tree_set'))) {
+          TreeSetView()
+        }
+        if (this.selectedLabel === getString($r('app.string.vector'))) {
+          VectorView()
         }
       }
       .padding({ left: 12, right: 12 })

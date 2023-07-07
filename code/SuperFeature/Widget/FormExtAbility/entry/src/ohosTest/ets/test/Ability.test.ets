@@ -33,7 +33,13 @@ export default function abilityTest() {
       await DRIVER.delayMs(1500);
       await DRIVER.assertComponentExist(ON.text('eTSFormExtAbility'));
       let app = await DRIVER.findComponent(ON.text('eTSFormExtAbility'));
-      await app.longClick();
+      // 获取文字控件边框
+      let rect = await app.getBounds();
+      // 计算文字控件高度
+      let height = rect.bottom - rect.top;
+      // 获取文字控件中心点
+      let point = await app.getBoundsCenter();
+      await DRIVER.longClick(point.x, point.y - height);
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.text('服务卡片'));
       let formBtn = await DRIVER.findComponent(ON.text('服务卡片'));

@@ -18,3 +18,7 @@ export { logger } from './src/main/ets/util/Logger';
 export { CustomDataSource } from './src/main/ets/components/CustomDataSource';
 
 export { getString, getStringArray } from './src/main/ets/util/ResourceUtil';
+
+export { BaseDataSource } from './src/main/ets/components/BaseDataSource';
+
+export { EmptyPage } from './src/main/ets/components/EmptyPage';

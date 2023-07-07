@@ -200,11 +200,7 @@ struct Index {
         .buttonStyle()
         .id('btnChangeSelection')
         .onClick(() => {
-          if (this.selectStart < this.selectEnd) {
-            this.isChangeSelection = true;
-          } else {
-            promptAction.showToast({ message: $r('app.string.select_tips'), bottom: TOAST_BOTTOM });
-          }
+          this.isChangeSelection = true;
         })
     }
     .cardStyle()

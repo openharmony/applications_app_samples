@@ -19,7 +19,8 @@ import Style from '../util/Style'
 @CustomDialog
 export default struct SelectDialog {
   controller: CustomDialogController
-  getImage: () => void
+  getImage: (maxCount: number) => void
+  maxSelectCount: number
 
   build() {
     Column() {
@@ -42,7 +43,7 @@ export default struct SelectDialog {
         .margin({ top: Style.MARGIN_TOP, bottom: Style.MARGIN_BOTTOM })
         .onClick(() => {
           this.controller.close()
-          this.getImage()
+          this.getImage(this.maxSelectCount)
         })
 
       Divider().color($r('app.color.gray')).width($r('app.float.select_dialog_divider_width'))

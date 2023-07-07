@@ -105,12 +105,14 @@ struct Index {
         } else {
           this.distributedData.isOver = gameDataA.isOver
         }
+        this.flushData()
       })
     } else if (this.deviceFlag === 'A') {
       Logger.info(TAG, `enter deviceFlag A`)
       this.kvStoreModel.setOnMessageReceivedListener(context, GobangConst.DEVICE_B, (value) => {
         let gameDataB = JSON.parse(value)
         this.fallChessInner(gameDataB.x, gameDataB.y)
+        this.flushData()
       })
     }
   }

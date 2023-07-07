@@ -13,56 +13,59 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger';
 
-const TAG: string = 'MainAbility'
+const TAG: string = '[Sample_MainAbility]';
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    logger.info(TAG, `[Demo] MainAbility onCreate`)
-    let atManager = abilityAccessCtrl.createAtManager()
+  onCreate(want, launchParam): void {
+    globalThis.mainContext = this.context;
+    logger.info(TAG, '[Demo] MainAbility onCreate');
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
-      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA','ohos.permission.MEDIA_LOCATION']).then((data) => {
-        logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
-        logger.info(TAG, `err: ${JSON.stringify(err)}`)
+      atManager.requestPermissionsFromUser(this.context,
+        ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION'])
+        .then((data) => {
+          logger.info(TAG, `data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+          logger.info(TAG, `err: ${JSON.stringify(err)}`);
       })
     } catch (err) {
       logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
   }
 
-  onDestroy() {
-    logger.info(TAG, `[Demo] MainAbility onDestroy`)
+  onDestroy(): void {
+    logger.info(TAG, '[Demo] MainAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage): void {
     // Main window is created, set main page for this ability
-    logger.info(TAG, `[Demo] MainAbility onWindowStageCreate`)
+    logger.info(TAG, '[Demo] MainAbility onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        logger.info(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
-        return
+        logger.info(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
       }
-      logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
+      logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
     })
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    logger.info(TAG, `[Demo] MainAbility onWindowStageDestroy`)
+    logger.info(TAG, '[Demo] MainAbility onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     // Ability has brought to foreground
-    logger.info(TAG, `[Demo] MainAbility onForeground`)
+    logger.info(TAG, '[Demo] MainAbility onForeground');
   }
 
-  onBackground() {
+  onBackground(): void {
     // Ability has back to background
-    logger.info(TAG, `[Demo] MainAbility onBackground`)
+    logger.info(TAG, '[Demo] MainAbility onBackground');
   }
 }

@@ -253,7 +253,7 @@ export default function abilityTest() {
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}SystemCapability_001, end`);
 
-      let opts = await getStringArray($r('app.strarray.settings_operations'));
+      let opts = await getStringArray($r('app.strarray.system_capability'))
 
       logger.info(TAG, `${BUNDLE}SystemCapability_002, begin`);
       logger.info(TAG, `${BUNDLE}SystemCapability_002, find ${opts[0]}`);

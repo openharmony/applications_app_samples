@@ -14,6 +14,6 @@
  */
 
 // 声明一个距离顶层距离的常量，API10版本页面会沉浸，后续升级版本之后设置为72
-export  const  TOPRECTHEIGHT = 0;
+export  const  TOPRECTHEIGHT = 72;
 // 声明一个距离底层距离的常量
-export  const  BOTTOMRECTHEIGHT = 0;
+export  const  BOTTOMRECTHEIGHT = 72;

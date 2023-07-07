@@ -44,6 +44,7 @@ export default class RdbModel {
   async getRdbStore() {
     Logger.info(TAG, 'getRdbStore begin')
     if (this.isCreateDbDone) {
+      Logger.info(TAG, 'getRdbStore isCreateDbDone')
       return
     }
     try {
@@ -56,6 +57,7 @@ export default class RdbModel {
     try {
       // 执行sql语句，联系人个各个属性设定
       await this.rdbStore.executeSql(this.sqlCreateTable)
+      console.info(`create tabe start ` + this.sqlCreateTable);
       // 设置分布式表，表明为contact
       await this.rdbStore.setDistributedTables([this.tableName])
     } catch (e) {
@@ -123,8 +125,14 @@ export default class RdbModel {
   }
 
   async onDataChange(device, callback) {
-    this.distributedTable = await this.rdbStore.obtainDistributedTableName(device, this.tableName)
-    Logger.info(TAG, `obtainDistributedTableName,distributedTable=` + this.distributedTable)
+    Logger.info(TAG, `onDataChange enter，device=` + device + ` ,tableName = ` + this.tableName)
+    try {
+      this.distributedTable = await this.rdbStore.obtainDistributedTableName(device, this.tableName)
+      Logger.info(TAG, `obtainDistributedTableName,distributedTable=` + this.distributedTable)
+    }
+    catch (err) {
+      Logger.error(TAG, `ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`)
+    }
     this.dataChangeCallback = callback
     await this.pullData()
     this.rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, async (devices) => {
@@ -134,6 +142,7 @@ export default class RdbModel {
   }
 
   async pullData() {
+    Logger.info(TAG, `start pullData`)
     await this.rdbStore.executeSql('delete from ' + this.tableName)
     let predicates = new data_rdb.RdbPredicates(this.distributedTable)
     let resultSet = await this.rdbStore.query(predicates, this.columns)

@@ -1,0 +1,108 @@
+{
+  "color": [
+    {
+      "name": "select_border_color",
+      "value": "#e92f4f"
+    },
+    {
+      "name": "add_background_color",
+      "value": "#eae9e9"
+    },
+    {
+      "name": "edit_pages_background_color",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "material_font_color_one",
+      "value": "#ffffff"
+    },
+    {
+      "name": "material_font_color_two",
+      "value": "#000000"
+    },
+    {
+      "name": "material_font_color_three",
+      "value": "#6259DE"
+    },
+    {
+      "name": "material_font_color_four",
+      "value": "#4694C2"
+    },
+    {
+      "name": "material_font_color_five",
+      "value": "#5AADA0"
+    },
+    {
+      "name": "material_font_color_six",
+      "value": "#5BA854"
+    },
+    {
+      "name": "material_font_color_seven",
+      "value": "#86AD53"
+    },
+    {
+      "name": "material_font_color_eight",
+      "value": "#8C55C2"
+    },
+    {
+      "name": "material_font_color_nine",
+      "value": "#CC5286"
+    },
+    {
+      "name": "material_font_color_ten",
+      "value": "#D94E38"
+    },
+    {
+      "name": "material_font_color_eleven",
+      "value": "#DB6B42"
+    },
+    {
+      "name": "material_font_color_twelve",
+      "value": "#E08C3A"
+    },
+    {
+      "name": "material_font_color_thirteen",
+      "value": "#D1A738"
+    },
+    {
+      "name": "edit_image_mark_scroll_selected",
+      "value": "#007DFF"
+    },
+    {
+      "name": "edit_image_mark_scroll",
+      "value": "#4aFFFFFF"
+    },
+    {
+      "name": "edit_image_adjust_selected",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "edit_image_public_background",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "edit_image_crop_select",
+      "value": "#19FFFFFF"
+    },
+    {
+      "name": "edit_image_slider_trackColor",
+      "value": "#1A000000"
+    },
+    {
+      "name": "edit_image_slider_selected",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "edit_image_stack_image",
+      "value": "#ff070707"
+    },
+    {
+      "name": "edit_image_stack_resolution",
+      "value": "#66000000"
+    },
+    {
+      "name": "update_page_image",
+      "value": "#ff070707"
+    }
+  ]
+}

@@ -100,6 +100,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileRelease.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/app_packing_tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/hap-sign-tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

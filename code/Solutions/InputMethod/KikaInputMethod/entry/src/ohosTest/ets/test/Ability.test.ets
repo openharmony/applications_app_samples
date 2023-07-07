@@ -55,9 +55,11 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
-      let kikaInput = await list.scrollSearch(ON.text('kikainput'));
-      await kikaInput.click();
+      let kikainput = await list.scrollSearch(ON.text('kikainput', MatchPattern.CONTAINS));
       await driver.delayMs(2000);
+      let bound = await kikainput.getBounds();
+      await driver.click(bound.right - 10, bound.bottom - 10);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}ChangeInputMethod_001 end`);
       done();
     })

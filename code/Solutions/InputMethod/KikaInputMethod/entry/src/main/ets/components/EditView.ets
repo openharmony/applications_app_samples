@@ -20,6 +20,7 @@ import { KeyStyle } from '../common/StyleConfiguration';
 @Extend(Image) function arrowStyle(isSelection: boolean, inputStyle: KeyStyle) {
   .size({ width: inputStyle.editImageSize, height: inputStyle.editImageSize })
   .objectFit(ImageFit.Contain)
+  .responseRegion({ x: -20, y: -20, width: 64, height: 64 })
   .backgroundColor(Color.White)
   .borderRadius(20)
   .colorBlend(isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
@@ -95,6 +96,22 @@ export struct EditView {
         .onClick(() => {
           this.moveOrSelectBegin();
         })
+
+        if (this.isSelection) {
+          Button() {
+            Image($r('app.media.ic_cursor_all'))
+              .arrowStyle(this.isSelection, this.inputStyle)
+          }
+          .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize })
+          .type(ButtonType.Circle)
+          .backgroundColor(Color.White)
+          .borderRadius(90)
+          .margin({ left: 74 })
+          .id('cursor_all')
+          .onClick(() => {
+            InputHandler.getInstance().sendExtendAction(inputMethodEngine.ExtendAction.SELECT_ALL);
+          })
+        }
 
         Button() {
           Image($r('app.media.ic_cursor_right'))

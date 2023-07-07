@@ -3,6 +3,10 @@
     {
       "name": "pages_text",
       "value": "窗口视频"
+    },
+    {
+      "name": "startNewAbility",
+      "value": "拉起悬浮应用"
     }
   ]
 }

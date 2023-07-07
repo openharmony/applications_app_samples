@@ -71,7 +71,8 @@ struct ButtonSample {
               Button() {
                 Image($r('app.media.ic_button_circle_add'))
               }
-              .buttonDefaultStyle()
+              .layoutWeight(1)
+              .margin({ left: 8, right: 8 })
               .type(ButtonType.Circle) // Set button type as attribute
               .onClick(() => {
                 ShowToast.longToast(`${getStringData($r('app.string.button_type_circle'))}${getStringData($r('app.string.button_click'))}`)

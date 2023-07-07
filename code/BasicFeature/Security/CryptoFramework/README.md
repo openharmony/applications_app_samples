@@ -38,7 +38,7 @@ This sample shows how [@ohos.security.cryptoFramework](https://gitee.com/openhar
 
 ### Dependency
 
-* filePicker[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+* filePicker[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)
 * fileManager[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
 * UI Ability Context[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
 
@@ -47,4 +47,6 @@ This sample shows how [@ohos.security.cryptoFramework](https://gitee.com/openhar
 1. This sample can only be run on standard-system devices.
 2. This sample has been adapted to the API version 9 SDK, version number 3.2.12.2.
 3. This sample requires DevEco Studio 3.1 Release(Build Version: 3.1.0.500) to compile and run.
+4. This sample uses filePicker to select file, the files saved with filePicker, such as new keys generated, can be updated in real time, but the files directly pushed to the folder, they requires reboot the device and refresh the display.
+5. This sample supports text file currently only English characters, and as a demonstration, the length of text that can be used successfully does not exceed 8,000 bytes.
 

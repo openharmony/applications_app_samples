@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "app_name",
+      "value": "卡片"
+    },
+    {
+      "name": "service_card",
+      "value": "服务卡片"
+    },
+    {
+      "name": "remove",
+      "value": "移除"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加到桌面"
+    }
+  ]
+}

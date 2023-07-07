@@ -21,6 +21,7 @@ import promptAction from '@ohos.promptAction'
 import display from '@ohos.display'
 
 const TAG: string = '[AddPictures]'
+const MAX_IMAGE_COUNT = 9;
 
 @Component
 export struct AddPictures {
@@ -32,7 +33,8 @@ export struct AddPictures {
   scroller: Scroller = new Scroller()
   dialogController: CustomDialogController = new CustomDialogController({
     builder: SelectDialog({
-      getImage: this.GetPictures.getImage
+      getImage: this.GetPictures.getImage,
+      maxSelectCount: (MAX_IMAGE_COUNT - this.imageList.length)
     }),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
@@ -71,14 +73,13 @@ export struct AddPictures {
 
   getTemplate() {
     switch (this.curBp) {
-      case 'md':
-        return '1fr 1fr 1fr'
       case 'lg':
-        return '1fr 1fr 1fr 1fr 1fr 1fr'
+        return '1fr 1fr 1fr 1fr 1fr'
+      case 'md':
       case 'xs':
       case 'sm':
       default:
-        return '1fr 1fr'
+        return '1fr 1fr 1fr'
     }
   }
 
@@ -123,28 +124,31 @@ export struct AddPictures {
                   .id('imageShow')
               }
             })
-            GridItem() {
-              Column() {
-                Image($r('app.media.ic_public_add'))
-                  .width($r('app.float.add_picture_ic_width'))
-                  .aspectRatio(1)
+            if (this.imageList.length < MAX_IMAGE_COUNT) {
+              GridItem() {
+                Column() {
+                  Image($r('app.media.ic_public_add'))
+                    .width($r('app.float.add_picture_ic_width'))
+                    .aspectRatio(1)
+                }
+                .aspectRatio(1)
+                .alignItems(HorizontalAlign.Center)
+                .justifyContent(FlexAlign.Center)
+                .height(this.getPicHeight())
+                .margin($r('app.float.add_picture_margin_background'))
+                .aspectRatio(1)
+                .backgroundColor($r('app.color.light_gray'))
+                .id('add')
+                .onClick(() => {
+                  this.dialogController.open()
+                })
               }
-              .aspectRatio(1)
-              .alignItems(HorizontalAlign.Center)
-              .justifyContent(FlexAlign.Center)
-              .height(this.getPicHeight())
-              .margin($r('app.float.add_picture_margin_background'))
-              .aspectRatio(1)
-              .backgroundColor($r('app.color.light_gray'))
-              .id('add')
-              .onClick(() => {
-                this.dialogController.open()
-              })
             }
           }
           .columnsGap($r('app.float.add_picture_ic_gap'))
           .rowsGap($r('app.float.add_picture_ic_gap'))
           .margin({ top: $r('app.float.add_picture_ic_gap') })
+          .columnsTemplate(this.getTemplate())
           .width('100%')
           .height('100%')
         }

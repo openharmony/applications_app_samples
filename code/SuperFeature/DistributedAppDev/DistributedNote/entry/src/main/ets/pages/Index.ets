@@ -79,14 +79,14 @@ struct Index {
     Logger.info(TAG, 'start ability ......')
     if (RemoteDeviceModel === null || RemoteDeviceModel.discoverDevices.length <= 0) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.devices)}`)
-      this.startAbility(this.devices[this.selectedIndex].deviceId)
+      this.startAbility(this.devices[this.selectedIndex].networkId)
       this.clearSelectState()
       return
     }
     Logger.info(TAG, 'start ability, needAuth')
     RemoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], (device) => {
       Logger.info(TAG, 'auth and online finished')
-      this.startAbility(device.deviceId)
+      this.startAbility(device.networkId)
     })
     Logger.info(TAG, 'start ability2 ......')
     this.clearSelectState()

@@ -8,9 +8,9 @@
 
 ### 效果预览
 
-|主页| 窗口视频                                        |
-|--------------------------------|---------------------------------------------|
-|![home](screenshots/devices/mainWindow.png) | ![play1](screenshots/devices/subWindow.png) |
+|主页| 窗口视频                                        | 拉起悬浮应用                                  |
+|--------------------------------|---------------------------------------------|---------------------------------------------|
+|![home](screenshots/devices/mainWindow.png) | ![play1](screenshots/devices/subWindow.png) | ![play1](screenshots/devices/startAbility.png) |
 
 使用说明：
 
@@ -20,7 +20,9 @@
 
 3.点击全屏播放并切换窗口方向按钮可以全屏播放视频并且改变窗口方向。
 
-4.点击视频屏幕拉起小窗口播放视频, 点击小窗口, 界面显示小窗口状态为“获焦状态”; 再次点击视频关闭小窗口, 界面显示小窗口状态为“失焦状态”
+4.点击视频屏幕拉起小窗口播放视频, 界面显示小窗口状态为“获焦状态”; 再次点击视频关闭小窗口, 界面显示小窗口状态为“失焦状态”
+
+5.点击视频屏幕拉起小窗口视频，再点击小窗口中的“拉起悬浮应用”按钮，成功拉起WindowRatio悬浮应用
 
 ### 工程目录
 ```
@@ -33,7 +35,7 @@ entry/src/main/ets/
 |   |---Index.ets                      // 首页
 |   |---SubWindowPage.ets              // 全屏播放
 |   |---Video.ets                      // 视频播放
-``` 
+```
 
 ### 具体实现
 
@@ -60,7 +62,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-不涉及。
+本示例需要依赖[窗口比例](code/BasicFeature/WindowManagement/WindowRatio)sample，本示例点击“拉起悬浮应用”按钮之后会以悬浮窗模式拉起[窗口比例](code/BasicFeature/WindowManagement/WindowRatio)sample。
 
 
 ### 约束与限制

@@ -110,15 +110,17 @@ export struct CustomInputText {
 
   async initTextInput(event: ClickEvent): Promise<void> {
     focusControl.requestFocus('customInputText');
-    if (this.isAttached) {
-      await this.detach();
-    }
-    await this.inputController.attach(true, {
+    this.inputController.updateAttribute({
+      textInputType: inputAttribute.getInputType(this.inputTypeIndex),
+      enterKeyType: inputAttribute.getEnterType(this.enterKeyIndex)
+    })
+    await this.inputController.attach(false, {
       inputAttribute: {
         textInputType: inputAttribute.getInputType(this.inputTypeIndex),
         enterKeyType: inputAttribute.getEnterType(this.enterKeyIndex)
       }
     });
+    this.inputController.showTextInput();
     this.isAttached = true;
     this.isShow = true;
     this.isOn = true;
@@ -158,12 +160,15 @@ export struct CustomInputText {
   changeSelection(): void {
     if (this.isChangeSelection) {
       let message = this.inputText + this.selectInput + this.lastInput;
-      if (this.selectStart > message.length) {
-        return;
+      if (this.selectStart <= this.selectEnd) {
+        this.selectIndex = this.selectStart;
+        this.cursorIndex = this.selectEnd;
       }
-      this.selectIndex = this.selectStart;
-      this.cursorIndex = this.selectEnd;
-      if (this.selectEnd > message.length) {
+      if (this.selectStart > this.selectEnd) {
+        this.selectIndex = this.selectEnd;
+        this.cursorIndex = this.selectStart;
+      }
+      if (this.cursorIndex > message.length) {
         this.cursorIndex = message.length;
       }
       this.inputText = message.substring(0, this.selectIndex);
@@ -187,10 +192,13 @@ export struct CustomInputText {
     logger.info(TAG, `off`);
     this.inputController.off('insertText');
     this.inputController.off('deleteLeft');
+    this.inputController.off('deleteRight');
     this.inputController.off('moveCursor');
     this.inputController.off('selectByMovement');
     this.inputController.off('selectByRange');
     this.inputController.off('sendFunctionKey')
+    this.inputController.off('handleExtendAction');
+    this.inputController.off('sendKeyboardStatus');
   }
 
   initListener(): void {
@@ -205,6 +213,18 @@ export struct CustomInputText {
       this.selectIndex = this.cursorIndex;
       this.selectInput = '';
       this.cursorLeft = this.context.measureText(this.inputText).width;
+    })
+    this.inputController.on('deleteRight', (length) => {
+      let message = this.inputText + this.selectInput + this.lastInput;
+      if (this.cursorIndex < message.length) {
+        this.selectIndex = this.cursorIndex;
+        this.selectInput = '';
+        let deleteIndex = this.cursorIndex + length;
+        if (deleteIndex > message.length) {
+          deleteIndex = message.length;
+        }
+        this.lastInput = message.substring(this.cursorIndex + length, message.length);
+      }
     })
     this.inputController.on('deleteLeft', (length) => {
       this.inputText = this.inputText.substring(0, this.inputText.length - length);
@@ -298,6 +318,20 @@ export struct CustomInputText {
     })
     this.inputController.on('sendFunctionKey', (enterKey: inputMethod.FunctionKey) => {
       promptAction.showToast({ message: `enterKey Clicked ${enterKey.enterKeyType.toString()}`, bottom: 500 });
+    })
+    this.inputController.on('sendKeyboardStatus', (keyBoardStatus: inputMethod.KeyboardStatus) => {
+      logger.info(TAG, `sendKeyboardStatus keyBoardStatus: ${keyBoardStatus}`);
+    });
+    this.inputController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
+      if (action === inputMethod.ExtendAction.SELECT_ALL) {
+        let message = this.inputText + this.selectInput + this.lastInput;
+        this.cursorIndex = message.length;
+        this.selectIndex = 0;
+        this.inputText = ''
+        this.selectInput = message.substring(0, this.cursorIndex);
+        this.lastInput = '';
+        this.cursorLeft = this.context.measureText(this.selectInput).width;
+      }
     })
   }
 

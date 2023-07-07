@@ -20,7 +20,7 @@
   <text class="introduce">{{ $t('strings.translate_image') }}</text>
   <div class="image-border-div">
     <image class="image-class" src="common/image/ic_scenery1.png"
-           style="transform: translateX({{ imageXTranslate }})translateY({{ imageYTranslate }})">
+           style="transform: translateX({{ imageXTranslate }}) translateY({{ imageYTranslate }})">
     </image>
   </div>
   <div class="slider-div">
@@ -41,7 +41,7 @@
   <text class="introduce">{{ $t('strings.translate_container') }}</text>
   <div class="container-border-div">
     <div class="container-div"
-         style="transform: translateX({{ containerXTranslate }})translateY({{ containerYTranslate }});">
+         style="transform: translateX({{ containerXTranslate }}) translateY({{ containerYTranslate }});">
       <text>{{ $t('strings.translate_container_text') }}</text>
       <text>{{ $t('strings.translate_container_text') }}</text>
       <text>{{ $t('strings.translate_container_text') }}</text>

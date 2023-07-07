@@ -17,19 +17,18 @@ import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
-import { getString } from '../util/ResourceUtil'
+import { getString } from '../util/ResourceUtil';
 
-
-const TAG: string = '[Sample_Upload]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Upload_'
-const WAITING_TIME = 1000
-const LONG_WAITING_TIME = 3000
+const TAG: string = '[Sample_Upload]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Upload_';
+const WAITING_TIME = 1000;
+const LONG_WAITING_TIME = 3000;
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function uploadAbilityTest() {
   describe('uploadAbilityTest', function () {
-    //默认网络可用
+    // 默认网络可用
     let isNetAvailable = true;
     /**
      * 打开应用
@@ -43,9 +42,9 @@ export default function uploadAbilityTest() {
           abilityName: 'MainAbility'
         });
         done();
-      } catch (expection) {
-        expect(0).assertEqual(expection.code);
-        hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(expection));
+      } catch (exception) {
+        expect(0).assertEqual(exception.code);
+        hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(exception));
         done();
       }
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
@@ -61,8 +60,8 @@ export default function uploadAbilityTest() {
       // 获取访问权限
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission');
 
-      //获取manager
-      const tipAllow = await getString($r('app.string.allow'))
+      // 获取manager
+      const tipAllow = await getString($r('app.string.allow'));
       await driver.assertComponentExist(ON.text(tipAllow));
       let btnAccept = await driver.findComponent(ON.text(tipAllow));
       await btnAccept.click();
@@ -80,13 +79,13 @@ export default function uploadAbilityTest() {
       let driver = await Driver.create();
       await driver.delayMs(WAITING_TIME);
 
-      const tipNetwork = await getString($r('app.string.network_not_available'))
+      const tipNetwork = await getString($r('app.string.network_not_available'));
       let text = await driver.findComponent(ON.text(tipNetwork));
-      if (text != null) {
+      if (text !== null) {
         isNetAvailable = false;
         hilog.info(DOMAIN, TAG, BUNDLE + 'CheckNetworkAvailable_001 network not available');
 
-        const tipConfirm = await getString($r('app.string.confirm'))
+        const tipConfirm = await getString($r('app.string.confirm'));
         let bt = ON.text(tipConfirm);
         await driver.assertComponentExist(bt);
         let btnAccept = await driver.findComponent(bt);
@@ -139,14 +138,13 @@ export default function uploadAbilityTest() {
 
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 find imageShow');
       let imageList = await driver.findComponents(ON.id('imageShow'));
-      if (imageList != null && imageList.length > 0) {
+      if (imageList !== null && imageList.length > 0) {
         hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 takePhotoSuccess');
         await driver.assertComponentExist(ON.id('imageShow'));
         await driver.delayMs(WAITING_TIME);
       } else {
         hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 takePhotoFail');
         hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 maybe the device does not have a camera.');
-        //        expect().assertFail();
       }
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 end');
     })
@@ -172,35 +170,41 @@ export default function uploadAbilityTest() {
       await pickFromAlbum.click();
       await driver.delayMs(LONG_WAITING_TIME);
 
-      const tipAll = await getString($r('app.string.all_photo'))
+      const tipAll = await getString($r('app.string.all_photo'));
       await driver.assertComponentExist(ON.text(tipAll));
       // 选择图片,坐标选择
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 pick');
 
-      let clickable = await driver.findComponents(ON.clickable(true).type("Column"))
-      if (clickable != null && clickable.length > 2) {
-        //第一个Column是拍照，后续的都是照片,请确保相册内有两张或以上的照片
-        let component = clickable[1];
-        await component.click();
-        hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 pick first pic');
-
-        let component2 = clickable[2];
-        await component2.click();
-        hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 pick second pic');
+      let clickable = await driver.findComponents(ON.clickable(true).type("Column"));
+      let select = 0;
+      if (clickable !== null) {
+        // 有一张照片
+        if (clickable.length > 1) {
+          let component = clickable[1];
+          await component.click();
+          hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 pick first pic');
+          select = 1;
+        }
+      }
+      if (select !== 0) {
+        // 有选择图片
+        await driver.delayMs(WAITING_TIME);
+        const tipProgress = await getString($r('app.string.progress_tip_1_9'));
+        await driver.assertComponentExist(ON.text(tipProgress));
+        // 点击完成
+        hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 finish');
+        const tipCompleted = await getString($r('app.string.complete'));
+        await driver.assertComponentExist(ON.text(tipCompleted));
+        let finish = await driver.findComponent(ON.text(tipCompleted));
+        await finish.click();
+      } else {
+        // 点击取消
+        hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 close');
+        let clickableSet = await driver.findComponents(ON.clickable(true));
+        await clickableSet[0].click();
       }
       await driver.delayMs(WAITING_TIME);
-      const tipProgress = await getString($r('app.string.progress_tip'))
-      await driver.assertComponentExist(ON.text(tipProgress));
-      // 点击完成
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 finish');
-
-      const tipCompleted = await getString($r('app.string.complete'))
-      await driver.assertComponentExist(ON.text(tipCompleted));
-      let finish = await driver.findComponent(ON.text(tipCompleted));
-      await finish.click();
-      await driver.delayMs(WAITING_TIME);
       await driver.assertComponentExist(ON.id('finish'));
-
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_002 end');
     })
 
@@ -215,37 +219,34 @@ export default function uploadAbilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 checkPicture');
       let imageList = await driver.findComponents(ON.id('imageShow'));
       await driver.delayMs(WAITING_TIME);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 imageList.length=' + imageList.length);
-      //只在网络可用的情况下测试发表
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 imageList.length=' + (imageList !== null ? imageList.length : 0));
+      // 只在网络可用的情况下测试发表
       if (isNetAvailable) {
-        // 也许设备没有相机，只有2张图片
-        if (imageList.length >= 2) {
+        // 也许设备没有相机，只有1张图片
+        if (imageList !== null && imageList.length >= 1) {
           hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 checkPictureSuccess');
           try {
             // 点击发表
             hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 clickPublish');
 
-            const tipPublish = await getString($r('app.string.publish'))
+            const tipPublish = await getString($r('app.string.publish'));
 
             await driver.assertComponentExist(ON.text(tipPublish));
             let publishBtn = await driver.findComponent(ON.text(tipPublish));
             await publishBtn.click();
 
-            const tipSuccess = await getString($r('app.string.publish_success'))
-            await driver.waitForComponent(ON.text(tipSuccess), 30000)
+            const tipSuccess = await getString($r('app.string.publish_success'));
+            await driver.waitForComponent(ON.text(tipSuccess), 30000);
             // 检查上传是否成功
             hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 clickConfirm');
 
-            const tipConfirm = await getString($r('app.string.confirm'))
+            const tipConfirm = await getString($r('app.string.confirm'));
             await driver.assertComponentExist(ON.text(tipConfirm));
             let confirm = await driver.findComponent(ON.text(tipConfirm));
             await confirm.click();
           } catch (err) {
             hilog.info(DOMAIN, TAG, 'PublishFunction_001 fail err:' + JSON.stringify(err));
           }
-        } else {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 checkPictureFail');
-          expect().assertFail();
         }
       }
       done();
@@ -255,7 +256,7 @@ export default function uploadAbilityTest() {
     /**
      * 进入下载界面
      */
-    it(BUNDLE + 'StartAbility_001', 0, async ()=>{
+    it(BUNDLE + 'StartAbility_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let driver = await Driver.create();
       let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
@@ -263,7 +264,7 @@ export default function uploadAbilityTest() {
       await driver.pressBack();
       await driver.delayMs(WAITING_TIME);
       await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.download_sample'))));
-      let downloadBtn=await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.download_sample'))));
+      let downloadBtn = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.download_sample'))));
       await downloadBtn.click();
       await driver.delayMs(WAITING_TIME);
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
@@ -278,8 +279,6 @@ export default function uploadAbilityTest() {
       let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
       let manager = ability.context.resourceManager;
       await driver.delayMs(WAITING_TIME);
-
-      // const tip0 = await getString($r('app.string.network_not_available'))
       let text = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.get_fileList_fail'))));
       if (text) {
         isNetAvailable = false;

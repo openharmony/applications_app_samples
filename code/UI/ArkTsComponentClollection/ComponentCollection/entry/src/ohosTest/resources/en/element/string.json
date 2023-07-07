@@ -813,6 +813,26 @@
       "name": "share_element_transition",
       "value": "Shared element transition"
     },
+    {
+      "name": "Multiplex_interface",
+      "value": "multiplex"
+    },
+    {
+      "name": "Floating_window",
+      "value": "floating window"
+    },
+    {
+      "name": "Folder_expansion",
+      "value": "folder expansion"
+    },
+    {
+      "name": "Shop_card_expansion",
+      "value": "shop card expansion"
+    },
+    {
+      "name": "Gallery_card_expansion",
+      "value": "gallery card expansion"
+    },
     // Size
     {
       "name": "size_width",

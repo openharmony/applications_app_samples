@@ -211,8 +211,8 @@ export default function appTest() {
       Logger.info(TAG, BUNDLE + 'TxtEdit_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
-      // 添加三个文件
-      for (let i = 0; i < 3; i++) {
+      // 添加五个文件
+      for (let i = 0; i < 5; i++) {
         await driver.assertComponentExist(ON.id('addBtn'));
         let addBtn: Component = await driver.findComponent(ON.id('addBtn'));
         await addBtn.click();

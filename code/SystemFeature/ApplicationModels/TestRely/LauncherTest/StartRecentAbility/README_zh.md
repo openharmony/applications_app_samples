@@ -12,15 +12,17 @@
 
 使用说明
 
-1.安装编译的hap包，将应用安装在仿桌面上。（仅在仿桌面中使用才会有以下情况）
+1.基于StartRecentAbility工程（com.acts.startrecentability），对该工程编译产生的hap包进行手动签名。（仅StartRecentAbility工程可实现启动上一次的组件实例功能）。
 
-2.点击应用主界面上的应用图标，可以启动应用。
+2.安装签名成功后的hap包，启动仿桌面（Launcher）。
 
-3.长按应用图标弹出菜单，点击打开，可以正常启动应用。
+3.点击应用主界面上的应用图标，可以启动应用。
 
-4.打开EntryAbility页面，页面中会有时间戳显示，点击”StartEntryAbility“按钮，新建一个EntryAbility实例，会有一个新的时间戳显示，此时返回桌面并再次打开应用，会看到时间戳显示为第二个时间戳。
+4.长按应用图标弹出菜单，点击打开，可以正常启动应用。
 
-5.打开EntryAbility页面，会有时间戳显示，点击”startSingletonAbility“打开单实例的SecondAbility（页面中显示”SingletonAbility“），当打开SecondAbility后，返回桌面并再次打开应用，显示为EntryAbility且时间戳内容未改变。
+5.打开EntryAbility页面，页面中会有时间戳显示，点击"StartEntryAbility"按钮，新建一个EntryAbility实例，会有一个新的时间戳显示，此时点击home键回到桌面，点击应用图标打开应用，会看到时间戳显示为第二个时间戳。
+
+6.打开EntryAbility页面，会有时间戳显示，点击"startSingletonAbility"按钮，打开单实例的SecondAbility（页面中显示"SingletonAbility"），当打开SecondAbility后，点击home键回到桌面，点击应用图标打开应用，显示为EntryAbility且时间戳内容未改变。
 
 ### 工程目录
 
@@ -39,7 +41,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 应用启动的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](./base/src/main/ets/default/manager/LauncherAbilityManager.ts)
+- 应用启动的功能接口封装在LauncherAbilityManager，源码参考：[LauncherAbilityManager.ts](../../../Launcher/base/src/main/ets/default/manager/LauncherAbilityManager.ts)
   - 启动上次打开的的组件实例：拉起上次打开的任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
   
 ### 相关权限
@@ -48,7 +50,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher)
+本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../../../Launcher/)
 
 ### 约束与限制
 

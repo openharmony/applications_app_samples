@@ -52,6 +52,16 @@ entry/src/main/ets/
 |   |   |---shareElementTransitionSample
 |   |   |   |---ShareElementTransitionSample.ets         // 共享元素转场
 |   |   |   |---ShareElementTransitionSampleTo.ets
+|   |   |---floatingSample
+|   |   |   |---FloatingWindowSample.ets                 // 悬浮窗
+|   |   |---folderSample
+|   |   |   |---FolderSample.ets                         // 文件夹展开
+|   |   |---gallerySample
+|   |   |   |---GalleryCardSample.ets                    // 图库卡片展开
+|   |   |---multiplexSample
+|   |   |   |---MultiplexSample.ets                      // 多任务
+|   |   |---shopSample
+|   |   |   |---ShopCardSample.ets                       // 商店卡片展开
 |   |---components                                       // 详情页面
 |   |   |---ComponentData.ets
 |   |   |---auxiliary         // 辅助

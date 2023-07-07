@@ -78,7 +78,7 @@ struct Index {
       Logger.info(TAG, 'isStage = Stage')
       this.state.isStage = true
       this.state.isDistributed = true
-      this.state.distributedDevice = want.parameters.device as string;
+      this.state.distributedDevice = want.parameters.dmsSrcNetworkId as string;
       let context = getContext(this) as common.UIAbilityContext
       context.startAbility({
         bundleName: BUNDLE,

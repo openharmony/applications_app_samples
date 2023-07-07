@@ -20,11 +20,11 @@ const TAG: string = 'TestIndex';
 @Entry
 @Component
 struct Index {
+  @State message: string = 'Hello World';
+  
   aboutToAppear() {
     logger.info(TAG, 'TestAbility index aboutToAppear');
   }
-
-  @State message: string = 'Hello World';
 
   build() {
     Row() {

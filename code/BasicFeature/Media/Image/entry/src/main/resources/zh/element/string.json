@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "entry_desc",
-      "value": "图片处理"
+      "value": "图片编辑"
     },
     {
       "name": "MainAbility_desc",
-      "value": "图片处理"
+      "value": "图片编辑"
     },
     {
       "name": "MainAbility_label",
-      "value": "图片处理"
+      "value": "图片编辑"
     },
     {
       "name": "publish_comments",

@@ -1,0 +1,15 @@
+{
+  "data": {
+    "title": "App Store",
+    "text": "Js Widget Card"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "EntryAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}
