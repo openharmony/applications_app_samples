@@ -14,9 +14,11 @@
  */
 
 import CommonEventManager from '@ohos.commonEventManager'
+import promptAction from '@ohos.promptAction'
 import Logger from '../../../../../entry/src/main/ets/model/Logger'
 
 const SEND_DATA:string = 'usual.event.SEND_DATA'
+
 @Entry
 @Component
 struct Index {
@@ -25,39 +27,52 @@ struct Index {
       Column() {
         Button() {
           Text($r('app.string.publish'))
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
+            .fontSize(22)
+            .fontColor($r('app.color.white'))
         }
         .type(ButtonType.Capsule)
         .margin({ top: 20 })
-        .backgroundColor('#0D9FFB')
-        .width('40%')
+        .backgroundColor('#007DFF')
+        .width('80%')
         .height('5%')
         .onClick(() => {
           // 公共事件相关信息
           let options = {
             code: 0, // 公共事件的初始代码
+            bundleName: '',
             data: getContext(this).resourceManager.getStringSync($r('app.string.publish_data')),
             isOrdered: true // 有序公共事件
           }
+
           // 发布公共事件回调
           function publishCallback(err) {
             if (err) {
-              Logger.error(`publish failed ${JSON.stringify(err)}`)
+              Logger.error(`publish failed ${JSON.stringify(err)}`);
             } else {
-              Logger.info('publish success')
+              try {
+                promptAction.showToast({
+                  message: $r('app.string.publish_success'),
+                  duration: 2000,
+                });
+              } catch (error) {
+                Logger.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+              }
+              Logger.info('publish success');
             }
           }
-          //发布公共事件
+
+          // 发布公共事件
           try {
-            CommonEventManager.publish(SEND_DATA, options, publishCallback)
+            CommonEventManager.publish(SEND_DATA, options, publishCallback);
           } catch (err) {
-            Logger.error(`publish failed, catch error ${JSON.stringify(err)}`)
+            Logger.error(`publish failed, catch error ${JSON.stringify(err)}`);
           }
         })
       }
       .width('100%')
     }
     .height('100%')
+    .backgroundColor($r('app.color.background_light_gray'))
+    .id('btnPublish')
   }
 }

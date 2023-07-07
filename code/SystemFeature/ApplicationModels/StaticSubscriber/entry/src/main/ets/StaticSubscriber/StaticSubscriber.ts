@@ -17,22 +17,28 @@ import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriber
 import Notification from '@ohos.notificationManager'
 import Logger from '../model/Logger'
 
-const BUNDLE_NAME:string = 'com.samples.staticsubscriber'
+const BUNDLE_NAME: string = 'com.samples.staticsubscriber'
+
 export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event) {
-    Logger.info(`onReceiveEvent hasCalled, event is: ${event.event}`)
+    Logger.info('onReceiveEvent hasCalled, event is: ${event.event}');
     let bundle = {
       bundle: BUNDLE_NAME,
     }
+
     Notification.setNotificationEnable(bundle, true).then(() => {
-      Logger.info('setNotificationEnable success')
+      Logger.info('setNotificationEnable success');
     })
+
     // publish回调
     function publishCallback(err) {
       if (err) {
-        Logger.info(`publish failed ${JSON.stringify(err)}`)
+        Logger.info('publish failed ${JSON.stringify(err)}');
+      } else {
+        Logger.info('publish success');
       }
     }
+
     // 通知Request对象
     let notificationRequest = {
       id: 1, // 通知ID
@@ -45,6 +51,6 @@ export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
         }
       }
     }
-    Notification.publish(notificationRequest, publishCallback)
+    Notification.publish(notificationRequest, publishCallback);
   }
 }

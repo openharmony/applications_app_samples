@@ -12,16 +12,81 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import CommonEventManager from '@ohos.commonEventManager'
+import Logger from '../model/Logger'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
 struct Index {
+  @State isStaticSubscribeEnable: boolean = false
+
+  @Styles toggleStyle(){
+    .width(52)
+    .height(26)
+    .margin({ right: 12 })
+  }
+
   build() {
     Row() {
       Column() {
+        Button() {
+          Text($r('app.string.static_subscribe_enable'))
+            .fontSize(22)
+            .fontColor($r('app.color.white'))
+        }
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
+        .backgroundColor('#007DFF')
+        .id('btnEnable')
+        .width('80%')
+        .height('5%')
+        .onClick(() => {
+          CommonEventManager.setStaticSubscriberState(true).then(() => {
+            try {
+              promptAction.showToast({
+                message: $r('app.string.static_subscribe_enabled'),
+                duration: 2000,
+              });
+            } catch (error) {
+              Logger.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+            }
+            Logger.info(`Set static subscriber state success, state is ${true}`);
+          }).catch((err) => {
+            Logger.info(`Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}`);
+          })
+        })
+
+        Button() {
+          Text($r('app.string.static_subscribe_disable'))
+            .fontSize(22)
+            .fontColor($r('app.color.white'))
+        }
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
+        .backgroundColor('#007DFF')
+        .id('btnDisable')
+        .width('80%')
+        .height('5%')
+        .onClick(() => {
+          CommonEventManager.setStaticSubscriberState(false).then(() => {
+            try {
+              promptAction.showToast({
+                message: $r('app.string.static_subscribe_disabled'),
+                duration: 2000,
+              });
+            } catch (error) {
+              Logger.error('showToast args error code is ${error.code}, message is ${error.message}');
+            }
+            Logger.info('Set static subscriber state success, state is ${true}');
+          }).catch((err) => {
+            Logger.info('Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}');
+          })
+        })
       }
       .width('100%')
     }
     .height('100%')
+    .backgroundColor($r('app.color.background_light_gray'))
   }
 }

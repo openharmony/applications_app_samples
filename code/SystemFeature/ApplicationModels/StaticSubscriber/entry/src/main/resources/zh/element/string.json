@@ -19,6 +19,22 @@
     {
       "name": "StaticSubscriber_label",
       "value": "静态订阅"
+    },
+    {
+      "name": "static_subscribe_enable",
+      "value": "开启静态订阅"
+    },
+    {
+      "name": "static_subscribe_disable",
+      "value": "关闭静态订阅"
+    },
+    {
+      "name": "static_subscribe_enabled",
+      "value": "静态订阅已开启"
+    },
+    {
+      "name": "static_subscribe_disabled",
+      "value": "静态订阅已关闭"
     }
   ]
 }
