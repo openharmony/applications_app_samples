@@ -29,7 +29,7 @@ entry/src/main/ets/
 |---MainAbility
 |   |---EntryAbility.ts                // Ability类
 |---fileFs
-|   |---createFile.ts                  // 创建文件
+|   |---CreateFile.ts                  // 创建文件
 |---pages
 |   |---Index.ets                      // 首页
 ```
