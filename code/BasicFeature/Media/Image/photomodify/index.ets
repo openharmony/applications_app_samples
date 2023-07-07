@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-export { logger } from './src/main/ets/components/util/Logger'
-export {ChoicePhoto} from './src/main/ets/components/pages/ChoicePhoto'
-export {EditPage} from './src/main/ets/components/pages/EditPage'
+
+export { logger } from './src/main/ets/components/util/Logger';
+
+export { UpdatePage } from './src/main/ets/components/pages/UpdatePage';
+
+export { EditImage } from './src/main/ets/components/pages/EditImage';

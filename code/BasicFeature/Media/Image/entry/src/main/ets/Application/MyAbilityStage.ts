@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger'
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger';
 
-const TAG: string = 'MyAbilityStage'
+const TAG: string = '[Sample_MyAbilityStage]';
 
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    logger.info(TAG, `[Demo] MyAbilityStage onCreate`)
+  onCreate(): void {
+    logger.info(TAG, '[Demo] MyAbilityStage onCreate');
   }
 }

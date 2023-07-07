@@ -4,7 +4,12 @@
 
 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。
 
-本示例使用 [DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md) 展示不同种类的应用存储信息，通过 [Bundle模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md) 来获取不同应用的包名与应用名等信息， 使用 [应用空间统计](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md) 来查询当前设备的存储使用情况，使用 [卷管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md) 来查询可用卷存储使用情况。
+### 效果预览
+
+| 存储空间统计                          | 应用存储信息                                            | 可用卷信息                    |
+|---------------------------------|---------------------------------------------------|--------------------------|
+| ![](./screenshots/device/main_page_zh.png) | ![](./screenshots/device/application_page_zh.png) | ![](./screenshots/device/volume_page_zh.png) |
+
 使用说明：
 
 1. 主页面会展示当前设备存储使用的详细信息。
@@ -13,13 +18,37 @@
 
 3. 当有可用的卷时，点击“查看可用卷信息”查看当前设备所有的可用卷的存储使用情况。
 
+### 工程目录
+```
+entry/src/main/ets/
+|---Application
+|   |---MyAbilityStage.ts
+|---common
+|   |---ParseData.ets                         // 数据
+|   |---QueryStorageData.ets                  // 空间
+|   |---QueryVolumeData.ets                   // 可用卷
+|   |---TitleBar.ets                          // 标题
+|---MainAbility
+|   |---MainAbility.ts
+|---model
+|   |---AppData.ets                           // 应用数据
+|   |---StorageData.ets                       // 存储空间
+|   |---VolumeData.ets                        // 可用卷使用
+|---pages
+|   |---AppInfo.ets                           // 应用详情
+|   |---MainPage.ets                          // 主页
+|   |---StorageList.ets                       // 空间列表
+|   |---VolumeList.ets                        // 可用卷列表
+|---utils
+|   |---CheckEmptyUtils.ets                   // 判空方法
+|   |---Logger.ts                             // 日志工具
+|   |---StorageConst.ets                      
+```
+### 具体实现
 
-
-### 效果预览
-
-![](./screenshots/device/main_page_zh.png)
-![](./screenshots/device/application_page_zh.png)
-![](./screenshots/device/volume_page_zh.png)
+* 本示例使用DataPanel组件展示不同种类的应用存储信息，通过 Bundle模块来获取不同应用的包名与应用名等信息，使用应用空间统计来查询当前设备的存储使用情况，使用卷管理来查询可用卷存储使用情况。
+* 源码链接：[QueryStorageData.ets](code/SystemFeature/DeviceManagement/StorageStatistic/entry/src/main/ets/common/QueryStorageData.ets)，[QueryVolumeData.ets](code/SystemFeature/DeviceManagement/StorageStatistic/entry/src/main/ets/common/QueryVolumeData.ets)
+* 接口参考：[DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md)，[@ohos.file.storageStatistics](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md)，[@ohos.file.volumeManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md)
 
 ### 相关权限
 

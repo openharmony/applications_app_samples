@@ -17,6 +17,10 @@
       "value": "Device Id"
     },
     {
+      "name": "devname",
+      "value": "Device Name"
+    },
+    {
       "name": "refreshRate",
       "value": "Device RefreshRate"
     },
@@ -35,6 +39,54 @@
     {
       "name": "remove_screen",
       "value": "Remove Screen"
+    },
+    {
+      "name": "alive",
+      "value": "Device Alive"
+    },
+    {
+      "name": "state",
+      "value": "Device State"
+    },
+    {
+      "name": "rotation",
+      "value": "Device Rotation"
+    },
+    {
+      "name": "densityDPI",
+      "value": "Device DensityDPI"
+    },
+    {
+      "name": "orientation",
+      "value": "Device Orientation"
+    },
+    {
+      "name": "densityPixels",
+      "value": "Device DensityPixels"
+    },
+    {
+      "name": "scaledDensity",
+      "value": "Device ScaledDensity"
+    },
+    {
+      "name": "xDPI",
+      "value": "Device XDPI"
+    },
+    {
+      "name": "yDPI",
+      "value": "Device YDPI"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "yes",
+      "value": "Yes"
+    },
+    {
+      "name": "no",
+      "value": "No"
     }
   ]
 }

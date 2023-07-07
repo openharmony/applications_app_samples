@@ -144,9 +144,10 @@ struct Language {
             Text($r('app.string.edit'))
               .key('edit')
               .fontSize(22).fontColor($r('app.color.blue'))
+              .margin({ right: 10 })
               .onClick(() => {
                 router.push({
-                  url: 'pages/EditPreferred',
+                  url: 'international/pages/EditPreferred',
                   params: {
                     language: this.localLanguage
                   }

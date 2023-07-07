@@ -1,4 +1,4 @@
-:: Copyright (c) 2023 Huawei Device Co., Ltd.
+:: Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
 :: Licensed under the Apache License, Version 2.0 (the "License");
 :: you may not use this file except in compliance with the License.
 :: You may obtain a copy of the License at
@@ -11,7 +11,7 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 
-@echo off
+@Echo off
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
@@ -67,5 +67,12 @@ goto fail
 @rem Execute hvigor
 "%NODE_EXE%" %WRAPPER_MODULE_PATH% %*
 
+if "%ERRORLEVEL%" == "0" goto hvigorwEnd
+
 :fail
 exit /b 1
+
+:hvigorwEnd
+if "%OS%" == "Windows_NT" endlocal
+
+:end

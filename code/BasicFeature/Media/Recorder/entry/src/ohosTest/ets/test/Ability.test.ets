@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -13,29 +13,59 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
+import { describe, expect, it } from '@ohos/hypium';
+import { Component, Driver, MatchPattern, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { logger } from '../util/Logger';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 const TAG = '[Sample_Recorder]';
 const BUNDLE = 'Recorder_';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 let ability;
 
+async function getAudioNum(): Promise<number> {
+  logger.info(TAG, `${BUNDLE}getAudioAssets start`);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fetchOp = {
+    selections: `${fileKeyObj.MEDIA_TYPE}=?`,
+    selectionArgs: [`${mediaLibrary.MediaType.AUDIO}`],
+  };
+  let library = await mediaLibrary.getMediaLibrary(getContext());
+  let fetchFileResult: mediaLibrary.FetchFileResult = undefined;
+  try {
+    fetchFileResult = await library.getFileAssets(fetchOp);
+  } catch (err) {
+    expect().assertFail();
+    logger.info(TAG, `${BUNDLE}getAudioAssets failed, message = ${JSON.stringify(err)}`);
+  }
+  if (fetchFileResult != undefined && fetchFileResult.getCount() > 0) {
+    return fetchFileResult.getCount();
+  } else {
+    return 0;
+  }
+}
+
+function componentNullAble(arr: Component[]): Component[] {
+  if (arr === null || arr === undefined) {
+    arr = [];
+  }
+  return arr;
+}
+
 export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
   describe('ActsAbilityTest', function () {
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
-      logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
+      logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let want = {
         bundleName: "ohos.samples.recorder",
         abilityName: "EntryAbility"
       };
       delegator.startAbility(want, (err) => {
-        logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
-      })
+        logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`)
+      });
       ability = await abilityDelegatorRegistry.getCurrentTopAbility();
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
@@ -50,7 +80,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 获取权限
       logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission');
-      await driver.assertComponentExist(ON.text('允许'))
+      await driver.assertComponentExist(ON.text('允许'));
       let btnStart = await driver.findComponent(ON.text('允许'));
       await btnStart.click();
       let i = 0;
@@ -64,14 +94,19 @@ export default function abilityTest() {
       await delegator.getCurrentTopAbility().then((Ability) => {
         logger.info(TAG, `${BUNDLE}get top ability`);
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
+      });
       logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end');
       done();
     })
 
-    // 录音功能，进入录音界面开始录音
+    /**
+     * 录音功能，进入录音界面开始录音
+     */
     it(BUNDLE + 'RecordePage_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'RecordePage_001 begin');
+      // 初始化用户数据管理模块实例
+      let currentAudioNum = await getAudioNum();
+      logger.info(TAG, BUNDLE + 'RecordePage_001 start Audio Num = ' + currentAudioNum);
       // 首页，非多选状态，点击录音按钮进入录音界面
       await driver.assertComponentExist(ON.id('btnRecord'));
       let btnRecord = await driver.findComponent(ON.id('btnRecord'));
@@ -81,7 +116,9 @@ export default function abilityTest() {
       done();
     })
 
-    // 录音功能,录音界面，暂停继续录制功能
+    /**
+     * 录音功能,录音界面，暂停继续录制功能
+     */
     it(BUNDLE + 'RecordePage_002', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'RecordePage_002 begin');
       // 录音界面 暂停录音功能
@@ -93,7 +130,7 @@ export default function abilityTest() {
       let durationStr0 = await duration.getText();
       await driver.delayMs(1000);
       let durationStr1 = await duration.getText();
-      expect(durationStr0 === durationStr1).assertTrue();
+      expect(durationStr0).assertEqual(durationStr1);
 
       // 录音界面 继续录音功能
       await pauseOrRecord.click();
@@ -104,7 +141,9 @@ export default function abilityTest() {
       done();
     })
 
-    // 录音功能,录音界面，停止录音功能
+    /**
+     * 录音功能,录音界面，停止录音功能
+     */
     it(BUNDLE + 'RecordePage_003', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'RecordePage_003 begin');
       // 录音界面 停止录音
@@ -123,12 +162,14 @@ export default function abilityTest() {
       done();
     })
 
-
-    // 首页，已有录音，播放功能测试
+    /**
+     * 首页，已有录音，播放功能测试
+     */
     it(BUNDLE + 'Play_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'Play_001 begin');
       // 如果有录音文件，点击第一个开始播放
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      audios = componentNullAble(audios);
       if (audios.length > 0) {
         await audios[0].click();
         await driver.assertComponentExist(ON.id('pauseOrPlay'));
@@ -139,7 +180,7 @@ export default function abilityTest() {
         let durationStr0 = await playTime.getText();
         await driver.delayMs(1000);
         let durationStr1 = await playTime.getText();
-        expect(durationStr0 === durationStr1).assertTrue();
+        expect(durationStr0).assertEqual(durationStr1);
         await pauseOrPlay.click();
         await driver.delayMs(1000);
         let durationStr2 = await playTime.getText();
@@ -150,14 +191,115 @@ export default function abilityTest() {
       done();
     })
 
-    // 首页，已有录音，左滑重命名和删除功能
+    /**
+     * 录制多条音频
+     */
+    it(BUNDLE + 'RE_Recorde_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'RE_Recorde_001 begin');
+      let sAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      sAudios = componentNullAble(sAudios);
+      let num = 3;
+      let sAudioNum: number = await getAudioNum();
+      logger.info(TAG, BUNDLE + 'RE_Recorde_001 start Audio Num = ' + sAudioNum);
+      while (num > 0) {
+        // 首页，非多选状态，点击录音按钮进入录音界面
+        await driver.assertComponentExist(ON.id('btnRecord'));
+        let btnRecord = await driver.findComponent(ON.id('btnRecord'));
+        await btnRecord.click();
+        await driver.delayMs(2000);
+        await driver.assertComponentExist(ON.id('finishRecord'));
+        let finishRecord = await driver.findComponent(ON.id('finishRecord'));
+        await finishRecord.click();
+        await driver.delayMs(500);
+        num--;
+      }
+      let eAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      eAudios = componentNullAble(eAudios);
+      expect(sAudios.length + 3).assertEqual(eAudios.length);
+      let eAudioNum: number = await getAudioNum();
+      logger.info(TAG, BUNDLE + 'RE_Recorde_001 end Audio Num = ' + eAudioNum);
+      expect(sAudioNum + 3).assertEqual(eAudioNum);
+      logger.info(TAG, BUNDLE + 'RE_Recorde_001 end');
+      done();
+    })
+
+    /**
+     * 连续删除->数量0
+     */
+    it(BUNDLE + 'Del_Recorde_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'Del_Recorde_001 begin');
+      await driver.delayMs(1000);
+      let sAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      sAudios = componentNullAble(sAudios);
+      logger.info(TAG, BUNDLE + 'sAudios.length = ' + sAudios.length);
+      let totalNum = sAudios.length;
+      let num = 0;
+      while (num < totalNum) {
+        logger.info(TAG, BUNDLE + 'num = ' + num + ' ,totalNum = ' + totalNum);
+        await driver.delayMs(1000);
+        // 坐标基于设备RK3568
+        await driver.swipe(500, 230, 367, 230, 600);
+        await driver.delayMs(2000);
+        // 坐标基于设备RK3568
+        await driver.click(670, 240);
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.type("AlertDialog"));
+        let resourceManager = ability.context.resourceManager;
+        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
+        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS));
+        await btnInDailog.click();
+        await driver.delayMs(1000);
+        num++;
+      }
+      let eAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(eAudios).assertNull();
+      let eAudioNum: Number = await getAudioNum();
+      logger.info(TAG, BUNDLE + 'Del_Recorde_001 end Audio Num = ' + eAudioNum);
+      expect(eAudioNum).assertEqual(0);
+      logger.info(TAG, BUNDLE + 'Del_Recorde_001 end');
+      done();
+    })
+
+    /**
+     * 录制多条音频
+     */
+    it(BUNDLE + 'RE_Recorde_002', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'RE_Recorde_001 begin');
+      let num = 0;
+      while (num < 3) {
+        // 首页，非多选状态，点击录音按钮进入录音界面
+        await driver.assertComponentExist(ON.id('btnRecord'));
+        let btnRecord = await driver.findComponent(ON.id('btnRecord'));
+        await btnRecord.click();
+        await driver.delayMs(2000);
+        await driver.assertComponentExist(ON.id('finishRecord'));
+        let finishRecord = await driver.findComponent(ON.id('finishRecord'));
+        await finishRecord.click();
+        await driver.delayMs(500);
+        num++;
+      }
+      let eAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      eAudios = componentNullAble(eAudios);
+      expect(eAudios.length).assertEqual(num);
+      let eAudioNum: Number = await getAudioNum();
+      logger.info(TAG, BUNDLE + 'RE_Recorde_002 end Audio Num = ' + eAudioNum);
+      expect(eAudioNum).assertEqual(num);
+      logger.info(TAG, BUNDLE + 'RE_Recorde_002 end');
+      done();
+    })
+
+    /**
+     * 首页，已有录音，左滑重命名
+     */
     it(BUNDLE + 'SlideAudioItem_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 begin');
       // 如果有录音文件，左滑第一个文件
       await driver.delayMs(1000);
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      audios = componentNullAble(audios);
       if (audios.length > 0) {
-        await driver.swipe(500,248,367,248,500);
+        // 坐标基于设备RK3568
+        await driver.swipe(500, 248, 367, 248, 500);
         await driver.delayMs(1000);
         await audios[0].click();
         // 重命名
@@ -178,51 +320,19 @@ export default function abilityTest() {
         await sure.click();
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
-
-        // 删除
-        await driver.delayMs(1000);
-        await audios[1].longClick();
-        await driver.delayMs(1000);
-        await audios[1].click();
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.id('checkedDelete'));
-        let checkedDelete = await driver.findComponent(ON.id('checkedDelete'));
-        await checkedDelete.click();
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.type("AlertDialog"));
-        let resourceManager = ability.context.resourceManager;
-        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
-        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS))
-        await btnInDailog.click();
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
-        await driver.delayMs(500);
       }
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 end');
       done();
     })
 
-    // 因为上面的用例有删除音频，在测试多选前，需要再录制一条音频，确保可以进入多选状态
-    it(BUNDLE + 'Recorde_001', 0, async function (done) {
-      logger.info(TAG, BUNDLE + 'RecordePage_001 begin');
-      // 首页，非多选状态，点击录音按钮进入录音界面
-      await driver.assertComponentExist(ON.id('btnRecord'));
-      let btnRecord = await driver.findComponent(ON.id('btnRecord'));
-      await btnRecord.click();
-      await driver.delayMs(2000);
-      await driver.assertComponentExist(ON.id('finishRecord'));
-      let finishRecord = await driver.findComponent(ON.id('finishRecord'));
-      await finishRecord.click();
-      await driver.delayMs(500);
-      logger.info(TAG, BUNDLE + 'Recorde_001 end');
-      done();
-    })
-
-    // 首页，已有录音，多选状态和推出多选状态
+    /**
+     * 首页，已有录音，多选状态和推出多选状态
+     */
     it(BUNDLE + 'CheckState_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'CheckState_001 begin');
-      // 如果有录音文件，左滑第一个文件
+      // 如果有录音文件，长按第一个文件
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      audios = componentNullAble(audios);
       if (audios.length > 0) {
         // 进入多选
         await audios[0].longClick();
@@ -241,7 +351,7 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.id('checkedNum'));
         let checked = await driver.findComponent(ON.id('checkedNum'));
         let checkedNum = await checked.getText();
-        expect(checkedNum === '1').assertTrue();
+        expect(checkedNum).assertEqual('1');
         expect(await checkedRename.isEnabled()).assertTrue();
         expect(await checkedDelete.isEnabled()).assertTrue();
 
@@ -252,6 +362,77 @@ export default function abilityTest() {
       }
       done();
       logger.info(TAG, BUNDLE + 'CheckState_001 end');
+    })
+
+    /**
+     * 长按删除一条录音文件
+     */
+    it(BUNDLE + 'DeleteRecord_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'DeleteRecord_001 begin');
+      await driver.delayMs(1000);
+      let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      audios = componentNullAble(audios);
+      if (audios.length > 0) {
+        await audios[1].longClick();
+        await driver.delayMs(1000);
+        await audios[1].click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('checkedDelete'));
+        let checkedDelete = await driver.findComponent(ON.id('checkedDelete'));
+        await checkedDelete.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.type("AlertDialog"));
+        let resourceManager = ability.context.resourceManager;
+        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
+        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS));
+        await btnInDailog.click();
+        await driver.delayMs(1000);
+      }
+      logger.info(TAG, BUNDLE + 'DeleteRecord_001 end');
+      done();
+    })
+
+    /**
+     * 首页，全部删除
+     */
+    it(BUNDLE + 'Del_All_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'Del_All_001 begin');
+      // 如果有录音文件，长按第一个文件
+      let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      audios = componentNullAble(audios);
+      if (audios.length > 0) {
+        // 进入多选
+        await audios[0].longClick();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('closeCheck'));
+        await driver.assertComponentExist(ON.id('checkedRename'));
+        await driver.assertComponentExist(ON.id('checkedDelete'));
+
+        let checkedRename = await driver.findComponent(ON.id('checkedRename'));
+        let checkedDelete = await driver.findComponent(ON.id('checkedDelete'));
+        expect(await checkedRename.isEnabled()).assertFalse();
+        expect(await checkedDelete.isEnabled()).assertFalse();
+        // 点击选择所有音频
+        for (let item of audios) {
+          await item.click();
+          await driver.delayMs(500);
+        }
+        await checkedDelete.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.type("AlertDialog"));
+        let resourceManager = ability.context.resourceManager;
+        let confirm = await resourceManager.getStringValue($r('app.string.dilog_confirm'));
+        let btnInDailog = await driver.findComponent(ON.text(confirm, MatchPattern.CONTAINS));
+        await btnInDailog.click();
+        await driver.delayMs(1000);
+      }
+      let eAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(eAudios).assertNull();
+      let eAudioNum: Number = await getAudioNum();
+      logger.info(TAG, BUNDLE + 'CheckState_001 end Audio Num = ' + eAudioNum);
+      expect(eAudioNum).assertEqual(0);
+      logger.info(TAG, BUNDLE + 'CheckState_001 end');
+      done();
     })
   })
 }

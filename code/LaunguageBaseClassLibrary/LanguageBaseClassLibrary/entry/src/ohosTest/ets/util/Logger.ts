@@ -20,7 +20,6 @@ const PREFIX = 'Sample_LanguageBaseClassLibraryTest';
 const FORMAT = '%{public}s, %{public}s';
 
 class Logger {
-
   debug(...args: string[]): void {
     hilog.debug(DOMAIN, PREFIX, FORMAT, args);
   }

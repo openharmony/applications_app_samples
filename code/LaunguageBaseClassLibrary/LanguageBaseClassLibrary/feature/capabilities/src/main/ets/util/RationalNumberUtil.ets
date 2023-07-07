@@ -25,13 +25,13 @@ const RATIONAL_NUMBER2 = util.RationalNumber.parseRationalNumber(NUMERATOR2, DEN
 
 export function compareTo(): string {
   let result = RATIONAL_NUMBER1.compare(RATIONAL_NUMBER2)
-  if (result == 0) {
+  if (result === 0) {
     return getString($r('app.string.equal_to'));
   }
-  if (result == 1) {
+  if (result === 1) {
     return getString($r('app.string.greater_than'));
   }
-  if (result == -1) {
+  if (result === -1) {
     return getString($r('app.string.less_than'));
   }
 }

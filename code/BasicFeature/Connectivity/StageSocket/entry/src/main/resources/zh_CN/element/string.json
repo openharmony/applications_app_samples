@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Socket通信"
+    },
+    {
+      "name": "internet_permission",
+      "value": "获取网络权限"
+    },
+    {
+      "name": "get_wifi_info_permission",
+      "value": "获取Wifi权限"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "input_roomNumber",
+      "value": "输入房间号"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "create_room",
+      "value": "创建房间"
+    },
+    {
+      "name": "send_message",
+      "value": "发送"
+    },
+    {
+      "name": "classmate_fengzi",
+      "value": "风子同学"
+    },
+    {
+      "name": "classmate_wenzi",
+      "value": "文子同学"
+    },
+    {
+      "name": "online",
+      "value": "在线"
+    },
+    {
+      "name": "offline",
+      "value": "离线"
+    },
+    {
+      "name": "udp",
+      "value": "UDP数据传输"
+    },
+    {
+      "name": "tcp",
+      "value": "TCP数据传输"
+    },
+    {
+      "name": "tls",
+      "value": "TLS安全传输"
+    },
+    {
+      "name": "select",
+      "value": "数据传输类型"
+    },
+    {
+      "name": "select_user",
+      "value": "请先选择用户"
+    },
+    {
+      "name": "input_ip",
+      "value": "登录失败，请检查IP地址是否正确"
+    },
+    {
+      "name": "user_name",
+      "value": "用户名：\"%s\""
+    },
+    {
+      "name": "confirm_code",
+      "value": "确认码：\"%s\""
+    },
+    {
+      "name": "local_ip",
+      "value": "本地IP：%s"
+    },
+    {
+      "name": "user",
+      "value": "用户：\"%s\""
+    },
+    {
+      "name": "fengzi",
+      "value": "风子"
+    },
+    {
+      "name": "wenzi",
+      "value": "文子"
+    },
+    {
+      "name": "input_room",
+      "value": "输入房间号"
+    },
+    {
+      "name": "font_family",
+      "value": "HarmonyOS Sans SC-Medium"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "feng",
+      "value": "风"
+    },
+    {
+      "name": "wen",
+      "value": "文"
+    },
+    {
+      "name": "please_input_remote_address",
+      "value": "请输入远程IP地址"
+    },
+    {
+      "name": "user_select",
+      "value": "用户选择"
+    },
+    {
+      "name": "font_family_regular",
+      "value": "HarmonyOS Sans SC-Regular"
+    },
+    {
+      "name": "not_room",
+      "value": "暂无房间"
+    },
+    {
+      "name": "login_success",
+      "value": "登录成功"
+    },
+    {
+      "name": "invitation",
+      "value": "加入房间邀请"
+    },
+    {
+      "name": "invitation_detail",
+      "value": "对方邀请您加入 %s 房间"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DistributedAccount"
+    },
+    {
+      "name": "AccountName_input",
+      "value": "Please enter an account name"
+    },
+    {
+      "name": "AccountNickName_input",
+      "value": "Please enter an account nickname"
+    },
+    {
+      "name": "select_osAccount",
+      "value": "Select the bound system account"
+    },
+    {
+      "name": "Bind",
+      "value": "Bind"
+    },
+    {
+      "name": "Unbind",
+      "value": "Unbind"
+    },
+    {
+      "name": "Bind_successful",
+      "value": "Bind successful"
+    },
+    {
+      "name": "Bind_failed",
+      "value": "Bind failed"
+    },
+    {
+      "name": "Unbind_successful",
+      "value": "Unbind successful"
+    },
+    {
+      "name": "Unbind_failed",
+      "value": "Unbind failed"
+    },
+    {
+      "name": "Logged_DistributedAccount_management",
+      "value": "Logged DistributedAccount Management"
+    },
+    {
+      "name": "DistributedAccount_info",
+      "value": "DistributedAccount Info"
+    },
+    {
+      "name": "AccountName",
+      "value": "AccountName"
+    },
+    {
+      "name": "NickName",
+      "value": "NickName"
+    },
+    {
+      "name": "unbind",
+      "value": "unbind"
+    },
+    {
+      "name": "Cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "Yes",
+      "value": "Yes"
+    },
+    {
+      "name": "No",
+      "value": "No"
+    },
+    {
+      "name": "Null",
+      "value": "Null"
+    },
+    {
+      "name": "Bound_System_Account",
+      "value": "Bound System Account"
+    }
+  ]
+}

@@ -15,7 +15,7 @@
 
 import common from '@ohos.app.ability.common';
 import { ItemGroup } from './ItemGroup';
-import { logger } from '@ohos/common';
+import { getString, logger } from '@ohos/common';
 import { MainItem } from './MainItem';
 
 const TAG: string = 'MenuNavRouter';
@@ -26,6 +26,7 @@ export struct MenuNavRouter {
   @StorageLink('selectedSecondLabel') selectedSecondLabel: string = '';
   @BuilderParam navDestination: () => void;
   private childList: Array<string> = [];
+  private addAction?: (title) => void;
 
   @Builder CustomDivider() {
     Divider()
@@ -48,7 +49,7 @@ export struct MenuNavRouter {
             NavDestination() {
               this.navDestination()
             }
-            .title(item)
+            .title(this.CustomTitle(item))
             .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
           }
           .onStateChange((isActivated: boolean) => {
@@ -61,6 +62,58 @@ export struct MenuNavRouter {
         }, item => JSON.stringify(item))
       }
     }
+  }
+
+  @Builder
+  CustomTitle(title) {
+    Row() {
+      Text(title)
+        .fontColor($r('app.color.black'))
+        .fontSize(26)
+        .fontWeight(FontWeight.Bold)
+
+      Row() {
+        Image($r('app.media.ic_public_add'))
+          .height(24)
+          .aspectRatio(1)
+          .objectFit(ImageFit.Contain)
+      }
+      .id('add')
+      .height('100%')
+      .aspectRatio(1)
+      .visibility(this.showAddButton(title) ? Visibility.Visible : Visibility.None)
+      .onClick(() => {
+        logger.info(TAG, 'addAction')
+        if (this.addAction) {
+          this.addAction(title)
+        }
+      })
+    }
+    .width('85%')
+    .height(56)
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  showAddButton(title) {
+    let ret = false
+    switch (title) {
+      case getString($r('app.string.deque')):
+      case getString($r('app.string.hash_map')):
+      case getString($r('app.string.hash_set')):
+      case getString($r('app.string.light_weight_map')):
+      case getString($r('app.string.light_weight_set')):
+      case getString($r('app.string.linked_list')):
+      case getString($r('app.string.list')):
+      case getString($r('app.string.plain_array')):
+      case getString($r('app.string.queue')):
+      case getString($r('app.string.stack')):
+      case getString($r('app.string.tree_map')):
+      case getString($r('app.string.tree_set')):
+      case getString($r('app.string.vector')):
+        ret = true
+        break;
+    }
+    return ret
   }
 
   getString(resource: Resource) {

@@ -486,6 +486,7 @@ export class InputHandler {
 
   public moveCursor(direction: inputMethodEngine.Direction): void {
     if (globalThis.mTextInputClient !== undefined) {
+      this.addLog(`moveCursor direction = ${direction}`);
       globalThis.mTextInputClient.moveCursor(direction);
     } else {
       this.addLog('moveCursor globalThis.mTextInputClient is undefined');
@@ -544,6 +545,14 @@ export class InputHandler {
       }
     } else {
       this.addLog('selectToEnd globalThis.mTextInputClient is undefined');
+    }
+  }
+
+  public sendExtendAction(action: inputMethodEngine.ExtendAction): void {
+    if (globalThis.mTextInputClient !== undefined) {
+      globalThis.mTextInputClient.sendExtendAction(action);
+    } else {
+      this.addLog('sendExtendAction globalThis.mTextInputClient is undefined');
     }
   }
 

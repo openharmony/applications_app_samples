@@ -21,7 +21,7 @@ export class MyDataSource {
   private listeners: DataChangeListener[] = [];
 
   constructor(ele) {
-    for (var index = 0;index < ele.length; index++) {
+    for (let index = 0;index < ele.length; index++) {
       this.dataArray.add(ele[index]);
     }
   }

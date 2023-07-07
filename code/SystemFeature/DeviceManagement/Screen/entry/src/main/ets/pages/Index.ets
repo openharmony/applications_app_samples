@@ -18,20 +18,27 @@ import { DisplayDevice } from '../common/DisplayDevice'
 @Entry
 @Component
 struct Index {
+  aboutToAppear(){
+    try {
+      globalThis.mainContext.resourceManager.getStringValue($r('app.string.yes').id).then(value => {
+        globalThis.yes = value;
+        console.log("getStringValue globalThis.yes" + globalThis.yes);
+      }).catch(error => {
+        console.log("getStringValue promise error is " + error);
+      });
+
+      globalThis.mainContext.resourceManager.getStringValue($r('app.string.no').id).then(value => {
+        globalThis.no = value;
+        console.log("getStringValue globalThis.no " + globalThis.no);
+      }).catch(error => {
+        console.log("getStringValue promise error is " + error);
+      });
+    } catch (error) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    }
+  }
   build() {
     Column() {
-      Row() {
-        Text($r('app.string.entry_MainAbility'))
-          .fontSize(20)
-          .fontColor(Color.White)
-          .textAlign(TextAlign.Center)
-      }
-      .height('6%')
-      .width('100%')
-      .padding({ left: 15 })
-      .backgroundColor('#0D9FFB')
-      .constraintSize({ minHeight: 50 })
-
       DisplayDevice()
     }
     .width('100%')

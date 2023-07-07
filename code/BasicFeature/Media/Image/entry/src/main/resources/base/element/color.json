@@ -3,6 +3,14 @@
     {
       "name": "white",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "index_commit",
+      "value": "#E92F4F"
+    },
+    {
+      "name": "index_stack",
+      "value": "#f1f3f5"
     }
   ]
 }

@@ -24,7 +24,6 @@ const PARAMS_PX_TO_VP: number = 160;
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want, launchParam): void {
     logger.info(TAG, 'Ability onCreate');
     AppStorage.SetOrCreate('selectedLabel', '');

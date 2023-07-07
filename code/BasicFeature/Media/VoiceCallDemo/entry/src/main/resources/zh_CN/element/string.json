@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "语音通话示例"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VoiceCallDemo"
+    },
+    {
+      "name": "INTERNET",
+      "value": "INTERNET"
+    },
+    {
+      "name": "MICROPHONE",
+      "value": "MICROPHONE"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "GET_WIFI_INFO"
+    },
+    {
+      "name": "name1",
+      "value": "风子"
+    },
+    {
+      "name": "name2",
+      "value": "文子"
+    },
+    {
+      "name": "name_default",
+      "value": "无"
+    },
+    {
+      "name": "tips_no_remote",
+      "value": "对方未上线"
+    },
+    {
+      "name": "tips_call",
+      "value": "等待接听"
+    },
+    {
+      "name": "tips_answer",
+      "value": "请求通话"
+    },
+    {
+      "name": "tips_no_permission",
+      "value": "麦克风权限未申请"
+    },
+    {
+      "name": "MANAGE_AUDIO_CONFIG",
+      "value": "MANAGE_AUDIO_CONFIG"
+    },
+    {
+      "name": "SYSTEM_FLOAT_WINDOW",
+      "value": "SYSTEM_FLOAT_WINDOW"
+    },
+    {
+      "name": "head1",
+      "value": "风"
+    },
+    {
+      "name": "head2",
+      "value": "文"
+    }
+  ]
+}

@@ -103,17 +103,21 @@ struct Index {
             .onChange((isOn: boolean) => {
               Logger.log(`LSQ: wifi swtich is: ${isOn}`)
               AppStorage.SetOrCreate('wifiList', [])
-              // 如果是打开状态，记录状态，打开网络，开始扫描
-              if (isOn) {
-                this.isSwitchOn = true
-                wifi.enableWifi()
-                return
-              } else {
-                // 记录状态，断开网络禁用网络
-                this.isSwitchOn = false
-                this.isLinked = false
-                wifi.disconnect()
-                wifi.disableWifi()
+              try {
+                // 如果是打开状态，记录状态，打开网络，开始扫描
+                if (isOn) {
+                  this.isSwitchOn = true
+                  wifi.enableWifi()
+                  return
+                } else {
+                  // 记录状态，断开网络禁用网络
+                  this.isSwitchOn = false
+                  this.isLinked = false
+                  wifi.disconnect()
+                  wifi.disableWifi()
+                }
+              } catch (error) {
+                Logger.error(TAG, `failed,code:${JSON.stringify(error.code)},message:${JSON.stringify(error.message)}`)
               }
             })
         }

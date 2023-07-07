@@ -43,6 +43,10 @@
     {
       "name": "pages_text",
       "value": "window video"
+    },
+    {
+      "name": "startNewAbility",
+      "value": "Start New Ability"
     }
   ]
 }

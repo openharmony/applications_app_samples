@@ -59,7 +59,13 @@ export default function appTest() {
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text('AdaptiveServiceWidget'));
       let adaptiveServiceWidget: Component = await driver.findComponent(ON.text('AdaptiveServiceWidget'));
-      await adaptiveServiceWidget.longClick();
+      // 获取文件控件边框
+      let rect = await adaptiveServiceWidget.getBounds();
+      // 计算文字控件高度
+      let height = rect.bottom - rect.top;
+      // 获取文字控件中心点
+      let point = await adaptiveServiceWidget.getBoundsCenter();
+      await driver.longClick(point.x, point.y - height);
       await driver.assertComponentExist(ON.text('服务卡片'));
       let serviceCard: Component = await driver.findComponent(ON.text('服务卡片'));
       await serviceCard.click();

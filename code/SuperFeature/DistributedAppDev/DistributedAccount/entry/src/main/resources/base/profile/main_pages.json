@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "distributedaccount/pages/DistributedAccountList",
+    "distributedaccount/pages/DistributedAccountInfo"
+  ]
+}

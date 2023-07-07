@@ -52,6 +52,7 @@ export default function abilityTest() {
       await DRIVER.delayMs(1000);
       let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
       let manager = ability.context.resourceManager;
+      await DRIVER.click(676,696); // 关掉自动弹出的输入法
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.configuration'))));
       await DRIVER.assertComponentExist(ON.id('GET'));
       await DRIVER.assertComponentExist(ON.id('key1'));

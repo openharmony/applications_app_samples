@@ -9,11 +9,11 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.samples.drag_test",
+    "package": "com.example.entry_test",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
     "deviceType": [
-      "phone"
+      "default"
     ],
     "distro": {
       "deliveryWithInstall": true,
