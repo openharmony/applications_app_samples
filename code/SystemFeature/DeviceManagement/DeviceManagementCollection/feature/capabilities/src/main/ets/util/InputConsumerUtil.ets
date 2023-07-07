@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import inputConsumer from '@ohos.multimodalInput.inputConsumer';
-import keyCode from '@ohos.multimodalInput.keyCode';
+import inputConsumer from '@ohos.multimodalInput.inputConsumer'
+import keyCode from '@ohos.multimodalInput.keyCode'
 
 /**
  * 组合按键

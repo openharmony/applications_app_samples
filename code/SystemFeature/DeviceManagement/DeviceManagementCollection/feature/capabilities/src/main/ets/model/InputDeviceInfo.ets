@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import inputDevice from '@ohos.multimodalInput.inputDevice'
 
 export interface InputDeviceInfo extends inputDevice.InputDeviceData {
   icon_source: Resource // 设备类型图标

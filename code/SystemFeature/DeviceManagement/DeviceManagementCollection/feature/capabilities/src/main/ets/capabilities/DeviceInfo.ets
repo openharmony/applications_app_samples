@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { ListModel } from '../model/ListModel';
-import { DeviceUtil } from '../util/DeviceUtil';
-import { RadiusColumn } from '../components/RadiusColumn';
-import { getString } from '@ohos/common';
+import { ListModel } from '../model/ListModel'
+import { DeviceUtil } from '../util/DeviceUtil'
+import { RadiusColumn } from '../components/RadiusColumn'
+import { getString } from '@ohos/common'
 
 @Extend(Text) function fancy() {
   .textAlign(TextAlign.Start)

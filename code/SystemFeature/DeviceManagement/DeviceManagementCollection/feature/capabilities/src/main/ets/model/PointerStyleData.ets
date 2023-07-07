@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import pointer from '@ohos.multimodalInput.pointer';
-import { getString } from '@ohos/common';
+import pointer from '@ohos.multimodalInput.pointer'
+import { getString } from '@ohos/common'
 /**
  * 鼠标指针样式
  */

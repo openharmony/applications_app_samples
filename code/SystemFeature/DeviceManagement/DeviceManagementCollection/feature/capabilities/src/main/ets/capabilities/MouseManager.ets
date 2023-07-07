@@ -21,8 +21,8 @@ import {
   getPointerStyle
 } from '../util/MouseManagerUtil'
 import { pointerStyleArr, PointerStyleData } from '../model/PointerStyleData'
-import { getString } from '@ohos/common';
-import pointer from '@ohos.multimodalInput.pointer';
+import { getString } from '@ohos/common'
+import pointer from '@ohos.multimodalInput.pointer'
 
 /**
  * 鼠标管理视图
@@ -33,7 +33,7 @@ export struct MouseManager {
   @State mMouseEvent: string = ''
   @State mIsVisible: boolean = false
   // 鼠标速度
-  private mPointerSpeedArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+  private mPointerSpeedArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
   // 鼠标样式
   @State mPointerStyleVal: string = getString($r('app.string.mouse_style_default'))
   @State mSpeedIndex: number = 4

@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import batteryInfo from '@ohos.batteryInfo';
-import commonEventManager from '@ohos.commonEventManager';
-import { logger, getString } from '@ohos/common';
+import batteryInfo from '@ohos.batteryInfo'
+import commonEventManager from '@ohos.commonEventManager'
+import { logger, getString } from '@ohos/common'
 
 let mBatteryPresent // 是否支持电池或电池是否在位
 let mBatterySOC // 电池电量
@@ -34,14 +34,14 @@ class BatteryInfoUtil {
 
   constructor() {
     mBatteryPresent = AppStorage.SetAndLink('BatteryPresent', true)
-    mBatterySOC = AppStorage.SetAndLink("BatterySOC", '');
-    mChargingStatus = AppStorage.SetAndLink("ChargingStatus", '');
-    mHealthStatus = AppStorage.SetAndLink("HealthStatus", '');
-    mPluggedType = AppStorage.SetAndLink("PluggedType", '');
-    mVoltage = AppStorage.SetAndLink("Voltage", '');
-    mTechnology = AppStorage.SetAndLink("Technology", '');
-    mTemperature = AppStorage.SetAndLink("Temperature", '');
-    mCapacityLevel = AppStorage.SetAndLink("CapacityLevel", '');
+    mBatterySOC = AppStorage.SetAndLink("BatterySOC", '')
+    mChargingStatus = AppStorage.SetAndLink("ChargingStatus", '')
+    mHealthStatus = AppStorage.SetAndLink("HealthStatus", '')
+    mPluggedType = AppStorage.SetAndLink("PluggedType", '')
+    mVoltage = AppStorage.SetAndLink("Voltage", '')
+    mTechnology = AppStorage.SetAndLink("Technology", '')
+    mTemperature = AppStorage.SetAndLink("Temperature", '')
+    mCapacityLevel = AppStorage.SetAndLink("CapacityLevel", '')
   }
 
   /**
@@ -297,14 +297,14 @@ class BatteryInfoUtil {
       try {
         commonEventManager.subscribe(this.subscriber, (err, data) => {
           if (err) {
-            logger.error(`${this.TAG} subscribe failed, code is ${err.code}, message is ${err.message}`);
+            logger.error(`${this.TAG} subscribe failed, code is ${err.code}, message is ${err.message}`)
           } else {
-            logger.info(`${this.TAG} subscribe data ${JSON.stringify(data)}`);
+            logger.info(`${this.TAG} subscribe data ${JSON.stringify(data)}`)
             // 处理电池各参数数据
             // "parameters":{"0":11,"1":4123456,"2":222,"3":1,"4":0,"5":0,"6":0,"7":0,"8":4000000,"9":false,"10":"Li-ion","11":1000,"moduleName":""}},
             // 电量
             this.disposeBatterySOC(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC])
-            logger.info(`${this.TAG} subscribe data EXTRA_SOC ${data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC]}`);
+            logger.info(`${this.TAG} subscribe data EXTRA_SOC ${data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC]}`)
             // 电压
             mVoltage.set(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_VOLTAGE].toString())
             // 温度
@@ -323,7 +323,7 @@ class BatteryInfoUtil {
           }
         })
       } catch (err) {
-        logger.error(`${this.TAG} subscribe failed, code is ${err.code}, message is ${err.message}`);
+        logger.error(`${this.TAG} subscribe failed, code is ${err.code}, message is ${err.message}`)
       }
     }).catch((err) => {
       logger.error(`${this.TAG} createSubscriber failed, code is ${err.code}, message is ${err.message}`)
@@ -336,16 +336,16 @@ class BatteryInfoUtil {
       try {
         commonEventManager.unsubscribe(this.subscriber, (err) => {
           if (err) {
-            logger.error(`${this.TAG} unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+            logger.error(`${this.TAG} unsubscribe failed, code is ${err.code}, message is ${err.message}`)
           } else {
-            logger.info(`${this.TAG} unsubscribe`);
+            logger.info(`${this.TAG} unsubscribe`)
           }
         })
       } catch (err) {
-        logger.error(`${this.TAG} unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+        logger.error(`${this.TAG} unsubscribe failed, code is ${err.code}, message is ${err.message}`)
       }
     } else {
-      logger.info(`${this.TAG} subscriber is null or undefined`);
+      logger.info(`${this.TAG} subscriber is null or undefined`)
     }
   }
 }

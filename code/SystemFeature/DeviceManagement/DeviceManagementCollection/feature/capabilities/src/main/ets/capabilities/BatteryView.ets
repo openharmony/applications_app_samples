@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import BatteryInfoUtil from '../util/BatteryInfoUtil'
-import { logger, getString } from '@ohos/common';
+import { logger, getString } from '@ohos/common'
 
 /**
  * 电池信息组件

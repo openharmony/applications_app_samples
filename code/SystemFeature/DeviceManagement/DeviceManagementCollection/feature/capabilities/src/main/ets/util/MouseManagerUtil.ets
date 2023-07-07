@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
-import pointer from '@ohos.multimodalInput.pointer';
+import inputMonitor from '@ohos.multimodalInput.inputMonitor'
+import pointer from '@ohos.multimodalInput.pointer'
 import { logger, formatJson } from '@ohos/common'
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
-import common from '@ohos.app.ability.common';
-import window from '@ohos.window';
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent'
+import common from '@ohos.app.ability.common'
+import window from '@ohos.window'
 
 /**
  * 鼠标管理器
@@ -33,13 +33,13 @@ export function setPointerVisible(visible: boolean): void {
   try {
     pointer.setPointerVisible(visible, (error) => {
       if (error) {
-        logger.error(`${TAG} Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        return;
+        logger.error(`${TAG} Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+        return
       }
-      logger.info(`${TAG} Set pointer visible success`);
+      logger.info(`${TAG} Set pointer visible success`)
     });
   } catch (error) {
-    logger.error(`${TAG} Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    logger.error(`${TAG} Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
 }
 
@@ -51,7 +51,7 @@ export function isPointerVisible(): Promise<boolean> {
   try {
     result = pointer.isPointerVisible()
   } catch (error) {
-    logger.error(`${TAG} Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    logger.error(`${TAG} Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
   return result
 }
@@ -63,10 +63,10 @@ export function isPointerVisible(): Promise<boolean> {
 export function setPointerSpeed(speed: number): void {
   try {
     pointer.setPointerSpeed(speed).then(() => {
-      logger.info(`${TAG} Set pointer speed success`);
+      logger.info(`${TAG} Set pointer speed success`)
     });
   } catch (error) {
-    logger.error(`${TAG} Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    logger.error(`${TAG} Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
 }
 
@@ -75,23 +75,23 @@ export function setPointerSpeed(speed: number): void {
  * @param style 样式
  */
 export function setPointerStyle(style: pointer.PointerStyle): void {
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.UIAbilityContext
   window.getLastWindow(context, (error, win) => {
     if (error.code) {
-      logger.error(`${TAG} Failed to obtain the top window. Cause: ${JSON.stringify(error)}`);
-      return;
+      logger.error(`${TAG} Failed to obtain the top window. Cause: ${JSON.stringify(error)}`)
+      return
     }
-    let windowId = win.getWindowProperties().id;
+    let windowId = win.getWindowProperties().id
     if (windowId < 0) {
-      logger.error(`${TAG} Invalid windowId`);
-      return;
+      logger.error(`${TAG} Invalid windowId`)
+      return
     }
     try {
       pointer.setPointerStyle(windowId, style, error => {
-        logger.info(`${TAG} Set pointer style success`);
+        logger.info(`${TAG} Set pointer style success`)
       });
     } catch (error) {
-      logger.error(`${TAG} Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      logger.error(`${TAG} Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
   })
 }
@@ -101,21 +101,21 @@ export function setPointerStyle(style: pointer.PointerStyle): void {
  */
 export async function getPointerStyle(): Promise<pointer.PointerStyle> {
   let result: pointer.PointerStyle = pointer.PointerStyle.DEFAULT
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.UIAbilityContext
   try {
     let lastWindow = await window.getLastWindow(context)
-    let windowId = lastWindow.getWindowProperties().id;
+    let windowId = lastWindow.getWindowProperties().id
     if (windowId < 0) {
-      logger.error(`${TAG} Invalid windowId`);
-      return result;
+      logger.error(`${TAG} Invalid windowId`)
+      return result
     }
     try {
       result = await pointer.getPointerStyle(windowId)
     } catch (error) {
-      logger.error(`${TAG} Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      logger.error(`${TAG} Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
   } catch (error) {
-    logger.error(`${TAG} Failed to obtain the top window. Cause: ${JSON.stringify(error)}`);
+    logger.error(`${TAG} Failed to obtain the top window. Cause: ${JSON.stringify(error)}`)
   }
   return result
 }
@@ -137,14 +137,14 @@ class MouseManagerUtil {
     try {
       inputMonitor.off('mouse', this.onMouseCallback.bind(this))
       this.callback = null
-      logger.info(`${TAG} Monitor off success`);
+      logger.info(`${TAG} Monitor off success`)
     } catch (error) {
       logger.error(`${TAG} unregister mouse  execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
 
   }
 
-  private onMouseCallback(event: MouseEvent) {
+  private onMouseCallback(event: MouseEvent) : boolean {
     logger.info(`${TAG} onMouseCallback event: ${JSON.stringify(event)}`)
     if (this.callback) {
       this.callback(formatJson(JSON.stringify(event)))

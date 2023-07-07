@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import { logger, formatJson } from '@ohos/common'
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import inputMonitor from '@ohos.multimodalInput.inputMonitor'
+import inputEventClient from '@ohos.multimodalInput.inputEventClient'
 
 const TAG: string = '[Sample_InputEventUtil]'
 
@@ -29,7 +29,7 @@ export function injectBackEvent(): void {
       keyDownDuration: 0,
       isIntercepted: false
     }
-    inputEventClient.injectEvent({ KeyEvent: backKeyDown });
+    inputEventClient.injectEvent({ KeyEvent: backKeyDown })
 
     let backKeyUp = {
       isPressed: false,
@@ -37,9 +37,9 @@ export function injectBackEvent(): void {
       keyDownDuration: 0,
       isIntercepted: false
     };
-    inputEventClient.injectEvent({ KeyEvent: backKeyUp });
+    inputEventClient.injectEvent({ KeyEvent: backKeyUp })
   } catch (error) {
-    console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
 }
 
@@ -60,7 +60,7 @@ class TouchManagerUtil {
     try {
       inputMonitor.off('touch')
       this.callback = null
-      logger.info(`${TAG} Monitor off success`);
+      logger.info(`${TAG} Monitor off success`)
     } catch (error) {
       logger.error(`${TAG} unregister touch  execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }

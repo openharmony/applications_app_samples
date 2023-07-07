@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { InputDeviceInfo } from '../../model/InputDeviceInfo'
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import inputDevice from '@ohos.multimodalInput.inputDevice'
 /**
  * 输入设备详情弹窗
  */

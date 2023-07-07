@@ -14,7 +14,7 @@
  */
 import { InputDeviceInfo } from '../model/InputDeviceInfo'
 import { logger } from '@ohos/common'
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import inputDevice from '@ohos.multimodalInput.inputDevice'
 
 const TAG: string = '[Sample_InputDeviceUtil]'
 
@@ -132,7 +132,7 @@ class InputDevice {
         this.callback(this.deviceList)
         this.callback = null
       }
-      logger.info(`${TAG} Monitor off success`);
+      logger.info(`${TAG} Monitor off success`)
     } catch (error) {
       logger.error(`${TAG} Cancel listening device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
@@ -187,7 +187,7 @@ class InputDevice {
    * @param arr 列表
    */
   private removeDuplicate(arr: InputDeviceInfo[]): InputDeviceInfo[] {
-    const newArr = [];
+    const newArr = []
     for (const item of arr) {
       // 检查缓存中是否已经存在
       if (newArr.find((cur: InputDeviceInfo) =>
