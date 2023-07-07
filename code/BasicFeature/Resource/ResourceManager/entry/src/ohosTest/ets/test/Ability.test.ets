@@ -17,6 +17,8 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
+import CommonEventManager from '@ohos.commonEventManager'
+import router from '@ohos.router';
 
 const TAG = '[Sample_ResourceManager]'
 const DOMAIN = 0xF811
@@ -85,7 +87,7 @@ async function getConfiguration(): Promise<string> {
 }
 
 export default function appTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsResMgrTest', function () {
     /**
      * 拉起应用
      */
@@ -96,6 +98,18 @@ export default function appTest() {
         await abilityDelegator.startAbility({
           bundleName: 'ohos.samples.resourcemanager',
           abilityName: 'EntryAbility'
+        }).then(async => {
+          function publishCB(err) {
+            if (err) {
+              console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+            } else {
+              console.info("publish");
+            }
+          }
+          setTimeout(()=>{
+            CommonEventManager.publish("TestResourcesEvent", publishCB); // 发布事件
+            done()
+          }, 1500)
         })
         done()
       } catch (error) {

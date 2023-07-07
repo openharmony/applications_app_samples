@@ -29,6 +29,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info('Ability onWindowStageCreate')
+    AppStorage.SetOrCreate('ResMgrTitle', this.context.resourceManager.getStringSync($r("app.string.title").id));
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)

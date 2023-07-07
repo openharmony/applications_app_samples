@@ -22,13 +22,36 @@
         "name": "default",
         "signingConfig": "default"
       }
-    ],
-    "signingConfigs": []
+    ]
   },
   "modules": [
     {
       "name": "entry",
       "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "libraryOverlay",
+      "srcPath": "./libraryOverlay",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "libraryRuntimeOverlay",
+      "srcPath": "./libraryRuntimeOverlay",
       "targets": [
         {
           "name": "default",
