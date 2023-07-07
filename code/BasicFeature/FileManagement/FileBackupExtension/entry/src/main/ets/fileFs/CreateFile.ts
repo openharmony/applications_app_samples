@@ -16,7 +16,7 @@
 import Logger from '../common/Logger';
 import fs from '@ohos.file.fs';
 
-const TAG: string = '[Sample_FileBackDemo]'
+const TAG: string = '[Sample_FileBackDemo]';
 
 //1k = 1024B
 const ONE_KILOBYTE: number = 1024;
