@@ -62,7 +62,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本示例需要依赖[窗口比例](code/BasicFeature/WindowManagement/WindowRatio)sample，本示例点击“拉起悬浮应用”按钮之后会以悬浮窗模式拉起[窗口比例](code/BasicFeature/WindowManagement/WindowRatio)sample。
+本示例需要依赖[窗口比例](../../../../code/BasicFeature/WindowManagement/WindowRatio)sample，本示例点击“拉起悬浮应用”按钮之后会以悬浮窗模式拉起[窗口比例](../../../../code/BasicFeature/WindowManagement/WindowRatio)sample。
 
 
 ### 约束与限制

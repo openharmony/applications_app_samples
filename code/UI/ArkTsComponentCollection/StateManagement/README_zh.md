@@ -2,8 +2,8 @@
 
 ### 介绍
 
-本示例通过使用[页面级的状态变量](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-state-mgmt-page-level-0000001427902200-V3)
-和[应用级的状态变量](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-state-mgmt-application-level-0000001428061468-V3)
+本示例通过使用[页面级的状态变量](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/arkts-localstorage.md/)
+和[应用级的状态变量](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/arkts-appstorage.md/)
 来实现应用的状态管理。
 
 ### 效果预览

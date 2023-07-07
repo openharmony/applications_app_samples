@@ -155,7 +155,7 @@ entry/src/main/js/MainAbility
 ```
 git init
 git config core.sparsecheckout true
-echo /code/UI/JsComponentClollection/JsComponentCollection > .git/info/sparse-checkout
+echo /code/UI/JsComponentCollection/JsComponentCollection > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

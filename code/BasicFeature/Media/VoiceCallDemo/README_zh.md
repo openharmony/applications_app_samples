@@ -2,8 +2,8 @@
 
 ### 介绍
 
-本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-audio.md/)
-、[@ohos.net.socket](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-socket.md/)
+本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-audio.md/)
+、[@ohos.net.socket](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-socket.md/)
 等接口，实现音频录制和渲染，音频数据网络传输等功能
 
 ### 效果预览
@@ -76,26 +76,26 @@
 ### 具体实现
 
 + TCP socket模拟音频流网络传输：
-    + 代码：[BufferModel](entry/src/main/ets/model/BufferModel.ts)和 [SocketImpl](entry/src/main/ets/net/SocketImpl.ts)
+    + 代码：[BufferModel](entry/src/main/ets/model/BufferModel.ets)和 [SocketImpl](entry/src/main/ets/net/SocketImpl.ets)
     + 使用@ohos.net.socket 的constructTCPSocketInstance创建TCP socket连接，模拟实现音频流网络传输
     + 3s一次检查网络状态和尝试连接，实现网络异常时的处理逻辑
 + 音频录制：
     + [CapturerWorker](entry/src/main/ets/workers/CapturerWorker.ts)创建音频采集的子线程
-    + [AudioCapturerHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ts)
+    + [AudioCapturerHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ets)
       使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/media/using-audiocapturer-for-recording.md/)
 + 音频播放：
     + [RendererWorker](entry/src/main/ets/workers/RendererWorker.ts)创建音频播放的子线程
-    + [AudioRendererHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ts)
+    + [AudioRendererHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ets)
       使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/media/using-audiorenderer-for-playback.md/)
 + 麦克风与扬声器以及通话场景控制：
-    + 代码[AudioManagerModel](entry/src/main/ets/model/AudioManagerModel.ts)
+    + 代码[AudioManagerModel](entry/src/main/ets/model/AudioManagerModel.ets)
     + 使用@ohos.multimedia.audio.AudioManager的setAudioScene接口切换通话场景
     + 使用@ohos.multimedia.audio.AudioVolumeGroupManager的setMicrophoneMute接口切换麦克风
     + 使用@ohos.multimedia.audio.AudioRoutingManager的setCommunicationDevice接口切换扬声器
 
 ### 相关权限
 
-| [权限](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/) | 说明               | 权限登记         | 授权方式         |
+| [权限](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/) | 说明               | 权限登记         | 授权方式         |
 |-------------------------------------------------------------------------------------------------|------------------|--------------|--------------|
 | ohos.permission.MICROPHONE                                                                      | 允许应用使用麦克风        | normal       | user_grant   |
 | ohos.permission.INTERNET                                                                        | 允许使用Internet网络   | normal       | system_grant |
@@ -119,12 +119,12 @@
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version： 3.1.0.400, built on April 7, 2023)才可编译运行
 
 4.本示例涉及使用系统接口@ohos.multimedia.audio：setAudioScene，需要手动替换Full
-  SDK才能编译通过，具体操作可参考[替换指南](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
+  SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
 
 5.本示例所配置的权限为system_basic级别(
-  相关权限级别可通过[权限定义列表](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)
+  相关权限级别可通过[权限定义列表](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)
   查看),需要手动配置对应级别的权限签名(
-  具体操作可查看[自动化签名方案](https：//docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))
+  具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))
 
 6.本示例有使用系统特性api，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)
 
