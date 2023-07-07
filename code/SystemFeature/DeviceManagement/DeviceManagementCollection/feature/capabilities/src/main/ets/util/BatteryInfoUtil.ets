@@ -16,15 +16,15 @@ import batteryInfo from '@ohos.batteryInfo';
 import commonEventManager from '@ohos.commonEventManager';
 import { logger, getString } from '@ohos/common';
 
-var mBatteryPresent // 是否支持电池或电池是否在位
-var mBatterySOC // 电池电量
-var mChargingStatus // 电池充电状态
-var mHealthStatus // 电池健康状态
-var mPluggedType // 电池充电器类型
-var mVoltage // 电池电压
-var mTechnology // 电池技术型号
-var mTemperature // 电池温度
-var mCapacityLevel // 电池电量等级
+let mBatteryPresent // 是否支持电池或电池是否在位
+let mBatterySOC // 电池电量
+let mChargingStatus // 电池充电状态
+let mHealthStatus // 电池健康状态
+let mPluggedType // 电池充电器类型
+let mVoltage // 电池电压
+let mTechnology // 电池技术型号
+let mTemperature // 电池温度
+let mCapacityLevel // 电池电量等级
 /**
  * 设备管理—电量信息
  */

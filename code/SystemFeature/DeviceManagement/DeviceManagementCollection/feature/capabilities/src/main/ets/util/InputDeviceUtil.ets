@@ -207,6 +207,3 @@ class InputDevice {
 }
 
 export default new InputDevice()
-
-
-

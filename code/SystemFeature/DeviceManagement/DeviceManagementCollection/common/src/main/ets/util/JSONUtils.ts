@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import hilog from '@ohos.hilog';
 /**
  * 格式化JSON数据
  * @param jsonObj 需要转换的数据
  */
+const TAG: string = '[Sample_JSONUtils]';
 function transitionJsonToString(jsonObj: string): string {
   // 转换后的jsonObj受体对象
   let _jsonObj: string = null;
@@ -25,6 +27,7 @@ function transitionJsonToString(jsonObj: string): string {
       _jsonObj = JSON.stringify(jsonObj);
     } catch (error) {
       // 转换失败错误信息
+      errorLog(TAG, JSON.stringify(error))
     }
   } else {
     try {
@@ -32,9 +35,14 @@ function transitionJsonToString(jsonObj: string): string {
       _jsonObj = JSON.stringify(JSON.parse(jsonObj));
     } catch (error) {
       // 转换失败错误信息
+      errorLog(TAG, JSON.stringify(error))
     }
   }
   return _jsonObj;
+}
+
+function errorLog(...args: string[]): void {
+  hilog.error(0xFF00, '[Sample_DeviceManagement]', '%{public}s, %{public}s', args);
 }
 
 /**
