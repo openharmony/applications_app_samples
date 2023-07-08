@@ -83,11 +83,10 @@ class FileManager {
 
   /**
    * 删除文件
-   * @param context 上下文对象
    * @param fileAsset 文件对象
    */
-  async deleteFileAsset(context, fileAsset: mediaLibrary.FileAsset) {
-    await MediaLibraryManager.deleteFileAsset(context, fileAsset)
+  async deleteFileAsset(fileAsset: mediaLibrary.FileAsset): Promise<void> {
+    await MediaLibraryManager.deleteFileAsset(fileAsset);
   }
 
   /**

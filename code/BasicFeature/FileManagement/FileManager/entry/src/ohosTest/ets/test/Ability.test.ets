@@ -40,13 +40,9 @@ let file: mediaLibrary.FileAsset[] = [];
 
 // 判断文件是否相同
 async function fileAssertEqual(firstFile: mediaLibrary.FileAsset, secondFile: mediaLibrary.FileAsset): Promise<boolean> {
-  Logger.info(TAG, 'firstFile displayName = ' + firstFile.displayName + ' and secondFile displayName = ' + secondFile.displayName)
-  let displayName = await firstFile.displayName === secondFile.displayName
-  Logger.info(TAG, 'firstFile dateAdded = ' + firstFile.dateAdded + ' and secondFile dateAdded = ' + secondFile.dateAdded)
-  let dateAdded = await firstFile.dateAdded === secondFile.dateAdded
-  Logger.info(TAG, 'firstFile albumName = ' + firstFile.albumName + ' and secondFile albumName = ' + secondFile.albumName)
-  let albumName = await firstFile.albumName === secondFile.albumName
-  return displayName && dateAdded && albumName
+  Logger.info(TAG, 'firstFile uri = ' + firstFile.uri + ' and secondFile uri = ' + secondFile.uri);
+  let uri = await firstFile.uri === secondFile.uri;
+  return uri;
 }
 // 检查页面是否正常显示
 async function checkPage(library: mediaLibrary.MediaLibrary, driver: Driver, type: mediaLibrary.MediaType) {
@@ -90,7 +86,7 @@ export default function abilityTest() {
   // 删除测试过程中创建的文件
   afterAll(async function () {
     for (let i = 0; i < file.length; i++) {
-      await FileManager.deleteFileAsset(ability.context, file[i]);
+      await FileManager.deleteFileAsset(file[i]);
     }
   })
 
@@ -579,7 +575,7 @@ export default function abilityTest() {
         }
         Logger.info(TAG, 'getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
         ' data:' + fileAsset.dateAdded, +', ' + fileAsset.dateModified)
-        await FileManager.deleteFileAsset(ability.context, fileAsset)
+        await FileManager.deleteFileAsset(fileAsset)
       }
       for (let i = 0; i < TYPE.length; i++) {
         let originalResult = await FileManager.getFileAssets(ability.context, TYPE[i][0])
