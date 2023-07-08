@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notificationManager'
+import notification from '@ohos.notificationManager';
 
 class NotificationRequestUtil {
   /**
@@ -30,4 +30,4 @@ class NotificationRequestUtil {
   }
 }
 
-export let notificationRequestUtil = new NotificationRequestUtil()
+export let notificationRequestUtil = new NotificationRequestUtil();

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import image from '@ohos.multimedia.image'
-import notification from '@ohos.notificationManager'
+import image from '@ohos.multimedia.image';
+import notification from '@ohos.notificationManager';
 
 class NotificationContentUtil {
   /**
@@ -110,4 +110,4 @@ class NotificationContentUtil {
   }
 }
 
-export let notificationContentUtil = new NotificationContentUtil()
+export let notificationContentUtil = new NotificationContentUtil();

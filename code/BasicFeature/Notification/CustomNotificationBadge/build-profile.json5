@@ -16,18 +16,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\htb\\.ohos\\config\\openharmony\\auto_ohos_default_CustomNotificationBadge_com.example.customnotificationbadge.cer",
-          "storePassword": "0000001B5742EE98BEDD039DF1D948C7D16C35846F1B5D2D8B4498760546857CC424E6087DDFF782785E7C",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B25CB9A1E33FBBAB094B04D8C34898DDAF897E931F4F0B768C09EE2073B7401768B39502CA8F5CC",
-          "profile": "C:\\Users\\htb\\.ohos\\config\\openharmony\\auto_ohos_default_CustomNotificationBadge_com.example.customnotificationbadge.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\htb\\.ohos\\config\\openharmony\\auto_ohos_default_CustomNotificationBadge_com.example.customnotificationbadge.p12"
-        }
-      }
     ],
     "compileSdkVersion": 10,
     "compatibleSdkVersion": 10,

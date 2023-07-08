@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-export { notificationUtil } from './src/main/ets/notification/NotificationUtil'
+export { notificationUtil } from './src/main/ets/notification/NotificationUtil';
 
-export { notificationRequestUtil } from './src/main/ets/notification/NotificationRequestUtil'
+export { notificationRequestUtil } from './src/main/ets/notification/NotificationRequestUtil';
 
-export { notificationContentUtil } from './src/main/ets/notification/NotificationContentUtil'
+export { notificationContentUtil } from './src/main/ets/notification/NotificationContentUtil';
 
-export { notificationManagement } from './src/main/ets/notification/NotificationManagementUtil'
+export { notificationManagement } from './src/main/ets/notification/NotificationManagementUtil';
 
-export { logger } from './src/main/ets/util/Logger'
+export { logger } from './src/main/ets/util/Logger';
 

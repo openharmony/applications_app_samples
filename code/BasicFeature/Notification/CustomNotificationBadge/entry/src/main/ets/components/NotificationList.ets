@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notificationManager'
-import { notificationManagement } from '@ohos/notification'
-import { logger } from '@ohos/notification'
-import { TitleBar } from './/TitleBar'
+import notification from '@ohos.notificationManager';
+import { notificationManagement } from '@ohos/notification';
+import { logger } from '@ohos/notification';
+import { TitleBar } from './/TitleBar';
 
 @Component
 export struct NotificationList {
-  @State groupNotifications: Array<Array<notification.NotificationRequest>> = undefined
-  @State countsByType: Array<number> = null
+  @State groupNotifications: Array<Array<notification.NotificationRequest>> = undefined;
+  @State countsByType: Array<number> = null;
 
   aboutToAppear() {
     notificationManagement.getAllNotifications().then((data) => {
-      this.groupNotifications = data.groupNotifications
-      this.countsByType = data.countsByType
-      logger.info("getAllNotifications data: " + JSON.stringify(data))
+      this.groupNotifications = data.groupNotifications;
+      this.countsByType = data.countsByType;
+      logger.info("getAllNotifications data: " + JSON.stringify(data));
     })
   }
 
@@ -44,11 +44,11 @@ export struct NotificationList {
               })
                 .onClick(() => {
                   if (this.countsByType[index]) {
-                    notificationManagement.cancelNotificationType(this.groupNotifications[index][0].content.contentType)
-                    let currentBadgeNum = notificationManagement.getBadgeNumber()
-                    currentBadgeNum -= this.countsByType[index]
-                    this.countsByType[index] = 0
-                    notificationManagement.setBadgeNumber(currentBadgeNum)
+                    notificationManagement.cancelNotificationType(this.groupNotifications[index][0].content.contentType);
+                    let currentBadgeNum = notificationManagement.getBadgeNumber();
+                    currentBadgeNum -= this.countsByType[index];
+                    this.countsByType[index] = 0;
+                    notificationManagement.setBadgeNumber(currentBadgeNum);
                   }
                 })
             }
@@ -63,32 +63,32 @@ export struct NotificationList {
 
 @Component
 export struct NotificationItem {
-  @State notificationNum: number = 0
-  @State notifications: notification.NotificationRequest[] = undefined
-  private title: Resource
-  private content: string
+  @State notificationNum: number = 0;
+  @State notifications: notification.NotificationRequest[] = undefined;
+  private title: Resource;
+  private content: string;
 
   aboutToAppear() {
     switch (this.notifications[0].content.contentType) {
       case notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT: {
-        this.title = $r('app.string.basic_notification')
-        this.content = this.notifications[0].content.normal.text
-        break
+        this.title = $r('app.string.basic_notification');
+        this.content = this.notifications[0].content.normal.text;
+        break;
       }
       case notification.ContentType.NOTIFICATION_CONTENT_LONG_TEXT: {
-        this.title = $r('app.string.long_text_notification')
-        this.content = this.notifications[0].content.longText.text
-        break
+        this.title = $r('app.string.long_text_notification');
+        this.content = this.notifications[0].content.longText.text;
+        break;
       }
       case notification.ContentType.NOTIFICATION_CONTENT_PICTURE: {
-        this.title = $r('app.string.picture_notification')
-        this.content = this.notifications[0].content.picture.text
-        break
+        this.title = $r('app.string.picture_notification');
+        this.content = this.notifications[0].content.picture.text;
+        break;
       }
       case notification.ContentType.NOTIFICATION_CONTENT_MULTILINE: {
-        this.title = $r('app.string.multiline_notification')
-        this.content = this.notifications[0].content.multiLine.text
-        break
+        this.title = $r('app.string.multiline_notification');
+        this.content = this.notifications[0].content.multiLine.text;
+        break;
       }
     }
   }

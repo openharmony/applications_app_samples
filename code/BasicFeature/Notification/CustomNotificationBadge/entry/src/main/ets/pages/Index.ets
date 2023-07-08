@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { NotificationList } from '../components/NotificationList'
-import { NoticePublish } from '../components/NotificationPublish'
+import { NotificationList } from '../components/NotificationList';
+import { NoticePublish } from '../components/NotificationPublish';
 
 export interface TabImage {
   selectedImage: Resource,
@@ -40,14 +40,14 @@ const TAB_INDEX = {
 struct Index {
   @State tabsIndex: number = 0
 
-  @Builder TabBarBuilder(index: number, item: TabImage ,tabBarName: Resource) {
+  @Builder TabBarBuilder(index: number, item: TabImage, tabBarName: Resource) {
 
     Column() {
       Image(this.tabsIndex === index ? item.selectedImage : item.unselectedImage)
         .width(50)
         .height(50)
         .margin({ bottom: 10 })
-        Text(tabBarName)
+      Text(tabBarName)
         .fontSize(20)
 
     }
@@ -69,7 +69,7 @@ struct Index {
           }
           .height('100%')
         }
-        .tabBar(this.TabBarBuilder(TAB_INDEX.MESSAGE_TAB, MESSAGE_TAB,$r('app.string.messages_list_title')))
+        .tabBar(this.TabBarBuilder(TAB_INDEX.MESSAGE_TAB, MESSAGE_TAB, $r('app.string.messages_list_title')))
 
         TabContent() {
           Column() {
@@ -78,7 +78,7 @@ struct Index {
           }
           .height('100%')
         }
-        .tabBar(this.TabBarBuilder(TAB_INDEX.NOTIFICATION_TAB, NOTIFICATION_TAB,$r('app.string.notification_publish_title')),)
+        .tabBar(this.TabBarBuilder(TAB_INDEX.NOTIFICATION_TAB, NOTIFICATION_TAB, $r('app.string.notification_publish_title')),)
       }
       .barHeight(100)
       .barWidth('100%')

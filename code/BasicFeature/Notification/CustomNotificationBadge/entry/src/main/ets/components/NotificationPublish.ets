@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import NotificationOperations from '../feature/NotificationOperations'
-import { notificationUtil } from '@ohos/notification'
-import { TitleBar } from './TitleBar'
+import NotificationOperations from '../feature/NotificationOperations';
+import { notificationUtil } from '@ohos/notification';
+import { TitleBar } from './TitleBar';
 
 @Component
 export struct NoticePublish {
-  private notificationOperations: NotificationOperations = new NotificationOperations(getContext(this))
+  private notificationOperations: NotificationOperations = new NotificationOperations(getContext(this));
 
   @Styles buttonStyle(){
     .width('90%')
@@ -34,7 +34,7 @@ export struct NoticePublish {
       TitleBar({ title: $r('app.string.notification_publish_title') })
       Blank()
       Scroll() {
-        Flex({ wrap: FlexWrap.Wrap, justifyContent:FlexAlign.SpaceEvenly }) {
+        Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceEvenly }) {
           Button($r('app.string.basic_notification'))
             .fontSize(20)
             .buttonStyle()
@@ -56,6 +56,7 @@ export struct NoticePublish {
         .width('100%')
         .padding(12)
       }
+
       Blank()
     }
     .width('100%')
@@ -63,8 +64,7 @@ export struct NoticePublish {
     .justifyContent(FlexAlign.SpaceAround)
   }
 
-
   aboutToAppear() {
-    notificationUtil.enableNotification()
+    notificationUtil.enableNotification();
   }
 }

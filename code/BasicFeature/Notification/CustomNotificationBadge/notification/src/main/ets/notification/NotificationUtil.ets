@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notificationManager'
-import { logger } from '../util/Logger'
-import { notificationManagement } from '../notification/NotificationManagementUtil'
+import notification from '@ohos.notificationManager';
+import { logger } from '../util/Logger';
+import { notificationManagement } from '../notification/NotificationManagementUtil';
 
-const TAG: string = 'NotificationUtilModel'
+const TAG: string = 'NotificationUtilModel';
 
 class NotificationUtil {
   /**
@@ -26,10 +26,10 @@ class NotificationUtil {
   private id: number = 0
   async enableNotification() {
     try {
-      await notification.requestEnableNotification()
-      logger.info(TAG, `enableNotification success`)
+      await notification.requestEnableNotification();
+      logger.info(TAG, `enableNotification success`);
     } catch (err) {
-      logger.info(TAG, `enableNotification err ${JSON.stringify(err)}`)
+      logger.info(TAG, `enableNotification err ${JSON.stringify(err)}`);
     }
   }
 
@@ -42,20 +42,20 @@ class NotificationUtil {
     // if (id && id > 0) {
     //   notificationRequest.id = id
     // }
-    notificationRequest.id = this.id
+    notificationRequest.id = this.id;
     this.id ++
     if (group) {
-      notificationRequest.groupName = group
+      notificationRequest.groupName = group;
     }
 
     try {
-      await notification.publish(notificationRequest)
-      logger.info(TAG, `publish notification success`)
+      await notification.publish(notificationRequest);
+      logger.info(TAG, `publish notification success`);
       //通知管理器添加新通知
-      await notificationManagement.addNotification(notificationRequest)
+      await notificationManagement.addNotification(notificationRequest);
     } catch (err) {
       if (err) {
-        logger.info(TAG, `publishNotification err ${JSON.stringify(err)}`)
+        logger.info(TAG, `publishNotification err ${JSON.stringify(err)}`);
       }
     }
   }
@@ -65,11 +65,11 @@ class NotificationUtil {
    */
   async cancelNotificationById(id: number) {
     try {
-      await notification.cancel(id)
-      logger.info(TAG, `cancel success`)
+      await notification.cancel(id);
+      logger.info(TAG, `cancel success`);
     } catch (err) {
       if (err) {
-        logger.info(TAG, `cancel err ${JSON.stringify(err)}`)
+        logger.info(TAG, `cancel err ${JSON.stringify(err)}`);
       }
     }
   }
@@ -79,14 +79,14 @@ class NotificationUtil {
    */
   async cancelAllNotifications() {
     try {
-      await notification.cancelAll()
-      logger.info(TAG, `cancel all success`)
+      await notification.cancelAll();
+      logger.info(TAG, `cancel all success`);
     } catch (err) {
       if (err) {
-        logger.info(TAG, `cancel all err ${JSON.stringify(err)}`)
+        logger.info(TAG, `cancel all err ${JSON.stringify(err)}`);
       }
     }
   }
 }
 
-export let notificationUtil = new NotificationUtil()
+export let notificationUtil = new NotificationUtil();

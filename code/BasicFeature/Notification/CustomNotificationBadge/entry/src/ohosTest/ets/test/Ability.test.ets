@@ -14,15 +14,15 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 
-const TAG: string = '[tbhuang]';
+const TAG: string = '[Badge]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'CustomShare_';
+const BUNDLE = 'Badge_';
 let ability: UIAbility;
 
 export default function abilityTest() {
@@ -64,7 +64,9 @@ export default function abilityTest() {
       await driver.delayMs(200);
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 end');
     })
-
+    /**
+     * 发送基本类型通知
+     */
     it(BUNDLE + 'BasicNotification_001', 1, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'BasicNotification_001 begin');
       let driver = Driver.create();
@@ -88,6 +90,9 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'BasicNotification_001 end');
     })
+    /**
+     * 发送长文本类型通知
+     */
     it(BUNDLE + 'LongTextNotification_001', 1, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'LongTextNotification_001 begin');
       let driver = Driver.create();
@@ -112,7 +117,9 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'LongTextNotification_001 end');
     })
-
+    /**
+     * 发送多行文本类型通知
+     */
     it(BUNDLE + 'MultilineNotification_001', 1, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'MultilineNotification_001 begin');
       let driver = Driver.create();
@@ -136,6 +143,9 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'MultilineNotification_001 end');
     })
+    /**
+     * 发送图片类型通知
+     */
     it(BUNDLE + 'PictureNotification_001', 1, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'PictureNotification_001 begin');
       let driver = Driver.create();
