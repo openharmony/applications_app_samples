@@ -540,6 +540,7 @@ export default function abilityTest() {
           Logger.error(TAG, 'RequestPermissionFunction_002:createFileAsset failed')
           expect().assertFail()
         }
+        file.push(curFile);
       } catch (error) {
         Logger.error(TAG, 'RequestPermissionFunction_002:createFileAsset failed')
         expect().assertFail()
@@ -590,6 +591,7 @@ export default function abilityTest() {
           } catch (error) {
             Logger.error(TAG, 'GetFileAssetsFunction_001:createFileAsset failed')
           }
+          file.push(curFile);
           await addNum++
           let result = await FileManager.getFileAssets(ability.context, TYPE[i][0])
           let num = await result.getCount()
