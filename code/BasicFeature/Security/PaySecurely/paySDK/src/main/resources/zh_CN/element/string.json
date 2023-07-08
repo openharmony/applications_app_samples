@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "PaySDKAbility_desc",
+      "value": "描述"
+    },
+    {
+      "name": "PaySDKAbility_label",
+      "value": "安全支付"
+    },
+    {
+      "name": "pay",
+      "value": "支付"
+    },
+    {
+      "name": "please_pay",
+      "value": "请您支付"
+    },
+    {
+      "name": "merchant_tracking_number",
+      "value": "商户单号"
+    },
+    {
+      "name": "pay_now",
+      "value": "立即支付"
+    },
+    {
+      "name": "pay_success",
+      "value": "支付成功"
+    },
+    {
+      "name": "pay_fail",
+      "value": "密码错误"
+    },
+    {
+      "name": "pay_exception",
+      "value": "支付异常"
+    },
+    {
+      "name": "enter_password",
+      "value": "请输入支付密码"
+    },
+    {
+      "name": "pay_to",
+      "value": "向"
+    },
+    {
+      "name": "platform_merchants",
+      "value": "平台商户支付"
+    },
+    {
+      "name": "return_to_merchant",
+      "value": "返回商家界面"
+    }
+  ]
+}
