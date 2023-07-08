@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notificationManager'
-import { logger } from '../util/Logger'
+import notification from '@ohos.notificationManager';
+import { logger } from '../util/Logger';
 
-const BUNDLE_NAME: string = 'com.example.CustomNotificationPush'
+const BUNDLE_NAME: string = 'com.example.CustomNotificationPush';
 
 export enum ContentCallBackType {
   CALLBACK_NOTIFICATION_CONTENT_BASIC_TEXT = 1,
@@ -24,16 +24,15 @@ export enum ContentCallBackType {
   CALLBACK_NOTIFICATION_CONTENT_MULTILINE = 5,
   CALLBACK_NOTIFICATION_CONTENT_PICTURE = 6,
   CALLBACK_NOTIFICATION_CONTENT_CONVERSATION
-
 }
 
 const CONTENT_TYPE_COUNT = 7
 
 class NotificationFilterUtil {
-  private disableContentTypes: Array<boolean> = new Array(CONTENT_TYPE_COUNT)
+  private disableContentTypes: Array<boolean> = new Array(CONTENT_TYPE_COUNT);
 
   constructor() {
-    this.disableContentTypes.fill(false)
+    this.disableContentTypes.fill(false);
     let bundle = {
       bundle: BUNDLE_NAME,
     };
@@ -47,7 +46,7 @@ class NotificationFilterUtil {
     if (enable) {
       try {
         notification.on("checkNotification", this.OnCheckNotification);
-        this.disableContentTypes.fill(false)
+        this.disableContentTypes.fill(false);
       } catch (error) {
         logger.error(`notificationManager.on error: ${JSON.stringify(error)}`);
       }
@@ -55,7 +54,7 @@ class NotificationFilterUtil {
     }
     else {
       try {
-        notification.off("checkNotification")
+        notification.off("checkNotification");
       } catch (error) {
         logger.error(`notificationManager.off error: ${JSON.stringify(error)}`);
       }
@@ -63,21 +62,20 @@ class NotificationFilterUtil {
     }
   }
 
-  // 设置通知类型是否允许推送
   setContentTypeDisable(type: ContentCallBackType, enable: boolean) {
-    this.disableContentTypes[type] = enable
+    this.disableContentTypes[type] = enable;
     logger.info(`allowContentTypes ${JSON.stringify(type)}`);
   }
 
-  // push回调
+  // push callback
   OnCheckNotification = (info: notification.NotificationCheckInfo) => {
     logger.info(`OnCheckNotification info: ${JSON.stringify(info.contentType)}`);
     if (this.disableContentTypes[info.contentType] === false) {
-      return { code: 0, message: "Notification send success" }
+      return { code: 0, message: "Notification send success" };
     } else {
-      return { code: 1, message: "Notification send fail" }
+      return { code: 1, message: "Notification send fail" };
     }
   }
 }
 
-export let notificationFilter = new NotificationFilterUtil()
+export let notificationFilter = new NotificationFilterUtil();

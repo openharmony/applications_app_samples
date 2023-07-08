@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { notificationFilter, ContentCallBackType } from '../feature/NotificationFilterUtil'
+import { notificationFilter, ContentCallBackType } from '../feature/NotificationFilterUtil';
 
 
 type checkBoxesMsg = {
   text: Resource,
-  enable: boolean
+  enable: boolean,
   contentType: ContentCallBackType
 }
 
@@ -41,9 +41,9 @@ type checkBoxesMsg = {
 @Entry
 @Component
 struct Index {
-  context = getContext(this)
-  @State isNotificationOn: boolean = false
-  @State isStaticSubscribeEnable: boolean = false
+  context = getContext(this);
+  @State isNotificationOn: boolean = false;
+  @State isStaticSubscribeEnable: boolean = false;
   @State checkBoxes: checkBoxesMsg[] = [
     {
       text: $r('app.string.basic_notification'),
@@ -82,8 +82,8 @@ struct Index {
     Row() {
       Text(checkBox.text)
         .fontSize(20)
-        .margin({ left: 40 })
-      Blank()
+        .margin({ left: 40 });
+      Blank();
       Checkbox({
         name: this.context.resourceManager.getStringSync(checkBox.text),
       })
@@ -91,10 +91,10 @@ struct Index {
         .margin({ right: 20 })
         .selectedColor(0x39a2db)
         .onChange((value: boolean) => {
-          notificationFilter.setContentTypeDisable(checkBox.contentType, value)
-        })
+          notificationFilter.setContentTypeDisable(checkBox.contentType, value);
+        });
     }.width('100%')
-    .margin({ top: 10 })
+    .margin({ top: 10 });
   }
 
   @Styles toggleStyle(){
@@ -114,15 +114,15 @@ struct Index {
           Toggle({ type: ToggleType.Switch, isOn: this.isNotificationOn })
             .toggleStyle()
             .onChange((value: boolean) => {
-              this.isNotificationOn = value
-              notificationFilter.setNotificationEnableFilter(value)
+              this.isNotificationOn = value;
+              notificationFilter.setNotificationEnableFilter(value);
             })
         }.width('100%')
 
         if (this.isNotificationOn) {
           ForEach(this.checkBoxes, (item: checkBoxesMsg, index: number) => {
-            this.viewCheckBox(item)
-          }, (item: checkBoxesMsg) => item.toString())
+            this.viewCheckBox(item);
+          }, (item: checkBoxesMsg) => item.toString());
         }
       }
       .cardStyle()
