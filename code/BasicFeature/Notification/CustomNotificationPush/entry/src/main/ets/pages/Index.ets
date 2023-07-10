@@ -92,7 +92,7 @@ struct Index {
         .height(20)
         .width(20)
         .borderRadius(4)
-        .id(`checkbox` + index)
+        .id('checkbox' + index)
         .selectedColor(0x007DFF)
         .onChange((value: boolean) => {
           notificationFilter.setContentTypeDisable(checkBox.contentType, value);
@@ -120,7 +120,7 @@ struct Index {
           Toggle({ type: ToggleType.Switch, isOn: this.isNotificationOn })
             .toggleStyle()
             .selectedColor(0x007DFF)
-            .id(`toggle`)
+            .id('toggle')
             .onChange((value: boolean) => {
               this.isNotificationOn = value;
               notificationFilter.setNotificationEnableFilter(value);

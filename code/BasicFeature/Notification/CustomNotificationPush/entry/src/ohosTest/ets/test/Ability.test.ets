@@ -19,8 +19,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-
-const TAG: string = '[CustomPush]';
+const TAG: string = '[Sample_CustomPush]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'CustomPush_';
 
@@ -53,8 +52,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickToggle_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id(`toggle`));
-      let toggle1 = await driver.findComponent(ON.id(`toggle`));
+      await driver.assertComponentExist(ON.id('toggle'));
+      let toggle1 = await driver.findComponent(ON.id('toggle'));
       await toggle1.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickToggle_001_001 end');
@@ -65,20 +64,23 @@ export default function abilityTest() {
     it(BUNDLE + 'ClickCheck_001_001', 1, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickCheck_001_001 begin');
       let driver = Driver.create();
-      await driver.assertComponentExist(ON.id(`checkbox1`));
+      await driver.assertComponentExist(ON.id('checkbox0'));
+      await driver.assertComponentExist(ON.id('checkbox1'));
+      await driver.assertComponentExist(ON.id('checkbox2'));
+      await driver.assertComponentExist(ON.id('checkbox3'));
       let checkbox0 = await driver.findComponent(ON.id(`checkbox0`));
       await checkbox0.click();
       await driver.delayMs(1000);
 
-      let checkbox1 = await driver.findComponent(ON.id(`checkbox1`));
+      let checkbox1 = await driver.findComponent(ON.id('checkbox1'));
       await checkbox1.click();
       await driver.delayMs(1000);
 
-      let checkbox2 = await driver.findComponent(ON.id(`checkbox2`));
+      let checkbox2 = await driver.findComponent(ON.id('checkbox2'));
       await checkbox2.click();
       await driver.delayMs(1000);
 
-      let checkbox3 = await driver.findComponent(ON.id(`checkbox3`));
+      let checkbox3 = await driver.findComponent(ON.id('checkbox3'));
       await checkbox3.click();
       await driver.delayMs(1000);
 
