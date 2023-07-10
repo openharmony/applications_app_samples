@@ -68,7 +68,7 @@ struct Index {
   @Builder TitleBar(title: Resource) {
     Row() {
       Text(title)
-        .fontWeight(500)
+        .fontWeight(700)
         .fontSize(24)
         .margin({ left: 12 })
     }
@@ -78,7 +78,7 @@ struct Index {
 
   }
 
-  @Builder viewCheckBox(checkBox: checkBoxesMsg) {
+  @Builder viewCheckBox(checkBox: checkBoxesMsg, index: number) {
     Row() {
       Text(checkBox.text)
         .fontSize(16)
@@ -92,6 +92,7 @@ struct Index {
         .height(20)
         .width(20)
         .borderRadius(4)
+        .id(`checkbox` + index)
         .selectedColor(0x007DFF)
         .onChange((value: boolean) => {
           notificationFilter.setContentTypeDisable(checkBox.contentType, value);
@@ -119,6 +120,7 @@ struct Index {
           Toggle({ type: ToggleType.Switch, isOn: this.isNotificationOn })
             .toggleStyle()
             .selectedColor(0x007DFF)
+            .id(`toggle`)
             .onChange((value: boolean) => {
               this.isNotificationOn = value;
               notificationFilter.setNotificationEnableFilter(value);
@@ -129,7 +131,7 @@ struct Index {
 
         if (this.isNotificationOn) {
           ForEach(this.checkBoxes, (item: checkBoxesMsg, index: number) => {
-            this.viewCheckBox(item);
+            this.viewCheckBox(item, index);
           }, (item: checkBoxesMsg) => item.toString());
         }
       }
