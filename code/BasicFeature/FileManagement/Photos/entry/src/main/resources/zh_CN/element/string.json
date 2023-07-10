@@ -1,0 +1,896 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "图库"
+    },
+    {
+      "name": "mainability_description",
+      "value": "照片"
+    },
+    {
+      "name": "description_mainability",
+      "value": "描述"
+    },
+    {
+      "name": "common_place_holder",
+      "value": "%s"
+    },
+    {
+      "name": "tab_timeline",
+      "value": "照片"
+    },
+    {
+      "name": "tab_albums",
+      "value": "相册"
+    },
+    {
+      "name": "tab_location_albums",
+      "value": "地点"
+    },
+    {
+      "name": "cancel_button",
+      "value": "取消"
+    },
+    {
+      "name": "camera_in",
+      "value": "自拍"
+    },
+    {
+      "name": "camera_out",
+      "value": "外景"
+    },
+    {
+      "name": "title_select_photos",
+      "value": "选择图片"
+    },
+    {
+      "name": "title_select_album",
+      "value": "选择相册"
+    },
+    {
+      "name": "title_none_selected",
+      "value": "未选择"
+    },
+    {
+      "name": "title_no_albums",
+      "value": "没有相册"
+    },
+    {
+      "name": "title_no_photos_with_geo_info",
+      "value": "没有包含地理位置的图片或视频"
+    },
+    {
+      "name": "photo_detail_duration",
+      "value": "时长：%s"
+    },
+    {
+      "name": "photo_detail_internal_path",
+      "value": "路径：内部存储%s"
+    },
+    {
+      "name": "photo_detail_external_path",
+      "value": "路径：存储卡%s"
+    },
+    {
+      "name": "date_today",
+      "value": "今天"
+    },
+    {
+      "name": "date_yesterday",
+      "value": "昨天"
+    },
+    {
+      "name": "action_ok",
+      "value": "确定"
+    },
+    {
+      "name": "action_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "action_back",
+      "value": "返回"
+    },
+    {
+      "name": "action_info",
+      "value": "详细信息"
+    },
+    {
+      "name": "action_delete",
+      "value": "删除"
+    },
+    {
+      "name": "action_clear_recycle",
+      "value": "清空"
+    },
+    {
+      "name": "action_delete_invalid",
+      "value": "不可删除"
+    },
+    {
+      "name": "action_recover",
+      "value": "恢复"
+    },
+    {
+      "name": "action_favorite",
+      "value": "取消收藏"
+    },
+    {
+      "name": "action_not_favorite",
+      "value": "收藏"
+    },
+    {
+      "name": "action_unselected",
+      "value": "选择"
+    },
+    {
+      "name": "action_selected",
+      "value": "取消选择"
+    },
+    {
+      "name": "action_select_all",
+      "value": "全选"
+    },
+    {
+      "name": "action_deselect_all",
+      "value": "取消全选"
+    },
+    {
+      "name": "action_setting",
+      "value": "设置"
+    },
+    {
+      "name": "action_navigation",
+      "value": "导航"
+    },
+    {
+      "name": "action_material_select",
+      "value": "选择"
+    },
+    {
+      "name": "action_goto_photos",
+      "value": "跳转图库"
+    },
+    {
+      "name": "action_share",
+      "value": "分享"
+    },
+    {
+      "name": "action_edit",
+      "value": "编辑"
+    },
+    {
+      "name": "action_new",
+      "value": "新建"
+    },
+    {
+      "name": "action_more",
+      "value": "更多"
+    },
+    {
+      "name": "action_rename",
+      "value": "重命名"
+    },
+    {
+      "name": "action_deRename",
+      "value": "重命名"
+    },
+    {
+      "name": "dialog_delete",
+      "value": "删除"
+    },
+    {
+      "name": "dialog_recycle",
+      "value": "永久删除"
+    },
+    {
+      "name": "dialog_clear",
+      "value": "清空"
+    },
+    {
+      "name": "dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "recycle_picture_tips",
+      "value": "是否删除此图片？"
+    },
+    {
+      "name": "recycle_video_tips",
+      "value": "是否删除此视频？"
+    },
+    {
+      "name": "delete_all_files_tips",
+      "value": "是否删除全部文件？"
+    },
+    {
+      "name": "remove_all_files_tips",
+      "value": "是否从相册移除全部文件？"
+    },
+    {
+      "name": "remove_single_file_tips",
+      "value": "是否从相册移除此文件？"
+    },
+    {
+      "name": "remove_files_tips",
+      "value": "是否从相册移除所选 %d 个文件？"
+    },
+    {
+      "name": "delete_single_file_tips",
+      "value": "是否删除此文件？"
+    },
+    {
+      "name": "delete_files_tips",
+      "value": "是否删除所选 %d 个文件？"
+    },
+    {
+      "name": "recycle_all_files_tips",
+      "value": "全部文件将被永久删除，无法恢复。是否删除？"
+    },
+    {
+      "name": "recycle_single_file_tips",
+      "value": "此文件将被永久删除，无法恢复。是否删除？"
+    },
+    {
+      "name": "recycle_files_tips",
+      "value": "所选 %d 个文件将被永久删除，无法恢复。是否删除？"
+    },
+    {
+      "name": "recycle_single_album_with_photos_tips",
+      "value": "是否删除此相册 （包含 %d 张图片）？"
+    },
+    {
+      "name": "recycle_single_album_with_videos_tips",
+      "value": "是否删除此相册 （包含 %d 个视频）？"
+    },
+    {
+      "name": "recycle_single_album_tips",
+      "value": "是否删除此相册 （包含 %d 张图片， %d 个视频）？"
+    },
+    {
+      "name": "recycle_albums_with_photos_tips",
+      "value": "是否删除 %d 本相册 （包含 %d 张图片）？"
+    },
+    {
+      "name": "recycle_albums_with_videos_tips",
+      "value": "是否删除 %d 本相册 （包含 %d 个视频）？"
+    },
+    {
+      "name": "recycle_albums_tips",
+      "value": "是否删除 %d 本相册 （包含 %d 张图片， %d 个视频）？"
+    },
+    {
+      "name": "photo_deleting",
+      "value": "正在删除…"
+    },
+    {
+      "name": "root_dir",
+      "value": "根目录"
+    },
+    {
+      "name": "share_excess_tips",
+      "value": "最多可选 %d 张照片"
+    },
+    {
+      "name": "storage_permission_description",
+      "value": "用于访问照片和视频等数据"
+    },
+    {
+      "name": "up_to_limit_tips",
+      "value": "已选素材数量达到上限"
+    },
+    {
+      "name": "resolution",
+      "value": "分辨率: "
+    },
+    {
+      "name": "title",
+      "value": "名称: "
+    },
+    {
+      "name": "time",
+      "value": "时间: "
+    },
+    {
+      "name": "details",
+      "value": "详细信息"
+    },
+    {
+      "name": "size",
+      "value": "大小: "
+    },
+    {
+      "name": "count",
+      "value": "数量: "
+    },
+    {
+      "name": "path",
+      "value": "路径: "
+    },
+    {
+      "name": "duration",
+      "value": "时长: "
+    },
+    {
+      "name": "detail_dialog_confirm",
+      "value": "知道了"
+    },
+    {
+      "name": "image_navigation_dialog_tips",
+      "value": "是否打开地图应用并导航至照片拍摄地点？"
+    },
+    {
+      "name": "video_navigation_dialog_tips",
+      "value": "是否打开地图应用并导航至该视频拍摄地点？"
+    },
+    {
+      "name": "count_details_external_selected",
+      "value": "已选择 %1$d/%2$d 项"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "tabBar_label",
+      "value": "标注"
+    },
+    {
+      "name": "tabBar_text",
+      "value": "文本"
+    },
+    {
+      "name": "editBar_text",
+      "value": "编辑"
+    },
+    {
+      "name": "ImageCollageHasFrame_text",
+      "value": "边框"
+    },
+    {
+      "name": "ImageCollageTitle_text",
+      "value": "拼图"
+    },
+    {
+      "name": "cropModeReset_text",
+      "value": "重置"
+    },
+    {
+      "name": "rotate_text",
+      "value": "旋转"
+    },
+    {
+      "name": "save_to_local",
+      "value": "保存"
+    },
+    {
+      "name": "mirror_text",
+      "value": "镜像"
+    },
+    {
+      "name": "frame_text",
+      "value": "相框"
+    },
+    {
+      "name": "blur_text",
+      "value": "虚化"
+    },
+    {
+      "name": "video_pause",
+      "value": "已暂停"
+    },
+    {
+      "name": "crop_text",
+      "value": "修剪"
+    },
+    {
+      "name": "filter_text",
+      "value": "滤镜"
+    },
+    {
+      "name": "adjust_text",
+      "value": "调节"
+    },
+    {
+      "name": "more_text",
+      "value": "更多"
+    },
+    {
+      "name": "label_text",
+      "value": "标注"
+    },
+    {
+      "name": "doodle_text",
+      "value": "涂鸦"
+    },
+    {
+      "name": "mosaic_text",
+      "value": "马赛克"
+    },
+    {
+      "name": "mosaic_style_text",
+      "value": "马赛克"
+    },
+    {
+      "name": "brightness_text",
+      "value": "亮度"
+    },
+    {
+      "name": "contrast_text",
+      "value": "对比度"
+    },
+    {
+      "name": "saturation_text",
+      "value": "饱和度"
+    },
+    {
+      "name": "sharpness_text",
+      "value": "锐度"
+    },
+    {
+      "name": "highlights_text",
+      "value": "亮部"
+    },
+    {
+      "name": "shadows_text",
+      "value": "暗部"
+    },
+    {
+      "name": "hue_text",
+      "value": "色温"
+    },
+    {
+      "name": "bw_text",
+      "value": "黑白"
+    },
+    {
+      "name": "doodle_pen_text",
+      "value": "涂鸦"
+    },
+    {
+      "name": "doodle_color_text",
+      "value": "颜色"
+    },
+    {
+      "name": "doodle_stroke_text",
+      "value": "粗细"
+    },
+    {
+      "name": "doodle_eraser_text",
+      "value": "橡皮擦"
+    },
+    {
+      "name": "move_to",
+      "value": "仅关联到"
+    },
+    {
+      "name": "copy_to",
+      "value": "复制到"
+    },
+    {
+      "name": "recycleAlbum_message",
+      "value": "文件在删除前会显示剩余天数（最长30天），之后将永久删除"
+    },
+    {
+      "name": "recycleAlbum_clear_message",
+      "value": "所有文件将被永久删除，无法恢复。是否清空？"
+    },
+    {
+      "name": "move_progress_message",
+      "value": "正在仅关联到\"%s\""
+    },
+    {
+      "name": "move_cancel_message",
+      "value": "已仅关联%s%，是否停止剩余文件的仅关联？"
+    },
+    {
+      "name": "copy_progress_message",
+      "value": "正在复制到\"%s\""
+    },
+    {
+      "name": "copy_cancel_message",
+      "value": "已复制%s%，是否停止剩余文件的复制？"
+    },
+    {
+      "name": "name_already_use",
+      "value": "此名称已被使用"
+    },
+    {
+      "name": "rename_failed",
+      "value": "重命名失败，请重试"
+    },
+    {
+      "name": "download_progress_message",
+      "value": "正在保存"
+    },
+    {
+      "name": "download_cancel_message",
+      "value": "是否取消保存？"
+    },
+    {
+      "name": "download_progress_continue",
+      "value": "继续保存"
+    },
+    {
+      "name": "download_progress_cancel",
+      "value": "立即取消"
+    },
+    {
+      "name": "download_progress_done",
+      "value": "文件已保存成功"
+    },
+    {
+      "name": "download_progress_cancelled",
+      "value": "文件已保存成功"
+    },
+    {
+      "name": "distributed_album_disconnected",
+      "value": "已与其他设备断开连接"
+    },
+    {
+      "name": "download_failed_single",
+      "value": "文件保存失败"
+    },
+    {
+      "name": "copy_failed_single",
+      "value": "复制失败，请重试"
+    },
+    {
+      "name": "move_failed_single",
+      "value": "仅关联失败，请重试"
+    },
+    {
+      "name": "download_failed_multi",
+      "value": "已保存 %d 个，部分文件保存失败"
+    },
+    {
+      "name": "local",
+      "value": "本机"
+    },
+    {
+      "name": "other_equipment",
+      "value": "其他设备"
+    },
+    {
+      "name": "continue",
+      "value": "继续"
+    },
+    {
+      "name": "stop",
+      "value": "停止"
+    },
+    {
+      "name": "specific_characters_not_supported",
+      "value": "不支持\".\\\/:*?<>|[]{}"
+    },
+    {
+      "name": "Maximum_length_reached",
+      "value": "已达到长度上限"
+    },
+    {
+      "name": "filter_original_text",
+      "value": "原图"
+    },
+    {
+      "name": "filter_gray_text",
+      "value": "中灰"
+    },
+    {
+      "name": "filter_antique_text",
+      "value": "怀旧"
+    },
+    {
+      "name": "filter_negative_text",
+      "value": "反色"
+    },
+    {
+      "name": "filter_tranquil_text",
+      "value": "恬淡"
+    },
+    {
+      "name": "filter_blues_text",
+      "value": "蓝调"
+    },
+    {
+      "name": "blur_round_text",
+      "value": "圆形"
+    },
+    {
+      "name": "blur_linear_text",
+      "value": "线性"
+    },
+    {
+      "name": "blur_blur_text",
+      "value": "模糊"
+    },
+    {
+      "name": "save_dialog_title_text",
+      "value": "请选择保存方式"
+    },
+    {
+      "name": "save_dialog_context_text",
+      "value": "选择“覆盖原图”后，您可在“最近删除”中找到对应原件。"
+    },
+    {
+      "name": "save_dialog_cancel_text",
+      "value": "取消"
+    },
+    {
+      "name": "save_dialog_overwrite_text",
+      "value": "覆盖原图"
+    },
+    {
+      "name": "save_dialog_save_text",
+      "value": "另存"
+    },
+    {
+      "name": "edit_exit_dialog_context_text",
+      "value": "是否放弃当前更改？"
+    },
+    {
+      "name": "edit_exit_dialog_discard_text",
+      "value": "放弃"
+    },
+    {
+      "name": "items",
+      "value": "%d 项"
+    },
+    {
+      "name": "action_move_to_album",
+      "value": "仅关联到相册"
+    },
+    {
+      "name": "action_copy_to_album",
+      "value": "复制到相册"
+    },
+    {
+      "name": "rename",
+      "value": "重命名"
+    },
+    {
+      "name": "album_new_album",
+      "value": "新建相册"
+    },
+    {
+      "name": "album_new_album_title",
+      "value": "新建相册"
+    },
+    {
+      "name": "navigation_albums",
+      "value": "转到相册"
+    },
+    {
+      "name": "copy_or_move",
+      "value": "选择添加方式"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "move",
+      "value": "仅关联"
+    },
+    {
+      "name": "add_notes",
+      "value": "添加备注"
+    },
+    {
+      "name": "complete",
+      "value": "完成"
+    },
+    {
+      "name": "select_items_to_add",
+      "value": "请选择你想要的素材"
+    },
+    {
+      "name": "find_same_name",
+      "value": "发现重名文件"
+    },
+    {
+      "name": "target_has_same_name",
+      "value": "目标相册包含重名文件 %s，是否替换？"
+    },
+    {
+      "name": "source_file_location",
+      "value": "来源文件"
+    },
+    {
+      "name": "target_file_location",
+      "value": "已存在文件"
+    },
+    {
+      "name": "file_size_location",
+      "value": "文件大小: %s"
+    },
+    {
+      "name": "file_time_location",
+      "value": "修改时间: %s"
+    },
+    {
+      "name": "do_same_action",
+      "value": "后续文件也执行此操作"
+    },
+    {
+      "name": "replace_action",
+      "value": "替换"
+    },
+    {
+      "name": "skip_action",
+      "value": "跳过"
+    },
+    {
+      "name": "no_photo_head_title_timeline",
+      "value": "查看按时间分组的照片"
+    },
+    {
+      "name": "no_photo_sub_title_timeline",
+      "value": "尽情拍摄，记录您的精彩生活"
+    },
+    {
+      "name": "no_photo_head_title_album",
+      "value": "管理和浏览分类清晰的相册"
+    },
+    {
+      "name": "no_photo_sub_title_album",
+      "value": "整理美好记忆，查找更方便"
+    },
+    {
+      "name": "no_distributed_photo_head_title_album",
+      "value": "没有照片和视频"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_fasetting",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_FASetting",
+      "value": "entry_FASetting2"
+    },
+    {
+      "name": "edit_save_picture_text",
+      "value": "正在保存照片..."
+    },
+    {
+      "name": "fa_title_text",
+      "value": "图库"
+    },
+    {
+      "name": "fa_subTitle_text",
+      "value": "选择要装扮的图片"
+    },
+    {
+      "name": "fa_select_image_text",
+      "value": "选择图片"
+    },
+    {
+      "name": "fa_select_album_text",
+      "value": "选择相册"
+    },
+    {
+      "name": "fa_setting_text",
+      "value": "通用设置"
+    },
+    {
+      "name": "fa_image_show_interval",
+      "value": "图片播放间隔"
+    },
+    {
+      "name": "progress_delete",
+      "value": "删除%1$d/%2$d"
+    },
+    {
+      "name": "progress_recover",
+      "value": "恢复%1$d/%2$d"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "相册"
+    },
+    {
+      "name": "edit_photo_save_fail",
+      "value": "图片保存失败!"
+    },
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "相册样例"
+    },
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "id_text_font_family_medium",
+      "value": "中粗"
+    },
+    {
+      "name": "id_text_font_family_regular",
+      "value": "标准"
+    },
+    {
+      "name": "album_all",
+      "value": "所有照片"
+    },
+    {
+      "name": "album_camera",
+      "value": "相机"
+    },
+    {
+      "name": "album_video",
+      "value": "视频"
+    },
+    {
+      "name": "album_favor",
+      "value": "我的收藏"
+    },
+    {
+      "name": "album_screen_shot",
+      "value": "截屏录屏"
+    },
+    {
+      "name": "album_remote_device",
+      "value": "其他设备保存"
+    },
+    {
+      "name": "album_recycle",
+      "value": "最近删除"
+    },
+    {
+      "name": "yes",
+      "value": "确定"
+    },
+    {
+      "name": "no",
+      "value": "取消"
+    },
+    {
+      "name": "camera_btn_text_photo",
+      "value": "拍照"
+    },
+    {
+      "name": "selected_photos_count",
+      "value": "%1$d/%2$d"
+    },
+    {
+      "name": "third_delete_dialog_message",
+      "value": "是否允许 %s 删除 %d 个文件？"
+    },
+    {
+      "name": "image_loading",
+      "value": "正在加载..."
+    },
+    {
+      "name": "no_distributed_photo_show_image",
+      "value": "请先在对端图库打开大图，再在本端浏览"
+    },
+    {
+      "name": "no_distributed_photo_show_video",
+      "value": "请下载视频文件至本机进行播放"
+    },
+    {
+      "name": "read_permission",
+      "value": "user read file permission"
+    },
+    {
+      "name": "write_permission",
+      "value": "user write file permission"
+    },
+    {
+      "name": "write_image_video_permission",
+      "value": "user write image video permission"
+    }
+  ]
+}

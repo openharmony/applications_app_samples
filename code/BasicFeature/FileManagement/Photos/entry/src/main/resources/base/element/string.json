@@ -1,0 +1,898 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Gallery"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Photos"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "common_place_holder",
+      "value": "%s"
+    },
+    {
+      "name": "tab_timeline",
+      "value": "Photos"
+    },
+    {
+      "name": "tab_albums",
+      "value": "Albums"
+    },
+    {
+      "name": "tab_location_albums",
+      "value": "Places"
+    },
+    {
+      "name": "cancel_button",
+      "value": "CANCEL"
+    },
+    {
+      "name": "camera_in",
+      "value": "Selfies"
+    },
+    {
+      "name": "camera_out",
+      "value": "Exterior shots"
+    },
+    {
+      "name": "title_select_photos",
+      "value": "Select images"
+    },
+    {
+      "name": "title_select_album",
+      "value": "Select album"
+    },
+    {
+      "name": "title_none_selected",
+      "value": "None selected"
+    },
+    {
+      "name": "title_no_albums",
+      "value": "No albums"
+    },
+    {
+      "name": "title_no_photos_with_geo_info",
+      "value": "No photos or videos with location information"
+    },
+    {
+      "name": "photo_detail_duration",
+      "value": "Duration: %s"
+    },
+    {
+      "name": "photo_detail_internal_path",
+      "value": "Path: Internal storage%s"
+    },
+    {
+      "name": "photo_detail_external_path",
+      "value": "Path: Memory card%s"
+    },
+    {
+      "name": "date_today",
+      "value": "Today"
+    },
+    {
+      "name": "date_yesterday",
+      "value": "Yesterday"
+    },
+    {
+      "name": "action_ok",
+      "value": "Done"
+    },
+    {
+      "name": "action_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "action_back",
+      "value": "Go back"
+    },
+    {
+      "name": "action_info",
+      "value": "Details"
+    },
+    {
+      "name": "action_delete",
+      "value": "Delete"
+    },
+    {
+      "name": "action_clear_recycle",
+      "value": "Clear"
+    },
+    {
+      "name": "action_delete_invalid",
+      "value": "Can't be deleted"
+    },
+    {
+      "name": "action_recover",
+      "value": "Restore"
+    },
+    {
+      "name": "action_favorite",
+      "value": "Unfavorite"
+    },
+    {
+      "name": "action_not_favorite",
+      "value": "Favorite"
+    },
+    {
+      "name": "action_unselected",
+      "value": "Select"
+    },
+    {
+      "name": "action_selected",
+      "value": "Deselect"
+    },
+    {
+      "name": "action_select_all",
+      "value": "Select all"
+    },
+    {
+      "name": "action_deselect_all",
+      "value": "Deselect all"
+    },
+    {
+      "name": "action_setting",
+      "value": "Settings"
+    },
+    {
+      "name": "action_navigation",
+      "value": "Get directions to this location"
+    },
+    {
+      "name": "action_material_select",
+      "value": "Select"
+    },
+    {
+      "name": "action_goto_photos",
+      "value": "Go to Gallery"
+    },
+    {
+      "name": "action_share",
+      "value": "Share"
+    },
+    {
+      "name": "action_edit",
+      "value": "Edit"
+    },
+    {
+      "name": "action_new",
+      "value": "New"
+    },
+    {
+      "name": "action_more",
+      "value": "More"
+    },
+    {
+      "name": "action_rename",
+      "value": "Rename"
+    },
+    {
+      "name": "action_deRename",
+      "value": "Rename"
+    },
+    {
+      "name": "dialog_delete",
+      "value": "DELETE"
+    },
+    {
+      "name": "dialog_recycle",
+      "value": "DELETE"
+    },
+    {
+      "name": "dialog_clear",
+      "value": "CLEAR"
+    },
+    {
+      "name": "dialog_cancel",
+      "value": "CANCEL"
+    },
+    {
+      "name": "recycle_picture_tips",
+      "value": "Delete this photo?"
+    },
+    {
+      "name": "recycle_video_tips",
+      "value": "Delete this video?"
+    },
+    {
+      "name": "delete_all_files_tips",
+      "value": "Delete all items?"
+    },
+    {
+      "name": "delete_single_file_tips",
+      "value": "Delete this item?"
+    },
+    {
+      "name": "delete_files_tips",
+      "value": "Delete %d items?"
+    },
+    {
+      "name": "remove_all_files_tips",
+      "value": "Remove all items from album?"
+    },
+    {
+      "name": "remove_single_file_tips",
+      "value": "Remove this item from album?"
+    },
+    {
+      "name": "remove_files_tips",
+      "value": "Remove %d items from album?"
+    },
+    {
+      "name": "recycle_all_files_tips",
+      "value": "Permanently delete all items?"
+    },
+    {
+      "name": "recycle_single_file_tips",
+      "value": "Permanently delete this item?"
+    },
+    {
+      "name": "recycle_files_tips",
+      "value": "Permanently delete %d items?"
+    },
+    {
+      "name": "recycle_single_album_with_photos_tips",
+      "value": "Delete this album? (Photos: %d)"
+    },
+    {
+      "name": "recycle_single_album_with_videos_tips",
+      "value": "Delete this album? (Videos: %d)"
+    },
+    {
+      "name": "recycle_single_album_tips",
+      "value": "Delete this album? (Photos: %d, Videos: %d)"
+    },
+    {
+      "name": "recycle_albums_with_photos_tips",
+      "value": "Delete these %d albums? (Photos: %d)"
+    },
+    {
+      "name": "recycle_albums_with_videos_tips",
+      "value": "Delete these %d albums? (Videos: %d)"
+    },
+    {
+      "name": "recycle_albums_tips",
+      "value": "Delete these %d albums? (Photos: %d, Videos: %d)"
+    },
+    {
+      "name": "photo_deleting",
+      "value": "Deleting…"
+    },
+    {
+      "name": "root_dir",
+      "value": "root directory"
+    },
+    {
+      "name": "share_excess_tips",
+      "value": "Maximum of %d items can be selected."
+    },
+    {
+      "name": "storage_permission_description",
+      "value": "This is used to access photos and videos."
+    },
+    {
+      "name": "up_to_limit_tips",
+      "value": "Maximum number of items selected."
+    },
+    {
+      "name": "resolution",
+      "value": "Resolution: "
+    },
+    {
+      "name": "title",
+      "value": "Title: "
+    },
+    {
+      "name": "time",
+      "value": "Time: "
+    },
+    {
+      "name": "details",
+      "value": "Details"
+    },
+    {
+      "name": "size",
+      "value": "Size: "
+    },
+    {
+      "name": "path",
+      "value": "Path: "
+    },
+    {
+      "name": "duration",
+      "value": "Duration: "
+    },
+    {
+      "name": "count",
+      "value": "Selected: "
+    },
+    {
+      "name": "detail_dialog_confirm",
+      "value": "OK"
+    },
+    {
+      "name": "rename",
+      "value": "Rename"
+    },
+    {
+      "name": "image_navigation_dialog_tips",
+      "value": "Navigate to where this photo was taken?"
+    },
+    {
+      "name": "video_navigation_dialog_tips",
+      "value": "Navigate to where this video was shot?"
+    },
+    {
+      "name": "count_details_external_selected",
+      "value": "%1$d/%2$d selected"
+    },
+
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "tabBar_label",
+      "value": "Label"
+    },
+    {
+      "name": "tabBar_text",
+      "value": "Text"
+    },
+    {
+      "name": "editBar_text",
+      "value": "Edit"
+    },
+    {
+      "name": "ImageCollageHasFrame_text",
+      "value": "Frame"
+    },
+    {
+      "name": "ImageCollageTitle_text",
+      "value": "imageCollage"
+    },
+    {
+      "name": "cropModeReset_text",
+      "value": "Reset"
+    },
+    {
+      "name": "rotate_text",
+      "value": "Rotate"
+    },
+    {
+      "name": "save_to_local",
+      "value": "Save"
+    },
+    {
+      "name": "mirror_text",
+      "value": "Mirror"
+    },
+    {
+      "name": "frame_text",
+      "value": "frame"
+    },
+    {
+      "name": "blur_text",
+      "value": "Blur"
+    },
+    {
+      "name": "video_pause",
+      "value": "Paused"
+    },
+    {
+      "name": "crop_text",
+      "value": "Crop"
+    },
+    {
+      "name": "filter_text",
+      "value": "filter"
+    },
+    {
+      "name": "adjust_text",
+      "value": "adjust"
+    },
+    {
+      "name": "more_text",
+      "value": "more"
+    },
+    {
+      "name": "label_text",
+      "value": "label"
+    },
+    {
+      "name": "doodle_text",
+      "value": "Doodle"
+    },
+    {
+      "name": "mosaic_text",
+      "value": "Mosaic"
+    },
+    {
+      "name": "mosaic_style_text",
+      "value": "Style"
+    },
+    {
+      "name": "brightness_text",
+      "value": "Brightness"
+    },
+    {
+      "name": "contrast_text",
+      "value": "Contrast"
+    },
+    {
+      "name": "saturation_text",
+      "value": "Saturation"
+    },
+    {
+      "name": "sharpness_text",
+      "value": "Sharpness"
+    },
+    {
+      "name": "highlights_text",
+      "value": "Highlights"
+    },
+    {
+      "name": "shadows_text",
+      "value": "Shadows"
+    },
+    {
+      "name": "hue_text",
+      "value": "Hue"
+    },
+    {
+      "name": "bw_text",
+      "value": "BW"
+    },
+    {
+      "name": "doodle_pen_text",
+      "value": "Style"
+    },
+    {
+      "name": "doodle_color_text",
+      "value": "Color"
+    },
+    {
+      "name": "doodle_stroke_text",
+      "value": "Size"
+    },
+    {
+      "name": "doodle_eraser_text",
+      "value": "Eraser"
+    },
+    {
+      "name": "move_to",
+      "value": "Move to"
+    },
+    {
+      "name": "copy_to",
+      "value": "Copy to"
+    },
+    {
+      "name": "recycleAlbum_message",
+      "value": "Photos and videos will be permanently deleted after the number of days shown (up to 30 days )."
+    },
+    {
+      "name": "recycleAlbum_clear_message",
+      "value": "Permanently clear all items?"
+    },
+    {
+      "name": "move_progress_message",
+      "value": "Moving to %s"
+    },
+    {
+      "name": "move_cancel_message",
+      "value": "%s% moved.Stop moving the remaining files?"
+    },
+    {
+      "name": "copy_progress_message",
+      "value": "Copying to %s"
+    },
+    {
+      "name": "copy_cancel_message",
+      "value": "%s% copied.Stop copying the remaining files?"
+    },
+    {
+      "name": "name_already_use",
+      "value": "Name already in use."
+    },
+    {
+      "name": "rename_failed",
+      "value": "Unable to rename.Please try again."
+    },
+    {
+      "name": "download_progress_message",
+      "value": "Downloading"
+    },
+    {
+      "name": "download_cancel_message",
+      "value": "Cancel saving?"
+    },
+    {
+      "name": "download_progress_continue",
+      "value": "NO"
+    },
+    {
+      "name": "download_progress_cancel",
+      "value": "YES"
+    },
+    {
+      "name": "download_progress_done",
+      "value": "Items saved."
+    },
+    {
+      "name": "download_progress_cancelled",
+      "value": "Saving has been cancelled."
+    },
+    {
+      "name": "distributed_album_disconnected",
+      "value": "Other devices have been disconnected."
+    },
+    {
+      "name": "download_failed_single",
+      "value": "Saving has been failed."
+    },
+    {
+      "name": "copy_failed_single",
+      "value": "Unable to copy.Please try again."
+    },
+    {
+      "name": "move_failed_single",
+      "value": "Unable to move.Please try again."
+    },
+    {
+      "name": "download_failed_multi",
+      "value": "Only able to save %d of the items."
+    },
+    {
+      "name": "local",
+      "value": "This device"
+    },
+    {
+      "name": "other_equipment",
+      "value": "Other devices"
+    },
+    {
+      "name": "continue",
+      "value": "CONTINUE"
+    },
+    {
+      "name": "stop",
+      "value": "STOP"
+    },
+    {
+      "name": "specific_characters_not_supported",
+      "value": "\".\\\/:*?<>|[]{} are not supported"
+    },
+    {
+      "name": "Maximum_length_reached",
+      "value": "Maximum length reached."
+    },
+    {
+      "name": "filter_original_text",
+      "value": "Original"
+    },
+    {
+      "name": "filter_gray_text",
+      "value": "Gray"
+    },
+    {
+      "name": "filter_antique_text",
+      "value": "Memory"
+    },
+    {
+      "name": "filter_negative_text",
+      "value": "Negative"
+    },
+    {
+      "name": "filter_tranquil_text",
+      "value": "Sweet"
+    },
+    {
+      "name": "filter_blues_text",
+      "value": "Blue"
+    },
+    {
+      "name": "blur_round_text",
+      "value": "Circle"
+    },
+    {
+      "name": "blur_linear_text",
+      "value": "Bar"
+    },
+    {
+      "name": "blur_blur_text",
+      "value": "Everywhere"
+    },
+    {
+      "name": "save_dialog_title_text",
+      "value": "please select a saving method"
+    },
+    {
+      "name": "save_dialog_context_text",
+      "value": "After selecting “overwrite”, you can find the corresponding original in “recently deleted”."
+    },
+    {
+      "name": "save_dialog_cancel_text",
+      "value": "CANCEL"
+    },
+    {
+      "name": "save_dialog_overwrite_text",
+      "value": "REPLACE ORIGINAL"
+    },
+    {
+      "name": "save_dialog_save_text",
+      "value": "SAVE AS NEW"
+    },
+    {
+      "name": "edit_exit_dialog_context_text",
+      "value": "Discard changes ?"
+    },
+    {
+      "name": "edit_exit_dialog_discard_text",
+      "value": "DISCARD"
+    },
+    {
+      "name": "items",
+      "value": "%d items"
+    },
+    {
+      "name": "action_move_to_album",
+      "value": "Move to album"
+    },
+    {
+      "name": "action_copy_to_album",
+      "value": "Copy to album"
+    },
+    {
+      "name": "album_new_album",
+      "value": "newAlbum"
+    },
+    {
+      "name": "album_new_album_title",
+      "value": "New album"
+    },
+    {
+      "name": "navigation_albums",
+      "value": "navigation_albums"
+    },
+    {
+      "name": "copy_or_move",
+      "value": "Copy or move?"
+    },
+    {
+      "name": "copy",
+      "value": "Copy"
+    },
+    {
+      "name": "move",
+      "value": "Move"
+    },
+    {
+      "name": "add_notes",
+      "value": "Add notes"
+    },
+    {
+      "name": "complete",
+      "value": "Done"
+    },
+    {
+      "name": "select_items_to_add",
+      "value": "Select items to add"
+    },
+    {
+      "name": "find_same_name",
+      "value": "Duplicate file found"
+    },
+    {
+      "name": "target_has_same_name",
+      "value": "A file with the name %s already exists. Replace it?"
+    },
+    {
+      "name": "source_file_location",
+      "value": "File at source location"
+    },
+    {
+      "name": "target_file_location",
+      "value": "File at target location"
+    },
+    {
+      "name": "file_size_location",
+      "value": "Size: %s"
+    },
+    {
+      "name": "file_time_location",
+      "value": "Date modified: %s"
+    },
+    {
+      "name": "do_same_action",
+      "value": "Do this for all future conflicts"
+    },
+    {
+      "name": "replace_action",
+      "value": "REPLACE"
+    },
+    {
+      "name": "skip_action",
+      "value": "SKIP"
+    },
+    {
+      "name": "no_photo_head_title_timeline",
+      "value": "Take a stroll down memory lane"
+    },
+    {
+      "name": "no_photo_sub_title_timeline",
+      "value": "Here, all the sights and sounds of your life are organized chronologically. Just scroll to look back."
+    },
+    {
+      "name": "no_photo_head_title_album",
+      "value": "All your albums, at a glance"
+    },
+    {
+      "name": "no_photo_sub_title_album",
+      "value": "Reliving your best memories has never been easier"
+    },
+    {
+      "name": "no_distributed_photo_head_title_album",
+      "value": "No photos or videos"
+    },
+
+    {
+      "name": "description_serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_fasetting",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_FASetting",
+      "value": "entry_FASetting2"
+    },
+    {
+      "name": "edit_save_picture_text",
+      "value": "Saving picture..."
+    },
+    {
+      "name": "fa_title_text",
+      "value": "Gallery"
+    },
+    {
+      "name": "fa_subTitle_text",
+      "value": "Select a photo"
+    },
+    {
+      "name": "fa_select_image_text",
+      "value": "Select a photo"
+    },
+    {
+      "name": "fa_select_album_text",
+      "value": "Select an album"
+    },
+    {
+      "name": "fa_setting_text",
+      "value": "Settings"
+    },
+    {
+      "name": "fa_image_show_interval",
+      "value": "Slideshow interval"
+    },
+    {
+      "name": "progress_delete",
+      "value": "Delete%1$d/%2$d"
+    },
+    {
+      "name": "progress_recover",
+      "value": "Restore%1$d/%2$d"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "Album"
+    },
+    {
+      "name": "edit_photo_save_fail",
+      "value": "Failed to save image!"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PhotoSample"
+    },
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "id_text_font_family_medium",
+      "value": "HwChinese-medium"
+    },
+    {
+      "name": "id_text_font_family_regular",
+      "value": "sans-serif"
+    },
+    {
+      "name": "album_all",
+      "value": "All photos"
+    },
+    {
+      "name": "album_camera",
+      "value": "Camera"
+    },
+    {
+      "name": "album_video",
+      "value": "Videos"
+    },
+    {
+      "name": "album_favor",
+      "value": "My favorites"
+    },
+    {
+      "name": "album_remote_device",
+      "value": "From other devices"
+    },
+    {
+      "name": "album_screen_shot",
+      "value": "Screenshots"
+    },
+    {
+      "name": "album_recycle",
+      "value": "Recently deleted"
+    },
+    {
+      "name": "yes",
+      "value": "OK"
+    },
+    {
+      "name": "no",
+      "value": "CANCEL"
+    },
+    {
+      "name": "camera_btn_text_photo",
+      "value": "Photo"
+    },
+    {
+      "name": "selected_photos_count",
+      "value": "%1$d/%2$d"
+    },
+    {
+      "name": "third_delete_dialog_message",
+      "value": "Whether allow %s to delete %d files？"
+    },
+    {
+      "name": "image_loading",
+      "value": "Loading..."
+    },
+    {
+      "name": "no_distributed_photo_show_image",
+      "value": "Open a large image in the peer gallery, and then browse the image on the local gallery."
+    },
+    {
+      "name": "no_distributed_photo_show_video",
+      "value": "Download the video file to the local computer for playback."
+    },
+    {
+      "name": "read_permission",
+      "value": "user read file permission"
+    },
+    {
+      "name": "write_permission",
+      "value": "user write file permission"
+    },
+    {
+      "name": "write_image_video_permission",
+      "value": "user write image video permission"
+    }
+  ]
+}

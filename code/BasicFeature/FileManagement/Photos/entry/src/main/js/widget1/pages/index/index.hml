@@ -1,0 +1,13 @@
+<div class="container" on:click="routerEvent">
+    <stack>
+        <div class="container-img">
+            <image src= "{{ fd? image1: defaultImage }}" alt="/common/form_bg.png" class="bg-img"></image>
+        </div>
+        <div class="container-bg">
+            <image src= "/common/gradient_mask_layer.png" class="bg-img"></image>
+        </div>
+        <div class="container-inner">
+            <text class="title" show ="{{isShow}}">{{ albumName }}</text>
+        </div>
+    </stack>
+</div>

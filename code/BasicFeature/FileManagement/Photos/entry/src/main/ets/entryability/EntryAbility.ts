@@ -1,0 +1,88 @@
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import deviceInfo from '@ohos.deviceInfo';
+import Ability from '@ohos.app.ability.UIAbility';
+import wantConstant from '@ohos.ability.wantConstant';
+import { Log } from '../utils/Log';
+import { screenManager } from '../common/ScreenManager';
+import { Constants } from '../constants/Constants';
+import { broadcastManager } from '../common/BroadcastManager';
+import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
+import { BroadcastConstants } from '../constants/BroadcastConstants';
+import { userFileModel } from '../base/UserFileModel';
+import router from '@system.router';
+import { RouterOptions } from '@system.router';
+import { GroupItemDataSource } from '../common/GroupItemDataSource';
+import atManager from '@ohos.abilityAccessCtrl';
+import bundleManager from '@ohos.bundle.bundleManager';
+import { MediaConstants } from '../constants/MediaConstants';
+import { getResourceString } from '../utils/ResourceUtils';
+import { GlobalContext } from '../common/GlobalContext';
+import Want from '@ohos.app.ability.Want';
+
+let mCallerUid: number = 0;
+let mMaxSelectCount: number = 0;
+let mFilterMediaType: number = MediaConstants.SELECT_TYPE_ALL;
+let appBroadcast = broadcastManager.getBroadcast();
+let pagePath: string = 'pages/Index';
+
+export default class EntryAbility extends UIAbility {
+  private TAG: string = 'EntryAbility';
+  private static readonly RETRY_MAX_TIMES = 100;
+  private static readonly ACTION_URI_SINGLE_SELECT = 'singleselect';
+  private static readonly ACTION_URI_MULTIPLE_SELECT = 'multipleselect';
+  private static readonly ACTION_URI_PHOTO_DETAIL = 'photodetail';
+  private browserDataSource : GroupItemDataSource = new GroupItemDataSource();
+  onCreate(want: Want, launchParam): void {
+        Log.info(this.TAG, 'Application onCreate');
+        startTrace('onCreate');
+        // Ability is creating, initialize resources for this ability
+        GlobalContext.getContext().setObject("appContext", this.context);
+        userFileModel.onCreate(this.context);
+        mFilterMediaType = MediaConstants.SELECT_TYPE_ALL;
+        AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
+        finishTrace('onCreate');
+        Log.info(this.TAG, 'Application onCreate end');
+    }
+
+  onNewWant(want: Want): void {
+    startTrace('onNewWant');
+    AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
+    finishTrace('onNewWant');
+  }
+
+  onDestroy(): void {
+    // Ability is creating, release resources for this ability
+    Log.info(this.TAG, 'Application onDestroy');
+    AppStorage.Delete(Constants.ENTRY_FROM_HAP);
+  }
+
+  onWindowStageCreate(windowStage): void {
+        startTrace('onWindowStageCreate');
+        // Main window is created, set main page for this ability
+        Log.info(this.TAG, 'Application onWindowStageCreate');
+        GlobalContext.getContext().setObject("photosWindowStage", windowStage);
+        startTrace('getMainWindow');
+        windowStage.getMainWindow().then((win: window.Window): void => {
+            AppStorage.SetOrCreate<window.Window>(Constants.MAIN_WINDOW, win);
+            finishTrace('getMainWindow');
+            startTrace('initializationSize');
+            screenManager.initializationSize(win).then<void, void>((): void => {
+                finishTrace('initializationSize');
+                windowStage.setUIContent(this.context, pagePath, null);
+                finishTrace('onWindowStageCreate');
+            }).catch<void>((): void => {
+                Log.error(this.TAG, "get device screen info failed.");
+            });
+        });
+    }
+
+  onWindowStageDestroy(): void {
+  }
+
+  onForeground(): void {
+  }
+
+  onBackground(): void {
+  }
+}
