@@ -113,10 +113,11 @@ export struct NotificationItem {
             .lineHeight(19)
             .opacity(0.6)
         }.width('100%')
-         .height(64)
+        .height(64)
       }.width('95%')
       .margin({ left: 10, right: 15 })
-    }.backgroundColor(Color.White)
+    }
+    .backgroundColor(Color.White)
     .borderRadius(24)
     .height(72)
     .margin({ left: 10, right: 10 })
