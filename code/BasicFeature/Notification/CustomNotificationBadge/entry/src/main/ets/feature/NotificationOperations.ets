@@ -17,7 +17,7 @@ import image from '@ohos.multimedia.image';
 import notification from '@ohos.notificationManager';
 import { logger, notificationUtil, notificationContentUtil, notificationRequestUtil } from '@ohos/notification';
 
-const TAG: string = 'NotificationOperations';
+const TAG: string = 'Sample_Notification';
 const MULTI_LINE_CONTENT: Array<string> = ['line0', 'line1', 'line2', 'line3']; // 多行文本通知的多行文本内容
 
 const NOTIFICATION_GROUP = { // 定义不同类型通知的通知组

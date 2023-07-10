@@ -35,7 +35,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.customnotificationbadge',
+          bundleName: 'com.samples.customnotificationbadge',
           abilityName: 'EntryAbility'
         });
         done();

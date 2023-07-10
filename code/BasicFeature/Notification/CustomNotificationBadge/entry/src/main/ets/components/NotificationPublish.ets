@@ -22,9 +22,9 @@ export struct NoticePublish {
   private notificationOperations: NotificationOperations = new NotificationOperations(getContext(this));
 
   @Styles buttonStyle(){
-    .width('90%')
-    .height(55)
-    .margin(10)
+    .width('86.7%')
+    .height(40)
+    .margin(6)
     .backgroundColor($r('app.color.notification_button'))
   }
 
@@ -36,25 +36,26 @@ export struct NoticePublish {
       Scroll() {
         Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceEvenly }) {
           Button($r('app.string.basic_notification'))
-            .fontSize(20)
+            .fontSize(16)
             .buttonStyle()
             .onClick(this.notificationOperations.publishBasicNotification)
-
           Button($r('app.string.long_text_notification'))
-            .fontSize(20)
+            .fontSize(16)
             .buttonStyle()
             .onClick(this.notificationOperations.publishLongTextNotification)
           Button($r('app.string.picture_notification'))
-            .fontSize(20)
+            .fontSize(16)
             .buttonStyle()
             .onClick(this.notificationOperations.publishPictureNotification)
           Button($r('app.string.multiline_notification'))
-            .fontSize(20)
+            .fontSize(16)
             .buttonStyle()
             .onClick(this.notificationOperations.publishMultiLineNotification)
+
         }
         .width('100%')
         .padding(12)
+
       }
 
       Blank()

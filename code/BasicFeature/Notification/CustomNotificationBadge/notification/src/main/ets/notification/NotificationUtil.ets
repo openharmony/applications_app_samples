@@ -24,6 +24,7 @@ class NotificationUtil {
    * enable notification
    */
   private id: number = 0
+
   async enableNotification() {
     try {
       await notification.requestEnableNotification();
@@ -39,11 +40,8 @@ class NotificationUtil {
    * @param id, Support specifying notification id when publishing notifications
    */
   async publishNotification(notificationRequest: notification.NotificationRequest, group?: string) {
-    // if (id && id > 0) {
-    //   notificationRequest.id = id
-    // }
     notificationRequest.id = this.id;
-    this.id ++
+    this.id++;
     if (group) {
       notificationRequest.groupName = group;
     }
@@ -51,7 +49,7 @@ class NotificationUtil {
     try {
       await notification.publish(notificationRequest);
       logger.info(TAG, `publish notification success`);
-      //通知管理器添加新通知
+      // 通知管理器添加新通知
       await notificationManagement.addNotification(notificationRequest);
     } catch (err) {
       if (err) {

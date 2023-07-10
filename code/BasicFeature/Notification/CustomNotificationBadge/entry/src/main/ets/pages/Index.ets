@@ -44,15 +44,15 @@ struct Index {
 
     Column() {
       Image(this.tabsIndex === index ? item.selectedImage : item.unselectedImage)
-        .width(50)
-        .height(50)
+        .width(24)
+        .height(24)
         .margin({ bottom: 10 })
       Text(tabBarName)
-        .fontSize(20)
+        .fontSize(10)
 
     }
     .width('100%')
-    .padding({ top: 6, bottom: 6 })
+    .padding({ top: 0, bottom: 0 })
     .alignItems(HorizontalAlign.Center)
     .id(`tabBar${index}`)
   }
@@ -80,7 +80,7 @@ struct Index {
         }
         .tabBar(this.TabBarBuilder(TAB_INDEX.NOTIFICATION_TAB, NOTIFICATION_TAB, $r('app.string.notification_publish_title')),)
       }
-      .barHeight(100)
+      .barHeight(74)
       .barWidth('100%')
       .vertical(false)
       .onChange((index: number) => {

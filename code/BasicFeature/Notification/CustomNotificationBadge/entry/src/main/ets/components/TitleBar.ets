@@ -22,10 +22,10 @@ export struct TitleBar {
   build() {
     Row() {
       Text(this.title)
-        .fontSize(26)
+        .fontSize(24)
         .fontWeight(700)
-        .lineHeight(30)
-        .margin({ left: 28 })
+        .lineHeight(32)
+        .margin({ left: 24 })
         .fontColor('#182431')
     }
     .width('100%')

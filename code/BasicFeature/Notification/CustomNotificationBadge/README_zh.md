@@ -13,7 +13,7 @@
 
 使用说明
 
-1. 在使用本应用时，需安装并启动[仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/Launcher)；
+1. 在使用本应用时，需安装并启动[仿桌面应用](code/SystemFeature/ApplicationModels/Launcher)；
 2. 在主界面，可以看到当前应用的所有消息通知；
 3. 点击右下角Tab页签进入通知发送页面，点击对应的通知即可发送相应类型的通知，点击几次发送几条；
 4. 点击左下角Tab页签进入消息列表，可以查看刚才发送的消息，消息右边会显示消息数量，点击相应的消息可进行消息读取，取消相应通知；
@@ -69,11 +69,9 @@ notification/src/main/ets/
 ### 依赖
 
 应用的角标依赖于仿桌面应用进行显示：
-[仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/Launcher)。
+[仿桌面应用](code/SystemFeature/ApplicationModels/Launcher)。
 
 ### 约束与限制
-
-描述一些设备、SDK版本、IDE版本、接口限制、签名等约束和限制，示例如下：
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
 2. 本示例仅支持API10版本SDK，版本号：4.0.7.5，镜像版本号：OpenHarmony 4.0.7.5；

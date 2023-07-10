@@ -98,24 +98,27 @@ export struct NotificationItem {
       Badge({
         count: this.notificationNum,
         position: BadgePosition.Right,
-        style: { badgeSize: 25, badgeColor: $r('app.color.badge_color'), fontSize: 20 }
+        style: { badgeSize: 16, badgeColor: $r('app.color.badge_color'), fontSize: 10 }
       }) {
         Column() {
           Text(this.title)
             .alignSelf(ItemAlign.Start)
             .fontWeight(500)
-            .fontSize(20)
+            .fontSize(16)
             .lineHeight(22)
           Text(this.content)
             .alignSelf(ItemAlign.Start)
-            .margin({ top: 10 })
-            .fontSize(16)
+            .margin({ top: 0 })
+            .fontSize(14)
+            .lineHeight(19)
             .opacity(0.6)
         }.width('100%')
+         .height(64)
       }.width('95%')
       .margin({ left: 10, right: 15 })
     }.backgroundColor(Color.White)
     .borderRadius(24)
+    .height(72)
     .margin({ left: 10, right: 10 })
     .padding(16)
   }

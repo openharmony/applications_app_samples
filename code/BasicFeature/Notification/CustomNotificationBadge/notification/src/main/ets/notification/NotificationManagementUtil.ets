@@ -18,7 +18,7 @@ import { logger } from '../util/Logger';
 
 const NOTIFICATION_TYPE_SIZE = 5;
 
-//通知管理
+// 通知管理
 class NotificationManagementUtil {
   typeNotifications: Array<Array<notification.NotificationRequest>> = new Array(NOTIFICATION_TYPE_SIZE + 1);
   countsByType: Array<number> = new Array(NOTIFICATION_TYPE_SIZE + 1);
@@ -29,7 +29,7 @@ class NotificationManagementUtil {
     for (let i = 0; i < NOTIFICATION_TYPE_SIZE + 1; i++) {
       this.typeNotifications[i] = new Array();
     }
-    //获取当前应用所有通知
+    // 获取当前应用所有通知
     notification.getActiveNotifications().then((notifications) => {
       for (let i = 0; i < notifications.length; i++) {
         let typeId = notifications[i].content.contentType;
@@ -37,21 +37,21 @@ class NotificationManagementUtil {
         this.typeNotifications[typeId].push(notifications[i]);
       }
       logger.info(`getAllActiveNotifications success, data: ${JSON.stringify(notifications)}`)
-      //计算角标数量
+      // 计算角标数量
       this.countsByType.forEach((num: number) => {
         this.badgeNum += num;
       })
     })
   }
 
-  //取消属于该类型的通知
+  // 取消属于该类型的通知
   cancelNotificationType(typeId: number) {
     this.typeNotifications[typeId].forEach(item => {
       notification.cancel(item.id);
     })
   }
 
-  //设置角标
+  // 设置角标
   async setBadgeNumber(num: number) {
     await notification.setBadgeNumber(num).then(() => {
       this.badgeNum = num;
@@ -59,12 +59,12 @@ class NotificationManagementUtil {
     });
   }
 
-  //获取角标数量
+  // 获取角标数量
   getBadgeNumber(): number {
     return this.badgeNum;
   }
 
-  //添加一条消息
+  // 添加一条消息
   async addNotification(notification: notification.NotificationRequest) {
     const typeId = notification.content.contentType;
     this.typeNotifications[typeId].push(notification);
@@ -74,7 +74,7 @@ class NotificationManagementUtil {
     logger.info("add Message success");
   }
 
-  //获取当前所有消息及数量
+  // 获取当前所有消息及数量
   async getAllNotifications() {
     return {
       groupNotifications: this.typeNotifications,
