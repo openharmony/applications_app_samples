@@ -58,11 +58,41 @@ Note:If the text contains special characters, please escape them according to th
     <oatconfig>
         <licensefile></licensefile>
         <policylist>
-            <policy name="projectPolicy" desc="">
-                <policyitem type="copyright" name="Hunan OpenValley Digital Industry Development Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By OpenValley Digital Co., Ltd."/>
+            <policy
+                desc=""
+                name="projectPolicy">
+                <policyitem
+                    desc="Developed By OpenValley Digital Co., Ltd."
+                    filefilter="copyrightPolicyFilter"
+                    group="defaultGroup"
+                    name="Hunan OpenValley Digital Industry Development Co., Ltd."
+                    path=".*"
+                    rule="may"
+                    type="copyright"/>
             </policy>
-            <policy name="projectPolicy" desc="">
-                <policyitem type="copyright" name="Fujian Newland Auto-ID Tech.Co.,Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By Fujian Newland Auto-ID Tech.Co.,Ltd."/>
+            <policy
+                desc=""
+                name="projectPolicy">
+                <policyitem
+                    desc="Developed By Fujian Newland Auto-ID Tech.Co.,Ltd."
+                    filefilter="copyrightPolicyFilter"
+                    group="defaultGroup"
+                    name="Fujian Newland Auto-ID Tech.Co.,Ltd."
+                    path=".*"
+                    rule="may"
+                    type="copyright"/>
+            </policy>
+            <policy
+                desc=""
+                name="projectPolicy">
+                <policyitem
+                    desc="Developed By Shenzhen Kaihong Digital Industry Development Co., Ltd."
+                    filefilter="copyrightPolicyFilter"
+                    group="defaultGroup"
+                    name="Shenzhen Kaihong Digital Industry Development Co., Ltd."
+                    path=".*"
+                    rule="may"
+                    type="copyright"/>
             </policy>
         </policylist>
         <filefilterlist>
