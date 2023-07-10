@@ -62,7 +62,7 @@ struct Index {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Column() {
-            if (this.tabsIndex == TAB_INDEX.MESSAGE_TAB) {
+            if (this.tabsIndex === TAB_INDEX.MESSAGE_TAB) {
               NotificationList()
             }
             Blank()

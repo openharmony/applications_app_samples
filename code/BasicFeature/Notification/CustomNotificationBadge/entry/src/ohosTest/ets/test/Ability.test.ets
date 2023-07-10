@@ -19,8 +19,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-
-const TAG: string = '[Badge]';
+const TAG: string = '[Samples_Badge]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Badge_';
 let ability: UIAbility;
@@ -72,10 +71,10 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.id(`tabBar0`));
-      await driver.assertComponentExist(ON.id(`tabBar1`));
-      let messages = await driver.findComponent(ON.id(`tabBar0`));
-      let notification = await driver.findComponent(ON.id(`tabBar1`));
+      await driver.assertComponentExist(ON.id('tabBar0'));
+      await driver.assertComponentExist(ON.id('tabBar1'));
+      let messages = await driver.findComponent(ON.id('tabBar0'));
+      let notification = await driver.findComponent(ON.id('tabBar1'));
 
       await driver.delayMs(200);
       await notification.click();
@@ -98,10 +97,10 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.id(`tabBar0`));
-      await driver.assertComponentExist(ON.id(`tabBar1`));
-      let messages = await driver.findComponent(ON.id(`tabBar0`));
-      let notification = await driver.findComponent(ON.id(`tabBar1`));
+      await driver.assertComponentExist(ON.id('tabBar0'));
+      await driver.assertComponentExist(ON.id('tabBar1'));
+      let messages = await driver.findComponent(ON.id('tabBar0'));
+      let notification = await driver.findComponent(ON.id('tabBar1'));
 
       await driver.delayMs(200);
       await notification.click();
@@ -125,10 +124,10 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.id(`tabBar0`));
-      await driver.assertComponentExist(ON.id(`tabBar1`));
-      let messages = await driver.findComponent(ON.id(`tabBar0`));
-      let notification = await driver.findComponent(ON.id(`tabBar1`));
+      await driver.assertComponentExist(ON.id('tabBar0'));
+      await driver.assertComponentExist(ON.id('tabBar1'));
+      let messages = await driver.findComponent(ON.id('tabBar0'));
+      let notification = await driver.findComponent(ON.id('tabBar1'));
 
       await driver.delayMs(200);
       await notification.click();
@@ -151,10 +150,10 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.id(`tabBar0`));
-      await driver.assertComponentExist(ON.id(`tabBar1`));
-      let messages = await driver.findComponent(ON.id(`tabBar0`));
-      let notification = await driver.findComponent(ON.id(`tabBar1`));
+      await driver.assertComponentExist(ON.id('tabBar0'));
+      await driver.assertComponentExist(ON.id('tabBar1'));
+      let messages = await driver.findComponent(ON.id('tabBar0'));
+      let notification = await driver.findComponent(ON.id('tabBar1'));
 
       await driver.delayMs(200);
       await notification.click();

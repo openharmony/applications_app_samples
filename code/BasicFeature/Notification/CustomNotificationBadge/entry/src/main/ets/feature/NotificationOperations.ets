@@ -48,7 +48,7 @@ export default class NotificationOperations {
   // 发布基本类型通知
   publishBasicNotification = () => {
     try {
-      logger.info(TAG, `publishBasicNotification`);
+      logger.info(TAG, 'publishBasicNotification');
       this.basicContent.title = this.context.resourceManager.getStringSync($r('app.string.basic_notification'));
       let notificationContent = notificationContentUtil.initBasicNotificationContent(this.basicContent);
       notificationUtil.publishNotification(notificationRequestUtil.initBasicNotificationRequest(notificationContent));
@@ -60,7 +60,7 @@ export default class NotificationOperations {
   // 发布长文本类型通知
   publishLongTextNotification = () => {
     try {
-      logger.info(TAG, `publishLongTextNotification`);
+      logger.info(TAG, 'publishLongTextNotification');
       this.basicContent.title = this.context.resourceManager.getStringSync($r('app.string.long_text_notification'));
       let notificationLongText = this.context.resourceManager.getStringSync($r('app.string.notification_long_text'));
       let notificationBriefText = this.context.resourceManager.getStringSync($r('app.string.notification_brief_text'));
@@ -75,7 +75,7 @@ export default class NotificationOperations {
   // 发布多行文本类型通知
   publishMultiLineNotification = () => {
     try {
-      logger.info(TAG, `publishMultiLineNotification`);
+      logger.info(TAG, 'publishMultiLineNotification');
       this.basicContent.title = this.context.resourceManager.getStringSync($r('app.string.multiline_notification'));
       let notificationBriefText = this.context.resourceManager.getStringSync($r('app.string.notification_brief_text'));
       let notificationLongTitle = this.context.resourceManager.getStringSync($r('app.string.notification_expanded_title'));
@@ -89,7 +89,7 @@ export default class NotificationOperations {
   // 发布图片类型通知
   publishPictureNotification = async () => {
     try {
-      logger.info(TAG, `publishPictureNotification`);
+      logger.info(TAG, 'publishPictureNotification');
       this.basicContent.title = this.context.resourceManager.getStringSync($r('app.string.picture_notification'));
       let notificationBriefText = this.context.resourceManager.getStringSync($r('app.string.notification_brief_text'));
       let notificationExpandedText = this.context.resourceManager.getStringSync($r('app.string.notification_expanded_title'));
@@ -106,7 +106,7 @@ export default class NotificationOperations {
   // 发布社交类型的通知
   publishConversationNotification = async () => {
     try {
-      logger.info(TAG, `publishConversationNotification`);
+      logger.info(TAG, 'publishConversationNotification');
       this.basicContent.title = this.context.resourceManager.getStringSync($r('app.string.conversation_notification'));
       let notificationContent = notificationContentUtil.initNotificationConversationContent(this.basicContent);
       notificationUtil.publishNotification(notificationRequestUtil.initBasicNotificationRequest(notificationContent), NOTIFICATION_GROUP.CONVERSATION);
