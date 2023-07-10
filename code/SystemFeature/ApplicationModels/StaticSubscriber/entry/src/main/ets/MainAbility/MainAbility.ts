@@ -18,32 +18,32 @@ import Logger from '../model/Logger'
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info('MainAbility onCreate')
+    Logger.info('MainAbility onCreate');
   }
 
   onDestroy() {
-    Logger.info('MainAbility onDestroy')
+    Logger.info('MainAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Logger.info('MainAbility onWindowStageCreate')
+    Logger.info('MainAbility onWindowStageCreate');
 
-    windowStage.setUIContent(this.context, 'pages/Index', null)
+    windowStage.setUIContent(this.context, 'pages/Index', null);
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info('MainAbility onWindowStageDestroy')
+    Logger.info('MainAbility onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info('MainAbility onForeground')
+    Logger.info('MainAbility onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info('MainAbility onBackground')
+    Logger.info('MainAbility onBackground');
   }
 };
