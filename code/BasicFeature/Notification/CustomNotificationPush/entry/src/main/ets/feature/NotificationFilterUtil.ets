@@ -26,7 +26,7 @@ export enum ContentCallBackType {
   CALLBACK_NOTIFICATION_CONTENT_CONVERSATION
 }
 
-const CONTENT_TYPE_COUNT = 7
+const CONTENT_TYPE_COUNT = 7;
 
 class NotificationFilterUtil {
   private disableContentTypes: Array<boolean> = new Array(CONTENT_TYPE_COUNT);
