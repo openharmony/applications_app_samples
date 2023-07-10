@@ -24,7 +24,7 @@ type checkBoxesMsg = {
 @Extend(Text) function listTitleStyle() {
   .textAlign(TextAlign.Start)
   .fontWeight(500)
-  .fontSize(20)
+  .fontSize(22)
   .fontFamily('HarmonyHeiTi-Medium')
   .opacity(1)
 }
@@ -33,7 +33,7 @@ type checkBoxesMsg = {
   .backgroundColor(Color.White)
   .borderRadius(24)
   .width('100%')
-  .margin({ top: 18 })
+  .margin({ top: 0 })
   .padding(15)
 }
 
@@ -69,42 +69,48 @@ struct Index {
     Row() {
       Text(title)
         .fontWeight(500)
-        .fontSize(32)
+        .fontSize(24)
         .margin({ left: 12 })
     }
     .width('100%')
-    .height(80)
+    .height(56)
     .backgroundColor($r('app.color.title_bar_background'))
+
   }
 
   @Builder viewCheckBox(checkBox: checkBoxesMsg) {
     Row() {
       Text(checkBox.text)
-        .fontSize(20)
-        .margin({ left: 40 });
+        .fontSize(16)
+        .margin({ left: 36 });
       Blank();
       Checkbox({
         name: this.context.resourceManager.getStringSync(checkBox.text),
       })
         .select(checkBox.enable)
         .margin({ right: 20 })
-        .selectedColor(0x39a2db)
+        .height(20)
+        .width(20)
+        .borderRadius(4)
+        .selectedColor(0x007DFF)
         .onChange((value: boolean) => {
           notificationFilter.setContentTypeDisable(checkBox.contentType, value);
         });
     }.width('100%')
-    .margin({ top: 10 });
+    .height(48)
+    .margin({ top: 0 });
   }
 
   @Styles toggleStyle(){
-    .width(52)
-    .height(26)
+    .width(36)
+    .height(20)
     .margin({ right: 12 })
   }
 
   build() {
     Column() {
       this.TitleBar($r('app.string.EntryAbility_label'))
+
       Column() {
         Row() {
           Text($r('app.string.notification_filter_text'))
@@ -112,11 +118,14 @@ struct Index {
           Blank()
           Toggle({ type: ToggleType.Switch, isOn: this.isNotificationOn })
             .toggleStyle()
+            .selectedColor(0x007DFF)
             .onChange((value: boolean) => {
               this.isNotificationOn = value;
               notificationFilter.setNotificationEnableFilter(value);
             })
-        }.width('100%')
+        }
+        .height(48)
+        .width('100%');
 
         if (this.isNotificationOn) {
           ForEach(this.checkBoxes, (item: checkBoxesMsg, index: number) => {
