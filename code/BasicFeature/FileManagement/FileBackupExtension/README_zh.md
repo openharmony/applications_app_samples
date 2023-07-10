@@ -95,25 +95,24 @@ BackupExtensionAbility配置文件示例：
 点击界面的“生成文件数据”按钮，会使用以下代码生成文件，并在onPageShow中获取文件名列表和文件大小列表，然后显示在界面上。
 
 ```
-async  createTestFiles() {
+async createTestFiles(): Promise<void> {
     try {
-      // let fileAccessHelper = fileAccess.createFileAccessHelper(globalThis.context);
-      let num = Math.floor(Math.random() * 10) + 1;
+      let num = Math.floor(Math.random() * FILE_NUM_MAX) + FILE_NUM_MIN;
       if (!fs.accessSync(this.baseDir)) {
         fs.mkdirSync(this.baseDir);
       }
       let dpath = this.baseDir;
-      Logger.info(this.TAG, 'globalThis.filesDir = ' + dpath);
-      Logger.info(this.TAG, 'num is  = ' + num);
+      Logger.info(TAG, 'sanBoxFileDir = ' + dpath);
+      Logger.info(TAG, 'num is  = ' + num);
       for (let i = 0; i < num; i++) {
         let myFile = dpath + `/TestFile_${i}.txt`;
-        Logger.info(this.TAG, 'readyFile myFile = ' + myFile);
+        Logger.info(TAG, 'readyFile myFile = ' + myFile);
         let file = fs.openSync(myFile, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-        fs.writeSync(file.fd, new ArrayBuffer(1024 * Math.random()));
+        fs.writeSync(file.fd, new ArrayBuffer(ONE_KILOBYTE * Math.random()));
         fs.closeSync(file);
       }
     } catch (e) {
-      Logger.error(this.TAG, 'Failed to prepare media files, error:' + e.message + e.code);
+      Logger.error(TAG, 'Failed to prepare media files, error:' + e.message + e.code);
     }
   }
 ```

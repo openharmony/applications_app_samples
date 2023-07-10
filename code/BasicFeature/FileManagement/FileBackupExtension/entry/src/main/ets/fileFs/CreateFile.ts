@@ -18,7 +18,7 @@ import fs from '@ohos.file.fs';
 
 const TAG: string = '[Sample_FileBackDemo]';
 
-//1k = 1024B
+// 1k = 1024B
 const ONE_KILOBYTE: number = 1024;
 const FILE_NUM_MAX: number = 10;
 const FILE_NUM_MIN: number = 1;

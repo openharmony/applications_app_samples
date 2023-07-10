@@ -95,7 +95,7 @@ struct BackupExample {
               .width('100%')
               .height(56)
 
-              if (this.showFilePath[0] != '') {
+              if (this.showFilePath[0] !== '') {
                 Divider()
                   .strokeWidth('1vp')
                   .color('#182431')

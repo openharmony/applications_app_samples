@@ -32,7 +32,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.sample.backupextension',
+          bundleName: 'com.samples.backupextension',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
