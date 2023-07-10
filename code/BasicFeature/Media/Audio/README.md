@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audio.md)等接口实现音频的发声设备的切换与查询和音频焦点功能
+本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能
 
 ### 效果预览
 
@@ -10,40 +10,51 @@
 |----------------------------------------|-----------------------------------------|------------------------------------------------------|
 | ![Index](screenshots/device/index.jpg) | ![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) |
 
-| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             |
-|-----------------------------------------|----------------------------------------|
-| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) |
+| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             | 音频录制页面-<br>普通录制             | 音频录制页面-<br>并行录制             |
+|-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
+| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
 
 使用说明
 
 注意：6，7，8是连续的串行操作，不是并行的
 
-1. 在主界面点击“发声设备查询与选择”按钮，进入发声设备查询与选择页面
-2. 在发声设备查询与选择页面界面，展示当前发声设备类型名称
-3. 在发声设备查询与选择页面界面，当设备存在“插入耳机”、“拔掉耳机”、“连接蓝牙”、“断开蓝牙”等操作行为时，当前发声设备类型名称会随之切换
-4. 在发声设备查询与选择页面界面，点击“返回”按钮，回到主页
-5. 在主界面点击“音频焦点”按钮，进入音频焦点页面
-6. 在音频焦点页面，点击音乐播放器，音乐开始播放
-7. 在音频焦点页面，点击铃声播放器，铃声开始播放，同时音乐被暂停
-8. 在音频焦点页面，点击铃声播放器，停止铃声播放，音乐恢复播放
-9. 在音频焦点页面，点击“返回”按钮，回到主页
-10. 在主界面点击“音效管理”按钮，进入预置音效查询页面
-11. 在预置音效查询页面，选择内容类型和场景后，点击“查询”按钮，预置音效模式会显示在下方查询结果中
-12. 在预置音效查询页面，重新修改内容类型和场景，查询结果会重置
-13. 在预置音效查询页面，点击右下方”实时音效设置“按钮，进入实时音效设置页面
-14. 在实时音效设置页面，选择内容类型和场景后，点击播放按钮，音频流开始播放，同时内容类型和场景选择框被置灰
-15. 在实时音效设置页面，点击”查询“按钮，当前音频流音效模式会显示在下方的查询结果中
-16. 在实时音效设置页面，点击暂停按钮，音频流暂停，内容类型和场景选择框使能
-17. 在实时音效设置页面，修改内容类型与场景选择，查询结果被重置
-18. 在实时音效设置页面，再次点击播放按钮，音频流开始播放，点击”查询“按钮，结果显示在查询结果内
-19. 在实时音效设置页面，在”音频流音效模式设置“选择框中选择另一种与上次查询结果不同的音效模式，可以听到音频流出现变化
-20. 在实时音效设置页面，再次点击”查询“按钮，查询结果与上一步设置的模式相同
-21. 在实时音效设置页面，点击左上方返回图标，回到主页
-22. 在实时音效设置页面，点击左下方”预置音效查询“按钮，回到预置音效查询页面
+1. 弹出麦克风权限访问提示框，点击“允许”
+2. 在主界面点击“发声设备查询与选择”按钮，进入发声设备查询与选择页面
+3. 在发声设备查询与选择页面界面，展示当前发声设备类型名称
+4. 在发声设备查询与选择页面界面，当设备存在“插入耳机”、“拔掉耳机”、“连接蓝牙”、“断开蓝牙”等操作行为时，当前发声设备类型名称会随之切换
+5. 在发声设备查询与选择页面界面，点击“返回”按钮，回到主页
+6. 在主界面点击“音频焦点”按钮，进入音频焦点页面
+7. 在音频焦点页面，点击音乐播放器，音乐开始播放
+8. 在音频焦点页面，点击铃声播放器，铃声开始播放，同时音乐被暂停
+9. 在音频焦点页面，点击铃声播放器，停止铃声播放，音乐恢复播放
+10. 在音频焦点页面，点击“返回”按钮，回到主页
+11. 在主界面点击“音效管理”按钮，进入预置音效查询页面
+12. 在预置音效查询页面，选择内容类型和场景后，点击“查询”按钮，预置音效模式会显示在下方查询结果中
+13. 在预置音效查询页面，重新修改内容类型和场景，查询结果会重置
+14. 在预置音效查询页面，点击右下方”实时音效设置“按钮，进入实时音效设置页面
+15. 在实时音效设置页面，选择内容类型和场景后，点击播放按钮，音频流开始播放，同时内容类型和场景选择框被置灰
+16. 在实时音效设置页面，点击”查询“按钮，当前音频流音效模式会显示在下方的查询结果中
+17. 在实时音效设置页面，点击暂停按钮，音频流暂停，内容类型和场景选择框使能
+18. 在实时音效设置页面，修改内容类型与场景选择，查询结果被重置
+19. 在实时音效设置页面，再次点击播放按钮，音频流开始播放，点击”查询“按钮，结果显示在查询结果内
+20. 在实时音效设置页面，在”音频流音效模式设置“选择框中选择另一种与上次查询结果不同的音效模式，可以听到音频流出现变化
+21. 在实时音效设置页面，再次点击”查询“按钮，查询结果与上一步设置的模式相同
+22. 在实时音效设置页面，点击左上方返回图标，回到主页
+23. 在实时音效设置页面，点击左下方”预置音效查询“按钮，回到预置音效查询页面
+24. 在主界面点击“音频录制”，进入音频录制界面，音频录制界面默认是普通录制界面
+25. 在普通录制界面，点击录制按钮，开始录制，录音时间开始计时，5s内不允许结束
+26. 在普通录制界面，点击暂停按钮，暂停录制，录音时间也停止计时
+27. 在普通录制界面，点击继续按钮，继续录制，录音时间继续计时
+28. 在普通录制界面，点击停止录制按钮，停止录制，也可以不停止录制，应用设置了30s的超时后，自动停止录制
+29. 停止录制后，会生成录制结果，界面上有一个录制成功的音频播放器，点击播放可听到录制的音频
+30. 点击并行录制按钮，可切换到并行录制界面
+31. 在并行录制界面中，点击音乐播放器，播放音乐
+32. 在并行录制界面中，点击录制按钮，开始录制，同时开启麦克风录制和屏幕录制，5s内不允许结束
+33. 在并行录制界面中，点击停止录制按钮，停止录制，或者超时30s会自动停止录制，停止后按钮点成不可点击状态
+34. 在并行录制界面中，录制停止后，会生成两个音频播放器，一个是麦克风的录音结果，一个是屏幕录制的结果，点击进行播放，暂停，播放结束自动停止
+35. 点击返回按按钮回到主页
 
 ### 工程目录
-
-给出项目中关键的目录结构并描述它们的作用，示例如下：
 
 ```
 entry/src/main/ets/
@@ -53,6 +64,8 @@ entry/src/main/ets/
 |---|---Focus.ets                           //音频焦点页面
 |---|---PresetEffect.ets                    //音效管理页面-预置音效查询
 |---|---RealtimeEffect.ets                  //音效管理页面-实时音效设置
+|---|---NormalCapturer.ets                  //音频录制-普通录制
+|---|---ParallelCapturer.ets                //音频录制-并行录制
 library/
 |---Logger.ts                               //日志打印封装
 ```
@@ -88,9 +101,29 @@ library/
     *  点击”音频流音效模式设置“选项, 调用audioRenderer.setAudioEffectMode()方法,设置要用的音效模式
     *  通过三个选择框的更新, audioRenderer的state和播放按钮状态的监视, 来触发UI状态的更新
     *  调用组件的.enabled(enabled: boolean)方法控制其置灰与使能
+
+* 音频录制-普通录制功能都封装在NormalCapturer,源码参考：[NormalCapturer.ets](entry/src/main/ets/pages/NormalCapturer.ets)
+    * 创建一个麦克风源的capturer对象用于录音
+    * 点击开始录制时，调用capturer对象的start方法，同时调用capturer的read读取录音数据，并通过使用fs.write接口将录音数据写入到文件中去存储起来，接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)，同时利用setTimeout开启一个计时器，记录录音时间。
+    * 点击暂停，调用capturer.stop(),同时文件写入也停止
+    * 点击继续，再次调用capturer.start(),capturer.read()以及继续将录音数据写入到文件中去
+    * 点击停止,调用capturer.stop(),同时文件写入也停止，录音结果生成成功，然后创建一个audioRenderer对象用于播放录音结果
+    * 点击音频播放器，调用fs.read()读取数据，并将录音数据调用audioRenderer.wirte写入，进行播放
+    * 再点击可以调用audioRenderer.pause()可以暂停音频播放，文件读取结束后自动调用audioRenderer.stop()停止音频播放
+    * 退出音频录制，会调用caturer.ralease()，audioRenderer.release()释放资源和fs.close()关闭文件
+* 音频录制-并行录制功能都封装在ParallelCapturer,源码参考：[ParallelCapturer.ets](entry/src/main/ets/pages/ParallelCapturer.ets)
+    * 调用audio.createAudioRenderer(options)创建audioRendererMusic，options参数中privacyType设为0，renderInfo设为音乐类型，播放的音频流方可被屏幕录制录到
+    * 调用audioRendererMusic.start(),pause(),stop()以及fs.read()等接口进行音乐的播放，暂停，停止操作
+    * 分别利用audio.createAudioCapturer()创建一个麦克风源的audioCapturerNormal对象和一个屏幕录制源的audioCapturerScreen对象
+    * 点击开始录制，则相继调用audioCapturerNormal.start()，audioCapturerScreen.start(),同时利用setTimeout开始计时,且还要分别调用audioCapturerNormal.read()，audioCapturerScreen.read(),以及调用fs.write将录音数据写入不同的文件
+    * 点击停止录制，则相继调用audioCapturerNormal.stop()，audioCapturerScreen.stop()，同时利用clearInterval清除计时器，从而停止计时，同时也创建两个audiorenderer对象分别用于播放录音数据
+    * 接下来就是分别调用两个audioRenderer对象的start,pause,stop以及fs.read等接口进行录音数据的播放，暂停，停止这些操作
+
 ### 相关权限
 
-不涉及。
+音频录制涉及的权限包括：
+
+1.允许应用使用麦克风：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
 
 ### 依赖
 
