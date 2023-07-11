@@ -171,7 +171,7 @@ export default function abilityTest() {
       await camera.longClick()
       await driver.delayMs(500)
       // 点击“卸载”物理坐标，尝试卸载应用
-      await driver.click(244, 395)
+      await driver.click(400, 346);
       await driver.delayMs(1000)
       // 检查卸载弹窗是否弹出
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.uninstall'))))

@@ -90,6 +90,7 @@ entry/src/main/ets/
 | ohos.permission.INSTALL_BUNDLE             | 允许应用安装、卸载其他应用。                     | system_core  |
 | ohos.permission.MANAGE_MISSIONS            | 允许用户管理元能力任务栈。                       | system_core  |
 | ohos.permission.REQUIRE_FORM               | 允许应用获取Ability Form。                       | system_basic |
+| ohos.permission.NOTIFICATION_CONTROLLER    | 允许应用管理通知和订阅通知。                     | system_core  |
 
 ### 依赖
 
@@ -99,9 +100,9 @@ Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( h
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例已适配API version 10版本SDK，版本号：4.0.8.3。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501 构建 2023年6月20日)才可编译运行。
 
 4.本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南]( https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/ )。
 

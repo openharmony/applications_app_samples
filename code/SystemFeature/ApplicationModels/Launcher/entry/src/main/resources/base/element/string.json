@@ -37,6 +37,10 @@
       "value": "Used to request form information"
     },
     {
+      "name": "notification_scribe_permission",
+      "value": "subscribe to app notifications"
+    },
+    {
       "name": "clear_all_missions_message",
       "value": "Cleaned to optimal condition"
     },
