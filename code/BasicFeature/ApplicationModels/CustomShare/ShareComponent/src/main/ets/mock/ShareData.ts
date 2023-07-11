@@ -37,12 +37,12 @@ export const dialogData: Array<DialogDataModel> = [
     id: 3
   },
   {
-    src: $r("app.media.icon"),
+    src: $r('app.media.icon'),
     text: $r('app.string.text'),
     id: 4
   },
   {
-    src: $r("app.media.icon"),
+    src: $r('app.media.icon'),
     text: $r('app.string.edit'),
     id: 5
   }
