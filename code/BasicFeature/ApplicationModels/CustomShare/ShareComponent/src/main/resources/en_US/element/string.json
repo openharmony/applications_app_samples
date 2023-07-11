@@ -11,6 +11,22 @@
     {
       "name": "ShareComponentAbility_label",
       "value": "label"
+    },
+    {
+      "name": "textShare_fail",
+      "value": "Failed to start textShare application!"
+    },
+    {
+      "name": "textEdit_fail",
+      "value": "Failed to start textEdit application!"
+    },
+    {
+      "name": "edit",
+      "value": "Text Edit"
+    },
+    {
+      "name": "text",
+      "value": "Text Edit"
     }
   ]
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,5 +35,15 @@ export const dialogData: Array<DialogDataModel> = [
     src: $r("app.media.canvas"),
     text: $r('app.string.generate_poster'),
     id: 3
+  },
+  {
+    src: $r("app.media.icon"),
+    text: $r('app.string.text'),
+    id: 4
+  },
+  {
+    src: $r("app.media.icon"),
+    text: $r('app.string.edit'),
+    id: 5
   }
 ]

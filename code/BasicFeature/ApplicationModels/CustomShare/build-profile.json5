@@ -16,8 +16,8 @@
 {
   "app": {
     "signingConfigs": [],
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "compileSdkVersion": 10,
+    "compatibleSdkVersion": 10,
     "products": [
       {
         "name": "default",
@@ -41,6 +41,30 @@
     {
       "name": "ShareComponent",
       "srcPath": "./ShareComponent",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "textShare",
+      "srcPath": "./textShare",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "textEdit",
+      "srcPath": "./textEdit",
       "targets": [
         {
           "name": "default",

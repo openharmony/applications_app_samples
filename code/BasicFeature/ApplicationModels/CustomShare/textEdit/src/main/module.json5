@@ -1,0 +1,46 @@
+{
+  "module": {
+    "name": "textEdit",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "EditTextAbility",
+    "deviceTypes": [
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EditTextAbility",
+        "srcEntry": "./ets/editability/EditTextAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "UIExtAbility",
+        "icon": "$media:icon",
+        "description": "UIExtAbility",
+        "type": "ui",
+        "visible": true,
+        "srcEntry": "./ets/uiextensionability/UIExtAbility.ts"
+      }
+    ]
+  }
+}
