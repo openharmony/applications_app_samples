@@ -80,8 +80,8 @@
 1.[`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](code/BasicFeature/IDL/AbilityConnectServiceExtension)
 2.[`CustomNotification`：自定义通知（ArkTS）（API9）](code/BasicFeature/Notification/CustomNotification)
 3.[`OrangeShopping`：购物示例应用（ArkTS）（API9）](code/Solutions/Shopping/OrangeShopping)
-4.[`ComponentCollection`：组件集合（ArkTS）（API9）](code/UI/ArkTsComponentClollection/ComponentCollection)
-5.[`JsComponentCollection`：组件集合（JS）（API9）](code/UI/JsComponentClollection/JsComponentCollection)
+4.[`ComponentCollection`：组件集合（ArkTS）（API9）](code/UI/ArkTsComponentCollection/ComponentCollection)
+5.[`JsComponentCollection`：组件集合（JS）（API9）](code/UI/JsComponentCollection/JsComponentCollection)
 
 # 11月7日删除Sample（总计27个分类，173个sample）
 1.`NativeAPI`：`NativeAPI（ArkTS）（API8）`

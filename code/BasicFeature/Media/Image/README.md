@@ -20,7 +20,7 @@ In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/
 
 ### Preview
 
-![](screenshots/devices/en/scale.png) ![](screenshots/devices/en/crop_choice.png) ![](screenshots/devices/en/rotate.png)
+![](screenshots/devices/scale.jpeg) ![](screenshots/devices/crop.jpeg) ![](screenshots/devices/rotato.jpeg)
 
 ### Required Permissions
 

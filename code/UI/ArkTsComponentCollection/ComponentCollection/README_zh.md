@@ -253,7 +253,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/UI/ArkTsComponentClollection/ComponentCollection/ > .git/info/sparse-checkout
+echo code/UI/ArkTsComponentCollection/ComponentCollection/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 

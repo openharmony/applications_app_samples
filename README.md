@@ -1,9 +1,9 @@
 # App Samples<a name="EN-US_TOPIC_0000001115464207"></a>
 
 -   [Introduction](#section1470103520301)
+-   [Content](#sectionMenu)
 -   [Usage](#section17988202503116)
 -   [Limitations](#section18841871178)
--   [Repositories Involved](#section741114082513)
 
 ## Introduction<a name="section1470103520301"></a>
 
@@ -61,10 +61,10 @@ We provide a series of app samples to help you quickly get familiar with the API
   - [`KikaInput`：Lite Input Method（JS）（API10）](code/Solutions/InputMethod/KikaInput)
   - [`FlipClock`：Flip Clock（ArkTS）（API9）](code/Solutions/Tools/FlipClock)
 - ETSUI
-  - [`Canvas`：Canvas（ArkTS）（API9）](code/UI/ArkTsComponentClollection/Canvas)
-  - [`DefiningPageLayoutAndConnection`：Defining Page Layout and Connection（ArkTS）（API9）](code/UI/ArkTsComponentClollection/DefiningPageLayoutAndConnection)
-  - [`Drag`：Drag （ArkTS）（API9）](code/UI/ArkTsComponentClollection/Drag)
-  - [`MediaQuery`：Media Query （ArkTS）（API9）](code/UI/ArkTsComponentClollection/MediaQuery)
+  - [`Canvas`：Canvas（ArkTS）（API9）](code/UI/ArkTsComponentCollection/Canvas)
+  - [`DefiningPageLayoutAndConnection`：Defining Page Layout and Connection（ArkTS）（API9）](code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+  - [`Drag`：Drag （ArkTS）（API9）](code/UI/ArkTsComponentCollection/Drag)
+  - [`MediaQuery`：Media Query （ArkTS）（API9）](code/UI/ArkTsComponentCollection/MediaQuery)
   - [`AdaptiveCapabilities`：AdaptiveCapabilities（ArkTS）（API9）](code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities)
   - [`Game2048`：2048 Game（ArkTS）（API9）](code/Solutions/Game/Game2048)
   - [`Lottie`：Lottie（ArkTS）（API9）](code/Solutions/Game/Lottie)

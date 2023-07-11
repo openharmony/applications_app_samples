@@ -70,7 +70,7 @@ Grid：网格容器，由“行”和“列”分割的单元格所组成，通�
 ```
 git init
 git config core.sparsecheckout true
-echo /code/UI/ArkTsComponentClollection/DefiningPageLayoutAndConnection > .git/info/sparse-checkout
+echo /code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
