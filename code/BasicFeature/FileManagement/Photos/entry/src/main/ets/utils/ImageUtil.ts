@@ -15,7 +15,7 @@
 
 import { Log } from './Log';
 
-const TAG = "ImageUtil"
+const TAG = 'ImageUtil'
 const MAX_BIT = 30;
 const BIT_SIXTEEN = 16;
 const BIT_EIGHT = 8;
@@ -24,38 +24,38 @@ const BIT_TWO = 2;
 const BIT_ONE = 1;
 
 export function computeSampleSize(width: number, height: number, minSideLength: number, maxNumOfPixels: number): number {
-    if (width == 0 || height == 0 || minSideLength == 0 || maxNumOfPixels == 0) {
-        return 2;
-    }
-    let initialSize = computeInitialSampleSize(width, height, minSideLength, maxNumOfPixels);
-    Log.info(TAG, "initialSize:  " + initialSize);
-    return initialSize <= 8 ? nextPowerOf2(initialSize) : Math.floor((initialSize + 8 - 1) / 8) * 8;
+  if (width == 0 || height == 0 || minSideLength == 0 || maxNumOfPixels == 0) {
+    return 2;
+  }
+  let initialSize = computeInitialSampleSize(width, height, minSideLength, maxNumOfPixels);
+  Log.info(TAG, 'initialSize:  ' + initialSize);
+  return initialSize <= 8 ? nextPowerOf2(initialSize) : Math.floor((initialSize + 8 - 1) / 8) * 8;
 }
 
 function computeInitialSampleSize(width: number, height: number, minSideLength: number, maxNumOfPixels: number): number {
-    if ((maxNumOfPixels == -1) && (minSideLength == -1)) {
-        return 1;
-    }
-    let lowerBound: number = (maxNumOfPixels == -1) ? 1 : Math.ceil(Math.sqrt((width * height) / maxNumOfPixels));
-    Log.info(TAG, "lowerBound: " + lowerBound);
-    if (minSideLength == -1) {
-        return lowerBound;
-    } else {
-        let sampleSize = Math.min(width / minSideLength, height / minSideLength);
-        return Math.max(sampleSize, lowerBound);
-    }
+  if ((maxNumOfPixels == -1) && (minSideLength == -1)) {
+    return 1;
+  }
+  let lowerBound: number = (maxNumOfPixels == -1) ? 1 : Math.ceil(Math.sqrt((width * height) / maxNumOfPixels));
+  Log.info(TAG, 'lowerBound: ' + lowerBound);
+  if (minSideLength == -1) {
+    return lowerBound;
+  } else {
+    let sampleSize = Math.min(width / minSideLength, height / minSideLength);
+    return Math.max(sampleSize, lowerBound);
+  }
 }
 
 function nextPowerOf2(value: number): number {
-    let useValue = value;
-    if (useValue <= 0 || useValue > (1 << MAX_BIT)) {
-    }
-    useValue -= 1;
-    useValue |= useValue >> BIT_SIXTEEN;
-    useValue |= useValue >> BIT_EIGHT;
-    useValue |= useValue >> BIT_FOUR;
-    useValue |= useValue >> BIT_TWO;
-    useValue |= useValue >> BIT_ONE;
-    Log.info(TAG, "nextPowerOf2:" + useValue);
-    return useValue + 1;
+  let useValue = value;
+  if (useValue <= 0 || useValue > (1 << MAX_BIT)) {
+  }
+  useValue -= 1;
+  useValue |= useValue >> BIT_SIXTEEN;
+  useValue |= useValue >> BIT_EIGHT;
+  useValue |= useValue >> BIT_FOUR;
+  useValue |= useValue >> BIT_TWO;
+  useValue |= useValue >> BIT_ONE;
+  Log.info(TAG, 'nextPowerOf2:' + useValue);
+  return useValue + 1;
 }

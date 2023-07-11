@@ -14,9 +14,9 @@
  */
 
 export class MediaOperationType {
-    static readonly Move = "Media_move";
-    static readonly Copy = "Media_copy";
-    static readonly Delete = "Media_delete";
-    static readonly Download = "Media_download";
-    static readonly Recover = "Media_recover";
+  static readonly Move = 'Media_move';
+  static readonly Copy = 'Media_copy';
+  static readonly Delete = 'Media_delete';
+  static readonly Download = 'Media_download';
+  static readonly Recover = 'Media_recover';
 }

@@ -14,5 +14,5 @@
  */
 
 export interface MenuOperation {
-    doAction(): void;
+  doAction(): void;
 }

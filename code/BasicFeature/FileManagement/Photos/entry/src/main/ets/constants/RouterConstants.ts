@@ -14,27 +14,27 @@
  */
 
 enum EntryForm {
-    NORMAL = 0,
-    CAMERA = 1,
-    SINGLE_SELECT = 2,
-    MULTIPLE_SELECT = 3,
-    RECYCLE = 4,
-    DISTRIBUTED = 5,
-    CARD = 6,
-    VIEW_DATA = 7
+  NORMAL = 0,
+  CAMERA = 1,
+  SINGLE_SELECT = 2,
+  MULTIPLE_SELECT = 3,
+  RECYCLE = 4,
+  DISTRIBUTED = 5,
+  CARD = 6,
+  VIEW_DATA = 7
 }
 
 export class RouterConstants {
-    static readonly ENTRY_FROM_NONE = 0;
-    static readonly ENTRY_FROM_CAMERA = 1;
-    static readonly ENTRY_FROM_SINGLE_SELECT = 2;
-    static readonly ENTRY_FROM_MULTIPLE_SELECT = 3;
-    static readonly ENTRY_FROM_RECYCLE = 4;
-    static readonly ENTRY_FROM_DISTRIBUTED = 5;
-    static readonly ENTRY_FROM_NORMAL = 6;
-    static readonly ENTRY_FROM_FORM_ABILITY = 7;
-    static readonly ENTRY_FROM_FORM_FORM_EDITOR = 8;
-    static readonly ENTRY_FROM_VIEW_DATA = 9;
-    static readonly ENTRY_FROM_FORM_ABILITY_NONE = 12;
-    static readonly ENTRY_FROM = EntryForm;
+  static readonly ENTRY_FROM_NONE = 0;
+  static readonly ENTRY_FROM_CAMERA = 1;
+  static readonly ENTRY_FROM_SINGLE_SELECT = 2;
+  static readonly ENTRY_FROM_MULTIPLE_SELECT = 3;
+  static readonly ENTRY_FROM_RECYCLE = 4;
+  static readonly ENTRY_FROM_DISTRIBUTED = 5;
+  static readonly ENTRY_FROM_NORMAL = 6;
+  static readonly ENTRY_FROM_FORM_ABILITY = 7;
+  static readonly ENTRY_FROM_FORM_FORM_EDITOR = 8;
+  static readonly ENTRY_FROM_VIEW_DATA = 9;
+  static readonly ENTRY_FROM_FORM_ABILITY_NONE = 12;
+  static readonly ENTRY_FROM = EntryForm;
 }

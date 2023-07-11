@@ -1,28 +1,28 @@
 {
-  "plural":[
+  "plural": [
     {
-      "name":"count_details_selected",
-      "value":[
+      "name": "count_details_selected",
+      "value": [
         {
-          "quantity":"one",
-          "value":"%d item selected"
+          "quantity": "one",
+          "value": "%d item selected"
         },
         {
-          "quantity":"other",
-          "value":"%d items selected"
+          "quantity": "other",
+          "value": "%d items selected"
         }
       ]
     },
     {
       "name": "recycleAlbum_delete_message",
-      "value":[
+      "value": [
         {
-          "quantity":"one",
-          "value":"Permanently delete this item?"
+          "quantity": "one",
+          "value": "Permanently delete this item?"
         },
         {
-          "quantity":"other",
-          "value":"Permanently delete these items?"
+          "quantity": "other",
+          "value": "Permanently delete these items?"
         }
       ]
     },

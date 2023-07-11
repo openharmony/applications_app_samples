@@ -19,61 +19,61 @@ import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import { getResourceString } from '../utils/ResourceUtils';
 
-const TAG = "UserFileDataHelper"
+const TAG = 'UserFileDataHelper'
 
 export class Rotatable {
-    rotatable: boolean
-    orientation: number
+  rotatable: boolean
+  orientation: number
 }
 
 export async function setOrientation(fileAsset: userFileManager.FileAsset, orientation: number): Promise<void> {
-    Log.info(TAG, "setOrientation")
+  Log.info(TAG, 'setOrientation')
+  try {
+    let fd: number = await userFileModel.openAsset('RW', fileAsset);
+    let imageSourceApi: image.ImageSource = image.createImageSource(fd);
+    await imageSourceApi.modifyImageProperty('Orientation', getPropertyValidOrientation(orientation));
+    imageSourceApi.release();
+    userFileModel.closeAsset(fd, fileAsset);
+  } catch (err) {
+    Log.error(TAG, 'setOrientation err ' + JSON.stringify(err));
     try {
-        let fd: number = await userFileModel.openAsset('RW', fileAsset);
-        let imageSourceApi: image.ImageSource = image.createImageSource(fd);
-        await imageSourceApi.modifyImageProperty("Orientation", getPropertyValidOrientation(orientation));
-        imageSourceApi.release();
-        userFileModel.closeAsset(fd, fileAsset);
+      fileAsset.set(userFileManager.ImageVideoKey.ORIENTATION.toString(), orientation.toString());
+      await fileAsset.commitModify();
     } catch (err) {
-        Log.error(TAG, "setOrientation err " + JSON.stringify(err));
-        try{
-            fileAsset.set(userFileManager.ImageVideoKey.ORIENTATION.toString(),orientation.toString());
-            await fileAsset.commitModify();
-        }catch(err){
-            Log.error(TAG, "setOrientation err " + JSON.stringify(err));
-        }
+      Log.error(TAG, 'setOrientation err ' + JSON.stringify(err));
     }
+  }
 }
 
 function getPropertyValidOrientation(orientation: number): string {
-    Log.info(TAG, "getPropertyValidOrientation " + orientation);
-    if (orientation === MediaConstants.ROTATE_NONE) {
-        return "1";
-    } else if (orientation === MediaConstants.ROTATE_THIRD) {
-        return "8";
-    } else if (orientation === MediaConstants.ROTATE_TWICE) {
-        return "3";
-    } else if (orientation === MediaConstants.ROTATE_ONCE) {
-        return "6";
-    }
-    return "";
+  Log.info(TAG, 'getPropertyValidOrientation ' + orientation);
+  if (orientation === MediaConstants.ROTATE_NONE) {
+    return '1';
+  } else if (orientation === MediaConstants.ROTATE_THIRD) {
+    return '8';
+  } else if (orientation === MediaConstants.ROTATE_TWICE) {
+    return '3';
+  } else if (orientation === MediaConstants.ROTATE_ONCE) {
+    return '6';
+  }
+  return '';
 }
 
 export async function getAlbumDisplayName(name: string): Promise<string> {
-    if (name === MediaConstants.ALBUM_ID_ALL) {
-        return await getResourceString($r('app.string.album_all'));
-    } else if (name === MediaConstants.ALBUM_ID_VIDEO) {
-        return await getResourceString($r('app.string.album_video'));
-    } else if (name === MediaConstants.ALBUM_ID_RECYCLE) {
-        return await getResourceString($r('app.string.album_recycle'));
-    } else if (name === MediaConstants.ALBUM_ID_CAMERA) {
-        return await getResourceString($r('app.string.album_camera'));
-    } else if (name === MediaConstants.ALBUM_ID_FAVOR) {
-        return await getResourceString($r('app.string.album_favor'));
-    } else if (name === MediaConstants.ALBUM_ID_REMOTE) {
-        return await getResourceString($r('app.string.album_remote_device'));
-    } else if (name === MediaConstants.ALBUM_ID_SNAPSHOT) {
-        return await getResourceString($r('app.string.album_screen_shot'));
-    }
-    return null;
+  if (name === MediaConstants.ALBUM_ID_ALL) {
+    return await getResourceString($r('app.string.album_all'));
+  } else if (name === MediaConstants.ALBUM_ID_VIDEO) {
+    return await getResourceString($r('app.string.album_video'));
+  } else if (name === MediaConstants.ALBUM_ID_RECYCLE) {
+    return await getResourceString($r('app.string.album_recycle'));
+  } else if (name === MediaConstants.ALBUM_ID_CAMERA) {
+    return await getResourceString($r('app.string.album_camera'));
+  } else if (name === MediaConstants.ALBUM_ID_FAVOR) {
+    return await getResourceString($r('app.string.album_favor'));
+  } else if (name === MediaConstants.ALBUM_ID_REMOTE) {
+    return await getResourceString($r('app.string.album_remote_device'));
+  } else if (name === MediaConstants.ALBUM_ID_SNAPSHOT) {
+    return await getResourceString($r('app.string.album_screen_shot'));
+  }
+  return null;
 }

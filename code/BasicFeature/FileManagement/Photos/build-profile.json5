@@ -1,16 +1,30 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 {
   "app": {
     "signingConfigs": [
       {
         "name": "default",
         "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_photosample_com.example.photosample.cer",
-          "storePassword": "0000001B9E8A516A7CBB779CBF2CBBEAFA2D2E62B81DC347AD84135EC68F6C0A1378274CCFFB3DCD73C620",
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Photosample_com.samples.photos.cer",
+          "storePassword": "0000001AC220A29F04DA50769888D4EA9806C5C84135A38BDFACF8DF51B6618C46E189D81364F8079022",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B68ADCCD211846D10BF24B754D1690697E1D27697499FECCBE2D8E8336AE7B521BCBF52DF817199",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_photosample_com.example.photosample.p7b",
+          "keyPassword": "0000001AF18D48A5ED627AB6D348B30331460EC02CEB02DA8EBBDAA190C9399018A23447DF4035A9E7E9",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Photosample_com.samples.photos.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_photosample_com.example.photosample.p12"
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Photosample_com.samples.photos.p12"
         }
       }
     ],

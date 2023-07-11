@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -34,238 +34,238 @@ import { terminateSelfWithResult } from '../utils/AbilityUtils';
 import Want from '@ohos.app.ability.Want'
 import common from '@ohos.app.ability.common'
 
-const TAG = "SelectPhotoBrowser"
+const TAG = 'SelectPhotoBrowser'
 // select mode
 @Entry
 @Component
 struct SelectPhotoBrowser {
-    @Provide browserBackgroundColor: Resource = $r('app.color.default_background_color');
-    @Provide('selectedCount') totalSelectedCount: number = 0;
-    @Provide broadCast: Broadcast = new Broadcast();
-    @Provide isSelected: boolean = true;
-    @Provide isShowBar: boolean = true;
-    @Provide isPullingDown: boolean = false;
-    @Provide moreMenuList: Action[] = [];
-    @Provide pageFrom: number = RouterConstants.ENTRY_FROM.NORMAL;
-    @Provide canSwipe: boolean = true;
-    isMultiPick = true;
-    selectPhotoTransition: string;
-    controller: SwiperController = new SwiperController();
+  @Provide browserBackgroundColor: Resource = $r('app.color.default_background_color');
+  @Provide('selectedCount') totalSelectedCount: number = 0;
+  @Provide broadCast: Broadcast = new Broadcast();
+  @Provide isSelected: boolean = true;
+  @Provide isShowBar: boolean = true;
+  @Provide isPullingDown: boolean = false;
+  @Provide moreMenuList: Action[] = [];
+  @Provide pageFrom: number = RouterConstants.ENTRY_FROM.NORMAL;
+  @Provide canSwipe: boolean = true;
+  isMultiPick = true;
+  selectPhotoTransition: string;
+  controller: SwiperController = new SwiperController();
 
-    // swiper currentIndex, there may not be onChanged callback during data refresh, so mediaItem cannot be saved
-    @Provide('transitionIndex') currentIndex: number = 0;
+  // swiper currentIndex, there may not be onChanged callback during data refresh, so mediaItem cannot be saved
+  @Provide('transitionIndex') currentIndex: number = 0;
 
-    // The global Broadcast of the application process. Event registration and destruction should be paired
-    private appBroadcast: Broadcast = broadcastManager.getBroadcast();
-    private browserDataSource: GroupItemDataSource = new GroupItemDataSource();
+  // The global Broadcast of the application process. Event registration and destruction should be paired
+  private appBroadcast: Broadcast = broadcastManager.getBroadcast();
+  private browserDataSource: GroupItemDataSource = new GroupItemDataSource();
 
-    aboutToAppear(): void {
-        Log.info(TAG, 'photoBrowser aboutToAppear');
-        screenManager.setNavigationBarColor('#FFF1F3F5', '#FF000000');
-        this.browserBackgroundColor = $r('app.color.black');
-        mMultimodalInputManager.registerListener((control: number): void => {
-            Log.info(TAG, "key control : " + control + " index " + this.currentIndex);
-            if (control == 0) {
-                if (this.currentIndex > 0) {
-                    this.onPhotoChanged(this.currentIndex - 1);
-                }
-            } else if (control == 1) {
-                if (this.currentIndex < this.browserDataSource.totalCount() - 1) {
-                    this.onPhotoChanged(this.currentIndex + 1);
-                }
-            } else {
-                this.onBackPress();
-            }
-        });
-        let param: ParamsInterface = router.getParams();
-        if (param.pageFrom != null) {
-            this.pageFrom = 0
-            if (!Number.isNaN(param.pageFrom)) {
-                this.pageFrom = new Number(param.pageFrom).valueOf();
-            }
+  aboutToAppear(): void {
+    Log.info(TAG, 'photoBrowser aboutToAppear');
+    screenManager.setNavigationBarColor('#FFF1F3F5', '#FF000000');
+    this.browserBackgroundColor = $r('app.color.black');
+    mMultimodalInputManager.registerListener((control: number): void => {
+      Log.info(TAG, 'key control : ' + control + ' index ' + this.currentIndex);
+      if (control == 0) {
+        if (this.currentIndex > 0) {
+          this.onPhotoChanged(this.currentIndex - 1);
         }
-        if (this.pageFrom == RouterConstants.ENTRY_FROM.DISTRIBUTED) {
-            if(param.deviceId != undefined && param.deviceId != null) {
-                this.browserDataSource.setDeviceId(param.deviceId.toString());
-            } else {
-                this.browserDataSource.setDeviceId('');
-            }
-
+      } else if (control == 1) {
+        if (this.currentIndex < this.browserDataSource.totalCount() - 1) {
+          this.onPhotoChanged(this.currentIndex + 1);
         }
+      } else {
+        this.onBackPress();
+      }
+    });
+    let param: ParamsInterface = router.getParams();
+    if (param.pageFrom != null) {
+      this.pageFrom = 0
+      if (!Number.isNaN(param.pageFrom)) {
+        this.pageFrom = new Number(param.pageFrom).valueOf();
+      }
+    }
+    if (this.pageFrom == RouterConstants.ENTRY_FROM.DISTRIBUTED) {
+      if(param.deviceId != undefined && param.deviceId != null) {
+        this.browserDataSource.setDeviceId(param.deviceId.toString());
+      } else {
+        this.browserDataSource.setDeviceId('');
+      }
 
-        if (this.isMultiPick == true) {
-            this.totalSelectedCount = this.browserDataSource.getSelectedCount();
-        }
-        if (param.albumInfo != null) {
-            this.browserDataSource.setAlbumId((param.albumInfo as SimpleAlbumDataItem).id);
-            this.browserDataSource.setAlbumType((param.albumInfo as SimpleAlbumDataItem).albumType)
-            this.browserDataSource.setAlbumSubType((param.albumInfo as SimpleAlbumDataItem).albumSubType)
-            this.browserDataSource.setAlbumName((param.albumInfo as SimpleAlbumDataItem).displayName)
-        }
-
-        this.browserDataSource.groupDataItem = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER);
-        let pos = 0;
-        if (!Number.isNaN(param.position)) {
-            pos = new Number(param.position).valueOf()
-        }
-        this.onPhotoChanged(pos);
-        this.isSelected = this.getCurrentPhoto().isSelect;
-        this.totalSelectedCount = this.browserDataSource.getSelectedCount();
-        if (param.transition != null) {
-            this.selectPhotoTransition = param.transition.toString();
-        } else {
-            this.selectPhotoTransition = '';
-        }
-        this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
-
-        // register event handling
-        this.broadCast.on(PhotoConstants.TOGGLE_BAR, (event: Object): void => {
-            Log.info(TAG, "TOGGLE_BAR : " + JSON.stringify(event));
-        });
-
-        this.broadCast.on(PhotoConstants.PULL_DOWN_END, (event: Object): void => {
-            Log.info(TAG, "PULL_DOWN_END : " + JSON.stringify(event));
-            this.onBackPress();
-        });
-
-        this.broadCast.on(PhotoConstants.DATA_SIZE_CHANGED, (size: number): void => {
-            this.onDataSizeChanged(size);
-        });
-
-        this.broadCast.on(PhotoConstants.DATA_CONTENT_CHANGED, (size: number): void => {
-            // onContentChanged only the current item is updated
-            Log.info(TAG, "DATA_CONTENT_CHANGED : " + size);
-            this.onPhotoChanged(this.currentIndex);
-        });
-
-        this.broadCast.on(PhotoConstants.SET_DISABLE_SWIPE, (value: boolean): void => {
-            Log.info(TAG, "set swiper swipe " + value);
-            this.canSwipe = value;
-        });
     }
 
-    aboutToDisappear(): void {
-        screenManager.setNavigationBarColor('#00FFFFFF', '#FF000000');
-        this.broadCast.release();
-        mMultimodalInputManager.unregisterListener();
+    if (this.isMultiPick == true) {
+      this.totalSelectedCount = this.browserDataSource.getSelectedCount();
+    }
+    if (param.albumInfo != null) {
+      this.browserDataSource.setAlbumId((param.albumInfo as SimpleAlbumDataItem).id);
+      this.browserDataSource.setAlbumType((param.albumInfo as SimpleAlbumDataItem).albumType)
+      this.browserDataSource.setAlbumSubType((param.albumInfo as SimpleAlbumDataItem).albumSubType)
+      this.browserDataSource.setAlbumName((param.albumInfo as SimpleAlbumDataItem).displayName)
     }
 
-    onToggleBars(): void {
+    this.browserDataSource.groupDataItem = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER);
+    let pos = 0;
+    if (!Number.isNaN(param.position)) {
+      pos = new Number(param.position).valueOf()
     }
+    this.onPhotoChanged(pos);
+    this.isSelected = this.getCurrentPhoto().isSelect;
+    this.totalSelectedCount = this.browserDataSource.getSelectedCount();
+    if (param.transition != null) {
+      this.selectPhotoTransition = param.transition.toString();
+    } else {
+      this.selectPhotoTransition = '';
+    }
+    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
 
-    onDataSizeChanged(size: number): void {
-        Log.info(TAG, "onDataSizeChanged, size is " + size);
-        if (size == 0) {
-            this.onBackPress();
-        }
-    }
+    // register event handling
+    this.broadCast.on(PhotoConstants.TOGGLE_BAR, (event: Object): void => {
+      Log.info(TAG, 'TOGGLE_BAR : ' + JSON.stringify(event));
+    });
 
-    onPhotoChanged(index: number): void {
-        this.onPhotoChangedBindImpl(index)
-    }
+    this.broadCast.on(PhotoConstants.PULL_DOWN_END, (event: Object): void => {
+      Log.info(TAG, 'PULL_DOWN_END : ' + JSON.stringify(event));
+      this.onBackPress();
+    });
 
-    private onPhotoChangedBindImpl(index: number): void {
-        this.currentIndex = index;
-        this.isSelected = this.getCurrentPhoto().isSelect;
-        this.browserDataSource.notifyDataChange(index);
-    }
+    this.broadCast.on(PhotoConstants.DATA_SIZE_CHANGED, (size: number): void => {
+      this.onDataSizeChanged(size);
+    });
 
-    private selectStateChange(): void {
-        Log.info(TAG, 'change selected');
-        let currentPhoto = this.getCurrentPhoto();
-        if (currentPhoto == undefined) {
-            return;
-        }
-        currentPhoto.setSelect(!currentPhoto.isSelect);
-        this.isSelected = currentPhoto.isSelect;
-        this.totalSelectedCount = this.browserDataSource.getSelectedCount();
-        this.appBroadcast.emit(BroadcastConstants.UPDATE_DATA_SOURCE, [currentPhoto]);
-        Log.info(TAG, "totalSelectedCount: " + this.totalSelectedCount + " after state change");
-    }
+    this.broadCast.on(PhotoConstants.DATA_CONTENT_CHANGED, (size: number): void => {
+      // onContentChanged only the current item is updated
+      Log.info(TAG, 'DATA_CONTENT_CHANGED : ' + size);
+      this.onPhotoChanged(this.currentIndex);
+    });
 
-    onPageShow(): void {
-        Log.info(TAG, 'onPageShow');
-        this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
-    }
+    this.broadCast.on(PhotoConstants.SET_DISABLE_SWIPE, (value: boolean): void => {
+      Log.info(TAG, 'set swiper swipe ' + value);
+      this.canSwipe = value;
+    });
+  }
 
-    onPageHide(): void {
-        Log.info(TAG, 'onPageHide');
-    }
+  aboutToDisappear(): void {
+    screenManager.setNavigationBarColor('#00FFFFFF', '#FF000000');
+    this.broadCast.release();
+    mMultimodalInputManager.unregisterListener();
+  }
 
-    onMenuClicked(action: Action): void {
-        this.onMenuClickedBindImpl(action)
-    }
+  onToggleBars(): void {
+  }
 
-    private onMenuClickedBindImpl(action: Action): void {
-        Log.debug(TAG, "onMenuClicked, action: " + action.actionID);
-        if (action === Action.BACK) {
-            this.onBackPress();
-        } else if (action === Action.MATERIAL_SELECT || action === Action.SELECTED) {
-            this.selectStateChange();
-            return;
-        } else if (action === Action.OK) {
-            Log.info(TAG, 'click OK');
-            this.setPickResult();
-        }
+  onDataSizeChanged(size: number): void {
+    Log.info(TAG, 'onDataSizeChanged, size is ' + size);
+    if (size == 0) {
+      this.onBackPress();
     }
+  }
 
-    getCurrentPhoto(): UserFileDataItem {
-        return this.browserDataSource.groupDataItem[this.currentIndex];
-    }
+  onPhotoChanged(index: number): void {
+    this.onPhotoChangedBindImpl(index)
+  }
 
-    onBackPress(): boolean {
-        Log.info(TAG, 'onBackPress');
-        router.back({ params: { index: this.currentIndex } });
-        return true;
-    }
+  private onPhotoChangedBindImpl(index: number): void {
+    this.currentIndex = index;
+    this.isSelected = this.getCurrentPhoto().isSelect;
+    this.browserDataSource.notifyDataChange(index);
+  }
 
-    build() {
-        Stack({ alignContent: Alignment.TopStart }) {
-            PhotoBrowserBg()
-            PhotoSwiper({
-                dataSource: this.browserDataSource,
-                photoSwiperTransition: this.selectPhotoTransition,
-                onPhotoChanged: (index: number): void => this.onPhotoChanged(index),
-                swiperController: this.controller
-            })
-            ThirdSelectPhotoBrowserActionBar({
-                isMultiPick: this.isMultiPick,
-                onMenuClicked: this.onMenuClicked
-            }).sharedTransition("selectPhotoBrowserActionBar", {
-                type: SharedTransitionEffectType.Static,
-                duration: Constants.SHARE_TRANSITION_DURATION,
-                zIndex: 2,
-            })
-        }
+  private selectStateChange(): void {
+    Log.info(TAG, 'change selected');
+    let currentPhoto = this.getCurrentPhoto();
+    if (currentPhoto == undefined) {
+      return;
     }
+    currentPhoto.setSelect(!currentPhoto.isSelect);
+    this.isSelected = currentPhoto.isSelect;
+    this.totalSelectedCount = this.browserDataSource.getSelectedCount();
+    this.appBroadcast.emit(BroadcastConstants.UPDATE_DATA_SOURCE, [currentPhoto]);
+    Log.info(TAG, 'totalSelectedCount: ' + this.totalSelectedCount + ' after state change');
+  }
 
-    private setPickResult(): void {
-        let uriArray: string[];
-        if (this.isMultiPick) {
-            uriArray = this.browserDataSource.getSelectedUris();
-            Log.debug(TAG, "uri size: " + uriArray);
-        } else {
-            let currentPhoto = this.getCurrentPhoto();
-            if (currentPhoto == undefined) {
-                return;
-            }
-            uriArray = [currentPhoto.uri];
-        }
-        let param1: Map<string, string[]> = new Map<string, string[]>();
-        param1.set('select-item-list', uriArray);
-        let abilityResult: common.AbilityResult = {
-            resultCode: 0,
-            want: {
-                parameters: Object.fromEntries<string[]>(param1)
-            } as Want
-        };
-        terminateSelfWithResult(abilityResult);
-    }
+  onPageShow(): void {
+    Log.info(TAG, 'onPageShow');
+    this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
+  }
 
-    pageTransition(): void {
-        PageTransitionEnter({ type: RouteType.None, duration: PhotoConstants.PAGE_SHOW_ANIMATION_DURATION })
-            .opacity(0)
-        PageTransitionExit({ duration: PhotoConstants.PAGE_SHOW_ANIMATION_DURATION })
-            .opacity(0)
+  onPageHide(): void {
+    Log.info(TAG, 'onPageHide');
+  }
+
+  onMenuClicked(action: Action): void {
+    this.onMenuClickedBindImpl(action)
+  }
+
+  private onMenuClickedBindImpl(action: Action): void {
+    Log.debug(TAG, 'onMenuClicked, action: ' + action.actionID);
+    if (action === Action.BACK) {
+      this.onBackPress();
+    } else if (action === Action.MATERIAL_SELECT || action === Action.SELECTED) {
+      this.selectStateChange();
+      return;
+    } else if (action === Action.OK) {
+      Log.info(TAG, 'click OK');
+      this.setPickResult();
     }
+  }
+
+  getCurrentPhoto(): UserFileDataItem {
+    return this.browserDataSource.groupDataItem[this.currentIndex];
+  }
+
+  onBackPress(): boolean {
+    Log.info(TAG, 'onBackPress');
+    router.back({ params: { index: this.currentIndex } });
+    return true;
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      PhotoBrowserBg()
+      PhotoSwiper({
+        dataSource: this.browserDataSource,
+        photoSwiperTransition: this.selectPhotoTransition,
+        onPhotoChanged: (index: number): void => this.onPhotoChanged(index),
+        swiperController: this.controller
+      })
+      ThirdSelectPhotoBrowserActionBar({
+        isMultiPick: this.isMultiPick,
+        onMenuClicked: this.onMenuClicked
+      }).sharedTransition('selectPhotoBrowserActionBar', {
+        type: SharedTransitionEffectType.Static,
+        duration: Constants.SHARE_TRANSITION_DURATION,
+        zIndex: 2,
+      })
+    }
+  }
+
+  private setPickResult(): void {
+    let uriArray: string[];
+    if (this.isMultiPick) {
+      uriArray = this.browserDataSource.getSelectedUris();
+      Log.debug(TAG, 'uri size: ' + uriArray);
+    } else {
+      let currentPhoto = this.getCurrentPhoto();
+      if (currentPhoto == undefined) {
+        return;
+      }
+      uriArray = [currentPhoto.uri];
+    }
+    let param1: Map<string, string[]> = new Map<string, string[]>();
+    param1.set('select-item-list', uriArray);
+    let abilityResult: common.AbilityResult = {
+      resultCode: 0,
+      want: {
+        parameters: Object.fromEntries<string[]>(param1)
+      } as Want
+    };
+    terminateSelfWithResult(abilityResult);
+  }
+
+  pageTransition(): void {
+    PageTransitionEnter({ type: RouteType.None, duration: PhotoConstants.PAGE_SHOW_ANIMATION_DURATION })
+      .opacity(0)
+    PageTransitionExit({ duration: PhotoConstants.PAGE_SHOW_ANIMATION_DURATION })
+      .opacity(0)
+  }
 }

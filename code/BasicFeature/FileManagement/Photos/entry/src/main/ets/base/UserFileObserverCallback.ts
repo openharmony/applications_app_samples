@@ -14,5 +14,5 @@
  */
 
 export interface UserFileObserverCallback {
-    onChange(mediaType: string): void;
+  onChange(mediaType: string): void;
 }

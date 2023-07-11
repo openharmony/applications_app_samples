@@ -17,21 +17,20 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 import { userFileModel } from '../base/UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
 import { UserFileDataItem } from '../base/UserFileDataItem';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 export class FavorUserFileDataItem extends UserFileDataItem {
-    constructor(selections: string, selectionArgs: string[], index: number) {
-        super(selections, selectionArgs, "", index)
-    }
+  constructor(selections: string, selectionArgs: string[], index: number) {
+    super(selections, selectionArgs, '', index)
+  }
 
-    async loadFileAsset(): Promise<userFileManager.FileAsset> {
-        return await userFileModel.getMediaItemByUri(this.uri);
-    }
+  async loadFileAsset(): Promise<userFileManager.FileAsset> {
+    return await userFileModel.getMediaItemByUri(this.uri);
+  }
 
-    async setFavor(): Promise<boolean> {
-        let isSuccess: boolean = await super.setFavor();
-        let isFavor: boolean = await super.isFavor();
-        this.status = isFavor ? this.status : MediaConstants.TRASHED;
-        return isSuccess;
-    }
+  async setFavor(): Promise<boolean> {
+    let isSuccess: boolean = await super.setFavor();
+    let isFavor: boolean = await super.isFavor();
+    this.status = isFavor ? this.status : MediaConstants.TRASHED;
+    return isSuccess;
+  }
 }

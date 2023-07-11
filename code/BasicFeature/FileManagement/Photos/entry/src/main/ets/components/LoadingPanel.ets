@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,26 +15,26 @@
 
 @Component
 export struct LoadingPanel {
-    @Consume isLoading: boolean;
+  @Consume isLoading: boolean;
 
-    build() {
-        if (this.isLoading) {
-            Column() {
-                Column() {
-                    LoadingProgress().width($r('app.float.loading_panel_icon_w'))
-                        .height($r('app.float.loading_panel_icon_w'))
-                        .margin({ bottom: $r('app.float.loading_panel_icon_margin') })
-                    Text($r('app.string.image_loading'))
-                        .fontSize($r('sys.float.ohos_id_text_size_body2'))
-                        .fontFamily($r('app.string.id_text_font_family_regular'))
-                        .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                }
-            }
-            .width('100%')
-            .height('100%')
-            .padding({ top: $r('app.float.loading_panel_item_gap') })
-            .alignItems(HorizontalAlign.Center)
-            .justifyContent(FlexAlign.Center)
+  build() {
+    if (this.isLoading) {
+      Column() {
+        Column() {
+          LoadingProgress().width($r('app.float.loading_panel_icon_w'))
+            .height($r('app.float.loading_panel_icon_w'))
+            .margin({ bottom: $r('app.float.loading_panel_icon_margin') })
+          Text($r('app.string.image_loading'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
         }
+      }
+      .width('100%')
+      .height('100%')
+      .padding({ top: $r('app.float.loading_panel_item_gap') })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
     }
+  }
 }

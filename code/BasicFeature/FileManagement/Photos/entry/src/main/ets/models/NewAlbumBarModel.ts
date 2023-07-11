@@ -17,15 +17,15 @@ import { ActionBarMode, ActionBarSelectionMode } from './ActionBarMode';
 import { ActionBarProp } from '../common/ActionBarProp';
 
 export class NewAlbumBarModel {
-    createActionBar(isSelectedMode: boolean, selectedCount: number): ActionBarProp {
-        let menuList: Action[] = [];
-        let actionBarProp: ActionBarProp = new ActionBarProp();
-        menuList.push((new Boolean(selectedCount)) ? Action.OK : Action.OK_DISABLE)
-        actionBarProp
-            .setLeftAction(Action.CANCEL)
-            .setMode(ActionBarMode.SELECTION_MODE)
-            .setSelectionMode(ActionBarSelectionMode.MULTI)
-            .setMenuList(menuList);
-        return actionBarProp;
-    }
+  createActionBar(isSelectedMode: boolean, selectedCount: number): ActionBarProp {
+    let menuList: Action[] = [];
+    let actionBarProp: ActionBarProp = new ActionBarProp();
+    menuList.push((new Boolean(selectedCount)) ? Action.OK : Action.OK_DISABLE)
+    actionBarProp
+      .setLeftAction(Action.CANCEL)
+      .setMode(ActionBarMode.SELECTION_MODE)
+      .setSelectionMode(ActionBarSelectionMode.MULTI)
+      .setMenuList(menuList);
+    return actionBarProp;
+  }
 }

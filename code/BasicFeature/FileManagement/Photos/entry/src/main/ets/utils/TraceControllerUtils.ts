@@ -17,21 +17,21 @@ import bytrace from '@ohos.bytrace'
 
 // Used to track the start of sequential tasks
 export function startTrace(name: string): void {
-    bytrace.startTrace(name, 1);
+  bytrace.startTrace(name, 1);
 }
 
 // Used to track the end of sequential tasks. The name must be the same as that at start
 export function finishTrace(name: string): void {
-    bytrace.finishTrace(name, 1);
+  bytrace.finishTrace(name, 1);
 }
 
 // Used to track the start of cross tasks
 // (scenarios where the next task starts before the previous task is finished)
 export function startTraceWithTaskId(name: string, taskId: number): void {
-    bytrace.startTrace(name, taskId);
+  bytrace.startTrace(name, taskId);
 }
 
 // Used to track the end of cross tasks. The name and taskId must be the same as at start
 export function finishTraceWithTaskId(name: string, taskId: number): void {
-    bytrace.finishTrace(name, taskId);
+  bytrace.finishTrace(name, taskId);
 }

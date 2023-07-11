@@ -15,7 +15,7 @@
 
 // Router source
 export enum JumpSourceToMain {
-    None,
-    CAMERA,
-    ALBUM
+  None,
+  CAMERA,
+  ALBUM
 }

@@ -27,106 +27,106 @@ import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { MediaConstants } from '../constants/MediaConstants';
 
 
-const TAG = "AlbumSetRenameMenuOperation"
+const TAG = 'AlbumSetRenameMenuOperation'
 
 export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperationCallback {
-    private menuContext: MenuContext;
-    private onOperationEnd: Function;
-    private item: AlbumDataItem;
+  private menuContext: MenuContext;
+  private onOperationEnd: Function;
+  private item: AlbumDataItem;
 
-    constructor(menuContext: MenuContext) {
-        this.menuContext = menuContext;
+  constructor(menuContext: MenuContext) {
+    this.menuContext = menuContext;
+  }
+
+  doAction(): void {
+    if (this.menuContext == null) {
+      Log.warn(TAG, 'menuContext is null, return');
+      return;
+    }
+    let dataSource: ItemDataSource = this.menuContext.dataSource;
+    let count: number;
+    let items: Object[];
+    if (dataSource == null) {
+      count = this.menuContext.items.length;
+      items = this.menuContext.items;
+    } else {
+      count = dataSource.getSelectedCount();
+      items = dataSource.getSelectedItems();
+    }
+    if (count != 1) {
+      Log.warn(TAG, 'count is invalid');
+      return;
     }
 
-    doAction(): void {
-        if (this.menuContext == null) {
-            Log.warn(TAG, 'menuContext is null, return');
-            return;
-        }
-        let dataSource: ItemDataSource = this.menuContext.dataSource;
-        let count: number;
-        let items: Object[];
-        if (dataSource == null) {
-            count = this.menuContext.items.length;
-            items = this.menuContext.items;
-        } else {
-            count = dataSource.getSelectedCount();
-            items = dataSource.getSelectedItems();
-        }
-        if (count != 1) {
-            Log.warn(TAG, 'count is invalid');
-            return;
-        }
+    this.item = items[0] as AlbumDataItem;
 
-        this.item = items[0] as AlbumDataItem;
+    this.confirmCallback = (newName: string): Promise<void> => this.confirmCallbackBindImpl(newName);
+    this.cancelCallback = (): void => this.cancelCallbackBindImpl();
 
-        this.confirmCallback = (newName: string): Promise<void> => this.confirmCallbackBindImpl(newName);
-        this.cancelCallback = (): void => this.cancelCallbackBindImpl();
+    Log.info(TAG, 'The name of clicked album is ' + this.item.displayName);
 
-        Log.info(TAG, "The name of clicked album is " + this.item.displayName);
+    this.menuContext.broadCast.emit(BroadcastConstants.SHOW_RENAME_PHOTO_DIALOG,
+      [this.item.displayName, this.confirmCallback, this.cancelCallback]);
+  }
 
-        this.menuContext.broadCast.emit(BroadcastConstants.SHOW_RENAME_PHOTO_DIALOG,
-            [this.item.displayName, this.confirmCallback, this.cancelCallback]);
-    }
+  private async confirmCallback(newName: string): Promise<void> {
+    return await this.confirmCallbackBindImpl(newName)
+  }
 
-    private async confirmCallback(newName: string): Promise<void> {
-        return await this.confirmCallbackBindImpl(newName)
-    }
+  private async confirmCallbackBindImpl(newName: string): Promise<void> {
+    Log.info(TAG, 'AlbumSet rename confirm and the new name is: ' + newName);
 
-    private async confirmCallbackBindImpl(newName: string): Promise<void> {
-        Log.info(TAG, "AlbumSet rename confirm and the new name is: " + newName);
+    this.onOperationEnd = this.menuContext.onOperationEnd;
+    let onOperationStart: Function = this.menuContext.onOperationStart;
+    if (onOperationStart != null) onOperationStart();
 
-        this.onOperationEnd = this.menuContext.onOperationEnd;
-        let onOperationStart: Function = this.menuContext.onOperationStart;
-        if(onOperationStart != null) onOperationStart();
+    this.rename(newName);
+  }
 
-        this.rename(newName);
-    }
+  private async checkAlbumExit(simpleAlbumDataItem: SimpleAlbumDataItem): Promise<boolean> {
+    return await userFileModel.getUserAlbumCountByName(simpleAlbumDataItem.displayName) > 0;
+  }
 
-    private async checkAlbumExit(simpleAlbumDataItem: SimpleAlbumDataItem): Promise<boolean> {
-        return await userFileModel.getUserAlbumCountByName(simpleAlbumDataItem.displayName) > 0;
-    }
-
-    private async rename(name): Promise<void> {
-        try {
-            let simpleAlbumDataItem: SimpleAlbumDataItem = new SimpleAlbumDataItem("", name, this.item.uri, "", "",-1,-1);
-            if (name != undefined && name != null) {
-                let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
-                if (isExit) {
+  private async rename(name): Promise<void> {
+    try {
+      let simpleAlbumDataItem: SimpleAlbumDataItem = new SimpleAlbumDataItem('', name, this.item.uri, '', '', -1, -1);
+      if (name != undefined && name != null) {
+        let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
+        if (isExit) {
                     getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
                         showToast(message)
                     })
-                    Log.warn(TAG, "album is miss")
+                    Log.warn(TAG, 'album is miss')
                     this.onError();
                     return;
                 }
-            }
-            Log.info(TAG, 'change album_name:'+this.item.displayName+' to ' + name);
-            let albums: userFileManager.Album = await userFileModel.getUserAlbumByName(this.item.displayName)
-            albums.albumName = name
-            await albums.commitModify()
-            this.onCompleted();
-        } catch (error) {
-            Log.error(TAG, "AlbumSet rename failed: " + error);
-            this.onError();
-        }
+      }
+      Log.info(TAG, 'change album_name:' + this.item.displayName + ' to ' + name);
+      let albums: userFileManager.Album = await userFileModel.getUserAlbumByName(this.item.displayName)
+      albums.albumName = name
+      await albums.commitModify()
+      this.onCompleted();
+    } catch (error) {
+      Log.error(TAG, 'AlbumSet rename failed: ' + error);
+      this.onError();
     }
+  }
 
-    private cancelCallback(): void {
-        this.cancelCallbackBindImpl()
-    }
+  private cancelCallback(): void {
+    this.cancelCallbackBindImpl()
+  }
 
-    private cancelCallbackBindImpl(): void {
-        Log.info(TAG, 'AlbumSet rename cancel');
-    }
+  private cancelCallbackBindImpl(): void {
+    Log.info(TAG, 'AlbumSet rename cancel');
+  }
 
-    onCompleted(): void {
-        Log.info(TAG, 'Rename data succeed!');
-        if(this.onOperationEnd != null) this.onOperationEnd();
-    }
+  onCompleted(): void {
+    Log.info(TAG, 'Rename data succeed!');
+    if (this.onOperationEnd != null) this.onOperationEnd();
+  }
 
-    onError(): void {
-        Log.error(TAG, 'Rename data failed!');
-        if(this.onOperationEnd != null) this.onOperationEnd();
-    }
+  onError(): void {
+    Log.error(TAG, 'Rename data failed!');
+    if (this.onOperationEnd != null) this.onOperationEnd();
+  }
 }

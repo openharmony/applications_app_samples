@@ -14,5 +14,5 @@
  */
 
 export class QueryConstants {
-    static readonly ALBUM_COPY_FIRST_PAGE_QUERY_LENGTH = 12;
+  static readonly ALBUM_COPY_FIRST_PAGE_QUERY_LENGTH = 12;
 }

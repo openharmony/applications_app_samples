@@ -19,49 +19,49 @@ import { MenuContext } from './MenuContext'
 import { ProcessMenuOperation } from './ProcessMenuOperation';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 
-const TAG = "BatchRecoverMenuOperation"
+const TAG = 'BatchRecoverMenuOperation'
 
 export class BatchRecoverMenuOperation extends ProcessMenuOperation {
-    constructor(menuContext: MenuContext) {
-        super(menuContext);
+  constructor(menuContext: MenuContext) {
+    super(menuContext);
+  }
+
+  doAction(): void {
+    Log.info(TAG, 'delete doAction');
+    if (this.menuContext == null) {
+      Log.warn(TAG, 'menuContext is null, return');
+      return;
     }
 
-    doAction(): void {
-        Log.info(TAG, 'delete doAction');
-        if (this.menuContext == null) {
-            Log.warn(TAG, 'menuContext is null, return');
-            return;
-        }
-
-        let dataSource: ItemDataSource = this.menuContext.dataSource;
-        if (dataSource == null) {
-            this.count = this.menuContext.items.length;
-        } else {
-            this.count = dataSource.getSelectedCount();
-        }
-        if (this.count <= 0) {
-            Log.warn(TAG, 'count <= 0, return');
-            return;
-        }
-
-        this.onOperationEnd = this.menuContext.onOperationEnd;
-        let onOperationStart = this.menuContext.onOperationStart;
-        if(onOperationStart != null) onOperationStart();
-
-        this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
-            [$r('app.string.action_recover'), this.count]);
-
-
-        if (dataSource == null) {
-            this.items = this.menuContext.items;
-        } else {
-            this.items = dataSource.getSelectedItems();
-        }
-        this.processOperation();
+    let dataSource: ItemDataSource = this.menuContext.dataSource;
+    if (dataSource == null) {
+      this.count = this.menuContext.items.length;
+    } else {
+      this.count = dataSource.getSelectedCount();
+    }
+    if (this.count <= 0) {
+      Log.warn(TAG, 'count <= 0, return');
+      return;
     }
 
-    // Delete a batch of data
-    requestOneBatchOperation(): void {
+    this.onOperationEnd = this.menuContext.onOperationEnd;
+    let onOperationStart = this.menuContext.onOperationStart;
+    if (onOperationStart != null) onOperationStart();
+
+    this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
+      [$r('app.string.action_recover'), this.count]);
+
+
+    if (dataSource == null) {
+      this.items = this.menuContext.items;
+    } else {
+      this.items = dataSource.getSelectedItems();
+    }
+    this.processOperation();
+  }
+
+  // Delete a batch of data
+  requestOneBatchOperation(): void {
         let item = this.items[this.currentBatch] as TrashUserFileDataItem;
         item.onRecover().then<void, void>((): void => {
             this.currentBatch++;

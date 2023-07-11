@@ -16,65 +16,65 @@
 type CallbackType = Function
 
 export class Broadcast {
-    private callBackArray: Map<string, CallbackType[]> = new Map<string, CallbackType[]>();
+  private callBackArray: Map<string, CallbackType[]> = new Map<string, CallbackType[]>();
 
-    constructor() {
+  constructor() {
+  }
+
+  public on(event: string, callback: CallbackType): void {
+    if (this.callBackArray.get(event) === null || this.callBackArray.get(event) === undefined) {
+      this.callBackArray.set(event, [])
+    }
+    this.callBackArray.get(event).push(callback)
+  }
+
+  public off(event: string | null, callback: CallbackType | null): void {
+    if (event == null) {
+      this.callBackArray.clear();
     }
 
-    public on(event: string, callback: CallbackType): void {
-        if(this.callBackArray.get(event) === null || this.callBackArray.get(event) === undefined){
-            this.callBackArray.set(event, [])
-        }
-        this.callBackArray.get(event).push(callback)
+    const cbs: CallbackType[] = this.callBackArray.get(event);
+    if (!Boolean<Function[]>(cbs).valueOf()) {
+      return;
+    }
+    if (callback == null) {
+      this.callBackArray.set(event, null);
+    }
+    let cb;
+    let l = cbs.length;
+    for (let i = 0; i < l; i++) {
+      cb = cbs[i];
+      if (cb === callback || cb.fn === callback) {
+        cbs.splice(i, 1);
+        break;
+      }
+    }
+  }
+
+  public emit(event: string, args: Object[]): void {
+    let _self = this;
+    if (!Boolean<Function[]>(this.callBackArray.get(event)).valueOf()) {
+      return;
     }
 
-    public off(event: string | null, callback: CallbackType | null): void {
-        if (event == null) {
-            this.callBackArray.clear();
-        }
-
-        const cbs: CallbackType[] = this.callBackArray.get(event);
-        if (!Boolean<Function[]>(cbs).valueOf()) {
-            return;
-        }
-        if (callback == null) {
-            this.callBackArray.set(event, null);
-        }
-        let cb;
-        let l = cbs.length;
-        for (let i = 0; i < l; i++) {
-            cb = cbs[i];
-            if (cb === callback || cb.fn === callback) {
-                cbs.splice(i, 1);
-                break;
-            }
-        }
+    let cbs: CallbackType[] = [];
+    for (let i = 0; i < this.callBackArray.get(event).length; i++) {
+      cbs.push(this.callBackArray.get(event)[i])
     }
 
-    public emit(event: string, args: Object[]): void {
-        let _self = this;
-        if (!Boolean<Function[]>(this.callBackArray.get(event)).valueOf()) {
-            return;
+    if (cbs != null) {
+      let l = cbs.length;
+      for (let i = 0; i < l; i++) {
+        try {
+          cbs[i].apply(_self, args);
+        } catch (e) {
+          new Error(e);
         }
-
-        let cbs: CallbackType[] = [];
-        for (let i = 0; i < this.callBackArray.get(event).length; i++) {
-            cbs.push(this.callBackArray.get(event)[i])
-        }
-
-        if (cbs != null) {
-            let l = cbs.length;
-            for (let i = 0; i < l; i++) {
-                try {
-                    cbs[i].apply(_self, args);
-                } catch (e) {
-                    new Error(e);
-                }
-            }
-        }
+      }
     }
+  }
 
-    public release(): void {
+  public release(): void {
         this.callBackArray.forEach((array: Object[]): void => {
             array.length = 0;
         });

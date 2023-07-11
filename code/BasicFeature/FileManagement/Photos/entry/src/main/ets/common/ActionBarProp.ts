@@ -18,159 +18,159 @@ import { ActionBarMode, ActionBarColorMode, ActionBarSelectionMode } from '../mo
 
 // ActionBarProp
 export class ActionBarProp {
-    public static NORMAL_BACKGROUND_COLOR: Resource = $r('app.color.default_background_color');
-    public static TRANSPARENT_BACKGROUND_COLOR: Resource = $r('app.color.transparent');
-    public static NORMAL_TEXT_COLOR: Resource = $r('sys.color.ohos_id_color_titlebar_text');
-    public static NORMAL_SUBTITLE_TEXT_COLOR: Resource = $r('sys.color.ohos_id_color_titlebar_subtitle_text');
-    public static ICON_COLOR: Resource = $r('sys.color.ohos_id_color_primary');
-    public static TRANSPARENT_TEXT_COLOR: Resource = $r('app.color.title_text_color_on_transparent_bg');
-    public static TRANSPARENT_SUBTITLE_TEXT_COLOR: Resource = $r('app.color.subtitle_text_color_on_transparent_bg');
-    public static HEAD_TITLE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_headline6');
-    public static HEAD_TITLE_ONE_LINE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_headline7');
-    public static TITLE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_headline8');
-    public static TITLE_FONT_WEIGHT = 500;
-    public static SUBTITLE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_body2');
-    public static MEDIUM_FONT: Resource = $r('app.string.id_text_font_family_medium');
-    public static REGULAR_FONT: Resource = $r('app.string.id_text_font_family_regular');
-    public static SINGLE_UNSELECT_TITLE: Resource = $r('app.string.title_select_photos');
-    public static SINGLE_SELECT_ALBUM_TITLE: Resource = $r('app.string.title_select_album');
-    public static MULTI_UNSELECT_TITLE: Resource = $r('app.string.title_none_selected');
-    public static PHOTO_BROWSER_ACTIONBAR_ALPHA = 0.95;
-    private hasTabBar = false;
-    private leftAction = Action.NONE;
-    private isHeadTitle = false;
-    private title: Object = null;
-    private subTitle: Object = null;
-    private menuList: Action[] = [];
-    private backgroundColor: Resource = ActionBarProp.NORMAL_BACKGROUND_COLOR;
-    private alpha = 1;
-    private selectionMode: ActionBarSelectionMode = ActionBarSelectionMode.MULTI;
-    private colorMode: ActionBarColorMode = ActionBarColorMode.NORMAL;
-    private mode: ActionBarMode = ActionBarMode.STANDARD_MODE;
-    private maxSelectCount = 0;
+  public static NORMAL_BACKGROUND_COLOR: Resource = $r('app.color.default_background_color');
+  public static TRANSPARENT_BACKGROUND_COLOR: Resource = $r('app.color.transparent');
+  public static NORMAL_TEXT_COLOR: Resource = $r('sys.color.ohos_id_color_titlebar_text');
+  public static NORMAL_SUBTITLE_TEXT_COLOR: Resource = $r('sys.color.ohos_id_color_titlebar_subtitle_text');
+  public static ICON_COLOR: Resource = $r('sys.color.ohos_id_color_primary');
+  public static TRANSPARENT_TEXT_COLOR: Resource = $r('app.color.title_text_color_on_transparent_bg');
+  public static TRANSPARENT_SUBTITLE_TEXT_COLOR: Resource = $r('app.color.subtitle_text_color_on_transparent_bg');
+  public static HEAD_TITLE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_headline6');
+  public static HEAD_TITLE_ONE_LINE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_headline7');
+  public static TITLE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_headline8');
+  public static TITLE_FONT_WEIGHT = 500;
+  public static SUBTITLE_TEXT_SIZE: Resource = $r('sys.float.ohos_id_text_size_body2');
+  public static MEDIUM_FONT: Resource = $r('app.string.id_text_font_family_medium');
+  public static REGULAR_FONT: Resource = $r('app.string.id_text_font_family_regular');
+  public static SINGLE_UNSELECT_TITLE: Resource = $r('app.string.title_select_photos');
+  public static SINGLE_SELECT_ALBUM_TITLE: Resource = $r('app.string.title_select_album');
+  public static MULTI_UNSELECT_TITLE: Resource = $r('app.string.title_none_selected');
+  public static PHOTO_BROWSER_ACTIONBAR_ALPHA = 0.95;
+  private hasTabBar = false;
+  private leftAction = Action.NONE;
+  private isHeadTitle = false;
+  private title: Object = null;
+  private subTitle: Object = null;
+  private menuList: Action[] = [];
+  private backgroundColor: Resource = ActionBarProp.NORMAL_BACKGROUND_COLOR;
+  private alpha = 1;
+  private selectionMode: ActionBarSelectionMode = ActionBarSelectionMode.MULTI;
+  private colorMode: ActionBarColorMode = ActionBarColorMode.NORMAL;
+  private mode: ActionBarMode = ActionBarMode.STANDARD_MODE;
+  private maxSelectCount = 0;
 
-    constructor() {
-    }
+  constructor() {
+  }
 
-    public static getCountDetailSelectedTitle(count: number): Resource {
-        return $r('app.plural.count_details_selected', count, count);
-    }
+  public static getCountDetailSelectedTitle(count: number): Resource {
+    return $r('app.plural.count_details_selected', count, count);
+  }
 
-    /**
-     * External selection quantity display
-     * @param count The selected quantity, same as the current count above
-     * @param maxSelectCount Maximum number of options
-     */
-    public static getCountDetailExternalSelectedTitle(count: number, maxSelectCount: number): Resource {
-        return $r('app.string.count_details_external_selected', count, maxSelectCount);
-    }
+  /**
+   * External selection quantity display
+   * @param count The selected quantity, same as the current count above
+   * @param maxSelectCount Maximum number of options
+   */
+  public static getCountDetailExternalSelectedTitle(count: number, maxSelectCount: number): Resource {
+    return $r('app.string.count_details_external_selected', count, maxSelectCount);
+  }
 
-    public setHasTabBar(hasTabBar: boolean): ActionBarProp {
-        this.hasTabBar = hasTabBar;
-        return this;
-    }
+  public setHasTabBar(hasTabBar: boolean): ActionBarProp {
+    this.hasTabBar = hasTabBar;
+    return this;
+  }
 
-    public getHasTabBar(): boolean {
-        return this.hasTabBar;
-    }
+  public getHasTabBar(): boolean {
+    return this.hasTabBar;
+  }
 
-    public setLeftAction(leftAction: Action): ActionBarProp {
-        this.leftAction = leftAction;
-        return this;
-    }
+  public setLeftAction(leftAction: Action): ActionBarProp {
+    this.leftAction = leftAction;
+    return this;
+  }
 
-    public getLeftAction(): Action {
-        return this.leftAction;
-    }
+  public getLeftAction(): Action {
+    return this.leftAction;
+  }
 
-    public setIsHeadTitle(isHeadTitle: boolean): ActionBarProp {
-        this.isHeadTitle = isHeadTitle;
-        return this;
-    }
+  public setIsHeadTitle(isHeadTitle: boolean): ActionBarProp {
+    this.isHeadTitle = isHeadTitle;
+    return this;
+  }
 
-    public getIsHeadTitle(): boolean {
-        return this.isHeadTitle;
-    }
+  public getIsHeadTitle(): boolean {
+    return this.isHeadTitle;
+  }
 
-    public setTitle(title: Object): ActionBarProp {
-        this.title = title;
-        return this;
-    }
+  public setTitle(title: Object): ActionBarProp {
+    this.title = title;
+    return this;
+  }
 
-    public getTitle(): Object {
-        return this.title;
-    }
+  public getTitle(): Object {
+    return this.title;
+  }
 
-    public setSubTitle(subTitle: Object): ActionBarProp {
-        this.subTitle = subTitle;
-        return this;
-    }
+  public setSubTitle(subTitle: Object): ActionBarProp {
+    this.subTitle = subTitle;
+    return this;
+  }
 
-    public getSubTitle(): Object {
-        return this.subTitle;
-    }
+  public getSubTitle(): Object {
+    return this.subTitle;
+  }
 
-    public setMenuList(menuList: Action[]): ActionBarProp {
-        this.menuList = menuList;
-        return this;
-    }
+  public setMenuList(menuList: Action[]): ActionBarProp {
+    this.menuList = menuList;
+    return this;
+  }
 
-    public getMenuList(): Action[] {
-        return this.menuList;
-    }
+  public getMenuList(): Action[] {
+    return this.menuList;
+  }
 
-    public setBackgroundColor(backgroundColor: Resource): ActionBarProp {
-        this.backgroundColor = backgroundColor;
-        return this;
-    }
+  public setBackgroundColor(backgroundColor: Resource): ActionBarProp {
+    this.backgroundColor = backgroundColor;
+    return this;
+  }
 
-    public getBackgroundColor(): Resource {
-        return this.colorMode == ActionBarColorMode.TRANSPARENT
-            ? ActionBarProp.TRANSPARENT_BACKGROUND_COLOR : this.backgroundColor;
-    }
+  public getBackgroundColor(): Resource {
+    return this.colorMode == ActionBarColorMode.TRANSPARENT
+      ? ActionBarProp.TRANSPARENT_BACKGROUND_COLOR : this.backgroundColor;
+  }
 
-    public setAlpha(alpha: number): ActionBarProp {
-        this.alpha = alpha;
-        return this;
-    }
+  public setAlpha(alpha: number): ActionBarProp {
+    this.alpha = alpha;
+    return this;
+  }
 
-    public getAlpha(): number {
-        return this.alpha;
-    }
+  public getAlpha(): number {
+    return this.alpha;
+  }
 
-    public setMode(mode: ActionBarMode): ActionBarProp {
-        this.mode = mode;
-        return this;
-    }
+  public setMode(mode: ActionBarMode): ActionBarProp {
+    this.mode = mode;
+    return this;
+  }
 
-    public getMode(): ActionBarMode {
-        return this.mode;
-    }
+  public getMode(): ActionBarMode {
+    return this.mode;
+  }
 
-    public setColorMode(colorMode: ActionBarColorMode): ActionBarProp {
-        this.colorMode = colorMode;
-        return this;
-    }
+  public setColorMode(colorMode: ActionBarColorMode): ActionBarProp {
+    this.colorMode = colorMode;
+    return this;
+  }
 
-    public getColorMode(): ActionBarColorMode {
-        return this.colorMode;
-    }
+  public getColorMode(): ActionBarColorMode {
+    return this.colorMode;
+  }
 
-    public setSelectionMode(selectionMode: ActionBarSelectionMode): ActionBarProp {
-        this.selectionMode = selectionMode;
-        return this;
-    }
+  public setSelectionMode(selectionMode: ActionBarSelectionMode): ActionBarProp {
+    this.selectionMode = selectionMode;
+    return this;
+  }
 
-    public getSelectionMode(): ActionBarSelectionMode {
-        return this.selectionMode;
-    }
+  public getSelectionMode(): ActionBarSelectionMode {
+    return this.selectionMode;
+  }
 
-    public setMaxSelectCount(maxSelectCount: number): ActionBarProp {
-        this.maxSelectCount = maxSelectCount;
-        return this;
-    }
+  public setMaxSelectCount(maxSelectCount: number): ActionBarProp {
+    this.maxSelectCount = maxSelectCount;
+    return this;
+  }
 
-    public getMaxSelectCount(): number {
-        return this.maxSelectCount;
-    }
+  public getMaxSelectCount(): number {
+    return this.maxSelectCount;
+  }
 }

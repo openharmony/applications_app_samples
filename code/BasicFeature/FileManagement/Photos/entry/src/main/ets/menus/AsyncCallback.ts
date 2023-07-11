@@ -14,5 +14,5 @@
  */
 
 export interface AsyncCallback<T> {
-    callback(t: T): void;
+  callback(t: T): void;
 }

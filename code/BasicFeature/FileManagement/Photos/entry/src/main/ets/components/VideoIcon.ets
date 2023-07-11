@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,13 +15,13 @@
 
 @Component
 export struct VideoIcon {
-    @Consume isLoading: boolean;
+  @Consume isLoading: boolean;
 
-    build() {
-        Image($r('app.media.ic_video_play_btn_png'))
-            .objectFit(ImageFit.Contain)
-            .width($r('app.float.icon_video_size'))
-            .height($r('app.float.icon_video_size'))
-            .visibility(!this.isLoading ? Visibility.Visible : Visibility.None)
-    }
+  build() {
+    Image($r('app.media.ic_video_play_btn_png'))
+      .objectFit(ImageFit.Contain)
+      .width($r('app.float.icon_video_size'))
+      .height($r('app.float.icon_video_size'))
+      .visibility(!this.isLoading ? Visibility.Visible : Visibility.None)
+  }
 }

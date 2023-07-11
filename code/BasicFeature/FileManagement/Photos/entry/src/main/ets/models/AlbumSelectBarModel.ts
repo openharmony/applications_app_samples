@@ -18,13 +18,13 @@ import { ActionBarProp } from '../common/ActionBarProp'
 import { ActionBarMode, ActionBarSelectionMode } from './ActionBarMode'
 
 export class AlbumSelectBarModel {
-    createActionBar(): ActionBarProp {
-        let actionBarProp: ActionBarProp = new ActionBarProp();
-        actionBarProp
-            .setLeftAction(Action.CANCEL)
-            .setMode(ActionBarMode.STANDARD_MODE)
-            .setSelectionMode(ActionBarSelectionMode.SINGLE)
-            .setTitle($r('app.string.title_select_photos'));
-        return actionBarProp;
-    }
+  createActionBar(): ActionBarProp {
+    let actionBarProp: ActionBarProp = new ActionBarProp();
+    actionBarProp
+      .setLeftAction(Action.CANCEL)
+      .setMode(ActionBarMode.STANDARD_MODE)
+      .setSelectionMode(ActionBarSelectionMode.SINGLE)
+      .setTitle($r('app.string.title_select_photos'));
+    return actionBarProp;
+  }
 }

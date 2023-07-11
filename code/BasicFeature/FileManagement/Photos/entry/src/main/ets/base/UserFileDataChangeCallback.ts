@@ -14,5 +14,5 @@
  */
 
 export interface UserFileDataChangeCallback {
-    onUserFileDataChange(mediaType: string): void;
+  onUserFileDataChange(mediaType: string): void;
 }

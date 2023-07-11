@@ -25,165 +25,165 @@ import { ItemDataSource } from '../common/ItemDataSource';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 
-const TAG = "CopyMenuOperation"
+const TAG = 'CopyMenuOperation'
 
 export class CopyMenuOperation extends ProcessMenuOperation {
-    private albumInfo: SimpleAlbumDataItem;
+  private albumInfo: SimpleAlbumDataItem;
 
-    constructor(menuContext: MenuContext) {
-        super(menuContext);
-        this.albumInfo = menuContext.albumInfo;
+  constructor(menuContext: MenuContext) {
+    super(menuContext);
+    this.albumInfo = menuContext.albumInfo;
+  }
+
+  doAction(): void {
+    Log.info(TAG, 'copy doAction');
+    if (this.menuContext == null) {
+      Log.warn(TAG, 'menuContext is null, return');
+      return;
     }
 
-    doAction(): void {
-        Log.info(TAG, 'copy doAction');
-        if (this.menuContext == null) {
-            Log.warn(TAG, 'menuContext is null, return');
-            return;
-        }
-
-        let dataSource: ItemDataSource = this.menuContext.dataSource;
-        if (dataSource == null) {
-            this.count = this.menuContext.items.length;
-        } else {
-            this.count = dataSource.getSelectedCount();
-        }
-        if (this.count <= 0) {
-            Log.warn(TAG, 'count <= 0, return');
-            return;
-        }
-
-        this.onOperationEnd = this.menuContext.onOperationEnd;
-        let onOperationStart = this.menuContext.onOperationStart;
-
-        if(onOperationStart != null) onOperationStart();
-
-        if (this.menuContext.deviceId != null) {
-            this.menuContext.broadCast.emit(BroadcastConstants.SHOW_PROGRESS_DIALOG,
-                [$r('app.string.download_progress_message'),
-                MediaOperationType.Copy, (): void => this.cancelFuncBindImpl()]);
-        } else {
-            this.menuContext.broadCast.emit(BroadcastConstants.SHOW_PROGRESS_DIALOG,
-                [$r('app.string.copy_progress_message', this.albumInfo.displayName),
-                MediaOperationType.Copy, (): void => this.cancelFuncBindImpl()]);
-        }
-
-        if (dataSource == null) {
-            this.items = this.menuContext.items;
-        } else {
-            this.items = dataSource.getSelectedItems();
-        }
-        this.processOperation();
+    let dataSource: ItemDataSource = this.menuContext.dataSource;
+    if (dataSource == null) {
+      this.count = this.menuContext.items.length;
+    } else {
+      this.count = dataSource.getSelectedCount();
+    }
+    if (this.count <= 0) {
+      Log.warn(TAG, 'count <= 0, return');
+      return;
     }
 
-    requestOneBatchOperation(): void {
-        let item = this.items[this.currentBatch++] as UserFileDataItem;
-        this.copyOne(item);
+    this.onOperationEnd = this.menuContext.onOperationEnd;
+    let onOperationStart = this.menuContext.onOperationStart;
+
+    if (onOperationStart != null) onOperationStart();
+
+    if (this.menuContext.deviceId != null) {
+      this.menuContext.broadCast.emit(BroadcastConstants.SHOW_PROGRESS_DIALOG,
+        [$r('app.string.download_progress_message'),
+        MediaOperationType.Copy, (): void => this.cancelFuncBindImpl()]);
+    } else {
+      this.menuContext.broadCast.emit(BroadcastConstants.SHOW_PROGRESS_DIALOG,
+        [$r('app.string.copy_progress_message', this.albumInfo.displayName),
+        MediaOperationType.Copy, (): void => this.cancelFuncBindImpl()]);
     }
 
-    private async copyOne(item: UserFileDataItem): Promise<void> {
-        let fileAsset = await item.loadFileAsset();
-        let assets: Assets = await this.getFileCopyOrMoveInfo(fileAsset, this.albumInfo);
-        if (this.menuContext.deviceId != null) {
-            let displayName = assets.sourceAsset.displayName;
-            let index = displayName.lastIndexOf('.');
-            let start = displayName.lastIndexOf('_');
-            displayName = displayName.slice(0, start) + "_$" + new Date().getTime() + "$" + displayName.slice(index);
-            let params: Object = {
-                mediaType: assets.sourceAsset.fileType,
-                name: displayName,
-                path: this.albumInfo.uri
-            };
-            this.copy(assets.sourceAsset, null, params);
-            return;
+    if (dataSource == null) {
+      this.items = this.menuContext.items;
+    } else {
+      this.items = dataSource.getSelectedItems();
+    }
+    this.processOperation();
+  }
+
+  requestOneBatchOperation(): void {
+    let item = this.items[this.currentBatch++] as UserFileDataItem;
+    this.copyOne(item);
+  }
+
+  private async copyOne(item: UserFileDataItem): Promise<void> {
+    let fileAsset = await item.loadFileAsset();
+    let assets: Assets = await this.getFileCopyOrMoveInfo(fileAsset, this.albumInfo);
+    if (this.menuContext.deviceId != null) {
+      let displayName = assets.sourceAsset.displayName;
+      let index = displayName.lastIndexOf('.');
+      let start = displayName.lastIndexOf('_');
+      displayName = displayName.slice(0, start) + '_$' + new Date().getTime() + '$' + displayName.slice(index);
+      let params: Object = {
+        mediaType: assets.sourceAsset.fileType,
+        name: displayName,
+        path: this.albumInfo.uri
+      };
+      this.copy(assets.sourceAsset, null, params);
+      return;
+    }
+    if (assets.targetAsset != null) {
+      if (assets.targetAsset.uri == assets.sourceAsset.uri) {
+        Log.info(TAG, 'copy same fileAsset');
+        this.onOperateContinue();
+        return;
+      }
+      Log.info(TAG, 'show find same file dialog');
+      switch (this.findSameOperation) {
+        case FindSameOperation.NONE:
+          this.menuContext.broadCast.emit(BroadcastConstants.FIND_SAME_FILE_DIALOG,
+            [assets, this.count, (): void => {
+              this.copy(assets.sourceAsset, assets.targetAsset);
+            }, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl(),
+              (newOp: number): void => this.setFindSameOperation(newOp)]);
+          break;
+        case FindSameOperation.REPLACE:
+          this.copy(assets.sourceAsset, assets.targetAsset);
+          break;
+        case FindSameOperation.SKIP:
+          this.onOperateContinue();
+          break;
+        default:
+          Log.warn(TAG, 'findSameOperation is error ' + this.findSameOperation);
+          break;
+      }
+    } else {
+      let params: Object = {
+        mediaType: assets.sourceAsset.fileType,
+        name: assets.sourceAsset.displayName.replace('.', 'copy.'),
+        path: this.albumInfo.uri
+      };
+      this.copy(assets.sourceAsset, null, params);
+    }
+  }
+
+  async copy(source, target, param?): Promise<void> {
+    try {
+      if (!Boolean<object>(target).valueOf()) {
+        startTraceWithTaskId('create', this.currentBatch);
+        target = await userFileModel.createOne(param.name, param.path);
+        finishTraceWithTaskId('create', this.currentBatch);
+        if (target == null) {
+          Log.warn(TAG, 'Target file create failed when copyFile!');
+          this.onError();
+          return;
         }
-        if (assets.targetAsset != null) {
-            if (assets.targetAsset.uri == assets.sourceAsset.uri) {
-                Log.info(TAG, 'copy same fileAsset');
-                this.onOperateContinue();
-                return;
-            }
-            Log.info(TAG, 'show find same file dialog');
-            switch (this.findSameOperation) {
-                case FindSameOperation.NONE:
-                    this.menuContext.broadCast.emit(BroadcastConstants.FIND_SAME_FILE_DIALOG,
-                        [assets, this.count, (): void => {
-                            this.copy(assets.sourceAsset, assets.targetAsset);
-                        }, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl(),
-                        (newOp: number): void => this.setFindSameOperation(newOp)]);
-                    break;
-                case FindSameOperation.REPLACE:
-                    this.copy(assets.sourceAsset, assets.targetAsset);
-                    break;
-                case FindSameOperation.SKIP:
-                    this.onOperateContinue();
-                    break;
-                default:
-                    Log.warn(TAG, "findSameOperation is error " + this.findSameOperation);
-                    break;
-            }
-        } else {
-            let params: Object = {
-                mediaType: assets.sourceAsset.fileType,
-                name: assets.sourceAsset.displayName.replace('.','copy.'),
-                path: this.albumInfo.uri
-            };
-            this.copy(assets.sourceAsset, null, params);
-        }
+      }
+      startTraceWithTaskId('openWriteClose', this.currentBatch);
+      await userFileModel.copyOne(source, target);
+      finishTraceWithTaskId('openWriteClose', this.currentBatch);
+      this.onCompleted();
+    } catch (error) {
+      finishTraceWithTaskId('create', this.currentBatch);
+      Log.error(TAG, 'copyFile is error ' + error);
+      this.onError();
+    }
+  }
+
+  cancelFunc(): void {
+    this.cancelFuncBindImpl()
+  }
+
+  private cancelFuncBindImpl(): void {
+    Log.info(TAG, 'progress cancel');
+    this.onOperatePause();
+    let cancelMessage = $r('app.string.copy_cancel_message', this.getExpectProgress().toString());
+
+    if (this.menuContext.broadCast != null) {
+      if (this.menuContext.deviceId != null) {
+        this.menuContext.broadCast.emit(BroadcastConstants.DOWNLOAD_CANCEL_OPERATE,
+          [cancelMessage, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl()]);
+      } else {
+        this.menuContext.broadCast.emit(BroadcastConstants.CANCEL_OPERATE,
+          [cancelMessage, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl()]);
+      }
     }
 
-    async copy(source, target, param?): Promise<void> {
-        try {
-            if (!Boolean<object>(target).valueOf()) {
-                startTraceWithTaskId('create', this.currentBatch);
-                target = await userFileModel.createOne(param.name, param.path);
-                finishTraceWithTaskId('create', this.currentBatch);
-                if (target == null) {
-                    Log.warn(TAG, "Target file create failed when copyFile!");
-                    this.onError();
-                    return;
-                }
-            }
-            startTraceWithTaskId('openWriteClose', this.currentBatch);
-            await userFileModel.copyOne(source, target);
-            finishTraceWithTaskId('openWriteClose', this.currentBatch);
-            this.onCompleted();
-        } catch (error) {
-            finishTraceWithTaskId('create', this.currentBatch);
-            Log.error(TAG, "copyFile is error " + error);
-            this.onError();
-        }
-    }
+  }
 
-    cancelFunc(): void {
-        this.cancelFuncBindImpl()
-    }
+  // Copy cancel callback
+  onOperateContinue(): void {
+    this.onOperateContinueBindImpl()
+  }
 
-    private cancelFuncBindImpl(): void {
-        Log.info(TAG, "progress cancel");
-        this.onOperatePause();
-        let cancelMessage = $r('app.string.copy_cancel_message', this.getExpectProgress().toString());
-
-        if(this.menuContext.broadCast != null) {
-            if (this.menuContext.deviceId != null) {
-                 this.menuContext.broadCast.emit(BroadcastConstants.DOWNLOAD_CANCEL_OPERATE,
-                    [cancelMessage, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl()]);
-            } else {
-                this.menuContext.broadCast.emit(BroadcastConstants.CANCEL_OPERATE,
-                    [cancelMessage, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl()]);
-            }
-        }
-
-    }
-
-    // Copy cancel callback
-    onOperateContinue(): void {
-        this.onOperateContinueBindImpl()
-    }
-
-    private onOperateContinueBindImpl(): void {
-        Log.info(TAG, 'Operate Continue');
-        this.isPause = false;
-        this.cyclicOperation();
-    }
+  private onOperateContinueBindImpl(): void {
+    Log.info(TAG, 'Operate Continue');
+    this.isPause = false;
+    this.cyclicOperation();
+  }
 }

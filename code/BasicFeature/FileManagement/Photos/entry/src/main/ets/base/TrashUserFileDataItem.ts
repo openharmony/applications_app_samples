@@ -19,46 +19,46 @@ import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import { UserFileDataItem } from './UserFileDataItem';
 
-const TAG = "TrashUserFileDataItem"
+const TAG = 'TrashUserFileDataItem'
 
 export class TrashUserFileDataItem extends UserFileDataItem {
-    constructor(selections: string, selectionArgs: string[], index: number) {
-        super(selections, selectionArgs, "", index);
-        this.setSelect(false);
-    }
+  constructor(selections: string, selectionArgs: string[], index: number) {
+    super(selections, selectionArgs, '', index);
+    this.setSelect(false);
+  }
 
-    async loadFileAsset(): Promise<userFileManager.FileAsset> {
-        Log.debug(TAG,"loadFileAsset"+this.uri)
-        return await userFileModel.getMediaItemByUriFromTrash(this.uri);
-    }
+  async loadFileAsset(): Promise<userFileManager.FileAsset> {
+    Log.debug(TAG, 'loadFileAsset' + this.uri)
+    return await userFileModel.getMediaItemByUriFromTrash(this.uri);
+  }
 
-    async onRecover(): Promise<boolean> {
-        try {
-            let fileAsset = await this.loadFileAsset();
-            if (fileAsset == null){
-                Log.error(TAG, "onRecover error: can't find file");
-                return false;
-            }
-            await userFileModel.recover(fileAsset);
-            selectManager.deleteSelect(this.uri);
-            this.status = MediaConstants.TRASHED;
-            return true;
-        } catch (err) {
-            Log.error(TAG, "onRecover error: " + JSON.stringify(err));
-            return false;
-        }
+  async onRecover(): Promise<boolean> {
+    try {
+      let fileAsset = await this.loadFileAsset();
+      if (fileAsset == null) {
+        Log.error(TAG, 'onRecover error: cant find file');
+        return false;
+      }
+      await userFileModel.recover(fileAsset);
+      selectManager.deleteSelect(this.uri);
+      this.status = MediaConstants.TRASHED;
+      return true;
+    } catch (err) {
+      Log.error(TAG, 'onRecover error: ' + JSON.stringify(err));
+      return false;
     }
+  }
 
-    async onDelete(): Promise<boolean> {
-        try {
-            let fileAsset = await this.loadFileAsset();
-            await userFileModel.permanentDelete(fileAsset);
-            selectManager.deleteSelect(this.uri);
-            this.status = MediaConstants.TRASHED;
-            return true;
-        } catch (err) {
-            Log.error(TAG, "onDelete error: " + JSON.stringify(err));
-            return false;
-        }
+  async onDelete(): Promise<boolean> {
+    try {
+      let fileAsset = await this.loadFileAsset();
+      await userFileModel.permanentDelete(fileAsset);
+      selectManager.deleteSelect(this.uri);
+      this.status = MediaConstants.TRASHED;
+      return true;
+    } catch (err) {
+      Log.error(TAG, 'onDelete error: ' + JSON.stringify(err));
+      return false;
     }
+  }
 }

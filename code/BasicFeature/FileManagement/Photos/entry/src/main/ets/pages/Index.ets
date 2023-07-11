@@ -26,73 +26,73 @@ struct Index {
   @StorageLink('permissionStatus') @Watch('onUpdate') permission: boolean = false;
   @State isUpdate: boolean = false;
   onUpdate(): void {
-    this.isUpdate = !this.isUpdate;
+  this.isUpdate = !this.isUpdate;
   }
 
   aboutToAppear(): void {
-    startTrace('indexPageAppearToShow');
-    app.setImageCacheCount(100);
-    app.setImageRawDataCacheSize(100*1024*1024);
-    if (AppStorage.Get<boolean>(Constants.BACK_FROM_FORM_DETAIL) != null) {
-      AppStorage.SetOrCreate<boolean>(Constants.BACK_FROM_FORM_DETAIL, false);
-      this.currentIndex = Constants.ALBUM_PAGE_INDEX;
+  startTrace('indexPageAppearToShow');
+  app.setImageCacheCount(100);
+  app.setImageRawDataCacheSize(100*1024*1024);
+  if (AppStorage.Get<boolean>(Constants.BACK_FROM_FORM_DETAIL) != null) {
+    AppStorage.SetOrCreate<boolean>(Constants.BACK_FROM_FORM_DETAIL, false);
+    this.currentIndex = Constants.ALBUM_PAGE_INDEX;
+  }
+  let param: ParamsInterface = router.getParams();
+  Log.info(this.TAG, 'param: ' + JSON.stringify(param));
+  if (param != null) {
+    if (param.jumpSource != undefined && param.jumpSource != null && !Number.isNaN(param.jumpSource)) {
+    this.jumpSource = new Number(param.jumpSource).valueOf()
+    } else {
+    this.jumpSource = 0
     }
-    let param: ParamsInterface = router.getParams();
-    Log.info(this.TAG, "param: " + JSON.stringify(param));
-    if (param != null) {
-      if (param.jumpSource != undefined && param.jumpSource != null && !Number.isNaN(param.jumpSource)) {
-        this.jumpSource = new Number(param.jumpSource).valueOf()
-      } else {
-        this.jumpSource = 0
-      }
-      if (this.jumpSource == JumpSourceToMain.CAMERA) {
-        this.currentIndex = Constants.TIMELINE_PAGE_INDEX;
-        this.entryFromHap = Constants.ENTRY_FROM_NONE;
-        Log.info(this.TAG, "Camera in, switch to Tab " + this.currentIndex + ".");
-      }
+    if (this.jumpSource == JumpSourceToMain.CAMERA) {
+    this.currentIndex = Constants.TIMELINE_PAGE_INDEX;
+    this.entryFromHap = Constants.ENTRY_FROM_NONE;
+    Log.info(this.TAG, 'Camera in, switch to Tab ' + this.currentIndex + '.');
     }
+  }
   }
 
   onPageShow(): void {
-    Log.debug(this.TAG, "IndexPage.onPageShow entryFromHap: " + this.entryFromHap);
-    this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
-    this.isShow = true;
-    Log.info(this.TAG, "IndexPage.onPageShow: router.clear " + this.jumpSource);
-    if (this.jumpSource == JumpSourceToMain.CAMERA) {
-      router.clear();
-    } else if (this.jumpSource == JumpSourceToMain.ALBUM) {
-      router.clear();
-    }
-    finishTrace('indexPageAppearToShow');
+  Log.debug(this.TAG, 'IndexPage.onPageShow entryFromHap: ' + this.entryFromHap);
+  this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
+  this.isShow = true;
+  Log.info(this.TAG, 'IndexPage.onPageShow: router.clear ' + this.jumpSource);
+  if (this.jumpSource == JumpSourceToMain.CAMERA) {
+    router.clear();
+  } else if (this.jumpSource == JumpSourceToMain.ALBUM) {
+    router.clear();
+  }
+  finishTrace('indexPageAppearToShow');
   }
 
   onPageHide(): void {
-    this.isShow = false;
+  this.isShow = false;
   }
 
   onBackPress(): boolean {
-    let isProcessed = false;
-    let func = (isModeChanged: boolean): void => {
-      isProcessed = isModeChanged;
-    }
-    this.appBroadcast.emit(BroadcastConstants.BACK_PRESS_EVENT, [func]);
-    return isProcessed;
+  let isProcessed = false;
+  let func = (isModeChanged: boolean): void => {
+    isProcessed = isModeChanged;
+  }
+  this.appBroadcast.emit(BroadcastConstants.BACK_PRESS_EVENT, [func]);
+  return isProcessed;
   }
 
   build() {
-      Row() {
-        AlbumSetPage()
-      }
-      .backgroundColor($r('app.color.default_background_color'))
-      .padding({
-        top: px2vp(this.leftBlank[1]),
-        bottom: px2vp(this.leftBlank[3])
-      })
+    Row() {
+    AlbumSetPage()
     }
-    pageTransition(): void {
-        PageTransitionEnter({ type: RouteType.None, duration: 1 })
-            .opacity(0)
-        PageTransitionExit({ type: RouteType.None, duration: 1 })
-            .opacity(0)
-    }
+    .backgroundColor($r('app.color.default_background_color'))
+    .padding({
+    top: px2vp(this.leftBlank[1]),
+    bottom: px2vp(this.leftBlank[3])
+    })
+  }
+  pageTransition(): void {
+    PageTransitionEnter({ type: RouteType.None, duration: 1 })
+      .opacity(0)
+    PageTransitionExit({ type: RouteType.None, duration: 1 })
+      .opacity(0)
+  }
 }

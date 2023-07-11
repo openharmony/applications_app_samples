@@ -14,7 +14,7 @@
  */
 
 export interface MenuOperationCallback {
-    onCompleted(): void;
+  onCompleted(): void;
 
-    onError(): void
+  onError(): void
 }

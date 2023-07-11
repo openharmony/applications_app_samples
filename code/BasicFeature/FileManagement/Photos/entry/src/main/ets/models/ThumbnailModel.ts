@@ -17,28 +17,28 @@ import { computeSampleSize } from '../utils/ImageUtil';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 
 export async function getThumbnail(mediaItem: UserFileDataItem, isCurrent: boolean): Promise<string> {
-    await mediaItem.load(true);
-    let imgWidth = mediaItem.width;
-    let imgHeight = mediaItem.height;
-    let scale = generateSampleSize(imgWidth, imgHeight, isCurrent);
-    mediaItem.imgWidth = Math.ceil(mediaItem.width / scale);
-    mediaItem.imgHeight = Math.ceil(mediaItem.height / scale);
-    imgWidth = Math.ceil(imgWidth / scale);
-    imgHeight = Math.ceil(imgHeight / scale);
-    return mediaItem.getThumbnail(imgWidth, imgHeight);
+  await mediaItem.load(true);
+  let imgWidth = mediaItem.width;
+  let imgHeight = mediaItem.height;
+  let scale = generateSampleSize(imgWidth, imgHeight, isCurrent);
+  mediaItem.imgWidth = Math.ceil(mediaItem.width / scale);
+  mediaItem.imgHeight = Math.ceil(mediaItem.height / scale);
+  imgWidth = Math.ceil(imgWidth / scale);
+  imgHeight = Math.ceil(imgHeight / scale);
+  return mediaItem.getThumbnail(imgWidth, imgHeight);
 }
 
 function generateSampleSize(imageWidth: number, imageHeight: number, isCurrent: boolean): number {
-    let width = vp2px(screenManager.getWinWidth());
-    let height = vp2px(screenManager.getWinHeight());
-    width = width == 0 ? screenManager.DEFAULT_WIDTH : width;
-    height = height == 0 ? screenManager.DEFAULT_HEIGHT : height;
-    let maxNumOfPixels;
-    if (isCurrent) {
-        maxNumOfPixels = 2 * width * height;
-    } else {
-        maxNumOfPixels = width * height;
-    }
-    let minSide = Math.min(width, height);
-    return computeSampleSize(imageWidth, imageHeight, minSide, maxNumOfPixels);
+  let width = vp2px(screenManager.getWinWidth());
+  let height = vp2px(screenManager.getWinHeight());
+  width = width == 0 ? screenManager.DEFAULT_WIDTH : width;
+  height = height == 0 ? screenManager.DEFAULT_HEIGHT : height;
+  let maxNumOfPixels;
+  if (isCurrent) {
+    maxNumOfPixels = 2 * width * height;
+  } else {
+    maxNumOfPixels = width * height;
+  }
+  let minSide = Math.min(width, height);
+  return computeSampleSize(imageWidth, imageHeight, minSide, maxNumOfPixels);
 }

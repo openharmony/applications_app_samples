@@ -14,6 +14,6 @@
  */
 
 export interface DialogCallback {
-    confirmCallback: Function;
-    cancelCallback: Function;
+  confirmCallback: Function;
+  cancelCallback: Function;
 }

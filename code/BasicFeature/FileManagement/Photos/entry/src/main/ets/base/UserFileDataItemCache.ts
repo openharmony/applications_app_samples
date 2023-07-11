@@ -15,7 +15,7 @@
 import { UserFileDataItem } from './UserFileDataItem';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = "UserFileDataItemCache"
+const TAG = 'UserFileDataItemCache'
 
 class UserFileDataItemCache {
     private userFileDataItemMap = new Map<string, UserFileDataItem>();

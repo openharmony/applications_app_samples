@@ -18,28 +18,28 @@ import { UserFileDataItem } from '../base/UserFileDataItem';
 import { screenManager } from '../common/ScreenManager';
 
 export class InnerUserFileDataItem extends UserFileDataItem {
-    constructor(uri: string, index: number) {
-        super("", [] as string[], "", index)
-        this.mediaType = userFileManager.FileType.IMAGE
-        this.uri = uri
-        this.size = 256
-        this.orientation = 0
-    }
+  constructor(uri: string, index: number) {
+    super('', [] as string[], '', index)
+    this.mediaType = userFileManager.FileType.IMAGE
+    this.uri = uri
+    this.size = 256
+    this.orientation = 0
+  }
 
-    async load(isForce: boolean): Promise<void> {
-        if (this.status > (isForce ? MediaConstants.PART_LOADED : MediaConstants.UNDEFINED)) {
-            return
-        }
-        this.width = vp2px(screenManager.getWinWidth())
-        this.height = vp2px(screenManager.getWinHeight())
-        if (this.width == 0 || this.height == 0) {
-            this.status = MediaConstants.PART_LOADED
-        } else {
-            this.status = MediaConstants.LOADED
-        }
+  async load(isForce: boolean): Promise<void> {
+    if (this.status > (isForce ? MediaConstants.PART_LOADED : MediaConstants.UNDEFINED)) {
+      return
     }
+    this.width = vp2px(screenManager.getWinWidth())
+    this.height = vp2px(screenManager.getWinHeight())
+    if (this.width == 0 || this.height == 0) {
+      this.status = MediaConstants.PART_LOADED
+    } else {
+      this.status = MediaConstants.LOADED
+    }
+  }
 
-    async isFavor(): Promise<boolean> {
-        return false
-    }
+  async isFavor(): Promise<boolean> {
+    return false
+  }
 }

@@ -14,8 +14,7 @@
  */
 
 export abstract class MathUtils {
-
-    static clamp(num: number, min: number, max: number): number {
-        return Math.min(Math.max(num, min), max);
-    }
+  static clamp(num: number, min: number, max: number): number {
+    return Math.min(Math.max(num, min), max);
+  }
 }

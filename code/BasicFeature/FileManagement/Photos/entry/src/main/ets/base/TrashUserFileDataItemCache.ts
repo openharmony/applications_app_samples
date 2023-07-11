@@ -15,30 +15,30 @@
 import { TrashUserFileDataItem } from './TrashUserFileDataItem';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = "TrashUserFileDataItemCache"
+const TAG = 'TrashUserFileDataItemCache'
 
 class TrashUserFileDataItemCache {
-    private trashMediaDataItemMap = new Map<string, TrashUserFileDataItem>();
+  private trashMediaDataItemMap = new Map<string, TrashUserFileDataItem>();
 
-    hasKey(key: string): boolean {
-        return this.trashMediaDataItemMap.has(key);
-    }
+  hasKey(key: string): boolean {
+    return this.trashMediaDataItemMap.has(key);
+  }
 
-    deleteKey(key: string): boolean {
-        return this.trashMediaDataItemMap.delete(key);
-    }
+  deleteKey(key: string): boolean {
+    return this.trashMediaDataItemMap.delete(key);
+  }
 
-    set(key: string, value: TrashUserFileDataItem): void {
-        this.trashMediaDataItemMap.set(key, value);
-    }
+  set(key: string, value: TrashUserFileDataItem): void {
+    this.trashMediaDataItemMap.set(key, value);
+  }
 
-    get(key: string): TrashUserFileDataItem {
-        return this.trashMediaDataItemMap.get(key);
-    }
+  get(key: string): TrashUserFileDataItem {
+    return this.trashMediaDataItemMap.get(key);
+  }
 
-    clearAll(): void {
-        this.trashMediaDataItemMap.clear();
-    }
+  clearAll(): void {
+    this.trashMediaDataItemMap.clear();
+  }
 }
 
 export let trashUserFileDataItemCache: TrashUserFileDataItemCache = stashOrGetObject<TrashUserFileDataItemCache>(new TrashUserFileDataItemCache(), TAG);

@@ -19,81 +19,81 @@ import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import userFileManager from '@ohos.filemanagement.userFileManager';
 
 export class MenuContext {
-    items: UserFileDataItem[] = [];
-    dataSource: ItemDataSource;
+  items: UserFileDataItem[] = [];
+  dataSource: ItemDataSource;
 
-    albumInfo: SimpleAlbumDataItem;
+  albumInfo: SimpleAlbumDataItem;
 
-    albumObject:userFileManager.Album;
+  albumObject: userFileManager.Album;
 
-    broadCast: Broadcast;
-    onOperationStart: Function;
-    onOperationCancel: Function;
-    onOperationEnd: Function;
+  broadCast: Broadcast;
+  onOperationStart: Function;
+  onOperationCancel: Function;
+  onOperationEnd: Function;
 
-    jumpSourceToMain: number;
-    deviceId: string;
+  jumpSourceToMain: number;
+  deviceId: string;
 
-    albumId: string;
-    deletePageFromType: number;       // 0. photoBrowser  1. photoGridPage
+  albumId: string;
+  deletePageFromType: number; // 0. photoBrowser  1. photoGridPage
 
-    withDeletePageFromType(deletePageFromType: number): MenuContext {
-        this.deletePageFromType = deletePageFromType;
-        return this;
-    }
+  withDeletePageFromType(deletePageFromType: number): MenuContext {
+    this.deletePageFromType = deletePageFromType;
+    return this;
+  }
 
-    withItems(items: UserFileDataItem[]): MenuContext {
-        this.items = items;
-        return this;
-    }
+  withItems(items: UserFileDataItem[]): MenuContext {
+    this.items = items;
+    return this;
+  }
 
-    withAlbumId(albumId: string): MenuContext {
-        this.albumId = albumId;
-        return this;
-    }
+  withAlbumId(albumId: string): MenuContext {
+    this.albumId = albumId;
+    return this;
+  }
 
-    withAlbumObject(albumObject: userFileManager.Album): MenuContext {
-        this.albumObject = albumObject;
-        return this;
-    }
+  withAlbumObject(albumObject: userFileManager.Album): MenuContext {
+    this.albumObject = albumObject;
+    return this;
+  }
 
-    withDataSource(dataSource): MenuContext{
-        this.dataSource = dataSource;
-        return this;
-    }
+  withDataSource(dataSource): MenuContext {
+    this.dataSource = dataSource;
+    return this;
+  }
 
-    withOperationStartCallback(onOperationStart: Function): MenuContext {
-        this.onOperationStart = onOperationStart;
-        return this;
-    }
+  withOperationStartCallback(onOperationStart: Function): MenuContext {
+    this.onOperationStart = onOperationStart;
+    return this;
+  }
 
-    withOperationEndCallback(onOperationEnd: Function): MenuContext {
-        this.onOperationEnd = onOperationEnd;
-        return this;
-    }
+  withOperationEndCallback(onOperationEnd: Function): MenuContext {
+    this.onOperationEnd = onOperationEnd;
+    return this;
+  }
 
-    withOperationCancelCallback(onOperationCancel: Function): MenuContext {
-        this.onOperationCancel = onOperationCancel;
-        return this;
-    }
+  withOperationCancelCallback(onOperationCancel: Function): MenuContext {
+    this.onOperationCancel = onOperationCancel;
+    return this;
+  }
 
-    withBroadCast(param: Broadcast): MenuContext {
-        this.broadCast = param;
-        return this;
-    }
+  withBroadCast(param: Broadcast): MenuContext {
+    this.broadCast = param;
+    return this;
+  }
 
-    withJumpSourceToMain(jumpSourceToMain: number): MenuContext {
-        this.jumpSourceToMain = jumpSourceToMain;
-        return this;
-    }
+  withJumpSourceToMain(jumpSourceToMain: number): MenuContext {
+    this.jumpSourceToMain = jumpSourceToMain;
+    return this;
+  }
 
-    withRemoteDevice(deviceId): MenuContext {
-        this.deviceId = deviceId;
-        return this;
-    }
+  withRemoteDevice(deviceId): MenuContext {
+    this.deviceId = deviceId;
+    return this;
+  }
 
-    withAlbumInfo(albumInfo: SimpleAlbumDataItem): MenuContext {
-        this.albumInfo = albumInfo;
-        return this;
-    }
+  withAlbumInfo(albumInfo: SimpleAlbumDataItem): MenuContext {
+    this.albumInfo = albumInfo;
+    return this;
+  }
 }

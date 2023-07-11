@@ -16,15 +16,16 @@ import prompt, { ShowToastOptions } from '@system.prompt';
 import { Log } from './Log';
 import { screenManager } from '../common/ScreenManager';
 
-const TAG = "UiUtil"
+const TAG = 'UiUtil'
 const TOAST_DURATION = 3000;
+
 export function showToast(message: string): void {
-    let naviBarHeight = screenManager.getNaviBarHeight()
-    Log.debug(TAG, "showToast: " + message);
-    let showToastOptions: ShowToastOptions = {
-        message: message,
-        duration: TOAST_DURATION,
-        bottom: (64 + naviBarHeight) + "vp"
-    };
-    prompt.showToast(showToastOptions);
+  let naviBarHeight = screenManager.getNaviBarHeight()
+  Log.debug(TAG, 'showToast: ' + message);
+  let showToastOptions: ShowToastOptions = {
+    message: message,
+    duration: TOAST_DURATION,
+    bottom: (64 + naviBarHeight) + 'vp'
+  };
+  prompt.showToast(showToastOptions);
 }

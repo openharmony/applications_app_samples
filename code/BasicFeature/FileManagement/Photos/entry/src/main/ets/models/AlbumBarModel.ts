@@ -19,82 +19,82 @@ import { ActionBarMode, ActionBarSelectionMode } from './ActionBarMode'
 import { screenManager } from '../common/ScreenManager'
 
 export class AlbumBarModel {
-    createActionBar(isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number,
-					isDisableRename: boolean, isDisableDelete: boolean): ActionBarProp {
-	let actionBarProp: ActionBarProp = new ActionBarProp();
-	let isHorizontal = screenManager.isHorizontal();
-        if (isHorizontal) {
-            this.updateHorizontalActionBar(actionBarProp, isAlbumSetSelectedMode,
-	    selectedAlbumsCount, isDisableRename, isDisableDelete);
-        } else {
-            this.updateVerticalActionBar(actionBarProp, isAlbumSetSelectedMode);
-        }
-	return actionBarProp;
+  createActionBar(isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number,
+                  isDisableRename: boolean, isDisableDelete: boolean): ActionBarProp {
+    let actionBarProp: ActionBarProp = new ActionBarProp();
+    let isHorizontal = screenManager.isHorizontal();
+    if (isHorizontal) {
+      this.updateHorizontalActionBar(actionBarProp, isAlbumSetSelectedMode,
+        selectedAlbumsCount, isDisableRename, isDisableDelete);
+    } else {
+      this.updateVerticalActionBar(actionBarProp, isAlbumSetSelectedMode);
+    }
+    return actionBarProp;
+  }
+
+  updateActionBar(actionBarProp: ActionBarProp, isAlbumSetSelectedMode: boolean,
+                  selectedAlbumsCount: number, isDisableRename: boolean, isDisableDelete: boolean): void {
+    let isHorizontal = screenManager.isHorizontal();
+    if (isHorizontal) {
+      this.updateHorizontalActionBar(actionBarProp, isAlbumSetSelectedMode,
+        selectedAlbumsCount, isDisableRename, isDisableDelete);
+    } else {
+      this.updateVerticalActionBar(actionBarProp, isAlbumSetSelectedMode);
+    }
+  }
+
+  private updateHorizontalActionBar(actionBarProp: ActionBarProp, isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number,
+                                    isDisableRename: boolean, isDisableDelete: boolean): ActionBarProp {
+    let isSidebar: boolean = screenManager.isSidebar();
+    actionBarProp
+      .setHasTabBar(isSidebar)
+      .setTitle($r('app.string.tab_albums'))
+      .setIsHeadTitle(true);
+    let menuList: Action[] = this.getMenuList(isAlbumSetSelectedMode, selectedAlbumsCount, isDisableRename, isDisableDelete);
+    if (isAlbumSetSelectedMode) {
+      actionBarProp
+        .setLeftAction(Action.CANCEL)
+        .setMenuList(menuList)
+        .setMode(ActionBarMode.SELECTION_MODE)
+        .setSelectionMode(ActionBarSelectionMode.MULTI);
+    } else {
+      menuList.push(Action.NEW)
+      actionBarProp
+        .setMenuList(menuList)
+        .setMode(ActionBarMode.STANDARD_MODE);
+    }
+    return actionBarProp;
+  }
+
+  private updateVerticalActionBar(actionBarProp: ActionBarProp, isAlbumSetSelectedMode: boolean): ActionBarProp {
+    let menuList: Action[] = [];
+    menuList.push(Action.NEW);
+    let isSidebar: boolean = screenManager.isSidebar();
+    actionBarProp
+      .setHasTabBar(isSidebar)
+      .setTitle($r('app.string.tab_albums'))
+      .setIsHeadTitle(true);
+
+    if (isAlbumSetSelectedMode) {
+      actionBarProp
+        .setLeftAction(Action.CANCEL)
+        .setMode(ActionBarMode.SELECTION_MODE)
+        .setSelectionMode(ActionBarSelectionMode.MULTI);
+    } else {
+      actionBarProp
+        .setMenuList(menuList)
+        .setMode(ActionBarMode.STANDARD_MODE);
     }
 
-    updateActionBar(actionBarProp: ActionBarProp, isAlbumSetSelectedMode: boolean,
-                    selectedAlbumsCount: number, isDisableRename: boolean, isDisableDelete: boolean): void {
-        let isHorizontal = screenManager.isHorizontal();
-        if (isHorizontal) {
-            this.updateHorizontalActionBar(actionBarProp, isAlbumSetSelectedMode,
-                selectedAlbumsCount, isDisableRename, isDisableDelete);
-        } else {
-            this.updateVerticalActionBar(actionBarProp, isAlbumSetSelectedMode);
-        }
+    return actionBarProp;
+  }
+
+  getMenuList(isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number, isDisableRename: boolean, isDisableDelete: boolean): Action[] {
+    let menuList: Action[] = [];
+    if (isAlbumSetSelectedMode) {
+      menuList.push((!isDisableRename && selectedAlbumsCount == 1) ? Action.RENAME : Action.RENAME_INVALID);
+      menuList.push((!isDisableDelete && selectedAlbumsCount > 0) ? Action.DELETE : Action.DELETE_INVALID);
     }
-
-    private updateHorizontalActionBar(actionBarProp: ActionBarProp, isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number,
-                                      isDisableRename: boolean, isDisableDelete: boolean): ActionBarProp {
-        let isSidebar: boolean = screenManager.isSidebar();
-        actionBarProp
-            .setHasTabBar(isSidebar)
-            .setTitle($r('app.string.tab_albums'))
-            .setIsHeadTitle(true);
-        let menuList: Action[] = this.getMenuList(isAlbumSetSelectedMode, selectedAlbumsCount, isDisableRename, isDisableDelete);
-        if (isAlbumSetSelectedMode) {
-            actionBarProp
-                .setLeftAction(Action.CANCEL)
-                .setMenuList(menuList)
-                .setMode(ActionBarMode.SELECTION_MODE)
-                .setSelectionMode(ActionBarSelectionMode.MULTI);
-        } else {
-            menuList.push(Action.NEW)
-            actionBarProp
-                .setMenuList(menuList)
-                .setMode(ActionBarMode.STANDARD_MODE);
-        }
-        return actionBarProp;
-    }
-
-    private updateVerticalActionBar(actionBarProp: ActionBarProp, isAlbumSetSelectedMode: boolean): ActionBarProp {
-        let menuList: Action[] = [];
-        menuList.push(Action.NEW);
-        let isSidebar: boolean = screenManager.isSidebar();
-        actionBarProp
-            .setHasTabBar(isSidebar)
-            .setTitle($r('app.string.tab_albums'))
-            .setIsHeadTitle(true);
-
-        if (isAlbumSetSelectedMode) {
-            actionBarProp
-                .setLeftAction(Action.CANCEL)
-                .setMode(ActionBarMode.SELECTION_MODE)
-                .setSelectionMode(ActionBarSelectionMode.MULTI);
-        } else {
-            actionBarProp
-                .setMenuList(menuList)
-                .setMode(ActionBarMode.STANDARD_MODE);
-        }
-
-        return actionBarProp;
-    }
-
-    getMenuList(isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number, isDisableRename: boolean, isDisableDelete: boolean): Action[] {
-        let menuList: Action[] = [];
-        if (isAlbumSetSelectedMode) {
-            menuList.push((!isDisableRename && selectedAlbumsCount == 1) ? Action.RENAME : Action.RENAME_INVALID);
-            menuList.push((!isDisableDelete && selectedAlbumsCount > 0) ? Action.DELETE : Action.DELETE_INVALID);
-        }
-        return menuList;
-    }
+    return menuList;
+  }
 }

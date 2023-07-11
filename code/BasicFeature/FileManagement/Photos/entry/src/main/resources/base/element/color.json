@@ -84,7 +84,6 @@
       "name": "icon_highlight_color",
       "value": "#0A59F7"
     },
-
     {
       "name": "subtitle_text_color",
       "value": "#99000000"
@@ -309,7 +308,6 @@
       "name": "scroll_bar_side_text_border_color",
       "value": "#07000000"
     },
-
     {
       "name": "FA_title_text_color",
       "value": "#E5FFFFFF"

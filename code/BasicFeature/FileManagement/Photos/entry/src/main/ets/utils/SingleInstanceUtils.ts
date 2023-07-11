@@ -16,13 +16,13 @@
 import { Log } from './Log';
 import { GlobalContext } from '../common/GlobalContext';
 
-const TAG = "SingleInstanceHelper";
+const TAG = 'SingleInstanceHelper';
 let globalThis = GlobalContext.getContext();
 
 export function stashOrGetObject<T>(objectClass: object, storageKey: string): T {
-    if (! new Boolean(globalThis.getObject(storageKey)).valueOf()) {
-        globalThis.setObject(storageKey, objectClass);
-        Log.debug(TAG, "Create key of " + storageKey);
-    }
-    return globalThis.getObject(storageKey) as T;
+  if (!new Boolean(globalThis.getObject(storageKey)).valueOf()) {
+    globalThis.setObject(storageKey, objectClass);
+    Log.debug(TAG, 'Create key of ' + storageKey);
+  }
+  return globalThis.getObject(storageKey) as T;
 }

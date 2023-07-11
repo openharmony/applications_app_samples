@@ -32,18 +32,19 @@ export default class EntryAbility extends UIAbility {
   private static readonly ACTION_URI_SINGLE_SELECT = 'singleselect';
   private static readonly ACTION_URI_MULTIPLE_SELECT = 'multipleselect';
   private static readonly ACTION_URI_PHOTO_DETAIL = 'photodetail';
-  private browserDataSource : GroupItemDataSource = new GroupItemDataSource();
+  private browserDataSource: GroupItemDataSource = new GroupItemDataSource();
+
   onCreate(want: Want, launchParam): void {
-        Log.info(this.TAG, 'Application onCreate');
-        startTrace('onCreate');
-        // Ability is creating, initialize resources for this ability
-        GlobalContext.getContext().setObject("appContext", this.context);
-        userFileModel.onCreate(this.context);
-        mFilterMediaType = MediaConstants.SELECT_TYPE_ALL;
-        AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
-        finishTrace('onCreate');
-        Log.info(this.TAG, 'Application onCreate end');
-    }
+    Log.info(this.TAG, 'Application onCreate');
+    startTrace('onCreate');
+    // Ability is creating, initialize resources for this ability
+    GlobalContext.getContext().setObject('appContext', this.context);
+    userFileModel.onCreate(this.context);
+    mFilterMediaType = MediaConstants.SELECT_TYPE_ALL;
+    AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
+    finishTrace('onCreate');
+    Log.info(this.TAG, 'Application onCreate end');
+  }
 
   onNewWant(want: Want): void {
     startTrace('onNewWant');
@@ -61,7 +62,7 @@ export default class EntryAbility extends UIAbility {
         startTrace('onWindowStageCreate');
         // Main window is created, set main page for this ability
         Log.info(this.TAG, 'Application onWindowStageCreate');
-        GlobalContext.getContext().setObject("photosWindowStage", windowStage);
+        GlobalContext.getContext().setObject('photosWindowStage', windowStage);
         startTrace('getMainWindow');
         windowStage.getMainWindow().then((win: window.Window): void => {
             AppStorage.SetOrCreate<window.Window>(Constants.MAIN_WINDOW, win);
@@ -72,7 +73,7 @@ export default class EntryAbility extends UIAbility {
                 windowStage.setUIContent(this.context, pagePath, null);
                 finishTrace('onWindowStageCreate');
             }).catch<void>((): void => {
-                Log.error(this.TAG, "get device screen info failed.");
+                Log.error(this.TAG, 'get device screen info failed.');
             });
         });
     }

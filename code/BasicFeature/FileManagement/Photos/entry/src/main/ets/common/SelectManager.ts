@@ -14,26 +14,26 @@
  */
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = ""
+const TAG = ''
 
 class SelectManager {
-    private status: Map<string, boolean> = new Map<string, boolean>();
+  private status: Map<string, boolean> = new Map<string, boolean>();
 
-    isSelect(key: string, defaultValue: boolean): boolean {
-        if (this.status.has(key)) {
-            return this.status.get(key);
-        } else {
-            return defaultValue;
-        }
+  isSelect(key: string, defaultValue: boolean): boolean {
+    if (this.status.has(key)) {
+      return this.status.get(key);
+    } else {
+      return defaultValue;
     }
+  }
 
-    setSelect(key: string, value: boolean): void {
-        this.status.set(key, value);
-    }
+  setSelect(key: string, value: boolean): void {
+    this.status.set(key, value);
+  }
 
-    deleteSelect(key: string): void {
-        this.status.delete(key);
-    }
+  deleteSelect(key: string): void {
+    this.status.delete(key);
+  }
 }
 
 export let selectManager: SelectManager = stashOrGetObject<SelectManager>(new SelectManager(), TAG);

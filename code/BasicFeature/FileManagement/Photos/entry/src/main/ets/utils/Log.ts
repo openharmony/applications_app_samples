@@ -13,45 +13,45 @@
  * limitations under the License.
  */
 
-import HiLog from "@ohos.hilog";
+import HiLog from '@ohos.hilog';
 
 export class Log {
-    private static readonly DOMAIN = 0x0230;
-    private static readonly TAG: string = '[PhotoApp]';
-    public static readonly LEVEL_DEBUG = HiLog.LogLevel.DEBUG;
-    public static readonly LEVEL_INFO = HiLog.LogLevel.INFO;
-    public static readonly LEVEL_WARN = HiLog.LogLevel.WARN;
-    public static readonly LEVEL_ERROR = HiLog.LogLevel.ERROR;
-    public static readonly LEVEL_FATAL = HiLog.LogLevel.FATAL;
-    public static LOG_LEVEL = Log.LEVEL_INFO;
-    
-    public static debug(TAG: string, message: string): void {
-        if (this.LOG_LEVEL <= this.LEVEL_DEBUG) {
-            HiLog.debug(this.DOMAIN, this.TAG, "[" + TAG + "]: " + message);
-        }
-    }
+  private static readonly DOMAIN = 0x0230;
+  private static readonly TAG: string = '[PhotoApp]';
+  public static readonly LEVEL_DEBUG = HiLog.LogLevel.DEBUG;
+  public static readonly LEVEL_INFO = HiLog.LogLevel.INFO;
+  public static readonly LEVEL_WARN = HiLog.LogLevel.WARN;
+  public static readonly LEVEL_ERROR = HiLog.LogLevel.ERROR;
+  public static readonly LEVEL_FATAL = HiLog.LogLevel.FATAL;
+  public static LOG_LEVEL = Log.LEVEL_INFO;
 
-    public static info(TAG: string, message: string): void {
-        if (this.LOG_LEVEL <= this.LEVEL_INFO) {
-            HiLog.info(this.DOMAIN, this.TAG, "[" + TAG + "]: " + message);
-        }
+  public static debug(TAG: string, message: string): void {
+    if (this.LOG_LEVEL <= this.LEVEL_DEBUG) {
+      HiLog.debug(this.DOMAIN, this.TAG, '[' + TAG + ']: ' + message);
     }
+  }
 
-    public static warn(TAG: string, message: string): void {
-        if (this.LOG_LEVEL <= this.LEVEL_WARN) {
-            HiLog.warn(this.DOMAIN, this.TAG, "[" + TAG + "]: " + message);
-        }
+  public static info(TAG: string, message: string): void {
+    if (this.LOG_LEVEL <= this.LEVEL_INFO) {
+      HiLog.info(this.DOMAIN, this.TAG, '[' + TAG + ']: ' + message);
     }
+  }
 
-    public static error(TAG: string, message: string): void {
-        if (this.LOG_LEVEL <= this.LEVEL_ERROR) {
-            HiLog.error(this.DOMAIN, this.TAG, "[" + TAG + "]: " + message);
-        }
+  public static warn(TAG: string, message: string): void {
+    if (this.LOG_LEVEL <= this.LEVEL_WARN) {
+      HiLog.warn(this.DOMAIN, this.TAG, '[' + TAG + ']: ' + message);
     }
+  }
 
-    public static fatal(TAG: string, message: string): void {
-        if (this.LOG_LEVEL <= this.LEVEL_FATAL) {
-            HiLog.info(this.DOMAIN, this.TAG, "[" + TAG + "]: " + message);
-        }
+  public static error(TAG: string, message: string): void {
+    if (this.LOG_LEVEL <= this.LEVEL_ERROR) {
+      HiLog.error(this.DOMAIN, this.TAG, '[' + TAG + ']: ' + message);
     }
+  }
+
+  public static fatal(TAG: string, message: string): void {
+    if (this.LOG_LEVEL <= this.LEVEL_FATAL) {
+      HiLog.info(this.DOMAIN, this.TAG, '[' + TAG + ']: ' + message);
+    }
+  }
 }

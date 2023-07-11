@@ -14,6 +14,6 @@
  */
 
 export enum ViewType {
-    GROUP_TITLE,
-    ITEM,
+  GROUP_TITLE,
+  ITEM,
 }

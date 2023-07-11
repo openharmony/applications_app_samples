@@ -16,61 +16,61 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 import { Log } from '../utils/Log';
 
 
-const TAG = "MultimodalInputManager"
+const TAG = 'MultimodalInputManager'
 
 export class MultimodalInputManager {
 
-    //win + N
-    leftKeyOptions: inputConsumer.KeyOptions = {
-        preKeys: Array<number>(),
-        finalKey: 2014,
-        isFinalKeyDown: true,
-        finalKeyDownDuration: 0
-    };
+  //win + N
+  leftKeyOptions: inputConsumer.KeyOptions = {
+    preKeys: Array<number>(),
+    finalKey: 2014,
+    isFinalKeyDown: true,
+    finalKeyDownDuration: 0
+  };
 
-    //win + I
-    rightKeyOptions: inputConsumer.KeyOptions = {
-        preKeys: Array<number>(),
-        finalKey: 2015,
-        isFinalKeyDown: true,
-        finalKeyDownDuration: 0
-    };
-    escKeyOptions: inputConsumer.KeyOptions = {
-        preKeys: Array<number>(),
-        finalKey: 2070,
-        isFinalKeyDown: true,
-        finalKeyDownDuration: 0
-    };
+  //win + I
+  rightKeyOptions: inputConsumer.KeyOptions = {
+    preKeys: Array<number>(),
+    finalKey: 2015,
+    isFinalKeyDown: true,
+    finalKeyDownDuration: 0
+  };
+  escKeyOptions: inputConsumer.KeyOptions = {
+    preKeys: Array<number>(),
+    finalKey: 2070,
+    isFinalKeyDown: true,
+    finalKeyDownDuration: 0
+  };
 
-    async registerListener(callback): Promise<void> {
-        Log.debug(TAG, "registerListener start");
+  async registerListener(callback): Promise<void> {
+        Log.debug(TAG, 'registerListener start');
         inputConsumer.on('key', this.leftKeyOptions, (data: inputConsumer.KeyOptions): void => {
-            Log.debug(TAG, "notificationRegister data: " + JSON.stringify(data));
+            Log.debug(TAG, 'notificationRegister data: ' + JSON.stringify(data));
             callback(0);
         });
         inputConsumer.on('key', this.rightKeyOptions, (data: inputConsumer.KeyOptions): void => {
-            Log.debug(TAG, "controlRegister data: " + JSON.stringify(data));
+            Log.debug(TAG, 'controlRegister data: ' + JSON.stringify(data));
             callback(1);
         });
         inputConsumer.on('key', this.escKeyOptions, (data: inputConsumer.KeyOptions): void => {
-            Log.debug(TAG, "escRegister data: " + JSON.stringify(data));
+            Log.debug(TAG, 'escRegister data: ' + JSON.stringify(data));
             callback(2);
         });
-        Log.debug(TAG, "registerListener end");
+        Log.debug(TAG, 'registerListener end');
     }
 
-    async unregisterListener(): Promise<void> {
-        Log.debug(TAG, "unregisterListener start");
+  async unregisterListener(): Promise<void> {
+        Log.debug(TAG, 'unregisterListener start');
         inputConsumer.off('key', this.leftKeyOptions, (data: inputConsumer.KeyOptions): void  => {
-            Log.debug(TAG, "notificationUnregister data: " + JSON.stringify(data));
+            Log.debug(TAG, 'notificationUnregister data: ' + JSON.stringify(data));
         });
         inputConsumer.off('key', this.rightKeyOptions, (data: inputConsumer.KeyOptions): void  => {
-            Log.debug(TAG, "controlUnregister data: " + JSON.stringify(data));
+            Log.debug(TAG, 'controlUnregister data: ' + JSON.stringify(data));
         });
         inputConsumer.off('key', this.escKeyOptions, (data: inputConsumer.KeyOptions): void  => {
-            Log.debug(TAG, "escUnregister data: " + JSON.stringify(data));
+            Log.debug(TAG, 'escUnregister data: ' + JSON.stringify(data));
         });
-        Log.debug(TAG, "unregisterListener end");
+        Log.debug(TAG, 'unregisterListener end');
     }
 }
 

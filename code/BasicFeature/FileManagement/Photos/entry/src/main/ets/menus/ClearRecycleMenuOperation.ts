@@ -18,63 +18,62 @@ import { BatchDeleteMenuOperation } from './BatchDeleteMenuOperation';
 import { Log } from '../utils/Log';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 
-const TAG = "ClearRecycleMenuOperation"
+const TAG = 'ClearRecycleMenuOperation'
 
 export class ClearRecycleMenuOperation extends BatchDeleteMenuOperation {
-    constructor(menuContext: MenuContext) {
-        super(menuContext);
+  constructor(menuContext: MenuContext) {
+    super(menuContext);
+  }
+
+  doAction(): void {
+    Log.info(TAG, 'delete doAction');
+    if (this.menuContext == null) {
+      Log.warn(TAG, 'menuContext is null, return');
+      return;
     }
 
-    doAction(): void {
-        Log.info(TAG, 'delete doAction');
-        if (this.menuContext == null) {
-            Log.warn(TAG, 'menuContext is null, return');
-            return;
-        }
-
-        let dataSource: ItemDataSource = this.menuContext.dataSource;
-        if (dataSource == null) {
-            this.count = this.menuContext.items.length;
-        } else {
-            //@ts-ignore
-            this.count = dataSource.getItems().length;
-        }
-        if (this.count <= 0) {
-            Log.warn(TAG, 'count <= 0, return');
-            return;
-        }
-
-        this.confirmCallback = (): void => this.confirmCallbackBindImpl();
-        this.cancelCallback = (): void => this.cancelCallbackBindImpl();
-
-        this.menuContext.broadCast.emit(BroadcastConstants.SHOW_DELETE_DIALOG, [$r('app.string.recycleAlbum_clear_message'), $r('app.string.dialog_clear'), this.confirmCallback, this.cancelCallback]);
+    let dataSource: ItemDataSource = this.menuContext.dataSource;
+    if (dataSource == null) {
+      this.count = this.menuContext.items.length;
+    } else {
+      //@ts-ignore
+      this.count = dataSource.getItems().length;
+    }
+    if (this.count <= 0) {
+      Log.warn(TAG, 'count <= 0, return');
+      return;
     }
 
-    confirmCallback(): void {
-        this.confirmCallbackBindImpl()
+    this.confirmCallback = (): void => this.confirmCallbackBindImpl();
+    this.cancelCallback = (): void => this.cancelCallbackBindImpl();
+
+    this.menuContext.broadCast.emit(BroadcastConstants.SHOW_DELETE_DIALOG, [$r('app.string.recycleAlbum_clear_message'), $r('app.string.dialog_clear'), this.confirmCallback, this.cancelCallback]);
+  }
+
+  confirmCallback(): void {
+    this.confirmCallbackBindImpl()
+  }
+
+  protected confirmCallbackBindImpl(): void {
+    Log.info(TAG, 'Clear Recycle confirm');
+    // 1. Variable initialization
+    this.onOperationEnd = this.menuContext.onOperationEnd;
+
+    // 2. onDeleteStart exit selection mode
+    let onOperationStart: Function = this.menuContext.onOperationStart;
+    if (onOperationStart != null) onOperationStart();
+
+    this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
+      [$r('app.string.action_delete'), this.count]);
+
+    // 3. selectManager gets the URI of the data and starts processing deletion in the callback
+    let dataSource: ItemDataSource = this.menuContext.dataSource;
+    if (dataSource == null) {
+      this.items = this.menuContext.items;
+    } else {
+      //@ts-ignore
+      this.items = dataSource.getItems();
     }
-
-    protected confirmCallbackBindImpl(): void {
-        Log.info(TAG, 'Clear Recycle confirm');
-        // 1. Variable initialization
-        this.onOperationEnd = this.menuContext.onOperationEnd;
-
-        // 2. onDeleteStart exit selection mode
-        let onOperationStart: Function = this.menuContext.onOperationStart;
-        if(onOperationStart != null) onOperationStart();
-
-        this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
-            [$r('app.string.action_delete'), this.count]);
-
-        // 3. selectManager gets the URI of the data and starts processing deletion in the callback
-        let dataSource: ItemDataSource = this.menuContext.dataSource;
-        if (dataSource == null) {
-            this.items = this.menuContext.items;
-        } else {
-            //@ts-ignore
-            this.items = dataSource.getItems();
-        }
-        this.processOperation();
-    }
-
+    this.processOperation();
+  }
 }

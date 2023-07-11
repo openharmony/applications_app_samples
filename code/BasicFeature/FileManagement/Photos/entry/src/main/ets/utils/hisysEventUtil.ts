@@ -15,25 +15,32 @@
 import hiSysEvent from '@ohos.hiSysEvent';
 import { Log } from './Log';
 
-const TAG = "hisysEventUtil"
+const TAG = 'hisysEventUtil'
 
 export function hiSysEventDataQueryTimedOut(interfaceName: string): number {
        let timeOutId = setTimeout((): void => {
             let params: Object = {
-                FAULT_ID: "DATA_QUERY_OVERTIME",
-                MSG: interfaceName + " Querying 1s data timed out."
-            };
-            let info: hiSysEvent.SysEventInfo = {
-                domain: "PHOTOS_APP",
-                name: "PHOTOS_FAULT",
-                eventType: hiSysEvent.EventType.FAULT,
-                params: params
-            };
-            hiSysEvent.write(info, (err: Error): void => {
-                if(err != null) {
-                    Log.error(TAG, 'fail to return hiSysEvent');
-                }
-            });
-	   }, 1000);
-	   return timeOutId;
+                FAULT_ID: 'DATA_QUERY_OVERTIME',
+                MSG: interfaceName + ' Querying 1s data timed out.'
+            }
+;
+let info: hiSysEvent.SysEventInfo = {
+  domain: 'PHOTOS_APP',
+  name: 'PHOTOS_FAULT',
+  eventType: hiSysEvent.EventType.FAULT,
+  params: params
+};
+hiSysEvent
+.
+write
+(info, (err: Error): void => {
+  if (err != null) {
+    Log.error(TAG, 'fail to return hiSysEvent');
+  }
+});
+}
+,
+1000
+);
+return timeOutId;
 }

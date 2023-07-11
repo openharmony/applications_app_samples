@@ -332,7 +332,6 @@
       "name": "count_details_external_selected",
       "value": "%1$d/%2$d selected"
     },
-
     {
       "name": "entry_MainAbility",
       "value": "entry_MainAbility"
@@ -741,7 +740,6 @@
       "name": "no_distributed_photo_head_title_album",
       "value": "No photos or videos"
     },
-
     {
       "name": "description_serviceability",
       "value": "hap sample empty service"

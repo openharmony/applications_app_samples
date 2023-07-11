@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,34 +18,34 @@ import { ActionBarColorMode } from '../models/ActionBarMode'
 
 @Component
 export struct ToolBarButton {
-    @State res: Resource = undefined;
-    action: Action;
-    isLeft = true;
-    isAutoTint = true;
-    colorMode: ActionBarColorMode;
+  @State res: Resource = undefined;
+  action: Action;
+  isLeft = true;
+  isAutoTint = true;
+  colorMode: ActionBarColorMode;
 
-    build() {
-        Flex({
-            direction: FlexDirection.Column,
-            justifyContent: FlexAlign.Center,
-            alignItems: ItemAlign.Center
-        }) {
-            if (this.isAutoTint) {
-                Image(this.res)
-                    .commonButtonStyle()
-                    .fillColor(this.colorMode == ActionBarColorMode.TRANSPARENT
-                        ? Action.ICON_DEFAULT_COLOR_CONTRARY : this.action.fillColor)
-            } else {
-                Image(this.res)
-                    .commonButtonStyle()
-            }
-        }
-        .height($r('app.float.icon_size'))
-        .width($r('app.float.icon_size'))
+  build() {
+    Flex({
+      direction: FlexDirection.Column,
+      justifyContent: FlexAlign.Center,
+      alignItems: ItemAlign.Center
+    }) {
+      if (this.isAutoTint) {
+        Image(this.res)
+          .commonButtonStyle()
+          .fillColor(this.colorMode == ActionBarColorMode.TRANSPARENT
+            ? Action.ICON_DEFAULT_COLOR_CONTRARY : this.action.fillColor)
+      } else {
+        Image(this.res)
+          .commonButtonStyle()
+      }
     }
+    .height($r('app.float.icon_size'))
+    .width($r('app.float.icon_size'))
+  }
 }
 
 @Extend(Image) function commonButtonStyle () {
-    .height($r('app.float.icon_size'))
-    .width($r('app.float.icon_size'))
+  .height($r('app.float.icon_size'))
+  .width($r('app.float.icon_size'))
 }

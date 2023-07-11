@@ -20,14 +20,14 @@ import { AlbumDataItem } from '../common/AlbumDataItem';
 import { MenuContext } from './MenuContext';
 import { ProcessMenuOperation } from './ProcessMenuOperation';
 
-const TAG = "AlbumSetDeleteMenuOperation"
+const TAG = 'AlbumSetDeleteMenuOperation'
 
 export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
-    constructor(menuContext: MenuContext) {
-        super(menuContext);
-    }
+  constructor(menuContext: MenuContext) {
+    super(menuContext);
+  }
 
-    doAction(): void {
+  doAction(): void {
         if (this.menuContext == null) {
             Log.warn(TAG, 'menuContext is null, return');
             return;
@@ -54,39 +54,39 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
         })
     }
 
-    private async getDialogTitle(): Promise<Resource> {
-        let videoCount = 0;
-        let photoCount = 0;
-        for (let i = 0; i < this.items.length; i++) {
-            let itemVideoCount = await  (this.items[i] as AlbumDataItem).getVideoCount();
-            videoCount += itemVideoCount;
-            photoCount += ((this.items[i] as AlbumDataItem).count - itemVideoCount);
-        }
-
-        if (this.count as number == 1) {
-            if (videoCount > 0 && photoCount > 0) {
-                return $r('app.string.recycle_single_album_tips', photoCount, videoCount);
-            }
-            if (videoCount > 0 && photoCount <= 0) {
-                return $r('app.string.recycle_single_album_with_videos_tips', videoCount);
-            }
-            if (videoCount <= 0 && photoCount > 0) {
-                return $r('app.string.recycle_single_album_with_photos_tips', photoCount);
-            }
-        } else {
-            if (videoCount > 0 && photoCount > 0) {
-                return $r('app.string.recycle_albums_tips', this.count, photoCount, videoCount);
-            }
-            if (videoCount > 0 && photoCount <= 0) {
-                return $r('app.string.recycle_albums_with_videos_tips', this.count, videoCount);
-            }
-            if (videoCount <= 0 && photoCount > 0) {
-                return $r('app.string.recycle_albums_with_photos_tips', this.count, photoCount);
-            }
-        }
+  private async getDialogTitle(): Promise<Resource> {
+    let videoCount = 0;
+    let photoCount = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      let itemVideoCount = await  (this.items[i] as AlbumDataItem).getVideoCount();
+      videoCount += itemVideoCount;
+      photoCount += ((this.items[i] as AlbumDataItem).count - itemVideoCount);
     }
 
-    requestOneBatchOperation(): void {
+    if (this.count as number == 1) {
+      if (videoCount > 0 && photoCount > 0) {
+        return $r('app.string.recycle_single_album_tips', photoCount, videoCount);
+      }
+      if (videoCount > 0 && photoCount <= 0) {
+        return $r('app.string.recycle_single_album_with_videos_tips', videoCount);
+      }
+      if (videoCount <= 0 && photoCount > 0) {
+        return $r('app.string.recycle_single_album_with_photos_tips', photoCount);
+      }
+    } else {
+      if (videoCount > 0 && photoCount > 0) {
+        return $r('app.string.recycle_albums_tips', this.count, photoCount, videoCount);
+      }
+      if (videoCount > 0 && photoCount <= 0) {
+        return $r('app.string.recycle_albums_with_videos_tips', this.count, videoCount);
+      }
+      if (videoCount <= 0 && photoCount > 0) {
+        return $r('app.string.recycle_albums_with_photos_tips', this.count, photoCount);
+      }
+    }
+  }
+
+  requestOneBatchOperation(): void {
         let item = this.items[this.currentBatch] as AlbumDataItem;
         let promise: Promise<boolean> = item.onDelete();
         promise.then<void, void>((): void => {
@@ -98,26 +98,26 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
         })
     }
 
-    private confirmCallback(): void {
-        this.confirmCallbackBindImpl()
-    }
+  private confirmCallback(): void {
+    this.confirmCallbackBindImpl()
+  }
 
-    private confirmCallbackBindImpl(): void {
-        Log.info(TAG, 'AlbumSet delete confirm');
-        this.onOperationEnd = this.menuContext.onOperationEnd;
-        let onOperationStart: Function = this.menuContext.onOperationStart;
+  private confirmCallbackBindImpl(): void {
+    Log.info(TAG, 'AlbumSet delete confirm');
+    this.onOperationEnd = this.menuContext.onOperationEnd;
+    let onOperationStart: Function = this.menuContext.onOperationStart;
 
-        if(onOperationStart != null) onOperationStart();
+    if (onOperationStart != null) onOperationStart();
 
-        this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG, [$r('app.string.action_delete'), this.count]);
-        this.processOperation();
-    }
+    this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG, [$r('app.string.action_delete'), this.count]);
+    this.processOperation();
+  }
 
-    private cancelCallback(): void {
-        this.cancelCallbackBindImpl()
-    }
+  private cancelCallback(): void {
+    this.cancelCallbackBindImpl()
+  }
 
-    private cancelCallbackBindImpl(): void {
-        Log.info(TAG, 'AlbumSet delete cancel');
-    }
+  private cancelCallbackBindImpl(): void {
+    Log.info(TAG, 'AlbumSet delete cancel');
+  }
 }

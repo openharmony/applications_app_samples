@@ -29,23 +29,23 @@ import { AlbumDataItem } from '../common/AlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
 import { MediaConstants } from '../constants/MediaConstants';
 
-const TAG = "AlbumSetNewMenuOperation"
+const TAG = 'AlbumSetNewMenuOperation'
 
 export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCallback {
-    private menuContext: MenuContext;
-    private onOperationEnd: Function;
+  private menuContext: MenuContext;
+  private onOperationEnd: Function;
 
-    constructor(menuContext: MenuContext) {
-        this.menuContext = menuContext;
-    }
+  constructor(menuContext: MenuContext) {
+    this.menuContext = menuContext;
+  }
 
-    doAction(): void {
+  doAction(): void {
         if (this.menuContext == null) {
             Log.warn(TAG, 'menuContext is null, return');
             return;
         }
         getResourceString($r('app.string.album_new_album')).then<void, void>((name: string): void => {
-            Log.info(TAG, "The display name is " + name);
+            Log.info(TAG, 'The display name is ' + name);
             this.confirmCallback = (displayName: string): Promise<void> => this.confirmCallbackBindImpl(displayName);
             this.cancelCallback = (): void => this.cancelCallbackBindImpl();
 
@@ -54,66 +54,66 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
         })
     }
 
-    private async confirmCallback(displayName: string): Promise<void> {
-        return await this.confirmCallbackBindImpl(displayName)
-    }
+  private async confirmCallback(displayName: string): Promise<void> {
+    return await this.confirmCallbackBindImpl(displayName)
+  }
 
-    private async confirmCallbackBindImpl(displayName: string): Promise<void> {
-        Log.info(TAG, "AlbumSet new album confirm and the new name is: " + displayName);
-        let simpleAlbumDataItem: SimpleAlbumDataItem = new SimpleAlbumDataItem("", displayName, "", "", "",-1,-1);
-        if (displayName != undefined && displayName != null) {
-            let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
-            if (isExit) {
+  private async confirmCallbackBindImpl(displayName: string): Promise<void> {
+    Log.info(TAG, 'AlbumSet new album confirm and the new name is: ' + displayName);
+    let simpleAlbumDataItem: SimpleAlbumDataItem = new SimpleAlbumDataItem('', displayName, '', '', '', -1, -1);
+    if (displayName != undefined && displayName != null) {
+      let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
+      if (isExit) {
                 getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
                     showToast(message);
                 })
                 return;
             }
-        }
-        this.onOperationEnd = this.menuContext.onOperationEnd;
-        let onOperationStart: Function = this.menuContext.onOperationStart;
-        if(onOperationStart != null) onOperationStart();
-
-        if (this.menuContext.jumpSourceToMain == JumpSourceToMain.ALBUM) {
-            Log.info(TAG, 'go back to photo grid');
-            this.menuContext.broadCast.emit(BroadcastConstants.MEDIA_OPERATION, [simpleAlbumDataItem, (): void => this.onCompletedBindImpl()]);
-        } else {
-            let params: Object = {
-                albumInfo: JSON.stringify(simpleAlbumDataItem),
-                isNewAlbum: true
-            };
-            let routerOptions: RouterOptions = {
-                uri: 'pages/AlbumSelect',
-                params: params
-            };
-            router.push(routerOptions);
-            this.onCompleted();
-        }
     }
+    this.onOperationEnd = this.menuContext.onOperationEnd;
+    let onOperationStart: Function = this.menuContext.onOperationStart;
+    if (onOperationStart != null) onOperationStart();
 
-    private async checkAlbumExit(simpleAlbumDataItem: SimpleAlbumDataItem): Promise<boolean> {
-        return await userFileModel.getUserAlbumCountByName(simpleAlbumDataItem.displayName) > 0;
+    if (this.menuContext.jumpSourceToMain == JumpSourceToMain.ALBUM) {
+      Log.info(TAG, 'go back to photo grid');
+      this.menuContext.broadCast.emit(BroadcastConstants.MEDIA_OPERATION, [simpleAlbumDataItem, (): void => this.onCompletedBindImpl()]);
+    } else {
+      let params: Object = {
+        albumInfo: JSON.stringify(simpleAlbumDataItem),
+        isNewAlbum: true
+      };
+      let routerOptions: RouterOptions = {
+        uri: 'pages/AlbumSelect',
+        params: params
+      };
+      router.push(routerOptions);
+      this.onCompleted();
     }
+  }
 
-    private cancelCallback(): void {
-        this.cancelCallbackBindImpl()
-    }
+  private async checkAlbumExit(simpleAlbumDataItem: SimpleAlbumDataItem): Promise<boolean> {
+    return await userFileModel.getUserAlbumCountByName(simpleAlbumDataItem.displayName) > 0;
+  }
 
-    private cancelCallbackBindImpl(): void {
-        Log.info(TAG, 'AlbumSet new album cancel');
-    }
+  private cancelCallback(): void {
+    this.cancelCallbackBindImpl()
+  }
 
-    onCompleted(): void {
-        this.onCompletedBindImpl()
-    }
+  private cancelCallbackBindImpl(): void {
+    Log.info(TAG, 'AlbumSet new album cancel');
+  }
 
-    private onCompletedBindImpl(): void {
-        Log.info(TAG, 'new album data succeed!');
-        if(this.onOperationEnd != null) this.onOperationEnd();
-    }
+  onCompleted(): void {
+    this.onCompletedBindImpl()
+  }
 
-    onError(): void {
-        Log.error(TAG, 'new album data failed!');
-        if(this.onOperationEnd != null) this.onOperationEnd();
-    }
+  private onCompletedBindImpl(): void {
+    Log.info(TAG, 'new album data succeed!');
+    if (this.onOperationEnd != null) this.onOperationEnd();
+  }
+
+  onError(): void {
+    Log.error(TAG, 'new album data failed!');
+    if (this.onOperationEnd != null) this.onOperationEnd();
+  }
 }

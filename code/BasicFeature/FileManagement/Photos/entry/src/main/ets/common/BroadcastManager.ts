@@ -17,20 +17,20 @@ import { Log } from '../utils/Log';
 import { Broadcast } from './Broadcast';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = "BroadcastManager"
+const TAG = 'BroadcastManager'
 
 export class BroadcastManager {
-    // The global Broadcast of the application process. Event registration and destruction should be paired
-    private appBroadcast: Broadcast;
+  // The global Broadcast of the application process. Event registration and destruction should be paired
+  private appBroadcast: Broadcast;
 
-    constructor() {
-        Log.info(TAG, 'constructor');
-        this.appBroadcast = new Broadcast();
-    }
+  constructor() {
+    Log.info(TAG, 'constructor');
+    this.appBroadcast = new Broadcast();
+  }
 
-    public getBroadcast(): Broadcast {
-        return this.appBroadcast;
-    }
+  public getBroadcast(): Broadcast {
+    return this.appBroadcast;
+  }
 }
 
 export let broadcastManager: BroadcastManager = stashOrGetObject<BroadcastManager>(new BroadcastManager(), TAG);

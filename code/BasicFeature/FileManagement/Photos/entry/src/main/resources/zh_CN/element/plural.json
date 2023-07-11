@@ -1,28 +1,28 @@
 {
-  "plural":[
+  "plural": [
     {
-      "name":"count_details_selected",
-      "value":[
+      "name": "count_details_selected",
+      "value": [
         {
-          "quantity":"one",
-          "value":"已选择 %d 项"
+          "quantity": "one",
+          "value": "已选择 %d 项"
         },
         {
-          "quantity":"other",
-          "value":"已选择 %d 项"
+          "quantity": "other",
+          "value": "已选择 %d 项"
         }
       ]
     },
     {
       "name": "recycleAlbum_delete_message",
-      "value":[
+      "value": [
         {
-          "quantity":"one",
-          "value":"所选设备上的文件将被永久删除，无法恢复。确定删除？"
+          "quantity": "one",
+          "value": "所选设备上的文件将被永久删除，无法恢复。确定删除？"
         },
         {
-          "quantity":"other",
-          "value":"所选设备上的文件将被永久删除，无法恢复。确定删除？"
+          "quantity": "other",
+          "value": "所选设备上的文件将被永久删除，无法恢复。确定删除？"
         }
       ]
     },

@@ -17,13 +17,13 @@ import { UserFileObserverCallback } from '../base/UserFileObserverCallback';
 import { UserFileDataChangeCallback } from '../base/UserFileDataChangeCallback';
 
 export class CommonObserverCallback implements UserFileObserverCallback {
-    private source: UserFileDataChangeCallback;
+  private source: UserFileDataChangeCallback;
 
-    constructor(source: UserFileDataChangeCallback) {
-        this.source = source;
-    }
+  constructor(source: UserFileDataChangeCallback) {
+    this.source = source;
+  }
 
-    onChange(mediaType: string): void {
-        this.source.onUserFileDataChange(mediaType);
-    }
+  onChange(mediaType: string): void {
+    this.source.onUserFileDataChange(mediaType);
+  }
 }

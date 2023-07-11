@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,198 +32,198 @@ import { MediaConstants } from '../constants/MediaConstants';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
 
-const TAG = "MediaOperationPage"
+const TAG = 'MediaOperationPage'
 
 @Entry
 @Component
 struct MediaOperationPage {
-    @StorageLink('screenColumns') screenColumns: number = screenManager.getScreenColumns();
-    @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-    @Provide pageType: string = MediaOperationType.Move;
-    @Provide broadCast: Broadcast = new Broadcast();
-    @Provide moreMenuList: Action[] = [];
-    @Provide loadingFinish: boolean = false;
-    @State listCardWidth: number = 0;
-    isActive: boolean = false; // Whether the page is in the foreground
-    sourceAlbumId: string;
-    private albumInfo: SimpleAlbumDataItem;
-    private appBroadcast: Broadcast = broadcastManager.getBroadcast();
-    private albumsDataSource: AlbumsDataSource = new AlbumsDataSource()
-    private scroller: Scroller = new Scroller();
+  @StorageLink('screenColumns') screenColumns: number = screenManager.getScreenColumns();
+  @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
+  @Provide pageType: string = MediaOperationType.Move;
+  @Provide broadCast: Broadcast = new Broadcast();
+  @Provide moreMenuList: Action[] = [];
+  @Provide loadingFinish: boolean = false;
+  @State listCardWidth: number = 0;
+  isActive: boolean = false; // Whether the page is in the foreground
+  sourceAlbumId: string;
+  private albumInfo: SimpleAlbumDataItem;
+  private appBroadcast: Broadcast = broadcastManager.getBroadcast();
+  private albumsDataSource: AlbumsDataSource = new AlbumsDataSource()
+  private scroller: Scroller = new Scroller();
 
-    aboutToAppear(): void {
-        let blackList = Array.from<string>(MediaConstants.ALBUM_DISABLE_COPY_LIST)
-        let param: ParamsInterface = router.getParams();
-        if (param != null) {
-            this.pageType = param.pageType.toString();
-            if (param.albumInfo != null) {
-                this.albumInfo = JSON.parse(param.albumInfo.toString()) as SimpleAlbumDataItem;
-                this.sourceAlbumId = this.albumInfo.id;
-                //blackList.push(this.sourceAlbumId)
-                Log.info(TAG, "router getParams pageType:" + this.pageType + ",Album:" + this.sourceAlbumId);
-            }
+  aboutToAppear(): void {
+    let blackList = Array.from<string>(MediaConstants.ALBUM_DISABLE_COPY_LIST)
+    let param: ParamsInterface = router.getParams();
+    if (param != null) {
+      this.pageType = param.pageType.toString();
+      if (param.albumInfo != null) {
+        this.albumInfo = JSON.parse(param.albumInfo.toString()) as SimpleAlbumDataItem;
+        this.sourceAlbumId = this.albumInfo.id;
+        //blackList.push(this.sourceAlbumId)
+        Log.info(TAG, 'router getParams pageType:' + this.pageType + ',Album:' + this.sourceAlbumId);
+      }
+    }
+    this.albumsDataSource.setBlackList(blackList)
+    this.onActive();
+    this.loadAlbums()
+    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
+
+    this.broadCast.on(BroadcastConstants.MEDIA_OPERATION, (albumInfo: SimpleAlbumDataItem, completedFunc?: Function): void => {
+      router.back({
+        uri: '',
+        params: {
+          pageType: this.pageType,
+          albumInfo: JSON.stringify(albumInfo)
         }
-        this.albumsDataSource.setBlackList(blackList)
-        this.onActive();
-        this.loadAlbums()
-        this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
+      });
+      if(completedFunc != null) completedFunc();
+    });
+    this.updateListCardWidth();
+  }
 
-        this.broadCast.on(BroadcastConstants.MEDIA_OPERATION, (albumInfo: SimpleAlbumDataItem, completedFunc?: Function): void => {
-            router.back({
-                uri: '',
-                params: {
-                    pageType: this.pageType,
-                    albumInfo: JSON.stringify(albumInfo)
-                }
-            });
-            if(completedFunc != null) completedFunc();
-        });
-        this.updateListCardWidth();
+  private loadAlbums(): void {
+    this.albumsDataSource.reloadAlbumListItemData().then<void, void>((isEmpty: boolean): void => {
+      this.loadingFinish = true
+      this.albumsDataSource.notifyDataReload()
+    })
+  }
+
+  onMenuClicked(action: Action): void {
+    this.onMenuClickedBindImpl(action)
+  }
+
+  private onMenuClickedBindImpl(action: Action): void {
+    Log.info(TAG, 'onMenuClicked, actionID: ' + action.actionID);
+
+    if (action === Action.CANCEL) {
+      router.back({
+        uri: '',
+        params: {}
+      });
+    } else if (action === Action.NEW) {
+      this.createNewAlbum();
     }
+  }
 
-    private loadAlbums(): void {
-        this.albumsDataSource.reloadAlbumListItemData().then<void, void>((isEmpty: boolean): void => {
-            this.loadingFinish = true
-            this.albumsDataSource.notifyDataReload()
-        })
+  createNewAlbum(): void {
+    Log.info(TAG, 'createNewAlbum');
+    let menuContext = new MenuContext();
+    this.onOperationStart = (): void => this.onOperationStartBindImpl();
+    this.onOperationEnd = (): void => this.onOperationEndBindImpl();
+    menuContext
+      .withOperationStartCallback(this.onOperationStart)
+      .withOperationEndCallback(this.onOperationEnd)
+      .withDataSource(this.albumsDataSource)
+      .withAlbumInfo(this.albumInfo)
+      .withBroadCast(this.broadCast)
+      .withJumpSourceToMain(JumpSourceToMain.ALBUM);
+    let menuOperation = new AlbumSetNewMenuOperation(menuContext);
+    menuOperation.doAction();
+  }
+
+  onOperationStart(): void {
+    this.onOperationStartBindImpl()
+  }
+
+  private onOperationStartBindImpl(): void {
+  }
+
+  onOperationEnd(): void {
+    this.onOperationEndBindImpl()
+  }
+
+  private onOperationEndBindImpl(): void {
+  }
+
+  updateListCardWidth(): void {
+    Log.info(TAG, 'updateListCardWidth start ' + this.screenColumns);
+    if (this.screenColumns == ColumnSize.COLUMN_FOUR) {
+      this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_FOUR);
+    } else if (this.screenColumns == ColumnSize.COLUMN_EIGHT) {
+      this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_SIX);
+    } else if (this.screenColumns == ColumnSize.COLUMN_TWELVE) {
+      this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_EIGHT);
+    } else {
+      Log.warn(TAG, 'screenColumns is not init');
     }
+    Log.info(TAG, 'updateListCardWidth ' + this.listCardWidth);
+  }
 
-    onMenuClicked(action: Action): void {
-        this.onMenuClickedBindImpl(action)
+  // Callback when the page is in the foreground
+  onActive(): void {
+    if (!this.isActive) {
+      Log.info(TAG, 'onActive');
+      this.isActive = true;
     }
+  }
 
-    private onMenuClickedBindImpl(action: Action): void {
-        Log.info(TAG, "onMenuClicked, actionID: " + action.actionID);
+  onBackPress(): boolean {
+    Log.info(TAG, 'onBackPress');
+    router.back({
+      uri: '',
+      params: {}
+    });
+    return true;
+  }
 
-        if (action === Action.CANCEL) {
-            router.back({
-                uri: '',
-                params: {}
-            });
-        } else if (action === Action.NEW) {
-            this.createNewAlbum();
-        }
-    }
+  onPageShow(): void {
+    this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
+  }
 
-    createNewAlbum(): void {
-        Log.info(TAG, 'createNewAlbum');
-        let menuContext = new MenuContext();
-        this.onOperationStart = (): void => this.onOperationStartBindImpl();
-        this.onOperationEnd = (): void => this.onOperationEndBindImpl();
-        menuContext
-            .withOperationStartCallback(this.onOperationStart)
-            .withOperationEndCallback(this.onOperationEnd)
-            .withDataSource(this.albumsDataSource)
-            .withAlbumInfo(this.albumInfo)
-            .withBroadCast(this.broadCast)
-            .withJumpSourceToMain(JumpSourceToMain.ALBUM);
-        let menuOperation = new AlbumSetNewMenuOperation(menuContext);
-        menuOperation.doAction();
-    }
-
-    onOperationStart(): void {
-        this.onOperationStartBindImpl()
-    }
-
-    private onOperationStartBindImpl(): void {
-    }
-
-    onOperationEnd(): void {
-        this.onOperationEndBindImpl()
-    }
-
-    private onOperationEndBindImpl(): void {
-    }
-
-    updateListCardWidth(): void {
-        Log.info(TAG, "updateListCardWidth start " + this.screenColumns);
-        if (this.screenColumns == ColumnSize.COLUMN_FOUR) {
-            this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_FOUR);
-        } else if (this.screenColumns == ColumnSize.COLUMN_EIGHT) {
-            this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_SIX);
-        } else if (this.screenColumns == ColumnSize.COLUMN_TWELVE) {
-            this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_EIGHT);
-        } else {
-            Log.warn(TAG, 'screenColumns is not init');
-        }
-        Log.info(TAG, "updateListCardWidth " + this.listCardWidth);
-    }
-
-    // Callback when the page is in the foreground
-    onActive(): void {
-        if (!this.isActive) {
-            Log.info(TAG, 'onActive');
-            this.isActive = true;
-        }
-    }
-
-    onBackPress(): boolean {
-        Log.info(TAG, 'onBackPress');
-        router.back({
-            uri: '',
-            params: {}
-        });
-        return true;
-    }
-
-    onPageShow(): void {
-        this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
-    }
-
-    build() {
-        Column() {
-            MediaOperationActionBar({ onMenuClicked: this.onMenuClicked })
-            List({ scroller: this.scroller }) {
+  build() {
+    Column() {
+      MediaOperationActionBar({ onMenuClicked: this.onMenuClicked })
+      List({ scroller: this.scroller }) {
+        ListItem() {
+          Flex({
+            direction: FlexDirection.Column,
+            justifyContent: FlexAlign.Center,
+            alignItems: ItemAlign.Center
+          }) {
+            List() {
+              LazyForEach(this.albumsDataSource, (item: LazyItem<AlbumDataItem>): void => {
                 ListItem() {
-                    Flex({
-                        direction: FlexDirection.Column,
-                        justifyContent: FlexAlign.Center,
-                        alignItems: ItemAlign.Center
-                    }) {
-                        List() {
-                            LazyForEach(this.albumsDataSource, (item: LazyItem<AlbumDataItem>): void => {
-                                ListItem() {
-                                    AlbumListCard({ item: item.get() })
-                                }
-                            }, (item: LazyItem<AlbumDataItem>): string => (item == null) && (item.get() != undefined && item.get() != null) ?
-                                JSON.stringify(item) : item.getHashCode())
-                        }
-                        .divider({
-                            strokeWidth: 1,
-                            startMargin: $r('app.float.album_list_card_divider_margin_left')
-                        })
-                        .borderRadius($r('sys.float.ohos_id_corner_radius_default_l'))
-                        .backgroundColor($r('sys.color.ohos_id_color_card_bg'))
-                        .padding({
-                            left: $r('app.float.list_card_margin'),
-                            right: $r('app.float.list_card_margin')
-                        })
-                        .width(this.listCardWidth)
-                    }.width('100%')
-                }.width('100%')
+                  AlbumListCard({ item: item.get() })
+                }
+              }, (item: LazyItem<AlbumDataItem>): string => (item == null) && (item.get() != undefined && item.get() != null) ?
+                JSON.stringify(item) : item.getHashCode())
             }
-            .scrollBar(BarState.Auto)
-            .width('100%')
-            .margin({
-                top: $r('app.float.album_let_page_padding_top'),
-                left: $r('app.float.max_padding_start'),
-                right: $r('app.float.max_padding_end'),
-                bottom: px2vp(this.leftBlank[3])
+            .divider({
+              strokeWidth: 1,
+              startMargin: $r('app.float.album_list_card_divider_margin_left')
             })
-            CustomDialogView()
-        }
-        .backgroundColor($r('app.color.default_background_color')) // ux: colorSubBackground
-        .height('100%')
-        .padding({
-            top: px2vp(this.leftBlank[1]),
-            bottom: px2vp(this.leftBlank[3])
-        })
+            .borderRadius($r('sys.float.ohos_id_corner_radius_default_l'))
+            .backgroundColor($r('sys.color.ohos_id_color_card_bg'))
+            .padding({
+              left: $r('app.float.list_card_margin'),
+              right: $r('app.float.list_card_margin')
+            })
+            .width(this.listCardWidth)
+          }.width('100%')
+        }.width('100%')
+      }
+      .scrollBar(BarState.Auto)
+      .width('100%')
+      .margin({
+        top: $r('app.float.album_let_page_padding_top'),
+        left: $r('app.float.max_padding_start'),
+        right: $r('app.float.max_padding_end'),
+        bottom: px2vp(this.leftBlank[3])
+      })
+      CustomDialogView()
     }
+    .backgroundColor($r('app.color.default_background_color')) // ux: colorSubBackground
+    .height('100%')
+    .padding({
+      top: px2vp(this.leftBlank[1]),
+      bottom: px2vp(this.leftBlank[3])
+    })
+  }
 
-    pageTransition(): void {
-        PageTransitionEnter({ type: RouteType.None, duration: 1 })
-            .opacity(0)
-        PageTransitionExit({ type: RouteType.None, duration: 1 })
-            .opacity(0)
-    }
+  pageTransition(): void {
+    PageTransitionEnter({ type: RouteType.None, duration: 1 })
+      .opacity(0)
+    PageTransitionExit({ type: RouteType.None, duration: 1 })
+      .opacity(0)
+  }
 }

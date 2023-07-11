@@ -14,18 +14,18 @@
  */
 
 export enum ActionBarMode {
-    STANDARD_MODE,
-    DETAIL_MODE,
-    SELECTION_MODE,
-    TOP_MODE
+  STANDARD_MODE,
+  DETAIL_MODE,
+  SELECTION_MODE,
+  TOP_MODE
 }
 
 export enum ActionBarColorMode {
-    NORMAL,
-    TRANSPARENT,
+  NORMAL,
+  TRANSPARENT,
 }
 
 export enum ActionBarSelectionMode {
-    SINGLE,
-    MULTI,
+  SINGLE,
+  MULTI,
 }
