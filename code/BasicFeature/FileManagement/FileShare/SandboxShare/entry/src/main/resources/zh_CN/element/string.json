@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SandboxShare"
+    },
+    {
+      "name": "refresh",
+      "value": "已刷新"
+    },
+    {
+      "name": "sandboxFile",
+      "value": "沙箱文件"
+    },
+    {
+      "name": "fileContent1",
+      "value": "  1.准备小盆打入三个鸡蛋，加盐加糖，用打蛋器打七八分钟，蛋糕粉分两次加入蛋糊内。"
+    },
+    {
+      "name": "fileContent2",
+      "value": "  2.玉米油倒入碗里，再加入牛奶，用打蛋器把油和牛奶打到完全融为一体，烤箱预热15分钟。"
+    },
+    {
+      "name": "fileContent3",
+      "value": "  3.准备葡萄干、核桃仁、纸杯、将面糊倒入纸杯，再加入葡萄干、核桃仁，把纸杯蛋糕放进烤箱，定时40分钟。"
+    },
+    {
+      "name": "fileContent4",
+      "value": "  4.准备葡萄干、核桃仁、纸杯、将面糊倒入纸杯，再加入葡萄干、核桃仁，把纸杯蛋糕放进烤箱，定时40分钟，取出即可食用。"
+    },
+    {
+      "name": "subFilenames",
+      "value": "项"
+    }
+  ]
+}
