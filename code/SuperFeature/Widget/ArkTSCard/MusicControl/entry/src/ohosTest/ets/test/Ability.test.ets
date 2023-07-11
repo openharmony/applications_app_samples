@@ -41,7 +41,13 @@ export default function abilityTest() {
       // 检查桌面是否存在音乐卡片应用
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
       let app = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
-      await app.longClick();
+      // 获取文字控件边框
+      let rect = await app.getBounds();
+      // 计算文字控件高度
+      let height = rect.bottom - rect.top;
+      // 获取文字控件中心点
+      let point = await app.getBoundsCenter();
+      await DRIVER.longClick(point.x, point.y - height);
       await DRIVER.delayMs(500);
       // 检查长按应用是否存在服务卡片弹窗
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Card_Button'))));

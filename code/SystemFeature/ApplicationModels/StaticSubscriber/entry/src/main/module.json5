@@ -17,9 +17,9 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
     "description": "$string:entry_desc",
-    "mainElement": "com.samples.staticsubscriber.MainAbility",
+    "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
       "tablet"
@@ -27,15 +27,14 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "com.samples.staticsubscriber.MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "name": "EntryAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
-        "visible": true,
+        "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
         "skills": [
@@ -53,12 +52,12 @@
     "extensionAbilities": [
       {
         "name": "StaticSubscriber",
-        "srcEntrance": "./ets/StaticSubscriber/StaticSubscriber.ts",
+        "srcEntry": "./ets/StaticSubscriber/StaticSubscriber.ts",
         "description": "$string:StaticSubscriber_desc",
         "icon": "$media:icon",
         "label": "$string:StaticSubscriber_label",
         "type": "staticSubscriber",
-        "visible": true,
+        "exported": true,
         "metadata": [
           {
             "name": "ohos.extension.staticSubscriber",

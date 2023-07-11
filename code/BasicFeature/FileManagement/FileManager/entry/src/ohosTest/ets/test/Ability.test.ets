@@ -36,16 +36,13 @@ const MOCK: string = 'mock_'
 const TEST_NUM = 5
 const TIME_OUT = 10000
 let ability: UIAbility = undefined
+let file: mediaLibrary.FileAsset[] = [];
 
 // 判断文件是否相同
 async function fileAssertEqual(firstFile: mediaLibrary.FileAsset, secondFile: mediaLibrary.FileAsset): Promise<boolean> {
-  Logger.info(TAG, 'firstFile displayName = ' + firstFile.displayName + ' and secondFile displayName = ' + secondFile.displayName)
-  let displayName = await firstFile.displayName === secondFile.displayName
-  Logger.info(TAG, 'firstFile dateAdded = ' + firstFile.dateAdded + ' and secondFile dateAdded = ' + secondFile.dateAdded)
-  let dateAdded = await firstFile.dateAdded === secondFile.dateAdded
-  Logger.info(TAG, 'firstFile albumName = ' + firstFile.albumName + ' and secondFile albumName = ' + secondFile.albumName)
-  let albumName = await firstFile.albumName === secondFile.albumName
-  return displayName && dateAdded && albumName
+  Logger.info(TAG, 'firstFile uri = ' + firstFile.uri + ' and secondFile uri = ' + secondFile.uri);
+  let uri = await firstFile.uri === secondFile.uri;
+  return uri;
 }
 // 检查页面是否正常显示
 async function checkPage(library: mediaLibrary.MediaLibrary, driver: Driver, type: mediaLibrary.MediaType) {
@@ -86,6 +83,13 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function abilityTest() {
+  // 删除测试过程中创建的文件
+  afterAll(async function () {
+    for (let i = 0; i < file.length; i++) {
+      await FileManager.deleteFileAsset(file[i]);
+    }
+  })
+
   describe('ActsAbilityTest', function () {
     /**
      * 打开应用
@@ -124,8 +128,6 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction requestPermission')
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.permit'))))
       let btnStart = await driver.findComponent(ON.text(await getResourceString($r('app.string.permit'))))
-      // await driver.assertComponentExist(ON.text('允许'))
-      // let btnStart = await driver.findComponent(ON.text('允许'))
       await btnStart.click()
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction end')
     })
@@ -1162,6 +1164,7 @@ export default function abilityTest() {
           Logger.error(TAG, 'RequestPermissionFunction_002:createFileAsset failed')
           expect().assertFail()
         }
+        file.push(curFile);
       } catch (error) {
         Logger.error(TAG, 'RequestPermissionFunction_002:createFileAsset failed')
         expect().assertFail()
@@ -1197,7 +1200,7 @@ export default function abilityTest() {
         }
         Logger.info(TAG, 'getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
         ' data:' + fileAsset.dateAdded, +', ' + fileAsset.dateModified)
-        await FileManager.deleteFileAsset(ability.context, fileAsset)
+        await FileManager.deleteFileAsset(fileAsset)
       }
       for (let i = 0; i < TYPE.length; i++) {
         let originalResult = await FileManager.getFileAssets(ability.context, TYPE[i][0])
@@ -1212,6 +1215,7 @@ export default function abilityTest() {
           } catch (error) {
             Logger.error(TAG, 'GetFileAssetsFunction_001:createFileAsset failed')
           }
+          file.push(curFile);
           await addNum++
           let result = await FileManager.getFileAssets(ability.context, TYPE[i][0])
           let num = await result.getCount()
@@ -1253,6 +1257,7 @@ export default function abilityTest() {
       for (let i = 0; i < TYPE.length; i++) {
         let name = 'newFile' + Date.now().toString() + TYPE[i][1]
         let createFile = await FileManager.createFileAsset(ability.context, TYPE[i][0], TYPE[i][2], name)
+        file.push(createFile);
         let getFile = await FileManager.getFileAssetsByName(ability.context, name)
         fileAssertEqual(createFile, getFile)
       }
@@ -1270,7 +1275,8 @@ export default function abilityTest() {
       let result = await FileManager.getFileAssets(ability.context, TYPE[2][0])
       let num = await result.getCount()
       for (let i = 0; i < TEST_NUM; i++) {
-        await FileManager.createTxtFileAsset(ability.context)
+        let curFile = await FileManager.createTxtFileAsset(ability.context);
+        file.push(curFile);
         let newResult = await FileManager.getFileAssets(ability.context, TYPE[2][0])
         let newNum = newResult.getCount()
         Logger.info(TAG, 'CreateTxtFileAssetFunction_001:expect num is ' + (num + i + 1) + ' and result is ' + newNum)

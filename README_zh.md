@@ -36,20 +36,20 @@
  <tr height="18" style='height:13.50pt;'>
   <td width="140" align="center" rowspan="3" style='height:27.00pt' x:str><strong>UI</strong></td>
   <td rowspan="2" x:str><strong>声明式开发范式</strong></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/ComponentCollection">ArkTS组件集</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/Canvas">画布组件</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/DefiningPageLayoutAndConnection">页面布局和连接</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentClollection/Drag">拖拽事件</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/Canvas">画布组件</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection">页面布局和连接</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/Drag">拖拽事件</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/UI/ArkTsComponentClollection/MediaQuery">横竖屏切换</a></td>
-  <td x:str><a href="code/UI/ArkTsComponentClollection/StateManagement">状态管理</a></td>
+  <td x:str><a href="code/UI/ArkTsComponentCollection/MediaQuery">横竖屏切换</a></td>
+  <td x:str><a href="code/UI/ArkTsComponentCollection/StateManagement">状态管理</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>类Web开发范式</strong></td>
-  <td x:str><a href="code/UI/JsComponentClollection/JsComponentCollection">Js组件集</a></td>
+  <td x:str><a href="code/UI/JsComponentCollection/JsComponentCollection">Js组件集</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -416,8 +416,8 @@ Sample仓下所展示的组件能力：
 ```
 code
 |---UI                         # UI开发
-  |---ArkTsComponentClollection    # ArkTs组件集
-  |---JsComponentClollection       # 类Web开发范式组件集
+  |---ArkTsComponentCollection    # ArkTs组件集
+  |---JsComponentCollection       # 类Web开发范式组件集
 |---BasicFeature               # 基础特性
   |---ApplicationModels            # 应用模型
   |---Notification                 # 通知

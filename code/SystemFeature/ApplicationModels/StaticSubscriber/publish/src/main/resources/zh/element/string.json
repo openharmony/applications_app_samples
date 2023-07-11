@@ -19,6 +19,10 @@
     {
       "name": "publish_data",
       "value": "发送公共事件数据"
+    },
+    {
+      "name": "publish_success",
+      "value": "发布成功"
     }
   ]
 }

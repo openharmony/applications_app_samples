@@ -165,11 +165,13 @@ LanguageBaseClassLibrary
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行。
+1. 本示例仅支持标准系统上运行。
 
-2.本示例适配API version 10版本SDK，版本号：4.0.5.5，镜像版本号：Openharmony 4.0.7.5。
+2. 本示例适配API version 10版本，版本号：4.0.8.3，镜像版本号：OpenHarmony 4.0.8.3。
 
-3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
+3. 本示例涉及使用系统接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
+
+4. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
 
 ###  下载
 

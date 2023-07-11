@@ -50,10 +50,10 @@ export struct DequeView {
                 information: item,
                 deleteAction: () => {
                   logger.info(TAG, `deleteAction: ${JSON.stringify(item)}`);
-                  if (index == 0) {
+                  if (index === 0) {
                     this.dataSource.deleteFront();
                     this.totalCount = this.dataSource.totalCount();
-                  } else if (index == this.totalCount - 1) {
+                  } else if (index === this.totalCount - 1) {
                     this.dataSource.deleteEnd();
                     this.totalCount = this.dataSource.totalCount();
                   }

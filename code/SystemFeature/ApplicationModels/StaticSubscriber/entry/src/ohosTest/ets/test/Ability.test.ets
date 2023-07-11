@@ -22,65 +22,54 @@ const TAG: string = '[Sample_StaticSubscriber]'
 const DOMAIN = 0xF811
 const BUNDLE = 'StaticSubscriber_'
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager
-  let text = await manage.getStringValue(resource)
-  return text
-}
-
 export default function abilityTest() {
+  let driver = Driver.create();
+  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
   describe('ActsAbilityTest', function () {
     /**
      * 拉起静态订阅应用
      */
-    it(BUNDLE + 'EntryFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 begin');
-      let driver = Driver.create();
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, '${BUNDLE}StartAbility_001 begin');
+      let want = {
+        bundleName: "com.samples.staticsubscriber",
+        abilityName: "EntryAbility"
+      };
+      delegator.startAbility(want, (err) => {
+        hilog.info(DOMAIN, TAG, '${BUNDLE}startAbility end err ${JSON.stringify(err)}');
+      })
       await driver.delayMs(1000);
-      // 进入静态订阅
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 enter');
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.static_subscriber'))));
-      let btnEnter = await driver.findComponent(ON.text(await getResourceString($r('app.string.static_subscriber'))));
-      await btnEnter.click();
-      await driver.delayMs(1000);
-      // 返回桌面
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 outToHome');
-      await driver.pressBack();
-      await driver.delayMs(2000);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.static_subscriber'))));
-      hilog.info(DOMAIN, TAG, BUNDLE + 'EntryFunction_001 end');
+      hilog.info(DOMAIN, TAG, '${BUNDLE}StartAbility_001 end');
+      done();
     })
 
     /**
-     * 拉起发布应用
+     * 开启静态订阅
      */
-    it(BUNDLE + 'PublishFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 begin');
-      let driver = Driver.create();
+    it(BUNDLE + 'EnableStaticsubscriber_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, '${BUNDLE}EnableStaticsubscriber_001 begin');
       await driver.delayMs(1000);
-      // 进入发布应用
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 enter');
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.publish'))));
-      let enterBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.publish'))));
-      await enterBtn.click();
-      await driver.delayMs(2000);
-      // 点击发布
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 clickPublish');
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.publish'))));
-      let publishBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.publish'))));
-      await publishBtn.click();
+      await driver.assertComponentExist(ON.id('btnEnable'));
+      let btnEnable = await driver.findComponent(ON.id('btnEnable'));
+      await btnEnable.click();
       await driver.delayMs(1000);
-      // 下拉菜单栏查看通知
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 checkNotice');
-      await driver.swipe(100, 10, 100, 500, 600);
+      hilog.info(DOMAIN, TAG, '${BUNDLE}EnableStaticsubscriber_001 end');
+      done();
+    })
+
+    /**
+     * 关闭静态订阅
+     */
+    it(BUNDLE + 'DisableStaticsubscriber_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, '${BUNDLE}DisableStaticsubscriber_001 begin');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.static_subscriber'))));
+      await driver.assertComponentExist(ON.id('btnDisable'));
+      let btnDisable = await driver.findComponent(ON.id('btnDisable'));
+      await btnDisable.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 500, 100, 10, 600);
-      await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublishFunction_001 end');
+      hilog.info(DOMAIN, TAG, '${BUNDLE}DisableStaticsubscriber_001 end');
+      done();
     })
   })
 }

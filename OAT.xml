@@ -58,11 +58,41 @@ Note:If the text contains special characters, please escape them according to th
     <oatconfig>
         <licensefile></licensefile>
         <policylist>
-            <policy name="projectPolicy" desc="">
-                <policyitem type="copyright" name="Hunan OpenValley Digital Industry Development Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By OpenValley Digital Co., Ltd."/>
+            <policy
+                desc=""
+                name="projectPolicy">
+                <policyitem
+                    desc="Developed By OpenValley Digital Co., Ltd."
+                    filefilter="copyrightPolicyFilter"
+                    group="defaultGroup"
+                    name="Hunan OpenValley Digital Industry Development Co., Ltd."
+                    path=".*"
+                    rule="may"
+                    type="copyright"/>
             </policy>
-            <policy name="projectPolicy" desc="">
-                <policyitem type="copyright" name="Fujian Newland Auto-ID Tech.Co.,Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By Fujian Newland Auto-ID Tech.Co.,Ltd."/>
+            <policy
+                desc=""
+                name="projectPolicy">
+                <policyitem
+                    desc="Developed By Fujian Newland Auto-ID Tech.Co.,Ltd."
+                    filefilter="copyrightPolicyFilter"
+                    group="defaultGroup"
+                    name="Fujian Newland Auto-ID Tech.Co.,Ltd."
+                    path=".*"
+                    rule="may"
+                    type="copyright"/>
+            </policy>
+            <policy
+                desc=""
+                name="projectPolicy">
+                <policyitem
+                    desc="Developed By Shenzhen Kaihong Digital Industry Development Co., Ltd."
+                    filefilter="copyrightPolicyFilter"
+                    group="defaultGroup"
+                    name="Shenzhen Kaihong Digital Industry Development Co., Ltd."
+                    path=".*"
+                    rule="may"
+                    type="copyright"/>
             </policy>
 			<policy name="projectPolicy" desc="">
                 <policyitem type="copyright" name="Shenzhen Kaihong Digital Industry Development Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed By shenzhen Kaihong Digital Industry Development Co., Ltd."/>
@@ -103,6 +133,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileRelease.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/app_packing_tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/hap-sign-tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/environment/hfs.exe" desc="Provided by hfs"/>
 		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
