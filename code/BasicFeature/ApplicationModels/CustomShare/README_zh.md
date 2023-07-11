@@ -13,7 +13,7 @@
 
 | 主页                               | 点击分享                                      | 分享页面                                      |其它应用分享|
 |----------------------------------|-------------------------------------------|-------------------------------------------|--------------|
-| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialog.png) | ![](screenshots/shared/canvas_dialog.png) |![](screenshots/revieved/image_file.png)|
+| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialo.png) | ![](screenshots/shared/canvas_dialog.png) |![](screenshots/revieved/image_file.png)|
 
 | 文本分享应用主页面 | 文本分享成功预览页 | 文本分享成功展开页 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | :----------------------------------------------------------: |
@@ -75,8 +75,8 @@ textEdit/src/main/ets/
 |  ├──Index.ets                       // EntryAbility页面
 |  ├──TemplateBuilder.ets             // 自定义组件页面
 |  └──UIExtenIndex.ets                // UIExtension页面
-├──uiextensionability
-|  └──UIExtAbility.ts 
+└──uiextensionability
+   └──UIExtAbility.ts 
 ```
 
 ### 具体实现
@@ -98,10 +98,10 @@ textEdit/src/main/ets/
     * 参考接口：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)
 
 * 本示例还包含文本分享应用及文本编辑应用：
-  * 在Index.ets中加载TemplateBuilder自定义组件并显示分享信息,  源码参考[textShare_Index.ets](./textShare/src/main/ets/pages/Index.ets)、[textEdit_Index.ets](./textEdit/src/main/ets/pages/Index.ets)。
+  * 在Index.ets中加载TemplateBuilder自定义组件并显示分享信息,  源码参考[textShare_Index.ets](./textShare/src/main/ets/pages/Index.ets). [textEdit_Index.ets](./textEdit/src/main/ets/pages/Index.ets)。
     * 在加载Index页面中，如果是被分享方拉起，则加载TemplateBuilder自定义组件。若不是被分享拉起，则显示Ability设置内容。
   
-  * TemplateBuilder组件内容封装在TemplateBuilder.ets中，源码参考：[textShare_TemplateBuilder.ets](./textShare/src/main/ets/pages/TemplateBuilder.ets)、
+  * TemplateBuilder组件内容封装在TemplateBuilder.ets中，源码参考：[textShare_TemplateBuilder.ets](./textShare/src/main/ets/pages/TemplateBuilder.ets). 
   [textEdit_TemplateBuilder.ets](./textEdit/src/main/ets/pages/TemplateBuilder.ets)。
     * 在TemplateBuilder组件中包含UIExtAbility组件、“返回Share”和“留在文本分享/留在文本编辑”按钮，可选择返回Share应用或留在当前（文本分享/文本编辑）应用。
 
