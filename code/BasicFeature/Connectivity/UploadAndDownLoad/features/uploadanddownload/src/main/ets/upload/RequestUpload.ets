@@ -75,6 +75,7 @@ class Upload {
     });
     if (tasks.length > 0) {
       promptAction.showToast({ message: $r('app.string.have_upload_task_tips'), bottom: TOAST_BOTTOM });
+      return;
     }
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     this.config.data = await this.getFilesAndData(fileUris);

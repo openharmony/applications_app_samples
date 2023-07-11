@@ -57,12 +57,16 @@ export default function abilityTest() {
       if(btnAllow === undefined || btnAllow === null){
         btnAllow = await driver.findComponent(ON.text(getResourceString($r('app.string.allow_up'))));
       }
-      await btnAllow.click();
+      if(btnAllow !== undefined && btnAllow !== null) {
+        await btnAllow.click();
+      }
       btnAllow = await driver.findComponent(ON.text(getResourceString($r('app.string.allow'))));
       if(btnAllow === undefined || btnAllow === null){
         btnAllow = await driver.findComponent(ON.text(getResourceString($r('app.string.allow_up'))));
       }
-      await btnAllow.click();
+      if(btnAllow !== undefined && btnAllow !== null) {
+        await btnAllow.click();
+      }
       await delegator.getCurrentTopAbility().then((Ability) => {
         logger.info(TAG, `${BUNDLE}get top ability`);
         expect(Ability.context.abilityInfo.bundleName).assertEqual('com.samples.uploadanddownload');
@@ -92,7 +96,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(getResourceString($r('app.string.ok'))));
       let pickAlbum = await driver.findComponent(ON.text(getResourceString($r('app.string.ok'))));
       await pickAlbum.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(5000);
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('publish'));

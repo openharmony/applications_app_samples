@@ -69,6 +69,7 @@ class RequestDownload {
     });
     if (tasks.length > 0) {
       promptAction.showToast({ message: $r('app.string.have_download_task_tips'), bottom: TOAST_BOTTOM });
+      return;
     }
     let splitUrl = url.split('//')[1].split('/');
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
