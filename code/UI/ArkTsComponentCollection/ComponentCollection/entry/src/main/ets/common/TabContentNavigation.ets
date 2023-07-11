@@ -70,7 +70,7 @@ export struct TabContentNavigation {
               }
               .ColumnStyle()
             }
-            .margin({ top: 4, bottom: 4 })
+            .margin({ top: 6, bottom: 6 })
           })
         }
       }

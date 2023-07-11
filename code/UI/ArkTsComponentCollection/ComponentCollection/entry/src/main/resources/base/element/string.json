@@ -3079,6 +3079,270 @@
     {
       "name": "text_picker_show",
       "value": "显示文本弹窗"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas components"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Base attributes"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Base methods"
+    },
+    {
+      "name": "canvas_fillStyle",
+      "value": "fillStyle"
+    },
+    {
+      "name": "canvas_lineWidth",
+      "value": "lineWidth"
+    },
+    {
+      "name": "canvas_strokeStyle",
+      "value": "strokeStyle"
+    },
+    {
+      "name": "canvas_lineCap",
+      "value": "lineCap"
+    },
+    {
+      "name": "canvas_lineJoin",
+      "value": "lineJoin"
+    },
+    {
+      "name": "canvas_miterLimit",
+      "value": "miterLimit"
+    },
+    {
+      "name": "canvas_font",
+      "value": "font"
+    },
+    {
+      "name": "canvas_textAlign",
+      "value": "textAlign"
+    },
+    {
+      "name": "canvas_textBaseline",
+      "value": "textBaseline"
+    },
+    {
+      "name": "canvas_globalAlpha",
+      "value": "globalAlpha"
+    },
+    {
+      "name": "canvas_lineDashOffset",
+      "value": "lineDashOffset"
+    },
+    {
+      "name": "canvas_globalCompositeOperation",
+      "value": "globalCompositeOperation"
+    },
+    {
+      "name": "canvas_imageSmoothingEnabled",
+      "value": "imageSmoothingEnabled"
+    },
+    {
+      "name": "canvas_createLinearGradient",
+      "value": "createLinearGradient"
+    },
+    {
+      "name": "cavas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_fillRect",
+      "value": "fillRect"
+    },
+    {
+      "name": "canvas_strokeRect",
+      "value": "strokeRect"
+    },
+    {
+      "name": "canvas_fillText",
+      "value": "fillText"
+    },
+    {
+      "name": "canvas_strokeText",
+      "value": "strokeText"
+    },
+    {
+      "name": "canvas_measureText",
+      "value": "measureText"
+    },
+    {
+      "name": "canvas_stroke",
+      "value": "stroke"
+    },
+    {
+      "name": "canvas_createPattern",
+      "value": "createPattern"
+    },
+    {
+      "name": "canvas_fill",
+      "value": "fill"
+    },
+    {
+      "name": "canvas_clip",
+      "value": "clip"
+    },
+    {
+      "name": "canvas_rotate",
+      "value": "rotate"
+    },
+    {
+      "name": "canvas_scale",
+      "value": "scale"
+    },
+    {
+      "name": "canvas_drawImage",
+      "value": "drawImage"
+    },
+    {
+      "name": "canvas_getImageData",
+      "value": "getImageData"
+    },
+    {
+      "name": "canvas_putImageData",
+      "value": "putImageData"
+    },
+    {
+      "name": "canvas_setLineDash",
+      "value": "setLineDash"
+    },
+    {
+      "name": "canvas_getLineDash",
+      "value": "getLineDash"
+    },
+    {
+      "name": "canvas_transferFromImageBitmap",
+      "value": "transferFromImageBitmap"
+    },
+    {
+      "name": "canvas_toDataURL",
+      "value": "toDataURL"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "Canvas Zone"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "Attributes Operations"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "Clear Effects"
+    },
+    {
+      "name": "cavnas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_shadowBlur",
+      "value": "shadowBlur"
+    },
+    {
+      "name": "canvas_shadowColor",
+      "value": "shadowColor"
+    },
+    {
+      "name": "canvas_shadowOffsetX",
+      "value": "shadowOffsetX"
+    },
+    {
+      "name": "canvas_shadowOffsetY",
+      "value": "shadowOffsetY"
+    },
+    {
+      "name": "canvas_addColorStop",
+      "value": "addColorStop"
+    },
+    {
+      "name": "canvas_beginPath",
+      "value": "beginPath"
+    },
+    {
+      "name": "canvas_moveTo",
+      "value": "moveTo"
+    },
+    {
+      "name": "canvas_lineTo",
+      "value": "lineTo"
+    },
+    {
+      "name": "canvas_closePath",
+      "value": "closePath"
+    },
+    {
+      "name": "canvas_bezierCurveTo",
+      "value": "bezierCurveTo"
+    },
+    {
+      "name": "canvas_quadraticCurveTo",
+      "value": "quadraticCurveTo"
+    },
+    {
+      "name": "canvas_arc",
+      "value": "arc"
+    },
+    {
+      "name": "canvas_arcTo",
+      "value": "arcTo"
+    },
+    {
+      "name": "canvas_ellipse",
+      "value": "ellipse"
+    },
+    {
+      "name": "canvas_rect",
+      "value": "rect"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "Printed to the console"
+    },
+    {
+      "name": "canvas_transform",
+      "value": "transform"
+    },
+    {
+      "name": "canvas_setTransform",
+      "value": "setTransform"
+    },
+    {
+      "name": "canvas_translate",
+      "value": "translate"
+    },
+    {
+      "name": "canvas_imageSmoothingQuality",
+      "value": "imageSmoothingQuality"
     }
   ]
 }

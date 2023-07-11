@@ -43,6 +43,42 @@ const AUXILIARY: ThirdLevelCategory =
     ]
   }
 
+const CANVAS: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_pen'),
+    title: $r('app.string.canvas_components'),
+    childNodes: [
+      {
+        title: $r('app.string.canvas_component_attributes'),
+        url: 'pages/components/canvas/attributesSample/AttributesSample'
+      },
+      {
+        title: $r('app.string.canvas_component_method'),
+        url: 'pages/components/canvas/methodsSample/MethodsSample',
+      },
+      {
+        title: $r('app.string.canvas_component_shadow'),
+        url: 'pages/components/canvas/shadowsSample/ShadowsSample',
+      },
+      {
+        title: $r('app.string.canvas_component_transform'),
+        url: 'pages/components/canvas/transformSample/TransformSample',
+      },
+      {
+        title: $r('app.string.canvas_component_gradient'),
+        url: 'pages/components/canvas/gradientSample/GradientSample',
+      },
+      {
+        title: $r('app.string.canvas_component_path_2d'),
+        url: 'pages/components/canvas/path2dSample/Path2dSample',
+      },
+      {
+        title: $r('app.string.canvas_component_image_bitmap'),
+        url: 'pages/components/canvas/imageBitmapSample/ImageBitmapSample',
+      }
+    ]
+  }
+
 const BUTTON_AND_SELECTION: ThirdLevelCategory =
   {
     image: $r('app.media.ic_button_and_selection'),
@@ -194,7 +230,8 @@ export const COMPONENT_CATEGORIES: ThirdLevelCategory[] =
     SCOLL_SWIPE,
     INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS,
     TEXT_AND_INPUT,
-    AUXILIARY
+    AUXILIARY,
+    CANVAS,
   ]
 // 辅助/AlphabetIndexerSampleData
 export let alphabetIndexerDataB: Resource[] = [$r('app.string.alphabetindexer_bu'), $r('app.string.alphabetindexer_bai'), $r('app.string.alphabetindexer_bao'), $r('app.string.alphabetindexer_bi'), $r('app.string.alphabetindexer_bing')]
