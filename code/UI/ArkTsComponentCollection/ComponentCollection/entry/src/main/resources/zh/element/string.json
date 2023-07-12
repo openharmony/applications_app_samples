@@ -501,6 +501,43 @@
       "name": "get_click_event_detail",
       "value": "点击事件详细信息"
     },
+    // Drag Event
+    {
+      "name": "drag_drop_action_tips",
+      "value": "长按应用图标后拖拽到不同区域"
+    },
+    {
+      "name": "component_drag_and_drop",
+      "value": "组件拖拽"
+    },
+    {
+      "name": "griditem",
+      "value": "GridItem"
+    },
+    {
+      "name": "listitem",
+      "value": "ListItem"
+    },
+    {
+      "name": "hyperlink",
+      "value": "Hyperlink"
+    },
+    {
+      "name": "text",
+      "value": "Text"
+    },
+    {
+      "name": "image",
+      "value": "Image"
+    },
+    {
+      "name": "video",
+      "value": "Video"
+    },
+    {
+      "name": "formcomponent",
+      "value": "FormComponent"
+    },
     // CustomDialog
     {
       "name": "custom_dialog",

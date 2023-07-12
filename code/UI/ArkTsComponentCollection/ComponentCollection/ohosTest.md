@@ -35,6 +35,7 @@
 | 验证TarBar 进入通用                    | 在组件页面                           | 点击下方tab通用                                    | 跳转到通用页面           | 是    | Pass |
 | 验证onClick 点击事件                   |                                 | 点击200，300的坐标                                 | 正确响应点击，显示点击信息     | 是    | Pass |
 | 验证触摸事件                           |                                 | 拖动区域(100, 300, 300, 280)                     | 正确响应拖动            | 是    | Pass |
+| 验证拖拽事件                           |                                               | 依次拖拽应用图标、GridItem、ListItem、Hyperlink、Text、Image、Video、FormComponent | 正确响应拖动                       | 是       | Pass     |
 | 验证组件区域变化事件                       |                                 | 调整宽度，高度                                      | 正确约束小球运动范围        | 是    | Pass |
 | 验证background 背景                  |                                 | 进入background 背景                              | 正确显示背景            | 是    | Pass |
 | 验证border 边框                      |                                 | 进入border 边框页面                                | 正确显示边框            | 是    | Pass |

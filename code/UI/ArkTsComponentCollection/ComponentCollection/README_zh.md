@@ -155,6 +155,16 @@ entry/src/main/ets/
 |   |   |   |   |---AreaChangeEventSample.ets            // 组件区域变化事件
 |   |   |   |---clickEventSample
 |   |   |   |   |---ClickEventSample.ets                 // 点击事件
+|   |   |   |---dragEventSample
+|   |   |   |   |---component                            // 组件拖拽
+|   |   |   |   |   |---FormComponentDrag.ets
+|   |   |   |   |   |---GridItemDrag.ets
+|   |   |   |   |   |---HyperlinkDrag.ets
+|   |   |   |   |   |---ImageDrag.ets
+|   |   |   |   |   |---ListItemDrag.ets
+|   |   |   |   |   |---TextDrag.ets
+|   |   |   |   |   |---VideoDrag.ets
+|   |   |   |   |---DragEventSample.ets                  // 拖拽事件
 |   |   |   |---touchEventSample
 |   |   |   |   |---TouchEventSample.ets                 // 触摸事件
 |   |   |---properties
@@ -233,7 +243,11 @@ entry/src/main/ets/
 
 ### 相关权限
 
-不涉及。
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
 
 ### 依赖
 
@@ -243,9 +257,15 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例仅支持API10版本SDK，版本号：4.0.8.5，镜像版本号：OpenHarmony 4.0.8.5。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+
+3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
+
+4.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
+
+5.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
 ### 下载
 
