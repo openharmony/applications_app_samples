@@ -19,7 +19,7 @@ import Logger from '../../common/Logger';
 
 const TAG = '[Sample_EntryFormAbility]';
 
-export default class processEntryFormAbility extends FormExtensionAbility {
+export default class ProcessEntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
     Logger.info(TAG, `onAddForm want: ${JSON.stringify(want)}`);
     let processFormData = {};

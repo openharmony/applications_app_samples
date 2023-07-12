@@ -19,7 +19,7 @@ import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
 
 const TAG = '[sample_entryFormAbility]';
-let DataShareHelper;
+let dataShareHelper;
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
@@ -33,8 +33,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
       scheduler: ''
     };
     dataShare.createDataShareHelper(this.context, 'datashareproxy://ohos.samples.formextability', {isProxy : true}).then((data) => {
-      DataShareHelper = data;
-      DataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', subscriberId, template);
+      dataShareHelper = data;
+      dataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', subscriberId, template);
     });
     let formData = {};
     let proxies = [
