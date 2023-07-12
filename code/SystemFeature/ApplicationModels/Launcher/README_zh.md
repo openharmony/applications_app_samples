@@ -94,7 +94,9 @@ entry/src/main/ets/
 
 ### 依赖
 
-Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230430/code/Solutions/Shopping/ASOrangeShopping )
+1.Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230430/code/Solutions/Shopping/ASOrangeShopping )
+
+2.Launcher测试[Launcher.test.ets](./entry/src/ohosTest/ets/test/Launcher.test.ets)需要依赖[CrossChainBack](../TestRely/LauncherTest/CrossChainBack/README_zh.md)以及[StartRecentAbility](../TestRely/LauncherTest/StartRecentAbility/README_zh.md)，开始测试前需先安装CrossChainBack应用和StartRecentAbility应用。
 
 ### 约束与限制
 
