@@ -18,13 +18,27 @@
 | ------------------------------------------- |
 |![eTSFormExample](screenshots/eTSFormExample.png)|
 
+| 卡片应用主页面 | 卡片应用修改订阅条件页面 | 卡片应用发布数据页面 | 卡片应用卡片预览图页面 |
+|-----------------------------------------------------------------------| ------- | ------- | ------- |
+| ![ProcessProxyForm_main](./screenshots/ProcessProxyForm_main.jpeg) | ![ProcessProxyForm_modifyCondition](./screenshots/ProcessProxyForm_modifyCondition.jpeg) | ![ProcessProxyForm_push](./screenshots/ProcessProxyForm_push.jpeg) | ![ProcessProxyForm_preview](./screenshots/ProcessProxyForm_preview.jpeg) |
+
+| formProvider应用主界面 | formProvider应用修改订阅条件 | formProvider应用发布数据 | formProvider应用卡片样式 |
+| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------- | --------------------------------------------- |
+| ![mainInterface](./screenshots/mainInterface.jpeg) | ![modifySubscriptionConditions](./screenshots/modifySubscriptionConditions.jpeg) | ![dataRelease](./screenshots/dataRelease.jpeg) | ![cardStyle](./screenshots/cardStyle.jpeg) |
+
 使用说明
 
 1.部分设备的桌面不支持卡片，可以通过自己的开发卡片使用方，进行卡片的创建、更新和删除等操作。
 
 2.卡片的样式如下图所示。当卡片更新时，卡片上的温度和时间会产生变化。
 
+3.长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面；
 
+4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
+
+5.点击打开卡片应用图标或formProvider应用图标，点击"修改订阅条件"按键，界面将跳转至修改订阅条件界面，对应选择想要发布的数据完成对订阅条件的修改(若选择发布的城市与当前订阅城市不一致，则不能成功发布)；
+
+6.在卡片应用或formProvider应用应用中点击"发布数据"按键，界面将跳转至数据发布界面，对应选择想要发布的数据并点击"发布数据"完成数据发布；
 
 ### 工程目录
 ```
@@ -41,6 +55,58 @@ entry/src/main
 |   |---index.json                         
 |---resources/base/profile                                  
 |   |---form_config.json                   // 配置卡片（卡片名称，引入js卡片，卡片窗口大小等）                          
+persistentProxyForm/src/main/
+|---common
+|  └---Logger.ts
+|---ets
+|  └---dataShare
+|  | └---DataShare.ts
+|  |---entryability
+|  |  └---EntryAbility.ts
+|  |---entryformability
+|  |  └---EntryFormAbility.ts
+|  |---pages
+|  |  |---Index.ets                        // EntryAbility页面
+|  |  |---ModifyConditionIndex.ets         // 修改订阅条件页面
+|  |  └---PublishIndex.ets                 // 发布数据页面
+|  └---widget
+|     └---pages
+|        └---WidgetCard.ets                // ArkTS卡片
+|---js
+|  |---common
+|  |---i18n
+|  └---widgetJS
+|     └---pages
+|        └---index
+|           |---index.css                  // JS卡片样式
+|           |---index.hml                  // JS卡片
+|           └---index.json                 // JS卡片默认值
+└---resources    
+processProxyForm/src/main/
+|---common
+|  └---Logger.ts
+|---ets
+|  |---entryability
+|  |  └---EntryAbility.ts
+|  |---entryformability
+|  |  └---ProcessEntryFormAbility.ts
+|  |---pages
+|  |  |---Index.ets                         // EntryAbilit页面
+|  |  |---ModifyConditionIndex.ets          // 修改订阅条件页面
+|  |  └---PushIndex.ets                     // 发布数据页面
+|  └---widget
+|     └---pages
+|        └---WidgetCard.ets                 // ArkTS卡片
+|---js
+|  |---common
+|  |---i18n
+|  └---jsWidget
+|     └---pages
+|        └---index
+|           |---index.css                    // JS卡片样式
+|           |---index.hml                    // JS卡片
+|           └---index.json                   // JS卡片默认值
+└---resources                                // 资源信息
 ```
 #### 相关概念
 
@@ -58,9 +124,27 @@ formBindingData.createFormBindingData({}) onAcquireFormState(want) {
 return formInfo.FormState.READY }。   
 3、配置卡片：用js编写相应的卡片，将卡片配置到resources/base/profile/form_config, [源码参考](entry/src/main/resources/base/profile/form_config.json) 。
 
+- 修改数据卡片的订阅条件的功能封装在ModifyConditionIndex.ets中，源码参考：[ModifyConditionIndex.ets](./persistentProxyForm/src/main/ets/pages/ModifyConditionIndex.ets)及[ModifyConditionIndex.ets](./processProxyForm/src/main/ets/pages/ModifyConditionIndex.ets)。
+    - 使用modifyCondition来获取所有已经建立出的卡片对象。
+    - 修改订阅条件：使用updateCardDisplayContent遍历所有卡片对象，并根据界面获取的订阅条件数据修改订阅条件。
+- 发布数据的功能封装在PublishIndex.ets及PushIndex.ets中，源码参考：[PublishIndex.ets](./persistentProxyForm/src/main/ets/pages/PublishIndex.ets)及[PushIndex.ets](./processProxyForm/src/main/ets/pages/PushIndex.ets)。
+    - [PublishIndex.ets](./persistentProxyForm/src/main/ets/pages/PublishIndex.ets)使用updateRDB来修改rdb数据库中的对应数据。
+    - [PushIndex.ets](./processProxyForm/src/main/ets/pages/PushIndex.ets)使用getRunningFormInfosByFilter获取已经建立出的卡片对象，并使用updateCardDisplayContent遍历所有卡片对象，使用createDataShareHelper创建DataShareHelper对象，并根据界面获取的数据信息使用publish进行数据的发布以实现发布数据的功能
+- 在dataShare模块中，建立rdb数据库，并提供对应update方法。
+    - 在onCreate中初始化数据库中的数据。
+    - 在update中实现对应的数据更新方法。
+
 ### 相关权限
 
-不涉及。
+[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/permission-list.md)
+
+[ohos.permission.START_INVISIBLE_ABILITY](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/permission-list.md)
+
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/permission-list.md)
+
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/permission-list.md)
+
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/permission-list.md)
 
 ### 依赖
 
@@ -68,11 +152,17 @@ return formInfo.FormState.READY }。
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行。
+1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，已适配API version 9，版本号：3.2.11.9。
+2.本示例已适配API version 10版本SDK，版本号：4.0.8.5,镜像版本号：OpenHarmony_4.0.8.5。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
+
+4.本示需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南]( https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/ )。
+
+5.本示例所配置的权限为system_core级别(相关权限级别可通过[权限定义列表]( https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+
+6.本示例中使用到DataShareExtensionAbility，需要将本实例加入到白名单中再进行安装。
 
 ### 下载
 
