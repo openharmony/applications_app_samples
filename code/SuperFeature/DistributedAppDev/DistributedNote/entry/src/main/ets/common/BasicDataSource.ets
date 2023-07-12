@@ -14,6 +14,7 @@
  */
 
 import Note from '../model/Note'
+import Canvas from '../model/Canvas'
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
@@ -66,7 +67,7 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-export default class NoteDataSource extends BasicDataSource {
+export class NoteDataSource extends BasicDataSource {
   private dataArray: Note[] = []
 
   public totalCount(): number {
@@ -83,5 +84,27 @@ export default class NoteDataSource extends BasicDataSource {
   public pushData(data: Note): void {
     this.dataArray.push(data)
     this.notifyDataAdd(this.dataArray.length - 1)
+  }
+}
+
+export class CanvasDataSource extends BasicDataSource {
+  private pathArray: Canvas[] = []
+
+  public totalCount(): number {
+    return this.pathArray.length
+  }
+
+  public getData(index: number): any {
+    return this.pathArray[index]
+  }
+
+  public addData(index: number, data: Canvas): void {
+    this.pathArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(data: Canvas): void {
+    this.pathArray.push(data)
+    this.notifyDataAdd(this.pathArray.length - 1)
   }
 }
