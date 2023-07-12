@@ -132,7 +132,7 @@ struct RecordPage {
         if (this.fd) {
           this.fileAsset.close(this.fd);
         }
-        await this.mediaManager.deleteFile(this.fileAsset.uri);
+        await this.mediaManager.deleteFile(this.fileAsset);
       }
     }
   }

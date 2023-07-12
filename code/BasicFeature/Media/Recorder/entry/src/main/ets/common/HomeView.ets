@@ -64,7 +64,9 @@ export struct HomeView {
             })
           }
           .id('audioItem' + index)
-        }, item => item.title + item.isCheck)
+        }, (item, index) => {
+          return JSON.stringify(item) + index;
+        })
       }
       .layoutWeight(1)
 
