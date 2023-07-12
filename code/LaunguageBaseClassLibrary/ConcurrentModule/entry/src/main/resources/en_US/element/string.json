@@ -43,6 +43,42 @@
     {
       "name": "Cancel_Task_desc",
       "value": "Cancel Task"
+    },
+    {
+      "name": "strSortText",
+      "value": "Str Sort Text"
+    },
+    {
+      "name": "copyFileText",
+      "value": "copyFileText"
+    },
+    {
+      "name": "workerTitleText",
+      "value": "workerTitleText"
+    },
+    {
+      "name": "logTitle",
+      "value": "Log Title"
+    },
+    {
+      "name": "workerLog1",
+      "value": "workerLog1"
+    },
+    {
+      "name": "workerLog2",
+      "value": "workerLog2"
+    },
+    {
+      "name": "workerLog3",
+      "value": "workerLog3"
+    },
+    {
+      "name": "workerLog4",
+      "value": "workerLog4"
+    },
+    {
+      "name": "workerLog5",
+      "value": "workerLog5"
     }
   ]
 }

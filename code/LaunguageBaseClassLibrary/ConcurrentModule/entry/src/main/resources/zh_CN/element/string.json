@@ -43,6 +43,42 @@
     {
       "name": "Cancel_Task_desc",
       "value": "取消任务"
+    },
+    {
+      "name": "strSortText",
+      "value": "字符串排序"
+    },
+    {
+      "name": "copyFileText",
+      "value": "拷贝文件"
+    },
+    {
+      "name": "workerTitleText",
+      "value": "公共目录下文件列表"
+    },
+    {
+      "name": "logTitle",
+      "value": "触发事件后日志"
+    },
+    {
+      "name": "workerLog1",
+      "value": "1、沙箱目录文件个数"
+    },
+    {
+      "name": "workerLog2",
+      "value": "个"
+    },
+    {
+      "name": "workerLog3",
+      "value": "文件"
+    },
+    {
+      "name": "workerLog4",
+      "value": "完成"
+    },
+    {
+      "name": "workerLog5",
+      "value": "等"
     }
   ]
 }

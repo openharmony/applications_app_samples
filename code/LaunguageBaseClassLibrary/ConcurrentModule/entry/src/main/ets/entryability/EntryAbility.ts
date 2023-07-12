@@ -17,6 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 
+let myContext = null;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
@@ -29,7 +30,10 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
+    let filesDir = this.context.filesDir;
+    AppStorage.SetOrCreate('sanBoxFileDir', filesDir);
+    myContext = this.context;
+    this.getResourceStr();
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -37,6 +41,57 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
+  }
+
+  getResourceStr(): void {
+    try {
+      myContext.resourceManager.getStringValue($r('app.string.workerLog1').id)
+        .then(value => {
+          AppStorage.SetOrCreate('copyFileLog1', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.workerLog2').id)
+        .then(value => {
+          AppStorage.SetOrCreate('copyFileLog2', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.workerLog3').id)
+        .then(value => {
+          AppStorage.SetOrCreate('copyFileLog3', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.workerLog4').id)
+        .then(value => {
+          AppStorage.SetOrCreate('copyFileLog4', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.workerLog5').id)
+        .then(value => {
+          AppStorage.SetOrCreate('copyFileLog5', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'callback getStringValue failed. Cause: %{public}s', error.message ?? '');
+    }
   }
 
   onWindowStageDestroy() {

@@ -1,6 +1,8 @@
 {
   "src": [
     "pages/Index",
+    "pages/WatcherFile",
+    "pages/EditFile",
     "filemanager/pages/image/ImageFileList",
     "filemanager/pages/image/ImagePreview",
     "filemanager/pages/video/VideoFileList",
