@@ -420,6 +420,10 @@
       "value": "Set the rounded corners of each of the four corners"
     },
     {
+      "name": "border_3D",
+      "value": "Set the border 3D"
+    },
+    {
       "name": "border_radius_left_top",
       "value": "Top left border"
     },

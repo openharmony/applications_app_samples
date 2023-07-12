@@ -423,6 +423,10 @@
       "name": "border_radius_right_bottom",
       "value": "右下边框"
     },
+    {
+      "name": "border_3D",
+      "value": "设置3D边框"
+    },
     // Button
     {
       "name": "button_title",

@@ -148,6 +148,18 @@
     {
       "name": "btn_border_color",
       "value": "#33000000"
+    },
+    {
+      "name": "3D_background_color",
+      "value": "#F9BC64"
+    },
+    {
+      "name": "3D_top_left_color",
+      "value": "#FED599"
+    },
+    {
+      "name": "3D_right_buttom_color",
+      "value": "#D69942"
     }
   ]
 }
