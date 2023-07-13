@@ -19,7 +19,7 @@ import { logger } from '../util/Logger';
 
 let abilityDelegator = undefined;
 let abilityDelegatorArguments = undefined;
-const TAG: string = 'OpenHarmonyTestRunner';
+const TAG: string = '[Sample_OpenHarmonyTestRunner]';
 
 async function onAbilityCreateCallback() {
   logger.info(TAG, 'onAbilityCreateCallback');

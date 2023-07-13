@@ -22,6 +22,15 @@
       "tablet"
     ],
     "requestPermissions": [
+      {
+        "name": "ohos.permission.REBOOT"
+      },
+      {
+        "name": "ohos.permission.sec.ACCESS_UDID"
+      },
+      {
+        "name": "ohos.permission.INPUT_MONITORING"
+      }
     ]
   }
 }
