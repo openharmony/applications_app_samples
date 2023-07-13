@@ -162,7 +162,7 @@
     },
     {
       "name": "age_validate",
-      "value": "age invalidate"
+      "value": "请输入正确的年龄"
     },
     {
       "name": "add_contact",

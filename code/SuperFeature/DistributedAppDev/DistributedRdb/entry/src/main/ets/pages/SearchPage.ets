@@ -87,7 +87,7 @@ struct ConditionOption {
           .selectedOptionFont({ size: 18, weight: FontWeight.Regular })
           .optionFont({ size: 18, weight: FontWeight.Regular })
           .onSelect(async (index: number) => {
-            this.model.searchData.isAscending = (index == 0);
+            this.model.searchData.isAscending = (index === 0);
           })
       }
       .justifyContent(FlexAlign.SpaceAround)
@@ -274,7 +274,7 @@ struct DataAndTips {
         }
 
 
-        if (this.otherContacts.length == 0) {
+        if (this.otherContacts.length === 0) {
           ListItem() {
             Row() {
               Text($r('app.string.no_data'))
