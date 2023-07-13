@@ -19,6 +19,10 @@
     {
       "name": "button_ban",
       "value": "ban"
+    },
+    {
+      "name": "button_finish",
+      "value": "finish"
     }
   ]
 }

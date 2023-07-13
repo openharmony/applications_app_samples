@@ -123,7 +123,7 @@ class QRCodeParser {
       // 解析二维码
       let decodeResult = mltiFormatReader.decode(binaryBitmap);
       let decodeText = decodeResult.getText();
-      Logger.info(`parseImageQRCode end`);
+      Logger.info(`parseImageQRCode end ${decodeText}`);
       return { isSucess: true, decodeResult: decodeText };
     } catch (err) {
       let error = `The error is ${err}`;
@@ -139,13 +139,10 @@ class QRCodeParser {
   async getImageSource(imageSrc: string): Promise<ImageAttribute> {
     Logger.info(`getImageSource start`);
     let media = mediaLibrary.getMediaLibrary(AppStorage.Get<common.UIAbilityContext>('context'));
-    let fileKeyObj = mediaLibrary.FileKey;
-    let srcIndex = imageSrc.lastIndexOf('/');
-    // 提取id，图库获取到的uri数据为media/image/id,通过这个id在媒体库中查找数据
-    let srcId = imageSrc.substring(srcIndex + 1, imageSrc.length);
     let imagesIdFetchOp = {
-      selections: `${fileKeyObj.ID}= ?`,
-      selectionArgs: [srcId.toString()],
+      selections: ``,
+      selectionArgs: [],
+      uri:imageSrc
     }
     // 获取图片文件资源
     let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
