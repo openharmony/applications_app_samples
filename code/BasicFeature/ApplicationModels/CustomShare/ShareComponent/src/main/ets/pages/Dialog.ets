@@ -306,7 +306,7 @@ struct DialogLayoutComponent {
             } else if (item.index === 4) { // 应用内文件分享的入口
               this.openDialog()
               this.controller.close()
-            } else if (item.index === 5) { // 文本分享
+            } else if (item.index === 5) {
               this.controller.close();
               this.context.startAbility({
                 bundleName: "ohos.samples.customshare",
@@ -322,7 +322,7 @@ struct DialogLayoutComponent {
                   prompt.showToast({ message: $r('app.string.textShare_fail'), duration: 3000 });
                 }
               });
-            } else if (item.index === 6) { // 文本编辑
+            } else if (item.index === 6) {
               this.controller.close();
               this.context.startAbility({
                 bundleName: "ohos.samples.customshare",
