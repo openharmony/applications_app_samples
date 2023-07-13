@@ -20,11 +20,11 @@ import formHost from '@ohos.app.form.formHost';
 import prompt from '@ohos.promptAction';
 
 const TAG = '[Sample_PublishIndex]';
-let ConditionCity;
-let ConditionID = '110000';
-let ConditionData = '-30 ℃';
+let conditionCity;
+let conditionID = '110000';
+let conditionData = '-30 ℃';
 let conditionDataToNumber;
-let Context;
+let context;
 let shenYang;
 let hangZhou;
 const formInstanceFilter = {
@@ -32,16 +32,16 @@ const formInstanceFilter = {
   moduleName: 'persistentProxyForm'
 };
 
-function updateRDB(Context): void {
-  dataShare.createDataShareHelper(Context, 'datashareproxy://ohos.samples.formextability', { isProxy: true })
+function updateRDB(context): void {
+  dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', { isProxy: true })
     .then((data) => {
       Logger.info(TAG, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
       let dataShareHelper = data;
       let da = new dataSharePredicates.DataSharePredicates();
-      da.equalTo('cityId', ConditionID);
+      da.equalTo('cityId', conditionID);
       let va = {
-        'cityName': ConditionCity,
-        'cityTemperature': ConditionData
+        'cityName': conditionCity,
+        'cityTemperature': conditionData
       };
       try {
         let uri = 'datashareproxy://ohos.samples.formextability/test';
@@ -78,10 +78,10 @@ function publish(): void {
 @Component
 struct IndexSec {
   aboutToAppear() {
-    Context = getContext(this) as Context;
-    shenYang = Context.resourceManager.getStringSync($r('app.string.city_sy'));
-    hangZhou = Context.resourceManager.getStringSync($r('app.string.city_hz'));
-    ConditionCity = shenYang;
+    context = getContext(this) as context;
+    shenYang = context.resourceManager.getStringSync($r('app.string.city_sy'));
+    hangZhou = context.resourceManager.getStringSync($r('app.string.city_hz'));
+    conditionCity = shenYang;
   }
 
   @StorageLink('RunningFormInfo') RunningFormInfo: string = '';
@@ -128,8 +128,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
-                        ConditionID = '110000';
-                        ConditionCity = shenYang;
+                        conditionID = '110000';
+                        conditionCity = shenYang;
                       }
                     })
                 }
@@ -149,8 +149,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
-                        ConditionID = '310000';
-                        ConditionCity = hangZhou;
+                        conditionID = '310000';
+                        conditionCity = hangZhou;
                       }
                     })
                 }
@@ -173,7 +173,7 @@ struct IndexSec {
                 .borderRadius(16)
                 .backgroundColor($r('sys.color.ohos_id_color_text_field_sub_bg'))
                 .onChange((text) => {
-                  ConditionData = text + ' ℃';
+                  conditionData = text + ' ℃';
                 })
               Text('℃')
                 .fontSize(30)
@@ -195,11 +195,11 @@ struct IndexSec {
           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
           .onClick(() => {
-            conditionDataToNumber = ConditionData.split(/[℃]/);
+            conditionDataToNumber = conditionData.split(/[℃]/);
             if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
               Logger.info(TAG, `correct temperature is ${conditionDataToNumber[0]}`);
               publish();
-              updateRDB(Context);
+              updateRDB(context);
             } else {
               Logger.info(TAG, `incorrect temperature is ${conditionDataToNumber[0]}`);
               prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
