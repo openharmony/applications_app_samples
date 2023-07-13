@@ -159,6 +159,14 @@
     {
       "name": "no_data",
       "value": "无数据"
+    },
+    {
+      "name": "age_validate",
+      "value": "age invalidate"
+    },
+    {
+      "name": "add_contact",
+      "value": "新增联系人"
     }
   ]
 }

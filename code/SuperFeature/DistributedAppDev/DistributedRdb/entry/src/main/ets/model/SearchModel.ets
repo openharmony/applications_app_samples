@@ -31,6 +31,7 @@ class SearchData {
 
   searchText: string = ''; // 搜索文本
   searchTexts: string[] = ['', '']; // 搜索文本：区间
+  inputType: InputType = InputType.Normal; // 搜索框输入类型
 
 
   searchTips: string[] = ['', '']; // 搜索提示语
@@ -60,16 +61,19 @@ export default class SearchModel {
   public onSelect(index: number): void {
     this.searchData.clear();
     this.searchData.selectIndex = index;
+    this.searchData.inputType = InputType.Normal;
     switch (index) {
       case 0:
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_start');
         this.searchData.orderColumn = COLUMNS[3];
         this.searchData.isDoubleInput = false;
+        this.searchData.inputType = InputType.Number;
         break;
       case 1:
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_end');
         this.searchData.orderColumn = COLUMNS[3];
         this.searchData.isDoubleInput = false;
+        this.searchData.inputType = InputType.Number;
         break;
       case 2:
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_content');
@@ -80,11 +84,13 @@ export default class SearchModel {
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_age');
         this.searchData.orderColumn = COLUMNS[5];
         this.searchData.isDoubleInput = true;
+        this.searchData.inputType = InputType.Number;
         break;
       case 4:
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_age');
         this.searchData.orderColumn = COLUMNS[5];
         this.searchData.isDoubleInput = true;
+        this.searchData.inputType = InputType.Number;
         break;
       case 5:
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_name');
@@ -95,6 +101,7 @@ export default class SearchModel {
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_index');
         this.searchData.orderColumn = COLUMNS[0];
         this.searchData.isDoubleInput = false;
+        this.searchData.inputType = InputType.Number;
         break;
       case 7:
         this.searchData.searchPlaceholder = $r('app.string.search_placeholder_expression');
@@ -108,13 +115,17 @@ export default class SearchModel {
     if (this.onSelectCallback) {
       this.onSelectCallback();
     }
-  }
 
+    if (this.onDataCallback) {
+      this.onDataCallback();
+    }
+  }
 
   async getData(): Promise<void> {
     this.searchData.searchTips[0] = '';
     this.searchData.searchTips[1] = '';
-
+    this.queryData = [];
+    this.queryOtherData = [];
     let predicates = new data_rdb.RdbPredicates(TABLE_NAME);
     switch (this.searchData.selectIndex) {
       case 0:
