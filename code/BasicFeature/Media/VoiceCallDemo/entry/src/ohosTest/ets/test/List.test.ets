@@ -12,10 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import CallUI from './CallUI.test';
-import AnswerUI from './AnswerUI.test';
+import App from './App.test';
 
 export default function testsuite() {
-  CallUI();
-  AnswerUI();
+  App();
 }
