@@ -59,7 +59,7 @@ textShare/src/main/ets/
 ├──model
 |  └──Logger.ts
 ├──pages
-|  ├──Index.ets                       // EntryAbility页面
+|  ├──Index.ets                       // TextReceiveAbility页面
 |  ├──TemplateBuilder.ets             // 自定义组件页面
 |  └──UIExtenIndex.ets                // UIExtension页面
 ├──textreceiveability
@@ -72,7 +72,7 @@ textEdit/src/main/ets/
 ├──model
 |  └──Logger.ts
 ├──pages
-|  ├──Index.ets                       // EntryAbility页面
+|  ├──Index.ets                       // EditTextAbility页面
 |  ├──TemplateBuilder.ets             // 自定义组件页面
 |  └──UIExtenIndex.ets                // UIExtension页面
 └──uiextensionability
@@ -125,7 +125,7 @@ textEdit/src/main/ets/
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
-2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.8.5。
+2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.8.5,镜像版本号:Openharmony 4.0.8.5。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
