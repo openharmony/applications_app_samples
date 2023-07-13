@@ -128,6 +128,7 @@ export default struct QRCodeScanComponent {
             Image($r('app.media.scan_photo'))
               .width(30)
               .height(30)
+              .id('scanPhoto')
               .onClick(async () => {
                 // 打开相册获取图片
                 this.isQRCodeScanStopped = true
