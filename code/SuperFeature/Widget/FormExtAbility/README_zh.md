@@ -148,7 +148,7 @@ return formInfo.FormState.READY }。
 
 ### 依赖
 
-不涉及。
+本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../Launcher/)
 
 ### 约束与限制
 

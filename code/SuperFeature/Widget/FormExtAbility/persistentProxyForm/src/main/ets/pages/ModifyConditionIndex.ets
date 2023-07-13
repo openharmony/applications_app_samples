@@ -20,23 +20,23 @@ import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
 
 const TAG = '[Sample_ModifyConditionIndex]';
-let DataShareHelper;
-let ConditionID = '110000';
+let dataShareHelper;
+let conditionID = '110000';
 let context;
 
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`TAG updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let template = {
     predicates: {
-      'list': `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${ConditionID}`
+      'list': `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${conditionID}`
     },
     scheduler: ''
   };
   dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', {isProxy : true}).then((data) => {
-    DataShareHelper = data;
-    DataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', ConditionID, template);
+    dataShareHelper = data;
+    dataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', conditionID, template);
   });
-  let proxies = [{'key': 'datashareproxy://ohos.samples.formextability/test', 'subscriberId': ConditionID}];
+  let proxies = [{'key': 'datashareproxy://ohos.samples.formextability/test', 'subscriberId': conditionID}];
   let formData;
   Logger.info(TAG, `formData: ${JSON.stringify(formData)}`);
   let formBinding =  formBindingData.createFormBindingData(formData);
@@ -109,7 +109,7 @@ struct IndexThi {
                 .onChange((isChecked: boolean) => {
                   Logger.info('firstRadio status is ' + isChecked);
                   if (isChecked) {
-                    ConditionID = '110000';
+                    conditionID = '110000';
                     modifyCondition();
                   }
                 })
@@ -128,7 +128,7 @@ struct IndexThi {
                 .onChange((isChecked: boolean) => {
                   Logger.info('secondRadio status is ' + isChecked);
                   if (isChecked) {
-                    ConditionID = '310000';
+                    conditionID = '310000';
                     modifyCondition();
                   }
                 })
