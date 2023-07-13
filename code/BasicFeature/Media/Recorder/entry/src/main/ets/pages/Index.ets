@@ -62,7 +62,7 @@ struct Index {
       }
     } else if (operate === 'delete') {
       this.deleteDialogShow(1, [recorder], async () => {
-        await this.mediaManager.deleteFile(recorder.fileAsset.uri);
+        await this.mediaManager.deleteFile(recorder.fileAsset);
         let index = this.recordList.indexOf(recorder);
         this.recordList.splice(index, 1)
         this.getAudios();
@@ -108,7 +108,7 @@ struct Index {
           action: async () => {
             deleteAction()
             for (let record in checkRecords) {
-              await this.mediaManager.deleteFile(checkRecords[record].fileAsset.uri);
+              await this.mediaManager.deleteFile(checkRecords[record].fileAsset);
               if (this.record && this.record.title === checkRecords[record].title) {
                 this.audioModel.finish();
                 this.record = new Record(getContext(this) as common.UIAbilityContext);

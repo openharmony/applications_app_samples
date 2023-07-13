@@ -153,7 +153,7 @@ export struct AudioItem {
       }))
     )
     .onClick(() => {
-      Logger.info(TAG, `cilck,checkState=${this.checkState}, isSwipeLeft=${this.index == this.leftSliderIndex}`);
+      Logger.info(TAG, `cilck,checkState=${this.checkState}, this.index = ${this.index}, isSwipeLeft=${this.index == this.leftSliderIndex}`);
       if (this.checkState) {
         this.checkItem(this.index);
         return;
