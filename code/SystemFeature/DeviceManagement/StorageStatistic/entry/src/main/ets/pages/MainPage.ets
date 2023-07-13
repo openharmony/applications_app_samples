@@ -14,23 +14,36 @@
  */
 
 
-import Logger from '../utils/Logger'
-import { QueryStorageData } from '../common/QueryStorageData'
-import { StorageList } from './StorageList'
+import Logger from '../utils/Logger';
+import { QueryStorageData } from '../common/QueryStorageData';
+import { StorageList } from './StorageList';
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
 
-const TAG: string = 'MainPage'
+const TAG: string = 'MainPage';
+const permissions: Array<Permissions> = ['ohos.permission.GET_INSTALLED_BUNDLE_LIST'];
 
 @Entry
 @Component
 struct MainPage {
-  @State isStorageDataInit: boolean = false
-  private queryStorageData: QueryStorageData = new QueryStorageData()
+  @State isStorageDataInit: boolean = false;
+  private queryStorageData: QueryStorageData = new QueryStorageData();
 
-  aboutToAppear() {
-    // Wait until available data is available to display the main interface
+  async aboutToAppear() {
+    let context = getContext(this) as common.UIAbilityContext;
+    let atManager = abilityAccessCtrl.createAtManager();
+    try {
+      await atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`);
+      }).catch((err) => {
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`);
+      })
+    } catch(err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
     this.queryStorageData.initData((hasInit: boolean) => {
-      this.isStorageDataInit = hasInit
-      AppStorage.SetOrCreate('appDataList', this.queryStorageData.appDataList)
+      this.isStorageDataInit = hasInit;
+      AppStorage.SetOrCreate('appDataList', this.queryStorageData.appDataList);
     })
   }
 

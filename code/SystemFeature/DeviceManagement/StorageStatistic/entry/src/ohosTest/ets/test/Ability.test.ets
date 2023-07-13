@@ -13,25 +13,31 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
-
+import Logger from '../utils/Logger';
+const TAG = '[Sample_StorageStatistic_Test]';
+const BUNDLE = 'StorageStatistic_';
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 const DRIVER = Driver.create();
+
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-
     /**
      * 拉起应用
      */
     it('StartAbility_001', 0, async function (done) {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', 'StartAbility_001 begin');
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      Logger.info(TAG, BUNDLE +  'StartAbility_001 begin');
       try {
-        await abilityDelegatorRegistry.startAbility({
+        await delegator.startAbility({
           bundleName: 'ohos.samples.storagestaistic',
           abilityName: 'MainAbility'
         });
@@ -40,39 +46,48 @@ export default function abilityTest() {
         expect(0).assertEqual(err.code);
         done();
       }
-      hilog.info(0x0000, 'testTag', 'StartAbility_001 end');
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 end');
+    })
+
+    it('getPermission_001', 0, async function () {
+      Logger.info(TAG, BUNDLE + 'getPermission_001 begin');
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))));
+      let allowBtn = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.allow'))));
+      await allowBtn.click();
+      Logger.info(TAG, BUNDLE + 'getPermission_001 end');
     })
 
     /**
      * 检查首页
      */
     it('CheckIndex_001', 0, async function () {
-      hilog.info(0x0000, 'testTag', 'CheckIndex_001 begin');
+      Logger.info(TAG, BUNDLE + 'CheckIndex_001 begin');
       // 等待数据刷新
       await DRIVER.delayMs(5000);
       // 断言界面UI
       await DRIVER.assertComponentExist(ON.id('dataPanel'));
-      await DRIVER.assertComponentExist(ON.text('应用'));
-      await DRIVER.assertComponentExist(ON.text('音频'));
-      await DRIVER.assertComponentExist(ON.text('视频'));
-      await DRIVER.assertComponentExist(ON.text('图片'));
-      await DRIVER.assertComponentExist(ON.text('文件'));
-      await DRIVER.assertComponentExist(ON.text('系统'));
-      hilog.info(0x0000, 'testTag', 'CheckIndex_001 end');
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.query_data_application'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.query_data_audio'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.query_data_video'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.query_data_image'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.query_data_file'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.query_data_system'))));
+      Logger.info(TAG, BUNDLE + 'CheckIndex_001 end');
     })
 
     /**
      * 检查应用列表
      */
     it('CheckAppInfo_001', 0, async function () {
-      hilog.info(0x0000, 'testTag', 'CheckAppInfo_001 end');
+      Logger.info(TAG, BUNDLE + 'CheckAppInfo_001 end');
       // 等待数据刷新
-      let appInfo = await DRIVER.findComponent(ON.text('应用'));
+      let appInfo = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.query_data_application'))));
       await appInfo.click();
       await DRIVER.delayMs(1000);
       // 断言界面UI
       await DRIVER.assertComponentExist(ON.id('appInfo'));
-      hilog.info(0x0000, 'testTag', 'CheckAppInfo_001 end');
+      Logger.info(TAG, BUNDLE + 'CheckAppInfo_001 end');
     })
   })
 }
