@@ -131,11 +131,11 @@ struct Download {
         .select(this.checkList[index])
         .selectedColor($r('app.color.button_blue'))
         .margin({ left: 12 })
+        .hitTestBehavior(HitTestMode.None)
     }
     .width('100%')
     .padding({ left: 12, right: 12 })
     .height(48)
-    .hitTestBehavior(HitTestMode.Block)
     .onClick(() => {
       this.fileCheck(index);
     })
