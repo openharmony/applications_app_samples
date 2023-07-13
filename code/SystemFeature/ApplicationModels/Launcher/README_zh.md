@@ -95,8 +95,6 @@ entry/src/main/ets/
 
 Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230430/code/Solutions/Shopping/ASOrangeShopping )
 
-Launcher测试[Launcher.test.ets](./entry/src/ohosTest/ets/test/Launcher.test.ets)需要依赖[CrossChainBack](../TestRely/LauncherTest/CrossChainBack/)工程以及[StartRecentAbility](../TestRely/LauncherTest/StartRecentAbility/)工程，开始测试前需先安装以上两个应用。
-
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行。
