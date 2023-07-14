@@ -21,7 +21,6 @@ import common from '@ohos.app.ability.common';
 struct Index {
   @StorageLink('messages') messages: string = 'No shared information on the current page';
   @StorageLink('sharedFlag') sharedFlag: boolean = false;
-  @State background: string = '#ffffffff';
   private context = getContext(this) as common.UIAbilityContext;
   private shareDialog: CustomDialogController;
 
