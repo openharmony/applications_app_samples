@@ -17,7 +17,7 @@ import { Log } from '../utils/Log';
 import { Broadcast } from './Broadcast';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = 'BroadcastManager'
+const TAG = 'BroadcastManager';
 
 export class BroadcastManager {
   // The global Broadcast of the application process. Event registration and destruction should be paired

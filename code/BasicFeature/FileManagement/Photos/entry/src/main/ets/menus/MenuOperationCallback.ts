@@ -16,5 +16,5 @@
 export interface MenuOperationCallback {
   onCompleted(): void;
 
-  onError(): void
+  onError(): void;
 }

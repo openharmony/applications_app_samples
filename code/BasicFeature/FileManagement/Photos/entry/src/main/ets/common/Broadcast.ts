@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-type CallbackType = Function
+type CallbackType = Function;
 
 export class Broadcast {
   private callBackArray: Map<string, CallbackType[]> = new Map<string, CallbackType[]>();
@@ -23,9 +23,9 @@ export class Broadcast {
 
   public on(event: string, callback: CallbackType): void {
     if (this.callBackArray.get(event) === null || this.callBackArray.get(event) === undefined) {
-      this.callBackArray.set(event, [])
+      this.callBackArray.set(event, []);
     }
-    this.callBackArray.get(event).push(callback)
+    this.callBackArray.get(event).push(callback);
   }
 
   public off(event: string | null, callback: CallbackType | null): void {

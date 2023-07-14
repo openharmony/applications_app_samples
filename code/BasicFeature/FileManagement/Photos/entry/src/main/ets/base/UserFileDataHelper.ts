@@ -19,15 +19,15 @@ import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import { getResourceString } from '../utils/ResourceUtils';
 
-const TAG = 'UserFileDataHelper'
+const TAG = 'UserFileDataHelper';
 
 export class Rotatable {
-  rotatable: boolean
-  orientation: number
+  rotatable: boolean;
+  orientation: number;
 }
 
 export async function setOrientation(fileAsset: userFileManager.FileAsset, orientation: number): Promise<void> {
-  Log.info(TAG, 'setOrientation')
+  Log.info(TAG, 'setOrientation');
   try {
     let fd: number = await userFileModel.openAsset('RW', fileAsset);
     let imageSourceApi: image.ImageSource = image.createImageSource(fd);

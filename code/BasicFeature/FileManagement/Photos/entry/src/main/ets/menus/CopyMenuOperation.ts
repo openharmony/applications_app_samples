@@ -25,7 +25,7 @@ import { ItemDataSource } from '../common/ItemDataSource';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 
-const TAG = 'CopyMenuOperation'
+const TAG = 'CopyMenuOperation';
 
 export class CopyMenuOperation extends ProcessMenuOperation {
   private albumInfo: SimpleAlbumDataItem;

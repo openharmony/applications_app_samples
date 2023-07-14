@@ -22,7 +22,7 @@ import { screenManager } from '../common/ScreenManager';
 import { JumpSourceToMain } from '../models/JumpSourceToMain';
 import { RouterConstants } from '../constants/RouterConstants';
 
-const TAG = 'GotoPhotosMenuOperation'
+const TAG = 'GotoPhotosMenuOperation';
 
 export class GotoPhotosMenuOperation implements MenuOperation {
   private menuContext: MenuContext;

@@ -23,7 +23,7 @@ import { getResourceString } from '../utils/ResourceUtils';
 import { showToast } from '../utils/UiUtil';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 
-const TAG = 'RenameMenuOperation'
+const TAG = 'RenameMenuOperation';
 
 export class RenameMenuOperation implements MenuOperation, MenuOperationCallback {
   private menuContext: MenuContext;

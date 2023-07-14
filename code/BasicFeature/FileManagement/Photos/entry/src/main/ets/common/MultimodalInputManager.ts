@@ -16,7 +16,7 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 import { Log } from '../utils/Log';
 
 
-const TAG = 'MultimodalInputManager'
+const TAG = 'MultimodalInputManager';
 
 export class MultimodalInputManager {
 

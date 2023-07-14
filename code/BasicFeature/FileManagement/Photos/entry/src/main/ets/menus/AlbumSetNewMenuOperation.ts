@@ -29,7 +29,7 @@ import { AlbumDataItem } from '../common/AlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
 import { MediaConstants } from '../constants/MediaConstants';
 
-const TAG = 'AlbumSetNewMenuOperation'
+const TAG = 'AlbumSetNewMenuOperation';
 
 export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCallback {
   private menuContext: MenuContext;

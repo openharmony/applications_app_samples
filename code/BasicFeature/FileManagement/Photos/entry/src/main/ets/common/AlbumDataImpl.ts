@@ -20,7 +20,7 @@ import { getAlbumDisplayName } from '../base/UserFileDataHelper';
 import userFileManager from '@ohos.filemanagement.userFileManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-const TAG = 'AlbumDataImpl'
+const TAG = 'AlbumDataImpl';
 
 export class AlbumDataImpl {
   private blackList: string[] = [];
@@ -60,39 +60,39 @@ export class AlbumDataImpl {
       Log.info(TAG, 'no need');
       return;
     }
-    let albumType = MediaConstants.ALBUM_TYPE_SYSTEM
-    let albumSubType = MediaConstants.ALBUM_SUBTYPE_USER_GENERIC
+    let albumType = MediaConstants.ALBUM_TYPE_SYSTEM;
+    let albumSubType = MediaConstants.ALBUM_SUBTYPE_USER_GENERIC;
     switch (id) {
       case MediaConstants.ALBUM_ID_FAVOR:
-        albumSubType = MediaConstants.ALBUM_SUBTYPE_FAVOR
+        albumSubType = MediaConstants.ALBUM_SUBTYPE_FAVOR;
         break;
       case MediaConstants.ALBUM_ID_CAMERA:
-        albumSubType = MediaConstants.ALBUM_SUBTYPE_CAMERA
+        albumSubType = MediaConstants.ALBUM_SUBTYPE_CAMERA;
         break;
       case MediaConstants.ALBUM_ID_RECYCLE:
-        albumSubType = MediaConstants.ALBUM_SUBTYPE_RECYCLE
+        albumSubType = MediaConstants.ALBUM_SUBTYPE_RECYCLE;
         break;
       case MediaConstants.ALBUM_ID_SNAPSHOT:
-        albumSubType = MediaConstants.ALBUM_SUBTYPE_SNAPSHOT
+        albumSubType = MediaConstants.ALBUM_SUBTYPE_SNAPSHOT;
         break;
       case MediaConstants.ALBUM_ID_VIDEO:
-        albumSubType = MediaConstants.ALBUM_SUBTYPE_VIDEO
+        albumSubType = MediaConstants.ALBUM_SUBTYPE_VIDEO;
         break;
       case MediaConstants.ALBUM_ID_ALL:
-        await this.getAllPhotoAlbum(albumDataItems)
+        await this.getAllPhotoAlbum(albumDataItems);
         return;
       case MediaConstants.ALBUM_ID_USER:
-        albumType = MediaConstants.ALBUM_TYPE_USER
-        albumSubType = MediaConstants.ALBUM_SUBTYPE_USER_GENERIC
+        albumType = MediaConstants.ALBUM_TYPE_USER;
+        albumSubType = MediaConstants.ALBUM_SUBTYPE_USER_GENERIC;
         break;
       default:
         break;
     }
-    await this.getAlbumItemByUserFileMgr(id, albumType, albumSubType, albumDataItems)
+    await this.getAlbumItemByUserFileMgr(id, albumType, albumSubType, albumDataItems);
   }
 
   private async getAlbumItemByUserFileMgr(id: string, type: userFileManager.AlbumType, subType: userFileManager.AlbumSubType, albumDataItems: AlbumDataItem[]): Promise<void> {
-    let fetchResult = null
+    let fetchResult = null;
     try {
       Log.info(TAG, 'getAlbumItemByUserFileMgr');
       fetchResult = await userFileModel.getUserFileMgr().getAlbums(type, subType);
@@ -107,9 +107,9 @@ export class AlbumDataImpl {
         Log.info(TAG, 'albumAsset albumUri: ' + i + '---' + albumAsset.albumUri);
         Log.info(TAG, 'albumAsset count: ' + i + '---' + albumAsset.count);
         Log.info(TAG, 'albumAsset coverUri: ' + i + '---' + albumAsset.coverUri);
-        let photoFetchResult = null
-        let fileAsset = null
-        let count = 0
+        let photoFetchResult = null;
+        let fileAsset = null;
+        let count = 0;
         try {
           let predicates = new dataSharePredicates.DataSharePredicates();
           let fetchOptions = {
@@ -118,7 +118,7 @@ export class AlbumDataImpl {
           };
           photoFetchResult = await albumAsset.getPhotoAssets(fetchOptions);
           Log.info(TAG, 'photoFetchResult count: ' + photoFetchResult.getCount());
-          count = photoFetchResult.getCount()
+          count = photoFetchResult.getCount();
           fileAsset = await photoFetchResult.getFirstObject();
           Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
         } catch (err) {
@@ -128,16 +128,16 @@ export class AlbumDataImpl {
             photoFetchResult.close();
           }
         }
-        let displayName = 'unknown'
+        let displayName = 'unknown';
         if (id == MediaConstants.ALBUM_ID_USER) {
           displayName = albumAsset.albumName;
         } else {
           displayName = await getAlbumDisplayName(id);
         }
-        let albumType = albumAsset.albumType
-        let albumSubType = albumAsset.albumSubType
+        let albumType = albumAsset.albumType;
+        let albumSubType = albumAsset.albumSubType;
         let albumItem: AlbumDataItem = new AlbumDataItem(id, count, displayName, this.selectType, this.deviceId, albumType, albumSubType);
-        albumItem.uri = albumAsset.albumUri
+        albumItem.uri = albumAsset.albumUri;
         albumItem.update(fileAsset);
         albumDataItems.push(albumItem);
       }
@@ -151,12 +151,12 @@ export class AlbumDataImpl {
   }
 
   async getUserAlbumItemByUri(uri: string): Promise<userFileManager.Album> {
-    let fetchResult = null
-    let album: userFileManager.Album = null
+    let fetchResult = null;
+    let album: userFileManager.Album = null;
     try {
       Log.info(TAG, 'getUserAlbumItemByUri');
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo('uri', uri)
+      predicates.equalTo('uri', uri);
       let fetchOptions = {
         fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
         predicates: predicates
@@ -177,7 +177,7 @@ export class AlbumDataImpl {
   }
 
   async removeFileFromAlbum(albumUri: string, uri: string): Promise<boolean> {
-    let album = await this.getUserAlbumItemByUri(albumUri)
+    let album = await this.getUserAlbumItemByUri(albumUri);
     let fileAsset = await userFileModel.getMediaItemByUri(uri);
     if (album != null && fileAsset != null) {
       album.removePhotoAssets([fileAsset]).then(() => {
@@ -192,7 +192,7 @@ export class AlbumDataImpl {
   }
 
   async getAllPhotoAlbum(albumDataItems: AlbumDataItem[]): Promise<void> {
-    let photoFetchResult = null
+    let photoFetchResult = null;
     try {
       let predicates = new dataSharePredicates.DataSharePredicates();
       let fetchOptions = {
@@ -203,8 +203,8 @@ export class AlbumDataImpl {
       Log.info(TAG, 'getAllPhotoAlbum count: ' + photoFetchResult.getCount());
       let fileAsset = await photoFetchResult.getFirstObject();
       Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
-      let displayName = ''
-      let id = MediaConstants.ALBUM_ID_ALL
+      let displayName = '';
+      let id = MediaConstants.ALBUM_ID_ALL;
       displayName = await getAlbumDisplayName(id);
       let albumItem: AlbumDataItem = new AlbumDataItem(id, photoFetchResult.getCount(), displayName, this.selectType, this.deviceId, -1, -1);
       albumItem.update(fileAsset);

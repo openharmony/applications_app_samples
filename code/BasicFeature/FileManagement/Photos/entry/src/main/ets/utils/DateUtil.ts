@@ -17,7 +17,7 @@ import { Log } from './Log';
 import i18n from '@ohos.i18n';
 import Intl from '@ohos.intl';
 
-const TAG = 'DateUtil'
+const TAG = 'DateUtil';
 
 export class DateUtil {
   private static LANGUAGE_LOCALES_MAP: Map<string, string> = null;

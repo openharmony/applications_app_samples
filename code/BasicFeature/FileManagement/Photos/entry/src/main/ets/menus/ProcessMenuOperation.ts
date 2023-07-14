@@ -34,7 +34,7 @@ export interface Assets {
   targetAsset: userFileManager.FileAsset
 }
 
-const TAG = 'ProcessMenuOperation'
+const TAG = 'ProcessMenuOperation';
 
 export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String[]>, MenuOperationCallback {
   // Number of data operated in a batch

@@ -51,7 +51,7 @@ import { UserFileDataItem } from '../base/UserFileDataItem';
 import { showToast } from '../utils/UiUtil';
 import { LazyItem } from '../common/ItemDataSource';
 
-const TAG = 'PhotoGridPage'
+const TAG = 'PhotoGridPage';
 // Album Page
 @Entry
 @Component

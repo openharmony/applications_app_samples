@@ -17,33 +17,33 @@ import { Log } from '../utils/Log';
 const TAG = 'ItemDataSource'
 
 export class LazyItem<T> {
-  item: T
-  onItemUpdate: Function
-  index: number = -1
+  item: T;
+  onItemUpdate: Function;
+  index: number = -1;
 
   constructor(item: T, index: number, onItemUpdate?: Function) {
-    this.item = item
-    this.onItemUpdate = onItemUpdate
-    this.index = index
+    this.item = item;
+    this.onItemUpdate = onItemUpdate;
+    this.index = index;
   }
 
   update(item: T): void {
     if (this.onItemUpdate != null && this.index != -1) {
-      this.onItemUpdate(this.index, item)
+      this.onItemUpdate(this.index, item);
     }
   }
 
   getHashCode(): string {
     // @ts-ignore
-    return this.index + '' + this.item.getHashCode()
+    return this.index + '' + this.item.getHashCode();
   }
 
   get(): T {
-    return this.item
+    return this.item;
   }
 
   set(item: T): void {
-    this.item = item
+    this.item = item;
   }
 }
 

@@ -36,7 +36,7 @@ import { AlbumsDataSource } from '../common/AlbumsDataSource';
 import { AlbumDataItem } from '../common/AlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
 
-const TAG = 'AlbumSelect'
+const TAG = 'AlbumSelect';
 
 @Entry
 @Component

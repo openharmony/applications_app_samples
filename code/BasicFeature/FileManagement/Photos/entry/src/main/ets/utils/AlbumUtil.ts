@@ -17,7 +17,7 @@ import { Log } from './Log';
 import { screenManager } from '../common/ScreenManager'
 import { Constants } from '../constants/Constants'
 
-const TAG = 'UiUtil'
+const TAG = 'UiUtil';
 
 export class UiUtil {
   public static getAlbumGridCount(horizontal: boolean): number {

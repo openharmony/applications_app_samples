@@ -19,7 +19,7 @@ import { MenuOperation } from './MenuOperation';
 import { MenuContext } from './MenuContext';
 import { ItemDataSource } from '../common/ItemDataSource';
 
-const TAG = 'ShareMenuOperation'
+const TAG = 'ShareMenuOperation';
 
 export class ShareMenuOperation implements MenuOperation {
   private menuContext: MenuContext;

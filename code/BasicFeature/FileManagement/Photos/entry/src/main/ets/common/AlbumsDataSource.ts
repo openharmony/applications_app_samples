@@ -41,7 +41,7 @@ export class AlbumsDataSource extends ItemDataSource {
   }
 
   getData(index: number): LazyItem<AlbumDataItem> {
-        return new LazyItem<AlbumDataItem>(this.getDataByIndex(index), index, (index: number): void => this.onDataUpdateBindImpl(index))
+        return new LazyItem<AlbumDataItem>(this.getDataByIndex(index), index, (index: number): void => this.onDataUpdateBindImpl(index));
     }
 
   getDataByIndex(index: number): AlbumDataItem {
@@ -50,7 +50,7 @@ export class AlbumsDataSource extends ItemDataSource {
       return undefined;
     }
     this.albumDataItems[index].index = index;
-    return this.albumDataItems[index]
+    return this.albumDataItems[index];
   }
 
   isSelect(): boolean {
@@ -141,7 +141,7 @@ export class AlbumsDataSource extends ItemDataSource {
     }
 
   onDataUpdate(index: number): void {
-    this.onDataUpdateBindImpl(index)
+    this.onDataUpdateBindImpl(index);
   }
 
   private onDataUpdateBindImpl(index: number): void {

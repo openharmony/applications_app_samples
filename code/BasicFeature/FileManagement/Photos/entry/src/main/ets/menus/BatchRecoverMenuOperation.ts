@@ -19,7 +19,7 @@ import { MenuContext } from './MenuContext'
 import { ProcessMenuOperation } from './ProcessMenuOperation';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 
-const TAG = 'BatchRecoverMenuOperation'
+const TAG = 'BatchRecoverMenuOperation';
 
 export class BatchRecoverMenuOperation extends ProcessMenuOperation {
   constructor(menuContext: MenuContext) {

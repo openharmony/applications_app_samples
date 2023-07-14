@@ -19,7 +19,7 @@ import { MediaConstants } from '../constants/MediaConstants';
 import { userFileModel } from './UserFileModel';
 import { UserFileObserverCallback } from './UserFileObserverCallback';
 
-const TAG = 'UserFileObserver'
+const TAG = 'UserFileObserver';
 
 class UserFileObserver {
   callbacks: UserFileObserverCallback[] = [];
@@ -46,27 +46,27 @@ class UserFileObserver {
     if (this.callbacks.length == 1) {
       Log.info(TAG, 'registerObserver register media');
       try {
-                userFileModel.getUserFileMgr().on('imageChange', (): void => {
-                    Log.info(TAG, 'registerObserver on image');
-                    this.sendNotify(MediaConstants.MEDIA_TYPE_IMAGE);
-                })
-                userFileModel.getUserFileMgr().on('videoChange', (): void => {
-                    Log.info(TAG, 'registerObserver on video');
-                    this.sendNotify(MediaConstants.MEDIA_TYPE_VIDEO);
-                })
-                userFileModel.getUserFileMgr().on('deviceChange', (): void => {
-                    Log.info(TAG, 'registerObserver on device');
-                    this.sendNotify(MediaConstants.MEDIA_TYPE_DEVICE);
-                })
-                userFileModel.getUserFileMgr().on('albumChange', (): void => {
-                    Log.info(TAG, 'registerObserver on album');
-                    this.sendNotify(MediaConstants.MEDIA_TYPE_ALBUM);
-                })
-                userFileModel.getUserFileMgr().on('remoteFileChange', (): void => {
-                    Log.info(TAG, 'registerObserver on remoteFile');
-                    this.sendNotify(MediaConstants.MEDIA_TYPE_REMOTE);
-                })
-            } catch (err) {
+        userFileModel.getUserFileMgr().on('imageChange', (): void => {
+          Log.info(TAG, 'registerObserver on image');
+          this.sendNotify(MediaConstants.MEDIA_TYPE_IMAGE);
+        })
+        userFileModel.getUserFileMgr().on('videoChange', (): void => {
+          Log.info(TAG, 'registerObserver on video');
+          this.sendNotify(MediaConstants.MEDIA_TYPE_VIDEO);
+        })
+        userFileModel.getUserFileMgr().on('deviceChange', (): void => {
+          Log.info(TAG, 'registerObserver on device');
+          this.sendNotify(MediaConstants.MEDIA_TYPE_DEVICE);
+        })
+         userFileModel.getUserFileMgr().on('albumChange', (): void => {
+           Log.info(TAG, 'registerObserver on album');
+           this.sendNotify(MediaConstants.MEDIA_TYPE_ALBUM);
+         })
+         userFileModel.getUserFileMgr().on('remoteFileChange', (): void => {
+           Log.info(TAG, 'registerObserver on remoteFile');
+           this.sendNotify(MediaConstants.MEDIA_TYPE_REMOTE);
+         })
+      } catch (err) {
         Log.error(TAG, 'registerObserver faild, err: ' + JSON.stringify(err));
       }
     }

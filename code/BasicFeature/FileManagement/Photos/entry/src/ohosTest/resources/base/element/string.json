@@ -11,6 +11,34 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "permit",
+      "value": "permit"
+    },
+    {
+      "name": "album_all",
+      "value": "All photos"
+    },
+    {
+      "name": "album_camera",
+      "value": "Camera"
+    },
+    {
+      "name": "album_video",
+      "value": "Videos"
+    },
+    {
+      "name": "album_favor",
+      "value": "My favorites"
+    },
+    {
+      "name": "album_screen_shot",
+      "value": "Screenshots"
+    },
+    {
+      "name": "album_recycle",
+      "value": "Recently deleted"
     }
   ]
 }

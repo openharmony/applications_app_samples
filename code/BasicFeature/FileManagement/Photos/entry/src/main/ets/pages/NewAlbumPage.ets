@@ -40,7 +40,7 @@ import { LazyItem } from '../common/ItemDataSource';
 import { userFileModel } from '../base/UserFileModel';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-const TAG = 'NewAlbumPage'
+const TAG = 'NewAlbumPage';
 
 @Entry
 @Component

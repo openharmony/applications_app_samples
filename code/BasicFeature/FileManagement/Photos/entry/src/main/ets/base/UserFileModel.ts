@@ -22,7 +22,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { MediaConstants } from '../constants/MediaConstants'
 
-const TAG = 'UserFileModel'
+const TAG = 'UserFileModel';
 
 export class UserFileModelItem {
   fileAsset: userFileManager.FileAsset;

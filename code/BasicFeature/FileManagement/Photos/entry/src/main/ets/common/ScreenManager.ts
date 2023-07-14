@@ -53,10 +53,10 @@ interface StatusNaviHeight {
 }
 
 interface GetWindowMode {
-  getWindowMode(): Promise<WindowMode>
+  getWindowMode(): Promise<WindowMode>;
 }
 
-const TAG = 'ScreenManager'
+const TAG = 'ScreenManager';
 
 const APP_KEY_SCREEN_MANAGER = 'app_key_screen_manager';
 
@@ -66,7 +66,7 @@ const SCREEN_SIDEBAR: string = 'isSidebar';
 const COLUMN_MARGIN: number = 12;
 const COLUMN_GUTTER: number = 12;
 
-type CallbackType = Function
+type CallbackType = Function;
 
 class ScreenManager {
   readonly ON_WIN_SIZE_CHANGED = 'on_win_size_changed';
@@ -96,7 +96,7 @@ class ScreenManager {
 
   async initializationSize(win): Promise<void> {
     this.mainWindow = win;
-    this.setMainWindow(win)
+    this.setMainWindow(win);
     await this.checkWindowMode();
     this.getWindowProperties(win);
   }
@@ -114,9 +114,9 @@ class ScreenManager {
       }
     } else {
       if (this.events.get(event) === null || this.events.get(event) === undefined) {
-        this.events.set(event, [])
+        this.events.set(event, []);
       }
-      this.events.get(event).push(fn)
+      this.events.get(event).push(fn);
     }
   }
 
@@ -233,7 +233,7 @@ class ScreenManager {
         Log.debug(TAG, 'setMainWindow');
         win.on('windowSizeChange', (data: window.Size): void => {
             Log.debug(TAG, 'windowSizeChange ' + JSON.stringify(data));
-            this.checkWindowMode()
+            this.checkWindowMode();
             this.onWinSizeChanged(data);
         })
     }

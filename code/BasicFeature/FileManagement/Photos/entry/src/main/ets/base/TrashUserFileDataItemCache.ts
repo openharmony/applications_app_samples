@@ -15,7 +15,7 @@
 import { TrashUserFileDataItem } from './TrashUserFileDataItem';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = 'TrashUserFileDataItemCache'
+const TAG = 'TrashUserFileDataItemCache';
 
 class TrashUserFileDataItemCache {
   private trashMediaDataItemMap = new Map<string, TrashUserFileDataItem>();

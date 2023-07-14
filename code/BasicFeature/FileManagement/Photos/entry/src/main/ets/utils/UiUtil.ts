@@ -16,7 +16,7 @@ import prompt, { ShowToastOptions } from '@system.prompt';
 import { Log } from './Log';
 import { screenManager } from '../common/ScreenManager';
 
-const TAG = 'UiUtil'
+const TAG = 'UiUtil';
 const TOAST_DURATION = 3000;
 
 export function showToast(message: string): void {

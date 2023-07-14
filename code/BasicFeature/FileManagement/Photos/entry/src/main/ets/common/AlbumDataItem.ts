@@ -19,9 +19,9 @@ import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-const TAG = 'AlbumDataItem'
+const TAG = 'AlbumDataItem';
 
-let objectIndex = 0
+let objectIndex = 0;
 
 export class AlbumDataItem {
   index: number;
@@ -40,7 +40,7 @@ export class AlbumDataItem {
   objectIndex: number;
   albumType: number;
   albumSubType: number;
-  fileUir: string
+  fileUir: string;
 
   constructor(id: string, count: number, displayName: string, selectType: number, deviceId: string, albumType: number, albumSubType: number) {
     this.id = id;
@@ -56,7 +56,7 @@ export class AlbumDataItem {
   }
 
   getHashCode(): string {
-    return this.objectIndex + '' + this.id + ' ' + this.orientation + ' ' + this.isSelect
+    return this.objectIndex + '' + this.id + ' ' + this.orientation + ' ' + this.isSelect;
   }
 
   async load(): Promise<void> {
@@ -105,7 +105,7 @@ export class AlbumDataItem {
 
   async onDelete(): Promise<boolean> {
     try {
-      Log.error(TAG, this.displayName)
+      Log.error(TAG, this.displayName);
       await userFileModel.deleteAlbum(this.displayName);
       selectManager.deleteSelect(this.uri);
       this.status = MediaConstants.TRASHED;

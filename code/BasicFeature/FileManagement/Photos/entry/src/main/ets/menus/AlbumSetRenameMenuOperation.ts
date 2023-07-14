@@ -27,7 +27,7 @@ import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { MediaConstants } from '../constants/MediaConstants';
 
 
-const TAG = 'AlbumSetRenameMenuOperation'
+const TAG = 'AlbumSetRenameMenuOperation';
 
 export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperationCallback {
   private menuContext: MenuContext;

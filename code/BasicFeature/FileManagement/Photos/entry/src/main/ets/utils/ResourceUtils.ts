@@ -17,7 +17,7 @@ import resourceManager from '@ohos.resourceManager';
 import { Log } from './Log';
 import { GlobalContext } from '../common/GlobalContext';
 
-const TAG = 'ResourceUtils'
+const TAG = 'ResourceUtils';
 
 export async function getResourceString(resource: Resource): Promise<string> {
   try {

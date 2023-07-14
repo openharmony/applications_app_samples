@@ -15,7 +15,7 @@
 
 import { Log } from './Log';
 
-const TAG = 'ImageUtil'
+const TAG = 'ImageUtil';
 const MAX_BIT = 30;
 const BIT_SIXTEEN = 16;
 const BIT_EIGHT = 8;

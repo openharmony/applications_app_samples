@@ -20,7 +20,7 @@ import { UserFileDataItem } from '../base/UserFileDataItem';
 
 export class FavorUserFileDataItem extends UserFileDataItem {
   constructor(selections: string, selectionArgs: string[], index: number) {
-    super(selections, selectionArgs, '', index)
+    super(selections, selectionArgs, '', index);
   }
 
   async loadFileAsset(): Promise<userFileManager.FileAsset> {

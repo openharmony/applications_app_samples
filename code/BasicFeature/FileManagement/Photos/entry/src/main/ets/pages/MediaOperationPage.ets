@@ -32,7 +32,7 @@ import { MediaConstants } from '../constants/MediaConstants';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
 
-const TAG = 'MediaOperationPage'
+const TAG = 'MediaOperationPage';
 
 @Entry
 @Component

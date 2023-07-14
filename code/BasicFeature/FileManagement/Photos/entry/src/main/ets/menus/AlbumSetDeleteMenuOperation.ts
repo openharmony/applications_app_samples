@@ -20,7 +20,7 @@ import { AlbumDataItem } from '../common/AlbumDataItem';
 import { MenuContext } from './MenuContext';
 import { ProcessMenuOperation } from './ProcessMenuOperation';
 
-const TAG = 'AlbumSetDeleteMenuOperation'
+const TAG = 'AlbumSetDeleteMenuOperation';
 
 export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
   constructor(menuContext: MenuContext) {

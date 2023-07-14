@@ -17,14 +17,14 @@ import { GroupDataImpl } from './GroupDataImpl';
 import { LazyItem, ItemDataSource } from './ItemDataSource';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 
-const TAG = 'GroupItemDataSource'
+const TAG = 'GroupItemDataSource';
 
 export class GroupItemDataSource extends ItemDataSource {
   groupDataItem: UserFileDataItem[] = [];
   private groupDataImpl: GroupDataImpl = new GroupDataImpl();
 
   constructor() {
-    super()
+    super();
   }
 
   setSelectType(selectType: number): void {
@@ -73,15 +73,15 @@ export class GroupItemDataSource extends ItemDataSource {
   }
 
   getData(index: number): LazyItem<UserFileDataItem> {
-        if (index < 0 || index >= this.groupDataItem.length) {
-            Log.warn(TAG, index + '/' + this.groupDataItem.length);
-            return undefined;
-        }
-        if (this.groupDataItem[index] != null && this.groupDataItem[index] != undefined) {
-            this.groupDataItem[index].index = index;
-        }
-        return new LazyItem<UserFileDataItem>(this.groupDataItem[index], index, (index: number): void => this.onDataUpdateBindImpl(index));
+    if (index < 0 || index >= this.groupDataItem.length) {
+      Log.warn(TAG, index + '/' + this.groupDataItem.length);
+      return undefined;
     }
+    if (this.groupDataItem[index] != null && this.groupDataItem[index] != undefined) {
+      this.groupDataItem[index].index = index;
+    }
+    return new LazyItem<UserFileDataItem>(this.groupDataItem[index], index, (index: number): void => this.onDataUpdateBindImpl(index));
+  }
 
   getDataByIndex(index: number): UserFileDataItem {
     if (index < 0 || index >= this.groupDataItem.length) {
@@ -156,7 +156,7 @@ export class GroupItemDataSource extends ItemDataSource {
   }
 
   onDataUpdate(index: number): void {
-    this.onDataUpdateBindImpl(index)
+    this.onDataUpdateBindImpl(index);
   }
 
   private onDataUpdateBindImpl(index: number): void {

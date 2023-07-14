@@ -14,20 +14,20 @@
  */
 
 export class SimpleAlbumDataItem {
-  readonly id: string
-  readonly displayName: string
-  readonly uri: string //as uri
-  readonly deviceId: string
-  readonly deviceName: string
+  readonly id: string;
+  readonly displayName: string;
+  readonly uri: string; //as uri
+  readonly deviceId: string;
+  readonly deviceName: string;
   readonly albumType: number;
   readonly albumSubType: number;
 
   constructor(id: string, displayName: string, uri: string, deviceId: string, deviceName: string, albumType: number, albumSubType: number) {
-    this.id = id
-    this.displayName = displayName
-    this.uri = uri
-    this.deviceId = deviceId
-    this.deviceName = deviceName
+    this.id = id;
+    this.displayName = displayName;
+    this.uri = uri;
+    this.deviceId = deviceId;
+    this.deviceName = deviceName;
     this.albumType = albumType;
     this.albumSubType = albumSubType;
   }

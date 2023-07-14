@@ -34,7 +34,7 @@ import { terminateSelfWithResult } from '../utils/AbilityUtils';
 import Want from '@ohos.app.ability.Want'
 import common from '@ohos.app.ability.common'
 
-const TAG = 'SelectPhotoBrowser'
+const TAG = 'SelectPhotoBrowser';
 // select mode
 @Entry
 @Component

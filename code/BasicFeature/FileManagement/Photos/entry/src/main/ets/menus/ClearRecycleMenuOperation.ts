@@ -18,7 +18,7 @@ import { BatchDeleteMenuOperation } from './BatchDeleteMenuOperation';
 import { Log } from '../utils/Log';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 
-const TAG = 'ClearRecycleMenuOperation'
+const TAG = 'ClearRecycleMenuOperation';
 
 export class ClearRecycleMenuOperation extends BatchDeleteMenuOperation {
   constructor(menuContext: MenuContext) {

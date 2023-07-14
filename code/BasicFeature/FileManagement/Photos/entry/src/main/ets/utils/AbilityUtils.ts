@@ -17,7 +17,7 @@ import common from '@ohos.app.ability.common';
 import { Log } from './Log';
 import { GlobalContext } from '../common/GlobalContext';
 
-const TAG = 'AbilityUtils'
+const TAG = 'AbilityUtils';
 
 export async function startAbility(want: Want): Promise<void> {
   try {

@@ -19,7 +19,7 @@ import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import { UserFileDataItem } from './UserFileDataItem';
 
-const TAG = 'TrashUserFileDataItem'
+const TAG = 'TrashUserFileDataItem';
 
 export class TrashUserFileDataItem extends UserFileDataItem {
   constructor(selections: string, selectionArgs: string[], index: number) {
@@ -28,7 +28,7 @@ export class TrashUserFileDataItem extends UserFileDataItem {
   }
 
   async loadFileAsset(): Promise<userFileManager.FileAsset> {
-    Log.debug(TAG, 'loadFileAsset' + this.uri)
+    Log.debug(TAG, 'loadFileAsset' + this.uri);
     return await userFileModel.getMediaItemByUriFromTrash(this.uri);
   }
 

@@ -60,7 +60,7 @@ import { userFileDataItemCache } from '../base/UserFileDataItemCache';
 import { GlobalContext } from '../common/GlobalContext';
 // page of large photo
 
-const TAG = 'PhotoBrowser'
+const TAG = 'PhotoBrowser';
 
 @Entry
 @Component

@@ -26,7 +26,7 @@ import { TrashUserFileDataItem } from '../base/TrashUserFileDataItem';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 
-const TAG = 'GroupDataImpl'
+const TAG = 'GroupDataImpl';
 
 export class GroupDataImpl {
   private selectType: number = MediaConstants.SELECT_TYPE_ALL;

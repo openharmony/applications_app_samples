@@ -21,10 +21,10 @@ import { selectManager } from '../common/SelectManager';
 import userFileManager from '@ohos.filemanagement.userFileManager';
 import { screenManager } from '../common/ScreenManager';
 
-const TAG = 'UserFileDataItem'
-const STATUS_UNDEFINED = -1
-const STATUS_FALSE = 0
-const STATUS_TRUE = 1
+const TAG = 'UserFileDataItem';
+const STATUS_UNDEFINED = -1;
+const STATUS_FALSE = 0;
+const STATUS_TRUE = 1;
 
 export interface DateAdded {
   dateAdded: number;
@@ -32,68 +32,68 @@ export interface DateAdded {
 }
 
 export class UserFileDataItem implements DateAdded {
-  viewType: ViewType = ViewType.ITEM
-  readonly hashIndex: number
-  index: number
-  dateAdded: number | null = null
-  dateModified: number
-  dateTaken: number
-  status: number = MediaConstants.UNDEFINED
-  isSelect: boolean = false
-  uri: string
-  orientation: number
-  duration: number
-  size: number
+  viewType: ViewType = ViewType.ITEM;
+  readonly hashIndex: number;
+  index: number;
+  dateAdded: number | null = null;
+  dateModified: number;
+  dateTaken: number;
+  status: number = MediaConstants.UNDEFINED;
+  isSelect: boolean = false;
+  uri: string;
+  orientation: number;
+  duration: number;
+  size: number;
   width: number; // width changed by orientation
   height: number; // height changed by orientation
   imgWidth: number; // may be smaller than width, as width is too large
   imgHeight: number; // may be smaller than height, as height is too large
-  path: string = ''
-  title: string
-  displayName: string
-  mediaType: userFileManager.FileType
-  favouriteStatus: number = STATUS_UNDEFINED
-  canRotate: number = STATUS_UNDEFINED
-  selections: string = ''
+  path: string = '';
+  title: string;
+  displayName: string;
+  mediaType: userFileManager.FileType;
+  favouriteStatus: number = STATUS_UNDEFINED;
+  canRotate: number = STATUS_UNDEFINED;
+  selections: string = '';
   selectionArgs: string[] = [];
-  deviceId: string = ''
+  deviceId: string = '';
 
   constructor(selections: string, selectionArgs: string[], deviceId: string, index: number) {
-    this.selections = selections
-    this.selectionArgs = selectionArgs
-    this.deviceId = deviceId
-    this.hashIndex = index
-    this.index = index
+    this.selections = selections;
+    this.selectionArgs = selectionArgs;
+    this.deviceId = deviceId;
+    this.hashIndex = index;
+    this.index = index;
   }
 
   getHashCode(): string {
-    //时间线界面角度，收藏状态变更，都需要刷新界面；大图浏览界面角度变更，需要刷新界面
+    // 时间线界面角度，收藏状态变更，都需要刷新界面；大图浏览界面角度变更，需要刷新界面
     return this.status == MediaConstants.UNDEFINED ?
       '' + this.hashIndex :
       this.uri + this.favouriteStatus + ' ' + this.orientation + ' ' + this.isSelect
   }
 
   async loadFileAsset(): Promise<userFileManager.FileAsset> {
-    return await userFileModel.getMediaItemByUri(this.uri)
+    return await userFileModel.getMediaItemByUri(this.uri);
   }
 
   isLoad(): boolean {
     if (this.status > MediaConstants.UNDEFINED) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 
   async load(isForce: boolean): Promise<void> {
-    Log.info(TAG, 'load ' + this.status)
+    Log.info(TAG, 'load ' + this.status);
     if (this.status > (isForce ? MediaConstants.PART_LOADED : MediaConstants.UNDEFINED)) {
-      return
+      return;
     }
-    let fileAsset = await this.loadFileAsset()
+    let fileAsset = await this.loadFileAsset();
     if (fileAsset != null) {
-      this.update(fileAsset)
+      this.update(fileAsset);
     }
-    return
+    return;
   }
 
   update(fileAsset: userFileManager.FileAsset): void {

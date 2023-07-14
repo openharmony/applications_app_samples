@@ -14,7 +14,7 @@
  */
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 
-const TAG = ''
+const TAG = 'SelectManager';
 
 class SelectManager {
   private status: Map<string, boolean> = new Map<string, boolean>();
