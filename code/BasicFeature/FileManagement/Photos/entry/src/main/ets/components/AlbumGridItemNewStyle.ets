@@ -23,7 +23,6 @@ import router from '@system.router';
 import { Constants } from '../constants/Constants';
 import { MediaConstants } from '../constants/MediaConstants';
 import { AlbumDataItem } from '../common/AlbumDataItem';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { LazyItem } from '../common/ItemDataSource';
 
 // The item of album grid, and it's new style.
@@ -63,23 +62,21 @@ export struct AlbumGridItemNewStyle {
   iconMarkAnchorY = Constants.ALBUM_SET_NEW_ICON_SIZE + Constants.ALBUM_SET_NEW_ICON_MARGIN;
   @State cardWidth: number = 0;
   @State cardHeight: number = 0;
-  @State thumbnail: string = '';
+  @State thumbnail: PixelMap = undefined;
 
   aboutToAppear(): void {
     Log.debug(TAG, 'aboutToAppear');
     this.selectable = this.item.id != MediaConstants.ALBUM_ID_RECYCLE;
     screenManager.on(screenManager.ON_WIN_SIZE_CHANGED, (): void => this.updateCardSize());
-    startTrace('loadAlbumItem');
-    this.item.load().then<void, void>((): void => {
-      finishTrace('loadAlbumItem');
-      this.thumbnail = this.item.getThumbnail();
+    this.item.load().then<void, void>(async (): Promise<void> => {
+      this.thumbnail = await this.item.getThumbnail();
     })
     this.updateCardSize();
   }
 
   onIndexPageShow(): void {
-    this.item.load().then<void, void>((): void => {
-      this.thumbnail = this.item.getThumbnail();
+    this.item.load().then<void, void>(async (): Promise<void> => {
+      this.thumbnail = await this.item.getThumbnail();
     })
   }
 

@@ -23,7 +23,6 @@ import { Constants } from '../constants/Constants';
 import { screenManager } from '../common/ScreenManager';
 import { Broadcast } from '../common/Broadcast';
 import { NoPhotoComponent } from '../components/NoPhotoComponent';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { Action } from '../models/Action';
 import { ActionBar } from '../components/ActionBar';
 import { ActionBarProp } from '../common/ActionBarProp';
@@ -60,7 +59,6 @@ struct AlbumSelect {
   }
 
   aboutToAppear(): void {
-    startTrace('AlbumSetPageAboutToAppear');
     this.broadCast.on(Constants.ON_LOADING_FINISHED, (size: number): void => {
       Log.info(TAG, 'ON_LOADING_FINISHED size: ' + size);
       this.isEmpty = size == 0;
@@ -87,7 +85,7 @@ struct AlbumSelect {
         albumInfo = JSON.parse(param.albumInfo.toString());
       }
       if (albumInfo != null) {
-        this.albumsDataSource.setBlackList([albumInfo.id, MediaConstants.ALBUM_ID_RECYCLE]);
+        this.albumsDataSource.setBlackList([albumInfo.uri, MediaConstants.ALBUM_ID_RECYCLE]);
         Log.debug(TAG, 'the album Id is: ' + albumInfo.id);
       } else {
         this.albumsDataSource.setBlackList([MediaConstants.ALBUM_ID_RECYCLE]);
@@ -98,7 +96,6 @@ struct AlbumSelect {
     this.loadAlbums();
     this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
     this.updateActionBar();
-    finishTrace('AlbumSetPageAboutToAppear');
   }
 
   private loadAlbums(): void {

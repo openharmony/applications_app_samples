@@ -18,11 +18,11 @@ import { Log } from './Log';
 const TAG = 'hisysEventUtil';
 
 export function hiSysEventDataQueryTimedOut(interfaceName: string): number {
-   let timeOutId = setTimeout((): void => {
-     let params: Object = {
-       FAULT_ID: 'DATA_QUERY_OVERTIME',
-       MSG: interfaceName + ' Querying 1s data timed out.'
-     };
+  let timeOutId = setTimeout((): void => {
+    let params: Object = {
+      FAULT_ID: 'DATA_QUERY_OVERTIME',
+      MSG: interfaceName + ' Querying 1s data timed out.'
+    };
     let info: hiSysEvent.SysEventInfo = {
       domain: 'PHOTOS_APP',
       name: 'PHOTOS_FAULT',

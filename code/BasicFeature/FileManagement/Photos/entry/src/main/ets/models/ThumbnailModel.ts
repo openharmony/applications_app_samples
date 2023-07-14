@@ -16,7 +16,7 @@ import { screenManager } from '../common/ScreenManager';
 import { computeSampleSize } from '../utils/ImageUtil';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 
-export async function getThumbnail(mediaItem: UserFileDataItem, isCurrent: boolean): Promise<string> {
+export async function getThumbnail(mediaItem: UserFileDataItem, isCurrent: boolean): Promise<PixelMap> {
   await mediaItem.load(true);
   let imgWidth = mediaItem.width;
   let imgHeight = mediaItem.height;
@@ -25,7 +25,7 @@ export async function getThumbnail(mediaItem: UserFileDataItem, isCurrent: boole
   mediaItem.imgHeight = Math.ceil(mediaItem.height / scale);
   imgWidth = Math.ceil(imgWidth / scale);
   imgHeight = Math.ceil(imgHeight / scale);
-  return mediaItem.getThumbnail(imgWidth, imgHeight);
+  return await mediaItem.getThumbnail(imgWidth, imgHeight);
 }
 
 function generateSampleSize(imageWidth: number, imageHeight: number, isCurrent: boolean): number {

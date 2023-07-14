@@ -25,10 +25,10 @@ import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { Constants } from '../constants/Constants';
 import { NoPhotoComponent } from '../components/NoPhotoComponent';
 import { screenManager } from '../common/ScreenManager';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { broadcastManager } from '../common/BroadcastManager';
 import { MenuContext } from '../menus/MenuContext';
 import { CopyMenuOperation } from '../menus/CopyMenuOperation';
+import { MoveMenuOperation } from '../menus/MoveMenuOperation';
 import { JumpSourceToMain } from '../models/JumpSourceToMain';
 import { GridScrollBar } from '../components/GridScrollBar';
 import { NewAlbumBarModel } from '../models/NewAlbumBarModel';
@@ -97,8 +97,6 @@ struct NewAlbumPage {
         if (this.isNewAlbum) {
           AppStorage.SetOrCreate<UserFileDataItem[]>(Constants.APP_KEY_NEW_ALBUM_SELECTED, this.groupDataSource.getSelectedItems() as UserFileDataItem[]);
           this.groupDataSource.setSelect(false)
-          //let albumName = this.targetAlbum.displayName;
-          //userFileModel.createNewAlbumByUserFileMgr(albumName)
           let url = 'pages/Index'
           router.back({
             uri: url,
@@ -107,7 +105,7 @@ struct NewAlbumPage {
             }
           })
         } else {
-          this.copyOperation();
+          this.moveOperation();
           this.groupDataSource.setSelect(false)
         }
 	      }
@@ -197,7 +195,19 @@ struct NewAlbumPage {
       });
     }
   }
-
+  private moveOperation(): void {
+    let menuContext = new MenuContext();
+    this.onOperationStart = (): void => this.onOperationStartBindImpl();
+    this.onOperationEnd = (): void => this.onOperationEndBindImpl();
+    menuContext
+      .withDataSource(this.groupDataSource)
+      .withOperationStartCallback(this.onOperationStart)
+      .withOperationEndCallback(this.onOperationEnd)
+      .withBroadCast(this.broadCast)
+      .withAlbumInfo(this.targetAlbum);
+    let menuOperation = new MoveMenuOperation(menuContext);
+    menuOperation.doAction();
+  }
   private copyOperation(): void {
     let menuContext = new MenuContext();
     this.onOperationStart = (): void => this.onOperationStartBindImpl();
@@ -213,14 +223,13 @@ struct NewAlbumPage {
   }
 
   aboutToAppear(): void {
-    startTrace('PhotoGridPageAboutToAppear');
     let param: ParamsInterface = router.getParams();
     if (param.item != null) {
       Log.debug(TAG, 'After router.getParams, param is: ' + JSON.stringify(param));
       let item = JSON.parse(param.item.toString()) as AlbumDataItem;
       this.groupDataSource.setAlbumId(item.id)
       this.groupDataSource.setAlbumType(item.albumType)
-      this.groupDataSource.setAlbumSubType(item.albumSubType)
+      this.groupDataSource.setAlbumSubtype(item.albumSubType)
       this.groupDataSource.setAlbumName(item.displayName)
     }
     this.groupDataSource.reloadGroupItemData(true).then<void, void>((isEmpty: boolean): void => {
@@ -246,7 +255,6 @@ struct NewAlbumPage {
     this.moreMenuList.push(Action.INFO);
 
     this.updateActionBar();
-    finishTrace('PhotoGridPageAboutToAppear');
   }
 
   private initGridRowCount(): void {

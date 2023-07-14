@@ -19,7 +19,6 @@ import { Broadcast } from '../common/Broadcast';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { broadcastManager } from '../common/BroadcastManager';
 import { Constants } from '../constants/Constants';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import router, { ParamsInterface } from '@system.router';
 import app from '@system.app';
 
@@ -44,7 +43,6 @@ struct Index {
   }
 
   aboutToAppear(): void {
-  startTrace('indexPageAppearToShow');
   app.setImageCacheCount(100);
   app.setImageRawDataCacheSize(100*1024*1024);
   if (AppStorage.Get<boolean>(Constants.BACK_FROM_FORM_DETAIL) != null) {
@@ -77,7 +75,6 @@ struct Index {
   } else if (this.jumpSource == JumpSourceToMain.ALBUM) {
     router.clear();
   }
-  finishTrace('indexPageAppearToShow');
   }
 
   onPageHide(): void {

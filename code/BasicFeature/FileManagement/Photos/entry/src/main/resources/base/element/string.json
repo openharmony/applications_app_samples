@@ -181,6 +181,10 @@
       "value": "DELETE"
     },
     {
+      "name": "dialog_remove",
+      "value": "REMOVE"
+    },
+    {
       "name": "dialog_recycle",
       "value": "DELETE"
     },
@@ -643,6 +647,10 @@
     {
       "name": "action_move_to_album",
       "value": "Move to album"
+    },
+    {
+      "name": "action_remove_from_album",
+      "value": "Remove from album"
     },
     {
       "name": "action_copy_to_album",

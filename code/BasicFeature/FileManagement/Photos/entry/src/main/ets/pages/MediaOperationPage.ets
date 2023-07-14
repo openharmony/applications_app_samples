@@ -59,7 +59,7 @@ struct MediaOperationPage {
       if (param.albumInfo != null) {
         this.albumInfo = JSON.parse(param.albumInfo.toString()) as SimpleAlbumDataItem;
         this.sourceAlbumId = this.albumInfo.id;
-        //blackList.push(this.sourceAlbumId)
+        blackList.push(this.albumInfo.uri)
         Log.info(TAG, 'router getParams pageType:' + this.pageType + ',Album:' + this.sourceAlbumId);
       }
     }

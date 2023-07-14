@@ -7,7 +7,6 @@ import { Log } from '../utils/Log';
 import { screenManager } from '../common/ScreenManager';
 import { Constants } from '../constants/Constants';
 import { broadcastManager } from '../common/BroadcastManager';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { userFileModel } from '../base/UserFileModel';
 import router from '@system.router';
@@ -36,20 +35,16 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam): void {
     Log.info(this.TAG, 'Application onCreate');
-    startTrace('onCreate');
     // Ability is creating, initialize resources for this ability
     GlobalContext.getContext().setObject('appContext', this.context);
     userFileModel.onCreate(this.context);
     mFilterMediaType = MediaConstants.SELECT_TYPE_ALL;
     AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
-    finishTrace('onCreate');
     Log.info(this.TAG, 'Application onCreate end');
   }
 
   onNewWant(want: Want): void {
-    startTrace('onNewWant');
     AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
-    finishTrace('onNewWant');
   }
 
   onDestroy(): void {
@@ -59,19 +54,13 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage): void {
-        startTrace('onWindowStageCreate');
         // Main window is created, set main page for this ability
         Log.info(this.TAG, 'Application onWindowStageCreate');
         GlobalContext.getContext().setObject('photosWindowStage', windowStage);
-        startTrace('getMainWindow');
         windowStage.getMainWindow().then((win: window.Window): void => {
             AppStorage.SetOrCreate<window.Window>(Constants.MAIN_WINDOW, win);
-            finishTrace('getMainWindow');
-            startTrace('initializationSize');
             screenManager.initializationSize(win).then<void, void>((): void => {
-                finishTrace('initializationSize');
                 windowStage.setUIContent(this.context, pagePath, null);
-                finishTrace('onWindowStageCreate');
             }).catch<void>((): void => {
                 Log.error(this.TAG, 'get device screen info failed.');
             });

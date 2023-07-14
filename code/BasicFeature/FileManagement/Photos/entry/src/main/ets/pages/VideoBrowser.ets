@@ -22,7 +22,6 @@ import { Broadcast } from '../common/Broadcast';
 import { screenManager } from '../common/ScreenManager';
 import { broadcastManager } from '../common/BroadcastManager';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 
 @Entry
 @Component
@@ -60,7 +59,6 @@ struct VideoBrowser {
   }
 
   aboutToAppear(): void {
-    startTrace('VideoBrowserAboutToAppear');
     let param: ParamsInterface = router.getParams();
     if(param.uri != null ) this.uri = param.uri.toString();
     this.dateAdded = 0;
@@ -76,7 +74,6 @@ struct VideoBrowser {
     this.timeAndLocation = DateUtil.getLocalizedTime(this.dateAdded);
     this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
     screenManager.setSystemUi(false);
-    finishTrace('VideoBrowserAboutToAppear');
   }
 
   aboutToDisappear(): void {

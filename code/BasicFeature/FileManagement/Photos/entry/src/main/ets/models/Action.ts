@@ -49,6 +49,8 @@ enum ActionID {
   ROTATE,
   MOVE,
   MOVE_INVALID,
+  REMOVE,
+  REMOVE_INVALID,
   COPY,
   COPY_INVALID,
   NAVIGATION_ALBUMS,
@@ -351,6 +353,22 @@ export class Action {
     id: ActionID.MOVE_INVALID,
     iconRes: null,
     textRes: $r('app.string.action_move_to_album'),
+    isAutoTint: null,
+    fillColor: $r('app.color.icon_disabled_color'),
+    actionType: null
+  });
+  public static REMOVE = new Action({
+    id: ActionID.REMOVE,
+    iconRes: null,
+    textRes: $r('app.string.action_remove_from_album'),
+    isAutoTint: null,
+    fillColor: null,
+    actionType: null
+  });
+  public static REMOVE_INVALID = new Action({
+    id: ActionID.REMOVE_INVALID,
+    iconRes: null,
+    textRes: $r('app.string.action_remove_from_album'),
     isAutoTint: null,
     fillColor: $r('app.color.icon_disabled_color'),
     actionType: null

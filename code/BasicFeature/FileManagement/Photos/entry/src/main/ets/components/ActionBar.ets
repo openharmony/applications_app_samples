@@ -60,7 +60,7 @@ export struct ActionBar {
             isAutoTint: item.getLeftAction().isAutoTint,
             colorMode: item.getColorMode(),
             isFirst: true
-          })
+          }).id('leftButton')
         }, (item: ActionBarProp): string => {return item.getLeftAction().actionID.toString()})
       }
       if (this.actionBarProp.getMode() === ActionBarMode.DETAIL_MODE) {

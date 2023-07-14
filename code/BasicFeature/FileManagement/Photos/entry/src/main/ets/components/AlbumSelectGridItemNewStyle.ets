@@ -50,13 +50,13 @@ export struct AlbumSelectGridItemNewStyle {
   @State cardWidth: number = 0;
   @State cardHeight: number = 0;
   @State transformV: number = 0;
-  @State thumbnail: string = '';
+  @State thumbnail: PixelMap = undefined;
 
   aboutToAppear(): void {
     Log.debug(TAG, 'aboutToAppear + ' + this.item.uri);
     screenManager.on(screenManager.ON_WIN_SIZE_CHANGED, (): void  => this.updateCardSize());
-    this.item.load().then<void, void>((): void  => {
-      this.thumbnail = this.item.getThumbnail()
+    this.item.load().then<void, void>(async (): Promise<void>  => {
+      this.thumbnail = await this.item.getThumbnail()
     })
     this.updateCardSize();
   }

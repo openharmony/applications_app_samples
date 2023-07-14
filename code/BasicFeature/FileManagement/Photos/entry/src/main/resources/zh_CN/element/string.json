@@ -101,6 +101,10 @@
       "value": "删除"
     },
     {
+      "name": "action_remove",
+      "value": "移除"
+    },
+    {
       "name": "action_clear_recycle",
       "value": "清空"
     },
@@ -179,6 +183,10 @@
     {
       "name": "dialog_delete",
       "value": "删除"
+    },
+    {
+      "name": "dialog_remove",
+      "value": "移除"
     },
     {
       "name": "dialog_recycle",
@@ -462,7 +470,7 @@
     },
     {
       "name": "move_to",
-      "value": "仅关联到"
+      "value": "加入到"
     },
     {
       "name": "copy_to",
@@ -478,11 +486,11 @@
     },
     {
       "name": "move_progress_message",
-      "value": "正在仅关联到\"%s\""
+      "value": "正在加入到\"%s\""
     },
     {
       "name": "move_cancel_message",
-      "value": "已仅关联%s%，是否停止剩余文件的仅关联？"
+      "value": "已加入%s%，是否停止剩余文件的加入？"
     },
     {
       "name": "copy_progress_message",
@@ -538,7 +546,7 @@
     },
     {
       "name": "move_failed_single",
-      "value": "仅关联失败，请重试"
+      "value": "加入失败，请重试"
     },
     {
       "name": "download_failed_multi",
@@ -638,7 +646,11 @@
     },
     {
       "name": "action_move_to_album",
-      "value": "仅关联到相册"
+      "value": "加入到相册"
+    },
+    {
+      "name": "action_remove_from_album",
+      "value": "从相册移除"
     },
     {
       "name": "action_copy_to_album",
@@ -670,7 +682,7 @@
     },
     {
       "name": "move",
-      "value": "仅关联"
+      "value": "加入"
     },
     {
       "name": "add_notes",

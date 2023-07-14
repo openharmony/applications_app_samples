@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { MediaConstants } from '../constants/MediaConstants';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { screenManager } from '../common/ScreenManager';
@@ -20,7 +20,7 @@ import { screenManager } from '../common/ScreenManager';
 export class InnerUserFileDataItem extends UserFileDataItem {
   constructor(uri: string, index: number) {
     super('', [] as string[], '', index);
-    this.mediaType = userFileManager.FileType.IMAGE;
+    this.mediaType = photoAccessHelper.PhotoType.IMAGE;
     this.uri = uri;
     this.size = 256;
     this.orientation = 0;

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { userFileModel } from '../base/UserFileModel';
 import { selectManager } from './SelectManager';
 import { Log } from '../utils/Log';
@@ -41,6 +41,8 @@ export class AlbumDataItem {
   albumType: number;
   albumSubType: number;
   fileUir: string;
+  fileAsset: photoAccessHelper.PhotoAsset;
+  thumbnail: PixelMap = undefined;
 
   constructor(id: string, count: number, displayName: string, selectType: number, deviceId: string, albumType: number, albumSubType: number) {
     this.id = id;
@@ -64,37 +66,55 @@ export class AlbumDataItem {
       return;
     }
     let fileAsset = (await userFileModel.getMediaItemByUri(this.fileUir));
-    this.update(fileAsset);
+    await this.update(fileAsset);
   }
 
-  update(fileAsset: userFileManager.FileAsset): void {
+  async update(fileAsset: photoAccessHelper.PhotoAsset): Promise<void> {
     Log.info(TAG, 'this.uri ' + this.displayName);
     Log.info(TAG, 'this.uri ' + this.uri);
     if (fileAsset != null) {
       this.fileUir = fileAsset.uri;
+      this.fileAsset = fileAsset;
+      let size = { width: MediaConstants.DEFAULT_SIZE, height: MediaConstants.DEFAULT_SIZE };
+      if (this.fileAsset != null) {
+        await this.getThumbnail();
+      }
       Log.info(TAG, 'this.fileUri ' + this.fileUir);
     }
     this.status = MediaConstants.LOADED;
     this.isSelect = selectManager.isSelect(this.id, this.isSelect);
   }
 
-  getThumbnail(): string {
-    Log.debug(TAG, 'this.uri ' + this.uri);
-    return this.fileUir + '/thumbnail/256/256';
+  async getThumbnail(): Promise<PixelMap> {
+    if (this.thumbnail == undefined) {
+      let size = { width: MediaConstants.DEFAULT_SIZE, height: MediaConstants.DEFAULT_SIZE };
+      try {
+        this.thumbnail = await this.fileAsset.getThumbnail(size)
+      } catch (err) {
+        Log.error(TAG, 'getThumbnail error: ' + JSON.stringify(err));
+      }
+    }
+    return this.thumbnail
   }
 
   async getVideoCount(): Promise<number> {
     if (this.selectType == MediaConstants.SELECT_TYPE_IMAGE) {
       return 0;
     }
-    let fileAssets: userFileManager.FileAsset[] = [];
+    let fileAssets: photoAccessHelper.PhotoAsset[] = [];
+    let albumPredicates = new dataSharePredicates.DataSharePredicates();
+    albumPredicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, this.displayName)
+    let albumFetchOption = {
+      fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
+      predicates: albumPredicates
+    };
     let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo('file_type', userFileManager.FileType.VIDEO)
+    predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO)
     let fileFetchOption = {
       fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
       predicates: predicates
     };
-    fileAssets = await userFileModel.getAllMediaItemsByType(this.albumType, this.albumSubType, null, fileFetchOption)
+    fileAssets = await userFileModel.getAllMediaItemsByType(this.albumType, this.albumSubType, albumFetchOption, fileFetchOption)
     return fileAssets.length;
   }
 

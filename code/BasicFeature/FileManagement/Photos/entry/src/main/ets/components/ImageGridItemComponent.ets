@@ -12,16 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { Log } from '../utils/Log';
 import { AnimationConstants } from '../constants/AnimationConstants';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { DateUtil } from '../utils/DateUtil';
 import { Broadcast } from '../common/Broadcast';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
-import { startTrace } from '../utils/TraceControllerUtils';
 import { MediaConstants } from '../constants/MediaConstants';
-import { startTraceWithTaskId, finishTraceWithTaskId } from '../utils/TraceControllerUtils';
 import { LazyItem} from '../common/ItemDataSource';
 
 const TAG = 'ImageGridItemComponent'
@@ -31,7 +29,7 @@ export struct ImageGridItemComponent {
   @Consume broadCast: Broadcast;
   @Consume  @Watch('restPress') isSelectedMode: boolean;
   @Consume @Watch('onShow') isShow: boolean;
-  @State thumbnail: string = '';
+  @State thumbnail: PixelMap = undefined;
   @State isFavourite: boolean = false;
   @State pressAnimScale: number = 1.0;
   @State isError: boolean = false;
@@ -58,21 +56,16 @@ export struct ImageGridItemComponent {
     this.resetShow();
   }
 
-  private resetShow(): void {
-    Log.info(TAG, 'getThumbnail1 ' + this.thumbnail);
+  private async resetShow(): Promise<void> {
     if (this.mediaItem.isLoad()) {
-      this.thumbnail = this.mediaItem.getThumbnail(MediaConstants.DEFAULT_SIZE, MediaConstants.DEFAULT_SIZE);
-      Log.info(TAG, 'getThumbnail11 ' + this.thumbnail);
+      this.thumbnail = await this.mediaItem.getThumbnail(MediaConstants.DEFAULT_SIZE, MediaConstants.DEFAULT_SIZE);
       this.mediaItem.isFavor().then<void, void>((status: boolean): void => {
         this.isFavourite = status;
       })
     } else {
-	      startTraceWithTaskId('load MediaItem', this.mediaItem.index);
-      this.mediaItem.load(false).then<void, void>((): void => {
-        finishTraceWithTaskId('load MediaItem', this.mediaItem.index);
-        this.thumbnail = this.mediaItem.getThumbnail(MediaConstants.DEFAULT_SIZE, MediaConstants.DEFAULT_SIZE);
+      this.mediaItem.load(false).then<void, void>(async (): Promise<void> => {
+        this.thumbnail = await this.mediaItem.getThumbnail(MediaConstants.DEFAULT_SIZE, MediaConstants.DEFAULT_SIZE);
         this.isError = false;
-        Log.info(TAG, 'getThumbnail2 ' + this.thumbnail);
         this.mediaItem.isFavor().then<void, void>((status: boolean): void => {
           this.isFavourite = status;
         })
@@ -101,7 +94,6 @@ export struct ImageGridItemComponent {
   async routePage(isError: boolean): Promise<void> {
     Log.info(TAG, 'routePage ' + isError);
     try {
-      startTrace('enterPhotoBrowser');
       if (this.isThird || this.isPreview) {
         this.broadCast.emit(BroadcastConstants.JUMP_THIRD_PHOTO_BROWSER, [this.pageName, this.mediaItem]);
       } else {
@@ -141,13 +133,13 @@ export struct ImageGridItemComponent {
     this.onSelected();
   }
 
-  jumpToPhotoBrowser(): void {
+  async jumpToPhotoBrowser(): Promise<void> {
     Log.info(TAG,'jumpToPhotoBrowser'+this.isEnteringPhoto)
     if(this.isEnteringPhoto){
       return;
     }
     this.isEnteringPhoto = true;
-    this.thumbnail = this.mediaItem.getThumbnail(this.mediaItem.imgWidth, this.mediaItem.imgHeight);
+    this.thumbnail = await this.mediaItem.getThumbnail(this.mediaItem.imgWidth, this.mediaItem.imgHeight);
     Log.info(TAG,'column click, first change source:'+this.thumbnail)
     this.isPush = true;
   }
@@ -174,7 +166,7 @@ export struct ImageGridItemComponent {
         })
         .onError((): void => {
           Log.error(TAG, 'alt Image ' + this.mediaItem.index + ' error :' + this.thumbnail);
-          if (this.thumbnail.length == 0 || this.mediaItem.width == 0 || this.mediaItem.height == 0) {
+          if (this.thumbnail == undefined || this.mediaItem.width == 0 || this.mediaItem.height == 0) {
             this.resetShow()
           } else {
             this.isError = true
@@ -185,7 +177,7 @@ export struct ImageGridItemComponent {
           zIndex: 0,
         })
 
-      if (this.mediaItem.mediaType == userFileManager.FileType.VIDEO) {
+      if (this.mediaItem.mediaType == photoAccessHelper.PhotoType.VIDEO) {
         Column()
           .position({ x: '0%', y: '50%' })
           .height('50%')

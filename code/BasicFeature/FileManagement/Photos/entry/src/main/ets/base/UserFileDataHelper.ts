@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import image from '@ohos.multimedia.image';
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { userFileModel } from './UserFileModel';
 import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
@@ -26,7 +26,7 @@ export class Rotatable {
   orientation: number;
 }
 
-export async function setOrientation(fileAsset: userFileManager.FileAsset, orientation: number): Promise<void> {
+export async function setOrientation(fileAsset: photoAccessHelper.PhotoAsset, orientation: number): Promise<void> {
   Log.info(TAG, 'setOrientation');
   try {
     let fd: number = await userFileModel.openAsset('RW', fileAsset);
@@ -37,7 +37,7 @@ export async function setOrientation(fileAsset: userFileManager.FileAsset, orien
   } catch (err) {
     Log.error(TAG, 'setOrientation err ' + JSON.stringify(err));
     try {
-      fileAsset.set(userFileManager.ImageVideoKey.ORIENTATION.toString(), orientation.toString());
+      fileAsset.set(photoAccessHelper.PhotoKeys.ORIENTATION.toString(), orientation.toString());
       await fileAsset.commitModify();
     } catch (err) {
       Log.error(TAG, 'setOrientation err ' + JSON.stringify(err));
@@ -76,4 +76,16 @@ export async function getAlbumDisplayName(name: string): Promise<string> {
     return await getResourceString($r('app.string.album_screen_shot'));
   }
   return null;
+}
+
+export async function getSystemAlbumDisplayName(): Promise<string[]> {
+  let albumNames = [];
+  albumNames.push(await getResourceString($r('app.string.album_all')));
+  albumNames.push(await getResourceString($r('app.string.album_video')));
+  albumNames.push(await getResourceString($r('app.string.album_recycle')));
+  albumNames.push(await getResourceString($r('app.string.album_camera')));
+  albumNames.push(await getResourceString($r('app.string.album_favor')));
+  albumNames.push(await getResourceString($r('app.string.album_remote_device')));
+  albumNames.push(await getResourceString($r('app.string.album_screen_shot')));
+  return albumNames;
 }

@@ -81,7 +81,7 @@ export struct DeleteDialog {
               .fontWeight(FontWeight.Medium)
               .width('50%')
               .textAlign(TextAlign.Center)
-          }
+          }.id('deleteConfirm')
           .margin({
             left: $r('app.float.details_dialog_button_margin_left'),
             right: $r('app.float.details_dialog_button_margin_right')

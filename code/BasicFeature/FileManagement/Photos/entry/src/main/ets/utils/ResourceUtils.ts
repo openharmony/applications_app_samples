@@ -25,7 +25,7 @@ export async function getResourceString(resource: Resource): Promise<string> {
     let context = GlobalContext.getContext().getObject('appContext');
     let mgr: resourceManager.ResourceManager = await resourceManager.getResourceManager(context);
     if (mgr != null || mgr != undefined) {
-      return await mgr.getString(resource.id);
+      return await mgr.getStringValue(resource.id);
     } else {
       Log.warn(TAG, 'getResourceManager instance is none');
       return null;

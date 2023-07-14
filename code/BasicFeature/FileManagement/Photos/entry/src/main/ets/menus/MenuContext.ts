@@ -16,7 +16,7 @@ import { ItemDataSource } from '../common/ItemDataSource';
 import { UserFileDataItem } from '../base/UserFileDataItem'
 import { Broadcast } from '../common/Broadcast'
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 export class MenuContext {
   items: UserFileDataItem[] = [];
@@ -24,7 +24,7 @@ export class MenuContext {
 
   albumInfo: SimpleAlbumDataItem;
 
-  albumObject: userFileManager.Album;
+  albumObject: photoAccessHelper.Album;
 
   broadCast: Broadcast;
   onOperationStart: Function;
@@ -52,7 +52,7 @@ export class MenuContext {
     return this;
   }
 
-  withAlbumObject(albumObject: userFileManager.Album): MenuContext {
+  withAlbumObject(albumObject: photoAccessHelper.Album): MenuContext {
     this.albumObject = albumObject;
     return this;
   }

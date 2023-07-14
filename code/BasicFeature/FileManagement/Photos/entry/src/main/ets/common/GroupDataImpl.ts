@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { Log } from '../utils/Log';
 import { Constants } from '../constants/Constants';
 import { userFileModel } from '../base/UserFileModel';
@@ -55,8 +55,8 @@ export class GroupDataImpl {
     this.albumType = albumType;
   }
 
-  setAlbumSubType(albumSubType: number): void {
-    Log.info(TAG, 'setAlbumSubType: ' + albumSubType);
+  setAlbumSubtype(albumSubType: number): void {
+    Log.info(TAG, 'setAlbumSubtype: ' + albumSubType);
     this.albumSubType = albumSubType;
   }
 
@@ -162,9 +162,9 @@ export class GroupDataImpl {
     return groupDataItem;
   }
 
-  private async getMediaItemFileAssets(albumName: string, albumType: number, albumSubType: number, start: number, count: number): Promise<userFileManager.FileAsset[]> {
+  private async getMediaItemFileAssets(albumName: string, albumType: number, albumSubType: number, start: number, count: number): Promise<photoAccessHelper.PhotoAsset[]> {
     let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo('album_name', albumName)
+    predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName)
     let fetchOption = {
       fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
       predicates: predicates
@@ -194,7 +194,7 @@ export class GroupDataImpl {
     let itemLen = items.length;
     let countLen = Math.ceil(itemLen / count);
     for (let i = 1;i < countLen; i++) {
-      let mediaFileAsset: userFileManager.FileAsset[] = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType, i * count, count);
+      let mediaFileAsset: photoAccessHelper.PhotoAsset[] = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType, i * count, count);
       for (let j = 0;j < count; j++) {
         if (i * count + j >= itemLen) {
           return;

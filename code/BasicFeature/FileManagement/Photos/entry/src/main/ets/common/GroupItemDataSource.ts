@@ -41,9 +41,9 @@ export class GroupItemDataSource extends ItemDataSource {
     this.groupDataImpl.setAlbumType(id);
   }
 
-  setAlbumSubType(id: number): void {
-    Log.info(TAG, 'setAlbumSubType: ' + id);
-    this.groupDataImpl.setAlbumSubType(id);
+  setAlbumSubtype(id: number): void {
+    Log.info(TAG, 'setAlbumSubtype: ' + id);
+    this.groupDataImpl.setAlbumSubtype(id);
   }
 
   setAlbumName(name: string): void {

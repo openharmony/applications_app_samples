@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 export class MediaConstants {
   // Media item status
@@ -42,17 +43,17 @@ export class MediaConstants {
   static readonly SELECT_TYPE_IMAGE = 2;
   //album type
   static readonly ALBUM_TYPE_ALL = -1;
-  static readonly ALBUM_TYPE_USER = 0;
-  static readonly ALBUM_TYPE_SYSTEM = 1024;
+  static readonly ALBUM_TYPE_USER = photoAccessHelper.AlbumType.USER;
+  static readonly ALBUM_TYPE_SYSTEM = photoAccessHelper.AlbumType.SYSTEM;
   // album subtype
-  static readonly ALBUM_SUBTYPE_ALL = 2147483647;
-  static readonly ALBUM_SUBTYPE_CAMERA = 1030;
-  static readonly ALBUM_SUBTYPE_VIDEO = 1026;
-  static readonly ALBUM_SUBTYPE_RECYCLE = 1028;
-  static readonly ALBUM_SUBTYPE_FAVOR = 1025;
-  static readonly ALBUM_SUBTYPE_SNAPSHOT = 1029;
-  static readonly ALBUM_SUBTYPE_HIDDEN = 1027;
-  static readonly ALBUM_SUBTYPE_USER_GENERIC = 1;
+  static readonly ALBUM_SUBTYPE_ALL = photoAccessHelper.AlbumSubtype.ANY
+  static readonly ALBUM_SUBTYPE_CAMERA = photoAccessHelper.AlbumSubtype.CAMERA;
+  static readonly ALBUM_SUBTYPE_VIDEO = photoAccessHelper.AlbumSubtype.VIDEO;
+  static readonly ALBUM_SUBTYPE_RECYCLE = photoAccessHelper.AlbumSubtype.TRASH;
+  static readonly ALBUM_SUBTYPE_FAVOR = photoAccessHelper.AlbumSubtype.FAVORITE;
+  static readonly ALBUM_SUBTYPE_SNAPSHOT = photoAccessHelper.AlbumSubtype.SCREENSHOT;
+  static readonly ALBUM_SUBTYPE_HIDDEN = photoAccessHelper.AlbumSubtype.HIDDEN;
+  static readonly ALBUM_SUBTYPE_USER_GENERIC = photoAccessHelper.AlbumSubtype.USER_GENERIC;
   static readonly ALBUM_SUBTYPE_REMOTE = -1;
   // album id
   static readonly ALBUM_ID_USER = 'default_user';
@@ -77,7 +78,8 @@ export class MediaConstants {
   MediaConstants.ALBUM_ID_CAMERA,
   MediaConstants.ALBUM_ID_VIDEO,
   MediaConstants.ALBUM_ID_RECYCLE,
-  MediaConstants.ALBUM_ID_FAVOR
+  MediaConstants.ALBUM_ID_FAVOR,
+  MediaConstants.ALBUM_ID_SNAPSHOT
   ] as string[]);
   static readonly ALBUM_DISABLE_NEW_LIST: Set<string> = new Set<string>([
   MediaConstants.ALBUM_ID_ALL,
@@ -118,7 +120,21 @@ export class MediaConstants {
   static readonly DIR_DOCUMENTS = 4
   static readonly DIR_DOWNLOAD = 5
   static readonly EMPTY_FETCH_COLUMNS = []
-  static readonly FILE_ASSET_FETCH_COLUMNS = ['date_added', 'date_modified', 'title', 'duration', 'width', 'height', 'date_taken', 'orientation', 'position', 'date_trashed', 'hidden']
-  //static readonly FILE_ASSET_FETCH_COLUMNS = ['date_added','date_modified','title','duration','width','height','date_taken','orientation','favorite','position','date_trashed','hidden']
-  static readonly ALBUM_ASSET_FETCH_COLUMNS = ['date_added', 'date_modified']
+  static readonly FILE_ASSET_FETCH_COLUMNS = [photoAccessHelper.PhotoKeys.URI,
+  photoAccessHelper.PhotoKeys.PHOTO_TYPE,
+  photoAccessHelper.PhotoKeys.DISPLAY_NAME,
+  photoAccessHelper.PhotoKeys.SIZE,
+  photoAccessHelper.PhotoKeys.DATE_ADDED,
+  photoAccessHelper.PhotoKeys.DATE_MODIFIED,
+  photoAccessHelper.PhotoKeys.DURATION,
+  photoAccessHelper.PhotoKeys.WIDTH,
+  photoAccessHelper.PhotoKeys.HEIGHT,
+  photoAccessHelper.PhotoKeys.DATE_TAKEN,
+  photoAccessHelper.PhotoKeys.ORIENTATION,
+  photoAccessHelper.PhotoKeys.FAVORITE,
+  photoAccessHelper.PhotoKeys.TITLE,
+  photoAccessHelper.PhotoKeys.POSITION,
+  photoAccessHelper.PhotoKeys.DATE_TRASHED,
+  photoAccessHelper.PhotoKeys.HIDDEN]
+  static readonly ALBUM_ASSET_FETCH_COLUMNS = [photoAccessHelper.AlbumKeys.URI, photoAccessHelper.AlbumKeys.ALBUM_NAME]
 }

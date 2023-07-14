@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { AsyncCallback } from './AsyncCallback';
 import { Log } from '../utils/Log';
 import { MenuOperationCallback } from './MenuOperationCallback';
 import { MenuOperation } from './MenuOperation';
 import { MenuContext } from './MenuContext';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
-import { startTraceWithTaskId, finishTraceWithTaskId } from '../utils/TraceControllerUtils';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { userFileModel } from '../base/UserFileModel';
 
@@ -30,8 +29,8 @@ export enum FindSameOperation {
 }
 
 export interface Assets {
-  sourceAsset: userFileManager.FileAsset,
-  targetAsset: userFileManager.FileAsset
+  sourceAsset: photoAccessHelper.PhotoAsset,
+  targetAsset: photoAccessHelper.PhotoAsset
 }
 
 const TAG = 'ProcessMenuOperation';
@@ -94,7 +93,6 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
   // Start processing operation
   processOperation(): void {
     Log.info(TAG, 'processOperation start');
-    startTraceWithTaskId('ProgressOperation', this.requestTime);
     let length = this.items.length;
     Log.info(TAG, 'selected count: ' + this.count + ', uris length: ' + length);
     // Batch deletion
@@ -138,7 +136,6 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
       ' ms, average ' + (costTime / operateCount) + ' ms/item.');
     }
     this.isCancelled = false;
-    finishTraceWithTaskId('ProgressOperation', this.requestTime);
     if (this.onOperationEnd != null) this.onOperationEnd(this.isError, this.successBatch, this.count);
   }
 
@@ -176,7 +173,7 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
     this.findSameOperation = newOperation;
   }
 
-  async getFileCopyOrMoveInfo(fileAsset: userFileManager.FileAsset, albumInfo: SimpleAlbumDataItem): Promise<Assets> {
+  async getFileCopyOrMoveInfo(fileAsset: photoAccessHelper.PhotoAsset, albumInfo: SimpleAlbumDataItem): Promise<Assets> {
     Log.debug(TAG, 'getFileCopyOrMoveInfo start');
     //TODO 创建photoasset
     let targetAsset = null

@@ -28,8 +28,8 @@ import { Constants } from '../constants/Constants';
 import { MenuOperation } from '../menus/MenuOperation';
 import { MenuContext } from '../menus/MenuContext';
 import { BatchDeleteMenuOperation } from '../menus/BatchDeleteMenuOperation';
+import { BatchRemoveMenuOperation } from '../menus/BatchRemoveMenuOperation';
 import { screenManager } from '../common/ScreenManager';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { ShareMenuOperation } from '../menus/ShareMenuOperation';
 import { broadcastManager } from '../common/BroadcastManager';
 import { JumpSourceToMain } from '../models/JumpSourceToMain';
@@ -168,8 +168,19 @@ struct PhotoGridPage {
       menuOperation.doAction();
     } else if (action === Action.MOVE) {
       this.routeSelectAlbumPage(MediaOperationType.Move);
-    } else if (action === Action.COPY) {
-      this.routeSelectAlbumPage(MediaOperationType.Copy);
+    } else if (action === Action.REMOVE) {
+      menuContext = new MenuContext();
+      this.onDeleteStart = (): void => this.onDeleteStartBindImpl();
+      this.onDeleteEnd = (err: object): void => this.onDeleteEndBindImpl(err);
+      menuContext
+        .withAlbumId(this.albumInfo.id)
+        .withDataSource(this.groupDataSource)
+        .withOperationStartCallback(this.onDeleteStart)
+        .withOperationEndCallback(this.onDeleteEnd)
+        .withBroadCast(this.broadCast)
+        .withAlbumInfo(this.albumInfo)
+      menuOperation = new BatchRemoveMenuOperation(menuContext);
+      menuOperation.doAction();
     } else if (action === Action.NEW) {
       this.routeToAddMediaPage();
     } else if (action === Action.DOWNLOAD) {
@@ -453,7 +464,6 @@ struct PhotoGridPage {
   }
 
   aboutToAppear(): void {
-    startTrace('PhotoGridPageAboutToAppear');
     let param: ParamsInterface = router.getParams();
     if (param.item != undefined && param.item != null) {
       Log.debug(TAG, 'After router.getParams, param is: ' + JSON.stringify(param));
@@ -462,7 +472,7 @@ struct PhotoGridPage {
       this.barModel.setAlbumId(this.albumInfo.id)
       this.groupDataSource.setAlbumId(this.albumInfo.id)
       this.groupDataSource.setAlbumType(this.albumInfo.albumType)
-      this.groupDataSource.setAlbumSubType(this.albumInfo.albumSubType)
+      this.groupDataSource.setAlbumSubtype(this.albumInfo.albumSubType)
       this.groupDataSource.setAlbumName(this.albumInfo.displayName)
       if (param.isDistributedAlbum != null) {
         this.isDistributedAlbum = new Boolean(param.isDistributedAlbum).valueOf();
@@ -501,10 +511,13 @@ struct PhotoGridPage {
     });
 
     this.initGridRowCount();
-    this.moreMenuList = [Action.MOVE, Action.COPY, Action.INFO];
+    if (this.albumInfo.albumType==MediaConstants.ALBUM_TYPE_USER){
+      this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.INFO];
+    } else {
+      this.moreMenuList = [Action.MOVE, Action.INFO];
+    }
 
     this.updateActionBar();
-    finishTrace('PhotoGridPageAboutToAppear');
   }
 
   private initGridRowCount(): void {
@@ -565,9 +578,17 @@ struct PhotoGridPage {
     this.totalSelectedCount = this.groupDataSource.getSelectedCount();
     this.isAllSelected = this.groupDataSource.isSelect();
     if (this.totalSelectedCount > 0) {
-      this.moreMenuList = [Action.MOVE, Action.COPY, Action.INFO];
+      if (this.albumInfo.albumType == MediaConstants.ALBUM_TYPE_USER){
+        this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.INFO];
+      } else {
+        this.moreMenuList = [Action.MOVE, Action.INFO];
+      }
     } else {
-      this.moreMenuList = [Action.MOVE_INVALID, Action.COPY_INVALID, Action.INFO_INVALID];
+      if (this.albumInfo.albumType == MediaConstants.ALBUM_TYPE_USER){
+        this.moreMenuList = [Action.MOVE_INVALID, Action.REMOVE_INVALID, Action.INFO_INVALID];
+      } else {
+        this.moreMenuList = [Action.MOVE_INVALID, Action.INFO_INVALID];
+      }
     }
   }
 

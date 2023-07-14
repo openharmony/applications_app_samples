@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { userFileModel } from '../base/UserFileModel';
 import { Log } from '../utils/Log';
 import { ItemDataSource } from '../common/ItemDataSource';
@@ -102,7 +102,7 @@ export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperation
                 }
       }
       Log.info(TAG, 'change album_name:' + this.item.displayName + ' to ' + name);
-      let albums: userFileManager.Album = await userFileModel.getUserAlbumByName(this.item.displayName)
+      let albums: photoAccessHelper.Album = await userFileModel.getUserAlbumByName(this.item.displayName)
       albums.albumName = name
       await albums.commitModify()
       this.onCompleted();

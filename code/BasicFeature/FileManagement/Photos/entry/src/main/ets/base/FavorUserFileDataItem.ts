@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { userFileModel } from '../base/UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
 import { UserFileDataItem } from '../base/UserFileDataItem';
@@ -23,7 +23,7 @@ export class FavorUserFileDataItem extends UserFileDataItem {
     super(selections, selectionArgs, '', index);
   }
 
-  async loadFileAsset(): Promise<userFileManager.FileAsset> {
+  async loadFileAsset(): Promise<photoAccessHelper.PhotoAsset> {
     return await userFileModel.getMediaItemByUri(this.uri);
   }
 

@@ -22,7 +22,6 @@ import { Broadcast } from '../common/Broadcast';
 import { NoPhotoIndexComponent } from './NoPhotoIndexComponent';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { broadcastManager } from '../common/BroadcastManager';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { AlbumSetNewMenuOperation } from '../menus/AlbumSetNewMenuOperation';
 import { MenuContext } from '../menus/MenuContext';
 import { MenuOperation } from '../menus/MenuOperation';
@@ -53,7 +52,7 @@ import { UserFileDataItem } from '../base/UserFileDataItem';
 import { AlbumsDataSource } from '../common/AlbumsDataSource';
 import { LazyItem } from '../common/ItemDataSource';
 import { AlbumDataItem } from '../common/AlbumDataItem';
-import { userFileModel, UserFileModelItem } from '../base/UserFileModel';
+import { userFileModel } from '../base/UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
 // Album Set Page
 const TAG = 'AlbumSetPage'
@@ -192,7 +191,6 @@ export struct AlbumSetPage {
   }
 
   aboutToAppear(): void {
-    startTrace('AlbumSetPageAboutToAppear');
     Log.info(TAG, 'AlbumSetPageAboutToAppear');
     this.appBroadcast.on(BroadcastConstants.BACK_PRESS_EVENT, (clbk: Function): void => this.onIndexBackPressBindImpl(clbk));
     this.appBroadcast.on(BroadcastConstants.RESET_ZERO, (pageNumber: number): void => this.onResetZeroBindImpl(pageNumber));
@@ -210,7 +208,6 @@ export struct AlbumSetPage {
     });
     this.onIndexPageShow();	//TabContent uses lazy loading, call onIndexPageShow() the first time
     this.updateActionBar();
-    finishTrace('AlbumSetPageAboutToAppear');
     this.getPermission()
   }
 
@@ -243,8 +240,7 @@ export struct AlbumSetPage {
     let newAlbum = AppStorage.Get<boolean>(Constants.APP_KEY_NEW_ALBUM);
     if (newAlbum != null) {
       AppStorage.Delete(Constants.APP_KEY_NEW_ALBUM);
-      this.broadCast.emit(BroadcastConstants.SHOW_COPY_OR_MOVE_DIALOG,
-        [(): Promise<void> => this.moveOperationBindImpl(), (): Promise<void> => this.copyOperationBindImpl()]);
+      this.moveOperation();
     }
   }
 
@@ -260,10 +256,10 @@ export struct AlbumSetPage {
       return;
     }
     let albumName = targetAlbum.displayName;
-    Log.info(TAG,'targetAlbum.displayName:'+targetAlbum.displayName);
-    userFileModel.getUserFileMgr().createAlbum(albumName).then((album) => {
-      Log.info(TAG,'  successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
-      let newAlbum = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_USER,targetAlbum.displayName,album.albumUri, '', '',MediaConstants.ALBUM_TYPE_USER,MediaConstants.ALBUM_SUBTYPE_USER_GENERIC)
+    Log.info(TAG,'targetAlbum.displayName:'+albumName);
+    let newAlbum = await userFileModel.createAlbum(albumName);
+    if(newAlbum != undefined) {
+      Log.info(TAG,'  successfully, album: ' + newAlbum.displayName + ' album uri: ' + newAlbum.uri);
       let menuContext = new MenuContext();
       menuContext.withItems(mediaItems)
         .withOperationStartCallback((): void => this.onOperationStartBindImpl())
@@ -272,9 +268,7 @@ export struct AlbumSetPage {
         .withAlbumInfo(newAlbum);
       let menuOperation = new CopyMenuOperation(menuContext);
       menuOperation.doAction();
-    }).catch((err) => {
-      Log.error(TAG,'createAlbumPromise failed with err: ' + err);
-    });
+    }
   }
 
   private moveOperation(): void {
@@ -288,10 +282,10 @@ export struct AlbumSetPage {
       return;
     }
     let albumName = targetAlbum.displayName;
-    Log.info(TAG,'targetAlbum.displayName:'+targetAlbum.displayName);
-    userFileModel.getUserFileMgr().createAlbum(albumName).then((album) => {
-      Log.info(TAG,'  successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
-      let newAlbum = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_USER,targetAlbum.displayName,album.albumUri, '', '',MediaConstants.ALBUM_TYPE_USER,MediaConstants.ALBUM_SUBTYPE_USER_GENERIC)
+    Log.info(TAG,'targetAlbum.displayName:'+albumName);
+    let newAlbum = await userFileModel.createAlbum(albumName);
+    if(newAlbum != undefined) {
+      Log.info(TAG,'  successfully, album: ' + newAlbum.displayName + ' album uri: ' + newAlbum.uri);
       let menuContext = new MenuContext();
       menuContext.withItems(mediaItems)
         .withOperationStartCallback((): void => this.onOperationStartBindImpl())
@@ -300,9 +294,7 @@ export struct AlbumSetPage {
         .withAlbumInfo(newAlbum);
       let menuOperation = new MoveMenuOperation(menuContext);
       menuOperation.doAction();
-    }).catch((err) => {
-      Log.error(TAG,'createAlbumPromise failed with err: ' + err);
-    });
+    }
   }
 
   onModeChange(): void {
@@ -336,7 +328,6 @@ export struct AlbumSetPage {
       this.isAlbumSetSelectedMode = false;
     }
   }
-
 
   // Callback when the page is in the foreground
   onActive(): void {
@@ -400,13 +391,8 @@ export struct AlbumSetPage {
   }
   getPermission() {
     let array: Array<Permissions> = [
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA',
-      'ohos.permission.MEDIA_LOCATION',
       'ohos.permission.READ_IMAGEVIDEO',
       'ohos.permission.WRITE_IMAGEVIDEO',
-      'ohos.permission.READ_AUDIO',
-      'ohos.permission.WRITE_AUDIO'
     ];
     let appContext: common.UIAbilityContext = GlobalContext.getContext().getObject('appContext') as common.UIAbilityContext;
     var AtManager = abilityAccessCtrl.createAtManager();

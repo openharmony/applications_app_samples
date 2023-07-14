@@ -39,6 +39,42 @@
     {
       "name": "album_recycle",
       "value": "最近删除"
+    },
+    {
+      "name": "album_new",
+      "value": "新建相册"
+    },
+    {
+      "name": "no_photo",
+      "value": "没有照片和视频"
+    },
+    {
+      "name": "btn_favor",
+      "value": "收藏"
+    },
+    {
+      "name": "btn_delete",
+      "value": "删除"
+    },
+    {
+      "name": "btn_rename",
+      "value": "重命名"
+    },
+    {
+      "name": "btn_not_favor",
+      "value": "取消收藏"
+    },
+    {
+      "name": "btn_recover",
+      "value": "恢复"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "btn_toast",
+      "value": "此名称已被使用"
     }
   ]
 }

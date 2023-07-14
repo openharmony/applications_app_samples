@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { selectManager } from '../common/SelectManager';
 import { userFileModel } from './UserFileModel';
 import { Log } from '../utils/Log';
@@ -27,7 +27,7 @@ export class TrashUserFileDataItem extends UserFileDataItem {
     this.setSelect(false);
   }
 
-  async loadFileAsset(): Promise<userFileManager.FileAsset> {
+  async loadFileAsset(): Promise<photoAccessHelper.PhotoAsset> {
     Log.debug(TAG, 'loadFileAsset' + this.uri);
     return await userFileModel.getMediaItemByUriFromTrash(this.uri);
   }

@@ -15,14 +15,13 @@
 
 import Matrix4 from '@ohos.matrix4';
 import router from '@system.router';
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { EventPipeline, AnimationOption, Matrix4TransitWithMatrix4x4 } from '../common/EventPipeline';
 import { Broadcast } from '../common/Broadcast';
 import { Log } from '../utils/Log';
 import { Constants } from '../constants/BrowserConstants';
 import { RouterConstants } from '../constants/RouterConstants';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { LoadingPanel } from './LoadingPanel';
 import { VideoIcon } from './VideoIcon';
 import { getThumbnail } from '../models/ThumbnailModel';
@@ -37,7 +36,7 @@ export struct PhotoItem {
   @State photoItemDirection: PanDirection = PanDirection.Vertical;
   @Consume broadCast: Broadcast;
   @State objectFit: ImageFit = ImageFit.Contain;
-  @State thumbnail: string = '';
+  @State thumbnail: PixelMap = undefined;
   @State ratio: number = 1.0;
   @State showError: boolean = false;
   @Consume isPullingDown: boolean;
@@ -74,14 +73,14 @@ export struct PhotoItem {
     Log.info(TAG, 'onTransitionChange end, ' + this.updateTransition + ' ' + this.item.index);
   }
 
-  aboutToAppear(): void {
+  async aboutToAppear(): Promise<void> {
     Log.info(TAG, 'aboutToAppear');
     this.timeStamp = (new Date()).valueOf().toString();
     this.eventPipeline = new EventPipeline(this.broadCast, this.item, this.timeStamp, (m: Matrix4.Matrix4Transit): void => this.updateMatrixBindImpl(m));
     this.matrix = Matrix4.identity().copy();
     this.firstLoad = true;
     this.isLoading = true;
-    this.thumbnail = this.item.getThumbnail(this.item.imgWidth, this.item.imgHeight);
+    this.thumbnail = await this.item.getThumbnail(this.item.imgWidth, this.item.imgHeight);
     this.item.load(true).then<void, void>((): void => {
       this.isLoading = false
       this.updateThumbnail()
@@ -117,7 +116,7 @@ export struct PhotoItem {
   }
 
   private updateThumbnail() {
-    getThumbnail(this.item, this.updateTransition == this.item.index).then<void, void>((thumbnail: string): void => {
+    getThumbnail(this.item, this.updateTransition == this.item.index).then<void, void>((thumbnail: PixelMap): void => {
       this.thumbnail = thumbnail
     })
   }
@@ -191,18 +190,16 @@ export struct PhotoItem {
             zIndex: 0,
           })
           .onComplete((): void => {
-            startTrace('PhotoItemComplete_' + this.item);
             Log.info(TAG, 'onComplete finish, index: ' + this.item.index +', item: ' + JSON.stringify(this.item) + ', uri: ' + this.thumbnail + '.');
             this.showError = false;
             this.isLoading = false;
             if (this.updateTransition == this.item.index) {
               this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [true]);
             }
-            finishTrace('PhotoItemComplete_' + this.item.index);
           })
           .onError((): void => {
             Log.error(TAG, 'image show error ' + this.thumbnail + ' ' + this.item.width + ' ' + this.item.height);
-            if (this.thumbnail.length == 0 || this.item.width == 0 || this.item.height == 0) {
+            if (this.thumbnail == undefined || this.item.width == 0 || this.item.height == 0) {
               this.updateThumbnail()
               return
             }
@@ -228,41 +225,33 @@ export struct PhotoItem {
       })
         .onActionStart((event: GestureEvent): void => {
           Log.debug(TAG, 'PinchGesture onActionStart');
-          startTrace('PinchGesture onActionStart')
           if (this.isPullingDown) {
             Log.debug(TAG, 'Not allow to pinch when pullingDown');
-            finishTrace('PinchGesture onActionStart')
             return;
           }
           Log.debug(TAG, 'PinchGesture onActionStart scale:' +
               event.scale + ', cx: ' + event.pinchCenterX + ', cy: ' + event.pinchCenterY);
-          if (this.item.mediaType == userFileManager.FileType.IMAGE) {
+          if (this.item.mediaType == photoAccessHelper.PhotoType.IMAGE) {
             this.eventPipeline.onScaleStart(event.scale, event.pinchCenterX, event.pinchCenterY);
           }
-          finishTrace('PinchGesture onActionStart')
         })
         .onActionUpdate((event: GestureEvent): void => {
           Log.debug(TAG, 'PinchGesture onActionUpdate scale: ' + event.scale);
-          startTrace('PinchGesture onActionUpdate')
           if (this.isPullingDown) {
             Log.debug(TAG, 'Not allow to pinch when pullingDown');
-            finishTrace('PinchGesture onActionUpdate')
             return;
           }
-          if (this.item.mediaType == userFileManager.FileType.IMAGE) {
+          if (this.item.mediaType == photoAccessHelper.PhotoType.IMAGE) {
             this.eventPipeline.onScale(event.scale);
           }
-          finishTrace('PinchGesture onActionUpdate')
         })
         .onActionEnd((): void => {
           Log.debug(TAG, 'PinchGesture onActionEnd');
-          startTrace('PinchGesture onActionEnd')
           if (this.isPullingDown) {
             Log.debug(TAG, 'Not allow to pinch when pullingDown');
-            finishTrace('PinchGesture onActionEnd')
             return;
           }
-          if (this.item.mediaType == userFileManager.FileType.IMAGE) {
+          if (this.item.mediaType == photoAccessHelper.PhotoType.IMAGE) {
             this.eventPipeline.onScaleEnd();
             if (this.animationOption != null) {
               animateTo({
@@ -278,27 +267,21 @@ export struct PhotoItem {
               })
             }
           }
-          finishTrace('PinchGesture onActionEnd')
         }),
       PanGesture({
         direction: this.photoItemDirection
       })
         .onActionStart((event: GestureEvent): void => {
-          startTrace('PanGesture onActionStart')
           Log.debug(TAG, 'PanGesture start offsetX: ' +
                   vp2px(event.offsetX) + ', offsetY: ' + vp2px(event.offsetY));
           this.eventPipeline.onMoveStart(vp2px(event.offsetX), vp2px(event.offsetY));
-          finishTrace('PanGesture onActionStart')
         })
         .onActionUpdate((event: GestureEvent): void => {
-          startTrace('PanGesture onActionUpdate')
           Log.debug(TAG, 'PanGesture update offsetX: ' +
                   vp2px(event.offsetX) + ', offsetY: ' + vp2px(event.offsetY));
           this.eventPipeline.onMove(vp2px(event.offsetX), vp2px(event.offsetY));
-          finishTrace('PanGesture onActionUpdate')
         })
         .onActionEnd((event: GestureEvent): void => {
-          startTrace('PanGesture onActionEnd')
           Log.debug(TAG, 'PanGesture end offsetX: ' +
                   vp2px(event.offsetX) + ', offsetY: ' + vp2px(event.offsetY));
           this.eventPipeline.onMoveEnd(vp2px(event.offsetX), vp2px(event.offsetY));
@@ -315,7 +298,6 @@ export struct PhotoItem {
               this.matrix = this.animationEndMatrix;
             })
           }
-          finishTrace('PanGesture onActionEnd')
         }),
       TapGesture({
         count: 2
@@ -326,7 +308,7 @@ export struct PhotoItem {
             return;
           }
           Log.debug(TAG, 'onDoubleTap event: ' + JSON.stringify(event));
-          if (this.item.mediaType == userFileManager.FileType.VIDEO) {
+          if (this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) {
             return;
           }
           this.eventPipeline.onDoubleTap(event.fingerList[0].localX, event.fingerList[0].localY);
@@ -352,10 +334,10 @@ export struct PhotoItem {
         this.eventPipeline.onTouch(event);
       })
       // TODO Remind users when pictures of other devices cannot be show
-      if ((this.showError || this.item.mediaType == userFileManager.FileType.VIDEO) &&
+      if ((this.showError || this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) &&
       this.pageFrom == RouterConstants.ENTRY_FROM.DISTRIBUTED) {
         Row() {
-          Text((this.item.mediaType == userFileManager.FileType.VIDEO) ?
+          Text((this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) ?
           $r('app.string.no_distributed_photo_show_video') :
           $r('app.string.no_distributed_photo_show_image'))
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
@@ -363,7 +345,7 @@ export struct PhotoItem {
             .fontColor($r('sys.color.ohos_id_color_text_tertiary'))
         }
         .margin({
-          top: (this.item.mediaType == userFileManager.FileType.VIDEO) ? $r('app.float.input_text_notify_margin') : 0
+          top: (this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) ? $r('app.float.input_text_notify_margin') : 0
         })
       }
       if (this.isVideoPlayBtnShow()) {
@@ -392,6 +374,6 @@ export struct PhotoItem {
 
   private isVideoPlayBtnShow(): boolean {
     Log.debug(TAG, 'isVideoPlayBtnShow: ' + this.item.mediaType);
-    return ((this.item != undefined && this.item != null) && (this.item.mediaType == userFileManager.FileType.VIDEO));
+    return ((this.item != undefined && this.item != null) && (this.item.mediaType == photoAccessHelper.PhotoType.VIDEO));
   }
 }

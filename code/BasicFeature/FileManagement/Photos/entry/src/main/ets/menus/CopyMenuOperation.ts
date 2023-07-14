@@ -20,7 +20,6 @@ import { ProcessMenuOperation, FindSameOperation, Assets } from './ProcessMenuOp
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { userFileModel } from '../base/UserFileModel';
 import { MediaOperationType } from '../models/MediaOperationType';
-import { startTraceWithTaskId, finishTraceWithTaskId } from '../utils/TraceControllerUtils';
 import { ItemDataSource } from '../common/ItemDataSource';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { UserFileDataItem } from '../base/UserFileDataItem';
@@ -90,7 +89,7 @@ export class CopyMenuOperation extends ProcessMenuOperation {
       let start = displayName.lastIndexOf('_');
       displayName = displayName.slice(0, start) + '_$' + new Date().getTime() + '$' + displayName.slice(index);
       let params: Object = {
-        mediaType: assets.sourceAsset.fileType,
+        mediaType: assets.sourceAsset.photoType,
         name: displayName,
         path: this.albumInfo.uri
       };
@@ -124,7 +123,7 @@ export class CopyMenuOperation extends ProcessMenuOperation {
       }
     } else {
       let params: Object = {
-        mediaType: assets.sourceAsset.fileType,
+        mediaType: assets.sourceAsset.photoType,
         name: assets.sourceAsset.displayName.replace('.', 'copy.'),
         path: this.albumInfo.uri
       };
@@ -135,21 +134,16 @@ export class CopyMenuOperation extends ProcessMenuOperation {
   async copy(source, target, param?): Promise<void> {
     try {
       if (!Boolean<object>(target).valueOf()) {
-        startTraceWithTaskId('create', this.currentBatch);
         target = await userFileModel.createOne(param.name, param.path);
-        finishTraceWithTaskId('create', this.currentBatch);
         if (target == null) {
           Log.warn(TAG, 'Target file create failed when copyFile!');
           this.onError();
           return;
         }
       }
-      startTraceWithTaskId('openWriteClose', this.currentBatch);
       await userFileModel.copyOne(source, target);
-      finishTraceWithTaskId('openWriteClose', this.currentBatch);
       this.onCompleted();
     } catch (error) {
-      finishTraceWithTaskId('create', this.currentBatch);
       Log.error(TAG, 'copyFile is error ' + error);
       this.onError();
     }

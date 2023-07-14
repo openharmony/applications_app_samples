@@ -18,7 +18,7 @@ import { userFileModel } from './UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
 import { setOrientation } from './UserFileDataHelper';
 import { selectManager } from '../common/SelectManager';
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { screenManager } from '../common/ScreenManager';
 
 const TAG = 'UserFileDataItem';
@@ -51,12 +51,14 @@ export class UserFileDataItem implements DateAdded {
   path: string = '';
   title: string;
   displayName: string;
-  mediaType: userFileManager.FileType;
+  mediaType: photoAccessHelper.PhotoType;
   favouriteStatus: number = STATUS_UNDEFINED;
   canRotate: number = STATUS_UNDEFINED;
   selections: string = '';
   selectionArgs: string[] = [];
   deviceId: string = '';
+  fileAsset: photoAccessHelper.PhotoAsset = undefined;
+  defaultThumbnail: PixelMap = undefined;
 
   constructor(selections: string, selectionArgs: string[], deviceId: string, index: number) {
     this.selections = selections;
@@ -73,7 +75,7 @@ export class UserFileDataItem implements DateAdded {
       this.uri + this.favouriteStatus + ' ' + this.orientation + ' ' + this.isSelect
   }
 
-  async loadFileAsset(): Promise<userFileManager.FileAsset> {
+  async loadFileAsset(): Promise<photoAccessHelper.PhotoAsset> {
     return await userFileModel.getMediaItemByUri(this.uri);
   }
 
@@ -96,50 +98,72 @@ export class UserFileDataItem implements DateAdded {
     return;
   }
 
-  update(fileAsset: userFileManager.FileAsset): void {
+  async update(fileAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+    this.fileAsset = fileAsset;
     this.uri = fileAsset.uri;
     this.displayName = fileAsset.displayName;
-    this.mediaType = fileAsset.fileType;
+    this.mediaType = fileAsset.photoType;
     this.width = screenManager.getWinWidth();
     this.height = screenManager.getWinHeight();
     this.orientation = MediaConstants.ROTATE_NONE
     try {
-      this.orientation = fileAsset.get(userFileManager.ImageVideoKey.ORIENTATION.toString()) as number;
+      this.orientation = fileAsset.get(photoAccessHelper.PhotoKeys.ORIENTATION.toString()) as number;
+      Log.info(TAG, 'orientation ' + this.orientation);
     } catch (err) {
       Log.error(TAG, 'get orientation ' + JSON.stringify(err));
     }
     try {
-      this.duration = fileAsset.get(userFileManager.ImageVideoKey.DURATION.toString()) as number;
+      this.duration = fileAsset.get(photoAccessHelper.PhotoKeys.DURATION.toString()) as number;
+      Log.info(TAG, 'duration ' + this.duration);
     } catch (err) {
       Log.error(TAG, 'get duration ' + JSON.stringify(err));
     }
     try {
       if (this.orientation == MediaConstants.ROTATE_ONCE || this.orientation == MediaConstants.ROTATE_THIRD) {
-        this.width = fileAsset.get(userFileManager.ImageVideoKey.HEIGHT.toString()) as number;
-        this.height = fileAsset.get(userFileManager.ImageVideoKey.WIDTH.toString()) as number;
+        this.width = fileAsset.get(photoAccessHelper.PhotoKeys.HEIGHT.toString()) as number;
+        this.height = fileAsset.get(photoAccessHelper.PhotoKeys.WIDTH.toString()) as number;
       } else {
-        this.width = fileAsset.get(userFileManager.ImageVideoKey.WIDTH.toString()) as number;
-        this.height = fileAsset.get(userFileManager.ImageVideoKey.HEIGHT.toString()) as number;
+        this.width = fileAsset.get(photoAccessHelper.PhotoKeys.WIDTH.toString()) as number;
+        this.height = fileAsset.get(photoAccessHelper.PhotoKeys.HEIGHT.toString()) as number;
       }
+      Log.info(TAG, 'width ' + this.width);
+      Log.info(TAG, 'height ' + this.height);
     } catch (err) {
       Log.error(TAG, 'get width height ' + JSON.stringify(err));
     }
     try {
-      this.title = fileAsset.get(userFileManager.ImageVideoKey.TITLE.toString()) as string;
+      this.title = fileAsset.get(photoAccessHelper.PhotoKeys.TITLE.toString()) as string;
+      Log.info(TAG, 'title ' + this.title);
     } catch (err) {
       Log.error(TAG, 'get title ' + JSON.stringify(err));
     }
     try {
-      this.dateAdded = fileAsset.get(userFileManager.ImageVideoKey.DATE_ADDED.toString()) as number * 1000;
-      this.dateModified = fileAsset.get(userFileManager.ImageVideoKey.DATE_MODIFIED.toString()) as number * 1000;
-      this.dateTaken = fileAsset.get(userFileManager.ImageVideoKey.DATE_TAKEN.toString()) as number * 1000;
+      this.dateAdded = fileAsset.get(photoAccessHelper.PhotoKeys.DATE_ADDED.toString()) as number * 1000;
+      this.dateModified = fileAsset.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * 1000;
+      this.dateTaken = fileAsset.get(photoAccessHelper.PhotoKeys.DATE_TAKEN.toString()) as number * 1000;
+      Log.info(TAG, 'dateAdded ' + this.dateAdded);
     } catch (err) {
       Log.error(TAG, 'get date ' + JSON.stringify(err));
     }
     try {
-      this.favouriteStatus = fileAsset.get(userFileManager.ImageVideoKey.FAVORITE.toString()) as boolean ? STATUS_TRUE : STATUS_FALSE
+      this.favouriteStatus = fileAsset.get(photoAccessHelper.PhotoKeys.FAVORITE.toString()) as boolean ? STATUS_TRUE : STATUS_FALSE
+      Log.info(TAG, 'favouriteStatus ' + this.favouriteStatus);
     } catch (err) {
       Log.error(TAG, 'get favouriteStatus ' + JSON.stringify(err));
+    }
+    try {
+      this.size = fileAsset.get(photoAccessHelper.PhotoKeys.SIZE.toString()) as number
+      Log.info(TAG, 'size ' + this.size);
+    } catch (err) {
+      Log.error(TAG, 'get favouriteStatus ' + JSON.stringify(err));
+    }
+    let size = { width: MediaConstants.DEFAULT_SIZE, height: MediaConstants.DEFAULT_SIZE };
+    if (fileAsset != null) {
+      try {
+        this.defaultThumbnail = await this.fileAsset.getThumbnail(size)
+      } catch (err) {
+        Log.error(TAG, 'getThumbnail error: ' + JSON.stringify(err));
+      }
     }
     this.isSelect = selectManager.isSelect(this.uri, this.isSelect);
     this.imgWidth = this.width;
@@ -151,18 +175,29 @@ export class UserFileDataItem implements DateAdded {
     }
   }
 
-  getThumbnail(width: number, height: number): string {
+  async getThumbnail(width: number, height: number): Promise<PixelMap> {
     Log.debug(TAG, 'getThumbnail ' + this.status);
     if (this.status != MediaConstants.LOADED && this.status != MediaConstants.PART_LOADED) {
       Log.warn(TAG, 'getThumbnail fail as status: ' + this.status);
-      return '';
+      return undefined;
     }
-    Log.debug(TAG, 'this.uri ' + this.uri);
-    return this.uri + '/thumbnail/' + width + '/' + height;
+    if (width == MediaConstants.DEFAULT_SIZE && height == MediaConstants.DEFAULT_SIZE) {
+      return this.defaultThumbnail;
+    }
+    let newThumbnail:PixelMap = undefined;
+    let size = { width: width, height: height };
+    if (this.fileAsset != undefined) {
+      try {
+        newThumbnail = await this.fileAsset.getThumbnail(size)
+      } catch (err) {
+        Log.error(TAG, 'getThumbnail error: ' + JSON.stringify(err));
+      }
+    }
+    return newThumbnail;
   }
 
   getAlt(): Resource {
-    if (this.mediaType == userFileManager.FileType.VIDEO) {
+    if (this.mediaType == photoAccessHelper.PhotoType.VIDEO) {
       return $r('app.media.alt_video_placeholder');
     } else {
       return $r('app.media.alt_placeholder');
@@ -194,7 +229,7 @@ export class UserFileDataItem implements DateAdded {
     if (this.favouriteStatus == STATUS_UNDEFINED) {
       let fileAsset = await this.loadFileAsset();
       try {
-        this.favouriteStatus = (fileAsset.get(userFileManager.ImageVideoKey.FAVORITE.toString()) as boolean) ? STATUS_TRUE : STATUS_FALSE;
+        this.favouriteStatus = (fileAsset.get(photoAccessHelper.PhotoKeys.FAVORITE.toString()) as boolean) ? STATUS_TRUE : STATUS_FALSE;
       } catch (err) {
         Log.error(TAG, 'isFavor error: ' + JSON.stringify(err));
       }
@@ -206,7 +241,7 @@ export class UserFileDataItem implements DateAdded {
     let status = !(await this.isFavor());
     try {
       let fileAsset = await this.loadFileAsset();
-      await fileAsset.favorite(status);
+      await fileAsset.setFavorite(status);
       this.favouriteStatus = status ? STATUS_TRUE : STATUS_FALSE;
       return true;
     } catch (err) {
@@ -228,13 +263,11 @@ export class UserFileDataItem implements DateAdded {
     let displayName = fileAsset.displayName;
     let index = displayName.lastIndexOf('.');
     displayName = name + displayName.slice(index);
-
     this.displayName = displayName;
-    fileAsset.displayName = displayName;
-
     this.title = name;
     try {
-      fileAsset.set(userFileManager.ImageVideoKey.TITLE.toString(), name);
+      fileAsset.set(photoAccessHelper.PhotoKeys.DISPLAY_NAME.toString(), displayName);
+      fileAsset.set(photoAccessHelper.PhotoKeys.TITLE.toString(), name);
     } catch (err) {
       Log.error(TAG, 'isFavor error: ' + JSON.stringify(err));
     }

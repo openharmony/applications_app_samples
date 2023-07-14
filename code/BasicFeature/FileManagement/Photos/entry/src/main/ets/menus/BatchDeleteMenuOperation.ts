@@ -63,19 +63,10 @@ export class BatchDeleteMenuOperation extends ProcessMenuOperation {
 
   getResourceFromGrid(dataSource: ItemDataSource): Resource {
     if (dataSource != null && dataSource.isSelect()) {
-      if (this.menuContext.albumId == MediaConstants.ALBUM_ID_USER) {
-        return $r('app.string.remove_all_files_tips')
-      }
       return this.menuContext.albumId == MediaConstants.ALBUM_ID_RECYCLE ? $r('app.string.recycle_all_files_tips') : $r('app.string.delete_all_files_tips');
     } else if (this.count == 1) {
-      if (this.menuContext.albumId == MediaConstants.ALBUM_ID_USER) {
-        return $r('app.string.remove_single_file_tips')
-      }
       return this.menuContext.albumId == MediaConstants.ALBUM_ID_RECYCLE ? $r('app.string.recycle_single_file_tips') : $r('app.string.delete_single_file_tips');
     } else {
-      if (this.menuContext.albumId == MediaConstants.ALBUM_ID_USER) {
-        return $r('app.string.remove_files_tips', this.count)
-      }
       return this.menuContext.albumId == MediaConstants.ALBUM_ID_RECYCLE ? $r('app.string.recycle_files_tips', this.count) : $r('app.string.delete_files_tips', this.count);
     }
   }
@@ -123,22 +114,12 @@ export class BatchDeleteMenuOperation extends ProcessMenuOperation {
   requestOneBatchOperation(): void {
     let item = this.items[this.currentBatch] as UserFileDataItem;
     if (item != null) {
-            /*if(this.menuContext.albumId == MediaConstants.ALBUM_ID_USER){
-                Log.error(TAG,'Remove from user album:'+this.menuContext.albumInfo.uri);
-                this.albumDataImpl.removeFileFromAlbum(this.menuContext.albumInfo.uri,item.uri).then<void, void>((): void => {
-                    this.currentBatch++;
-                    this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
-                    this.cyclicOperation();
-                })
-            } else{*/
-                item.onDelete().then<void, void>((): void => {
-                    this.currentBatch++;
-                    this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
-                    this.cyclicOperation();
-                })
-            //}
-
-        }
+      item.onDelete().then<void, void>((): void => {
+        this.currentBatch++;
+        this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
+        this.cyclicOperation();
+      })
+    }
   }
 
   cancelCallback(): void {

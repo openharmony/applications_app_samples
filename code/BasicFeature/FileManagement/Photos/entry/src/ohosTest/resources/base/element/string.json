@@ -39,6 +39,42 @@
     {
       "name": "album_recycle",
       "value": "Recently deleted"
+    },
+    {
+      "name": "album_new",
+      "value": "New album"
+    },
+    {
+      "name": "no_photo",
+      "value": "No photos or videos"
+    },
+    {
+      "name": "btn_favor",
+      "value": "Favorite"
+    },
+    {
+      "name": "btn_delete",
+      "value": "Delete"
+    },
+    {
+      "name": "btn_rename",
+      "value": "Rename"
+    },
+    {
+      "name": "btn_not_favor",
+      "value": "Unfavorite"
+    },
+    {
+      "name": "btn_recover",
+      "value": "Restore"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "Done"
+    },
+    {
+      "name": "btn_toast",
+      "value": "Name already in use."
     }
   ]
 }

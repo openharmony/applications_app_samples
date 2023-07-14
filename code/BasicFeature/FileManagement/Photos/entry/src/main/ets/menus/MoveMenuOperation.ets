@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { userFileModel } from '../base/UserFileModel';
 import { Log } from '../utils/Log';
 import { MenuContext } from './MenuContext';
 import { ProcessMenuOperation, FindSameOperation } from './ProcessMenuOperation';
 import { MediaOperationType } from '../models/MediaOperationType';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
-import { startTraceWithTaskId, finishTraceWithTaskId } from '../utils/TraceControllerUtils';
 import { ItemDataSource } from '../common/ItemDataSource';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
@@ -109,14 +108,11 @@ export class MoveMenuOperation extends ProcessMenuOperation {
     }
   }
 
-  async move(file: userFileManager.FileAsset, path: string, targetFile?): Promise<void> {
-    startTraceWithTaskId('move', this.currentBatch);
+  async move(file: photoAccessHelper.PhotoAsset, path: string, targetFile?): Promise<void> {
     try {
       if (targetFile != null) {
         await userFileModel.deleteOne(targetFile.uri);
       }
-      //TODO need to define move
-      finishTraceWithTaskId('move', this.currentBatch);
       this.onCompleted();
     } catch (error) {
       Log.error(TAG, 'move error: ' + error)

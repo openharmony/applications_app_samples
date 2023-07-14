@@ -32,7 +32,7 @@ export struct DetailMenuPanel {
           onMenuClicked: this.onMenuClicked,
           isAutoTint: menu.isAutoTint,
           colorMode: this.actionBarProp.getColorMode()
-        })
+        }).id(menu.actionID.toString())
       }, (menu: Action): string => { return JSON.stringify(menu.actionID) })
     }.alignItems(VerticalAlign.Center)
   }

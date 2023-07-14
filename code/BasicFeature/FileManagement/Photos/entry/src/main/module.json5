@@ -26,36 +26,6 @@
     "pages": "$profile:main_pages",
     "requestPermissions": [
       {
-        "name": "ohos.permission.MEDIA_LOCATION",
-        "reason": "$string:read_permission",
-        "usedScene": {
-          "abilities": [
-            "EntryAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
-        "name": "ohos.permission.READ_MEDIA",
-        "reason": "$string:read_permission",
-        "usedScene": {
-          "abilities": [
-            "EntryAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
-        "name": "ohos.permission.WRITE_MEDIA",
-        "reason": "$string:write_permission",
-        "usedScene": {
-          "abilities": [
-            "EntryAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
         "name": "ohos.permission.WRITE_IMAGEVIDEO",
         "reason": "$string:write_image_video_permission",
         "usedScene": {
@@ -67,26 +37,6 @@
       },
       {
         "name": "ohos.permission.READ_IMAGEVIDEO",
-        "reason": "$string:write_image_video_permission",
-        "usedScene": {
-          "abilities": [
-            "EntryAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
-        "name": "ohos.permission.READ_AUDIO",
-        "reason": "$string:write_image_video_permission",
-        "usedScene": {
-          "abilities": [
-            "EntryAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
-        "name": "ohos.permission.WRITE_AUDIO",
         "reason": "$string:write_image_video_permission",
         "usedScene": {
           "abilities": [

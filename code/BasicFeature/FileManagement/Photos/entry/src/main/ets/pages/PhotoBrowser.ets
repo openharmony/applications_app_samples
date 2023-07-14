@@ -15,7 +15,6 @@
 
 import router, { ParamsInterface } from '@system.router';
 import Want from '@ohos.application.Want';
-import MediaLib from '@ohos.multimedia.mediaLibrary';
 import { Log } from '../utils/Log';
 import { Action } from '../models/Action';
 import { MenuOperation } from '../menus/MenuOperation';
@@ -49,7 +48,6 @@ import { getResourceString } from '../utils/ResourceUtils';
 import { CommonObserverCallback } from '../common/CommonObserverCallback';
 import { userFileObserver } from '../base/UserFileObserver';
 import { mMultimodalInputManager } from '../common/MultimodalInputManager';
-import { startTrace, finishTrace } from '../utils/TraceControllerUtils';
 import { GroupItemDataSource } from '../common/GroupItemDataSource';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { InnerUserFileDataItem } from '../base/InnerUserFileDataItem';
@@ -526,7 +524,6 @@ struct PhotoBrowser {
   }
 
   aboutToAppear(): void {
-    startTrace('PhotoBrowserAboutToAppear');
     Log.info(TAG, 'photoBrowser aboutToAppear');
     AppStorage.SetOrCreate<number>('isDelete', 0);
     AppStorage.SetOrCreate<number>('isLeftSwiper', 0);
@@ -558,7 +555,7 @@ struct PhotoBrowser {
         this.albumInfo = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_CAMERA, '', '', '', '',-1,-1)
         this.browserDataSource.setAlbumId(this.albumInfo.id)
         this.browserDataSource.setAlbumType(this.albumInfo.albumType)
-        this.browserDataSource.setAlbumSubType(this.albumInfo.albumSubType)
+        this.browserDataSource.setAlbumSubtype(this.albumInfo.albumSubType)
         this.browserDataSource.setAlbumName(this.albumInfo.displayName)
         this.jumpSourceToMain = JumpSourceToMain.CAMERA;
       } else if (this.pageFrom == Constants.ENTRY_FROM.VIEW_DATA) {
@@ -571,7 +568,7 @@ struct PhotoBrowser {
         this.browserDataSource.setAlbumId(this.albumInfo.id)
         this.browserDataSource.setDeviceId(this.albumInfo.deviceId);
         this.browserDataSource.setAlbumType(this.albumInfo.albumType)
-        this.browserDataSource.setAlbumSubType(this.albumInfo.albumSubType)
+        this.browserDataSource.setAlbumSubtype(this.albumInfo.albumSubType)
         this.browserDataSource.setAlbumName(this.albumInfo.displayName)
       }
 
@@ -618,7 +615,7 @@ struct PhotoBrowser {
       AppStorage.SetOrCreate<number>(Constants.ENTRY_FROM_HAP, Constants.ENTRY_FROM_NONE);
       this.browserDataSource.setAlbumId(this.albumInfo.id);
       this.browserDataSource.setAlbumType(this.albumInfo.albumType)
-      this.browserDataSource.setAlbumSubType(this.albumInfo.albumSubType)
+      this.browserDataSource.setAlbumSubtype(this.albumInfo.albumSubType)
       this.browserDataSource.setAlbumName(this.albumInfo.displayName)
       this.browserDataSource.reloadGroupItemData(false).then<void, void>((isEmpty: boolean): void => {
         this.isDataChanged = isEmpty;
@@ -696,8 +693,6 @@ struct PhotoBrowser {
       Log.info(TAG, 'set swiper swipe ' + value);
       this.canSwipe = value;
     });
-
-    finishTrace('PhotoBrowserAboutToAppear');
   }
 
   private async dataSourceLoadFinish(): Promise<void> {
@@ -714,7 +709,6 @@ struct PhotoBrowser {
   }
 
   onPageShow(): void {
-    startTrace('PhotoBrowserOnPageShow');
     this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
     this.broadCast.emit(BroadcastConstants.CHANGE_SWIPER_DURATION, [400]);
     let params = router.getParams();
@@ -749,7 +743,6 @@ struct PhotoBrowser {
       menuOperation.doAction();
     }
     this.backFromCopy = false;
-    finishTrace('PhotoBrowserOnPageShow');
   }
 
   private downLoad(): void {

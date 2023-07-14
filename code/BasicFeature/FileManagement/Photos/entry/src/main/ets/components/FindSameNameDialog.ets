@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { DialogCallback } from '../utils/DialogUtil';
 import { Log } from '../utils/Log';
 import { DateUtil } from '../utils/DateUtil';
@@ -22,8 +22,8 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class FindSameNameParam {
-  sourceFileAsset: userFileManager.FileAsset
-  targetFileAsset: userFileManager.FileAsset
+  sourceFileAsset: photoAccessHelper.PhotoAsset
+  targetFileAsset: photoAccessHelper.PhotoAsset
   replaceFunc: Function
   skipFunc: Function
   cancelFunc: Function
@@ -41,8 +41,8 @@ export struct FindSameNameDialog {
   @Consume dialogCallback: DialogCallback;
   @Consume dialogMessage: Resource;
   @Consume findSameNameParam: FindSameNameParam;
-  sourceDetails: userFileManager.FileAsset;
-  targetDetails: userFileManager.FileAsset;
+  sourceDetails: photoAccessHelper.PhotoAsset;
+  targetDetails: photoAccessHelper.PhotoAsset;
   controller: CustomDialogController;
   dataTime: string;
   targetDataTime: string;
@@ -65,8 +65,8 @@ export struct FindSameNameDialog {
     this.sourceDetails = this.findSameNameParam.sourceFileAsset;
     this.targetDetails = this.findSameNameParam.targetFileAsset;
     try{
-      this.dataTime = DateUtil.getDateTimeFormat(this.sourceDetails.get(userFileManager.ImageVideoKey.DATE_MODIFIED.toString()) as number * this.timeConvert);
-      this.targetDataTime = DateUtil.getDateTimeFormat(this.targetDetails.get(userFileManager.ImageVideoKey.DATE_MODIFIED.toString()) as number * this.timeConvert);
+      this.dataTime = DateUtil.getDateTimeFormat(this.sourceDetails.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * this.timeConvert);
+      this.targetDataTime = DateUtil.getDateTimeFormat(this.targetDetails.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * this.timeConvert);
     }catch (err){
     }
   }

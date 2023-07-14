@@ -17,7 +17,7 @@ import { AlbumDataItem } from './AlbumDataItem';
 import { MediaConstants } from '../constants/MediaConstants';
 import { userFileModel } from '../base/UserFileModel';
 import { getAlbumDisplayName } from '../base/UserFileDataHelper';
-import userFileManager from '@ohos.filemanagement.userFileManager';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 const TAG = 'AlbumDataImpl';
@@ -91,8 +91,8 @@ export class AlbumDataImpl {
     await this.getAlbumItemByUserFileMgr(id, albumType, albumSubType, albumDataItems);
   }
 
-  private async getAlbumItemByUserFileMgr(id: string, type: userFileManager.AlbumType, subType: userFileManager.AlbumSubType, albumDataItems: AlbumDataItem[]): Promise<void> {
-    let fetchResult = null;
+  private async getAlbumItemByUserFileMgr(id: string, type: photoAccessHelper.AlbumType, subType: photoAccessHelper.AlbumSubtype, albumDataItems: AlbumDataItem[]): Promise<void> {
+    let fetchResult:photoAccessHelper.FetchResult<photoAccessHelper.Album> = null;
     try {
       Log.info(TAG, 'getAlbumItemByUserFileMgr');
       fetchResult = await userFileModel.getUserFileMgr().getAlbums(type, subType);
@@ -100,15 +100,19 @@ export class AlbumDataImpl {
       Log.info(TAG, 'subType:' + subType);
       Log.info(TAG, 'get Album fetchResult, count: ' + fetchResult.getCount());
       for (let i = 0; i < fetchResult.getCount(); i++) {
-        let albumAsset = await fetchResult.getPositionObject(i);
+        let albumAsset:photoAccessHelper.Album = await fetchResult.getObjectByPosition(i);
         Log.info(TAG, 'albumAsset albumType: ' + i + '---' + albumAsset.albumType);
-        Log.info(TAG, 'albumAsset albumSubType: ' + i + '---' + albumAsset.albumSubType);
+        Log.info(TAG, 'albumAsset albumSubType: ' + i + '---' + albumAsset.albumSubtype);
         Log.info(TAG, 'albumAsset albumName: ' + i + '---' + albumAsset.albumName);
         Log.info(TAG, 'albumAsset albumUri: ' + i + '---' + albumAsset.albumUri);
+        if (this.blackList.indexOf(albumAsset.albumUri) >= 0) {
+          Log.debug(TAG, 'no need as in black list:'+albumAsset.albumUri);
+          continue;
+        }
         Log.info(TAG, 'albumAsset count: ' + i + '---' + albumAsset.count);
         Log.info(TAG, 'albumAsset coverUri: ' + i + '---' + albumAsset.coverUri);
-        let photoFetchResult = null;
-        let fileAsset = null;
+        let photoFetchResult:photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
+        let fileAsset:photoAccessHelper.PhotoAsset = null;
         let count = 0;
         try {
           let predicates = new dataSharePredicates.DataSharePredicates();
@@ -116,7 +120,7 @@ export class AlbumDataImpl {
             fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
             predicates: predicates
           };
-          photoFetchResult = await albumAsset.getPhotoAssets(fetchOptions);
+          photoFetchResult = await albumAsset.getAssets(fetchOptions);
           Log.info(TAG, 'photoFetchResult count: ' + photoFetchResult.getCount());
           count = photoFetchResult.getCount();
           fileAsset = await photoFetchResult.getFirstObject();
@@ -135,10 +139,10 @@ export class AlbumDataImpl {
           displayName = await getAlbumDisplayName(id);
         }
         let albumType = albumAsset.albumType;
-        let albumSubType = albumAsset.albumSubType;
+        let albumSubType = albumAsset.albumSubtype;
         let albumItem: AlbumDataItem = new AlbumDataItem(id, count, displayName, this.selectType, this.deviceId, albumType, albumSubType);
         albumItem.uri = albumAsset.albumUri;
-        albumItem.update(fileAsset);
+        await albumItem.update(fileAsset);
         albumDataItems.push(albumItem);
       }
     } catch (err) {
@@ -150,21 +154,21 @@ export class AlbumDataImpl {
     }
   }
 
-  async getUserAlbumItemByUri(uri: string): Promise<userFileManager.Album> {
-    let fetchResult = null;
-    let album: userFileManager.Album = null;
+  async getUserAlbumItemByUri(uri: string): Promise<photoAccessHelper.Album> {
+    let fetchResult:photoAccessHelper.FetchResult<photoAccessHelper.Album> = null;
+    let album: photoAccessHelper.Album = null;
     try {
       Log.info(TAG, 'getUserAlbumItemByUri');
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo('uri', uri);
+      predicates.equalTo(photoAccessHelper.AlbumKeys.URI, uri);
       let fetchOptions = {
         fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
         predicates: predicates
       };
-      fetchResult = await userFileModel.getUserFileMgr().getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC, fetchOptions);
+      fetchResult = await userFileModel.getUserFileMgr().getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
       Log.info(TAG, 'get Album fetchResult, count: ' + fetchResult.getCount());
       if (fetchResult.getCount() > 0) {
-        album = fetchResult.getFirstObject();
+        album = await fetchResult.getFirstObject();
       }
     } catch (err) {
       Log.error(TAG, 'get Album fetchResult failed with err: ' + err);
@@ -180,13 +184,12 @@ export class AlbumDataImpl {
     let album = await this.getUserAlbumItemByUri(albumUri);
     let fileAsset = await userFileModel.getMediaItemByUri(uri);
     if (album != null && fileAsset != null) {
-      album.removePhotoAssets([fileAsset]).then(() => {
-        Log.info(TAG, 'album removePhotoAssets successfully');
+      try {
+        await album.removeAssets([fileAsset]);
         return true;
-      }).catch((err) => {
+      } catch (err) {
         Log.error(TAG, 'album removePhotoAssets failed with error: ' + err);
-        return false;
-      });
+      }
     }
     return false;
   }
@@ -199,7 +202,7 @@ export class AlbumDataImpl {
         fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
         predicates: predicates
       };
-      photoFetchResult = await userFileModel.getUserFileMgr().getPhotoAssets(fetchOptions);
+      photoFetchResult = await userFileModel.getUserFileMgr().getAssets(fetchOptions);
       Log.info(TAG, 'getAllPhotoAlbum count: ' + photoFetchResult.getCount());
       let fileAsset = await photoFetchResult.getFirstObject();
       Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
@@ -207,7 +210,7 @@ export class AlbumDataImpl {
       let id = MediaConstants.ALBUM_ID_ALL;
       displayName = await getAlbumDisplayName(id);
       let albumItem: AlbumDataItem = new AlbumDataItem(id, photoFetchResult.getCount(), displayName, this.selectType, this.deviceId, -1, -1);
-      albumItem.update(fileAsset);
+      await albumItem.update(fileAsset);
       albumDataItems.push(albumItem);
     } catch (err) {
       Log.error(TAG, 'get Album getPhotoAssets failed with err: ' + err);
@@ -228,27 +231,19 @@ export class AlbumDataImpl {
     return albumDataItems;
   }
 
-  async reloadResetAlbumItemData(): Promise<AlbumDataItem[]> {
-    Log.info(TAG, 'reloadResetAlbumItemData start');
-    let albumResetDataItems: AlbumDataItem[] = [];
-    await this.loadAlbumReset(albumResetDataItems);
-    await this.getAlbumItem(MediaConstants.ALBUM_ID_RECYCLE, albumResetDataItems);
-    return albumResetDataItems;
-  }
-
   private async getCommonListAlbumItem(albumDataItems: AlbumDataItem[]): Promise<void> {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions = {
       fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
       predicates: predicates
     };
-    let albums: userFileManager.Album[] = await userFileModel.getAlbums(fetchOptions);
+    let albums: photoAccessHelper.Album[] = await userFileModel.getAlbums(fetchOptions);
     await this.getAlbumDataItem(albumDataItems, albums);
   }
 
-  private async getAlbumDataItem(albumDataItems: AlbumDataItem[], albums: userFileManager.Album[]): Promise<void> {
+  private async getAlbumDataItem(albumDataItems: AlbumDataItem[], albums: photoAccessHelper.Album[]): Promise<void> {
     for (let i = 0;i < albums.length; i++) {
-      let album: userFileManager.Album = albums[i];
+      let album: photoAccessHelper.Album = albums[i];
       if (this.blackList.indexOf(album.albumUri.toString()) >= 0) {
         continue;
       }
@@ -257,16 +252,15 @@ export class AlbumDataImpl {
         fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
         predicates: predicates
       };
-      let fetchFileResult = await album.getPhotoAssets(fetchOptions);
+      let fetchFileResult = await album.getAssets(fetchOptions);
       try {
         let count = fetchFileResult.getCount();
         if (count == 0) {
           continue;
         }
-        //TODO : id is not correct
-        let item = new AlbumDataItem(album.albumUri.toString(), count, album.albumName, this.selectType, this.deviceId, 0, 0);
+        let item = new AlbumDataItem(MediaConstants.ALBUM_ID_USER, count, album.albumName, this.selectType, this.deviceId, 0, 0);
         item.uri = album.albumUri;
-        item.update(await fetchFileResult.getFirstObject());
+        await item.update(await fetchFileResult.getFirstObject());
         albumDataItems.push(item);
       } catch (err) {
         Log.error(TAG, 'on err: ' + JSON.stringify(err));
@@ -274,17 +268,5 @@ export class AlbumDataImpl {
         fetchFileResult.close();
       }
     }
-  }
-
-  private async loadAlbumReset(albumDataItems: AlbumDataItem[]): Promise<void> {
-    Log.info(TAG, 'loadReset start');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
-      fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
-      predicates: predicates
-    };
-    let albums: userFileManager.Album[] = await userFileModel.getAlbums(fetchOption);
-    await this.getAlbumDataItem(albumDataItems, albums);
-    Log.info(TAG, 'loadAlbumReset end');
   }
 }

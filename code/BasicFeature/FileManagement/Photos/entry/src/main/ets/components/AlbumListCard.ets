@@ -25,13 +25,14 @@ export struct AlbumListCard {
   @State useAlt: boolean = false;
   @Consume broadCast: Broadcast;
   item: AlbumDataItem;
-  @State thumbnail: string = '';
+  @State thumbnail: PixelMap = undefined;
   @State mediaRes: Resource = undefined;
 
   aboutToAppear(): void {
     Log.info(TAG, 'album mediaSet ' + JSON.stringify(this.item));
-    this.item.load().then<void, void>((): void  => {
-      this.thumbnail = this.item.getThumbnail();
+    this.item.load().then<void, void>(async (): Promise<void>  => {
+      this.thumbnail = await this.item.getThumbnail();
+      Log.error(TAG,'this.thumbnail：'+this.thumbnail)
     })
     this.item.getVideoCount().then<void, void>((videoCount: number): void  => {
       this.mediaRes = this.showMediaRes(videoCount);
@@ -76,7 +77,7 @@ export struct AlbumListCard {
           .width($r('app.float.list_card_image_size'))
           .borderRadius($r('sys.float.ohos_id_corner_radius_default_s'))
           .onError((): void => {
-            if (this.thumbnail != null) {
+            if (this.thumbnail != undefined) {
               this.useAlt = true;
             }
             Log.error(TAG, 'alt Image error');

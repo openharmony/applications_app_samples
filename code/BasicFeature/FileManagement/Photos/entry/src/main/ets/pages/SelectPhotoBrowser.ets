@@ -99,7 +99,7 @@ struct SelectPhotoBrowser {
     if (param.albumInfo != null) {
       this.browserDataSource.setAlbumId((param.albumInfo as SimpleAlbumDataItem).id);
       this.browserDataSource.setAlbumType((param.albumInfo as SimpleAlbumDataItem).albumType)
-      this.browserDataSource.setAlbumSubType((param.albumInfo as SimpleAlbumDataItem).albumSubType)
+      this.browserDataSource.setAlbumSubtype((param.albumInfo as SimpleAlbumDataItem).albumSubType)
       this.browserDataSource.setAlbumName((param.albumInfo as SimpleAlbumDataItem).displayName)
     }
 
