@@ -23,7 +23,7 @@ const TAG: string = '[Sample_Upload]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Upload_';
 const WAITING_TIME = 1000;
-const LONG_WAITING_TIME = 3000;
+const LONG_WAITING_TIME = 5000;
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function uploadAbilityTest() {
