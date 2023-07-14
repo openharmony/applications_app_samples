@@ -121,6 +121,8 @@ textEdit/src/main/ets/
 
 依赖于[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)  应用，来作为接收方。
 
+entry中测试[Share.test.ets](./entry/src/ohosTest/ets/test/Share.test.ets)需要依赖[textShare](./textShare/)以及[textEdit](./textEdit/)，需要编译两个feature module的hap包，并与entry应用hap包及测试hap包一同签名并安装。
+
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
