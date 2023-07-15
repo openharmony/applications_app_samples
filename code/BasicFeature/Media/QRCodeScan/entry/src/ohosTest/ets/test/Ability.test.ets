@@ -56,19 +56,25 @@ export default function abilityTest() {
     it(BUNDLE + 'CreateQRCodeScanFunction_001', 0, async function () {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateQRCodeScanFunction_001 begin')
-      let driver = Driver.create()
-      await driver.delayMs(3000)
+      let driver = Driver.create();
+      await driver.delayMs(3000);
       // 允许打开相册
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))))
       let firstButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))))
       await driver.delayMs(1000);
-      await firstButton.click()
+      await firstButton.click();
       await driver.delayMs(1000);
       // 允许访问媒体和文件
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))))
       let secondButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))))
       await driver.delayMs(1000);
-      await secondButton.click()
+      await secondButton.click();
+      await driver.delayMs(1000);
+      // 允许访问照片和视频
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))))
+      let thirdButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))))
+      await driver.delayMs(1000);
+      await thirdButton.click();
       await driver.delayMs(1000);
       // 点击相册
       let openImage = await driver.findComponents(ON.type('Image'))
