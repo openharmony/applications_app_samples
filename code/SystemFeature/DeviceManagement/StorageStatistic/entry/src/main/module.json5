@@ -67,6 +67,16 @@
         }
       },
       {
+        "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
+        "reason": "$string:get_bundle_info_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
         "reason": "$string:get_bundle_info_permission",
         "usedScene": {
