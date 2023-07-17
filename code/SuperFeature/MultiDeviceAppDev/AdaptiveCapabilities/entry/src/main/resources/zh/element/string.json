@@ -165,6 +165,10 @@
       "value": "侧边栏"
     },
     {
+      "name": "multiScene",
+      "value": "一多典型场景"
+    },
+    {
       "name": "user_improvement",
       "value": "用户体验改进计划"
     },
@@ -251,6 +255,118 @@
     {
       "name": "breakpoint",
       "value": "断点"
+    },
+    {
+      "name": "multiScene_tabs_home",
+      "value": "首页"
+    },
+    {
+      "name": "multiScene_tabs_app",
+      "value": "应用"
+    },
+    {
+      "name": "multiScene_tabs_play",
+      "value": "播放"
+    },
+    {
+      "name": "multiScene_tabs_me",
+      "value": "我的"
+    },
+    {
+      "name": "multiScene_header_title",
+      "value": "早上好呀~"
+    },
+    {
+      "name": "multiScene_header_subtitle",
+      "value": "永远别放弃一个你每天都在想念的人!"
+    },
+    {
+      "name": "multiScene_my_content",
+      "value": "我的内容"
+    },
+    {
+      "name": "multiScene_application",
+      "value": "应用"
+    },
+    {
+      "name": "multiScene_title1",
+      "value": "人工智能技术在医疗领域的应用"
+    },
+    {
+      "name": "multiScene_title1_disc",
+      "value": "探讨人工智能技术如何改善医疗服务，提高诊断准确率和治疗效果。"
+    },
+    {
+      "name": "multiScene_title2",
+      "value": "区块链技术对金融行业的影响"
+    },
+    {
+      "name": "multiScene_title2_disc",
+      "value": "分析区块链技术如何改变传统金融行业的商业模式，提高交易效率和安全性。"
+    },
+    {
+      "name": "multiScene_title3",
+      "value": "机器学习算法在自动驾驶中的应用"
+    },
+    {
+      "name": "multiScene_title3_disc",
+      "value": "介绍机器学习算法如何实现自动驾驶功能，探讨其在未来交通领域的发展前景。"
+    },
+    {
+      "name": "multiScene_title4",
+      "value": "虚拟现实技术在游戏产业的应用"
+    },
+    {
+      "name": "multiScene_title4_disc",
+      "value": "探讨虚拟现实技术如何改变游戏产业的玩法和用户体验，分析其在未来娱乐领域的发展趋势。"
+    },
+    {
+      "name": "multiScene_title5",
+      "value": "5G技术对通信行业的影响"
+    },
+    {
+      "name": "multiScene_title5_disc",
+      "value": "分析5G技术如何改变通信行业的商业模式和用户需求，探讨其在未来数字化社会中的应用前景。"
+    },
+    {
+      "name": "multiScene_title6",
+      "value": "物联网技术在智慧城市中的应用"
+    },
+    {
+      "name": "multiScene_title6_disc",
+      "value": "介绍物联网技术如何实现智慧城市的建设和管理，分析其在未来城市发展中的重要性和作用。"
+    },
+    {
+      "name": "multiScene_title7",
+      "value": "生物技术在农业领域的应用"
+    },
+    {
+      "name": "multiScene_title7_disc",
+      "value": "探讨生物技术如何改善农业生产和保护生态环境，分析其在未来粮食安全和可持续发展中的作用。"
+    },
+    {
+      "name": "multiScene_title8",
+      "value": "量子计算机技术的发展与挑战"
+    },
+    {
+      "name": "multiScene_title8_disc",
+      "value": "介绍量子计算机技术的基本原理和应用前景，探讨其目前面临的技术难题和发展趋势。"
+    },
+    {
+      "name": "multiScene_title9",
+      "value": "大数据技术在企业管理中的应用"
+    },
+    {
+      "name": "multiScene_title9_disc",
+      "value": "分析大数据技术如何协助企业管理，提高经营效率和决策水平，探讨其在未来商业竞争中的优势和挑战。"
+    },
+    {
+      "name": "multiScene_title10",
+      "value": "人工智能技术对教育行业的影响"
+    },
+    {
+      "name": "multiScene_title10_disc",
+      "value": "探讨人工智能技术如何改变教育教学的方式和内容，分析其在未来教育发展中的作用和挑战。"
     }
   ]
 }

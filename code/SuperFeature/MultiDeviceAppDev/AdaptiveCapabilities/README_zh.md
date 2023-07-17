@@ -112,6 +112,20 @@ entry/src/main/ets/
 |   |   |   |   |---SidebarSample.ets                    // 侧边栏
 |   |   |   |---tabs
 |   |   |   |   |---TabsSample.ets                       // 页签布局
+|   |   |   |---multiScene                               
+|   |   |   |   |---data	
+|   |   |   |   |   |---apliications	
+|   |   |   |   |   |   |---Apliications.ets		
+|   |   |   |   |   |---home
+|   |   |   |   |   |   |---Home.ets					
+|   |   |   |   |---pages    
+|   |   |   |   |   |---apliications
+|   |   |   |   |   |   |---Apliications.ets	
+|   |   |   |   |   |---home	
+|   |   |   |   |   |   |---Home.ets
+|   |   |   |   |   |---player	
+|   |   |   |   |   |   |---Player.ets
+|   |   |   |   |   |---MultiScene.ets	                 // 一多典型场景
 |   |   |   |---TypicalSceneIndex.ets                    // 典型布局场景
 ```
 ### 具体实现

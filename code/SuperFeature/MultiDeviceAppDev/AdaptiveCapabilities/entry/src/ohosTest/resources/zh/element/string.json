@@ -251,6 +251,18 @@
     {
       "name": "breakpoint",
       "value": "断点"
+    },
+    {
+      "name": "multiScene_tabs_app",
+      "value": "应用"
+    },
+    {
+      "name": "multiScene_tabs_play",
+      "value": "播放"
+    },
+    {
+      "name": "multiScene_tabs_me",
+      "value": "我的"
     }
   ]
 }
