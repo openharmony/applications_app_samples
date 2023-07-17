@@ -36,8 +36,8 @@ struct Index {
               url: this.urlList[index],
             })
           })
-          .key('item' + (index + 1))
-        }, item => item.title)
+          .key('chose' + index )
+        }, item => item)
       }
       .width('100%')
       .height(462)

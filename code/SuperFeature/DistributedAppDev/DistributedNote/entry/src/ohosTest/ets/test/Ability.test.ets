@@ -61,6 +61,71 @@ export default function appTest() {
     })
 
     /**
+     * 点击canvas item 进入分布式canvas界面
+     */
+    it(BUNDLE + 'ChosenFunction_001', 0, async function () {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ChosenFunction_001 begin');
+      // 点击note的listitem进入note界面
+      await DRIVER.assertComponentExist(ON.id('chose0'));
+      let itemChosen = await DRIVER.findComponent(ON.id('chose0'));
+      await itemChosen.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text('Distributed'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ChosenFunction_001 end');
+    })
+
+    /**
+     * canvas界面点击按钮绘制ellipse，rect，点击delete删除与点击back回到主界面
+     */
+    it(BUNDLE + 'CanvasFunction_001', 0, async function () {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 begin');
+      // ellipse
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 ellipse')
+      await DRIVER.assertComponentExist(ON.id('ellipse'))
+      let ellipseBtn = await DRIVER.findComponent(ON.id('ellipse'))
+      await ellipseBtn.click()
+      await DRIVER.delayMs(1000)
+      await DRIVER.assertComponentExist(ON.id('ellipseready'))
+
+      //delete
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 delete')
+      await DRIVER.assertComponentExist(ON.id('delete'))
+      let deleteBtn = await DRIVER.findComponent(ON.id('delete'))
+      await deleteBtn.click()
+      await DRIVER.delayMs(1000)
+
+      // rect
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 rect')
+      await DRIVER.assertComponentExist(ON.id('rect'))
+      let rectBtn = await DRIVER.findComponent(ON.id('rect'))
+      await rectBtn.click()
+      await DRIVER.delayMs(1000)
+      await DRIVER.assertComponentExist(ON.id('rectready'))
+
+      // back
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 rect')
+      await DRIVER.assertComponentExist(ON.id('back'))
+      let backBtn = await DRIVER.findComponent(ON.id('back'))
+      await backBtn.click()
+      await DRIVER.delayMs(1000)
+      await DRIVER.assertComponentExist(ON.id('chose1'));
+    })
+
+    /**
+     * 点击note item 进入分布式note界面
+     */
+    it(BUNDLE + 'ChosenFunction_002', 0, async function () {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ChosenFunction_002 begin');
+      // 点击note的listitem进入note界面
+      await DRIVER.assertComponentExist(ON.id('chose1'));
+      let itemChosen = await DRIVER.findComponent(ON.id('chose1'));
+      await itemChosen.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text('Distributed'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ChosenFunction_002 end');
+    })
+
+    /**
      * 点击添加按钮进入添加界面
      */
     it(BUNDLE + 'AddFunction_001', 0, async function () {
@@ -105,7 +170,6 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 begin');
       let noteData = await DRIVER.findComponent(ON.id('music'));
       await noteData.click();
-      await DRIVER.delayMs(1000);
       // 输入标题
       await DRIVER.assertComponentExist(ON.id('titleInput'));
       let title = await DRIVER.findComponent(ON.id('titleInput'));
@@ -135,7 +199,6 @@ export default function appTest() {
       await DRIVER.assertComponentExist(ON.id('clearNote'));
       let btnClear = await DRIVER.findComponent(ON.id('clearNote'));
       await btnClear.click();
-      await DRIVER.delayMs(1000);
       // 验证首页结果
       let noteData = await DRIVER.findComponent(ON.id('book'));
       expect(noteData).assertNull();

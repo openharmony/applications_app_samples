@@ -167,6 +167,7 @@ struct IndexCanvas {
               this.context.save();
             }
           })
+          .id(item.path + 'ready')
       }, item => JSON.stringify(item))
 
       Row() {
