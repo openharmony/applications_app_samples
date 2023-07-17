@@ -11,17 +11,11 @@
 
 ### 效果预览
 
-| 主页                               | 点击分享                                      | 分享页面                                      |其它应用分享|
-|----------------------------------|-------------------------------------------|-------------------------------------------|--------------|
-| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialo.png) | ![](screenshots/shared/canvas_dialog.png) |![](screenshots/revieved/image_file.png)|
-
-| 文本分享应用主页面 | 文本分享成功预览页 | 文本分享成功展开页 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | :----------------------------------------------------------: |
-| ![textShareMain](./screenshots/textShare/textShareMain.jpeg) | ![textSharePreview](./screenshots/textShare/textSharePreview.jpeg) | ![textShare](./screenshots/textShare/textShare.jpeg) |
-
-| 文本编辑应用主页面 | 文本编辑成功预览页 | 文本编辑成功展开页 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | :----------------------------------------------------------: |
-| ![templateMain](./screenshots/textEdit/textEditMain.jpeg) | ![templatePreview](./screenshots/textEdit/textEditPreview.jpeg) | ![templateShare](./screenshots/textEdit/textEditShare.jpeg) |
+| 主页                               | 点击分享                                      | 分享页面                                      |
+|----------------------------------|-------------------------------------------|-------------------------------------------|
+| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialo.png) | ![](screenshots/shared/canvas_dialog.png) |
+| **其它应用分享** | **文本分享成功预览页** | **文本编辑成功预览页** |
+| ![](screenshots/revieved/image_file.png) | ![textSharePreview](./screenshots/textShare/textSharePreview.jpeg) | ![templatePreview](./screenshots/textEdit/textEditPreview.jpeg) |
 
 使用说明：
 
@@ -36,11 +30,13 @@
 ，此时选择[聊天列表](entry/src/main/ets/pages/Index.ets)
 中任意的朋友进行分享。
 
-4.点击分享文本+链接，选择"文本分享"图标，会拉起应用[文本分享](./textShare/)
+4.安装[entry](./entry/)以及[textShare](./textShare/)两个module的hap包
+，点击分享文本+链接，选择"文本分享"图标，会拉起应用[文本分享](./textShare/)
 ,此时选择"留在文本分享"可以进入[文本页面](./textShare/src/main/ets/textreceiveability/TextReceiveAbility.ts)
 ,若选择"返回"，则会回到Share应用主页面。
 
-5.点击分享文本+链接，选择"文本编辑"图标，会拉起应用[文本编辑](./textEdit/)
+5.安装[entry](./entry/)以及[textEdit](./textEdit/)两个module的hap包
+，点击分享文本+链接，选择"文本编辑"图标，会拉起应用[文本编辑](./textEdit/)
 ,此时选择"留在文本编辑"可以进入[文本编辑页面](./textEdit/src/main/ets/editability/EditTextAbility.ts)
 ,若选择"返回"，则会回到Share应用主页面。
 
