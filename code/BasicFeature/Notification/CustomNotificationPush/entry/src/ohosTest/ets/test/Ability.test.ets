@@ -42,7 +42,6 @@ export default function abilityTest() {
         expect(0).assertEqual(expection.code);
         done();
       }
-      ability = await abilityDelegator.getCurrentTopAbility();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
     /**
