@@ -39,8 +39,8 @@ struct IndexCanvas {
   private sessionId: string = '';
   @StorageLink('sessionId') globalSessionId: string = '';
   @StorageLink('canvasModel') globalObject: DistributedCanvasModel = new DistributedCanvasModel();
+  @StorageLink('isOnline') globalIsOnline: boolean = false;
   @State devices: Array<deviceManager.DeviceInfo> = [];
-  @State isOnline: boolean = false;
   private canvasDataSource: CanvasDataSource = new CanvasDataSource();
 
   onPageShow() {
@@ -83,13 +83,14 @@ struct IndexCanvas {
     this.globalObject.setStatusCallback((session, networkId, status) => {
       Logger.info(TAG, `StatusCallback,${status}`);
       if (status === 'online') {
-        this.isOnline = true
+        this.globalIsOnline = true;
       } else {
-        this.isOnline = false
+        this.globalIsOnline = false;
       }
     })
     this.globalObject.distributedCanvas.setSessionId(this.sessionId);
     AppStorage.SetOrCreate('canvasModel', this.globalObject);
+    AppStorage.SetOrCreate('isOnline', this.globalIsOnline);
   }
 
   clearSelectState() {
@@ -142,7 +143,7 @@ struct IndexCanvas {
       Row() {
         Text($r('app.string.state'))
           .fontSize(30)
-        Image(this.isOnline ? $r('app.media.green') : $r('app.media.red'))
+        Image(this.globalIsOnline ? $r('app.media.green') : $r('app.media.red'))
           .size({ width: 30, height: 30 })
           .objectFit(ImageFit.Contain)
       }
