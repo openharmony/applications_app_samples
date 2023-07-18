@@ -105,14 +105,13 @@ export default function appTest() {
     it(`${BUNDLE}RequestEnableNotification`, 0, async () => {
       Logger.info(TAG, BUNDLE + 'RequestEnableNotification begin');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('允许'));
-      let agreeNotication: Component = await driver.findComponent(ON.text('允许'));
-      await agreeNotication.click();
-      await driver.delayMs(1000);
-      await agreeNotication.click();
-      await driver.delayMs(1000);
-      await agreeNotication.click();
-      await driver.delayMs(1000);
+      let resourceManager = ability.context.resourceManager;
+      for (let i = 0;i < 4; i++) {
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
+        let agreeNotication: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
+        await agreeNotication.click();
+        await driver.delayMs(1000);
+      }
       Logger.info(TAG, BUNDLE + 'RequestEnableNotification end');
     });
     /**

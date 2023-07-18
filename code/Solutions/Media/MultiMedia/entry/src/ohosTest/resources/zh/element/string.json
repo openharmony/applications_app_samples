@@ -15,6 +15,10 @@
     {
       "name": "agree",
       "value": "确定"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
     }
   ]
 }
