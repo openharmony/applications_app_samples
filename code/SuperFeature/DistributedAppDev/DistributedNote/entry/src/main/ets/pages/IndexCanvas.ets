@@ -25,7 +25,7 @@ import { CanvasDataSource } from '../common/BasicDataSource'
 import DeviceDialog from '../common/DeviceDialog'
 import TitleBar from '../common/TitleBar'
 
-const TAG: string = 'IndexCanvas'
+const TAG: string = 'Sample_IndexCanvas';
 
 @Entry
 @Component

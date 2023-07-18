@@ -16,7 +16,7 @@
 import distributedObject from '@ohos.data.distributedDataObject'
 import Logger from './Logger'
 
-const TAG: string = 'DistributedCanvasModel';
+const TAG: string = 'Sample_DistributedCanvasModel';
 
 export default class DistributedCanvasModel {
   public distributedCanvas;

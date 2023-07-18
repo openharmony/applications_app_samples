@@ -25,7 +25,8 @@ import { NoteDataSource } from '../common/BasicDataSource'
 import NoteItem from '../common/NoteItem'
 import RemoteDeviceModel from '../model/RemoteDeviceModel'
 import TitleBar from '../common/TitleBar'
-const TAG: string = 'IndexNote'
+
+const TAG: string = 'Sample_IndexNote';
 
 @Entry
 @Component

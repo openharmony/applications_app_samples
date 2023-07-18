@@ -87,7 +87,7 @@ export default function appTest() {
       await DRIVER.delayMs(1000)
       await DRIVER.assertComponentExist(ON.id('ellipseready'))
 
-      //delete
+      // delete
       hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 delete')
       await DRIVER.assertComponentExist(ON.id('delete'))
       let deleteBtn = await DRIVER.findComponent(ON.id('delete'))
