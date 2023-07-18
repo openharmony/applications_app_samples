@@ -435,6 +435,10 @@
       "name": "border_radius_right_bottom",
       "value": "Bottom right border"
     },
+    {
+      "name": "border_3D",
+      "value": "Set the border 3D"
+    },
     // Button
     {
       "name": "button_title",

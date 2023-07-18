@@ -110,6 +110,28 @@ struct Border {
               .border({ width: 2, radius: { bottomRight: 20 } })
           }
           .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.border_3D') })
+          Row() {
+            Text($r('app.string.border_3D'))
+              .height(60)
+              .fontSize(18)
+              .layoutWeight(1)
+              .textAlign(TextAlign.Center)
+              .margin({ left: 10, right: 10 })
+              .border({ width: 5})
+              .backgroundColor($r('app.color.3D_background_color'))
+              .borderColor({
+                left: $r('app.color.3D_top_left_color'),
+                right: $r('app.color.3D_right_buttom_color'),
+                top: $r('app.color.3D_top_left_color'),
+                bottom: $r('app.color.3D_right_buttom_color')
+              })
+          }
+          .padding(8)
+          .borderRadius(24)
+          .backgroundColor(Color.White)
+          .margin({ left: 12, right: 12 })
         }
         .constraintSize({ minHeight: '100%' })
       }
