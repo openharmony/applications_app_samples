@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
 import { describe, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 // @ts-ignore
@@ -30,7 +29,7 @@ export default function abilityTest() {
     /**
      * 拉起应用
      */
-    it(BUNDLE + '_StartAbility',0, async function () {
+    it(BUNDLE + '_StartAbility', 0, async function () {
       logger.info(TAG, BUNDLE + '_StartAbility start');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -53,7 +52,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let ability = abilityDelegatorRegistry.getAppContext();
       let manager = ability.resourceManager;
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         let btnAccept = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
         if (btnAccept !== undefined) {
           await btnAccept.click();
