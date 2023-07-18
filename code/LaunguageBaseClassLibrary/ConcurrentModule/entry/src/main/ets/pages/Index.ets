@@ -32,8 +32,8 @@ struct Index {
             .fontWeight(500)
             .padding(15)
             .margin(10)
-            .width('86.7%')
-            .height('5.1%')
+            .width('300')
+            .height('60')
             .id('strSort')
             .onClick(() => {
               router.pushUrl({
@@ -50,8 +50,8 @@ struct Index {
             .fontWeight(500)
             .padding(15)
             .margin(10)
-            .width('86.7%')
-            .height('5.1%')
+            .width('300')
+            .height('60')
             .id('fileCopy')
             .onClick(() => {
               router.pushUrl({
