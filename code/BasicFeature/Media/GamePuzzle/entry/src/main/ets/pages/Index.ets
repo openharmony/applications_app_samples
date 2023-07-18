@@ -56,6 +56,7 @@ struct Index {
     this.numArray = await this.ImageModel.splitPic(this.index)
     // 测试用例，模拟游戏成功
     emitter.on({ eventId: 0, priority: 0 }, () => {
+      Logger.info(TAG, 'emitter on , eventID = 0');
       for (let i = 0; i < 7; i++) {
         this.numArray[i].index = i;
       }
@@ -63,6 +64,7 @@ struct Index {
     })
     // 测试用例，模拟时间结束
     emitter.on({ eventId: 1, priority: 0 }, () => {
+      Logger.info(TAG, 'emitter on , eventID = 1');
       this.gameTime = 0;
     })
   }
