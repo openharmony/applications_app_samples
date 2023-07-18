@@ -15,6 +15,7 @@
 
 import router from '@ohos.router'
 import deviceManager from '@ohos.distributedHardware.deviceManager'
+import common from '@ohos.app.ability.common'
 import { BUNDLE, ABILITY } from '../model/Const'
 import DistributedCanvasModel from '../model/DistributedCanvasModel'
 import Logger from '../model/Logger'
@@ -124,7 +125,7 @@ struct IndexCanvas {
     this.globalObject.off();
     this.share();
     Logger.info(TAG, `startAbility deviceId:${deviceId}`);
-    let context = getContext(this) as any;
+    let context = getContext(this) as common.UIAbilityContext;
     context.startAbility({
       bundleName: BUNDLE,
       abilityName: ABILITY,

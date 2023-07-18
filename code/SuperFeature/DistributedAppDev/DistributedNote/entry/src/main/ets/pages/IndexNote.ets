@@ -15,6 +15,7 @@
 
 import deviceManager from '@ohos.distributedHardware.deviceManager'
 import router from '@ohos.router'
+import common from '@ohos.app.ability.common'
 import { BUNDLE, ABILITY } from '../model/Const'
 import DeviceDialog from '../common/DeviceDialog'
 import DistributedObjectModel from '../model/DistributedObjectModel'
@@ -29,79 +30,79 @@ const TAG: string = 'IndexNote'
 @Entry
 @Component
 struct IndexNote {
-  private dialogController?: CustomDialogController
-  private selectedIndex: number = 0
-  private sessionId: string = ''
-  @StorageLink('sessionId') globalSessionId: string = ''
-  @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel()
-  @State devices: Array<deviceManager.DeviceInfo> = []
-  @State isOnline: boolean = false
-  @State notes: Array<Note> = []
-  private noteDataSource : NoteDataSource = new NoteDataSource()
+  private dialogController?: CustomDialogController;
+  private selectedIndex: number = 0;
+  private sessionId: string = '';
+  @StorageLink('sessionId') globalSessionId: string = '';
+  @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel();
+  @State devices: Array<deviceManager.DeviceInfo> = [];
+  @State isOnline: boolean = false;
+  @State notes: Array<Note> = [];
+  private noteDataSource : NoteDataSource = new NoteDataSource();
 
   onPageShow() {
-    this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents
-    this.noteDataSource.notifyDataReload()
-    Logger.info(TAG, `this.sessionId = ${this.sessionId}`)
-    Logger.info(TAG, `globalSessionId = ${this.globalSessionId}`)
+    this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents;
+    this.noteDataSource.notifyDataReload();
+    Logger.info(TAG, `this.sessionId = ${this.sessionId}`);
+    Logger.info(TAG, `globalSessionId = ${this.globalSessionId}`);
     if (this.sessionId !== this.globalSessionId) {
-      this.sessionId = this.globalSessionId
-      this.share()
+      this.sessionId = this.globalSessionId;
+      this.share();
     }
   }
 
   share() {
-    Logger.info(TAG, `sessionId = ${this.sessionId}`)
+    Logger.info(TAG, `sessionId = ${this.sessionId}`);
     this.globalObject.setChangeCallback(() => {
-      this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents
-      this.noteDataSource.notifyDataReload()
+      this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents;
+      this.noteDataSource.notifyDataReload();
     })
     this.globalObject.setStatusCallback((session, networkId, status) => {
-      Logger.info(TAG, `StatusCallback,${status}`)
+      Logger.info(TAG, `StatusCallback,${status}`);
       if (status === 'online') {
-        this.isOnline = true
+        this.isOnline = true;
       } else {
-        this.isOnline = false
+        this.isOnline = false;
       }
     })
-    this.globalObject.distributedObject.setSessionId(this.sessionId)
-    AppStorage.SetOrCreate('objectModel', this.globalObject)
+    this.globalObject.distributedObject.setSessionId(this.sessionId);
+    AppStorage.SetOrCreate('objectModel', this.globalObject);
   }
 
   clearSelectState() {
-    this.devices = []
-    this.dialogController.close()
-    this.dialogController = undefined
+    this.devices = [];
+    this.dialogController.close();
+    this.dialogController = undefined;
   }
 
   onSelectedDevice = (selectedIndex) => {
-    this.selectedIndex = selectedIndex
-    Logger.info(TAG, 'start ability ......')
+    this.selectedIndex = selectedIndex;
+    Logger.info(TAG, 'start ability ......');
     if (RemoteDeviceModel === null || RemoteDeviceModel.discoverDevices.length <= 0) {
-      Logger.info(TAG, `start ability device:${JSON.stringify(this.devices)}`)
-      this.startAbility(this.devices[this.selectedIndex].networkId)
-      this.clearSelectState()
-      return
+      Logger.info(TAG, `start ability device:${JSON.stringify(this.devices)}`);
+      this.startAbility(this.devices[this.selectedIndex].networkId);
+      this.clearSelectState();
+      return;
     }
-    Logger.info(TAG, 'start ability, needAuth')
+    Logger.info(TAG, 'start ability, needAuth');
     RemoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], (device) => {
-      Logger.info(TAG, 'auth and online finished')
-      this.startAbility(device.networkId)
+      Logger.info(TAG, 'auth and online finished');
+      this.startAbility(device.networkId);
     })
-    Logger.info(TAG, 'start ability2 ......')
-    this.clearSelectState()
+    Logger.info(TAG, 'start ability2 ......');
+    this.clearSelectState();
   }
 
   startAbility(deviceId) {
-    this.globalObject = new DistributedObjectModel()
-    this.sessionId = this.globalObject.genSessionId()
-    AppStorage.SetOrCreate('sessionId', this.sessionId)
-    this.noteDataSource['dataArray'] = []
-    this.noteDataSource.notifyDataReload()
-    this.globalObject.off()
-    this.share()
-    Logger.info(TAG, `startAbility deviceId:${deviceId}`)
-    let context = getContext(this) as any
+    this.globalObject = new DistributedObjectModel();
+    this.sessionId = this.globalObject.genSessionId();
+    AppStorage.SetOrCreate('sessionId', this.sessionId);
+    this.noteDataSource['dataArray'] = [];
+    this.noteDataSource.notifyDataReload();
+    this.globalObject.off();
+    this.share();
+    Logger.info(TAG, `startAbility deviceId:${deviceId}`);
+    let context = getContext(this) as common.UIAbilityContext;
     context.startAbility({
       bundleName: BUNDLE,
       abilityName: ABILITY,
@@ -114,12 +115,12 @@ struct IndexNote {
 
   showDialog = () => {
     RemoteDeviceModel.registerDeviceListCallback(() => {
-      Logger.info(TAG, 'registerDeviceListCallback, callback entered')
-      this.devices = []
-      this.devices = RemoteDeviceModel.discoverDevices.length > 0 ? RemoteDeviceModel.discoverDevices : RemoteDeviceModel.devices
+      Logger.info(TAG, 'registerDeviceListCallback, callback entered');
+      this.devices = [];
+      this.devices = RemoteDeviceModel.discoverDevices.length > 0 ? RemoteDeviceModel.discoverDevices : RemoteDeviceModel.devices;
       if (this.dialogController) {
-        this.dialogController.close()
-        this.dialogController = undefined
+        this.dialogController.close();
+        this.dialogController = undefined;
       }
       this.dialogController = new CustomDialogController({
         builder: DeviceDialog({
@@ -128,7 +129,7 @@ struct IndexNote {
         }),
         autoCancel: true
       })
-      this.dialogController.open()
+      this.dialogController.open();
     })
   }
 
@@ -168,11 +169,11 @@ struct IndexNote {
         }.layoutWeight(1)
         .id('clearNote')
         .onClick(() => {
-          Logger.info(TAG, 'clear notes')
-          this.noteDataSource['dataArray'] = []
-          this.noteDataSource.notifyDataReload()
-          this.globalObject.clear()
-          AppStorage.SetOrCreate('sessionId', this.sessionId)
+          Logger.info(TAG, 'clear notes');
+          this.noteDataSource['dataArray'] = [];
+          this.noteDataSource.notifyDataReload();
+          this.globalObject.clear();
+          AppStorage.SetOrCreate('sessionId', this.sessionId);
         })
 
         Column() {
