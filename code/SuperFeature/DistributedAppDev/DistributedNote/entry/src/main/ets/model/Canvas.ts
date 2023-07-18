@@ -14,7 +14,7 @@
  */
 
 export default class CanvasPath {
-  constructor(public  path: string) {
+  constructor(public path: string) {
     this.path = path;
   }
 }

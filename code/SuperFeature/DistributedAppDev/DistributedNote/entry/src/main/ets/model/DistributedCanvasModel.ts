@@ -19,7 +19,7 @@ import Logger from './Logger'
 const TAG: string = 'DistributedCanvasModel';
 
 export default class DistributedCanvasModel {
-  public distributedCanvas?: any;
+  public distributedCanvas;
   public changeCallback?: () => void;
   public statusCallback?: (sessionId: string, networkId: string, status: 'online' | 'offline') => void
 
@@ -33,14 +33,14 @@ export default class DistributedCanvasModel {
     return JSON.stringify(this.distributedCanvas.pathArray).indexOf(path);
   }
 
-  genSessionId() {
+  genSessionId(): string {
     return distributedObject.genSessionId();
   }
 
-  setChangeCallback(changeCallback: () => void) {
+  setChangeCallback(changeCallback: () => void): void {
     if (this.changeCallback === changeCallback) {
       Logger.info(TAG, 'same callback');
-      return
+      return;
     }
     Logger.info(TAG, 'start off');
     if (this.changeCallback !== undefined) {
@@ -51,10 +51,10 @@ export default class DistributedCanvasModel {
     this.distributedCanvas.on('change', this.changeCallback);
   }
 
-  setStatusCallback(callback: (sessionId: string, networkId: string, status: 'online' | 'offline') => void) {
+  setStatusCallback(callback: (sessionId: string, networkId: string, status: 'online' | 'offline') => void): void {
     if (this.statusCallback === callback) {
       Logger.info(TAG, 'same callback');
-      return
+      return;
     }
     Logger.info(TAG, 'start off')
     if (this.statusCallback !== undefined) {
@@ -65,20 +65,20 @@ export default class DistributedCanvasModel {
     this.distributedCanvas.on('status', this.statusCallback);
   }
 
-  add(path: string) {
+  add(path: string): void {
     this.distributedCanvas.pathArray = [...this.distributedCanvas.pathArray,
       {
         path
       }]
   }
 
-  clear() {
+  clear(): void {
     Logger.info(TAG, 'doClear');
     this.distributedCanvas.pathArray = []
     Logger.info(TAG, 'doClear finish');
   }
 
-  off() {
+  off(): void {
     this.distributedCanvas.off('change')
     this.changeCallback = undefined
     this.distributedCanvas.off('status')
