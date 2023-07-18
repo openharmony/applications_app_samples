@@ -106,6 +106,8 @@ entry/src/main/ets/
 
 4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
+5.所需权限等级为system_basic，应用权限为：hos_system_app。
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：
