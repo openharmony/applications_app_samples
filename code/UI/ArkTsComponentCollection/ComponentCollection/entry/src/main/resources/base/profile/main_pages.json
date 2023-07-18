@@ -20,6 +20,7 @@
     "pages/universal/events/areaChangeEventSample/AreaChangeEventSample",
     "pages/globalMethods/dialogs/timeDialogSample/TimeDialogSample",
     "pages/universal/events/clickEventSample/ClickEventSample",
+    "pages/universal/events/dragEventSample/DragEventSample",
     "pages/universal/events/touchEventSample/TouchEventSample",
     "pages/universal/properties/backgroundSample/BackgroundSample",
     "pages/universal/properties/borderSample/BorderSample",

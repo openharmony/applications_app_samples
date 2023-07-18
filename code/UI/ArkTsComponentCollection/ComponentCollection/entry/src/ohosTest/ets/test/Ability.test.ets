@@ -16,7 +16,7 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
-import { Driver, ON, MatchPattern } from '@ohos.UiTest'
+import { Driver, ON, MatchPattern, Component } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../utils/Logger';
@@ -60,6 +60,16 @@ async function checkButtonAndLongClickWithID(text: string) {
   await driver.assertComponentExist(ON.id(atom));
   let button = await driver.findComponent(ON.id(atom));
   await button.longClick();
+  await driver.delayMs(DELAY_TIME);
+  Logger.info(BUNDLE + atom);
+}
+
+// 通过id验证有没有这个组件 有的话拖拽到目标组件
+async function checkButtonAndDragToTargetWithID(text: string, target: Component) {
+  let atom = text;
+  await driver.assertComponentExist(ON.id(atom));
+  let button = await driver.findComponent(ON.id(atom));
+  await button.dragTo(target);
   await driver.delayMs(DELAY_TIME);
   Logger.info(BUNDLE + atom);
 }
@@ -1397,6 +1407,50 @@ export default function abilityTest() {
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(100, 300, 300, 280);
         await driver.delayMs(DELAY_TIME);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 拖拽事件
+       */
+      it(BUNDLE + 'DragFunction_001', 0, async function () {
+        let testName = 'DragFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.drag_drop_event')));
+        // 拖拽图标到不可接收区域
+        await driver.assertComponentExist(ON.id('rightArea'));
+        let rightArea = await driver.findComponent(ON.id('rightArea'));
+        await checkButtonAndDragToTargetWithID('icon', rightArea);
+        // 拖拽图标到可接收区域
+        await driver.assertComponentExist(ON.id('leftArea'));
+        let leftArea = await driver.findComponent(ON.id('leftArea'));
+        await checkButtonAndDragToTargetWithID('icon', leftArea);
+        // 查看不同组件的拖拽效果
+        await driver.assertComponentExist(ON.id('column'));
+        let column = await driver.findComponent(ON.id('column'));
+        await checkButtonAndDragToTargetWithID('gridItem0', column);
+
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(660, 600, 660, 0);
+
+        await checkButtonAndDragToTargetWithID('listItem0', column);
+        await checkButtonAndDragToTargetWithID('hyperlink', column);
+        await checkButtonAndDragToTargetWithID('text', column);
+        await checkButtonAndDragToTargetWithID('image', column);
+
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(660, 600, 660, 200);
+
+        await checkButtonAndDragToTargetWithID('video', column);
+        await checkButtonAndDragToTargetWithID('formComponent', column);
 
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));

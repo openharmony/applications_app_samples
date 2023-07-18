@@ -81,6 +81,11 @@ const COMMON_EVENTS: ThirdLevelCategory[] =
       url: 'pages/universal/events/touchEventSample/TouchEventSample'
     },
     {
+      image: $r('app.media.ic_event_drag'),
+      title: $r('app.string.drag_drop_event'),
+      url: 'pages/universal/events/dragEventSample/DragEventSample'
+    },
+    {
       image: $r('app.media.ic_event_area_change'),
       title: $r('app.string.component_area_change_event'),
       url: 'pages/universal/events/areaChangeEventSample/AreaChangeEventSample'
