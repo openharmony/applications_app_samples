@@ -23,8 +23,8 @@ export class ModeType {
   name: string
 
   constructor(id: number, name: string) {
-    this.id = id;
-    this.name = name;
+    this.id = id
+    this.name = name
   }
 }
 
@@ -47,7 +47,7 @@ struct ModeItem_1 {
     .borderRadius(12)
     .padding({ left: 14, top: 14, bottom: 14 })
 
-    if (this.mode.id != 5) {
+    if (this.mode.id !== 5) {
       Flex() {
         Flex() {
         }.height(1).width('100%')
@@ -87,7 +87,7 @@ struct ModeItem_2 {
     .borderRadius(12)
     .padding({ left: 14, top: 14, bottom: 14 })
 
-    if (this.mode.id != 14) {
+    if (this.mode.id !== 14) {
       Flex() {
         Flex() {
         }.height(1).width('100%').backgroundColor('#F3F3F3')
@@ -126,7 +126,7 @@ struct ModeItem_3 {
     .borderRadius(12)
     .padding({ left: 14, top: 14, bottom: 14 })
 
-    if (this.mode.id != 1) {
+    if (this.mode.id !== 1) {
       Flex() {
         Flex() {
         }.height(1).width('100%')
@@ -230,7 +230,7 @@ struct RealtimeAudioEffectQuery {
     // map the index of options to the content type in @ohos.multimedia.audio
     let index2Content = new Map([
       [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]
-    ]);
+    ])
     console.info("get content type:" + index2Content.get(index))
     return index2Content.get(index)
   }
@@ -240,7 +240,7 @@ struct RealtimeAudioEffectQuery {
     let index2Usage = new Map([
       [0, 0], [1, 1], [2, 1], [3, 2], [4, 3], [5, 4], [6, 5], [7, 6],
       [8, 6], [9, 7], [10, 8], [11, 10], [12, 11], [13, 12], [14, 13]
-    ]);
+    ])
     console.info("get stream usage:" + index2Usage.get(index))
     return index2Usage.get(index)
   }
@@ -483,7 +483,7 @@ struct RealtimeAudioEffectQuery {
           .id('select_usage_realtime')
           .onClick(() => {
             this.showSelector_1 = false
-            this.showSelector_2 = !this.showSelector_2;
+            this.showSelector_2 = !this.showSelector_2
             this.showSelector_3 = false
           })
 
@@ -643,7 +643,7 @@ struct RealtimeAudioEffectQuery {
             .onClick(() => {
               this.showSelector_1 = false
               this.showSelector_2 = false
-              this.showSelector_3 = !this.showSelector_3;
+              this.showSelector_3 = !this.showSelector_3
             })
 
             if (this.showSelector_3) {
@@ -657,7 +657,7 @@ struct RealtimeAudioEffectQuery {
                       this.audioEffectModeSettingIndex = item.id
                       console.info('this.audioEffectModeSettingIndex===' + this.audioEffectModeSettingIndex)
                       if (this.audioRenderer !== null && this.audioRenderer.state !== audio.AudioState.STATE_RELEASED) {
-                        await this.audioRenderer.setAudioEffectMode(item.id)
+                        this.audioRenderer.setAudioEffectMode(item.id)
                       }
                     }
                     this.showSelector_3 = false
