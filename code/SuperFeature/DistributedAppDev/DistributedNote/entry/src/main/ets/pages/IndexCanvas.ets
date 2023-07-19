@@ -165,6 +165,7 @@ struct IndexCanvas {
             if (item.path === 'ellipse') {
               this.context.restore();
               this.path2De.ellipse(100, 100, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI);
+              this.path2De.closePath();
               this.context.stroke(this.path2De);
               this.context.save();
             }

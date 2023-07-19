@@ -21,7 +21,7 @@ const TAG: string = 'Sample_DistributedCanvasModel';
 export default class DistributedCanvasModel {
   public distributedCanvas;
   public changeCallback?: () => void;
-  public statusCallback?: (sessionId: string, networkId: string, status: 'online' | 'offline') => void
+  public statusCallback?: (sessionId: string, networkId: string, status: 'online' | 'offline') => void;
 
   constructor() {
     this.distributedCanvas = distributedObject.createDistributedObject({
@@ -56,9 +56,9 @@ export default class DistributedCanvasModel {
       Logger.info(TAG, 'same callback');
       return;
     }
-    Logger.info(TAG, 'start off')
+    Logger.info(TAG, 'start off');
     if (this.statusCallback !== undefined) {
-      this.distributedCanvas.off('status', this.statusCallback)
+      this.distributedCanvas.off('status', this.statusCallback);
     }
     this.statusCallback = callback;
     Logger.info(TAG, 'start watch change');
@@ -74,14 +74,14 @@ export default class DistributedCanvasModel {
 
   clear(): void {
     Logger.info(TAG, 'doClear');
-    this.distributedCanvas.pathArray = []
+    this.distributedCanvas.pathArray = [];
     Logger.info(TAG, 'doClear finish');
   }
 
   off(): void {
-    this.distributedCanvas.off('change')
-    this.changeCallback = undefined
-    this.distributedCanvas.off('status')
-    this.statusCallback = undefined
+    this.distributedCanvas.off('change');
+    this.changeCallback = undefined;
+    this.distributedCanvas.off('status');
+    this.statusCallback = undefined;
   }
 }
