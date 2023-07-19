@@ -18,30 +18,24 @@ import Logger from '../common/Logger';
 import fs from '@ohos.file.fs';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-const TAG: string = '[MyFile].[Worker03]';
-/**
- * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
- * The event handler is executed in the worker thread.
- *
- * @param e message data
- */
+const TAG: string = '[ConcurrentModule].[WorkerCopy]';
+
 workerPort.onmessage = function (message): void {
   let data = message.data;
   let srcPath = null;
   let destPath = null;
   let fileNames = data.fileNames;
-  console.info('Workerets Worker03 fileNames length = ' + fileNames.length);
   for (let i = 0; i < fileNames.length; i++) {
     srcPath = data.srcDir + '/' + fileNames[i];
-    Logger.info('Workerets Worker03 srcPath ' + srcPath);
+    Logger.info(TAG, ' srcPath ' + srcPath);
     destPath = data.destDir + '/' + fileNames[i];
-    Logger.info('Workerets Worker03 destPath ' + destPath);
+    Logger.info(TAG, ' destPath ' + destPath);
     try {
       fs.copyFileSync(srcPath, destPath);
       let countTest = fs.listFileSync(data.destDir).length;
-      Logger.info(`Worker workerInstance::onmessage receive countTest: ${countTest}`);
+      Logger.info(TAG, `Worker workerInstance::onmessage receive countTest: ${countTest}`);
     } catch (e) {
-      Logger.error(TAG, 'Worker03::copyFile has failed for: ' + JSON.stringify(e));
+      Logger.error(TAG, 'WorkerCopy::copyFile has failed for: ' + JSON.stringify(e));
     }
   }
   let listFileNames = [];
@@ -49,38 +43,26 @@ workerPort.onmessage = function (message): void {
   try {
     let count = fs.listFileSync(data.destDir).length;
     let listFiles = fs.listFileSync(data.destDir);
-    Logger.info('listFile succeed');
+    Logger.info(TAG, 'listFile succeed');
     for (let i = 0; i < listFiles.length; i++) {
       listFileNames[i] = listFiles[i];
-      Logger.info(`Worker workerInstance::onmessage receive listFileNames: ${listFileNames[i]}`);
+      Logger.info(TAG, `Worker workerInstance::onmessage receive listFileNames: ${listFileNames[i]}`);
     }
     workerPort.postMessage({
       count: count,
       strFlag: true,
       listFileNames: listFileNames
     });
-    Logger.info(TAG, 'Worker03::onmessage thread post message successfully');
+    Logger.info(TAG, 'WorkerCopy::onmessage thread post message successfully');
   } catch (e) {
-    Logger.error(TAG, 'Worker03::onmessage has failed for: ' + JSON.stringify(e));
+    Logger.error(TAG, 'WorkerCopy::onmessage has failed for: ' + JSON.stringify(e));
   }
 };
 
-/**
- * Defines the event handler to be called when the worker receives a message that cannot be deserialized.
- * The event handler is executed in the worker thread.
- *
- * @param e message data
- */
 workerPort.onmessageerror = async function (message): Promise<void> {
-  Logger.error(TAG, 'Worker03::onmessageerror : ' + JSON.stringify(message));
+  Logger.error(TAG, 'WorkerCopy::onmessageerror : ' + JSON.stringify(message));
 };
 
-/**
- * Defines the event handler to be called when an exception occurs during worker execution.
- * The event handler is executed in the worker thread.
- *
- * @param e error message
- */
 workerPort.onerror = function (e): void {
-  Logger.error(TAG, 'Worker03::onerror : ' + JSON.stringify(e));
+  Logger.error(TAG, 'WorkerCopy::onerror : ' + JSON.stringify(e));
 };

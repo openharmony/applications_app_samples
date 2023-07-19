@@ -18,6 +18,7 @@ import fs from '@ohos.file.fs';
 import router from '@ohos.router';
 import { Logger } from '../common/Common';
 
+const TAG: string = '[ConcurrentModule].[CopyFile]';
 @Entry
 @Component
 struct Watcher {
@@ -34,6 +35,7 @@ struct Watcher {
   @StorageLink('copyFileLog2') copyFileLog2: string = '';
   @StorageLink('copyFileLog3') copyFileLog3: string = '';
   @StorageLink('copyFileLog4') copyFileLog4: string = '';
+  @StorageLink('copyFileShowLog') copyFileShowLog: string = '';
   myWorker: MyWorker = new MyWorker();
   scroller: Scroller = new Scroller();
   public dirPath: string = '';
@@ -43,27 +45,33 @@ struct Watcher {
     this.myWorker.readyFilesToWorker();
     let filePathDir = this.baseDir + '/workerDir';
     let filenames = fs.listFileSync(filePathDir);
-    Logger.info('listFile succeed');
+    Logger.info(TAG, 'listFile succeed');
     for (let i = 0; i < filenames.length; i++) {
-      Logger.info('filename: %s', filenames[i]);
+      Logger.info(TAG, 'filename: %s', filenames[i]);
       this.showFilePath[i] = filenames[i];
       let filePath = filePathDir + '/' + filenames[i]
       this.filePathSize[i] = fs.statSync(filePath).size;
     }
-    this.dirPath = this.baseDir + '/worker03';
+    this.dirPath = this.baseDir + '/workerCopy';
     if (!fs.accessSync(this.dirPath)) {
       fs.mkdirSync(this.dirPath);
     }
   }
 
   onPageHide() {
-    this.dirPath = this.baseDir + '/worker03';
+    this.dirPath = this.baseDir + '/workerCopy';
     let isDirectory = fs.statSync(this.dirPath).isDirectory();
     if (isDirectory) {
       fs.rmdirSync(this.dirPath);
       AppStorage.SetOrCreate('fileNumber', '0');
       AppStorage.SetOrCreate('fileListName1', '');
       AppStorage.SetOrCreate('fileListName2', '');
+      AppStorage.SetOrCreate('copyFileShowLog', '');
+    }
+    let filePathDir = this.baseDir + '/workerDir';
+    let isDir = fs.statSync(filePathDir).isDirectory();
+    if (isDir) {
+      fs.rmdirSync(filePathDir);
     }
   }
 
@@ -140,9 +148,9 @@ struct Watcher {
                             .selectedColor('#007DFF')
                             .borderRadius(4)
                             .onChange((value: boolean) => {
-                              Logger.info('Checkbox1 change is' + value)
+                              Logger.info(TAG, 'Checkbox1 change is' + value);
                               if (value) {
-                                Logger.info('Workerets Checkbox1 index ' + index + ' is true')
+                                Logger.info(TAG, 'Workerets Checkbox1 index ' + index + ' is true');
                                 this.eventFilePath.push(this.showFilePath[index]);
                               } else {
                                 for (let i = 0; i < this.eventFilePath.length; i++) {
@@ -193,7 +201,7 @@ struct Watcher {
                       .fontColor('#182431')
                       .fontWeight(400)
                       .width('100%')
-                    Text(`2、${this.fileListName1}${this.fileListName2}${this.copyFileLog3}copy${this.copyFileLog4}`)
+                    Text(this.copyFileShowLog)
                       .fontSize(16)
                       .fontColor('#182431')
                       .fontWeight(400)

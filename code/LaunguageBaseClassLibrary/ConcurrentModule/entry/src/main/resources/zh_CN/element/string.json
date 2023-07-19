@@ -79,6 +79,10 @@
     {
       "name": "workerLog5",
       "value": "等"
+    },
+    {
+      "name": "workerLogChooseFile",
+      "value": "2、请选择文件"
     }
   ]
 }

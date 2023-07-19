@@ -46,15 +46,15 @@
     },
     {
       "name": "strSortText",
-      "value": "Str Sort Text"
+      "value": "String Sort Text"
     },
     {
       "name": "copyFileText",
-      "value": "copyFileText"
+      "value": "CopyFile Text"
     },
     {
       "name": "workerTitleText",
-      "value": "workerTitleText"
+      "value": "Worker Title Text"
     },
     {
       "name": "logTitle",
@@ -62,23 +62,27 @@
     },
     {
       "name": "workerLog1",
-      "value": "workerLog1"
+      "value": "Sandbox File Number"
     },
     {
       "name": "workerLog2",
-      "value": "workerLog2"
+      "value": "Sandbox File Number Unit"
     },
     {
       "name": "workerLog3",
-      "value": "workerLog3"
+      "value": "File"
     },
     {
       "name": "workerLog4",
-      "value": "workerLog4"
+      "value": "Finish"
     },
     {
       "name": "workerLog5",
-      "value": "workerLog5"
+      "value": "And So On"
+    },
+    {
+      "name": "workerLogChooseFile",
+      "value": "Please select a file"
     }
   ]
 }

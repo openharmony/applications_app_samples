@@ -18,7 +18,7 @@ import fs from '@ohos.file.fs';
 import { Logger, sleep } from '../common/Common';
 
 const CONTENT = 'hello world';
-const TAG: string = '[FileIO].[MyWorker]';
+const TAG: string = '[ConcurrentModule].[MyWorker]';
 const FILE_NUM: number = 200; // 预制200 1m以下的小文件
 const FILE_NUMBER: number = 9; // 文件1-9命名时加上0
 const LIST_FILE_TWO: number = 2; // 显示拷贝成功后的第二个文件名
@@ -106,9 +106,9 @@ export default class MyFile {
       }
       let count = this.realFileNames.length;
       for (let j = 0; j < count; j++) {
-        console.info('workToCopyFiles this.realFileNames = ' + this.realFileNames[j]);
+        Logger.info(TAG, 'workToCopyFiles this.realFileNames = ' + this.realFileNames[j]);
       }
-      workerInstance = new worker.ThreadWorker('entry/ets/workers/Worker03.ts');
+      workerInstance = new worker.ThreadWorker('entry/ets/workers/WorkerCopy.ts');
       if (this.realFileNames !== null) {
         let srcPath = this.baseDir + '/workerDir';
         workerInstance.postMessage({
@@ -138,7 +138,7 @@ export default class MyFile {
           let fileName1 = null;
           let fileName2 = null;
           for (let i = 0; i < data.listFileNames.length; i++) {
-            Logger.info(`Worker workerInstance::onmessage receive listFileNames: ${data.listFileNames[i]}`);
+            Logger.info(TAG, `Worker workerInstance::onmessage receive listFileNames: ${data.listFileNames[i]}`);
           }
           if (data.listFileNames[0] !== undefined && data.listFileNames[1] !== undefined && data.listFileNames[LIST_FILE_TWO] === undefined) {
             fileName1 = data.listFileNames[0] + '、';
@@ -153,6 +153,14 @@ export default class MyFile {
           }
           AppStorage.SetOrCreate('fileListName1', fileName1);
           AppStorage.SetOrCreate('fileListName2', fileName2);
+          let copyFileLog3 = AppStorage.Get('copyFileLog3');
+          let copyFileLog4 = AppStorage.Get('copyFileLog4');
+          let copyFileLog = '2、' + fileName1 + fileName2 + copyFileLog3 + 'copy' + copyFileLog4;
+          if (fileName1 !== 'undefined、') {
+            AppStorage.SetOrCreate('copyFileShowLog', copyFileLog);
+          } else {
+            AppStorage.SetOrCreate('copyFileShowLog', $r('app.string.workerLogChooseFile'));
+          }
           Logger.info(TAG, `Worker workerInstance::onmessage receive count: ${JSON.stringify(this.filesCount)}`);
         }
         if (this.fileNames !== 0) {
@@ -162,7 +170,7 @@ export default class MyFile {
           AppStorage.SetOrCreate('fileListName1', '');
           AppStorage.SetOrCreate('fileListName2', '');
         }
-        Logger.info(TAG, 'workerInstance::onmessage Finish to process data from Worker03.ts');
+        Logger.info(TAG, 'workerInstance::onmessage Finish to process data from WorkerCopy.ts');
         workerInstance.terminate();
       };
       while (!fileFlag) {
