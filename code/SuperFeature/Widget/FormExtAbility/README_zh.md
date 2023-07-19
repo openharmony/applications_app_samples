@@ -14,25 +14,21 @@
 
 ### 效果预览
 
-| 添加卡片                                    | 
-| ------------------------------------------- |
-|![eTSFormExample](screenshots/eTSFormExample.png)|
-
 | 卡片应用主页面 | 卡片应用修改订阅条件页面 | 卡片应用发布数据页面 | 卡片应用卡片预览图页面 |
-|-----------------------------------------------------------------------| ------- | ------- | ------- |
+|-------| ------- | ------- | ------- |
 | ![ProcessProxyForm_main](./screenshots/ProcessProxyForm_main.jpeg) | ![ProcessProxyForm_modifyCondition](./screenshots/ProcessProxyForm_modifyCondition.jpeg) | ![ProcessProxyForm_push](./screenshots/ProcessProxyForm_push.jpeg) | ![ProcessProxyForm_preview](./screenshots/ProcessProxyForm_preview.jpeg) |
-
 | formProvider应用主界面 | formProvider应用修改订阅条件 | formProvider应用发布数据 | formProvider应用卡片样式 |
-| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------- | --------------------------------------------- |
 | ![mainInterface](./screenshots/mainInterface.jpeg) | ![modifySubscriptionConditions](./screenshots/modifySubscriptionConditions.jpeg) | ![dataRelease](./screenshots/dataRelease.jpeg) | ![cardStyle](./screenshots/cardStyle.jpeg) |
+| 添加卡片 | | | |
+|![eTSFormExample](screenshots/eTSFormExample.png)| | | |
 
 使用说明
 
 1.部分设备的桌面不支持卡片，可以通过自己的开发卡片使用方，进行卡片的创建、更新和删除等操作。
 
-2.卡片的样式如下图所示。当卡片更新时，卡片上的温度和时间会产生变化。
+2.卡片的样式如"添加卡片"所示。当卡片更新时，卡片上的温度和时间会产生变化。
 
-3.长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面；
+3.安装[卡片应用](./processProxyForm/)或[formProvider应用](./persistentProxyForm/)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
 
 4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
 
@@ -148,13 +144,15 @@ return formInfo.FormState.READY }。
 
 ### 依赖
 
-本测试demo需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../Launcher/)
+1.本应用中[Form.test.ets](./entry/src/ohosTest/ets/test/Form.test.ets)需要安装在仿桌面应用上进行测试。launcher应用地址：[Launcher](../Launcher/)
+
+2.本应用中[Form.test.ets](./entry/src/ohosTest/ets/test/Form.test.ets)需要安装[卡片应用](./processProxyForm/)以及[formProvider应用](./persistentProxyForm/)进行测试。（以上两个应用为本工程的feature module）
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.8.5,镜像版本号：OpenHarmony_4.0.8.5。
+2.本示例已适配API version 10版本SDK，版本号：4.0.8.5,镜像版本号：OpenHarmony_4.0.9.1。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
 

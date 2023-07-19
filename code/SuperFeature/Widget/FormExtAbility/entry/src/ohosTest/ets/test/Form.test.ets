@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll } from '@ohos/hypium';
+import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
@@ -23,8 +23,8 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'DataProxyForm_';
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let resourceManager = abilityDelegator.getAppContext().resourceManager;
-let cardJs = 'widgetJS';
-let cardArkTs = 'widget';
+let cardJs = 'persistentWidgetJS';
+let cardArkTs = 'persistentWidget';
 let pushCardJs = 'processJsWidget';
 let pushCardArkTs = 'processWidget';
 let driver = Driver.create();
@@ -39,11 +39,20 @@ export default function formTest() {
       // Exit the test interface to execute the test case
       await driver.pressBack();
       await driver.delayMs(1000);
-      // Open Launcher
+      // Open launcher
       await abilityDelegator.executeShellCommand('aa start -b ohos.samples.launcher -a MainAbility').then((result) =>{
         hilog.info(DOMAIN, TAG, BUNDLE + 'start launcher success');
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'start launcher fail');
+      });
+    })
+
+    afterAll(async () => {
+      // Close launcher
+      await abilityDelegator.executeShellCommand('pkill -f ohos.samples.launcher').then((result) =>{
+        hilog.info(DOMAIN, TAG, BUNDLE + 'close launcher success');
+      }).catch((err) => {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'close launcher fail');
       });
     })
 

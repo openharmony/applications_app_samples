@@ -1,7 +1,7 @@
 {
   "forms": [
     {
-      "name": "widget",
+      "name": "persistentWidget",
       "description": "This is a service widget.",
       "src": "./ets/widget/pages/WidgetCard.ets",
       "uiSyntax": "arkts",
@@ -21,7 +21,7 @@
       "dataProxyEnabled": true
     },
     {
-      "name": "widgetJS",
+      "name": "persistentWidgetJS",
       "description": "This is a service widget.",
       "src": "./js/widgetJS/pages/index/index",
       "window": {
