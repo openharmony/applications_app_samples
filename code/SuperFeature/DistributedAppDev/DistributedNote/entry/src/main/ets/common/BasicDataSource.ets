@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import Note from '../model/Note'
-import Canvas from '../model/Canvas'
+import Note from '../model/Note';
+import Canvas from '../model/Canvas';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];

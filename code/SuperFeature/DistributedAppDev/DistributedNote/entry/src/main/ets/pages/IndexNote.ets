@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import router from '@ohos.router'
-import common from '@ohos.app.ability.common'
-import { BUNDLE, ABILITY } from '../model/Const'
-import DeviceDialog from '../common/DeviceDialog'
-import DistributedObjectModel from '../model/DistributedObjectModel'
-import Logger from '../model/Logger'
-import Note from '../model/Note'
-import { NoteDataSource } from '../common/BasicDataSource'
-import NoteItem from '../common/NoteItem'
-import RemoteDeviceModel from '../model/RemoteDeviceModel'
-import TitleBar from '../common/TitleBar'
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+import router from '@ohos.router';
+import common from '@ohos.app.ability.common';
+import { BUNDLE, ABILITY } from '../model/Const';
+import DeviceDialog from '../common/DeviceDialog';
+import DistributedObjectModel from '../model/DistributedObjectModel';
+import Logger from '../model/Logger';
+import Note from '../model/Note';
+import { NoteDataSource } from '../common/BasicDataSource';
+import NoteItem from '../common/NoteItem';
+import RemoteDeviceModel from '../model/RemoteDeviceModel';
+import TitleBar from '../common/TitleBar';
 
 const TAG: string = 'Sample_IndexNote';
 

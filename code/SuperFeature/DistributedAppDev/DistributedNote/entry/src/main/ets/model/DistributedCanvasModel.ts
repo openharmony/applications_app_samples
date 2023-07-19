@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import distributedObject from '@ohos.data.distributedDataObject'
-import Logger from './Logger'
+import distributedObject from '@ohos.data.distributedDataObject';
+import Logger from './Logger';
 
 const TAG: string = 'Sample_DistributedCanvasModel';
 

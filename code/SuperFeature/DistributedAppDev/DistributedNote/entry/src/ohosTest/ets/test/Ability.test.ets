@@ -80,33 +80,33 @@ export default function appTest() {
     it(BUNDLE + 'CanvasFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 begin');
       // ellipse
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 ellipse')
-      await DRIVER.assertComponentExist(ON.id('ellipse'))
-      let ellipseBtn = await DRIVER.findComponent(ON.id('ellipse'))
-      await ellipseBtn.click()
-      await DRIVER.delayMs(1000)
-      await DRIVER.assertComponentExist(ON.id('ellipseready'))
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 ellipse');
+      await DRIVER.assertComponentExist(ON.id('ellipse'));
+      let ellipseBtn = await DRIVER.findComponent(ON.id('ellipse'));
+      await ellipseBtn.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('ellipseready'));
 
       // delete
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 delete')
-      await DRIVER.assertComponentExist(ON.id('delete'))
-      let deleteBtn = await DRIVER.findComponent(ON.id('delete'))
-      await deleteBtn.click()
-      await DRIVER.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 delete');
+      await DRIVER.assertComponentExist(ON.id('delete'));
+      let deleteBtn = await DRIVER.findComponent(ON.id('delete'));
+      await deleteBtn.click();
+      await DRIVER.delayMs(1000);
 
       // rect
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 rect')
-      await DRIVER.assertComponentExist(ON.id('rect'))
-      let rectBtn = await DRIVER.findComponent(ON.id('rect'))
-      await rectBtn.click()
-      await DRIVER.delayMs(1000)
-      await DRIVER.assertComponentExist(ON.id('rectready'))
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 rect');
+      await DRIVER.assertComponentExist(ON.id('rect'));
+      let rectBtn = await DRIVER.findComponent(ON.id('rect'));
+      await rectBtn.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('rectready'));
 
       // back
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 rect')
-      await DRIVER.assertComponentExist(ON.id('back'))
-      let backBtn = await DRIVER.findComponent(ON.id('back'))
-      await backBtn.click()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 rect');
+      await DRIVER.assertComponentExist(ON.id('back'));
+      let backBtn = await DRIVER.findComponent(ON.id('back'));
+      await backBtn.click();
       await DRIVER.delayMs(1000)
       await DRIVER.assertComponentExist(ON.id('chose1'));
     })

@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import common from '@ohos.app.ability.common'
-import { BUNDLE, ABILITY } from '../model/Const'
-import DistributedCanvasModel from '../model/DistributedCanvasModel'
-import Logger from '../model/Logger'
-import CanvasPath from '../model/Canvas'
-import RemoteDeviceModel from '../model/RemoteDeviceModel'
-import { CanvasDataSource } from '../common/BasicDataSource'
-import DeviceDialog from '../common/DeviceDialog'
-import TitleBar from '../common/TitleBar'
+import router from '@ohos.router';
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+import common from '@ohos.app.ability.common';
+import { BUNDLE, ABILITY } from '../model/Const';
+import DistributedCanvasModel from '../model/DistributedCanvasModel';
+import Logger from '../model/Logger';
+import CanvasPath from '../model/Canvas';
+import RemoteDeviceModel from '../model/RemoteDeviceModel';
+import { CanvasDataSource } from '../common/BasicDataSource';
+import DeviceDialog from '../common/DeviceDialog';
+import TitleBar from '../common/TitleBar';
 
 const TAG: string = 'Sample_IndexCanvas';
 
