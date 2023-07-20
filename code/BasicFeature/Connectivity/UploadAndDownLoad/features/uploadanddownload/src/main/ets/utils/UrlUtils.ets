@@ -17,7 +17,7 @@ import common from '@ohos.app.ability.common';
 import commonEventManager from '@ohos.commonEventManager';
 import preferences from '@ohos.data.preferences';
 import { CommonEventSubscriber } from './commonEvent/commonEventSubscriber';
-import { CommonEventData } from './commonEvent/CommonEventData';
+import { CommonEventData } from './commonEvent/commonEventData';
 import { logger } from './Logger';
 
 const TAG: string = 'UrlUtils';
