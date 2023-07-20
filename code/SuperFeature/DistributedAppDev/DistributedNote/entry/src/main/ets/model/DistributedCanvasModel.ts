@@ -26,7 +26,7 @@ export default class DistributedCanvasModel {
   constructor() {
     this.distributedCanvas = distributedObject.createDistributedObject({
       pathArray: []
-    })
+    });
   }
 
   isContainString(path: string): number {
@@ -69,7 +69,7 @@ export default class DistributedCanvasModel {
     this.distributedCanvas.pathArray = [...this.distributedCanvas.pathArray,
       {
         path
-      }]
+      }];
   }
 
   clear(): void {

@@ -205,6 +205,10 @@ struct IndexCanvas {
           .key('back')
           .backgroundColor(Color.Orange)
           .onClick(() => {
+            this.globalObject.clear();
+            this.canvasDataSource['pathArray'] = [];
+            this.canvasDataSource.notifyDataReload();
+            this.context.clearRect(0, 0, 950, 950);
             router.back()
           })
         Button('delete')
@@ -215,7 +219,7 @@ struct IndexCanvas {
             this.globalObject.clear();
             this.canvasDataSource['pathArray'] = [];
             this.canvasDataSource.notifyDataReload();
-            this.context.clearRect(0, 0, 950, 950)
+            this.context.clearRect(0, 0, 950, 950);
           })
       }.margin({ top: 10 })
       .width('100%')
