@@ -3,9 +3,7 @@
     {
       "name": "language_base_class_library_list",
       "value": [
-        {
-          "value": "Buffer (Buffer)"
-        },
+
         {
           "value": "Xml & ConvertXml (XML Parsing,Generation and convert)"
         },
@@ -14,9 +12,6 @@
         },
         {
           "value": "TaskPool (Using the Task Pool)"
-        },
-        {
-          "value": "Uri (URI String Parsing)"
         },
         {
           "value": "Url (URL String Parsing)"

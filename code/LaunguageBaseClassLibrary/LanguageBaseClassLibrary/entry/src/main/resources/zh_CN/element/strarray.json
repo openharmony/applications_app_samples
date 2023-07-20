@@ -3,9 +3,7 @@
     {
       "name": "language_base_class_library_list",
       "value": [
-        {
-          "value": "Buffer (Buffer)"
-        },
+
         {
           "value": "Xml & ConvertXml (XML解析,生成与转换)"
         },
@@ -14,9 +12,6 @@
         },
         {
           "value": "TaskPool (启动任务池)"
-        },
-        {
-          "value": "Uri (URI字符串解析)"
         },
         {
           "value": "Url (Url字符串解析)"
