@@ -178,7 +178,9 @@ export struct CommonItemInput {
         .size(TOOL_WIDTH)
         .onChange(value => {
           this.inputValue = value
-        }).id('test_input')
+        })
+        .id('test_input')
+        .enableKeyboardOnFocus(false)
     }
     .size({ width: '100%', height: 70 })
     .padding({ left: 12, right: 12 })

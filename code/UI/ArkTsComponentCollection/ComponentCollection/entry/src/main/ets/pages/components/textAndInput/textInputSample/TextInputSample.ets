@@ -49,6 +49,7 @@ struct TextInputSample {
             TextInput({ placeholder: this.typePlaceholder })
               .type(this.inputType).id('test_input')
               .showPasswordIcon(this.showPasswordIcon)
+              .enableKeyboardOnFocus(false)
 
             CommonItemSelect({
               selects: ['Normal', 'Password', 'Email', 'Number', 'PhoneNumber'],
@@ -120,12 +121,14 @@ struct TextInputSample {
             .onEditChange(isEditing => {
               // You can get edit status by isEditing
             })
+            .enableKeyboardOnFocus(false)
 
           IntroductionTitle({ introduction: $r('app.string.text_input_placeholder_style') })
           TextInput({ placeholder: $r('app.string.text_input_placeholder') })
             .type(InputType.Normal)
             .placeholderFont({ size: '16fp', weight: FontWeight.Normal })
             .placeholderColor(Color.Red)
+            .enableKeyboardOnFocus(false)
 
           IntroductionTitle({ introduction: $r('app.string.text_input_filter') })
           TextInput({ placeholder: $r('app.string.text_input_only_input_english') })
@@ -138,6 +141,7 @@ struct TextInputSample {
             .onChange((value: string) => {
               this.hasFilterError = false
             })
+            .enableKeyboardOnFocus(false)
           Text(this.hasFilterError ? $r('app.string.text_input_only_input_english') : '')
             .width('100%')
             .height(this.hasFilterError ? 15 : 0)
@@ -154,6 +158,7 @@ struct TextInputSample {
               .onChange((value: string) => {
                 this.inputLength = value.length
               })
+              .enableKeyboardOnFocus(false)
             Text(`${this.inputLength}/${this.maxLength}`)
               .width('100%')
               .fontSize(16)
@@ -167,6 +172,7 @@ struct TextInputSample {
           Row() {
             TextInput({ controller: this.inputController })
               .layoutWeight(1)
+              .enableKeyboardOnFocus(false)
               .onChange((value: string) => {
                 this.caretIndex = value.length
                 this.inputContent = value
