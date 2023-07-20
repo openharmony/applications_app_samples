@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -261,38 +261,6 @@ export class Action {
     fillColor: null,
     actionType: null
   });
-  public static SHARE = new Action({
-    id: ActionID.SHARE,
-    iconRes: $r('app.media.ic_gallery_public_share'),
-    textRes: $r('app.string.action_share'),
-    isAutoTint: null,
-    fillColor: null,
-    actionType: $r('app.string.action_share')
-  });
-  public static SHARE_INVALID = new Action({
-    id: ActionID.SHARE_INVALID,
-    iconRes: $r('app.media.ic_gallery_public_share'),
-    textRes: $r('app.string.action_share'),
-    isAutoTint: null,
-    fillColor: $r('app.color.icon_disabled_color'),
-    actionType: $r('app.string.action_share')
-  });
-  public static EDIT = new Action({
-    id: ActionID.EDIT,
-    iconRes: $r('app.media.ic_gallery_public_edit'),
-    textRes: $r('app.string.action_edit'),
-    isAutoTint: null,
-    fillColor: null,
-    actionType: null
-  });
-  public static EDIT_INVALID = new Action({
-    id: ActionID.EDIT_INVALID,
-    iconRes: $r('app.media.ic_gallery_public_edit_disable'),
-    textRes: $r('app.string.action_edit'),
-    isAutoTint: null,
-    fillColor: $r('app.color.icon_disabled_color'),
-    actionType: null
-  });
   public static MORE = new Action({
     id: ActionID.MORE,
     iconRes: $r('app.media.ic_gallery_public_more'),
@@ -324,22 +292,6 @@ export class Action {
     isAutoTint: null,
     fillColor: $r('app.color.icon_disabled_color'),
     actionType: $r('app.string.action_deRename')
-  });
-  public static ROTATE = new Action({
-    id: ActionID.ROTATE,
-    iconRes: $r('app.media.ic_edit_photo_crop_rotate'),
-    textRes: $r('app.string.rotate_text'),
-    isAutoTint: null,
-    fillColor: null,
-    actionType: $r('app.string.rotate_text')
-  });
-  public static ADD_NOTES = new Action({
-    id: ActionID.ADD_NOTES,
-    iconRes: null,
-    textRes: $r('app.string.add_notes'),
-    isAutoTint: null,
-    fillColor: null,
-    actionType: null
   });
   public static MOVE = new Action({
     id: ActionID.MOVE,
@@ -373,44 +325,12 @@ export class Action {
     fillColor: $r('app.color.icon_disabled_color'),
     actionType: null
   });
-  public static COPY = new Action({
-    id: ActionID.COPY,
-    iconRes: null,
-    textRes: $r('app.string.action_copy_to_album'),
-    isAutoTint: null,
-    fillColor: null,
-    actionType: null
-  });
-  public static COPY_INVALID = new Action({
-    id: ActionID.COPY_INVALID,
-    iconRes: null,
-    textRes: $r('app.string.action_copy_to_album'),
-    isAutoTint: null,
-    fillColor: $r('app.color.icon_disabled_color'),
-    actionType: null
-  });
   public static NAVIGATION_ALBUMS = new Action({
     id: ActionID.NAVIGATION_ALBUMS,
     iconRes: $r('app.media.ic_navigation_albums_line'),
     textRes: $r('app.string.rotate_text'),
     isAutoTint: null,
     fillColor: null,
-    actionType: null
-  });
-  public static DOWNLOAD = new Action({
-    id: ActionID.DOWNLOAD,
-    iconRes: $r('app.media.download'),
-    textRes: $r('app.string.save_to_local'),
-    isAutoTint: null,
-    fillColor: null,
-    actionType: null
-  });
-  public static DOWNLOAD_INVALID = new Action({
-    id: ActionID.DOWNLOAD_INVALID,
-    iconRes: $r('app.media.download'),
-    textRes: $r('app.string.save_to_local'),
-    isAutoTint: null,
-    fillColor: $r('app.color.icon_disabled_color'),
     actionType: null
   });
   public static ICON_DEFAULT_COLOR: Resource = $r('app.color.icon_default_color');

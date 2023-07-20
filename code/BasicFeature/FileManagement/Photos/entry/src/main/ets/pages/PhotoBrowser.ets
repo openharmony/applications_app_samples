@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,6 @@ import { BatchRecoverMenuOperation } from '../menus/BatchRecoverMenuOperation';
 import { ClearRecycleMenuOperation } from '../menus/ClearRecycleMenuOperation';
 import { MediaConstants } from '../constants/MediaConstants';
 import { MoveMenuOperation } from '../menus/MoveMenuOperation';
-import { CopyMenuOperation } from '../menus/CopyMenuOperation';
 import { DateUtil } from '../utils/DateUtil';
 import { CustomDialogView } from '../components/CustomDialogView';
 import { Constants } from '../constants/Constants';
@@ -76,7 +75,6 @@ struct PhotoBrowser {
   @Provide isPullingDown: boolean = false;
   @Provide pageFrom: number = Constants.ENTRY_FROM.NORMAL;
   @Provide canSwipe: boolean = false;
-  private timeoutId: number = 0;
   @State @Watch('currentShowChange') currentShow: boolean = true;
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('TimelinePageIndex') TimelinePageIndex: number = Constants.INVALID;
@@ -133,25 +131,7 @@ struct PhotoBrowser {
       if (currentPhoto == undefined) {
         return;
       }
-      this.broadCast.emit(BroadcastConstants.SHOW_DETAIL_DIALOG, [currentPhoto, this.pageFrom == Constants.ENTRY_FROM.DISTRIBUTED]);
-      return;
-    } else if (action === Action.SHARE) {
-      if (currentPhoto == undefined) {
-        return;
-      }
-      let param1: Map<string, string> = new Map<string, string>();
-      param1.set('ability.params.stream', currentPhoto.uri);
-      let param2: Map<string, Object> = new Map<string, Object>();
-      param2.set('action', 'ability.intent.SEND_DATA');
-      param2.set('type', '*/*');
-      param2.set('parameters', Object.fromEntries<string>(param1));
-      let param3: Map<string, Object> = new Map<string, Object>();
-      param3.set('ability.want.params.INTENT', Object.fromEntries<Object>(param2));
-      let want: Want = {
-        action: 'com.huawei.intent.action.hwCHOOSER',
-        parameters: Object.fromEntries<Object>(param3)
-      };
-      startAbility(want)
+      this.broadCast.emit(BroadcastConstants.SHOW_DETAIL_DIALOG, [currentPhoto]);
       return;
     } else if (action === Action.NOT_FAVORITE || action === Action.FAVORITE) {
       if (currentPhoto == undefined) {
@@ -190,16 +170,6 @@ struct PhotoBrowser {
     } else if (action === Action.GOTO_PHOTOS) {
       menuContext.withJumpSourceToMain(this.jumpSourceToMain);
       menuOperation = new GotoPhotosMenuOperation(menuContext);
-    } else if (action === Action.EDIT) {
-      if (currentPhoto == undefined || currentPhoto.size == 0) {
-        return;
-      }
-      this.isToEdit = true
-      this.globalThis.setObject('EditorMediaItem', currentPhoto);
-      router.push({
-        uri: 'feature/editor/view/EditMain'
-      })
-      return;
     } else if (action === Action.RENAME) {
       if (currentPhoto == undefined) {
         return;
@@ -208,22 +178,9 @@ struct PhotoBrowser {
         .withBroadCast(this.broadCast)
         .withAlbumInfo(this.albumInfo);
       menuOperation = new RenameMenuOperation(menuContext);
-    } else if (action === Action.ROTATE) {
-      if (currentPhoto == undefined) {
-        return;
-      }
-      currentPhoto.setOrientation().then<void, void>((): void => this.setOrientation())
-      return;
     } else if (action === Action.MOVE) {
       this.backFromCopy = true;
       this.routeSelectAlbumPage(MediaOperationType.Move);
-      return;
-    } else if (action === Action.COPY) {
-      this.backFromCopy = true;
-      this.routeSelectAlbumPage(MediaOperationType.Copy);
-      return;
-    } else if (action === Action.DOWNLOAD) {
-      this.downLoad();
       return;
     } else {
       return;
@@ -252,7 +209,7 @@ struct PhotoBrowser {
   }
 
   private operateEnd(): void {
-    if (this.currentIndex == 0 || AppStorage.Get<number>('isLeftSwiper') == 0) {
+    if (this.currentIndex === 0 || AppStorage.Get<number>('isLeftSwiper') === 0) {
       this.broadCast.emit(BroadcastConstants.ON_DATA_RELOADED, []);
     } else {
       Log.info(TAG, 'operateEnd curIndex : ' + this.currentIndex);
@@ -351,11 +308,7 @@ struct PhotoBrowser {
     // PhotoItems 和 这里都会有load, 极端情况下可能产生一次无效的load
     currentPhoto.load(false).then<void, void>((): void => {
       this.photoDate = DateUtil.getLocalizedDate(currentPhoto.dateAdded);
-      if (this.pageFrom == Constants.ENTRY_FROM.DISTRIBUTED) {
-        this.timeAndLocation = '' + this.deviceName + '/' + DateUtil.getLocalizedTime(currentPhoto.dateAdded);
-      } else {
-        this.timeAndLocation = DateUtil.getLocalizedTime(currentPhoto.dateAdded);
-      }
+      this.timeAndLocation = DateUtil.getLocalizedTime(currentPhoto.dateAdded);
       this.updateMenu();
     })
   }
@@ -388,8 +341,6 @@ struct PhotoBrowser {
     let list: Action[] = [];
     if (this.pageFrom == Constants.ENTRY_FROM.RECYCLE) {
       list.push(Action.RECOVER, Action.DELETE);
-    } else if (this.pageFrom == Constants.ENTRY_FROM.DISTRIBUTED) {
-      list.push(Action.SHARE, Action.DOWNLOAD);
     } else {
       let isFavor = await currentPhoto.isFavor();
       Log.info(TAG,'isFavor' + isFavor)
@@ -406,7 +357,6 @@ struct PhotoBrowser {
 
   private updateMoreMenu(): void {
     let currentPhoto = this.getCurrentPhoto();
-    this.moreMenuList = [Action.MOVE, Action.COPY, Action.RENAME];
     if (currentPhoto == undefined) {
       return;
     }
@@ -732,35 +682,10 @@ struct PhotoBrowser {
           .withAlbumInfo(JSON.parse(albumInfo) as SimpleAlbumDataItem)
           .withOperationEndCallback(this.onMoveEnd);
         menuOperation = new MoveMenuOperation(menuContext);
-      } else if (params.pageType === MediaOperationType.Copy) {
-        this.onCopyEnd = (err: object, count: number, total: number): void => this.onCopyEndBindImpl(err, count, total);
-        menuContext.withItems([currentPhoto])
-          .withBroadCast(this.broadCast)
-          .withAlbumInfo(JSON.parse(albumInfo) as SimpleAlbumDataItem)
-          .withOperationEndCallback(this.onCopyEnd);
-        menuOperation = new CopyMenuOperation(menuContext);
       }
       menuOperation.doAction();
     }
     this.backFromCopy = false;
-  }
-
-  private downLoad(): void {
-    Log.info(TAG, 'downLoad run');
-    let menuContext = new MenuContext();
-    let menuOperation: MenuOperation;
-    let currentPhoto = this.getCurrentPhoto();
-    this.onDownloadEnd = (err: object, count: number, total: number): Promise<void> => this.onDownloadEndBindImpl(err, count, total);
-    if (currentPhoto == undefined) {
-      Log.warn(TAG, 'MediaOperation currentPhoto is undefined');
-      return;
-    }
-    menuContext.withItems([currentPhoto])
-      .withBroadCast(this.broadCast)
-      .withRemoteDevice(this.albumInfo.deviceId)
-      .withOperationEndCallback(this.onDownloadEnd)
-    menuOperation = new CopyMenuOperation(menuContext);
-    menuOperation.doAction();
   }
 
   onPageHide(): void {

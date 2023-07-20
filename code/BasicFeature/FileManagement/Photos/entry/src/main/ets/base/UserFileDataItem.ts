@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,6 @@ import { Log } from '../utils/Log';
 import { ViewType } from '../models/ViewType';
 import { userFileModel } from './UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
-import { setOrientation } from './UserFileDataHelper';
 import { selectManager } from '../common/SelectManager';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { screenManager } from '../common/ScreenManager';
@@ -119,7 +118,7 @@ export class UserFileDataItem implements DateAdded {
       Log.error(TAG, 'get duration ' + JSON.stringify(err));
     }
     try {
-      if (this.orientation == MediaConstants.ROTATE_ONCE || this.orientation == MediaConstants.ROTATE_THIRD) {
+      if (this.orientation === MediaConstants.ROTATE_ONCE || this.orientation === MediaConstants.ROTATE_THIRD) {
         this.width = fileAsset.get(photoAccessHelper.PhotoKeys.HEIGHT.toString()) as number;
         this.height = fileAsset.get(photoAccessHelper.PhotoKeys.WIDTH.toString()) as number;
       } else {
@@ -177,11 +176,11 @@ export class UserFileDataItem implements DateAdded {
 
   async getThumbnail(width: number, height: number): Promise<PixelMap> {
     Log.debug(TAG, 'getThumbnail ' + this.status);
-    if (this.status != MediaConstants.LOADED && this.status != MediaConstants.PART_LOADED) {
+    if (this.status !== MediaConstants.LOADED && this.status !== MediaConstants.PART_LOADED) {
       Log.warn(TAG, 'getThumbnail fail as status: ' + this.status);
       return undefined;
     }
-    if (width == MediaConstants.DEFAULT_SIZE && height == MediaConstants.DEFAULT_SIZE) {
+    if (width === MediaConstants.DEFAULT_SIZE && height === MediaConstants.DEFAULT_SIZE) {
       return this.defaultThumbnail;
     }
     let newThumbnail:PixelMap = undefined;
@@ -197,7 +196,7 @@ export class UserFileDataItem implements DateAdded {
   }
 
   getAlt(): Resource {
-    if (this.mediaType == photoAccessHelper.PhotoType.VIDEO) {
+    if (this.mediaType === photoAccessHelper.PhotoType.VIDEO) {
       return $r('app.media.alt_video_placeholder');
     } else {
       return $r('app.media.alt_placeholder');
@@ -222,7 +221,7 @@ export class UserFileDataItem implements DateAdded {
   }
 
   isDeleted(): boolean {
-    return this.status == MediaConstants.TRASHED;
+    return this.status === MediaConstants.TRASHED;
   }
 
   async isFavor(): Promise<boolean> {
@@ -234,7 +233,7 @@ export class UserFileDataItem implements DateAdded {
         Log.error(TAG, 'isFavor error: ' + JSON.stringify(err));
       }
     }
-    return this.favouriteStatus == STATUS_TRUE;
+    return this.favouriteStatus === STATUS_TRUE;
   }
 
   async setFavor(): Promise<boolean> {
@@ -247,15 +246,6 @@ export class UserFileDataItem implements DateAdded {
     } catch (err) {
       return false;
     }
-  }
-
-  async setOrientation(): Promise<void> {
-    let fileAsset = await this.loadFileAsset();
-    this.orientation = (this.orientation + MediaConstants.ROTATE_ONCE) % MediaConstants.ROTATE_AROUND;
-    await setOrientation(fileAsset, this.orientation);
-    let tmp = this.width;
-    this.width = this.height;
-    this.height = tmp;
   }
 
   async setName(name: string): Promise<void> {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -171,18 +171,5 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
   protected setFindSameOperationBindImpl(newOperation: number): void {
     Log.info(TAG, 'setFindSameOperation ' + newOperation);
     this.findSameOperation = newOperation;
-  }
-
-  async getFileCopyOrMoveInfo(fileAsset: photoAccessHelper.PhotoAsset, albumInfo: SimpleAlbumDataItem): Promise<Assets> {
-    Log.debug(TAG, 'getFileCopyOrMoveInfo start');
-    //TODO 创建photoasset
-    let targetAsset = null
-    //let targetAsset = (await userFileModel.getMediaItemByUri(albumInfo.uri));
-    if (targetAsset == null || targetAsset == undefined) {
-      Log.debug(TAG, 'targetAsset not found');
-    }
-
-    let assets: Assets = { sourceAsset: fileAsset, targetAsset: targetAsset };
-    return assets;
   }
 }

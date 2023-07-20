@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -333,21 +333,7 @@ export struct PhotoItem {
       .onTouch((event: TouchEvent): void => {
         this.eventPipeline.onTouch(event);
       })
-      // TODO Remind users when pictures of other devices cannot be show
-      if ((this.showError || this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) &&
-      this.pageFrom == RouterConstants.ENTRY_FROM.DISTRIBUTED) {
-        Row() {
-          Text((this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) ?
-          $r('app.string.no_distributed_photo_show_video') :
-          $r('app.string.no_distributed_photo_show_image'))
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .fontFamily($r('app.string.id_text_font_family_regular'))
-            .fontColor($r('sys.color.ohos_id_color_text_tertiary'))
-        }
-        .margin({
-          top: (this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) ? $r('app.float.input_text_notify_margin') : 0
-        })
-      }
+
       if (this.isVideoPlayBtnShow()) {
         Row() {
           VideoIcon()

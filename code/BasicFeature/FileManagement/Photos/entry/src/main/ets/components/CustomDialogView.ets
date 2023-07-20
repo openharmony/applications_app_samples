@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { DownloadCancelOperationDialog } from './DownloadCancelOperationDialog';
 import { Constants } from '../constants/Constants';
 import { Broadcast } from '../common/Broadcast';
 import { Assets } from '../menus/ProcessMenuOperation';
@@ -22,7 +21,6 @@ import { Log } from '../utils/Log';
 import { MediaDetails, DetailsDialog } from './DetailsDialog';
 import { MultiSelectDetails, MultiSelectDialog } from './MultiSelectDialog';
 import { DeleteDialog } from './DeleteDialog';
-import { ThirdDeleteDialog } from './ThirdDeleteDialog';
 import { DialogCallback } from '../utils/DialogUtil';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { CancelOperationDialog, CancelParam } from './CancelOperationDialog';
@@ -31,9 +29,7 @@ import { AddNotesDialog } from './AddNotesDialog';
 import { ProgressDialog, ProgressParam } from './ProgressDialog';
 import { DeleteProgressDialog, DeleteProgressParam } from './DeleteProgressDialog';
 import { SaveDialog, SaveDialogCallback } from './SaveDialog';
-import { EditExitDialog, EditExitDialogCallback } from './EditExitDialog';
 import { NewAlbumDialog } from './NewAlbumDialog';
-import { CopyOrMoveDialog, OperateParam } from './CopyOrMoveDialog';
 import { FindSameNameDialog, FindSameNameParam } from './FindSameNameDialog';
 import { screenManager } from '../common/ScreenManager';
 import { SaveImageDialog } from './SaveImageDialog';
@@ -48,13 +44,11 @@ export struct CustomDialogView {
   @Provide progressMessage: Resource = $r('app.string.common_place_holder', String(''));
   @Provide dialogCallback: DialogCallback = { confirmCallback: null, cancelCallback: null };
   @Provide saveDialogCallback: SaveDialogCallback = { saveAsNewCallback: null, replaceOriginalCallback: null };
-  @Provide editExitDialogCallback: EditExitDialogCallback = { discardCallback: null };
   @Consume broadCast: Broadcast;
   @Provide progressParam: ProgressParam = { cancelFunc: null, operationType: '' };
   @Provide deleteProgress: number = 0;
   @Provide deleteProgressParam: DeleteProgressParam = { currentCount: 0, totalCount: 0, message: null, deleteProgress: 0};
   @Provide cancelParam: CancelParam = { continueFunc: null, cancelFunc: null };
-  @Provide operateParam: OperateParam = { moveFunc: null, copyFunc: null };
   @Provide findSameNameParam: FindSameNameParam = {
     sourceFileAsset: null,
     targetFileAsset: null,
@@ -66,7 +60,6 @@ export struct CustomDialogView {
   };
   @Provide cancelMessage: Resource = $r('app.string.common_place_holder', String(''));
   @Provide renameFileName: string = '';
-  @Provide isDistributedAlbum: boolean = false;
   @Provide mediaDetails: MediaDetails = {
     mediaType: 0,
     height: 0,
@@ -104,18 +97,14 @@ export struct CustomDialogView {
   dialogController: CustomDialogController | null;
   multiSelectDialog: CustomDialogController | null;
   deleteDialogController: CustomDialogController | null;
-  thirdDeleteDialogController: CustomDialogController | null;
   deleteProgressDialogController: CustomDialogController | null;
   progressDialogController: CustomDialogController | null;
   cancelDialogController: CustomDialogController | null;
   renameFileDialogController: CustomDialogController | null;
   saveDialogController: CustomDialogController | null;
-  editExitDialogController: CustomDialogController | null;
   addNotesDialogController: CustomDialogController | null;
   newAlbumDialogController: CustomDialogController | null;
-  copyOrMoveDialogController: CustomDialogController | null;
   findSameNameDialog: CustomDialogController | null;
-  downloadCancelOperationDialog: CustomDialogController | null;
   saveImageDialogController: CustomDialogController | null;
 
   aboutToDisappear(): void {
@@ -123,18 +112,14 @@ export struct CustomDialogView {
     this.dialogController = null;
     this.multiSelectDialog = null;
     this.deleteDialogController = null;
-    this.thirdDeleteDialogController = null;
     this.deleteProgressDialogController = null;
     this.progressDialogController = null;
     this.cancelDialogController = null;
     this.renameFileDialogController = null;
     this.saveDialogController = null;
-    this.editExitDialogController = null;
     this.addNotesDialogController = null;
     this.newAlbumDialogController = null;
-    this.copyOrMoveDialogController = null;
     this.findSameNameDialog = null;
-    this.downloadCancelOperationDialog = null;
     this.saveImageDialogController = null;
   }
 
@@ -165,16 +150,6 @@ export struct CustomDialogView {
       builder: DeleteDialog(),
       autoCancel: false,
       alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
-      offset: {
-        dx: 0,
-        dy: this.isHorizontal || this.isSidebar ? 0 : $r('app.float.dialog_offset_bottom')
-      },
-      customStyle: true
-    });
-    this.thirdDeleteDialogController = new CustomDialogController({
-      builder: ThirdDeleteDialog(),
-      autoCancel: false,
-      alignment: this.isHorizontal ? DialogAlignment.Center : DialogAlignment.Bottom,
       offset: {
         dx: 0,
         dy: this.isHorizontal || this.isSidebar ? 0 : $r('app.float.dialog_offset_bottom')
@@ -227,12 +202,6 @@ export struct CustomDialogView {
       alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
       customStyle: true
     });
-    this.editExitDialogController = new CustomDialogController({
-      builder: EditExitDialog(),
-      autoCancel: false,
-      alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
-      customStyle: true
-    });
     this.addNotesDialogController = new CustomDialogController({
       builder: AddNotesDialog(),
       autoCancel: false,
@@ -241,16 +210,6 @@ export struct CustomDialogView {
     });
     this.newAlbumDialogController = new CustomDialogController({
       builder: NewAlbumDialog(),
-      autoCancel: false,
-      alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
-      offset: {
-        dx: 0,
-        dy: this.isHorizontal || this.isSidebar ? 0 : $r('app.float.dialog_offset_bottom')
-      },
-      customStyle: true
-    });
-    this.copyOrMoveDialogController = new CustomDialogController({
-      builder: CopyOrMoveDialog(),
       autoCancel: false,
       alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
       offset: {
@@ -269,16 +228,6 @@ export struct CustomDialogView {
       },
       customStyle: true
     });
-    this.downloadCancelOperationDialog = new CustomDialogController({
-      builder: DownloadCancelOperationDialog(),
-      autoCancel: false,
-      alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
-      offset: {
-        dx: 0,
-        dy: this.isHorizontal || this.isSidebar ? 0 : $r('app.float.dialog_offset_bottom')
-      },
-      customStyle: true
-    });
     this.saveImageDialogController = new CustomDialogController({
       builder: SaveImageDialog(),
       autoCancel: false,
@@ -286,8 +235,8 @@ export struct CustomDialogView {
       customStyle: true
     });
 
-    this.broadCast.on(BroadcastConstants.SHOW_DETAIL_DIALOG, (item: UserFileDataItem, isDistributed: boolean): void => {
-      this.showDetailDialog(item, isDistributed)
+    this.broadCast.on(BroadcastConstants.SHOW_DETAIL_DIALOG, (item: UserFileDataItem): void => {
+      this.showDetailDialog(item)
     });
 
     this.broadCast.on(BroadcastConstants.SHOW_MULTI_SELECT_DIALOG,
@@ -308,14 +257,6 @@ export struct CustomDialogView {
         self.dialogDeleteMessage = dialogDeleteMessage;
         self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
         self.deleteDialogController.open();
-      });
-    this.broadCast.on(BroadcastConstants.SHOW_THIRD_DELETE_DIALOG,
-      (deleteMessage: Resource, dialogDeleteMessage: Resource, confirmCallback: Function, cancelCallback?: Function): void => {
-        Log.info(TAG, 'SHOW_DELETE_DIALOG ');
-        self.dialogMessage = deleteMessage;
-        self.dialogDeleteMessage = dialogDeleteMessage;
-        self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
-        self.thirdDeleteDialogController.open();
       });
     this.broadCast.on(BroadcastConstants.SHOW_RENAME_PHOTO_DIALOG,
       (fileName: string, confirmCallback: Function, cancelCallback?: Function): void => {
@@ -375,15 +316,6 @@ export struct CustomDialogView {
         self.cancelDialogController.open();
       });
 
-    this.broadCast.on(BroadcastConstants.DOWNLOAD_CANCEL_OPERATE,
-      (cancelMessage: Resource, continueFunc: Function, cancelFunc: Function): void => {
-        self.cancelMessage = cancelMessage;
-        self.cancelParam.continueFunc = continueFunc;
-        self.cancelParam.cancelFunc = cancelFunc;
-        Log.info(TAG, 'DOWNLOAD_CANCEL_OPERATE');
-        self.downloadCancelOperationDialog.open();
-      });
-
     this.broadCast.on(BroadcastConstants.SHOW_SAVE_PHOTO_DIALOG,
       (saveAsNewCallback: Function, replaceOriginalCallback: Function): void => {
         Log.info(TAG, 'SHOW_SAVE_PHOTO_DIALOG');
@@ -392,33 +324,12 @@ export struct CustomDialogView {
         self.saveDialogController.open();
       });
 
-    this.broadCast.on(BroadcastConstants.SHOW_EDIT_EXIT_PHOTO_DIALOG,
-      (discardCallback: Function): void => {
-        Log.info(TAG, 'SHOW_EDIT_EXIT_PHOTO_DIALOG');
-        self.editExitDialogCallback = { discardCallback: discardCallback };
-        self.editExitDialogController.open();
-      });
-
-    this.broadCast.on(BroadcastConstants.SHOW_EDIT_SAVE_PROGRESS_DIALOG,
-      (): void => {
-        Log.info(TAG, 'SHOW_EDIT_SAVE_PROGRESS_DIALOG');
-        self.saveImageDialogController.open();
-      });
-
     this.broadCast.on(BroadcastConstants.SHOW_NEW_ALBUM_PHOTO_DIALOG,
       (fileName: string, confirmCallback: Function, cancelCallback?: Function): void => {
         Log.info(TAG, 'SHOW_NEW_ALBUM_PHOTO_DIALOG');
         self.renameFileName = fileName;
         self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
         self.newAlbumDialogController.open();
-      });
-
-    this.broadCast.on(BroadcastConstants.SHOW_COPY_OR_MOVE_DIALOG,
-      (moveFunc: Function, copyFunc: Function): void => {
-        Log.info(TAG, 'SHOW_COPY_OR_MOVE_DIALOG');
-        self.operateParam.moveFunc = moveFunc;
-        self.operateParam.copyFunc = copyFunc;
-        self.copyOrMoveDialogController.open();
       });
 
     this.broadCast.on(BroadcastConstants.FIND_SAME_FILE_DIALOG,
@@ -447,7 +358,7 @@ export struct CustomDialogView {
       });
   }
 
-  private showDetailDialog(item: UserFileDataItem, isDistributed: boolean): void {
+  private showDetailDialog(item: UserFileDataItem): void {
     Log.info(TAG, 'SHOW_DETAIL_DIALOG ');
     item.load(true).then<void, void>((): void => {
       this.mediaDetails = {
@@ -464,7 +375,6 @@ export struct CustomDialogView {
         displayName: item.displayName,
         dateModified: item.dateModified
       };
-      this.isDistributedAlbum = isDistributed;
       this.dialogController.open();
     })
   }

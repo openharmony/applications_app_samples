@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { CopyMenuOperation } from '../menus/CopyMenuOperation';
 import { MoveMenuOperation } from '../menus/MoveMenuOperation';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { Constants } from '../constants/Constants';
@@ -53,7 +52,6 @@ import { AlbumsDataSource } from '../common/AlbumsDataSource';
 import { LazyItem } from '../common/ItemDataSource';
 import { AlbumDataItem } from '../common/AlbumDataItem';
 import { userFileModel } from '../base/UserFileModel';
-import { MediaConstants } from '../constants/MediaConstants';
 // Album Set Page
 const TAG = 'AlbumSetPage'
 
@@ -241,33 +239,6 @@ export struct AlbumSetPage {
     if (newAlbum != null) {
       AppStorage.Delete(Constants.APP_KEY_NEW_ALBUM);
       this.moveOperation();
-    }
-  }
-
-  private copyOperation(): void {
-    this.copyOperationBindImpl()
-  }
-
-  private async copyOperationBindImpl(): Promise<void> {
-    let mediaItems = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_NEW_ALBUM_SELECTED);
-    let targetAlbum = AppStorage.Get<SimpleAlbumDataItem>(Constants.APP_KEY_NEW_ALBUM_TARGET);
-    if (mediaItems == undefined || targetAlbum == undefined) {
-      Log.warn(TAG, 'mediaItems is undefined ' + (mediaItems == undefined) + ' targetAlbum is undefined ' + (targetAlbum == undefined))
-      return;
-    }
-    let albumName = targetAlbum.displayName;
-    Log.info(TAG,'targetAlbum.displayName:'+albumName);
-    let newAlbum = await userFileModel.createAlbum(albumName);
-    if(newAlbum != undefined) {
-      Log.info(TAG,'  successfully, album: ' + newAlbum.displayName + ' album uri: ' + newAlbum.uri);
-      let menuContext = new MenuContext();
-      menuContext.withItems(mediaItems)
-        .withOperationStartCallback((): void => this.onOperationStartBindImpl())
-        .withOperationEndCallback((): void => this.onOperationEndBindImpl())
-        .withBroadCast(this.broadCast)
-        .withAlbumInfo(newAlbum);
-      let menuOperation = new CopyMenuOperation(menuContext);
-      menuOperation.doAction();
     }
   }
 

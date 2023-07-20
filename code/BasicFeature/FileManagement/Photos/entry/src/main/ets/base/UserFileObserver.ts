@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,7 +44,7 @@ class UserFileObserver {
       return;
     }
 
-    if (this.callbacks.length == 1) {
+    if (this.callbacks.length === 1) {
       Log.info(TAG, 'registerObserver register media');
       try {
         userFileModel.getUserFileMgr().registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, (): void => {

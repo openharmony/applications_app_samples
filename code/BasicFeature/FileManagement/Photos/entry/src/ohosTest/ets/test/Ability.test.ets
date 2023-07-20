@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import UIAbility from '@ohos.app.ability.UIAbility'
 
-const TAG = '[Sample_Photos]'
+const TAG = '[Sample_PhotosTest]'
 const BUNDLE = 'photos_'
 const TIME_OUT = 10000
 const DOMAIN = 0xF811
@@ -79,8 +79,8 @@ export default function abilityTest() {
     /**
      * 检查主页相册
      */
-    it('ImageFunction_001', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_001 begin')
+    it('PhotosFunction_001', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       // 打开应用能够显示相册列表
@@ -92,7 +92,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_video'))))
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text'+await getResourceString($r('app.string.album_all')))
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_all'))))
-      await driver.swipe(100, 1000, 100, 100)
+      await driver.swipe(100, 1000, 100, 200)
       await driver.delayMs(3000)
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text'+await getResourceString($r('app.string.album_screen_shot')))
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_screen_shot'))))
@@ -100,15 +100,15 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_favor'))))
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text'+await getResourceString($r('app.string.album_recycle')))
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_recycle'))))
-      await driver.swipe(100, 100, 100, 1000)
+      await driver.swipe(100, 200, 100, 1000)
       await driver.delayMs(3000)
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_001 end')
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_001 end')
     })
     /**
      * 检查相册内容
      */
-    it('ImageFunction_002', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_002 begin')
+    it('PhotosFunction_002', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_002 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       // 点击相机相册
@@ -121,7 +121,7 @@ export default function abilityTest() {
       } else {
         await driver.assertComponentExist(ON.type('GridItem'))
         // 点击图片
-        await driver.click(100, 100);
+        await driver.click(100, 200);
         await driver.delayMs(1000)
         HiLog.info(DOMAIN, TAG, BUNDLE + 'check text'+await getResourceString($r('app.string.btn_favor')))
         await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_favor'))))
@@ -134,8 +134,8 @@ export default function abilityTest() {
     /**
      * 收藏
      */
-    it('ImageFunction_003', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_003 begin')
+    it('PhotosFunction_003', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_003 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       //点击收藏
@@ -149,7 +149,7 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       await driver.pressBack()
       await driver.delayMs(1000)
-      await driver.swipe(100, 1000, 100, 100)
+      await driver.swipe(100, 1000, 100, 200)
       await driver.delayMs(3000)
       //点击收藏夹
       let btnAlbum = await driver.findComponent(ON.text(await getResourceString($r('app.string.album_favor'))))
@@ -163,12 +163,12 @@ export default function abilityTest() {
     /**
      * 取消收藏
      */
-    it('ImageFunction_004', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_004 begin')
+    it('PhotosFunction_004', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_004 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       //点击图片
-      await driver.click(100, 100);
+      await driver.click(100, 200);
       await driver.delayMs(1000)
       let btnFavor = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_not_favor'))))
       await btnFavor.click()
@@ -181,8 +181,8 @@ export default function abilityTest() {
     /**
      * 新建相册
      */
-    it('ImageFunction_005', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_005 begin')
+    it('PhotosFunction_005', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_005 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       //点击’+‘
@@ -202,7 +202,7 @@ export default function abilityTest() {
       await btnAlbum.click()
       await driver.delayMs(1000)
       // 点击图片
-      await driver.click(100, 100);
+      await driver.click(100, 200);
       await driver.delayMs(1000)
       //点击确认
       let btnOK = await driver.findComponent(ON.id('1'))
@@ -218,14 +218,70 @@ export default function abilityTest() {
       let btnItem = await driver.findComponents(ON.type('GridItem'))
       HiLog.info(DOMAIN, TAG, BUNDLE + 'btnItem.length:'+btnItem.length)
       expect(btnItem.length).assertLarger(0)
+    })
+    /**
+     * 从用户相册移除图片
+     */
+    it('PhotosFunction_006', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_006 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      let btnItem = await driver.findComponents(ON.type('GridItem'))
+      await driver.longClick(100, 200);
+      //点击更多
+      let btnMore = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_more'))))
+      await btnMore.click()
+      await driver.delayMs(1000)
+      //点击从相册移除
+      let btnRemove = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_remove_form_album'))))
+      await btnRemove.click()
+      await driver.delayMs(1000)
+      //确认从相册移除
+      let btnRemoveConfirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_remove'))))
+      await btnRemoveConfirm.click()
+      await driver.delayMs(1000)
+      let btnItemNew = await driver.findComponents(ON.type('GridItem'))
+      //检查
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'Count:'+btnItem.length+',new Count:'+btnItemNew.length)
+      expect(btnItem.length).assertEqual(btnItemNew.length+1)
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_006 end')
+    })
+    /**
+     * 从用户相册添加图片
+     */
+    it('PhotosFunction_007', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_007 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      let btnItem = await driver.findComponents(ON.type('GridItem'))
+      //点击’+‘
+      let btnAdd = await driver.findComponent(ON.id('28'))
+      await btnAdd.click()
+      await driver.delayMs(1000)
+      // 选择所有照片
+      let btnAlbum = await driver.findComponent(ON.text(await getResourceString($r('app.string.album_all'))))
+      await btnAlbum.click()
+      await driver.delayMs(1000)
+      // 点击图片
+      await driver.click(100, 200);
+      await driver.delayMs(1000)
+      //点击确认
+      let btnOK = await driver.findComponent(ON.id('1'))
+      await btnOK.click()
+      await driver.delayMs(1000)
+      let btnItemNew = await driver.findComponents(ON.type('GridItem'))
+      //检查
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'Count:'+btnItem.length+',new Count:'+btnItemNew.length)
+      expect(btnItem.length+1).assertEqual(btnItemNew.length)
       //返回
       await driver.pressBack()
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_007 end')
     })
     /**
      * 删除相册
      */
-    it('ImageFunction_006', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_006 begin')
+    it('PhotosFunction_008', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_008 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       await driver.swipe(100, 1000, 100, 100, 100)
@@ -247,21 +303,22 @@ export default function abilityTest() {
       if (btnAlbumAfterDelete != null) {
         expect().assertFail()
       }
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_008 end')
     })
     /**
      * 删除
      */
-    it('ImageFunction_007', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_007 begin')
+    it('PhotosFunction_009', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_009 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
-      await driver.swipe(100, 100, 100, 1000)
+      await driver.swipe(100, 200, 100, 1000)
       await driver.delayMs(3000)
       // 点击所有照片
       let btnAllAlbum = await driver.findComponent(ON.text(await getResourceString($r('app.string.album_all'))))
       await btnAllAlbum.click()
       await driver.delayMs(1000)
-      await driver.click(100, 100);
+      await driver.click(100, 200);
       await driver.delayMs(1000)
       //点击删除
       let btnDelete = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_delete'))))
@@ -279,7 +336,7 @@ export default function abilityTest() {
       //回到主页
       await driver.pressBack()
       await driver.delayMs(1000)
-      await driver.swipe(100, 1000, 100, 100)
+      await driver.swipe(100, 1000, 100, 200)
       await driver.delayMs(3000)
       //点击最近删除
       let btnAlbum = await driver.findComponent(ON.text(await getResourceString($r('app.string.album_recycle'))))
@@ -289,16 +346,17 @@ export default function abilityTest() {
       let btnItem = await driver.findComponents(ON.type('GridItem'))
       HiLog.info(DOMAIN, TAG, BUNDLE + 'btnItem.length:'+btnItem.length)
       expect(btnItem.length).assertLarger(0)
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_009 end')
     })
     /**
      * 恢复
      */
-    it('ImageFunction_008', 0, async function () {
-      HiLog.info(DOMAIN, TAG, BUNDLE + 'ImageFunction_008 begin')
+    it('PhotosFunction_010', 0, async function () {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_010 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       //点击图片
-      await driver.click(100, 100);
+      await driver.click(100, 200);
       await driver.delayMs(1000)
       let btnFavor = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_recover'))))
       await btnFavor.click()
@@ -307,6 +365,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.no_photo'))))
       //返回
       await driver.pressBack()
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_010 end')
     })
   })
 }

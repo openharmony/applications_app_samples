@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,12 +30,10 @@ import { MenuContext } from '../menus/MenuContext';
 import { BatchDeleteMenuOperation } from '../menus/BatchDeleteMenuOperation';
 import { BatchRemoveMenuOperation } from '../menus/BatchRemoveMenuOperation';
 import { screenManager } from '../common/ScreenManager';
-import { ShareMenuOperation } from '../menus/ShareMenuOperation';
 import { broadcastManager } from '../common/BroadcastManager';
 import { JumpSourceToMain } from '../models/JumpSourceToMain';
 import { getResourceString } from '../utils/ResourceUtils';
 import { MediaOperationType } from '../models/MediaOperationType';
-import { CopyMenuOperation } from '../menus/CopyMenuOperation';
 import { MoveMenuOperation } from '../menus/MoveMenuOperation';
 import { GridScrollBar } from '../components/GridScrollBar';
 import { BatchRecoverMenuOperation } from '../menus/BatchRecoverMenuOperation';
@@ -77,7 +75,6 @@ struct PhotoGridPage {
   scroller: Scroller = new Scroller();
   isDataFreeze = false;
   isActive = false;
-  isDistributedAlbum = false;
   deleteMode: boolean = false;
   deleteReady = true;
   routerStart = false;
@@ -137,11 +134,6 @@ struct PhotoGridPage {
         .withAlbumInfo(this.albumInfo)
       menuOperation = new BatchDeleteMenuOperation(menuContext);
       menuOperation.doAction();
-    } else if (action === Action.SHARE) {
-      menuContext = new MenuContext();
-      menuContext.withDataSource(this.groupDataSource);
-      menuOperation = new ShareMenuOperation(menuContext);
-      menuOperation.doAction();
     } else if (action === Action.INFO) {
       this.openDetailsDialog();
     } else if (action === Action.CLEAR_RECYCLE) {
@@ -183,28 +175,16 @@ struct PhotoGridPage {
       menuOperation.doAction();
     } else if (action === Action.NEW) {
       this.routeToAddMediaPage();
-    } else if (action === Action.DOWNLOAD) {
-      this.onDownloadStart = (): void => this.onDownloadStartBindImpl();
-      this.onDownloadEnd = (err: object, count: number, total: number): Promise<void> => this.onDownloadEndBindImpl(err, count, total);
-      menuContext = new MenuContext();
-      menuContext
-        .withDataSource(this.groupDataSource)
-        .withOperationStartCallback(this.onDownloadStart)
-        .withOperationEndCallback(this.onDownloadEnd)
-        .withBroadCast(this.broadCast)
-        .withRemoteDevice(this.albumInfo.deviceId);
-      menuOperation = new CopyMenuOperation(menuContext);
-      menuOperation.doAction();
     }
   }
 
   async openDetailsDialog(): Promise<void> {
     let items: UserFileDataItem[] = this.groupDataSource.getSelectedItems() as UserFileDataItem[];
-    if (items.length == 0) {
+    if (items.length === 0) {
       Log.warn(TAG, 'no select error');
-    } else if (items.length == 1) {
+    } else if (items.length === 1) {
       Log.info(TAG, 'totalSelectedCount is 1');
-      this.broadCast.emit(BroadcastConstants.SHOW_DETAIL_DIALOG, [items[0], false]);
+      this.broadCast.emit(BroadcastConstants.SHOW_DETAIL_DIALOG, [items[0]]);
     } else {
       let size = 0;
       items.forEach((item: UserFileDataItem): void => {
@@ -215,23 +195,21 @@ struct PhotoGridPage {
       this.broadCast.emit(BroadcastConstants.SHOW_MULTI_SELECT_DIALOG, [items.length, size]);
     }
   }
-
-  private routerAlbumSetPage(): void {
-    router.replace({
-      uri: 'pages/index',
-      params: {
-        jumpSource: JumpSourceToMain.ALBUM,
-      }
-    });
-  }
-
-  routeSelectAlbumPage(pageType: string): void {
+  private routeSelectAlbumPage(pageType: string): void {
     this.routerStart = true;
     router.push({
       uri: 'pages/MediaOperationPage',
       params: {
         pageType: pageType,
         albumInfo: JSON.stringify(this.albumInfo)
+      }
+    });
+  }
+  private routerAlbumSetPage(): void {
+    router.replace({
+      uri: 'pages/index',
+      params: {
+        jumpSource: JumpSourceToMain.ALBUM,
       }
     });
   }
@@ -380,8 +358,6 @@ struct PhotoGridPage {
       Log.info(TAG, 'MediaOperation back');
       if (params.pageType === MediaOperationType.Move) {
         this.moveOperation(JSON.parse(params.albumInfo.toString()));
-      } else if (params.pageType === MediaOperationType.Copy) {
-        this.copyOperation(JSON.parse(params.albumInfo.toString()));
       }
     }
     this.routerStart = false;
@@ -422,7 +398,7 @@ struct PhotoGridPage {
   private onUpdateFavorState(item: UserFileDataItem): void {
     Log.debug(TAG, 'onUpdateFavorState favor');
     let index = this.groupDataSource.getIndexByItem(item);
-    if (index != -1) {
+    if (index !== -1) {
       this.groupDataSource.notifyDataChange(index);
     }
   }
@@ -452,17 +428,6 @@ struct PhotoGridPage {
     menuOperation.doAction();
   }
 
-  private copyOperation(albumInfo: SimpleAlbumDataItem): void {
-    let menuContext = new MenuContext();
-    menuContext.withDataSource(this.groupDataSource)
-      .withOperationStartCallback((): void => this.onCopyStartBindImpl())
-      .withOperationEndCallback((err: object, count: number, total: number): void => this.onCopyEndBindImpl(err, count, total))
-      .withBroadCast(this.broadCast)
-      .withAlbumInfo(albumInfo);
-    let menuOperation = new CopyMenuOperation(menuContext);
-    menuOperation.doAction();
-  }
-
   aboutToAppear(): void {
     let param: ParamsInterface = router.getParams();
     if (param.item != undefined && param.item != null) {
@@ -474,14 +439,6 @@ struct PhotoGridPage {
       this.groupDataSource.setAlbumType(this.albumInfo.albumType)
       this.groupDataSource.setAlbumSubtype(this.albumInfo.albumSubType)
       this.groupDataSource.setAlbumName(this.albumInfo.displayName)
-      if (param.isDistributedAlbum != null) {
-        this.isDistributedAlbum = new Boolean(param.isDistributedAlbum).valueOf();
-        this.barModel.setDistributedAlbum(this.isDistributedAlbum)
-        if (param.distributedAlbumName != null) {
-          this.title = param.distributedAlbumName.toString();
-        }
-        this.groupDataSource.setDeviceId(this.albumInfo.deviceId);
-      }
     }
     Log.info(TAG, 'reloadGroupItemData');
 
@@ -603,8 +560,6 @@ struct PhotoGridPage {
     let pageEntryFrom
     if (this.albumInfo != null && this.albumInfo.id == MediaConstants.ALBUM_ID_RECYCLE) {
       pageEntryFrom = Constants.ENTRY_FROM.RECYCLE;
-    } else if (this.isDistributedAlbum) {
-      pageEntryFrom = Constants.ENTRY_FROM.DISTRIBUTED;
     } else {
       pageEntryFrom = Constants.ENTRY_FROM.NORMAL;
     }
@@ -630,8 +585,6 @@ struct PhotoGridPage {
     let pageEntryFrom;
     if (this.albumInfo != null && this.albumInfo.id == MediaConstants.ALBUM_ID_RECYCLE) {
       pageEntryFrom = Constants.ENTRY_FROM.RECYCLE;
-    } else if (this.isDistributedAlbum) {
-      pageEntryFrom = Constants.ENTRY_FROM.DISTRIBUTED;
     } else {
       pageEntryFrom = Constants.ENTRY_FROM.NORMAL;
     }

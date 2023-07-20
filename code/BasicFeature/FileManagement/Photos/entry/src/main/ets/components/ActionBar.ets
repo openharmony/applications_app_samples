@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -79,6 +79,7 @@ export struct ActionBar {
       }
       DetailMenuPanel({ actionBarProp: $actionBarProp, onMenuClicked: this.onMenuClicked })
     }
+    .margin({ top: $r('app.float.actionbar_margin_horizontal') })
     .height(Constants.ActionBarHeight)
     .alignItems(VerticalAlign.Center)
     .zIndex(3)

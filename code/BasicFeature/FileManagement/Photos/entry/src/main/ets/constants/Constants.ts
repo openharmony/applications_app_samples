@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,6 @@ enum EntryForm {
   SINGLE_SELECT = 2,
   MULTIPLE_SELECT = 3,
   RECYCLE = 4,
-  DISTRIBUTED = 5,
   CARD = 6,
   VIEW_DATA = 7
 }
@@ -99,7 +98,6 @@ export class Constants {
   static readonly ALBUM_PAGE_INDEX: number = 1;
   static readonly IMAGE_GIF = 'gif';
   static readonly GRID_CACHE_ROW_COUNT: number = 4;
-  static readonly DISTRIBUTED_ALBUM_PAGE_INDEX: number = 3;
 
   // Press animation duration
   static readonly PRESS_ANIM_DURATION = 100;
@@ -119,14 +117,13 @@ export class Constants {
   static readonly ENTRY_FROM_SINGLE_SELECT = 2;
   static readonly ENTRY_FROM_MULTIPLE_SELECT = 3;
   static readonly ENTRY_FROM_RECYCLE = 4;
-  static readonly ENTRY_FROM_DISTRIBUTED = 5;
   static readonly ENTRY_FROM_NORMAL = 6;
   static readonly ENTRY_FROM_FORM_ABILITY = 7;
   static readonly ENTRY_FROM_FORM_FORM_EDITOR = 8;
   static readonly ENTRY_FROM_VIEW_DATA = 9;
   static readonly ENTRY_FROM_FORM_ABILITY_NONE = 12;
   static readonly ENTRY_FROM = EntryForm;
-  static readonly DIALOG_BOTTOM_OFFSET: number = 16;
+  static readonly DIALOG_BOTTOM_OFFSET: number = 48;
 
   // Local tab index
   static readonly LOCAL_TAB_INDEX: number = 0;

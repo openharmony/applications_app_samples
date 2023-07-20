@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,25 +24,6 @@ const TAG = 'UserFileDataHelper';
 export class Rotatable {
   rotatable: boolean;
   orientation: number;
-}
-
-export async function setOrientation(fileAsset: photoAccessHelper.PhotoAsset, orientation: number): Promise<void> {
-  Log.info(TAG, 'setOrientation');
-  try {
-    let fd: number = await userFileModel.openAsset('RW', fileAsset);
-    let imageSourceApi: image.ImageSource = image.createImageSource(fd);
-    await imageSourceApi.modifyImageProperty('Orientation', getPropertyValidOrientation(orientation));
-    imageSourceApi.release();
-    userFileModel.closeAsset(fd, fileAsset);
-  } catch (err) {
-    Log.error(TAG, 'setOrientation err ' + JSON.stringify(err));
-    try {
-      fileAsset.set(photoAccessHelper.PhotoKeys.ORIENTATION.toString(), orientation.toString());
-      await fileAsset.commitModify();
-    } catch (err) {
-      Log.error(TAG, 'setOrientation err ' + JSON.stringify(err));
-    }
-  }
 }
 
 function getPropertyValidOrientation(orientation: number): string {

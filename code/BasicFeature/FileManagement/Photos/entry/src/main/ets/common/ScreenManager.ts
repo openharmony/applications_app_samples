@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -224,7 +224,7 @@ class ScreenManager {
     this.windowMode = mode;
 
     if (WindowMode.FULL_SCREEN == this.windowMode) {
-      await this.setFullScreen();
+      this.setFullScreen();
     } else {
       this.setSplitScreen();
     }

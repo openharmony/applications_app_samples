@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -64,7 +64,7 @@ export class DateUtil {
         opts.forEach((value: number, key: string): void => {
             if (new RegExp('(' + key + ')').test(format_s)) {
                 format_s = format_s.replace(key,
-                    (key.length == 1)
+                    (key.length === 1)
                     ? value.toString()
                     : (('00' + value).substr(value.toString().length))
                 );
@@ -81,8 +81,8 @@ export class DateUtil {
   public static getGroupDataLocalizedDate(milliseconds: number): Resource {
     let date = new Date(milliseconds);
     let today = new Date();
-    if (date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth()) {
-      if (date.getDate() == today.getDate()) {
+    if (date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth()) {
+      if (date.getDate() === today.getDate()) {
         return $r('app.string.date_today');
       }
       if (today.getDate() - date.getDate() == 1) {

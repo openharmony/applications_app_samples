@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,7 +44,6 @@ export struct DetailsDialog {
   controller: CustomDialogController;
   dataTime: string;
   @Consume mediaDetails: MediaDetails;
-  @Consume isDistributedAlbum: boolean;
 
   aboutToAppear(): void {
     let localizedDate = DateUtil.getLocalizedDate(this.mediaDetails.dateAdded);
@@ -180,27 +179,25 @@ export struct DetailsDialog {
         }.margin({
           bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
       }
-      if (!this.isDistributedAlbum) {
-        Row() {
-          Column() {
-            Text($r('app.string.path'))
-              .fontSize($r('sys.float.ohos_id_text_size_body2'))
-              .fontFamily($r('app.string.id_text_font_family_regular'))
-              .fontColor($r('sys.color.ohos_id_color_text_primary'))
-          }
+      Row() {
+        Column() {
+          Text($r('app.string.path'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        }
 
-          Column() {
-            Text(this.getDisplayPath())
-              .fontSize($r('sys.float.ohos_id_text_size_body2'))
-              .fontFamily($r('app.string.id_text_font_family_regular'))
-              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-              .maxLines(Constants.DETAILS_DIALOG_PATH_MAX_LINE)
-              .padding({ right: $r('app.float.dialog_content_margin') })
-          }
-        }.alignItems(VerticalAlign.Top)
-        .margin({
-          bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
-      }
+        Column() {
+          Text(this.getDisplayPath())
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .maxLines(Constants.DETAILS_DIALOG_PATH_MAX_LINE)
+            .padding({ right: $r('app.float.dialog_content_margin') })
+        }
+      }.alignItems(VerticalAlign.Top)
+      .margin({
+        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
 
       Stack({ alignContent: Alignment.Top }) {
         Button() {

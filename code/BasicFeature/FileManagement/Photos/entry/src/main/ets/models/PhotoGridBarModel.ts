@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,15 +20,10 @@ import { screenManager } from '../common/ScreenManager';
 import { MediaConstants } from '../constants/MediaConstants';
 
 export class PhotoGridBarModel {
-  private isDistributedAlbum: boolean = false;
   private albumId: string = '';
 
   setAlbumId(albumId: string): void {
     this.albumId = albumId;
-  }
-
-  setDistributedAlbum(isDistributedAlbum: boolean): void {
-    this.isDistributedAlbum = isDistributedAlbum;
   }
 
   createActionBar(title: Object, isSelectedMode: boolean, selectedCount: number,
@@ -66,7 +61,7 @@ export class PhotoGridBarModel {
         .setMode(ActionBarMode.SELECTION_MODE)
         .setSelectionMode(ActionBarSelectionMode.MULTI);
     } else {
-      if (!MediaConstants.ALBUM_DISABLE_NEW_LIST.has(this.albumId) && !this.isDistributedAlbum) {
+      if (!MediaConstants.ALBUM_DISABLE_NEW_LIST.has(this.albumId)) {
         menuList.push(Action.NEW);
       }
     }
@@ -77,7 +72,7 @@ export class PhotoGridBarModel {
   private updateVerticalActionBar(actionBarProp: ActionBarProp, title: Object, isSelectedMode: boolean): ActionBarProp {
     let menuList: Action[] = [];
 
-    if (!MediaConstants.ALBUM_DISABLE_NEW_LIST.has(this.albumId) && !this.isDistributedAlbum) {
+    if (!MediaConstants.ALBUM_DISABLE_NEW_LIST.has(this.albumId)) {
       menuList.push(Action.NEW);
     }
 
@@ -105,12 +100,7 @@ export class PhotoGridBarModel {
         menuList.push((new Boolean(selectedCount)) ? Action.RECOVER : Action.RECOVER_INVALID);
         menuList.push((new Boolean(selectedCount)) ? Action.DELETE : Action.DELETE_INVALID);
         menuList.push(isAllSelected ? Action.DESELECT_ALL : Action.SELECT_ALL);
-      } else if (this.isDistributedAlbum) {
-        menuList.push(isAllSelected ? Action.DESELECT_ALL : Action.SELECT_ALL);
-        menuList.push((new Boolean(selectedCount)) ? Action.SHARE : Action.SHARE_INVALID);
-        menuList.push((new Boolean(selectedCount)) ? Action.DOWNLOAD : Action.DOWNLOAD_INVALID);
       } else {
-        //menuList.push((new Boolean(selectedCount)) ? Action.SHARE : Action.SHARE_INVALID);
         menuList.push(isAllSelected ? Action.DESELECT_ALL : Action.SELECT_ALL);
         menuList.push((new Boolean(selectedCount)) ? Action.DELETE : Action.DELETE_INVALID, Action.MORE);
       }

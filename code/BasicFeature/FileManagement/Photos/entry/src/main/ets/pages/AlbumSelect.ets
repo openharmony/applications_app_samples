@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -75,7 +75,7 @@ struct AlbumSelect {
 
     let param: ParamsInterface = router.getParams();
     if (param != null) {
-      if (param.isNewAlbum != null && param.isNewAlbum == true) {
+      if (param.isNewAlbum != null && param.isNewAlbum === true) {
         AppStorage.SetOrCreate<boolean>(Constants.APP_KEY_NEW_ALBUM, true);
       } else {
         AppStorage.SetOrCreate<boolean>(Constants.APP_KEY_NEW_ALBUM, false);
@@ -185,7 +185,7 @@ struct AlbumSelect {
         Grid(this.scroller) {
           LazyForEach(this.albumsDataSource, (item: LazyItem<AlbumDataItem>): void => {
             if ((item != undefined && item != null) && (item.get() != undefined && item.get() != null)) {
-              if (item.index == 0){
+              if (item.index === 0){
                 GridItem() {
                   AlbumSelectGridItemNewStyle({
                     item: item.get(),

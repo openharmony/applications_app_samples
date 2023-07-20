@@ -1,6 +1,6 @@
 // @ts-nocheck
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -244,7 +244,7 @@ class UserFileModel {
       Log.info(TAG, 'getAllMediaItemsByUserFile');
       Log.info(TAG, 'type:' + type);
       Log.info(TAG, 'subType:' + subType);
-      if (type == photoAccessHelper.AlbumType.USER && albumFetchOption != null) {
+      if (type === photoAccessHelper.AlbumType.USER && albumFetchOption != null) {
         Log.info(TAG, 'albumFetchOption ！= null');
         fetchResult = await this.userFileMgr.getAlbums(type, subType, albumFetchOption);
       } else {
@@ -298,7 +298,7 @@ class UserFileModel {
         photoFetchResult = await albumAsset.getAssets(emptyFetchOption);
         for (let i = 0; i < photoFetchResult.getCount(); i++) {
           let photoAsset = await photoFetchResult.getObjectByPosition(i);
-          if (photoAsset.uri == uri) {
+          if (photoAsset.uri === uri) {
             fileAsset = photoAsset;
             Log.info(TAG, 'getMediaItemByUriFromTrash success: ' + photoAsset.displayName);
             break;

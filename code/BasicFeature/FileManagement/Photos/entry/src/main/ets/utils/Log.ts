@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,8 @@
 import HiLog from '@ohos.hilog';
 
 export class Log {
-  private static readonly DOMAIN = 0x0230;
-  private static readonly TAG: string = '[PhotoApp]';
+  private static readonly DOMAIN = 0xF811;
+  private static readonly TAG: string = '[Sample_Photos]';
   public static readonly LEVEL_DEBUG = HiLog.LogLevel.DEBUG;
   public static readonly LEVEL_INFO = HiLog.LogLevel.INFO;
   public static readonly LEVEL_WARN = HiLog.LogLevel.WARN;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,6 @@ import { Log } from '../utils/Log';
 import { Action } from '../models/Action';
 import { Constants } from '../constants/Constants';
 import { RouterConstants } from '../constants/RouterConstants';
-import { ThirdSelectPhotoBrowserActionBar } from '../components/ThirdSelectPhotoBrowserActionBar';
 import { PhotoBrowserBg } from '../components/PhotoBrowserBg';
 import { Constants as PhotoConstants } from '../constants/BrowserConstants';
 import { Broadcast } from '../common/Broadcast';
@@ -65,11 +64,11 @@ struct SelectPhotoBrowser {
     this.browserBackgroundColor = $r('app.color.black');
     mMultimodalInputManager.registerListener((control: number): void => {
       Log.info(TAG, 'key control : ' + control + ' index ' + this.currentIndex);
-      if (control == 0) {
+      if (control === 0) {
         if (this.currentIndex > 0) {
           this.onPhotoChanged(this.currentIndex - 1);
         }
-      } else if (control == 1) {
+      } else if (control === 1) {
         if (this.currentIndex < this.browserDataSource.totalCount() - 1) {
           this.onPhotoChanged(this.currentIndex + 1);
         }
@@ -84,16 +83,7 @@ struct SelectPhotoBrowser {
         this.pageFrom = new Number(param.pageFrom).valueOf();
       }
     }
-    if (this.pageFrom == RouterConstants.ENTRY_FROM.DISTRIBUTED) {
-      if(param.deviceId != undefined && param.deviceId != null) {
-        this.browserDataSource.setDeviceId(param.deviceId.toString());
-      } else {
-        this.browserDataSource.setDeviceId('');
-      }
-
-    }
-
-    if (this.isMultiPick == true) {
+    if (this.isMultiPick === true) {
       this.totalSelectedCount = this.browserDataSource.getSelectedCount();
     }
     if (param.albumInfo != null) {
@@ -155,7 +145,7 @@ struct SelectPhotoBrowser {
 
   onDataSizeChanged(size: number): void {
     Log.info(TAG, 'onDataSizeChanged, size is ' + size);
-    if (size == 0) {
+    if (size === 0) {
       this.onBackPress();
     }
   }
@@ -227,14 +217,6 @@ struct SelectPhotoBrowser {
         photoSwiperTransition: this.selectPhotoTransition,
         onPhotoChanged: (index: number): void => this.onPhotoChanged(index),
         swiperController: this.controller
-      })
-      ThirdSelectPhotoBrowserActionBar({
-        isMultiPick: this.isMultiPick,
-        onMenuClicked: this.onMenuClicked
-      }).sharedTransition('selectPhotoBrowserActionBar', {
-        type: SharedTransitionEffectType.Static,
-        duration: Constants.SHARE_TRANSITION_DURATION,
-        zIndex: 2,
       })
     }
   }

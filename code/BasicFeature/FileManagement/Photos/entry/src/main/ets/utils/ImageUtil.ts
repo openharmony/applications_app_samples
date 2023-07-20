@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,7 @@ const BIT_TWO = 2;
 const BIT_ONE = 1;
 
 export function computeSampleSize(width: number, height: number, minSideLength: number, maxNumOfPixels: number): number {
-  if (width == 0 || height == 0 || minSideLength == 0 || maxNumOfPixels == 0) {
+  if (width === 0 || height === 0 || minSideLength === 0 || maxNumOfPixels === 0) {
     return 2;
   }
   let initialSize = computeInitialSampleSize(width, height, minSideLength, maxNumOfPixels);

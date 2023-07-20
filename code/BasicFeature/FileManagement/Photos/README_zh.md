@@ -41,34 +41,34 @@
 ```
 .
 ├── base // @ohos.file.photoAccessHelper接口封装
-│   ├── FavorUserFileDataItem.ts
-│   ├── InnerUserFileDataItem.ts
-│   ├── TrashUserFileDataItemCache.ts
-│   ├── TrashUserFileDataItem.ts
-│   ├── UserFileDataChangeCallback.ts
-│   ├── UserFileDataHelper.ts
-│   ├── UserFileDataItemCache.ts
-│   ├── UserFileDataItem.ts
-│   ├── UserFileModel.ts
-│   ├── UserFileObserverCallback.ts
-│   └── UserFileObserver.ts
+│   ├── FavorUserFileDataItem.ts            // 收藏夹图片数据类
+│   ├── InnerUserFileDataItem.ts            // 大图数据类
+│   ├── TrashUserFileDataItemCache.ts       // 最近删除图片数据缓存
+│   ├── TrashUserFileDataItem.ts            // 最近删除图片数据类
+│   ├── UserFileDataChangeCallback.ts       // 图片数据变化回调
+│   ├── UserFileDataHelper.ts               // 图片展示信息查询接口
+│   ├── UserFileDataItemCache.ts            // 图片数据缓存
+│   ├── UserFileDataItem.ts                 // 图片数据类
+│   ├── UserFileModel.ts                    // photoAccessHelper接口封装
+│   ├── UserFileObserverCallback.ts         // 图片数据监听回调
+│   └── UserFileObserver.ts                 // 图片数据监听类
 ├── common //业务逻辑
 │   ├── ActionBarProp.ts
-│   ├── AlbumDataImpl.ts
-│   ├── AlbumDataItem.ts
+│   ├── AlbumDataImpl.ts                    // 相册数据查询接口封装
+│   ├── AlbumDataItem.ts                    // 相册数据类
 │   ├── AlbumsDataSource.ts
 │   ├── BroadcastManager.ts
 │   ├── Broadcast.ts
 │   ├── CommonObserverCallback.ts
 │   ├── EventPipeline.ts
 │   ├── GlobalContext.ts
-│   ├── GroupDataImpl.ts
-│   ├── GroupItemDataSource.ts
+│   ├── GroupDataImpl.ts                    // 相册成员数组数据接口封装
+│   ├── GroupItemDataSource.ts              // 相册成员数组数据
 │   ├── ItemDataSource.ts
 │   ├── MultimodalInputManager.ts
-│   ├── ScreenManager.ts
-│   ├── SelectManager.ts
-│   └── SimpleAlbumDataItem.ts
+│   ├── ScreenManager.ts                    // 屏幕显示逻辑
+│   ├── SelectManager.ts                    // 选择状态逻辑
+│   └── SimpleAlbumDataItem.ts              // 简化相册数据类
 ├── components //UI组件
 │   ├── ActionBarButton.ets
 │   ├── ActionBar.ets
@@ -79,15 +79,12 @@
 │   ├── AlbumSelectGridItemNewStyle.ets
 │   ├── AlbumSetPage.ets
 │   ├── CancelOperationDialog.ets
-│   ├── CopyOrMoveDialog.ets
 │   ├── CustomDialogView.ets
 │   ├── DeleteDialog.ets
 │   ├── DeleteProgressDialog.ets
 │   ├── DetailMenuPanel.ets
 │   ├── DetailsDialog.ets
 │   ├── DetailTitle.ets
-│   ├── DownloadCancelOperationDialog.ets
-│   ├── EditExitDialog.ets
 │   ├── EmptyAlbumComponent.ets
 │   ├── FindSameNameDialog.ets
 │   ├── GridScrollBar.ets
@@ -108,8 +105,6 @@
 │   ├── SaveImageDialog.ets
 │   ├── SelectionTitle.ets
 │   ├── SingleTitle.ets
-│   ├── ThirdDeleteDialog.ets
-│   ├── ThirdSelectPhotoBrowserActionBar.ets
 │   ├── ToolBarButton.ets
 │   ├── ToolBar.ets
 │   └── VideoIcon.ets
@@ -132,7 +127,6 @@
 │   ├── BatchRecoverMenuOperation.ts
 │   ├── BatchRemoveMenuOperation.ts
 │   ├── ClearRecycleMenuOperation.ts
-│   ├── CopyMenuOperation.ts
 │   ├── GotoPhotosMenuOperation.ts
 │   ├── MenuContext.ts
 │   ├── MenuOperationCallback.ts
@@ -140,7 +134,6 @@
 │   ├── MoveMenuOperation.ets
 │   ├── ProcessMenuOperation.ts
 │   ├── RenameMenuOperation.ts
-│   └── ShareMenuOperation.ts
 ├── models //类型定义
 │   ├── ActionBarMode.ts
 │   ├── Action.ts
@@ -153,14 +146,14 @@
 │   ├── ThumbnailModel.ts
 │   └── ViewType.ts
 ├── pages //页面
-│   ├── AlbumSelect.ets
-│   ├── Index.ets
-│   ├── MediaOperationPage.ets
-│   ├── NewAlbumPage.ets
-│   ├── PhotoBrowser.ets
-│   ├── PhotoGridPage.ets
-│   ├── SelectPhotoBrowser.ets
-│   └── VideoBrowser.ets
+│   ├── AlbumSelect.ets                           // 相册选择页面
+│   ├── Index.ets                                 // 主页面
+│   ├── MediaOperationPage.ets                    // 图片文件操作页面
+│   ├── NewAlbumPage.ets                          // 新建相册页面
+│   ├── PhotoBrowser.ets                          // 大图展示页面
+│   ├── PhotoGridPage.ets                         // 图片列表页面
+│   ├── SelectPhotoBrowser.ets                    // 图片选择页面
+│   └── VideoBrowser.ets                          // 视频查看页面
 └── utils //工具类
     ├── AbilityUtils.ts
     ├── AlbumUtil.ts

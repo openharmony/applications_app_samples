@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -70,54 +70,8 @@ export class MoveMenuOperation extends ProcessMenuOperation {
 
   requestOneBatchOperation(): void {
     let item = this.items[this.currentBatch++] as UserFileDataItem;
-    //this.moveOne(item);
     userFileModel.addPhotoToAlbumByUserFileMgr(this.albumInfo.uri, item.uri)
     this.onCompleted();
-  }
-
-  private async moveOne(item: UserFileDataItem): Promise<void> {
-    let fileAsset = await item.loadFileAsset();
-    let assets = await this.getFileCopyOrMoveInfo(fileAsset, this.albumInfo);
-    if (assets.targetAsset != null) {
-      if (assets.targetAsset.uri == assets.sourceAsset.uri) {
-        Log.info(TAG, 'move same fileAsset');
-        this.onOperateContinue();
-        return;
-      }
-      Log.info(TAG, 'show find same file dialog');
-      switch (this.findSameOperation) {
-        case FindSameOperation.NONE:
-          this.menuContext.broadCast.emit(BroadcastConstants.FIND_SAME_FILE_DIALOG,
-            [assets, this.count, (): void => {
-              this.move(assets.sourceAsset, this.albumInfo.uri, assets.targetAsset);
-            }, (): void => this.onOperateContinueBindImpl(), (): void => this.onOperateCancelledBindImpl(),
-              (newOp: number): void => this.setFindSameOperationBindImpl(newOp)]);
-          break;
-        case FindSameOperation.REPLACE:
-          this.move(assets.sourceAsset, this.albumInfo.uri, assets.targetAsset);
-          break;
-        case FindSameOperation.SKIP:
-          this.onOperateContinue();
-          break;
-        default:
-          Log.warn(TAG, 'findSameOperation is error ' + this.findSameOperation);
-          break;
-      }
-    } else {
-      this.move(assets.sourceAsset, this.albumInfo.uri);
-    }
-  }
-
-  async move(file: photoAccessHelper.PhotoAsset, path: string, targetFile?): Promise<void> {
-    try {
-      if (targetFile != null) {
-        await userFileModel.deleteOne(targetFile.uri);
-      }
-      this.onCompleted();
-    } catch (error) {
-      Log.error(TAG, 'move error: ' + error)
-      this.onError();
-    }
   }
 
   cancelFunc(): void {

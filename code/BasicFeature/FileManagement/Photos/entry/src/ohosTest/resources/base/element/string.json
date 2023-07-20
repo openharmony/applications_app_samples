@@ -65,6 +65,18 @@
       "value": "Unfavorite"
     },
     {
+      "name": "btn_more",
+      "value": "More"
+    },
+    {
+      "name": "btn_remove_form_album",
+      "value": "Remove from album"
+    },
+    {
+      "name": "btn_remove",
+      "value": "Remove"
+    },
+    {
       "name": "btn_recover",
       "value": "Restore"
     },

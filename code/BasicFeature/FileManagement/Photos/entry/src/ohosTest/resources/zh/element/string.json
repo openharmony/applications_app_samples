@@ -69,6 +69,18 @@
       "value": "恢复"
     },
     {
+      "name": "btn_more",
+      "value": "更多"
+    },
+    {
+      "name": "btn_remove_form_album",
+      "value": "从相册移除"
+    },
+    {
+      "name": "btn_remove",
+      "value": "移除"
+    },
+    {
       "name": "btn_confirm",
       "value": "确定"
     },

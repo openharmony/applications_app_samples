@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,9 +35,6 @@ export struct MediaOperationActionBar {
   private createActionBar(): ActionBarProp {
     let menuList: Action[] = [];
     let actionBarProp: ActionBarProp = new ActionBarProp();
-    if (this.loadingFinish) {
-      menuList.push(Action.NEW);
-    }
     actionBarProp
       .setHasTabBar(false)
       .setTitle((this.pageType == MediaOperationType.Move) ? $r('app.string.move_to') : $r('app.string.copy_to'))

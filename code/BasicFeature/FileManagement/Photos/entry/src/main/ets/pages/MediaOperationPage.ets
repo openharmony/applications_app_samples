@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -137,11 +137,11 @@ struct MediaOperationPage {
 
   updateListCardWidth(): void {
     Log.info(TAG, 'updateListCardWidth start ' + this.screenColumns);
-    if (this.screenColumns == ColumnSize.COLUMN_FOUR) {
+    if (this.screenColumns === ColumnSize.COLUMN_FOUR) {
       this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_FOUR);
-    } else if (this.screenColumns == ColumnSize.COLUMN_EIGHT) {
+    } else if (this.screenColumns === ColumnSize.COLUMN_EIGHT) {
       this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_SIX);
-    } else if (this.screenColumns == ColumnSize.COLUMN_TWELVE) {
+    } else if (this.screenColumns === ColumnSize.COLUMN_TWELVE) {
       this.listCardWidth = screenManager.getColumnsWidth(ColumnSize.COLUMN_EIGHT);
     } else {
       Log.warn(TAG, 'screenColumns is not init');

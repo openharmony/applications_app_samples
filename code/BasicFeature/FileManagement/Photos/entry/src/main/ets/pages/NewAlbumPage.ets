@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,6 @@ import { NoPhotoComponent } from '../components/NoPhotoComponent';
 import { screenManager } from '../common/ScreenManager';
 import { broadcastManager } from '../common/BroadcastManager';
 import { MenuContext } from '../menus/MenuContext';
-import { CopyMenuOperation } from '../menus/CopyMenuOperation';
 import { MoveMenuOperation } from '../menus/MoveMenuOperation';
 import { JumpSourceToMain } from '../models/JumpSourceToMain';
 import { GridScrollBar } from '../components/GridScrollBar';
@@ -37,8 +36,6 @@ import { UserFileDataItem } from '../base/UserFileDataItem';
 import { AlbumDataItem } from '../common/AlbumDataItem';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
-import { userFileModel } from '../base/UserFileModel';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 const TAG = 'NewAlbumPage';
 
@@ -156,7 +153,7 @@ struct NewAlbumPage {
   onUpdateFavorState(item: UserFileDataItem): void {
     Log.debug(TAG, 'onUpdateFavorState');
     let index = this.groupDataSource.getIndexByItem(item);
-    if (index != -1) {
+    if (index !== -1) {
       this.groupDataSource.notifyDataChange(index);
     }
   }
@@ -208,19 +205,6 @@ struct NewAlbumPage {
     let menuOperation = new MoveMenuOperation(menuContext);
     menuOperation.doAction();
   }
-  private copyOperation(): void {
-    let menuContext = new MenuContext();
-    this.onOperationStart = (): void => this.onOperationStartBindImpl();
-    this.onOperationEnd = (): void => this.onOperationEndBindImpl();
-    menuContext
-      .withDataSource(this.groupDataSource)
-      .withOperationStartCallback(this.onOperationStart)
-      .withOperationEndCallback(this.onOperationEnd)
-      .withBroadCast(this.broadCast)
-      .withAlbumInfo(this.targetAlbum);
-    let menuOperation = new CopyMenuOperation(menuContext);
-    menuOperation.doAction();
-  }
 
   aboutToAppear(): void {
     let param: ParamsInterface = router.getParams();
@@ -242,10 +226,6 @@ struct NewAlbumPage {
 
     this.broadCast.on(BroadcastConstants.JUMP_PHOTO_BROWSER, (name: string, item: UserFileDataItem): void => {
       this.jumpToPhotoBrowser(name, item)
-    })
-
-    this.broadCast.on(BroadcastConstants.JUMP_THIRD_PHOTO_BROWSER, (name: string, item: UserFileDataItem): void => {
-      this.jumpToThirdPhotoBrowser(name, item)
     })
 
     this.appBroadcast.on(BroadcastConstants.UPDATE_DATA_SOURCE, (item: UserFileDataItem): void => this.onUpdateFavorAndSelectStateBindImpl(item));
@@ -276,7 +256,7 @@ struct NewAlbumPage {
   private jumpToPhotoBrowser(name: string, item: UserFileDataItem): void {
     let children: UserFileDataItem[] = this.groupDataSource.getItems();
     let targetIndex = children.indexOf(item);
-    if (targetIndex == Constants.NOT_FOUND) {
+    if (targetIndex === Constants.NOT_FOUND) {
       Log.warn(TAG, 'targetIndex is not found');
       return;
     }
@@ -289,23 +269,6 @@ struct NewAlbumPage {
         transition: name,
       }
     });
-  }
-
-  private jumpToThirdPhotoBrowser(name: string, item: UserFileDataItem): void {
-    let children: UserFileDataItem[] = this.groupDataSource.getItems();
-    let targetIndex = children.indexOf(item);
-    if (targetIndex == Constants.NOT_FOUND) {
-      Log.warn(TAG, 'targetIndex is not found');
-      return;
-    }
-    AppStorage.SetOrCreate<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER, children);
-    router.push({
-      uri: 'pages/SelectPhotoBrowser',
-      params: {
-        position: targetIndex,
-        transition: name,
-      }
-    })
   }
 
   aboutToDisappear(): void {
