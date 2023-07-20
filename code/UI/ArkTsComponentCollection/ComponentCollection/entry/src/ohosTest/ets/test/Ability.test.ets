@@ -1690,7 +1690,7 @@ export default function abilityTest() {
         let testName = 'InteractionFunction';
         Logger.info(BUNDLE + testName + ' begin');
 
-        await driver.drag(200, 1017, 200, 917, 800)
+        await driver.drag(200, 1017, 200, 917, 800);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.components_interaction')));
         // 按钮禁用
