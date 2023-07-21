@@ -126,7 +126,7 @@ struct Interaction {
     Row({ space: 20 }) {
       Image($r("app.media.icon")).width(24).height(24)
       Text('Content').fontSize(20).fontColor(Color.White)
-    }.width(200).height(80).padding(10)
+    }.width(140).height(40).padding(10)
   }
 
   private placementsNameArray = placementsNameData
@@ -343,6 +343,7 @@ struct Interaction {
                 }.width('100%')
 
                 Button($r('app.string.interaction_showcustompopup'))
+                  .margin({ bottom: 30 })
                   .onClick(() => {
                     this.handleCustomPopup = true;
                   })
