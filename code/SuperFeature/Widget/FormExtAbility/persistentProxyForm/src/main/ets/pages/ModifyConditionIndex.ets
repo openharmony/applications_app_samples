@@ -52,13 +52,13 @@ function modifyCondition(): void {
   let formInstanceFilterArkTS = {
     bundleName: 'ohos.samples.formextability',
     abilityName: 'EntryFormAbility',
-    formName: 'widget',
+    formName: 'persistentWidget',
     moduleName: 'persistentProxyForm'
   };
   let formInstanceFilterJS = {
     bundleName: 'ohos.samples.formextability',
     abilityName: 'EntryFormAbility',
-    formName: 'widgetJS',
+    formName: 'persistentWidgetJS',
     moduleName: 'persistentProxyForm'
   };
   formHost.getRunningFormInfosByFilter(formInstanceFilterArkTS).then((data) => {
