@@ -75,6 +75,7 @@ struct IndexThi {
             Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
               Column() {
                 Text($r('app.string.city_sy'))
+                  .margin({ bottom :10 })
                 Radio({ value: 'sy', group: 'modifyConditionGroup' })
                   .height(24)
                   .width(24)
@@ -93,6 +94,7 @@ struct IndexThi {
 
               Column() {
                 Text($r('app.string.city_hz'))
+                  .margin({ bottom :10 })
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
                   .height(24)
                   .width(24)

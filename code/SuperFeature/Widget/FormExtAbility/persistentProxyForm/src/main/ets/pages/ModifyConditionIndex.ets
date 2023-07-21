@@ -39,7 +39,7 @@ function updateCardDisplayContent(runningFormInfo): void {
   let proxies = [{'key': 'datashareproxy://ohos.samples.formextability/test', 'subscriberId': conditionID}];
   let formData;
   Logger.info(TAG, `formData: ${JSON.stringify(formData)}`);
-  let formBinding =  formBindingData.createFormBindingData(formData);
+  let formBinding = formBindingData.createFormBindingData(formData);
   formBinding['proxies'] = proxies;
   formProvider.updateForm(runningFormInfo.formId, formBinding).then(() => {
     Logger.info(TAG, `update Form OK formData is ${JSON.stringify(formBinding)}`);
@@ -89,52 +89,58 @@ struct IndexThi {
         Text($r('app.string.subscription_conditions'))
           .fontColor('#182431')
           .fontSize(40)
+          .lineHeight(41)
           .fontWeight('Bold')
         Column() {
           Text($r('app.string.modify_subscription_conditions'))
             .fontSize(28)
             .margin({ bottom: 20 })
           Row() {
-            Column() {
-              Text($r('app.string.city_sy'))
-                .margin({ bottom :10 })
-              Radio({ value: 'sy', group: 'modifyConditionGroup' }).checked(false)
-                .height(24)
-                .width(24)
-                .radioStyle({
-                  checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
-                  uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
-                  indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
-                })
-                .onChange((isChecked: boolean) => {
-                  Logger.info('firstRadio status is ' + isChecked);
-                  if (isChecked) {
-                    conditionID = '110000';
-                    modifyCondition();
-                  }
-                })
+            Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+              Column() {
+                Text($r('app.string.city_sy'))
+                  .margin({ bottom: 10 })
+                Radio({ value: 'sy', group: 'modifyConditionGroup' })
+                  .checked(false)
+                  .height(24)
+                  .width(24)
+                  .radioStyle({
+                    checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                    uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
+                    indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
+                  })
+                  .onChange((isChecked: boolean) => {
+                    Logger.info('firstRadio status is ' + isChecked);
+                    if (isChecked) {
+                      conditionID = '110000';
+                      modifyCondition();
+                    }
+                  })
+              }
+
+              Column() {
+                Text($r('app.string.city_hz'))
+                  .margin({ bottom: 10 })
+                Radio({ value: 'hz', group: 'modifyConditionGroup' })
+                  .checked(false)
+                  .height(24)
+                  .width(24)
+                  .radioStyle({
+                    checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
+                    uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
+                    indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
+                  })
+                  .onChange((isChecked: boolean) => {
+                    Logger.info('secondRadio status is ' + isChecked);
+                    if (isChecked) {
+                      conditionID = '310000';
+                      modifyCondition();
+                    }
+                  })
+              }
             }
-            Column() {
-              Text($r('app.string.city_hz'))
-                .margin({bottom :10})
-              Radio({ value: 'hz', group: 'modifyConditionGroup' }).checked(false)
-                .height(24)
-                .width(24)
-                .radioStyle({
-                  checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
-                  uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
-                  indicatorColor: $r('sys.color.ohos_id_color_foreground_contrary')
-                })
-                .onChange((isChecked: boolean) => {
-                  Logger.info('secondRadio status is ' + isChecked);
-                  if (isChecked) {
-                    conditionID = '310000';
-                    modifyCondition();
-                  }
-                })
-            }
-            .margin({ left :30 })
           }
+          .width('70%')
         }
         .width('100%')
       }
