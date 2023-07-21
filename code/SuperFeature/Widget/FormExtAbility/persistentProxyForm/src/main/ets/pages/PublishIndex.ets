@@ -48,9 +48,13 @@ function updateRDB(context): void {
         dataShareHelper.update(uri, da, va, (err, data) => {
           if (err !== undefined) {
             Logger.info(TAG, `update error1: code: ${err.code}, message: ${err.message} `);
+            prompt.showToast(
+              { message: `publish err: ${JSON.stringify(err)}`, duration: 5000 });
             return;
           }
           Logger.info(TAG, `update succeed, data : ${data}`);
+          prompt.showToast(
+            { message: `publish success ${conditionCity} ${conditionData}`, duration: 5000 });
         });
         dataShareHelper.notifyChange(uri);
       } catch (err) {
@@ -89,21 +93,13 @@ struct IndexSec {
 
   build() {
     Row() {
-      Column({ space: 100 }) {
+      Column({ space: 200 }) {
         Column({ space: 5 }) {
           Text($r('app.string.modify_publish_data'))
             .fontColor('#182431')
             .fontSize(40)
             .lineHeight(41)
             .fontWeight('100%')
-          TextArea({text: this.RunningFormInfo})
-            .width('90%')
-            .height(200)
-            .margin(20)
-            .fontSize(16)
-            .focusable(this.focus)
-            .fontColor('#182431')
-            .backgroundColor('#FFFFFF')
         }
 
         Column() {

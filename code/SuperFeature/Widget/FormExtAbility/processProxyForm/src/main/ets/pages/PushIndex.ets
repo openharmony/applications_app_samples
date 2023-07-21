@@ -46,7 +46,7 @@ function updateCardDisplayContent(runningFormInfo): void {
       dataShareHelper.publish(publishedItemData, 'ohos.samples.formextability').then((data) => {
         Logger.info(TAG, `publish success, data is ${JSON.stringify(data)}`);
         prompt.showToast(
-          { message: `publish success ${conditionCity} ${conditionData} ${conditionID}`, duration: 5000 });
+          { message: `publish success ${conditionCity} ${conditionData}`, duration: 5000 });
       }).catch((err) => {
         Logger.error(TAG, `publish error: ${JSON.stringify(err)}`);
         prompt.showToast({ message: `publish err: ${JSON.stringify(err)}`, duration: 5000 });
@@ -81,21 +81,13 @@ struct IndexSec {
 
   build() {
     Row() {
-      Column({ space: 100 }) {
+      Column({ space: 200 }) {
         Column({ space: 5 }) {
           Text($r('app.string.modify_publish_data'))
             .fontColor('#182431')
             .fontSize(40)
             .lineHeight(41)
             .fontWeight('100%')
-          TextArea({text: this.runningFormInfo})
-            .width('90%')
-            .height(200)
-            .margin(20)
-            .fontSize(16)
-            .focusable(this.focus)
-            .fontColor('#182431')
-            .backgroundColor('#FFFFFF')
         }
         Column() {
           Column() {
@@ -106,6 +98,7 @@ struct IndexSec {
                 Column() {
                   Text($r('app.string.city_sy'))
                     .fontSize(15)
+                    .margin({ bottom: 10 })
                   Radio({ value: 'sy', group: 'cityGroup' })
                     .checked(true)
                     .height(24)
@@ -126,6 +119,7 @@ struct IndexSec {
                 Column() {
                   Text($r('app.string.city_hz'))
                     .fontSize(15)
+                    .margin({ bottom: 10 })
                   Radio({ value: 'hz', group: 'cityGroup' })
                     .height(24)
                     .width(24)
@@ -141,6 +135,7 @@ struct IndexSec {
                       }
                     })
                 }
+                .margin({ left: 20 })
               }
               .margin({ left: 10 })
             }
