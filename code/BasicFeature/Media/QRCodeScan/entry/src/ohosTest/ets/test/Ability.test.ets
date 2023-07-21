@@ -70,12 +70,6 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await secondButton.click();
       await driver.delayMs(1000);
-      // 允许访问照片和视频
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))))
-      let thirdButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))))
-      await driver.delayMs(1000);
-      await thirdButton.click();
-      await driver.delayMs(1000);
       // 允许访问图片和视频
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))));
       let agreeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))));
