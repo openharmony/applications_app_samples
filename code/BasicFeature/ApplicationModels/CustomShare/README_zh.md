@@ -123,19 +123,20 @@ entry中测试[Share.test.ets](./entry/src/ohosTest/ets/test/Share.test.ets)需�
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
-2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.8.5,镜像版本号:Openharmony 4.0.8.5。
+2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.1,镜像版本号:Openharmony 4.0.9.1。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 4.本示例使用的screenshot API属于SystemAPI，需要使用Full SDK 手动从镜像站点获取，并在DevEco
-Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
-。
+Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 5.本示例涉及相关权限为system_core级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 查看）， 需要手动配置高级别的权限签名(
 具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)) 。
 
-5.当前4.0.8.5版本的Full SDK。因为不支持UIExtension类型编译，所以需要手动修改SDK中“10/toolchains/modulecheck/module.json"文件。在对应的extensionAbilities的type属性中，追加”ui“枚举值（只需在"enum"内容中添加"ui"即可，无需添加其他内容）。
+6.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )
+
+7.当前4.0.9.1版本的Full SDK。因为不支持UIExtension类型编译，所以需要手动修改SDK中“10/toolchains/modulecheck/module.json"文件。在对应的extensionAbilities的type属性中，追加”ui“枚举值（只需在"enum"内容中添加"ui"即可，无需添加其他内容）。
 
 ```json
 "extensionAbilities": {
