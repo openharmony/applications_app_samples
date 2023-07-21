@@ -29,7 +29,8 @@ struct TypicalSceneIndex {
     { title: $r('app.string.bigImage'), uri: 'pages/typicalScene/bigImage/BigImageSample', id:'BigImageSample' },
     { title: $r('app.string.multiLaneList'), uri: 'pages/typicalScene/multiLaneList/MultiLaneListSample', id:'MultiLaneListSample' },
     { title: $r('app.string.grid'), uri: 'pages/typicalScene/responsiveGrid/ResponsiveGridSample', id:'ResponsiveGridSample' },
-    { title: $r('app.string.aside'), uri: 'pages/typicalScene/sidebar/SidebarSample', id:'SidebarSample' }
+    { title: $r('app.string.aside'), uri: 'pages/typicalScene/sidebar/SidebarSample', id:'SidebarSample' },
+    { title: $r('app.string.multiScene'), uri: 'pages/typicalScene/multiScene/pages/MultiScene', id:'multiScene' }
   ]
 
   build() {

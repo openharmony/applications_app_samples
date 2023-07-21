@@ -165,6 +165,10 @@
       "value": "aside"
     },
     {
+      "name": "multiScene",
+      "value": "multiScene"
+    },
+    {
       "name": "user_improvement",
       "value": "User Experience Improvement Program"
     },
@@ -251,6 +255,118 @@
     {
       "name": "breakpoint",
       "value": "breakpoint"
+    },
+    {
+      "name": "multiScene_tabs_home",
+      "value": "home"
+    },
+    {
+      "name": "multiScene_tabs_app",
+      "value": "apps"
+    },
+    {
+      "name": "multiScene_tabs_play",
+      "value": "play"
+    },
+    {
+      "name": "multiScene_tabs_me",
+      "value": "me"
+    },
+    {
+      "name": "multiScene_header_title",
+      "value": "Good morning~"
+    },
+    {
+      "name": "multiScene_header_subtitle",
+      "value": "Never give up on someone you miss every day!"
+    },
+    {
+      "name": "multiScene_my_content",
+      "value": "my content"
+    },
+    {
+      "name": "multiScene_application",
+      "value": "multiScene_application"
+    },
+    {
+      "name": "multiScene_title1",
+      "value": "The application of Artificial Intelligence technology in the medical field"
+    },
+    {
+      "name": "multiScene_title1_disc",
+      "value": "To explore how artificial intelligence technology can improve medical services, diagnosis accuracy and treatment effect."
+    },
+    {
+      "name": "multiScene_title2",
+      "value": "The Impact of Blockchain technology on the financial Industry"
+    },
+    {
+      "name": "multiScene_title2_disc",
+      "value": "Analyzing how blockchain technology can change the business model of traditional financial industry and improve transaction efficiency and security."
+    },
+    {
+      "name": "multiScene_title3",
+      "value": "Machine Learning Algorithms for autonomous driving"
+    },
+    {
+      "name": "multiScene_title3_disc",
+      "value": "Introducing how to realize automatic driving function with machine learning algorithm, and discusses its development prospects in the future transportation field."
+    },
+    {
+      "name": "multiScene_title4",
+      "value": "The application of Virtual Reality Technology in the game industry"
+    },
+    {
+      "name": "multiScene_title4_disc",
+      "value": "Discussing how virtual reality technology can change the game play and user experience in the game industry, and analyzes its development trend in the future entertainment field."
+    },
+    {
+      "name": "multiScene_title5",
+      "value": "The impact of 5G technology on the communication industry"
+    },
+    {
+      "name": "multiScene_title5_disc",
+      "value": "Analyzing how 5G technology will change the business model and user needs of the communication industry, and discusses its application prospects in the future digital society."
+    },
+    {
+      "name": "multiScene_title6",
+      "value": "The Application of Internet of Things technology in Smart City"
+    },
+    {
+      "name": "multiScene_title6_disc",
+      "value": "Introducing how the Internet of Things technology realizes the construction and management of smart city, and analyzes its importance and role in the future city development."
+    },
+    {
+      "name": "multiScene_title7",
+      "value": "The application of biotechnology in agriculture"
+    },
+    {
+      "name": "multiScene_title7_disc",
+      "value": "Discussing how biotechnology can improve agricultural production and protect ecological environment, and analyzes its role in future food security and sustainable development."
+    },
+    {
+      "name": "multiScene_title8",
+      "value": "Advances and Challenges in Quantum Computer Technology"
+    },
+    {
+      "name": "multiScene_title8_disc",
+      "value": " Introducing the basic principles and application prospects of quantum computer technology, and discusses its current technical problems and development trends."
+    },
+    {
+      "name": "multiScene_title9",
+      "value": "The Application of Big Data Technology in Enterprise Management"
+    },
+    {
+      "name": "multiScene_title9_disc",
+      "value": "Analyzing how big data technology can assist enterprise management, improve operational efficiency and decision-making level, and discusses its advantages and challenges in future business competition."
+    },
+    {
+      "name": "multiScene_title10",
+      "value": "The Impact of Artificial Intelligence Technology on the Education Industry"
+    },
+    {
+      "name": "multiScene_title10_disc",
+      "value": "Discussing how artificial intelligence technology can change the way and content of education and teaching, and analyzes its role and challenges in future education development."
     }
   ]
 }

@@ -304,6 +304,24 @@ export default function appTest() {
       await checkButtonAndClickWithID('SidebarSample')
       await driver.pressBack()
       await driver.delayMs(1000)
+      //向下下滑
+      await driver.swipe(360, 900, 360, 200, 2000)
+      //点击一多典型场景
+      await checkButtonAndClickWithID('multiScene')
+      //上下滑动list
+      await driver.swipe(360, 1100, 360, 900, 200)
+      //左右滑动swiper
+      await driver.swipe(700, 300, 20, 300, 1000)
+      await checkButtonAndClickWithText(await getResourceString($r('app.string.multiScene_tabs_app')))
+      //上下滑动应用列表
+      await driver.swipe(360, 1100, 360, 900, 200)
+      await checkButtonAndClickWithText(await getResourceString($r('app.string.multiScene_tabs_play')))
+      await checkButtonAndClickWithText(await getResourceString($r('app.string.multiScene_tabs_me')))
+      await driver.swipe(20, 300, 700, 300, 1000)
+      await driver.swipe(20, 300, 700, 300, 1000)
+      await driver.swipe(20, 300, 700, 300, 1000)
+      await driver.pressBack()
+      await driver.delayMs(1000)
       await driver.pressBack()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesThreeFunction_001 end')

@@ -263,6 +263,18 @@
     {
       "name": "breakpoint",
       "value": "breakpoint"
+    },
+    {
+      "name": "multiScene_tabs_app",
+      "value": "apps"
+    },
+    {
+      "name": "multiScene_tabs_play",
+      "value": "play"
+    },
+    {
+      "name": "multiScene_tabs_me",
+      "value": "me"
     }
   ]
 }

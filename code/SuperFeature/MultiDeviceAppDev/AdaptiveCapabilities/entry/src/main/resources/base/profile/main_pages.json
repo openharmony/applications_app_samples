@@ -36,6 +36,7 @@
     "pages/typicalScene/multiLaneList/MultiLaneListSample",
     "pages/typicalScene/responsiveGrid/ResponsiveGridSample",
     "pages/typicalScene/sidebar/SidebarSample",
-    "pages/typicalScene/bigImage/BigImageSample"
+    "pages/typicalScene/bigImage/BigImageSample",
+    "pages/typicalScene/multiScene/pages/MultiScene"
   ]
 }
