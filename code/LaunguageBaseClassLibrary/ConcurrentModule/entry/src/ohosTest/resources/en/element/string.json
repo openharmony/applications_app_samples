@@ -2,11 +2,11 @@
   "string": [
     {
       "name": "copyFileLog1",
-      "value": "copyFileLog1"
+      "value": "1. Number of sandbox directory files: 2"
     },
     {
       "name": "copyFileLog2",
-      "value": "copyFileLog2"
+      "value": "2. File TestFile01.txt, TestFile02.txt and other files are copied"
     }
   ]
 }

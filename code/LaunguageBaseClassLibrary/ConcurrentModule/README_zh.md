@@ -92,9 +92,9 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行。
+1.本示例仅支持标准系统上运行, 支持设备：RK3568;。
 
-2.本示例为Stage模型，仅支持API10版本SDK，版本号：4.0.8.2，镜像版本号：OpenHarmony 4.0.8.5。
+2.本示例为Stage模型，支持API9版本SDK，版本号：3.2.12.2，镜像版本号：OpenHarmony 4.0.8.5。
 
 3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上版本才可编译运行。
 

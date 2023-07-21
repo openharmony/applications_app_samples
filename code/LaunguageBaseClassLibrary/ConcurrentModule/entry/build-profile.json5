@@ -19,7 +19,7 @@
     "sourceOption": {
       "workers": [
         './src/main/ets/workers/Worker.ts',
-        './src/main/ets/workers/Worker03.ts'
+        "./src/main/ets/workers/WorkerCopy.ts"
       ]
     }
   },
