@@ -18,7 +18,7 @@
     "name": "processProxyForm",
     "type": "feature",
     "description": "$string:module_desc",
-    "mainElement": "EntryAbility",
+    "mainElement": "processEntryAbility",
     "deviceTypes": [
       "default"
     ],
@@ -27,8 +27,8 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "name": "processEntryAbility",
+        "srcEntry": "./ets/entryability/ProcessEntryAbility.ts",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
