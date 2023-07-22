@@ -17,6 +17,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import Logger from '../../common/Logger';
 
+PersistentStorage.PersistProp('processRadioShenYang', false);
+PersistentStorage.PersistProp('processRadioHangZhou', false);
+PersistentStorage.PersistProp('processPublishHangZhou', false);
+PersistentStorage.PersistProp('processPublishHangZhou', false);
+
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info('[EntryAbility]', `Ability onCreate. want: ${JSON.stringify(want)}`);

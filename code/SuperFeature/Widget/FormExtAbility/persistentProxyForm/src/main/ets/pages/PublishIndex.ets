@@ -88,6 +88,8 @@ struct IndexSec {
     conditionCity = shenYang;
   }
 
+  @StorageLink('persistentPublishShenYang') radioShenYang: boolean = false;
+  @StorageLink('persistentPublishHangZhou') radioHangZhou: boolean = false;
   @StorageLink('RunningFormInfo') RunningFormInfo: string = '';
   @State focus: boolean = false;
 
@@ -113,7 +115,7 @@ struct IndexSec {
                     .fontSize(15)
                     .margin({ bottom: 10 })
                   Radio({ value: 'sy', group: 'cityGroup' })
-                    .checked(true)
+                    .checked(this.radioShenYang)
                     .height(24)
                     .width(24)
                     .radioStyle({
@@ -124,6 +126,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
+                        this.radioShenYang = true;
+                        this.radioHangZhou = !this.radioShenYang;
                         conditionID = '110000';
                         conditionCity = shenYang;
                       }
@@ -137,6 +141,7 @@ struct IndexSec {
                   Radio({ value: 'hz', group: 'cityGroup' })
                     .height(24)
                     .width(24)
+                    .checked(this.radioHangZhou)
                     .radioStyle({
                       checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                       uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
@@ -145,6 +150,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
+                        this.radioHangZhou = true;
+                        this.radioShenYang = !this.radioHangZhou;
                         conditionID = '310000';
                         conditionCity = hangZhou;
                       }

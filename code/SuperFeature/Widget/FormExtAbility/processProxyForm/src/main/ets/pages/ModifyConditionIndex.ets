@@ -59,6 +59,9 @@ function modifyCondition(): void {
 @Entry
 @Component
 struct IndexThi {
+  @StorageLink('processRadioShenYang') radioShenYang: boolean = false;
+  @StorageLink('processRadioHangZhou') radioHangZhou: boolean = false;
+
   build() {
     Row() {
       Column({ space: 150 }) {
@@ -83,9 +86,12 @@ struct IndexThi {
                     checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                     indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
                     uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off') })
+                  .checked(this.radioShenYang)
                   .onChange((isChecked: boolean) => {
                     Logger.info('firstRadio status is ' + isChecked);
                     if (isChecked) {
+                      this.radioShenYang = true;
+                      this.radioHangZhou = !this.radioShenYang;
                       conditionID = '110000';
                       modifyCondition();
                     }
@@ -98,6 +104,7 @@ struct IndexThi {
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
                   .height(24)
                   .width(24)
+                  .checked(this.radioHangZhou)
                   .radioStyle({
                     checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                     indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
@@ -105,6 +112,8 @@ struct IndexThi {
                   .onChange((isChecked: boolean) => {
                     Logger.info('secondRadio status is ' + isChecked);
                     if (isChecked) {
+                      this.radioHangZhou = true;
+                      this.radioShenYang = !this.radioHangZhou;
                       conditionID = '310000';
                       modifyCondition();
                     }

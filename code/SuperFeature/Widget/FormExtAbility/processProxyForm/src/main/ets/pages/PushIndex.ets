@@ -39,9 +39,9 @@ function updateCardDisplayContent(runningFormInfo): void {
       Logger.error(TAG, `createDataShareHelper error code: ${err.code}`, `message: ${err.message} `);
       prompt.showToast({ message: `createDataShareHelper:` + err.message, duration: 5000 });
     } else {
-      let publishedItemData : Array<dataShare.PublishedItem> = [
-        {key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID},
-        {key: 'cityTemperature', data: JSON.stringify(conditionData), subscriberId: conditionID}
+      let publishedItemData: Array<dataShare.PublishedItem> = [
+        { key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID },
+        { key: 'cityTemperature', data: JSON.stringify(conditionData), subscriberId: conditionID }
       ];
       dataShareHelper.publish(publishedItemData, 'ohos.samples.formextability').then((data) => {
         Logger.info(TAG, `publish success, data is ${JSON.stringify(data)}`);
@@ -71,6 +71,8 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
+  @StorageLink('processPublishShenYang') radioShenYang: boolean = false;
+  @StorageLink('processPublishHangZhou') radioHangZhou: boolean = false;
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
   @State focus: boolean = false;
 
@@ -89,6 +91,7 @@ struct IndexSec {
             .lineHeight(41)
             .fontWeight('100%')
         }
+
         Column() {
           Column() {
             Row() {
@@ -100,7 +103,7 @@ struct IndexSec {
                     .fontSize(15)
                     .margin({ bottom: 10 })
                   Radio({ value: 'sy', group: 'cityGroup' })
-                    .checked(true)
+                    .checked(this.radioShenYang)
                     .height(24)
                     .width(24)
                     .radioStyle({
@@ -110,6 +113,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
+                        this.radioShenYang = true;
+                        this.radioHangZhou = !this.radioShenYang;
                         conditionID = '110000';
                         conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
                       }
@@ -123,6 +128,7 @@ struct IndexSec {
                   Radio({ value: 'hz', group: 'cityGroup' })
                     .height(24)
                     .width(24)
+                    .checked(this.radioHangZhou)
                     .radioStyle({
                       checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                       indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
@@ -130,6 +136,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
+                        this.radioHangZhou = true;
+                        this.radioShenYang = !this.radioHangZhou;
                         conditionID = '310000';
                         conditionCity = context.resourceManager.getStringSync($r('app.string.city_hz'));
                       }
@@ -162,6 +170,7 @@ struct IndexSec {
             }
           }
           .alignItems(HorizontalAlign.Start)
+
           Button() {
             Text($r('app.string.published_data'))
               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))

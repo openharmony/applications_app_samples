@@ -80,9 +80,13 @@ function modifyCondition(): void {
 @Entry
 @Component
 struct IndexThi {
+  @StorageLink('persistentRadioShenYang') radioShenYang: boolean = false;
+  @StorageLink('persistentRadioHangZhou') radioHangZhou: boolean = false;
+
   aboutToAppear() {
-    context = getContext(this) as Context;
+    context = getContext(this) as typeof context;
   }
+
   build() {
     Row() {
       Column({ space: 150 }) {
@@ -101,7 +105,7 @@ struct IndexThi {
                 Text($r('app.string.city_sy'))
                   .margin({ bottom: 10 })
                 Radio({ value: 'sy', group: 'modifyConditionGroup' })
-                  .checked(false)
+                  .checked(this.radioShenYang)
                   .height(24)
                   .width(24)
                   .radioStyle({
@@ -112,6 +116,8 @@ struct IndexThi {
                   .onChange((isChecked: boolean) => {
                     Logger.info('firstRadio status is ' + isChecked);
                     if (isChecked) {
+                      this.radioShenYang = true;
+                      this.radioHangZhou = !this.radioShenYang;
                       conditionID = '110000';
                       modifyCondition();
                     }
@@ -122,7 +128,7 @@ struct IndexThi {
                 Text($r('app.string.city_hz'))
                   .margin({ bottom: 10 })
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
-                  .checked(false)
+                  .checked(this.radioHangZhou)
                   .height(24)
                   .width(24)
                   .radioStyle({
@@ -133,6 +139,8 @@ struct IndexThi {
                   .onChange((isChecked: boolean) => {
                     Logger.info('secondRadio status is ' + isChecked);
                     if (isChecked) {
+                      this.radioHangZhou = true;
+                      this.radioShenYang = !this.radioHangZhou;
                       conditionID = '310000';
                       modifyCondition();
                     }
