@@ -30,6 +30,15 @@ let formInstanceFilter = {
   moduleName: 'processProxyForm'
 };
 
+function judgeThePublishCity(cityConditionID): boolean {
+  let processPublishID = AppStorage.Get('processPublishID');
+  if (processPublishID === cityConditionID) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   dataShare.createDataShareHelper(context, uri, { isProxy: true }, (err, dataHelper) => {
@@ -71,8 +80,7 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
-  @StorageLink('processPublishShenYang') radioShenYang: boolean = false;
-  @StorageLink('processPublishHangZhou') radioHangZhou: boolean = false;
+  @StorageLink('processPublishID') processPublishID: string = '000000';
   @StorageLink('runningFormInfo') runningFormInfo: string = '';
   @State focus: boolean = false;
 
@@ -103,7 +111,7 @@ struct IndexSec {
                     .fontSize(15)
                     .margin({ bottom: 10 })
                   Radio({ value: 'sy', group: 'cityGroup' })
-                    .checked(this.radioShenYang)
+                    .checked(judgeThePublishCity('110000'))
                     .height(24)
                     .width(24)
                     .radioStyle({
@@ -113,9 +121,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
-                        this.radioShenYang = true;
-                        this.radioHangZhou = !this.radioShenYang;
                         conditionID = '110000';
+                        this.processPublishID = conditionID;
                         conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
                       }
                     })
@@ -128,7 +135,7 @@ struct IndexSec {
                   Radio({ value: 'hz', group: 'cityGroup' })
                     .height(24)
                     .width(24)
-                    .checked(this.radioHangZhou)
+                    .checked(judgeThePublishCity('310000'))
                     .radioStyle({
                       checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                       indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
@@ -136,9 +143,8 @@ struct IndexSec {
                     .onChange((isChecked: boolean) => {
                       Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
-                        this.radioHangZhou = true;
-                        this.radioShenYang = !this.radioHangZhou;
                         conditionID = '310000';
+                        this.processPublishID = conditionID;
                         conditionCity = context.resourceManager.getStringSync($r('app.string.city_hz'));
                       }
                     })

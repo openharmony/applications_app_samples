@@ -24,6 +24,15 @@ let dataShareHelper;
 let conditionID = '110000';
 let context;
 
+function judgeTheSubscriptionCity(cityConditionID): boolean {
+  let persistentConditionID = AppStorage.Get('persistentConditionID');
+  if (cityConditionID === persistentConditionID) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`TAG updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let template = {
@@ -80,8 +89,7 @@ function modifyCondition(): void {
 @Entry
 @Component
 struct IndexThi {
-  @StorageLink('persistentRadioShenYang') radioShenYang: boolean = false;
-  @StorageLink('persistentRadioHangZhou') radioHangZhou: boolean = false;
+  @StorageLink('persistentConditionID') persistentConditionID: string = '000000';
 
   aboutToAppear() {
     context = getContext(this) as typeof context;
@@ -105,7 +113,7 @@ struct IndexThi {
                 Text($r('app.string.city_sy'))
                   .margin({ bottom: 10 })
                 Radio({ value: 'sy', group: 'modifyConditionGroup' })
-                  .checked(this.radioShenYang)
+                  .checked(judgeTheSubscriptionCity('110000'))
                   .height(24)
                   .width(24)
                   .radioStyle({
@@ -116,9 +124,8 @@ struct IndexThi {
                   .onChange((isChecked: boolean) => {
                     Logger.info('firstRadio status is ' + isChecked);
                     if (isChecked) {
-                      this.radioShenYang = true;
-                      this.radioHangZhou = !this.radioShenYang;
                       conditionID = '110000';
+                      this.persistentConditionID = conditionID;
                       modifyCondition();
                     }
                   })
@@ -128,7 +135,7 @@ struct IndexThi {
                 Text($r('app.string.city_hz'))
                   .margin({ bottom: 10 })
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
-                  .checked(this.radioHangZhou)
+                  .checked(judgeTheSubscriptionCity('310000'))
                   .height(24)
                   .width(24)
                   .radioStyle({
@@ -139,9 +146,8 @@ struct IndexThi {
                   .onChange((isChecked: boolean) => {
                     Logger.info('secondRadio status is ' + isChecked);
                     if (isChecked) {
-                      this.radioHangZhou = true;
-                      this.radioShenYang = !this.radioHangZhou;
                       conditionID = '310000';
+                      this.persistentConditionID = conditionID;
                       modifyCondition();
                     }
                   })

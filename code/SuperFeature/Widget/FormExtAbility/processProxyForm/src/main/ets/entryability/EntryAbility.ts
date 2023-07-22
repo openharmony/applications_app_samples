@@ -17,10 +17,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import Logger from '../../common/Logger';
 
-PersistentStorage.PersistProp('processRadioShenYang', false);
-PersistentStorage.PersistProp('processRadioHangZhou', false);
-PersistentStorage.PersistProp('processPublishHangZhou', false);
-PersistentStorage.PersistProp('processPublishHangZhou', false);
+PersistentStorage.PersistProp('processConditionID', '000000');
+PersistentStorage.PersistProp('processPublishID', '000000');
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {

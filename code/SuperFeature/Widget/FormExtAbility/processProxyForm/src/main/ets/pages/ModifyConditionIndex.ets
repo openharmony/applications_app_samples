@@ -21,6 +21,15 @@ import Logger from '../../common/Logger';
 const TAG = '[Sample_ModifyConditionIndex]';
 let conditionID = '110000';
 
+function judgeTheSubscriptionCity(cityConditionID): boolean {
+  let processConditionID = AppStorage.Get('processConditionID');
+  if (processConditionID === cityConditionID) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let proxies = [
@@ -59,8 +68,7 @@ function modifyCondition(): void {
 @Entry
 @Component
 struct IndexThi {
-  @StorageLink('processRadioShenYang') radioShenYang: boolean = false;
-  @StorageLink('processRadioHangZhou') radioHangZhou: boolean = false;
+  @StorageLink('processConditionID') processConditionID: string = '000000';
 
   build() {
     Row() {
@@ -78,7 +86,7 @@ struct IndexThi {
             Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
               Column() {
                 Text($r('app.string.city_sy'))
-                  .margin({ bottom :10 })
+                  .margin({ bottom: 10 })
                 Radio({ value: 'sy', group: 'modifyConditionGroup' })
                   .height(24)
                   .width(24)
@@ -86,13 +94,12 @@ struct IndexThi {
                     checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                     indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
                     uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off') })
-                  .checked(this.radioShenYang)
+                  .checked(judgeTheSubscriptionCity('110000'))
                   .onChange((isChecked: boolean) => {
                     Logger.info('firstRadio status is ' + isChecked);
                     if (isChecked) {
-                      this.radioShenYang = true;
-                      this.radioHangZhou = !this.radioShenYang;
                       conditionID = '110000';
+                      this.processConditionID = conditionID;
                       modifyCondition();
                     }
                   })
@@ -100,11 +107,11 @@ struct IndexThi {
 
               Column() {
                 Text($r('app.string.city_hz'))
-                  .margin({ bottom :10 })
+                  .margin({ bottom: 10 })
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
                   .height(24)
                   .width(24)
-                  .checked(this.radioHangZhou)
+                  .checked(judgeTheSubscriptionCity('310000'))
                   .radioStyle({
                     checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                     indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
@@ -112,9 +119,8 @@ struct IndexThi {
                   .onChange((isChecked: boolean) => {
                     Logger.info('secondRadio status is ' + isChecked);
                     if (isChecked) {
-                      this.radioHangZhou = true;
-                      this.radioShenYang = !this.radioHangZhou;
                       conditionID = '310000';
+                      this.processConditionID = conditionID;
                       modifyCondition();
                     }
                   })
