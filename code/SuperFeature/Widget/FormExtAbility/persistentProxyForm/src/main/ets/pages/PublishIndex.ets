@@ -32,16 +32,6 @@ const formInstanceFilter = {
   moduleName: 'persistentProxyForm'
 };
 
-function judgeThePublishCity(cityPublishID): boolean {
-  let persistentPublishID = AppStorage.Get('persistentPublishID');
-  if (persistentPublishID === cityPublishID) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
 function updateRDB(context): void {
   dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', { isProxy: true })
     .then((data) => {
@@ -98,7 +88,6 @@ struct IndexSec {
     conditionCity = shenYang;
   }
 
-  @StorageLink('persistentPublishID') persistentPublishID: string = '000000';
   @StorageLink('RunningFormInfo') RunningFormInfo: string = '';
   @State focus: boolean = false;
 
@@ -124,7 +113,7 @@ struct IndexSec {
                     .fontSize(15)
                     .margin({ bottom: 10 })
                   Radio({ value: 'sy', group: 'cityGroup' })
-                    .checked(judgeThePublishCity('110000'))
+                    .checked(true)
                     .height(24)
                     .width(24)
                     .radioStyle({
@@ -136,7 +125,6 @@ struct IndexSec {
                       Logger.info(TAG, `sy status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
                         conditionID = '110000';
-                        this.persistentPublishID = conditionID;
                         conditionCity = shenYang;
                       }
                     })
@@ -149,7 +137,6 @@ struct IndexSec {
                   Radio({ value: 'hz', group: 'cityGroup' })
                     .height(24)
                     .width(24)
-                    .checked(judgeThePublishCity('310000'))
                     .radioStyle({
                       checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                       uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off'),
@@ -159,7 +146,6 @@ struct IndexSec {
                       Logger.info(TAG, `hz status is ${JSON.stringify(isChecked)}`);
                       if (isChecked) {
                         conditionID = '310000';
-                        this.persistentPublishID = conditionID;
                         conditionCity = hangZhou;
                       }
                     })
