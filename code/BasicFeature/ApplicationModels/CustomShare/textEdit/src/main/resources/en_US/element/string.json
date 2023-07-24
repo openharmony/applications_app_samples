@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "main Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Text Edit"
+    },
+    {
+      "name": "Return_application",
+      "value": "Return To Share"
+    },
+    {
+      "name": "Stay_application",
+      "value": "Stay In Text Edit"
+    },
+    {
+      "name": "terminateSelf_fail",
+      "value": "Failed to return to the share application!"
+    }
+  ]
+}

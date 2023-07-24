@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "主页面"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "文本分享"
+    },
+    {
+      "name": "Return_application",
+      "value": "返回Share"
+    },
+    {
+      "name": "Stay_application",
+      "value": "留在文本分享"
+    },
+    {
+      "name": "terminateSelf_fail",
+      "value": "返回Share失败！"
+    }
+  ]
+}

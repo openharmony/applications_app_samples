@@ -1,0 +1,32 @@
+{
+  "float": [
+    {
+      "name": "wh_height",
+      "value": "260vp"
+    },
+    {
+      "name": "width_height_value",
+      "value": "66vp"
+    },
+    {
+      "name": "fontSize_eighteen",
+      "value": "18vp"
+    },
+    {
+      "name": "fontSize_twenty",
+      "value": "18vp"
+    },
+    {
+      "name": "margin_bottom_ten",
+      "value": "10vp"
+    },
+    {
+      "name": "margin_twenty",
+      "value": "20vp"
+    },
+    {
+      "name": "margin_sixteen",
+      "value": "16vp"
+    }
+  ]
+}
