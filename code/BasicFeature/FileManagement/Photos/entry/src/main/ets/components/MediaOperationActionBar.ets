@@ -37,7 +37,7 @@ export struct MediaOperationActionBar {
     let actionBarProp: ActionBarProp = new ActionBarProp();
     actionBarProp
       .setHasTabBar(false)
-      .setTitle((this.pageType == MediaOperationType.Move) ? $r('app.string.move_to') : $r('app.string.copy_to'))
+      .setTitle((this.pageType === MediaOperationType.Move) ? $r('app.string.move_to') : $r('app.string.copy_to'))
       .setMode(ActionBarMode.STANDARD_MODE)
       .setMenuList(menuList)
       .setLeftAction(Action.CANCEL);

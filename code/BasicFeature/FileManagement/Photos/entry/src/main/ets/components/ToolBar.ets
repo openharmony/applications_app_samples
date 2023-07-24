@@ -62,7 +62,7 @@ export struct ToolBar {
             this.showPopup = false;
             if(this.onMenuClicked != null) this.onMenuClicked(menu);
           })
-        if (this.moreMenuList.indexOf(menu) != this.moreMenuList.length - 1) {
+        if (this.moreMenuList.indexOf(menu) !== this.moreMenuList.length - 1) {
           Divider()
             .width('100%')
             .strokeWidth(Constants.MENU_DIVIDER_STROKE_WIDTH)
@@ -85,7 +85,7 @@ export struct ToolBar {
       Row() {
         Row() {
           ForEach(this.toolMenuList, (menu: Action): void => {
-            if (menu == Action.MORE) {
+            if (menu === Action.MORE) {
               Column() {
                 Row() {
                   ToolBarButton({

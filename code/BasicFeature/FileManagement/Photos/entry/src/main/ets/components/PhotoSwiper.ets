@@ -58,7 +58,7 @@ export struct PhotoSwiper {
 
   private getIndex(item: LazyItem<UserFileDataItem>): number {
     let ind = 1
-    if (item != undefined && item != null && item.index == this.currentIndex) {
+    if (item != undefined && item != null && item.index === this.currentIndex) {
       ind = 2
     }
     return ind
@@ -85,14 +85,14 @@ export struct PhotoSwiper {
     .indicator(false)
     .loop(false)
     .onChange((index: number): void => {
-      if (AppStorage.Get<number>('isDelete') == 0) {
-        if (this.currentIndex - index == 1) {
+      if (AppStorage.Get<number>('isDelete') === 0) {
+        if (this.currentIndex - index === 1) {
           AppStorage.SetOrCreate<number>('isLeftSwiper', 1);
-        } else if (this.currentIndex - index == -1) {
+        } else if (this.currentIndex - index === -1) {
           AppStorage.SetOrCreate<number>('isLeftSwiper', 0);
         }
       }
-      if (this.duration != 0) {
+      if (this.duration !== 0) {
         this.onPhotoChanged(index);
       }
     })

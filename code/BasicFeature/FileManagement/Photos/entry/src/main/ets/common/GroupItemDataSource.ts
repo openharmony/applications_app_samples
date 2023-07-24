@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { GroupDataImpl } from './GroupDataImpl';
 import { LazyItem, ItemDataSource } from './ItemDataSource';
@@ -64,7 +65,7 @@ export class GroupItemDataSource extends ItemDataSource {
     let index = -1;
     let length = this.groupDataItem.length;
     for (let i = 0;i < length; i++) {
-      if (this.groupDataItem[i].uri == item.uri) {
+      if (this.groupDataItem[i].uri === item.uri) {
         index = i;
         break;
       }
@@ -152,7 +153,7 @@ export class GroupItemDataSource extends ItemDataSource {
 
   async reloadGroupItemData(isGrid: boolean): Promise<boolean> {
     this.groupDataItem = await this.groupDataImpl.reloadGroupItemData(isGrid);
-    return this.groupDataItem.length == 0;
+    return this.groupDataItem.length === 0;
   }
 
   onDataUpdate(index: number): void {
@@ -161,7 +162,7 @@ export class GroupItemDataSource extends ItemDataSource {
 
   private onDataUpdateBindImpl(index: number): void {
     Log.debug(TAG, 'onDataUpdate ' + index);
-    if (index != -1) {
+    if (index !== -1) {
       this.notifyDataChange(index);
     }
   }
@@ -185,7 +186,7 @@ export class GroupItemDataSource extends ItemDataSource {
     const mediaDataItemIndex = this.groupDataItem.findIndex((item: UserFileDataItem): boolean => {
       return item.uri === uri;
     })
-    if (mediaDataItemIndex != -1 && this.groupDataItem[mediaDataItemIndex].isDeleted()) {
+    if (mediaDataItemIndex !== -1 && this.groupDataItem[mediaDataItemIndex].isDeleted()) {
       this.groupDataItem.splice(mediaDataItemIndex, 1);
       super.notifyDataDelete(mediaDataItemIndex);
     }

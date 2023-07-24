@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 import { Log } from '../utils/Log';
 
@@ -43,35 +44,35 @@ export class MultimodalInputManager {
   };
 
   async registerListener(callback): Promise<void> {
-        Log.debug(TAG, 'registerListener start');
-        inputConsumer.on('key', this.leftKeyOptions, (data: inputConsumer.KeyOptions): void => {
-            Log.debug(TAG, 'notificationRegister data: ' + JSON.stringify(data));
-            callback(0);
-        });
-        inputConsumer.on('key', this.rightKeyOptions, (data: inputConsumer.KeyOptions): void => {
-            Log.debug(TAG, 'controlRegister data: ' + JSON.stringify(data));
-            callback(1);
-        });
-        inputConsumer.on('key', this.escKeyOptions, (data: inputConsumer.KeyOptions): void => {
-            Log.debug(TAG, 'escRegister data: ' + JSON.stringify(data));
-            callback(2);
-        });
-        Log.debug(TAG, 'registerListener end');
-    }
+    Log.debug(TAG, 'registerListener start');
+    inputConsumer.on('key', this.leftKeyOptions, (data: inputConsumer.KeyOptions): void => {
+      Log.debug(TAG, 'notificationRegister data: ' + JSON.stringify(data));
+      callback(0);
+    });
+    inputConsumer.on('key', this.rightKeyOptions, (data: inputConsumer.KeyOptions): void => {
+      Log.debug(TAG, 'controlRegister data: ' + JSON.stringify(data));
+      callback(1);
+    });
+    inputConsumer.on('key', this.escKeyOptions, (data: inputConsumer.KeyOptions): void => {
+      Log.debug(TAG, 'escRegister data: ' + JSON.stringify(data));
+      callback(2);
+    });
+    Log.debug(TAG, 'registerListener end');
+  }
 
   async unregisterListener(): Promise<void> {
-        Log.debug(TAG, 'unregisterListener start');
-        inputConsumer.off('key', this.leftKeyOptions, (data: inputConsumer.KeyOptions): void  => {
-            Log.debug(TAG, 'notificationUnregister data: ' + JSON.stringify(data));
-        });
-        inputConsumer.off('key', this.rightKeyOptions, (data: inputConsumer.KeyOptions): void  => {
-            Log.debug(TAG, 'controlUnregister data: ' + JSON.stringify(data));
-        });
-        inputConsumer.off('key', this.escKeyOptions, (data: inputConsumer.KeyOptions): void  => {
-            Log.debug(TAG, 'escUnregister data: ' + JSON.stringify(data));
-        });
-        Log.debug(TAG, 'unregisterListener end');
-    }
+    Log.debug(TAG, 'unregisterListener start');
+    inputConsumer.off('key', this.leftKeyOptions, (data: inputConsumer.KeyOptions): void  => {
+      Log.debug(TAG, 'notificationUnregister data: ' + JSON.stringify(data));
+    });
+    inputConsumer.off('key', this.rightKeyOptions, (data: inputConsumer.KeyOptions): void  => {
+      Log.debug(TAG, 'controlUnregister data: ' + JSON.stringify(data));
+    });
+    inputConsumer.off('key', this.escKeyOptions, (data: inputConsumer.KeyOptions): void  => {
+      Log.debug(TAG, 'escUnregister data: ' + JSON.stringify(data));
+    });
+    Log.debug(TAG, 'unregisterListener end');
+  }
 }
 
 export let mMultimodalInputManager = new MultimodalInputManager();

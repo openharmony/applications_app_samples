@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { TrashUserFileDataItem } from '../base/TrashUserFileDataItem';
 import { Log } from '../utils/Log';
 import { ItemDataSource } from '../common/ItemDataSource';
@@ -62,11 +63,11 @@ export class BatchRecoverMenuOperation extends ProcessMenuOperation {
 
   // Delete a batch of data
   requestOneBatchOperation(): void {
-        let item = this.items[this.currentBatch] as TrashUserFileDataItem;
-        item.onRecover().then<void, void>((): void => {
-            this.currentBatch++;
-            this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
-            this.cyclicOperation();
-        })
+    let item = this.items[this.currentBatch] as TrashUserFileDataItem;
+    item.onRecover().then<void, void>((): void => {
+      this.currentBatch++;
+      this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
+      this.cyclicOperation();
+    })
     }
 }

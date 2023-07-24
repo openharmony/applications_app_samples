@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import MediaLib from '@ohos.multimedia.mediaLibrary';
 import { Log } from '../utils/Log';
 import { DateUtil } from '../utils/DateUtil';
@@ -160,7 +161,7 @@ export struct DetailsDialog {
       }.margin({
         bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
 
-      if (this.mediaDetails.mediaType == MediaLib.MediaType.VIDEO) {
+      if (this.mediaDetails.mediaType === MediaLib.MediaType.VIDEO) {
         Row() {
           Column() {
             Text($r('app.string.duration'))

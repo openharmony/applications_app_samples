@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { userFileModel } from '../base/UserFileModel';
 import { selectManager } from './SelectManager';
@@ -40,7 +41,7 @@ export class AlbumDataItem {
   objectIndex: number;
   albumType: number;
   albumSubType: number;
-  fileUir: string;
+  fileUir: string = undefined;
   fileAsset: photoAccessHelper.PhotoAsset;
   thumbnail: PixelMap = undefined;
 
@@ -65,8 +66,10 @@ export class AlbumDataItem {
     if (this.status >= MediaConstants.LOADED) {
       return;
     }
-    let fileAsset = (await userFileModel.getMediaItemByUri(this.fileUir));
-    await this.update(fileAsset);
+    if (this.fileUir !== undefined && this.fileUir !== null) {
+      let fileAsset = (await userFileModel.getMediaItemByUri(this.fileUir));
+      await this.update(fileAsset);
+    }
   }
 
   async update(fileAsset: photoAccessHelper.PhotoAsset): Promise<void> {
@@ -75,7 +78,6 @@ export class AlbumDataItem {
     if (fileAsset != null) {
       this.fileUir = fileAsset.uri;
       this.fileAsset = fileAsset;
-      let size = { width: MediaConstants.DEFAULT_SIZE, height: MediaConstants.DEFAULT_SIZE };
       if (this.fileAsset != null) {
         await this.getThumbnail();
       }
@@ -98,7 +100,7 @@ export class AlbumDataItem {
   }
 
   async getVideoCount(): Promise<number> {
-    if (this.selectType == MediaConstants.SELECT_TYPE_IMAGE) {
+    if (this.selectType === MediaConstants.SELECT_TYPE_IMAGE) {
       return 0;
     }
     let fileAssets: photoAccessHelper.PhotoAsset[] = [];
@@ -137,6 +139,6 @@ export class AlbumDataItem {
   }
 
   isDeleted(): boolean {
-    return this.status == MediaConstants.TRASHED;
+    return this.status === MediaConstants.TRASHED;
   }
 }

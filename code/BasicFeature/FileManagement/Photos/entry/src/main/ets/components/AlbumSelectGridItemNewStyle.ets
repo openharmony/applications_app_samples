@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@system.router';
 import { Log } from '../utils/Log';
 import { AlbumDataItem } from '../common/AlbumDataItem';
@@ -72,7 +73,7 @@ export struct AlbumSelectGridItemNewStyle {
     this.bigWidth = gridWidth * 2 + Constants.ALBUM_SET_GUTTER;
     Log.info(TAG, 'is big card : ' + this.isBigCard);
 
-    if (MediaConstants.ROTATE_ONCE == this.item.orientation || MediaConstants.ROTATE_THIRD == this.item.orientation) {
+    if (MediaConstants.ROTATE_ONCE === this.item.orientation || MediaConstants.ROTATE_THIRD === this.item.orientation) {
       this.cardWidth = this.gridHeight;
       if (this.isBigCard) {
         this.cardHeight = this.bigWidth;

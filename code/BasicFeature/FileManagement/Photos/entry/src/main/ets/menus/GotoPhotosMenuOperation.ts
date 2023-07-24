@@ -40,7 +40,7 @@ export class GotoPhotosMenuOperation implements MenuOperation {
     Log.info(TAG, 'router to pages/index, jumpSource: ' + jumpSourceToMain);
     let leftPos = screenManager.isSidebar();
     let pageFrom = RouterConstants.ENTRY_FROM.NORMAL;
-    if (jumpSourceToMain == JumpSourceToMain.CAMERA) {
+    if (jumpSourceToMain === JumpSourceToMain.CAMERA) {
       pageFrom = RouterConstants.ENTRY_FROM_CAMERA;
     }
     let params: Object = {

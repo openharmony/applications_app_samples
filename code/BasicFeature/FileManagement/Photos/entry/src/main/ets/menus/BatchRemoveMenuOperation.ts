@@ -60,7 +60,7 @@ export class BatchRemoveMenuOperation extends ProcessMenuOperation {
   getResourceFromGrid(dataSource: ItemDataSource): Resource {
     if (dataSource != null && dataSource.isSelect()) {
       return $r('app.string.remove_all_files_tips')
-    } else if (this.count == 1) {
+    } else if (this.count === 1) {
       return $r('app.string.remove_single_file_tips')
     } else {
       return $r('app.string.remove_files_tips', this.count)
@@ -106,7 +106,7 @@ export class BatchRemoveMenuOperation extends ProcessMenuOperation {
   requestOneBatchOperation(): void {
     let item = this.items[this.currentBatch] as UserFileDataItem;
     if (item != null) {
-      if(this.menuContext.albumId == MediaConstants.ALBUM_ID_USER){
+      if(this.menuContext.albumId === MediaConstants.ALBUM_ID_USER){
         Log.error(TAG,'Remove from user album:'+this.menuContext.albumInfo.uri);
         this.albumDataImpl.removeFileFromAlbum(this.menuContext.albumInfo.uri,item.uri).then<void, void>((): void => {
           this.currentBatch++;

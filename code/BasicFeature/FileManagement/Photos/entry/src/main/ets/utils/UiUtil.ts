@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import prompt, { ShowToastOptions } from '@system.prompt';
 import { Log } from './Log';
 import { screenManager } from '../common/ScreenManager';

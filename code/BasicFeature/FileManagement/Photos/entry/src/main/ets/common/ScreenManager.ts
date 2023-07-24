@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import deviceInfo from '@ohos.deviceInfo';
 import window from '@ohos.window';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
@@ -84,10 +85,10 @@ class ScreenManager {
   private globalThis = GlobalContext.getContext();
 
   // Default orientation
-  private horizontal = deviceInfo.deviceType == 'phone' || deviceInfo.deviceType == 'default' ? false : true;
+  private horizontal = deviceInfo.deviceType === 'phone' || deviceInfo.deviceType === 'default' ? false : true;
 
   // Default sidebar
-  private sidebar = deviceInfo.deviceType == 'phone' || deviceInfo.deviceType == 'default' ? false : true;
+  private sidebar = deviceInfo.deviceType === 'phone' || deviceInfo.deviceType === 'default' ? false : true;
   private windowMode = WindowMode.UNDEFINED;
 
   constructor() {
@@ -179,7 +180,7 @@ class ScreenManager {
   }
 
   private isLeftBlankInitialized(): boolean {
-    return this.leftBlank[0] != 0 || this.leftBlank[1] != 0 || this.leftBlank[2] != 0 || this.leftBlank[3] != 0;
+    return this.leftBlank[0] !== 0 || this.leftBlank[1] !== 0 || this.leftBlank[2] !== 0 || this.leftBlank[3] !== 0;
   }
 
   // Unit：vp
@@ -209,7 +210,7 @@ class ScreenManager {
   }
 
   isSplitMode(): boolean {
-    return (WindowMode.PRIMARY == this.windowMode || WindowMode.SECONDARY == this.windowMode)
+    return (WindowMode.PRIMARY === this.windowMode || WindowMode.SECONDARY === this.windowMode)
   }
 
   async checkWindowMode(): Promise<void> {
@@ -218,7 +219,7 @@ class ScreenManager {
     let mode = await photosWindowStage.getWindowMode();
     Log.info(TAG, 'photos application before/current window mode: ' + before + '/' + mode);
 
-    if (before == mode) {
+    if (before === mode) {
       return;
     }
     this.windowMode = mode;
@@ -310,15 +311,15 @@ class ScreenManager {
     Log.debug(TAG, 'setNavigationBarColor start');
     let topWindow: window.Window = AppStorage.Get<window.Window>(Constants.MAIN_WINDOW);
     try {
-            let systemBarProperties: window.SystemBarProperties = {
-                navigationBarColor: barColor,
-                navigationBarContentColor: barContentColor
-            };
-            topWindow.setWindowSystemBarProperties(
-                systemBarProperties,
-                (): void  => Log.info(TAG, 'setStatusBarColor done')
-            );
-        } catch (err) {
+      let systemBarProperties: window.SystemBarProperties = {
+        navigationBarColor: barColor,
+        navigationBarContentColor: barContentColor
+      };
+      topWindow.setWindowSystemBarProperties(
+        systemBarProperties,
+        (): void  => Log.info(TAG, 'setStatusBarColor done')
+      );
+      } catch (err) {
       Log.error(TAG, 'setNavigationBarColor err: ' + err);
     }
   }
@@ -347,7 +348,7 @@ class ScreenManager {
   }
 
   private onLeftBlankChanged(area: window.AvoidArea): void {
-    if (area == null || area == undefined || area.bottomRect.height == 0) {
+    if (area == null || area == undefined || area.bottomRect.height === 0) {
       return;
     }
     let leftBlankBefore: StatusNaviHeight = {
@@ -357,7 +358,7 @@ class ScreenManager {
     this.statusBarHeight = 0;
     this.naviBarHeight = area.bottomRect.height;
     this.leftBlank = [this.leftBlank[0], this.leftBlank[1], this.leftBlank[2], area.bottomRect.height];
-    if (leftBlankBefore.status != this.statusBarHeight || leftBlankBefore.navi != this.naviBarHeight) {
+    if (leftBlankBefore.status !== this.statusBarHeight || leftBlankBefore.navi !== this.naviBarHeight) {
       Log.info(TAG, 'leftBlank changed: ' + JSON.stringify(leftBlankBefore) + '-' + JSON.stringify(this.leftBlank))
       AppStorage.SetOrCreate<number[]>(BroadcastConstants.LEFT_BLANK, this.leftBlank);
     }
@@ -376,7 +377,7 @@ class ScreenManager {
     this.winHeight = size.height;
 
 
-    if (sizeBefore.width != this.winWidth || sizeBefore.height != this.winHeight) {
+    if (sizeBefore.width !== this.winWidth || sizeBefore.height !== this.winHeight) {
       Log.info(TAG, 'winSize changed: ' + JSON.stringify(sizeBefore) + ' -> ' + JSON.stringify(size));
       this.emit(screenManager.ON_WIN_SIZE_CHANGED, [size]);
     }
@@ -387,7 +388,7 @@ class ScreenManager {
       return;
     }
 
-    if (angle == 0) {
+    if (angle === 0) {
       this.horizontal = false;
     } else {
       this.horizontal = true;

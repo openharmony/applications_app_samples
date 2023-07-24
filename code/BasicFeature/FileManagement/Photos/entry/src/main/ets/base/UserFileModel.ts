@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import fileIO from '@ohos.fileio';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 import { Log } from '../utils/Log';

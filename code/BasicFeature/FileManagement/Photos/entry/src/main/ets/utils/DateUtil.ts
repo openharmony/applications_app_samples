@@ -47,31 +47,31 @@ export class DateUtil {
   }
 
   public static format(time: Date, format_s?: string): string {
-        if (!Boolean<string>(format_s).valueOf()) {
-            return time.valueOf().toString();
-        }
-        let opts: Map<string, number> = new Map<string, number>();
-        opts.set('MM', time.getMonth() + 1);
-        opts.set('dd', time.getDate());
-        opts.set('HH', time.getHours());
-        opts.set('mm', time.getMinutes());
-        opts.set('ss', time.getSeconds());
-
-        let check: RegExp = new RegExp('/(y+)/');
-        if (check.test(format_s)) {
-            format_s = format_s.replace('yyyy', time.getFullYear().toString().substr(0));
-        }
-        opts.forEach((value: number, key: string): void => {
-            if (new RegExp('(' + key + ')').test(format_s)) {
-                format_s = format_s.replace(key,
-                    (key.length === 1)
-                    ? value.toString()
-                    : (('00' + value).substr(value.toString().length))
-                );
-            }
-        });
-        return format_s;
+    if (!Boolean<string>(format_s).valueOf()) {
+      return time.valueOf().toString();
     }
+    let opts: Map<string, number> = new Map<string, number>();
+    opts.set('MM', time.getMonth() + 1);
+    opts.set('dd', time.getDate());
+    opts.set('HH', time.getHours());
+    opts.set('mm', time.getMinutes());
+    opts.set('ss', time.getSeconds());
+
+    let check: RegExp = new RegExp('/(y+)/');
+    if (check.test(format_s)) {
+      format_s = format_s.replace('yyyy', time.getFullYear().toString().substr(0));
+    }
+    opts.forEach((value: number, key: string): void => {
+      if (new RegExp('(' + key + ')').test(format_s)) {
+        format_s = format_s.replace(key,
+          (key.length === 1)
+          ? value.toString()
+          : (('00' + value).substr(value.toString().length))
+        );
+      }
+    });
+    return format_s;
+  }
 
   public static getDateTimeFormat(milliseconds: number): string {
     return DateUtil.format(new Date(milliseconds), 'yyyy/MM/dd HH:mm:ss');
@@ -85,7 +85,7 @@ export class DateUtil {
       if (date.getDate() === today.getDate()) {
         return $r('app.string.date_today');
       }
-      if (today.getDate() - date.getDate() == 1) {
+      if (today.getDate() - date.getDate() === 1) {
         return $r('app.string.date_yesterday');
       }
     }
@@ -211,35 +211,35 @@ export class DateUtil {
   }
 
   public static formats(format?: string): string {
-        let time = new Date();
-        if (!Boolean<string>(format).valueOf()) {
-            return time.valueOf().toString();
-        }
-        let opts: Map<string, number> = new Map<string, number>();
-        opts.set('MM', time.getMonth() + 1);
-        opts.set('dd', time.getDate());
-        opts.set('HH', time.getHours());
-        opts.set('mm', time.getMinutes());
-        opts.set('ss', time.getSeconds());
-
-        if (new RegExp('/(y+)/').test(format)) {
-            format = format.replace('yyyy', time.getFullYear().toString().substr(0));
-        }
-        opts.forEach((value: number, key: string): void => {
-            if (new RegExp('(' + key + ')').test(format)) {
-                format = format.replace(key,
-                    (key.length == 1)
-                    ? value.toString()
-                    : (('00' + value).substr(value.toString().length))
-                );
-            }
-        });
-        return format;
+    let time = new Date();
+    if (!Boolean<string>(format).valueOf()) {
+      return time.valueOf().toString();
     }
+    let opts: Map<string, number> = new Map<string, number>();
+    opts.set('MM', time.getMonth() + 1);
+    opts.set('dd', time.getDate());
+    opts.set('HH', time.getHours());
+    opts.set('mm', time.getMinutes());
+    opts.set('ss', time.getSeconds());
+
+    if (new RegExp('/(y+)/').test(format)) {
+        format = format.replace('yyyy', time.getFullYear().toString().substr(0));
+    }
+    opts.forEach((value: number, key: string): void => {
+      if (new RegExp('(' + key + ')').test(format)) {
+        format = format.replace(key,
+          (key.length === 1)
+          ? value.toString()
+          : (('00' + value).substr(value.toString().length))
+        );
+      }
+    });
+    return format;
+  }
 
   public static nameByDate(isReplace: Boolean, name?: string): string {
-    if (isReplace != null && isReplace == true) {
-      return (!Boolean<string>(name).valueOf()) ? null : (name.indexOf(DateUtil.NEW_NAME_EDIT) == -1 ? name.split('.')[0] + '_' + DateUtil.NEW_NAME_EDIT + DateUtil.formats() : name.split('.')[0]);
+    if (isReplace != null && isReplace === true) {
+      return (!Boolean<string>(name).valueOf()) ? null : (name.indexOf(DateUtil.NEW_NAME_EDIT) === -1 ? name.split('.')[0] + '_' + DateUtil.NEW_NAME_EDIT + DateUtil.formats() : name.split('.')[0]);
     } else {
       return DateUtil.NEW_NAME_IMG + DateUtil.formats('yyyyMMdd_HHmmss');
     }

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { DialogCallback } from '../utils/DialogUtil';
 import { screenManager } from '../common/ScreenManager';
@@ -138,7 +139,7 @@ export struct RenameDialog {
               });
               return;
             }
-            if (this.inputName == this.renameFileName) {
+            if (this.inputName === this.renameFileName) {
               this.controller.close();
               return;
             }

@@ -43,7 +43,7 @@ export struct SaveDialog {
       Text($r('app.string.save_dialog_context_text')).fontSize($r('sys.float.ohos_id_text_size_body1'))
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
         .margin({ bottom: $r('app.float.adjust_text_padding_bottom_isVertical') })
-      if (DateUtil.getLocales() == 'zh-CN') {
+      if (DateUtil.getLocales() === 'zh-CN') {
         Stack({ alignContent: Alignment.Top }) {
           Row() {
             Column() {

@@ -53,13 +53,13 @@ export struct NoPhotoIndexComponent {
   build() {
     Row() {
       Column() {
-        Image((this.index == Constants.TIMELINE_PAGE_INDEX) ? $r('app.media.photo_empty') : $r('app.media.album_empty'))
+        Image((this.index === Constants.TIMELINE_PAGE_INDEX) ? $r('app.media.photo_empty') : $r('app.media.album_empty'))
           .height(this.imageSize)
           .width(this.imageSize)
           .margin({
             bottom: $r('app.float.image_margin_horizontal'),
           })
-        Text((this.index == Constants.TIMELINE_PAGE_INDEX) ? $r('app.string.no_photo_head_title_timeline')
+        Text((this.index === Constants.TIMELINE_PAGE_INDEX) ? $r('app.string.no_photo_head_title_timeline')
                                                            : $r('app.string.no_photo_head_title_album'))
           .fontSize($r('sys.float.ohos_id_text_size_headline8'))
           .fontWeight(FontWeight.Medium)
@@ -69,7 +69,7 @@ export struct NoPhotoIndexComponent {
             right: $r('app.float.max_padding_start'),
             bottom: $r('sys.float.ohos_id_text_paragraph_margin_s'),
           })
-        Text((this.index == Constants.TIMELINE_PAGE_INDEX) ? $r('app.string.no_photo_sub_title_timeline')
+        Text((this.index === Constants.TIMELINE_PAGE_INDEX) ? $r('app.string.no_photo_sub_title_timeline')
                                                            : $r('app.string.no_photo_sub_title_album'))
           .fontSize($r('sys.float.ohos_id_text_size_body2'))
           .fontFamily($r('app.string.id_text_font_family_regular'))

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 export class AnimationConstants {
   static readonly SHARE_TRANSITION_DURATION = 200;
   static readonly DELETE_ANIMATE_DURATION: number = 150;

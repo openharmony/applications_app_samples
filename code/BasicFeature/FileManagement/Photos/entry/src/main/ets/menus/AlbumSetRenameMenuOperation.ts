@@ -93,13 +93,13 @@ export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperation
       if (name != undefined && name != null) {
         let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
         if (isExit) {
-                    getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
-                        showToast(message)
-                    })
-                    Log.warn(TAG, 'album is miss')
-                    this.onError();
-                    return;
-                }
+          getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
+            showToast(message)
+          })
+          Log.warn(TAG, 'album is miss')
+          this.onError();
+          return;
+        }
       }
       Log.info(TAG, 'change album_name:' + this.item.displayName + ' to ' + name);
       let albums: photoAccessHelper.Album = await userFileModel.getUserAlbumByName(this.item.displayName)

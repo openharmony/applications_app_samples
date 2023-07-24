@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { DialogCallback } from '../utils/DialogUtil';
 import { Log } from '../utils/Log';
@@ -52,7 +53,7 @@ export struct FindSameNameDialog {
     Log.info(this.TAG, 'getTitle ' + name);
     if (name != null) {
       let index = name.lastIndexOf('.');
-      if (index == -1) {
+      if (index === -1) {
         return name;
       }
       return name.substr(0, index);

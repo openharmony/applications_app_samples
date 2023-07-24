@@ -111,15 +111,15 @@ export class EventPipeline {
     this.item = item;
     this.timeStamp = timeStamp;
     this.updateMatrix = updateMatrix;
-    this.width = this.item.imgWidth == 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgWidth;
-    this.height = this.item.imgHeight == 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgHeight;
+    this.width = this.item.imgWidth === 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgWidth;
+    this.height = this.item.imgHeight === 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgHeight;
     this.evaluateScales();
   }
 
   onDataChanged(item: UserFileDataItem): void {
     this.item = item;
-    this.width = this.item.imgWidth == 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgWidth;
-    this.height = this.item.imgHeight == 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgHeight;
+    this.width = this.item.imgWidth === 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgWidth;
+    this.height = this.item.imgHeight === 0 ? MediaConstants.DEFAULT_SIZE : this.item.imgHeight;
     this.evaluateScales();
   }
 
@@ -137,11 +137,11 @@ export class EventPipeline {
     if (this.isInAnimation || this.isExiting) {
       return;
     }
-    if (event.type == TouchType.Down || event.type == TouchType.Up) {
+    if (event.type === TouchType.Down || event.type === TouchType.Up) {
       this.emitDirectionChange();
     }
 
-    if (event.type == TouchType.Up) {
+    if (event.type === TouchType.Up) {
       this.lastOffset = this.evaluateOffset();
       this.lastScale = this.lastScale * this.scale;
       this.scale = 1;
@@ -178,8 +178,8 @@ export class EventPipeline {
       return;
     }
 
-    if (direction == (PanDirection.Vertical as number) || direction == ((PanDirection.Vertical as number) | (PanDirection.Left as number)) ||
-    direction == ((PanDirection.Vertical as number) | (PanDirection.Right as number))) {
+    if (direction === (PanDirection.Vertical as number) || direction === ((PanDirection.Vertical as number) | (PanDirection.Left as number)) ||
+    direction === ((PanDirection.Vertical as number) | (PanDirection.Right as number))) {
       this.broadCast.emit(Constants.SET_DISABLE_SWIPE, [false]);
     } else {
       this.broadCast.emit(Constants.SET_DISABLE_SWIPE, [true]);
@@ -247,7 +247,7 @@ export class EventPipeline {
       // leftMost = (1 - dspW / compW) / 2 = (1 - compH * imgW / imgH / compW) / 2
       this.leftMost = (1 - this.componentHeight * this.width / this.height / this.componentWidth) / Constants.NUMBER_2;
       this.topMost = 0.0;
-    } else if (this.width * this.componentHeight == this.componentWidth * this.height) {
+    } else if (this.width * this.componentHeight === this.componentWidth * this.height) {
       // The aspect ratio is equal to the display aspect ratio of the control
       this.doubleTapScale = Constants.SAME_RATIO_SCALE_FACTOR;
       this.maxScale = this.doubleTapScale * Constants.MAX_SCALE_EXTRA_FACTOR;
@@ -380,7 +380,7 @@ export class EventPipeline {
       // Hide bars with zoom drag
       this.broadCast.emit(Constants.HIDE_BARS, []);
     }
-    if (scale.toFixed(Constants.RESERVED_DIGITS) == this.defaultScale.toFixed(Constants.RESERVED_DIGITS) && offsetY > 0) {
+    if (scale.toFixed(Constants.RESERVED_DIGITS) === this.defaultScale.toFixed(Constants.RESERVED_DIGITS) && offsetY > 0) {
       // Drop down return to hide details first
       this.broadCast.emit(Constants.PULL_DOWN_START, []);
     }
@@ -429,9 +429,9 @@ export class EventPipeline {
     }
     let scale = this.lastScale * this.scale;
     Log.debug(TAG, 'onMoveEnd: scale is ' + scale + ' offsetY is ' + offsetY);
-    if (scale.toFixed(Constants.RESERVED_DIGITS) == this.defaultScale.toFixed(Constants.RESERVED_DIGITS) && offsetY > Constants.PULL_DOWN_THRESHOLD) {
+    if (scale.toFixed(Constants.RESERVED_DIGITS) === this.defaultScale.toFixed(Constants.RESERVED_DIGITS) && offsetY > Constants.PULL_DOWN_THRESHOLD) {
       this.emitPullDownToBackEvent();
-    } else if (scale.toFixed(Constants.RESERVED_DIGITS) == this.defaultScale.toFixed(Constants.RESERVED_DIGITS)) {
+    } else if (scale.toFixed(Constants.RESERVED_DIGITS) === this.defaultScale.toFixed(Constants.RESERVED_DIGITS)) {
       // The reset animation is triggered when the threshold is not reached
       let scaleOption: Matrix4.ScaleOption = {
         x: this.defaultScale,

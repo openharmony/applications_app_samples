@@ -286,8 +286,8 @@ struct PhotoBrowser {
 
   onDataSizeChanged(size: number): void {
     Log.info(TAG, 'onDataSizeChanged, size is ' + size);
-    if (size == 0) {
-      if (this.pageFrom == Constants.ENTRY_FROM.CARD) {
+    if (size === 0) {
+      if (this.pageFrom === Constants.ENTRY_FROM.CARD) {
         let menuContext: MenuContext = new MenuContext();
         menuContext.withJumpSourceToMain(this.jumpSourceToMain);
         let menuOperation = new GotoPhotosMenuOperation(menuContext);
@@ -320,9 +320,9 @@ struct PhotoBrowser {
     }
     this.toolMenuList = [];
     this.getActionList(currentPhoto).then<void, void>((list: Action[]): void => {
-      if (this.pageFrom == Constants.ENTRY_FROM.CAMERA || this.pageFrom == Constants.ENTRY_FROM.CARD) {
+      if (this.pageFrom === Constants.ENTRY_FROM.CAMERA || this.pageFrom === Constants.ENTRY_FROM.CARD) {
         this.menuList = [Action.GOTO_PHOTOS, Action.INFO];
-      } else if (this.pageFrom == Constants.ENTRY_FROM.RECYCLE) {
+      } else if (this.pageFrom === Constants.ENTRY_FROM.RECYCLE) {
         this.menuList = [];
       } else {
         this.menuList = [Action.INFO];
@@ -339,7 +339,7 @@ struct PhotoBrowser {
   private async getActionList(currentPhoto: UserFileDataItem): Promise<Action[]> {
     Log.info(TAG,'this.pageFrom' + this.pageFrom)
     let list: Action[] = [];
-    if (this.pageFrom == Constants.ENTRY_FROM.RECYCLE) {
+    if (this.pageFrom === Constants.ENTRY_FROM.RECYCLE) {
       list.push(Action.RECOVER, Action.DELETE);
     } else {
       let isFavor = await currentPhoto.isFavor();
@@ -441,7 +441,7 @@ struct PhotoBrowser {
       this.PhotoGridPageIndex = this.currentIndex; // call scrollTo
     } else if (this.checkedTransition === Constants.PHOTO_TRANSITION_CAMERA) {
       Log.info(TAG, 'onBackPress Camera');
-      if (this.pageFrom == Constants.ENTRY_FROM.CARD && !this.pullDownFlag) {
+      if (this.pageFrom === Constants.ENTRY_FROM.CARD && !this.pullDownFlag) {
         this.routerGridPaged();
       } else {
         if (this.pullDownFlag) {
@@ -481,11 +481,11 @@ struct PhotoBrowser {
     this.hasAppeared = true;
     mMultimodalInputManager.registerListener((control: number): void => {
       Log.info(TAG, 'key control: ' + control + ' index ' + this.currentIndex);
-      if (control == 0) {
+      if (control === 0) {
         if (this.currentIndex > 0) {
           this.onPhotoChanged(this.currentIndex - 1);
         }
-      } else if (control == 1) {
+      } else if (control === 1) {
         if (this.currentIndex < this.browserDataSource.totalCount() - 1) {
           this.onPhotoChanged(this.currentIndex + 1);
         }
@@ -500,7 +500,7 @@ struct PhotoBrowser {
       if (param.pageFrom != null) {
         this.pageFrom = parseInt(param.pageFrom.toString());
       }
-      if (this.pageFrom == Constants.ENTRY_FROM.CAMERA) {
+      if (this.pageFrom === Constants.ENTRY_FROM.CAMERA) {
         this.isFromCamera = true;
         this.albumInfo = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_CAMERA, '', '', '', '',-1,-1)
         this.browserDataSource.setAlbumId(this.albumInfo.id)
@@ -508,7 +508,7 @@ struct PhotoBrowser {
         this.browserDataSource.setAlbumSubtype(this.albumInfo.albumSubType)
         this.browserDataSource.setAlbumName(this.albumInfo.displayName)
         this.jumpSourceToMain = JumpSourceToMain.CAMERA;
-      } else if (this.pageFrom == Constants.ENTRY_FROM.VIEW_DATA) {
+      } else if (this.pageFrom === Constants.ENTRY_FROM.VIEW_DATA) {
         this.isFromViewData = true;
       }
 
@@ -554,7 +554,7 @@ struct PhotoBrowser {
         ? Constants.PHOTO_TRANSITION_CAMERA : transition;
     } else {
       Log.info(TAG, 'photoBrowser start without param');
-      if (this.entryFromHap == Constants.ENTRY_FROM_FORM_ABILITY) {
+      if (this.entryFromHap === Constants.ENTRY_FROM_FORM_ABILITY) {
         this.isFromCard = true;
         this.pageFrom = Constants.ENTRY_FROM.CARD;
         this.albumInfo = new SimpleAlbumDataItem(AppStorage.Get<string>(Constants.FROM_ALBUM_ID), '', '', '', '',-1,-1);
@@ -651,7 +651,7 @@ struct PhotoBrowser {
        await this.browserDataSource.groupDataItem[i].load(false);
     }
     this.onPhotoChanged(this.currentIndex);
-		  this.browserDataSource.notifyDataChange(this.currentIndex);
+    this.browserDataSource.notifyDataChange(this.currentIndex);
     if (this.isToEdit) {
       this.isToEdit = false;
       this.appBroadcast.emit(BroadcastConstants.PHOTO_EDIT_SAVE_COMPLETE, []);
@@ -713,7 +713,7 @@ struct PhotoBrowser {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       PhotoBrowserBg()
-      if (!this.isDataChanged || !this.isFromCard == true) {
+      if (!this.isDataChanged || !this.isFromCard === true) {
         PhotoSwiper({
           dataSource: this.browserDataSource,
           photoSwiperTransition: this.photoBrowserTransition,

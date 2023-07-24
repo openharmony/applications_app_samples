@@ -54,13 +54,13 @@ export struct PhotoItem {
   onTransitionChange() {
     Log.info(TAG, 'onTransitionChange, ' + this.updateTransition + ' ' + this.item.index);
     this.updateThumbnail()
-    if (this.updateTransition == this.item.index) {
+    if (this.updateTransition === this.item.index) {
       this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [!this.showError]);
     } else {
       this.isPullingDown = false;
     }
     // reset matrix
-    if (this.imgScale != 1) {
+    if (this.imgScale !== 1) {
       this.matrix = Matrix4.identity().scale({
         x: this.imgScale,
         y: this.imgScale
@@ -116,7 +116,7 @@ export struct PhotoItem {
   }
 
   private updateThumbnail() {
-    getThumbnail(this.item, this.updateTransition == this.item.index).then<void, void>((thumbnail: PixelMap): void => {
+    getThumbnail(this.item, this.updateTransition === this.item.index).then<void, void>((thumbnail: PixelMap): void => {
       this.thumbnail = thumbnail
     })
   }
@@ -134,8 +134,8 @@ export struct PhotoItem {
   onViewDataChanged(): void {
     Log.info(TAG, 'onViewDataChanged start');
     this.ratio = this.calcRatio(this.item);
-    if ((this.preItem.rotate == this.item.orientation && this.preItem.height == this.item.imgHeight &&
-    this.preItem.width == this.item.imgWidth) && !this.firstLoad) {
+    if ((this.preItem.rotate === this.item.orientation && this.preItem.height === this.item.imgHeight &&
+    this.preItem.width === this.item.imgWidth) && !this.firstLoad) {
       this.preItem.rotate = this.item.orientation;
       this.preItem.width = this.item.imgWidth;
       this.preItem.height = this.item.imgHeight;
@@ -160,7 +160,7 @@ export struct PhotoItem {
     if (info == null || info == undefined) {
       return 1;
     }
-    if (info.width == 0 || info.height == 0) {
+    if (info.width === 0 || info.height === 0) {
       return 1;
     }
     return  info.width / info.height;
@@ -185,7 +185,7 @@ export struct PhotoItem {
           .width('100%')
           .height('100%')
           .constraintSize({maxWidth:'100%', maxHeight:'100%'})
-          .sharedTransition(this.item.index == this.updateTransition ? this.pageName + this.item.getHashCode() : Constants.DEFAULT_TRANSITION_ID, {
+          .sharedTransition(this.item.index === this.updateTransition ? this.pageName + this.item.getHashCode() : Constants.DEFAULT_TRANSITION_ID, {
             duration: Constants.SHARE_TRANSITION_DURATION,
             zIndex: 0,
           })
@@ -193,19 +193,19 @@ export struct PhotoItem {
             Log.info(TAG, 'onComplete finish, index: ' + this.item.index +', item: ' + JSON.stringify(this.item) + ', uri: ' + this.thumbnail + '.');
             this.showError = false;
             this.isLoading = false;
-            if (this.updateTransition == this.item.index) {
+            if (this.updateTransition === this.item.index) {
               this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [true]);
             }
           })
           .onError((): void => {
             Log.error(TAG, 'image show error ' + this.thumbnail + ' ' + this.item.width + ' ' + this.item.height);
-            if (this.thumbnail == undefined || this.item.width == 0 || this.item.height == 0) {
+            if (this.thumbnail == undefined || this.item.width === 0 || this.item.height === 0) {
               this.updateThumbnail()
               return
             }
             this.showError = true;
             this.isLoading = true;
-            if (this.updateTransition == this.item.index) {
+            if (this.updateTransition === this.item.index) {
               this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [false]);
             }
           })
@@ -231,7 +231,7 @@ export struct PhotoItem {
           }
           Log.debug(TAG, 'PinchGesture onActionStart scale:' +
               event.scale + ', cx: ' + event.pinchCenterX + ', cy: ' + event.pinchCenterY);
-          if (this.item.mediaType == photoAccessHelper.PhotoType.IMAGE) {
+          if (this.item.mediaType === photoAccessHelper.PhotoType.IMAGE) {
             this.eventPipeline.onScaleStart(event.scale, event.pinchCenterX, event.pinchCenterY);
           }
         })
@@ -241,7 +241,7 @@ export struct PhotoItem {
             Log.debug(TAG, 'Not allow to pinch when pullingDown');
             return;
           }
-          if (this.item.mediaType == photoAccessHelper.PhotoType.IMAGE) {
+          if (this.item.mediaType === photoAccessHelper.PhotoType.IMAGE) {
             this.eventPipeline.onScale(event.scale);
           }
         })
@@ -251,7 +251,7 @@ export struct PhotoItem {
             Log.debug(TAG, 'Not allow to pinch when pullingDown');
             return;
           }
-          if (this.item.mediaType == photoAccessHelper.PhotoType.IMAGE) {
+          if (this.item.mediaType === photoAccessHelper.PhotoType.IMAGE) {
             this.eventPipeline.onScaleEnd();
             if (this.animationOption != null) {
               animateTo({
@@ -308,7 +308,7 @@ export struct PhotoItem {
             return;
           }
           Log.debug(TAG, 'onDoubleTap event: ' + JSON.stringify(event));
-          if (this.item.mediaType == photoAccessHelper.PhotoType.VIDEO) {
+          if (this.item.mediaType === photoAccessHelper.PhotoType.VIDEO) {
             return;
           }
           this.eventPipeline.onDoubleTap(event.fingerList[0].localX, event.fingerList[0].localY);
@@ -360,6 +360,6 @@ export struct PhotoItem {
 
   private isVideoPlayBtnShow(): boolean {
     Log.debug(TAG, 'isVideoPlayBtnShow: ' + this.item.mediaType);
-    return ((this.item != undefined && this.item != null) && (this.item.mediaType == photoAccessHelper.PhotoType.VIDEO));
+    return ((this.item != undefined && this.item != null) && (this.item.mediaType === photoAccessHelper.PhotoType.VIDEO));
   }
 }

@@ -297,7 +297,7 @@ export struct CustomDialogView {
         self.deleteProgress = progress;
         self.deleteProgressParam.deleteProgress = progress;
         self.deleteProgressParam.currentCount = currentCount;
-        if (progress == Constants.PROGRESS_MAX) {
+        if (progress === Constants.PROGRESS_MAX) {
           Log.info(TAG, 'Update progress 100%');
           self.progressDialogController.close();
           self.deleteProgress = 0;

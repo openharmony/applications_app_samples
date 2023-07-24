@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { ItemDataSource } from '../common/ItemDataSource';
 import { MenuContext } from './MenuContext';
 import { BatchDeleteMenuOperation } from './BatchDeleteMenuOperation';

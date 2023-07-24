@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { UserFileDataItem } from './UserFileDataItem';
 import { stashOrGetObject } from '../utils/SingleInstanceUtils';
 

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { MenuOperationCallback } from './MenuOperationCallback';
@@ -111,7 +112,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
     let index = displayName.lastIndexOf('.');
     displayName = name + displayName.slice(index);
     let counts = (await userFileModel.getMediaItemCountsByDisplayName(fileAsset.uri));
-    if (counts == 0) {
+    if (counts === 0) {
       Log.info(TAG, 'hasSameNameAsset is false');
       return false;
     }

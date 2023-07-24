@@ -30,8 +30,8 @@ export struct SelectionTitle {
 
   build() {
     Row() {
-      Text((this.actionBarProp.getSelectionMode() == ActionBarSelectionMode.MULTI ?
-        (this.count == 0 ? ActionBarProp.MULTI_UNSELECT_TITLE :
+      Text((this.actionBarProp.getSelectionMode() === ActionBarSelectionMode.MULTI ?
+        (this.count === 0 ? ActionBarProp.MULTI_UNSELECT_TITLE :
           (this.actionBarProp.getMaxSelectCount() > 0 ?
           ActionBarProp.getCountDetailExternalSelectedTitle(this.count,
           this.actionBarProp.getMaxSelectCount()) :
@@ -39,7 +39,7 @@ export struct SelectionTitle {
         ActionBarProp.SINGLE_UNSELECT_TITLE))
         .fontSize(ActionBarProp.TITLE_TEXT_SIZE)
         .fontWeight(FontWeight.Bold)
-        .fontColor(this.actionBarProp.getColorMode() == ActionBarColorMode.TRANSPARENT ?
+        .fontColor(this.actionBarProp.getColorMode() === ActionBarColorMode.TRANSPARENT ?
           ActionBarProp.TRANSPARENT_TEXT_COLOR : ActionBarProp.NORMAL_TEXT_COLOR)
         .maxLines(1)
         .textOverflow({ overflow: TextOverflow.Ellipsis })

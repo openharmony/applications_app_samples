@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { DialogCallback } from '../utils/DialogUtil';
 import { Log } from '../utils/Log';
 import { screenManager } from '../common/ScreenManager';

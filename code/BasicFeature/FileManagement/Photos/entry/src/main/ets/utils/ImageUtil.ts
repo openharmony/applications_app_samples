@@ -33,12 +33,12 @@ export function computeSampleSize(width: number, height: number, minSideLength: 
 }
 
 function computeInitialSampleSize(width: number, height: number, minSideLength: number, maxNumOfPixels: number): number {
-  if ((maxNumOfPixels == -1) && (minSideLength == -1)) {
+  if ((maxNumOfPixels === -1) && (minSideLength === -1)) {
     return 1;
   }
-  let lowerBound: number = (maxNumOfPixels == -1) ? 1 : Math.ceil(Math.sqrt((width * height) / maxNumOfPixels));
+  let lowerBound: number = (maxNumOfPixels === -1) ? 1 : Math.ceil(Math.sqrt((width * height) / maxNumOfPixels));
   Log.info(TAG, 'lowerBound: ' + lowerBound);
-  if (minSideLength == -1) {
+  if (minSideLength === -1) {
     return lowerBound;
   } else {
     let sampleSize = Math.min(width / minSideLength, height / minSideLength);

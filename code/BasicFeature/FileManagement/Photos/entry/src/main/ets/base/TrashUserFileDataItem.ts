@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { selectManager } from '../common/SelectManager';
 import { userFileModel } from './UserFileModel';

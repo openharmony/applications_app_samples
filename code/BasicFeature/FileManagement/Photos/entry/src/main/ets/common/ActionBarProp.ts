@@ -125,7 +125,7 @@ export class ActionBarProp {
   }
 
   public getBackgroundColor(): Resource {
-    return this.colorMode == ActionBarColorMode.TRANSPARENT
+    return this.colorMode === ActionBarColorMode.TRANSPARENT
       ? ActionBarProp.TRANSPARENT_BACKGROUND_COLOR : this.backgroundColor;
   }
 

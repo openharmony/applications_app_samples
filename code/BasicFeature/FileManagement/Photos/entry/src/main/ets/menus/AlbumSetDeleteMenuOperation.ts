@@ -28,31 +28,31 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
   }
 
   doAction(): void {
-        if (this.menuContext == null) {
-            Log.warn(TAG, 'menuContext is null, return');
-            return;
-        }
-        let dataSource: ItemDataSource = this.menuContext.dataSource;
-        if (dataSource == null) {
-            this.count = this.menuContext.items.length;
-            this.items = this.menuContext.items;
-        } else {
-            this.count = dataSource.getSelectedCount();
-            this.items = dataSource.getSelectedItems();
-        }
-        if (this.count as number <= 0) {
-            Log.warn(TAG, 'count <= 0, return');
-            return;
-        }
-
-        this.confirmCallback = (): void => this.confirmCallbackBindImpl();
-        this.cancelCallback = (): void => this.cancelCallbackBindImpl();
-
-        let deleteResource: Resource = $r('app.string.dialog_delete');
-        this.getDialogTitle().then<void, void>((dialogTitle: Resource): void => {
-            this.menuContext.broadCast.emit(BroadcastConstants.SHOW_DELETE_DIALOG, [dialogTitle, deleteResource, this.confirmCallback, this.cancelCallback]);
-        })
+    if (this.menuContext == null) {
+      Log.warn(TAG, 'menuContext is null, return');
+      return;
     }
+    let dataSource: ItemDataSource = this.menuContext.dataSource;
+    if (dataSource == null) {
+      this.count = this.menuContext.items.length;
+      this.items = this.menuContext.items;
+    } else {
+      this.count = dataSource.getSelectedCount();
+      this.items = dataSource.getSelectedItems();
+    }
+    if (this.count as number <= 0) {
+      Log.warn(TAG, 'count <= 0, return');
+      return;
+    }
+
+    this.confirmCallback = (): void => this.confirmCallbackBindImpl();
+    this.cancelCallback = (): void => this.cancelCallbackBindImpl();
+
+    let deleteResource: Resource = $r('app.string.dialog_delete');
+    this.getDialogTitle().then<void, void>((dialogTitle: Resource): void => {
+      this.menuContext.broadCast.emit(BroadcastConstants.SHOW_DELETE_DIALOG, [dialogTitle, deleteResource, this.confirmCallback, this.cancelCallback]);
+    })
+  }
 
   private async getDialogTitle(): Promise<Resource> {
     let videoCount = 0;
@@ -63,7 +63,7 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
       photoCount += ((this.items[i] as AlbumDataItem).count - itemVideoCount);
     }
 
-    if (this.count as number == 1) {
+    if (this.count as number === 1) {
       if (videoCount > 0 && photoCount > 0) {
         return $r('app.string.recycle_single_album_tips', photoCount, videoCount);
       }
@@ -87,15 +87,15 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
   }
 
   requestOneBatchOperation(): void {
-        let item = this.items[this.currentBatch] as AlbumDataItem;
-        let promise: Promise<boolean> = item.onDelete();
-        promise.then<void, void>((): void => {
-            this.currentBatch++
-            this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
-            this.cyclicOperation();
-        }).catch<void>((): void => {
-            this.onError();
-        })
+    let item = this.items[this.currentBatch] as AlbumDataItem;
+    let promise: Promise<boolean> = item.onDelete();
+    promise.then<void, void>((): void => {
+      this.currentBatch++
+      this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
+      this.cyclicOperation();
+    }).catch<void>((): void => {
+      this.onError();
+    })
     }
 
   private confirmCallback(): void {

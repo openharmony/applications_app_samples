@@ -66,7 +66,7 @@ export struct AlbumGridItemNewStyle {
 
   aboutToAppear(): void {
     Log.debug(TAG, 'aboutToAppear');
-    this.selectable = this.item.id != MediaConstants.ALBUM_ID_RECYCLE;
+    this.selectable = this.item.id !== MediaConstants.ALBUM_ID_RECYCLE;
     screenManager.on(screenManager.ON_WIN_SIZE_CHANGED, (): void => this.updateCardSize());
     this.item.load().then<void, void>(async (): Promise<void> => {
       this.thumbnail = await this.item.getThumbnail();
@@ -130,12 +130,12 @@ export struct AlbumGridItemNewStyle {
 
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
-      if (this.isEmptyAlbum) {
+      if (this.isEmptyAlbum || this.item.count === 0) {
         EmptyAlbumComponent()
       }
 
       if (this.isBigCard) {
-        if (this.item.id == MediaConstants.ALBUM_ID_RECYCLE) {
+        if (this.item.id === MediaConstants.ALBUM_ID_RECYCLE) {
           Column() {
             Stack({ alignContent: Alignment.Center }) {
               Image($r('app.media.ic_gallery_public_delete_line'))
@@ -176,7 +176,7 @@ export struct AlbumGridItemNewStyle {
           .alignItems(VerticalAlign.Center)
         }
       } else {
-        if (this.item.id == MediaConstants.ALBUM_ID_RECYCLE) {
+        if (this.item.id === MediaConstants.ALBUM_ID_RECYCLE) {
           Column() {
             Stack({ alignContent: Alignment.Center }) {
               Image($r('app.media.ic_gallery_public_delete_line'))

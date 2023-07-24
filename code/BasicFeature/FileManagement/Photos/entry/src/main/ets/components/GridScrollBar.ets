@@ -44,9 +44,9 @@ export struct GridScrollBar {
       y: 0
     })
     .onTouch((event: TouchEvent): void => {
-      if (event.type == TouchType.Down) {
+      if (event.type === TouchType.Down) {
         this.isClickScrollBar = true;
-      } else if (event.type == TouchType.Up) {
+      } else if (event.type === TouchType.Up) {
         this.isClickScrollBar = false;
       }
     })

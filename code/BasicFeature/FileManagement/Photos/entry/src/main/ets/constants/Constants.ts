@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import deviceInfo from '@ohos.deviceInfo';
 
 enum EntryForm {
@@ -253,8 +254,8 @@ export class Constants {
   static readonly GRID_MIN_COUNT: number = 2;
   static readonly SCROLL_BAR_SIDE_MIN_GAP: number = 12;
   static readonly SCROLL_MARGIN: number = 24;
-  static readonly SCROLL_BAR_VISIBLE_THRESHOLD: number = deviceInfo.deviceType == 'phone' || deviceInfo.deviceType == 'default' ? 7 : 9;
-  static readonly GRID_SCROLL_BAR_VISIBLE_THRESHOLD: number = deviceInfo.deviceType == 'phone' || deviceInfo.deviceType == 'default' ? 7 : 13;
+  static readonly SCROLL_BAR_VISIBLE_THRESHOLD: number = deviceInfo.deviceType === 'phone' || deviceInfo.deviceType === 'default' ? 7 : 9;
+  static readonly GRID_SCROLL_BAR_VISIBLE_THRESHOLD: number = deviceInfo.deviceType === 'phone' || deviceInfo.deviceType === 'default' ? 7 : 13;
 
   // Album Card Constants
   static readonly CARD_ASPECT_RATIO: number = 0.75;

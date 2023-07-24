@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 
 const TAG = 'ItemDataSource'
@@ -28,7 +29,7 @@ export class LazyItem<T> {
   }
 
   update(item: T): void {
-    if (this.onItemUpdate != null && this.index != -1) {
+    if (this.onItemUpdate != null && this.index !== -1) {
       this.onItemUpdate(this.index, item);
     }
   }

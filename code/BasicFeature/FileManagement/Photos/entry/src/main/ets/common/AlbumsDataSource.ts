@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { AlbumDataImpl } from './AlbumDataImpl';
 import { LazyItem, ItemDataSource } from './ItemDataSource';
@@ -41,8 +42,8 @@ export class AlbumsDataSource extends ItemDataSource {
   }
 
   getData(index: number): LazyItem<AlbumDataItem> {
-        return new LazyItem<AlbumDataItem>(this.getDataByIndex(index), index, (index: number): void => this.onDataUpdateBindImpl(index));
-    }
+    return new LazyItem<AlbumDataItem>(this.getDataByIndex(index), index, (index: number): void => this.onDataUpdateBindImpl(index));
+  }
 
   getDataByIndex(index: number): AlbumDataItem {
     if (index < 0 || index >= this.albumDataItems.length) {
@@ -66,7 +67,7 @@ export class AlbumsDataSource extends ItemDataSource {
 
   resetLoadState(): void {
     for (let i = 0;i < this.albumDataItems.length; i++) {
-      if (this.albumDataItems[i].status == MediaConstants.LOADED) {
+      if (this.albumDataItems[i].status === MediaConstants.LOADED) {
         this.albumDataItems[i].status = MediaConstants.UNDEFINED;
       }
     }
@@ -75,7 +76,7 @@ export class AlbumsDataSource extends ItemDataSource {
   getAlbumDataItemById(id: string): AlbumDataItem | null {
     let albumDataItem: AlbumDataItem = null;
     for (let i = 0;i < this.albumDataItems.length; i++) {
-      if (this.albumDataItems[i].id == id) {
+      if (this.albumDataItems[i].id === id) {
         albumDataItem = this.albumDataItems[i];
       }
     }
@@ -83,14 +84,14 @@ export class AlbumsDataSource extends ItemDataSource {
   }
 
   getSelectedUris(): string[] {
-        let uris: string[] = [];
-        this.albumDataItems.forEach((item: AlbumDataItem): void => {
-            if (item.isSelect) {
-                uris.push(item.uri);
-            }
-        })
-        return uris;
-    }
+    let uris: string[] = [];
+    this.albumDataItems.forEach((item: AlbumDataItem): void => {
+      if (item.isSelect) {
+        uris.push(item.uri);
+      }
+    })
+    return uris;
+  }
 
   isDisableRename(): boolean {
     let isDisableRename = false;
@@ -115,10 +116,10 @@ export class AlbumsDataSource extends ItemDataSource {
   }
 
   setSelect(isSelect: boolean): void {
-        this.albumDataItems.forEach((item: AlbumDataItem): void => {
-            item.setSelect(isSelect);
-        })
-    }
+    this.albumDataItems.forEach((item: AlbumDataItem): void => {
+      item.setSelect(isSelect);
+    })
+  }
 
   getSelectedCount(): number {
     let count = 0;
@@ -131,14 +132,14 @@ export class AlbumsDataSource extends ItemDataSource {
   }
 
   getSelectedItems(): Object[] {
-        let items: AlbumDataItem[] = [];
-        this.albumDataItems.forEach((item: AlbumDataItem): void => {
-            if (item.isSelect) {
-                items.push(item);
-            }
-        })
-        return items;
-    }
+    let items: AlbumDataItem[] = [];
+    this.albumDataItems.forEach((item: AlbumDataItem): void => {
+      if (item.isSelect) {
+        items.push(item);
+      }
+    })
+    return items;
+  }
 
   onDataUpdate(index: number): void {
     this.onDataUpdateBindImpl(index);
@@ -150,10 +151,10 @@ export class AlbumsDataSource extends ItemDataSource {
   }
 
   dataReload(): void {
-        this.reloadAlbumItemData().then<void, void>((isEmpty: boolean): void => {
-            this.notifyDataReload();
-        })
-    }
+    this.reloadAlbumItemData().then<void, void>((isEmpty: boolean): void => {
+      this.notifyDataReload();
+    })
+  }
 
   dataRemove(): void {
     for (let i = this.albumDataItems.length - 1;i >= 0; i--) {
@@ -166,13 +167,13 @@ export class AlbumsDataSource extends ItemDataSource {
 
   async reloadAlbumItemData(): Promise<boolean> {
     this.albumDataItems = await this.albumDataImpl.reloadAlbumItemData();
-    return this.albumDataItems.length == 0;
+    return this.albumDataItems.length === 0;
   }
 
   async reloadAlbumListItemData(): Promise<boolean> {
     Log.info(TAG, 'reloadAlbumListItemData');
     this.albumDataItems = await this.albumDataImpl.reloadAlbumItemData();
     this.notifyDataReload();
-    return this.albumDataItems.length == 0;
+    return this.albumDataItems.length === 0;
   }
 }

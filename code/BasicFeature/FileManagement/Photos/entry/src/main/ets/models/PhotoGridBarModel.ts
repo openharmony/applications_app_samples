@@ -96,7 +96,7 @@ export class PhotoGridBarModel {
   getMenuList(isSelectedMode: boolean, selectedCount: number, isAllSelected: boolean, isEmpty: boolean): Action[] {
     let menuList: Action[] = [];
     if (isSelectedMode) {
-      if (this.albumId == MediaConstants.ALBUM_ID_RECYCLE) {
+      if (this.albumId === MediaConstants.ALBUM_ID_RECYCLE) {
         menuList.push((new Boolean(selectedCount)) ? Action.RECOVER : Action.RECOVER_INVALID);
         menuList.push((new Boolean(selectedCount)) ? Action.DELETE : Action.DELETE_INVALID);
         menuList.push(isAllSelected ? Action.DESELECT_ALL : Action.SELECT_ALL);
@@ -105,7 +105,7 @@ export class PhotoGridBarModel {
         menuList.push((new Boolean(selectedCount)) ? Action.DELETE : Action.DELETE_INVALID, Action.MORE);
       }
     } else {
-      if (this.albumId == MediaConstants.ALBUM_ID_RECYCLE && !isEmpty) {
+      if (this.albumId === MediaConstants.ALBUM_ID_RECYCLE && !isEmpty) {
         menuList.push(Action.CLEAR_RECYCLE);
       }
     }

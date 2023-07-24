@@ -12,9 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import image from '@ohos.multimedia.image';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { userFileModel } from './UserFileModel';
+
 import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import { getResourceString } from '../utils/ResourceUtils';

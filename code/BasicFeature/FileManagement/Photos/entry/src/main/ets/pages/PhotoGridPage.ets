@@ -95,7 +95,7 @@ struct PhotoGridPage {
 
   onIndexChange(): void {
     Log.info(TAG, 'onIndexChange ' + this.PhotoGridPageIndex)
-    if (this.PhotoGridPageIndex != Constants.INVALID) {
+    if (this.PhotoGridPageIndex !== Constants.INVALID) {
       this.scroller.scrollToIndex(this.PhotoGridPageIndex);
     }
   }
@@ -329,6 +329,7 @@ struct PhotoGridPage {
     Log.info(TAG, 'onDeleteEnd');
     this.onModeChange();
     userFileObserver.registerObserver(this.dataObserver);
+    this.onUserFileDataChange(MediaConstants.MEDIA_TYPE_IMAGE);
     animateTo({ duration: Constants.DELETE_ANIMATE_DURATION }, (): void => {
       this.groupDataSource.dataRemove();
       this.isEmpty = this.groupDataSource.groupDataItem.length==0 ? true : false;
@@ -349,6 +350,7 @@ struct PhotoGridPage {
   }
 
   onPageShow(): void {
+    Log.error(TAG,"onPageShow" + this.isActive)
     this.appBroadcast.emit(BroadcastConstants.THIRD_ROUTE_PAGE, []);
     this.isShow = true;
     let params: ParamsInterface = router.getParams();
@@ -374,8 +376,8 @@ struct PhotoGridPage {
     if (!this.isActive) {
       Log.info(TAG, 'onActive');
       this.isActive = true;
+      this.loadItem();
     }
-    this.loadItem();
   }
 
   // The callback when current page is in the background
@@ -492,11 +494,11 @@ struct PhotoGridPage {
 
   private onUpdateRemoteDeviceBindImpl(res: string, deviceId: Object): void {
     Log.info(TAG, 'onUpdateRemoteDevice');
-    if (String(deviceId) != this.albumInfo.deviceId || this.isActive == false) {
+    if (String(deviceId) !== this.albumInfo.deviceId || this.isActive === false) {
       Log.debug(TAG, 'other device');
       return;
     }
-    if (res == Constants.DEVICE_STATE_OFFLINE) {
+    if (res === Constants.DEVICE_STATE_OFFLINE) {
       Log.debug(TAG, 'device offline route to album main');
       router.back({
         uri: 'pages/index',
@@ -535,13 +537,13 @@ struct PhotoGridPage {
     this.totalSelectedCount = this.groupDataSource.getSelectedCount();
     this.isAllSelected = this.groupDataSource.isSelect();
     if (this.totalSelectedCount > 0) {
-      if (this.albumInfo.albumType == MediaConstants.ALBUM_TYPE_USER){
+      if (this.albumInfo.albumType === MediaConstants.ALBUM_TYPE_USER){
         this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.INFO];
       } else {
         this.moreMenuList = [Action.MOVE, Action.INFO];
       }
     } else {
-      if (this.albumInfo.albumType == MediaConstants.ALBUM_TYPE_USER){
+      if (this.albumInfo.albumType === MediaConstants.ALBUM_TYPE_USER){
         this.moreMenuList = [Action.MOVE_INVALID, Action.REMOVE_INVALID, Action.INFO_INVALID];
       } else {
         this.moreMenuList = [Action.MOVE_INVALID, Action.INFO_INVALID];
@@ -552,13 +554,13 @@ struct PhotoGridPage {
   private jumpToPhotoBrowser(name: string, item: UserFileDataItem): void {
     let children: UserFileDataItem[] = this.groupDataSource.getItems();
     let targetIndex = children.indexOf(item);
-    if (targetIndex == Constants.NOT_FOUND) {
+    if (targetIndex === Constants.NOT_FOUND) {
       Log.warn(TAG, 'targetIndex is not found');
       return;
     }
     AppStorage.SetOrCreate<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER, children);
     let pageEntryFrom
-    if (this.albumInfo != null && this.albumInfo.id == MediaConstants.ALBUM_ID_RECYCLE) {
+    if (this.albumInfo != null && this.albumInfo.id === MediaConstants.ALBUM_ID_RECYCLE) {
       pageEntryFrom = Constants.ENTRY_FROM.RECYCLE;
     } else {
       pageEntryFrom = Constants.ENTRY_FROM.NORMAL;
@@ -577,13 +579,13 @@ struct PhotoGridPage {
   private jumpToThirdPhotoBrowser(name: string, item: UserFileDataItem): void {
     let children: UserFileDataItem[] = this.groupDataSource.getItems();
     let targetIndex = children.indexOf(item);
-    if (targetIndex == Constants.NOT_FOUND) {
+    if (targetIndex === Constants.NOT_FOUND) {
       Log.warn(TAG, 'targetIndex is not found');
       return;
     }
     AppStorage.SetOrCreate<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER, children);
     let pageEntryFrom;
-    if (this.albumInfo != null && this.albumInfo.id == MediaConstants.ALBUM_ID_RECYCLE) {
+    if (this.albumInfo != null && this.albumInfo.id === MediaConstants.ALBUM_ID_RECYCLE) {
       pageEntryFrom = Constants.ENTRY_FROM.RECYCLE;
     } else {
       pageEntryFrom = Constants.ENTRY_FROM.NORMAL;
@@ -645,13 +647,13 @@ struct PhotoGridPage {
           GridScrollBar({ scroller: this.scroller, isHideScrollBar: $isHideScrollBar});
         }.layoutWeight(1)
         .padding({
-          bottom: ((this.isSelectedMode || (this.albumInfo.id == MediaConstants.ALBUM_ID_RECYCLE)) && !this.isHorizontal) ? Constants.ActionBarHeight : 0
+          bottom: ((this.isSelectedMode || (this.albumInfo.id === MediaConstants.ALBUM_ID_RECYCLE)) && !this.isHorizontal) ? Constants.ActionBarHeight : 0
         })
 
       }
 
       CustomDialogView();
-      if (this.isSelectedMode || (this.albumInfo.id == MediaConstants.ALBUM_ID_RECYCLE) && !this.isEmpty) {
+      if (this.isSelectedMode || (this.albumInfo.id === MediaConstants.ALBUM_ID_RECYCLE) && !this.isEmpty) {
         ToolBar({
           toolMenuList: $toolBarMenuList,
           onMenuClicked: this.onMenuClicked

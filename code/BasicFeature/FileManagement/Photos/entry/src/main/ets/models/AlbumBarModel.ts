@@ -92,7 +92,7 @@ export class AlbumBarModel {
   getMenuList(isAlbumSetSelectedMode: boolean, selectedAlbumsCount: number, isDisableRename: boolean, isDisableDelete: boolean): Action[] {
     let menuList: Action[] = [];
     if (isAlbumSetSelectedMode) {
-      menuList.push((!isDisableRename && selectedAlbumsCount == 1) ? Action.RENAME : Action.RENAME_INVALID);
+      menuList.push((!isDisableRename && selectedAlbumsCount === 1) ? Action.RENAME : Action.RENAME_INVALID);
       menuList.push((!isDisableDelete && selectedAlbumsCount > 0) ? Action.DELETE : Action.DELETE_INVALID);
     }
     return menuList;

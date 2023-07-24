@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { AlbumDataItem } from './AlbumDataItem';
 import { MediaConstants } from '../constants/MediaConstants';
@@ -56,7 +57,7 @@ export class AlbumDataImpl {
       Log.debug(TAG, 'no need as in black list');
       return;
     }
-    if (this.deviceId.length > 0 && (id != MediaConstants.ALBUM_ID_SNAPSHOT && id != MediaConstants.ALBUM_ID_CAMERA)) {
+    if (this.deviceId.length > 0 && (id !== MediaConstants.ALBUM_ID_SNAPSHOT && id !== MediaConstants.ALBUM_ID_CAMERA)) {
       Log.info(TAG, 'no need');
       return;
     }
@@ -121,10 +122,24 @@ export class AlbumDataImpl {
             predicates: predicates
           };
           photoFetchResult = await albumAsset.getAssets(fetchOptions);
-          Log.info(TAG, 'photoFetchResult count: ' + photoFetchResult.getCount());
           count = photoFetchResult.getCount();
-          fileAsset = await photoFetchResult.getFirstObject();
-          Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
+          Log.info(TAG, 'photoFetchResult count: ' + count);
+          let displayName = 'unknown';
+          if (id === MediaConstants.ALBUM_ID_USER) {
+            displayName = albumAsset.albumName;
+          } else {
+            displayName = await getAlbumDisplayName(id);
+          }
+          let albumType = albumAsset.albumType;
+          let albumSubType = albumAsset.albumSubtype;
+          let albumItem: AlbumDataItem = new AlbumDataItem(id, count, displayName, this.selectType, this.deviceId, albumType, albumSubType);
+          albumItem.uri = albumAsset.albumUri;
+          if (count > 0) {
+            fileAsset = await photoFetchResult.getFirstObject();
+            Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
+            await albumItem.update(fileAsset);
+          }
+          albumDataItems.push(albumItem);
         } catch (err) {
           Log.error(TAG, 'get Album getPhotoAssets failed with err: ' + err);
         } finally {
@@ -132,18 +147,6 @@ export class AlbumDataImpl {
             photoFetchResult.close();
           }
         }
-        let displayName = 'unknown';
-        if (id == MediaConstants.ALBUM_ID_USER) {
-          displayName = albumAsset.albumName;
-        } else {
-          displayName = await getAlbumDisplayName(id);
-        }
-        let albumType = albumAsset.albumType;
-        let albumSubType = albumAsset.albumSubtype;
-        let albumItem: AlbumDataItem = new AlbumDataItem(id, count, displayName, this.selectType, this.deviceId, albumType, albumSubType);
-        albumItem.uri = albumAsset.albumUri;
-        await albumItem.update(fileAsset);
-        albumDataItems.push(albumItem);
       }
     } catch (err) {
       Log.error(TAG, 'get Album fetchResult failed with err: ' + err);
@@ -203,14 +206,17 @@ export class AlbumDataImpl {
         predicates: predicates
       };
       photoFetchResult = await userFileModel.getUserFileMgr().getAssets(fetchOptions);
-      Log.info(TAG, 'getAllPhotoAlbum count: ' + photoFetchResult.getCount());
-      let fileAsset = await photoFetchResult.getFirstObject();
-      Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
+      let count = photoFetchResult.getCount();
+      Log.info(TAG, 'getAllPhotoAlbum count: ' + count);
       let displayName = '';
       let id = MediaConstants.ALBUM_ID_ALL;
       displayName = await getAlbumDisplayName(id);
-      let albumItem: AlbumDataItem = new AlbumDataItem(id, photoFetchResult.getCount(), displayName, this.selectType, this.deviceId, -1, -1);
-      await albumItem.update(fileAsset);
+      let albumItem: AlbumDataItem = new AlbumDataItem(id, count, displayName, this.selectType, this.deviceId, -1, -1);
+      if (count > 0) {
+        let fileAsset = await photoFetchResult.getFirstObject();
+        await albumItem.update(fileAsset);
+        Log.info(TAG, 'getFirstObject file displayName: ' + fileAsset.displayName);
+      }
       albumDataItems.push(albumItem);
     } catch (err) {
       Log.error(TAG, 'get Album getPhotoAssets failed with err: ' + err);
@@ -255,7 +261,7 @@ export class AlbumDataImpl {
       let fetchFileResult = await album.getAssets(fetchOptions);
       try {
         let count = fetchFileResult.getCount();
-        if (count == 0) {
+        if (count === 0) {
           continue;
         }
         let item = new AlbumDataItem(MediaConstants.ALBUM_ID_USER, count, album.albumName, this.selectType, this.deviceId, 0, 0);

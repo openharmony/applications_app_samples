@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import resourceManager from '@ohos.resourceManager';
 import { Log } from './Log';
 import { GlobalContext } from '../common/GlobalContext';

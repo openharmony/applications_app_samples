@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { Log } from '../utils/Log';
 import { Constants } from '../constants/Constants';
@@ -76,10 +77,8 @@ export class GroupDataImpl {
   async reloadBrowserGroupItemData(): Promise<UserFileDataItem[]> {
     Log.info(TAG, 'reloadBrowserGroupItemData');
     let groupDataItem: UserFileDataItem[] = [];
-    let count: number = 0;
-    let groupCount: number = this.getCount();
-    let mediaFileAssets = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType, 0, groupCount);
-    if (this.albumId == MediaConstants.ALBUM_ID_FAVOR) {
+    let mediaFileAssets = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType);
+    if (this.albumId === MediaConstants.ALBUM_ID_FAVOR) {
       for (let i = 0;i < mediaFileAssets.length; i++) {
         let favorMediaItem = new FavorUserFileDataItem('', [], i);
         if (userFileDataItemCache.hasKey(mediaFileAssets[i].uri)) {
@@ -89,7 +88,7 @@ export class GroupDataImpl {
         favorMediaItem.update(mediaFileAssets[i]);
         groupDataItem.push(favorMediaItem);
       }
-    } else if (this.albumId == MediaConstants.ALBUM_ID_RECYCLE) {
+    } else if (this.albumId === MediaConstants.ALBUM_ID_RECYCLE) {
       for (let i = 0;i < mediaFileAssets.length; i++) {
         let trashMediaItem = new TrashUserFileDataItem('', [], i);
         if (userFileDataItemCache.hasKey(mediaFileAssets[i].uri)) {
@@ -111,16 +110,15 @@ export class GroupDataImpl {
         groupDataItem.push(mediaItem);
       }
     }
-    Log.debug(TAG, 'reload finish count:' + count);
+    Log.info(TAG, 'reload finish');
     return groupDataItem;
   }
 
   async reloadGridGroupItemData(): Promise<UserFileDataItem[]> {
     Log.info(TAG, 'reloadGridGroupItemData');
     let groupDataItem: UserFileDataItem[] = [];
-    let groupCount: number = this.getCount();
-    let mediaFileAssets = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType, 0, groupCount);
-    if (this.albumId == MediaConstants.ALBUM_ID_FAVOR) {
+    let mediaFileAssets = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType);
+    if (this.albumId === MediaConstants.ALBUM_ID_FAVOR) {
       for (let i = 0;i < mediaFileAssets.length; i++) {
         let item = new FavorUserFileDataItem('', [], i);
         if (userFileDataItemCache.hasKey(mediaFileAssets[i].uri)) {
@@ -132,7 +130,7 @@ export class GroupDataImpl {
         item.update(mediaFileAssets[i]);
         groupDataItem.push(item);
       }
-    } else if (this.albumId == MediaConstants.ALBUM_ID_RECYCLE) {
+    } else if (this.albumId === MediaConstants.ALBUM_ID_RECYCLE) {
       for (let i = 0;i < mediaFileAssets.length; i++) {
         let item = new TrashUserFileDataItem('', [], i);
         if (trashUserFileDataItemCache.hasKey(mediaFileAssets[i].uri)) {
@@ -155,14 +153,11 @@ export class GroupDataImpl {
         groupDataItem.push(item);
       }
     }
-    // do not use await to avoid load cost too much time
-    this.loadReset(groupDataItem, groupCount);
-
     Log.info(TAG, 'reload finish');
     return groupDataItem;
   }
 
-  private async getMediaItemFileAssets(albumName: string, albumType: number, albumSubType: number, start: number, count: number): Promise<photoAccessHelper.PhotoAsset[]> {
+  private async getMediaItemFileAssets(albumName: string, albumType: number, albumSubType: number): Promise<photoAccessHelper.PhotoAsset[]> {
     let predicates = new dataSharePredicates.DataSharePredicates();
     predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName)
     let fetchOption = {
@@ -170,7 +165,7 @@ export class GroupDataImpl {
       predicates: predicates
     };
     Log.info(TAG, 'albumName:' + albumName)
-    if (albumType == MediaConstants.ALBUM_TYPE_ALL) {
+    if (albumType === MediaConstants.ALBUM_TYPE_ALL) {
       return await userFileModel.getAllMediaItems();
     }
     let emptyPredicates = new dataSharePredicates.DataSharePredicates();
@@ -188,19 +183,5 @@ export class GroupDataImpl {
     let contentHeight = screenManager.getWinHeight() - Constants.ACTION_BAR_HEIGHT - screenManager.getNaviBarHeight();
     let rows = Math.ceil((contentHeight + Constants.GRID_GUTTER) / (maxThumbWidth + Constants.GRID_GUTTER)) + 4;
     return columns * rows;
-  }
-
-  private async loadReset(items: UserFileDataItem[], count): Promise<void> {
-    let itemLen = items.length;
-    let countLen = Math.ceil(itemLen / count);
-    for (let i = 1;i < countLen; i++) {
-      let mediaFileAsset: photoAccessHelper.PhotoAsset[] = await this.getMediaItemFileAssets(this.albumName, this.albumType, this.albumSubType, i * count, count);
-      for (let j = 0;j < count; j++) {
-        if (i * count + j >= itemLen) {
-          return;
-        }
-        items[i * count+j].update(mediaFileAsset[j]);
-      }
-    }
   }
 }

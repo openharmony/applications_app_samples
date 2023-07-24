@@ -87,7 +87,7 @@ struct NewAlbumPage {
       this.groupDataSource.setSelect(false)
       router.back();
     } else if (action === Action.OK) {
-      if (this.groupDataSource.getSelectedCount() == 0) {
+      if (this.groupDataSource.getSelectedCount() === 0) {
         Log.info(TAG, 'onMenuClicked, action: ' + action.actionID + ', count = 0');
       } else {
         Log.info(TAG, 'onMenuClicked, action: ' + action.actionID + ' newAlbum: ' + this.isNewAlbum);

@@ -33,7 +33,7 @@ export struct ToolBarButton {
       if (this.isAutoTint) {
         Image(this.res)
           .commonButtonStyle()
-          .fillColor(this.colorMode == ActionBarColorMode.TRANSPARENT
+          .fillColor(this.colorMode === ActionBarColorMode.TRANSPARENT
             ? Action.ICON_DEFAULT_COLOR_CONTRARY : this.action.fillColor)
       } else {
         Image(this.res)

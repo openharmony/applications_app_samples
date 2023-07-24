@@ -295,7 +295,7 @@ export struct AlbumSetPage {
   }
 
   private onStateResetBindImpl(index: number): void {
-    if (index == Constants.ALBUM_PAGE_INDEX) {
+    if (index === Constants.ALBUM_PAGE_INDEX) {
       this.isAlbumSetSelectedMode = false;
     }
   }
@@ -319,7 +319,7 @@ export struct AlbumSetPage {
   }
 
   private onResetZeroBindImpl(pageNumber: number): void {
-    if (pageNumber == Constants.ALBUM_PAGE_INDEX) {
+    if (pageNumber === Constants.ALBUM_PAGE_INDEX) {
       this.scroller.scrollEdge(Edge.Top);
     }
   }
@@ -384,7 +384,7 @@ export struct AlbumSetPage {
     Stack() {
       Grid(this.scroller) {
         LazyForEach(this.albumsDataSource, (item: LazyItem<AlbumDataItem>): void => {
-          if ((item != undefined && item != null) && (item.get() != undefined && item.get() != null) && item.get().index == 0) {
+          if ((item != undefined && item != null) && (item.get() != undefined && item.get() != null) && item.get().index === 0) {
             GridItem() {
               AlbumGridItemNewStyle({
                 lazyItem: item,

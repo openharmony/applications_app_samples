@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { Log } from '../utils/Log';
 import { AnimationConstants } from '../constants/AnimationConstants';
@@ -44,6 +45,7 @@ export struct ImageGridItemComponent {
 
   private resetPressAnim(): void {
     this.pressAnimScale = 1;
+    Log.error(TAG, 'isEnteringPhoto false');
     this.isEnteringPhoto = false;
   }
 
@@ -166,7 +168,7 @@ export struct ImageGridItemComponent {
         })
         .onError((): void => {
           Log.error(TAG, 'alt Image ' + this.mediaItem.index + ' error :' + this.thumbnail);
-          if (this.thumbnail == undefined || this.mediaItem.width == 0 || this.mediaItem.height == 0) {
+          if (this.thumbnail == undefined || this.mediaItem.width === 0 || this.mediaItem.height === 0) {
             this.resetShow()
           } else {
             this.isError = true
@@ -177,7 +179,7 @@ export struct ImageGridItemComponent {
           zIndex: 0,
         })
 
-      if (this.mediaItem.mediaType == photoAccessHelper.PhotoType.VIDEO) {
+      if (this.mediaItem.mediaType === photoAccessHelper.PhotoType.VIDEO) {
         Column()
           .position({ x: '0%', y: '50%' })
           .height('50%')
@@ -268,11 +270,11 @@ export struct ImageGridItemComponent {
         return;
       }
       // Press animation
-      if (event.type == TouchType.Down) {
+      if (event.type === TouchType.Down) {
         this.pressAnimScale = AnimationConstants.PRESS_ANIM_SCALE;
       }
 
-      if (event.type == TouchType.Up && !this.isEnteringPhoto && this.pressAnimScale != 1) {
+      if (event.type === TouchType.Up && !this.isEnteringPhoto && this.pressAnimScale !== 1) {
         this.pressAnimScale = 1;
       }
     })

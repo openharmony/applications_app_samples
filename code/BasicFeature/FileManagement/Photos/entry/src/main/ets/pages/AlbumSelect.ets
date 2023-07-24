@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { MediaConstants } from '../constants/MediaConstants';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
@@ -61,7 +62,7 @@ struct AlbumSelect {
   aboutToAppear(): void {
     this.broadCast.on(Constants.ON_LOADING_FINISHED, (size: number): void => {
       Log.info(TAG, 'ON_LOADING_FINISHED size: ' + size);
-      this.isEmpty = size == 0;
+      this.isEmpty = size === 0;
       this.isHideScrollBar = (size <= (this.gridColumnsCount * Constants.NUMBER_3 - Constants.NUMBER_1));
     });
     let self = this;

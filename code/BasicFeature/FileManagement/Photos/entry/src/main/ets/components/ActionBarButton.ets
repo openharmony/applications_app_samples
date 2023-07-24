@@ -46,7 +46,7 @@ export struct ActionBarButton {
             this.showPopup = false;
             if(this.onMenuClicked != null) this.onMenuClicked(menu);
           })
-        if (this.moreMenuList.indexOf(menu) != this.moreMenuList.length - 1) {
+        if (this.moreMenuList.indexOf(menu) !== this.moreMenuList.length - 1) {
           Divider()
             .width('100%')
             .strokeWidth(Constants.MENU_DIVIDER_STROKE_WIDTH)
@@ -74,7 +74,7 @@ export struct ActionBarButton {
         Image(this.res)
           .height($r('app.float.icon_size'))
           .width($r('app.float.icon_size'))
-          .fillColor(this.colorMode == ActionBarColorMode.TRANSPARENT ?
+          .fillColor(this.colorMode === ActionBarColorMode.TRANSPARENT ?
             Action.ICON_DEFAULT_COLOR_CONTRARY : this.action.fillColor)
       } else {
         Image(this.res)
@@ -84,11 +84,11 @@ export struct ActionBarButton {
     }
     .height($r('app.float.default_button_size'))
     .width($r('app.float.default_button_size'))
-    .margin({ left: (this.action == Action.NAVIGATION) ? $r('app.float.max_padding_start') : 0 })
+    .margin({ left: (this.action === Action.NAVIGATION) ? $r('app.float.max_padding_start') : 0 })
   }
 
   build() {
-    if (this.action == Action.MORE) {
+    if (this.action === Action.MORE) {
       Row() {
         this.ActionBarButtonBuilder()
       }

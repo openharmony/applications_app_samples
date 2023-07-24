@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Log } from '../utils/Log';
 import { ViewType } from '../models/ViewType';
 import { userFileModel } from './UserFileModel';
@@ -58,6 +59,7 @@ export class UserFileDataItem implements DateAdded {
   deviceId: string = '';
   fileAsset: photoAccessHelper.PhotoAsset = undefined;
   defaultThumbnail: PixelMap = undefined;
+  thumbnailArray: Map<string, PixelMap> = new Map<string, PixelMap>();
 
   constructor(selections: string, selectionArgs: string[], deviceId: string, index: number) {
     this.selections = selections;
@@ -69,7 +71,7 @@ export class UserFileDataItem implements DateAdded {
 
   getHashCode(): string {
     // 时间线界面角度，收藏状态变更，都需要刷新界面；大图浏览界面角度变更，需要刷新界面
-    return this.status == MediaConstants.UNDEFINED ?
+    return this.status === MediaConstants.UNDEFINED ?
       '' + this.hashIndex :
       this.uri + this.favouriteStatus + ' ' + this.orientation + ' ' + this.isSelect
   }
@@ -157,7 +159,7 @@ export class UserFileDataItem implements DateAdded {
       Log.error(TAG, 'get favouriteStatus ' + JSON.stringify(err));
     }
     let size = { width: MediaConstants.DEFAULT_SIZE, height: MediaConstants.DEFAULT_SIZE };
-    if (fileAsset != null) {
+    if (fileAsset != null && this.defaultThumbnail == undefined) {
       try {
         this.defaultThumbnail = await this.fileAsset.getThumbnail(size)
       } catch (err) {
@@ -183,11 +185,16 @@ export class UserFileDataItem implements DateAdded {
     if (width === MediaConstants.DEFAULT_SIZE && height === MediaConstants.DEFAULT_SIZE) {
       return this.defaultThumbnail;
     }
-    let newThumbnail:PixelMap = undefined;
+    let newThumbnail: PixelMap = undefined;
     let size = { width: width, height: height };
+    let cacheThumbnail = this.thumbnailArray.get(width.toString() + height.toString());
+    if (cacheThumbnail != null) {
+      return cacheThumbnail;
+    }
     if (this.fileAsset != undefined) {
       try {
-        newThumbnail = await this.fileAsset.getThumbnail(size)
+        newThumbnail = await this.fileAsset.getThumbnail(size);
+        this.thumbnailArray.set(width.toString() + height.toString(), newThumbnail);
       } catch (err) {
         Log.error(TAG, 'getThumbnail error: ' + JSON.stringify(err));
       }
@@ -225,7 +232,7 @@ export class UserFileDataItem implements DateAdded {
   }
 
   async isFavor(): Promise<boolean> {
-    if (this.favouriteStatus == STATUS_UNDEFINED) {
+    if (this.favouriteStatus === STATUS_UNDEFINED) {
       let fileAsset = await this.loadFileAsset();
       try {
         this.favouriteStatus = (fileAsset.get(photoAccessHelper.PhotoKeys.FAVORITE.toString()) as boolean) ? STATUS_TRUE : STATUS_FALSE;

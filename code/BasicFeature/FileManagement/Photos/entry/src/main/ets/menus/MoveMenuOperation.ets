@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 import { userFileModel } from '../base/UserFileModel';
 import { Log } from '../utils/Log';
 import { MenuContext } from './MenuContext';

@@ -40,19 +40,19 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   }
 
   doAction(): void {
-        if (this.menuContext == null) {
-            Log.warn(TAG, 'menuContext is null, return');
-            return;
-        }
-        getResourceString($r('app.string.album_new_album')).then<void, void>((name: string): void => {
-            Log.info(TAG, 'The display name is ' + name);
-            this.confirmCallback = (displayName: string): Promise<void> => this.confirmCallbackBindImpl(displayName);
-            this.cancelCallback = (): void => this.cancelCallbackBindImpl();
-
-            this.menuContext.broadCast.emit(BroadcastConstants.SHOW_NEW_ALBUM_PHOTO_DIALOG,
-                [name, this.confirmCallback, this.cancelCallback]);
-        })
+    if (this.menuContext == null) {
+      Log.warn(TAG, 'menuContext is null, return');
+      return;
     }
+    getResourceString($r('app.string.album_new_album')).then<void, void>((name: string): void => {
+      Log.info(TAG, 'The display name is ' + name);
+      this.confirmCallback = (displayName: string): Promise<void> => this.confirmCallbackBindImpl(displayName);
+      this.cancelCallback = (): void => this.cancelCallbackBindImpl();
+
+      this.menuContext.broadCast.emit(BroadcastConstants.SHOW_NEW_ALBUM_PHOTO_DIALOG,
+          [name, this.confirmCallback, this.cancelCallback]);
+    })
+  }
 
   private async confirmCallback(displayName: string): Promise<void> {
     return await this.confirmCallbackBindImpl(displayName)
@@ -64,17 +64,17 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
     if (displayName != undefined && displayName != null) {
       let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
       if (isExit) {
-                getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
-                    showToast(message);
-                })
-                return;
-            }
+        getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
+            showToast(message);
+        })
+        return;
+      }
     }
     this.onOperationEnd = this.menuContext.onOperationEnd;
     let onOperationStart: Function = this.menuContext.onOperationStart;
     if (onOperationStart != null) onOperationStart();
 
-    if (this.menuContext.jumpSourceToMain == JumpSourceToMain.ALBUM) {
+    if (this.menuContext.jumpSourceToMain === JumpSourceToMain.ALBUM) {
       Log.info(TAG, 'go back to photo grid');
       this.menuContext.broadCast.emit(BroadcastConstants.MEDIA_OPERATION, [simpleAlbumDataItem, (): void => this.onCompletedBindImpl()]);
     } else {

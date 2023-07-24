@@ -44,11 +44,11 @@ export struct AlbumListCard {
   }
 
   showMediaRes(videoCount: number): Resource {
-    if (videoCount == 0) {
+    if (videoCount === 0) {
       return $r('app.plural.show_photo_num', this.item.count, this.item.count);
-    } else if (videoCount == this.item.count) {
+    } else if (videoCount === this.item.count) {
       return $r('app.plural.show_video_num', this.item.count, this.item.count);
-    } else if (videoCount == 1) {
+    } else if (videoCount === 1) {
       return $r('app.plural.show_one_video_with_photo_num', this.item.count - videoCount,
         this.item.count - videoCount, videoCount);
     } else {
@@ -90,7 +90,7 @@ export struct AlbumListCard {
           .padding({
             bottom: $r('sys.float.ohos_id_text_margin_vertical')
           })
-        if (this.item.count != 0) {
+        if (this.item.count !== 0) {
           Text(this.mediaRes)
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))

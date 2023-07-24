@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { screenManager } from '../common/ScreenManager';
 import { computeSampleSize } from '../utils/ImageUtil';
 import { UserFileDataItem } from '../base/UserFileDataItem';
@@ -31,8 +32,8 @@ export async function getThumbnail(mediaItem: UserFileDataItem, isCurrent: boole
 function generateSampleSize(imageWidth: number, imageHeight: number, isCurrent: boolean): number {
   let width = vp2px(screenManager.getWinWidth());
   let height = vp2px(screenManager.getWinHeight());
-  width = width == 0 ? screenManager.DEFAULT_WIDTH : width;
-  height = height == 0 ? screenManager.DEFAULT_HEIGHT : height;
+  width = width === 0 ? screenManager.DEFAULT_WIDTH : width;
+  height = height === 0 ? screenManager.DEFAULT_HEIGHT : height;
   let maxNumOfPixels;
   if (isCurrent) {
     maxNumOfPixels = 2 * width * height;
