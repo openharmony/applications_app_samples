@@ -32,7 +32,7 @@
 
 4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
 
-5.点击打开卡片应用图标或formProvider应用图标，点击"修改订阅条件"按键，界面将跳转至修改订阅条件界面，对应选择想要发布的数据完成对订阅条件的修改(若选择发布的城市与当前订阅城市不一致，则不能成功发布)；
+5.点击打开卡片应用图标或formProvider应用图标，点击"修改订阅条件"按键，界面将跳转至修改订阅条件界面，对应选择想要发布的数据完成对订阅条件的修改(若选择发布的城市与当前订阅城市不一致，则不能将数据更新至卡片)；
 
 6.在卡片应用或formProvider应用应用中点击"发布数据"按键，界面将跳转至数据发布界面，对应选择想要发布的数据并点击"发布数据"完成数据发布；
 
@@ -58,11 +58,11 @@ persistentProxyForm/src/main/
 |  └---dataShare
 |  | └---DataShare.ts
 |  |---entryability
-|  |  └---EntryAbility.ts
+|  |  └---PersistentEntryAbility.ts
 |  |---entryformability
 |  |  └---EntryFormAbility.ts
 |  |---pages
-|  |  |---Index.ets                        // EntryAbility页面
+|  |  |---Index.ets                        // PersistentEntryAbility页面
 |  |  |---ModifyConditionIndex.ets         // 修改订阅条件页面
 |  |  └---PublishIndex.ets                 // 发布数据页面
 |  └---widget
@@ -83,11 +83,11 @@ processProxyForm/src/main/
 |  └---Logger.ts
 |---ets
 |  |---entryability
-|  |  └---EntryAbility.ts
+|  |  └---ProcessEntryAbility.ts
 |  |---entryformability
 |  |  └---ProcessEntryFormAbility.ts
 |  |---pages
-|  |  |---Index.ets                         // EntryAbilit页面
+|  |  |---Index.ets                         // ProcessEntryAbility页面
 |  |  |---ModifyConditionIndex.ets          // 修改订阅条件页面
 |  |  └---PushIndex.ets                     // 发布数据页面
 |  └---widget
