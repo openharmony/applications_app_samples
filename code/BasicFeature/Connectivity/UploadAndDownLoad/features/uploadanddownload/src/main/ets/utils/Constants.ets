@@ -16,3 +16,11 @@
 export const TOAST_BOTTOM: number = 200;
 
 export const UPLOAD_TOKEN: string = 'upload_token';
+
+export const TASK_MAX: number = 10;
+
+export enum BackgroundTaskState {
+  NONE = 0,
+  RUNNING = 1,
+  PAUSE = 2
+}
