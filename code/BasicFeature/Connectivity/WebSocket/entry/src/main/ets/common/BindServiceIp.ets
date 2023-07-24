@@ -32,7 +32,7 @@ export default struct BindServiceIp {
         .key('ipInput')
         .id('text_ip_input')
         .onChange((value: string) => {
-          this.ipAddress = `ws://${value}/string`
+          this.ipAddress = `${value}`
         })
       Button() {
         Text($r('app.string.bind_ip'))
