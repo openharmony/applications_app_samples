@@ -53,6 +53,7 @@ entry/src/main
 |   |---form_config.json                   // 配置卡片（卡片名称，引入js卡片，卡片窗口大小等）                          
 persistentProxyForm/src/main/
 |---common
+|  |---StatePersistence.ts                // 订阅条件数据持久化
 |  └---Logger.ts
 |---ets
 |  └---dataShare
@@ -80,6 +81,7 @@ persistentProxyForm/src/main/
 └---resources    
 processProxyForm/src/main/
 |---common
+|  |---StatePersistence.ts                 // 订阅条件数据持久化
 |  └---Logger.ts
 |---ets
 |  |---entryability

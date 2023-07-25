@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import Logger from './Logger';
 
-const TAG = '[Sample_StatePersistence]'
+const TAG = '[Sample_StatePersistence]';
 const DATA_SIZE = 6;
 const PROCESS_FILE_NAME = '/Process.txt';
 
