@@ -14,7 +14,7 @@
 */
 export default class config {
   //默认service配置
-  static HOST_DEFAULT: string = "http://192.168.18.44"
+  static HOST_DEFAULT: string = "http://192.168.18.165"
   //该路径为你用hfs服务器创建的上传路径
   static PATH_DEFAULT: string = "/upload/"
   //此值固定，hfs服务器的文件列表接口

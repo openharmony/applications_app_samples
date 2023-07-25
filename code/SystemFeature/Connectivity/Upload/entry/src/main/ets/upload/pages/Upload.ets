@@ -46,7 +46,12 @@ struct Upload {
       eventId: 1,
       priority: emitter.EventPriority.HIGH
     };
-    emitter.emit(innerEvent);
+    let eventData = {
+      data: {
+        "content": "test"
+      }
+    };
+    emitter.emit(innerEvent,eventData);
     Logger.info("send publish event!")
   }
 
