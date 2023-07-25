@@ -19,6 +19,10 @@
     {
       "name": "button_ban",
       "value": "禁止"
+    },
+    {
+      "name": "button_finish",
+      "value": "完成"
     }
   ]
 }

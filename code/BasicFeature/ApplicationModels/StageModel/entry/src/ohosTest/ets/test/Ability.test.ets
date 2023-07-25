@@ -64,6 +64,8 @@ export default function abilityTest() {
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.id('bookNameInput'));
         let bookNameInput = await driver.findComponent(ON.id('bookNameInput'));
+        await bookNameInput.click();
+        await driver.delayMs(500);
         await bookNameInput.inputText('Book update');
         await driver.assertComponentExist(ON.text(getString($r('app.string.ok')), MatchPattern.CONTAINS));
         let btnSure = await driver.findComponent(ON.text(getString($r('app.string.ok')), MatchPattern.CONTAINS));

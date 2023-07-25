@@ -11,9 +11,11 @@
 
 ### 效果预览
 
-| 主页                               | 点击分享                                      | 分享页面                                      |其它应用分享|
-|----------------------------------|-------------------------------------------|-------------------------------------------|--------------|
-| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialog.png) | ![](screenshots/shared/canvas_dialog.png) |![](screenshots/revieved/image_file.png)|
+| 主页                               | 点击分享                                      | 分享页面                                      |
+|----------------------------------|-------------------------------------------|-------------------------------------------|
+| ![](screenshots/shared/home.png) | ![](screenshots/shared/button_dialo.png) | ![](screenshots/shared/canvas_dialog.png) |
+| **其它应用分享** | **文本分享成功预览页** | **文本编辑成功预览页** |
+| ![](screenshots/revieved/image_file.png) | ![textSharePreview](./screenshots/textShare/textSharePreview.jpeg) | ![templatePreview](./screenshots/textEdit/textEditPreview.jpeg) |
 
 使用说明：
 
@@ -28,6 +30,16 @@
 ，此时选择[聊天列表](entry/src/main/ets/pages/Index.ets)
 中任意的朋友进行分享。
 
+4.安装[entry](./entry/)以及[textShare](./textShare/)两个module的hap包
+，点击分享文本+链接，选择"文本分享"图标，会拉起应用[文本分享](./textShare/)
+,此时选择"留在文本分享"可以进入[文本页面](./textShare/src/main/ets/textreceiveability/TextReceiveAbility.ts)
+,若选择"返回"，则会回到Share应用主页面。
+
+5.安装[entry](./entry/)以及[textEdit](./textEdit/)两个module的hap包
+，点击分享文本+链接，选择"文本编辑"图标，会拉起应用[文本编辑](./textEdit/)
+,此时选择"留在文本编辑"可以进入[文本编辑页面](./textEdit/src/main/ets/editability/EditTextAbility.ts)
+,若选择"返回"，则会回到Share应用主页面。
+
 ### 工程目录
 ```
 entry/src/main/ets/
@@ -39,6 +51,28 @@ entry/src/main/ets/
 |   |---Logger.ts                      // 日志工具
 |---pages
 |   |---Index.ets                      // 首页
+textShare/src/main/ets/
+├──model
+|  └──Logger.ts
+├──pages
+|  ├──Index.ets                       // TextReceiveAbility页面
+|  ├──TemplateBuilder.ets             // 自定义组件页面
+|  └──UIExtenIndex.ets                // UIExtension页面
+├──textreceiveability
+|  └──TextReceiveAbility.ts           // 文本分享主页面
+├──uiextensionability
+|  └──UIExtAbility.ts 
+textEdit/src/main/ets/
+├──editability
+|  └──EditTextAbility.ts              // 文本编辑主页面
+├──model
+|  └──Logger.ts
+├──pages
+|  ├──Index.ets                       // EditTextAbility页面
+|  ├──TemplateBuilder.ets             // 自定义组件页面
+|  └──UIExtenIndex.ets                // UIExtension页面
+└──uiextensionability
+   └──UIExtAbility.ts 
 ```
 
 ### 具体实现
@@ -59,6 +93,14 @@ entry/src/main/ets/
     * 源码链接：[ShareUtils.ts](ShareComponent/src/main/ets/feature/ShareUtils.ts)，[MediaUtils.ts](ShareComponent/src/main/ets/feature/MediaUtils.ts)，[ShareConst.ts](ShareComponent/src/main/ets/util/ShareConst.ts)
     * 参考接口：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)，[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)
 
+* 本示例还包含文本分享应用及文本编辑应用：
+  * 在Index.ets中加载TemplateBuilder自定义组件并显示分享信息,  源码参考[textShare_Index.ets](./textShare/src/main/ets/pages/Index.ets). [textEdit_Index.ets](./textEdit/src/main/ets/pages/Index.ets)。
+    * 在加载Index页面中，如果是被分享方拉起，则加载TemplateBuilder自定义组件。若不是被分享拉起，则显示Ability设置内容。
+  
+  * TemplateBuilder组件内容封装在TemplateBuilder.ets中，源码参考：[textShare_TemplateBuilder.ets](./textShare/src/main/ets/pages/TemplateBuilder.ets). 
+  [textEdit_TemplateBuilder.ets](./textEdit/src/main/ets/pages/TemplateBuilder.ets)。
+    * 在TemplateBuilder组件中包含UIExtAbility组件、“返回Share”和“留在文本分享/留在文本编辑”按钮，可选择返回Share应用或留在当前（文本分享/文本编辑）应用。
+
 ### 相关权限
 
 允许应用截取屏幕图像：[ohos.permission.CAPTURE_SCREEN](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncapture_screen)
@@ -75,21 +117,37 @@ entry/src/main/ets/
 
 依赖于[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)  应用，来作为接收方。
 
+entry中测试[Share.test.ets](./entry/src/ohosTest/ets/test/Share.test.ets)需要依赖[textShare](./textShare/)以及[textEdit](./textEdit/)，需要编译两个feature module的hap包，并与entry应用hap包及测试hap包一同签名并安装。
+
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
 
-2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.1,镜像版本号:Openharmony 4.0.9.1。
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 4.本示例使用的screenshot API属于SystemAPI，需要使用Full SDK 手动从镜像站点获取，并在DevEco
-Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
-。
+Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 5.本示例涉及相关权限为system_core级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 查看）， 需要手动配置高级别的权限签名(
 具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)) 。
+
+6.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )
+
+7.当前4.0.9.1版本的Full SDK。因为不支持UIExtension类型编译，所以需要手动修改SDK中“10/toolchains/modulecheck/module.json"文件。在对应的extensionAbilities的type属性中，追加”ui“枚举值（只需在"enum"内容中添加"ui"即可，无需添加其他内容）。
+
+```json
+"extensionAbilities": {
+    "type": {
+        "type": "string",
+        "enum": [
+            "ui"
+        ]
+    }
+}
+```
 
 ### 下载
 

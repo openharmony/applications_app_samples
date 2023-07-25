@@ -18,6 +18,7 @@ import window from '@ohos.window'
 import emitter from '@ohos.events.emitter'
 import Logger from '../common/Logger'
 import { DESTROY_FLOAT_WINDOW } from '../common/Constants'
+import display from '@ohos.display';
 
 const TAG: string = '[index]'
 
@@ -96,7 +97,8 @@ struct Index {
       windowClass.setBackgroundColor(Color.Transparent)
     })
     globalThis.floatWindow = windowClass
-    globalThis.mainWindow.hide()
+    let displayClass = display.getDefaultDisplaySync();
+    window.minimizeAll(displayClass.id);
     emitter.once({ eventId: DESTROY_FLOAT_WINDOW }, () => {
       Logger.info(TAG, 'emitter once')
       windowClass.destroyWindow((err, data) => {

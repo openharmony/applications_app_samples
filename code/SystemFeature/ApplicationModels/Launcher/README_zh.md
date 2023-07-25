@@ -90,18 +90,21 @@ entry/src/main/ets/
 | ohos.permission.INSTALL_BUNDLE             | 允许应用安装、卸载其他应用。                     | system_core  |
 | ohos.permission.MANAGE_MISSIONS            | 允许用户管理元能力任务栈。                       | system_core  |
 | ohos.permission.REQUIRE_FORM               | 允许应用获取Ability Form。                       | system_basic |
+| ohos.permission.NOTIFICATION_CONTROLLER    | 允许应用管理通知和订阅通知。                     | system_core  |
 
 ### 依赖
 
-Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping]( https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_20230430/code/Solutions/Shopping/ASOrangeShopping )
+1.Launcher通过卡片拉起橘子购物元服务需要依赖[ASOrangeShopping](../../../Solutions/Shopping/OrangeShopping/README_zh.md)。
+
+2.Launcher测试[Launcher.test.ets](./entry/src/ohosTest/ets/test/Launcher.test.ets)需要依赖[CrossChainBack](../TestRely/LauncherTest/CrossChainBack/README_zh.md)以及[StartRecentAbility](../TestRely/LauncherTest/StartRecentAbility/README_zh.md)，开始测试前需先安装CrossChainBack应用和StartRecentAbility应用。
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例已适配API version 10版本SDK，版本号：4.0.8.3。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)才可编译运行。
+3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501 构建 2023年6月20日)才可编译运行。
 
 4.本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南]( https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/ )。
 

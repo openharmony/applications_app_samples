@@ -79,6 +79,34 @@
     {
       "name": "systemResDesc",
       "value": "SystemResource: "
+    },
+    {
+      "name": "test_string",
+      "value": "base_test"
+    },
+    {
+      "name": "unEnableFailed",
+      "value": "overlay unEnable failed"
+    },
+    {
+      "name": "unEnableSuccess",
+      "value": "overlay unEnable success"
+    },
+    {
+      "name": "enableFailed",
+      "value": "overlay enable failed"
+    },
+    {
+      "name": "enableSuccess",
+      "value": "overlay enable success"
+    },
+    {
+      "name": "testResources",
+      "value": "Example of using API"
+    },
+    {
+      "name": "testOverlay",
+      "value": "Example of using Overlay"
     }
   ]
 }

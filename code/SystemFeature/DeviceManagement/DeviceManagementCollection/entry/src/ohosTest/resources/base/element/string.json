@@ -75,6 +75,678 @@
     {
       "name": "power_mode",
       "value": "current power  mode:"
+    },
+    {
+      "name": "battery_info",
+      "value": "Battery Information"
+    },
+    {
+      "name": "device_info",
+      "value": "Device Information"
+    },
+    {
+      "name": "input_consumer",
+      "value": "Input Consumer"
+    },
+    {
+      "name": "mouse_pointer",
+      "value": "Mouse Pointer"
+    },
+    {
+      "name": "input_event",
+      "value": "Input Event"
+    },
+    {
+      "name": "input_device",
+      "value": "Input Device"
+    },
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "no_battery",
+      "value": "The battery is supported or present"
+    },
+    {
+      "name": "battery_charge_percent",
+      "value": "Battery charge percent"
+    },
+    {
+      "name": "charging_status",
+      "value": "ChargingStatus"
+    },
+    {
+      "name": "usb_listener",
+      "value": "USB Listener"
+    },
+    {
+      "name": "device_list",
+      "value": "device list"
+    },
+    {
+      "name": "bus_address",
+      "value": "bus address"
+    },
+    {
+      "name": "device_address",
+      "value": "device address"
+    },
+    {
+      "name": "serial",
+      "value": "serial"
+    },
+    {
+      "name": "device_name",
+      "value": "device name"
+    },
+    {
+      "name": "manufacturer_name",
+      "value": "manufacturer name"
+    },
+    {
+      "name": "product_name",
+      "value": "product name"
+    },
+    {
+      "name": "version",
+      "value": "version"
+    },
+    {
+      "name": "vendor_id",
+      "value": "vendor id"
+    },
+    {
+      "name": "product_id",
+      "value": "product id"
+    },
+    {
+      "name": "device_class",
+      "value": "device class"
+    },
+    {
+      "name": "toast_start_listening",
+      "value": "Start listening"
+    },
+    {
+      "name": "toast_inserted",
+      "value": "USB inserted"
+    },
+    {
+      "name": "toast_removed",
+      "value": "Device removed"
+    },
+    {
+      "name": "toast_listening_cancel",
+      "value": "Cancel listening"
+    },
+    {
+      "name": "screen_state",
+      "value": "The screen state:"
+    },
+    {
+      "name": "device_type",
+      "value": "Device Type"
+    },
+    {
+      "name": "manufacture",
+      "value": "manufacture"
+    },
+    {
+      "name": "brand",
+      "value": "brand"
+    },
+    {
+      "name": "marker_name",
+      "value": "Marker Name"
+    },
+    {
+      "name": "product_series",
+      "value": "Product Series"
+    },
+    {
+      "name": "product_model",
+      "value": "Product Model"
+    },
+    {
+      "name": "software_model",
+      "value": "Software Model"
+    },
+    {
+      "name": "hardware_model",
+      "value": "Hardware Model"
+    },
+    {
+      "name": "hardware_profile",
+      "value": "Hardware Profile"
+    },
+    {
+      "name": "device_serial",
+      "value": "Serial"
+    },
+    {
+      "name": "bootloader_version",
+      "value": "Bootloader Version"
+    },
+    {
+      "name": "abi_list",
+      "value": "Abi List"
+    },
+    {
+      "name": "security_patch_tag",
+      "value": "Security Patch Tag"
+    },
+    {
+      "name": "display_version",
+      "value": "display version"
+    },
+    {
+      "name": "incremental_version",
+      "value": "Incremental Version"
+    },
+    {
+      "name": "os_release_type",
+      "value": "Release Type"
+    },
+    {
+      "name": "os_full_name",
+      "value": "Full Name"
+    },
+    {
+      "name": "major_version",
+      "value": "Major Version"
+    },
+    {
+      "name": "senior_version",
+      "value": "Senior Version"
+    },
+    {
+      "name": "featureVersion",
+      "value": "Feature Version"
+    },
+    {
+      "name": "build_version",
+      "value": "Build Version"
+    },
+    {
+      "name": "sdk_api_version",
+      "value": "Sdk Api Version"
+    },
+    {
+      "name": "first_api_version",
+      "value": "First Api Version"
+    },
+    {
+      "name": "version_id",
+      "value": "Version Id"
+    },
+    {
+      "name": "build_type",
+      "value": "Build Type"
+    },
+    {
+      "name": "build_user",
+      "value": "Build User"
+    },
+    {
+      "name": "build_host",
+      "value": "Build Host"
+    },
+    {
+      "name": "build_time",
+      "value": "Build Time"
+    },
+    {
+      "name": "build_root_hash",
+      "value": "Build Root Hash"
+    },
+    {
+      "name": "udid",
+      "value": "UDID"
+    },
+    {
+      "name": "input_wait",
+      "value": "Wait for input... ..."
+    },
+    {
+      "name": "input_consumer_listener",
+      "value": "Listen for keystroke combination"
+    },
+    {
+      "name": "input_consumer_hint",
+      "value": "Displays the use of combination key, after starting the button, press it continuously as prompted: \n 1. Press the key combination \"Left Alt+ Left Shift+S\" to show the picture; \n 2. Press the key combination \"Left Alt+ Left Shift+D\" to hide the picture."
+    },
+    {
+      "name": "battery_soc_0",
+      "value": "0"
+    },
+    {
+      "name": "battery_soc_100",
+      "value": "%"
+    },
+    {
+      "name": "battery_charging_status",
+      "value": "Charging status"
+    },
+    {
+      "name": "battery_plugged_type",
+      "value": "Plugged type"
+    },
+    {
+      "name": "battery_voltage",
+      "value": "Voltage"
+    },
+    {
+      "name": "battery_voltage_symbol",
+      "value": "μV"
+    },
+    {
+      "name": "battery_technology",
+      "value": "Technology model"
+    },
+    {
+      "name": "battery_temperature",
+      "value": "Temperature"
+    },
+    {
+      "name": "battery_temperature_symbol",
+      "value": "℃"
+    },
+    {
+      "name": "battery_capacity_level",
+      "value": "Capacity level"
+    },
+    {
+      "name": "battery_charge_type",
+      "value": "Charge type"
+    },
+    {
+      "name": "battery_information_error",
+      "value": "Battery information is not queried"
+    },
+    {
+      "name": "battery_unknown_text",
+      "value": "unknown"
+    },
+    {
+      "name": "battery_charging_status_enable",
+      "value": "USE"
+    },
+    {
+      "name": "battery_charging_status_disable",
+      "value": "DISABLE"
+    },
+    {
+      "name": "battery_charging_status_full",
+      "value": "FULL"
+    },
+    {
+      "name": "battery_health_state_good",
+      "value": "GOOD"
+    },
+    {
+      "name": "battery_health_state_overheat",
+      "value": "OVERHEAT"
+    },
+    {
+      "name": "battery_health_state_overvoltage",
+      "value": "OVER VOLTAGE"
+    },
+    {
+      "name": "battery_health_state_cold",
+      "value": "COLD"
+    },
+    {
+      "name": "battery_health_state_dead",
+      "value": "DEAD"
+    },
+    {
+      "name": "battery_plugged_type_ac",
+      "value": "AC"
+    },
+    {
+      "name": "battery_plugged_type_usb",
+      "value": "USB"
+    },
+    {
+      "name": "battery_plugged_type_wireless",
+      "value": "WIRELESS"
+    },
+    {
+      "name": "battery_capacity_level_full",
+      "value": "FULL"
+    },
+    {
+      "name": "battery_capacity_level_high",
+      "value": "HIGH"
+    },
+    {
+      "name": "battery_capacity_level_normal",
+      "value": "NORMAL"
+    },
+    {
+      "name": "battery_capacity_level_low",
+      "value": "LOW"
+    },
+    {
+      "name": "battery_capacity_level_critical",
+      "value": "CRITICAL"
+    },
+    {
+      "name": "mouse_pointer_style_title",
+      "value": "Mouse Style"
+    },
+    {
+      "name": "mouse_pointer_style_hint",
+      "value": "A variety of mouse styles are provided below.  You can switch mouse styles as needed and see changes to the mouse pointer."
+    },
+    {
+      "name": "mouse_setting",
+      "value": "Mouse Setting"
+    },
+    {
+      "name": "mouse_setting_show",
+      "value": "Visible"
+    },
+    {
+      "name": "mouse_setting_speed_title",
+      "value": "Speed"
+    },
+    {
+      "name": "mouse_setting_style_title",
+      "value": "Style"
+    },
+    {
+      "name": "mouse_listener_title",
+      "value": "Mouse Listener"
+    },
+    {
+      "name": "mouse_listener_open",
+      "value": "Mouse Listener"
+    },
+    {
+      "name": "mouse_listener_open_hint",
+      "value": "After startup, you can listen for mouse input events"
+    },
+    {
+      "name": "mouse_event_info_title",
+      "value": "Mouse Event Details"
+    },
+    {
+      "name": "mouse_style_default",
+      "value": "Default"
+    },
+    {
+      "name": "mouse_style_east",
+      "value": "East"
+    },
+    {
+      "name": "mouse_style_west",
+      "value": "West"
+    },
+    {
+      "name": "mouse_style_south",
+      "value": "South"
+    },
+    {
+      "name": "mouse_style_north",
+      "value": "North"
+    },
+    {
+      "name": "mouse_style_west_east",
+      "value": "West East"
+    },
+    {
+      "name": "mouse_style_north_south",
+      "value": "North South"
+    },
+    {
+      "name": "mouse_style_north_east",
+      "value": "North East"
+    },
+    {
+      "name": "mouse_style_north_west",
+      "value": "North West"
+    },
+    {
+      "name": "mouse_style_south_east",
+      "value": "South East"
+    },
+    {
+      "name": "mouse_style_south_west",
+      "value": "South West"
+    },
+    {
+      "name": "mouse_style_north_east_south_west",
+      "value": "North East South West"
+    },
+    {
+      "name": "mouse_style_north_west_south_east",
+      "value": "North West South East"
+    },
+    {
+      "name": "mouse_style_cross",
+      "value": "Cross"
+    },
+    {
+      "name": "mouse_style_copy",
+      "value": "Copy"
+    },
+    {
+      "name": "mouse_style_forbid",
+      "value": "Forbid"
+    },
+    {
+      "name": "mouse_style_color_sucker",
+      "value": "Color Sucker"
+    },
+    {
+      "name": "mouse_style_hand_grabbing",
+      "value": "Hand Grabbing"
+    },
+    {
+      "name": "mouse_style_hand_open",
+      "value": "Hand Open"
+    },
+    {
+      "name": "mouse_style_hand_pointing",
+      "value": "Hand Pointing"
+    },
+    {
+      "name": "mouse_style_help",
+      "value": "Help"
+    },
+    {
+      "name": "mouse_style_move",
+      "value": "Move"
+    },
+    {
+      "name": "mouse_style_resize_left_right",
+      "value": "Resize Left Right"
+    },
+    {
+      "name": "mouse_style_resize_up_down",
+      "value": "Resize Up Down"
+    },
+    {
+      "name": "mouse_style_screenshot_choose",
+      "value": "Screenshot Choose"
+    },
+    {
+      "name": "mouse_style_screenshot_cursor",
+      "value": "Screenshot Cursor"
+    },
+    {
+      "name": "mouse_style_text_cursor",
+      "value": "Text Cursor"
+    },
+    {
+      "name": "mouse_style_zoom_in",
+      "value": "Zoom In"
+    },
+    {
+      "name": "mouse_style_zoom_out",
+      "value": "Zoom Out"
+    },
+    {
+      "name": "mouse_style_mid_btn_east",
+      "value": "Roll East"
+    },
+    {
+      "name": "mouse_style_mid_btn_west",
+      "value": "Roll West"
+    },
+    {
+      "name": "mouse_style_mid_btn_south",
+      "value": "Roll South"
+    },
+    {
+      "name": "mouse_style_mid_btn_north",
+      "value": "Roll North"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_south",
+      "value": "Roll North To South"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_east",
+      "value": "Roll Northeastward"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_west",
+      "value": "Roll Northwest"
+    },
+    {
+      "name": "mouse_style_mid_btn_south_east",
+      "value": "Roll Southeast"
+    },
+    {
+      "name": "mouse_style_mid_btn_south_west",
+      "value": "Roll Southwest"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_south_west_east",
+      "value": "Four-way tapering"
+    },
+    {
+      "name": "input_touch_event_listener",
+      "value": "Listen for full screen input"
+    },
+    {
+      "name": "input_touch_event_hint",
+      "value": "After startup, you can listen for global touch screen events."
+    },
+    {
+      "name": "input_touch_event_data_title",
+      "value": "Details about global touch screen events"
+    },
+    {
+      "name": "input_inject_back_event",
+      "value": "Injection return key"
+    },
+    {
+      "name": "input_inject_back_event_hint",
+      "value": "The ability to simulate a return key."
+    },
+    {
+      "name": "input_inject_back_text",
+      "value": "Back"
+    },
+    {
+      "name": "input_device_connect",
+      "value": "connect"
+    },
+    {
+      "name": "input_device_disconnect",
+      "value": "disconnect"
+    },
+    {
+      "name": "input_device_change_title",
+      "value": "The listening device is hot swapped"
+    },
+    {
+      "name": "input_device_status",
+      "value": "Device Status"
+    },
+    {
+      "name": "input_device_list_title",
+      "value": "Device List"
+    },
+    {
+      "name": "input_device_id",
+      "value": "ID"
+    },
+    {
+      "name": "input_device_uniq",
+      "value": "Uniq"
+    },
+    {
+      "name": "input_device_style",
+      "value": "Style"
+    },
+    {
+      "name": "input_device_axis_ranges",
+      "value": "AxisRanges"
+    },
+    {
+      "name": "input_device_source_style",
+      "value": "SourceStyle"
+    },
+    {
+      "name": "input_device_axis_type",
+      "value": "AxisType"
+    },
+    {
+      "name": "input_device_max",
+      "value": "Max"
+    },
+    {
+      "name": "input_device_min",
+      "value": "Min"
+    },
+    {
+      "name": "input_device_fuzz",
+      "value": "Fuzz"
+    },
+    {
+      "name": "input_device_flat",
+      "value": "Flat"
+    },
+    {
+      "name": "input_device_resolution",
+      "value": "Resolution"
+    },
+    {
+      "name": "input_device_bus",
+      "value": "Bus"
+    },
+    {
+      "name": "input_device_product",
+      "value": "Product"
+    },
+    {
+      "name": "input_device_vendor",
+      "value": "Vendor"
+    },
+    {
+      "name": "input_device_version",
+      "value": "Version"
+    },
+    {
+      "name": "input_key_event",
+      "value": "Input Key Event"
+    },
+    {
+      "name": "input_key_event_listener",
+      "value": "Key Event Listener"
+    },
+    {
+      "name": "input_key_event_hint",
+      "value": "Keystroke events are triggered by devices such as peripheral keyboards"
+    },
+    {
+      "name": "input_key_event_data",
+      "value": "Key Event Details"
     }
   ]
 }

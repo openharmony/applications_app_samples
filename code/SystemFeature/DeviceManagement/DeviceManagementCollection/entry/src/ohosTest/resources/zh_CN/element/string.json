@@ -75,6 +75,678 @@
     {
       "name": "power_mode",
       "value": "当前电源模式:"
+    },
+    {
+      "name": "battery_info",
+      "value": "电量信息"
+    },
+    {
+      "name": "device_info",
+      "value": "设备信息"
+    },
+    {
+      "name": "input_consumer",
+      "value": "组合按键"
+    },
+    {
+      "name": "mouse_pointer",
+      "value": "鼠标指针"
+    },
+    {
+      "name": "input_event",
+      "value": "输入事件"
+    },
+    {
+      "name": "input_device",
+      "value": "输入设备"
+    },
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "no_battery",
+      "value": "当前设备不支持电池或电池不在位"
+    },
+    {
+      "name": "battery_charge_percent",
+      "value": "电池电量百分比"
+    },
+    {
+      "name": "charging_status",
+      "value": "充电状态"
+    },
+    {
+      "name": "usb_listener",
+      "value": "USB监听"
+    },
+    {
+      "name": "device_list",
+      "value": "设备列表"
+    },
+    {
+      "name": "bus_address",
+      "value": "总线地址"
+    },
+    {
+      "name": "device_address",
+      "value": "设备地址"
+    },
+    {
+      "name": "serial",
+      "value": "序列号"
+    },
+    {
+      "name": "device_name",
+      "value": "设备名字"
+    },
+    {
+      "name": "manufacturer_name",
+      "value": "产商信息"
+    },
+    {
+      "name": "product_name",
+      "value": "产品信息"
+    },
+    {
+      "name": "version",
+      "value": "版本"
+    },
+    {
+      "name": "vendor_id",
+      "value": "厂商ID"
+    },
+    {
+      "name": "product_id",
+      "value": "产品ID"
+    },
+    {
+      "name": "device_class",
+      "value": "设备类"
+    },
+    {
+      "name": "toast_start_listening",
+      "value": "开始监听"
+    },
+    {
+      "name": "toast_inserted",
+      "value": "USB已插入"
+    },
+    {
+      "name": "toast_removed",
+      "value": "设备已移除"
+    },
+    {
+      "name": "toast_listening_cancel",
+      "value": "取消监听"
+    },
+    {
+      "name": "screen_state",
+      "value": "亮灭屏状态:"
+    },
+    {
+      "name": "device_type",
+      "value": "类型"
+    },
+    {
+      "name": "manufacture",
+      "value": "厂家"
+    },
+    {
+      "name": "brand",
+      "value": "品牌"
+    },
+    {
+      "name": "marker_name",
+      "value": "外部产品系列"
+    },
+    {
+      "name": "product_series",
+      "value": "产品系列"
+    },
+    {
+      "name": "product_model",
+      "value": "认证型号"
+    },
+    {
+      "name": "software_model",
+      "value": "内部软件子型号"
+    },
+    {
+      "name": "hardware_model",
+      "value": "硬件版本号"
+    },
+    {
+      "name": "hardware_profile",
+      "value": "硬件Profile"
+    },
+    {
+      "name": "device_serial",
+      "value": "设备序列号"
+    },
+    {
+      "name": "bootloader_version",
+      "value": "Bootloader版本号"
+    },
+    {
+      "name": "abi_list",
+      "value": "应用二进制接口"
+    },
+    {
+      "name": "security_patch_tag",
+      "value": "安全补丁级别"
+    },
+    {
+      "name": "display_version",
+      "value": "产品版本"
+    },
+    {
+      "name": "incremental_version",
+      "value": "差异版本号"
+    },
+    {
+      "name": "os_release_type",
+      "value": "系统的发布类型"
+    },
+    {
+      "name": "os_full_name",
+      "value": "系统版本"
+    },
+    {
+      "name": "major_version",
+      "value": "Major版本号"
+    },
+    {
+      "name": "senior_version",
+      "value": "Senior版本号"
+    },
+    {
+      "name": "featureVersion",
+      "value": "Feature版本号"
+    },
+    {
+      "name": "build_version",
+      "value": "Build版本号"
+    },
+    {
+      "name": "sdk_api_version",
+      "value": "系统软件API版本"
+    },
+    {
+      "name": "first_api_version",
+      "value": "首个版本系统软件API版本"
+    },
+    {
+      "name": "version_id",
+      "value": "版本ID"
+    },
+    {
+      "name": "build_type",
+      "value": "构建类型"
+    },
+    {
+      "name": "build_user",
+      "value": "构建用户"
+    },
+    {
+      "name": "build_host",
+      "value": "构建主机"
+    },
+    {
+      "name": "build_time",
+      "value": "构建时间"
+    },
+    {
+      "name": "build_root_hash",
+      "value": "构建版本Hash"
+    },
+    {
+      "name": "udid",
+      "value": "UDID"
+    },
+    {
+      "name": "input_wait",
+      "value": "等待输入... ..."
+    },
+    {
+      "name": "input_consumer_listener",
+      "value": "监听组合按键"
+    },
+    {
+      "name": "input_consumer_hint",
+      "value": "展示组合按键的使用，启动按键监听后，请根据提示连续按下：\n 1、按下 “左Alt+左Shift+S” 组合键触发显示图片；\n 2、按下 “左Alt+左Shift+D” 组合键触发隐藏图片。"
+    },
+    {
+      "name": "battery_soc_0",
+      "value": "0"
+    },
+    {
+      "name": "battery_soc_100",
+      "value": "%"
+    },
+    {
+      "name": "battery_charging_status",
+      "value": "充电状态"
+    },
+    {
+      "name": "battery_plugged_type",
+      "value": "充电类型"
+    },
+    {
+      "name": "battery_voltage",
+      "value": "电池电压"
+    },
+    {
+      "name": "battery_voltage_symbol",
+      "value": "μV"
+    },
+    {
+      "name": "battery_technology",
+      "value": "电池型号"
+    },
+    {
+      "name": "battery_temperature",
+      "value": "电池温度"
+    },
+    {
+      "name": "battery_temperature_symbol",
+      "value": "℃"
+    },
+    {
+      "name": "battery_capacity_level",
+      "value": "电池等级"
+    },
+    {
+      "name": "battery_charge_type",
+      "value": "充电类型"
+    },
+    {
+      "name": "battery_information_error",
+      "value": "未查询到电池信息"
+    },
+    {
+      "name": "battery_unknown_text",
+      "value": "未知"
+    },
+    {
+      "name": "battery_charging_status_enable",
+      "value": "使用中"
+    },
+    {
+      "name": "battery_charging_status_disable",
+      "value": "已停用"
+    },
+    {
+      "name": "battery_charging_status_full",
+      "value": "已充满"
+    },
+    {
+      "name": "battery_health_state_good",
+      "value": "非常好"
+    },
+    {
+      "name": "battery_health_state_overheat",
+      "value": "过热"
+    },
+    {
+      "name": "battery_health_state_overvoltage",
+      "value": "过压"
+    },
+    {
+      "name": "battery_health_state_cold",
+      "value": "低温"
+    },
+    {
+      "name": "battery_health_state_dead",
+      "value": "僵死"
+    },
+    {
+      "name": "battery_plugged_type_ac",
+      "value": "交流充电器"
+    },
+    {
+      "name": "battery_plugged_type_usb",
+      "value": "USB"
+    },
+    {
+      "name": "battery_plugged_type_wireless",
+      "value": "无线充电器"
+    },
+    {
+      "name": "battery_capacity_level_full",
+      "value": "满电量"
+    },
+    {
+      "name": "battery_capacity_level_high",
+      "value": "高电量"
+    },
+    {
+      "name": "battery_capacity_level_normal",
+      "value": "正常电量"
+    },
+    {
+      "name": "battery_capacity_level_low",
+      "value": "低电量"
+    },
+    {
+      "name": "battery_capacity_level_critical",
+      "value": "极低电量"
+    },
+    {
+      "name": "mouse_pointer_style_title",
+      "value": "鼠标样式"
+    },
+    {
+      "name": "mouse_pointer_style_hint",
+      "value": "下面提供了多种鼠标样式，您可以根据需要切换鼠标样式，并查看鼠标指针的变化。"
+    },
+    {
+      "name": "mouse_setting",
+      "value": "鼠标设置"
+    },
+    {
+      "name": "mouse_setting_show",
+      "value": "是否显示"
+    },
+    {
+      "name": "mouse_setting_speed_title",
+      "value": "速度"
+    },
+    {
+      "name": "mouse_setting_style_title",
+      "value": "样式"
+    },
+    {
+      "name": "mouse_listener_title",
+      "value": "监听鼠标"
+    },
+    {
+      "name": "mouse_listener_open",
+      "value": "监听鼠标"
+    },
+    {
+      "name": "mouse_listener_open_hint",
+      "value": "启动后可以监听鼠标的输入事件"
+    },
+    {
+      "name": "mouse_event_info_title",
+      "value": "鼠标事件详情"
+    },
+    {
+      "name": "mouse_style_default",
+      "value": "默认"
+    },
+    {
+      "name": "mouse_style_east",
+      "value": "向东箭头"
+    },
+    {
+      "name": "mouse_style_west",
+      "value": "向西箭头"
+    },
+    {
+      "name": "mouse_style_south",
+      "value": "向南箭头"
+    },
+    {
+      "name": "mouse_style_north",
+      "value": "向北箭头"
+    },
+    {
+      "name": "mouse_style_west_east",
+      "value": "向西东箭头"
+    },
+    {
+      "name": "mouse_style_north_south",
+      "value": "向北南箭头"
+    },
+    {
+      "name": "mouse_style_north_east",
+      "value": "向东北箭头"
+    },
+    {
+      "name": "mouse_style_north_west",
+      "value": "向西北箭头"
+    },
+    {
+      "name": "mouse_style_south_east",
+      "value": "向东南箭头"
+    },
+    {
+      "name": "mouse_style_south_west",
+      "value": "向西南箭头"
+    },
+    {
+      "name": "mouse_style_north_east_south_west",
+      "value": "东北西南调整"
+    },
+    {
+      "name": "mouse_style_north_west_south_east",
+      "value": "西北东南调整"
+    },
+    {
+      "name": "mouse_style_cross",
+      "value": "准确选择"
+    },
+    {
+      "name": "mouse_style_copy",
+      "value": "拷贝"
+    },
+    {
+      "name": "mouse_style_forbid",
+      "value": "不可用"
+    },
+    {
+      "name": "mouse_style_color_sucker",
+      "value": "滴管"
+    },
+    {
+      "name": "mouse_style_hand_grabbing",
+      "value": "并拢的手"
+    },
+    {
+      "name": "mouse_style_hand_open",
+      "value": "张开的手"
+    },
+    {
+      "name": "mouse_style_hand_pointing",
+      "value": "手形指针"
+    },
+    {
+      "name": "mouse_style_help",
+      "value": "帮助选择"
+    },
+    {
+      "name": "mouse_style_move",
+      "value": "移动"
+    },
+    {
+      "name": "mouse_style_resize_left_right",
+      "value": "内部左右调整"
+    },
+    {
+      "name": "mouse_style_resize_up_down",
+      "value": "内部上下调整"
+    },
+    {
+      "name": "mouse_style_screenshot_choose",
+      "value": "截图十字准星"
+    },
+    {
+      "name": "mouse_style_screenshot_cursor",
+      "value": "截图"
+    },
+    {
+      "name": "mouse_style_text_cursor",
+      "value": "文本选择"
+    },
+    {
+      "name": "mouse_style_zoom_in",
+      "value": "放大"
+    },
+    {
+      "name": "mouse_style_zoom_out",
+      "value": "缩小"
+    },
+    {
+      "name": "mouse_style_mid_btn_east",
+      "value": "向东滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_west",
+      "value": "向西滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_south",
+      "value": "向南滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_north",
+      "value": "向北滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_south",
+      "value": "向北南滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_east",
+      "value": "向东北滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_west",
+      "value": "向西北滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_south_east",
+      "value": "向东南滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_south_west",
+      "value": "向西南滚动"
+    },
+    {
+      "name": "mouse_style_mid_btn_north_south_west_east",
+      "value": "四向锥形移动"
+    },
+    {
+      "name": "input_touch_event_listener",
+      "value": "监听全屏输入"
+    },
+    {
+      "name": "input_touch_event_hint",
+      "value": "启动后可以监听全局触屏事件"
+    },
+    {
+      "name": "input_touch_event_data_title",
+      "value": "全局触屏事件详情"
+    },
+    {
+      "name": "input_inject_back_event",
+      "value": "注入返回键"
+    },
+    {
+      "name": "input_inject_back_event_hint",
+      "value": "模拟返回按键的能力"
+    },
+    {
+      "name": "input_inject_back_text",
+      "value": "返回"
+    },
+    {
+      "name": "input_device_connect",
+      "value": "已连接"
+    },
+    {
+      "name": "input_device_disconnect",
+      "value": "已移除"
+    },
+    {
+      "name": "input_device_change_title",
+      "value": "监听设备热插拔"
+    },
+    {
+      "name": "input_device_status",
+      "value": "设备状态"
+    },
+    {
+      "name": "input_device_list_title",
+      "value": "设备列表"
+    },
+    {
+      "name": "input_device_id",
+      "value": "ID"
+    },
+    {
+      "name": "input_device_uniq",
+      "value": "标识"
+    },
+    {
+      "name": "input_device_style",
+      "value": "类型"
+    },
+    {
+      "name": "input_device_axis_ranges",
+      "value": "轴信息"
+    },
+    {
+      "name": "input_device_source_style",
+      "value": "输入源类型"
+    },
+    {
+      "name": "input_device_axis_type",
+      "value": "类型"
+    },
+    {
+      "name": "input_device_max",
+      "value": "最大值"
+    },
+    {
+      "name": "input_device_min",
+      "value": "最小值"
+    },
+    {
+      "name": "input_device_fuzz",
+      "value": "模糊值"
+    },
+    {
+      "name": "input_device_flat",
+      "value": "基准值"
+    },
+    {
+      "name": "input_device_resolution",
+      "value": "分辨率"
+    },
+    {
+      "name": "input_device_bus",
+      "value": "总线"
+    },
+    {
+      "name": "input_device_product",
+      "value": "产品"
+    },
+    {
+      "name": "input_device_vendor",
+      "value": "厂商"
+    },
+    {
+      "name": "input_device_version",
+      "value": "版本"
+    },
+    {
+      "name": "input_key_event",
+      "value": "输入按键事件"
+    },
+    {
+      "name": "input_key_event_listener",
+      "value": "监听按键事件"
+    },
+    {
+      "name": "input_key_event_hint",
+      "value": "按键事件由外设键盘等设备触发"
+    },
+    {
+      "name": "input_key_event_data",
+      "value": "按键事件详情"
     }
   ]
 }

@@ -13,17 +13,47 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import Logger from '../../../../../entry/src/main/ets/model/Logger'
 
+const TAG = '[Sample_CommonEventPublish]';
+const BUNDLE = 'CommonEventPublish_';
+
 export default function abilityTest() {
+  let driver = Driver.create();
+  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      Logger.info('it begin')
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+    /**
+     * 拉起发布静态订阅消息应用
+     */
+    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      Logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
+      let want = {
+        bundleName: "com.samples.staticsubscriber",
+        abilityName: "com.samples.commoneventpublisher.MainAbility"
+      };
+      delegator.startAbility(want, (err) => {
+        Logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
+      })
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
+      done();
+    })
+
+    /**
+     * 点击发布消息
+     */
+    it(BUNDLE + 'Publish_001', 0, async function (done) {
+      Logger.info(TAG, `${BUNDLE}Publish_001 begin`);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('btnPublish'));
+      let btnPublish = await driver.findComponent(ON.id('btnPublish'));
+      await btnPublish.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE}Publish_001 end`);
+      done();
     })
   })
 }

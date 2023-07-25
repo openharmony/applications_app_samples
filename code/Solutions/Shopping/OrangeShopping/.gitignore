@@ -1,8 +1,8 @@
-/node_modules
+/oh_modules
 /local.properties
 /.idea
 **/build
 /.hvigor
-**/node_modules
-**/package-lock.json
+**/oh_modules
+**/oh-package-lock.json5
 **/.preview

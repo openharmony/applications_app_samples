@@ -52,10 +52,10 @@ export struct ChoicePhotos {
     }
   }
 
-  @Builder showChoiceBuild(backGround: string, showNumber: number) {
+  @Builder showChoiceBuild($$: { backGround, showNumber }) {
     Column() {
-      Text(showNumber === 0 ? '' : `${showNumber}`)
-        .id(`select${showNumber}`)
+      Text($$.showNumber === 0 ? '' : `${$$.showNumber}`)
+        .id(`select${$$.showNumber}`)
         .fontSize(14)
         .fontColor(Color.White)
         .height(20)
@@ -66,7 +66,7 @@ export struct ChoicePhotos {
     .margin({ top: 6, right: 6 })
     .borderRadius(15)
     .border({ width: 1, style: BorderStyle.Solid, color: Color.White })
-    .backgroundColor(backGround)
+    .backgroundColor($$.backGround)
   }
 
   async getFileAssetsFromType(mediaType: mediaLibrary.MediaType) {
@@ -181,6 +181,8 @@ export struct ChoicePhotos {
                   } else {
                     prompt.showDialog({ message: $r('app.string.user_tip') })
                     this.choiceMedias = []
+                    this.isShowChoices = new Array(this.medias.length).fill(false)
+                    this.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
                   }
                 })
               if (this.whichShow[index]) {
@@ -212,9 +214,9 @@ export struct ChoicePhotos {
                     .borderRadius(10)
                     .objectFit(ImageFit.Fill)
                   if (this.isShowChoices[index]) {
-                    this.showChoiceBuild('#fffc0303', this.choiceMedias.indexOf(item) + 1)
+                    this.showChoiceBuild({ backGround: '#fffc0303', showNumber: this.choiceMedias.indexOf(item) + 1 })
                   } else {
-                    this.showChoiceBuild('#ffb7b4b4', 0)
+                    this.showChoiceBuild({ backGround:'#ffb7b4b4', showNumber: 0 })
                   }
                 }
                 .width('100%')
@@ -277,7 +279,7 @@ export struct ChoicePhotos {
               }
               .width('100%')
             }
-          })
+          }, item => item.uri )
         }
         .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr')
         .columnsGap(8)

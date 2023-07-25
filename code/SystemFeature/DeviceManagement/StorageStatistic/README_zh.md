@@ -47,7 +47,7 @@ entry/src/main/ets/
 ### 具体实现
 
 * 本示例使用DataPanel组件展示不同种类的应用存储信息，通过 Bundle模块来获取不同应用的包名与应用名等信息，使用应用空间统计来查询当前设备的存储使用情况，使用卷管理来查询可用卷存储使用情况。
-* 源码链接：[QueryStorageData.ets](code/SystemFeature/DeviceManagement/StorageStatistic/entry/src/main/ets/common/QueryStorageData.ets)，[QueryVolumeData.ets](code/SystemFeature/DeviceManagement/StorageStatistic/entry/src/main/ets/common/QueryVolumeData.ets)
+* 源码链接：[QueryStorageData.ets](entry/src/main/ets/common/QueryStorageData.ets)，[QueryVolumeData.ets](entry/src/main/ets/common/QueryVolumeData.ets)
 * 接口参考：[DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md)，[@ohos.file.storageStatistics](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md)，[@ohos.file.volumeManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md)
 
 ### 相关权限
@@ -55,6 +55,8 @@ entry/src/main/ets/
 1. 允许获取存储信息与可用卷信息：[ohos.permission.STORAGE_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionstorage_manager)
 
 2. 允许获取已安装应用的信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+
+3. 允许应用读取已安装应用列表：[ohos.permission.GET_INSTALLED_BUNDLE_LIST](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_installed_bundle_list)
 
 ### 依赖
 
@@ -64,7 +66,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9。
+2. 本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.1。
 
 3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 

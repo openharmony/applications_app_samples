@@ -60,6 +60,10 @@ export default function abilityTest() {
       let allowBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
       await allowBtn.click();
       await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.allow'))));
+      let allowBtnSecond = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
+      await allowBtnSecond.click();
+      await DRIVER.delayMs(1000);
       done();
       hilog.info(0xF811, 'testTag', 'GetPermission_001 end');
     })

@@ -11,6 +11,22 @@
     {
       "name": "ShareComponentAbility_label",
       "value": "label"
+    },
+    {
+      "name": "textShare_fail",
+      "value": "文本分享应用启动失败！"
+    },
+    {
+      "name": "textEdit_fail",
+      "value": "文本编辑应用启动失败！"
+    },
+    {
+      "name": "edit",
+      "value": "文本编辑"
+    },
+    {
+      "name": "text",
+      "value": "文本分享"
     }
   ]
 }

@@ -17,7 +17,7 @@
   "module": {
     "name": "publish",
     "type": "feature",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:publish_desc",
     "mainElement": "com.samples.commoneventpublisher.MainAbility",
     "deviceTypes": [
@@ -27,17 +27,16 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "abilities": [
       {
         "name": "com.samples.commoneventpublisher.MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [

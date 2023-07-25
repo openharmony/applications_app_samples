@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "pay_now",
+      "value": "立即支付"
+    },
+    {
+      "name": "enter_password",
+      "value": "请输入支付密码"
+    }
+  ]
+}

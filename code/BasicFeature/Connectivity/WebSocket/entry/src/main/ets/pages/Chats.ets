@@ -61,8 +61,13 @@ struct Chats {
   }
 
   onBind(ipAddress: string) {
-    this.ipAddress = ipAddress
-    this.controller.close()
+    let verificationIp = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
+    if (verificationIp.test(ipAddress)) {
+      this.ipAddress = `ws://${ipAddress}/string`
+      this.controller.close()
+    } else {
+      prompt.showToast({ message: '请输入正确的IP地址！', duration: 1500, bottom: 420 });
+    }
   }
 
   onConnect() {
@@ -75,6 +80,7 @@ struct Chats {
     socket.on('open', (err, value) => {
       // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
       prompt.showToast({ message: '连接成功,可以聊天了！', duration: 1500 });
+      this.isConnect = true
     })
     socket.on('message', (err, value) => {
       Logger.info(TAG, `on message, value = ${value}`);
@@ -90,6 +96,7 @@ struct Chats {
     socket.off('message');
     prompt.showToast({ message: '连接已断开！', duration: 1500 });
     socket.close();
+    this.isConnect = false
   }
 
   sendMessage() {
@@ -116,8 +123,7 @@ struct Chats {
         .backgroundColor('#0D9FFB')
         .fontWeight(FontWeight.Bold)
       TopBar({ isConnect: $isConnect, connect: () => {
-        this.isConnect = !this.isConnect
-        if (this.isConnect) {
+        if (!this.isConnect) {
           this.onConnect();
         } else {
           this.disConnect();

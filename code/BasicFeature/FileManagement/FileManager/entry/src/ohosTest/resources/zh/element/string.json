@@ -15,6 +15,10 @@
     {
       "name": "permit",
       "value": "允许"
+    },
+    {
+      "name": "label_confirm",
+      "value": "确定"
     }
   ]
 }

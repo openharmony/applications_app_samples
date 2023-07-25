@@ -19,6 +19,27 @@
           "value": "SystemCapability"
         },
         {
+          "value": "Battery Information"
+        },
+        {
+          "value": "Device Information"
+        },
+        {
+          "value": "Input Consumer"
+        },
+        {
+          "value": "Input Device"
+        },
+        {
+          "value": "Input Event"
+        },
+        {
+          "value": "Input Key Event"
+        },
+        {
+          "value": "Mouse Pointer"
+        },
+        {
           "value": "System Parameter"
         }
       ]

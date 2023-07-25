@@ -39,7 +39,13 @@ export default function abilityTest(){
       //找到娱乐卡片并且长按
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Entertainment_card'))));
       let app=await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.Entertainment_card'))));
-      await app.longClick();
+      // 获取文字控件边框
+      let rect = await app.getBounds();
+      // 计算文字控件高度
+      let height = rect.bottom - rect.top;
+      // 获取文字控件中心点
+      let point = await app.getBoundsCenter();
+      await DRIVER.longClick(point.x, point.y - height);
       await DRIVER.delayMs(1000);
       // 点击列表中的服务卡片
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Service_card'))));

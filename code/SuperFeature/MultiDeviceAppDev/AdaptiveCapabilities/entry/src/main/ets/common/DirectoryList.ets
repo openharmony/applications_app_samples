@@ -47,7 +47,7 @@ struct DirectoryList {
               url: item.uri
             })
           });
-        })
+        });
       }
     }
     .width('100%')

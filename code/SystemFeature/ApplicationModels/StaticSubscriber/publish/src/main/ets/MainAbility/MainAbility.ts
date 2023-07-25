@@ -18,38 +18,38 @@ import Logger from '../../../../../entry/src/main/ets/model/Logger'
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info('MainAbility onCreate')
+    Logger.info('MainAbility onCreate');
   }
 
   onDestroy() {
-    Logger.info('MainAbility onDestroy')
+    Logger.info('MainAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Logger.info('MainAbility onWindowStageCreate')
+    Logger.info('MainAbility onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)
+        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
         return
       }
-      Logger.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
+      Logger.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
     })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info('MainAbility onWindowStageDestroy')
+    Logger.info('MainAbility onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info('MainAbility onForeground')
+    Logger.info('MainAbility onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info('MainAbility onBackground')
+    Logger.info('MainAbility onBackground');
   }
 }

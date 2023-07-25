@@ -59,9 +59,11 @@ export default function abilityTest() {
       let resourceManager = ability.context.resourceManager;
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.accept'))));
       let btnAccept = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.accept'))));
-      await driver.delayMs(200);
-      await btnAccept.click();
-      await driver.delayMs(200);
+      while (btnAccept !== null) {
+        await btnAccept.click();
+        await driver.delayMs(500);
+        btnAccept = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.accept'))));
+      }
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 end');
     })
 
@@ -117,9 +119,10 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shot'))));
       let shot = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.shot'))));
       await shot.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(400);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shot_prompt'))));
       // 返回
+      await driver.delayMs(3000);
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('shareLinkResource'));
@@ -178,9 +181,10 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shot'))));
       let shot = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.shot'))));
       await shot.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(400);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shot_prompt'))));
       // 返回
+      await driver.delayMs(3000);
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('shareFileResource'));
@@ -239,9 +243,10 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shot'))));
       let shot = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.shot'))));
       await shot.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(400);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shot_prompt'))));
       // 返回
+      await driver.delayMs(3000);
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('shareOtherResource'));

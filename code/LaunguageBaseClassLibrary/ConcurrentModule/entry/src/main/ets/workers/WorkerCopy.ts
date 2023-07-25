@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import worker from '@ohos.worker';
+import type { ThreadWorkerGlobalScope } from '@ohos.worker';
+import Logger from '../common/Logger';
+import fs from '@ohos.file.fs';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+const TAG: string = '[ConcurrentModule].[WorkerCopy]';
+
+workerPort.onmessage = function (message): void {
+  let data = message.data;
+  let srcPath = null;
+  let destPath = null;
+  let fileNames = data.fileNames;
+  for (let i = 0; i < fileNames.length; i++) {
+    srcPath = data.srcDir + '/' + fileNames[i];
+    Logger.info(TAG, ' srcPath ' + srcPath);
+    destPath = data.destDir + '/' + fileNames[i];
+    Logger.info(TAG, ' destPath ' + destPath);
+    try {
+      fs.copyFileSync(srcPath, destPath);
+      let countTest = fs.listFileSync(data.destDir).length;
+      Logger.info(TAG, `Worker workerInstance::onmessage receive countTest: ${countTest}`);
+    } catch (e) {
+      Logger.error(TAG, 'WorkerCopy::copyFile has failed for: ' + JSON.stringify(e));
+    }
+  }
+  let listFileNames = [];
+  listFileNames.length = 0;
+  try {
+    let count = fs.listFileSync(data.destDir).length;
+    let listFiles = fs.listFileSync(data.destDir);
+    Logger.info(TAG, 'listFile succeed');
+    for (let i = 0; i < listFiles.length; i++) {
+      listFileNames[i] = listFiles[i];
+      Logger.info(TAG, `Worker workerInstance::onmessage receive listFileNames: ${listFileNames[i]}`);
+    }
+    workerPort.postMessage({
+      count: count,
+      strFlag: true,
+      listFileNames: listFileNames
+    });
+    Logger.info(TAG, 'WorkerCopy::onmessage thread post message successfully');
+  } catch (e) {
+    Logger.error(TAG, 'WorkerCopy::onmessage has failed for: ' + JSON.stringify(e));
+  }
+};
+
+workerPort.onmessageerror = async function (message): Promise<void> {
+  Logger.error(TAG, 'WorkerCopy::onmessageerror : ' + JSON.stringify(message));
+};
+
+workerPort.onerror = function (e): void {
+  Logger.error(TAG, 'WorkerCopy::onerror : ' + JSON.stringify(e));
+};

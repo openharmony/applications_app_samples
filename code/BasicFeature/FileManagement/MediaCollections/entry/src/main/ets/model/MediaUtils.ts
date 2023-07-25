@@ -61,10 +61,9 @@ class MediaUtils {
     return this.mediaList
   }
 
-  deleteFile(media: any) {
-    let uri = media.uri
-    Logger.info(this.tag, `deleteFile,uri = ${uri}`)
-    return this.mediaLib.deleteAsset(uri)
+  deleteFile(fileAsset: mediaLibrary.FileAsset): Promise<void> {
+    Logger.info(this.tag, `deleteFile,displayName=${fileAsset.displayName},uri = ${fileAsset.uri}`);
+    return fileAsset.trash(true);
   }
 
   onDateChange(audioCallback: () => void, videoCallback: () => void) {

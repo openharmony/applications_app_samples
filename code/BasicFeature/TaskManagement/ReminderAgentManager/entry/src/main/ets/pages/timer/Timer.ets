@@ -14,7 +14,7 @@
  */
 
 import notification from '@ohos.notification'
-import reminderAgent from '@ohos.reminderAgent'
+import reminderAgent from '@ohos.reminderAgentManager';
 import vibrator from '@ohos.vibrator'
 import AudioPlayer from '../../util/AudioPlayer'
 import Constant from '../../common//Constant'
@@ -120,7 +120,7 @@ export struct Timer {
               .margin({ right: 100 })
               .objectFit(ImageFit.Fill)
               .onClick(async () => {
-                await this.reset()
+                await this.reset(true)
               })
             Image(this.startImg)
               .width(48)
@@ -227,7 +227,7 @@ export struct Timer {
     await vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME)
   }
 
-  async reset() {
+  async reset(isCancel?: boolean) {
     clearInterval(this.timer)
     clearTimeout(this.audioId)
     clearTimeout(this.vibratorId)
@@ -244,7 +244,9 @@ export struct Timer {
     this.pickerSecond = 0
     this.startImg = $r('app.media.ic_public_start')
     this.resetImg = $r('app.media.ic_countdown_reset')
-    await reminderAgent.cancelReminder(this.reminderId)
+    if (isCancel) {
+      await reminderAgent.cancelReminder(this.reminderId);
+    }
     await vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME)
   }
 }

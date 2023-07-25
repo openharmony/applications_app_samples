@@ -15,7 +15,7 @@
 
 import notification from '@ohos.notification'
 import prompt from '@ohos.prompt'
-import reminderAgent from '@ohos.reminderAgent'
+import reminderAgent from '@ohos.reminderAgentManager';
 import vibrator from '@ohos.vibrator'
 import AudioPlayer from './AudioPlayer'
 import Constant from '../common/Constant'

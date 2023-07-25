@@ -124,7 +124,7 @@ export struct AudioItem {
         .backgroundColor('#FF0000')
         .margin({ left: 5 })
         .onClick(() => {
-          Logger.info(TAG, 'delete clicked');
+          Logger.info(TAG, 'Recorder delete clicked ,id= deleteAudio' + this.index);
           this.clickItem(this.record, 'delete');
           this.leftSliderIndex = -1;
         })
@@ -153,7 +153,7 @@ export struct AudioItem {
       }))
     )
     .onClick(() => {
-      Logger.info(TAG, `cilck,checkState=${this.checkState}, isSwipeLeft=${this.index == this.leftSliderIndex}`);
+      Logger.info(TAG, `cilck,checkState=${this.checkState}, this.index = ${this.index}, isSwipeLeft=${this.index == this.leftSliderIndex}`);
       if (this.checkState) {
         this.checkItem(this.index);
         return;

@@ -120,10 +120,8 @@ export default class MediaUtils {
     return albums
   }
 
-  deleteFile(media: any) {
-    let uri = media.uri
-    Logger.info(this.tag, `deleteFile,uri = ${uri}`)
-    return this.mediaTest.deleteAsset(uri)
+  deleteFile(fileAsset: mediaLibrary.FileAsset): Promise<void> {
+    return fileAsset.trash(true);
   }
 
   onDateChange(callback: () => void) {

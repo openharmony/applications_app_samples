@@ -14,7 +14,8 @@
 */
 
 import mediaQuery from '@ohos.mediaquery';
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.promptAction';
+import common from '@ohos.app.ability.common';
 import image from '@ohos.multimedia.image'
 import { RequestRes, RequestResContent } from '../model/HttpModel'
 import { httpRequest } from '../net/HttpRequest'
@@ -229,6 +230,7 @@ export struct ButtonDialogBuilder {
             Text($r('app.string.cancel'))
               .fontSize($r('app.float.fontSize_twenty'))
               .fontWeight(FontWeight.Normal)
+              .id('cancellation')
           }
           .margin({
             top: $r('app.float.margin_twenty'),
@@ -258,6 +260,9 @@ struct DialogLayoutComponent {
   private shareVideo: () => void
   private contextCaller?: any
   private srcImage: string = ''
+  // 新增分享模板内容
+  private context = getContext(this) as common.UIAbilityContext;
+  private messages: string = 'It is a shared message';
 
   convertResourceToString(resource: Resource) {
     return this.contextCaller.resourceManager.getStringSync(resource.id)
@@ -301,6 +306,38 @@ struct DialogLayoutComponent {
             } else if (item.index === 4) { // 应用内文件分享的入口
               this.openDialog()
               this.controller.close()
+            } else if (item.index === 5) {
+              this.controller.close();
+              this.context.startAbility({
+                bundleName: "ohos.samples.customshare",
+                abilityName: "TextReceiveAbility",
+                moduleName: "textShare",
+                parameters: {
+                  'shareMessages': this.messages,
+                  'sharedFlag': true
+                }
+              }, (err, data) => {
+                Logger.info(TAG, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
+                if (err.code != 0) {
+                  prompt.showToast({ message: $r('app.string.textShare_fail'), duration: 3000 });
+                }
+              });
+            } else if (item.index === 6) {
+              this.controller.close();
+              this.context.startAbility({
+                bundleName: "ohos.samples.customshare",
+                abilityName: "EditTextAbility",
+                moduleName: "textEdit",
+                parameters: {
+                  'shareMessages': this.messages,
+                  'sharedFlag': true
+                }
+              }, (err, data) => {
+                Logger.info(TAG, `startAbility, err: ${JSON.stringify(err)}`, `data: ${JSON.stringify(data)}`);
+                if (err.code != 0) {
+                  prompt.showToast({ message: $r('app.string.textEdit_fail'), duration: 3000 });
+                }
+              });
             }
           })
         }, item => item.data.id)

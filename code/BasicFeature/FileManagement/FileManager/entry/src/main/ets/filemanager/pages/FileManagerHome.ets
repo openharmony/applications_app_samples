@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.promptAction'
-import router from '@ohos.router'
-import { FileManager } from '@ohos/feature-file-manager'
+import prompt from '@ohos.promptAction';
+import router from '@ohos.router';
+import { FileManager } from '@ohos/feature-file-manager';
+import { Logger } from '../../common/Common';
+import MyWatcher from '../fileFs/MyWatcher';
+import fs from '@ohos.file.fs';
 
 class MainListItemModel {
   image: Resource
   title: Resource
   routerUrl: string
   isReady?: boolean = true
+  isFileWatcher?: boolean = false
 }
 
 const ONE_SECOND: number = 1000
@@ -32,7 +36,7 @@ const MAIN_LIST_ITEMS: MainListItemModel[] = [
     routerUrl: 'filemanager/pages/image/ImageFileList'
   },
   {
-    image: $r("app.media.video"),
+    image: $r('app.media.video'),
     title: $r('app.string.video'),
     routerUrl: 'filemanager/pages/video/VideoFileList' },
   {
@@ -55,13 +59,36 @@ const MAIN_LIST_ITEMS: MainListItemModel[] = [
     image: $r('app.media.my_phone'),
     title: $r('app.string.my_phone'),
     routerUrl: 'filemanager/pages/MyPhone/MyPhone'
+  },
+  {
+    image: $r('app.media.watcher'),
+    title: $r('app.string.watcherFileText'),
+    routerUrl: 'pages/WatcherFile',
+    isFileWatcher: true
   }
 ]
 
 @Component
 export default struct FileManagerHome {
+  private baseDir: string = AppStorage.Get('sanBoxFileDir');
+
   aboutToAppear() {
-    FileManager.requestPermission(getContext(this))
+    FileManager.requestPermission(getContext(this));
+  }
+
+  aboutToDisappear(): void {
+    let filePathDir = this.baseDir + '/watcherDir';
+    try {
+      let isDirectory = fs.statSync(filePathDir).isDirectory();
+      if (isDirectory) {
+        fs.rmdirSync(filePathDir);
+        AppStorage.SetOrCreate('eventLog', 'unknown');
+        AppStorage.SetOrCreate('fileNameLog', 'unknown');
+        AppStorage.SetOrCreate('cookieLog', 'unknown');
+      }
+    } catch (e) {
+      Logger.error(`remove fileRemove has failed for: {message: ${e.message}, code: ${e.code}}`);
+    }
   }
 
   build() {
@@ -75,7 +102,7 @@ export default struct FileManagerHome {
       List() {
         ForEach(MAIN_LIST_ITEMS, (listItem: MainListItemModel, no: number) => {
           ListItem() {
-            MainListItemComponent({ mainListItem: listItem })
+            MainListItemComponent({ mainListItem: listItem });
           }
           .id('ListItem' + no)
         })
@@ -90,10 +117,30 @@ export default struct FileManagerHome {
 
 @Component
 struct MainListItemComponent {
-  private mainListItem: MainListItemModel
+  private mainListItem: MainListItemModel;
+  myWatcher: MyWatcher = new MyWatcher();
+  private filePathDir: string = '';
+  private baseDir: string = AppStorage.Get('sanBoxFileDir');
 
   @Styles itemPressedStyles() {
     .backgroundColor($r('app.color.item_pressed'))
+  }
+
+  readyForWatcher(): void {
+    this.filePathDir = this.baseDir + '/watcherDir';
+    if (!fs.accessSync(this.filePathDir)) {
+      fs.mkdirSync(this.filePathDir);
+    }
+    let isDirectory = fs.statSync(this.filePathDir).isDirectory();
+    if (isDirectory) {
+      fs.rmdirSync(this.filePathDir);
+      AppStorage.SetOrCreate('eventLog', 'unknown');
+      AppStorage.SetOrCreate('fileNameLog', 'unknown');
+      AppStorage.SetOrCreate('cookieLog', 'unknown');
+    }
+    AppStorage.Set('eventArray', ['test']);
+    AppStorage.SetOrCreate('addIndex', 10);
+    this.myWatcher.readyFilesToWatcher(this.filePathDir);
   }
 
   build() {
@@ -111,7 +158,7 @@ struct MainListItemComponent {
 
       Blank()
 
-      Image($r("app.media.right_arrow"))
+      Image($r('app.media.right_arrow'))
         .width(12)
         .height(24)
         .margin({ right: 6 })
@@ -131,6 +178,9 @@ struct MainListItemComponent {
           message: $r('app.string.not_supported_tip')
         })
         return
+      }
+      if (this.mainListItem.isFileWatcher) {
+        this.readyForWatcher();
       }
       router.push({ url: this.mainListItem.routerUrl })
     })

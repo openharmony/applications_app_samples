@@ -13,44 +13,103 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
-import hilog from '@ohos.hilog'
+import Ability from '@ohos.app.ability.UIAbility';
+import hilog from '@ohos.hilog';
 
+let myContext = null;
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
-    AppStorage.SetOrCreate('context', this.context)
-    hilog.info(0x0000, 'Sample', '%{public}s', 'onCreate')
+    AppStorage.SetOrCreate('context', this.context);
+    hilog.info(0x0000, 'Sample', '%{public}s', 'onCreate');
   }
 
   onDestroy() {
-    hilog.info(0x0000, 'Sample', '%{public}s', 'onDestroy')
+    hilog.info(0x0000, 'Sample', '%{public}s', 'onDestroy');
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'Sample', '%{public}s', 'onWindowStageCreate')
+    hilog.info(0x0000, 'Sample', '%{public}s', 'onWindowStageCreate');
 
-    windowStage.loadContent("pages/Index", (err, data) => {
+    let filesDir = this.context.filesDir;
+    console.info('sanBoxFileDir = ' + filesDir);
+    AppStorage.SetOrCreate('sanBoxFileDir', filesDir);
+    myContext = this.context;
+
+    this.getResourceStr();
+
+    windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'Sample', '%{public}s', 'Failed to load the content. Cause:' + JSON.stringify(err))
-        return
+        hilog.error(0x0000, 'Sample', '%{public}s', 'Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
       }
-      hilog.info(0x0000, 'Sample', '%{public}s', 'Succeeded in loading the content. Data: ' + JSON.stringify(data))
+      hilog.info(0x0000, 'Sample', '%{public}s', 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
     })
+  }
+
+  getResourceStr(): void {
+    try {
+      myContext.resourceManager.getStringValue($r('app.string.isDelFile').id)
+        .then(value => {
+          AppStorage.SetOrCreate('isDelFile', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.fileContent1').id)
+        .then(value => {
+          AppStorage.SetOrCreate('fileContent1', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.fileContent2').id)
+        .then(value => {
+          AppStorage.SetOrCreate('fileContent2', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.fileContent3').id)
+        .then(value => {
+          AppStorage.SetOrCreate('fileContent3', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+
+      myContext.resourceManager.getStringValue($r('app.string.fileContent4').id)
+        .then(value => {
+          AppStorage.SetOrCreate('fileContent4', value);
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
+        })
+        .catch(error => {
+          hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
+        });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'callback getStringValue failed. Cause: %{public}s', error.message ?? '');
+    }
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    hilog.info(0x0000, 'Sample', '%{public}s', "MainAbility onWindowStageDestroy")
+    hilog.info(0x0000, 'Sample', '%{public}s', 'MainAbility onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    hilog.info(0x0000, 'Sample', '%{public}s', "MainAbility onForeground")
+    hilog.info(0x0000, 'Sample', '%{public}s', 'MainAbility onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    hilog.info(0x0000, 'Sample', '%{public}s', "MainAbility onBackground")
+    hilog.info(0x0000, 'Sample', '%{public}s', 'MainAbility onBackground');
   }
 }

@@ -283,6 +283,18 @@
     {
       "name": "Radio_GridRow_Sg_TMB",
       "value": "Second Grid 上中下"
+    },
+    {
+      "name": "multiScene_tabs_app",
+      "value": "应用"
+    },
+    {
+      "name": "multiScene_tabs_play",
+      "value": "播放"
+    },
+    {
+      "name": "multiScene_tabs_me",
+      "value": "我的"
     }
   ]
 }

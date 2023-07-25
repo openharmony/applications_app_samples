@@ -20,7 +20,7 @@ import window from '@ohos.window';
 import { Hypium } from '@ohos/hypium';
 import { logger } from '../util/Logger';
 
-const TAG: string = 'TestAbility';
+const TAG: string = '[Sample_TestAbility]';
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {

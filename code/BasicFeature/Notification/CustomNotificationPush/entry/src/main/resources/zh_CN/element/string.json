@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "自定义通知推送"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "自定义通知推送"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "自定义通知推送"
+    },
+    {
+      "name": "basic_notification",
+      "value": "基本类型通知"
+    },
+    {
+      "name": "long_text_notification",
+      "value": "长文本类型通知"
+    },
+    {
+      "name": "multiline_notification",
+      "value": "多行文本类型通知"
+    },
+    {
+      "name": "picture_notification",
+      "value": "图片类型通知"
+    },
+    {
+      "name": "notification_management_title",
+      "value": "通知管理"
+    },
+    {
+      "name": "notification_filter_text",
+      "value": "开启通知过滤"
+    }
+  ]
+}

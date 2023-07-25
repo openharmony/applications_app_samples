@@ -56,32 +56,39 @@ export default function abilityTest() {
     it(BUNDLE + 'CreateQRCodeScanFunction_001', 0, async function () {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateQRCodeScanFunction_001 begin')
-      let driver = Driver.create()
-      await driver.delayMs(3000)
+      let driver = Driver.create();
+      await driver.delayMs(3000);
       // 允许打开相册
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))))
       let firstButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))))
       await driver.delayMs(1000);
-      await firstButton.click()
+      await firstButton.click();
       await driver.delayMs(1000);
       // 允许访问媒体和文件
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))))
       let secondButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))))
       await driver.delayMs(1000);
-      await secondButton.click()
+      await secondButton.click();
+      await driver.delayMs(1000);
+      // 允许访问图片和视频
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_allow'))));
+      let agreeBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_allow'))));
+      await driver.delayMs(1000);
+      await agreeBtn.click();
       await driver.delayMs(1000);
       // 点击相册
-      let openImage = await driver.findComponents(ON.type('Image'))
-      await openImage[6].click()
+      await driver.assertComponentExist(ON.id('scanPhoto'));
+      let scanPhoto = await driver.findComponent(ON.id('scanPhoto'));
+      await scanPhoto.click();
       await driver.delayMs(1000)
       // 选择一张二维码图片
-      let chooseImage = await driver.findComponents(ON.type('Image'))
+      await driver.assertComponentExist(ON.type('Image'));
+      let chooseImage = await driver.findComponents(ON.type('Image'));
       await chooseImage[6].click()
       await driver.delayMs(1000)
-      let checkImage = await driver.findComponents(ON.type('Image'))
-      await checkImage[6].click()
-      await driver.delayMs(1000)
-      await driver.pressBack()
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_finish'))));
+      let finish = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_finish'))));
+      await finish.click();
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateQRCodeScanFunction_001 end')
     })

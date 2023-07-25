@@ -80,6 +80,9 @@ export default function abilityTest() {
       await DRIVER.assertComponentExist(ON.text('允许'));
       let allowBtn = await DRIVER.findComponent(ON.text('允许'));
       await allowBtn.click();
+      await DRIVER.delayMs(1000);
+      await allowBtn.click();
+      await DRIVER.delayMs(1000);
       done();
       hilog.info(0x0000, 'testTag', 'GetPermission_001 end');
     })

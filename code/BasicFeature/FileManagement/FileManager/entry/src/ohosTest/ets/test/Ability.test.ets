@@ -36,16 +36,13 @@ const MOCK: string = 'mock_'
 const TEST_NUM = 5
 const TIME_OUT = 10000
 let ability: UIAbility = undefined
+let file: mediaLibrary.FileAsset[] = [];
 
 // 判断文件是否相同
 async function fileAssertEqual(firstFile: mediaLibrary.FileAsset, secondFile: mediaLibrary.FileAsset): Promise<boolean> {
-  Logger.info(TAG, 'firstFile displayName = ' + firstFile.displayName + ' and secondFile displayName = ' + secondFile.displayName)
-  let displayName = await firstFile.displayName === secondFile.displayName
-  Logger.info(TAG, 'firstFile dateAdded = ' + firstFile.dateAdded + ' and secondFile dateAdded = ' + secondFile.dateAdded)
-  let dateAdded = await firstFile.dateAdded === secondFile.dateAdded
-  Logger.info(TAG, 'firstFile albumName = ' + firstFile.albumName + ' and secondFile albumName = ' + secondFile.albumName)
-  let albumName = await firstFile.albumName === secondFile.albumName
-  return displayName && dateAdded && albumName
+  Logger.info(TAG, 'firstFile uri = ' + firstFile.uri + ' and secondFile uri = ' + secondFile.uri);
+  let uri = await firstFile.uri === secondFile.uri;
+  return uri;
 }
 // 检查页面是否正常显示
 async function checkPage(library: mediaLibrary.MediaLibrary, driver: Driver, type: mediaLibrary.MediaType) {
@@ -86,6 +83,13 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function abilityTest() {
+  // 删除测试过程中创建的文件
+  afterAll(async function () {
+    for (let i = 0; i < file.length; i++) {
+      await FileManager.deleteFileAsset(file[i]);
+    }
+  })
+
   describe('ActsAbilityTest', function () {
     /**
      * 打开应用
@@ -124,10 +128,632 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction requestPermission')
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.permit'))))
       let btnStart = await driver.findComponent(ON.text(await getResourceString($r('app.string.permit'))))
-      // await driver.assertComponentExist(ON.text('允许'))
-      // let btnStart = await driver.findComponent(ON.text('允许'))
       await btnStart.click()
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction end')
+    })
+
+    /**
+     * 点击主页中监听文件
+     */
+    it(BUNDLE + 'WatcherCopyFunction_001', 0, async function () {
+      Logger.info(TAG, BUNDLE + 'WatcherCopyFunction_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      // 打开应用能够显示List中内容，点击图片
+      await driver.assertComponentExist(ON.type('List'))
+      await driver.assertComponentExist(ON.type('ListItem').id('ListItem6'))
+      let btnStart = await driver.findComponent(ON.type('ListItem').id('ListItem6'))
+      await btnStart.click()
+      await driver.delayMs(1000)
+      Logger.info(TAG, BUNDLE + 'WatcherCopyFunction_001 end')
+    })
+
+    /**
+     * 添加监听之前添加文件
+     */
+    it('File_Fs_addFile_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_addFile_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('addFile'));
+      let addFile = await driver.findComponent(ON.id('addFile'));
+      await addFile.click();
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.assertComponentExist(ON.text('event: unknown'));
+      await driver.assertComponentExist(ON.text('fileName: unknown'));
+      await driver.assertComponentExist(ON.text('cookie: unknown'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_addFile_001 end');
+    })
+
+    /**
+     * 添加监听之前修改文件
+     */
+    it('File_Fs_modifyFile_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_modifyFile_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.assertComponentExist(ON.id('editFile'));
+      let editFile = await driver.findComponent(ON.id('editFile'));
+      await editFile.click();
+      await driver.assertComponentExist(ON.text('TestFile10'));
+      await driver.assertComponentExist(ON.text('size: 12B'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_modifyFile_001 end');
+    })
+
+    /**
+     * 修改文件名
+     */
+    it('File_Fs_modifyFileName_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_modifyFileName_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileName'));
+      let fileName = await driver.findComponent(ON.id('fileName'));
+      await fileName.clearText();
+      await fileName.inputText('newFileName');
+      await driver.assertComponentExist(ON.id('save'));
+      let save = await driver.findComponent(ON.id('save'));
+      await save.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('backWatcherFile'));
+      let back = await driver.findComponent(ON.id('backWatcherFile'));
+      await back.click();
+      Logger.info(TAG, 'File_Fs_modifyFileName_001 end');
+    })
+
+    /**
+     * 查看已修改文件名
+     */
+    it('File_Fs_modifyFile_002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_modifyFile_002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('event: unknown'));
+      await driver.assertComponentExist(ON.text('fileName: unknown'));
+      await driver.assertComponentExist(ON.text('cookie: unknown'));
+      await driver.delayMs(1000);
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.assertComponentExist(ON.id('editFile'));
+      let editFile = await driver.findComponent(ON.id('editFile'));
+      await editFile.click();
+      await driver.assertComponentExist(ON.text('newFileName'));
+      await driver.assertComponentExist(ON.text('size: 12B'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_modifyFile_002 end');
+    })
+
+    /**
+     * 修改文件内容
+     */
+    it('File_Fs_modifyFileContent_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_modifyFileContent_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileContent'));
+      let fileContent = await driver.findComponent(ON.id('fileContent'));
+      await fileContent.clearText();
+      await fileContent.inputText('newFileContent');
+      await driver.assertComponentExist(ON.id('save'));
+      let save = await driver.findComponent(ON.id('save'));
+      await save.click();
+      await driver.assertComponentExist(ON.id('backWatcherFile'));
+      let back = await driver.findComponent(ON.id('backWatcherFile'));
+      await back.click();
+      Logger.info(TAG, 'File_Fs_modifyFileContent_001 end');
+    })
+
+    /**
+     * 添加监听之前删除文件
+     */
+    it('File_Fs_deleteFile_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_deleteFile_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('event: unknown'));
+      await driver.assertComponentExist(ON.text('fileName: unknown'));
+      await driver.assertComponentExist(ON.text('cookie: unknown'));
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('deleteFile'));
+      let deleteFile = await driver.findComponent(ON.id('deleteFile'));
+      await deleteFile.click();
+      await driver.assertComponentExist(ON.id('deleteWatcher'));
+      let deleteWatcher = await driver.findComponent(ON.id('deleteWatcher'));
+      await deleteWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_deleteFile_001 end');
+    })
+
+    /**
+     * 准备待修改的文件
+     */
+    it('backward_001', 1, async function () {
+      Logger.info(TAG, 'backward_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('event: unknown'));
+      await driver.assertComponentExist(ON.text('fileName: unknown'));
+      await driver.assertComponentExist(ON.text('cookie: unknown'));
+      await driver.assertComponentExist(ON.id('addFile'));
+      let addFile = await driver.findComponent(ON.id('addFile'));
+      await addFile.click();
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'backward_001 end');
+    })
+
+    /**
+     * 修改文件后撤销
+     */
+    it('File_Fs_backward_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_backward_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.assertComponentExist(ON.id('editFile'));
+      let editFile = await driver.findComponent(ON.id('editFile'));
+      await editFile.click();
+      await driver.assertComponentExist(ON.text('TestFile11'));
+      await driver.assertComponentExist(ON.text('size: 12B'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_backward_001 end');
+    })
+
+    /**
+     * 修改文件名后撤销
+     */
+    it('File_Fs_backward_002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_backward_002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileName'));
+      let fileName = await driver.findComponent(ON.id('fileName'));
+      await fileName.clearText();
+      await fileName.inputText('newFileName');
+      await driver.assertComponentExist(ON.id('save'));
+      let save = await driver.findComponent(ON.id('save'));
+      await save.click();
+      await driver.assertComponentExist(ON.id('backward'));
+      let backward = await driver.findComponent(ON.id('backward'));
+      await backward.click();
+      await driver.assertComponentExist(ON.text('TestFile11'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_backward_002 end');
+    })
+
+    /**
+     * 修改文件内容后撤销
+     */
+    it('File_Fs_backward_003', 1, async function () {
+      Logger.info(TAG, 'File_Fs_backward_003 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileContent'));
+      let fileContent = await driver.findComponent(ON.id('fileContent'));
+      await fileContent.clearText();
+      await fileContent.inputText('newFileContent');
+      await driver.assertComponentExist(ON.id('save'));
+      let save = await driver.findComponent(ON.id('save'));
+      await save.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_backward_003 end');
+    })
+
+    /**
+     * 修改文件内容后撤销
+     */
+    it('File_Fs_backward_004', 1, async function () {
+      Logger.info(TAG, 'File_Fs_backward_004 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('backward'));
+      let backward = await driver.findComponent(ON.id('backward'));
+      await backward.click();
+      await driver.assertComponentExist(ON.text('size: 12B'));
+      await driver.assertComponentExist(ON.id('backWatcherFile'));
+      let back = await driver.findComponent(ON.id('backWatcherFile'));
+      await back.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_backward_004 end');
+    })
+
+    /**
+     * 添加IN_CREATE监听
+     */
+    it('File_Fs_addCreateWatcher_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_addCreateWatcher_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('addWatcher'));
+      let addWatcher = await driver.findComponent(ON.id('addWatcher'));
+      await addWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_MOVE_SELF'));
+      let moveSelfWatcher = await driver.findComponent(ON.text('IN_MOVE_SELF'));
+      await moveSelfWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_addCreateWatcher_001 end');
+    })
+
+    /**
+     * 添加IN_CREATE监听
+     */
+    it('File_Fs_addCreateWatcher_002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_addCreateWatcher_002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('IN_DELETE'));
+      let deleteWatcher = await driver.findComponent(ON.text('IN_DELETE'));
+      await deleteWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_CREATE'));
+      let createWatcher = await driver.findComponent(ON.text('IN_CREATE'));
+      await createWatcher.click();
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_addCreateWatcher_002 end');
+    })
+
+    /**
+     * 添加IN_CREATE监听之后添加文件
+     */
+    it('File_Fs_afterAddCreateWatcher_addFile_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterAddCreateWatcher_addFile_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('addFile'));
+      let addFile = await driver.findComponent(ON.id('addFile'));
+      await addFile.click();
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.assertComponentExist(ON.text('event: 256'));
+      await driver.assertComponentExist(ON.text('cookie: 0'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterAddCreateWatcher_addFile_001 end');
+    })
+
+    /**
+     * 添加IN_DELETE监听
+     */
+    it('File_Fs_addDelWatcher_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_addDelWatcher_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('addWatcher'));
+      let addWatcher = await driver.findComponent(ON.id('addWatcher'));
+      await addWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_DELETE'));
+      let deleteWatcher = await driver.findComponent(ON.text('IN_DELETE'));
+      await deleteWatcher.click();
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_addDelWatcher_001 end');
+    })
+
+    /**
+     * 添加监听之后删除文件
+     */
+    it('File_Fs_afterAddDelWatcher_delFile_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('deleteFile'));
+      let deleteFile = await driver.findComponent(ON.id('deleteFile'));
+      await deleteFile.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_001 end');
+    })
+
+    /**
+     * 添加监听之后删除文件
+     */
+    it('File_Fs_afterAddDelWatcher_delFile_002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('deleteWatcher'));
+      let deleteWatcher = await driver.findComponent(ON.id('deleteWatcher'));
+      await deleteWatcher.click();
+      await driver.assertComponentExist(ON.text('event: 512'));
+      await driver.assertComponentExist(ON.text('cookie: 0'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_002 end');
+    })
+
+    /**
+     * 停止IN_CREATE监听
+     */
+    it('File_Fs_stopCreateWatcher_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_stopCreateWatcher_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('stopWatcher'));
+      let stopWatcher = await driver.findComponent(ON.id('stopWatcher'));
+      await stopWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_CREATE'));
+      let createWatcher = await driver.findComponent(ON.text('IN_CREATE'));
+      await createWatcher.click();
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_stopCreateWatcher_001 end');
+    })
+
+    /**
+     * 停止监听之后添加文件
+     */
+    it('File_Fs_afterStopCreateWatcher_addFile001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterStopCreateWatcher_addFile001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('addFile'));
+      let addFile = await driver.findComponent(ON.id('addFile'));
+      await addFile.click();
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterStopCreateWatcher_addFile001 end');
+    })
+
+    /**
+     * 停止IN_DELETE监听
+     */
+    it('File_Fs_stopDelWatcher_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_stopDelWatcher_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('stopWatcher'));
+      let stopWatcher = await driver.findComponent(ON.id('stopWatcher'));
+      await stopWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_DELETE'));
+      let deleteWatcher = await driver.findComponent(ON.text('IN_DELETE'));
+      await deleteWatcher.click();
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_stopDelWatcher_001 end');
+    })
+
+    /**
+     * 停止监听之后删除文件
+     */
+    it('File_Fs_afterStopDelWatcher_delFile002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.delayMs(1000);
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile002 end');
+    })
+
+    /**
+     * 停止监听之后删除文件
+     */
+    it('File_Fs_afterStopDelWatcher_delFile001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('deleteFile'));
+      let deleteFile = await driver.findComponent(ON.id('deleteFile'));
+      await deleteFile.click();
+      await driver.assertComponentExist(ON.id('deleteWatcher'));
+      let deleteWatcher = await driver.findComponent(ON.id('deleteWatcher'));
+      await deleteWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile001 end');
+    })
+
+    /**
+     * 添加IN_MODIFY监听
+     */
+    it('File_Fs_addModifyWatcher_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_addModifyWatcher_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('addWatcher'));
+      let addWatcher = await driver.findComponent(ON.id('addWatcher'));
+      await addWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_MOVE_SELF'));
+      let moveSelfWatcher = await driver.findComponent(ON.text('IN_MOVE_SELF'));
+      await moveSelfWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_addModifyWatcher_001 end');
+    })
+
+    /**
+     * 添加IN_MODIFY监听
+     */
+    it('File_Fs_addModifyWatcher_002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_addModifyWatcher_002 begin');
+      let driver = Driver.create();
+      await driver.assertComponentExist(ON.text('IN_MODIFY'));
+      let modifyWatcher = await driver.findComponent(ON.text('IN_MODIFY'));
+      await modifyWatcher.click();
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_addModifyWatcher_002 end');
+    })
+
+    /**
+     * 添加监听后修改文件
+     */
+    it('File_Fs_afterAddModifyWatcher_editFile001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.assertComponentExist(ON.id('editFile'));
+      let editFile = await driver.findComponent(ON.id('editFile'));
+      await editFile.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile001 end');
+    })
+
+    /**
+     * 添加监听后修改文件内容
+     */
+    it('File_Fs_afterAddModifyWatcher_editFile002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileContent'));
+      let fileContent = await driver.findComponent(ON.id('fileContent'));
+      await fileContent.clearText();
+      await fileContent.inputText('new FileContent');
+      await driver.assertComponentExist(ON.id('save'));
+      let save = await driver.findComponent(ON.id('save'));
+      await save.click();
+      await driver.assertComponentExist(ON.id('backWatcherFile'));
+      let back = await driver.findComponent(ON.id('backWatcherFile'));
+      await back.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile002 end');
+    })
+
+    /**
+     * 查看修改文件后监听日志
+     */
+    it('File_Fs_afterAddModifyWatcher_editFile003', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile003 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.assertComponentExist(ON.text('event: 2'));
+      await driver.assertComponentExist(ON.text('cookie: 0'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile003 end');
+    })
+
+    /**
+     * 停止IN_MODIFY监听
+     */
+    it('File_Fs_stopModifyWatcher_001', 1, async function () {
+      Logger.info(TAG, 'File_Fs_stopModifyWatcher_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 检查是否有按键
+      await driver.assertComponentExist(ON.id('stopWatcher'));
+      let stopWatcher = await driver.findComponent(ON.id('stopWatcher'));
+      await stopWatcher.click();
+      await driver.assertComponentExist(ON.text('IN_MODIFY'));
+      let modifyWatcher = await driver.findComponent(ON.text('IN_MODIFY'));
+      await modifyWatcher.click();
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_stopModifyWatcher_001 end');
+    })
+
+    /**
+     * 停止监听后修改文件
+     */
+    it('afterStopModifyWatcher_editFile001', 1, async function () {
+      Logger.info(TAG, 'afterStopModifyWatcher_editFile001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      let scroller = await driver.findComponent(ON.id('list'));
+      await scroller.scrollToBottom();
+      await driver.swipe(600, 837, 300, 837, 600);
+      await driver.assertComponentExist(ON.id('editFile'));
+      let editFile = await driver.findComponent(ON.id('editFile'));
+      await editFile.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'afterStopModifyWatcher_editFile001 end');
+    })
+
+    /**
+     * 停止监听后修改文件内容
+     */
+    it('File_Fs_afterStopModifyWatcher_editFile002', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileContent'));
+      let fileContent = await driver.findComponent(ON.id('fileContent'));
+      await fileContent.clearText();
+      await fileContent.inputText('content');
+      await driver.assertComponentExist(ON.id('save'));
+      let save = await driver.findComponent(ON.id('save'));
+      await save.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile002 end');
+    })
+
+    /**
+     * 停止监听后修改文件内容
+     */
+    it('File_Fs_afterStopModifyWatcher_editFile003', 1, async function () {
+      Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile003 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('backWatcherFile'));
+      let back = await driver.findComponent(ON.id('backWatcherFile'));
+      await back.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('list'));
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile003 end');
+    })
+
+    /**
+     * 返回首页
+     */
+    it('backIndex_001', 1, async function () {
+      Logger.info(TAG, 'backIndex_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('backIndex'));
+      let backIndex = await driver.findComponent(ON.id('backIndex'));
+      await backIndex.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'backIndex_001 end');
     })
 
     /**
@@ -538,6 +1164,7 @@ export default function abilityTest() {
           Logger.error(TAG, 'RequestPermissionFunction_002:createFileAsset failed')
           expect().assertFail()
         }
+        file.push(curFile);
       } catch (error) {
         Logger.error(TAG, 'RequestPermissionFunction_002:createFileAsset failed')
         expect().assertFail()
@@ -573,7 +1200,7 @@ export default function abilityTest() {
         }
         Logger.info(TAG, 'getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
         ' data:' + fileAsset.dateAdded, +', ' + fileAsset.dateModified)
-        await FileManager.deleteFileAsset(ability.context, fileAsset)
+        await FileManager.deleteFileAsset(fileAsset)
       }
       for (let i = 0; i < TYPE.length; i++) {
         let originalResult = await FileManager.getFileAssets(ability.context, TYPE[i][0])
@@ -588,6 +1215,7 @@ export default function abilityTest() {
           } catch (error) {
             Logger.error(TAG, 'GetFileAssetsFunction_001:createFileAsset failed')
           }
+          file.push(curFile);
           await addNum++
           let result = await FileManager.getFileAssets(ability.context, TYPE[i][0])
           let num = await result.getCount()
@@ -629,6 +1257,7 @@ export default function abilityTest() {
       for (let i = 0; i < TYPE.length; i++) {
         let name = 'newFile' + Date.now().toString() + TYPE[i][1]
         let createFile = await FileManager.createFileAsset(ability.context, TYPE[i][0], TYPE[i][2], name)
+        file.push(createFile);
         let getFile = await FileManager.getFileAssetsByName(ability.context, name)
         fileAssertEqual(createFile, getFile)
       }
@@ -646,7 +1275,8 @@ export default function abilityTest() {
       let result = await FileManager.getFileAssets(ability.context, TYPE[2][0])
       let num = await result.getCount()
       for (let i = 0; i < TEST_NUM; i++) {
-        await FileManager.createTxtFileAsset(ability.context)
+        let curFile = await FileManager.createTxtFileAsset(ability.context);
+        file.push(curFile);
         let newResult = await FileManager.getFileAssets(ability.context, TYPE[2][0])
         let newNum = newResult.getCount()
         Logger.info(TAG, 'CreateTxtFileAssetFunction_001:expect num is ' + (num + i + 1) + ' and result is ' + newNum)
