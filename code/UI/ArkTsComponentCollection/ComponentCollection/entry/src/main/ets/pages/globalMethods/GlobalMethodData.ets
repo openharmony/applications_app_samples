@@ -35,9 +35,23 @@ const DIALOG: ThirdLevelCategory =
       {
         title: $r('app.string.time_picker_dialog'),
         url: 'pages/globalMethods/dialogs/timeDialogSample/TimeDialogSample'
+      },
+      {
+        title: $r('app.string.action_sheet_dialog'),
+        url: 'pages/globalMethods/dialogs/actionSheetDialogSample/ActionSheetDialogSample'
+      },
+      {
+        title: $r('app.string.text_picker_dialog'),
+        url: 'pages/globalMethods/dialogs/textPickerDialogSample/TextPickerDialogSample'
       }
     ]
   }
 
+const MENU: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_global_menu'),
+    title: $r('app.string.global_menu'),
+    url: 'pages/globalMethods/dialogs/menuSample/MenuSample',
+  }
 // The global method categorizes data, second menu data
-export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [DIALOG]
+export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [DIALOG,MENU]

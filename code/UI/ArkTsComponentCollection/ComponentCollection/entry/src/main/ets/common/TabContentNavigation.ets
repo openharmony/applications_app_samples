@@ -79,12 +79,6 @@ export struct TabContentNavigation {
       .padding({ left: 16, right: 16, top: 4 })
 
       Blank()
-
-      Divider()
-        .height(0.75)
-        .width('100%')
-        .alignSelf(ItemAlign.Baseline)
-        .color($r('app.color.tab_bar_divider'))
     }
     .height('100%')
     .padding({ top: 12 })
