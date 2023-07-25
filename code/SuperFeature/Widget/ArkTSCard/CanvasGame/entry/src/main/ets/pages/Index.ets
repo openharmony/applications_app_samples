@@ -171,6 +171,9 @@ struct Index {
     let chessIndexY = Math.round((posY - this.chessboardPosY) / heightGap);
     chessIndexX = Math.min(chessIndexX, this.chessboardLines);
     chessIndexY = Math.min(chessIndexY, this.chessboardLines);
+    if (chessIndexX < 0 || chessIndexY < 0) {
+      return;
+    }
     if (this.chessPiecesArray[chessIndexX][chessIndexY] != -1) {
       this.paintPrompting();
       return;
