@@ -1731,7 +1731,6 @@ export default function abilityTest() {
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
         await driver.delayMs(500);
-
         // 关闭展开
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
 
@@ -1796,8 +1795,6 @@ export default function abilityTest() {
       it(BUNDLE + 'InteractionFunction_001', 0, async function () {
         let testName = 'InteractionFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
-        await driver.drag(200, 1017, 200, 917, 800);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.components_interaction')));
         // 按钮禁用
@@ -1851,7 +1848,7 @@ export default function abilityTest() {
         let testName = 'LocationFunction';
         Logger.info(BUNDLE + testName + ' begin');
         // 从下往上滑动列表
-        await driver.drag(200, 800, 200, 150, 800);
+        await driver.drag(200, 750, 200, 150, 800);
         await driver.delayMs(DELAY_TIME);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.location_settings')));
