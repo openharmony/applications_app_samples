@@ -21,7 +21,12 @@ const DRIVER = Driver.create();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-
+    beforeAll(async () => {
+      // Exit the test interface to execute the test case
+      await DRIVER.pressBack();
+      await DRIVER.delayMs(1000);
+    })
+    
     /**
      * 长按打开卡片列表
      */
