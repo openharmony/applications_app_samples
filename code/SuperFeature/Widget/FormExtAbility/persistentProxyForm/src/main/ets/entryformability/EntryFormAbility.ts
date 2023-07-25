@@ -17,6 +17,7 @@ import formInfo from '@ohos.app.form.formInfo';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
+import { getPersistentConditionID } from '../../common/StatePersistence';
 
 const TAG = '[sample_entryFormAbility]';
 let dataShareHelper;
@@ -26,13 +27,26 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // Called to return a FormBindingData object.
     Logger.info(TAG, `onAddForm want: ${JSON.stringify(want)}`);
     let subscriberId = '110000';
+    try {
+      let persistentConditionID = getPersistentConditionID(this.context);
+      if (typeof persistentConditionID === 'string' && persistentConditionID !== '') {
+        subscriberId = persistentConditionID;
+        Logger.info(TAG, `get persistentConditionID: ${persistentConditionID}`);
+      } else {
+        Logger.error(TAG, `get persistentConditionID error : ${typeof persistentConditionID} subscriberId is ${subscriberId}`);
+      }
+    } catch (err) {
+      Logger.error(TAG, `get persistentConditionID: ${JSON.stringify(err)}`);
+    }
     let template = {
       predicates: {
         'list': `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${subscriberId}`
       },
       scheduler: ''
     };
-    dataShare.createDataShareHelper(this.context, 'datashareproxy://ohos.samples.formextability', {isProxy : true}).then((data) => {
+    dataShare.createDataShareHelper(this.context, 'datashareproxy://ohos.samples.formextability', {
+      isProxy: true
+    }).then((data) => {
       dataShareHelper = data;
       dataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', subscriberId, template);
     });
@@ -40,7 +54,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     let proxies = [
       {
         'key': 'datashareproxy://ohos.samples.formextability/test',
-        'subscriberId': '110000'
+        'subscriberId': subscriberId
       }
     ];
     let formBinding = {

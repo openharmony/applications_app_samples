@@ -17,8 +17,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import Logger from '../../common/Logger';
 
-PersistentStorage.PersistProp('persistentConditionID', '000000');
-
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info('[EntryAbility]', `Ability onCreate. ${JSON.stringify(want)}`);

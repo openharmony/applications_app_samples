@@ -24,7 +24,7 @@ const FULL_HEIGHT_PERCENT: string = '100%';
 @Entry(storage)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('list') list: Array<object> = [{'cityTemperature':'', 'cityName': ''}];
+  @LocalStorageProp('list') list: Array<object> = [{ 'cityTemperature': '', 'cityName': '' }];
 
   build() {
     Row() {
@@ -37,6 +37,7 @@ struct WidgetCard {
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontWeight('medium')
         }
+
         Row() {
           Text($r('app.string.temperature'))
             .fontSize($r('sys.float.ohos_id_text_size_body2'))

@@ -38,6 +38,7 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/PushIndex' });
         })
+
         Button() {
           Text($r('app.string.subscription_conditions'))
             .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))

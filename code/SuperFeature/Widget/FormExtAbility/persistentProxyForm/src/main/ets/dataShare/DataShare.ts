@@ -27,12 +27,15 @@ const TAG = '[sample_dataShare]';
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   async onCreate(want, callback) {
     Logger.info(TAG, `DataShareExtAbility onCreate this.context.databaseDir: ${this.context.databaseDir}`);
-    // @ts-ignore
-    rdbStore = await rdb.getRdbStore(this.context, { name: DB_NAME, securityLevel: rdb.SecurityLevel.S1 });
+    rdbStore = await rdb.getRdbStore(this.context, {
+      name: DB_NAME, securityLevel: rdb.SecurityLevel.S1
+    });
     Logger.info(TAG, 'DataShareExtAbility getRdbStore done.');
     await rdbStore.executeSql(DDL_TBL_CREATE, []);
     Logger.info(TAG, 'DataShareExtAbility executeSql multiple tables done.');
-    let err = {'code':0};
+    let err = {
+      'code': 0
+    };
     callback(err);
     let dataHangZhou = {
       'cityId': 310000,
@@ -70,7 +73,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
       });
     } catch (err) {
       Logger.error(TAG, `[update] error: ${err}`);
-    };
+    }
     Logger.info(TAG, '[update] leave');
   }
 };

@@ -18,20 +18,12 @@ import formBindingData from '@ohos.app.form.formBindingData';
 import formHost from '@ohos.app.form.formHost';
 import Logger from '../../common/Logger';
 import dataShare from '@ohos.data.dataShare';
+import { getPersistentConditionID, savePersistentConditionID } from '../../common/StatePersistence';
 
 const TAG = '[Sample_ModifyConditionIndex]';
 let dataShareHelper;
 let conditionID = '110000';
 let context;
-
-function judgeTheSubscriptionCity(cityConditionID): boolean {
-  let persistentConditionID = AppStorage.Get('persistentConditionID');
-  if (cityConditionID === persistentConditionID) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(`TAG updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
@@ -41,11 +33,12 @@ function updateCardDisplayContent(runningFormInfo): void {
     },
     scheduler: ''
   };
-  dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', {isProxy : true}).then((data) => {
-    dataShareHelper = data;
-    dataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', conditionID, template);
-  });
-  let proxies = [{'key': 'datashareproxy://ohos.samples.formextability/test', 'subscriberId': conditionID}];
+  dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', { isProxy: true })
+    .then((data) => {
+      dataShareHelper = data;
+      dataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', conditionID, template);
+    });
+  let proxies = [{ 'key': 'datashareproxy://ohos.samples.formextability/test', 'subscriberId': conditionID }];
   let formData;
   Logger.info(TAG, `formData: ${JSON.stringify(formData)}`);
   let formBinding = formBindingData.createFormBindingData(formData);
@@ -89,10 +82,21 @@ function modifyCondition(): void {
 @Entry
 @Component
 struct IndexThi {
-  @StorageLink('persistentConditionID') persistentConditionID: string = '000000';
+  @State persistentConditionID: string = '';
+  @State persistentSwitchFlag: boolean = true;
 
   aboutToAppear() {
     context = getContext(this) as typeof context;
+    this.persistentConditionID = getPersistentConditionID(context);
+    if (typeof this.persistentConditionID !== 'string' || this.persistentConditionID === '') {
+      this.persistentConditionID = '110000'
+    }
+    this.persistentSwitchFlag = this.persistentConditionID.localeCompare('110000') === 0;
+    Logger.debug(TAG, `persistentSwitchFlag : ${JSON.stringify(this.persistentSwitchFlag)}`);
+  }
+
+  aboutToDisappear() {
+    savePersistentConditionID(context, this.persistentConditionID);
   }
 
   build() {
@@ -113,7 +117,7 @@ struct IndexThi {
                 Text($r('app.string.city_sy'))
                   .margin({ bottom: 10 })
                 Radio({ value: 'sy', group: 'modifyConditionGroup' })
-                  .checked(judgeTheSubscriptionCity('110000'))
+                  .checked(this.persistentSwitchFlag)
                   .height(24)
                   .width(24)
                   .radioStyle({
@@ -135,7 +139,7 @@ struct IndexThi {
                 Text($r('app.string.city_hz'))
                   .margin({ bottom: 10 })
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
-                  .checked(judgeTheSubscriptionCity('310000'))
+                  .checked(!this.persistentSwitchFlag)
                   .height(24)
                   .width(24)
                   .radioStyle({

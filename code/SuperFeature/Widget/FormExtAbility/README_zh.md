@@ -17,9 +17,9 @@
 | 卡片应用主页面 | 卡片应用修改订阅条件页面 | 卡片应用发布数据页面 | 卡片应用卡片预览图页面 |
 |-------| ------- | ------- | ------- |
 | ![ProcessProxyForm_main](./screenshots/ProcessProxyForm_main.jpeg) | ![ProcessProxyForm_modifyCondition](./screenshots/ProcessProxyForm_modifyCondition.jpeg) | ![ProcessProxyForm_push](./screenshots/ProcessProxyForm_push.jpeg) | ![ProcessProxyForm_preview](./screenshots/ProcessProxyForm_preview.jpeg) |
-| formProvider应用主界面 | formProvider应用修改订阅条件 | formProvider应用发布数据 | formProvider应用卡片样式 |
+| **formProvider应用主界面** | **formProvider应用修改订阅条件** | **formProvider应用发布数据** | **formProvider应用卡片样式** |
 | ![mainInterface](./screenshots/mainInterface.jpeg) | ![modifySubscriptionConditions](./screenshots/modifySubscriptionConditions.jpeg) | ![dataRelease](./screenshots/dataRelease.jpeg) | ![cardStyle](./screenshots/cardStyle.jpeg) |
-| 添加卡片 | | | |
+| **添加卡片** | | | |
 |![eTSFormExample](screenshots/eTSFormExample.png)| | | |
 
 使用说明
@@ -32,9 +32,9 @@
 
 4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
 
-5.点击打开卡片应用图标或formProvider应用图标，点击"修改订阅条件"按键，界面将跳转至修改订阅条件界面，对应选择想要发布的数据完成对订阅条件的修改(若选择发布的城市与当前订阅城市不一致，则不能将数据更新至卡片)；
+5.点击打开卡片应用图标或formProvider应用图标，点击"修改订阅条件"按键，界面将跳转至修改订阅条件界面，对应选择想要发布的数据完成对订阅条件的修改，离开页面或退出应用后再次打开修改订阅条件页面，页面单选框会显示当前订阅的城市；
 
-6.在卡片应用或formProvider应用应用中点击"发布数据"按键，界面将跳转至数据发布界面，对应选择想要发布的数据并点击"发布数据"完成数据发布；
+6.在卡片应用或formProvider应用应用中点击"发布数据"按键，界面将跳转至数据发布界面，对应选择想要发布的数据并点击"发布数据"完成数据发布(若选择发布的城市与当前订阅城市不一致，则不能将数据更新至卡片)；
 
 ### 工程目录
 ```
@@ -123,6 +123,7 @@ return formInfo.FormState.READY }。
 - 修改数据卡片的订阅条件的功能封装在ModifyConditionIndex.ets中，源码参考：[ModifyConditionIndex.ets](./persistentProxyForm/src/main/ets/pages/ModifyConditionIndex.ets)及[ModifyConditionIndex.ets](./processProxyForm/src/main/ets/pages/ModifyConditionIndex.ets)。
     - 使用modifyCondition来获取所有已经建立出的卡片对象。
     - 修改订阅条件：使用updateCardDisplayContent遍历所有卡片对象，并根据界面获取的订阅条件数据修改订阅条件。
+    - 退出页面或应用后再次打开修改订阅条件页面，可以保留上次订阅的城市选择，源码参考：[StatePersistence.ts](./persistentProxyForm/src/main/common/StatePersistence.ts)及[StatePersistence.ts](./processProxyForm/src/main/common/StatePersistence.ts)。
 - 发布数据的功能封装在PublishIndex.ets及PushIndex.ets中，源码参考：[PublishIndex.ets](./persistentProxyForm/src/main/ets/pages/PublishIndex.ets)及[PushIndex.ets](./processProxyForm/src/main/ets/pages/PushIndex.ets)。
     - [PublishIndex.ets](./persistentProxyForm/src/main/ets/pages/PublishIndex.ets)使用updateRDB来修改rdb数据库中的对应数据。
     - [PushIndex.ets](./processProxyForm/src/main/ets/pages/PushIndex.ets)使用getRunningFormInfosByFilter获取已经建立出的卡片对象，并使用updateCardDisplayContent遍历所有卡片对象，使用createDataShareHelper创建DataShareHelper对象，并根据界面获取的数据信息使用publish进行数据的发布以实现发布数据的功能

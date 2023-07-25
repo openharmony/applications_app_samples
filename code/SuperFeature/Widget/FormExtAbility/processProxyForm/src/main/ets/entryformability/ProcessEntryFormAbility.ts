@@ -16,21 +16,34 @@
 import formInfo from '@ohos.app.form.formInfo';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Logger from '../../common/Logger';
+import { getProcessConditionID } from '../../common/StatePersistence';
 
 const TAG = '[Sample_EntryFormAbility]';
 
 export default class ProcessEntryFormAbility extends FormExtensionAbility {
   onAddForm(want) {
     Logger.info(TAG, `onAddForm want: ${JSON.stringify(want)}`);
+    let subscriberId = '110000';
+    try {
+      let processConditionID = getProcessConditionID(this.context);
+      if (typeof processConditionID === 'string' && processConditionID !== '') {
+        subscriberId = processConditionID;
+        Logger.info(TAG, `get persistentConditionID: ${processConditionID}`);
+      } else {
+        Logger.error(TAG, `get persistentConditionID error : ${typeof processConditionID} subscriberId is ${subscriberId}`);
+      }
+    } catch (err) {
+      Logger.error(TAG, `get persistentConditionID: ${JSON.stringify(err)}`);
+    }
     let processFormData = {};
     let processFormProxies = [
       {
         'key': 'cityName',
-        'subscriberId': '110000'
+        'subscriberId': subscriberId
       },
       {
         'key': 'cityTemperature',
-        'subscriberId': '110000'
+        'subscriberId': subscriberId
       }
     ];
     let processFormBinding = {

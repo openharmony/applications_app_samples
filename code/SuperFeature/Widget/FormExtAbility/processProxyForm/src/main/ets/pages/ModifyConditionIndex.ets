@@ -17,18 +17,11 @@ import formProvider from '@ohos.app.form.formProvider';
 import formBindingData from '@ohos.app.form.formBindingData';
 import formHost from '@ohos.app.form.formHost';
 import Logger from '../../common/Logger';
+import { getProcessConditionID, saveProcessConditionID } from '../../common/StatePersistence';
 
 const TAG = '[Sample_ModifyConditionIndex]';
 let conditionID = '110000';
-
-function judgeTheSubscriptionCity(cityConditionID): boolean {
-  let processConditionID = AppStorage.Get('processConditionID');
-  if (processConditionID === cityConditionID) {
-    return true;
-  } else {
-    return false;
-  }
-}
+let context;
 
 function updateCardDisplayContent(runningFormInfo): void {
   Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
@@ -68,7 +61,22 @@ function modifyCondition(): void {
 @Entry
 @Component
 struct IndexThi {
-  @StorageLink('processConditionID') processConditionID: string = '000000';
+  @State processConditionID: string = '';
+  @State processSwitchFlag: boolean = true;
+
+  aboutToAppear() {
+    context = getContext(this) as typeof context;
+    this.processConditionID = getProcessConditionID(context);
+    if (typeof this.processConditionID !== 'string' || this.processConditionID === '') {
+      this.processConditionID = '110000'
+    }
+    this.processSwitchFlag = this.processConditionID.localeCompare('110000') === 0;
+    Logger.debug(TAG, `persistentSwitchFlag : ${JSON.stringify(this.processSwitchFlag)}`);
+  }
+
+  aboutToDisappear() {
+    saveProcessConditionID(context, this.processConditionID);
+  }
 
   build() {
     Row() {
@@ -94,7 +102,7 @@ struct IndexThi {
                     checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                     indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),
                     uncheckedBorderColor: $r('sys.color.ohos_id_color_switch_outline_off') })
-                  .checked(judgeTheSubscriptionCity('110000'))
+                  .checked(this.processSwitchFlag)
                   .onChange((isChecked: boolean) => {
                     Logger.info('firstRadio status is ' + isChecked);
                     if (isChecked) {
@@ -111,7 +119,7 @@ struct IndexThi {
                 Radio({ value: 'hz', group: 'modifyConditionGroup' })
                   .height(24)
                   .width(24)
-                  .checked(judgeTheSubscriptionCity('310000'))
+                  .checked(!this.processSwitchFlag)
                   .radioStyle({
                     checkedBackgroundColor: $r('sys.color.ohos_id_color_text_primary_activated'),
                     indicatorColor: $r('sys.color.ohos_fa_foreground_contrary'),

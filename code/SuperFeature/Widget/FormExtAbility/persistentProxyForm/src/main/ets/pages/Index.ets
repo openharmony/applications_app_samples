@@ -21,36 +21,37 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button(){
+        Button() {
           Text($r('app.string.modify_publish_data'))
             .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
             .fontSize($r('sys.float.ohos_id_text_size_button1'))
             .fontWeight(FontWeight.Bold)
         }
-          .type(ButtonType.Capsule)
-          .width(220)
-          .height(40)
-          .margin({ top: 20 })
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/PublishIndex' });
-          })
+        .type(ButtonType.Capsule)
+        .width(220)
+        .height(40)
+        .margin({ top: 20 })
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/PublishIndex' });
+        })
+
         Button() {
           Text($r('app.string.subscription_conditions'))
             .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
             .fontSize($r('sys.float.ohos_id_text_size_button1'))
             .fontWeight(FontWeight.Bold)
         }
-          .type(ButtonType.Capsule)
-          .width(220)
-          .height(40)
-          .margin({ top: 20 })
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/ModifyConditionIndex' });
-          })
+        .type(ButtonType.Capsule)
+        .width(220)
+        .height(40)
+        .margin({ top: 20 })
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/ModifyConditionIndex' });
+        })
       }
       .width('100%')
     }
