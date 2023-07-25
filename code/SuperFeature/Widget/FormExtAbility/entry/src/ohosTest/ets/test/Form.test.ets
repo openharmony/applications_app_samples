@@ -412,7 +412,7 @@ export default function formTest() {
       let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))));
       await addCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 addCardToDesktop');
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
 
       // Verify that a Js card has been added
       let cardJsCountSecond = 0;
@@ -603,6 +603,7 @@ export default function formTest() {
       await driver.delayMs(1000);
       let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))));
       await addCard.click();
+      await driver.delayMs(1000);
 
       // Confirm the number of cards
       let cardJsCount = 0;
@@ -784,6 +785,7 @@ export default function formTest() {
       await driver.delayMs(1000);
       let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop'))));
       await addCard.click();
+      await driver.delayMs(2000);
 
       // Confirm the number of cards
       let cardJsCount = 0;
