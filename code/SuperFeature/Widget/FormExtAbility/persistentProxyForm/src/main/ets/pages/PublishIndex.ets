@@ -198,7 +198,7 @@ struct IndexSec {
               updateRDB(context);
             } else {
               Logger.info(TAG, `incorrect temperature is ${conditionDataToNumber[0]}`);
-              prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
+              prompt.showToast({ message: 'Please enter the correct value from -40 to 60', duration: 5000 });
             }
           })
         }

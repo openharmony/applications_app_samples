@@ -37,7 +37,7 @@ function updateCardDisplayContent(runningFormInfo): void {
     dataShareHelper = dataHelper;
     if (err !== undefined) {
       Logger.error(TAG, `createDataShareHelper error code: ${err.code}`, `message: ${err.message} `);
-      prompt.showToast({ message: `createDataShareHelper:` + err.message, duration: 5000 });
+      prompt.showToast({ message: 'createDataShareHelper:' + err.message, duration: 5000 });
     } else {
       let publishedItemData: Array<dataShare.PublishedItem> = [
         { key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID },
@@ -56,7 +56,7 @@ function updateCardDisplayContent(runningFormInfo): void {
 }
 
 function publish(): void {
-  Logger.info(TAG, `publish called`);
+  Logger.info(TAG, 'publish called');
   formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
@@ -182,7 +182,7 @@ struct IndexSec {
               publish();
             } else {
               Logger.info(TAG, `incorrect temperature is ${conditionData}`);
-              prompt.showToast({ message: `Please enter the correct value from -40 to 60`, duration: 5000 });
+              prompt.showToast({ message: 'Please enter the correct value from -40 to 60', duration: 5000 });
             }
           })
         }

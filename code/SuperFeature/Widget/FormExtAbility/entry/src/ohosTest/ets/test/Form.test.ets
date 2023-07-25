@@ -69,7 +69,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_001 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_001 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(pushCardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 cardArkTsCount:' + cardArkTsCount);
@@ -79,7 +79,6 @@ export default function formTest() {
       await driver.delayMs(1000);
 
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.pushName'))));
       // Get the text control border
       let rect = await app.getBounds();
@@ -129,7 +128,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_001 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_001 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(pushCardArkTs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog err is: ' + JSON.stringify(err));
@@ -173,7 +172,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_002 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_002 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(pushCardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 cardJsCount:' + cardJsCount);
@@ -182,7 +181,6 @@ export default function formTest() {
       });
 
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.pushName'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
@@ -235,7 +233,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_002 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_002 getFormData data: ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(pushCardJs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog err is: ' + JSON.stringify(err));
@@ -279,7 +277,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog data successDataProxyForm_003 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(cardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 cardArkTsCount:' + cardArkTsCount);
@@ -289,7 +287,6 @@ export default function formTest() {
       await driver.delayMs(1000);
 
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.persistent_name'))));
       // Get the text control border
       let rect = await app.getBounds();
@@ -327,7 +324,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog err is: ' + JSON.stringify(err));
@@ -369,7 +366,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(cardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 cardJsCount:' + cardJsCount);
@@ -378,7 +375,6 @@ export default function formTest() {
       });
 
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.persistent_name'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
@@ -419,7 +415,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_004 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 getFormData data: ' + JSON.stringify(data));
         cardJsCountSecond = result.split(cardJs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err));
@@ -457,7 +453,6 @@ export default function formTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 begin');
       await driver.delayMs(1000);
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.pushName'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
@@ -503,7 +498,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(pushCardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 cardArkTsCount:' + cardArkTsCount);
@@ -512,7 +507,6 @@ export default function formTest() {
       });
 
       // Find and remove the card
-      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 driver.findComponents start`);
       let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.pushName'))));
       await driver.delayMs(1000);
       let rectList = await appList[appList.length-1].getBounds();
@@ -533,7 +527,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(pushCardArkTs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 hilog err is: ' + JSON.stringify(err));
@@ -558,7 +552,6 @@ export default function formTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 begin');
       await driver.delayMs(1000);
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.pushName'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
@@ -610,7 +603,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(pushCardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 cardJsCount:' + cardJsCount);
@@ -619,7 +612,6 @@ export default function formTest() {
       });
 
       // Find and remove the card
-      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 driver.findComponents start`);
       let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.pushName'))));
       await driver.delayMs(1000);
       let rectList = await appList[appList.length-1].getBounds();
@@ -640,7 +632,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 getFormData data: ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(pushCardJs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog err is: ' + JSON.stringify(err));
@@ -665,7 +657,6 @@ export default function formTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 begin');
       await driver.delayMs(1000);
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.persistent_name'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
@@ -699,7 +690,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(cardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 cardArkTsCount:' + cardArkTsCount);
@@ -708,7 +699,6 @@ export default function formTest() {
       });
 
       // Find and remove the card
-      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 driver.findComponents start`);
       let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.persistent_name'))));
       await driver.delayMs(1000);
       let rectList = await appList[appList.length-1].getBounds();
@@ -729,7 +719,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err));
@@ -752,7 +742,6 @@ export default function formTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 begin');
       await driver.delayMs(1000);
       // Long click the application
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.persistent_name'))));
       let rect = await app.getBounds();
       let height =rect.bottom - rect.top;
@@ -792,7 +781,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data: ${JSON.stringify(data)}`);
         expect(result !== null).assertTrue();
         cardJsCount = result.split(cardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 cardJsCount:' + cardJsCount);
@@ -801,7 +790,6 @@ export default function formTest() {
       });
 
       // Find and remove the card
-      hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 driver.findComponents start`);
       let appList = await driver.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.persistent_name'))));
       await driver.delayMs(1000);
       let rectList = await appList[appList.length-1].getBounds();
@@ -822,7 +810,7 @@ export default function formTest() {
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a ' -n ohos.samples.formextability'").then((data) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog data success');
         let result = JSON.stringify(data);
-        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data : + ${JSON.stringify(data)}`);
+        hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data: ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(cardJs).length - 1;
       }).catch((err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err));
