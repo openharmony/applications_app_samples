@@ -12,14 +12,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 {
   "license": "Apache-2.0",
   "devDependencies": {},
   "author": "",
   "name": "cloud",
   "description": "Please describe the basic information.",
-  "main": "index.ets",
+  "main": "Index.ets",
   "version": "1.0.0",
   "dependencies": {}
 }
