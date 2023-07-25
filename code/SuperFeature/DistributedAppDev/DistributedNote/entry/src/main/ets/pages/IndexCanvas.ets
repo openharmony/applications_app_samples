@@ -34,6 +34,8 @@ struct IndexCanvas {
   private path2De: Path2D = new Path2D();
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private settings1: RenderingContextSettings = new RenderingContextSettings(true);
+  private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings1);
   private dialogController?: CustomDialogController;
   private selectedIndex: number = 0;
   private sessionId: string = '';
@@ -150,28 +152,58 @@ struct IndexCanvas {
       .width('100%')
       .padding(16)
 
-      LazyForEach(this.canvasDataSource, (item: CanvasPath, index) => {
-        Canvas(this.context)
-          .width('100%')
-          .height(200)
-          .backgroundColor('#00ffff')
-          .onReady(() => {
-            if (item.path === 'rect') {
-              this.context.save();
-              this.path2Df.rect(80, 80, 100, 100);
-              this.context.stroke(this.path2Df);
-              this.context.restore();
+      List() {
+        LazyForEach(this.canvasDataSource, (item: CanvasPath, index) => {
+          ListItem() {
+            if (index === 0) {
+              Canvas(this.context)
+                .width('100%')
+                .height(200)
+                .backgroundColor('#00ffff')
+                .onReady(() => {
+                  if (item.path === 'rect') {
+                    this.context.save();
+                    this.path2Df.rect(80, 80, 100, 100);
+                    this.context.stroke(this.path2Df);
+                    this.context.restore();
+                  }
+                  if (item.path === 'ellipse') {
+                    this.context.restore();
+                    this.path2De.ellipse(100, 100, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI);
+                    this.path2De.closePath();
+                    this.context.stroke(this.path2De);
+                    this.context.save();
+                  }
+                })
+                .id(item.path + 'ready')
             }
-            if (item.path === 'ellipse') {
-              this.context.restore();
-              this.path2De.ellipse(100, 100, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI);
-              this.path2De.closePath();
-              this.context.stroke(this.path2De);
-              this.context.save();
+          }
+          ListItem() {
+            if (index === 1) {
+              Canvas(this.context1)
+                .width('100%')
+                .height(200)
+                .backgroundColor('#00ffff')
+                .onReady(() => {
+                  if (item.path === 'rect') {
+                    this.context1.save();
+                    this.path2Df.rect(80, 80, 100, 100);
+                    this.context1.stroke(this.path2Df);
+                    this.context1.restore();
+                  }
+                  if (item.path === 'ellipse') {
+                    this.context1.restore();
+                    this.path2De.ellipse(100, 100, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI);
+                    this.path2De.closePath();
+                    this.context1.stroke(this.path2De);
+                    this.context1.save();
+                  }
+                })
+                .id(item.path + 'ready')
             }
-          })
-          .id(item.path + 'ready')
-      }, item => JSON.stringify(item))
+          }
+        }, item => JSON.stringify(item))
+      }
 
       Row() {
         Button('ellipse')
