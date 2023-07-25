@@ -40,14 +40,15 @@ export default function IndexTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Customnotification_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
-
       let window = await driver.findWindow({
         actived: true
       });
       await window.focus();
+      await driver.delayMs(1000)
       await clickBtn(driver, getString($r('app.string.allow_button')));
-
+      await driver.delayMs(1000)
       await clickAll(driver);
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'Customnotification_001 end');
     })
 
@@ -68,7 +69,7 @@ export default function IndexTest() {
 
       await toggle(driver, 'vibrationEffect');
       await clickAll(driver);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Customnotification_003 end' );
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Customnotification_003 end');
     })
 
     it('Customnotification_004', 0, async function () {
