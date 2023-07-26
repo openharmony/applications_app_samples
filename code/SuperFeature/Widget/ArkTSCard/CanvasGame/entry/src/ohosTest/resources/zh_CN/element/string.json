@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "res_fallback",
+      "value": "悔棋"
+    },
+    {
+      "name": "res_restart",
+      "value": "重开"
+    },
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "五子棋"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "Card_Button",
+      "value": "服务卡片"
+    },
+    {
+      "name": "AddForm",
+      "value": "添加到桌面"
+    }
+  ]
+}
