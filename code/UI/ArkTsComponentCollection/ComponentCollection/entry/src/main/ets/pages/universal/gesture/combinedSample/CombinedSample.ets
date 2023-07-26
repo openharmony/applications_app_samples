@@ -39,7 +39,9 @@ struct CombinedExample {
       IntroductionTitle({ introduction: $r('app.string.combinded_description') })
       Row() {
         Column() {
-          Text(getStringData($r('app.string.combinded_sequence')) + getStringData($r('app.string.combinded_longPress_onAction')) + this.count + getStringData($r('app.string.combinded_x')) + this.offsetX + getStringData($r('app.string.pan_offset_y')) + this.offsetY)
+          Text(getStringData($r('app.string.combinded_sequence')) + getStringData($r('app.string.combinded_longPress_onAction')) + this.count
+          + getStringData($r('app.string.combinded_x'))
+          + this.offsetX + getStringData($r('app.string.pan_offset_y')) + this.offsetY)
         }
         .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
         .height(150)

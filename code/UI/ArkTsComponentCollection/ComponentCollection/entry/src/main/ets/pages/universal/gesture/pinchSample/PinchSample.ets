@@ -36,7 +36,8 @@ struct PanExample {
       Row() {
         Column() {
           Text(getStringData($r('app.string.pinch_scale')) + this.scaleValue);
-          Text(getStringData($r('app.string.pinch_center')) + this.pinchX + getStringData($r('app.string.pan_offset_y')) + this.pinchY);
+          Text(getStringData($r('app.string.pinch_center')) + this.pinchX
+          + getStringData($r('app.string.pan_offset_y')) + this.pinchY);
         }
         .height(200)
         .width(300)

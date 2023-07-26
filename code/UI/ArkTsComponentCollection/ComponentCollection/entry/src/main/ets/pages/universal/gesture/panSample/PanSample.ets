@@ -50,7 +50,8 @@ struct PanExample {
         IntroductionTitle({ introduction: $r('app.string.pan_text') })
       }
       Column() {
-        Text(getStringData($r('app.string.pan_offset')) + this.offsetX + getStringData($r('app.string.pan_offset_y')) + this.offsetY)
+        Text(getStringData($r('app.string.pan_offset'))
+        + this.offsetX + getStringData($r('app.string.pan_offset_y')) + this.offsetY)
           .id('pan_column')
           .fontSize(16)
           .height(200)

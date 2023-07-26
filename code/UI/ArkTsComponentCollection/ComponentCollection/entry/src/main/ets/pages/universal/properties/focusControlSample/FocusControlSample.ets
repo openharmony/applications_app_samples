@@ -31,8 +31,11 @@ import ShowToast from '../../../../util/ShowToast';
 @Component
 struct FocusControlSample {
   @State inputValue: string = '';
-  @State idList: string[] = [getStringData($r('app.string.text_picker_text_banana')), getStringData($r('app.string.text_picker_text_orange')),
-  getStringData($r('app.string.text_picker_text_grape')), getStringData($r('app.string.text_picker_text_peach')), getStringData($r('app.string.focus_control_lastPageId'))];
+  @State idList: string[] = [getStringData($r('app.string.text_picker_text_banana'))
+    , getStringData($r('app.string.text_picker_text_orange'))
+    , getStringData($r('app.string.text_picker_text_grape'))
+    , getStringData($r('app.string.text_picker_text_peach'))
+    , getStringData($r('app.string.focus_control_lastPageId'))];
   @State selectId: string = getStringData($r('app.string.focus_control_lastPageId'));
 
   build() {

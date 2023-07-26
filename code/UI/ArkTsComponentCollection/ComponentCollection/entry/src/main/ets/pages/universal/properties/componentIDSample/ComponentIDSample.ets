@@ -80,7 +80,8 @@ struct ComponentIDSample {
             .onClick(() => {
               this.text = getStringData($r('app.string.component_id_click_text'));
               setTimeout(() => {
-                sendEventByKey(getStringData($r('app.string.componentId_longClick')), 11, ''); // 向id为"longClick"的组件发送长按事件
+                // 向id为"longClick"的组件发送长按事件
+                sendEventByKey(getStringData($r('app.string.componentId_longClick')), 11, '');
               }, 2000);
             })
             .id('click')
@@ -91,7 +92,8 @@ struct ComponentIDSample {
               LongPressGesture().onActionEnd(() => {
                 this.text = getStringData($r('app.string.component_id_longClick_text'));
                 setTimeout(() => {
-                  let rect = Utils.getComponentRect(getStringData($r('app.string.componentId_onTouch'))); // 获取id为"onTouch"组件的矩形区域坐标
+                  // 获取id为"onTouch"组件的矩形区域坐标
+                  let rect = Utils.getComponentRect(getStringData($r('app.string.componentId_onTouch')));
                   let touchPoint: TouchObject = {
                     id: 1,
                     x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
@@ -112,7 +114,8 @@ struct ComponentIDSample {
             .onClick(() => {
               this.text = getStringData($r('app.string.component_id_onTouch_text'))
               setTimeout(() => {
-                let rect = Utils.getComponentRect(getStringData($r('app.string.componentId_onMouse'))); // 获取id为"onMouse"组件的矩形区域坐标
+                // 获取id为"onMouse"组件的矩形区域坐标
+                let rect = Utils.getComponentRect(getStringData($r('app.string.componentId_onMouse')));
                 let mouseEvent: MouseEvent = {
                   button: MouseButton.Left,
                   action: MouseAction.Press,
