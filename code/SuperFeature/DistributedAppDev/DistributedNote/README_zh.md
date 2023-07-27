@@ -14,9 +14,9 @@
 
 
 ### 效果预览
-| 首页                                                         | Note主页                              | Canvas主页                                                   |
-| ------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------ |
-| <img src="screenshots/devices/index.png" alt="contactlist" style="zoom: 50%;" /> | ![home](screenshots/devices/home.png) | <img src="screenshots/devices/canvas.png" alt="contactlist" style="zoom: 50%;" /> |
+| 首页                                    | Note主页                              | Canvas主页                               |
+| --------------------------------------- | ------------------------------------- | ---------------------------------------- |
+| ![index](screenshots/devices/index.png) | ![home](screenshots/devices/home.png) | ![index](screenshots/devices/canvas.png) |
 
 
 使用说明
