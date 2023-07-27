@@ -85,7 +85,9 @@ export default function abilityTest() {
       // 竖屏旋转后，video组件的left坐标变大
       await expect(originLeft).assertLess(rotateLeft);
       // 还原窗口
+      await driver.pressBack();
       await windowBtn.click();
+      await driver.pressBack();
       await driver.delayMs(1000);
       Logger.info(TAG, BUNDLE + 'VideoPage_001 end');
     })

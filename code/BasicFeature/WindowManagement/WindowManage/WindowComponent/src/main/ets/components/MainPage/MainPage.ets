@@ -112,9 +112,11 @@ struct VideoWindow {
         .id('windowBtn')
         .onClick(() => {
           if (this.isPortrait) {
+            this.videoController.requestFullscreen(true)
             WindowManger.changeWindowDirection(this.subWindow, window.Orientation.LANDSCAPE)
             this.isPortrait = false
           } else {
+            this.videoController.requestFullscreen(true)
             WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT)
             this.isPortrait = true
           }
