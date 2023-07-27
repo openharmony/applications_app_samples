@@ -21,9 +21,8 @@ export struct IntroductionTitle {
     Text(this.introduction)
       .fontSize(18)
       .width('100%')
-      .padding({ left: 12 })
       .direction(Direction.Ltr)
-      .margin({ top: 12, bottom: 12 })
+      .margin({ left: 26, top: 8, bottom: 8 })
       .fontColor($r('app.color.font_color_shallow'))
   }
 }

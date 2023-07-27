@@ -52,6 +52,37 @@ export struct CommonItemSlider {
   }
 }
 
+@Component
+export struct ImageItemSlider {
+  @Link changeValue: number
+  private min: number
+  private max: number
+  private name: ResourceStr
+
+  build() {
+    Row() {
+      Text(this.name)
+      Slider({
+        value: this.changeValue,
+        step: 1,
+        min: this.min,
+        max: this.max })
+        .layoutWeight(1)
+        .onChange((value: number) => {
+          this.changeValue = value
+          console.log('Sample_ComponentCollection'+String(value))
+        }).onClick((event: ClickEvent) => {
+        let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+        console.log('Sample_ComponentCollection'+text)
+      })
+      Text(`${Math.trunc(this.changeValue)}`)
+    }
+    .width('100%')
+    .height(40)
+    .justifyContent(FlexAlign.SpaceAround)
+  }
+}
+
 /**
  * Select in item style, provide multiple choices based on menuList
  */
