@@ -16,7 +16,7 @@
 import common from '@ohos.app.ability.common';
 import promptAction from '@ohos.promptAction';
 import { AddPictures } from '../components/AddPictures';
-import { requestUpload, TOAST_BOTTOM } from '@ohos/uploaddownload';
+import { BackgroundTaskState, requestUpload, TOAST_BOTTOM } from '@ohos/uploaddownload';
 
 const TIME_MAX: number = 5;
 
@@ -24,6 +24,7 @@ const TIME_MAX: number = 5;
 @Component
 struct Upload {
   @StorageLink('isBackground') isBackground: boolean = false;
+  @StorageLink('backTaskState') @Watch('stateChange') backTaskState: BackgroundTaskState = BackgroundTaskState.NONE;
   @State isBegin: boolean = false;
   @Provide imageList: Array<string> = [];
   @State progress: number = 0;
@@ -41,7 +42,19 @@ struct Upload {
 
       Column() {
         Button() {
-          if (this.isBegin) {
+          if (this.isBackground && this.backTaskState !== BackgroundTaskState.NONE) {
+            if (this.backTaskState === BackgroundTaskState.RUNNING) {
+              Text($r('app.string.pause'))
+                .fontSize(16)
+                .fontWeight(500)
+                .fontColor($r('app.color.white'))
+            } else {
+              Text($r('app.string.continue'))
+                .fontSize(16)
+                .fontWeight(500)
+                .fontColor($r('app.color.white'))
+            }
+          } else if (this.isBegin && !this.isBackground) {
             Row() {
               Progress({ value: this.progress, type: ProgressType.Ring })
                 .width(20)
@@ -55,16 +68,18 @@ struct Upload {
                 .fontWeight(500)
                 .margin({ left: 12 })
             }.alignItems(VerticalAlign.Center)
-          } else if (this.countdown > 0) {
-            Text(`${this.countdown}s`)
-              .fontSize(16)
-              .fontWeight(500)
-              .fontColor($r('app.color.white'))
           } else {
-            Text($r('app.string.upload'))
-              .fontSize(16)
-              .fontWeight(500)
-              .fontColor($r('app.color.white'))
+            if (this.countdown > 0) {
+              Text(`${this.countdown}s`)
+                .fontSize(16)
+                .fontWeight(500)
+                .fontColor($r('app.color.white'))
+            } else {
+              Text($r('app.string.upload'))
+                .fontSize(16)
+                .fontWeight(500)
+                .fontColor($r('app.color.white'))
+            }
           }
         }
         .id('publish')
@@ -74,7 +89,11 @@ struct Upload {
         .enabled(this.countdown > 0 ? false : true)
         .backgroundColor($r('app.color.button_blue'))
         .onClick(() => {
-          this.uploadFiles();
+          if (this.isBackground && this.backTaskState !== BackgroundTaskState.NONE) {
+            requestUpload.pauseOrResume();
+          }else{
+            this.uploadFiles();
+          }
         })
 
         if (this.isBegin) {
@@ -111,6 +130,13 @@ struct Upload {
 
   aboutToAppear() {
     this.isBegin = false;
+    this.backTaskState = BackgroundTaskState.NONE;
+  }
+
+  stateChange(){
+    if(this.backTaskState === BackgroundTaskState.NONE) {
+      this.imageList = [];
+    }
   }
 
   uploadFiles() {
@@ -118,6 +144,7 @@ struct Upload {
       return;
     }
     if (this.isBackground) {
+      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.RUNNING)
       requestUpload.uploadFilesBackground(this.imageList);
       promptAction.showToast({ message: $r('app.string.background_task_start'), bottom: TOAST_BOTTOM });
     } else {
