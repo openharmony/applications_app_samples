@@ -16,7 +16,7 @@
 import { TitleBar } from '../common/TitleBar';
 import { QueryItem } from '../common/QueryItem';
 import SearchModel from '../model/SearchModel';
-import Contact from '../model/Contact'
+import Contact from '../model/Contact';
 
 @Entry
 @Component
