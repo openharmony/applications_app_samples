@@ -1014,6 +1014,47 @@ export default function abilityTest() {
       })
 
       /**
+       * ImageSpan 行内图像
+       */
+      it(BUNDLE + 'ImageSpanFunction_001', 0, async function () {
+        let testName = 'ImageSpanFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Span 行内文本
+        let atom = await manager.getStringValue($r('app.string.image_span_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
+        }
+        await checkButtonAndClickWithText(atom);
+
+        // 展开跨度对齐方式
+        await checkButtonAndClickWithID('alignment');
+
+        // 选择一个center
+        let center = await manager.getStringValue($r('app.string.image_span_alignment_center'));
+        await checkButtonAndClickWithText(center);
+
+        // 展开图像缩放类型
+        await checkButtonAndClickWithID('fit');
+
+        // 选择一个contain
+        let contain = await manager.getStringValue($r('app.string.image_fit_contain'));
+        await checkButtonAndClickWithText(contain);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * Span 行内文本
        */
       it(BUNDLE + 'SpanFunction_001', 0, async function () {

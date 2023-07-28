@@ -127,6 +127,9 @@ entry/src/main/ets/
 |   |   |   |---scrollSample
 |   |   |   |   |---ScrollSample.ets
 |   |   |---textAndInput
+|   |   |   |---imageSpanSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---imageSpanSample.ets                  // 行内图像
 |   |   |   |---richTextSample
 |   |   |   |   |---RichTextSample.ets                   // 富文本
 |   |   |   |---spanSample
@@ -278,9 +281,9 @@ entry/src/main/ets/
             使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 文本与输入
-            * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，文本输入，文本，富文本组件功能
-            *
-            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，行内图像，文本输入，文本，富文本组件功能
+            * 
+	    使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 辅助
             * 使用全局组件TitleBar实现标记，滚动条，下拉刷新，弹出面板，字母索引条组件功能

@@ -1085,6 +1085,19 @@
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
     },
+    // ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "Image Span"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "Contain"
+    },
     // TextInput
     {
       "name": "text_input_title",

@@ -1045,6 +1045,19 @@
       "name": "text_text_case_lowercase",
       "value": "小写"
     },
+    // ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "ImageSpan 行内图像"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "中心"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "包含"
+    },
     // TextInput
     {
       "name": "text_input_title",
