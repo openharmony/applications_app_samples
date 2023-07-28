@@ -50,6 +50,7 @@
     "pages/animations/TransitionAnimations/multiplexSample/MultiplexSample",
     "pages/animations/TransitionAnimations/floatingSample/FloatingWindowSample",
     "pages/animations/TransitionAnimations/folderSample/FolderSample",
+    "pages/animations/TransitionAnimations/systemIcon/SystemIcon",
     "pages/animations/TransitionAnimations/shopSample/ShopCardSample",
     "pages/animations/TransitionAnimations/gallerySample/GalleryCardSample",
     "pages/animations/TransitionAnimations/shareElementTransitionSample/ShareElementTransitionSample",

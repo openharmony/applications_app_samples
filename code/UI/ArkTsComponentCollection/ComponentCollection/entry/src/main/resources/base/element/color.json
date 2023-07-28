@@ -180,6 +180,22 @@
     {
       "name": "focus_on_background",
       "value": "#007DFE"
+    },
+    {
+      "name": "COLOR_80000000",
+      "value": "#80000000"
+    },
+    {
+      "name": "COLOR_FFFFFF",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "COLOR_8C9BA2",
+      "value": "#8C9BA2"
+    },
+    {
+      "name": "COLOR_99FFFFFF",
+      "value": "#99ffffff"
     }
   ]
 }

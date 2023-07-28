@@ -879,6 +879,10 @@
       "value": "folder expansion"
     },
     {
+      "name": "System_icon",
+      "value": "System Icon"
+    },
+    {
       "name": "Shop_card_expansion",
       "value": "shop card expansion"
     },

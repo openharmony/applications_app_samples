@@ -912,6 +912,10 @@
       "value": "shop card expansion"
     },
     {
+      "name": "System_icon",
+      "value": "System Icon"
+    },
+    {
       "name": "Today",
       "value": "today"
     },

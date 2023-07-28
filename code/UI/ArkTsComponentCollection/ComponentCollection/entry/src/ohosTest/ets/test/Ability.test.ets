@@ -2301,6 +2301,35 @@ export default function abilityTest() {
       })
 
       /**
+       * 系统图标
+       */
+      it(BUNDLE + 'SystemIcons', 0, async function () {
+        let testName = 'SystemIcons';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.System_icon'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.System_icon')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.System_icon')));
+        await driver.delayMs(1000);
+        // 滑动滑块
+        await driver.assertComponentExist(ON.id('systemIcons_slider'));
+        let sliderX = await driver.findComponent(ON.id('systemIcons_slider'));
+        let pointX = await sliderX.getBoundsCenter();
+        Logger.info(BUNDLE + testName +  `SystemIcons pointX ${pointX.x} ${pointX.y}`);
+        await driver.drag(pointX.x, pointX.y, pointX.x, pointX.y - 100, 800);
+        await driver.delayMs(3000);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName +  'SystemIcons end');
+      })
+
+      /**
        * 商店卡片展开
        */
       it(BUNDLE + 'ShopCardFunction_001', 0, async function () {
