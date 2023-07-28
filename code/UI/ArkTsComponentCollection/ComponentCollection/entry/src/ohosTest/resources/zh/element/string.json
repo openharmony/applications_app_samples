@@ -802,6 +802,10 @@
       "value": "文件夹展开"
     },
     {
+      "name": "System_icon",
+      "value": "系统图标"
+    },
+    {
       "name": "Shop_card_expansion",
       "value": "商店卡片展开"
     },

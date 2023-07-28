@@ -41,6 +41,10 @@ const TRANSITION_ANIMATION: ThirdLevelCategory =
         url: 'pages/animations/TransitionAnimations/folderSample/FolderSample',
       },
       {
+        title: $r('app.string.System_icon'),
+        url: 'pages/animations/TransitionAnimations/systemIcon/SystemIcon',
+      },
+      {
         title: $r('app.string.Shop_card_expansion'),
         url: 'pages/animations/TransitionAnimations/shopSample/ShopCardSample',
       },

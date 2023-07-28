@@ -57,6 +57,8 @@ entry/src/main/ets/
 |   |   |   |---FloatingWindowSample.ets                 // 悬浮窗
 |   |   |---folderSample
 |   |   |   |---FolderSample.ets                         // 文件夹展开
+|   |   |---systemIcon
+|   |   |   |---SystemIcon.ets                           // 系统图标
 |   |   |---gallerySample
 |   |   |   |---GalleryCardSample.ets                    // 图库卡片展开
 |   |   |---multiplexSample
