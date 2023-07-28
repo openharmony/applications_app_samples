@@ -1765,6 +1765,54 @@
     {
       "name": "april",
       "value": "四月"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas画布"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Attributes 属性"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient 渐变对象"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap 位图对象"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Methods 方法"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D 路径对象"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows 阴影"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform 转换"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "画布区域"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "属性操作"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "清除效果"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "已经打印到控制台"
     }
   ]
 }

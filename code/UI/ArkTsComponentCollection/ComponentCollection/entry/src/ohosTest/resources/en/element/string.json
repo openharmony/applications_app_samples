@@ -2085,6 +2085,54 @@
     {
       "name": "april",
       "value": "april"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas components"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Base attributes"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Base methods"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "Canvas Zone"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "Attributes Operations"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "Clear Effects"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "Printed to the console"
     }
   ]
 }

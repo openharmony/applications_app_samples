@@ -1352,6 +1352,194 @@ export default function abilityTest() {
       })
 
       /**
+       * Canvas_Sample
+       */
+      it(BUNDLE + 'CanvasFunction_001', 0, async function () {
+        let testName = 'CanvasFunction';
+        // 进入Canvas画布
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        let atom = await manager.getStringValue($r('app.string.canvas_component_attributes'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          // 自动判断是否展开可以方便单元测试 只有第一次需要展开 再点一次会关上
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_components')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+        await driver.delayMs(DELAY_TIME);
+        {
+          // 属性
+          Logger.info("Start Test canvas_component_attributes!", "CanvasFunction_001");
+          let keys = ['fillStyle', 'lineWidth', 'strokeStyle', 'lineCap',
+            'lineJoin', 'miterLimit', 'font', 'textAlign', 'textBaseline',
+            'globalAlpha', 'lineDashOffset', 'globalCompositeOperation',
+            'imageSmoothingEnabled', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              if (i === 8) {
+                Logger.info("Swipe for bottom button!", "CanvasFunction_001");
+                await driver.swipe(300, 900, 300, 700, 2000);
+                await driver.delayMs(DELAY_TIME);
+              }
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_method')));
+          await driver.delayMs(DELAY_TIME);
+          // 方法
+          Logger.info("Start Test canvas_component_method!", "CanvasFunction_001");
+          let keys = ['fillRect', 'strokeRect', 'fillText', 'strokeText',
+            'measureText', 'stroke', 'createPattern', 'fill', 'clip',
+            'scale', 'drawImage', 'setLineDash',
+            'getLineDash', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              if (i === 8) {
+                Logger.info("Swipe for bottom button!", "CanvasFunction_001");
+                await driver.swipe(300, 900, 300, 700, 2000);
+                await driver.delayMs(DELAY_TIME);
+              }
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_shadow')));
+          await driver.delayMs(DELAY_TIME);
+          // 阴影
+          Logger.info("Start Test canvas_component_shadow!", "CanvasFunction_001");
+          let keys = ['shadowBlur', 'shadowColor', 'shadowOffsetX', 'shadowOffsetY', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_transform')));
+          await driver.delayMs(DELAY_TIME);
+          // transform
+          Logger.info("Start Test canvas_component_transform!", "CanvasFunction_001");
+          let keys = ['translate', 'transform', 'setTransform', 'rotate', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_gradient')));
+          await driver.delayMs(DELAY_TIME);
+          // CanvasGradient
+          Logger.info("Start Test canvas_component_gradient!", "CanvasFunction_001");
+          let keys = ['addColorStop', 'createLinearGradient', 'createRadialGradient', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_path_2d')));
+          await driver.delayMs(DELAY_TIME);
+          // path_2d
+          Logger.info("Start Test canvas_component_path_2d!", "CanvasFunction_001");
+          let keys = ['beginPath', 'moveTo', 'lineTo',
+            'closePath', 'bezierCurveTo', 'quadraticCurveTo',
+            'arc', 'arcTo', 'ellipse', 'rect', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_image_bitmap')));
+          await driver.delayMs(DELAY_TIME);
+          // image_bitmap
+          Logger.info("Start Test canvas_component_image_bitmap!", "CanvasFunction_001");
+          let keys = ['getImageData', 'putImageData', 'imageSmoothingQuality',
+            'toDataURL', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_components')));
+          await driver.delayMs(500);
+        }
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * TarBar 进入通用
        */
       it(BUNDLE + 'TarBarGeneralFunction_001', 0, async function () {

@@ -196,6 +196,22 @@
     {
       "name": "COLOR_99FFFFFF",
       "value": "#99ffffff"
+    },
+    {
+      "name": "canvas_background",
+      "value": "#ffff00"
+    },
+    {
+      "name": "canvas_normal_button_bg",
+      "value": "#317aff"
+    },
+    {
+      "name": "canvas_clear_button_bg",
+      "value": "#ffff7300"
+    },
+    {
+      "name": "canvas_bg_color",
+      "value": "#00ffff"
     }
   ]
 }

@@ -106,6 +106,21 @@ entry/src/main/ets/
 |   |   |   |   |---TimePickerSample.ets                 // 时间选择器
 |   |   |   |---toggleSample
 |   |   |   |   |---ToggleSample.ets                     // 切换按钮
+|   |   |---canvas
+|   |   |   |---attributesSample
+|   |   |   |   |---AttributesSample.ets                 // 属性
+|   |   |   |---gradientSample
+|   |   |   |   |---GradientSample.ets                   // 渐变对象
+|   |   |   |---image_bitmapSample
+|   |   |   |   |---Image_bitmapSample.ets               // 位图对象
+|   |   |   |---methodsSample
+|   |   |   |   |---MethodsSample.ets                    // 方法
+|   |   |   |---path2dSample
+|   |   |   |   |---Path2dSample.ets                     // 路径对象
+|   |   |   |---shadowsSample
+|   |   |   |   |---ShadowsSample.ets                    // 阴影
+|   |   |   |---transformSample
+|   |   |   |   |---TransformSample.ets                  // 转换
 |   |   |---informationPresentationAndDynamicEffects
 |   |   |   |---dataPanelSample
 |   |   |   |   |---DataPanelSample.ets                  // 数据面板
@@ -288,6 +303,10 @@ entry/src/main/ets/
             * 使用全局组件TitleBar实现标记，滚动条，下拉刷新，弹出面板，字母索引条组件功能
             *
             使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+
+        * 画布
+            * 使用全局组件TitleBar, CanvasGradient, CanvasPattern, ImageBitmap, Path2D等实现图形绘制属性，图形绘制方法，渐变对象绘制，路径对象绘制，位图的绘制，阴影绘制，变换绘制
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
     * 通用模块：
         * 通用事件
