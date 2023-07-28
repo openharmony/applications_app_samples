@@ -1057,6 +1057,67 @@
       "name": "span_decoration_overline",
       "value": "Overline"
     },
+    // ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "Image Span"
+    },
+    {
+      "name": "image_span_vertical_align",
+      "value": "Vertical Align"
+    },
+    {
+      "name": "image_span_alignment_baseline",
+      "value": "Baseline"
+    },
+    {
+      "name": "image_span_alignment_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "image_span_alignment_top",
+      "value": "Top"
+    },
+    {
+      "name": "image_span_object_fit",
+      "value": "Object Fit"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "image_fit_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "image_fit_fill",
+      "value": "Fill"
+    },
+    {
+      "name": "image_fit_none",
+      "value": "None"
+    },
+    {
+      "name": "image_fit_scale_down",
+      "value": "Scale Down"
+    },
+    {
+      "name": "image_fit_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "image_span_and_span",
+      "value": "image span and span"
+    },
+    {
+      "name": "image_span_vertical_align_and_object_fit",
+      "value": "image span vertical align and object fit"
+    },
     // Text
     {
       "name": "text_title",

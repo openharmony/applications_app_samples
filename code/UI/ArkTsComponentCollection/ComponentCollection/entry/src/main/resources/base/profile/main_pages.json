@@ -11,6 +11,7 @@
     "pages/components/buttonAndSelection/toggleSample/ToggleSample",
     "pages/components/informationPresentationAndDynamicEffects/qrCodeSample/QRCodeSample",
     "pages/animations/interpolationCalculationSample/InterpolationCalculationSample",
+    "pages/components/textAndInput/imageSpanSample/ImageSpanSample",
     "pages/components/textAndInput/spanSample/SpanSample",
     "pages/components/textAndInput/textInputSample/TextInputSample",
     "pages/components/textAndInput/textSample/TextSample",

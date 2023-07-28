@@ -189,6 +189,10 @@ const TEXT_AND_INPUT: ThirdLevelCategory =
     title: $r('app.string.text_and_input'),
     childNodes: [
       {
+        title: $r('app.string.image_span_title'),
+        url: 'pages/components/textAndInput/imageSpanSample/ImageSpanSample'
+      },
+      {
         title: $r('app.string.span_title'),
         url: 'pages/components/textAndInput/spanSample/SpanSample'
       },

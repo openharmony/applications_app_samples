@@ -1017,6 +1017,67 @@
       "name": "span_decoration_color",
       "value": "装饰线颜色"
     },
+    //ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "ImageSpan 行内图像"
+    },
+    {
+      "name": "image_span_vertical_align",
+      "value": "设置跨度对齐方式"
+    },
+    {
+      "name": "image_span_alignment_baseline",
+      "value": "基线"
+    },
+    {
+      "name": "image_span_alignment_bottom",
+      "value": "底部"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "中心"
+    },
+    {
+      "name": "image_span_alignment_top",
+      "value": "顶部"
+    },
+    {
+      "name": "image_span_object_fit",
+      "value": "设置图像缩放类型"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "包含"
+    },
+    {
+      "name": "image_fit_auto",
+      "value": "自适应显示"
+    },
+    {
+      "name": "image_fit_fill",
+      "value": "填满"
+    },
+    {
+      "name": "image_fit_none",
+      "value": "保持大小并将其显示在中心"
+    },
+    {
+      "name": "image_fit_scale_down",
+      "value": "按比例缩小或保持不变"
+    },
+    {
+      "name": "image_fit_cover",
+      "value": "掩蔽"
+    },
+    {
+      "name": "image_span_and_span",
+      "value": "文本图像混合显示"
+    },
+    {
+      "name": "image_span_vertical_align_and_object_fit",
+      "value": "设置行内图像的跨度对齐方式和缩放类型"
+    },
     // Text
     {
       "name": "text_title",
