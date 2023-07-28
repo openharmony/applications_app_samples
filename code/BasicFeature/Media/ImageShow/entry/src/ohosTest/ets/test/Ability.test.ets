@@ -160,6 +160,50 @@ export default function abilityTest() {
     })
 
     /**
+     * 切换到选视频再切回选照片
+     */
+    it('ChangeImage_001', 0, async function () {
+      hilog.info(0x0000, 'testTag', 'ChangeImage_001 begin');
+      // 切换到选视频
+      await DRIVER.assertComponentExist(ON.id('type1'));
+      let changeVideoBtn = await DRIVER.findComponent(ON.id('type1'));
+      await changeVideoBtn.click();
+      await DRIVER.delayMs(1000);
+      // 关闭弹窗
+      await DRIVER.assertComponentExist(ON.id('type0'));
+      let changeImageBtn = await DRIVER.findComponent(ON.id('type0'));
+      await changeImageBtn.click();
+      await DRIVER.delayMs(1000);
+      // 切回到选照片
+      await DRIVER.assertComponentExist(ON.id('type0'));
+      let changeImageBtn1 = await DRIVER.findComponent(ON.id('type0'));
+      await changeImageBtn1.click();
+      await DRIVER.delayMs(1000);
+      hilog.info(0x0000, 'testTag', 'ChangeImage_001 end');
+    })
+
+    /**
+     * 再次选择图片
+     */
+    it('ChoicePhotoAgain_001', 0, async function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0x0000, 'testTag', 'ChoicePhotoAgain_001 begin');
+      await DRIVER.assertComponentExist(ON.id('image1'));
+      let image1 = await DRIVER.findComponent(ON.id('image1'));
+      await image1.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('select1'));
+      await DRIVER.assertComponentExist(ON.id('selected1'));
+      await DRIVER.assertComponentExist(ON.id('image2'));
+      let image2 = await DRIVER.findComponent(ON.id('image2'));
+      await image2.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('select2'));
+      await DRIVER.assertComponentExist(ON.id('selected2'));
+      hilog.info(0x0000, 'testTag', 'ChoicePhotoAgain_001 end');
+    })
+
+    /**
      * 返回主页
      */
     it('BackToIndex_001', 0, async function () {
