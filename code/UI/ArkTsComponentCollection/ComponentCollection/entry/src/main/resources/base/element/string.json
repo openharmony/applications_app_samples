@@ -3412,6 +3412,47 @@
     {
       "name": "canvas_imageSmoothingQuality",
       "value": "imageSmoothingQuality"
+    },
+    // scrollTo 动效增强
+    {
+      "name": "scroll_To_effect",
+      "value": "ScrollTo effect"
+    },
+    {
+      "name": "scroller",
+      "value": "Scroller"
+    },
+    {
+      "name": "list",
+      "value": "List"
+    },
+    {
+      "name": "grid",
+      "value": "Grid"
+    },
+    {
+      "name": "waterFlow",
+      "value": "WaterFlow"
+    },
+    {
+      "name": "tabs_switch_effect",
+      "value": "Tabs switch effect"
+    },
+    {
+      "name": "image_fit_Full_effect",
+      "value": "Image fit/full effect"
+    },
+    {
+      "name": "particle_effect",
+      "value": "Particle Effect"
+    },
+    {
+      "name": "particle_spawn",
+      "value": "Spawn"
+    },
+    {
+      "name": "particle_spawn_stop",
+      "value": "Stop"
     }
   ]
 }
