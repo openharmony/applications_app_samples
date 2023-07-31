@@ -432,8 +432,8 @@ class ScreenManager {
     Log.info(TAG, 'setKeepScreenOn start');
     let topWindow: window.Window = AppStorage.Get<window.Window>('mainWindow');
     try {
-            topWindow.setWindowKeepScreenOn(true, (): void => Log.info(TAG, 'setKeepScreenOn Succeeded'))
-        } catch (err) {
+          topWindow.setWindowKeepScreenOn(true, (): void => Log.info(TAG, 'setKeepScreenOn Succeeded'))
+      } catch (err) {
       Log.error(TAG, 'setKeepScreenOn err: ' + err);
     }
   }
@@ -442,8 +442,8 @@ class ScreenManager {
     Log.info(TAG, 'setKeepScreenOff start');
     let topWindow: window.Window = AppStorage.Get<window.Window>('mainWindow');
     try {
-            topWindow.setWindowKeepScreenOn(false, (): void => Log.info(TAG, 'setKeepScreenOff Succeeded'))
-        } catch (err) {
+          topWindow.setWindowKeepScreenOn(false, (): void => Log.info(TAG, 'setKeepScreenOff Succeeded'))
+      } catch (err) {
       Log.error(TAG, 'setKeepScreenOff err: ' + err);
     }
   }

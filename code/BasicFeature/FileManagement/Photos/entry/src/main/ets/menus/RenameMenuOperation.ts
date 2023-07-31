@@ -80,22 +80,22 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
 
     let hasSameName = await this.hasSameNameAsset(mediaItem, title);
     if (hasSameName) {
-            Log.info(TAG, 'show find same file dialog');
-            getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
-                showToast(message);
-            })
-            return;
-        }
+      Log.info(TAG, 'show find same file dialog');
+      getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
+        showToast(message);
+      })
+      return;
+    }
     try {
       let result = await this.rename(mediaItem, title);
       Log.info(TAG, 'Rename confirm result: ' + result);
       this.menuContext.broadCast.emit(Constants.RENAME, [result]);
     } catch (err) {
-            Log.error(TAG, 'Rename error: ' + err);
-            getResourceString($r('app.string.rename_failed')).then<void, void>((message: string): void => {
-                showToast(message);
-            })
-        }
+      Log.error(TAG, 'Rename error: ' + err);
+      getResourceString($r('app.string.rename_failed')).then<void, void>((message: string): void => {
+        showToast(message);
+      })
+    }
 
   }
 

@@ -69,18 +69,18 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage): void {
-        // Main window is created, set main page for this ability
-        Log.info(this.TAG, 'Application onWindowStageCreate');
-        GlobalContext.getContext().setObject('photosWindowStage', windowStage);
-        windowStage.getMainWindow().then((win: window.Window): void => {
-            AppStorage.SetOrCreate<window.Window>(Constants.MAIN_WINDOW, win);
-            screenManager.initializationSize(win).then<void, void>((): void => {
-                windowStage.setUIContent(this.context, pagePath, null);
-            }).catch<void>((): void => {
-                Log.error(this.TAG, 'get device screen info failed.');
-            });
-        });
-    }
+    // Main window is created, set main page for this ability
+    Log.info(this.TAG, 'Application onWindowStageCreate');
+    GlobalContext.getContext().setObject('photosWindowStage', windowStage);
+    windowStage.getMainWindow().then((win: window.Window): void => {
+      AppStorage.SetOrCreate<window.Window>(Constants.MAIN_WINDOW, win);
+      screenManager.initializationSize(win).then<void, void>((): void => {
+        windowStage.setUIContent(this.context, pagePath, null);
+      }).catch<void>((): void => {
+        Log.error(this.TAG, 'get device screen info failed.');
+      });
+    });
+  }
 
   onWindowStageDestroy(): void {
   }

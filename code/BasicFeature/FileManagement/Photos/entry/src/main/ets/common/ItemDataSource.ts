@@ -83,20 +83,20 @@ export abstract class ItemDataSource implements IDataSource {
   }
 
   notifyDataChange(index: number): void {
-        this.listeners.forEach((listener: DataChangeListener): void => {
-            listener.onDataChange(index);
-        })
-    }
+    this.listeners.forEach((listener: DataChangeListener): void => {
+      listener.onDataChange(index);
+    })
+  }
 
   notifyDataReload(): void {
-        this.listeners.forEach((listener: DataChangeListener): void => {
-            listener.onDataReloaded();
-        })
-    }
+    this.listeners.forEach((listener: DataChangeListener): void => {
+      listener.onDataReloaded();
+    })
+  }
 
   notifyDataDelete(index: number): void {
-        this.listeners.forEach((listener: DataChangeListener): void => {
-            listener.onDataDelete(index);
-        })
-    }
+    this.listeners.forEach((listener: DataChangeListener): void => {
+      listener.onDataDelete(index);
+    })
+  }
 }

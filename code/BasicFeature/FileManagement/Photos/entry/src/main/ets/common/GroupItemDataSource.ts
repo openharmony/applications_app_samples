@@ -107,49 +107,49 @@ export class GroupItemDataSource extends ItemDataSource {
   }
 
   getSelectedCount(): number {
-        let count = 0;
-        this.groupDataItem.forEach((item: UserFileDataItem): void => {
-            if (item.isSelect) {
-                count++;
-            }
-        })
-        return count;
-    }
+    let count = 0;
+    this.groupDataItem.forEach((item: UserFileDataItem): void => {
+      if (item.isSelect) {
+        count++;
+      }
+    })
+    return count;
+  }
 
   getItems(): UserFileDataItem[] {
-        let items: UserFileDataItem[] = [];
-        this.groupDataItem.forEach((item: UserFileDataItem): void => {
-            items.push(item);
-        })
-        return items;
-    }
+    let items: UserFileDataItem[] = [];
+    this.groupDataItem.forEach((item: UserFileDataItem): void => {
+      items.push(item);
+    })
+    return items;
+  }
 
   getSelectedItems(): Object[] {
-        let items: UserFileDataItem[] = [];
-        this.groupDataItem.forEach((item: UserFileDataItem): void => {
-            if (item.isSelect) {
-                items.push(item);
-            }
-        })
-        return items;
-    }
+    let items: UserFileDataItem[] = [];
+    this.groupDataItem.forEach((item: UserFileDataItem): void => {
+      if (item.isSelect) {
+        items.push(item);
+      }
+    })
+    return items;
+  }
 
   getSelectedUris(): string[] {
-        let uris: string[] = [];
-        this.groupDataItem.forEach((item: UserFileDataItem): void => {
-            if (item.isSelect) {
-                uris.push(item.uri);
-            }
-        })
-        return uris;
-    }
+    let uris: string[] = [];
+    this.groupDataItem.forEach((item: UserFileDataItem): void => {
+      if (item.isSelect) {
+        uris.push(item.uri);
+      }
+    })
+    return uris;
+  }
 
   setSelect(isSelect: boolean): void {
-        this.groupDataItem.forEach((item: UserFileDataItem): void => {
-            item.setSelect(isSelect);
-        })
-        this.notifyDataReload();
-    }
+    this.groupDataItem.forEach((item: UserFileDataItem): void => {
+      item.setSelect(isSelect);
+    })
+    this.notifyDataReload();
+  }
 
   async reloadGroupItemData(isGrid: boolean): Promise<boolean> {
     this.groupDataItem = await this.groupDataImpl.reloadGroupItemData(isGrid);
@@ -168,10 +168,10 @@ export class GroupItemDataSource extends ItemDataSource {
   }
 
   dataReload(isGrid: boolean): void {
-        this.reloadGroupItemData(isGrid).then<void, void>((isEmpty: boolean): void => {
-            this.notifyDataReload();
-        })
-    }
+    this.reloadGroupItemData(isGrid).then<void, void>((isEmpty: boolean): void => {
+      this.notifyDataReload();
+    })
+  }
 
   dataRemove(): void {
     for (let i = this.groupDataItem.length - 1;i >= 0; i--) {
