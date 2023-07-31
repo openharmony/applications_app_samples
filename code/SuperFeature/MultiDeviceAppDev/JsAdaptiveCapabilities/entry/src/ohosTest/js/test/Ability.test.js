@@ -82,6 +82,7 @@ export default function abilityTest() {
       await driver.swipe(547, 1063, 360, 1065, 200);
       await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(500);
       await checkButtonAndClickWithText('拉伸能力2');
       // 打开switch
       await driver.assertComponentExist(ON.type('switch'));
