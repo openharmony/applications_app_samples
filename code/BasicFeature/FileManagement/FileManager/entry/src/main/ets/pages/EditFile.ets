@@ -329,6 +329,7 @@ struct EditFile {
                 .fontWeight(500)
                 .margin({ left: 8, right: 8 })
                 .backgroundColor('#f1f3f5')
+                .maxLength(30)
                 .onChange((value: string) => {
                   this.newFileName = value;
                 })

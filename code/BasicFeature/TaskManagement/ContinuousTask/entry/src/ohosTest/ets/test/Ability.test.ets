@@ -52,6 +52,12 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
+      // 下拉菜单先清除所有通知
+      await driver.swipe(100, 10, 100, 500, 600);
+      await driver.delayMs(1000);
+      await driver.click(360,1080);
+      await driver.swipe(100, 500, 100, 10, 600);
+      await driver.delayMs(1000);
       // 点击播放开启长时任务
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 clickPlay');
       await driver.assertComponentExist(ON.id('image1'));

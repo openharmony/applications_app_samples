@@ -30,7 +30,8 @@ export struct TitleBar {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             router.back()
-          }).id('backBtn')
+          })
+          .id('backBtn')
         Text(this.title)
           .fontSize(20)
           .layoutWeight(1)
@@ -40,10 +41,6 @@ export struct TitleBar {
       }
       .height(56)
       .width('100%')
-
-      Divider()
-        .height(1)
-        .color($r('app.color.bottom_title_divider'))
     }
   }
 }

@@ -17,6 +17,7 @@ import { TitleBar } from '../../../../common/TitleBar'
 import { getStringArrayData } from '../../../../data/ResourceDataHandle'
 import { alphabetIndexerDataB, alphabetIndexerDataC, alphabetIndexerDataL, letterValue } from '../../ComponentData'
 import Logger from '../../../../util/Logger'
+import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 
 @Extend(Text) function leftTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
@@ -33,20 +34,15 @@ import Logger from '../../../../util/Logger'
   .padding(15)
 }
 
-@Extend(Circle) function colorPicker(color: Color | string, callback: () => void) {
+@Extend(Circle) function colorPicker(groupIndex: number, itemIndex: number, color: Color, callback: Function) {
   .fill(color)
   .height(20)
   .width(20)
   .onClick(() => {
-    callback()
+    callback(groupIndex, itemIndex, color)
   })
 }
 
-@Styles function pressedStyle() {
-  .opacity(0.7)
-  .borderWidth(1)
-  .borderRadius(20)
-}
 
 @Entry
 @Component
@@ -65,6 +61,33 @@ struct AlphabetIndexerSample {
   @State selectBackgroundColor: Color | number = 0xCCCCCC
   @State popupBackgroundColor: Color | number = 0xD2B48C
   @State needPopup: boolean = true
+  @State selectTextIndex: number = -1
+  @State selectBackGroundIndex: number = -1
+  @State popupIndex: number = -1
+  @State popupBackgroundIndex: number = -1
+  private circleClick = (groupIndex: number, itemIndex: number, color: Color) => {
+    switch (groupIndex) {
+      case 1:
+        this.selectTextColor = color
+        this.selectTextIndex = itemIndex
+        break
+      case 2:
+        this.selectBackgroundColor = color
+        this.selectBackGroundIndex = itemIndex
+        break
+      case 3:
+        this.popupColor = color
+        this.popupIndex = itemIndex
+        break
+      case 4:
+        this.popupBackgroundColor = color
+        this.popupBackgroundIndex = itemIndex
+        break
+    }
+  }
+  private compare = (selectedIndex: number, itemIndex: number): number => {
+    return selectedIndex == itemIndex ? 1 : 0.2
+  }
 
   build() {
     Column() {
@@ -73,8 +96,7 @@ struct AlphabetIndexerSample {
         Row() {
           Blank()
           Column() {
-            Text($r('app.string.alphabetindexer_list_display'))
-              .leftTitleStyle()
+            IntroductionTitle({ introduction: $r('app.string.alphabetindexer_list_display') })
             List({ space: 20, initialIndex: 0, scroller: this.scroller }) {
               ForEach(this.arrayA.concat(this.arrayB).concat(this.arrayC).concat(this.arrayL), (item) => {
                 ListItem() {
@@ -91,26 +113,19 @@ struct AlphabetIndexerSample {
             .borderRadius(24)
 
             Blank()
-            Text($r('app.string.alphabetindexer_color_select'))
-              .leftTitleStyle()
+            IntroductionTitle({ introduction: $r('app.string.alphabetindexer_color_select') })
             Column() {
               Row() {
                 Text($r('app.string.alphabetindexer_selectedcolor_selectedcolor'))
                   .leftTitleStyle()
                   .width('50%')
 
-                ForEach(this.colorArray, (item: Color) => {
+                ForEach(this.colorArray, (item: Color, index: number) => {
                   Circle({ width: 20, height: 20 })
-                    .colorPicker(item, () => {
-                      this.selectTextColor = item
-                    })
-                    .stateStyles({
-                      pressed: pressedStyle,
-                      normal: {
-                        .borderRadius(20)
-                        .borderWidth(1)
-                      }
-                    })
+                    .colorPicker(1, index, item, this.circleClick)
+                    .borderRadius(20)
+                    .borderWidth(1)
+                    .opacity(this.compare(this.selectTextIndex, index))
                   Blank()
                 })
               }.width('100%')
@@ -120,18 +135,12 @@ struct AlphabetIndexerSample {
                   .leftTitleStyle()
                   .width('50%')
 
-                ForEach(this.colorArray, (item: Color) => {
+                ForEach(this.colorArray, (item: Color, index: number) => {
                   Circle({ width: 20, height: 20 })
-                    .colorPicker(item, () => {
-                      this.selectBackgroundColor = item
-                    })
-                    .stateStyles({
-                      pressed: pressedStyle,
-                      normal: {
-                        .borderRadius(20)
-                        .borderWidth(1)
-                      }
-                    })
+                    .colorPicker(2, index, item, this.circleClick)
+                    .borderRadius(20)
+                    .borderWidth(1)
+                    .opacity(this.compare(this.selectBackGroundIndex, index))
                   Blank()
                 })
               }.width('100%')
@@ -141,18 +150,12 @@ struct AlphabetIndexerSample {
                   .leftTitleStyle()
                   .width('50%')
 
-                ForEach(this.colorArray, (item: Color) => {
+                ForEach(this.colorArray, (item: Color, index) => {
                   Circle({ width: 20, height: 20 })
-                    .colorPicker(item, () => {
-                      this.popupColor = item
-                    })
-                    .stateStyles({
-                      pressed: pressedStyle,
-                      normal: {
-                        .borderRadius(20)
-                        .borderWidth(1)
-                      }
-                    })
+                    .colorPicker(3, index, item, this.circleClick)
+                    .borderRadius(20)
+                    .borderWidth(1)
+                    .opacity(this.compare(this.popupIndex, index))
                   Blank()
                 })
               }.width('100%')
@@ -161,18 +164,12 @@ struct AlphabetIndexerSample {
                 Text($r('app.string.alphabetindexer_selectedcolor_popupbackground'))
                   .leftTitleStyle()
                   .width('50%')
-                ForEach(this.colorArray, (item: Color) => {
+                ForEach(this.colorArray, (item: Color, index) => {
                   Circle({ width: 20, height: 20 })
-                    .colorPicker(item, () => {
-                      this.popupBackgroundColor = item
-                    })
-                    .stateStyles({
-                      pressed: pressedStyle,
-                      normal: {
-                        .borderRadius(20)
-                        .borderWidth(1)
-                      }
-                    })
+                    .colorPicker(4, index, item, this.circleClick)
+                    .borderRadius(20)
+                    .borderWidth(1)
+                    .opacity(this.compare(this.popupBackgroundIndex, index))
                   Blank()
                 })
               }.width('100%')
@@ -206,7 +203,8 @@ struct AlphabetIndexerSample {
             .alignStyle(IndexerAlign.Right) // 弹出框在索引条左侧弹出
             .onSelect((index: number) => {
               Logger.info(`${this.value[index]} Selected!`)
-            }).id('test_alphabet')
+            })
+            .id('test_alphabet')
             .onRequestPopupData((index: number) => {
               if (this.value[index] === 'A') {
                 this.currentSelectIndex = 0

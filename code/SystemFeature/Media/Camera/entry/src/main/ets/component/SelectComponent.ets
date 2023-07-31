@@ -56,6 +56,7 @@ export struct SelectComponent {
                   .width(24)
                   .height(24)
                   .checked(this.selected == index)
+                  .hitTestBehavior(HitTestMode.None)
               }
               .width('100%')
               .alignItems(VerticalAlign.Center)
@@ -73,6 +74,7 @@ export struct SelectComponent {
           .height(48)
           .onClick(() => {
             this.selected = index;
+            Logger.info(TAG, `item onClick ${this.selected}`);
           })
         })
       }

@@ -70,21 +70,15 @@ export struct TabContentNavigation {
               }
               .ColumnStyle()
             }
-            .margin({ top: 4, bottom: 4 })
+            .margin({ top: 6, bottom: 6 })
           })
         }
       }
       .width('100%')
       .layoutWeight(1)
       .padding({ left: 16, right: 16, top: 4 })
-
+      .id('list_001')
       Blank()
-
-      Divider()
-        .height(0.75)
-        .width('100%')
-        .alignSelf(ItemAlign.Baseline)
-        .color($r('app.color.tab_bar_divider'))
     }
     .height('100%')
     .padding({ top: 12 })

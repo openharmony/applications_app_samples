@@ -21,6 +21,10 @@
       "value": "#000000"
     },
     {
+      "name": "font_color_red",
+      "value": "#FFD22C2C"
+    },
+    {
       "name": "tab_bar_select",
       "value": "#007DFF"
     },
@@ -160,6 +164,58 @@
     {
       "name": "3D_right_buttom_color",
       "value": "#D69942"
+    },
+    {
+      "name": "btn_one_color",
+      "value": "#FFC0CB"
+    },
+    {
+      "name": "btn_two_color",
+      "value": "#87CEFA"
+    },
+    {
+      "name": "btn_three_color",
+      "value": "#90EE90"
+    },
+    {
+      "name": "btn_onFocus_color",
+      "value": "#FF0000"
+    },
+    {
+      "name": "focus_on_background",
+      "value": "#007DFE"
+    },
+    {
+      "name": "COLOR_80000000",
+      "value": "#80000000"
+    },
+    {
+      "name": "COLOR_FFFFFF",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "COLOR_8C9BA2",
+      "value": "#8C9BA2"
+    },
+    {
+      "name": "COLOR_99FFFFFF",
+      "value": "#99ffffff"
+    },
+    {
+      "name": "canvas_background",
+      "value": "#ffff00"
+    },
+    {
+      "name": "canvas_normal_button_bg",
+      "value": "#317aff"
+    },
+    {
+      "name": "canvas_clear_button_bg",
+      "value": "#ffff7300"
+    },
+    {
+      "name": "canvas_bg_color",
+      "value": "#00ffff"
     }
   ]
 }

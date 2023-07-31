@@ -424,6 +424,12 @@ struct Watcher {
                         j++;
                         Logger.info('onClick showEventArray[' + j + '] = ' + showEventArray[j]);
                       }
+                      if (showEventArray.length === 0) {
+                        AlertDialog.show({
+                          message: '当前无监听，请先添加监听'
+                        })
+                        return;
+                      }
                       TextPickerDialog.show({
                         range: showEventArray,
                         selected: this.selectDel,

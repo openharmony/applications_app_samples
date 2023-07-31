@@ -24,6 +24,11 @@ const BUNDLE = 'CertFramework_';
 const COMMON_DELAY_TIME = 1000;
 const DISPLAY_DELAY_TIME = 50;
 const VERIFY_DELAY_TIME = 200;
+const CORRECT_CERTIFICATION = 'gt8da5Zg==';
+const CORRECT_ORIGIN_TEXT = 'on Sunday at the Central Garden';
+const MODIFIED_ORIGIN_TEXT = 'on Monday at the lakeside garden';
+const CORRECT_SIGNATURE = 'd7mi/';
+const MODIFIED_SIGNATURE = 'AAAREleX';
 
 export default function abilityTest() {
   let driver = Driver.create();
@@ -62,9 +67,9 @@ export default function abilityTest() {
       let displayData = await driver.findComponent(ON.id('dataDispalyButton'));
       await displayData.click();
       await driver.delayMs(DISPLAY_DELAY_TIME);
-      await driver.assertComponentExist(ON.text('CCAR8', MatchPattern.CONTAINS));
-      await driver.assertComponentExist(ON.text('on Sunday at the Central Garden', MatchPattern.CONTAINS));
-      await driver.assertComponentExist(ON.text('d7mi/', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_CERTIFICATION, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_ORIGIN_TEXT, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_SIGNATURE, MatchPattern.CONTAINS));
 
       Logger.info(TAG, BUNDLE + 'DisplayData_001 end');
       done();
@@ -104,7 +109,9 @@ export default function abilityTest() {
       let modify = await driver.findComponent(ON.id('modifyOriginDataButton'));
       await modify.click();
       await driver.delayMs(DISPLAY_DELAY_TIME);
-      await driver.assertComponentExist(ON.text('on Monday at the lakeside garden', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_CERTIFICATION, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(MODIFIED_ORIGIN_TEXT, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_SIGNATURE, MatchPattern.CONTAINS));
 
       Logger.info(TAG, BUNDLE + 'ModifyOriginData_001 begin');
       done();
@@ -122,14 +129,16 @@ export default function abilityTest() {
       let modify = await driver.findComponent(ON.id('modifySignatureDataButton'));
       await modify.click();
       await driver.delayMs(DISPLAY_DELAY_TIME);
-      await driver.assertComponentExist(ON.text('AAARE', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_CERTIFICATION, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CORRECT_ORIGIN_TEXT, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(MODIFIED_SIGNATURE, MatchPattern.CONTAINS));
 
       Logger.info(TAG, BUNDLE + 'ModifySignatureData_001 begin');
       done();
     })
 
     /**
-     * 修改原始数据并保持签名数据不变，重新进行签名校验
+     * 恢复初始数据，修改原始数据并保持签名数据不变，重新进行签名校验
      */
     it(BUNDLE + 'Verify_002', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'Verify_002 begin');
@@ -139,6 +148,11 @@ export default function abilityTest() {
       //获取manager
       let manager = ability.context.resourceManager;
 
+      // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
+      Logger.info(TAG, 'display data');
+      await driver.assertComponentExist(ON.id('dataDispalyButton'));
+      let display = await driver.findComponent(ON.id('dataDispalyButton'));
+      await display.click();
       // 点击修改原始数据按钮，页面分别显示正确的证书数据和签名数据，以及错误的原始数据
       Logger.info(TAG, 'modify origin data');
       await driver.assertComponentExist(ON.id('modifyOriginDataButton'));
@@ -157,7 +171,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改签名数据并保持原始数据不变，重新进行签名校验
+     * 恢复初始数据，修改签名数据并保持原始数据不变，重新进行签名校验
      */
     it(BUNDLE + 'Verify_003', 0, async function (done) {
       Logger.info(TAG, BUNDLE + 'Verify_003 begin');
@@ -167,6 +181,11 @@ export default function abilityTest() {
       //获取manager
       let manager = ability.context.resourceManager;
 
+      // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
+      Logger.info(TAG, 'display data');
+      await driver.assertComponentExist(ON.id('dataDispalyButton'));
+      let display = await driver.findComponent(ON.id('dataDispalyButton'));
+      await display.click();
       // 点击修改原始数据按钮，页面分别显示正确的证书数据和签名数据，以及错误的原始数据
       Logger.info(TAG, 'modify signature data');
       await driver.assertComponentExist(ON.id('modifySignatureDataButton'));

@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import common from "@ohos.app.ability.common"
+import common from '@ohos.app.ability.common'
+
 const TOOL_WIDTH: SizeOptions = { width: 150, height: 38 }
 
 /**
@@ -27,6 +28,41 @@ export struct CommonItemSlider {
   private min: number
   private max: number
   private name: ResourceStr
+  private step: number = 1
+  private testId: string = 'test_colorSelect'
+
+  build() {
+    Row() {
+      Text(this.name)
+      Slider({
+        value: this.changeValue,
+        step: this.step,
+        min: this.min,
+        max: this.max })
+        .id(this.testId)
+        .layoutWeight(1)
+        .onChange((value: number) => {
+          this.changeValue = value
+          console.log('Sample_ComponentCollection' + String(value))
+        }).onClick((event: ClickEvent) => {
+        let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+        console.log('Sample_ComponentCollection' + text)
+      })
+      Text(`${Math.trunc(this.changeValue)}vp`)
+    }
+    .id(this.testId)
+    .width('100%')
+    .height(40)
+    .justifyContent(FlexAlign.SpaceAround)
+  }
+}
+
+@Component
+export struct ImageItemSlider {
+  @Link changeValue: number;
+  private min: number;
+  private max: number;
+  private name: ResourceStr;
 
   build() {
     Row() {
@@ -39,12 +75,12 @@ export struct CommonItemSlider {
         .layoutWeight(1)
         .onChange((value: number) => {
           this.changeValue = value
-          console.log('Sample_ComponentCollection'+String(value))
+          console.log('Sample_ComponentCollection' + String(value))
         }).onClick((event: ClickEvent) => {
-          let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
-          console.log('Sample_ComponentCollection'+text)
-        })
-      Text(`${Math.trunc(this.changeValue)}vp`)
+        let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+        console.log('Sample_ComponentCollection' + text)
+      })
+      Text(`${Math.trunc(this.changeValue)}`)
     }
     .width('100%')
     .height(40)
@@ -52,19 +88,20 @@ export struct CommonItemSlider {
   }
 }
 
+
 /**
  * Select in item style, provide multiple choices based on menuList
  */
 @Component
 export struct CommonItemSelect {
-  private selects: ResourceStr[] = []
-  private callback: (index: number, value?: string) => void
-  private selectOption: SelectOption[] = []
-  private name: ResourceStr
-  private testId: string = 'test_itemSelect'
-  private selectIndex: number
-  private fontSize: Font = { size: 20, weight: FontWeight.Medium }
-  private isItemStyle: boolean = true
+  private selects: ResourceStr[] = [];
+  private callback: (index: number, value?: string) => void;
+  private selectOption: SelectOption[] = [];
+  private name: ResourceStr;
+  private testId: string = 'test_itemSelect';
+  private selectIndex: number;
+  private fontSize: Font = { size: 15, weight: FontWeight.Medium };
+  private isItemStyle: boolean = true;
 
   aboutToAppear() {
     this.selects.forEach((selects, index) => {
@@ -78,17 +115,18 @@ export struct CommonItemSelect {
         .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
       Blank()
       Select(this.selectOption)
-        .backgroundColor($r("app.color.background_shallow_grey"))
+        .id(this.testId)
+        .backgroundColor($r('app.color.background_shallow_grey'))
         .borderRadius(19)
         .constraintSize({ minWidth: 150 })
         .selected(this.selectIndex)
         .font(this.fontSize)
         .optionFont(this.fontSize)
-        .padding({ left: 20, right: 20, top: 8, bottom: 8 })
         .onSelect((index, value) => {
           this.callback(index, value)
           this.selectIndex = index
-        }).id(this.testId)
+        })
+        .height('100%')
     }
     .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
@@ -104,14 +142,16 @@ export struct CommonItemSelect {
  */
 @Component
 export struct CommonItemColorSelect {
-  @Link selectColor: Resource
-  @State selectIndex: number = 0
-  private testId: string = 'test_colorSelect'
-  private name: Resource
-  private isItemStyle: boolean = true
-  private colorNames: Array<{ value: Resource }> = [{ value: $r('app.string.divider_color_blue') }, { value: $r('app.string.divider_color_green') }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
+  @Link selectColor: Resource;
+  @State selectIndex: number = 0;
+  private testId: string = 'test_colorSelect';
+  private name: Resource;
+  private isItemStyle: boolean = true;
+  private colorNames: Array<{ value: Resource }> = [{ value: $r('app.string.divider_color_blue') }, {
+    value: $r('app.string.divider_color_green')
+  }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
 
-  changeResourceToString(resourceData:Resource){
+  changeResourceToString(resourceData: Resource) {
     let context = getContext(this) as common.UIAbilityContext
     return context.resourceManager.getStringSync(resourceData.id)
   }
@@ -129,7 +169,7 @@ export struct CommonItemColorSelect {
         .constraintSize({ minWidth: 150 })
         .selected(this.selectIndex)
         .selectedOptionFont({ size: 20 })
-        .backgroundColor($r("app.color.background_shallow_grey"))
+        .backgroundColor($r('app.color.background_shallow_grey'))
         .padding({ left: 20, right: 20, top: 8, bottom: 8 })
         .onSelect((index) => {
           this.selectIndex = index
@@ -149,7 +189,8 @@ export struct CommonItemColorSelect {
             default:
               this.selectColor = $r('app.color.background_dark')
           }
-        }).id(this.testId)
+        })
+        .id(this.testId)
     }
     .borderRadius(this.isItemStyle ? 0 : 24)
     .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
@@ -165,9 +206,9 @@ export struct CommonItemColorSelect {
  */
 @Component
 export struct CommonItemInput {
-  @Link inputValue: string
-  private name: Resource
-  private placeholder?: ResourceStr = ''
+  @Link inputValue: string;
+  private name: Resource;
+  private placeholder?: ResourceStr = '';
 
   build() {
     Row() {
@@ -178,14 +219,33 @@ export struct CommonItemInput {
         .size(TOOL_WIDTH)
         .onChange(value => {
           this.inputValue = value
-        })
-        .id('test_input')
-        .enableKeyboardOnFocus(false)
+        }).id('test_input')
     }
     .size({ width: '100%', height: 70 })
     .padding({ left: 12, right: 12 })
     .borderRadius(24)
     .backgroundColor($r('app.color.white'))
     .margin({ top: 12, bottom: 12 })
+  }
+}
+
+
+@Component
+export struct CommonSwitcher {
+  @Link bool: boolean
+  private name: ResourceStr
+  private testId:string = ''
+  private testID:string = ''
+  build() {
+    Row() {
+      Text(this.name)
+      Blank()
+      Toggle({ type: ToggleType.Switch, isOn: this.bool })
+        .onChange((isOn) => {
+          this.bool = isOn
+        })
+        .id(this.testId || this.testID)
+    }.width('100%')
+    .height(40)
   }
 }

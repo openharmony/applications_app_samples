@@ -103,11 +103,13 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('start'));
       let startBtn: Component = await driver.findComponent(ON.id('start'));
       await startBtn.click();
-      await driver.delayMs(90000);
+      await driver.delayMs(10000);
       await driver.assertComponentExist(ON.text('确定'));
       let confirm: Component = await driver.findComponent(ON.text('确定'));
       await confirm.click();
       await driver.delayMs(500);
+      // 点击确定后，弹窗会关闭
+      expect(await startBtn.isFocused()).assertTrue();
       Logger.info(TAG, BUNDLE + 'StartCountdownTime_001 end');
     })
     // 重置定时器

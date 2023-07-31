@@ -1053,6 +1053,67 @@
       "name": "span_decoration_overline",
       "value": "Overline"
     },
+    // ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "Image Span"
+    },
+    {
+      "name": "image_span_vertical_align",
+      "value": "Vertical Align"
+    },
+    {
+      "name": "image_span_alignment_baseline",
+      "value": "Baseline"
+    },
+    {
+      "name": "image_span_alignment_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "image_span_alignment_top",
+      "value": "Top"
+    },
+    {
+      "name": "image_span_object_fit",
+      "value": "Object Fit"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "image_fit_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "image_fit_fill",
+      "value": "Fill"
+    },
+    {
+      "name": "image_fit_none",
+      "value": "None"
+    },
+    {
+      "name": "image_fit_scale_down",
+      "value": "Scale Down"
+    },
+    {
+      "name": "image_fit_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "image_span_and_span",
+      "value": "image span and span"
+    },
+    {
+      "name": "image_span_vertical_align_and_object_fit",
+      "value": "image span vertical align and object fit"
+    },
     // Text
     {
       "name": "text_title",
@@ -1635,8 +1696,196 @@
       "value": "Touch test region"
     },
     {
-      "name": "touch_hit_test",
-      "value": "Click the hot area: set the hot area as the green area"
+      "name": "action_sheet_dialog",
+      "value": "ActionSheetDialog"
+    },
+    {
+      "name": "action_sheet_title_autoCancel",
+      "value": "Whether the pop-up window is automatically canceled"
+    },
+    {
+      "name": "action_sheet_click_sheets",
+      "value": "Click options content"
+    },
+    {
+      "name": "action_sheet_dialog_click_content",
+      "value": "Click content"
+    },
+    {
+      "name": "text_picker_dialog",
+      "value": "TextPickerDialog"
+    },
+    {
+      "name": "text_picker_show",
+      "value": "Show text dialog"
+    },
+    {
+      "name": "text_picker_click_text",
+      "value": "Click text"
+    },
+    {
+      "name": "text_picker_text_peach",
+      "value": "peach"
+    },
+    {
+      "name": "text_picker_text_apple",
+      "value": "apple"
+    },
+    {
+      "name": "text_picker_text_orange",
+      "value": "orange"
+    },
+    {
+      "name": "text_picker_text_grape",
+      "value": "grape"
+    },
+    {
+      "name": "text_picker_text_banana",
+      "value": "banana"
+    },
+    {
+      "name": "global_menu",
+      "value": "BindContextMenu"
+    },
+    {
+      "name": "global_menu_create_way",
+      "value": "Create way"
+    },
+    {
+      "name": "global_menu_click_right",
+      "value": "Right click"
+    },
+    {
+      "name": "global_menu_long_press",
+      "value": "Long press"
+    },
+    {
+      "name": "global_menu_close",
+      "value": "Click to close the menu"
+    },
+    {
+      "name": "component_transition",
+      "value": "Component transition"
+    },
+    {
+      "name": "component_transition_show",
+      "value": " Show"
+    },
+    {
+      "name": "component_transition_hide",
+      "value": "Hide"
+    },
+    {
+      "name": "attribute_animation",
+      "value": "Property animation"
+    },
+    {
+      "name": "motion_path",
+      "value": "Path animation"
+    },
+    {
+      "name": "animate_to",
+      "value": "Display animation"
+    },
+    {
+      "name": "animate_over",
+      "value": "The animation finishes playing"
+    },
+    {
+      "name": "attribute_animation_change_size",
+      "value": "Change size"
+    },
+    {
+      "name": "attribute_animation_play_complete",
+      "value": "Playback Complete"
+    },
+    {
+      "name": "attribute_animation_unlimited_playback",
+      "value": "Unlimited playback"
+    },
+    {
+      "name": "attribute_animation_play_speed",
+      "value": "Play the speed"
+    },
+    {
+      "name": "attribute_animation_delay",
+      "value": "Delay 3 s"
+    },
+    {
+      "name": "attribute_animation_set_curve",
+      "value": "Set the curve"
+    },
+    {
+      "name": "attribute_animation_change_rotation",
+      "value": "Change the rotation"
+    },
+    {
+      "name": "attribute_animation_play_count",
+      "value": "Play 2 times"
+    },
+    {
+      "name": "motion_path_click_me",
+      "value": "click me"
+    },
+    {
+      "name": "general_mount",
+      "value": "Mount unmount events"
+    },
+    {
+      "name": "general_mount_toast",
+      "value": "Mount the image"
+    },
+    {
+      "name": "general_unmount_toast",
+      "value": "Unmount the image"
+    },
+    {
+      "name": "general_mount_text",
+      "value": "Click I mount the unmounted image"
+    },
+    {
+      "name": "general_drag",
+      "value": "Drag and drop events"
+    },
+    {
+      "name": "general_drag_text_one",
+      "value": "There are three Text elements here, press and hold the text and drag it to the list below"
+    },
+    {
+      "name": "general_drag_text_two",
+      "value": "This is a List element"
+    },
+    {
+      "name": "drag_list_one",
+      "value": "One"
+    },
+    {
+      "name": "drag_list_two",
+      "value": "Two"
+    },
+    {
+      "name": "drag_list_three",
+      "value": "Three"
+    },
+    {
+      "name": "drag_list_four",
+      "value": "Four"
+    },
+    {
+      "name": "size_size",
+      "value": "size"
+    },
+    {
+      "name": "size_padding",
+      "value": "padding"
+    },
+    {
+      "name": "size_margin",
+      "value": "margin"
+    },
+    {
+      "name": "size_constraintSize",
+      "value": "constraintSize"
     },
     {
       "name": "response_region",
@@ -2132,8 +2381,104 @@
       "value": "Show Custom Popup"
     },
     {
+      "name": "pan_start",
+      "value": "Start"
+    },
+    {
+      "name": "pan_end",
+      "value": "End"
+    },
+    {
+      "name": "pan_button",
+      "value": "Modify the PanGesture trigger condition"
+    },
+    {
+      "name": "pinch_description",
+      "value": "Pinch the black frame with three fingers"
+    },
+    {
+      "name": "pinch_scale",
+      "value": "PinchGesture scale:\n"
+    },
+    {
+      "name": "rotation_description",
+      "value": "Rotate the black box with two fingers"
+    },
+    {
+      "name": "swipe_description",
+      "value": "Quickly slide the black box with one finger in either direction"
+    },
+    {
+      "name": "combinded_description",
+      "value": "Press and hold and drag the black box"
+    },
+    {
+      "name": "transform_translate_invert",
+      "value": "Zoom in twice and invert (zoom in by a factor of two)"
+    },
+    {
+      "name": "key_press_description",
+      "value": "Press the External Keyboard Tab key, and then press any key"
+    },
+    {
+      "name": "april",
+      "value": "april"
+    },
+    {
+      "name": "bind_click",
+      "value": "Click me"
+    },
+    {
       "name": "interaction_disable",
       "value": "Disable Component:"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas components"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Base attributes"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Base methods"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "Canvas Zone"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "Attributes Operations"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "Clear Effects"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "Printed to the console"
     }
   ]
 }

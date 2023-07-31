@@ -14,7 +14,9 @@
  */
 
 import abilityTest from './Ability.test';
+import formTest from './Form.test';
 
 export default function testsuite() {
   abilityTest();
+  formTest();
 }

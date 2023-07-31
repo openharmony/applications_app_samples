@@ -21,10 +21,9 @@ import { logger } from '../utils/Logger';
 const TAG: string = 'MediaUtils';
 
 export class MediaUtils {
-  async copyFileToCache(uri: string): Promise<string> {
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  async copyFileToCache(cacheDir: string, uri: string): Promise<string> {
     let id = uri.split('/').pop();
-    let imagePath = `${context.cacheDir}/${id}.jpg`;
+    let imagePath = `${cacheDir}/${id}.jpg`;
     let file = await fs.open(uri);
     try {
       fs.copyFileSync(file.fd, imagePath);

@@ -25,8 +25,8 @@ export struct ChangeTextCase {
         testId: 'select5',
         name: $r('app.string.text_text_case'),
         selects: [$r('app.string.text_text_case_normal'),
-                  $r('app.string.text_text_case_uppercase'),
-                  $r('app.string.text_text_case_lowercase')],
+        $r('app.string.text_text_case_uppercase'),
+        $r('app.string.text_text_case_lowercase')],
         callback: (index) => {
           switch (index) {
             case 1:
@@ -75,8 +75,8 @@ export struct ChangeTextAttribute {
         testId: 'select1',
         name: $r('app.string.text_text_align_type'),
         selects: [$r('app.string.text_text_align_start'),
-                  $r('app.string.text_text_align_center'),
-                  $r('app.string.text_text_align_end')],
+        $r('app.string.text_text_align_center'),
+        $r('app.string.text_text_align_end')],
         callback: (index) => {
           switch (index) {
             case 1:
@@ -95,8 +95,8 @@ export struct ChangeTextAttribute {
         testId: 'select2',
         name: $r('app.string.text_overflow'),
         selects: [$r('app.string.text_none'),
-                  $r('app.string.text_text_over_flow_clip'),
-                  $r('app.string.text_text_over_flow_ellipsis')],
+        $r('app.string.text_text_over_flow_clip'),
+        $r('app.string.text_text_over_flow_ellipsis')],
         callback: (index) => {
           switch (index) {
             case 1:
@@ -119,9 +119,9 @@ export struct ChangeTextAttribute {
         testId: 'select3',
         name: $r('app.string.text_decoration_type'),
         selects: [$r('app.string.text_none'),
-                  $r('app.string.text_decoration_type_line_through'),
-                  $r('app.string.text_decoration_type_over_line'),
-                  $r('app.string.text_decoration_type_under_line')],
+        $r('app.string.text_decoration_type_line_through'),
+        $r('app.string.text_decoration_type_over_line'),
+        $r('app.string.text_decoration_type_under_line')],
         callback: (index) => {
           switch (index) {
             case 1:

@@ -125,7 +125,7 @@ struct CheckboxSample {
               Circle({ width: 20, height: 20 })
                 .colorPicker(item, () => {
                   this.slectedColor = item
-                }).id('test_changeColor'+index)
+                }).id('test_changeColor' + index)
                 .stateStyles({
                   pressed: pressedStyle,
                   normal: {

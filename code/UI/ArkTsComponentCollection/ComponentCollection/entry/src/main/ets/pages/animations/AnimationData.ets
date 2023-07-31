@@ -41,12 +41,20 @@ const TRANSITION_ANIMATION: ThirdLevelCategory =
         url: 'pages/animations/TransitionAnimations/folderSample/FolderSample',
       },
       {
+        title: $r('app.string.System_icon'),
+        url: 'pages/animations/TransitionAnimations/systemIcon/SystemIcon',
+      },
+      {
         title: $r('app.string.Shop_card_expansion'),
         url: 'pages/animations/TransitionAnimations/shopSample/ShopCardSample',
       },
       {
         title: $r('app.string.Gallery_card_expansion'),
         url: 'pages/animations/TransitionAnimations/gallerySample/GalleryCardSample',
+      },
+      {
+        title: $r('app.string.component_transition'),
+        url: 'pages/animations/TransitionAnimations/componentTransitionSample/ComponentTransitionSample'
       }
     ]
   }
@@ -58,5 +66,26 @@ const INTERPOLATION_CALCULATION: ThirdLevelCategory =
     url: 'pages/animations/interpolationCalculationSample/InterpolationCalculationSample',
   }
 
+const ANIMATE_TO: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_animations_animateto'),
+    title: $r('app.string.animate_to'),
+    url: 'pages/animations/animateToSample/AnimateToSample'
+  }
+
+const ANIMATION_ATTRIBUTE: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_animations_animation'),
+    title: $r('app.string.attribute_animation'),
+    url: 'pages/animations/animationSample/AnimationSample'
+  }
+
+const MOTION_PATH: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_animations_path'),
+    title: $r('app.string.motion_path'),
+    url: 'pages/animations/motionPathSample/MotionPathSample'
+  }
+
 // Animated classification data, second menu data
-export const ANIMATION_CATEGORIES: ThirdLevelCategory[] = [TRANSITION_ANIMATION, INTERPOLATION_CALCULATION]
+export const ANIMATION_CATEGORIES: ThirdLevelCategory[] = [TRANSITION_ANIMATION, INTERPOLATION_CALCULATION, ANIMATE_TO, ANIMATION_ATTRIBUTE, MOTION_PATH]

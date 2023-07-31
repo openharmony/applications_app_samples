@@ -17,10 +17,6 @@
       "value": "组件"
     },
     {
-      "name": "universal",
-      "value": "通用"
-    },
-    {
       "name": "global_method",
       "value": "全局方法"
     },
@@ -69,10 +65,6 @@
       "value": "挂载卸载事件"
     },
     {
-      "name": "drag_drop_event",
-      "value": "拖拽事件"
-    },
-    {
       "name": "key_event",
       "value": "按键事件"
     },
@@ -83,10 +75,6 @@
     {
       "name": "mouse_event",
       "value": "鼠标事件"
-    },
-    {
-      "name": "component_area_change_event",
-      "value": "组件区域变化事件"
     },
     {
       "name": "gesture_processing",
@@ -147,11 +135,6 @@
       "name": "blank_and_divider",
       "value": "空白与分隔"
     },
-    {
-      "name": "text_and_input",
-      "value": "文本与输入"
-    },
-    // AlertDialog
     {
       "name": "alert_dialog",
       "value": "AlertDialog 警告弹窗"
@@ -252,7 +235,6 @@
       "name": "alert_dialog_grid_four",
       "value": "4栅格宽度"
     },
-    // Background
     {
       "name": "background_color",
       "value": "背景颜色"
@@ -293,7 +275,6 @@
       "name": "background_image_offset",
       "value": "图片位置向右下偏移"
     },
-    // Badge
     {
       "name": "auxiliary_badge",
       "value": "Badge 标记"
@@ -350,7 +331,6 @@
       "name": "badge_green",
       "value": "绿色小标记"
     },
-    // Border
     {
       "name": "border_type",
       "value": "边框类型"
@@ -423,7 +403,6 @@
       "name": "border_radius_right_bottom",
       "value": "右下边框"
     },
-    // Button
     {
       "name": "button_title",
       "value": "Button 按钮"
@@ -484,7 +463,6 @@
       "name": "button_click",
       "value": "被点击了！"
     },
-    // Click Event
     {
       "name": "click_action_tips",
       "value": "点击灰色区域，更改准星位置"
@@ -501,7 +479,6 @@
       "name": "get_click_event_detail",
       "value": "点击事件详细信息"
     },
-    // CustomDialog
     {
       "name": "custom_dialog",
       "value": "CustomDialog 自定义弹窗"
@@ -542,7 +519,6 @@
       "name": "custom_dialog_start",
       "value": "一键开启"
     },
-    // DatePickerDialog
     {
       "name": "date_picker_dialog",
       "value": "DatePickerDialog 日期选择弹窗"
@@ -567,7 +543,6 @@
       "name": "date_picker_toast_date",
       "value": "选中的时间为："
     },
-    // DatePicker
     {
       "name": "date_picker_title",
       "value": "DatePicker 时间选择器"
@@ -576,7 +551,6 @@
       "name": "date_picker_lunar",
       "value": "显示农历"
     },
-    // Divider
     {
       "name": "divider_title",
       "value": "Divider 分隔器"
@@ -605,7 +579,6 @@
       "name": "divider_attribute",
       "value": "属性"
     },
-    // Font
     {
       "name": "font_color",
       "value": "颜色"
@@ -622,7 +595,6 @@
       "name": "font_style",
       "value": "样式"
     },
-    // Interpolation Calculation
     {
       "name": "interpolation_calculation_cubic_bezier_curve",
       "value": "三阶贝塞尔曲线对象"
@@ -639,7 +611,6 @@
       "name": "interpolation_calculation_steps_curve",
       "value": "阶梯曲线对象"
     },
-    // Page Transition
     {
       "name": "page_transition",
       "value": "pageTransition 页面间转场"
@@ -672,7 +643,6 @@
       "name": "page_transition_back",
       "value": "返回页面间转场页面"
     },
-    // QRCode
     {
       "name": "qrcode_title",
       "value": "QRCode 二维码"
@@ -689,7 +659,6 @@
       "name": "qrcode_enter_content",
       "value": "改变二维码内容"
     },
-    // Radio
     {
       "name": "radio_title",
       "value": "Radio 单选按钮"
@@ -718,7 +687,6 @@
       "name": "radio_guangzhou",
       "value": "广州"
     },
-    // Rotate
     {
       "name": "graphic_transformation_rotate",
       "value": "rotate 旋转"
@@ -743,7 +711,6 @@
       "name": "rotate_image_angle",
       "value": "旋转15°"
     },
-    // Select
     {
       "name": "select_title",
       "value": "Select 选择菜单"
@@ -784,7 +751,6 @@
       "name": "select_value",
       "value": "选中选项的值："
     },
-    // Shareelement Transition
     {
       "name": "share_element_transition",
       "value": "sharedTransition 共享元素转场"
@@ -802,6 +768,10 @@
       "value": "文件夹展开"
     },
     {
+      "name": "System_icon",
+      "value": "系统图标"
+    },
+    {
       "name": "Shop_card_expansion",
       "value": "商店卡片展开"
     },
@@ -809,7 +779,6 @@
       "name": "Gallery_card_expansion",
       "value": "图库卡片展开"
     },
-    // Size
     {
       "name": "size_width",
       "value": "宽度"
@@ -834,7 +803,6 @@
       "name": "size_height_percent",
       "value": "高度为60%"
     },
-    // Slider
     {
       "name": "slider_title",
       "value": "Slider 滑动条"
@@ -903,11 +871,6 @@
       "name": "slider_title_value",
       "value": "滑块滑动在总长中占比："
     },
-    // Span
-    {
-      "name": "span_title",
-      "value": "Span 行内文本"
-    },
     {
       "name": "span_attribute",
       "value": "配置不同文本属性"
@@ -956,7 +919,6 @@
       "name": "span_decoration_color",
       "value": "装饰线颜色"
     },
-    // Text
     {
       "name": "text_title",
       "value": "Text 文本"
@@ -1044,6 +1006,18 @@
     {
       "name": "text_text_case_lowercase",
       "value": "小写"
+    },
+    {
+      "name": "image_span_title",
+      "value": "ImageSpan 行内图像"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "中心"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "包含"
     },
     // TextInput
     {
@@ -1146,7 +1120,6 @@
       "name": "text_input_toast_edit",
       "value": "编辑的文本为："
     },
-    // TimePickerDialog
     {
       "name": "time_picker_dialog",
       "value": "TimePickerDialog 时间选择弹窗"
@@ -1171,7 +1144,6 @@
       "name": "time_picker_toast_time",
       "value": "选中的时间为："
     },
-    // Toggle
     {
       "name": "toggle_title",
       "value": "Toggle 切换按钮"
@@ -1200,7 +1172,6 @@
       "name": "toggle_state",
       "value": "是否选中："
     },
-    // Translate
     {
       "name": "graphic_transformation_translate",
       "value": "translate 平移"
@@ -1221,7 +1192,6 @@
       "name": "translate_y_axis",
       "value": "Y轴："
     },
-    //Display
     {
       "name": "components_display",
       "value": "显示"
@@ -1466,7 +1436,6 @@
       "name": "status_select",
       "value": "状态选择"
     },
-    // 辅助
     {
       "name": "scroll_bar",
       "value": "ScrollBar 滚动条"
@@ -1543,16 +1512,8 @@
       "value": "RichText 富文本"
     },
     {
-      "name": "scroll_swiper",
-      "value": "滚动与滑动"
-    },
-    {
       "name": "scroll_name",
       "value": "Scroll 滚动"
-    },
-    {
-      "name": "swiper_name",
-      "value": "Swiper 翻页"
     },
     {
       "name": "alphabetindexer_an",
@@ -1761,6 +1722,355 @@
     {
       "name": "april",
       "value": "四月"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas画布"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Attributes 属性"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient 渐变对象"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap 位图对象"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Methods 方法"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D 路径对象"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows 阴影"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform 转换"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "画布区域"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "属性操作"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "清除效果"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "已经打印到控制台"
+    },
+
+    {
+      "name": "TestAbility_desc",
+      "value": "自动化测试"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "自动化测试"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "自动化测试"
+    },
+    {
+      "name": "scroll_swiper",
+      "value": "滚动与滑动"
+    },
+    {
+      "name": "swiper_name",
+      "value": "Swiper 翻页"
+    },
+    {
+      "name": "swiper_controller_next",
+      "value": "下一页"
+    },
+    {
+      "name": "swiper_controller_previous",
+      "value": "上一页"
+    },
+    {
+      "name": "rows_and_columns",
+      "value": "行列与分栏"
+    },
+    {
+      "name": "row_title",
+      "value": "Row 水平布局"
+    },
+    {
+      "name": "rowsplit_title",
+      "value": "RowSplit 水平分割布局"
+    },
+    {
+      "name": "column_title",
+      "value": "Column 垂直布局"
+    },
+    {
+      "name": "columnsplit_title",
+      "value": "ColumnSplit 垂直分割布局"
+    },
+    {
+      "name": "sidebarcontainer_title",
+      "value": "SideBarContainer 侧边栏"
+    },
+    {
+      "name": "stack_flex_and_grid",
+      "value": "堆叠、Flex与栅格"
+    },
+    {
+      "name": "stack_title",
+      "value": "Stack 堆叠容器"
+    },
+    {
+      "name": "flex_title",
+      "value": "Flex 弹性布局"
+    },
+    {
+      "name": "gridcontainer_title",
+      "value": "GridContainer 栅格系统"
+    },
+    {
+      "name": "list_and_grid",
+      "value": "列表与宫格"
+    },
+    {
+      "name": "list_title",
+      "value": "List 列表容器"
+    },
+    {
+      "name": "list_item_title",
+      "value": "ListItem"
+    },
+    {
+      "name": "grid_title",
+      "value": "Grid"
+    },
+    {
+      "name": "grid_item_title",
+      "value": "GridItem"
+    },
+    {
+      "name": "navigation",
+      "value": "导航"
+    },
+    {
+      "name": "navigation_title",
+      "value": "Navigation"
+    },
+    {
+      "name": "tabs_title",
+      "value": "Tabs"
+    },
+    {
+      "name": "tab_content_title",
+      "value": "TabContent"
+    },
+    {
+      "name": "stepper_title",
+      "value": "Stepper&StepperItem"
+    },
+    {
+      "name": "canvas_and_graphic_drawing",
+      "value": "画布与图形绘制"
+    },
+    {
+      "name": "canvas_title",
+      "value": "Canvas 画布"
+    },
+    {
+      "name": "circle_title",
+      "value": "Circle 圆形"
+    },
+    {
+      "name": "ellipse_title",
+      "value": "Ellipse 椭圆"
+    },
+    {
+      "name": "line_title",
+      "value": "Line 直线"
+    },
+    {
+      "name": "path_title",
+      "value": "Path 路径"
+    },
+    {
+      "name": "polygon_title",
+      "value": "Polygon 多边形"
+    },
+    {
+      "name": "polyline_title",
+      "value": "Polyline 折线"
+    },
+    {
+      "name": "rect_title",
+      "value": "Rect 矩形"
+    },
+    {
+      "name": "shape_title",
+      "value": "Shape 指定图形"
+    },
+    {
+      "name": "image_video_and_media",
+      "value": "图片视频与媒体"
+    },
+    {
+      "name": "image_title",
+      "value": "Image 图片"
+    },
+    {
+      "name": "image_animator_title",
+      "value": "ImageAnimator 逐帧播放图片"
+    },
+    {
+      "name": "video_title",
+      "value": "video 视频"
+    },
+    {
+      "name": "plugin_component_title",
+      "value": "PluginComponent 嵌入式显示"
+    },
+    {
+      "name": "xcomponent_title",
+      "value": "XComponent 绘制组件"
+    },
+    {
+      "name": "web_title",
+      "value": "web 网页"
+    },
+    {
+      "name": "web",
+      "value": "网页"
+    },
+    {
+      "name": "text_and_input",
+      "value": "文本与输入"
+    },
+    {
+      "name": "search_title",
+      "value": "Search 搜索框"
+    },
+    {
+      "name": "patternLock_title",
+      "value": "PatternLock 图案密码锁"
+    },
+    {
+      "name": "textarea_title",
+      "value": "TextArea 多行文本输入框"
+    },
+    {
+      "name": "text_picker_dialog",
+      "value": "TextPickerDialog 文本滑动选择器弹窗"
+    },
+    {
+      "name": "span_title",
+      "value": "Span 行内文本"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "组件区域变化事件"
+    },
+    {
+      "name": "universal",
+      "value": "通用"
+    },
+    {
+      "name": "general_mount",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "scroll_event",
+      "value": "组件可见区域变化事件"
+    },
+    {
+      "name": "scale",
+      "value": "scale 缩放"
+    },
+    {
+      "name": "transform",
+      "value": "transform 变换矩阵"
+    },
+    {
+      "name": "location_settings",
+      "value": "location 位置设置"
+    },
+    {
+      "name": "layout_constrain",
+      "value": "布局约束"
+    },
+    {
+      "name": "flex",
+      "value": "flex布局"
+    },
+    {
+      "name": "picture_border",
+      "value": "图片边框设置"
+    },
+    {
+      "name": "shape_crop",
+      "value": "形状裁剪"
+    },
+    {
+      "name": "grid_settings",
+      "value": "栅格设置"
+    },
+    {
+      "name": "focus_control",
+      "value": "焦点控制"
+    },
+    {
+      "name": "component_blurred",
+      "value": "组件背景模糊"
+    },
+    {
+      "name": "restore_id",
+      "value": "分布式迁移标识"
+    },
+    {
+      "name": "bind_gesture_methods",
+      "value": "绑定手势方法"
+    },
+    {
+      "name": "component_transition",
+      "value": "component transition 组件内转场"
+    },
+    {
+      "name": "component_transition_show",
+      "value": "显示"
+    },
+    {
+      "name": "component_transition_hide",
+      "value": "隐藏"
+    },
+    {
+      "name": "animate_to",
+      "value": "animateTo 显示动画"
+    },
+    {
+      "name": "attribute_animation",
+      "value": "animation 属性动画"
+    },
+    {
+      "name": "action_sheet_dialog",
+      "value": "ActionSheetDialog 列表选择弹框"
+    },
+    {
+      "name": "global_menu",
+      "value": "BindContextMenu 菜单"
     }
   ]
 }

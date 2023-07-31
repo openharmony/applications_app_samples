@@ -131,7 +131,8 @@
     {
       "name": "swipe_gesture",
       "value": "SwipeGesture"
-    },    {
+    },
+    {
       "name": "combined_gestures",
       "value": "Combined Gestures"
     },
@@ -162,6 +163,26 @@
     {
       "name": "text_and_input",
       "value": "Text and input"
+    },
+    {
+      "name": "rows_and_columns",
+      "value": "Rows and columns"
+    },
+    {
+      "name": "stack_flex_and_grid",
+      "value": "Stack, flex and grid"
+    },
+    {
+      "name": "list_and_grid",
+      "value": "List and grid"
+    },
+    {
+      "name": "navigation",
+      "value": "Navigation"
+    },
+    {
+      "name": "canvas_and_graphic_drawing",
+      "value": "Canvas and graphic drawing"
     },
     // AlertDialog
     {
@@ -911,6 +932,10 @@
       "value": "shop card expansion"
     },
     {
+      "name": "System_icon",
+      "value": "System Icon"
+    },
+    {
       "name": "Today",
       "value": "today"
     },
@@ -1081,6 +1106,67 @@
       "name": "span_decoration_overline",
       "value": "Overline"
     },
+    //ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "Image Span"
+    },
+    {
+      "name": "image_span_vertical_align",
+      "value": "Vertical Align"
+    },
+    {
+      "name": "image_span_alignment_baseline",
+      "value": "Baseline"
+    },
+    {
+      "name": "image_span_alignment_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "image_span_alignment_top",
+      "value": "Top"
+    },
+    {
+      "name": "image_span_object_fit",
+      "value": "Object Fit"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "image_fit_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "image_fit_fill",
+      "value": "Fill"
+    },
+    {
+      "name": "image_fit_none",
+      "value": "None"
+    },
+    {
+      "name": "image_fit_scale_down",
+      "value": "Scale Down"
+    },
+    {
+      "name": "image_fit_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "image_span_and_span",
+      "value": "image span and span"
+    },
+    {
+      "name": "image_span_vertical_align_and_object_fit",
+      "value": "image span vertical align and object fit"
+    },
     // Text
     {
       "name": "text_title",
@@ -1093,6 +1179,14 @@
     {
       "name": "text_content_en",
       "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life."
+    },
+    {
+      "name": "text_content_en_first",
+      "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. "
+    },
+    {
+      "name": "text_content_en_last",
+      "value": "It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life. "
     },
     {
       "name": "text_text_align_center",
@@ -1466,7 +1560,8 @@
     {
       "name": "components_display_hidden",
       "value": "Hidden"
-    }, {
+    },
+    {
       "name": "components_display_visible",
       "value": "Visible"
     },
@@ -1545,7 +1640,8 @@
     {
       "name": "color_blend_change",
       "value": "Colorblend"
-    },{
+    },
+    {
       "name": "z_index",
       "value": "Z-Index"
     },
@@ -2155,7 +2251,71 @@
       "name": "interaction_arrowoffset",
       "value": "Change arrowOffset:"
     },
+    // ComponentTransitionSample
     {
+      "name": "component_transition",
+      "value": "Component transition"
+    },
+    {
+      "name": "component_transition_show",
+      "value": "Show"
+    },
+    {
+      "name": "component_transition_hide",
+      "value": "Hide"
+    },
+    {
+      "name": "motion_path",
+      "value": "MotionPath"
+    },
+    {
+      "name": "animate_to",
+      "value": "AnimateTo"
+    },
+    {
+      "name": "attribute_animation",
+      "value": "AttributeAnimation"
+    },
+    {
+      "name": "attribute_animation_change_size",
+      "value": "ChangeSize"
+    },
+    {
+      "name": "attribute_animation_change_rotation",
+      "value": "ChangeRotation"
+    },
+    {
+      "name": "attribute_animation_set_curve",
+      "value": "SetCurve"
+    },
+    {
+      "name": "attribute_animation_delay",
+      "value": "delay3s"
+    },
+    {
+      "name": "attribute_animation_play_speed",
+      "value": "PlaySpeed"
+    },
+    {
+      "name": "attribute_animation_unlimited_playback",
+      "value": "UnlimitedPlayback"
+    },
+    {
+      "name": "attribute_animation_play_complete",
+      "value": "PlayComplete"
+    },
+    {
+      "name": "attribute_animation_play_count",
+      "value": "PlayCount"
+    },
+    {
+      "name": "motion_path_click_me",
+      "value": "ClickMe"
+    },
+    {
+      "name": "animate_over",
+      "value": "AnimateOver"
+    },{
       "name": "interaction_showpopup",
       "value": "Show Popup"
     },
@@ -2166,6 +2326,2560 @@
     {
       "name": "interaction_disable",
       "value": "Disable Component:"
+    },
+    {
+      "name": "action_sheet_dialog_click_content",
+      "value": "点击内容"
+    },
+    {
+      "name": "text_picker_click_text",
+      "value": "点击文字"
+    },
+    {
+      "name": "global_menu",
+      "value": "BindContextMenu"
+    },
+    {
+      "name": "global_menu_create_way",
+      "value": "创建方式"
+    },
+    {
+      "name": "global_menu_click_right",
+      "value": "右击"
+    },
+    {
+      "name": "global_menu_long_press",
+      "value": "长按"
+    },
+    {
+      "name": "global_menu_close",
+      "value": "点击关闭菜单"
+    },
+    {
+      "name": "general_mount",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "general_mount_toast",
+      "value": "挂载图片"
+    },
+    {
+      "name": "general_unmount_toast",
+      "value": "卸载图片"
+    },
+    {
+      "name": "general_mount_text",
+      "value": "点击我挂载卸载图片"
+    },
+    {
+      "name": "general_drag",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "general_drag_text_one",
+      "value": "这里有三个文本元素,长按文本拖到下方列表中"
+    },
+    {
+      "name": "general_drag_text_two",
+      "value": "这是一个列表元素"
+    },
+    {
+      "name": "drag_list_one",
+      "value": "One"
+    },
+    {
+      "name": "drag_list_two",
+      "value": "Two"
+    },
+    {
+      "name": "drag_list_three",
+      "value": "Three"
+    },
+    {
+      "name": "drag_list_four",
+      "value": "Four"
+    },
+    {
+      "name": "size_size",
+      "value": "大小"
+    },
+    {
+      "name": "size_padding",
+      "value": "内边距"
+    },
+    {
+      "name": "size_margin",
+      "value": "外边距"
+    },
+    {
+      "name": "size_constraintSize",
+      "value": "约束大小"
+    },
+    {
+      "name": "size_size_description_one",
+      "value": "宽高为100vp"
+    },
+    {
+      "name": "size_size_description_two",
+      "value": "宽高为100%"
+    },
+    {
+      "name": "size_size_padding_one",
+      "value": "上下左右内边距10vp"
+    },
+    {
+      "name": "size_size_padding_two",
+      "value": "上内边距20%"
+    },
+    {
+      "name": "size_size_margin_one",
+      "value": "上下左右外边距10vp"
+    },
+    {
+      "name": "size_size_margin_two",
+      "value": "上外距20%"
+    },
+    {
+      "name": "size_size_constraintSize_one",
+      "value": "约束最大宽高90vp"
+    },
+    {
+      "name": "size_size_constraintSize_two",
+      "value": "约束最小宽高80vp"
+    },
+    {
+      "name": "keyPress_event",
+      "value": "按压事件"
+    },
+    {
+      "name": "focus_event_description",
+      "value": "按压外接键盘Tab键获取焦点，再按上下键切换焦点"
+    },
+    {
+      "name": "focus_event_button_one",
+      "value": "第一个按钮"
+    },
+    {
+      "name": "focus_event_button_two",
+      "value": "第二个按钮"
+    },
+    {
+      "name": "focus_event_button_three",
+      "value": "第三个按钮"
+    },
+    {
+      "name": "focus_event_toast_text",
+      "value": "触发焦点"
+    },
+    {
+      "name": "press_event_toast_text",
+      "value": "触发按键事件"
+    },
+    {
+      "name": "press_event_toast_description",
+      "value": "按压外接键盘任何键"
+    },
+    {
+      "name": "mouse_event_move_description",
+      "value": "使用外接鼠标移入按钮"
+    },
+    {
+      "name": "mouse_event_click_description",
+      "value": "使用外接鼠标点击按钮"
+    },
+    {
+      "name": "mouse_event_hover_description",
+      "value": "鼠标移入"
+    },
+    {
+      "name": "mouse_event_onHover_description",
+      "value": "鼠标未移入"
+    },
+    {
+      "name": "mouse_event_onMouse_text",
+      "value": "onMouse"
+    },
+    {
+      "name": "mouse_event_mouseBtn_none",
+      "value": "None"
+    },
+    {
+      "name": "mouse_event_mouseBtn_left",
+      "value": "Left"
+    },
+    {
+      "name": "mouse_event_mouseBtn_right",
+      "value": "Right"
+    },
+    {
+      "name": "mouse_event_mouseBtn_back",
+      "value": "Back"
+    },
+    {
+      "name": "mouse_event_mouseBtn_forward",
+      "value": "Forward"
+    },
+    {
+      "name": "mouse_event_mouseBtn_middle",
+      "value": "Middle"
+    },
+    {
+      "name": "mouse_event_mouseAction_hover",
+      "value": "Hover"
+    },
+    {
+      "name": "mouse_event_mouseAction_press",
+      "value": "Press"
+    },
+    {
+      "name": "mouse_event_mouseAction_move",
+      "value": "Move"
+    },
+    {
+      "name": "mouse_event_mouseAction_release",
+      "value": "Release"
+    },
+    {
+      "name": "scroll_event",
+      "value": "组件可见区域变化事件"
+    },
+    {
+      "name": "scroll_event_description",
+      "value": "滑动列表使图片消失和显示"
+    },
+    {
+      "name": "scroll_event_toast_visible",
+      "value": "爱心图片完全可见"
+    },
+    {
+      "name": "scroll_event_toast_invisible",
+      "value": "爱心图片完全消失"
+    },
+    {
+      "name": "location_settings",
+      "value": "Location settings"
+    },
+    {
+      "name": "location_settings_align",
+      "value": "对齐方式"
+    },
+    {
+      "name": "location_settings_direction",
+      "value": "水平布局"
+    },
+    {
+      "name": "location_settings_position",
+      "value": "绝对定位"
+    },
+    {
+      "name": "location_settings_markAnchor",
+      "value": "设置锚点"
+    },
+    {
+      "name": "location_settings_offset",
+      "value": "相对定位"
+    },
+    {
+      "name": "location_settings_alignRules",
+      "value": "对齐规则"
+    },
+    {
+      "name": "location_settings_bottom_end",
+      "value": "Bottom end"
+    },
+    {
+      "name": "location_settings_top_start",
+      "value": "Top start"
+    },
+    {
+      "name": "location_settings_center",
+      "value": "Center"
+    },
+    {
+      "name": "location_settings_position_text",
+      "value": "position(30, 10)"
+    },
+    {
+      "name": "location_settings_position_offSet_text",
+      "value": "offset(15, 30)"
+    },
+    {
+      "name": "layout_constrain",
+      "value": "布局约束"
+    },
+    {
+      "name": "layout_constrain_aspectRatio",
+      "value": "组件宽高比"
+    },
+    {
+      "name": "layout_constrain_displayPriority",
+      "value": "组件优先级"
+    },
+    {
+      "name": "layout_constrain_big_container",
+      "value": "大型容器"
+    },
+    {
+      "name": "layout_constrain_middle_container",
+      "value": "中型容器"
+    },
+    {
+      "name": "layout_constrain_small_container",
+      "value": "小型容器"
+    },
+    {
+      "name": "layout_constrain_children_one",
+      "value": "1:(priority:2)"
+    },
+    {
+      "name": "layout_constrain_children_two",
+      "value": "2:(priority:1)"
+    },
+    {
+      "name": "layout_constrain_children_three",
+      "value": "3:(priority:3)"
+    },
+    {
+      "name": "layout_constrain_children_four",
+      "value": "4:(priority:1)"
+    },
+    {
+      "name": "layout_constrain_children_five",
+      "value": "5:(priority:2)"
+    },
+    {
+      "name": "layout_constrain_one",
+      "value": "1"
+    },
+    {
+      "name": "layout_constrain_two",
+      "value": "2"
+    },
+    {
+      "name": "flex",
+      "value": "flex"
+    },
+    {
+      "name": "flex_flexBasis",
+      "value": "flexBasis"
+    },
+    {
+      "name": "flex_flexGrow",
+      "value": "FlexGrow"
+    },
+    {
+      "name": "flex_flexShrink",
+      "value": "FlexShrink"
+    },
+    {
+      "name": "flex_alignSelf",
+      "value": "AlignSelf"
+    },
+    {
+      "name": "flex_layoutWeight",
+      "value": "LayoutWeight"
+    },
+    {
+      "name": "flex_no_layoutWeight",
+      "value": "On layoutWeight"
+    },
+    {
+      "name": "flex_no_alignSelf_70",
+      "value": "On alignSelf,height:70%"
+    },
+    {
+      "name": "flex_end_alignSelf",
+      "value": "AlignSelf end"
+    },
+    {
+      "name": "flex_end_alignSelf_100",
+      "value": "AlignSelf end"
+    },
+    {
+      "name": "flex_shrink_0",
+      "value": "FlexShrink(0)"
+    },
+    {
+      "name": "flex_shrink_default",
+      "value": "Default flexShrink"
+    },
+    {
+      "name": "flex_shrink_1",
+      "value": "FlexShrink(1)"
+    },
+    {
+      "name": "flex_grow_1",
+      "value": "FlexGrow(1)"
+    },
+    {
+      "name": "flex_grow_2",
+      "value": "FlexGrow(2)"
+    },
+    {
+      "name": "flex_no_alignSelf_100",
+      "value": "On alignSelf,height:100%"
+    },
+    {
+      "name": "flex_basis_100",
+      "value": "FlexBasis(100)"
+    },
+    {
+      "name": "flex_basis_auto",
+      "value": "FlexBasis(auto)"
+    },
+    {
+      "name": "picture_border",
+      "value": "图片边框设置"
+    },
+    {
+      "name": "scale",
+      "value": "Scale"
+    },
+    {
+      "name": "transform",
+      "value": "Transform"
+    },
+    {
+      "name": "scale_image",
+      "value": "ScaleImage"
+    },
+    {
+      "name": "transform_image",
+      "value": "TransformImage"
+    },
+    {
+      "name": "transform_init",
+      "value": "创建四阶矩阵"
+    },
+    {
+      "name": "transform_copy",
+      "value": "矩阵复制"
+    },
+    {
+      "name": "transform_combine",
+      "value": "矩阵效果叠加"
+    },
+    {
+      "name": "transform_invert",
+      "value": "矩阵效果反转"
+    },
+    {
+      "name": "transform_translate",
+      "value": "矩阵平移效果"
+    },
+    {
+      "name": "transform_scale",
+      "value": "矩阵缩放效果"
+    },
+    {
+      "name": "transform_rotate",
+      "value": "矩阵旋转效果"
+    },
+    {
+      "name": "transform_transformPoint",
+      "value": "矩阵坐标点转换效果"
+    },
+    {
+      "name": "transform_combine_text",
+      "value": "x平移20，x放大两倍"
+    },
+    {
+      "name": "transform_translate_text",
+      "value": "平移 x: 40, y: 40, z: 20"
+    },
+    {
+      "name": "transform_scale_text",
+      "value": "宽高缩小一倍"
+    },
+    {
+      "name": "transform_rotate_text",
+      "value": "旋转30度"
+    },
+    {
+      "name": "transform_transformPoint_before",
+      "value": "矩阵变换后的坐标：[50,50]"
+    },
+    {
+      "name": "transform_transformPoint_after",
+      "value": "矩阵变换后的坐标：[100,0]"
+    },
+    {
+      "name": "shape_crop",
+      "value": "形状裁剪"
+    },
+    {
+      "name": "shape_crop_clip",
+      "value": "裁剪"
+    },
+    {
+      "name": "shape_crop_mask",
+      "value": "遮盖"
+    },
+    {
+      "name": "grid_settings",
+      "value": "栅格设置"
+    },
+    {
+      "name": "grid_settings_sm",
+      "value": "设备宽度为SM"
+    },
+    {
+      "name": "grid_settings_md",
+      "value": "设备宽度为MD"
+    },
+    {
+      "name": "grid_settings_lg",
+      "value": "设备宽度为LG"
+    },
+    {
+      "name": "grid_settings_useSize",
+      "value": "UseSizeType"
+    },
+    {
+      "name": "grid_settings_gridSpan",
+      "value": "GridSpan gridOffset"
+    },
+    {
+      "name": "focus_control",
+      "value": "焦点控制"
+    },
+    {
+      "name": "focus_control_tab",
+      "value": "按外接键盘Tab键切换焦点"
+    },
+    {
+      "name": "focus_control_lastPageId",
+      "value": "LastPageId"
+    },
+    {
+      "name": "focus_control_success",
+      "value": "请求成功"
+    },
+    {
+      "name": "focus_control_failed",
+      "value": "请求失败"
+    },
+    {
+      "name": "focus_control_group1",
+      "value": "Group1"
+    },
+    {
+      "name": "focus_control_group2",
+      "value": "Group2"
+    },
+    {
+      "name": "focus_control_group3",
+      "value": "Group3"
+    },
+    {
+      "name": "focus_control_input",
+      "value": "Input"
+    },
+    {
+      "name": "focus_control_request_focus",
+      "value": "选择水果请求聚焦"
+    },
+    {
+      "name": "component_id",
+      "value": "组件标识"
+    },
+    {
+      "name": "component_id_onKeyTab",
+      "value": "OnKeyTab"
+    },
+    {
+      "name": "component_id_click",
+      "value": "Click to start"
+    },
+    {
+      "name": "component_id_longClick",
+      "value": "LongClick"
+    },
+    {
+      "name": "component_id_onTouch",
+      "value": "OnTouch"
+    },
+    {
+      "name": "component_id_onMouse",
+      "value": "OnMouse"
+    },
+    {
+      "name": "component_id_click_text",
+      "value": "Button 'click to start' is clicked"
+    },
+    {
+      "name": "component_id_longClick_text",
+      "value": "Button 'longClick' is longClicked"
+    },
+    {
+      "name": "component_id_onTouch_text",
+      "value": "Button 'onTouch' is clicked"
+    },
+    {
+      "name": "component_id_onMouse_text",
+      "value": "Button 'onMouse' in onMouse"
+    },
+    {
+      "name": "component_blurred",
+      "value": "组件背景模糊"
+    },
+    {
+      "name": "component_blurred_thin",
+      "value": "薄材料"
+    },
+    {
+      "name": "restore_id",
+      "value": "分布式迁移标识"
+    },
+    {
+      "name": "gesture_process",
+      "value": "手势处理"
+    },
+    {
+      "name": "bind_gesture_methods",
+      "value": "绑定手势方法"
+    },
+    {
+      "name": "bind_gesture_priorityGesture",
+      "value": "priorityGesture会忽略text,优先识别父组件column"
+    },
+    {
+      "name": "bind_gesture_parallelGesture",
+      "value": "parallelGesture识别父子组件column，text"
+    },
+    {
+      "name": "bind_gesture_tapGesture",
+      "value": "TapGesture:"
+    },
+    {
+      "name": "bind_gesture_text",
+      "value": "\nText"
+    },
+    {
+      "name": "bind_gesture_column",
+      "value": "\nColumn"
+    },
+    {
+      "name": "double_click",
+      "value": "单指双击触发"
+    },
+    {
+      "name": "onAction",
+      "value": "onAction:"
+    },
+    {
+      "name": "long_press",
+      "value": "单指长按文本"
+    },
+    {
+      "name": "long_press_cancel",
+      "value": "取消事件"
+    },
+    {
+      "name": "long_press_text",
+      "value": "请单指长按我"
+    },
+    {
+      "name": "pan_text",
+      "value": "双指任意方式拖动黑色框"
+    },
+    {
+      "name": "pan_text_one",
+      "value": "单指左右拖动黑色框"
+    },
+    {
+      "name": "pan_start",
+      "value": "开始"
+    },
+    {
+      "name": "pan_end",
+      "value": "结束"
+    },
+    {
+      "name": "pan_button",
+      "value": "修改PanGesture触发条件"
+    },
+    {
+      "name": "pan_offset",
+      "value": "PanGesture offset:\nX:"
+    },
+    {
+      "name": "pan_offset_y",
+      "value": "\nY:"
+    },
+    {
+      "name": "pinch_description",
+      "value": "三指捏合黑色框"
+    },
+    {
+      "name": "pinch_scale",
+      "value": "PinchGesture scale:\n"
+    },
+    {
+      "name": "pinch_center",
+      "value": "PinchGesture center:\nx:"
+    },
+    {
+      "name": "rotation_description",
+      "value": "双指旋转黑色框"
+    },
+    {
+      "name": "rotation_text",
+      "value": "RotationGesture \n angle:"
+    },
+    {
+      "name": "swipe_description",
+      "value": "单指任一方向快速滑动黑色框"
+    },
+    {
+      "name": "swipe_text_speed",
+      "value": "SwipeGesture\n speed:"
+    },
+    {
+      "name": "swipe_text_angle",
+      "value": "SwipeGesture\n angle"
+    },
+    {
+      "name": "combinded_description",
+      "value": "先长按再拖动黑色框"
+    },
+    {
+      "name": "combinded_pan_start",
+      "value": "Pan start"
+    },
+    {
+      "name": "combinded_pan_update",
+      "value": "Pan update"
+    },
+    {
+      "name": "combinded_pan_end",
+      "value": "Pan end"
+    },
+    {
+      "name": "combinded_longPress_onAction",
+      "value": "LongPress onAction"
+    },
+    {
+      "name": "combinded_longPress_end",
+      "value": "LongPress end"
+    },
+    {
+      "name": "combinded_sequence",
+      "value": "sequence gesture\n"
+    },
+    {
+      "name": "combinded_longPress",
+      "value": "LongPress onAction:"
+    },
+    {
+      "name": "combinded_offset",
+      "value": "\nPanGesture offset:\nX:"
+    },
+    {
+      "name": "combinded_x",
+      "value": "\nX:"
+    },
+    {
+      "name": "transform_translate_invert",
+      "value": "放大两倍反转(缩小两倍)"
+    },
+    {
+      "name": "key_press_description",
+      "value": "按压外接键盘Tab键，再按压任意键"
+    },
+    {
+      "name": "key_press_keyType",
+      "value": "KeyType:"
+    },
+    {
+      "name": "key_press_keyCode",
+      "value": "\nkeyCode:"
+    },
+    {
+      "name": "key_press_keyText",
+      "value": "\nkeyText:"
+    },
+    {
+      "name": "key_press_down",
+      "value": "Down"
+    },
+    {
+      "name": "key_press_up",
+      "value": "Up"
+    },
+    {
+      "name": "componentId_longClick",
+      "value": "longClick"
+    },
+    {
+      "name": "componentId_onTouch",
+      "value": "onTouch"
+    },
+    {
+      "name": "componentId_onMouse",
+      "value": "onMouse"
+    },
+    {
+      "name": "flex_auto",
+      "value": "auto"
+    },
+    {
+      "name": "april",
+      "value": "april"
+    },
+    {
+      "name": "bind_click",
+      "value": "点击我"
+    },
+    // ActionSheetDialog
+    {
+      "name": "action_sheet_dialog",
+      "value": "ActionSheetDialog"
+    },
+    {
+      "name": "action_sheet_click_sheets",
+      "value": "点击选项内容"
+    },
+    // TextPickerDialog
+    {
+      "name": "text_picker_text_peach",
+      "value": "peach"
+    },
+    {
+      "name": "text_picker_text_apple",
+      "value": "apple"
+    },
+    {
+      "name": "text_picker_text_orange",
+      "value": "orange"
+    },
+    {
+      "name": "text_picker_text_grape",
+      "value": "grape"
+    },
+    {
+      "name": "text_picker_text_banana",
+      "value": "banana"
+    },
+    {
+      "name": "text_picker_dialog",
+      "value": "TextPickerDialog 文本滑动选择器弹窗"
+    },
+    {
+      "name": "text_picker_show",
+      "value": "显示文本弹窗"
+    },
+    //Row
+    {
+      "name": "row_title",
+      "value": "Row"
+    },
+    {
+      "name": "row_introduction_arguments",
+      "value": "Modifying Row parameters"
+    },
+    {
+      "name": "row_introduction_properties",
+      "value": "Modifying Row properties"
+    },
+    {
+      "name": "row_element_spacing",
+      "value": "element spacing"
+    },
+    {
+      "name": "row_alignitems_top",
+      "value": "Top"
+    },
+    {
+      "name": "row_alignitems_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "row_alignitems_center",
+      "value": "Center"
+    },
+    {
+      "name": "row_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "row_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "row_justifycontent_end",
+      "value": "End"
+    },
+    {
+      "name": "row_justifycontent_spacebetween",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "row_justifycontent_spacearound",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "row_justifycontent_spaceevenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "row_justifycontent_description",
+      "value": "Spindle alignment format"
+    },
+    {
+      "name": "row_alignitems_description",
+      "value": "Cross axis alignment format"
+    },
+    {
+      "name": "row_introduction_tips",
+      "value": "Tips:"
+    },
+    {
+      "name": "row_tips",
+      "value": "When the spindle is of type SpaceBetween, SpaceAround, or SpaceEven, the parameter space of the Row component does not take effect"
+    },
+    // RowSplit
+    {
+      "name": "rowsplit_title",
+      "value": "RowSplit Indicates the horizontal split layout"
+    },
+    {
+      "name": "rowsplit_introduction_properties",
+      "value": "Modify the drag-and-drop property of RowSplit"
+    },
+    {
+      "name": "rowsplit_drag",
+      "value": "drag switch"
+    },
+    {
+      "name": "rowsplit_drag_divider",
+      "value": "Drag the dividers left and right to change position"
+    },
+    // Column
+    {
+      "name": "column_title",
+      "value": "Column"
+    },
+    {
+      "name": "column_introduction_arguments",
+      "value": "Modifying Row parameters"
+    },
+    {
+      "name": "column_introduction_properties",
+      "value": "Modifying Row properties"
+    },
+    {
+      "name": "column_element_spacing",
+      "value": "element spacing"
+    },
+    {
+      "name": "column_alignitems_start",
+      "value": "Start"
+    },
+    {
+      "name": "column_alignitems_end",
+      "value": "End"
+    },
+    {
+      "name": "column_alignitems_center",
+      "value": "Center"
+    },
+    {
+      "name": "column_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "column_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "column_justifycontent_end",
+      "value": "End"
+    },
+    {
+      "name": "column_justifycontent_spacebetween",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "column_justifycontent_spacearound",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "column_justifycontent_spaceevenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "column_justifycontent_description",
+      "value": "Spindle alignment format"
+    },
+    {
+      "name": "column_alignitems_description",
+      "value": "Cross axis alignment format"
+    },
+    {
+      "name": "column_introduction_tips",
+      "value": "tips:"
+    },
+    {
+      "name": "column_tips",
+      "value": "When the spindle is of type SpaceBetween, SpaceAround, or SpaceEven, the parameter space of the Row component does not take effect"
+    },
+    // ColumnSplit
+    {
+      "name": "columnsplit_title",
+      "value": "RowSplit Indicates the vertical split layout"
+    },
+    {
+      "name": "columnsplit_introduction_properties",
+      "value": "Modify the drag-and-drop property of ColumnSplit"
+    },
+    {
+      "name": "columnsplit_drag",
+      "value": "drag switch"
+    },
+    {
+      "name": "columnsplit_introduction_drag_divider",
+      "value": "Drag the split line up and down to change the position"
+    },
+    // SideBarContainer
+    {
+      "name": "sidebarcontainer_title",
+      "value": "SideBarContainer"
+    },
+    {
+      "name": "sidebarcontainer_content_text",
+      "value": "SideBarContainer: A sidebar container that provides a sidebar that can be displayed and hidden. The sidebar and content area are defined by subcomponents, the first subcomponent representing the sidebar and the second subcomponent representing the content area. This component is supported starting with API Version 8. If new content is added in later versions, the upper corner mark is used to separately mark the beginning version of the content."
+    },
+    {
+      "name": "sidebarcontainer_sidebar_text_one",
+      "value": "Collect"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_text_two",
+      "value": "Home"
+    },
+    {
+      "name": "sidebarcontainer_argument",
+      "value": "Example Modify SideBarContainer"
+    },
+    {
+      "name": "sidebarcontainer_property",
+      "value": "Modify the SideBarContainer property"
+    },
+    {
+      "name": "sidebarcontainer_argument_type",
+      "value": "The sidebar shows the type"
+    },
+    {
+      "name": "sidebarcontainer_type_embed",
+      "value": "Embed"
+    },
+    {
+      "name": "sidebarcontainer_type_overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "sidebarcontainer_show_switch",
+      "value": "Display switch"
+    },
+    {
+      "name": "sidebarcontainer_left_margin",
+      "value": "Control button left margin"
+    },
+    {
+      "name": "sidebarcontainer_top_margin",
+      "value": "Control button upper margin"
+    },
+    {
+      "name": "sidebarcontainer_show_button_switch",
+      "value": "Control button display switch"
+    },
+    {
+      "name": "sidebarcontainer_position_title",
+      "value": "The sidebar shows the location"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_show_position_start",
+      "value": "Start"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_show_position_end",
+      "value": "End"
+    },
+    {
+      "name": "sidebarcontainer_min_width",
+      "value": "Minimum width of sidebar"
+    },
+    {
+      "name": "sidebarcontainer_max_width",
+      "value": "Maximum width of sidebar"
+    },
+    {
+      "name": "sidebarcontainer_auto_hide",
+      "value": "Whether the sidebar is hidden in its smallest state"
+    },
+    {
+      "name": "sidebarcontainer_divider_width",
+      "value": "Dividing line width"
+    },
+    {
+      "name": "sidebarcontainer_drag_divider",
+      "value": "Drag the divider to change the sidebar size"
+    },
+    {
+      "name": "sidebarcontainer__is_show_true",
+      "value": "The sidebar has expanded"
+    },
+    {
+      "name": "sidebarcontainer__is_show_false",
+      "value": "The sidebar is closed"
+    },
+    // Stack
+    {
+      "name": "stack_title",
+      "value": "Stack"
+    },
+    {
+      "name": "stack_alignments_topstart",
+      "value": "TopStart"
+    },
+    {
+      "name": "stack_alignments_top",
+      "value": "Top"
+    },
+    {
+      "name": "stack_alignments_topend",
+      "value": "TopEnd"
+    },
+    {
+      "name": "stack_alignments_start",
+      "value": "Start"
+    },
+    {
+      "name": "stack_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "stack_alignment_end",
+      "value": "End"
+    },
+    {
+      "name": "stack_alignments_bottomstart",
+      "value": "BottomStart"
+    },
+    {
+      "name": "stack_alignments_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "stack_alignments_bottomend",
+      "value": "BottomEnd"
+    },
+    {
+      "name": "stack_alignment",
+      "value": "AlignContent"
+    },
+    {
+      "name": "stack_introduction",
+      "value": "The Stack attribute & parameter alignContent is updated"
+    },
+    {
+      "name": "stack_introduction_zindex",
+      "value": "sub three  zindex"
+    },
+    {
+      "name": "stack_zindex_four",
+      "value": "4"
+    },
+    {
+      "name": "stack_zindex_one",
+      "value": "1"
+    },
+    {
+      "name": "stack_zindex",
+      "value": "ZIndex"
+    },
+    // Flex
+    {
+      "name": "flex_title",
+      "value": "Flex"
+    },
+    {
+      "name": "flex_introduction_arguments",
+      "value": "Modify the Flex elastic layout parameters"
+    },
+    {
+      "name": "flex_argument_direction",
+      "value": "direction"
+    },
+    {
+      "name": "flex_argument_direction_row",
+      "value": "Row"
+    },
+    {
+      "name": "flex_argument_direction_row_reverse",
+      "value": "RowReverse"
+    },
+    {
+      "name": "flex_argument_direction_column",
+      "value": "Column"
+    },
+    {
+      "name": "flex_argument_direction_column_reverse",
+      "value": "ColumnReverse"
+    },
+    {
+      "name": "flex_argument_wrap",
+      "value": "Modify the wrap for this flex"
+    },
+    {
+      "name": "flex_argument_wrap_no_wrap",
+      "value": "NoWrap"
+    },
+    {
+      "name": "flex_argument_wrap_wrap",
+      "value": "Wrap"
+    },
+    {
+      "name": "flex_argument_wrap_wrap_reverse",
+      "value": "WrapReverse"
+    },
+    {
+      "name": "flex_introduction_direction",
+      "value": "Change the direction of all flex"
+    },
+    {
+      "name": "flex_argument_justifycontent",
+      "value": "Revised this Flex justifyContent"
+    },
+    {
+      "name": "flex_argument_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "flex_argument_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "flex_argument_justifycontent_End",
+      "value": "End"
+    },
+    {
+      "name": "flex_argument_justifycontent_space_between",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "flex_argument_justifycontent_space_around",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "flex_argument_justifycontent_speac_evenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "flex_argument_alignItems",
+      "value": "Modify alignItems in this Flex"
+    },
+    {
+      "name": "flex_argumen_alignItems_auto",
+      "value": "auto"
+    },
+    {
+      "name": "flex_argumen_alignItems_start",
+      "value": "Start"
+    },
+    {
+      "name": "flex_argumen_alignItems_center",
+      "value": "Center"
+    },
+    {
+      "name": "flex_argumen_alignItems_end",
+      "value": "End"
+    },
+    {
+      "name": "flex_argumen_alignItems_stretch",
+      "value": "Stretch"
+    },
+    {
+      "name": "flex_argumen_alignItems_baseline",
+      "value": "Baseline"
+    },
+    {
+      "name": "flex_argument_alignContent",
+      "value": "Modify the alignContent of this Flex"
+    },
+    {
+      "name": "gridcontainer_title",
+      "value": "GridContainer Grid system"
+    },
+    {
+      "name": "gridcontainer_introdional_arguments",
+      "value": "Modify the GridContainer parameters"
+    },
+    {
+      "name": "gridcontainer_introdional_properties",
+      "value": "Modify the GridContainer property"
+    },
+    {
+      "name": "gridcontainer_sizetype",
+      "value": "sizeType"
+    },
+    {
+      "name": "gridcontainer_sizetype_xs",
+      "value": "XS"
+    },
+    {
+      "name": "gridcontainer_sizetype_sm",
+      "value": "SM"
+    },
+    {
+      "name": "gridcontainer_sizetype_md",
+      "value": "MD"
+    },
+    {
+      "name": "gridcontainer_sizetype_lg",
+      "value": "LG"
+    },
+    {
+      "name": "gridcontainer_sizetype_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "gridcontainer_column",
+      "value": "columns"
+    },
+    {
+      "name": "gridcontainer_gutter",
+      "value": "gutter"
+    },
+    {
+      "name": "gridcontainer_margin",
+      "value": "margin"
+    },
+    {
+      "name": "image_video_and_media",
+      "value": "Image Video And Media"
+    },
+    {
+      "name": "image_title",
+      "value": "Image"
+    },
+    {
+      "name": "image_animator_title",
+      "value": "ImageAnimator"
+    },
+    {
+      "name": "video_title",
+      "value": "Video"
+    },
+    {
+      "name": "plugin_component_title",
+      "value": "PluginComponent"
+    },
+    {
+      "name": "xcomponent_title",
+      "value": "XComponent"
+    },
+    {
+      "name": "image_show_test",
+      "value": "Show the image"
+    },
+    {
+      "name": "image_object_fit",
+      "value": "ObjectFit"
+    },
+    {
+      "name": "image_sourcesize_height",
+      "value": "SizeHeight"
+    },
+    {
+      "name": "image_sourcesize_width",
+      "value": "SizeWidth"
+    },
+    {
+      "name": "object_fit_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "object_fit_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "object_fit_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "object_fit_fill",
+      "value": "Fill"
+    },
+    {
+      "name": "object_fit_scale_down",
+      "value": "ScaleDown"
+    },
+    {
+      "name": "object_fit_none",
+      "value": "None"
+    },
+    {
+      "name": "object_fit_change",
+      "value": "ObjectFitChange"
+    },
+    {
+      "name": "image_sourcesize_change",
+      "value": "SourceSizeChange"
+    },
+    {
+      "name": "image_rendermode_original",
+      "value": "RenderModeOriginal"
+    },
+    {
+      "name": "image_rendermode_template",
+      "value": "RenderModeTemplate"
+    },
+    {
+      "name": "image_renderMode_change",
+      "value": "RenderModeChange"
+    },
+    {
+      "name": "image_repeat_xy",
+      "value": "RepeatXY"
+    },
+    {
+      "name": "image_repeat_x",
+      "value": "RepeatX"
+    },
+    {
+      "name": "image_repeat_y",
+      "value": "RepeatY"
+    },
+    {
+      "name": "image_repeat_no",
+      "value": "NoRepeat"
+    },
+    {
+      "name": "image_repeat_change",
+      "value": "RepeatChange"
+    },
+    {
+      "name": "image_fill_color_title",
+      "value": "FillColorTitle"
+    },
+    {
+      "name": "image_animator_show",
+      "value": "ImageAnimatorShow"
+    },
+    {
+      "name": "image_animator_control",
+      "value": "ImageAnimatorControl"
+    },
+    {
+      "name": "video_show",
+      "value": "VideoShow"
+    },
+    {
+      "name": "video_auto_play",
+      "value": "AutoPlay"
+    },
+    {
+      "name": "video_controls_show",
+      "value": "ControlsShow"
+    },
+    {
+      "name": "video_muted_show",
+      "value": "MutedShow"
+    },
+    {
+      "name": "video_fit_change",
+      "value": "VideoFit"
+    },
+    {
+      "name": "video_loop_show",
+      "value": "LoopShow"
+    },
+    {
+      "name": "video_current_rate_change",
+      "value": "CurrentRateChange"
+    },
+    {
+      "name": "video_play_mode",
+      "value": "VideoPlayMode"
+    },
+    {
+      "name": "video_play_switch",
+      "value": "VideoPlaySwitch"
+    },
+    {
+      "name": "web_title",
+      "value": "Web"
+    },
+    {
+      "name": "web_show",
+      "value": "WebShow"
+    },
+    {
+      "name": "web_use_reason",
+      "value": "reason"
+    },
+    {
+      "name": "xcomponent_show",
+      "value": "XComponentShow"
+    },
+    {
+      "name": "textarea_title",
+      "value": "TextArea"
+    },
+    {
+      "name": "patternlock_title",
+      "value": "PatternLock"
+    },
+    {
+      "name": "search_title",
+      "value": "Search"
+    },
+    {
+      "name": "textarea_textalign_start",
+      "value": "Start"
+    },
+    {
+      "name": "textarea_textalign_center",
+      "value": "Center"
+    },
+    {
+      "name": "textarea_textalign_end",
+      "value": "End"
+    },
+    {
+      "name": "textareaa_textalign_change",
+      "value": "textAreatextAlignChange"
+    },
+    {
+      "name": "textarea_show",
+      "value": "TextAreaShow"
+    },
+    {
+      "name": "textarea_control",
+      "value": "TextAreaControl"
+    },
+    {
+      "name": "textarea_copyoptions_none",
+      "value": "None"
+    },
+    {
+      "name": "textarea_copyoptions_inapp",
+      "value": "InApp"
+    },
+    {
+      "name": "textarea_copyoptions_localdevice",
+      "value": "LocalDevice"
+    },
+    {
+      "name": "textarea_copyoptions_change",
+      "value": "CopyOptionsChange"
+    },
+    {
+      "name": "textarea_placeholder_change",
+      "value": "PlaceholderChange"
+    },
+    {
+      "name": "textarea_caretcolor_change",
+      "value": "CaretcolorChage"
+    },
+    {
+      "name": "patternlock_active_color",
+      "value": "PatternLockActiveColor"
+    },
+    {
+      "name": "patternlock_path_color",
+      "value": "PatternLockParhColor"
+    },
+    {
+      "name": "patternlock_select_color",
+      "value": "PatternLockSelectColor"
+    },
+    {
+      "name": "patternlock_regular_color",
+      "value": "PatternLockRegularColor"
+    },
+    {
+      "name": "patternlock_side_length",
+      "value": "PatternLockSideLengh"
+    },
+    {
+      "name": "patternlock_circle_radius",
+      "value": "PatternLockCircleRadius"
+    },
+    {
+      "name": "patternlock_pathstroke_width",
+      "value": "PatternLockPathStrokeWidth"
+    },
+    {
+      "name": "patternlock_change",
+      "value": "PatternLockChange"
+    },
+    {
+      "name": "search_textalign_change",
+      "value": "SearchTextAlignChange"
+    },
+    {
+      "name": "search_placeholder_change",
+      "value": "SearchPlaceholderChange"
+    },
+    {
+      "name": "search_copyOption_change",
+      "value": "SearchCopyOptionChange"
+    },
+    {
+      "name": "search_change",
+      "value": "SearchChange"
+    },
+    // List
+    {
+      "name": "list_title",
+      "value": "List"
+    },
+    {
+      "name": "list_introduction_arguments",
+      "value": "Modifying List arguments"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "Modifying List properties"
+    },
+    {
+      "name": "list_introduction_state",
+      "value": "Status bar"
+    },
+    {
+      "name": "list_properties_direction",
+      "value": "listDirection"
+    },
+    {
+      "name": "list_properties_direction_vertical",
+      "value": "Vertical"
+    },
+    {
+      "name": "list_properties_direction_Horizontal",
+      "value": "Horizontal"
+    },
+    {
+      "name": "list_argument_space",
+      "value": "space"
+    },
+    {
+      "name": "list_properties_divider_stroke_width",
+      "value": "divider - strokeWidth"
+    },
+    {
+      "name": "list_properties_divider_color",
+      "value": "divider - color"
+    },
+    {
+      "name": "list_properties_scroll_bar",
+      "value": "scrollBar"
+    },
+    {
+      "name": "list_properties_scroll_bar_off",
+      "value": "Off"
+    },
+    {
+      "name": "list_properties_scroll_bar_on",
+      "value": "On"
+    },
+    {
+      "name": "list_properties_scroll_bar_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "list_properties_initial_index",
+      "value": "initialIndex"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
+    },
+    {
+      "name": "list_properties_edge_effect_spring",
+      "value": "Spring"
+    },
+    {
+      "name": "list_properties_edge_effect_fade",
+      "value": "Fade"
+    },
+    {
+      "name": "list_properties_edge_effect_none",
+      "value": "None"
+    },
+    {
+      "name": "list_properties_chain_animation",
+      "value": "chainAnimation"
+    },
+    {
+      "name": "list_properties_multi_selectable",
+      "value": "multiSelectable "
+    },
+    {
+      "name": "list_properties_lanes",
+      "value": "lanes"
+    },
+    {
+      "name": "list_properties_align_list_item",
+      "value": "alignListItem"
+    },
+    {
+      "name": "list_properties_align_list_item_start",
+      "value": "Start"
+    },
+    {
+      "name": "list_properties_align_list_item_Center",
+      "value": "Center"
+    },
+    {
+      "name": "list_properties_align_list_item_End",
+      "value": "End"
+    },
+    {
+      "name": "list_introduction_delete",
+      "value": "Right-click item to delete it"
+    },
+    {
+      "name": "list_item_title",
+      "value": "ListItem"
+    },
+    {
+      "name": "list_item_properties_selectable",
+      "value": "selectable"
+    },
+    {
+      "name": "list_item_introduction_drag",
+      "value": "Drag the item with your mouse to see the selectable property effect"
+    },
+    {
+      "name": "list_item_introduction_properties",
+      "value": "修改 ListItem 的属性"
+    },
+    // Grid
+    {
+      "name": "grid_title",
+      "value": "Grid"
+    },
+    {
+      "name": "grid_item_title",
+      "value": "GridItem"
+    },
+    {
+      "name": "grid_properties_columns_template",
+      "value": "columnsTemplate(Control the proportion of the third column)"
+    },
+    {
+      "name": "grid_properties_columns_gap",
+      "value": "columnsGap"
+    },
+    {
+      "name": "girid_properties_rows_gap",
+      "value": "rowsGap"
+    },
+    {
+      "name": "grid_properties_layout_direction",
+      "value": "layoutDirection"
+    },
+    {
+      "name": "grid_properties_layout_direction_row",
+      "value": "Row"
+    },
+    {
+      "name": "grid_properties_layout_direction_column",
+      "value": "Column"
+    },
+    {
+      "name": "grid_properties_layout_direction_row_reverse",
+      "value": "RowReverse"
+    },
+    {
+      "name": "grid_properties_layout_direction_column_reverse",
+      "value": "ColumnReverse"
+    },
+    {
+      "name": "grid_properties_rows_template",
+      "value": "rowsTemplate(Control the proportion of the third rows)"
+    },
+    // GridItem
+    {
+      "name": "grid_item_introduction",
+      "value": "Change the position of 1"
+    },
+    {
+      "name": "grid_item_row_start",
+      "value": "Change the start line number"
+    },
+    {
+      "name": "grid_item_row_end",
+      "value": "Modify the end line number"
+    },
+    {
+      "name": "grid_item_column_start",
+      "value": "Change the start column number"
+    },
+    {
+      "name": "grid_item_column_end",
+      "value": "Modify the end column number"
+    },
+    // Swiper
+    {
+      "name": "swiper_title",
+      "value": "swiper"
+    },
+    {
+      "name": "swiper_introduction",
+      "value": "Swipe left or right to switch pages"
+    },
+    {
+      "name": "swiper_introduction_arguments",
+      "value": "SwiperController Controller"
+    },
+    {
+      "name": "swiper_introduction_properties",
+      "value": "Modify the properties of Swiper"
+    },
+    {
+      "name": "swiper_properties_disable_swipe",
+      "value": "Disable swipe left or right to switch function"
+    },
+    {
+      "name": "swiper_properties_item_space",
+      "value": "Space between sliding pages"
+    },
+    {
+      "name": "swiper_properties_vertical",
+      "value": "Is it vertical sliding"
+    },
+    {
+      "name": "swiper_properties_duration",
+      "value": "Duration of slide switching animation (unit: ms)"
+    },
+    {
+      "name": "swiper_properties_loop",
+      "value": "Enable loop from beginning to end"
+    },
+    {
+      "name": "swiper_properties_auto_play",
+      "value": "Enable automatic loop playback"
+    },
+    {
+      "name": "swiper_properties_interval",
+      "value": "Interval of automatic playback (unit: ms)"
+    },
+    {
+      "name": "swiper_controller_next",
+      "value": "Next page"
+    },
+    {
+      "name": "swiper_controller_previous",
+      "value": "Previous page"
+    },
+    // Navigation
+    {
+      "name": "navigation_title",
+      "value": "Navigation"
+    },
+    {
+      "name": "navigation_first_page",
+      "value": "First page of Navigation"
+    },
+    {
+      "name": "navigation_second_page",
+      "value": "Second page of Navigation"
+    },
+    {
+      "name": "navigation_third_page",
+      "value": "Third page of Navigation"
+    },
+    {
+      "name": "navigation_first_page_push",
+      "value": "Go to the second page"
+    },
+    {
+      "name": "navigation_first_page_active",
+      "value": "Click to toggle activate status"
+    },
+    {
+      "name": "navigation_second_page_push",
+      "value": "Go to the third page"
+    },
+    {
+      "name": "navigation_third_page_back",
+      "value": "Go back to the first page"
+    },
+    // Tabs
+    {
+      "name": "tabs_title",
+      "value": "Tabs"
+    },
+    {
+      "name": "tabs_introduction_arguments",
+      "value": "Modify the parameters of Tabs"
+    },
+    {
+      "name": "tabs_introduction_properties",
+      "value": "Modify the properties of Tabs"
+    },
+    {
+      "name": "tabs_arguments_bar_position",
+      "value": "barPosition"
+    },
+    {
+      "name": "tabs_arguments_bar_position_start",
+      "value": "Start"
+    },
+    {
+      "name": "tabs_arguments_bar_position_end",
+      "value": "End"
+    },
+    {
+      "name": "tabs_properties_vertical",
+      "value": "vertical"
+    },
+    {
+      "name": "tabs_properties_bar_mode",
+      "value": "barMode"
+    },
+    {
+      "name": "tabs_properties_bar_mode_fixed",
+      "value": "Fixed"
+    },
+    {
+      "name": "tabs_properties_bar_scrollable",
+      "value": "Scrollable"
+    },
+    {
+      "name": "tabs_properties_is_scrollable",
+      "value": "scrollable"
+    },
+    {
+      "name": "tabs_properties_animation_duration",
+      "value": "animationDuration(ms)"
+    },
+    {
+      "name": "tabs_arguments_controller",
+      "value": "Switches to the specified index"
+    },
+    // TabsContent
+    {
+      "name": "tab_content_title",
+      "value": "TabContent"
+    },
+    {
+      "name": "tab_content_introduction",
+      "value": "Subtab/Bottom tab switcher"
+    },
+    {
+      "name": "tab_content_side",
+      "value": "Switch sidebar"
+    },
+    // Stepper
+    {
+      "name": "stepper_title",
+      "value": "Stepper&StepperItem"
+    },
+    {
+      "name": "canvas_title",
+      "value": "Canvas"
+    },
+    {
+      "name": "circle_title",
+      "value": "Circle"
+    },
+    {
+      "name": "ellipse_title",
+      "value": "Ellipse"
+    },
+    {
+      "name": "line_title",
+      "value": "Line"
+    },
+    {
+      "name": "polyline_title",
+      "value": "Polyline"
+    },
+    {
+      "name": "path_title",
+      "value": "Path"
+    },
+    {
+      "name": "polygon_title",
+      "value": "Polygon"
+    },
+    {
+      "name": "rect_title",
+      "value": "Rect"
+    },
+    {
+      "name": "shape_title",
+      "value": "shape"
+    },
+    {
+      "name": "circle_change",
+      "value": "CircleChange"
+    },
+    {
+      "name": "circle_change_fill",
+      "value": "CircleChangeFill"
+    },
+    {
+      "name": "circle_change_radius",
+      "value": "CircleRadius"
+    },
+    {
+      "name": "circle_change_fillopacity",
+      "value": "CircleChangeFillOpacity"
+    },
+    {
+      "name": "circle_change_strokewidth",
+      "value": "CircleStrokeWidth"
+    },
+    {
+      "name": "circle_stroke_dash",
+      "value": "CircleStrokeDash"
+    },
+    {
+      "name": "circle_stroke_color",
+      "value": "CircleStokeColor"
+    },
+    {
+      "name": "circle_stroke_opacity",
+      "value": "CircleStrokeOpacity"
+    },
+    {
+      "name": "ellipse_fill",
+      "value": "EllipseFill"
+    },
+    {
+      "name": "ellipse_stroke_color",
+      "value": "EllipseStrokeColor"
+    },
+    {
+      "name": "ellipse_stroke_width",
+      "value": "EllipseStrokeWidth"
+    },
+    {
+      "name": "ellipse_width",
+      "value": "EllipseWidth"
+    },
+    {
+      "name": "ellipse_height",
+      "value": "EllipseHeight"
+    },
+    {
+      "name": "ellipse_fill_opacity",
+      "value": "EllipseFillOpacity"
+    },
+    {
+      "name": "ellipse_stroke_opacity",
+      "value": "EllipseStrokeOpacity"
+    },
+    {
+      "name": "ellipse_stroke_dash",
+      "value": "EllipseStrokeDash"
+    },
+    {
+      "name": "line_start_point_x",
+      "value": "LineStartPointX"
+    },
+    {
+      "name": "line_start_point_y",
+      "value": "LineStartPointY"
+    },
+    {
+      "name": "line_end_point_x",
+      "value": "LineEndPointY"
+    },
+    {
+      "name": "line_end_point_y",
+      "value": "LineEndPointY"
+    },
+    {
+      "name": "line_stroke_width",
+      "value": "LineSrokeWidth"
+    },
+    {
+      "name": "line_stroke_color",
+      "value": "LineStrokeColor"
+    },
+    {
+      "name": "line_stroke_opacity",
+      "value": "LineStrokeOpacity"
+    },
+    {
+      "name": "line_stroke_dash",
+      "value": "LineStrokeDash"
+    },
+    {
+      "name": "polygon_fill",
+      "value": "PolygonFill"
+    },
+    {
+      "name": "polygon_fill_opacity",
+      "value": "PolygonFillOpacity"
+    },
+    {
+      "name": "polygon_stroke_color",
+      "value": "PolygonStrokeColor"
+    },
+    {
+      "name": "polygon_stroke_opacity",
+      "value": "PolygonStrokeOpacity"
+    },
+    {
+      "name": "polygon_stroke_width",
+      "value": "PolygonStrokeWidth"
+    },
+    {
+      "name": "polygon_stroke_dash",
+      "value": "PolygonStrokeDash"
+    },
+    {
+      "name": "polyline_first_x",
+      "value": "PolylineFirstX"
+    },
+    {
+      "name": "polyline_first_y",
+      "value": "PolylineFirstY"
+    },
+    {
+      "name": "polyline_second_x",
+      "value": "PolylineSecondX"
+    },
+    {
+      "name": "polyline_second_y",
+      "value": "PolylineSecondY"
+    },
+    {
+      "name": "polyline_third_x",
+      "value": "PolylineThirdX"
+    },
+    {
+      "name": "polyline_third_y",
+      "value": "PolylineThirdY"
+    },
+    {
+      "name": "polyline_stroke_width",
+      "value": "PolylineStrokeWidth"
+    },
+    {
+      "name": "polyline_stroke_color",
+      "value": "PolylineStrokeColor"
+    },
+    {
+      "name": "polyline_stroke_dash",
+      "value": "PolylineStrokeDash"
+    },
+    {
+      "name": "polyline_stroke_opacity",
+      "value": "PolylineStrokeOpacity"
+    },
+    {
+      "name": "rect_height",
+      "value": "RectHeight"
+    },
+    {
+      "name": "rect_width",
+      "value": "RectWidth"
+    },
+    {
+      "name": "rect_radius_width",
+      "value": "RectRadiusWidth"
+    },
+    {
+      "name": "rect_radius_height",
+      "value": "RectRadiusHeight"
+    },
+    {
+      "name": "rect_fill_opacity",
+      "value": "RectFillOpacity"
+    },
+    {
+      "name": "rect_stroke",
+      "value": "RectStroke"
+    },
+    {
+      "name": "rect_stroke_width",
+      "value": "RectStrokeWidth"
+    },
+    {
+      "name": "rect_stroke_dash",
+      "value": "RectSrokeDash"
+    },
+    {
+      "name": "rect_stroke_opacity",
+      "value": "RectStrokeOpacity"
+    },
+    {
+      "name": "rect_fill",
+      "value": "RectFill"
+    },
+    {
+      "name": "path_line",
+      "value": "PathLine"
+    },
+    {
+      "name": "path_triangle",
+      "value": "PathTriangle"
+    },
+    {
+      "name": "path_square",
+      "value": "PathSquare"
+    },
+    {
+      "name": "path_polygon",
+      "value": "PathPolygon"
+    },
+    {
+      "name": "path_camber_first",
+      "value": "PathCamberFirst"
+    },
+    {
+      "name": "path_camber_second",
+      "value": "PathCamberSecond"
+    },
+    {
+      "name": "path_camber_third",
+      "value": "PathCamberThird"
+    },
+    {
+      "name": "path_commands_select",
+      "value": "PathCommandsSelect"
+    },
+    {
+      "name": "path_fill",
+      "value": "PathFill"
+    },
+    {
+      "name": "path_fill_opacity",
+      "value": "PathFillOpacity"
+    },
+    {
+      "name": "path_stroke_color",
+      "value": "PathStrokeColor"
+    },
+    {
+      "name": "path_stroke_opacity",
+      "value": "PathStrokeOpacity"
+    },
+    {
+      "name": "path_stroke_dash",
+      "value": "PathStrokeDash"
+    },
+    {
+      "name": "path_stroke_width",
+      "value": "PathStrokeWidth"
+    },
+    {
+      "name": "shape_fill",
+      "value": "ShapeFill"
+    },
+    {
+      "name": "shape_stroke_color",
+      "value": "ShapeStrokeColor"
+    },
+    {
+      "name": "shape_view_port_x",
+      "value": "ShapeViewPortX"
+    },
+    {
+      "name": "shape_view_port_y",
+      "value": "ShapeViewPortY"
+    },
+    {
+      "name": "shape_view_port_width",
+      "value": "ShapeViewPortWidth"
+    },
+    {
+      "name": "shape_view_port_height",
+      "value": "ShapeViewPortHeight"
+    },
+    {
+      "name": "shape_stroke_opacity",
+      "value": "ShapeStrokeOpacity"
+    },
+    {
+      "name": "shape_fill_opacity",
+      "value": "ShapeFillOpacity"
+    },
+    {
+      "name": "shape_stroke_width",
+      "value": "ShapeStrokeWidth"
+    },
+    {
+      "name": "shape_stroke_dash",
+      "value": "ShapeStrokeDash"
+    },
+    {
+      "name": "web",
+      "value": "Web"
+    },
+
+    {
+      "name": "canvas_components",
+      "value": "Canvas components"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Base attributes"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Base methods"
+    },
+    {
+      "name": "canvas_fillStyle",
+      "value": "fillStyle"
+    },
+    {
+      "name": "canvas_lineWidth",
+      "value": "lineWidth"
+    },
+    {
+      "name": "canvas_strokeStyle",
+      "value": "strokeStyle"
+    },
+    {
+      "name": "canvas_lineCap",
+      "value": "lineCap"
+    },
+    {
+      "name": "canvas_lineJoin",
+      "value": "lineJoin"
+    },
+    {
+      "name": "canvas_miterLimit",
+      "value": "miterLimit"
+    },
+    {
+      "name": "canvas_font",
+      "value": "font"
+    },
+    {
+      "name": "canvas_textAlign",
+      "value": "textAlign"
+    },
+    {
+      "name": "canvas_textBaseline",
+      "value": "textBaseline"
+    },
+    {
+      "name": "canvas_globalAlpha",
+      "value": "globalAlpha"
+    },
+    {
+      "name": "canvas_lineDashOffset",
+      "value": "lineDashOffset"
+    },
+    {
+      "name": "canvas_globalCompositeOperation",
+      "value": "globalCompositeOperation"
+    },
+    {
+      "name": "canvas_imageSmoothingEnabled",
+      "value": "imageSmoothingEnabled"
+    },
+    {
+      "name": "canvas_createLinearGradient",
+      "value": "createLinearGradient"
+    },
+    {
+      "name": "cavas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_fillRect",
+      "value": "fillRect"
+    },
+    {
+      "name": "canvas_strokeRect",
+      "value": "strokeRect"
+    },
+    {
+      "name": "canvas_fillText",
+      "value": "fillText"
+    },
+    {
+      "name": "canvas_strokeText",
+      "value": "strokeText"
+    },
+    {
+      "name": "canvas_measureText",
+      "value": "measureText"
+    },
+    {
+      "name": "canvas_stroke",
+      "value": "stroke"
+    },
+    {
+      "name": "canvas_createPattern",
+      "value": "createPattern"
+    },
+    {
+      "name": "canvas_fill",
+      "value": "fill"
+    },
+    {
+      "name": "canvas_clip",
+      "value": "clip"
+    },
+    {
+      "name": "canvas_rotate",
+      "value": "rotate"
+    },
+    {
+      "name": "canvas_scale",
+      "value": "scale"
+    },
+    {
+      "name": "canvas_drawImage",
+      "value": "drawImage"
+    },
+    {
+      "name": "canvas_getImageData",
+      "value": "getImageData"
+    },
+    {
+      "name": "canvas_putImageData",
+      "value": "putImageData"
+    },
+    {
+      "name": "canvas_setLineDash",
+      "value": "setLineDash"
+    },
+    {
+      "name": "canvas_getLineDash",
+      "value": "getLineDash"
+    },
+    {
+      "name": "canvas_transferFromImageBitmap",
+      "value": "transferFromImageBitmap"
+    },
+    {
+      "name": "canvas_toDataURL",
+      "value": "toDataURL"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "Canvas Zone"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "Attributes Operations"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "Clear Effects"
+    },
+    {
+      "name": "cavnas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_shadowBlur",
+      "value": "shadowBlur"
+    },
+    {
+      "name": "canvas_shadowColor",
+      "value": "shadowColor"
+    },
+    {
+      "name": "canvas_shadowOffsetX",
+      "value": "shadowOffsetX"
+    },
+    {
+      "name": "canvas_shadowOffsetY",
+      "value": "shadowOffsetY"
+    },
+    {
+      "name": "canvas_addColorStop",
+      "value": "addColorStop"
+    },
+    {
+      "name": "canvas_beginPath",
+      "value": "beginPath"
+    },
+    {
+      "name": "canvas_moveTo",
+      "value": "moveTo"
+    },
+    {
+      "name": "canvas_lineTo",
+      "value": "lineTo"
+    },
+    {
+      "name": "canvas_closePath",
+      "value": "closePath"
+    },
+    {
+      "name": "canvas_bezierCurveTo",
+      "value": "bezierCurveTo"
+    },
+    {
+      "name": "canvas_quadraticCurveTo",
+      "value": "quadraticCurveTo"
+    },
+    {
+      "name": "canvas_arc",
+      "value": "arc"
+    },
+    {
+      "name": "canvas_arcTo",
+      "value": "arcTo"
+    },
+    {
+      "name": "canvas_ellipse",
+      "value": "ellipse"
+    },
+    {
+      "name": "canvas_rect",
+      "value": "rect"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "Printed to the console"
+    },
+    {
+      "name": "canvas_transform",
+      "value": "transform"
+    },
+    {
+      "name": "canvas_setTransform",
+      "value": "setTransform"
+    },
+    {
+      "name": "canvas_translate",
+      "value": "translate"
+    },
+    {
+      "name": "canvas_imageSmoothingQuality",
+      "value": "imageSmoothingQuality"
     }
   ]
 }
