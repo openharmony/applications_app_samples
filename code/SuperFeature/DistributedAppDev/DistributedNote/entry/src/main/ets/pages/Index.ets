@@ -14,12 +14,28 @@
  */
 
 import router from '@ohos.router';
+import DistributedObjectModel from '../model/DistributedObjectModel';
+import DistributedCanvasModel from '../model/DistributedCanvasModel';
 
 @Entry
 @Component
 struct Index {
   @State titleList: Array<string> = ['distributedCanvas', 'distributedNote'];
   @State urlList: Array<string> = ['pages/IndexCanvas', 'pages/IndexNote'];
+  @StorageLink('canvasModel') globalCanvasObject: DistributedCanvasModel = new DistributedCanvasModel();
+  @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel();
+
+  onPageShow(): void {
+    this.globalCanvasObject = AppStorage.Get('canvasModel');
+    this.globalCanvasObject.distributedCanvas.setSessionId(() => {
+      console.info('leave canvas lession.');
+    });
+
+    this.globalObject = AppStorage.Get('objectModel');
+    this.globalObject.distributedObject.setSessionId(() => {
+      console.info('leave note lession.');
+    });
+  }
 
   build() {
     Column() {

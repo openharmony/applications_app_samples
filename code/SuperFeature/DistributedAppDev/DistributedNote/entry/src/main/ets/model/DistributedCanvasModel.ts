@@ -25,7 +25,7 @@ export default class DistributedCanvasModel {
 
   constructor() {
     this.distributedCanvas = distributedObject.createDistributedObject({
-      pathArray: []
+      pathArray: [],
     });
   }
 
