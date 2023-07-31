@@ -408,7 +408,6 @@ export class KeyboardController {
 }
 
 export class InputHandler {
-  private static instance: InputHandler = undefined;
   private mKbController;
   private mTextInputClient;
   private mEditorAttribute;
@@ -418,52 +417,57 @@ export class InputHandler {
   private inputInfo;
 
   private constructor() {
-
   }
 
-  public static getInstance() {
-    if (globalThis.instance === undefined) {
-      globalThis.instance = new InputHandler();
+  public static getInstance(): InputHandler {
+    let instance = AppStorage.get('inputHandler');
+    if (instance === undefined) {
+      instance = new InputHandler();
+      AppStorage.setOrCreate('inputHandler', instance);
     }
-    return globalThis.instance;
+    return instance;
   }
 
   public onInputStart(kbController, textInputClient) {
-    globalThis.mKbController = kbController;
-    globalThis.mTextInputClient = textInputClient;
-    globalThis.mEditorAttribute = globalThis.mTextInputClient.getEditorAttribute();
-    this.addLog("onInputStart mEditorAttribute = " + globalThis.mEditorAttribute);
-    globalThis.mEditorAttribute.then(res => {
-      globalThis.enterKeyType = res.enterKeyType;
-      globalThis.inputPattern = res.inputPattern;
-      this.setInputInfo("EditorInfo：enterKeyType = " + globalThis.enterKeyType + ";inputPattern = " + globalThis.inputPattern);
+    this.mKbController = kbController;
+    this.mTextInputClient = textInputClient;
+    this.mEditorAttribute = this.mTextInputClient.getEditorAttribute();
+    this.addLog("onInputStart mEditorAttribute = " + this.mEditorAttribute);
+    this.mEditorAttribute.then(res => {
+      this.enterKeyType = res.enterKeyType;
+      this.inputPattern = res.inputPattern;
+      this.setInputInfo("EditorInfo：enterKeyType = " + this.enterKeyType + ";inputPattern = " + this.inputPattern);
     })
   }
 
   public hideKeyboardSelf() {
     this.addLog('hideKeyboardSelf');
-    if (globalThis.mKbController !== undefined) {
-      globalThis.mKbController.hideKeyboard();
+    if (this.mKbController !== undefined) {
+      this.mKbController.hideKeyboard();
     } else {
-      this.addLog('hideKeyboardSelf globalThis.mKbController is undefined');
+      this.addLog('hideKeyboardSelf this.mKbController is undefined');
     }
   }
 
   public sendKeyFunction() {
     this.addLog('sendKeyFunction')
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.sendKeyFunction(globalThis.enterKeyType);
+    if (this.mTextInputClient !== undefined) {
+      try {
+        this.mTextInputClient.sendKeyFunction(this.enterKeyType);
+      } catch (err) {
+        this.addLog(`sendKeyFunction err, err message is ${JSON.stringify(err)}`);
+      }
     } else {
-      this.addLog('sendKeyFunction globalThis.mTextInputClient is undefined');
+      this.addLog('sendKeyFunction this.mTextInputClient is undefined');
     }
   }
 
   public deleteBackward(length: number) {
     this.addLog('deleteBackward');
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.deleteBackward(length);
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.deleteBackward(length);
     } else {
-      this.addLog('deleteBackward globalThis.mTextInputClient is undefined');
+      this.addLog('deleteBackward this.mTextInputClient is undefined');
     }
     if (isDebug) {
       this.refreshInfo();
@@ -472,10 +476,10 @@ export class InputHandler {
 
   public deleteForward(length: number) {
     this.addLog('deleteForward');
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.deleteForward(length);
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.deleteForward(length);
     } else {
-      this.addLog('deleteForward globalThis.mTextInputClient is undefined');
+      this.addLog('deleteForward this.mTextInputClient is undefined');
     }
     if (isDebug) {
       this.refreshInfo();
@@ -484,10 +488,10 @@ export class InputHandler {
 
   public insertText(text: string) {
     this.addLog('insertText');
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.insertText(text);
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.insertText(text);
     } else {
-      this.addLog('insertText globalThis.mTextInputClient is undefined');
+      this.addLog('insertText this.mTextInputClient is undefined');
     }
     if (isDebug) {
       this.refreshInfo();
@@ -495,10 +499,10 @@ export class InputHandler {
   }
 
   public moveCursor(direction: inputMethodEngine.Direction): void {
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.moveCursor(direction);
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.moveCursor(direction);
     } else {
-      this.addLog('moveCursor globalThis.mTextInputClient is undefined');
+      this.addLog('moveCursor this.mTextInputClient is undefined');
     }
   }
 
@@ -507,22 +511,22 @@ export class InputHandler {
   }
 
   public setCursorInfo(info) {
-    globalThis.cursorInfo = info;
+    this.cursorInfo = info;
     this.addLog("setCursorInfo info = " + info);
   }
 
   public setSelectInfo(info) {
-    globalThis.selectInfo = info;
+    this.selectInfo = info;
     this.addLog("setSelectInfo info = " + info);
   }
 
   public setTextInfo(info) {
-    globalThis.textInfo = info;
+    this.textInfo = info;
     this.addLog("setTextInfo info = " + info);
   }
 
   public setInputInfo(info) {
-    globalThis.inputInfo = info;
+    this.inputInfo = info;
     this.addLog("setInputInfo info = " + info);
   }
 
@@ -530,15 +534,15 @@ export class InputHandler {
     this.addLog('refreshInfo');
     var showText = '';
     this.addLog('refreshInfo1');
-    showText += 'five chars: before：[' + globalThis.mTextInputClient.getForward(5) + '];after：[' + globalThis.mTextInputClient.getBackward(5) + ']\n';
+    showText += 'five chars: before：[' + this.mTextInputClient.getForward(5) + '];after：[' + this.mTextInputClient.getBackward(5) + ']\n';
     this.addLog('refreshInfo2');
-    showText += globalThis.cursorInfo + "\n";
+    showText += this.cursorInfo + "\n";
     this.addLog('refreshInfo3');
-    showText += globalThis.selectInfo + "\n";
+    showText += this.selectInfo + "\n";
     this.addLog('refreshInfo4');
-    showText += globalThis.textInfo + "\n";
+    showText += this.textInfo + "\n";
     this.addLog('refreshInfo5');
-    showText += globalThis.inputInfo;
+    showText += this.inputInfo;
     this.addLog('refreshInfo6');
     AppStorage.Set<string>('showLog', showText);
     this.addLog('refreshInfo7');
