@@ -21,13 +21,21 @@ import { locationTypes, visibileTypes } from '../../UniversialData'
   .backgroundColor(Color.White)
   .borderRadius(24)
   .width('100%')
-  .padding(15)
+  .margin({ bottom: 12 })
 }
 
 @Extend(Text) function subTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
   .fontSize(14)
   .height(22)
+}
+
+@Extend(Text) function leftTitleStyle() {
+  .fontSize(18)
+  .width('100%')
+  .direction(Direction.Ltr)
+  .margin({ left: 24, top: 8, bottom: 8 })
+  .fontColor($r('app.color.font_color_shallow'))
 }
 
 @Entry
@@ -166,9 +174,7 @@ struct Page {
                 .subTitleStyle()
 
               Text($r('app.string.positon_modify'))
-                .subTitleStyle()
-                .margin({ top: 20, bottom: 12, left: 12 })
-                .alignSelf(ItemAlign.Start)
+                .leftTitleStyle()
               Column() {
                 Select(this.selectArray).onSelect((index: number) => {
                   this.alignmentLocation = this.alignments[index]
@@ -178,9 +184,7 @@ struct Page {
               }.cardStyle()
 
               Text($r('app.string.offset_modify'))
-                .subTitleStyle()
-                .margin({ top: 20, bottom: 12, left: 12 })
-                .alignSelf(ItemAlign.Start)
+                .leftTitleStyle()
               Column() {
                 Row({ space: 20 }) {
                   Text($r('app.string.x_offset'))
@@ -218,6 +222,9 @@ struct Page {
                 .height(100)
                 .backgroundColor(Color.Blue)
                 .visibility(this.currentVisibility)
+                .animation({
+                  duration: 2000
+                })
               Row()
                 .width(100)
                 .height(100)
@@ -227,9 +234,7 @@ struct Page {
             Text($r('app.string.effects_display'))
               .subTitleStyle()
             Text($r('app.string.visibility_change'))
-              .margin({ top: 20, left: 12 })
-              .subTitleStyle()
-              .alignSelf(ItemAlign.Start)
+              .leftTitleStyle()
             Column() {
               Select(this.visibleArray)
                 .value(getStringData(this.visibleArray[this.visibleIndex].value))
@@ -257,9 +262,7 @@ struct Page {
               .subTitleStyle()
 
             Text($r('app.string.opacity_change'))
-              .subTitleStyle()
-              .alignSelf(ItemAlign.Start)
-              .margin({ left: 12, bottom: 12 })
+              .leftTitleStyle()
             Column() {
               Row() {
                 Text('0')

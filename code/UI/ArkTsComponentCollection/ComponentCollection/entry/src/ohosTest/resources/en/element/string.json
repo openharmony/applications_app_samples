@@ -833,6 +833,18 @@
       "name": "Gallery_card_expansion",
       "value": "gallery card expansion"
     },
+    {
+      "name": "layout_animation_expansion",
+      "value": "Layout animation"
+    },
+    {
+      "name": "size_transition_expansion",
+      "value": "Size transition"
+    },
+    {
+      "name": "side_bar_effects_title",
+      "value": "SideBar effects"
+    },
     // Size
     {
       "name": "size_width",

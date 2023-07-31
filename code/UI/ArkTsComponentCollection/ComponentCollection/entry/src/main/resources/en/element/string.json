@@ -37,6 +37,10 @@
       "value": "Background"
     },
     {
+      "name": "prop_foreground",
+      "value": "Foreground"
+    },
+    {
       "name": "prop_border",
       "value": "Border"
     },
@@ -163,6 +167,52 @@
       "name": "text_and_input",
       "value": "Text and input"
     },
+    // layout Animation
+    {
+      "name": "layout_animation_expansion",
+      "value": "Layout animation"
+    },
+    {
+      "name": "layout_animation_expansion_align",
+      "value": "Align animation"
+    },
+    {
+      "name": "layout_animation_expansion_size",
+      "value": "Size animation"
+    },
+    {
+      "name": "layout_animation_expansion_padding",
+      "value": "Padding animation"
+    },
+    {
+      "name": "layout_animation_expansion_margin",
+      "value": "Margin animation"
+    },
+    {
+      "name": "layout_animation_expansion_offset",
+      "value": "Offset animation"
+    },
+    {
+      "name": "layout_animation_expansion_position",
+      "value": "Position animation"
+    },
+    {
+      "name": "layout_animation_expansion_markAnchor",
+      "value": "MarkAnchor animation"
+    },
+    {
+      "name": "layout_animation_expansion_alignRules",
+      "value": "AlignRules animation"
+    },
+    {
+      "name": "layout_animation_expansion_direction",
+      "value": "Direction animation"
+    },
+    // size transition
+    {
+      "name": "size_transition_expansion",
+      "value": "Size transition"
+    },
     // AlertDialog
     {
       "name": "alert_dialog",
@@ -264,6 +314,11 @@
       "name": "alert_dialog_grid_four",
       "value": "4 grid width"
     },
+    // Foreground
+    {
+      "name": "foreground_color",
+      "value": "Set foreground color"
+    },
     // Background
     {
       "name": "background_color",
@@ -284,6 +339,63 @@
     {
       "name": "background_gradient_radial",
       "value": "Radial gradient"
+    },
+    {
+      "name": "background_image_transformation_effect",
+      "value": "Background image transformation effect"
+    },
+    {
+      "name": "set_background_image_size",
+      "value": "Set background image size"
+    },
+    {
+      "name": "set_background_image_position",
+      "value": "Set background image position"
+    },
+    {
+      "name": "background_image_size_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "background_image_size_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "background_image_position_top_start",
+      "value": "TopStart"
+    },
+    {
+      "name": "background_image_position_top",
+      "value": "Top"
+    },
+    {
+      "name": "background_image_position_top_end",
+      "value": "TopEnd"
+    },
+    {
+      "name": "background_image_position_start",
+      "value": "Top"
+    },
+    {
+      "name": "background_image_position_center",
+      "value": "Center"
+    },
+    {
+      "name": "background_image_position_end",
+      "value": "End"
+    },
+    {
+      "name": "background_image_position_bottom_start",
+      "value": "BottomStart"
+    },
+    {
+      "name": "background_image_position_bottom",
+      "value": "Bottom"
+    },
+
+    {
+      "name": "background_image_position_bottom_end",
+      "value": "BottomEnd"
     },
     {
       "name": "background_image",
@@ -1516,6 +1628,14 @@
       "value": "Background Blur"
     },
     {
+      "name": "background_blur_style",
+      "value": "Background Blur Style"
+    },
+    {
+      "name": "set_shadow_type",
+      "value": "Set shadow type"
+    },
+    {
       "name": "shadow_effects",
       "value": "Shadow Effect"
     },
@@ -1574,6 +1694,18 @@
     {
       "name": "color_blend_change",
       "value": "Colorblend"
+    },
+    {
+      "name": "spherical_effect_change",
+      "value": "sphericalEffect"
+    },
+    {
+      "name": "light_up_effect_change",
+      "value": "lightUpEffect"
+    },
+    {
+      "name": "pixel_stretch_effect_change",
+      "value": "pixelStretchEffect"
     },
     {
       "name": "z_index",

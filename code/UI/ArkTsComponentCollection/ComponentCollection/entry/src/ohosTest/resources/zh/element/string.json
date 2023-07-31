@@ -37,6 +37,10 @@
       "value": "background 背景"
     },
     {
+      "name": "prop_foreground",
+      "value": "Foreground 前景"
+    },
+    {
       "name": "prop_border",
       "value": "border 边框"
     },
@@ -808,6 +812,18 @@
     {
       "name": "Gallery_card_expansion",
       "value": "图库卡片展开"
+    },
+    {
+      "name": "layout_animation_expansion",
+      "value": "布局动效"
+    },
+    {
+      "name": "size_transition_expansion",
+      "value": "尺寸变换动效"
+    },
+    {
+      "name": "side_bar_effects_title",
+      "value": "侧边栏动效"
     },
     // Size
     {
