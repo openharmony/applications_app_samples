@@ -47,7 +47,7 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage): void {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'MainAbility onWindowStageCreate');
-    windowStage.setUIContent(this.context, "pages/Index", null);
+    windowStage.setUIContent(this.context, 'pages/Index', null);
   }
 
   onWindowStageDestroy(): void {
