@@ -81,10 +81,10 @@ export struct PolylineControlPanel {
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.polyline_stroke_opacity'),
-        step: 0.1,
+        vpTest: '%',
         testId: 'polyline_slider_007'
       })
       CommonItemSlider({

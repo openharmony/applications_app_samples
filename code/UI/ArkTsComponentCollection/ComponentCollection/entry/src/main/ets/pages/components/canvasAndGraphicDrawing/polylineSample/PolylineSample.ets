@@ -36,9 +36,9 @@ struct PolylineSample {
   @State polylineThirdX: number = 100;
   @State polylineThirdY: number = 100;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -52,12 +52,13 @@ struct PolylineSample {
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
             .strokeDashArray([this.strokeDashArray])
-            .strokeOpacity(this.strokeOpacity)
+            .strokeOpacity(this.strokeOpacity/100)
               // 设置折线拐角处为圆弧
             .strokeLineJoin(LineJoinStyle.Round)
               // 设置折线两端为半圆
             .strokeLineCap(LineCapStyle.Round)
         }.cardStyle()
+        .margin({ bottom: 10 })
 
         Column() {
           PolylineControlPanel({

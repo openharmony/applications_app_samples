@@ -43,18 +43,18 @@ export struct ShapeControlPanel {
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.shape_stroke_opacity'),
-        step: 0.1,
+        vpTest: '%',
         testId: 'shape_slider_001'
       })
       CommonItemSlider({
         changeValue: $fillOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.shape_fill_opacity'),
-        step: 0.1,
+        vpTest: '%',
         testId: 'shape_slider_002'
       })
       CommonItemSlider({

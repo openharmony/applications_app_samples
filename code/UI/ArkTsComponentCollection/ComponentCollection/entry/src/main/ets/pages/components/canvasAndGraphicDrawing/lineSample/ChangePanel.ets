@@ -72,8 +72,9 @@ export struct LineControlPanel {
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 10,
-        min: 3,
+        max: 100,
+        min: 0,
+        vpTest:'%',
         name: $r('app.string.line_stroke_opacity'),
         testId: 'line_slider_006'
       })

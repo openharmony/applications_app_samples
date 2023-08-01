@@ -32,9 +32,9 @@ struct LineSample {
   @State endPointX: number = 200;
   @State endPointY: number = 150;
   @State strokeWidth: number = 10;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -49,9 +49,10 @@ struct LineSample {
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
             .strokeDashArray([this.strokeDashArray])
-            .strokeOpacity(this.strokeOpacity)
+            .strokeOpacity(this.strokeOpacity/100)
             .backgroundColor('#F5F5F5')
-        }.cardStyle().margin({ bottom: 20 })
+        }.cardStyle()
+        .margin({ bottom: 20 })
 
         Column() {
           LineControlPanel({

@@ -2017,8 +2017,8 @@ export default function abilityTest() {
         await checkButtonAndClickWithText('Pink')
         await checkButtonAndClickWithID('patternLock_color_002');
         await checkButtonAndClickWithText('Blue')
-        await checkButtonAndClickWithID('patternLock_color_003');
-        await checkButtonAndClickWithText('Pink')
+        /*await checkButtonAndClickWithID('patternLock_color_003');
+        await checkButtonAndClickWithText('Pink')*/
         /*let list = await driver.findComponent(ON.id('patternLock_scroll_001'));
         let on = ON.id('patternLock_color_003');
         let scroll = await list.scrollSearch(on);

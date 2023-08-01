@@ -29,12 +29,12 @@ import { PolygonControlPanel } from './ChangePanel';
 @Entry
 @Component
 struct PolygonSample {
-  @State fillOpacity: number = 0.5;
+  @State fillOpacity: number = 50;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
   @State fill: Color = Color.Blue;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -44,11 +44,11 @@ struct PolygonSample {
           Polygon({ width: 100, height: 100 })
             .points([[0, 0], [50, 100], [100, 0]])
             .fill(this.fill)
-            .fillOpacity(this.fillOpacity)
+            .fillOpacity(this.fillOpacity/100)
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
             .strokeDashArray([this.strokeDashArray])
-            .strokeOpacity(this.strokeOpacity)
+            .strokeOpacity(this.strokeOpacity/100)
             .margin({ bottom: 20 })
           Polygon()
             .width(100)
@@ -72,6 +72,7 @@ struct PolygonSample {
             .strokeDashArray([this.strokeDashArray])
             .strokeOpacity(this.strokeOpacity)
         }.cardStyle()
+        .margin({ bottom: 10 })
 
         Column() {
           PolygonControlPanel({

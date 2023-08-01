@@ -76,18 +76,18 @@ export struct RectControlPanel {
 
       CommonItemSlider({
         changeValue: $fillOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.rect_fill_opacity'),
-        step: 0.1,
+        vpTest: '%',
         testId: 'rect_slider_005'
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.rect_stroke_opacity'),
-        step: 0.1,
+        vpTest: '%',
         testId: 'rect_slider_006'
       })
       CommonItemSlider({

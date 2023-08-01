@@ -47,13 +47,14 @@ struct VideoSample {
               Video({src:$r('app.media.video_test'),
               currentProgressRate:this.videoCurrent,
               previewUri:$r('app.media.ic_image_alt'),
-              controller:this.controller})
+              controller:this.controller.requestFullscreen(true)})
                 .height(400)
                 .autoPlay(this.autoPlay)
                 .controls(this.controlsShow)
                 .muted(this.mutedShow)
                 .objectFit(this.videoFit)
                 .loop(this.videoLoop)
+                .aspectRatio(1)
                 .onStart(()=>{
                   ShowToast.shortToast('start')
                 })
@@ -76,7 +77,6 @@ struct VideoSample {
                   ShowToast.shortToast(''+video.time)
                 })
                 .onUpdate((video)=>{
-                  //ShowToast.shortToast(''+video.time)
                 })
                 .onFullscreenChange((fullScreen)=>{
                   if(fullScreen){

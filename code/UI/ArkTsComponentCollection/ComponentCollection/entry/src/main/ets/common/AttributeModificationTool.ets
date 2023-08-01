@@ -30,6 +30,7 @@ export struct CommonItemSlider {
   private name: ResourceStr
   private step: number = 1
   private testId: string = 'test_colorSelect'
+  private vpTest: string = 'vp'
 
   build() {
     Row() {
@@ -48,7 +49,7 @@ export struct CommonItemSlider {
         let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
         console.log('Sample_ComponentCollection' + text)
       })
-      Text(`${Math.trunc(this.changeValue)}vp`)
+      Text(`${Math.trunc(this.changeValue)}`+this.vpTest)
     }
     .id(this.testId)
     .width('100%')

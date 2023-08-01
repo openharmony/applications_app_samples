@@ -30,7 +30,7 @@ import {textAreaControlPanel} from './ChangePanel'
 @Component
 struct TextAreaSample {
   @State textAreaSet: string = ''
-  @State placeholderColor: Color = Color.Grey
+  @State placeholderColor: Color = Color.Blue
   @State textAlign: TextAlign = TextAlign.Start
   @State caretColor:Color = Color.Blue
   @State copyOptions: CopyOptions = CopyOptions.None

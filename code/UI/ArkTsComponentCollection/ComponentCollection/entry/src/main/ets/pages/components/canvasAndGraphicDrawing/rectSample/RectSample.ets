@@ -33,12 +33,12 @@ struct RectSample {
   @State rectWidth: number = 150;
   @State radiusWidth: number = 40;
   @State radiusHeight: number = 20;
-  @State fillOpacity: number = 0.5;
+  @State fillOpacity: number = 50;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
   @State fill: Color = Color.Blue;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -50,12 +50,13 @@ struct RectSample {
             .radiusWidth(this.radiusWidth)
             .radiusHeight(this.radiusHeight)
             .fill(this.fill)
-            .fillOpacity(this.fillOpacity)
+            .fillOpacity(this.fillOpacity/100)
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
             .strokeDashArray([this.strokeDashArray])
-            .strokeOpacity(this.strokeOpacity)
-        }.cardStyle().padding({ bottom: 10 })
+            .strokeOpacity(this.strokeOpacity/100)
+        }.cardStyle()
+        .margin({ bottom: 10 })
 
         Column() {
           RectControlPanel({

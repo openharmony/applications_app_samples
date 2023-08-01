@@ -33,12 +33,12 @@ struct ShapeSample {
   @State viewPortY: number = 0;
   @State viewPortWidth: number = 450;
   @State viewPortHeight: number = 450;
-  @State fillOpacity: number = 0.5;
+  @State fillOpacity: number = 50;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
   @State fill: Color = Color.Blue;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -54,12 +54,13 @@ struct ShapeSample {
           .height(300)
           .backgroundColor('#F5DC62')
           .fill(this.fill)
-          .fillOpacity(this.fillOpacity)
+          .fillOpacity(this.fillOpacity/100)
           .stroke(this.stroke)
           .strokeWidth(this.strokeWidth)
-          .strokeOpacity(this.strokeOpacity)
+          .strokeOpacity(this.strokeOpacity/100)
           .strokeDashArray([this.strokeDashArray])
-        }.cardStyle().margin({ bottom: 10 })
+        }.cardStyle()
+        .margin({ bottom: 10 })
 
         Column() {
           ShapeControlPanel({

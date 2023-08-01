@@ -36,7 +36,7 @@ struct ImageSample {
   @State objectFit: ImageFit = ImageFit.None;
   @State RenderMode: ImageRenderMode = ImageRenderMode.Original;
   @State RepeatMode: ImageRepeat = ImageRepeat.NoRepeat;
-  @State fillColor: Color = Color.Black;
+  @State fillColor: Color = Color.Blue;
   @State colorFilter: ColorFilter = new ColorFilter([0.5, 0, 0.5, 0, 0,
     0, 0.5, 0.5, 0, 0,
     0.5, 0, 0.5, 0, 0,
@@ -77,11 +77,19 @@ struct ImageSample {
             .fillColor(this.fillColor)
             .colorFilter(this.colorFilter)
         }.cardStyle()
-      }.flexGrow(1).margin({bottom:20})
+      }.flexGrow(1).margin({ bottom: 20 })
+
       Scroll() {
         Column() {
           Column() {
-            SourceSizeControlPanel({ ObjectFit: $objectFit,sizeHeight: $imageHeight, sizeWidth: $imageWidth,RenderMode: $RenderMode,ObjectRepeat: $RepeatMode,fillColor: $fillColor})
+            SourceSizeControlPanel({
+              ObjectFit: $objectFit,
+              sizeHeight: $imageHeight,
+              sizeWidth: $imageWidth,
+              RenderMode: $RenderMode,
+              ObjectRepeat: $RepeatMode,
+              fillColor: $fillColor
+            })
           }.cardStyle()
         }
       }.flexGrow(0).margin({ bottom: 30 })

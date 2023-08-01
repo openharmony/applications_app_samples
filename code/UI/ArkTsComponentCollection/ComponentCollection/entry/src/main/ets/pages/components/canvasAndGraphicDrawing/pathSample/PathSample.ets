@@ -30,12 +30,12 @@ import { PathControlPanel } from './ChangePanel'
 @Component
 struct PathSample {
   @State commands: string = 'M0 0 L600 0';
-  @State fillOpacity: number = 0.5;
+  @State fillOpacity: number = 50;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
   @State fill: Color = Color.Blue;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -47,11 +47,11 @@ struct PathSample {
             .width(310)
             .commands(this.commands)
             .fill(this.fill)
-            .fillOpacity(this.fillOpacity)
+            .fillOpacity(this.fillOpacity/100)
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
             .strokeDashArray([this.strokeDashArray])
-            .strokeOpacity(this.strokeOpacity)
+            .strokeOpacity(this.strokeOpacity/100)
         }.cardStyle()
         .margin({ bottom: 10 })
 

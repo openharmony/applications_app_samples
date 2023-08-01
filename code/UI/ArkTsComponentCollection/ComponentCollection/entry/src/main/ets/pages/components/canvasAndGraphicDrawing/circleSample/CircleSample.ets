@@ -30,12 +30,12 @@ import { CircleControlPanel } from './ChangePanel'
 @Component
 struct CircleSample {
   @State circleRadius: number = 100;
-  @State fillOpacity: number = 0.5;
+  @State fillOpacity: number = 50;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
   @State fill: Color = Color.Blue;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -47,12 +47,13 @@ struct CircleSample {
             .width(this.circleRadius)
             .height(this.circleRadius)
             .fill(this.fill)
-            .fillOpacity(this.fillOpacity)
+            .fillOpacity(this.fillOpacity/100)
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
             .strokeDashArray([this.strokeDashArray])
-            .strokeOpacity(this.strokeOpacity)
+            .strokeOpacity(this.strokeOpacity/100)
         }.cardStyle()
+        .margin({ bottom: 10 })
 
         IntroductionTitle({ introduction: $r('app.string.circle_change') })
         Column() {

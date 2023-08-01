@@ -34,7 +34,7 @@ struct SearchSample {
   @State copyValue: string = '';
   @State cutValue: string = '';
   @State pasteValue: string = '';
-  @State placeholderColor: Color = Color.Black;
+  @State placeholderColor: Color = Color.Blue;
   @State textAlign: TextAlign = TextAlign.Start;
   @State copyOptions: CopyOptions = CopyOptions.None;
   controller: SearchController = new SearchController();

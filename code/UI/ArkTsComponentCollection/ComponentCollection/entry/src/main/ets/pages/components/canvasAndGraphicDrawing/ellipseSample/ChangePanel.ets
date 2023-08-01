@@ -56,18 +56,20 @@ export struct EllipseControlPanel {
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.ellipse_stroke_opacity'),
         step: 0.1,
+        vpTest: '%',
         testId: 'ellipse_slider_003'
       })
       CommonItemSlider({
         changeValue: $fillOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.ellipse_fill_opacity'),
         step: 0.1,
+        vpTest: '%',
         testId: 'ellipse_slider_004'
       })
       CommonItemSlider({

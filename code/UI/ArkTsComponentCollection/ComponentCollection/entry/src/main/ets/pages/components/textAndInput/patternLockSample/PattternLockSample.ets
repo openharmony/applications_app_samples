@@ -34,15 +34,15 @@ struct PattternLockSample {
   @State sideLength: number = 200
   @State circleRadius: number = 9
   @State pathStrokeWidth: number = 18
-  @State activeColor: Color = Color.Black
-  @State selectedColor: Color = Color.Black
-  @State pathColor: Color = Color.Black
-  @State regularColor: Color = Color.Black
+  @State activeColor: Color = Color.Blue
+  @State selectedColor: Color = Color.Blue
+  @State pathColor: Color = Color.Blue
+  @State regularColor: Color = Color.Blue
   private patternLockController: PatternLockController = new PatternLockController()
 
   build() {
-    Column() {
-      TitleBar({ title: $r('app.string.patternlock_title') })
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      TitleBar({ title: $r('app.string.patternlock_title') }).flexGrow(1)
       Column() {
         Text(this.message).textAlign(TextAlign.Center).margin(20).fontSize(20)
         PatternLock(this.patternLockController)
@@ -83,7 +83,8 @@ struct PattternLockSample {
           this.message = 'Please input password'
         })
       }.cardStyle()
-      .height('50%')
+      .flexGrow(1)
+      .height('55%')
 
       Scroll() {
         Column() {
@@ -101,8 +102,9 @@ struct PattternLockSample {
           }.cardStyle()
         }
       }.id('patternLock_scroll_001')
-      .margin({ bottom: 200 })
-      .height('50%')
+      .flexGrow(0)
+      .height('35%')
+      .margin({bottom:50})
     }.backgroundColor($r('app.color.background_light_gray'))
     .height('100%')
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })

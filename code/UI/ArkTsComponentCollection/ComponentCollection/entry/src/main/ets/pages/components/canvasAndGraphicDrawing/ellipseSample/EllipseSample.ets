@@ -31,12 +31,12 @@ import { EllipseControlPanel } from './ChangePanel'
 struct EllipseSample {
   @State ellipseHeight: number = 80;
   @State ellipseWidth: number = 150;
-  @State fillOpacity: number = 0.5;
+  @State fillOpacity: number = 50;
   @State strokeWidth: number = 3;
-  @State stroke: Color = Color.Red;
+  @State stroke: Color = Color.Blue;
   @State strokeDashArray: number = 1;
   @State fill: Color = Color.Blue;
-  @State strokeOpacity: number = 0.5;
+  @State strokeOpacity: number = 50;
 
   build() {
     Column() {
@@ -47,12 +47,13 @@ struct EllipseSample {
           Ellipse()
             .size({ width: this.ellipseWidth, height: this.ellipseHeight })
             .fill(this.fill)
-            .fillOpacity(this.fillOpacity)
+            .fillOpacity(this.fillOpacity/100)
             .stroke(this.stroke)
             .strokeWidth(this.strokeWidth)
-            .strokeOpacity(this.strokeOpacity)
+            .strokeOpacity(this.strokeOpacity/100)
             .strokeDashArray([this.strokeDashArray])
-        }.cardStyle().margin({ bottom: 20 })
+        }.cardStyle()
+        .margin({ bottom: 20 })
 
         Column() {
           EllipseControlPanel({

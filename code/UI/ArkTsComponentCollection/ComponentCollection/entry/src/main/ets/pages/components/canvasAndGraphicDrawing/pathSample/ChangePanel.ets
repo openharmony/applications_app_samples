@@ -72,18 +72,18 @@ export struct PathControlPanel {
       })
       CommonItemSlider({
         changeValue: $fillOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.path_fill_opacity'),
-        step: 0.1,
+        vpTest:'%',
         testId: 'path_slider_001'
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.path_stroke_opacity'),
-        step: 0.1,
+        vpTest:'%',
         testId: 'path_slider_002'
       })
       CommonItemSlider({

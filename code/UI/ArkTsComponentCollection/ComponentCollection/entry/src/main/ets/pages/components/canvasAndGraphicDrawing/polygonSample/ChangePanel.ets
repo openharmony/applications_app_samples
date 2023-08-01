@@ -42,18 +42,18 @@ export struct PolygonControlPanel {
       })
       CommonItemSlider({
         changeValue: $strokeOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.polygon_fill_opacity'),
-        step: 0.1,
+        vpTest:'%',
         testId: 'polygon_slider_001'
       })
       CommonItemSlider({
         changeValue: $fillOpacity,
-        max: 1,
+        max: 100,
         min: 0,
         name: $r('app.string.polygon_stroke_opacity'),
-        step: 0.1,
+        vpTest:'%',
         testId: 'polygon_slider_002'
       })
       CommonItemSlider({
