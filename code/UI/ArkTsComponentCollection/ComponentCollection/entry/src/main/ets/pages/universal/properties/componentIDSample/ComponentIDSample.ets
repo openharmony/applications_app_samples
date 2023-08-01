@@ -96,6 +96,10 @@ struct ComponentIDSample {
                   let rect = Utils.getComponentRect(getStringData($r('app.string.componentId_onTouch')));
                   let touchPoint: TouchObject = {
                     id: 1,
+                    displayX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+                    displayY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
+                    windowX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+                    windowY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
                     x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
                     y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
                     type: TouchType.Down,
@@ -119,6 +123,10 @@ struct ComponentIDSample {
                 let mouseEvent: MouseEvent = {
                   button: MouseButton.Left,
                   action: MouseAction.Press,
+                  displayX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+                  displayY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
+                  windowY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
+                  windowX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
                   x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
                   y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
                   screenX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
@@ -161,7 +169,8 @@ struct ComponentIDSample {
                   keySource: 4,
                   deviceId: 0,
                   metaKey: 0,
-                  timestamp: 0
+                  timestamp: 0,
+                  intentionCode: 2
                 };
                 sendKeyEvent(keyEvent); // 发送按键事件
               }, 2000)
