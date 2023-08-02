@@ -412,7 +412,7 @@ struct Watcher {
                     .margin({ right: 24 })
                     .id('stopWatcher')
                     .onClick(() => {
-                      let showEventArray = [''];
+                      let showEventArray = [];
                       Logger.info('onClick this.eventArray.length = ' + this.eventArray.length);
                       let j = 0;
                       for (let i = 0; i < this.eventArray.length; i++) {
