@@ -16,18 +16,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_ComponentCollection_ohos.samples.componentcollection.cer",
-          "storePassword": "0000001BC21B0BDA0676038EDC80188247F80D527F1ECBE9B78690164AA485FBD8770D839CA3A027DED923",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BDA8C8A8D2C082FC366739592E093F908FDF2871C72A687702DE39F6B8497EFEEE56779D933207E",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_ComponentCollection_ohos.samples.componentcollection.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_ComponentCollection_ohos.samples.componentcollection.p12"
-        }
-      }
     ],
     "compileSdkVersion": 10,
     "compatibleSdkVersion": 10,
