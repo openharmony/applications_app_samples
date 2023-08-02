@@ -37,6 +37,7 @@ export default function SpeedTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
 
       // 点击倍速
@@ -62,6 +63,7 @@ export default function SpeedTest() {
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
       // 点击倍速
       await driver.delayMs(1000);
@@ -87,6 +89,7 @@ export default function SpeedTest() {
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
       // 点击倍速
       await driver.delayMs(1000);
@@ -113,6 +116,7 @@ export default function SpeedTest() {
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
       // 点击倍速
       await driver.delayMs(1000);
