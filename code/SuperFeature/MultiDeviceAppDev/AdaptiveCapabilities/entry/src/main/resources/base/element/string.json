@@ -367,6 +367,54 @@
     {
       "name": "multiScene_title10_disc",
       "value": "Discussing how artificial intelligence technology can change the way and content of education and teaching, and analyzes its role and challenges in future education development."
+    },
+    {
+      "name": "interaction_norm_capability",
+      "value": "Interaction normalization capability"
+    },
+    {
+      "name": "interaction_norm_capability_tips",
+      "value": "Please keyboard"
+    },
+    {
+      "name": "up",
+      "value": "Up"
+    },
+    {
+      "name": "down",
+      "value": "Down"
+    },
+    {
+      "name": "select",
+      "value": "Select"
+    },
+    {
+      "name": "escape",
+      "value": "Escape"
+    },
+    {
+      "name": "back",
+      "value": "Back"
+    },
+    {
+      "name": "menu",
+      "value": "Menu"
+    },
+    {
+      "name": "page_up",
+      "value": "Page up"
+    },
+    {
+      "name": "page_down",
+      "value": "Page down"
+    },
+    {
+      "name": "zoom_out",
+      "value": "Zoom out"
+    },
+    {
+      "name": "zoom_in",
+      "value": "Zoom in"
     }
   ]
 }

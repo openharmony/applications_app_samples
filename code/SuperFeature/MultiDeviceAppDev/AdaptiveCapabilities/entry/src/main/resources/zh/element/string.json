@@ -367,6 +367,54 @@
     {
       "name": "multiScene_title10_disc",
       "value": "探讨人工智能技术如何改变教育教学的方式和内容，分析其在未来教育发展中的作用和挑战。"
+    },
+    {
+      "name": "interaction_norm_capability",
+      "value": "交互归一能力"
+    },
+    {
+      "name": "interaction_norm_capability_tips",
+      "value": "请使用键盘操作"
+    },
+    {
+      "name": "up",
+      "value": "上"
+    },
+    {
+      "name": "down",
+      "value": "下"
+    },
+    {
+      "name": "select",
+      "value": "选择"
+    },
+    {
+      "name": "escape",
+      "value": "逃逸"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "menu",
+      "value": "菜单"
+    },
+    {
+      "name": "page_up",
+      "value": "上一页"
+    },
+    {
+      "name": "page_down",
+      "value": "下一页"
+    },
+    {
+      "name": "zoom_out",
+      "value": "缩小"
+    },
+    {
+      "name": "zoom_in",
+      "value": "放大"
     }
   ]
 }
