@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SandboxShare"
+    },
+    {
+      "name": "refresh",
+      "value": "Refresh"
+    },
+    {
+      "name": "sandboxFile",
+      "value": "Sandbox File"
+    },
+    {
+      "name": "fileContent1",
+      "value": "  1.Prepare a small pot and beat three eggs, add salt and sugar, beat with a whisk for seven or eight minutes, and add the cake powder to the egg batter twice."
+    },
+    {
+      "name": "fileContent2",
+      "value": "  2.Pour corn oil into a bowl, add milk, beat the oil and milk with a whisk until completely integrated, and preheat the oven for 15 minutes. "
+    },
+    {
+      "name": "fileContent3",
+      "value": "  3.Prepare raisins, walnuts, paper cups, pour batter into paper cups, then add raisins and walnuts, and put cupcakes in the oven for 40 minutes."
+    },
+    {
+      "name": "fileContent4",
+      "value": "  4.Prepare raisins, walnuts, paper cups, pour the batter into paper cups, then add raisins and walnuts, put cupcakes in the oven, time for 40 minutes, take out and serve."
+    },
+    {
+      "name": "subFilenames",
+      "value": "SubFilenames"
+    }
+  ]
+}

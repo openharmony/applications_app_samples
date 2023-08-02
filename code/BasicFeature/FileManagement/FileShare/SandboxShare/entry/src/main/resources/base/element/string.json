@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SandboxShare"
+    },
+    {
+      "name": "refresh",
+      "value": "Refresh"
+    },
+    {
+      "name": "sandboxFile",
+      "value": "Sandbox File"
+    },
+    {
+      "name": "fileContent1",
+      "value": "File Content1"
+    },
+    {
+      "name": "fileContent2",
+      "value": "File Content2"
+    },
+    {
+      "name": "fileContent3",
+      "value": "File Content3"
+    },
+    {
+      "name": "fileContent4",
+      "value": "File Content4"
+    },
+    {
+      "name": "subFilenames",
+      "value": "SubFilenames"
+    }
+  ]
+}
