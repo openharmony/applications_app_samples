@@ -13,7 +13,7 @@
     "@ohos/scan-component": "file:../libs/ohos-qr-code-scan-1.0.1.har",
     "@ohos/updatedialog": "file:../libs/ohos-updatedialog-1.0.0.tgz",
     "@ohos/enter-animation": "file:../libs/ohos-enter-animation-1.0.1.tgz",
-    "@ohos/share-component": "file:../libs/ohos-sharecomponent-1.0.1.tgz",
+    "@ohos/share-component": "file:../libs/ohos-sharecomponent-1.0.2.har",
     "@ohos/emitter": "file:../feature/emitter",
     "@ohos/navigation-component": "file:../feature/navigationHome"
   }
