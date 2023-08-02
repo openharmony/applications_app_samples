@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_edit_photo_doodle_style_line</title>
+    <defs>
+        <path d="M2.5,12.75 L21.5,12.75 C21.9142136,12.75 22.25,12.4142136 22.25,12 C22.25,11.5857864 21.9142136,11.25 21.5,11.25 L2.5,11.25 C2.08578644,11.25 1.75,11.5857864 1.75,12 C1.75,12.4142136 2.08578644,12.75 2.5,12.75 Z" id="path-1"></path>
+    </defs>
+    <g id="ic_edit_photo_doodle_style_line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Path-10" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+    </g>
+</svg>

@@ -1,0 +1,82 @@
+{
+  "plural": [
+    {
+      "name": "count_details_selected",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d item selected"
+        },
+        {
+          "quantity": "other",
+          "value": "%d items selected"
+        }
+      ]
+    },
+    {
+      "name": "recycleAlbum_delete_message",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "Permanently delete this item?"
+        },
+        {
+          "quantity": "other",
+          "value": "Permanently delete these items?"
+        }
+      ]
+    },
+    {
+      "name": "show_photo_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d photo"
+        },
+        {
+          "quantity": "other",
+          "value": "%d photos"
+        }
+      ]
+    },
+    {
+      "name": "show_video_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d video"
+        },
+        {
+          "quantity": "other",
+          "value": "%d videos"
+        }
+      ]
+    },
+    {
+      "name": "show_one_video_with_photo_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d photo，1 video"
+        },
+        {
+          "quantity": "other",
+          "value": "%d photos，1 video"
+        }
+      ]
+    },
+    {
+      "name": "show_multi_video_with_photo_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d photo，%d videos"
+        },
+        {
+          "quantity": "other",
+          "value": "%d photos，%d videos"
+        }
+      ]
+    }
+  ]
+}

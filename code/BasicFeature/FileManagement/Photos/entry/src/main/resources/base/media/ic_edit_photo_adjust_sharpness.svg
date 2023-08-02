@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_edit_photo_adjust_sharpness</title>
+    <defs>
+        <path d="M11.3069696,2.85410284 C11.562527,2.23639733 12.437473,2.23639733 12.6930304,2.85410284 L19.929591,20.3455277 C20.13388,20.8393126 19.7709365,21.3822486 19.2365606,21.3822486 L4.76343939,21.3822486 C4.22906355,21.3822486 3.86612004,20.8393126 4.07040898,20.3455277 L11.3069696,2.85410284 Z M5.88538245,19.8822486 L18.1146176,19.8822486 L12,5.10266207 L5.88538245,19.8822486 Z" id="path-1"></path>
+    </defs>
+    <g id="ic_edit_photo_adjust_sharpness" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Triangle" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+    </g>
+</svg>
