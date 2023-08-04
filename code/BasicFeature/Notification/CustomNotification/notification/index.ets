@@ -19,6 +19,8 @@ export { notificationRequestUtil } from './src/main/ets/notification/Notificatio
 
 export { notificationContentUtil } from './src/main/ets/notification/NotificationContentUtil'
 
+export { notificationManagement } from './src/main/ets/notification/NotificationManagementUtil'
+
 export { wantAgentUtil } from './src/main/ets/notification/WantAgentUtil'
 
 export { logger } from './src/main/ets/util/Logger'

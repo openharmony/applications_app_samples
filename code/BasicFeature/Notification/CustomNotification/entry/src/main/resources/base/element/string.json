@@ -13,6 +13,10 @@
       "value": "CustomNotification"
     },
     {
+      "name": "mainAbility_label_list",
+      "value": "CustomNotificationList"
+    },
+    {
       "name": "basic_notification",
       "value": "Basic notification"
     },

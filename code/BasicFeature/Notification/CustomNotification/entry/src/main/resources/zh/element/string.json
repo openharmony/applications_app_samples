@@ -10,7 +10,11 @@
     },
     {
       "name": "mainAbility_label",
-      "value": "CustomNotification"
+      "value": "通知发送"
+    },
+    {
+      "name": "mainAbility_label_list",
+      "value": "通知列表"
     },
     {
       "name": "basic_notification",

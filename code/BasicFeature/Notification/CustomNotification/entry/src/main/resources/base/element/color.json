@@ -21,7 +21,7 @@
       "value": "#000000"
     },
     {
-      "name": "blackground",
+      "name": "background",
       "value": "#f1f3f5"
     },
     {
@@ -30,7 +30,7 @@
     },
     {
       "name": "button_fontColor",
-      "value": "#E84026"
+      "value": "#e84026"
     },
     {
       "name": "blue",
