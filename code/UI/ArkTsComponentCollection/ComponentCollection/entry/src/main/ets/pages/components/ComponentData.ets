@@ -179,6 +179,22 @@ const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =
       {
         title: $r('app.string.data_panel'),
         url: 'pages/components/informationPresentationAndDynamicEffects/dataPanelSample/DataPanelSample'
+      },
+      {
+        title: $r('app.string.scroll_To_effect'),
+        url: "pages/components/informationPresentationAndDynamicEffects/scrollToSample/ScrollToSample"
+      },
+      {
+        title: $r('app.string.tabs_switch_effect'),
+        url: "pages/components/informationPresentationAndDynamicEffects/tapsSwitchSample/TapsSwitchSample"
+      },
+      {
+        title: $r('app.string.image_fit_Full_effect'),
+        url: "pages/components/informationPresentationAndDynamicEffects/imageFitFullSample/ImageFitFullSample"
+      },
+      {
+        title: $r('app.string.particle_effect'),
+        url: "pages/components/informationPresentationAndDynamicEffects/particleSample/ParticleSample"
       }
     ]
   }

@@ -24,6 +24,10 @@
 | 验证Progress 进度条                     | 展开信息展示与动效，进入Progress 进度条              | 调整进度条的进度                                                            | 正确显示进度条的进度        | 是    | Pass |
 | 验证Gauge 仪表盘                        | 展开信息展示与动效，进入Gauge 仪表盘                 | 调整仪表盘的value和strokeWidth                                             | 正确改变仪表盘的属性        | 是    | Pass |
 | 验证DataPanel 数据面板                   | 展开信息展示与动效，进入DataPanel 数据面板            |                                                                     | 正确显示数据面板动画        | 是    | Pass |
+| 验证ScrollTo 动效                    | 展开信息展示与动效，进入ScrollTo 动效         | 点击ScrollTo动效按钮                               | ScrollTo动效展示      | 是    | Pass |
+| 验证Tab 模糊切换                       | 展开信息展示与动效，进入Tab 模糊切换         | 点击Tab 进行模糊切换                                 | Tab 模糊切换成功        | 是    | Pass |
+| 验证ImageFit 切换                    | 展开信息展示与动效，进入ImageFit 切换         | 依次点击Radius按钮进行ImageFit模式切换                   | ImageFit 模式切换成功   | 是    | Pass |
+| 验证Particle粒子效果                   | 展开信息展示与动效，进入Particle粒子效果         | 点击Particle粒子效果生成按钮                           | Particle粒子效果生成成功  | 是    | Pass |
 | 验证Span 行内文本                        | 展开文本与输入，进入Span 行内文本                   | 依次调整字符间距，装饰线类型，颜色                                                   | 依次改变对于属性          | 是    | Pass |
 | 验证TextInput 文本输入                   | 展开文本与输入，进入TextInput 文本输入              | 在输入框输入文本                                                            | 正确显示输入文本          | 是    | Pass |
 | 验证Text 文本                          | 展开文本与输入，进入Text 文本                     | 依次更改字符间距，行高，对其类型，超长文本显示方式，装饰线，字体颜色，大小写                              | 依次更改对应属性          | 是    | Pass |
