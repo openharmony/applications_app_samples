@@ -67,11 +67,27 @@ export default function abilityTest() {
     /**
      * Worker 批量拷贝文件
      */
+    // 进入页面直接点击拷贝文件按钮
+    it('WorkerCopyFileButtonFunction_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileButtonFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('copyFile'));
+      let copyFile = await driver.findComponent(ON.id('copyFile'));
+      await copyFile.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileButtonFunction_001 end');
+    })
+
+    /**
+     * Worker 批量拷贝文件
+     */
     // 选择文件拷贝
     it('WorkerCopyFileFunction_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 使用id寻找组件并点击，时间超过3min，因此采用坐标点击
       await driver.click(630, 272);
       await driver.click(630, 372);

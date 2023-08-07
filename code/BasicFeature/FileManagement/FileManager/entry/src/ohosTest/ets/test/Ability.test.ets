@@ -368,6 +368,50 @@ export default function abilityTest() {
     })
 
     /**
+     * 点击添加监听后停止监听,测试停止监听页面是否出现弹窗白屏
+     */
+    it(BUNDLE + 'StopWatcherFunction_001', 0, async function () {
+      Logger.info(TAG, BUNDLE + 'StopWatcherFunction_001 begin')
+      let driver = await Driver.create()
+      await driver.delayMs(1000)
+      // 点击停止监听按钮
+      await driver.assertComponentExist(ON.id('stopWatcher'));
+      let stopWatcher = await driver.findComponent(ON.id('stopWatcher'));
+      await stopWatcher.click();
+      await driver.delayMs(1000);
+      // 点击添加监听按钮
+      await driver.assertComponentExist(ON.id('addWatcher'));
+      let addWatcher = await driver.findComponent(ON.id('addWatcher'));
+      await addWatcher.click();
+      await addWatcher.click();
+      await driver.delayMs(1000);
+      // 点击确定
+      let confirmText = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmText));
+      let sureWatcher = await driver.findComponent(ON.text(confirmText));
+      await sureWatcher.click();
+      await driver.delayMs(1000);
+      // 点击停止监听按钮
+      await driver.assertComponentExist(ON.id('stopWatcher'));
+      let stopWatcherTwo = await driver.findComponent(ON.id('stopWatcher'));
+      await stopWatcherTwo.click();
+      await driver.delayMs(1000);
+      // 点击确定按钮
+      let confirmTextTwo = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(confirmTextTwo));
+      let sureWatcherTwo = await driver.findComponent(ON.text(confirmTextTwo));
+      await sureWatcherTwo.click();
+      await driver.delayMs(1000);
+      // 点击停止监听按钮
+      await driver.assertComponentExist(ON.id('stopWatcher'));
+      let stopWatcherThree = await driver.findComponent(ON.id('stopWatcher'));
+      await stopWatcherThree.click();
+      await stopWatcherThree.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, BUNDLE + 'StopWatcherFunction_001 end')
+    })
+
+    /**
      * 添加IN_CREATE监听
      */
     it('File_Fs_addCreateWatcher_001', 1, async function () {
