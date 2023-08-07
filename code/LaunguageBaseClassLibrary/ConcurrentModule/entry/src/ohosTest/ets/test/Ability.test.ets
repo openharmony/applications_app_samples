@@ -67,11 +67,27 @@ export default function abilityTest() {
     /**
      * Worker 批量拷贝文件
      */
+    // 进入页面直接点击拷贝文件按钮
+    it('WorkerCopyFileButtonFunction_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileButtonFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('copyFile'));
+      let copyFile = await driver.findComponent(ON.id('copyFile'));
+      await copyFile.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileButtonFunction_001 end');
+    })
+
+    /**
+     * Worker 批量拷贝文件
+     */
     // 选择文件拷贝
     it('WorkerCopyFileFunction_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 使用id寻找组件并点击，时间超过3min，因此采用坐标点击
       await driver.click(630, 272);
       await driver.click(630, 372);
@@ -123,24 +139,10 @@ export default function abilityTest() {
     /**
      * Worker 字符串排序
      */
-    // 点击Worker页签
-    it('WorkerFunction_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_001 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(200);
-
-      await driver.assertComponentExist(ON.id('tabJsWorker'));
-      let workerTab = await driver.findComponent(ON.id('tabJsWorker'));
-      await workerTab.click();
-      await driver.delayMs(200);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_001 end');
-    })
-
     // 输入待排序字符串
     it('WorkerFunction_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_002 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(200);
 
       await driver.assertComponentExist(ON.id('jsWorkerInPutTextArea'));
@@ -153,7 +155,7 @@ export default function abilityTest() {
     // 点击“字符串排序按钮”
     it('WorkerFunction_003', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_003 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(200);
 
       await driver.assertComponentExist(ON.id('workerStrSort'));
@@ -167,7 +169,7 @@ export default function abilityTest() {
     // 获取排序结果并检查
     it('WorkerFunction_004', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_004 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(200);
 
       await driver.assertComponentExist(ON.id('jsWorkerOutPutScroll'));
@@ -183,7 +185,7 @@ export default function abilityTest() {
     // 点击清空按钮
     it('WorkerFunction_005', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_005 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(200);
 
       await driver.assertComponentExist(ON.id('workerClearButton'));

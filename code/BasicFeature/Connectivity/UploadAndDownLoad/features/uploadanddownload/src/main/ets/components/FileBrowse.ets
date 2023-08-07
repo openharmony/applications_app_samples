@@ -99,7 +99,7 @@ export struct FileBrowse {
         }
         ForEach(this.files, item => {
           ListItem() {
-            Text(item)
+            Text(decodeURIComponent(item))
               .fontSize(16)
               .width('100%')
           }
@@ -130,7 +130,7 @@ export struct FileBrowse {
           .opacity(0.6)
           .margin({ top: 8 })
       }
-      .margin({ bottom: 24 })
+      .margin({ bottom: 24, top: 6 })
       .onClick(() => {
         fileUtils.clearFolder(this.currentFolder);
         this.files = [];

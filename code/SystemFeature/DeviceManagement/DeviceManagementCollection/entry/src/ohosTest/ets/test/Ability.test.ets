@@ -94,7 +94,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'Brightness_001', 0, async function (done) {
       let driver: Driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
       logger.info(TAG, `${BUNDLE}Brightness_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -122,7 +122,8 @@ export default function abilityTest() {
      * 系统电源管理
      */
     it(BUNDLE + 'Power_001', 0, async function (done) {
-      let driver: Driver = await Driver.create();
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       logger.info(TAG, `${BUNDLE}Power_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -202,6 +203,7 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}Power_005, end`);
 
       await driver.pressBack();
+      await driver.delayMs(500);
       done();
     })
 
@@ -314,6 +316,7 @@ export default function abilityTest() {
     it(BUNDLE + 'BatteryManager_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}BatteryManager_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.battery_info'))
@@ -370,6 +373,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.device_info'));
@@ -388,6 +392,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_002 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.manufacture'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.brand'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.marker_name'))));
@@ -401,6 +406,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_003', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_003 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.product_series'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.product_model'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.software_model'))));
@@ -414,6 +420,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_004', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_004 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.hardware_profile'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.serial'))));
       logger.info(TAG, `${BUNDLE}DeviceInfo_004 end`);
@@ -426,6 +433,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_005', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_005 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let infoList = await driver.findComponent(ON.type('List'));
       await infoList.scrollSearch(ON.text(await getResourceString($r('app.string.bootloader_version'))));
       logger.info(TAG, `${BUNDLE}DeviceInfo_005 end`);
@@ -438,6 +446,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_006', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_006 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let infoList = await driver.findComponent(ON.type('List'))
       await infoList.scrollSearch(ON.text(await getResourceString($r('app.string.first_api_version'))));
       logger.info(TAG, `${BUNDLE}DeviceInfo_006 end`);
@@ -450,6 +459,10 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_007', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_007 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let infoList = await driver.findComponent(ON.type('List'));
+      await infoList.scrollSearch(ON.text('UDID'));
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.first_api_version'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.version_id'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.build_type'))));
@@ -463,6 +476,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_008', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_008 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.build_user'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.build_host'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.build_time'))));
@@ -476,6 +490,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_009', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_009 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let infoList = await driver.findComponent(ON.type('List'));
       await infoList.scrollSearch(ON.text(await getResourceString($r('app.string.udid'))));
       logger.info(TAG, `${BUNDLE}DeviceInfo_009 end`);
@@ -488,6 +503,7 @@ export default function abilityTest() {
     it(BUNDLE + 'DeviceInfo_010', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}DeviceInfo_010 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.build_root_hash'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.udid'))));
       await driver.pressBack();
@@ -501,6 +517,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputConsumer_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputConsumer_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.input_consumer'));
@@ -519,6 +536,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputConsumer_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputConsumer_002 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.input_consumer_hint'))));
       let inputConsumerToggle = await driver.findComponent(ON.id('inputConsumerToggle'));
       await inputConsumerToggle.click();
@@ -534,6 +552,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputDeviceManager_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.input_device'));
@@ -552,6 +571,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputDeviceManager_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_002 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let toggleInputDevice = await driver.findComponent(ON.type('Toggle'));
       await toggleInputDevice.click();
       let scrollInputDevice = await driver.findComponent(ON.id('scrollInputDevice'));
@@ -567,10 +587,12 @@ export default function abilityTest() {
     it(BUNDLE + 'InputDeviceManager_003', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_003 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let scrollInputDevice = await driver.findComponent(ON.id('scrollInputDevice'));
       await scrollInputDevice.scrollSearch(ON.text(await getResourceString($r('app.string.input_device_list_title'))));
       await driver.findComponent(ON.text(await getResourceString($r('app.string.input_device_list_title'))));
       await driver.pressBack();
+      await driver.delayMs(500);
       logger.info(TAG, `${BUNDLE}InputDeviceManager_003 end`);
       done();
     })
@@ -582,6 +604,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputEventManager_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputEventManager_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.input_event'))
@@ -600,6 +623,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputEventManager_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputEventManager_002 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let scrollInputEvent = await driver.findComponent(ON.id('scrollInputEvent'));
       let columnInputListener = await scrollInputEvent.scrollSearch(ON.id('scrollInputEvent'));
       let toggleInputListener = await columnInputListener.scrollSearch(ON.type('Toggle'));
@@ -616,6 +640,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputEventManager_003', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputEventManager_003 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let scrollInputEvent = await driver.findComponent(ON.id('scrollInputEvent'));
       let columnBackEvent = await scrollInputEvent.scrollSearch(ON.id('columnBackEvent'));
       let columnBackBtn = await columnBackEvent.scrollSearch(ON.id('columnBackBtn'));
@@ -630,6 +655,7 @@ export default function abilityTest() {
     it(BUNDLE + 'MouseManager_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}MouseManager_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.mouse_pointer'));
@@ -647,6 +673,7 @@ export default function abilityTest() {
     it(BUNDLE + 'MouseManager_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}MouseManager_002 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('scrollMouse'));
       let scrollMouse = await driver.findComponent(ON.id('scrollMouse'));
       await scrollMouse.scrollSearch(ON.text(await getResourceString($r('app.string.mouse_setting'))));
@@ -662,6 +689,7 @@ export default function abilityTest() {
     it(BUNDLE + 'MouseManager_003', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}MouseManager_003 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.mouse_setting_speed_title'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.mouse_setting_style_title'))));
       let scrollMouse = await driver.findComponent(ON.id('scrollMouse'));
@@ -677,6 +705,7 @@ export default function abilityTest() {
     it(BUNDLE + 'MouseManager_004', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}MouseManager_004 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let scrollMouse = await driver.findComponent(ON.id('scrollMouse'));
       let columnMouseListener = await scrollMouse.scrollSearch(ON.id('columnMouseListener'));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.mouse_listener_open'))));
@@ -691,6 +720,7 @@ export default function abilityTest() {
     it(BUNDLE + 'MouseManager_005', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}MouseManager_005 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let scrollMouse = await driver.findComponent(ON.id('scrollMouse'));
       let toggleMouseListener = await driver.findComponent(ON.id('toggleMouseListener'));
       await toggleMouseListener.click();
@@ -706,11 +736,13 @@ export default function abilityTest() {
     it(BUNDLE + 'MouseManager_006', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}MouseManager_006 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       let scrollMouse = await driver.findComponent(ON.id('scrollMouse'));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.mouse_event_info_title'))));
       await scrollMouse.scrollSearch(ON.id('columnMouseEvent'));
       await driver.assertComponentExist(ON.id('columnMouseEvent'));
       await driver.pressBack();
+      await driver.delayMs(500);
       logger.info(TAG, `${BUNDLE}MouseManager_006 end`);
       done();
     })
@@ -721,6 +753,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputKeyEventManager_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputKeyEventManager_001 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let resource: string = await getResourceString($r('app.string.input_key_event'));
@@ -738,6 +771,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputKeyEventManager_002', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputKeyEventManager_002 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('scrollKeyEvent'));
       let scrollKeyEvent = await driver.findComponent(ON.id('scrollKeyEvent'));
       let columnKeyListener = await scrollKeyEvent.scrollSearch(ON.id('columnKeyListener'));
@@ -752,6 +786,7 @@ export default function abilityTest() {
     it(BUNDLE + 'InputKeyEventManager_003', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}InputKeyEventManager_003 begin`);
       let driver: Driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.input_key_event_hint'))));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.input_key_event_data'))));
       await driver.assertComponentExist(ON.id('columnKeyEventData'));

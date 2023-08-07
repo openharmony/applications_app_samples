@@ -802,6 +802,10 @@
       "value": "文件夹展开"
     },
     {
+      "name": "System_icon",
+      "value": "系统图标"
+    },
+    {
       "name": "Shop_card_expansion",
       "value": "商店卡片展开"
     },
@@ -1044,6 +1048,19 @@
     {
       "name": "text_text_case_lowercase",
       "value": "小写"
+    },
+    // ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "ImageSpan 行内图像"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "中心"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "包含"
     },
     // TextInput
     {
@@ -1761,6 +1778,95 @@
     {
       "name": "april",
       "value": "四月"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas画布"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Attributes 属性"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient 渐变对象"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap 位图对象"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Methods 方法"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D 路径对象"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows 阴影"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform 转换"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "画布区域"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "属性操作"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "清除效果"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "已经打印到控制台"
+    },
+    // scrollTo 动效增强
+    {
+      "name": "scroll_To_effect",
+      "value": "ScrollTo 动效"
+    },
+    {
+      "name": "scroller",
+      "value": "Scroller"
+    },
+    {
+      "name": "list",
+      "value": "List"
+    },
+    {
+      "name": "grid",
+      "value": "Grid"
+    },
+    {
+      "name": "waterFlow",
+      "value": "WaterFlow"
+    },
+    {
+      "name": "tabs_switch_effect",
+      "value": "Tabs 模糊切换"
+    },
+    {
+      "name": "image_fit_Full_effect",
+      "value": "Image fit/full 动效"
+    },
+    {
+      "name": "particle_effect",
+      "value": "Particle 粒子效果"
+    },
+    {
+      "name": "particle_spawn",
+      "value": "生成"
+    },
+    {
+      "name": "particle_spawn_stop",
+      "value": "停止"
     }
   ]
 }

@@ -40,10 +40,6 @@ export struct TitleBar {
       }
       .height(56)
       .width('100%')
-
-      Divider()
-        .height(1)
-        .color($r('app.color.bottom_title_divider'))
     }
   }
 }

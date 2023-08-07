@@ -1014,6 +1014,205 @@ export default function abilityTest() {
       })
 
       /**
+       * ScrollTo 动效
+       */
+      it(BUNDLE + 'ScrollTo_effect_001', 0, async function () {
+        let testName = 'ScrollToEffect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.scroll_To_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+
+        await driver.delayMs(DELAY_TIME);
+        // 点击按钮
+        await checkButtonAndClickWithID('scroll_to_effect_scroller');
+        await checkButtonAndClickWithID('scroll_to_effect_list');
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithID('scroll_to_effect_grid');
+        await checkButtonAndClickWithID('scroll_to_effect_waterflow');
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        if(!backBtn)
+        {
+          Logger.error('No backbtn found in ' + testName);
+        }
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+
+      /**
+       * Tab 模糊切换
+       */
+      it(BUNDLE + 'Tab_switch_effect_001', 0, async function () {
+        let testName = 'TabToEffect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.tabs_switch_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+
+        // 点击按钮
+        await checkButtonAndClickWithText('green');
+        await checkButtonAndClickWithText('blue');
+        await checkButtonAndClickWithText('yellow');
+        await checkButtonAndClickWithText('pink');
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        if (!backBtn)
+        {
+          Logger.error('Cannot find backbtn in this page');
+        }
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * ImageFit 切换
+       */
+      it(BUNDLE + 'ImageFit_effect_001', 0, async function () {
+        let testName = 'ImageFitEffect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.image_fit_Full_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+
+        // 点击按钮
+        await checkButtonAndClickWithText('RadioContain');
+        await checkButtonAndClickWithText('RadioCover');
+        await checkButtonAndClickWithText('RadioAuto');
+        await checkButtonAndClickWithText('RadioFill');
+        await checkButtonAndClickWithText('RadioScaleDown');
+        await checkButtonAndClickWithText('RadioNone');
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * Particle 粒子效果
+       */
+      it(BUNDLE + 'Particle_effect_001', 0, async function () {
+        let testName = 'Particle Effect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.particle_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+        await driver.delayMs(DELAY_TIME);
+
+        // 点击按钮
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.particle_spawn')));
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.particle_spawn_stop')));
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        await driver.swipe(100, 400, 100, 1000, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+
+      /**
+       * ImageSpan 行内图像
+       */
+      it(BUNDLE + 'ImageSpanFunction_001', 0, async function () {
+        let testName = 'ImageSpanFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Span 行内文本
+        let atom = await manager.getStringValue($r('app.string.image_span_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
+        }
+        await checkButtonAndClickWithText(atom);
+
+        // 展开跨度对齐方式
+        await checkButtonAndClickWithID('alignment');
+
+        // 选择一个center
+        let center = await manager.getStringValue($r('app.string.image_span_alignment_center'));
+        await checkButtonAndClickWithText(center);
+
+        // 展开图像缩放类型
+        await checkButtonAndClickWithID('fit');
+
+        // 选择一个contain
+        let contain = await manager.getStringValue($r('app.string.image_fit_contain'));
+        await checkButtonAndClickWithText(contain);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * Span 行内文本
        */
       it(BUNDLE + 'SpanFunction_001', 0, async function () {
@@ -1352,6 +1551,194 @@ export default function abilityTest() {
       })
 
       /**
+       * Canvas_Sample
+       */
+      it(BUNDLE + 'CanvasFunction_001', 0, async function () {
+        let testName = 'CanvasFunction';
+        // 进入Canvas画布
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        let atom = await manager.getStringValue($r('app.string.canvas_component_attributes'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          // 自动判断是否展开可以方便单元测试 只有第一次需要展开 再点一次会关上
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_components')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+        await driver.delayMs(DELAY_TIME);
+        {
+          // 属性
+          Logger.info("Start Test canvas_component_attributes!", "CanvasFunction_001");
+          let keys = ['fillStyle', 'lineWidth', 'strokeStyle', 'lineCap',
+            'lineJoin', 'miterLimit', 'font', 'textAlign', 'textBaseline',
+            'globalAlpha', 'lineDashOffset', 'globalCompositeOperation',
+            'imageSmoothingEnabled', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              if (i === 8) {
+                Logger.info("Swipe for bottom button!", "CanvasFunction_001");
+                await driver.swipe(300, 900, 300, 700, 2000);
+                await driver.delayMs(DELAY_TIME);
+              }
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_method')));
+          await driver.delayMs(DELAY_TIME);
+          // 方法
+          Logger.info("Start Test canvas_component_method!", "CanvasFunction_001");
+          let keys = ['fillRect', 'strokeRect', 'fillText', 'strokeText',
+            'measureText', 'stroke', 'createPattern', 'fill', 'clip',
+            'scale', 'drawImage', 'setLineDash',
+            'getLineDash', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              if (i === 8) {
+                Logger.info("Swipe for bottom button!", "CanvasFunction_001");
+                await driver.swipe(300, 900, 300, 700, 2000);
+                await driver.delayMs(DELAY_TIME);
+              }
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_shadow')));
+          await driver.delayMs(DELAY_TIME);
+          // 阴影
+          Logger.info("Start Test canvas_component_shadow!", "CanvasFunction_001");
+          let keys = ['shadowBlur', 'shadowColor', 'shadowOffsetX', 'shadowOffsetY', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_transform')));
+          await driver.delayMs(DELAY_TIME);
+          // transform
+          Logger.info("Start Test canvas_component_transform!", "CanvasFunction_001");
+          let keys = ['translate', 'transform', 'setTransform', 'rotate', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_gradient')));
+          await driver.delayMs(DELAY_TIME);
+          // CanvasGradient
+          Logger.info("Start Test canvas_component_gradient!", "CanvasFunction_001");
+          let keys = ['addColorStop', 'createLinearGradient', 'createRadialGradient', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_path_2d')));
+          await driver.delayMs(DELAY_TIME);
+          // path_2d
+          Logger.info("Start Test canvas_component_path_2d!", "CanvasFunction_001");
+          let keys = ['beginPath', 'moveTo', 'lineTo',
+            'closePath', 'bezierCurveTo', 'quadraticCurveTo',
+            'arc', 'arcTo', 'ellipse', 'rect', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+        }
+        {
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_component_image_bitmap')));
+          await driver.delayMs(DELAY_TIME);
+          // image_bitmap
+          Logger.info("Start Test canvas_component_image_bitmap!", "CanvasFunction_001");
+          let keys = ['getImageData', 'putImageData', 'imageSmoothingQuality',
+            'toDataURL', 'clearRect'];
+          for (let i = 0; i < keys.length; i++) {
+            { // 点击按钮
+              let atom = keys[i];
+              await checkButtonAndClickWithText(atom);
+            }
+            { // 验证点击有无响应
+              let atom = keys[i];
+              await driver.assertComponentExist(ON.text(atom));
+            }
+          }
+          // 返回
+          let backBtn = await driver.findComponent(ON.id('backBtn'));
+          await backBtn.click();
+          await driver.delayMs(500);
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.canvas_components')));
+          await driver.delayMs(500);
+        }
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * TarBar 进入通用
        */
       it(BUNDLE + 'TarBarGeneralFunction_001', 0, async function () {
@@ -1489,16 +1876,60 @@ export default function abilityTest() {
       });
 
       /**
+       * 挂载卸载事件
+       */
+      it(BUNDLE + 'MountUnmountEventFunction_001', 0, async function () {
+        let testName = 'MountUnmountEventFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.general_mount')));
+        // 挂载
+        let mount = await driver.findComponent(ON.id('mount'));
+        await mount.click();
+        await driver.delayMs(500);
+        // 卸载
+        let unmount = await driver.findComponent(ON.id('unmount'));
+        await unmount.click();
+        await driver.delayMs(500);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 组件可见区域变化事件
+       */
+      it(BUNDLE + 'ScrollEventFunction_001', 0, async function () {
+        let testName = 'ScrollEventFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scroll_event')));
+        await driver.delayMs(DELAY_TIME);
+        // 从下往上滑动列表
+        await driver.drag(200, 500, 200, 200, 800)
+        await driver.delayMs(DELAY_TIME);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * background 背景
        */
       it(BUNDLE + 'BackgroundFunction_001', 0, async function () {
         let testName = 'BackgroundFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
+        // 从下往上滑动列表
+        await driver.drag(200, 700, 200, 200, 800)
+        await driver.delayMs(DELAY_TIME);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_background')));
-        // 正常显示
-
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -1513,11 +1944,8 @@ export default function abilityTest() {
       it(BUNDLE + 'BorderFunction_001', 0, async function () {
         let testName = 'BorderFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
         // 进入页面
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_border')));
-        // 正常显示
-
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_border')))
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -1632,6 +2060,71 @@ export default function abilityTest() {
       });
 
       /**
+       * scale 缩放
+       */
+      it(BUNDLE + 'ScaleFunction_001', 0, async function () {
+        let testName = 'ScaleFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.scale'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.scale')));
+
+        // 正常显示
+        // 调整图片平移slider X轴
+        await driver.delayMs(DELAY_TIME)
+        // 滑动滑块
+        await driver.assertComponentExist(ON.id('scale_x'));
+        let sliderX = await driver.findComponent(ON.id('scale_x'));
+        let pointX = await sliderX.getBoundsCenter();
+        await driver.drag(pointX.x - 50, pointX.y, pointX.x + 50, pointX.y, 800);
+        await driver.delayMs(DELAY_TIME);
+        // Y轴
+        await driver.assertComponentExist(ON.id('scale_y'));
+        let sliderY = await driver.findComponent(ON.id('scale_y'));
+        let point = await sliderY.getBoundsCenter();
+        await driver.drag(point.x - 50, point.y, point.x + 50, point.y, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * transform 变换矩阵
+       */
+      it(BUNDLE + 'TransformFunction_001', 0, async function () {
+        let testName = 'TransformFunction'
+        Logger.info(BUNDLE + testName + ' begin')
+
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.transform'))));
+        if (!button) {
+          //如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transform')));
+        // 正常显示
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.graphic_transformation')));
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * 显示
        */
       it(BUNDLE + 'DisplayFunction_001', 0, async function () {
@@ -1689,8 +2182,6 @@ export default function abilityTest() {
       it(BUNDLE + 'InteractionFunction_001', 0, async function () {
         let testName = 'InteractionFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
-        await driver.drag(200, 1017, 200, 917, 800);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.components_interaction')));
         // 按钮禁用
@@ -1734,6 +2225,280 @@ export default function abilityTest() {
         await backBtn.click();
         await driver.delayMs(500);
 
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * location 位置设置
+       */
+      it(BUNDLE + 'LocationFunction_001', 0, async function () {
+        let testName = 'LocationFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 从下往上滑动列表
+        await driver.drag(200, 750, 200, 150, 800);
+        await driver.delayMs(DELAY_TIME);
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.location_settings')));
+        // 正常显示
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 布局约束
+       */
+      it(BUNDLE + 'LayoutConstraintFunction_001', 0, async function () {
+        let testName = 'LayoutConstraintFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.layout_constrain')));
+        // 点击按钮
+        await checkButtonAndClickWithID('layout_btn');
+        // 点击按钮
+        await checkButtonAndClickWithID('layout_btn');
+        // 点击按钮
+        await checkButtonAndClickWithID('layout_btn');
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * flex布局
+       */
+      it(BUNDLE + 'FlexFunction_001', 0, async function () {
+        let testName = 'FlexFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        // 从下往上滑动列表
+        await driver.drag(200, 1000, 200, 100, 800);
+        await driver.delayMs(DELAY_TIME);
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.flex')));
+        // 正常显示
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 图片边框设置
+       */
+      it(BUNDLE + 'PictureBorderFunction_001', 0, async function () {
+        let testName = 'PictureBorderFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.picture_border')));
+        // 正常显示
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 形状裁剪
+       */
+      it(BUNDLE + 'ShapeCropFunction_001', 0, async function () {
+        let testName = 'ShapeCropFunction'
+        Logger.info(BUNDLE + testName + 'begin')
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.shape_crop')));
+        // 正常显示
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 栅格设置
+       */
+      it(BUNDLE + 'GridSettingsFunction_001', 0, async function () {
+        let testName = 'GridSettingsFunction'
+        Logger.info(BUNDLE + testName + 'begin')
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.grid_settings')));
+        // 正常显示
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 焦点控制
+       */
+      it(BUNDLE + 'FocusControlFunction_001', 0, async function () {
+        let testName = 'FocusControlFunction'
+        Logger.info(BUNDLE + testName + 'begin')
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.focus_control')));
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 组件背景模糊
+       */
+      it(BUNDLE + 'ComponentBlurredFunction_001', 0, async function () {
+        let testName = 'ComponentBlurredFunction'
+        Logger.info(BUNDLE + testName + ' begin')
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_blurred')));
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 分布式迁移标识
+       */
+      it(BUNDLE + 'RestoreIdFunction_001', 0, async function () {
+        let testName = 'RestoreIdFunction'
+        Logger.info(BUNDLE + testName + 'begin')
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.restore_id')));
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * 绑定手势方法
+       */
+      it(BUNDLE + 'BindFunction_001', 0, async function () {
+        // 从下往上滑动列表
+        await driver.drag(200, 1000, 200, 100, 800);
+        await driver.delayMs(DELAY_TIME);
+        let testName = 'BindFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.bind_gesture_methods')));
+        // 点击按钮
+        await checkButtonAndClickWithID('bind_one');
+        await checkButtonAndClickWithID('bind_two');
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * TabGesture
+       */
+      it(BUNDLE + 'TabGestureFunction_001', 0, async function () {
+        let testName = 'TabGestureFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.tap_gesture'))));
+        if (!button) {
+          //如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.basic_gestures')));
+          // 从下往上滑动列表
+          await driver.drag(200, 800, 200, 100, 800);
+          await driver.delayMs(DELAY_TIME);
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.tap_gesture')));
+        // 单指双击触发
+        let click_btn = await driver.findComponent(ON.id('tap_click'))
+        await click_btn.doubleClick();
+        await driver.delayMs(500);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      });
+
+      /**
+       * LongPressGesture
+       */
+      it(BUNDLE + 'LongPressFunction_001', 0, async function () {
+        let testName = 'LongPressFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.long_press_gesture'))));
+        if (!button) {
+          //如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.basic_gestures')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.long_press_gesture')));
+        // 单指长按触发
+        let click_btn = await driver.findComponent(ON.id('long_press'))
+        await click_btn.longClick();
+        await driver.delayMs(500);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * PanGesture
+       */
+      it(BUNDLE + 'PanGestureFunction_001', 0, async function () {
+        let testName = 'PanGestureFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.pan_gesture'))));
+        if (!button) {
+          //如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.basic_gestures')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.pan_gesture')));
+        // 单指左右滑动
+        let text = await driver.findComponent(ON.id('pan_column'));
+        let point = await text.getBoundsCenter();
+        await driver.drag(point.x - 50, point.y, point.x + 50, point.y, 8000);
+        await driver.delayMs(500);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * SwipeGesture
+       */
+      it(BUNDLE + 'SwipeGestureFunction_001', 0, async function () {
+        let testName = 'SwipeGestureFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.swipe_gesture'))));
+        if (!button) {
+          //如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.basic_gestures')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.swipe_gesture')));
+        // 单指左右滑动
+        let text = await driver.findComponent(ON.id('swipe_column'));
+        let point = await text.getBoundsCenter();
+        await driver.drag(point.x - 50, point.y - 50, point.x + 50, point.y + 50, 8000);
+        await driver.delayMs(500);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
         Logger.info(BUNDLE + testName + ' end');
       });
 
@@ -1923,6 +2688,35 @@ export default function abilityTest() {
       })
 
       /**
+       * 系统图标
+       */
+      it(BUNDLE + 'SystemIcons', 0, async function () {
+        let testName = 'SystemIcons';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.System_icon'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.System_icon')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.System_icon')));
+        await driver.delayMs(1000);
+        // 滑动滑块
+        await driver.assertComponentExist(ON.id('systemIcons_slider'));
+        let sliderX = await driver.findComponent(ON.id('systemIcons_slider'));
+        let pointX = await sliderX.getBoundsCenter();
+        Logger.info(BUNDLE + testName +  `SystemIcons pointX ${pointX.x} ${pointX.y}`);
+        await driver.drag(pointX.x, pointX.y, pointX.x, pointX.y - 100, 800);
+        await driver.delayMs(3000);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName +  'SystemIcons end');
+      })
+
+      /**
        * 商店卡片展开
        */
       it(BUNDLE + 'ShopCardFunction_001', 0, async function () {
@@ -1980,6 +2774,32 @@ export default function abilityTest() {
         Logger.info(BUNDLE + testName + ' end');
       })
 
+      /**
+       * ComponentTransition 组件内转场
+       */
+      it(BUNDLE + 'ComponentTransitionSampleFunction_001', 0, async function () {
+        let testName = 'ComponentTransitionSampleFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.component_transition'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition')));
+        // 点击显示
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_show')));
+        await driver.delayMs(DELAY_TIME);
+        // 点击隐藏
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_hide')));
+        await driver.delayMs(DELAY_TIME);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
+        Logger.info(BUNDLE + testName + ' end');
+      })
 
       /**
        * Interpolation Calculation 插值计算
@@ -2002,6 +2822,42 @@ export default function abilityTest() {
 
         Logger.info(BUNDLE + testName + ' end');
 
+      })
+
+      /**
+       * AnimateTo 显示动画
+       */
+      it(BUNDLE + 'AnimateToFunction_001', 0, async function () {
+        let testName = 'AnimateToFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.animate_to')));
+        // 改变大小
+        await checkButtonAndClickWithID('animate_btn_delay');
+        await driver.delayMs(DELAY_TIME);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * Animation 属性动画
+       */
+      it(BUNDLE + 'AnimateToFunction_001', 0, async function () {
+        let testName = 'AnimateToFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.attribute_animation')));
+        // 改变大小
+        await checkButtonAndClickWithID('animation_btn_delay');
+        await driver.delayMs(DELAY_TIME);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
       })
 
       /**
@@ -2209,7 +3065,99 @@ export default function abilityTest() {
         Logger.info(BUNDLE + testName + ' end');
 
       })
+      /**
+       * ActionSheetDialogSample 列表选择弹窗
+       */
+      it(BUNDLE + 'ActionSheetDialogSampleFunction_001', 0, async function () {
+        let testName = 'ActionSheetDialogSampleFunction';
+        Logger.info(BUNDLE + testName + 'begin');
 
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.action_sheet_dialog'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.action_sheet_dialog')));
+        // 点击垂直顶部弹窗并确认
+        await checkButtonAndClickWithID('sheet_topButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击垂直居中弹窗并确认
+        await checkButtonAndClickWithID('sheet_centerButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击垂直底部弹窗并确认
+        await checkButtonAndClickWithID('sheet_bottomButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击可关闭弹窗并确认
+        await checkButtonAndClickWithID('sheet_closeableButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击不可关闭弹窗并确认
+        await checkButtonAndClickWithID('sheet_noCloseButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击左上偏移弹窗并确认
+        await checkButtonAndClickWithID('sheet_upperLeftButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击右下偏移弹窗并确认
+        await checkButtonAndClickWithID('sheet_lowRightButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 点击内容并确认
+        await checkButtonAndClickWithID('sheet_click_contentButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_confirm')));
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      })
+
+      /**
+       * TextPickerDialog 文本滑动选择弹窗
+       */
+      it(BUNDLE + 'TextPickerDialogFunction_001', 0, async function () {
+        let testName = 'TextPickerDialogFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        await driver.delayMs(DELAY_TIME);
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.text_picker_dialog'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.dialog')));
+        }
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_picker_dialog')));
+        // 点击文字
+        await checkButtonAndClickWithID('text_pickerButton');
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.alert_dialog_cancel')));
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+        Logger.info(BUNDLE + testName + 'end');
+      })
+
+      /**
+       * BindContextMenuDialog 菜单弹窗
+       */
+      it(BUNDLE + 'BindContextMenuDialogFunction_001', 0, async function () {
+        let testName = 'BindContextMenuDialogFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        await driver.delayMs(DELAY_TIME);
+        await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.global_menu'))));
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.global_menu')));
+        // 长按
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('long_pressButton'));
+        let longPress = await driver.findComponent(ON.id('long_pressButton'));
+        await longPress.longClick()
+        await driver.delayMs(1000);
+        // 点击屏幕
+        await driver.click(200, 300);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(1000);
+        Logger.info(BUNDLE + testName + 'end');
+      })
       Logger.info("Sample_ComponentCollection test end");
     })
   })

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>xxxhdpi/checkbox/unselected/enabled_photo</title>
+    <g id="checkbox/unselected/enabled_photo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,2 L18,2 C20.209139,2 22,3.790861 22,6 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 Z" id="矩形" fill-opacity="0.2" fill="#000000"></path>
+        <path d="M18,2 C20.209139,2 22,3.790861 22,6 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L18,2 Z M18,3 L6,3 C4.40231912,3 3.09633912,4.24891996 3,6 L3,6 L3,18 C3,19.5976809 4.24891996,20.9036609 6,21 L6,21 L18,21 C19.5976809,21 20.9036609,19.75108 21,18 L21,18 L21,6 C21,4.40231912 19.75108,3.09633912 18,3 L18,3 Z" id="矩形" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+</svg>

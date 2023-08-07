@@ -15,7 +15,7 @@
 
 {
   "module": {
-    "name": "publish_test",
+    "name": "entry_test",
     "type": "feature",
     "srcEntry": "./ets/Application/TestAbilityStage.ts",
     "description": "$string:entry_test_desc",

@@ -13,167 +13,91 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import NotificationOperations from '../feature/NotificationOperations'
-import { notificationUtil } from '@ohos/notification'
+import { NotificationPublish } from '../components/NotificationPublish'
+import { NotificationList } from '../components/NotificationList'
 
-const BUNDLE_NAME: string = 'ohos.samples.customnotification';
-type buttonMsg = {
-  text: Resource,
-  icon: Resource,
-  callback?: () => void
+export interface TabImage {
+  selectedImage: Resource,
+  unselectedImage: Resource,
+}
+
+const MESSAGE_TAB: TabImage = {
+  selectedImage: $r('app.media.ic_messages_filled'),
+  unselectedImage: $r('app.media.ic_messages'),
+}
+
+const NOTIFICATION_TAB: TabImage = {
+  selectedImage: $r('app.media.ic_public_send_filled'),
+  unselectedImage: $r('app.media.ic_public_send'),
+}
+
+const TAB_INDEX = {
+  MESSAGE_TAB: 0,
+  NOTIFICATION_TAB: 1
 }
 
 @Entry
 @Component
 struct Index {
-  private notificationOperations: NotificationOperations = new NotificationOperations(getContext(this));
-  @State isPromptTone: boolean = false;
-  @State isVibrationEffect: boolean = false;
-  @State buttons: buttonMsg[] = [
-    {
-      icon: $r('app.media.ic_notice_jiben'),
-      text: $r('app.string.basic_notification'),
-      callback: this.notificationOperations.publishBasicNotification
-    },
-    {
-      icon: $r('app.media.ic_notice_changwenben'),
-      text: $r('app.string.long_text_notification'),
-      callback: this.notificationOperations.publishLongTextNotification
-    },
-    {
-      icon: $r('app.media.ic_notice_duohang'),
-      text: $r('app.string.multiline_notification'),
-      callback: this.notificationOperations.publishMultiLineNotification
-    },
-    {
-      icon: $r('app.media.ic_notice_tupian'),
-      text: $r('app.string.picture_notification'),
-      callback: this.notificationOperations.publishPictureNotification
-    },
-    {
-      icon: $r('app.media.ic_notice_anniu'),
-      text: $r('app.string.notification_with_buttons'),
-      callback: this.notificationOperations.publishNotificationWithButtons
-    },
-    {
-      icon: $r('app.media.ic_notice_tiaozhuan'),
-      text: $r('app.string.clickable_notification'),
-      callback: this.notificationOperations.publishNotificationWithWantAgent
-    }]
+  @State tabsIndex: number = 0
 
-  @Builder TitleBar() {
-    Row() {
-      Text($r('app.string.mainAbility_label'))
-        .fontWeight(500)
-        .fontColor($r('app.color.title_black'))
-        .fontSize(23)
-        .margin({ left: 30 })
+  @Builder TabBarBuilder(index: number, item: TabImage, tabBarName: Resource) {
+    Column() {
+      Image(this.tabsIndex === index ? item.selectedImage : item.unselectedImage)
+        .width(24)
+        .height(24)
+        .margin({ bottom: 10 })
+      Text(tabBarName)
+        .fontSize(10)
+
     }
     .width('100%')
-    .height(70)
-    .backgroundColor($r('app.color.blackground'))
-  }
-
-  @Builder view(button: buttonMsg) {
-    Column() {
-      Image(button.icon).width(40).height(28).objectFit(ImageFit.Contain)
-        .margin({ bottom: 10 })
-      Text(button.text)
-        .fontSize(16)
-        .onClick(button.callback)
-    }.viewStyle()
-    .justifyContent(FlexAlign.Center)
+    .padding({ top: 0, bottom: 0 })
     .alignItems(HorizontalAlign.Center)
-    .onClick(button.callback)
-  }
-
-  @Styles viewStyle(){
-    .width('48%')
-    .height(100)
-    .borderRadius(20)
-    .margin({ top: 18 })
-    .backgroundColor($r('app.color.start_window_background'))
-  }
-
-  @Styles rowStyle(){
-    .backgroundColor($r('app.color.start_window_background'))
-    .borderRadius(20)
-    .margin({ top: 18 })
-    .height(80)
-    .width('90%')
-  }
-
-  @Styles toggleStyle(){
-    .width(52)
-    .height(26)
-    .margin({ right: 24 })
+    .id(`tabBar${index}`)
   }
 
   build() {
     Column() {
-      this.TitleBar()
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column() {
+              if (this.tabsIndex === TAB_INDEX.MESSAGE_TAB) {
+                NotificationList()
+              }
+              Blank()
+            }
+            .height('100%')
+          }
+          .tabBar(this.TabBarBuilder(TAB_INDEX.MESSAGE_TAB, MESSAGE_TAB, $r('app.string.mainAbility_label_list')))
 
-      Row() {
-        Image($r('app.media.ic_public_ring')).width(20).height(25).objectFit(ImageFit.Contain)
-          .margin({ left: 24, right: 15 })
-        Text($r('app.string.sound')).fontSize(17)
-        Blank()
-        Toggle({ type: ToggleType.Switch, isOn: this.isPromptTone })
-          .toggleStyle()
-          .selectedColor($r('app.color.blue'))
-          .onChange((isOn: boolean) => {
-            this.isPromptTone = isOn;
-            notificationUtil.promptTone(isOn);
-          })
-          .id('promptTone')
-      }.rowStyle()
-      .alignItems(VerticalAlign.Center)
-
-      Row() {
-        Image($r('app.media.ic_public_vibrate')).width(20).height(25).objectFit(ImageFit.Contain)
-          .margin({ left: 24, right: 15 })
-        Text($r('app.string.vibration_effect')).fontSize(17)
-        Blank()
-        Toggle({ type: ToggleType.Switch, isOn: this.isVibrationEffect })
-          .toggleStyle()
-          .selectedColor($r('app.color.blue'))
-          .onChange((isOn: boolean) => {
-            this.isVibrationEffect = isOn;
-            notificationUtil.vibrationEffect(isOn);
-          })
-          .id('vibrationEffect')
-      }.rowStyle()
-      .alignItems(VerticalAlign.Center)
-
-      Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.SpaceEvenly }) {
-        ForEach(this.buttons, (item: buttonMsg, index: number) => {
-          this.view(item)
-        }, (item: buttonMsg) => item.toString())
-      }
-      .width('90%')
-
-      Button($r('app.string.cancel_all_notifications'))
-        .backgroundColor($r('app.color.button_background'))
-        .width(230)
-        .height(50)
-        .margin(10)
-        .fontSize(16)
-        .margin({ top: 40 })
-        .fontColor($r('app.color.button_fontColor'))
-        .onClick(() => {
-          notificationUtil.cancelAllNotifications();
+          TabContent() {
+            Column() {
+              if (this.tabsIndex === TAB_INDEX.NOTIFICATION_TAB) {
+                NotificationPublish()
+              }
+              Blank()
+            }
+            .height('100%')
+          }
+          .tabBar(this.TabBarBuilder(TAB_INDEX.NOTIFICATION_TAB, NOTIFICATION_TAB, $r('app.string.mainAbility_label')),)
+        }
+        .barHeight(74)
+        .barWidth('100%')
+        .vertical(false)
+        .onChange((index: number) => {
+          this.tabsIndex = index
         })
+
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor($r('app.color.background'))
     }
     .alignItems(HorizontalAlign.Center)
-    .backgroundColor($r('app.color.blackground'))
+    .backgroundColor($r('app.color.background'))
     .width('100%')
     .height('100%')
-  }
-
-  aboutToAppear() {
-    notificationUtil.enableNotification();
-    this.isPromptTone = notificationUtil.promptTone();
-    this.isVibrationEffect = notificationUtil.vibrationEffect();
   }
 }

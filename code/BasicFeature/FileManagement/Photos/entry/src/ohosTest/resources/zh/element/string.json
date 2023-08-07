@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "permit",
+      "value": "允许"
+    },
+    {
+      "name": "album_all",
+      "value": "所有照片"
+    },
+    {
+      "name": "album_camera",
+      "value": "相机"
+    },
+    {
+      "name": "album_video",
+      "value": "视频"
+    },
+    {
+      "name": "album_favor",
+      "value": "我的收藏"
+    },
+    {
+      "name": "album_screen_shot",
+      "value": "截屏录屏"
+    },
+    {
+      "name": "album_recycle",
+      "value": "最近删除"
+    },
+    {
+      "name": "album_new",
+      "value": "新建相册"
+    },
+    {
+      "name": "no_photo",
+      "value": "没有照片和视频"
+    },
+    {
+      "name": "btn_favor",
+      "value": "收藏"
+    },
+    {
+      "name": "btn_delete",
+      "value": "删除"
+    },
+    {
+      "name": "btn_rename",
+      "value": "重命名"
+    },
+    {
+      "name": "btn_not_favor",
+      "value": "取消收藏"
+    },
+    {
+      "name": "btn_recover",
+      "value": "恢复"
+    },
+    {
+      "name": "btn_more",
+      "value": "更多"
+    },
+    {
+      "name": "btn_remove_form_album",
+      "value": "从相册移除"
+    },
+    {
+      "name": "btn_remove",
+      "value": "移除"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "btn_toast",
+      "value": "此名称已被使用"
+    }
+  ]
+}

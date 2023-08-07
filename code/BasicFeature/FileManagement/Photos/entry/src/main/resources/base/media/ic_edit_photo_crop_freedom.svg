@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_edit_photo_crop_freedom</title>
+    <g id="ic_edit_photo_crop_freedom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M8,3 L8,4.5 L4.5,4.5 L4.5,19.5 L19.5,19.5 L19.5,16 L21,16 L21,19.5 C21,20.3284271 20.3284271,21 19.5,21 L4.5,21 C3.67157288,21 3,20.3284271 3,19.5 L3,4.5 C3,3.67157288 3.67157288,3 4.5,3 L8,3 Z M10.5,13.5 L10.5,15 L9,15 L9,13.5 L10.5,13.5 Z M14,13.5 L14,15 L12.5,15 L12.5,13.5 L14,13.5 Z M17.5,13.5 L17.5,15 L16,15 L16,13.5 L17.5,13.5 Z M21,13.5 L21,15 L19.5,15 L19.5,13.5 L21,13.5 Z M19.5,3 C20.3284271,3 21,3.67157288 21,4.5 L21,12.5 L19.5,12.5 L19.5,4.5 L11.5,4.5 L11.5,3 L19.5,3 Z M10.5,10 L10.5,11.5 L9,11.5 L9,10 L10.5,10 Z M10.5,6.5 L10.5,8 L9,8 L9,6.5 L10.5,6.5 Z M10.5,3 L10.5,4.5 L9,4.5 L9,3 L10.5,3 Z" id="形状" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -85,9 +85,9 @@ export default function abilityTest() {
     it(BUNDLE + 'Home_001', 0, async function (done) {
       logger.info(TAG, `${BUNDLE}Home_001 begin`);
       await driver.assertComponentExist(ON.id('homeContent0'));
-      await driver.swipe(500, 200, 300, 200);
+      await driver.swipe(500, 200, 100, 200);
       await driver.assertComponentExist(ON.id('homeContent1'));
-      await driver.swipe(300, 200, 500, 200);
+      await driver.swipe(100, 200, 500, 200);
       await driver.assertComponentExist(ON.id('homeContent0'));
       logger.info(TAG, `${BUNDLE}Home_001 end`);
       done();

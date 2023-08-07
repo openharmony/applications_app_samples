@@ -60,6 +60,7 @@ async function checkRadioAndClickWithText(text: string) {
 }
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager
   let text = await manage.getStringValue(resource)
@@ -374,6 +375,22 @@ export default function appTest() {
       await driver.pressBack()
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesFourFunction_001 end')
+    })
+
+    /**
+     * 交互归一能力
+     */
+    it(BUNDLE + 'CreateAdaptiveCapabilitiesFiveFunction_001', 0, async function () {
+      // create UiDriver
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesFiveFunction_001 begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      // 点击交互归一能力
+      await checkButtonAndClickWithID('InteractionNormCapability')
+      await driver.delayMs(1000)
+      await driver.pressBack()
+      await driver.delayMs(1000)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesFiveFunction_001 end')
     })
   })
 }

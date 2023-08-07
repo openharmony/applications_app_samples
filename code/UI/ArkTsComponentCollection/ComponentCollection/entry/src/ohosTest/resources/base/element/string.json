@@ -1,18 +1,6 @@
 {
   "string": [
     {
-      "name": "module_test_desc",
-      "value": "test ability description"
-    },
-    {
-      "name": "TestAbility_desc",
-      "value": "the test ability"
-    },
-    {
-      "name": "TestAbility_label",
-      "value": "test label"
-    },
-    {
       "name": "entry_desc",
       "value": "Component Collection"
     },
@@ -143,13 +131,14 @@
     {
       "name": "swipe_gesture",
       "value": "SwipeGesture"
-    },    {
+    },
+    {
       "name": "combined_gestures",
       "value": "Combined Gestures"
     },
     {
       "name": "transition_animation",
-      "value": "Transition animation"
+      "value": "转场动画"
     },
     {
       "name": "interpolation_calculation",
@@ -432,6 +421,10 @@
       "value": "Set the rounded corners of each of the four corners"
     },
     {
+      "name": "border_3D",
+      "value": "Set the border 3D"
+    },
+    {
       "name": "border_radius_left_top",
       "value": "Top left border"
     },
@@ -524,6 +517,43 @@
     {
       "name": "get_click_event_detail",
       "value": "Click location information"
+    },
+    // Drag Event
+    {
+      "name": "drag_drop_action_tips",
+      "value": "Long press the application icon and drag to different areas"
+    },
+    {
+      "name": "component_drag_and_drop",
+      "value": "Component drag and drop"
+    },
+    {
+      "name": "griditem",
+      "value": "GridItem"
+    },
+    {
+      "name": "listitem",
+      "value": "ListItem"
+    },
+    {
+      "name": "hyperlink",
+      "value": "Hyperlink"
+    },
+    {
+      "name": "text",
+      "value": "Text"
+    },
+    {
+      "name": "image",
+      "value": "Image"
+    },
+    {
+      "name": "video",
+      "value": "Video"
+    },
+    {
+      "name": "formcomponent",
+      "value": "FormComponent"
     },
     // CustomDialog
     {
@@ -862,12 +892,32 @@
       "value": "floating window"
     },
     {
+      "name": "Tips_call",
+      "value": "Waiting"
+    },
+    {
+      "name": "Font_family_regular",
+      "value": "HarmonyOS Sans SC-Regular"
+    },
+    {
+      "name": "Font_family_medium",
+      "value": "HarmonyOS Sans SC-Medium"
+    },
+    {
       "name": "Folder_expansion",
       "value": "folder expansion"
     },
     {
+      "name": "System_icon",
+      "value": "System Icon"
+    },
+    {
       "name": "Shop_card_expansion",
       "value": "shop card expansion"
+    },
+    {
+      "name": "Today",
+      "value": "today"
     },
     {
       "name": "Gallery_card_expansion",
@@ -1128,6 +1178,19 @@
     {
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
+    },
+    // ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "Image Span"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "Contain"
     },
     // TextInput
     {
@@ -1421,7 +1484,8 @@
     {
       "name": "components_display_hidden",
       "value": "Hidden"
-    }, {
+    },
+    {
       "name": "components_display_visible",
       "value": "Visible"
     },
@@ -1500,7 +1564,8 @@
     {
       "name": "color_blend_change",
       "value": "Colorblend"
-    },{
+    },
+    {
       "name": "z_index",
       "value": "Z-Index"
     },
@@ -2110,7 +2175,71 @@
       "name": "interaction_arrowoffset",
       "value": "Change arrowOffset:"
     },
+    // ComponentTransitionSample
     {
+      "name": "component_transition",
+      "value": "component transition 组件内转场"
+    },
+    {
+      "name": "component_transition_show",
+      "value": "显示"
+    },
+    {
+      "name": "component_transition_hide",
+      "value": "隐藏"
+    },
+    {
+      "name": "motion_path",
+      "value": "MotionPath"
+    },
+    {
+      "name": "animate_to",
+      "value": "animateTo 显示动画"
+    },
+    {
+      "name": "attribute_animation",
+      "value": "animation 属性动画"
+    },
+    {
+      "name": "attribute_animation_change_size",
+      "value": "ChangeSize"
+    },
+    {
+      "name": "attribute_animation_change_rotation",
+      "value": "ChangeRotation"
+    },
+    {
+      "name": "attribute_animation_set_curve",
+      "value": "SetCurve"
+    },
+    {
+      "name": "attribute_animation_delay",
+      "value": "delay3s"
+    },
+    {
+      "name": "attribute_animation_play_speed",
+      "value": "PlaySpeed"
+    },
+    {
+      "name": "attribute_animation_unlimited_playback",
+      "value": "UnlimitedPlayback"
+    },
+    {
+      "name": "attribute_animation_play_complete",
+      "value": "PlayComplete"
+    },
+    {
+      "name": "attribute_animation_play_count",
+      "value": "PlayCount"
+    },
+    {
+      "name": "motion_path_click_me",
+      "value": "ClickMe"
+    },
+    {
+      "name": "animate_over",
+      "value": "AnimateOver"
+    },{
       "name": "interaction_showpopup",
       "value": "Show Popup"
     },
@@ -2123,8 +2252,1151 @@
       "value": "Disable Component:"
     },
     {
+      "name": "action_sheet_dialog_click_content",
+      "value": "点击内容"
+    },
+    {
+      "name": "text_picker_click_text",
+      "value": "点击文字"
+    },
+    {
+      "name": "global_menu",
+      "value": "BindContextMenu 菜单"
+    },
+    {
+      "name": "global_menu_create_way",
+      "value": "创建方式"
+    },
+    {
+      "name": "global_menu_click_right",
+      "value": "右击"
+    },
+    {
+      "name": "global_menu_long_press",
+      "value": "长按"
+    },
+    {
+      "name": "global_menu_close",
+      "value": "点击关闭菜单"
+    },
+    {
+      "name": "general_mount",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "general_mount_toast",
+      "value": "挂载图片"
+    },
+    {
+      "name": "general_unmount_toast",
+      "value": "卸载图片"
+    },
+    {
+      "name": "general_mount_text",
+      "value": "点击我挂载卸载图片"
+    },
+    {
+      "name": "general_drag",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "general_drag_text_one",
+      "value": "这里有三个文本元素,长按文本拖到下方列表中"
+    },
+    {
+      "name": "general_drag_text_two",
+      "value": "这是一个列表元素"
+    },
+    {
+      "name": "drag_list_one",
+      "value": "One"
+    },
+    {
+      "name": "drag_list_two",
+      "value": "Two"
+    },
+    {
+      "name": "drag_list_three",
+      "value": "Three"
+    },
+    {
+      "name": "drag_list_four",
+      "value": "Four"
+    },
+    {
+      "name": "size_size",
+      "value": "大小"
+    },
+    {
+      "name": "size_padding",
+      "value": "内边距"
+    },
+    {
+      "name": "size_margin",
+      "value": "外边距"
+    },
+    {
+      "name": "size_constraintSize",
+      "value": "约束大小"
+    },
+    {
+      "name": "size_size_description_one",
+      "value": "宽高为100vp"
+    },
+    {
+      "name": "size_size_description_two",
+      "value": "宽高为100%"
+    },
+    {
+      "name": "size_size_padding_one",
+      "value": "上下左右内边距10vp"
+    },
+    {
+      "name": "size_size_padding_two",
+      "value": "上内边距20%"
+    },
+    {
+      "name": "size_size_margin_one",
+      "value": "上下左右外边距10vp"
+    },
+    {
+      "name": "size_size_margin_two",
+      "value": "上外距20%"
+    },
+    {
+      "name": "size_size_constraintSize_one",
+      "value": "约束最大宽高90vp"
+    },
+    {
+      "name": "size_size_constraintSize_two",
+      "value": "约束最小宽高80vp"
+    },
+    {
+      "name": "keyPress_event",
+      "value": "按压事件"
+    },
+    {
+      "name": "focus_event_description",
+      "value": "按压外接键盘Tab键获取焦点，再按上下键切换焦点"
+    },
+    {
+      "name": "focus_event_button_one",
+      "value": "第一个按钮"
+    },
+    {
+      "name": "focus_event_button_two",
+      "value": "第二个按钮"
+    },
+    {
+      "name": "focus_event_button_three",
+      "value": "第三个按钮"
+    },
+    {
+      "name": "focus_event_toast_text",
+      "value": "触发焦点"
+    },
+    {
+      "name": "press_event_toast_text",
+      "value": "触发按键事件"
+    },
+    {
+      "name": "press_event_toast_description",
+      "value": "按压外接键盘任何键"
+    },
+    {
+      "name": "mouse_event_move_description",
+      "value": "使用外接鼠标移入按钮"
+    },
+    {
+      "name": "mouse_event_click_description",
+      "value": "使用外接鼠标点击按钮"
+    },
+    {
+      "name": "mouse_event_hover_description",
+      "value": "鼠标移入"
+    },
+    {
+      "name": "mouse_event_onHover_description",
+      "value": "鼠标未移入"
+    },
+    {
+      "name": "mouse_event_onMouse_text",
+      "value": "onMouse"
+    },
+    {
+      "name": "mouse_event_mouseBtn_none",
+      "value": "None"
+    },
+    {
+      "name": "mouse_event_mouseBtn_left",
+      "value": "Left"
+    },
+    {
+      "name": "mouse_event_mouseBtn_right",
+      "value": "Right"
+    },
+    {
+      "name": "mouse_event_mouseBtn_back",
+      "value": "Back"
+    },
+    {
+      "name": "mouse_event_mouseBtn_forward",
+      "value": "Forward"
+    },
+    {
+      "name": "mouse_event_mouseBtn_middle",
+      "value": "Middle"
+    },
+    {
+      "name": "mouse_event_mouseAction_hover",
+      "value": "Hover"
+    },
+    {
+      "name": "mouse_event_mouseAction_press",
+      "value": "Press"
+    },
+    {
+      "name": "mouse_event_mouseAction_move",
+      "value": "Move"
+    },
+    {
+      "name": "mouse_event_mouseAction_release",
+      "value": "Release"
+    },
+    {
+      "name": "scroll_event",
+      "value": "组件可见区域变化事件"
+    },
+    {
+      "name": "scroll_event_description",
+      "value": "滑动列表使图片消失和显示"
+    },
+    {
+      "name": "scroll_event_toast_visible",
+      "value": "爱心图片完全可见"
+    },
+    {
+      "name": "scroll_event_toast_invisible",
+      "value": "爱心图片完全消失"
+    },
+    {
+      "name": "location_settings",
+      "value": "location 位置设置"
+    },
+    {
+      "name": "location_settings_align",
+      "value": "对齐方式"
+    },
+    {
+      "name": "location_settings_direction",
+      "value": "水平布局"
+    },
+    {
+      "name": "location_settings_position",
+      "value": "绝对定位"
+    },
+    {
+      "name": "location_settings_markAnchor",
+      "value": "设置锚点"
+    },
+    {
+      "name": "location_settings_offset",
+      "value": "相对定位"
+    },
+    {
+      "name": "location_settings_alignRules",
+      "value": "对齐规则"
+    },
+    {
+      "name": "location_settings_bottom_end",
+      "value": "Bottom end"
+    },
+    {
+      "name": "location_settings_top_start",
+      "value": "Top start"
+    },
+    {
+      "name": "location_settings_center",
+      "value": "Center"
+    },
+    {
+      "name": "location_settings_position_text",
+      "value": "position(30, 10)"
+    },
+    {
+      "name": "location_settings_position_offSet_text",
+      "value": "offset(15, 30)"
+    },
+    {
+      "name": "layout_constrain",
+      "value": "布局约束"
+    },
+    {
+      "name": "layout_constrain_aspectRatio",
+      "value": "组件宽高比"
+    },
+    {
+      "name": "layout_constrain_displayPriority",
+      "value": "组件优先级"
+    },
+    {
+      "name": "layout_constrain_big_container",
+      "value": "大型容器"
+    },
+    {
+      "name": "layout_constrain_middle_container",
+      "value": "中型容器"
+    },
+    {
+      "name": "layout_constrain_small_container",
+      "value": "小型容器"
+    },
+    {
+      "name": "layout_constrain_children_one",
+      "value": "1:(priority:2)"
+    },
+    {
+      "name": "layout_constrain_children_two",
+      "value": "2:(priority:1)"
+    },
+    {
+      "name": "layout_constrain_children_three",
+      "value": "3:(priority:3)"
+    },
+    {
+      "name": "layout_constrain_children_four",
+      "value": "4:(priority:1)"
+    },
+    {
+      "name": "layout_constrain_children_five",
+      "value": "5:(priority:2)"
+    },
+    {
+      "name": "layout_constrain_one",
+      "value": "1"
+    },
+    {
+      "name": "layout_constrain_two",
+      "value": "2"
+    },
+    {
+      "name": "flex",
+      "value": "flex布局"
+    },
+    {
+      "name": "flex_flexBasis",
+      "value": "flexBasis"
+    },
+    {
+      "name": "flex_flexGrow",
+      "value": "FlexGrow"
+    },
+    {
+      "name": "flex_flexShrink",
+      "value": "FlexShrink"
+    },
+    {
+      "name": "flex_alignSelf",
+      "value": "AlignSelf"
+    },
+    {
+      "name": "flex_layoutWeight",
+      "value": "LayoutWeight"
+    },
+    {
+      "name": "flex_no_layoutWeight",
+      "value": "On layoutWeight"
+    },
+    {
+      "name": "flex_no_alignSelf_70",
+      "value": "On alignSelf,height:70%"
+    },
+    {
+      "name": "flex_end_alignSelf",
+      "value": "AlignSelf end"
+    },
+    {
+      "name": "flex_end_alignSelf_100",
+      "value": "AlignSelf end"
+    },
+    {
+      "name": "flex_shrink_0",
+      "value": "FlexShrink(0)"
+    },
+    {
+      "name": "flex_shrink_default",
+      "value": "Default flexShrink"
+    },
+    {
+      "name": "flex_shrink_1",
+      "value": "FlexShrink(1)"
+    },
+    {
+      "name": "flex_grow_1",
+      "value": "FlexGrow(1)"
+    },
+    {
+      "name": "flex_grow_2",
+      "value": "FlexGrow(2)"
+    },
+    {
+      "name": "flex_no_alignSelf_100",
+      "value": "On alignSelf,height:100%"
+    },
+    {
+      "name": "flex_basis_100",
+      "value": "FlexBasis(100)"
+    },
+    {
+      "name": "flex_basis_auto",
+      "value": "FlexBasis(auto)"
+    },
+    {
+      "name": "picture_border",
+      "value": "图片边框设置"
+    },
+    {
+      "name": "scale",
+      "value": "scale 缩放"
+    },
+    {
+      "name": "transform",
+      "value": "transform 变换矩阵"
+    },
+    {
+      "name": "scale_image",
+      "value": "ScaleImage"
+    },
+    {
+      "name": "transform_image",
+      "value": "TransformImage"
+    },
+    {
+      "name": "transform_init",
+      "value": "创建四阶矩阵"
+    },
+    {
+      "name": "transform_copy",
+      "value": "矩阵复制"
+    },
+    {
+      "name": "transform_combine",
+      "value": "矩阵效果叠加"
+    },
+    {
+      "name": "transform_invert",
+      "value": "矩阵效果反转"
+    },
+    {
+      "name": "transform_translate",
+      "value": "矩阵平移效果"
+    },
+    {
+      "name": "transform_scale",
+      "value": "矩阵缩放效果"
+    },
+    {
+      "name": "transform_rotate",
+      "value": "矩阵旋转效果"
+    },
+    {
+      "name": "transform_transformPoint",
+      "value": "矩阵坐标点转换效果"
+    },
+    {
+      "name": "transform_combine_text",
+      "value": "x平移20，x放大两倍"
+    },
+    {
+      "name": "transform_translate_text",
+      "value": "平移 x: 40, y: 40, z: 20"
+    },
+    {
+      "name": "transform_scale_text",
+      "value": "宽高缩小一倍"
+    },
+    {
+      "name": "transform_rotate_text",
+      "value": "旋转30度"
+    },
+    {
+      "name": "transform_transformPoint_before",
+      "value": "矩阵变换后的坐标：[50,50]"
+    },
+    {
+      "name": "transform_transformPoint_after",
+      "value": "矩阵变换后的坐标：[100,0]"
+    },
+    {
+      "name": "shape_crop",
+      "value": "形状裁剪"
+    },
+    {
+      "name": "shape_crop_clip",
+      "value": "裁剪"
+    },
+    {
+      "name": "shape_crop_mask",
+      "value": "遮盖"
+    },
+    {
+      "name": "grid_settings",
+      "value": "栅格设置"
+    },
+    {
+      "name": "grid_settings_sm",
+      "value": "设备宽度为SM"
+    },
+    {
+      "name": "grid_settings_md",
+      "value": "设备宽度为MD"
+    },
+    {
+      "name": "grid_settings_lg",
+      "value": "设备宽度为LG"
+    },
+    {
+      "name": "grid_settings_useSize",
+      "value": "UseSizeType"
+    },
+    {
+      "name": "grid_settings_gridSpan",
+      "value": "GridSpan gridOffset"
+    },
+    {
+      "name": "focus_control",
+      "value": "焦点控制"
+    },
+    {
+      "name": "focus_control_tab",
+      "value": "按外接键盘Tab键切换焦点"
+    },
+    {
+      "name": "focus_control_lastPageId",
+      "value": "LastPageId"
+    },
+    {
+      "name": "focus_control_success",
+      "value": "请求成功"
+    },
+    {
+      "name": "focus_control_failed",
+      "value": "请求失败"
+    },
+    {
+      "name": "focus_control_group1",
+      "value": "Group1"
+    },
+    {
+      "name": "focus_control_group2",
+      "value": "Group2"
+    },
+    {
+      "name": "focus_control_group3",
+      "value": "Group3"
+    },
+    {
+      "name": "focus_control_input",
+      "value": "Input"
+    },
+    {
+      "name": "focus_control_request_focus",
+      "value": "选择水果请求聚焦"
+    },
+    {
+      "name": "component_id",
+      "value": "组件标识"
+    },
+    {
+      "name": "component_id_onKeyTab",
+      "value": "OnKeyTab"
+    },
+    {
+      "name": "component_id_click",
+      "value": "Click to start"
+    },
+    {
+      "name": "component_id_longClick",
+      "value": "LongClick"
+    },
+    {
+      "name": "component_id_onTouch",
+      "value": "OnTouch"
+    },
+    {
+      "name": "component_id_onMouse",
+      "value": "OnMouse"
+    },
+    {
+      "name": "component_id_click_text",
+      "value": "Button 'click to start' is clicked"
+    },
+    {
+      "name": "component_id_longClick_text",
+      "value": "Button 'longClick' is longClicked"
+    },
+    {
+      "name": "component_id_onTouch_text",
+      "value": "Button 'onTouch' is clicked"
+    },
+    {
+      "name": "component_id_onMouse_text",
+      "value": "Button 'onMouse' in onMouse"
+    },
+    {
+      "name": "component_blurred",
+      "value": "组件背景模糊"
+    },
+    {
+      "name": "component_blurred_thin",
+      "value": "薄材料"
+    },
+    {
+      "name": "restore_id",
+      "value": "分布式迁移标识"
+    },
+    {
+      "name": "gesture_process",
+      "value": "手势处理"
+    },
+    {
+      "name": "bind_gesture_methods",
+      "value": "绑定手势方法"
+    },
+    {
+      "name": "bind_gesture_priorityGesture",
+      "value": "priorityGesture会忽略text,优先识别父组件column"
+    },
+    {
+      "name": "bind_gesture_parallelGesture",
+      "value": "parallelGesture识别父子组件column，text"
+    },
+    {
+      "name": "bind_gesture_tapGesture",
+      "value": "TapGesture:"
+    },
+    {
+      "name": "bind_gesture_text",
+      "value": "\nText"
+    },
+    {
+      "name": "bind_gesture_column",
+      "value": "\nColumn"
+    },
+    {
+      "name": "double_click",
+      "value": "单指双击触发"
+    },
+    {
+      "name": "onAction",
+      "value": "onAction:"
+    },
+    {
+      "name": "long_press",
+      "value": "单指长按文本"
+    },
+    {
+      "name": "long_press_cancel",
+      "value": "取消事件"
+    },
+    {
+      "name": "long_press_text",
+      "value": "请单指长按我"
+    },
+    {
+      "name": "pan_text",
+      "value": "双指任意方式拖动黑色框"
+    },
+    {
+      "name": "pan_text_one",
+      "value": "单指左右拖动黑色框"
+    },
+    {
+      "name": "pan_start",
+      "value": "开始"
+    },
+    {
+      "name": "pan_end",
+      "value": "结束"
+    },
+    {
+      "name": "pan_button",
+      "value": "修改PanGesture触发条件"
+    },
+    {
+      "name": "pan_offset",
+      "value": "PanGesture offset:\nX:"
+    },
+    {
+      "name": "pan_offset_y",
+      "value": "\nY:"
+    },
+    {
+      "name": "pinch_description",
+      "value": "三指捏合黑色框"
+    },
+    {
+      "name": "pinch_scale",
+      "value": "PinchGesture scale:\n"
+    },
+    {
+      "name": "pinch_center",
+      "value": "PinchGesture center:\nx:"
+    },
+    {
+      "name": "rotation_description",
+      "value": "双指旋转黑色框"
+    },
+    {
+      "name": "rotation_text",
+      "value": "RotationGesture \n angle:"
+    },
+    {
+      "name": "swipe_description",
+      "value": "单指任一方向快速滑动黑色框"
+    },
+    {
+      "name": "swipe_text_speed",
+      "value": "SwipeGesture\n speed:"
+    },
+    {
+      "name": "swipe_text_angle",
+      "value": "SwipeGesture\n angle"
+    },
+    {
+      "name": "combinded_description",
+      "value": "先长按再拖动黑色框"
+    },
+    {
+      "name": "combinded_pan_start",
+      "value": "Pan start"
+    },
+    {
+      "name": "combinded_pan_update",
+      "value": "Pan update"
+    },
+    {
+      "name": "combinded_pan_end",
+      "value": "Pan end"
+    },
+    {
+      "name": "combinded_longPress_onAction",
+      "value": "LongPress onAction"
+    },
+    {
+      "name": "combinded_longPress_end",
+      "value": "LongPress end"
+    },
+    {
+      "name": "combinded_sequence",
+      "value": "sequence gesture\n"
+    },
+    {
+      "name": "combinded_longPress",
+      "value": "LongPress onAction:"
+    },
+    {
+      "name": "combinded_offset",
+      "value": "\nPanGesture offset:\nX:"
+    },
+    {
+      "name": "combinded_x",
+      "value": "\nX:"
+    },
+    {
+      "name": "transform_translate_invert",
+      "value": "放大两倍反转(缩小两倍)"
+    },
+    {
+      "name": "key_press_description",
+      "value": "按压外接键盘Tab键，再按压任意键"
+    },
+    {
+      "name": "key_press_keyType",
+      "value": "KeyType:"
+    },
+    {
+      "name": "key_press_keyCode",
+      "value": "\nkeyCode:"
+    },
+    {
+      "name": "key_press_keyText",
+      "value": "\nkeyText:"
+    },
+    {
+      "name": "key_press_down",
+      "value": "Down"
+    },
+    {
+      "name": "key_press_up",
+      "value": "Up"
+    },
+    {
+      "name": "componentId_longClick",
+      "value": "longClick"
+    },
+    {
+      "name": "componentId_onTouch",
+      "value": "onTouch"
+    },
+    {
+      "name": "componentId_onMouse",
+      "value": "onMouse"
+    },
+    {
+      "name": "flex_auto",
+      "value": "auto"
+    },
+    {
       "name": "april",
       "value": "april"
+    },
+    {
+      "name": "bind_click",
+      "value": "点击我"
+    },
+    // ActionSheetDialog
+    {
+      "name": "action_sheet_dialog",
+      "value": "ActionSheetDialog 列表选择弹框"
+    },
+    {
+      "name": "action_sheet_click_sheets",
+      "value": "点击选项内容"
+    },
+    // TextPickerDialog
+    {
+      "name": "text_picker_text_peach",
+      "value": "peach"
+    },
+    {
+      "name": "text_picker_text_apple",
+      "value": "apple"
+    },
+    {
+      "name": "text_picker_text_orange",
+      "value": "orange"
+    },
+    {
+      "name": "text_picker_text_grape",
+      "value": "grape"
+    },
+    {
+      "name": "text_picker_text_banana",
+      "value": "banana"
+    },
+    {
+      "name": "text_picker_dialog",
+      "value": "TextPickerDialog 文本滑动选择器弹窗"
+    },
+    {
+      "name": "text_picker_show",
+      "value": "显示文本弹窗"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas components"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Base attributes"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Base methods"
+    },
+    {
+      "name": "canvas_fillStyle",
+      "value": "fillStyle"
+    },
+    {
+      "name": "canvas_lineWidth",
+      "value": "lineWidth"
+    },
+    {
+      "name": "canvas_strokeStyle",
+      "value": "strokeStyle"
+    },
+    {
+      "name": "canvas_lineCap",
+      "value": "lineCap"
+    },
+    {
+      "name": "canvas_lineJoin",
+      "value": "lineJoin"
+    },
+    {
+      "name": "canvas_miterLimit",
+      "value": "miterLimit"
+    },
+    {
+      "name": "canvas_font",
+      "value": "font"
+    },
+    {
+      "name": "canvas_textAlign",
+      "value": "textAlign"
+    },
+    {
+      "name": "canvas_textBaseline",
+      "value": "textBaseline"
+    },
+    {
+      "name": "canvas_globalAlpha",
+      "value": "globalAlpha"
+    },
+    {
+      "name": "canvas_lineDashOffset",
+      "value": "lineDashOffset"
+    },
+    {
+      "name": "canvas_globalCompositeOperation",
+      "value": "globalCompositeOperation"
+    },
+    {
+      "name": "canvas_imageSmoothingEnabled",
+      "value": "imageSmoothingEnabled"
+    },
+    {
+      "name": "canvas_createLinearGradient",
+      "value": "createLinearGradient"
+    },
+    {
+      "name": "cavas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_fillRect",
+      "value": "fillRect"
+    },
+    {
+      "name": "canvas_strokeRect",
+      "value": "strokeRect"
+    },
+    {
+      "name": "canvas_fillText",
+      "value": "fillText"
+    },
+    {
+      "name": "canvas_strokeText",
+      "value": "strokeText"
+    },
+    {
+      "name": "canvas_measureText",
+      "value": "measureText"
+    },
+    {
+      "name": "canvas_stroke",
+      "value": "stroke"
+    },
+    {
+      "name": "canvas_createPattern",
+      "value": "createPattern"
+    },
+    {
+      "name": "canvas_fill",
+      "value": "fill"
+    },
+    {
+      "name": "canvas_clip",
+      "value": "clip"
+    },
+    {
+      "name": "canvas_rotate",
+      "value": "rotate"
+    },
+    {
+      "name": "canvas_scale",
+      "value": "scale"
+    },
+    {
+      "name": "canvas_drawImage",
+      "value": "drawImage"
+    },
+    {
+      "name": "canvas_getImageData",
+      "value": "getImageData"
+    },
+    {
+      "name": "canvas_putImageData",
+      "value": "putImageData"
+    },
+    {
+      "name": "canvas_setLineDash",
+      "value": "setLineDash"
+    },
+    {
+      "name": "canvas_getLineDash",
+      "value": "getLineDash"
+    },
+    {
+      "name": "canvas_transferFromImageBitmap",
+      "value": "transferFromImageBitmap"
+    },
+    {
+      "name": "canvas_toDataURL",
+      "value": "toDataURL"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "Canvas Zone"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "Attributes Operations"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "Clear Effects"
+    },
+    {
+      "name": "cavnas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_shadowBlur",
+      "value": "shadowBlur"
+    },
+    {
+      "name": "canvas_shadowColor",
+      "value": "shadowColor"
+    },
+    {
+      "name": "canvas_shadowOffsetX",
+      "value": "shadowOffsetX"
+    },
+    {
+      "name": "canvas_shadowOffsetY",
+      "value": "shadowOffsetY"
+    },
+    {
+      "name": "canvas_addColorStop",
+      "value": "addColorStop"
+    },
+    {
+      "name": "canvas_beginPath",
+      "value": "beginPath"
+    },
+    {
+      "name": "canvas_moveTo",
+      "value": "moveTo"
+    },
+    {
+      "name": "canvas_lineTo",
+      "value": "lineTo"
+    },
+    {
+      "name": "canvas_closePath",
+      "value": "closePath"
+    },
+    {
+      "name": "canvas_bezierCurveTo",
+      "value": "bezierCurveTo"
+    },
+    {
+      "name": "canvas_quadraticCurveTo",
+      "value": "quadraticCurveTo"
+    },
+    {
+      "name": "canvas_arc",
+      "value": "arc"
+    },
+    {
+      "name": "canvas_arcTo",
+      "value": "arcTo"
+    },
+    {
+      "name": "canvas_ellipse",
+      "value": "ellipse"
+    },
+    {
+      "name": "canvas_rect",
+      "value": "rect"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "Printed to the console"
+    },
+    {
+      "name": "canvas_transform",
+      "value": "transform"
+    },
+    {
+      "name": "canvas_setTransform",
+      "value": "setTransform"
+    },
+    {
+      "name": "canvas_translate",
+      "value": "translate"
+    },
+    {
+      "name": "canvas_imageSmoothingQuality",
+      "value": "imageSmoothingQuality"
+    },
+    // scrollTo 动效增强
+    {
+      "name": "scroll_To_effect",
+      "value": "ScrollTo effect"
+    },
+    {
+      "name": "scroller",
+      "value": "Scroller"
+    },
+    {
+      "name": "list",
+      "value": "List"
+    },
+    {
+      "name": "grid",
+      "value": "Grid"
+    },
+    {
+      "name": "waterFlow",
+      "value": "WaterFlow"
+    },
+    {
+      "name": "tabs_switch_effect",
+      "value": "Tabs switch effect"
+    },
+    {
+      "name": "image_fit_Full_effect",
+      "value": "Image fit/full effect"
+    },
+    {
+      "name": "particle_effect",
+      "value": "Particle Effect"
+    },
+    {
+      "name": "particle_spawn",
+      "value": "Spawn"
+    },
+    {
+      "name": "particle_spawn_stop",
+      "value": "Stop"
     }
   ]
 }

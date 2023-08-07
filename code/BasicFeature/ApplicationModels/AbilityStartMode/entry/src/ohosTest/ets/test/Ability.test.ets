@@ -77,9 +77,9 @@ export default function abilityTest() {
       let contentTablePoint = await contentTable.getBoundsCenter();
       // 向左滑动
       await DRIVER.fling({
-        x: contentTablePoint.x + 50, y: contentTablePoint.y
+        x: contentTablePoint.x + 100, y: contentTablePoint.y
       }, {
-        x: contentTablePoint.x - 50, y: contentTablePoint.y
+        x: contentTablePoint.x - 100, y: contentTablePoint.y
       }, 50, 200);
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('CaloriesProgress'));

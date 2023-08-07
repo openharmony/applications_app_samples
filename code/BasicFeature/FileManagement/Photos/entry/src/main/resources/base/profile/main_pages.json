@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AlbumSelect",
+    "pages/PhotoGridPage",
+    "pages/NewAlbumPage",
+    "pages/PhotoBrowser",
+    "pages/VideoBrowser",
+    "pages/SelectPhotoBrowser",
+    "pages/MediaOperationPage"
+  ]
+}

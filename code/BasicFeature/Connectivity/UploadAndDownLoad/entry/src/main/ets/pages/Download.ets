@@ -117,7 +117,7 @@ struct Download {
             .objectFit(ImageFit.Contain)
         }
 
-        Text(file.name)
+        Text(decodeURIComponent(file.name))
           .fontSize(16)
           .fontWeight(400)
           .layoutWeight(1)

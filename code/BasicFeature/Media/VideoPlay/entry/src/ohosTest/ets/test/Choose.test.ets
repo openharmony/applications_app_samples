@@ -38,6 +38,7 @@ export default function ChooseTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
       // 点击视频列表
       await driver.assertComponentExist(ON.id('Choose'));
@@ -64,6 +65,7 @@ export default function ChooseTest() {
       // 拉起操作界面
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
       // 点击视频列表
       await driver.assertComponentExist(ON.id('Choose'));
@@ -89,6 +91,7 @@ export default function ChooseTest() {
       // 拉起操作界面
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(5000);
       await stack.click();
       // 点击视频列表
       await driver.assertComponentExist(ON.id('Choose'));

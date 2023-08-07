@@ -21,7 +21,7 @@ import Logger from '../../../main/ets/model/Logger'
 const TAG = '[Sample_DistributedAccount]'
 const BUNDLE = 'DistributedAccount_'
 
-const DELAY_TIME = 1000;
+const DELAY_TIME = 5000;
 let driver: Driver = Driver.create();
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 // 资源本地化

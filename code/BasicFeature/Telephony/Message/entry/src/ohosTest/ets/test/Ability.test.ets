@@ -44,24 +44,11 @@ export default function abilityTest() {
     })
 
     /**
-     * 授权
-     */
-    it('GetPermission_001', 0, async function (done) {
-      hilog.info(0x0000, 'testTag', 'GetPermission_001 begin');
-      await DRIVER.delayMs(2000);
-      await DRIVER.assertComponentExist(ON.text('允许'));
-      let allowBtn = await DRIVER.findComponent(ON.text('允许'));
-      await allowBtn.click();
-      await DRIVER.delayMs(1000);
-      done();
-      hilog.info(0x0000, 'testTag', 'GetPermission_001 end');
-    })
-
-    /**
      * 联系人弹窗
      */
     it('CreateContactDialog_001', 0, async function () {
       hilog.info(0x0000, 'testTag', 'CreateContactDialog_001 begin');
+      await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('newContact'));
       let addBtn = await DRIVER.findComponent(ON.id('newContact'));
       await addBtn.click();

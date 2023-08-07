@@ -6,11 +6,11 @@
 
 ### 效果预览
 
-|绑定|通用|动画|全局方法|
-|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![image](screenshots/devices/component.png)|![image](screenshots/devices/general.png)|![image](screenshots/devices/animation.png)|![image](screenshots/devices/global.png)|
-|<center>Button 按钮</center>|<center>onClick 点击事件</center>|<center>元素共享转场</center>|<center>警告弹窗</center>|
-|![image](screenshots/devices/button_zh.png)|![image](screenshots/devices/click_event_zh.png)|![image](screenshots/devices/share_element_transition_zh.png)|![image](screenshots/devices/warning_popup_zh.png)|
+| 绑定                                          | 通用                                               | 动画                                                            | 全局方法                                               |
+|---------------------------------------------|--------------------------------------------------|---------------------------------------------------------------|----------------------------------------------------|
+| ![image](screenshots/devices/component.png) | ![image](screenshots/devices/general.png)        | ![image](screenshots/devices/animation.png)                   | ![image](screenshots/devices/global.png)           |
+| <center>Button 按钮</center>                  | <center>onClick 点击事件</center>                    | <center>元素共享转场</center>                                       | <center>警告弹窗</center>                              |
+| ![image](screenshots/devices/button_zh.png) | ![image](screenshots/devices/click_event_zh.png) | ![image](screenshots/devices/share_element_transition_zh.png) | ![image](screenshots/devices/warning_popup_zh.png) |
 
 使用说明：
 
@@ -21,6 +21,7 @@
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 
 ### 工程目录
+
 ```
 entry/src/main/ets/
 |---component
@@ -56,6 +57,8 @@ entry/src/main/ets/
 |   |   |   |---FloatingWindowSample.ets                 // 悬浮窗
 |   |   |---folderSample
 |   |   |   |---FolderSample.ets                         // 文件夹展开
+|   |   |---systemIcon
+|   |   |   |---SystemIcon.ets                           // 系统图标
 |   |   |---gallerySample
 |   |   |   |---GalleryCardSample.ets                    // 图库卡片展开
 |   |   |---multiplexSample
@@ -103,6 +106,21 @@ entry/src/main/ets/
 |   |   |   |   |---TimePickerSample.ets                 // 时间选择器
 |   |   |   |---toggleSample
 |   |   |   |   |---ToggleSample.ets                     // 切换按钮
+|   |   |---canvas
+|   |   |   |---attributesSample
+|   |   |   |   |---AttributesSample.ets                 // 属性
+|   |   |   |---gradientSample
+|   |   |   |   |---GradientSample.ets                   // 渐变对象
+|   |   |   |---image_bitmapSample
+|   |   |   |   |---Image_bitmapSample.ets               // 位图对象
+|   |   |   |---methodsSample
+|   |   |   |   |---MethodsSample.ets                    // 方法
+|   |   |   |---path2dSample
+|   |   |   |   |---Path2dSample.ets                     // 路径对象
+|   |   |   |---shadowsSample
+|   |   |   |   |---ShadowsSample.ets                    // 阴影
+|   |   |   |---transformSample
+|   |   |   |   |---TransformSample.ets                  // 转换
 |   |   |---informationPresentationAndDynamicEffects
 |   |   |   |---dataPanelSample
 |   |   |   |   |---DataPanelSample.ets                  // 数据面板
@@ -126,6 +144,9 @@ entry/src/main/ets/
 |   |   |   |---scrollSample
 |   |   |   |   |---ScrollSample.ets
 |   |   |---textAndInput
+|   |   |   |---imageSpanSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---imageSpanSample.ets                  // 行内图像
 |   |   |   |---richTextSample
 |   |   |   |   |---RichTextSample.ets                   // 富文本
 |   |   |   |---spanSample
@@ -148,6 +169,12 @@ entry/src/main/ets/
 |   |   |   |   |---DateDialogSample.ets                 // 日期选择弹窗
 |   |   |   |---timeDialogSample
 |   |   |   |   |---TimeDialogSample.ets                 // 时间选择弹窗
+|   |   |   |---actionSheetDialogSample
+|   |   |   |   |---ActionSheetDialogSample.ets          // 列表选择弹窗
+|   |   |   |---textPickerDialogSample
+|   |   |   |   |---TextPickerDialogSample.ets           // 文本滑动选择器弹窗
+|   |   |   |---menuSample
+|   |   |   |   |---MenuSample.ets                       // 菜单
 |   |---universal                                        // 详情页面
 |   |   |---UniversialData.ets
 |   |   |---events
@@ -165,57 +192,123 @@ entry/src/main/ets/
 |   |   |   |   |   |---TextDrag.ets
 |   |   |   |   |   |---VideoDrag.ets
 |   |   |   |   |---DragEventSample.ets                  // 拖拽事件
+|   |   |   |---focusEventSample
+|   |   |   |   |---FocusEventSample.ets                 // 焦点事件
+|   |   |   |---keyPressEventSample
+|   |   |   |   |---KeyPressEventSample.ets              // 按压事件
+|   |   |   |---mountUnmountEventSample
+|   |   |   |   |---MountUnmountEventSample.ets          // 挂载卸载事件
+|   |   |   |---mouseEventSample
+|   |   |   |   |---MouseEventSample.ets                 // 鼠标事件
+|   |   |   |---scrollEventSample
+|   |   |   |   |---ScrollEventSample.ets                // 滚动事件
 |   |   |   |---touchEventSample
 |   |   |   |   |---TouchEventSample.ets                 // 触摸事件
+|   |   |---gesture
+|   |   |   |---bindGestureSample
+|   |   |   |   |---BindGestureSample.ets                // 绑定手势方法
+|   |   |   |---combinedSample
+|   |   |   |   |---CombinedSample.ets                   // 组合手势
+|   |   |   |---longPressSample
+|   |   |   |   |---LongPressSample.ets                  // 长按手势
+|   |   |   |---panSample
+|   |   |   |   |---PanSample.ets                        // 拖动手势
+|   |   |   |---pinchSample
+|   |   |   |   |---PinchSample.ets                      // 捏合手势
+|   |   |   |---rotationSample
+|   |   |   |   |---RotationSample.ets                   // 旋转手势
+|   |   |   |---swipeSample
+|   |   |   |   |---SwipeSample.ets                      // 滑动手势
+|   |   |   |---tapGestureSample
+|   |   |   |   |---TapGestureSample.ets                 // Tap手势
 |   |   |---properties
 |   |   |   |---backgroundSample
 |   |   |   |   |---BackgroundSample.ets                 // 背景
 |   |   |   |---borderSample
 |   |   |   |   |---BorderSample.ets                     // 边框
+|   |   |   |---componentBlurredSample
+|   |   |   |   |---ComponentBlurredSample.ets           // 分布式迁移标识
+|   |   |   |---componentIDSample
+|   |   |   |   |---ComponentIDSample.ets                // 组件标识
 |   |   |   |---displaySample
 |   |   |   |   |---DisplaySample.ets                    // 显示
 |   |   |   |---effectsSample
 |   |   |   |   |---EffectsSample.ets                    // 互动
+|   |   |   |---flexSample
+|   |   |   |   |---FlexSample.ets                       // flex布局
+|   |   |   |---focusControlSample
+|   |   |   |   |---FocusControlSample.ets               // 焦点控制
 |   |   |   |---fontSample
 |   |   |   |   |---FontSample.ets                       // 字体
+|   |   |   |---gridSettingsSample
+|   |   |   |   |---GridSettingsSample.ets               // 栅格设置
 |   |   |   |---interactionSample
 |   |   |   |   |---InteractionSample.ets                // 图像效果
+|   |   |   |---layoutConstraintSample
+|   |   |   |   |---LayoutConstraintSample.ets           // 布局约束
+|   |   |   |---locationSample
+|   |   |   |   |---LocationSample.ets                   // 位置设置
+|   |   |   |---pictureBorderSample
+|   |   |   |   |---PictureBorderSample.ets              // 图片边框设置
+|   |   |   |---restoreIdSample
+|   |   |   |   |---RestoreIdSample.ets                  // 分布式迁移标识
 |   |   |   |---rotateSample
 |   |   |   |   |---RotateSample.ets                     // 旋转
+|   |   |   |---scaleSample
+|   |   |   |   |---ScaleSample.ets                      // 缩放
+|   |   |   |---shapeCropSample
+|   |   |   |   |---ShapeCropSample.ets                  // 形状裁剪
 |   |   |   |---sizeSample
 |   |   |   |   |---SizeSample.ets                       // 尺寸
+|   |   |   |---transformSample
+|   |   |   |   |---TransformSample.ets                  // 变换矩阵
 |   |   |   |---translateSample
 |   |   |   |   |---TranslateSample.ets                  // 图像变换
 ``` 
 
 ### 具体实现
 
-* 本示例使用 [Tabs容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabcontent.md#%E5%B1%9E%E6%80%A7) 设置自定义样式 。
+本示例使用 [Tabs容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)
+搭建整体应用框架，每个 [TabContent内容视图](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabcontent.md)
+使用 [List容器组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)
+布局，在每个 [ListItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-listitem.md)
+中使用 [循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md)
+加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabcontent.md#%E5%B1%9E%E6%80%A7)
+设置自定义样式 。
 
 * 将组件库分成四大类，切换查看
 
     * 组件模块：
         * 空白与分隔
             * 封装自定义组件：CommonItemSlider，CommonItemSelect，CommonItemColorSelect
-            * 接口参考：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
+            *
+            接口参考：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
 
         * 按钮与选择
             * 使用全局组件ShowToast,TitleBar,IntroductionTitle实现按钮，时间选择器，单选按钮，选择菜单，滑动条，切换按钮，勾选框，文本选择器，时间选择器，计数器，评分条组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            *
+            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 滚动与滑动
             * 使用全局组件TitleBar实现滚动，翻页组件功能
 
         * 信息展示与功效
             * 使用全局组件TitleBar，AttributeModificationTool实现二维码，进度条，跑马灯，文字计时器，文字时钟，仪表盘，数据面板组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            *
+            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 文本与输入
-            * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，文本输入，文本，富文本组件功能
-            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，行内图像，文本输入，文本，富文本组件功能
+            * 
+	    使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 辅助
             * 使用全局组件TitleBar实现标记，滚动条，下拉刷新，弹出面板，字母索引条组件功能
+            *
+            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+
+        * 画布
+            * 使用全局组件TitleBar, CanvasGradient, CanvasPattern, ImageBitmap, Path2D等实现图形绘制属性，图形绘制方法，渐变对象绘制，路径对象绘制，位图的绘制，阴影绘制，变换绘制
             * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
     * 通用模块：
@@ -225,16 +318,30 @@ entry/src/main/ets/
 
         * 通用属性
             * 使用全局组件TitleBar，AttributeModificationTool实现组件页面
-            * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
+            *
+            接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
     * 动画模块：
         * 转场动画
             * 用到全局组件TitleBar，IntroductionTitle实现页面
-            * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
+            *
+            接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
         * 插值计算
             * 用到全局组件TitleBar，IntroductionTitle实现页面
-            * 接口参考：[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-curve.md)， [@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
+            *
+            接口参考：[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-curve.md)， [@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
+        * 显示动画
+          * 用到全局组件TitleBar，IntroductionTitle实现页面
+          * 接口参考：[animateTo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-explicit-animation.md)
+
+        * 属性动画
+            * 用到全局组件TitleBar，IntroductionTitle实现页面
+            * 接口参考：[animation](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-animatorproperty.md)
+
+        * 路径动画
+            * 用到全局组件TitleBar，IntroductionTitle实现页面
+            * 接口参考：[path](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-motion-path-animation.md)
 
     * 全局方法模块：
         * 弹窗
@@ -259,17 +366,21 @@ entry/src/main/ets/
 
 2.本示例仅支持API10版本SDK，版本号：4.0.8.5，镜像版本号：OpenHarmony 4.0.8.5。
 
-3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
+SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
+4.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
 
-4.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
+5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
 
-5.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
+6.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)
+，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
+
 ```
 git init
 git config core.sparsecheckout true

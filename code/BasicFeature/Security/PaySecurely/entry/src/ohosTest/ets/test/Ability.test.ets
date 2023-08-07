@@ -51,7 +51,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'ohos.samples.pay',
+          bundleName: 'com.samples.pay',
           abilityName: 'EntryAbility'
         });
         done();

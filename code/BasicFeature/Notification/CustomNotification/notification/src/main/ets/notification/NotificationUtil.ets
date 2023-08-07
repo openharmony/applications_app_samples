@@ -15,6 +15,7 @@
 
 import notification from '@ohos.notificationManager'
 import { logger } from '../util/Logger'
+import { notificationManagement } from '../notification/NotificationManagementUtil';
 
 const TAG: string = 'NotificationUtil'
 
@@ -66,9 +67,11 @@ class NotificationUtil {
         notificationSlot.vibrationValues = [200];
       }
       await notification.removeAllSlots();
-      await notification.addSlot(notificationSlot);
+      await notification.addSlot(notificationSlot.type);
       await notification.publish(notificationRequest);
-      logger.info(TAG, `publish notification success`);
+      // 通知管理器添加新通知
+      await notificationManagement.addNotification(notificationRequest);
+      logger.info(TAG, `publish notification success, ${notificationRequest}`);
     } catch (err) {
       if (err) {
         logger.error(TAG, `publishNotification err ${JSON.stringify(err)}`);

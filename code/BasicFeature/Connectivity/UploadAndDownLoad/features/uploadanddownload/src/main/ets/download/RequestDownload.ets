@@ -17,51 +17,74 @@ import common from '@ohos.app.ability.common';
 import request from '@ohos.request';
 import promptAction from '@ohos.promptAction';
 import { logger } from '../utils/Logger';
-import { TOAST_BOTTOM } from '../utils/Constants';
+import { TOAST_BOTTOM, TASK_MAX } from '../utils/Constants';
+
 const TAG: string = 'RequestDownload';
 
 class RequestDownload {
-  private backgroundTask: Array<request.agent.Task> = [];
+  private context: common.UIAbilityContext = undefined;
+  private waitList: Array<string[]> = [];
   private downloadTask: request.agent.Task = undefined;
 
   constructor() {
+    setInterval(() => {
+      this.flushBackgroundTask()
+    }, 2000);
   }
 
   async downloadFilesBackground(folder: string, files: Array<string>) {
     logger.info(TAG, 'downloadFiles');
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-    this.backgroundTask = [];
-    let index = this.backgroundTask.length;
-    if (this.backgroundTask.length > 0) {
-      await this.pause(index);
+    this.context = getContext(this) as common.UIAbilityContext;
+    files.forEach(item => {
+      this.waitList.push([folder, item]);
+    });
+  }
+
+  async flushBackgroundTask() {
+    let tasks = await request.agent.search({
+      state: request.agent.State.RUNNING
+    });
+    if (tasks.length < TASK_MAX && this.waitList.length > 0) {
+      let downloadList = [];
+      if (this.waitList.length <= TASK_MAX - tasks.length) {
+        downloadList = this.waitList;
+        this.waitList = [];
+      } else {
+        downloadList = this.waitList.slice(0, TASK_MAX - tasks.length);
+        this.waitList = this.waitList.slice(TASK_MAX - tasks.length, this.waitList.length);
+      }
+      logger.info(TAG, `this.waitList = ${JSON.stringify(this.waitList)}`);
+      this.createBackgroundTask(downloadList);
     }
-    try {
-      for (let i = 0; i < files.length; i++) {
-        let splitUrl = files[i].split('//')[1].split('/');
+  }
+
+  async createBackgroundTask(downloadList: Array<string[]>) {
+    for (let i = 0; i < downloadList.length; i++) {
+      try {
+        let splitUrl = downloadList[i][1].split('//')[1].split('/');
         let downloadConfig: request.agent.Config = {
           action: request.agent.Action.DOWNLOAD,
-          url: files[i],
+          url: downloadList[i][1],
           method: 'POST',
           title: 'download',
           mode: request.agent.Mode.BACKGROUND,
           network: request.agent.Network.ANY,
-          saveas: `./${folder}/${splitUrl[splitUrl.length-1]}`,
+          saveas: `./${downloadList[i][0]}/${splitUrl[splitUrl.length-1]}`,
           overwrite: true,
           gauge: true
         }
-        let downTask = await request.agent.create(context, downloadConfig);
+        let downTask = await request.agent.create(this.context, downloadConfig);
         await downTask.start();
-        this.backgroundTask.push(downTask);
+      } catch (err) {
+        logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
+        this.waitList.push(downloadList[i]);
       }
-    } catch (err) {
-      logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
     }
-    await this.resume(index);
   }
 
   async downloadFile(folder: string, url: string, callback: (progress: number, isSuccess: boolean) => void) {
     logger.info(TAG, 'downloadFile');
-    // 查询到存在正在执行的上传任务，提示并返回
+    // 查询到存在正在执行的下载任务，提示并返回
     let tasks = await request.agent.search({
       state: request.agent.State.RUNNING,
       action: request.agent.Action.DOWNLOAD,
@@ -121,35 +144,12 @@ class RequestDownload {
         this.downloadTask.off('failed');
         await request.agent.remove(this.downloadTask.tid);
       }
-
       catch (err) {
         logger.info(TAG, `deleteTask fail,err= ${JSON.stringify(err)}`);
       }
     }
 
     this.downloadTask = undefined;
-  }
-
-  async pause(index: number) {
-    logger.info(TAG, 'pause');
-    for (let i = 0; i < index; i++) {
-      try {
-        await this.backgroundTask[i].pause();
-      } catch (err) {
-        logger.info(TAG, `pause fail,err= ${JSON.stringify(err)}`);
-      }
-    }
-  }
-
-  async resume(index: number) {
-    logger.info(TAG, 'resume');
-    for (let i = 0; i < index; i++) {
-      try {
-        await this.backgroundTask[i].resume();
-      } catch (err) {
-        logger.info(TAG, `pause fail,err= ${JSON.stringify(err)}`);
-      }
-    }
   }
 }
 

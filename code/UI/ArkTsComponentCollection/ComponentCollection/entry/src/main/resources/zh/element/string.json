@@ -855,6 +855,10 @@
       "value": "文件夹展开"
     },
     {
+      "name": "System_icon",
+      "value": "系统图标"
+    },
+    {
       "name": "Shop_card_expansion",
       "value": "商店卡片展开"
     },
@@ -1012,6 +1016,67 @@
     {
       "name": "span_decoration_color",
       "value": "装饰线颜色"
+    },
+    //ImageSpan
+    {
+      "name": "image_span_title",
+      "value": "ImageSpan 行内图像"
+    },
+    {
+      "name": "image_span_vertical_align",
+      "value": "设置跨度对齐方式"
+    },
+    {
+      "name": "image_span_alignment_baseline",
+      "value": "基线"
+    },
+    {
+      "name": "image_span_alignment_bottom",
+      "value": "底部"
+    },
+    {
+      "name": "image_span_alignment_center",
+      "value": "中心"
+    },
+    {
+      "name": "image_span_alignment_top",
+      "value": "顶部"
+    },
+    {
+      "name": "image_span_object_fit",
+      "value": "设置图像缩放类型"
+    },
+    {
+      "name": "image_fit_contain",
+      "value": "包含"
+    },
+    {
+      "name": "image_fit_auto",
+      "value": "自适应显示"
+    },
+    {
+      "name": "image_fit_fill",
+      "value": "填满"
+    },
+    {
+      "name": "image_fit_none",
+      "value": "保持大小并将其显示在中心"
+    },
+    {
+      "name": "image_fit_scale_down",
+      "value": "按比例缩小或保持不变"
+    },
+    {
+      "name": "image_fit_cover",
+      "value": "掩蔽"
+    },
+    {
+      "name": "image_span_and_span",
+      "value": "文本图像混合显示"
+    },
+    {
+      "name": "image_span_vertical_align_and_object_fit",
+      "value": "设置行内图像的跨度对齐方式和缩放类型"
     },
     // Text
     {
@@ -1814,6 +1879,827 @@
     {
       "name": "interaction_disable",
       "value": "组件禁用:"
+    },
+    {
+      "name": "action_sheet_dialog",
+      "value": "ActionSheetDialog 列表选择弹框"
+    },
+    {
+      "name": "action_sheet_title_autoCancel",
+      "value": "弹窗是否自动取消"
+    },
+    {
+      "name": "action_sheet_click_sheets",
+      "value": "点击选项内容"
+    },
+    {
+      "name": "action_sheet_dialog_click_content",
+      "value": "点击内容"
+    },
+    {
+      "name": "text_picker_dialog",
+      "value": "TextPickerDialog 文本滑动选择器弹窗"
+    },
+    {
+      "name": "text_picker_show",
+      "value": "显示文本弹窗"
+    },
+    {
+      "name": "text_picker_click_text",
+      "value": "点击文字"
+    },
+    {
+      "name": "text_picker_text_banana",
+      "value": "香蕉"
+    },
+    {
+      "name": "text_picker_text_grape",
+      "value": "葡萄"
+    },
+    {
+      "name": "text_picker_text_orange",
+      "value": "橘子"
+    },
+    {
+      "name": "text_picker_text_apple",
+      "value": "苹果"
+    },
+    {
+      "name": "text_picker_text_peach",
+      "value": "梨子"
+    },
+    {
+      "name": "global_menu",
+      "value": "BindContextMenu 菜单"
+    },
+    {
+      "name": "global_menu_create_way",
+      "value": "创建方式"
+    },
+    {
+      "name": "global_menu_click_right",
+      "value": "右击"
+    },
+    {
+      "name": "global_menu_long_press",
+      "value": "长按"
+    },
+    {
+      "name": "global_menu_close",
+      "value": "点击关闭菜单"
+    },
+    {
+      "name": "component_transition",
+      "value": "component transition 组件内转场"
+    },
+    {
+      "name": "component_transition_show",
+      "value": "显示"
+    },
+    {
+      "name": "component_transition_hide",
+      "value": "隐藏"
+    },
+    {
+      "name": "animate_to",
+      "value": "animateTo 显示动画"
+    },
+    {
+      "name": "attribute_animation",
+      "value": "animation 属性动画"
+    },
+    {
+      "name": "motion_path",
+      "value": "motionPath 路径动画"
+    },
+    {
+      "name": "animate_over",
+      "value": "动画播放完成"
+    },
+    {
+      "name": "attribute_animation_change_size",
+      "value": "改变大小"
+    },
+    {
+      "name": "attribute_animation_change_rotation",
+      "value": "改变旋转角度"
+    },
+    {
+      "name": "attribute_animation_set_curve",
+      "value": "设置动画shrap曲线"
+    },
+    {
+      "name": "attribute_animation_delay",
+      "value": "延时3s"
+    },
+    {
+      "name": "attribute_animation_play_speed",
+      "value": "播放速度"
+    },
+    {
+      "name": "attribute_animation_unlimited_playback",
+      "value": "无限播放"
+    },
+    {
+      "name": "attribute_animation_play_complete",
+      "value": "播放完成"
+    },
+    {
+      "name": "attribute_animation_play_count",
+      "value": "播放2次"
+    },
+    {
+      "name": "motion_path_click_me",
+      "value": "点击我"
+    },
+    {
+      "name": "general_mount",
+      "value": "挂载卸载事件"
+    },
+    {
+      "name": "general_mount_toast",
+      "value": "挂载图片"
+    },
+    {
+      "name": "general_unmount_toast",
+      "value": "卸载图片"
+    },
+    {
+      "name": "general_mount_text",
+      "value": "点击我挂载卸载图片"
+    },
+    {
+      "name": "general_drag",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "general_drag_text_one",
+      "value": "这里有三个文本元素,长按文本拖到下方列表中"
+    },
+    {
+      "name": "general_drag_text_two",
+      "value": "这是一个列表元素"
+    },
+    {
+      "name": "drag_list_one",
+      "value": "One"
+    },
+    {
+      "name": "drag_list_two",
+      "value": "Two"
+    },
+    {
+      "name": "drag_list_three",
+      "value": "Three"
+    },
+    {
+      "name": "drag_list_four",
+      "value": "Four"
+    },
+    {
+      "name": "size_size",
+      "value": "大小"
+    },
+    {
+      "name": "size_padding",
+      "value": "内边距"
+    },
+    {
+      "name": "size_margin",
+      "value": "外边距"
+    },
+    {
+      "name": "size_constraintSize",
+      "value": "约束大小"
+    },
+    {
+      "name": "size_size_padding_one",
+      "value": "上下左右内边距10vp"
+    },
+    {
+      "name": "size_size_padding_two",
+      "value": "上内边距20%"
+    },
+    {
+      "name": "size_size_margin_one",
+      "value": "上下左右外边距10vp"
+    },
+    {
+      "name": "size_size_margin_two",
+      "value": "上外距20%"
+    },
+    {
+      "name": "size_size_constraintSize_one",
+      "value": "约束最大宽高90vp"
+    },
+    {
+      "name": "size_size_constraintSize_two",
+      "value": "约束最小宽高80vp"
+    },
+    {
+      "name": "keyPress_event",
+      "value": "按压事件"
+    },
+    {
+      "name": "focus_event_description",
+      "value": "按压外接键盘Tab键获取焦点，再按上下键切换焦点"
+    },
+    {
+      "name": "focus_event_button_one",
+      "value": "第一个按钮"
+    },
+    {
+      "name": "focus_event_button_two",
+      "value": "第二个按钮"
+    },
+    {
+      "name": "focus_event_button_three",
+      "value": "第三个按钮"
+    },
+    {
+      "name": "focus_event_toast_text",
+      "value": "触发焦点"
+    },
+    {
+      "name": "press_event_toast_text",
+      "value": "触发按键事件"
+    },
+    {
+      "name": "press_event_toast_description",
+      "value": "按压外接键盘任何键"
+    },
+    {
+      "name": "mouse_event_move_description",
+      "value": "使用外接鼠标移入按钮"
+    },
+    {
+      "name": "mouse_event_click_description",
+      "value": "使用外接鼠标点击按钮"
+    },
+    {
+      "name": "mouse_event_hover_description",
+      "value": "鼠标移入"
+    },
+    {
+      "name": "mouse_event_onHover_description",
+      "value": "鼠标未移入"
+    },
+    {
+      "name": "mouse_event_onMouse_text",
+      "value": "onMouse"
+    },
+    {
+      "name": "mouse_event_mouseBtn_none",
+      "value": "None"
+    },
+    {
+      "name": "mouse_event_mouseBtn_left",
+      "value": "Left"
+    },
+    {
+      "name": "mouse_event_mouseBtn_right",
+      "value": "Right"
+    },
+    {
+      "name": "mouse_event_mouseBtn_back",
+      "value": "Back"
+    },
+    {
+      "name": "mouse_event_mouseBtn_forward",
+      "value": "Forward"
+    },
+    {
+      "name": "mouse_event_mouseBtn_middle",
+      "value": "Middle"
+    },
+    {
+      "name": "mouse_event_mouseAction_hover",
+      "value": "Hover"
+    },
+    {
+      "name": "mouse_event_mouseAction_press",
+      "value": "Press"
+    },
+    {
+      "name": "mouse_event_mouseAction_move",
+      "value": "Move"
+    },
+    {
+      "name": "mouse_event_mouseAction_release",
+      "value": "Release"
+    },
+    {
+      "name": "scroll_event",
+      "value": "组件可见区域变化事件"
+    },
+    {
+      "name": "scroll_event_description",
+      "value": "滑动列表使图片消失和显示"
+    },
+    {
+      "name": "scroll_event_toast_visible",
+      "value": "爱心图片完全可见"
+    },
+    {
+      "name": "scroll_event_toast_invisible",
+      "value": "爱心图片完全消失"
+    },
+    {
+      "name": "location_settings",
+      "value": "location 位置设置"
+    },
+    {
+      "name": "location_settings_align",
+      "value": "对齐方式"
+    },
+    {
+      "name": "location_settings_direction",
+      "value": "水平布局"
+    },
+    {
+      "name": "location_settings_position",
+      "value": "绝对定位"
+    },
+    {
+      "name": "location_settings_markAnchor",
+      "value": "设置锚点"
+    },
+    {
+      "name": "location_settings_offset",
+      "value": "相对定位"
+    },
+    {
+      "name": "location_settings_alignRules",
+      "value": "对齐规则"
+    },
+    {
+      "name": "location_settings_bottom_end",
+      "value": "Bottom end"
+    },
+    {
+      "name": "location_settings_top_start",
+      "value": "Top start"
+    },
+    {
+      "name": "location_settings_center",
+      "value": "Center"
+    },
+    {
+      "name": "location_settings_position_text",
+      "value": "position(30, 10)"
+    },
+    {
+      "name": "location_settings_position_offSet_text",
+      "value": "offset(15, 30)"
+    },
+    {
+      "name": "layout_constrain",
+      "value": "布局约束"
+    },
+    {
+      "name": "layout_constrain_aspectRatio",
+      "value": "组件宽高比"
+    },
+    {
+      "name": "layout_constrain_displayPriority",
+      "value": "组件优先级"
+    },
+    {
+      "name": "layout_constrain_big_container",
+      "value": "大型容器"
+    },
+    {
+      "name": "layout_constrain_middle_container",
+      "value": "中型容器"
+    },
+    {
+      "name": "layout_constrain_small_container",
+      "value": "小型容器"
+    },
+    {
+      "name": "layout_constrain_children_one",
+      "value": "1:(priority:2)"
+    },
+    {
+      "name": "layout_constrain_children_two",
+      "value": "2:(priority:1)"
+    },
+    {
+      "name": "layout_constrain_children_three",
+      "value": "3:(priority:3)"
+    },
+    {
+      "name": "layout_constrain_children_four",
+      "value": "4:(priority:1)"
+    },
+    {
+      "name": "layout_constrain_children_five",
+      "value": "5:(priority:2)"
+    },
+    {
+      "name": "layout_constrain_one",
+      "value": "1"
+    },
+    {
+      "name": "layout_constrain_two",
+      "value": "2"
+    },
+    {
+      "name": "flex",
+      "value": "flex布局"
+    },
+    {
+      "name": "flex_flexBasis",
+      "value": "flexBasis"
+    },
+    {
+      "name": "flex_flexGrow",
+      "value": "FlexGrow"
+    },
+    {
+      "name": "flex_flexShrink",
+      "value": "FlexShrink"
+    },
+    {
+      "name": "flex_alignSelf",
+      "value": "AlignSelf"
+    },
+    {
+      "name": "flex_layoutWeight",
+      "value": "LayoutWeight"
+    },
+    {
+      "name": "flex_no_layoutWeight",
+      "value": "On LayoutWeight"
+    },
+    {
+      "name": "flex_no_alignSelf_70",
+      "value": "On alignSelf,height:70%"
+    },
+    {
+      "name": "flex_end_alignSelf",
+      "value": "AlignSelf end"
+    },
+    {
+      "name": "flex_end_alignSelf_100",
+      "value": "AlignSelf end"
+    },
+    {
+      "name": "flex_shrink_0",
+      "value": "FlexShrink(0)"
+    },
+    {
+      "name": "flex_shrink_default",
+      "value": "Default flexShrink"
+    },
+    {
+      "name": "flex_shrink_1",
+      "value": "FlexShrink(1)"
+    },
+    {
+      "name": "flex_grow_1",
+      "value": "FlexGrow(1)"
+    },
+    {
+      "name": "flex_grow_2",
+      "value": "FlexGrow(2)"
+    },
+    {
+      "name": "flex_no_alignSelf_100",
+      "value": "On alignSelf,height:100%"
+    },
+    {
+      "name": "flex_basis_100",
+      "value": "FlexBasis(100)"
+    },
+    {
+      "name": "flex_basis_auto",
+      "value": "FlexBasis(auto)"
+    },
+    {
+      "name": "picture_border",
+      "value": "图片边框设置"
+    },
+    {
+      "name": "scale",
+      "value": "scale 缩放"
+    },
+    {
+      "name": "transform",
+      "value": "transform 变换矩阵"
+    },
+    {
+      "name": "scale_image",
+      "value": "图片缩放"
+    },
+    {
+      "name": "transform_image",
+      "value": "图片矩阵变化"
+    },
+    {
+      "name": "transform_init",
+      "value": "创建四阶矩阵"
+    },
+    {
+      "name": "transform_copy",
+      "value": "矩阵复制"
+    },
+    {
+      "name": "transform_combine",
+      "value": "矩阵效果叠加"
+    },
+    {
+      "name": "transform_invert",
+      "value": "矩阵效果反转"
+    },
+    {
+      "name": "transform_translate",
+      "value": "矩阵平移效果"
+    },
+    {
+      "name": "transform_scale",
+      "value": "矩阵缩放效果"
+    },
+    {
+      "name": "transform_rotate",
+      "value": "矩阵旋转效果"
+    },
+    {
+      "name": "transform_transformPoint",
+      "value": "矩阵坐标点转换效果"
+    },
+    {
+      "name": "transform_combine_text",
+      "value": "x平移20，x放大两倍"
+    },
+    {
+      "name": "transform_translate_text",
+      "value": "平移 x: 40, y: 40, z: 20"
+    },
+    {
+      "name": "transform_scale_text",
+      "value": "宽高缩小一倍"
+    },
+    {
+      "name": "transform_rotate_text",
+      "value": "旋转30度"
+    },
+    {
+      "name": "transform_transformPoint_before",
+      "value": "矩阵变换后的坐标：[50,50]"
+    },
+    {
+      "name": "transform_transformPoint_after",
+      "value": "矩阵变换后的坐标：[100,0]"
+    },
+    {
+      "name": "shape_crop",
+      "value": "形状裁剪"
+    },
+    {
+      "name": "shape_crop_clip",
+      "value": "裁剪"
+    },
+    {
+      "name": "shape_crop_mask",
+      "value": "遮盖"
+    },
+    {
+      "name": "grid_settings",
+      "value": "栅格设置"
+    },
+    {
+      "name": "grid_settings_sm",
+      "value": "设备宽度为SM"
+    },
+    {
+      "name": "grid_settings_md",
+      "value": "设备宽度为MD"
+    },
+    {
+      "name": "grid_settings_lg",
+      "value": "设备宽度为LG"
+    },
+    {
+      "name": "grid_settings_useSize",
+      "value": "UseSizeType"
+    },
+    {
+      "name": "grid_settings_gridSpan",
+      "value": "GridSpan gridOffset"
+    },
+    {
+      "name": "focus_control",
+      "value": "焦点控制"
+    },
+    {
+      "name": "focus_control_tab",
+      "value": "按外接键盘Tab键切换焦点"
+    },
+    {
+      "name": "focus_control_lastPageId",
+      "value": "lastPageId"
+    },
+    {
+      "name": "focus_control_success",
+      "value": "请求成功"
+    },
+    {
+      "name": "focus_control_failed",
+      "value": "请求失败"
+    },
+    {
+      "name": "focus_control_request_focus",
+      "value": "选择水果请求聚焦"
+    },
+    {
+      "name": "component_id",
+      "value": "组件标识"
+    },
+    {
+      "name": "component_blurred",
+      "value": "组件背景模糊"
+    },
+    {
+      "name": "component_blurred_thin",
+      "value": "薄材料"
+    },
+    {
+      "name": "restore_id",
+      "value": "分布式迁移标识"
+    },
+    {
+      "name": "gesture_process",
+      "value": "手势处理"
+    },
+    {
+      "name": "bind_gesture_methods",
+      "value": "绑定手势方法"
+    },
+    {
+      "name": "bind_gesture_priorityGesture",
+      "value": "priorityGesture会忽略text,优先识别父组件column"
+    },
+    {
+      "name": "bind_gesture_parallelGesture",
+      "value": "parallelGesture识别父子组件column，text"
+    },
+    {
+      "name": "double_click",
+      "value": "单指双击触发"
+    },
+    {
+      "name": "long_press_text",
+      "value": "请单指长按我"
+    },
+    {
+      "name": "long_press_cancel",
+      "value": "取消事件"
+    },
+    {
+      "name": "pan_text",
+      "value": "双指拖动黑色框"
+    },
+    {
+      "name": "pan_text_one",
+      "value": "单指左右拖动黑色框"
+    },
+    {
+      "name": "pan_start",
+      "value": "开始"
+    },
+    {
+      "name": "pan_end",
+      "value": "结束"
+    },
+    {
+      "name": "pan_button",
+      "value": "修改PanGesture触发条件"
+    },
+    {
+      "name": "pinch_description",
+      "value": "三指捏合黑色框"
+    },
+    {
+      "name": "pinch_scale",
+      "value": "PinchGesture scale:\n"
+    },
+    {
+      "name": "rotation_description",
+      "value": "双指旋转黑色框"
+    },
+    {
+      "name": "swipe_description",
+      "value": "单指任一方向快速滑动黑色框"
+    },
+    {
+      "name": "combinded_description",
+      "value": "先长按再拖动黑色框"
+    },
+    {
+      "name": "transform_translate_invert",
+      "value": "放大两倍反转(缩小两倍)"
+    },
+    {
+      "name": "key_press_description",
+      "value": "按压外接键盘Tab键，再按压任意键"
+    },
+    {
+      "name": "april",
+      "value": "四月"
+    },
+    {
+      "name": "bind_click",
+      "value": "点击我"
+    },
+    {
+      "name": "canvas_components",
+      "value": "Canvas画布"
+    },
+    {
+      "name": "canvas_component_attributes",
+      "value": "Attributes 属性"
+    },
+    {
+      "name": "canvas_component_gradient",
+      "value": "CanvasGradient 渐变对象"
+    },
+    {
+      "name": "canvas_component_image_bitmap",
+      "value": "ImageBitmap 位图对象"
+    },
+    {
+      "name": "canvas_component_method",
+      "value": "Methods 方法"
+    },
+    {
+      "name": "canvas_component_path_2d",
+      "value": "Path2D 路径对象"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows 阴影"
+    },
+    {
+      "name": "canvas_component_transform",
+      "value": "Transform 转换"
+    },
+    {
+      "name": "canvas_canvasZone",
+      "value": "画布区域"
+    },
+    {
+      "name": "canvas_attributesOperations",
+      "value": "属性操作"
+    },
+    {
+      "name": "canvas_clearEffects",
+      "value": "清除效果"
+    },
+    {
+      "name": "canvas_show_message",
+      "value": "已经打印到控制台"
+    },
+    // scrollTo 动效增强
+    {
+      "name": "scroll_To_effect",
+      "value": "ScrollTo 动效"
+    },
+    {
+      "name": "scroller",
+      "value": "Scroller"
+    },
+    {
+      "name": "list",
+      "value": "List"
+    },
+    {
+      "name": "grid",
+      "value": "Grid"
+    },
+    {
+      "name": "waterFlow",
+      "value": "WaterFlow"
+    },
+    {
+      "name": "tabs_switch_effect",
+      "value": "Tabs 模糊切换"
+    },
+    {
+      "name": "image_fit_Full_effect",
+      "value": "Image fit/full 动效"
+    },
+    {
+      "name": "particle_effect",
+      "value": "Particle 粒子效果"
+    },
+    {
+      "name": "particle_spawn",
+      "value": "生成"
+    },
+    {
+      "name": "particle_spawn_stop",
+      "value": "停止"
     }
   ]
 }

@@ -36,7 +36,7 @@ export struct TextTimerComponent {
   @State secondText: string = '00'
   @State textStr: string = ''
   private vibrationDuration: number = 10000
-  private timeout: number = 10
+  private timeout: number = 10000
   private counts: number
   private timerId: number
   private timerPicker: CustomDialogController = new CustomDialogController({
@@ -117,10 +117,11 @@ export struct TextTimerComponent {
                   }
                   Logger.info(TAG, `${TAG} Callback returned to indicate a successful vibration`)
                   this.textDialog.open()
+                  this.progressValue = 0
                   setTimeout(() => {
-                    this.progressValue = 0
-                    clearInterval(this.timerId)
+                    this.textDialog.close()
                   }, this.timeout)
+                  clearInterval(this.timerId)
                 });
               } catch (err) {
                 Logger.error(TAG, `catch error.code = ${err.code}, error.message = ${err.message}`)

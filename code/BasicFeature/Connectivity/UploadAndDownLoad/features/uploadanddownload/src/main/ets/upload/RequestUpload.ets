@@ -19,7 +19,7 @@ import promptAction from '@ohos.promptAction';
 import { urlUtils } from '../utils/UrlUtils';
 import { logger } from '../utils/Logger';
 import { MediaUtils } from '../utils/MediaUtils';
-import { UPLOAD_TOKEN, TOAST_BOTTOM } from '../utils/Constants';
+import { BackgroundTaskState, UPLOAD_TOKEN, TOAST_BOTTOM, TASK_MAX } from '../utils/Constants';
 
 const TAG: string = 'RequestUpload';
 
@@ -36,30 +36,61 @@ class Upload {
     data: [],
     token: UPLOAD_TOKEN
   }
+  private context: common.UIAbilityContext = undefined;
   private uploadTask: request.agent.Task = undefined;
-  private backgroundTask: Array<request.agent.Task> = [];
+  private backgroundTask: request.agent.Task = undefined;
+  private waitList: Array<string> = [];
+
+  constructor() {
+    setInterval(() => {
+      this.flushBackgroundTask()
+    }, 2000);
+  }
 
   async uploadFilesBackground(fileUris: Array<string>): Promise<void> {
     logger.info(TAG, `uploadFiles begin, ${JSON.stringify(fileUris)}`);
+    this.context = getContext(this) as common.UIAbilityContext;
     if (fileUris.length === 0) {
       return;
     }
-    let index = this.backgroundTask.length;
-    if (this.backgroundTask.length > 0) {
-      await this.pause(index);
+    fileUris.forEach(item => {
+      this.waitList.push(item);
+    });
+  }
+
+  async flushBackgroundTask() {
+    let tasks = await request.agent.search({
+      state: request.agent.State.RUNNING
+    });
+    let state = AppStorage.Get('backTaskState');
+    if (state === BackgroundTaskState.RUNNING) {
+      if (tasks.length < TASK_MAX && this.waitList.length > 0) {
+        this.createBackgroundTask(this.waitList);
+        this.waitList = [];
+      } else {
+        if (this.backgroundTask === undefined || tasks.indexOf(this.backgroundTask.tid) === -1) {
+          AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.NONE);
+          this.backgroundTask = undefined;
+        }
+      }
     }
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-    this.config.data = await this.getFilesAndData(fileUris);
-    this.config.url = await urlUtils.getUrl(context);
+  }
+
+  async createBackgroundTask(fileUris: Array<string>) {
+    this.config.url = await urlUtils.getUrl(this.context);
+    this.config.data = await this.getFilesAndData(this.context.cacheDir, fileUris);
     this.config.mode = request.agent.Mode.BACKGROUND;
     try {
-      let task = await request.agent.create(context, this.config);
-      await task.start();
-      this.backgroundTask.push(task);
+      this.backgroundTask = await request.agent.create(this.context, this.config);
+      await this.backgroundTask.start();
+      let state = AppStorage.Get('backTaskState');
+      if (state === BackgroundTaskState.PAUSE) {
+        await this.backgroundTask.pause();
+      }
+      logger.info(TAG, `createBackgroundTask success`);
     } catch (err) {
       logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
     }
-    await this.resume(index);
   }
 
   async uploadFiles(fileUris: Array<string>, callback: (progress: number, isSucceed: boolean) => void): Promise<void> {
@@ -78,7 +109,7 @@ class Upload {
       return;
     }
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-    this.config.data = await this.getFilesAndData(fileUris);
+    this.config.data = await this.getFilesAndData(context.cacheDir, fileUris);
     this.config.url = await urlUtils.getUrl(context);
     this.config.mode = request.agent.Mode.FOREGROUND;
     try {
@@ -123,34 +154,43 @@ class Upload {
     this.uploadTask = undefined;
   }
 
-  async pause(index) {
+  async pauseOrResume() {
+    let state = AppStorage.Get('backTaskState');
+    if (state === BackgroundTaskState.RUNNING) {
+      await this.pause();
+      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.PAUSE);
+    } else if (state === BackgroundTaskState.PAUSE) {
+      await this.resume();
+      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.RUNNING);
+    } else {
+      logger.info(TAG, 'this task state is error');
+    }
+  }
+
+  async pause() {
     logger.info(TAG, 'pause');
-    for (let i = 0; i < index; i++) {
-      try {
-        await this.backgroundTask[i].pause();
-      } catch (err) {
-        logger.info(TAG, `pause fail,err= ${JSON.stringify(err)}`);
-      }
+    try {
+      await this.backgroundTask.pause();
+    } catch (err) {
+      logger.info(TAG, `pause fail,err= ${JSON.stringify(err)}`);
     }
   }
 
-  async resume(index: number) {
+  async resume() {
     logger.info(TAG, 'resume');
-    for (let i = 0; i < index; i++) {
-      try {
-        await this.backgroundTask[i].resume();
-      } catch (err) {
-        logger.info(TAG, `pause fail,err= ${JSON.stringify(err)}`);
-      }
+    try {
+      await this.backgroundTask.resume();
+    } catch (err) {
+      logger.info(TAG, `resume fail,err= ${JSON.stringify(err)}`);
     }
   }
 
-  private async getFilesAndData(fileUris: Array<string>): Promise<Array<request.agent.FormItem>> {
+  private async getFilesAndData(cacheDir: string, fileUris: Array<string>): Promise<Array<request.agent.FormItem>> {
     logger.info(TAG, `getFilesAndData begin`);
     let files: Array<request.agent.FormItem> = [];
     for (let i = 0; i < fileUris.length; i++) {
       logger.info(TAG, `getFile fileUri = ${fileUris[i]}`);
-      let imagePath = await this.mediaUtils.copyFileToCache(fileUris[i]);
+      let imagePath = await this.mediaUtils.copyFileToCache(cacheDir, fileUris[i]);
       logger.info(TAG, `getFilesAndData ${JSON.stringify(imagePath)}`);
       let file: request.agent.FormItem = {
         name: imagePath.split('cache/')[1],

@@ -60,9 +60,9 @@ export default struct UploadController {
 
   async aboutToAppear() {
     this.uploadUrl = await getConfig(getContext(this), ConfigType.uploadUrl)
-    Logger.debug("register publish event!")
-    emitter.on(this.innerEvent, () => {
-      Logger.debug("receive publish event!")
+    Logger.info(TAG, 'register publish event!')
+    emitter.on(this.innerEvent, (eventData) => {
+      Logger.info(TAG, `receive publish event!=${JSON.stringify(eventData)}`)
       this.startUpload(this.imageUrl);
     });
     //定义计算器
@@ -120,22 +120,18 @@ export default struct UploadController {
   }
 
   async copyImage(url: string): Promise<void> {
+    Logger.info(TAG, `copyImage url = ${url}`)
     // 将选中图片存入沙箱路径
-    let id = url.split('image/')[1]
+    let id = url.slice(url.lastIndexOf('/')+1);
     Logger.info(TAG, `this.id = ${id}`)
     let mContext: common.Context = getContext(this) as common.Context
     let media = mediaLibrary.getMediaLibrary(mContext)
     Logger.info(TAG, `this.media = ${JSON.stringify(media)}`)
-    let imagesFetchOp = {
-      selections: mediaLibrary.FileKey.ID + '= ?',
-      selectionArgs: [`${id}`],
-    }
-    let fetchFileResult = await media.getFileAssets(imagesFetchOp)
-    Logger.info(TAG, `this.fetchFileResult = ${JSON.stringify(fetchFileResult)}`)
-    let fileAsset = await fetchFileResult.getFirstObject()
-    Logger.info(TAG, `this.fileAsset = ${JSON.stringify(fileAsset)}`)
-    let fd = await fileAsset.open('rw')
-    Logger.info(TAG, `this.fd = ${JSON.stringify(fd)}`)
+
+    let file = fs.openSync(url, fs.OpenMode.READ_WRITE);
+    let fd = file.fd;
+    Logger.info(TAG, 'file fd: ' + file);
+
     // upload可访问的沙箱路径：data/app/el2/100/base/com.example.myapplication/haps/entry/cache/
     let imagePath = `${mContext.filesDir.split('files')[0]}cache/${new Date().getTime().toString()}.jpg`
     Logger.info(TAG, `this.imagePath = ${JSON.stringify(imagePath)}`)
@@ -152,7 +148,7 @@ export default struct UploadController {
     let file = new UploadFile()
     file.uri = `internal://cache/${imagePath.split('cache/')[1]}`
     Logger.info(TAG, `file.uri = ${file.uri}`)
-    file.filename = imagePath.split('cache/')[1].split('.')[0]
+    file.filename = imagePath.split('cache/')[1]
     Logger.info(TAG, `file.filename = ${file.filename}`)
     file.name = imagePath.split('cache/')[1].split('.')[0]
     Logger.info(TAG, `file.name = ${file.name}`)
