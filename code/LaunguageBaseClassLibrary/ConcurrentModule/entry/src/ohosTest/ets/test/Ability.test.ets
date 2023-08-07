@@ -54,8 +54,8 @@ export default function abilityTest() {
     // 点击拷贝文件按钮
     it('WorkerCopyFileFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_001 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(200);
+      let driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('fileCopy'));
       let fileCopy = await driver.findComponent(ON.id('fileCopy'));
       await fileCopy.click();
@@ -86,7 +86,7 @@ export default function abilityTest() {
     // 选择文件拷贝
     it('WorkerCopyFileFunction_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       // 使用id寻找组件并点击，时间超过3min，因此采用坐标点击
       await driver.click(630, 272);
@@ -115,7 +115,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('backIndex2'));
       let backIndex = await driver.findComponent(ON.id('backIndex2'));
       await backIndex.click();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_003 end');
     })
@@ -126,12 +126,12 @@ export default function abilityTest() {
     // 点击字符串排序按钮
     it('WorkerFunction_000', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_000 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(200);
+      let driver = Driver.create();
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('strSort'));
       let strSortBt = await driver.findComponent(ON.id('strSort'));
       await strSortBt.click();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_000 end');
     })
@@ -143,7 +143,7 @@ export default function abilityTest() {
     it('WorkerFunction_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_002 begin');
       let driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('jsWorkerInPutTextArea'));
       let strInput  = await driver.findComponent(ON.id('jsWorkerInPutTextArea'));
@@ -156,12 +156,12 @@ export default function abilityTest() {
     it('WorkerFunction_003', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_003 begin');
       let driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('workerStrSort'));
       let workerStrBtn  = await driver.findComponent(ON.id('workerStrSort'));
       await workerStrBtn.click();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_003 end');
     })
@@ -170,7 +170,7 @@ export default function abilityTest() {
     it('WorkerFunction_004', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_004 begin');
       let driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('jsWorkerOutPutScroll'));
       let outPutScroll = await driver.findComponent(ON.id('jsWorkerOutPutScroll'));
@@ -186,12 +186,12 @@ export default function abilityTest() {
     it('WorkerFunction_005', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_005 begin');
       let driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('workerClearButton'));
       let workerClearBtn  = await driver.findComponent(ON.id('workerClearButton'));
       await workerClearBtn.click();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_005 end');
     })
@@ -202,13 +202,13 @@ export default function abilityTest() {
     // 点击TaskPool页签
     it('TaskPoolFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_001 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(200);
+      let driver = Driver.create();
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('tabTaskPool'));
       let tabTaskPool = await driver.findComponent(ON.id('tabTaskPool'));
       await tabTaskPool.click();
-      await driver.delayMs(200);
+      await driver.delayMs(500);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_001 end');
     })
@@ -216,7 +216,7 @@ export default function abilityTest() {
     // 输入待排序字符串
     it('TaskPoolFunction_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_002 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
 
       await driver.assertComponentExist(ON.id('taskPoolInPutTextArea'));
@@ -229,8 +229,8 @@ export default function abilityTest() {
     // 点击“立即执行”
     it('TaskPoolFunction_003', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_003 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(200);
+      let driver = Driver.create();
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('exeImmButton'));
       let exeImmBtn  = await driver.findComponent(ON.id('exeImmButton'));
@@ -242,8 +242,8 @@ export default function abilityTest() {
     // 检查结果
     it('TaskPoolFunction_004', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_004 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(200);
+      let driver = Driver.create();
+      await driver.delayMs(500);
 
       await driver.assertComponentExist(ON.id('taskPoolOutPutScroll'));
       let outPutScroll = await driver.findComponent(ON.id('taskPoolOutPutScroll'));
