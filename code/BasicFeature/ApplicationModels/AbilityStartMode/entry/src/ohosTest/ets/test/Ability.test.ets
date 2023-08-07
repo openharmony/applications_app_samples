@@ -14,7 +14,7 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 
@@ -28,7 +28,6 @@ export default function abilityTest() {
      * 拉起应用
      */
     it('StartAbility_001', 0, async function (done) {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -48,7 +47,6 @@ export default function abilityTest() {
      * 检查页面
      */
     it('CheckPage_001', 0, async function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0xF811, 'testTag', 'CheckPage_001 begin');
       await DRIVER.delayMs(1000);
       // 检查是否存在这三个板块
@@ -62,7 +60,6 @@ export default function abilityTest() {
      * 进入详情页
      */
     it('CheckDetailPage_001', 0, async function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0xF811, 'testTag', 'CheckDetailPage_001 begin');
       await DRIVER.delayMs(1000);
       // 点击番茄
@@ -77,9 +74,9 @@ export default function abilityTest() {
       let contentTablePoint = await contentTable.getBoundsCenter();
       // 向左滑动
       await DRIVER.fling({
-        x: contentTablePoint.x + 100, y: contentTablePoint.y
+        x: contentTablePoint.x + 200, y: contentTablePoint.y
       }, {
-        x: contentTablePoint.x - 100, y: contentTablePoint.y
+        x: contentTablePoint.x - 200, y: contentTablePoint.y
       }, 50, 200);
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('CaloriesProgress'));
@@ -100,7 +97,6 @@ export default function abilityTest() {
      * 进入另个一个详情页
      */
     it('CheckDetailPage_002', 0, async function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0xF811, 'testTag', 'CheckDetailPage_002 begin');
       // 点击黄瓜
       await DRIVER.delayMs(1000);
