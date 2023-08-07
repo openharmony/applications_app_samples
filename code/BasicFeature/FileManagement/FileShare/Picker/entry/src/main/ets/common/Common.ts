@@ -17,7 +17,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
 import { describe, it, expect } from '@ohos/hypium';
 import util from '@ohos.util';
-import Logger from '../Common/Logger';
+import Logger from '../common/Logger';
 
 const INDEX: number = 2; // 序号
 const SLEEP_TIME: number = 10; // 睡眠时间
