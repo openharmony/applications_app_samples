@@ -56,35 +56,35 @@ class CameraService {
   async createCamera(surfaceId: string) {
     Logger.info("createCamera start")
     // 根据context获取CameraManager
-    let cameraManager = await camera.getCameraManager(AppStorage.Get('context'))
+    let cameraManager = camera.getCameraManager(AppStorage.Get('context'))
     // 获取Camera对象数组
-    let cameras = await cameraManager.getSupportedCameras()
+    let cameras = cameraManager.getSupportedCameras()
     // 没有相机就停止
     if (cameras.length === 0) {
       Logger.error("createCamera: cameras length is 0.")
       return
     }
     // 拿到相机列表中的第一个默认相机id, 根据id获取相机输入流
-    this.cameraInput = await cameraManager.createCameraInput(cameras[0])
+    this.cameraInput = cameraManager.createCameraInput(cameras[0])
     this.cameraInput.open()
     // 获取cameraOutputCapability参数
-    let cameraOutputCapability = await cameraManager.getSupportedOutputCapability(cameras[0])
+    let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameras[0])
     // 获取相机输出流
-    this.previewOutput = await cameraManager.createPreviewOutput(cameraOutputCapability.previewProfiles[0], surfaceId)
+    this.previewOutput = cameraManager.createPreviewOutput(cameraOutputCapability.previewProfiles[0], surfaceId)
     // 获取一个可以创建相片输出流的id
     let receivingSurfaceId = await this.imageReceiver.getReceivingSurfaceId()
     // 创建相片输出流
-    this.photoOutput = await cameraManager.createPhotoOutput(cameraOutputCapability.photoProfiles[0], receivingSurfaceId)
+    this.photoOutput = cameraManager.createPhotoOutput(cameraOutputCapability.photoProfiles[0], receivingSurfaceId)
     // 获取捕获会话的实例
-    this.captureSession = await cameraManager.createCaptureSession()
+    this.captureSession = cameraManager.createCaptureSession()
     // 开始会话配置
-    await this.captureSession.beginConfig()
+    this.captureSession.beginConfig()
     // 使用相机输入流---添加一个摄像头输入流
-    await this.captureSession.addInput(this.cameraInput)
+    this.captureSession.addInput(this.cameraInput)
     // 使用相机输出流---添加一个摄像头输出
-    await this.captureSession.addOutput(this.previewOutput)
+    this.captureSession.addOutput(this.previewOutput)
     // 使用相片输出流---添加相机照片的输出
-    await this.captureSession.addOutput(this.photoOutput)
+    this.captureSession.addOutput(this.photoOutput)
     // 结束并提交配置
     await this.captureSession.commitConfig()
     // 开始捕获会话
