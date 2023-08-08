@@ -76,7 +76,7 @@ class QRCodeParser {
       let imageComponent = await targetImage.getComponent(imgComponentType)
       // 将image的ArrayBuffer写入指定文件中，返回文件uri
       let imageUri = await this.createPublicDirFileAsset(fileDisplayName, mediaLibrary.MediaType.IMAGE,
-                     mediaLibrary.DirectoryType.DIR_IMAGE, imageComponent.byteBuffer);
+        mediaLibrary.DirectoryType.DIR_IMAGE, imageComponent.byteBuffer);
       // 释放已读取的image资源，以便处理下一个资源
       await targetImage.release()
 
@@ -102,18 +102,35 @@ class QRCodeParser {
    */
   async parseImageQRCode(imageSrc: string): Promise<DecodeResultAttribute> {
     Logger.info(`parseImageQRCode start`);
-    // 获取图片的宽高
-    let imageSource = await this.getImageSource(imageSrc);
-    let imageWidth = imageSource.width;
-    let imageHeight = imageSource.height;
+    let media = mediaLibrary.getMediaLibrary(AppStorage.Get<common.UIAbilityContext>('context'));
+    let imagesIdFetchOp = {
+      selections: ``,
+      selectionArgs: [],
+      uri: imageSrc
+    }
+    // 获取图片文件资源
+    let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
+    let fileIdAsset = await fetchIdFileResult.getFirstObject();
+    // 获取文件描述符
+    let fd = await fileIdAsset.open('RW');
     // 获取PixelMap图片数据
-    let pixMapData = imageSource.pixelMap;
+    let imageSource = image.createImageSource(fd, { sourceDensity: 120, sourceSize: { width: 120, height: 120 } })
+    let decodingOptions = {
+      sampleSize: 1,
+      editable: true,
+      desiredSize: { width: 120, height: 120 },
+      rotate: 0,
+      desiredPixelFormat: 3,
+      desiredRegion: { size: { height: 120, width: 120 }, x: 0, y: 0 },
+      index: 0
+    };
+    let pixMapData = await imageSource.createPixelMap(decodingOptions);
     let pixelBytesNumber = pixMapData.getPixelBytesNumber();
     let arrayBuffer: ArrayBuffer = new ArrayBuffer(pixelBytesNumber);
     // 读取图像像素数据，结果写入ArrayBuffer里
     await pixMapData.readPixelsToBuffer(arrayBuffer);
     let int32Array = new Int32Array(arrayBuffer);
-    let luminanceSource = new RGBLuminanceSource(int32Array, imageWidth, imageHeight);
+    let luminanceSource = new RGBLuminanceSource(int32Array, 120, 120);
     let binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
     let mltiFormatReader = new MultiFormatReader();
     let hints = new Map();
@@ -142,7 +159,7 @@ class QRCodeParser {
     let imagesIdFetchOp = {
       selections: ``,
       selectionArgs: [],
-      uri:imageSrc
+      uri: imageSrc
     }
     // 获取图片文件资源
     let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
