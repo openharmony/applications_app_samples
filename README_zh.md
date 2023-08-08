@@ -36,7 +36,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td width="140" align="center" rowspan="3" style='height:27.00pt' x:str><strong>UI</strong></td>
   <td rowspan="2" x:str><strong>声明式开发范式</strong></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集（API 10）</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/Canvas">画布组件</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection">页面布局和连接</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/Drag">拖拽事件</a></td>
@@ -55,24 +55,30 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="24" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="27" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
-  <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">自定义分享</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>通知</strong></td>
+  <td rowspan="2" x:str><strong>通知</strong></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomEmitter">自定义Emitter</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotification">自定义通知</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomCommonEvent">公共事件的订阅和发布（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/Notification/CustomNotificationBadge">自定义通知角标（API 10）</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Notification/CustomNotificationPush">自定义通知推送（API 10）</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口管理</strong></td>
   <td x:str><a href="code/BasicFeature/WindowManagement/WindowManage">窗口管理</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/WindowManagement/WindowRatio">窗口（API 10）</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -99,13 +105,19 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
   <td x:str><a href="code/BasicFeature/Media/Audio">音频管理（API 10）</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放</a></td>
+  <td x:str><a href="code/BasicFeature/Media/VoiceCallDemo">音频通话示例</td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>安全</strong></td>
+  <td rowspan="2"><strong>安全</strong></td>
   <td x:str><a href="code/BasicFeature/Security/Cipher">加解密</a></td>
-  <td ><a href="code/BasicFeature/Security/AppAccountManager">应用账号管理</a></td>
+  <td x:str><a href="code/BasicFeature/Security/AppAccountManager">应用账号管理</a></td>
+  <td x:str><a href="code/BasicFeature/Security/CertificateFramework">证书算法库框架</a></td>
+  <td x:str><a href="code/BasicFeature/Security/CryptoFramework">通用密钥库系统（cryptoFramework）</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Security/Huks">通用密钥库系统（huks）</a></td>
+  <td x:str><a href="code/BasicFeature/Security/PaySecurely">支付</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -118,7 +130,8 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Connectivity/StageSocket">Socket连接</a></td> 
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/Bluetooth">蓝牙</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/UploadAndDownLoad">上传和下载（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -130,9 +143,9 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>文件管理</strong></td>
-  <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理</a></td>
+  <td x:str><a href="code/BasicFeature/FileManagement/FileBackupExtension">应用接入数据备份恢复（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
-  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -140,11 +153,12 @@
   <td x:str><a href="code/BasicFeature/DeviceManagement/Location">位置服务</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/ScreenDetector">屏幕探测</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor">传感器</a></td>
+  <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic">自定义振动（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator/BasicVibration">振动</a></td>
-  <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic">自定义振动（API 10）</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -192,7 +206,6 @@
   <td ></td>
   <td ></td>
   <td ></td>
-  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>资源</strong></td>
@@ -209,16 +222,23 @@
   <td x:str></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>国际化</strong></td>
+  <td x:str><a href="code/BasicFeature/International/International">国际化</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>Native</strong></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性</strong></td>
   <td rowspan="2" x:str><strong>应用模型</strong></td>
-  <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用</a></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/StaticSubscriber">静态订阅</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/AccessibilityExtAbility">无障碍扩展</a></td>
@@ -281,7 +301,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="7" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
-  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/HealthyDiet">典型页面场景：健康饮食</a></td>
@@ -290,7 +310,7 @@
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AppMarket">典型页面场景：应用市场首页</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MusicAlbum">典型页面场景：音乐专辑页</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Settings">典型页面场景：设置应用页面</a></td>
-  <td ></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiColumns">典型页面场景：一多分栏控件（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="3" x:str><strong>分布式</strong></td>
@@ -316,12 +336,12 @@
   <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">Js多设备自适应服务卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信</a></td>
-  <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/Calculator">ArkTS卡片计算器</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/RequestAddForm">应用主动添加数据代理卡片到桌面（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/CanvasGame">ArkTS卡片Canvas小游戏</a></td>
   <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/MusicControl">ArkTs音乐卡片</a></td>
-  <td></td>
+  <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/Calculator">ArkTS卡片计算器</a></td>
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
