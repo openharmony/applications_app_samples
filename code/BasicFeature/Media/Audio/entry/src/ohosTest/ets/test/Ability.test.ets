@@ -832,7 +832,7 @@ export default function abilityTest() {
         // start record
         let startBtnComponent = await driver.findComponent(ON.id('parallel_start_btn'));
         await startBtnComponent.click();
-        await driver.delayMs(6000);
+        await driver.delayMs(15000);
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'ParallelCapturer_002:' + JSON.stringify(err));
         expect(false).assertTrue();
