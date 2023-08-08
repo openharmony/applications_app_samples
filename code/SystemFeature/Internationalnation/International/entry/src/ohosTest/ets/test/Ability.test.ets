@@ -121,9 +121,11 @@ export default function abilityTest() {
       await checkButtonAndClickWithText(getString($r('app.string.current_region')));
       // 设置地区
       await checkScrollAndClickWithType('Scroll', getString($r('app.string.united_states')));
+      // 进入地区设置页面
+      await checkButtonAndClickWithText(getString($r('app.string.current_region')));
+      // 设置地区
+      await checkScrollAndClickWithType('Scroll', getString($r('app.string.china')));
       Logger.info(TAG, BUNDLE + 'TimeZone_001 end');
-      await driver.pressBack();
-      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
       done();
