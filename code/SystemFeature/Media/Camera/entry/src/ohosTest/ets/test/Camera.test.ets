@@ -41,6 +41,7 @@ export default function CameraTest() {
       await checkAndClickPermission(getString($r('app.string.allow')), "beforeAll");
       await checkAndClickPermission(getString($r('app.string.allow')), "beforeAll");
       await checkAndClickPermission(getString($r('app.string.allow')), "beforeAll");
+      await checkAndClickPermission(getString($r('app.string.allow')), "beforeAll");
       await driver.delayMs(1000);
       done();
     })
