@@ -13,6 +13,18 @@
       "value": "eTSAdaptiveCapabilities"
     },
     {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
       "name": "my_string",
       "value": "手机"
     },
@@ -115,6 +127,10 @@
     {
       "name": "grid_layout9",
       "value": "栅格嵌套"
+    },
+    {
+      "name": "grid_layout10",
+      "value": "栅格对齐"
     },
     {
       "name": "typical_scenario",
@@ -251,6 +267,22 @@
     {
       "name": "breakpoint",
       "value": "断点"
+    },
+    {
+      "name": "Radio_GridRow_All_LCR",
+      "value": "All GridColl 左中右"
+    },
+    {
+      "name": "Radio_GridRow_All_TMB",
+      "value": "All GridColl 上中下"
+    },
+    {
+      "name": "Radio_GridRow_Sg_LCR",
+      "value": "Second Grid 左中右"
+    },
+    {
+      "name": "Radio_GridRow_Sg_TMB",
+      "value": "Second Grid 上中下"
     },
     {
       "name": "multiScene_tabs_app",
