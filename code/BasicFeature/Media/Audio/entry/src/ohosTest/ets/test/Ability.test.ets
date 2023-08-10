@@ -25,6 +25,7 @@ let manager = null
 export default function abilityTest() {
   const TAG = '[Sample_Audio]'
   const BUNDLE = 'audio_'
+  const WAIT_FOR_RECORD_LENGTH = 15000;
   let driver;
 
   describe('ActsAbilityTest', function () {
@@ -832,7 +833,7 @@ export default function abilityTest() {
         // start record
         let startBtnComponent = await driver.findComponent(ON.id('parallel_start_btn'));
         await startBtnComponent.click();
-        await driver.delayMs(6000);
+        await driver.delayMs(WAIT_FOR_RECORD_LENGTH);
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'ParallelCapturer_002:' + JSON.stringify(err));
         expect(false).assertTrue();
