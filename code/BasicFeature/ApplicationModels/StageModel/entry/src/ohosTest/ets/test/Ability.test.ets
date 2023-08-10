@@ -174,6 +174,7 @@ export default function abilityTest() {
       await clickAndToast('process');
       await clickAndToast('getDispatcherVersion');
       await clickAndToast('getAbilityInfo');
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Bundle_001 end`);
@@ -190,6 +191,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('verifyAccessToken', MatchPattern.CONTAINS))
       let component = await driver.findComponent(ON.text('verifyAccessToken', MatchPattern.CONTAINS));
       await component.click();
+      await driver.delayMs(1000);
       await driver.waitForComponent(ON.type('Toast'), 2000);
       await driver.delayMs(1000);
       await driver.pressBack();
@@ -209,6 +211,7 @@ export default function abilityTest() {
       await clickAndToast('denormalizeUri');
       await clickAndToast('notifyChange');
       await clickAndToast('off');
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}DataShareHelper_001 end`);
@@ -225,6 +228,7 @@ export default function abilityTest() {
       await clickAndToast('setWakeUpScreen');
       await clickAndToast('setPreferredOrientation');
       await clickAndToast('getTopWindow');
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Window_001 end`);
