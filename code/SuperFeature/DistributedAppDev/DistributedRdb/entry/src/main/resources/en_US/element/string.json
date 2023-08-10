@@ -37,6 +37,10 @@
       "value": "OK"
     },
     {
+      "name": "add_contact",
+      "value": "add contact"
+    },
+    {
       "name": "quit",
       "value": "Quit"
     },
@@ -159,6 +163,10 @@
     {
       "name": "search",
       "value": "search"
+    },
+    {
+      "name": "age_validate",
+      "value": "age invalidate"
     }
   ]
 }

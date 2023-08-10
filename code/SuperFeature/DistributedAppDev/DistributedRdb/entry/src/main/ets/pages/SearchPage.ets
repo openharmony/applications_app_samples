@@ -16,7 +16,7 @@
 import { TitleBar } from '../common/TitleBar';
 import { QueryItem } from '../common/QueryItem';
 import SearchModel from '../model/SearchModel';
-import ContactDataSource from '../common/BasicDataSource';
+import Contact from '../model/Contact';
 
 @Entry
 @Component
@@ -62,22 +62,17 @@ struct ConditionOption {
           { value: $r('app.string.index_query'), icon: $r('app.media.select') },
           { value: $r('app.string.expression_matching'), icon: $r('app.media.select') }])
           .selected(0)
-          .width(320)
-          .font({ size: 23, weight: FontWeight.Medium })
+          .font({ size: 18, weight: FontWeight.Medium })
           .fontColor($r("app.color.color_182431"))
-          .selectedOptionFont({ size: 23, weight: FontWeight.Regular })
-          .optionFont({ size: 23, weight: FontWeight.Regular })
-          .border({ width: 1, color: $r("app.color.black"), radius: 10 })
+          .selectedOptionFont({ size: 18, weight: FontWeight.Regular })
+          .optionFont({ size: 18, weight: FontWeight.Regular })
           .onSelect((index: number) => {
             this.model.onSelect(index)
           })
-
-        Row().width(180)
-
       }
+      .justifyContent(FlexAlign.SpaceAround)
       .width("100%")
-      .justifyContent(FlexAlign.SpaceBetween)
-      .height(80)
+      .height(60)
 
       Row() {
         Text($r('app.string.sort_the_results'))
@@ -87,20 +82,17 @@ struct ConditionOption {
         Select([{ value: $r('app.string.ascending'), icon: $r('app.media.Ascending') },
           { value: $r('app.string.descending'), icon: $r('app.media.Descending') }])
           .selected(this.model.searchData.isAscending ? 0 : 1)
-          .width(180)
-          .font({ size: 23, weight: FontWeight.Medium })
+          .font({ size: 18, weight: FontWeight.Medium })
           .fontColor($r("app.color.color_182431"))
-          .selectedOptionFont({ size: 23, weight: FontWeight.Regular })
-          .optionFont({ size: 23, weight: FontWeight.Regular })
-          .border({ width: 1, color: $r("app.color.black"), radius: 10 })
+          .selectedOptionFont({ size: 18, weight: FontWeight.Regular })
+          .optionFont({ size: 18, weight: FontWeight.Regular })
           .onSelect(async (index: number) => {
-            this.model.searchData.isAscending = (index == 0);
+            this.model.searchData.isAscending = (index === 0);
           })
-        Row().width(320)
       }
+      .justifyContent(FlexAlign.SpaceAround)
       .width("100%")
-      .justifyContent(FlexAlign.SpaceBetween)
-      .height(80)
+      .height(60)
 
 
       Button($r('app.string.search'))
@@ -111,8 +103,7 @@ struct ConditionOption {
           this.getData()
         })
     }
-    .alignItems(HorizontalAlign.Start)
-    .width("80%")
+    .width("100%")
 
   }
 }
@@ -125,6 +116,7 @@ struct InputArea {
   @State searchPlaceholder: Resource = $r('app.string.search_placeholder_start');
   @State searchText: string = "";
   @State searchTexts: Array<string> = [];
+  @State inputType: InputType = InputType.Normal
 
   aboutToAppear() {
     this.model.onSelectCallback = this.onSelectCallback.bind(this);
@@ -135,6 +127,7 @@ struct InputArea {
     this.searchPlaceholder = this.model.searchData.searchPlaceholder;
     this.searchText = this.model.searchData.searchText;
     this.searchTexts = this.model.searchData.searchTexts;
+    this.inputType = this.model.searchData.inputType
   }
 
   aboutToDisappear() {
@@ -155,15 +148,15 @@ struct InputArea {
           .height('85%')
           .width('80%')
           .fontSize(25)
+          .type(this.inputType)
           .margin({ right: 10 })
           .backgroundColor($r("app.color.color_fa"))
-          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.model.searchData.searchText = value
           })
       }
-      .width('80%')
-      .height(80)
+      .width('95%')
+      .height(60)
       .border({ radius: 45 })
       .margin({ top: 10 })
     } else {
@@ -173,9 +166,9 @@ struct InputArea {
             .height('85%')
             .width('95%')
             .fontSize(25)
+            .type(InputType.Number)
             .margin({ right: 10, top: 5 })
             .backgroundColor($r("app.color.color_fa"))
-            .enableKeyboardOnFocus(false)
             .onChange((value: string) => {
               this.model.searchData.searchTexts[0] = value
             })
@@ -196,18 +189,18 @@ struct InputArea {
             .height('85%')
             .width('95%')
             .fontSize(25)
+            .type(InputType.Number)
             .margin({ right: 10, top: 5 })
             .backgroundColor($r("app.color.color_fa"))
-            .enableKeyboardOnFocus(false)
             .onChange((value: string) => {
               this.model.searchData.searchTexts[1] = value
             })
         }
         .width('40%')
-        .height(80)
+        .height(60)
         .border({ radius: 45 })
         .margin({ top: 10 })
-      }.width("80%")
+      }.width("95%")
     }
 
   }
@@ -216,21 +209,17 @@ struct InputArea {
 @Component
 struct DataAndTips {
   private model: SearchModel;
-  private contacts: ContactDataSource = new ContactDataSource([]);
-  private otherContacts: ContactDataSource = new ContactDataSource([]);
-  @State contactsCount: number = 0;
-  @State otherContactsCount: number = 0;
   @State searchTips: Array<string> = [];
+  @State contacts: Array<Contact> = new Array<Contact>();
+  @State otherContacts: Array<Contact> = new Array<Contact>();
 
   aboutToAppear() {
     this.model.onDataCallback = this.onDataCallback.bind(this);
   }
 
   onDataCallback(): void {
-    this.contactsCount = this.model.queryData.length;
-    this.contacts.replaceDataArray(this.model.queryData);
-    this.otherContactsCount = this.model.queryOtherData.length;
-    this.otherContacts.replaceDataArray(this.model.queryOtherData);
+    this.contacts = this.model.queryData;
+    this.otherContacts = this.model.queryOtherData;
     this.searchTips = this.model.searchData.searchTips;
   }
 
@@ -252,7 +241,7 @@ struct DataAndTips {
           .padding({ left: 16 })
         }
 
-        if (this.contactsCount === 0) {
+        if (this.contacts.length === 0) {
           ListItem() {
             Row() {
               Text($r('app.string.no_data'))
@@ -264,11 +253,11 @@ struct DataAndTips {
             .padding({ left: 16 })
           }
         } else {
-          LazyForEach(this.contacts, item => {
+          ForEach(this.contacts, item => {
             ListItem() {
               QueryItem({ contact: item })
             }
-          }, item => item.name)
+          }, item => JSON.stringify(item))
         }
       }
 
@@ -284,7 +273,8 @@ struct DataAndTips {
           .padding({ left: 16 })
         }
 
-        if (this.otherContactsCount == 0) {
+
+        if (this.otherContacts.length === 0) {
           ListItem() {
             Row() {
               Text($r('app.string.no_data'))
@@ -296,16 +286,16 @@ struct DataAndTips {
             .padding({ left: 16 })
           }
         } else {
-          LazyForEach(this.otherContacts, item => {
+          ForEach(this.otherContacts, item => {
             ListItem() {
               QueryItem({ contact: item })
             }
-          }, item => item.name)
+          }, item => JSON.stringify(item))
         }
       }
     }
     .layoutWeight(1)
-    .width("80%")
+    .width("100%")
     .divider({ strokeWidth: 1, color: $r("app.color.grey"), startMargin: 16, endMargin: 16 })
     .alignListItem(ListItemAlign.Center)
   }

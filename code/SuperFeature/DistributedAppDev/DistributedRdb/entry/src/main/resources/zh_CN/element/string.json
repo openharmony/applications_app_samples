@@ -159,6 +159,14 @@
     {
       "name": "no_data",
       "value": "无数据"
+    },
+    {
+      "name": "age_validate",
+      "value": "请输入正确的年龄"
+    },
+    {
+      "name": "add_contact",
+      "value": "新增联系人"
     }
   ]
 }

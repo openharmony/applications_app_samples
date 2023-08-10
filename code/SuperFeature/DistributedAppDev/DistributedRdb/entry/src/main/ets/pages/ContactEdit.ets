@@ -50,7 +50,6 @@ struct ContactEdit {
         .backgroundColor(Color.White)
         .onChange(onChange)
         .type(type)
-        .enableKeyboardOnFocus(false)
     }
     .width('95%')
     .padding(16)
@@ -94,6 +93,12 @@ struct ContactEdit {
       promptAction.showToast({ message: $r('app.string.phone_validate'), duration: 1000 })
       return
     }
+
+    if (this.contact.age < 0) {
+      promptAction.showToast({ message: $r('app.string.age_validate'), duration: 1000 })
+      return
+    }
+
     try {
       if (this.isInsert) {
         let predicates = new data_rdb.RdbPredicates(TABLE_NAME)
@@ -119,7 +124,12 @@ struct ContactEdit {
 
   build() {
     Column() {
-      TitleBar({ hasBackPress: true, rightBtn: $r('app.media.submit'), handleRightBtn: this.handleSubmit })
+      TitleBar({
+        title: $r("app.string.add_contact"),
+        hasBackPress: true,
+        rightBtn: $r('app.media.submit'),
+        handleRightBtn: this.handleSubmit
+      })
 
       Scroll() {
         Column() {
@@ -151,7 +161,8 @@ struct ContactEdit {
           this.InputText($r('app.media.ic_remark'), $r('app.string.remark'), 'Remark', this.contact.remark, '', 50, InputType.Normal, (value: string) => {
             this.contact.remark = value;
           });
-          this.InputText($r('app.media.age'), $r('app.string.age'), 'Age', this.contact.age + "", '', 3, InputType.Number, (value: string) => {
+          let ageStr: string = this.contact.age < 0 ? undefined : (this.contact.age + '');
+          this.InputText($r('app.media.age'), $r('app.string.age'), 'Age', ageStr, '', 3, InputType.Number, (value: string) => {
             try {
               this.contact.age = Number.parseInt(value);
             } catch (err) {
