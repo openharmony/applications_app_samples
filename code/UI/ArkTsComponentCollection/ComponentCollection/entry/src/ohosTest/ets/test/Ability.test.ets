@@ -3007,7 +3007,7 @@ export default function abilityTest() {
         // 滚动日期 可能是年-2024
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(100, 1117, 100, 1017, 800);
+        await driver.drag(100, 1087, 100, 1017, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
