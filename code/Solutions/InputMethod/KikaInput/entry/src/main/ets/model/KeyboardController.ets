@@ -132,7 +132,7 @@ export class KeyboardController {
       var dWidth = dis.width;
       var dHeight = dis.height;
       var navigationbar_height = dHeight * 0.07; //todo:有些产品导航栏高度为0，默认为0.07
-      var keyHeightRate = 0.47;
+      var keyHeightRate = 0.43;
       AppStorage.SetOrCreate<number>('windowWidth', dis.width);
       AppStorage.SetOrCreate<number>('windowHeight', dis.height);
       if (dis.width > dis.height) {
