@@ -217,7 +217,7 @@ export class UserFileDataItem implements DateAdded {
 
   async onDelete(): Promise<boolean> {
     try {
-      userFileModel.deleteOne(this.uri)
+      await userFileModel.deleteOne(this.uri);
       selectManager.deleteSelect(this.uri);
       this.status = MediaConstants.TRASHED;
       return true;
@@ -265,9 +265,9 @@ export class UserFileDataItem implements DateAdded {
     try {
       fileAsset.set(photoAccessHelper.PhotoKeys.DISPLAY_NAME.toString(), displayName);
       fileAsset.set(photoAccessHelper.PhotoKeys.TITLE.toString(), name);
+      await fileAsset.commitModify();
     } catch (err) {
-      Log.error(TAG, 'isFavor error: ' + JSON.stringify(err));
+      Log.error(TAG, 'setName error: ' + JSON.stringify(err));
     }
-    await fileAsset.commitModify();
   }
 }

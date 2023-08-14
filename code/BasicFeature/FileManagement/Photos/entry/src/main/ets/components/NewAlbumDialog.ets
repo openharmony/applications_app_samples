@@ -130,8 +130,7 @@ export struct NewAlbumDialog {
           .backgroundColor($r('app.color.transparent'))
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
-            let check: RegExp = new RegExp('/[\\.\\\\/:*?<>\'|\[\]{}\s]/');
-            let passCheck = check.test(this.inputName)
+            let passCheck = Constants.NAME_PATTERN.test(this.inputName)
             if (passCheck) {
               getResourceString($r('app.string.specific_characters_not_supported')).then<void, void>((message: string): void => {
                 showToast(message)

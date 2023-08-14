@@ -20,12 +20,10 @@ import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { ProcessMenuOperation } from './ProcessMenuOperation';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { MediaConstants } from '../constants/MediaConstants';
-import { AlbumDataImpl } from '../common/AlbumDataImpl';
 
 const TAG = 'BatchDeleteMenuOperation';
 
 export class BatchDeleteMenuOperation extends ProcessMenuOperation {
-  private albumDataImpl: AlbumDataImpl = new AlbumDataImpl();
 
   constructor(menuContext: MenuContext) {
     super(menuContext);

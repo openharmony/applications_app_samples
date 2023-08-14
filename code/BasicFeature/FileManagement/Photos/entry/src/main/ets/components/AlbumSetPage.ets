@@ -438,7 +438,7 @@ export struct AlbumSetPage {
         }
 
         if (this.isEmpty) {
-          NoPhotoIndexComponent({ index: Constants.ALBUM_PAGE_INDEX })
+          //NoPhotoIndexComponent({ index: Constants.ALBUM_PAGE_INDEX })
         }
       }
       .justifyContent(FlexAlign.Start)

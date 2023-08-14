@@ -151,13 +151,12 @@ export default function abilityTest() {
       let btnOK = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_confirm'))));
       await btnOK.click();
       await driver.delayMs(1000);
-      //再点击重命名，检查名称
-      await btnRename.click();
+      //点击详情，检查名称
+      let btnInfo = await driver.findComponent(ON.id('5'));
+      await btnInfo.click();
       await driver.delayMs(1000);
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text:'+newName);
       await driver.assertComponentExist(ON.text(newName));
-      //返回
-      await driver.pressBack();
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_003 end');
     })
     /**
@@ -166,6 +165,9 @@ export default function abilityTest() {
     it('PhotosFunction_004', 0, async function () {
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_004 begin');
       let driver = await Driver.create();
+      await driver.delayMs(1000);
+      //返回
+      await driver.pressBack();
       await driver.delayMs(1000);
       //点击收藏
       let btnFavor = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_favor'))));
@@ -220,6 +222,8 @@ export default function abilityTest() {
       let btnAdd = await driver.findComponent(ON.id('28'));
       await btnAdd.click();
       await driver.delayMs(1000);
+      let text = await driver.findComponent(ON.type('TextInput'));
+      await text.inputText(await getResourceString($r('app.string.album_new')));
       //点击确认
       let btnConfirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_confirm'))));
       await btnConfirm.click();
@@ -381,20 +385,28 @@ export default function abilityTest() {
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_010 end');
     })
     /**
-     * 恢复
+     * 恢复，最近删除相册里图片不能超过一屏
      */
     it('PhotosFunction_011', 0, async function () {
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_011 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
+      let btnItem = await driver.findComponents(ON.type('GridItem'));
       //点击图片
       await driver.click(100, 200);
       await driver.delayMs(1000);
-      let btnFavor = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_recover'))));
-      await btnFavor.click();
+      let btnRecover = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_recover'))));
+      await btnRecover.click();
       await driver.delayMs(1000);
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text:'+await getResourceString($r('app.string.no_photo')));
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.no_photo'))));
+      if (await driver.findComponent(ON.text(await getResourceString($r('app.string.no_photo')))) == null) {
+        //还有其他照片
+        await driver.pressBack();
+        await driver.delayMs(1000);
+        let btnItemNew = await driver.findComponents(ON.type('GridItem'));
+        HiLog.info(DOMAIN, TAG, BUNDLE + 'Count:'+btnItem.length+',new Count:'+btnItemNew.length);
+        expect(btnItem.length-1).assertEqual(btnItemNew.length);
+      }
       //返回
       await driver.pressBack();
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_011 end');

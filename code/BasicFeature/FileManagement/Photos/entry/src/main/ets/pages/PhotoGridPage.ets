@@ -329,12 +329,14 @@ struct PhotoGridPage {
     Log.info(TAG, 'onDeleteEnd');
     this.onModeChange();
     userFileObserver.registerObserver(this.dataObserver);
-    this.onUserFileDataChange(MediaConstants.MEDIA_TYPE_IMAGE);
+
     animateTo({ duration: Constants.DELETE_ANIMATE_DURATION }, (): void => {
       this.groupDataSource.dataRemove();
       this.isEmpty = this.groupDataSource.groupDataItem.length==0 ? true : false;
       this.isHideScrollBar = (this.groupDataSource.totalCount() <= Constants.GRID_SCROLL_BAR_VISIBLE_THRESHOLD)
     })
+    //for NAPI notify delete bug to load manually
+    this.onUserFileDataChange(MediaConstants.MEDIA_TYPE_IMAGE);
   }
 
   /**

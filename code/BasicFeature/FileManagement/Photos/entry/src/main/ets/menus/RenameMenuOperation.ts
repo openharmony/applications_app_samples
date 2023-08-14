@@ -101,7 +101,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
 
   private async rename(item: UserFileDataItem, name: string): Promise<Object[]> {
     Log.info(TAG, 'renameSinglePhoto start');
-    item.setName(name);
+    await item.setName(name);
     return [item.title, item.displayName] as Object[];
   }
 

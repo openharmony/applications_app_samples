@@ -288,12 +288,12 @@ class ScreenManager {
       let data = await topWindow.getWindowAvoidArea(0)
       Log.debug(TAG, 'Succeeded in obtaining the area. Data: ' + JSON.stringify(data));
       this.onLeftBlankChanged(data);
-      let barColor = await getResourceString($r('app.color.default_background_color'));
-      let barContentColor = await getResourceString($r('app.color.default_bar_content_color'));
-      if (!new Boolean(barColor).valueOf()) {
-        barColor = '#00FFFFFF';
+      let barColor: string = await getResourceString($r('app.color.default_background_color'));
+      let barContentColor: string = await getResourceString($r('app.color.default_bar_content_color'));
+      if (!barColor) {
+        barColor = '#FFF1F3F5';
       }
-      if (!new Boolean(barContentColor).valueOf()) {
+      if (!barContentColor) {
         barContentColor = '#FF000000';
       }
       let systemBarProperties: window.SystemBarProperties = {
