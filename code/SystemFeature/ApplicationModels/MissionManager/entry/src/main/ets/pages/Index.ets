@@ -178,7 +178,7 @@ struct Index {
             ListItem() {
               MissionInfoComponent({ mission: item, index: index, handlerRefresh: this.handlerRefresh })
             }
-          }, item => item.timestamp)
+          }, item => JSON.stringify(item))
         }
         .width('100%')
       }

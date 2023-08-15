@@ -40,13 +40,13 @@ export default function abilityTest() {
       await DRIVER.delayMs(500);
       // 检查桌面是否存在计算器卡片应用
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
-      let app = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
+      let apps = await DRIVER.findComponents(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
       // 获取文字控件边框
-      let rect = await app.getBounds();
+      let rect = await apps[1].getBounds();
       // 计算文字控件高度
       let height = rect.bottom - rect.top;
       // 获取文字控件中心点
-      let point = await app.getBoundsCenter();
+      let point = await apps[1].getBoundsCenter();
       await DRIVER.longClick(point.x, point.y - height);
       await DRIVER.delayMs(500);
       // 检查长按应用是否存在服务卡片弹窗
@@ -73,7 +73,7 @@ export default function abilityTest() {
       // 检查是否桌面上是否有计算器卡片
       await DRIVER.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       let resultArray = await DRIVER.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
-      expect(resultArray.length).assertEqual(1);
+      expect(resultArray.length).assertEqual(3);
       done();
       logger.info(TAG, `${BUNDLE}createForm_001 end`);
     })
