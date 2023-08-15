@@ -17,6 +17,10 @@
       "value": "Component"
     },
     {
+      "name": "universal",
+      "value": "Universal"
+    },
+    {
       "name": "global_method",
       "value": "Global Method"
     },
@@ -77,6 +81,10 @@
       "value": "Show/Hide Event"
     },
     {
+      "name": "drag_drop_event",
+      "value": "Drag/Drop Event"
+    },
+    {
       "name": "key_event",
       "value": "Key Event"
     },
@@ -87,6 +95,10 @@
     {
       "name": "mouse_event",
       "value": "Mouse Event"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "Component Area Change Event"
     },
     {
       "name": "gesture_processing",
@@ -146,6 +158,10 @@
     {
       "name": "blank_and_divider",
       "value": "Blank and divider"
+    },
+    {
+      "name": "text_and_input",
+      "value": "Text and input"
     },
     // AlertDialog
     {
@@ -916,6 +932,10 @@
       "value": "Slider slide as a percentage of the total length:"
     },
     // Span
+    {
+      "name": "span_title",
+      "value": "Span"
+    },
     {
       "name": "span_attribute",
       "value": "Configure different span attributes"
@@ -1820,8 +1840,16 @@
       "value": "RichText"
     },
     {
+      "name": "scroll_swiper",
+      "value": "Scroll and Swipe"
+    },
+    {
       "name": "scroll_name",
       "value": "Scroll"
+    },
+    {
+      "name": "swiper_name",
+      "value": "Swiper"
     },
     {
       "name": "alphabetindexer_an",
@@ -2119,7 +2147,6 @@
       "name": "canvas_show_message",
       "value": "Printed to the console"
     },
-
     {
       "name": "TestAbility_desc",
       "value": "自动化测试"
