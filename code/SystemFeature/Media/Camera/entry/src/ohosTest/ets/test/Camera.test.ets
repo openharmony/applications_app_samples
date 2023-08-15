@@ -193,8 +193,12 @@ export default function CameraTest() {
 
   async function checkAndClickPermission(text: string, log: string) {
     hilog.info(DOMAIN, TAG, BUNDLE + `${log} text:${text}`);
+    await driver.delayMs(1000);
     await driver.assertComponentExist(ON.text(getString($r('app.string.whether')) + text, MatchPattern.CONTAINS));
+    await driver.delayMs(1000);
+    // 点击授权
     let res = await driver.findComponent(ON.text(text, MatchPattern.EQUALS));
+    await driver.delayMs(1000);
     await res.click();
   }
 }
