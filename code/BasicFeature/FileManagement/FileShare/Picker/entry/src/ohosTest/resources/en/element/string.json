@@ -27,6 +27,14 @@
     {
       "name": "finish",
       "value": "Finish"
+    },
+    {
+      "name": "video",
+      "value": "VIDEO"
+    },
+    {
+      "name": "photo",
+      "value": "PHOTO"
     }
   ]
 }
