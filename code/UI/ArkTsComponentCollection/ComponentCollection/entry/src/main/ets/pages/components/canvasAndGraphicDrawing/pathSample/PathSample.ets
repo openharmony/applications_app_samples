@@ -15,9 +15,9 @@
 
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
+import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-import { PathControlPanel } from './ChangePanel'
+import { PathControlPanel } from './ChangePanel';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))

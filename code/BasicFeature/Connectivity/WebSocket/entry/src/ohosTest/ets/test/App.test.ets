@@ -54,12 +54,19 @@ export default function appTest() {
       // 输入服务器地址
       await driver.assertComponentExist(ON.id('text_ip_input'))
       let ipInput = await driver.findComponent(ON.id('text_ip_input'))
+      // 校验输入的IP地址格式是否正确
       await ipInput.inputText("xxx.xxx.xxx.xxx")
       await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + ' bindServer bind server')
-      // 点击绑定按钮
+      // 点击绑定按钮,显示格式不正确
       await driver.assertComponentExist(ON.id('btn_bind'))
       let btnBind = await driver.findComponent(ON.id('btn_bind'))
+      await btnBind.click()
+      await driver.delayMs(500)
+      // 重新输入正确格式的IP地址
+      await ipInput.inputText("192.168.43.244")
+      await driver.delayMs(1000)
+      // 点击绑定按钮
       await btnBind.click()
       await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + ' bindServer end')

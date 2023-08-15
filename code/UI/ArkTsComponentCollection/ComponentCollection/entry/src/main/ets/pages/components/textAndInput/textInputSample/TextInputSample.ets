@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { CommonItemSelect } from '../../../../common/AttributeModificationTool'
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
+import { CommonItemSelect } from '../../../../common/AttributeModificationTool';
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import ShowToast from '../../../../util/ShowToast';
+import { TitleBar } from '../../../../common/TitleBar';
 
 @Extend(Column) function backgroundStyle() {
   .width('100%')

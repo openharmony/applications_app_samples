@@ -97,6 +97,10 @@
       "value": "手机不能为空"
     },
     {
+      "name": "age_validate",
+      "value": "age invalidate"
+    },
+    {
       "name": "ascending",
       "value": "升序排列"
     },
@@ -159,6 +163,10 @@
     {
       "name": "search",
       "value": "查询"
+    },
+    {
+      "name": "add_contact",
+      "value": "新增联系人"
     }
   ]
 }

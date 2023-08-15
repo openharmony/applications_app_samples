@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool'
+import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct ChangeTextCase {

@@ -13,61 +13,67 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import DistributedObjectModel from '../model/DistributedObjectModel'
-import Logger from '../model/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import DistributedObjectModel from '../model/DistributedObjectModel';
+import DistributedCanvasModel from '../model/DistributedCanvasModel';
+import Logger from '../model/Logger';
 
-const TAG: string = 'MainAbility'
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info(TAG, 'MainAbility onCreate')
-    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
+  onCreate(want, launchParam): void {
+    Logger.info(TAG, 'MainAbility onCreate');
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
       atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-        Logger.info(TAG, `data:${JSON.stringify(data)}`)
+        Logger.info(TAG, `data:${JSON.stringify(data)}`);
       }).catch((err) => {
-        Logger.info(TAG, `err:${JSON.stringify(err)}`)
+        Logger.info(TAG, `err:${JSON.stringify(err)}`);
       })
     } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
-    let sessionId = want.parameters.sessionId ? want.parameters.sessionId : ''
-    AppStorage.SetOrCreate('sessionId', sessionId)
-    AppStorage.SetOrCreate('objectModel', new DistributedObjectModel())
+    let sessionId = want.parameters.sessionId ? want.parameters.sessionId : '';
+    AppStorage.SetOrCreate('sessionId', sessionId);
+    AppStorage.SetOrCreate('objectModel', new DistributedObjectModel());
+    AppStorage.SetOrCreate('canvasModel', new DistributedCanvasModel());
   }
 
-  onDestroy() {
-    Logger.info(TAG, 'MainAbility onDestroy')
+  onDestroy(): void {
+    Logger.info(TAG, 'MainAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage): void {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, 'MainAbility onWindowStageCreate')
-    windowStage.setUIContent(this.context, "pages/Index", null)
+    Logger.info(TAG, 'MainAbility onWindowStageCreate');
+    windowStage.setUIContent(this.context, 'pages/Index', null);
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    Logger.info(TAG, 'MainAbility onWindowStageDestroy')
+    Logger.info(TAG, 'MainAbility onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     // Ability has brought to foreground
-    Logger.info(TAG, 'MainAbility onForeground')
+    Logger.info(TAG, 'MainAbility onForeground');
   }
 
-  onBackground() {
+  onBackground(): void {
     // Ability has back to background
-    Logger.info(TAG, 'MainAbility onBackground')
+    Logger.info(TAG, 'MainAbility onBackground');
   }
 
-  onNewWant(want) {
-    Logger.info(TAG, 'onNewWant')
-    AppStorage.SetOrCreate('sessionId', want.parameters.sessionId)
-    let objectModel = <DistributedObjectModel> AppStorage.Get('objectModel')
-    objectModel.off()
-    AppStorage.SetOrCreate('objectModel', new DistributedObjectModel())
+  onNewWant(want): void {
+    Logger.info(TAG, 'onNewWant');
+    AppStorage.SetOrCreate('sessionId', want.parameters.sessionId);
+    let objectModel = <DistributedObjectModel> AppStorage.Get('objectModel');
+    objectModel.off();
+    AppStorage.SetOrCreate('objectModel', new DistributedObjectModel());
+
+    let canvasModel = <DistributedCanvasModel> AppStorage.Get('canvasModel');
+    canvasModel.off();
+    AppStorage.SetOrCreate('canvasModel', new DistributedObjectModel());
   }
 }

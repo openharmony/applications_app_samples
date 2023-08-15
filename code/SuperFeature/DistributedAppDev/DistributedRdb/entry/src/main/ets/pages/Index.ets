@@ -78,7 +78,7 @@ struct Index {
       Logger.info(TAG, 'isStage = Stage')
       this.state.isStage = true
       this.state.isDistributed = true
-      this.state.distributedDevice = want.parameters.dmsSrcNetworkId as string;
+      this.state.distributedDevice = want.parameters.device as string;
       let context = getContext(this) as common.UIAbilityContext
       context.startAbility({
         bundleName: BUNDLE,
@@ -280,7 +280,7 @@ struct Index {
           Logger.info(TAG, 'onClick')
           router.pushUrl({
             url: 'pages/ContactEdit',
-            params: { contact: new Contact(0, '', 0, '', 0, ''), isInsert: true }
+            params: { contact: new Contact(0, '', 0, '', -1, ''), isInsert: true }
           })
         })
       }

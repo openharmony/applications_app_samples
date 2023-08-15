@@ -13,10 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect
-} from '../../../../common/AttributeModificationTool';
-import { getStringArrayData } from '../../../../data/ResourceDataHandle';
-import { OBJECT_FIT_SELECT, RENDER_MODE_SELECT, REPEAT_SELECT } from '../../../components/ComponentData'
+import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct ShapeControlPanel {

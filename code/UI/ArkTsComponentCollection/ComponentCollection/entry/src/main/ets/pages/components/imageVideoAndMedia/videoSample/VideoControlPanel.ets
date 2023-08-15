@@ -15,7 +15,8 @@
 
 import { CommonItemSlider, CommonItemSelect,CommonItemColorSelect,CommonSwitcher} from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
-import {OBJECT_FIT_SELECT,CURRENT_RATE} from'../../../components/ComponentData'
+import {OBJECT_FIT_SELECT,CURRENT_RATE} from'../../../components/ComponentData';
+
 @Component
 export struct AutoPlaySwitchPanel {
   @Link AutoPlay:boolean ;

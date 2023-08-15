@@ -262,7 +262,7 @@ struct Watcher {
           .align(Alignment.Start)
 
           Flex({ direction: FlexDirection.Column }) {
-            Row() {
+            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
               Row() {
                 Text($r('app.string.watcherTitleText'))
                   .fontSize(14)
@@ -276,7 +276,7 @@ struct Watcher {
                   .opacity(0.6)
               }
               .width('61%')
-              .margin({ left: 24, right: 52 })
+              .padding({ left: 24, right: 52 })
               .backgroundColor('#f1f3f5')
 
               Row() {
@@ -304,6 +304,7 @@ struct Watcher {
                     }
                   })
               }
+              .justifyContent(FlexAlign.SpaceBetween)
               .height(48)
               .margin({ right: 24 })
               .width('30%')
@@ -411,7 +412,7 @@ struct Watcher {
                     .margin({ right: 24 })
                     .id('stopWatcher')
                     .onClick(() => {
-                      let showEventArray = [''];
+                      let showEventArray = [];
                       Logger.info('onClick this.eventArray.length = ' + this.eventArray.length);
                       let j = 0;
                       for (let i = 0; i < this.eventArray.length; i++) {

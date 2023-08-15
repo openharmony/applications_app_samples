@@ -17,7 +17,6 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
-import UIAbility from '@ohos.app.ability.UIAbility';
 
 const TAG: string = '[Sample_CustomPush]';
 const DOMAIN = 0xF811;

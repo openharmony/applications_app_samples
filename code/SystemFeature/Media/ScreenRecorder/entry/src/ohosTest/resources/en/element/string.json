@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "allow",
+      "value": "ALLOW"
+    },
+    {
+      "name": "whether",
+      "value": "BAN"
+    }
+  ]
+}

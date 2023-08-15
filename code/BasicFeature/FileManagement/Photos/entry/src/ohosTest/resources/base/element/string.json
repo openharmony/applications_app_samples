@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "permit",
+      "value": "permit"
+    },
+    {
+      "name": "album_all",
+      "value": "All photos"
+    },
+    {
+      "name": "album_camera",
+      "value": "Camera"
+    },
+    {
+      "name": "album_video",
+      "value": "Videos"
+    },
+    {
+      "name": "album_favor",
+      "value": "My favorites"
+    },
+    {
+      "name": "album_screen_shot",
+      "value": "Screenshots"
+    },
+    {
+      "name": "album_recycle",
+      "value": "Recently deleted"
+    },
+    {
+      "name": "album_new",
+      "value": "New album"
+    },
+    {
+      "name": "no_photo",
+      "value": "No photos or videos"
+    },
+    {
+      "name": "btn_favor",
+      "value": "Favorite"
+    },
+    {
+      "name": "btn_delete",
+      "value": "Delete"
+    },
+    {
+      "name": "btn_rename",
+      "value": "Rename"
+    },
+    {
+      "name": "btn_not_favor",
+      "value": "Unfavorite"
+    },
+    {
+      "name": "btn_more",
+      "value": "More"
+    },
+    {
+      "name": "btn_remove_form_album",
+      "value": "Remove from album"
+    },
+    {
+      "name": "btn_remove",
+      "value": "Remove"
+    },
+    {
+      "name": "btn_recover",
+      "value": "Restore"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "Done"
+    },
+    {
+      "name": "btn_toast",
+      "value": "Name already in use."
+    }
+  ]
+}

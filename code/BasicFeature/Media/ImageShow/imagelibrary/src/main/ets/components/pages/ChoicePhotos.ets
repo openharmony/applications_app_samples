@@ -196,6 +196,7 @@ export struct ChoicePhotos {
               }
             }
             .width('30%')
+            .id(`type${index}`)
           })
         }
         .margin({ top: 20 })

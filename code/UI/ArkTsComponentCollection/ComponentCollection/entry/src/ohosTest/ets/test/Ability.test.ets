@@ -2211,7 +2211,165 @@ export default function abilityTest() {
       })
 
       /**
-       * CanvasDialog 画布
+       * ScrollTo 动效
+       */
+      it(BUNDLE + 'ScrollTo_effect_001', 0, async function () {
+        let testName = 'ScrollToEffect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.scroll_To_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+
+        await driver.delayMs(DELAY_TIME);
+        // 点击按钮
+        await checkButtonAndClickWithID('scroll_to_effect_scroller');
+        await checkButtonAndClickWithID('scroll_to_effect_list');
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithID('scroll_to_effect_grid');
+        await checkButtonAndClickWithID('scroll_to_effect_waterflow');
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        if(!backBtn)
+        {
+          Logger.error('No backbtn found in ' + testName);
+        }
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+
+      /**
+       * Tab 模糊切换
+       */
+      it(BUNDLE + 'Tab_switch_effect_001', 0, async function () {
+        let testName = 'TabToEffect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.tabs_switch_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+
+        // 点击按钮
+        await checkButtonAndClickWithText('green');
+        await checkButtonAndClickWithText('blue');
+        await checkButtonAndClickWithText('yellow');
+        await checkButtonAndClickWithText('pink');
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        if (!backBtn)
+        {
+          Logger.error('Cannot find backbtn in this page');
+        }
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * ImageFit 切换
+       */
+      it(BUNDLE + 'ImageFit_effect_001', 0, async function () {
+        let testName = 'ImageFitEffect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.image_fit_Full_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+
+        // 点击按钮
+        await checkButtonAndClickWithText('RadioContain');
+        await checkButtonAndClickWithText('RadioCover');
+        await checkButtonAndClickWithText('RadioAuto');
+        await checkButtonAndClickWithText('RadioFill');
+        await checkButtonAndClickWithText('RadioScaleDown');
+        await checkButtonAndClickWithText('RadioNone');
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * Particle 粒子效果
+       */
+      it(BUNDLE + 'Particle_effect_001', 0, async function () {
+        let testName = 'Particle Effect';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 进入Scroll To 动效
+        let atom = await manager.getStringValue($r('app.string.particle_effect'))
+
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        }
+        await driver.swipe(100, 1000, 100, 400, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(atom);
+        await driver.delayMs(DELAY_TIME);
+
+        // 点击按钮
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.particle_spawn')));
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.particle_spawn_stop')));
+
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        // 返回
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        await driver.swipe(100, 400, 100, 1000, 5000);
+        await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+
+      /**
+       * ImageSpan 行内图像
        */
       it(BUNDLE + 'CanvasFunction_001', 0, async function () {
         let testName = 'CanvasFunction';

@@ -29,6 +29,10 @@
       "value": "美国"
     },
     {
+      "name": "china",
+      "value": "中国"
+    },
+    {
       "name": "date_time",
       "value": "日期和时间"
     },

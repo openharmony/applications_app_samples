@@ -148,18 +148,21 @@ struct Index {
         TextInput({ placeholder: 'left' })
           .inputStyle()
           .id('cursorLeft')
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.cursorInfo.left = parseInt(value);
           })
         TextInput({ placeholder: 'top' })
           .inputStyle()
           .id('cursorTop')
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.cursorInfo.top = parseInt(value);
           })
         TextInput({ placeholder: 'width' })
           .inputStyle()
           .id('cursorWidth')
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.cursorInfo.width = parseInt(value);
           })
@@ -167,6 +170,7 @@ struct Index {
         TextInput({ placeholder: 'height' })
           .inputStyle()
           .id('cursorHeight')
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.cursorInfo.height = parseInt(value);
           })
@@ -184,12 +188,14 @@ struct Index {
         TextInput({ placeholder: 'start' })
           .inputStyle()
           .id('selectStart')
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.selectStart = parseInt(value);
           })
         TextInput({ placeholder: 'end' })
           .inputStyle()
           .id('selectEnd')
+          .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
             this.selectEnd = parseInt(value);
           })

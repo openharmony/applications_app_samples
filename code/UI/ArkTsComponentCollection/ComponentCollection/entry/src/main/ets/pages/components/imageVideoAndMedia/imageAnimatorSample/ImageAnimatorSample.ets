@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
-import { getStringData } from '../../../../data/ResourceDataHandle'
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import ShowToast from '../../../../util/ShowToast';
+import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
 @Extend(Column) function cardStyle() {

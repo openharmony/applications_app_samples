@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel'
-import { TitleBar } from '../../../../common/TitleBar'
+import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel';
+import { TitleBar } from '../../../../common/TitleBar';
 
 @Extend(Column) function backgroundStyle() {
   .size({ width: '100%' })

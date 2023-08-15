@@ -18,6 +18,7 @@ import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { getString } from '../utils/ResourceUtil';
 
 const TAG: string = 'abilityTest';
 const DRIVER = Driver.create();
@@ -54,14 +55,18 @@ export default function abilityTest() {
     it('GetPermission_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'GetPermission_001 begin');
       await DRIVER.delayMs(3000);
-      await DRIVER.assertComponentExist(ON.text('允许'));
-      let allowBtn1 = await DRIVER.findComponent(ON.text('允许'));
+      let tipAllow = getString($r('app.string.allow'));
+      await DRIVER.assertComponentExist(ON.text(tipAllow));
+      // 访问图片和视频
+      let allowBtn1 = await DRIVER.findComponent(ON.text(tipAllow));
       await allowBtn1.click();
       await DRIVER.delayMs(1000);
-      let allowBtn2 = await DRIVER.findComponent(ON.text('允许'));
+      // 访问文件授权
+      let allowBtn2 = await DRIVER.findComponent(ON.text(tipAllow));
       await allowBtn2.click();
       await DRIVER.delayMs(1000);
-      let allowBtn3 = await DRIVER.findComponent(ON.text('允许'));
+      // 麦克风授权
+      let allowBtn3 = await DRIVER.findComponent(ON.text(tipAllow));
       await allowBtn3.click();
       await DRIVER.delayMs(1000);
       // 获取当前应用的ability
@@ -101,6 +106,9 @@ export default function abilityTest() {
       let stopRecordBtn = await DRIVER.findComponent(ON.id('stopRecord'));
       await stopRecordBtn.click();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StopRecord_001 click');
+      await DRIVER.delayMs(1000);
+      // 确定关闭后，停止按钮消失
+      expect(await stopRecordBtn.isEnabled()).assertNull();
       await DRIVER.delayMs(10000);
       // 再次获取媒体库中的视频数量
       // 读取媒体库的视频资源

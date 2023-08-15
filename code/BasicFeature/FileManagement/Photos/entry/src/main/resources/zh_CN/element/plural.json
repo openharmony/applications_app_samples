@@ -1,0 +1,82 @@
+{
+  "plural": [
+    {
+      "name": "count_details_selected",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "已选择 %d 项"
+        },
+        {
+          "quantity": "other",
+          "value": "已选择 %d 项"
+        }
+      ]
+    },
+    {
+      "name": "recycleAlbum_delete_message",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "所选设备上的文件将被永久删除，无法恢复。确定删除？"
+        },
+        {
+          "quantity": "other",
+          "value": "所选设备上的文件将被永久删除，无法恢复。确定删除？"
+        }
+      ]
+    },
+    {
+      "name": "show_photo_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d 张照片"
+        },
+        {
+          "quantity": "other",
+          "value": "%d 张照片"
+        }
+      ]
+    },
+    {
+      "name": "show_video_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d 个视频"
+        },
+        {
+          "quantity": "other",
+          "value": "%d 个视频"
+        }
+      ]
+    },
+    {
+      "name": "show_one_video_with_photo_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d 张照片，1 个视频"
+        },
+        {
+          "quantity": "other",
+          "value": "%d 张照片，1 个视频"
+        }
+      ]
+    },
+    {
+      "name": "show_multi_video_with_photo_num",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d 张照片，%d 个视频"
+        },
+        {
+          "quantity": "other",
+          "value": "%d 张照片，%d 个视频"
+        }
+      ]
+    }
+  ]
+}

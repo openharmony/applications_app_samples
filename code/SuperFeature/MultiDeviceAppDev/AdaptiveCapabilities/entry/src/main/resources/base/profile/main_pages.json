@@ -22,6 +22,7 @@
     "pages/gridRow/gridRow/GridRowSample7",
     "pages/gridRow/gridRow/GridRowSample8",
     "pages/gridRow/gridRow/GridRowSample9",
+    "pages/gridRow/gridRow/GridRowSample10",
     "pages/responsiveLayout/ResponsiveLayoutIndex",
     "pages/responsiveLayout/breakpoint/BreakpointSample",
     "pages/responsiveLayout/mediaQuery/MediaQuerySample",
@@ -37,6 +38,7 @@
     "pages/typicalScene/responsiveGrid/ResponsiveGridSample",
     "pages/typicalScene/sidebar/SidebarSample",
     "pages/typicalScene/bigImage/BigImageSample",
-    "pages/typicalScene/multiScene/pages/MultiScene"
+    "pages/typicalScene/multiScene/pages/MultiScene",
+    "pages/interactionNormCapability/InteractionNormCapability"
   ]
 }

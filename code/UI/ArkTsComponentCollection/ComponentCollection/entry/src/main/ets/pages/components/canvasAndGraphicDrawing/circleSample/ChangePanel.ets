@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect
-} from '../../../../common/AttributeModificationTool';
+import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct CircleControlPanel {

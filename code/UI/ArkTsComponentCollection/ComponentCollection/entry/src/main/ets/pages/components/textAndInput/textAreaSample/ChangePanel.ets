@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect,CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
-import { getStringArrayData } from '../../../../data/ResourceDataHandle';
+import { CommonItemSelect,CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+
 @Component
 export struct textAreaControlPanel {
   @Link placeholderColor: Color;

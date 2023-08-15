@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import ShowToast from '../../../../util/ShowToast';
+import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-import {textAreaControlPanel} from './ChangePanel'
+import {textAreaControlPanel} from './ChangePanel';
 
 @Extend(Column) function cardStyle(){
   .borderRadius(24)
@@ -29,12 +29,12 @@ import {textAreaControlPanel} from './ChangePanel'
 @Entry
 @Component
 struct TextAreaSample {
-  @State textAreaSet: string = ''
-  @State placeholderColor: Color = Color.Blue
-  @State textAlign: TextAlign = TextAlign.Start
-  @State caretColor:Color = Color.Blue
-  @State copyOptions: CopyOptions = CopyOptions.None
-  controller: TextAreaController = new TextAreaController()
+  @State textAreaSet: string = '';
+  @State placeholderColor: Color = Color.Blue;
+  @State textAlign: TextAlign = TextAlign.Start;
+  @State caretColor:Color = Color.Blue;
+  @State copyOptions: CopyOptions = CopyOptions.None;
+  controller: TextAreaController = new TextAreaController();
 
 
   build() {

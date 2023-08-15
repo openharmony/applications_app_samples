@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
+import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-import { ShapeControlPanel } from './ChangePanel'
+import { ShapeControlPanel } from './ChangePanel';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))

@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
+import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-import { LineControlPanel } from './ChangePanel'
+import { LineControlPanel } from './ChangePanel';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))

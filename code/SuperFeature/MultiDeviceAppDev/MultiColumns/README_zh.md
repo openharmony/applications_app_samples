@@ -26,7 +26,7 @@
 
 | 360vp                               | 600vp                               |
 | ----------------------------------- | ----------------------------------- |
-| ![](screenshots/Devices/image7.png) | ![](screenshots/Devices/image8.png) |
+| ![](screenshots/Devices/image8.png) | ![](screenshots/Devices/image7.png) |
 
 
 
@@ -111,8 +111,21 @@ MultiNavBar/entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持在标准系统上运行。
-2. 本示例已适配API version 10版本的SDK，镜像版本号：OpenHarmony 4.0.9.2。。
+2. 本示例已适配API version 10版本的SDK，镜像版本号：OpenHarmony 4.0.9.2。
 3. 本示例需要使用DevEco Studio 3.1 Release (构建版本：3.1.0.500，构建 2023年4月28日)及以上版本才可编译运行。
+4. 本示例在真机设备上运行时，需要修改设备系统配置文件以使能应用小窗口能力。
+
+```
+# 将开发板文件系统的权限配置为可读写
+hdc shell mount -o rw,remount /
+# 取出原始配置文件
+hdc file recv system/etc/window/resources/window_manager_config.xml C:\
+# 将文件中<decor enable="false"></decor>改为<decor enable="true"></decor>
+# 用修改后的文件替换系统中的原始文件
+hdc file send C:\window_manager_config.xml system/etc/window/resources/window_manager_config.xml
+# 重启后生效
+hdc shell reboot
+```
 
 ### 下载
 

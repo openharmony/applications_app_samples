@@ -18,6 +18,8 @@ import ShowToast from '../../../../util/ShowToast';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 import {AutoPlaySwitchPanel,VideoFitControlPanel,CurrentRateControlPanel} from '../videoSample/VideoControlPanel';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
 @Extend(Column) function cardStyle(){
   .backgroundColor($r('app.color.white'))
@@ -36,6 +38,7 @@ struct VideoSample {
   @State videoFit :ImageFit = ImageFit.Auto;
   @State videoLoop :boolean = false;
   controller: VideoController = new VideoController();
+  private context:any = getContext(this) as common.UIAbilityContext;
 
   build() {
       Column() {
@@ -47,7 +50,7 @@ struct VideoSample {
               Video({src:$r('app.media.video_test'),
               currentProgressRate:this.videoCurrent,
               previewUri:$r('app.media.ic_image_alt'),
-              controller:this.controller.requestFullscreen(true)})
+              controller:this.controller})
                 .height(400)
                 .autoPlay(this.autoPlay)
                 .controls(this.controlsShow)
@@ -80,6 +83,29 @@ struct VideoSample {
                 })
                 .onFullscreenChange((fullScreen)=>{
                   if(fullScreen){
+                    let windowClass = null;
+                    try {
+                      let promise = window.getLastWindow(this.context);
+                      promise.then((data)=> {
+                        windowClass = data;
+                        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+                      }).catch((err)=>{
+                        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+                      });
+                    } catch (exception) {
+                      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+                    }
+                    let orientation = window.Orientation.LANDSCAPE;
+                    try {
+                      let promise = windowClass.setPreferredOrientation(orientation);
+                      promise.then(()=> {
+                        console.info('Succeeded in setting the window orientation.');
+                      }).catch((err)=>{
+                        console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
+                      });
+                    } catch (exception) {
+                      console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+                    }
                     ShowToast.shortToast('FullScreen')
                   }
                   else{
@@ -95,6 +121,9 @@ struct VideoSample {
             Column(){
               VideoFitControlPanel({VideoObjectFit:$videoFit})
               CurrentRateControlPanel({currentRate:$videoCurrent})
+              Button('quanping').onClick(()=>{
+                this.controller.requestFullscreen(true)
+              })
             }.cardStyle()
           }
         }

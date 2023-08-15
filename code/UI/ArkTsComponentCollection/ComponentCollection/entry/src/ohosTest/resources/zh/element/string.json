@@ -2071,6 +2071,47 @@
     {
       "name": "global_menu",
       "value": "BindContextMenu 菜单"
+    },
+    // scrollTo 动效增强
+    {
+      "name": "scroll_To_effect",
+      "value": "ScrollTo 动效"
+    },
+    {
+      "name": "scroller",
+      "value": "Scroller"
+    },
+    {
+      "name": "list",
+      "value": "List"
+    },
+    {
+      "name": "grid",
+      "value": "Grid"
+    },
+    {
+      "name": "waterFlow",
+      "value": "WaterFlow"
+    },
+    {
+      "name": "tabs_switch_effect",
+      "value": "Tabs 模糊切换"
+    },
+    {
+      "name": "image_fit_Full_effect",
+      "value": "Image fit/full 动效"
+    },
+    {
+      "name": "particle_effect",
+      "value": "Particle 粒子效果"
+    },
+    {
+      "name": "particle_spawn",
+      "value": "生成"
+    },
+    {
+      "name": "particle_spawn_stop",
+      "value": "停止"
     }
   ]
 }

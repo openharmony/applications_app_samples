@@ -95,6 +95,7 @@ export struct setting {
             TextInput({ placeholder: $r('app.string.web') })
               .width('75%')
               .margin({ left: 4, right: 2 })
+              .enableKeyboardOnFocus(false)
               .onChange((value: string) => {
                 this.url = value
               })

@@ -16,7 +16,7 @@
 import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect
 } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
-import { PATH_SELECT_COMMANDS } from '../../ComponentData'
+import { PATH_SELECT_COMMANDS } from '../../ComponentData';
 
 @Component
 export struct PathControlPanel {

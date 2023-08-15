@@ -22,13 +22,13 @@
 
 ### 效果预览：
 
-|首页|自适应布局|响应式布局|典型场景|
-|-----|-----|----|-----|
-|![](screenshots/devices/img1.png)|![](screenshots/devices/img2.png)|![](screenshots/devices/img3.png)|![](screenshots/devices/img4.png)|
+| 首页                                 | 自适应布局                              | 响应式布局                              | 典型场景                               |
+|------------------------------------|------------------------------------|------------------------------------|------------------------------------|
+| ![](screenshots/devices/img1.jpeg) | ![](screenshots/devices/img2.jpeg) | ![](screenshots/devices/img3.jpeg) | ![](screenshots/devices/img4.jpeg) |
 
 使用说明
 
-1. 启动应用，首页展示了自适应布局、响应式布局、典型布局场景和资源限定词四个按钮。
+1. 启动应用，首页展示了自适应布局、响应式布局、典型布局场景和资源文件使用四个按钮。
 
 2. 点击"自适应布局"进入新页面，分别展示拉伸能力、缩放能力、隐藏能力、折行能力、均分能力、占比能力和延伸能力共7种自适应布局能力。
 
@@ -36,7 +36,7 @@
 
 4. 点击"典型布局场景"进入新页面，展示了如何通过自适应布局能力和响应式布局能力，实现应用开发中的典型场景。
 
-5. 点击"资源限定词"进入新页面，展示字符串和图片资源的使用。
+5. 点击"资源文件使用"进入新页面，展示字符串和图片资源的使用。
 
 ### 工程目录
 ```
@@ -45,7 +45,8 @@ entry/src/main/ets/
 |   |---AbilityStage.ts
 |---common
 |   |---BreakpointSystem.ets                    
-|   |---DirectoryList.ets                  
+|   |---DirectoryList.ets
+|   |---GetValueOnBreakpoint.ets
 |---MainAbility
 |   |---MainAbility.ts
 |---model
@@ -81,7 +82,10 @@ entry/src/main/ets/
 |   |   |   |---GridRowSample7.ets                      // 栅格order
 |   |   |   |---GridRowSample8.ets                      // 栅格span/offset/order继承性
 |   |   |   |---GridRowSample9.ets                      // 栅格嵌套
+|   |   |   |---GridRowSample10.ets                     // 栅格对齐
 |   |   |---GridRowLayoutIndex.ets                      // 栅格布局
+|   |---interactionNormCapability
+|   |   |---InteractionNormCapability.ets                // 交互归一能力
 |   |---resourceQualifier
 |   |   |---ResourceQualifier.ets                        // 资源文件使用
 |   |---responsiveLayout
@@ -146,9 +150,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；。
+2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.3，镜像版本号：OpenHarmony 4.0.9.3。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上版本才可编译运行。
 
 4.本示例在开发板上运行时，可以修改开发板系统配置文件以使能应用窗口能力。
 

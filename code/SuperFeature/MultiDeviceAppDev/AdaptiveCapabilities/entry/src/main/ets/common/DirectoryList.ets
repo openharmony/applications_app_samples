@@ -32,26 +32,26 @@ struct DirectoryList {
         Text(this.title)
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
-          .height(100)
+          .height(100);
 
         ForEach(this.directory, (item) => {
           Button(item.title)
-            .id(item.id)
-            .fontSize(20)
-            .width('90%')
-            .height(55)
-            .margin(12)
-            .backgroundColor('#007DFF')
-            .onClick(() => {
-              router.pushUrl({
-                url: item.uri
-              })
+          .id(item.id)
+          .fontSize(20)
+          .width('90%')
+          .height(55)
+          .margin(12)
+          .backgroundColor('#007DFF')
+          .onClick(() => {
+            router.pushUrl({
+              url: item.uri
             })
-        })
+          });
+        });
       }
     }
     .width('100%')
-    .padding({left: 10, right: 10, bottom: 100})
+    .padding({left: 10, right: 10, bottom: 100});
   }
 }
 

@@ -216,6 +216,18 @@
     {
       "name": "canvas_bg_color",
       "value": "#00ffff"
+    },
+    {
+      "name": "scroll_to_button_color",
+      "value": "#ff55c6f5"
+    },
+    {
+      "name": "scroll_item_color",
+      "value": "#ff2a78db"
+    },
+    {
+      "name": "scroll_grid_item_color",
+      "value": "#F9CF93"
     }
   ]
 }

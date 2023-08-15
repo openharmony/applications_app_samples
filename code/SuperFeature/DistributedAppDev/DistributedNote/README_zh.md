@@ -14,22 +14,27 @@
 
 
 ### 效果预览
-| 首页                                    | 
-|---------------------------------------|
-| ![home](screenshots/devices/home.png) |
+| 首页                                    | Note主页                              | Canvas主页                                |
+| --------------------------------------- | ------------------------------------- | ----------------------------------------- |
+| ![index](screenshots/devices/index.png) | ![home](screenshots/devices/home.png) | ![canvas](screenshots/devices/canvas.png) |
 
 
 使用说明
 
-1.启动应用,点击右上角按钮可以连接组网设备，选择设备后进行连接，连接成功后两个设备上首页状态均显示绿色，每次连接其他设备，界面会清空备忘录内容。
+1.  启动应用，选择允许授权后，选择不同的分布式对象进入，如选择distributiedNote，则进入笔记界面：
+   1. 点击右上角按钮可以连接组网设备，选择设备后进行连接，连接成功后两个设备上首页状态均显示绿色，每次连接其他设备，界面会清空备忘录内容。
+   2. 点击**添加**按钮进入添加界面，可以编辑标题、内容、标记颜色，点击**提交**按钮添加备忘录。
+   3. 点击**清除**按钮清除所有备忘录内容。
+   4. 点击已经添加的备忘录可以进入编辑界面更新备忘录内容，编辑完成后点击**提交**按钮更新备忘录。
+   5. 两台设备连接成功后步骤2、3、4的操作会同步到另一台设备上。
+2. 如选择distributiedCanvas，则进入画布界面：
+   1. 点击右上角按钮可以连接组网设备，选择设备后进行连接，连接成功后两个设备上首页状态均显示绿色。
+   2. 点击ellipse或者rect按钮，则进行绘制对应的图形。
+   3. 点击delete，则删除所有绘制的图形。
+   4. 两台设备连接成功后步骤2、3的操作会同步到另一台设备上。
+   5. 点击back按钮，则回退到选择分布式对象的首页。
 
-2.点击**添加**按钮进入添加界面，可以编辑标题、内容、标记颜色，点击**提交**按钮添加备忘录。
 
-3.点击**清除**按钮清除所有备忘录内容。
-
-4.点击已经添加的备忘录可以进入编辑界面更新备忘录内容，编辑完成后点击**提交**按钮更新备忘录。
-
-5.两台设备连接成功后步骤2、3、4的操作会同步到另一台设备上。
 
 #### 相关概念
 
@@ -39,14 +44,18 @@
 ```
 entry/src/main/ets/
 |---pages
-|   |---index.ets                           // 首页
+|   |---index.ets                           // 选择分布式对象首页
 |   |---Edit.ets                            // 编写笔记页面
+|   |---IndexCanvas.ets                     // 画布首页
+|   |---IndexNote.ets                       // 笔记页面
 |---MainAbility                                    
 |   |---MainAbility.ts                      // 请求用户授权
 |---model                                  
 |   |---Const.ts                            // 静态资源模块（笔记标记颜色的图片资源）
-|   |---DistributedObjectModel.ts           // 分布式数据对象类
+|   |---DistributedObjectModel.ts           // 分布式Note数据对象类
+|   |---DistributedCanvasModel.ts           // 分布式Canvas数据对象类
 |   |---Note.ts                             // Note对象操作类
+|   |---Canvas.ts                           // Canvas对象操作类
 |   |---RemoteDeviceModel.ts                // 远程设备操作类
 |---common                                    
 |   |---BasicDataSource.ets                 // 初始化数据模块
@@ -91,11 +100,15 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
+2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.1，镜像版本号：OpenHarmony4.0.9.1；
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行；
 
 4.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+
+5.本示例所配置的权限均为system_basic或system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F))。
+
+6.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info对象内部结构)
 
 ### 下载
 
