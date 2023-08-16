@@ -65,6 +65,12 @@ entry/src/main/ets/
 |   |   |   |---MultiplexSample.ets                      // 多任务
 |   |   |---shopSample
 |   |   |   |---ShopCardSample.ets                       // 商店卡片展开
+|   |   |---layoutAnimationSample
+|   |   |   |---LayoutAnimationSample.ets                // 布局动效
+|   |   |---sideBarTransitionSample
+|   |   |   |---SideBarTransitionSample.ets              // 侧边栏动效
+|   |   |---sizeTransitionSample
+|   |   |   |---SizeTransitionSample.ets                 // 尺寸变换动效
 |   |---components                                       // 详情页面
 |   |   |---ComponentData.ets
 |   |   |---auxiliary         // 辅助
@@ -324,6 +330,8 @@ entry/src/main/ets/
 |   |   |   |---tapGestureSample
 |   |   |   |   |---TapGestureSample.ets                 // Tap手势
 |   |   |---properties
+|   |   |   |---foregroundSample
+|   |   |   |   |---ForegroundSample.ets                 // 前景
 |   |   |   |---backgroundSample
 |   |   |   |   |---BackgroundSample.ets                 // 背景
 |   |   |   |---borderSample

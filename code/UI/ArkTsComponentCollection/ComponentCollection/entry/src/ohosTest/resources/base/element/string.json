@@ -126,7 +126,7 @@
     },
     {
       "name": "transition_animation",
-      "value": "转场动画"
+      "value": "Transition animation"
     },
     {
       "name": "interpolation_calculation",
@@ -907,6 +907,18 @@
       "name": "Gallery_card_expansion",
       "value": "gallery card expansion"
     },
+        {
+      "name": "layout_animation_expansion",
+      "value": "Layout animation"
+    },
+    {
+      "name": "size_transition_expansion",
+      "value": "Size transition"
+    },
+    {
+      "name": "side_bar_effects_title",
+      "value": "SideBar effects"
+    },
     // Size
     {
       "name": "size_width",
@@ -1375,6 +1387,22 @@
     {
       "name": "components_interaction_clicktextone",
       "value": "Background"
+    },
+    {
+      "name": "set_background_blur_style_color_mode",
+      "value": "Set background blur style color mode"
+    },
+    {
+      "name": "set_background_blur_style_adaptive_color",
+      "value": "Set background blur style adaptive color"
+    },
+    {
+      "name": "set_shadow_type",
+      "value": "Set shadow type"
+    },
+    {
+      "name": "prop_foreground",
+      "value": "Foreground"
     },
     {
       "name": "components_interaction_clicktexttwo",

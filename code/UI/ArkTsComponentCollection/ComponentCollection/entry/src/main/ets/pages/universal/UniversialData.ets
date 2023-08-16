@@ -19,6 +19,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
   [
     {
       image: $r('app.media.ic_prop_background'),
+      title: $r('app.string.prop_foreground'),
+      url: 'pages/universal/properties/foregroundSample/ForegroundSample'
+    },
+    {
+      image: $r('app.media.ic_prop_background'),
       title: $r('app.string.prop_background'),
       url: 'pages/universal/properties/backgroundSample/BackgroundSample'
     },
@@ -252,3 +257,14 @@ export let visibileTypes: { value: Resource }[] =
 export let placementsNameData = ['TopLeft', 'Top', 'TopRight', 'RightTop', 'Right', 'RightBottom', 'LeftTop', 'Left', 'LeftBottom', 'BottomLeft', 'Bottom', 'BottomRight']
 export let hitTestModeNameData = ['Default', 'Block', 'Transparent', 'None']
 export let hoverEffectNameData = ['None', 'Highlight', 'Auto', 'Scale']
+
+
+export let selectImageSizeData: Resource[] = [$r('app.string.background_image_size_cover'), $r('app.string.background_image_size_contain')]
+
+export let selectImageAlignmentData: Resource[] = [$r('app.string.background_image_position_top_start'), $r('app.string.background_image_position_top'), $r('app.string.background_image_position_top_end'), $r('app.string.background_image_position_start'),   $r('app.string.background_image_position_center'),  $r('app.string.background_image_position_end'),  $r('app.string.background_image_position_bottom_start'), $r('app.string.background_image_position_bottom'), $r('app.string.background_image_position_bottom_end') ]
+
+export let selectBlurStyleColorModeData: Resource[] = [$r('app.string.blur_style_system'), $r('app.string.blur_style_light'), $r('app.string.blur_style_dark')]
+
+export let selectBlurStyleAdaptiveColorData: Resource[] = [$r('app.string.blur_style_default'), $r('app.string.blur_style_average')]
+
+export let selectShadowTypeData: Resource[] = [$r('app.string.shadow_type_color'), $r('app.string.shadow_type_blur')]

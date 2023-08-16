@@ -37,6 +37,10 @@
       "value": "Background"
     },
     {
+      "name": "prop_foreground",
+      "value": "Foreground"
+    },
+    {
       "name": "prop_border",
       "value": "Border"
     },
@@ -184,6 +188,76 @@
       "name": "canvas_and_graphic_drawing",
       "value": "Canvas and graphic drawing"
     },
+    // layout Animation
+    {
+      "name": "layout_animation_expansion",
+      "value": "Layout animation"
+    },
+    {
+      "name": "layout_animation_expansion_align",
+      "value": "Align animation"
+    },
+    {
+      "name": "layout_animation_expansion_size",
+      "value": "Size animation"
+    },
+    {
+      "name": "layout_animation_expansion_padding",
+      "value": "Padding animation"
+    },
+    {
+      "name": "layout_animation_expansion_margin",
+      "value": "Margin animation"
+    },
+    {
+      "name": "layout_animation_expansion_offset",
+      "value": "Offset animation"
+    },
+    {
+      "name": "layout_animation_expansion_position",
+      "value": "Position animation"
+    },
+    {
+      "name": "layout_animation_expansion_markAnchor",
+      "value": "MarkAnchor animation"
+    },
+    {
+      "name": "layout_animation_expansion_alignRules",
+      "value": "AlignRules animation"
+    },
+    {
+      "name": "layout_animation_expansion_direction",
+      "value": "Direction animation"
+    },
+    // size transition
+    {
+      "name": "size_transition_expansion",
+      "value": "Size transition"
+    },
+    {
+      "name": "size_transition_flex",
+      "value": "Flex"
+    },
+    {
+      "name": "size_transition_grid_item",
+      "value": "GridItem"
+    },
+    {
+      "name": "size_transition_list_item",
+      "value": "ListItem"
+    },
+    {
+      "name": "size_transition_swiper_item",
+      "value": "SwiperItem"
+    },
+    {
+      "name": "size_transition_font_size",
+      "value": "FontSize"
+    },
+    {
+      "name": "size_transition_expansion_tabContent",
+      "value": "TabContent"
+    },
     // AlertDialog
     {
       "name": "alert_dialog",
@@ -285,6 +359,11 @@
       "name": "alert_dialog_grid_four",
       "value": "4 grid width"
     },
+    // Foreground
+    {
+      "name": "foreground_color",
+      "value": "Set foreground color"
+    },
     // Background
     {
       "name": "background_color",
@@ -306,6 +385,105 @@
       "name": "background_gradient_radial",
       "value": "Radial gradient"
     },
+    {
+      "name": "background_image_transformation_effect",
+      "value": "Background image transformation effect"
+    },
+    {
+      "name": "set_background_image_size",
+      "value": "Set background image size"
+    },
+    {
+      "name": "set_background_image_position",
+      "value": "Set background image position"
+    },
+    {
+      "name": "set_background_blur_style_color_mode",
+      "value": "Set background blur style color mode"
+    },
+    {
+      "name": "set_background_blur_style_adaptive_color",
+      "value": "Set background blur style adaptive color"
+    },
+    {
+      "name": "blur_style_system",
+      "value": "System"
+    },
+    {
+      "name": "blur_style_light",
+      "value": "Light"
+    },
+    {
+      "name": "blur_style_dark",
+      "value": "Dark"
+    },
+    {
+      "name": "blur_style_default",
+      "value": "Default"
+    },
+    {
+      "name": "set_shadow_type",
+      "value": "Set shadow type"
+    },
+    {
+      "name": "shadow_type_color",
+      "value": "COLOR"
+    },
+    {
+      "name": "shadow_type_blur",
+      "value": "BLUR"
+    },
+    {
+      "name": "blur_style_average",
+      "value": "Average"
+    },
+    {
+      "name": "background_image_size_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "background_image_size_contain",
+      "value": "Contain"
+    },
+
+    {
+      "name": "background_image_position_top_start",
+      "value": "TopStart"
+    },
+    {
+      "name": "background_image_position_top",
+      "value": "Top"
+    },
+    {
+      "name": "background_image_position_top_end",
+      "value": "TopEnd"
+    },
+    {
+      "name": "background_image_position_start",
+      "value": "Top"
+    },
+    {
+      "name": "background_image_position_center",
+      "value": "Center"
+    },
+    {
+      "name": "background_image_position_end",
+      "value": "End"
+    },
+    {
+      "name": "background_image_position_bottom_start",
+      "value": "BottomStart"
+    },
+    {
+      "name": "background_image_position_bottom",
+      "value": "Bottom"
+    },
+
+    {
+      "name": "background_image_position_bottom_end",
+      "value": "BottomEnd"
+    },
+
     {
       "name": "background_image",
       "value": "Set background image"
@@ -1582,6 +1760,10 @@
       "value": "Background Blur"
     },
     {
+      "name": "background_blur_style",
+      "value": "Background Blur Style"
+    },
+    {
       "name": "shadow_effects",
       "value": "Shadow Effect"
     },
@@ -1640,6 +1822,18 @@
     {
       "name": "color_blend_change",
       "value": "Colorblend"
+    },
+    {
+      "name": "spherical_effect_change",
+      "value": "sphericalEffect"
+    },
+    {
+      "name": "light_up_effect_change",
+      "value": "lightUpEffect"
+    },
+    {
+      "name": "pixel_stretch_effect_change",
+      "value": "pixelStretchEffect"
     },
     {
       "name": "z_index",
@@ -1788,6 +1982,39 @@
     {
       "name": "status_select",
       "value": "Status selection"
+    },
+    // 侧边栏
+    {
+      "name": "side_bar_effects_title",
+      "value": "SideBar effects"
+    },
+    {
+      "name": "set_side_bar_type",
+      "value": "Set sideBarType"
+    },
+    {
+      "name": "side_bar_container_content",
+      "value": "SideBar container content"
+    },
+    {
+      "name": "hide_side_bar",
+      "value": "Hide sideBar"
+    },
+    {
+      "name": "show_side_bar",
+      "value": "Show sideBar"
+    },
+    {
+      "name": "side_bar_type_embed",
+      "value": "Embed"
+    },
+    {
+      "name": "side_bar_type_overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "side_bar_type_auto",
+      "value": "Auto"
     },
     // 辅助
     {
@@ -4616,7 +4843,6 @@
       "name": "web",
       "value": "Web"
     },
-
     {
       "name": "canvas_components",
       "value": "Canvas components"

@@ -30,7 +30,7 @@ struct Game2048 {
     new DataType(4, 0), new DataType(5, 0), new DataType(6, 0), new DataType(7, 0),
     new DataType(8, 0), new DataType(9, 0), new DataType(10, 0), new DataType(11, 0),
     new DataType(12, 0), new DataType(13, 0), new DataType(14, 0), new DataType(15, 0)])
-  private gameRule: GameRule = new GameRule(this.dataNumbers['dataArray'])
+  @State gameRule: GameRule = new GameRule(this.dataNumbers['dataArray'])
   @State maxScore: number = 123456
   @State curScore: number = 0
   @State @Watch('onGameOver') gameStatus: number = GameStatus.BEFORE

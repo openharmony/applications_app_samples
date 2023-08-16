@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import distributedData from '@ohos.data.distributedData'
+import distributedKVStore from '@ohos.data.distributedKVStore';
 import Logger from '../model/Logger'
 
 const STORE_ID: string = 'musicplayer_kvstore'
 const TAG: string = 'KvStoreModel'
 
 class KvStoreModel {
-  private kvManager: distributedData.KVManager
+  private kvManager: distributedKVStore.KVManager
   private kvStore
 
   constructor() {
@@ -37,14 +37,14 @@ class KvStoreModel {
         context: context
       }
       Logger.info(TAG, 'createKVManager begin')
-      this.kvManager = await distributedData.createKVManager(config)
+      this.kvManager = await distributedKVStore.createKVManager(config)
       Logger.info(TAG, `createKVManager success, kvManager`)
       let options = {
         createIfMissing: true,
         encrypt: false,
         backup: false,
         autoSync: true,
-        kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         schema: null,
         securityLevel: 3,
       }

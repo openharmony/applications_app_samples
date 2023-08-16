@@ -37,6 +37,10 @@
       "value": "background 背景"
     },
     {
+      "name": "prop_foreground",
+      "value": "Foreground 前景"
+    },
+    {
       "name": "prop_border",
       "value": "border 边框"
     },
@@ -171,6 +175,52 @@
       "name": "canvas_and_graphic_drawing",
       "value": "画布与图形绘制"
     },
+    // layout Animation
+    {
+      "name": "layout_animation_expansion",
+      "value": "布局动效"
+    },
+    {
+      "name": "layout_animation_expansion_align",
+      "value": "Align 动效"
+    },
+    {
+      "name": "layout_animation_expansion_size",
+      "value": "Size 动效"
+    },
+    {
+      "name": "layout_animation_expansion_padding",
+      "value": "Padding 动效"
+    },
+    {
+      "name": "layout_animation_expansion_margin",
+      "value": "Margin 动效"
+    },
+    {
+      "name": "layout_animation_expansion_offset",
+      "value": "Offset 动效"
+    },
+    {
+      "name": "layout_animation_expansion_position",
+      "value": "Position 动效"
+    },
+    {
+      "name": "layout_animation_expansion_markAnchor",
+      "value": "MarkAnchor 动效"
+    },
+    {
+      "name": "layout_animation_expansion_alignRules",
+      "value": "AlignRules 动效"
+    },
+    {
+      "name": "layout_animation_expansion_direction",
+      "value": "Direction 动效"
+    },
+    // size transition
+    {
+      "name": "size_transition_expansion",
+      "value": "尺寸变换动效"
+    },
     // AlertDialog
     {
       "name": "alert_dialog",
@@ -272,6 +322,11 @@
       "name": "alert_dialog_grid_four",
       "value": "4栅格宽度"
     },
+    // Foreground
+    {
+      "name": "foreground_color",
+      "value": "前景颜色"
+    },
     // Background
     {
       "name": "background_color",
@@ -293,6 +348,19 @@
       "name": "background_gradient_radial",
       "value": "径向渐变"
     },
+    {
+      "name": "background_image_transformation_effect",
+      "value": "背景图片动效"
+    },
+    {
+      "name": "set_background_image_size",
+      "value": "设置背景图片大小类型"
+    },
+    {
+      "name": "set_background_image_position",
+      "value": "设置背景图片位置"
+    },
+
     {
       "name": "background_image",
       "value": "背景图片"
@@ -1397,8 +1465,24 @@
       "value": "半径调整"
     },
     {
+      "name": "set_background_blur_style_color_mode",
+      "value": "纹理效果调整"
+    },
+    {
+      "name": "set_background_blur_style_adaptive_color",
+      "value": "取色效果调整"
+    },
+    {
       "name": "background_blur",
       "value": "背景模糊"
+    },
+    {
+      "name": "background_blur_style",
+      "value": "背景模糊取色类型"
+    },
+    {
+      "name": "set_shadow_type",
+      "value": "阴影效果类型"
     },
     {
       "name": "shadow_effects",
@@ -1459,6 +1543,18 @@
     {
       "name": "color_blend_change",
       "value": "颜色调整"
+    },
+    {
+      "name": "light_up_effect_change",
+      "value": "亮起程度调整"
+    },
+    {
+      "name": "spherical_effect_change",
+      "value": "球面化程度调整"
+    },
+    {
+      "name": "pixel_stretch_effect_change",
+      "value": "边缘像素扩展调整"
     },
     {
       "name": "z_index",
@@ -1607,6 +1703,27 @@
     {
       "name": "status_select",
       "value": "状态选择"
+    },
+    // 侧边栏
+    {
+      "name": "side_bar_effects_title",
+      "value": "侧边栏动效"
+    },
+    {
+      "name": "set_side_bar_type",
+      "value": "侧边栏的显示类型"
+    },
+    {
+      "name": "side_bar_container_content",
+      "value": "SideBar container content"
+    },
+    {
+      "name": "hide_side_bar",
+      "value": "隐藏侧边栏"
+    },
+    {
+      "name": "show_side_bar",
+      "value": "展开侧边栏"
     },
     // 辅助
     {

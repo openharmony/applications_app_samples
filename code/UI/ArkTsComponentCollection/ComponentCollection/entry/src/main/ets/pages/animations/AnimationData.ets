@@ -54,7 +54,19 @@ const TRANSITION_ANIMATION: ThirdLevelCategory =
       },
       {
         title: $r('app.string.component_transition'),
-        url: 'pages/animations/TransitionAnimations/componentTransitionSample/ComponentTransitionSample'
+        url: 'pages/animations/TransitionAnimations/componentTransitionSample/ComponentTransitionSample',
+      },
+      {
+        title: $r('app.string.layout_animation_expansion'),
+        url: 'pages/animations/TransitionAnimations/layoutAnimationSample/LayoutAnimationSample',
+      },
+      {
+        title: $r('app.string.size_transition_expansion'),
+        url: 'pages/animations/TransitionAnimations/sizeTransitionSample/SizeTransitionSample',
+      },
+      {
+        title: $r('app.string.side_bar_effects_title'),
+        url: 'pages/animations/TransitionAnimations/sideBarTransitionSample/SideBarTransitionSample',
       }
     ]
   }
