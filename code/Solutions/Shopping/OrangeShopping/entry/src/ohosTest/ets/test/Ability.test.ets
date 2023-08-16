@@ -57,6 +57,8 @@ export default function abilityTest() {
       await agree.click();
       await driver.delayMs(1000);
       await agree.click();
+      await driver.delayMs(1000);
+      await agree.click();
       await driver.delayMs(2000);
       // 允许通知
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
