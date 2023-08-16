@@ -1,8 +1,0 @@
-{
-  "src": [
-    "upload/pages/Upload",
-    "upload/pages/CameraPage",
-    "pages/Index",
-    "download/pages/Download"
-  ]
-}
