@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import consts from '../module/Consts'
 import { Header } from '../component/Header'
 
 @Entry
@@ -32,7 +31,8 @@ struct About {
           .fontSize(16)
           .textAlign(TextAlign.Center)
           .fontColor(0x878980)
-      }.size({ width: '90%', height: '90%' })
+      }.size({ width: '90%', height: '85%' })
+      .position({ x: '5%', y: '10%' })
     }.size({ width: '100%', height: '100%' })
     .backgroundImage($rawfile('vbg720.png'))
     .backgroundImageSize(ImageSize.Contain)
