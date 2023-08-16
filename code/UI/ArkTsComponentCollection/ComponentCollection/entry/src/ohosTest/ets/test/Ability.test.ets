@@ -1920,6 +1920,27 @@ export default function abilityTest() {
       });
 
       /**
+       * foreground 前景
+       */
+      it(BUNDLE + 'ForegroundFunction_001', 0, async function () {
+        let testName = 'ForegroundFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_foreground')));
+
+        // 正常显示
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * background 背景
        */
       it(BUNDLE + 'BackgroundFunction_001', 0, async function () {
@@ -1930,6 +1951,28 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_background')));
+        // 正常显示
+        await driver.delayMs(DELAY_TIME);
+
+        // 向下滑动 固定坐标只支持RK3568，其他设备需要调整
+        let scrollBar = await driver.findComponent(ON.type('Scroll'));
+        await scrollBar.scrollToBottom();
+        await driver.delayMs(500);
+
+        // 展开设置背景图片大小类型
+        await checkButtonAndClickWithID("test_select1");
+
+        // 选择一个 Contain
+        await checkButtonAndClickWithText('Contain');
+        await driver.delayMs(DELAY_TIME);
+
+        // 展开设置背景图片位置
+        await checkButtonAndClickWithID("test_select2");
+
+        // 选择一个 Center
+        await checkButtonAndClickWithText('Center');
+        await driver.delayMs(DELAY_TIME);
+
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -2503,6 +2546,85 @@ export default function abilityTest() {
       });
 
       /**
+       * 图像效果
+       */
+      it(BUNDLE + 'EffectsFunction_001', 0, async function () {
+        let testName = 'EffectsFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 滑动一段距离
+        await driver.drag(110, 752, 110, 500, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.components_effects')));
+
+        // 向下滑动 固定坐标只支持RK3568，其他设备需要调整
+        let scrollBar = await driver.findComponent(ON.type('Scroll'));
+        await scrollBar.scrollToBottom();
+        await driver.delayMs(500);
+
+        // 展开纹理效果调整
+        await checkButtonAndClickWithID("test_select1");
+
+        // 选择一个 Dark
+        await checkButtonAndClickWithText('Dark');
+        await driver.delayMs(DELAY_TIME);
+
+        // 展开纹理效果调整
+        await checkButtonAndClickWithID("test_select2");
+
+        // 选择一个 Dark
+        await checkButtonAndClickWithText('Average');
+        await driver.delayMs(DELAY_TIME);
+
+        // 点击阴影
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.shadow')));
+
+        // 滑动半径调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(200, 500, 300, 500, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 展开阴影效果类型
+        await checkButtonAndClickWithID("test_select1");
+
+        // 选择一个 BLUR
+        await checkButtonAndClickWithText('BLUR');
+        await driver.delayMs(DELAY_TIME);
+
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(200, 957, 300, 957, 800)
+        await driver.delayMs(DELAY_TIME);
+
+        // 点击特效
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.effects')));
+
+        // 滑到底端
+        await driver.drag(110, 752, 110, 500, 800);
+        await driver.delayMs(DELAY_TIME);
+        await driver.delayMs(DELAY_TIME);
+
+        // 滑动亮起效果调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(450, 885, 350, 885, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 滑动球面化程度调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(450, 925, 350, 925, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 滑动边缘像素扩展调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(450, 1025, 350, 1025, 800);
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * TarBar 进入动画
        */
       it(BUNDLE + 'TarBarAnimateFunction_001', 0, async function () {
@@ -2802,11 +2924,100 @@ export default function abilityTest() {
       })
 
       /**
-       * Interpolation Calculation 插值计算
+       * 布局动效
        */
-      it(BUNDLE + 'InterpolationFunction_001', 0, async function () {
-        let testName = 'InterpolationFunction';
+      it(BUNDLE + 'LayoutAnimationFunction_001', 0, async function () {
+        let testName = 'LayoutAnimationFunction';
         Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.layout_animation_expansion'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.layout_animation_expansion')));
+
+        // 等待动画显示完毕
+        await driver.delayMs(5000);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * 尺寸变换动效
+       */
+      it(BUNDLE + 'LayoutAnimationFunction_001', 0, async function () {
+        let testName = 'LayoutAnimationFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.size_transition_expansion'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.size_transition_expansion')));
+
+        // 等待动画显示完毕
+        await driver.delayMs(5000);
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
+       * 侧边栏动效
+       */
+      it(BUNDLE + 'LayoutAnimationFunction_001', 0, async function () {
+        let testName = 'LayoutAnimationFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        let button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.side_bar_effects_title'))));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
+        }
+
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.side_bar_effects_title')));
+
+        // 展开侧边栏的显示类型
+        await checkButtonAndClickWithID('test_itemSelect');
+
+        // 选择一个 Overlay
+        await checkButtonAndClickWithText('Embed');
+
+        // 点击展开侧边栏并等待查看效果
+        await checkButtonAndClickWithID('hide_or_show_sideBar');
+        await driver.delayMs(2000);
+
+        //点击隐藏侧边栏并等待查看效果
+        await checkButtonAndClickWithID('hide_or_show_sideBar');
+        await driver.delayMs(2000);
+
+        // 返回
+        let backBtn = await driver.findComponent(ON.id('backBtn'));
+        await backBtn.click();
+        await driver.delayMs(500);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+    })
+
+    /**
+     * Interpolation Calculation 插值计算
+     */
+    it(BUNDLE + 'InterpolationFunction_001', 0, async function () {
+      let testName = 'InterpolationFunction';
+      Logger.info(BUNDLE + testName + ' begin');
 
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.interpolation_calculation')));
