@@ -121,9 +121,6 @@ struct VideoSample {
             Column(){
               VideoFitControlPanel({VideoObjectFit:$videoFit})
               CurrentRateControlPanel({currentRate:$videoCurrent})
-              Button('quanping').onClick(()=>{
-                this.controller.requestFullscreen(true)
-              })
             }.cardStyle()
           }
         }

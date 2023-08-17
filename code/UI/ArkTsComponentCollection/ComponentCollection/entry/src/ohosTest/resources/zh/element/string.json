@@ -17,10 +17,6 @@
       "value": "组件"
     },
     {
-      "name": "universal",
-      "value": "通用"
-    },
-    {
       "name": "global_method",
       "value": "全局方法"
     },
@@ -73,10 +69,6 @@
       "value": "挂载卸载事件"
     },
     {
-      "name": "drag_drop_event",
-      "value": "拖拽事件"
-    },
-    {
       "name": "key_event",
       "value": "按键事件"
     },
@@ -87,10 +79,6 @@
     {
       "name": "mouse_event",
       "value": "鼠标事件"
-    },
-    {
-      "name": "component_area_change_event",
-      "value": "组件区域变化事件"
     },
     {
       "name": "gesture_processing",
@@ -150,10 +138,6 @@
     {
       "name": "blank_and_divider",
       "value": "空白与分隔"
-    },
-    {
-      "name": "text_and_input",
-      "value": "文本与输入"
     },
     // AlertDialog
     {
@@ -925,10 +909,6 @@
     },
     // Span
     {
-      "name": "span_title",
-      "value": "Span 行内文本"
-    },
-    {
       "name": "span_attribute",
       "value": "配置不同文本属性"
     },
@@ -1576,16 +1556,8 @@
       "value": "RichText 富文本"
     },
     {
-      "name": "scroll_swiper",
-      "value": "滚动与滑动"
-    },
-    {
       "name": "scroll_name",
       "value": "Scroll 滚动"
-    },
-    {
-      "name": "swiper_name",
-      "value": "Swiper 翻页"
     },
     {
       "name": "alphabetindexer_an",

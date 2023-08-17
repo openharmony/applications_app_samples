@@ -4686,5 +4686,4 @@ export default function abilityTest() {
       })
       Logger.info("Sample_ComponentCollection test end");
     })
-  })
 }
