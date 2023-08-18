@@ -59,6 +59,7 @@ struct TextAreaSample {
               .height(70)
               .margin(20)
               .fontSize(16)
+              .enableKeyboardOnFocus(false)
               .onChange(()=>{
                 ShowToast.shortToast('The input have changed.')
               })
@@ -71,6 +72,7 @@ struct TextAreaSample {
               .onPaste(()=>{
                 ShowToast.shortToast('paste')
               })
+
           }.cardStyle()
           IntroductionTitle({introduction:$r('app.string.textarea_control')})
           Column(){

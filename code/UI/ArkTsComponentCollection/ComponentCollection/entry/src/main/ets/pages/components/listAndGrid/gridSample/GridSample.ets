@@ -20,7 +20,7 @@ import { ArgumentsControlPanel } from './GridControlPanel';
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(12)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }
@@ -29,22 +29,21 @@ import { ArgumentsControlPanel } from './GridControlPanel';
   .width('100%')
   .height('100%')
   .textAlign(TextAlign.Center)
-  .borderRadius(15)
   .backgroundColor($r('app.color.background_orange'))
 }
 
 @Entry
 @Component
 struct GridSample {
-  @State columnTemplate : string = '1fr 1fr 1fr 1fr 1fr';
-  @State rowsTemplate : string = '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr';
+  @State columnTemplate : string = '1fr 1fr 1fr 1fr';
+  @State rowsTemplate : string = '1fr 1fr 1fr 1fr';
   @State columnsGap : number = 0;
   @State rowGap : number = 0;
   private controller: Scroller = new Scroller();
   private itemsText: string[] = [];
 
   aboutToAppear() {
-    for (let i = 1; i < 51; i++) {
+    for (let i = 1; i < 17; i++) {
       this.itemsText.push(i.toString());
     }
   }
@@ -61,7 +60,7 @@ struct GridSample {
               GridItem() {
                 Text(text)
                   .itemStyle()
-              }
+              }.margin(5)
             })
           }
           .columnsTemplate(this.columnTemplate)

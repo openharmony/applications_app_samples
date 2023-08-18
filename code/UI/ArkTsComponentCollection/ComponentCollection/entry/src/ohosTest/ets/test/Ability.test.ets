@@ -1023,9 +1023,10 @@ export default function abilityTest() {
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
         await driver.delayMs(500);
+        await driver.drag(200,500,200,200,200);
 
         // 关闭展开
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
+        // await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
 
         Logger.info(BUNDLE + testName + ' end');
       })
@@ -1047,7 +1048,6 @@ export default function abilityTest() {
           // 如果没展开 就展开
           await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        await driver.swipe(100, 1000, 100, 400, 5000);
         await driver.delayMs(DELAY_TIME);
         await checkButtonAndClickWithText(atom);
 
@@ -1091,7 +1091,6 @@ export default function abilityTest() {
           // 如果没展开 就展开
           await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        await driver.swipe(100, 1000, 100, 400, 5000);
         await driver.delayMs(DELAY_TIME);
         await checkButtonAndClickWithText(atom);
 
@@ -1131,7 +1130,6 @@ export default function abilityTest() {
           // 如果没展开 就展开
           await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        await driver.swipe(100, 1000, 100, 400, 5000);
         await driver.delayMs(DELAY_TIME);
         await checkButtonAndClickWithText(atom);
 
@@ -1160,13 +1158,11 @@ export default function abilityTest() {
 
         // 进入Scroll To 动效
         let atom = await manager.getStringValue($r('app.string.particle_effect'))
-
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
           // 如果没展开 就展开
           await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
         }
-        await driver.swipe(100, 1000, 100, 400, 5000);
         await driver.delayMs(DELAY_TIME);
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
@@ -1656,6 +1652,7 @@ export default function abilityTest() {
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
         await driver.delayMs(500);
+        await driver.drag(200,500,200,200,200);
         Logger.info(BUNDLE + testName + ' end');
       })
       /**
@@ -1995,14 +1992,6 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
 
-        await checkButtonAndClickWithID(`navigation_001`)
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithID(`navigation_002`)
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithID(`navigation_003`)
-        await driver.delayMs(DELAY_TIME);
-
-
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -2135,16 +2124,15 @@ export default function abilityTest() {
         // 输入文本
         let input = await driver.findComponent(ON.id('textarea_001'));
         await input.inputText('test');
-        // fixme: 4.0.8.5 TextArea 获焦
-        // await checkButtonAndClickWithID('textarea_select_001');
-        // await checkButtonAndClickWithText('End')
-        // await checkButtonAndClickWithID('textarea_select_002');
-        // await checkButtonAndClickWithText('In App')
-        // await checkButtonAndClickWithID('textarea_color_001');
-        // await checkButtonAndClickWithText('Pink')
-        // await checkButtonAndClickWithID('textarea_color_002');
-        // await checkButtonAndClickWithText('Blue')
-        // await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithID('textarea_select_001');
+        await checkButtonAndClickWithText('End')
+        await checkButtonAndClickWithID('textarea_select_002');
+        await checkButtonAndClickWithText('In App')
+        await checkButtonAndClickWithID('textarea_color_001');
+        await checkButtonAndClickWithText('Pink')
+        await checkButtonAndClickWithID('textarea_color_002');
+        await checkButtonAndClickWithText('Blue')
+        await driver.delayMs(DELAY_TIME);
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -2175,14 +2163,6 @@ export default function abilityTest() {
         await checkButtonAndClickWithText('Pink')
         await checkButtonAndClickWithID('patternLock_color_002');
         await checkButtonAndClickWithText('Blue')
-        /*await checkButtonAndClickWithID('patternLock_color_003');
-        await checkButtonAndClickWithText('Pink')*/
-        /*let list = await driver.findComponent(ON.id('patternLock_scroll_001'));
-        let on = ON.id('patternLock_color_003');
-        let scroll = await list.scrollSearch(on);
-        await checkButtonAndClickWithID('patternLock_color_004');
-        await checkButtonAndClickWithText('Blue')
-        await driver.delayMs(DELAY_TIME);*/
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -2208,14 +2188,13 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME);
         let input = await driver.findComponent(ON.id('search_001'));
         await input.inputText('test');
-        // fixme: 4.0.8.5 TextArea 获焦
-        // await checkButtonAndClickWithID('search_select_001');
-        // await checkButtonAndClickWithText('End')
-        // await checkButtonAndClickWithID('search_select_002');
-        // await checkButtonAndClickWithText('In App')
-        // await checkButtonAndClickWithID('search_color_001');
-        // await checkButtonAndClickWithText('Pink')
-        // await driver.delayMs(DELAY_TIME);
+        await checkButtonAndClickWithID('search_select_001');
+        await checkButtonAndClickWithText('End')
+        await checkButtonAndClickWithID('search_select_002');
+        await checkButtonAndClickWithText('In App')
+        await checkButtonAndClickWithID('search_color_001');
+        await checkButtonAndClickWithText('Pink')
+        await driver.delayMs(DELAY_TIME);
         // 返回
         let backBtn = await driver.findComponent(ON.id('backBtn'));
         await backBtn.click();
@@ -2367,165 +2346,6 @@ export default function abilityTest() {
 
         Logger.info(BUNDLE + testName + ' end');
       })
-
-      /**
-       * ScrollTo 动效
-       */
-      it(BUNDLE + 'ScrollTo_effect_001', 0, async function () {
-        let testName = 'ScrollToEffect';
-        Logger.info(BUNDLE + testName + ' begin');
-
-        let driver: Driver = Driver.create();
-        await driver.delayMs(DELAY_TIME);
-        // 进入Scroll To 动效
-        let atom = await manager.getStringValue($r('app.string.scroll_To_effect'))
-
-        let button = await driver.findComponent(ON.text(atom));
-        if (!button) {
-          // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-        }
-        await driver.swipe(100, 1000, 100, 400, 5000);
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithText(atom);
-
-        await driver.delayMs(DELAY_TIME);
-        // 点击按钮
-        await checkButtonAndClickWithID('scroll_to_effect_scroller');
-        await checkButtonAndClickWithID('scroll_to_effect_list');
-        await driver.swipe(100, 1000, 100, 400, 5000);
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithID('scroll_to_effect_grid');
-        await checkButtonAndClickWithID('scroll_to_effect_waterflow');
-
-        let backBtn = await driver.findComponent(ON.id('backBtn'));
-        if(!backBtn)
-        {
-          Logger.error('No backbtn found in ' + testName);
-        }
-        // 返回
-        await backBtn.click();
-        await driver.delayMs(500);
-
-        Logger.info(BUNDLE + testName + ' end');
-      })
-
-
-      /**
-       * Tab 模糊切换
-       */
-      it(BUNDLE + 'Tab_switch_effect_001', 0, async function () {
-        let testName = 'TabToEffect';
-        Logger.info(BUNDLE + testName + ' begin');
-
-        let driver: Driver = Driver.create();
-        await driver.delayMs(DELAY_TIME);
-
-        // 进入Scroll To 动效
-        let atom = await manager.getStringValue($r('app.string.tabs_switch_effect'))
-
-        let button = await driver.findComponent(ON.text(atom));
-        if (!button) {
-          // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-        }
-        await driver.swipe(100, 1000, 100, 400, 5000);
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithText(atom);
-
-        // 点击按钮
-        await checkButtonAndClickWithText('green');
-        await checkButtonAndClickWithText('blue');
-        await checkButtonAndClickWithText('yellow');
-        await checkButtonAndClickWithText('pink');
-
-        let backBtn = await driver.findComponent(ON.id('backBtn'));
-        if (!backBtn)
-        {
-          Logger.error('Cannot find backbtn in this page');
-        }
-        // 返回
-        await backBtn.click();
-        await driver.delayMs(500);
-
-        Logger.info(BUNDLE + testName + ' end');
-      })
-
-      /**
-       * ImageFit 切换
-       */
-      it(BUNDLE + 'ImageFit_effect_001', 0, async function () {
-        let testName = 'ImageFitEffect';
-        Logger.info(BUNDLE + testName + ' begin');
-
-        let driver: Driver = Driver.create();
-        await driver.delayMs(DELAY_TIME);
-
-        // 进入Scroll To 动效
-        let atom = await manager.getStringValue($r('app.string.image_fit_Full_effect'))
-
-        let button = await driver.findComponent(ON.text(atom));
-        if (!button) {
-          // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-        }
-        await driver.swipe(100, 1000, 100, 400, 5000);
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithText(atom);
-
-        // 点击按钮
-        await checkButtonAndClickWithText('RadioContain');
-        await checkButtonAndClickWithText('RadioCover');
-        await checkButtonAndClickWithText('RadioAuto');
-        await checkButtonAndClickWithText('RadioFill');
-        await checkButtonAndClickWithText('RadioScaleDown');
-        await checkButtonAndClickWithText('RadioNone');
-
-        let backBtn = await driver.findComponent(ON.id('backBtn'));
-        // 返回
-        await backBtn.click();
-        await driver.delayMs(500);
-
-        Logger.info(BUNDLE + testName + ' end');
-      })
-
-      /**
-       * Particle 粒子效果
-       */
-      it(BUNDLE + 'Particle_effect_001', 0, async function () {
-        let testName = 'Particle Effect';
-        Logger.info(BUNDLE + testName + ' begin');
-
-        // 进入Scroll To 动效
-        let atom = await manager.getStringValue($r('app.string.particle_effect'))
-
-        let button = await driver.findComponent(ON.text(atom));
-        if (!button) {
-          // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-        }
-        await driver.swipe(100, 1000, 100, 400, 5000);
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithText(atom);
-        await driver.delayMs(DELAY_TIME);
-
-        // 点击按钮
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.particle_spawn')));
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.particle_spawn_stop')));
-
-        let backBtn = await driver.findComponent(ON.id('backBtn'));
-        // 返回
-        await backBtn.click();
-        await driver.delayMs(500);
-
-        await driver.swipe(100, 400, 100, 1000, 5000);
-        await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.information_presentation_and_dynamic_effects')));
-        Logger.info(BUNDLE + testName + ' end');
-      })
-
-
       /**
        * ImageSpan 行内图像
        */

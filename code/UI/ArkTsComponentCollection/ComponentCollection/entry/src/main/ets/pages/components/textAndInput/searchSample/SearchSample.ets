@@ -58,6 +58,7 @@ struct SearchSample {
           .copyOption(this.copyOptions)
           .placeholderFont({ size: 14, weight: 400 })
           .textFont({ size: 14, weight: 400 })
+          .enableKeyboardOnFocus(false)
           .onSubmit((value: string) => {
             this.submitValue = value;
           })

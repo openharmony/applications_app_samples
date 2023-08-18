@@ -31,13 +31,13 @@ export struct ArgumentsControlPanel {
         callback: (index) => {
           switch (index) {
             case 1:
-              this.columnTemplate = '1fr 1fr 2fr 1fr 1fr';
+              this.columnTemplate = '1fr 1fr 2fr 1fr';
               break;
             case 2:
-              this.columnTemplate = '1fr 1fr 3fr 1fr 1fr';
+              this.columnTemplate = '1fr 1fr 3fr 1fr';
               break;
             default:
-              this.columnTemplate = '1fr 1fr 1fr 1fr 1fr';
+              this.columnTemplate = '1fr 1fr 1fr 1fr';
               break;
           }
         },
@@ -50,13 +50,13 @@ export struct ArgumentsControlPanel {
         callback: (index) => {
           switch (index) {
             case 1:
-              this.rowsTemplate= '1fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr';
+              this.rowsTemplate= '1fr 1fr 2fr 1fr';
               break;
             case 2:
-              this.rowsTemplate= '1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr';
+              this.rowsTemplate= '1fr 1fr 3fr 1fr';
               break;
             default:
-              this.rowsTemplate= '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr';
+              this.rowsTemplate= '1fr 1fr 1fr 1fr';
               break;
           }
         },

@@ -71,6 +71,7 @@ export struct CommonItemSelect {
   private selectIndex: number;
   private fontSize: Font = { size: 15, weight: FontWeight.Medium };
   private isItemStyle: boolean = true;
+  private text: string = "请选择"
 
   aboutToAppear() {
     this.selects.forEach((selects, index) => {
@@ -85,6 +86,7 @@ export struct CommonItemSelect {
       Blank()
       Select(this.selectOption)
         .id(this.testId)
+        .value(this.text)
         .backgroundColor($r('app.color.background_shallow_grey'))
         .borderRadius(19)
         .constraintSize({ minWidth: 150 })
@@ -101,6 +103,7 @@ export struct CommonItemSelect {
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
     .borderRadius(this.isItemStyle ? 0 : 24)
     .backgroundColor(this.isItemStyle ? Color.Transparent : Color.White)
+    .margin({bottom:12})
   }
 }
 
@@ -189,6 +192,7 @@ export struct CommonItemInput {
         .onChange(value => {
           this.inputValue = value
         }).id('test_input')
+        .enableKeyboardOnFocus(false)
     }
     .size({ width: '100%', height: 70 })
     .padding({ left: 12, right: 12 })

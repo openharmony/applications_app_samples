@@ -49,6 +49,7 @@ struct TextInputSample {
             TextInput({ placeholder: this.typePlaceholder })
               .type(this.inputType).id('test_input')
               .showPasswordIcon(this.showPasswordIcon)
+              .enableKeyboardOnFocus(false)
 
             CommonItemSelect({
               selects: ['Normal', 'Password', 'Email', 'Number', 'PhoneNumber'],
