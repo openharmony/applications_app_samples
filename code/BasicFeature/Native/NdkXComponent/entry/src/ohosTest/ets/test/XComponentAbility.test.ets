@@ -25,7 +25,7 @@ export default function abilityTest() {
     /**
      * 打开应用
      */
-    it('StartAbility_001', 0, async (done) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       console.info(TAG, 'StartAbility_001 begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -50,21 +50,16 @@ export default function abilityTest() {
     it('DrawShape_001', 2, async () => {
       console.info(TAG, 'CreateFiles_001 begin');
       let driver = Driver.create();
+      // 判断XComponent onLoad回调执行成功
+      await driver.assertComponentExist(ON.text('index'));
       // 判断是否有按键
       await driver.assertComponentExist(ON.text('Draw Star'));
       let drawStarBtn = await driver.findComponent(ON.text('Draw Star'));
       // 点击'Draw Star'按钮
       await drawStarBtn.click();
       await driver.delayMs(1000);
-      let xComponentContext = globalThis.xComponentContext;
-      if (!xComponentContext) {
-        console.error(TAG, 'xComponentContext is null');
-        expect().assertFail();
-        return;
-      }
       // 判断drawPattern方法已执行
-      let hasDraw = xComponentContext.getStatus() ? xComponentContext.getStatus().hasDraw : 0;
-      expect(hasDraw).assertEqual(1);
+      await driver.assertComponentExist(ON.text('draw star'));
 
       // 判断是否有XComponent组件
       let xcomponent = await driver.findComponent(ON.id('xcomponent'));
@@ -72,8 +67,7 @@ export default function abilityTest() {
       await xcomponent.click();
       await driver.delayMs(1000);
       // 判断touch回调已执行
-      let hasChangeColor = xComponentContext.getStatus() ? xComponentContext.getStatus().hasChangeColor : 0;
-      expect(hasChangeColor).assertEqual(1);
+      await driver.assertComponentExist(ON.text('change color'));
       console.info(TAG, 'DrawShape_001 end');
     })
   })
