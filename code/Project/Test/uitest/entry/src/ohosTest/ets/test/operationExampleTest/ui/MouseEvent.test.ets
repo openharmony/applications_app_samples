@@ -16,14 +16,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, MouseButton, ON} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function MouseEventTest() {
-  describe('MouseEventTest', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('MouseEventTest', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "MouseAbility"
       }
@@ -36,7 +38,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标左键点击 功能
      */
-    it('testMouseClick1', TestType.FUNCTION, async function (done) {
+    it('testMouseClick1', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.id("mouse_test"));
@@ -53,7 +55,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标右键点击 功能
      */
-    it('testMouseClick2', TestType.FUNCTION, async function (done) {
+    it('testMouseClick2', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.id("mouse_test"));
@@ -70,7 +72,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标中间点击 功能
      */
-    it('testMouseClick3', TestType.FUNCTION, async function (done) {
+    it('testMouseClick3', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.id("mouse_test"));
@@ -87,7 +89,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
      */
-    it('testMouseMoveTo', TestType.FUNCTION, async function (done) {
+    it('testMouseMoveTo', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let Button = await driver.findComponent(ON.id('hover_bt'))
@@ -106,7 +108,7 @@ export default function MouseEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
      */
-    it('testMouseScroll', TestType.FUNCTION, async function (done) {
+    it('testMouseScroll', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let scroll = await driver.findComponent(ON.id('scroll_test'))

@@ -67,7 +67,7 @@ uitest
 
 2.本示例从API version 9 版本SDK起开始支持，历史SDK版本不适用.
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上版本才可编译运行。
 
 ### 下载
 

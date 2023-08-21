@@ -16,15 +16,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import {Driver, ON} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function SwipeEventTest() {
-  describe('SwipeEvent', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('SwipeEvent', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "SwipeAbility"
       }
@@ -37,7 +38,7 @@ export default function SwipeEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测 uitest swipe 水平滑到功能 坐标点仅支持RK3568
      */
-    it('testSwipe_h', TestType.FUNCTION, async function (done) {
+    it('testSwipe_h', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let swiper = await driver.findComponent(ON.id('swiper'))
@@ -58,7 +59,7 @@ export default function SwipeEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测 uitest swipe 竖着滑到功能 坐标点仅支持RK3568
      */
-    it('testSwipe_v', TestType.FUNCTION, async function (done) {
+    it('testSwipe_v', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       await driver.swipe(400, 700, 400, 500)

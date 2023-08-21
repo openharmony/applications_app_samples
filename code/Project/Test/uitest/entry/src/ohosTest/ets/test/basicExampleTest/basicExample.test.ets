@@ -18,11 +18,17 @@ import { describe, it, expect, TestType } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../../util/Logger';
+import Want from '@ohos.app.ability.Want';
+import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const TAG = 'basicExampleTest'
+function sleep(time:number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
 export default function basicExampleTest() {
-  describe('basicExampleTest', function () {
+  describe('basicExampleTest', () => {
 
     /**
      * @tc.number:basicExampleTest_001
@@ -30,17 +36,17 @@ export default function basicExampleTest() {
      * @tc.type: TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 验证UI操作点击指定按钮后，界面变化是否符合预期
      */
-    it('testUiExample',TestType.FUNCTION, async function (done) {
+    it('testUiExample',TestType.FUNCTION, async (done: Function) => {
       Logger.info(TAG, 'testUiExample start')
       //start tested ability
-      let want = {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
       }
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
-      await delegator.getCurrentTopAbility().then((ability)=>{
+      await delegator.getCurrentTopAbility().then((ability: EntryAbility)=>{
         console.info("get top ability");
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
@@ -49,7 +55,7 @@ export default function basicExampleTest() {
       let  driver = await Driver.create();
       await driver.delayMs(1000);
       // find button on text 'Next'
-      var button = await driver.findComponent(ON.text('Next'));
+      let button = await driver.findComponent(ON.text('Next'));
       expect(button !== null).assertTrue();
       // click button
       await button.click();
@@ -60,8 +66,5 @@ export default function basicExampleTest() {
       Logger.info(TAG, 'testUiExample end');
       done();
     })
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
   })
 }

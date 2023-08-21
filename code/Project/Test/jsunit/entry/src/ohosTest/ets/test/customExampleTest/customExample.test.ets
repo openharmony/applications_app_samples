@@ -15,11 +15,15 @@
 
 import { describe, it, expect, TestType } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 import EntryAbility from '../../../../main/ets/entryability/EntryAbility'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+function sleep(time: number) {
+  return new Promise<void>((resolve:Function) => setTimeout(resolve, time));
+}
 export default function customExampleTest() {
-  describe('customExampleTest', function () {
+  describe('customExampleTest', ()=> {
 
     /**
      * @tc.number:customExampleTest_001
@@ -27,10 +31,10 @@ export default function customExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测EntryAbility对象自定义function功能
      */
-    it('customExampleTest_function',TestType.FUNCTION, async function (done) {
+    it('customExampleTest_function',TestType.FUNCTION, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       // start tested ability
-      let want = {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
       }
@@ -46,9 +50,5 @@ export default function customExampleTest() {
       })
       done();
     })
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
   })
 }

@@ -32,15 +32,17 @@ import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver } from '@ohos.UiTest'
 import Logger from '../../../util/Logger'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 const TAG = "WindowAttr_Test";
 const BUNDLE = "WindowAttr_"
 export default function WindowAttr() {
-  describe('WindowAttr', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('WindowAttr',  () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
       }
@@ -53,7 +55,7 @@ export default function WindowAttr() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 设置window指定的大小与方向测试
      */
-    it(BUNDLE + "Test_001", TestType.FUNCTION, async function (done) {
+    it("WindowAttr_Test_001", TestType.FUNCTION, async (done: Function) => {
       Logger.info(TAG, BUNDLE + "Test_001 start")
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)

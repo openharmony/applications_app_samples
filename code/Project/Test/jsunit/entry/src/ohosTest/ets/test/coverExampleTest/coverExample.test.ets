@@ -21,7 +21,7 @@
 import { describe, it, expect, TestType } from '@ohos/hypium';
 
 export default function coverExampleTest() {
-  describe('coverExampleTest', function () {
+  describe('coverExampleTest', () => {
 
     /**
      * @tc.number:coverExampleTest_01
@@ -30,10 +30,10 @@ export default function coverExampleTest() {
      * @tc.desc: 检验actualvalue是否是true
      * @tc.version since1.0.0
      */
-    it('coverExampleTest_01', TestType.FUNCTION, function () {
+    it('coverExampleTest_01', TestType.FUNCTION, () => {
       expect(true).assertTrue();
     });
-    describe("coverExampleTest_inner", function () {
+    describe("coverExampleTest_inner", () => {
       /**
        * @tc.number:coverExampleTest_inner_01
        * @tc.name: coverExampleTestInner_01
@@ -41,7 +41,7 @@ export default function coverExampleTest() {
        * @tc.desc: 检验actualvalue是否是true
        * @tc.version since1.0.0
        */
-      it('coverExampleTestInner_01', TestType.FUNCTION, function () {
+      it('coverExampleTestInner_01', TestType.FUNCTION, () => {
         expect(true).assertTrue();
       });
     })

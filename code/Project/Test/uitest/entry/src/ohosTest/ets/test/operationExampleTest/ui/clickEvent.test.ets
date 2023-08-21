@@ -16,14 +16,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import {Driver, ON} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function clickEventTest() {
-  describe('clickEventTest', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('clickEventTest', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "clickAbility"
       }
@@ -36,7 +38,7 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest Component click 功能
      */
-    it('clickEventTest_click',TestType.FUNCTION, async function (done) {
+    it('clickEventTest_click',TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(WAIT_UI_READYMS)
       let button = await dr.findComponent(ON.id("click_bt"));
@@ -54,7 +56,7 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest double click 功能
      */
-    it('clickEventTest_double_click',TestType.FUNCTION, async function (done) {
+    it('clickEventTest_double_click',TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
@@ -73,7 +75,7 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest long click 功能
      */
-    it('clickEventTest_Long_click', TestType.FUNCTION, async function (done) {
+    it('clickEventTest_Long_click', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
@@ -92,7 +94,7 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest PressBack 功能
      */
-    it('clickEventTest_PressBack', TestType.FUNCTION, async function (done) {
+    it('clickEventTest_PressBack', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
@@ -112,7 +114,7 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest triggerKey 功能
      */
-    it('clickEventTest_TriggerKey', TestType.FUNCTION, async function (done) {
+    it('clickEventTest_TriggerKey', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let button = await driver.findComponent(ON.text('Click twice'))
