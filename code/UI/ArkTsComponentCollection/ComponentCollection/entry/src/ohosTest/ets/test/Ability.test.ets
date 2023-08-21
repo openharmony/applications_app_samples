@@ -3370,6 +3370,5 @@ export default function abilityTest() {
         Logger.info(BUNDLE + testName + 'end');
       })
       Logger.info("Sample_ComponentCollection test end");
-    })
   })
 }
