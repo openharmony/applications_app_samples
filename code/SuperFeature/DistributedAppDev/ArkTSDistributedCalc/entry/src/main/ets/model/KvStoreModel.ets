@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import distributedData from '@ohos.data.distributedData'
+import distributedData from '@ohos.data.distributedKVStore';
 import Logger from '../model/Logger'
 import { BUNDLE_NAME } from './RemoteDeviceModel'
 
@@ -21,9 +21,9 @@ const STORE_ID: string = 'distributedcalc'
 
 export class KvStoreModel {
   public kvManager: distributedData.KVManager = undefined
-  public kvStore: distributedData.KVStore = undefined
+  public kvStore = undefined;
 
-  createKvStore(context, callback) {
+ async createKvStore(context, callback) {
     if ((typeof (this.kvStore) !== 'undefined')) {
       callback()
       return
@@ -35,25 +35,27 @@ export class KvStoreModel {
         userType: 0
       },
       context: context
+    };
+    try {
+      Logger.info(TAG, `ecreateKVManager success`);
+      this.kvManager = distributedData.createKVManager(config);
+    } catch (err) {
+      Logger.info(TAG, `ecreateKVManager err:${JSON.stringify(err)}`);
     }
-    Logger.info(TAG, `createKVManager begin`)
-    distributedData.createKVManager(config).then((manager) => {
-      Logger.info(TAG, `createKVManager success, kvManager= ${JSON.stringify(manager)}`)
-      this.kvManager = manager
-      let options = {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: true,
-        kvStoreType: 1,
-        securityLevel: 1
-      }
-      Logger.info(TAG, `kvManager.getKVStore begin`)
-      this.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        Logger.info(TAG, `getKVStore success, kvStore= ${store}`)
-        this.kvStore = store
-        callback()
-      })
+    Logger.info(TAG, `createKVManager begin`);
+    let options = {
+      createIfMissing: true,
+      encrypt: false,
+      backup: false,
+      autoSync: true,
+      kvStoreType: 1,
+      securityLevel: 1
+    };
+    Logger.info(TAG, `kvManager.getKVStore begin`);
+    this.kvManager.getKVStore(STORE_ID, options).then((store) => {
+      Logger.info(TAG, `getKVStore success, kvStore= ${store}`);
+      this.kvStore = store;
+      callback();
     })
     Logger.info(TAG, `createKVManager end`)
   }
