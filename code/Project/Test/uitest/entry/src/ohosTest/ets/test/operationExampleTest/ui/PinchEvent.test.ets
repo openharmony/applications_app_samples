@@ -43,7 +43,7 @@ export default function PinchEventTest() {
       await driver.delayMs(WAIT_UI_READYMS)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds1 = await image1.getBounds()
-      await image1.pinchIn(0.5);
+      await image1.pinchIn(0.3);
       await driver.delayMs(WAIT_UI_READYMS)
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()
@@ -59,15 +59,15 @@ export default function PinchEventTest() {
      * @tc.desc: 检测uitest pinchOut  功能
      */
     it('PinchEventTest_Out', TestType.FUNCTION, async (done: Function) => {
-      // let driver = Driver.create()
-      // await driver.delayMs(WAIT_UI_READYMS)
-      // let image1 = await driver.findComponent(ON.id('pinch_ima'))
-      // let bounds1 = await image1.getBounds()
-      // await image1.pinchOut(1.5);
-      // await driver.delayMs(WAIT_UI_READYMS)
-      // let image2 = await driver.findComponent(ON.id('pinch_ima'))
-      // let bounds2 = await image2.getBounds()
-      // expect(bounds1).not().assertDeepEquals(bounds2);
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      let image1 = await driver.findComponent(ON.id('pinch_ima'))
+      let bounds1 = await image1.getBounds()
+      await image1.pinchIn(0.8);
+      await driver.delayMs(WAIT_UI_READYMS)
+      let image2 = await driver.findComponent(ON.id('pinch_ima'))
+      let bounds2 = await image2.getBounds()
+      expect(bounds1).not().assertDeepEquals(bounds2);
       done()
     })
   })
