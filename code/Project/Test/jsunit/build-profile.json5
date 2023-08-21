@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_jsunit_com.samples.test.jsunit.cer",
-          "storePassword": "0000001B43291E68F5449CB0E0A1D36D0487F56D51F18993E4604E4516E8DC2F17F1590FF7272008111CBA",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BF6C8E0803BCB8C807578C009AD3FFDCEA48E8BDDED18850C1F3FD1783547960EDAA69829C4AAE2",
-          "profile": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_jsunit_com.samples.test.jsunit.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_jsunit_com.samples.test.jsunit.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
