@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+export enum MenuType {
+  NORMAL = 0,
+  NUMBER = 1,
+  SPECIAL = 2
+}
+
+export enum KeyState {
+  LOWER_CASE = 0,
+  ONCE_UPPER_CASE = 1,
+  UPPER_CASE = 2
+}
+
+export enum MenuKey{
+  NUMBER_KEY = '?123',
+  NORMAL_KEY = 'ABC',
+  SPECIAL_KEY = '=/\<'
+}
+
 export interface keySourceListType {
   title: string,
   content: string,

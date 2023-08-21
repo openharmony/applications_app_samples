@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,18 +13,29 @@
  * limitations under the License.
  */
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 import Log from '../model/Log';
+import { KeyboardController } from '../model/KeyboardController';
 
-let TAG: string = 'service->';
+const TAG: string = 'ServiceExtAbility->';
 
 class ServiceExtAbility extends InputMethodExtensionAbility {
-  onCreate(want) {
-    Log.showInfo(TAG, 'onCreate want: ' + want.abilityName);
+  keyboardController: KeyboardController;
+
+  onCreate(want: Want): void {
+    this.addLog(`onCreate want: ${want.abilityName}`);
+    this.keyboardController = new KeyboardController(this.context);
+    this.keyboardController.onCreate();
   }
 
-  onDestroy() {
-    Log.showInfo(TAG, 'onDestroy');
+  onDestroy(): void {
+    this.addLog('onDestroy');
+    this.keyboardController.onDestroy();
+  }
+
+  addLog(message: string): void {
+    Log.showInfo(TAG, `kikaInput-new: ${message}`);
   }
 }
 
-export default ServiceExtAbility
+export default ServiceExtAbility;
