@@ -27,6 +27,14 @@
     {
       "name": "finish",
       "value": "完成"
+    },
+    {
+      "name": "video",
+      "value": "录像"
+    },
+    {
+      "name": "photo",
+      "value": "拍照"
     }
   ]
 }
