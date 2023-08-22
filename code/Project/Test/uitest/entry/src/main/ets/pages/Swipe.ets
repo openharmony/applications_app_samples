@@ -37,7 +37,7 @@ struct Swipe {
         Swiper(this.swiperController) {
           ForEach(this.result, (item: string) => {
             Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-          }, item => item)
+          }, (item: string) => item)
         }
         .id("swiper")
         .cachedCount(2)
@@ -56,7 +56,7 @@ struct Swipe {
         Column(){
           Scroll(this.scroller) {
             Flex({ direction: FlexDirection.Column }) {
-              ForEach(this.arr, (item) => {
+              ForEach(this.arr, (item: number) => {
                 Row() {
                   Text(item.toString())
                     .width('90%')
@@ -68,7 +68,7 @@ struct Swipe {
                     .textAlign(TextAlign.Center)
                     .margin({ top: 5 })
                 }
-              }, item => item)
+              }, (item:string) => item)
             }.margin({ right: 10 })
           }.id("scroll_test")
           .scrollBar(BarState.Off)
@@ -76,13 +76,13 @@ struct Swipe {
         }.height("300").width("100%")
         Column(){
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text('' + item)
                   .width('100%').height(100).fontSize(16)
                   .textAlign(TextAlign.Center).borderRadius(10).backgroundColor("#CC0000")
               }.editable(true)
-            }, item => item)
+            }, (item: string) => item)
           }
           .listDirection(Axis.Vertical) // 排列方向
           .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线

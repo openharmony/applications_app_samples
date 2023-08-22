@@ -17,15 +17,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function ScrollerEventTest() {
-  describe('ScrollerEvent', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('ScrollerEvent', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "ScrollerAbility"
       }
@@ -38,7 +39,7 @@ export default function ScrollerEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测 uitest scrollToBottom 滑到底部功能
      */
-    it('ScrollerEvent_bottom', TestType.FUNCTION, async function (done) {
+    it('ScrollerEvent_bottom', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let scroll = await driver.findComponent(ON.type('Scroll'))
@@ -55,7 +56,7 @@ export default function ScrollerEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测 uitest scrollToTop 滑到顶部功能
      */
-    it('ScrollerEvent_top', TestType.FUNCTION, async function (done) {
+    it('ScrollerEvent_top', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let scroll = await driver.findComponent(ON.type('Scroll'))

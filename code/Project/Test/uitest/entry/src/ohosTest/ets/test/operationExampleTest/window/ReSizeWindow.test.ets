@@ -16,16 +16,19 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ResizeDirection} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 import Logger from '../../../util/Logger'
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 const TAG = "ReSize_Test";
 const BUNDLE = "ReSize_"
 export default function ReSizeWindow() {
-  describe('ReSizeWindow', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('ReSizeWindow', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
       }
@@ -38,7 +41,7 @@ export default function ReSizeWindow() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 设置window指定的大小与方向测试
      */
-    it(BUNDLE + "Test_001", TestType.FUNCTION, async function (done) {
+    it("ReSize_Test_001", TestType.FUNCTION, async (done: Function) => {
       Logger.info(TAG, BUNDLE + "Test_001 start")
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)

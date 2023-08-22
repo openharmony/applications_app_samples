@@ -72,7 +72,7 @@ struct Mouse {
         Column(){
           Scroll(this.scroller) {
             Flex({ direction: FlexDirection.Column }) {
-              ForEach(this.arr, (item) => {
+              ForEach(this.arr, (item: number) => {
                 Row() {
                   Text(item.toString())
                     .width('90%')
@@ -84,7 +84,7 @@ struct Mouse {
                     .textAlign(TextAlign.Center)
                     .margin({ top: 5 })
                 }
-              }, item => item)
+              }, (item: string) => item)
             }.margin({ right: 10 })
           }.id("scroll_test")
           .scrollBar(BarState.Off)

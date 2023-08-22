@@ -16,14 +16,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, UiDirection} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function FlingEventTest() {
-  describe('FlingEvent', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('FlingEvent', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "FlingAbility"
       }
@@ -36,7 +38,7 @@ export default function FlingEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest fling 功能 坐标点仅支持RK3568
      */
-    it('FlingEvent_h', TestType.FUNCTION, async function (done) {
+    it('FlingEvent_h', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let swiper = await driver.findComponent(ON.id('swiper'))
@@ -56,7 +58,7 @@ export default function FlingEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest fling 功能 坐标点仅支持RK3568
      */
-    it('FlingEvent_v', TestType.FUNCTION, async function (done) {
+    it('FlingEvent_v', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       await driver.fling({x:400, y:700},{x:400, y:500}, 20, 600 )
@@ -72,7 +74,7 @@ export default function FlingEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest fling方向设置测试 功能 坐标点仅支持RK3568
      */
-    it('FlingEvent_d', TestType.FUNCTION, async function (done) {
+    it('FlingEvent_d', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       await driver.fling(UiDirection.LEFT, 39000)
