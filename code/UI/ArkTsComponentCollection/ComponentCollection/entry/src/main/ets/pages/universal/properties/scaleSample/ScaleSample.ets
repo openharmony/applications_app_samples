@@ -56,10 +56,10 @@ struct TranslateSample {
           ForEach(this.imageSliders, (item) => {
             Row() {
               if (item.isXAxis) {
-                ImageItemSlider({ changeValue: $imageTranslateX, min: -4, max: 4, name: item.axisName })
+                ImageItemSlider({ changeValue: $imageTranslateX, min: 0, max: 4, name: item.axisName })
                   .id('scale_x')
               } else {
-                ImageItemSlider({ changeValue: $imageTranslateY, min: -2, max: 2, name: item.axisName })
+                ImageItemSlider({ changeValue: $imageTranslateY, min: 0, max: 2, name: item.axisName })
                   .id('scale_y')
               }
             }
