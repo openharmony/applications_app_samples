@@ -31,6 +31,98 @@ async function getResourceString(resource: Resource): Promise<string> {
 
 export default function abilityTest() {
   describe('abilityTest', function () {
+
+    /**
+     * 拉起相机拍三张照片
+     */
+    it('NewPhotos_001', 0, async function (done) {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NewPhotos_001 begin');
+      let driver = await Driver.create();
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'com.ohos.camera',
+          abilityName: 'com.ohos.camera.MainAbility'
+        });
+        await driver.delayMs(4000);
+        await driver.click(360, 1090);
+        await driver.delayMs(1000);
+        await driver.click(360, 1090);
+        await driver.delayMs(1000);
+        await driver.click(360, 1090);
+        await driver.delayMs(1000);
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NewPhotos_001 end');
+    })
+
+    /**
+     * 拉起相机拍三段视频
+     */
+    it('NewVideo_001', 0, async function (done) {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NewVideo_001 begin');
+      let driver = await Driver.create();
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'com.ohos.camera',
+          abilityName: 'com.ohos.camera.MainAbility'
+        });
+
+        let video = await getResourceString($r('app.string.video'));
+        await driver.assertComponentExist(ON.text(video));
+        let videoComponent = await driver.findComponent(ON.text(video));
+        await videoComponent.click();
+        await driver.delayMs(1000);
+
+        /* 录制第一段视频 */
+        await driver.click(360, 1090);
+        await driver.delayMs(3000);
+
+        // 使用text找不到组件，因此采用坐标
+        await driver.click(395, 1096); // 暂停视频录制
+        await driver.delayMs(500);
+
+        await driver.click(316, 1096); // 停止视频录制，进行保存
+        await driver.delayMs(500);
+
+        /* 录制第二、三段视频 */
+        await driver.delayMs(500);
+        await driver.click(360, 1090);
+        await driver.delayMs(3000);
+        await driver.click(395, 1096);
+        await driver.delayMs(500);
+        await driver.click(316, 1096);
+        await driver.delayMs(500);
+
+        await driver.delayMs(500);
+        await driver.click(360, 1090);
+        await driver.delayMs(3000);
+        await driver.click(395, 1096);
+        await driver.delayMs(500);
+        await driver.click(316, 1096); // 停止视频录制，进行保存
+        await driver.delayMs(500);
+
+        /* 恢复初始页面 */
+        let photo = await getResourceString($r('app.string.photo'));
+        await driver.assertComponentExist(ON.text(photo));
+        let photoComponent = await driver.findComponent(ON.text(photo));
+        await photoComponent.click();
+        await driver.delayMs(1000);
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NewVideo_001 end');
+    })
+
+    /* 拉起应用 */
     it('StartAbilityFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -59,10 +151,10 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(permit));
       let permit1 = await driver.findComponent(ON.text(permit));
       await permit1.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       let permit2 = await driver.findComponent(ON.text(permit));
       await permit2.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 end');
     })
@@ -74,11 +166,33 @@ export default function abilityTest() {
     it('NewFileFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'NewFileFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
+
       await driver.assertComponentExist(ON.id('newFile'));
       let newFile = await driver.findComponent(ON.id('newFile'));
       await newFile.click();
+
+      //增加filePicker权限申请
+      await driver.delayMs(1000);
+      let permit = await getResourceString($r('app.string.permit'));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'permit ccc is: ' + permit);
+
+      let permit1 = await driver.findComponent(ON.text(permit));
+      hilog.info(DOMAIN, TAG, BUNDLE + 'permit1 is: ' + permit1);
+      if (permit1 !== null) {
+        await permit1.click();
+        await driver.delayMs(1000);
+
+        let permit2 = await driver.findComponent(ON.text(permit));
+        hilog.info(DOMAIN, TAG, BUNDLE + 'permit2 is: ' + permit2);
+        if (permit2 !== null) {
+          await permit2.click();
+          await driver.delayMs(1000);
+        }
+      }
+
       await driver.delayMs(3000);
+
       // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
       await driver.click(570, 116); // 新建文件夹
       await driver.delayMs(1000);
@@ -103,14 +217,14 @@ export default function abilityTest() {
     it('EditFileFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
       await driver.click(470, 210);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('editable'));
       let editable = await driver.findComponent(ON.id('editable'));
       await editable.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('textArea'));
       let textArea = await driver.findComponent(ON.id('textArea'));
       await textArea.inputText('File Content');
@@ -118,11 +232,11 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('save'));
       let save = await driver.findComponent(ON.id('save'));
       await save.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('backIndex'));
       let backIndex = await driver.findComponent(ON.id('backIndex'));
       await backIndex.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_001 end');
     })
@@ -134,7 +248,7 @@ export default function abilityTest() {
     it('SaveAsFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveAsFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
       await driver.click(470, 210);
       await driver.delayMs(500);
@@ -154,9 +268,9 @@ export default function abilityTest() {
       await driver.click(511, 1040); // 新建文件夹-点击确定图标
       await driver.delayMs(2000);
       await driver.click(655, 110); //新建文件并保存-点击保存图标
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveAsFunction_001 end');
     })
@@ -168,7 +282,7 @@ export default function abilityTest() {
     it('SelectPictureFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'SelectPictureFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('picture'));
       let picture = await driver.findComponent(ON.id('picture'));
       await picture.click();
@@ -186,7 +300,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('back2Index'));
       let back2Index = await driver.findComponent(ON.id('back2Index'));
       await back2Index.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SelectPictureFunction_001 end');
     })
@@ -198,7 +312,7 @@ export default function abilityTest() {
     it('SelectVideoFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'SelectVideoFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('picture'));
       let picture = await driver.findComponent(ON.id('picture'));
       await picture.click();
@@ -210,24 +324,49 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.click(653, 264);
       await driver.click(49, 570);
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       let finishText = await getResourceString($r('app.string.finish'));
       await driver.assertComponentExist(ON.text(finishText));
       let finish = await driver.findComponent(ON.text(finishText));
       await finish.click();
       await driver.delayMs(1500);
       await driver.click(357, 292);
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.click(355, 576);
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       await driver.click(491, 576);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('back2Index'));
       let back2Index = await driver.findComponent(ON.id('back2Index'));
       await back2Index.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SelectVideoFunction_001 end');
+    })
+
+    /**
+     * Picker 我的手机
+     */
+    // 选择我的手机并查看
+    it('SelectMyPhoneFunction_001', 0, async function (done) {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SelectMyPhoneFunction_001 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('folder'));
+      let folder = await driver.findComponent(ON.id('folder'));
+      await folder.click();
+      await driver.delayMs(6000);
+
+      // 选择新建文件夹中的文件
+      await driver.click(43, 339);
+      await driver.delayMs(2000);
+
+      // 查看文件
+      await driver.click(57, 337);
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'SelectMyPhoneFunction_001 end');
     })
   })
 }
