@@ -12,9 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import window from '@ohos.window';
 
 export default {
   onCreate() {
+    window.getTopWindow().then((win) => {
+      win.setFullScreen(true)
+    })
     console.info("Application onCreate");
   },
   onDestroy() {
