@@ -31,8 +31,9 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver } from '@ohos.UiTest'
-import Logger from '../../../util/Logger'
 import Want from '@ohos.app.ability.Want';
+
+import Logger from '../../../util/Logger'
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;

@@ -13,12 +13,12 @@
 * limitations under the License.
 */
 
-import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 import { describe, it, expect, TestType } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 import Logger from '../../util/Logger';
-import Want from '@ohos.app.ability.Want';
 import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
