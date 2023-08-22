@@ -188,7 +188,7 @@ struct Index {
       mediaData = this.videoData
     }
     this.deleteDialogController = new CustomDialogController({
-      builder: DeleteDialog({ index: index, mediaData: mediaData }),
+      builder: DeleteDialog({ index: index, mediaData: mediaData, mediaType: mediaType }),
       autoCancel: true,
       customStyle: true,
     })

@@ -35,7 +35,8 @@
     {
       "name": "phoneMain_collection",
       "value": "收藏"
-    },{
+    },
+    {
       "name": "phoneMain_me",
       "value": "我的"
     },
@@ -58,6 +59,10 @@
     {
       "name": "index_del",
       "value": "是否删除此视频"
+    },
+    {
+      "name": "index_del_audio",
+      "value": "是否删除此音频"
     },
     {
       "name": "index_cel",
