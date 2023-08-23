@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import distributedData from '@ohos.data.distributedData'
+import distributedData from '@ohos.data.distributedKVStore';
 import Logger from '../util/Logger'
 import { GobangConst } from '../util/GobangConst'
 
@@ -21,7 +21,7 @@ const TAG: string = 'KvStoreModel'
 
 export class KvStoreModel {
   public kvManager: distributedData.KVManager
-  public kvStore: distributedData.KVStore
+  public kvStore = undefined;
 
   constructor() {
   }
@@ -33,36 +33,30 @@ export class KvStoreModel {
     }
     let config = {
       bundleName: 'ohos.samples.distributeddatagobang',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      },
       context: context
     }
-    Logger.info(TAG, `createKVManager begin`)
+    Logger.info(TAG, 'createKVManager begin')
     try {
-      distributedData.createKVManager(config).then((manager) => {
-        Logger.info(TAG, `createKVManager success, kvManager= ${JSON.stringify(manager)}`)
-        this.kvManager = manager
-        let options = {
-          createIfMissing: true,
-          encrypt: false,
-          backup: false,
-          autoSync: true,
-          kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
-          securityLevel: distributedData.SecurityLevel.S0
-        }
-        Logger.info(TAG, `kvManager.getKVStore begin`)
-        this.kvManager.getKVStore(GobangConst.STORE_ID, options).then((store) => {
-          Logger.info(TAG, `getKVStore success, kvStore= ${store}`)
-          this.kvStore = store
-          callback()
-        })
-      })
+      Logger.info(TAG, 'ecreateKVManager success');
+      this.kvManager = distributedData.createKVManager(config);
     } catch (err) {
-      Logger.error(`createKVManager failed, code is ${err.code}, message is ${err.message}`)
+      Logger.info(TAG, `ecreateKVManager err:${JSON.stringify(err)}`);
     }
-    Logger.info(TAG, `[KvStoreModel] createKVManager end`)
+    let options = {
+      createIfMissing: true,
+      encrypt: false,
+      backup: false,
+      autoSync: true,
+      kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+      securityLevel: distributedData.SecurityLevel.S1
+    };
+    Logger.info(TAG, 'kvManager.getKVStore begin');
+    this.kvManager.getKVStore(GobangConst.STORE_ID, options).then((store) => {
+      Logger.info(TAG, `getKVStore success, kvStore= ${store}`);
+      this.kvStore = store;
+      callback();
+    })
+    Logger.info(TAG, '[KvStoreModel] createKVManager end');
   }
 
   put(key, value) {
