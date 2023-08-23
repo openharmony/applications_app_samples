@@ -49,7 +49,7 @@ struct RadioSample {
                       ShowToast.longToast(this.cityNames[index])
                       this.noResponseRegionIndex = index
                     }
-                  }).id('city'+String(index))
+                  }).id('city' + String(index))
                 Text(item)
               }
             })
@@ -73,7 +73,8 @@ struct RadioSample {
                       ShowToast.longToast(this.cityNames[index])
                       this.responseRegionIndex = index
                     }
-                  }).id('cityHot'+String(index))
+                  })
+                  .id('cityHot' + String(index))
                 Text(item)
                   .width(this.radioItemWidth)
                   .height(48)

@@ -17,10 +17,6 @@
       "value": "Component"
     },
     {
-      "name": "universal",
-      "value": "Universal"
-    },
-    {
       "name": "global_method",
       "value": "Global Method"
     },
@@ -81,10 +77,6 @@
       "value": "Show/Hide Event"
     },
     {
-      "name": "drag_drop_event",
-      "value": "Drag/Drop Event"
-    },
-    {
       "name": "key_event",
       "value": "Key Event"
     },
@@ -95,10 +87,6 @@
     {
       "name": "mouse_event",
       "value": "Mouse Event"
-    },
-    {
-      "name": "component_area_change_event",
-      "value": "Component Area Change Event"
     },
     {
       "name": "gesture_processing",
@@ -159,10 +147,6 @@
     {
       "name": "blank_and_divider",
       "value": "Blank and divider"
-    },
-    {
-      "name": "text_and_input",
-      "value": "Text and input"
     },
     // AlertDialog
     {
@@ -1031,10 +1015,6 @@
     },
     // Span
     {
-      "name": "span_title",
-      "value": "Span"
-    },
-    {
       "name": "span_attribute",
       "value": "Configure different span attributes"
     },
@@ -1190,19 +1170,6 @@
     {
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
-    },
-    // ImageSpan
-    {
-      "name": "image_span_title",
-      "value": "Image Span"
-    },
-    {
-      "name": "image_span_alignment_center",
-      "value": "Center"
-    },
-    {
-      "name": "image_fit_contain",
-      "value": "Contain"
     },
     // TextInput
     {
@@ -1960,16 +1927,8 @@
       "value": "RichText"
     },
     {
-      "name": "scroll_swiper",
-      "value": "Scroll and Swipe"
-    },
-    {
       "name": "scroll_name",
       "value": "Scroll"
-    },
-    {
-      "name": "swiper_name",
-      "value": "Swiper"
     },
     {
       "name": "alphabetindexer_an",
@@ -2286,10 +2245,6 @@
     {
       "name": "text_picker_click_text",
       "value": "点击文字"
-    },
-    {
-      "name": "global_menu",
-      "value": "BindContextMenu 菜单"
     },
     {
       "name": "global_menu_create_way",
@@ -2682,10 +2637,6 @@
     {
       "name": "picture_border",
       "value": "图片边框设置"
-    },
-    {
-      "name": "scale",
-      "value": "scale 缩放"
     },
     {
       "name": "transform",
@@ -3085,10 +3036,6 @@
     },
     // ActionSheetDialog
     {
-      "name": "action_sheet_dialog",
-      "value": "ActionSheetDialog 列表选择弹框"
-    },
-    {
       "name": "action_sheet_click_sheets",
       "value": "点击选项内容"
     },
@@ -3114,13 +3061,239 @@
       "value": "banana"
     },
     {
-      "name": "text_picker_dialog",
-      "value": "TextPickerDialog 文本滑动选择器弹窗"
-    },
-    {
       "name": "text_picker_show",
       "value": "显示文本弹窗"
     },
+    {
+      "name": "TestAbility_desc",
+      "value": "自动化测试"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "自动化测试"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "自动化测试"
+    },
+    {
+      "name": "scroll_swiper",
+      "value": "滚动与滑动"
+    },
+    {
+      "name": "swiper_name",
+      "value": "Swiper 翻页"
+    },
+    {
+      "name": "swiper_controller_next",
+      "value": "下一页"
+    },
+    {
+      "name": "swiper_controller_previous",
+      "value": "上一页"
+    },
+    {
+      "name": "rows_and_columns",
+      "value": "行列与分栏"
+    },
+    {
+      "name": "row_title",
+      "value": "Row 水平布局"
+    },
+    {
+      "name": "rowsplit_title",
+      "value": "RowSplit 水平分割布局"
+    },
+    {
+      "name": "column_title",
+      "value": "Column 垂直布局"
+    },
+    {
+      "name": "columnsplit_title",
+      "value": "ColumnSplit 垂直分割布局"
+    },
+    {
+      "name": "sidebarcontainer_title",
+      "value": "SideBarContainer 侧边栏"
+    },
+    {
+      "name": "stack_flex_and_grid",
+      "value": "堆叠、Flex与栅格"
+    },
+    {
+      "name": "stack_title",
+      "value": "Stack 堆叠容器"
+    },
+    {
+      "name": "flex_title",
+      "value": "Flex 弹性布局"
+    },
+    {
+      "name": "gridcontainer_title",
+      "value": "GridContainer 栅格系统"
+    },
+    {
+      "name": "list_and_grid",
+      "value": "列表与宫格"
+    },
+    {
+      "name": "list_title",
+      "value": "List 列表容器"
+    },
+    {
+      "name": "list_item_title",
+      "value": "ListItem"
+    },
+    {
+      "name": "grid_title",
+      "value": "Grid"
+    },
+    {
+      "name": "grid_item_title",
+      "value": "GridItem"
+    },
+    {
+      "name": "navigation",
+      "value": "导航"
+    },
+    {
+      "name": "navigation_title",
+      "value": "Navigation"
+    },
+    {
+      "name": "tabs_title",
+      "value": "Tabs"
+    },
+    {
+      "name": "tab_content_title",
+      "value": "TabContent"
+    },
+    {
+      "name": "stepper_title",
+      "value": "Stepper&StepperItem"
+    },
+    {
+      "name": "canvas_and_graphic_drawing",
+      "value": "画布与图形绘制"
+    },
+    {
+      "name": "canvas_title",
+      "value": "Canvas 画布"
+    },
+    {
+      "name": "circle_title",
+      "value": "Circle 圆形"
+    },
+    {
+      "name": "ellipse_title",
+      "value": "Ellipse 椭圆"
+    },
+    {
+      "name": "line_title",
+      "value": "Line 直线"
+    },
+    {
+      "name": "path_title",
+      "value": "Path 路径"
+    },
+    {
+      "name": "polygon_title",
+      "value": "Polygon 多边形"
+    },
+    {
+      "name": "polyline_title",
+      "value": "Polyline 折线"
+    },
+    {
+      "name": "rect_title",
+      "value": "Rect 矩形"
+    },
+    {
+      "name": "shape_title",
+      "value": "Shape 指定图形"
+    },
+    {
+      "name": "image_video_and_media",
+      "value": "图片视频与媒体"
+    },
+    {
+      "name": "image_title",
+      "value": "Image 图片"
+    },
+    {
+      "name": "image_animator_title",
+      "value": "ImageAnimator 逐帧播放图片"
+    },
+    {
+      "name": "video_title",
+      "value": "video 视频"
+    },
+    {
+      "name": "plugin_component_title",
+      "value": "PluginComponent 嵌入式显示"
+    },
+    {
+      "name": "xcomponent_title",
+      "value": "XComponent 绘制组件"
+    },
+    {
+      "name": "web_title",
+      "value": "web 网页"
+    },
+    {
+      "name": "web",
+      "value": "网页"
+    },
+    {
+      "name": "text_and_input",
+      "value": "文本与输入"
+    },
+    {
+      "name": "search_title",
+      "value": "Search 搜索框"
+    },
+    {
+      "name": "patternLock_title",
+      "value": "PatternLock 图案密码锁"
+    },
+    {
+      "name": "textarea_title",
+      "value": "TextArea 多行文本输入框"
+    },
+    {
+      "name": "text_picker_dialog",
+      "value": "TextPickerDialog 文本滑动选择器弹窗"
+    },
+
+    {
+      "name": "span_title",
+      "value": "Span 行内文本"
+    },
+    {
+      "name": "drag_drop_event",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "component_area_change_event",
+      "value": "组件区域变化事件"
+    },
+    {
+      "name": "universal",
+      "value": "通用"
+    },
+    {
+      "name": "scale",
+      "value": "scale 缩放"
+    },
+    {
+      "name": "action_sheet_dialog",
+      "value": "ActionSheetDialog 列表选择弹框"
+    },
+    {
+      "name": "global_menu",
+      "value": "BindContextMenu 菜单"
+    },
+
     {
       "name": "canvas_components",
       "value": "Canvas components"

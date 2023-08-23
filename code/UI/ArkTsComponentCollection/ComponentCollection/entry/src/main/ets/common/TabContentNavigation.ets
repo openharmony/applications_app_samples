@@ -77,7 +77,7 @@ export struct TabContentNavigation {
       .width('100%')
       .layoutWeight(1)
       .padding({ left: 16, right: 16, top: 4 })
-
+      .id('list_001')
       Blank()
     }
     .height('100%')

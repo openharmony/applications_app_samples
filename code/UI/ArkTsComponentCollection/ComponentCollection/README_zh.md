@@ -112,6 +112,45 @@ entry/src/main/ets/
 |   |   |   |   |---TimePickerSample.ets                 // 时间选择器
 |   |   |   |---toggleSample
 |   |   |   |   |---ToggleSample.ets                     // 切换按钮
+|   |   |---canvasAndGraphicDrawing                      // 画布与图形绘制
+|   |   |   |---canvasSample
+|   |   |   |   |---CanvasSample.ets                     // 画布
+|   |   |   |---circleSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---CircleSample.ets                     // 圆形
+|   |   |   |---ellipseSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---EllipseSample.ets					 // 椭圆
+|   |   |   |---lineSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---LineSample.ets                       // 直线
+|   |   |   |---pathSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---PathSample.ets                       // 路径
+|   |   |   |---polygonSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---PolygonSample.ets                    // 多边形
+|   |   |   |---polylineSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---PolylineSample.ets                   // 折线
+|   |   |   |---rectSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---RectSample.ets                       // 矩形
+|   |   |   |---shapeSample
+|   |   |   |   |---ShapeSample.ets                      // 指定图形
+|   |   |---imageVideoAndMedia
+|   |   |   |---imageAnimatorSample
+|   |   |   |   |---ImageAnimatorSample.ets              // 逐帧播放图片
+|   |   |   |---imageSample
+|   |   |   |   |---ImageControlPanel.ets
+|   |   |   |   |---ImageSample.ets                      // 图片
+|   |   |   |---pluginComponentSample
+|   |   |   |   |---PluginComponentSample.ets			 // 嵌入式显示
+|   |   |   |---videoSample
+|   |   |   |   |---VideoControlPanel.ets
+|   |   |   |   |---VideoSample.ets                      // 视频
+|   |   |   |---xcomponentSample
+|   |   |   |   |---XComponentSample.ets                 // 绘制组件
 |   |   |---canvas
 |   |   |   |---attributesSample
 |   |   |   |   |---AttributesSample.ets                 // 属性
@@ -146,13 +185,73 @@ entry/src/main/ets/
 |   |   |   |   |---TextClockSample.ets                  // 文字时钟
 |   |   |   |---textTimerSample
 |   |   |   |   |---TextTimerSample.ets                  // 文字计时器
+|   |   |---listAndGrid
+|   |   |   |---gridItemSample
+|   |   |   |   |---GridItemControlPanel.ets
+|   |   |   |   |---GridItemSample.ets                   // 网格容器子组件
+|   |   |   |---gridSample
+|   |   |   |   |---GridControlPanel.ets
+|   |   |   |   |---GridSample.ets                       // 网格容器
+|   |   |   |---listItemSample
+|   |   |   |   |---ListItemSample.ets                   // 列表容器子组件
+|   |   |   |---listSample
+|   |   |   |   |---ListControlPanel.ets
+|   |   |   |   |---ListSample.ets                       // 列表容器
+|   |   |---navigation
+|   |   |   |---navigationSample
+|   |   |   |   |---NavigationSample.ets                 // 导航
+|   |   |   |   |---NavigationSecondPage.ets
+|   |   |   |   |---NavigationThirdPage.ets
+|   |   |   |---stepperAndStepperItemSample
+|   |   |   |   |---StepperAndStepperItemSample.ets      // 步骤导航器
+|   |   |   |---tabContentSample
+|   |   |   |   |---TabContentSample.ets                 // 页签子组件
+|   |   |   |---tabSample
+|   |   |   |   |---TabControlPanel.ets
+|   |   |   |   |---TabSample.ets                        // 页签
+|   |   |---rowsAndColumns
+|   |   |   |---columnSample
+|   |   |   |   |---ColumnControlPanel.ets
+|   |   |   |   |---ColumnSample.ets                     // 列容器
+|   |   |   |---columnSplitSample
+|   |   |   |   |---ColumnSplitSample.ets                // 列分割容器
+|   |   |   |---rowSample
+|   |   |   |   |---RowControlPanel.ets
+|   |   |   |   |---RowSample.ets                        // 行容器
+|   |   |   |---rowSplitSample
+|   |   |   |   |---RowSplitSample.ets                   // 行分割容器
+|   |   |   |---sideBarContainerSample
+|   |   |   |   |---SideBarContainerControlPanel.ets
+|   |   |   |   |---SideBarContainerSample.ets           // 侧边栏
 |   |   |---scrollAndSwipe
 |   |   |   |---scrollSample
-|   |   |   |   |---ScrollSample.ets
+|   |   |   |   |---ScrollSample.ets                     // 滚动
+|   |   |   |---swiperSample
+|   |   |   |   |---SwiperControlPanel.ets
+|   |   |   |   |---SwiperSample.ets                     // 轮播
+|   |   |---stackFlexAndGrid
+|   |   |   |---flexSample                               
+|   |   |   |   |---FlexControlPanel.ets
+|   |   |   |   |---FlexSample.ets                       // 弹性布局
+|   |   |   |---gridContainerSample
+|   |   |   |   |---GridContainerControlPanel.ets
+|   |   |   |   |---GridContainerSample.ets              // 栅格系统
+|   |   |   |---stackSample
+|   |   |   |   |---StackControlPanel.ets
+|   |   |   |   |---StackSample.ets                      // 层叠布局
 |   |   |---textAndInput
+|   |   |   |---patternLockSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---PattternLockSample.ets               // 密码锁
+|   |   |   |---searchSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---SearchSample.ets                     // 搜索栏
 |   |   |   |---imageSpanSample
 |   |   |   |   |---ChangePanel.ets
 |   |   |   |   |---imageSpanSample.ets                  // 行内图像
+|   |   |   |---textAreaSample
+|   |   |   |   |---ChangePanel.ets
+|   |   |   |   |---TextAreaSample.ets                   // 文本域
 |   |   |   |---richTextSample
 |   |   |   |   |---RichTextSample.ets                   // 富文本
 |   |   |   |---spanSample
@@ -163,6 +262,9 @@ entry/src/main/ets/
 |   |   |   |---textSample
 |   |   |   |   |---ChangePanel.ets
 |   |   |   |   |---TextSample.ets                       // 文本
+|   |   |---web
+|   |   |   |---webSample
+|   |   |   |   |---WebSample.ets                        // 网页
 |   |---globalMethods                                    // 详情页面
 |   |   |---GlobalMethodData.ets
 |   |   |---dialogs
@@ -211,7 +313,7 @@ entry/src/main/ets/
 |   |   |   |---touchEventSample
 |   |   |   |   |---TouchEventSample.ets                 // 触摸事件
 |   |   |---gesture
-|   |   |   |---bindGestureSample
+|   |   |   |---bindGestureSample 
 |   |   |   |   |---BindGestureSample.ets                // 绑定手势方法
 |   |   |   |---combinedSample
 |   |   |   |   |---CombinedSample.ets                   // 组合手势
@@ -288,32 +390,27 @@ entry/src/main/ets/
 
     * 组件模块：
         * 空白与分隔
-            * 封装自定义组件：CommonItemSlider，CommonItemSelect，CommonItemColorSelect
-            *
-            接口参考：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
+            * 封装自定义组件：CommonItemSlider，CommonItemSelect，CommonItemColorSelect 
+            * 接口参考：[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
 
         * 按钮与选择
-            * 使用全局组件ShowToast,TitleBar,IntroductionTitle实现按钮，时间选择器，单选按钮，选择菜单，滑动条，切换按钮，勾选框，文本选择器，时间选择器，计数器，评分条组件功能
-            *
-            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用全局组件ShowToast,TitleBar,IntroductionTitle实现按钮，时间选择器，单选按钮，选择菜单，滑动条，切换按钮，勾选框，文本选择器，时间选择器，计数器，评分条组件功能 
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 滚动与滑动
             * 使用全局组件TitleBar实现滚动，翻页组件功能
 
         * 信息展示与功效
-            * 使用全局组件TitleBar，AttributeModificationTool实现二维码，进度条，跑马灯，文字计时器，文字时钟，仪表盘，数据面板组件功能
-            *
-            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用全局组件TitleBar，AttributeModificationTool实现二维码，进度条，跑马灯，文字计时器，文字时钟，仪表盘，数据面板组件功能 
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 文本与输入
-            * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，行内图像，文本输入，文本，富文本组件功能
-            * 
-	    使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用全局组件ShowToast，TitleBar，AttributeModificationTool,IntroductionTitle实现行内文本，行内图像，文本输入，文本，富文本组件功能 
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 辅助
-            * 使用全局组件TitleBar实现标记，滚动条，下拉刷新，弹出面板，字母索引条组件功能
-            *
-            使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            * 使用全局组件TitleBar实现标记，滚动条，下拉刷新，弹出面板，字母索引条组件功能 
+            * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
 
         * 画布
             * 使用全局组件TitleBar, CanvasGradient, CanvasPattern, ImageBitmap, Path2D等实现图形绘制属性，图形绘制方法，渐变对象绘制，路径对象绘制，位图的绘制，阴影绘制，变换绘制
@@ -325,20 +422,17 @@ entry/src/main/ets/
             * resetBallMotion，isSideReached，calculateReachedSide，decideMoveDirection方法计算区域坐标，moveBall方法移动球体
 
         * 通用属性
-            * 使用全局组件TitleBar，AttributeModificationTool实现组件页面
-            *
-            接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
+            * 使用全局组件TitleBar，AttributeModificationTool实现组件页面 
+            * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
     * 动画模块：
         * 转场动画
-            * 用到全局组件TitleBar，IntroductionTitle实现页面
-            *
-            接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
+            * 用到全局组件TitleBar，IntroductionTitle实现页面 
+            * 接口参考：[@ohos.promptAction](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)
 
         * 插值计算
-            * 用到全局组件TitleBar，IntroductionTitle实现页面
-            *
-            接口参考：[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-curve.md)， [@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
+            * 用到全局组件TitleBar，IntroductionTitle实现页面 
+            * 接口参考：[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-curve.md)， [@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
         * 显示动画
           * 用到全局组件TitleBar，IntroductionTitle实现页面
           * 接口参考：[animateTo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-explicit-animation.md)
@@ -372,7 +466,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API10版本SDK，版本号：4.0.8.5，镜像版本号：OpenHarmony 4.0.8.5。
+2.本示例仅支持API10版本SDK，版本号：4.0.9.6，镜像版本号：OpenHarmony 4.0.9.6。
 
 3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
 SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。

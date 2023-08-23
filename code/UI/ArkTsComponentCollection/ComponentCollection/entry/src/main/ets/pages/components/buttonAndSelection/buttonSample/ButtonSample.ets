@@ -36,7 +36,6 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
 @Component
 struct ButtonSample {
   private context = getContext(this)
-
   @State onClickId: string = 'onClickId'
 
   @Styles buttonDefaultStyle() {
@@ -122,7 +121,8 @@ struct ButtonSample {
                 // onClick event will not response
                 ShowToast.longToast(`${getStringData($r('app.string.button_disable_style'))}${getStringData($r('app.string.button_click'))}`)
                 this.onClickId = 'Disable onClickId'
-              }).id('Disable')
+              })
+              .id('Disable')
           }
           .rowStyle()
           .justifyContent(FlexAlign.SpaceAround)
@@ -137,7 +137,8 @@ struct ButtonSample {
                 // onClick event will not response
                 ShowToast.longToast(`${getStringData($r('app.string.button_border_radius'))}${getStringData($r('app.string.button_click'))}`)
                 this.onClickId = 'Rounded button onClickId'
-              }).id('Rounded button')
+              })
+              .id('Rounded button')
 
             Button() {
               Row() {

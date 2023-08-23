@@ -155,6 +155,26 @@
       "name": "text_and_input",
       "value": "文本与输入"
     },
+    {
+      "name": "rows_and_columns",
+      "value": "行列与分栏"
+    },
+    {
+      "name": "stack_flex_and_grid",
+      "value": "堆叠、Flex与栅格"
+    },
+    {
+      "name": "list_and_grid",
+      "value": "列表与宫格"
+    },
+    {
+      "name": "navigation",
+      "value": "导航"
+    },
+    {
+      "name": "canvas_and_graphic_drawing",
+      "value": "画布与图形绘制"
+    },
     // layout Animation
     {
       "name": "layout_animation_expansion",
@@ -2776,6 +2796,1454 @@
     {
       "name": "canvas_show_message",
       "value": "已经打印到控制台"
+    },
+    // Row
+    {
+      "name": "row_title",
+      "value": "Row 水平布局"
+    },
+    {
+      "name": "row_introduction_arguments",
+      "value": "修改 Row 参数"
+    },
+    {
+      "name": "row_introduction_properties",
+      "value": "修改 Row 属性"
+    },
+    {
+      "name": "row_element_spacing",
+      "value": "元素间距"
+    },
+    {
+      "name": "row_alignitems_top",
+      "value": "Top"
+    },
+    {
+      "name": "row_alignitems_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "row_alignitems_center",
+      "value": "Center"
+    },
+    {
+      "name": "row_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "row_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "row_justifycontent_end",
+      "value": "End"
+    },
+    {
+      "name": "row_justifycontent_spacebetween",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "row_justifycontent_spacearound",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "row_justifycontent_spaceevenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "row_justifycontent_description",
+      "value": "主轴对齐格式"
+    },
+    {
+      "name": "row_alignitems_description",
+      "value": "交叉轴对齐格式"
+    },
+    {
+      "name": "row_introduction_tips",
+      "value": "温馨提示："
+    },
+    {
+      "name": "row_tips",
+      "value": "当主轴对齐类型为 SpaceBetween、SpaceAround、SpaceEvenly 时, Row 组件的参数 space 不生效"
+    },
+    // RowSplit
+    {
+      "name": "rowsplit_title",
+      "value": "RowSplit 水平分割布局"
+    },
+    {
+      "name": "rowsplit_introduction_properties",
+      "value": "修改 RowSplit 可拖拽属性"
+    },
+    {
+      "name": "rowsplit_drag",
+      "value": "拖拽开关"
+    },
+    {
+      "name": "rowsplit_drag_divider",
+      "value": "左右拖动分割线来改变位置"
+    },
+    // Column
+    {
+      "name": "column_title",
+      "value": "Column 垂直布局"
+    },
+    {
+      "name": "column_introduction_arguments",
+      "value": "修改 Column 参数"
+    },
+    {
+      "name": "column_introduction_properties",
+      "value": "修改 Column 属性"
+    },
+    {
+      "name": "column_element_spacing",
+      "value": "元素间距"
+    },
+    {
+      "name": "column_alignitems_start",
+      "value": "Start"
+    },
+    {
+      "name": "column_alignitems_end",
+      "value": "End"
+    },
+    {
+      "name": "column_alignitems_center",
+      "value": "Center"
+    },
+    {
+      "name": "column_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "column_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "column_justifycontent_end",
+      "value": "End"
+    },
+    {
+      "name": "column_justifycontent_spacebetween",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "column_justifycontent_spacearound",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "column_justifycontent_spaceevenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "column_justifycontent_description",
+      "value": "主轴对齐格式"
+    },
+    {
+      "name": "column_alignitems_description",
+      "value": "交叉轴对齐格式"
+    },
+    {
+      "name": "column_introduction_tips",
+      "value": "温馨提示："
+    },
+    {
+      "name": "column_tips",
+      "value": "当主轴对齐类型为 SpaceBetween、SpaceAround、SpaceEvenly 时, Column 组件的参数 space 不生效"
+    },
+    // ColumnSplit
+    {
+      "name": "columnsplit_title",
+      "value": "ColumnSplit 垂直分割布局"
+    },
+    {
+      "name": "columnsplit_introduction_properties",
+      "value": "修改 ColumnSplit 可拖拽属性"
+    },
+    {
+      "name": "columnsplit_drag",
+      "value": "拖拽开关"
+    },
+    {
+      "name": "columnsplit_introduction_drag_divider",
+      "value": "上下拖动分割线来改变位置"
+    },
+    // SideBarContainer
+    {
+      "name": "sidebarcontainer_title",
+      "value": "SideBarContainer 侧边栏"
+    },
+    {
+      "name": "sidebarcontainer_content_text",
+      "value": "SideBarContainer:提供侧边栏可以显示和隐藏的侧边栏容器，通过子组件定义侧边栏和内容区，第一个子组件表示侧边栏，第二个子组件表示内容区。该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_text_one",
+      "value": "收藏"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_text_two",
+      "value": "主页"
+    },
+    {
+      "name": "sidebarcontainer_argument",
+      "value": "修改 SideBarContainer 参数"
+    },
+    {
+      "name": "sidebarcontainer_property",
+      "value": "修改 SideBarContainer 属性"
+    },
+    {
+      "name": "sidebarcontainer_argument_type",
+      "value": "侧边栏显示类型"
+    },
+    {
+      "name": "sidebarcontainer_type_embed",
+      "value": "Embed"
+    },
+    {
+      "name": "sidebarcontainer_type_overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "sidebarcontainer_show_switch",
+      "value": "显示开关"
+    },
+    {
+      "name": "sidebarcontainer_left_margin",
+      "value": "控制按钮左边距"
+    },
+    {
+      "name": "sidebarcontainer_top_margin",
+      "value": "控制按钮上边距"
+    },
+    {
+      "name": "sidebarcontainer_show_button_switch",
+      "value": "控制按钮显示开关"
+    },
+    {
+      "name": "sidebarcontainer_position_title",
+      "value": "侧边栏显示位置"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_show_position_start",
+      "value": "Start"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_show_position_end",
+      "value": "End"
+    },
+    {
+      "name": "sidebarcontainer_min_width",
+      "value": "侧边栏最小宽度"
+    },
+    {
+      "name": "sidebarcontainer_max_width",
+      "value": "侧边栏最大宽度"
+    },
+    {
+      "name": "sidebarcontainer_auto_hide",
+      "value": "侧边栏最小状态时是否隐藏"
+    },
+    {
+      "name": "sidebarcontainer_divider_width",
+      "value": "分割线宽度"
+    },
+    {
+      "name": "sidebarcontainer_drag_divider",
+      "value": "拖动分割线来改变侧边栏大小"
+    },
+    {
+      "name": "sidebarcontainer__is_show_true",
+      "value": "侧边栏已展开"
+    },
+    {
+      "name": "sidebarcontainer__is_show_false",
+      "value": "侧边栏已关闭"
+    },
+    // Stack
+    {
+      "name": "stack_title",
+      "value": "Stack 堆叠容器"
+    },
+    {
+      "name": "stack_alignments_topstart",
+      "value": "TopStart"
+    },
+    {
+      "name": "stack_alignments_top",
+      "value": "Top"
+    },
+    {
+      "name": "stack_alignments_topend",
+      "value": "TopEnd"
+    },
+    {
+      "name": "stack_alignments_start",
+      "value": "Start"
+    },
+    {
+      "name": "stack_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "stack_alignment_end",
+      "value": "End"
+    },
+    {
+      "name": "stack_alignments_bottomstart",
+      "value": "BottomStart"
+    },
+    {
+      "name": "stack_alignments_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "stack_alignments_bottomend",
+      "value": "BottomEnd"
+    },
+    {
+      "name": "stack_alignment",
+      "value": "AlignContent"
+    },
+    {
+      "name": "stack_introduction",
+      "value": "修改 Stack 的属性&参数 alignContent"
+    },
+    {
+      "name": "stack_introduction_zindex",
+      "value": "sub three 的 zindex"
+    },
+    {
+      "name": "stack_zindex_four",
+      "value": "4"
+    },
+    {
+      "name": "stack_zindex_one",
+      "value": "1"
+    },
+    {
+      "name": "stack_zindex",
+      "value": "ZIndex"
+    },
+    // Flex
+    {
+      "name": "flex_title",
+      "value": "Flex 弹性布局"
+    },
+    {
+      "name": "flex_introduction_arguments",
+      "value": "修改 Flex 弹性布局的参数"
+    },
+    {
+      "name": "flex_argument_direction",
+      "value": "direction"
+    },
+    {
+      "name": "flex_argument_direction_row",
+      "value": "Row"
+    },
+    {
+      "name": "flex_argument_direction_row_reverse",
+      "value": "RowReverse"
+    },
+    {
+      "name": "flex_argument_direction_column",
+      "value": "Column"
+    },
+    {
+      "name": "flex_argument_direction_column_reverse",
+      "value": "ColumnReverse"
+    },
+    {
+      "name": "flex_argument_wrap",
+      "value": "修改本 flex 的 wrap"
+    },
+    {
+      "name": "flex_argument_wrap_no_wrap",
+      "value": "NoWrap"
+    },
+    {
+      "name": "flex_argument_wrap_wrap",
+      "value": "Wrap"
+    },
+    {
+      "name": "flex_argument_wrap_wrap_reverse",
+      "value": "WrapReverse"
+    },
+    {
+      "name": "flex_introduction_direction",
+      "value": "修改全部 Flex 的 direction"
+    },
+    {
+      "name": "flex_argument_justifycontent",
+      "value": "修改本 Flex 的 justifyContent"
+    },
+    {
+      "name": "flex_argument_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "flex_argument_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "flex_argument_justifycontent_End",
+      "value": "End"
+    },
+    {
+      "name": "flex_argument_justifycontent_space_between",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "flex_argument_justifycontent_space_around",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "flex_argument_justifycontent_speac_evenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "flex_argument_alignItems",
+      "value": "修改本 Flex 的 alignItems"
+    },
+    {
+      "name": "flex_argumen_alignItems_auto",
+      "value": "auto"
+    },
+    {
+      "name": "flex_argumen_alignItems_start",
+      "value": "Start"
+    },
+    {
+      "name": "flex_argumen_alignItems_center",
+      "value": "Center"
+    },
+    {
+      "name": "flex_argumen_alignItems_end",
+      "value": "End"
+    },
+    {
+      "name": "flex_argumen_alignItems_stretch",
+      "value": "Stretch"
+    },
+    {
+      "name": "flex_argumen_alignItems_baseline",
+      "value": "Baseline"
+    },
+    {
+      "name": "flex_argument_alignContent",
+      "value": "修改本 Flex 的 alignContent"
+    },
+    // gridContainer
+    {
+      "name": "gridcontainer_title",
+      "value": "GridContainer 栅格系统"
+    },
+    {
+      "name": "gridcontainer_introdional_arguments",
+      "value": "修改 GridContainer 参数"
+    },
+    {
+      "name": "gridcontainer_introdional_properties",
+      "value": "修改 GridContainer 属性"
+    },
+    {
+      "name": "gridcontainer_sizetype",
+      "value": "sizeType"
+    },
+    {
+      "name": "gridcontainer_sizetype_xs",
+      "value": "XS"
+    },
+    {
+      "name": "gridcontainer_sizetype_sm",
+      "value": "SM"
+    },
+    {
+      "name": "gridcontainer_sizetype_md",
+      "value": "MD"
+    },
+    {
+      "name": "gridcontainer_sizetype_lg",
+      "value": "LG"
+    },
+    {
+      "name": "gridcontainer_sizetype_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "gridcontainer_column",
+      "value": "columns"
+    },
+    {
+      "name": "gridcontainer_gutter",
+      "value": "gutter"
+    },
+    {
+      "name": "gridcontainer_margin",
+      "value": "margin"
+    },
+    {
+      "name": "image_video_and_media",
+      "value": "图片视频与媒体"
+    },
+    {
+      "name": "image_title",
+      "value": "Image 图片"
+    },
+    {
+      "name": "image_animator_title",
+      "value": "ImageAnimator 逐帧播放图片"
+    },
+    {
+      "name": "video_title",
+      "value": "video 视频"
+    },
+    {
+      "name": "xcomponent_title",
+      "value": "XComponent 绘制组件"
+    },
+    {
+      "name": "plugin_component_title",
+      "value": "PluginComponent 嵌入式显示"
+    },
+    {
+      "name": "image_show_test",
+      "value": "图像展示"
+    },
+    {
+      "name": "image_object_fit",
+      "value": "ObjectFit"
+    },
+    {
+      "name": "image_sourcesize_height",
+      "value": "裁剪高度"
+    },
+    {
+      "name": "image_sourcesize_width",
+      "value": "裁剪宽度"
+    },
+    {
+      "name": "object_fit_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "object_fit_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "object_fit_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "object_fit_fill",
+      "value": "Fill"
+    },
+    {
+      "name": "object_fit_scale_down",
+      "value": "ScaleDown"
+    },
+    {
+      "name": "object_fit_none",
+      "value": "None"
+    },
+    {
+      "name": "object_fit_change",
+      "value": "缩放类型"
+    },
+    {
+      "name": "image_sourcesize_change",
+      "value": "裁剪尺寸"
+    },
+    {
+      "name": "image_rendermode_original",
+      "value": "Original"
+    },
+    {
+      "name": "image_rendermode_template",
+      "value": "Template"
+    },
+    {
+      "name": "image_renderMode_change",
+      "value": "渲染模式"
+    },
+    {
+      "name": "image_repeat_xy",
+      "value": "XY"
+    },
+    {
+      "name": "image_repeat_x",
+      "value": "X"
+    },
+    {
+      "name": "image_repeat_y",
+      "value": "Y"
+    },
+    {
+      "name": "image_repeat_no",
+      "value": "No Repeat"
+    },
+    {
+      "name": "image_repeat_change",
+      "value": "重复样式"
+    },
+    {
+      "name": "image_fill_color_title",
+      "value": "填充颜色（仅svg图源生效）"
+    },
+    {
+      "name": "image_animator_show",
+      "value": "图片帧播放展示"
+    },
+    {
+      "name": "image_animator_control",
+      "value": "图片帧播放控制"
+    },
+    {
+      "name": "video_show",
+      "value": "视频展示"
+    },
+    {
+      "name": "video_auto_play",
+      "value": "自动播放"
+    },
+    {
+      "name": "video_controls_show",
+      "value": "控制栏显示"
+    },
+    {
+      "name": "video_muted_show",
+      "value": "静音"
+    },
+    {
+      "name": "video_fit_change",
+      "value": "视频显示模式"
+    },
+    {
+      "name": "video_loop_show",
+      "value": "循环播放"
+    },
+    {
+      "name": "video_current_rate_change",
+      "value": "倍速"
+    },
+    {
+      "name": "video_play_mode",
+      "value": "播放模式选择"
+    },
+    {
+      "name": "video_play_switch",
+      "value": "播放属性开关"
+    },
+    {
+      "name": "web_title",
+      "value": "web 网页"
+    },
+    {
+      "name": "web_show",
+      "value": "网页展示"
+    },
+    {
+      "name": "web_use_reason",
+      "value": "reason"
+    },
+    {
+      "name": "xcomponent_show",
+      "value": "XComponent 画布展示"
+    },
+    {
+      "name": "textarea_title",
+      "value": "TextArea 多行文本输入框"
+    },
+    {
+      "name": "patternlock_title",
+      "value": "PatternLock 图案密码锁"
+    },
+    {
+      "name": "search_title",
+      "value": "Search 搜索框"
+    },
+    {
+      "name": "textarea_textalign_start",
+      "value": "Start"
+    },
+    {
+      "name": "textarea_textalign_end",
+      "value": "End"
+    },
+    {
+      "name": "textarea_textalign_center",
+      "value": "Center"
+    },
+    {
+      "name": "textareaa_textalign_change",
+      "value": "水平对齐"
+    },
+    {
+      "name": "textarea_show",
+      "value": "多行文本输入框展示"
+    },
+    {
+      "name": "textarea_control",
+      "value": "参数控制"
+    },
+    {
+      "name": "textarea_copyoptions_none",
+      "value": "None"
+    },
+    {
+      "name": "textarea_copyoptions_inapp",
+      "value": "In App"
+    },
+    {
+      "name": "textarea_copyoptions_localdevice",
+      "value": "Local Device"
+    },
+    {
+      "name": "textarea_copyoptions_change",
+      "value": "可否复制"
+    },
+    {
+      "name": "textarea_placeholder_change",
+      "value": "placeholder文本颜色"
+    },
+    {
+      "name": "textarea_caretcolor_change",
+      "value": "输入框光标颜色"
+    },
+    {
+      "name": "patternlock_active_color",
+      "value": "圆点激活状态颜色"
+    },
+    {
+      "name": "patternlock_path_color",
+      "value": "连线颜色"
+    },
+    {
+      "name": "patternlock_select_color",
+      "value": "圆点选中状态颜色"
+    },
+    {
+      "name": "patternlock_regular_color",
+      "value": "圆点未选中状态颜色"
+    },
+    {
+      "name": "patternlock_side_length",
+      "value": "宫格宽高"
+    },
+    {
+      "name": "patternlock_circle_radius",
+      "value": "圆点半径"
+    },
+    {
+      "name": "patternlock_pathstroke_width",
+      "value": "连线宽度"
+    },
+    {
+      "name": "patternlock_change",
+      "value": "图案密码参数"
+    },
+    {
+      "name": "search_copyOption_change",
+      "value": "可否复制"
+    },
+    {
+      "name": "search_placeholder_change",
+      "value": "搜索框文本颜色"
+    },
+    {
+      "name": "search_textalign_change",
+      "value": "水平对齐"
+    },
+    {
+      "name": "search_change",
+      "value": "搜索框参数"
+    },
+    // List
+    {
+      "name": "list_title",
+      "value": "List 列表容器"
+    },
+    {
+      "name": "list_introduction_arguments",
+      "value": "修改 List 参数"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "修改 List 属性"
+    },
+    {
+      "name": "list_introduction_state",
+      "value": "状态栏"
+    },
+    {
+      "name": "list_properties_direction",
+      "value": "listDirection"
+    },
+    {
+      "name": "list_properties_direction_vertical",
+      "value": "Vertical"
+    },
+    {
+      "name": "list_properties_direction_Horizontal",
+      "value": "Horizontal"
+    },
+    {
+      "name": "list_argument_space",
+      "value": "space"
+    },
+    {
+      "name": "list_properties_divider_stroke_width",
+      "value": "divider - strokeWidth"
+    },
+    {
+      "name": "list_properties_divider_color",
+      "value": "divider - color"
+    },
+    {
+      "name": "list_properties_scroll_bar",
+      "value": "scrollBar"
+    },
+    {
+      "name": "list_properties_scroll_bar_off",
+      "value": "Off"
+    },
+    {
+      "name": "list_properties_scroll_bar_on",
+      "value": "On"
+    },
+    {
+      "name": "list_properties_scroll_bar_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "list_properties_initial_index",
+      "value": "initialIndex"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
+    },
+    {
+      "name": "list_properties_edge_effect_spring",
+      "value": "Spring"
+    },
+    {
+      "name": "list_properties_edge_effect_fade",
+      "value": "Fade"
+    },
+    {
+      "name": "list_properties_edge_effect_none",
+      "value": "None"
+    },
+    {
+      "name": "list_properties_chain_animation",
+      "value": "chainAnimation(需要 edgeEffect 为 Spring)"
+    },
+    {
+      "name": "list_properties_multi_selectable",
+      "value": "multiSelectable "
+    },
+    {
+      "name": "list_properties_lanes",
+      "value": "lanes"
+    },
+    {
+      "name": "list_properties_align_list_item",
+      "value": "alignListItem"
+    },
+    {
+      "name": "list_properties_align_list_item_start",
+      "value": "Start"
+    },
+    {
+      "name": "list_properties_align_list_item_Center",
+      "value": "Center"
+    },
+    {
+      "name": "list_properties_align_list_item_End",
+      "value": "End"
+    },
+    {
+      "name": "list_introduction_delete",
+      "value": "右划 item 以删除"
+    },
+    {
+      "name": "list_item_title",
+      "value": "ListItem"
+    },
+    {
+      "name": "list_item_properties_selectable",
+      "value": "selectable"
+    },
+    {
+      "name": "list_item_introduction_drag",
+      "value": "请用鼠标拖动 item 查看 selectable 属性效果"
+    },
+    {
+      "name": "list_item_introduction_properties",
+      "value": "修改 ListItem 的属性"
+    },
+    // Grid
+    {
+      "name": "grid_title",
+      "value": "Grid"
+    },
+    {
+      "name": "grid_item_title",
+      "value": "GridItem"
+    },
+    {
+      "name": "grid_properties_columns_template",
+      "value": "columnsTemplate(控制第三列所占比例)"
+    },
+    {
+      "name": "grid_properties_columns_gap",
+      "value": "columnsGap"
+    },
+    {
+      "name": "girid_properties_rows_gap",
+      "value": "rowsGap"
+    },
+    {
+      "name": "grid_properties_layout_direction",
+      "value": "layoutDirection"
+    },
+    {
+      "name": "grid_properties_layout_direction_row",
+      "value": "Row"
+    },
+    {
+      "name": "grid_properties_layout_direction_column",
+      "value": "Column"
+    },
+    {
+      "name": "grid_properties_layout_direction_row_reverse",
+      "value": "RowReverse"
+    },
+    {
+      "name": "grid_properties_layout_direction_column_reverse",
+      "value": "ColumnReverse"
+    },
+    {
+      "name": "grid_properties_rows_template",
+      "value": "rowsTemplate(控制第三行所占比例)"
+    },
+    // GridItem
+    {
+      "name": "grid_item_introduction",
+      "value": "修改 1 的位置"
+    },
+    {
+      "name": "grid_item_row_start",
+      "value": "修改起始行号"
+    },
+    {
+      "name": "grid_item_row_end",
+      "value": "修改终点行号"
+    },
+    {
+      "name": "grid_item_column_start",
+      "value": "修改起始列号"
+    },
+    {
+      "name": "grid_item_column_end",
+      "value": "修改终点列号"
+    },
+    // Swiper
+    {
+      "name": "swiper_title",
+      "value": "swiper"
+    },
+    {
+      "name": "swiper_introduction",
+      "value": "左右滑动切换页面"
+    },
+    {
+      "name": "swiper_introduction_arguments",
+      "value": "SwiperController 控制器"
+    },
+    {
+      "name": "swiper_introduction_properties",
+      "value": "修改 Swiper 的属性"
+    },
+    {
+      "name": "swiper_properties_disable_swipe",
+      "value": "是否禁用左右滑动切换功能"
+    },
+    {
+      "name": "swiper_properties_item_space",
+      "value": "滑动页面间隙"
+    },
+    {
+      "name": "swiper_properties_vertical",
+      "value": "是否为纵向滑动"
+    },
+    {
+      "name": "swiper_properties_duration",
+      "value": "滑动切换的动画时长(单位: ms)"
+    },
+    {
+      "name": "swiper_properties_loop",
+      "value": "是否开启首尾循环"
+    },
+    {
+      "name": "swiper_properties_auto_play",
+      "value": "是否开启自动循环播放"
+    },
+    {
+      "name": "swiper_properties_interval",
+      "value": "自动播放的时间间隔(单位: ms)"
+    },
+    {
+      "name": "swiper_controller_next",
+      "value": "下一页"
+    },
+    {
+      "name": "swiper_controller_previous",
+      "value": "上一页"
+    },
+    // Navigation
+    {
+      "name": "navigation_title",
+      "value": "Navigation"
+    },
+    {
+      "name": "navigation_first_page",
+      "value": "Navigation 第一个页面"
+    },
+    {
+      "name": "navigation_second_page",
+      "value": "Navigation 第二个页面"
+    },
+    {
+      "name": "navigation_third_page",
+      "value": "Navigation 第三个页面"
+    },
+    {
+      "name": "navigation_first_page_push",
+      "value": "去往第二个页面"
+    },
+    {
+      "name": "navigation_first_page_active",
+      "value": "点击切换 activate 状态"
+    },
+    {
+      "name": "navigation_second_page_push",
+      "value": "去往第三个页面"
+    },
+    {
+      "name": "navigation_third_page_back",
+      "value": "返回第一个页面"
+    },
+    // Tab
+    {
+      "name": "tabs_title",
+      "value": "Tabs"
+    },
+    {
+      "name": "tabs_introduction_arguments",
+      "value": "修改 Tabs 的参数"
+    },
+    {
+      "name": "tabs_introduction_properties",
+      "value": "修改 Tabs 的属性"
+    },
+    {
+      "name": "tabs_arguments_bar_position",
+      "value": "barPosition"
+    },
+    {
+      "name": "tabs_arguments_bar_position_start",
+      "value": "Start"
+    },
+    {
+      "name": "tabs_arguments_bar_position_end",
+      "value": "End"
+    },
+    {
+      "name": "tabs_properties_vertical",
+      "value": "vertical"
+    },
+    {
+      "name": "tabs_properties_bar_mode",
+      "value": "barMode"
+    },
+    {
+      "name": "tabs_properties_bar_mode_fixed",
+      "value": "Fixed"
+    },
+    {
+      "name": "tabs_properties_bar_scrollable",
+      "value": "Scrollable"
+    },
+    {
+      "name": "tabs_properties_is_scrollable",
+      "value": "scrollable"
+    },
+    {
+      "name": "tabs_properties_animation_duration",
+      "value": "animationDuration(ms)"
+    },
+    {
+      "name": "tabs_arguments_controller",
+      "value": "(TabsController)切换到指定索引"
+    },
+    // TabContent
+    {
+      "name": "tab_content_title",
+      "value": "TabContent"
+    },
+    {
+      "name": "tab_content_introduction",
+      "value": "子页签/底部页签切换器"
+    },
+    {
+      "name": "tab_content_side",
+      "value": "切换侧边栏"
+    },
+    // Stepper
+    {
+      "name": "stepper_title",
+      "value": "Stepper&StepperItem"
+    },
+    {
+      "name": "canvas_title",
+      "value": "Canvas 画布"
+    },
+    {
+      "name": "circle_title",
+      "value": "Circle 圆形"
+    },
+    {
+      "name": "ellipse_title",
+      "value": "Ellipse 椭圆"
+    },
+    {
+      "name": "line_title",
+      "value": "Line 直线"
+    },
+    {
+      "name": "polyline_title",
+      "value": "Polyline 折线"
+    },
+    {
+      "name": "path_title",
+      "value": "Path 路径"
+    },
+    {
+      "name": "polygon_title",
+      "value": "Polygon 多边形"
+    },
+    {
+      "name": "rect_title",
+      "value": "Rect 矩形"
+    },
+    {
+      "name": "shape_title",
+      "value": "Shape 指定图形"
+    },
+    {
+      "name": "circle_change",
+      "value": "圆形参数"
+    },
+    {
+      "name": "circle_change_fill",
+      "value": "填充色"
+    },
+    {
+      "name": "circle_change_radius",
+      "value": "圆形半径"
+    },
+    {
+      "name": "circle_change_fillopacity",
+      "value": "圆形填充透明度"
+    },
+    {
+      "name": "circle_change_strokewidth",
+      "value": "边框宽度"
+    },
+    {
+      "name": "circle_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "circle_stroke_color",
+      "value": "边框颜色"
+    },
+    {
+      "name": "circle_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "ellipse_fill",
+      "value": "填充色"
+    },
+    {
+      "name": "ellipse_stroke_color",
+      "value": "边框颜色"
+    },
+    {
+      "name": "ellipse_stroke_width",
+      "value": "边框宽度"
+    },
+    {
+      "name": "ellipse_width",
+      "value": "椭圆宽度"
+    },
+    {
+      "name": "ellipse_height",
+      "value": "椭圆高度"
+    },
+    {
+      "name": "ellipse_fill_opacity",
+      "value": "填充透明度"
+    },
+    {
+      "name": "ellipse_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "ellipse_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "line_start_point_x",
+      "value": "直线起点x值"
+    },
+    {
+      "name": "line_start_point_y",
+      "value": "直线起点y值"
+    },
+    {
+      "name": "line_end_point_x",
+      "value": "直线终点x值"
+    },
+    {
+      "name": "line_end_point_y",
+      "value": "直线终点y值"
+    },
+    {
+      "name": "line_stroke_width",
+      "value": "直线宽度"
+    },
+    {
+      "name": "line_stroke_color",
+      "value": "直线颜色"
+    },
+    {
+      "name": "line_stroke_opacity",
+      "value": "透明度"
+    },
+    {
+      "name": "line_stroke_dash",
+      "value": "间隙"
+    },
+    {
+      "name": "polygon_fill",
+      "value": "填充色"
+    },
+    {
+      "name": "polygon_fill_opacity",
+      "value": "填充透明度"
+    },
+    {
+      "name": "polygon_stroke_color",
+      "value": "边框颜色"
+    },
+    {
+      "name": "polygon_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "polygon_stroke_width",
+      "value": "边框宽度"
+    },
+    {
+      "name": "polygon_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "polyline_first_x",
+      "value": "第一个点x值"
+    },
+    {
+      "name": "polyline_first_y",
+      "value": "第一个点y值"
+    },
+    {
+      "name": "polyline_second_x",
+      "value": "第二个点x值"
+    },
+    {
+      "name": "polyline_second_y",
+      "value": "第二个点y值"
+    },
+    {
+      "name": "polyline_third_x",
+      "value": "第三个点x值"
+    },
+    {
+      "name": "polyline_third_y",
+      "value": "第三个点y值"
+    },
+    {
+      "name": "polyline_stroke_width",
+      "value": "边框宽度"
+    },
+    {
+      "name": "polyline_stroke_color",
+      "value": "边框颜色"
+    },
+    {
+      "name": "polyline_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "polyline_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "rect_height",
+      "value": "矩形高度"
+    },
+    {
+      "name": "rect_width",
+      "value": "矩形宽度"
+    },
+    {
+      "name": "rect_radius_width",
+      "value": "圆角宽度"
+    },
+    {
+      "name": "rect_radius_height",
+      "value": "圆角高度"
+    },
+    {
+      "name": "rect_fill_opacity",
+      "value": "填充透明度"
+    },
+    {
+      "name": "rect_stroke",
+      "value": "边框颜色"
+    },
+    {
+      "name": "rect_stroke_width",
+      "value": "边框宽度"
+    },
+    {
+      "name": "rect_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "rect_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "rect_fill",
+      "value": "填充色"
+    },
+    {
+      "name": "path_line",
+      "value": "M0 0 L600 0"
+    },
+    {
+      "name": "path_triangle",
+      "value": "M100 0 L200 240 L0 240 Z"
+    },
+    {
+      "name": "path_square",
+      "value": "M0 0 H200 V200 H0 Z"
+    },
+    {
+      "name": "path_polygon",
+      "value": "M100 0 L0 100 L50 200 L150 200 L200 100 Z"
+    },
+    {
+      "name": "path_camber_first",
+      "value": "M0 300 S100 0 240 300 Z"
+    },
+    {
+      "name": "path_camber_second",
+      "value": "M0 150 C0 100 140 0 200 150 L100 300 Z"
+    },
+    {
+      "name": "path_camber_third",
+      "value": "M0 100 A30 20 20 0 0 200 100 Z"
+    },
+    {
+      "name": "path_commands_select",
+      "value": "路径选择"
+    },
+    {
+      "name": "path_fill",
+      "value": "填充色"
+    },
+    {
+      "name": "path_fill_opacity",
+      "value": "填充透明度"
+    },
+    {
+      "name": "path_stroke_color",
+      "value": "边框颜色"
+    },
+    {
+      "name": "path_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "path_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "path_stroke_width",
+      "value": "边框宽度"
+    },
+    {
+      "name": "shape_fill",
+      "value": "填充色"
+    },
+    {
+      "name": "shape_stroke_color",
+      "value": "边框颜色"
+    },
+    {
+      "name": "shape_view_port_x",
+      "value": "视口x值"
+    },
+    {
+      "name": "shape_view_port_y",
+      "value": "视口y值"
+    },
+    {
+      "name": "shape_view_port_width",
+      "value": "视口宽度"
+    },
+    {
+      "name": "shape_view_port_height",
+      "value": "视口高度"
+    },
+    {
+      "name": "shape_stroke_opacity",
+      "value": "边框透明度"
+    },
+    {
+      "name": "shape_fill_opacity",
+      "value": "填充透明度"
+    },
+    {
+      "name": "shape_stroke_width",
+      "value": "边框宽度"
+    },
+    {
+      "name": "shape_stroke_dash",
+      "value": "边框间隙"
+    },
+    {
+      "name": "web",
+      "value": "网页"
     },
     // scrollTo 动效增强
     {

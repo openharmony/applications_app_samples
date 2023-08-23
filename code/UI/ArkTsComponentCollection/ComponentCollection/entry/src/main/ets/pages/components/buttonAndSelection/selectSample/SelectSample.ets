@@ -28,8 +28,9 @@ struct SelectSample {
   $r('app.media.ic_select_option_picture'),
   $r('app.media.ic_select_option_collection'),
   $r('app.media.ic_select_option_gesture')]
-  private cityNames: SelectOption[] = [{ value: $r('app.string.radio_beijing') }, { value: $r('app.string.radio_shanghai') }, { value: $r('app.string.radio_shenzhen') }]
-
+  private cityNames: SelectOption[] = [{ value: $r('app.string.radio_beijing') }, {
+    value: $r('app.string.radio_shanghai')
+  }, { value: $r('app.string.radio_shenzhen') }]
   @State onSelectId: string = ''
 
   @Styles itemBorder() {
@@ -56,7 +57,7 @@ struct SelectSample {
               .onSelect((index: number, value: string) => {
                 ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
                 this.selectIndex = index
-                this.onSelectId = 'onSelectId'+index
+                this.onSelectId = 'onSelectId' + index
               }).id('select0')
           }
           .itemBorder()
@@ -72,8 +73,9 @@ struct SelectSample {
               .selectedOptionFont({ size: 25, weight: FontWeight.Medium })
               .onSelect((index: number, value: string) => {
                 ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
-                this.onSelectId = 'onSelectId'+index
-              }).id('select1')
+                this.onSelectId = 'onSelectId' + index
+              })
+              .id('select1')
           }
           .itemBorder()
           .justifyContent(FlexAlign.Center)
@@ -88,8 +90,9 @@ struct SelectSample {
               .optionFont({ size: 25, weight: FontWeight.Normal })
               .onSelect((index: number, value: string) => {
                 ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
-                this.onSelectId = 'onSelectId'+index
-              }).id('select2')
+                this.onSelectId = 'onSelectId' + index
+              })
+              .id('select2')
           }
           .itemBorder()
           .justifyContent(FlexAlign.Center)
@@ -102,8 +105,9 @@ struct SelectSample {
               .fontColor(Color.Black)
               .onSelect((index: number, value: string) => {
                 ShowToast.longToast(`${this.indexTitle}${index} ${this.valueTitle}${value}`)
-                this.onSelectId = 'onSelectId'+index
-              }).id('select3')
+                this.onSelectId = 'onSelectId' + index
+              })
+              .id('select3')
           }
           .itemBorder()
           .justifyContent(FlexAlign.Center)

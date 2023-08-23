@@ -30,7 +30,8 @@ export struct TitleBar {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             router.back()
-          }).id('backBtn')
+          })
+          .id('backBtn')
         Text(this.title)
           .fontSize(20)
           .layoutWeight(1)

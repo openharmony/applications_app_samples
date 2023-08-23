@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel'
-import { TitleBar } from '../../../../common/TitleBar'
+import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel';
+import { TitleBar } from '../../../../common/TitleBar';
 
 @Extend(Column) function backgroundStyle() {
   .size({ width: '100%' })
@@ -31,7 +31,7 @@ struct TextSample {
   @State lineHeight: number = 23
   @State textMaxLines: number = -1
   @State letterSpacing: number = 2
-  @State fontColor: string = '#FF000000'
+  @State fontColor: Color = Color.Blue
   @State textCase: TextCase = TextCase.Normal
   @State textAlign: TextAlign = TextAlign.Start
   @State textOverFlow: TextOverflow = TextOverflow.None

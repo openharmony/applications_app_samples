@@ -991,10 +991,6 @@
       "value": "folder expansion"
     },
     {
-      "name": "System_icon",
-      "value": "System Icon"
-    },
-    {
       "name": "Shop_card_expansion",
       "value": "shop card expansion"
     },
@@ -2024,496 +2020,497 @@
       "value": "constraintSize"
     },
     {
-      "name": "size_size_padding_one",
-      "value": "Top, bottom, left and right padding: 10vp"
+      "name": "response_region",
+      "value": "Response Region"
     },
     {
-      "name": "size_size_padding_two",
-      "value": "Top padding 20%"
+      "name": "touch_hit_subtitle",
+      "value": "Click the green area to trigger the blue area response"
     },
     {
-      "name": "size_size_margin_one",
-      "value": "Top, bottom, left and right margin: 10vp"
+      "name": "option",
+      "value": "option"
     },
     {
-      "name": "size_size_margin_two",
-      "value": "Top margin 20%"
+      "name": "hover_region",
+      "value": "Hover the mouse over the green area to observe the effect"
     },
     {
-      "name": "size_size_constraintSize_one",
-      "value": "Constraint maximum width and height 90vp"
+      "name": "multistatus_region",
+      "value": "Switch status and observe the effect"
     },
     {
-      "name": "size_size_constraintSize_two",
-      "value": "Constraint minimum width and height 80vp"
+      "name": "status_select",
+      "value": "Status selection"
     },
+    // 辅助
     {
-      "name": "keyPress_event",
-      "value": "KeyPress event"
+      "name": "scroll_bar",
+      "value": "ScrollBar"
     },
     {
-      "name": "focus_event_description",
-      "value": "Press the external keyboard Tab key to get focus, and then press the up and down keys to switch focus"
+      "name": "scroll_vertical_title",
+      "value": "vertical scroll"
     },
     {
-      "name": "focus_event_button_one",
-      "value": "First button"
+      "name": "scroll_horizontal_title",
+      "value": "horizontal scroll"
     },
     {
-      "name": "focus_event_button_two",
-      "value": "Second button"
+      "name": "auxiliary_refresh",
+      "value": "Refresh"
     },
     {
-      "name": "focus_event_button_three",
-      "value": "Three button"
+      "name": "auxiliary_refresh_offset",
+      "value": "offset:"
     },
     {
-      "name": "focus_event_toast_text",
-      "value": "Trigger focus"
+      "name": "auxiliary_refresh_minvalue",
+      "value": "0"
     },
     {
-      "name": "press_event_toast_text",
-      "value": "Trigger a key press event"
+      "name": "auxiliary_refresh_maxvalue",
+      "value": "100"
     },
     {
-      "name": "press_event_toast_description",
-      "value": "Press any key from the external keyboard"
+      "name": "auxiliary_refresh_friction",
+      "value": "friction:"
     },
     {
-      "name": "mouse_event_move_description",
-      "value": "Use an external mouse to move in the button"
+      "name": "auxiliary_panel",
+      "value": "Panel"
     },
     {
-      "name": "mouse_event_click_description",
-      "value": "Click the button with an external mouse"
+      "name": "auxiliary_alphabetIndexer",
+      "value": "AlphabetIndexer"
     },
     {
-      "name": "mouse_event_hover_description",
-      "value": "Mouse in"
+      "name": "loading_progress",
+      "value": "LoadingProgress"
     },
     {
-      "name": "mouse_event_onHover_description",
-      "value": "Mouse out"
+      "name": "marquee_name",
+      "value": "Marquee"
     },
     {
-      "name": "mouse_event_onMouse_text",
-      "value": "On Mouse"
+      "name": "marquee_src",
+      "value": "Hello ArkUI String Length Larger Than Content"
     },
     {
-      "name": "mouse_event_mouseBtn_none",
-      "value": "None"
+      "name": "marquee_fromstart",
+      "value": "fromStart"
     },
     {
-      "name": "mouse_event_mouseBtn_left",
-      "value": "Left"
+      "name": "marquee_step",
+      "value": "step"
     },
     {
-      "name": "mouse_event_mouseBtn_right",
-      "value": "Right"
+      "name": "marquee_loop",
+      "value": "loop"
     },
     {
-      "name": "mouse_event_mouseBtn_back",
-      "value": "Back"
+      "name": "text_timer",
+      "value": "TextTimer"
     },
     {
-      "name": "mouse_event_mouseBtn_forward",
-      "value": "Forward"
+      "name": "text_timer_start",
+      "value": "start"
     },
     {
-      "name": "mouse_event_mouseBtn_middle",
-      "value": "Middle"
+      "name": "text_timer_pause",
+      "value": "pause"
     },
     {
-      "name": "mouse_event_mouseAction_hover",
-      "value": "Hover"
+      "name": "text_timer_reset",
+      "value": "reset"
     },
     {
-      "name": "mouse_event_mouseAction_press",
-      "value": "Press"
+      "name": "text_timer_iscountdown",
+      "value": "isCountDown"
     },
     {
-      "name": "mouse_event_mouseAction_move",
-      "value": "Move"
+      "name": "text_timer_timeformatone",
+      "value": "mm:ss:SS"
     },
     {
-      "name": "mouse_event_mouseAction_release",
-      "value": "Release"
+      "name": "text_timer_groupformat",
+      "value": "format"
     },
     {
-      "name": "scroll_event",
-      "value": "Component visible area change events"
+      "name": "text_timer_timeformattwo",
+      "value": "HH:mm:ss"
     },
     {
-      "name": "scroll_event_description",
-      "value": "Swipe the list to make the picture disappear and appear"
+      "name": "text_timer_timeformatthree",
+      "value": "DD-HH-mm-ss.SSS"
     },
     {
-      "name": "scroll_event_toast_visible",
-      "value": "Love pictures are fully visible"
+      "name": "text_clock",
+      "value": "TextClock"
     },
     {
-      "name": "scroll_event_toast_invisible",
-      "value": "The love picture disappears completely"
+      "name": "text_clock_start",
+      "value": "start"
     },
     {
-      "name": "location_settings",
-      "value": "Location settings"
+      "name": "text_clock_stop",
+      "value": "stop"
     },
     {
-      "name": "location_settings_align",
-      "value": "Align"
+      "name": "text_clock_timeformatone",
+      "value": "HH:mm:ss"
     },
     {
-      "name": "location_settings_direction",
-      "value": "Direction"
+      "name": "text_clock_groupformat",
+      "value": "format"
     },
     {
-      "name": "location_settings_position",
-      "value": "Position"
+      "name": "text_clock_timeformattwo",
+      "value": "YY:MM:dd"
     },
     {
-      "name": "location_settings_markAnchor",
-      "value": "MarkAnchor"
+      "name": "text_clock_timeformatthree",
+      "value": "hh-mm-ss"
     },
     {
-      "name": "location_settings_offset",
-      "value": "Offset"
+      "name": "progress_name",
+      "value": "Progress"
     },
     {
-      "name": "location_settings_alignRules",
-      "value": "AlignRules"
+      "name": "gauge_name",
+      "value": "Gauge"
     },
     {
-      "name": "location_settings_bottom_end",
-      "value": "Bottom end"
+      "name": "gauge_value",
+      "value": "value"
     },
     {
-      "name": "location_settings_top_start",
-      "value": "Top start"
+      "name": "gauge_strokewidth",
+      "value": "strokeWidth"
     },
     {
-      "name": "location_settings_center",
-      "value": "Center"
+      "name": "gauge_startangle",
+      "value": "startAngle"
     },
     {
-      "name": "location_settings_position_text",
-      "value": "position(30, 10)"
+      "name": "gauge_endangle",
+      "value": " endAngle"
     },
     {
-      "name": "location_settings_position_offSet_text",
-      "value": "Offset(15, 30)"
+      "name": "data_panel",
+      "value": "DataPanel"
     },
     {
-      "name": "layout_constrain",
-      "value": "Layout constraints"
+      "name": "checkbox_checkboxgroup",
+      "value": "Checkbox && CheckboxGroup"
     },
     {
-      "name": "layout_constrain_aspectRatio",
-      "value": "AspectRatio"
+      "name": "checkbox_title",
+      "value": "Checkbox"
     },
     {
-      "name": "layout_constrain_displayPriority",
-      "value": "DisplayPriority"
+      "name": "checkbox_checkbox1",
+      "value": "Checkbox1"
     },
     {
-      "name": "layout_constrain_big_container",
-      "value": "Big container"
+      "name": "checkbox_checkbox2",
+      "value": "Checkbox2"
     },
     {
-      "name": "layout_constrain_middle_container",
-      "value": "Middle container"
+      "name": "checkbox_checkbox3",
+      "value": "Checkbox3"
     },
     {
-      "name": "layout_constrain_small_container",
-      "value": "Small container"
+      "name": "checkbox_checkgroup",
+      "value": "checkboxGroup"
     },
     {
-      "name": "layout_constrain_children_one",
-      "value": "1:(priority:2)"
+      "name": "checkbox_checkgroup_title",
+      "value": "CheckboxGroup"
     },
     {
-      "name": "layout_constrain_children_two",
-      "value": "2:(priority:1)"
+      "name": "text_picker",
+      "value": "TextPicker"
     },
     {
-      "name": "layout_constrain_children_three",
-      "value": "3:(priority:3)"
+      "name": "time_picker",
+      "value": "TimePicker"
     },
     {
-      "name": "layout_constrain_children_four",
-      "value": "4:(priority:1)"
+      "name": "counter_name",
+      "value": "Counter"
     },
     {
-      "name": "layout_constrain_children_five",
-      "value": "5:(priority:2)"
+      "name": "rating_name",
+      "value": "Rating"
     },
     {
-      "name": "layout_constrain_one",
-      "value": "1"
+      "name": "rating_options_indicator",
+      "value": "indicator"
     },
     {
-      "name": "layout_constrain_two",
-      "value": "2"
+      "name": "rating_options_value",
+      "value": "value"
     },
     {
-      "name": "flex",
-      "value": "flex"
+      "name": "rating_options_stars",
+      "value": "stars"
     },
     {
-      "name": "flex_flexBasis",
-      "value": "flexBasis"
+      "name": "rich_text",
+      "value": "RichText"
     },
     {
-      "name": "flex_flexGrow",
-      "value": "FlexGrow"
+      "name": "scroll_swiper",
+      "value": "Scroll and Swipe"
     },
     {
-      "name": "flex_flexShrink",
-      "value": "FlexShrink"
+      "name": "scroll_name",
+      "value": "Scroll"
     },
     {
-      "name": "flex_alignSelf",
-      "value": "AlignSelf"
+      "name": "swiper_name",
+      "value": "Swiper"
     },
     {
-      "name": "flex_layoutWeight",
-      "value": "LayoutWeight"
+      "name": "alphabetindexer_an",
+      "value": "An"
     },
     {
-      "name": "flex_no_layoutWeight",
-      "value": "On LayoutWeight"
+      "name": "alphabetindexer_bu",
+      "value": "Bu"
     },
     {
-      "name": "flex_no_alignSelf_70",
-      "value": "On alignSelf,height:70%"
+      "name": "alphabetindexer_bai",
+      "value": "Bai"
     },
     {
-      "name": "flex_end_alignSelf",
-      "value": "AlignSelf end"
+      "name": "alphabetindexer_bao",
+      "value": "Bao"
     },
     {
-      "name": "flex_end_alignSelf_100",
-      "value": "AlignSelf end"
+      "name": "alphabetindexer_bi",
+      "value": "Bi"
     },
     {
-      "name": "flex_shrink_0",
-      "value": "FlexShrink(0)"
+      "name": "alphabetindexer_bing",
+      "value": "Bing"
     },
     {
-      "name": "flex_shrink_default",
-      "value": "Default flexShrink"
+      "name": "alphabetindexer_cao",
+      "value": "Cao"
     },
     {
-      "name": "flex_shrink_1",
-      "value": "FlexShrink(1)"
+      "name": "alphabetindexer_chen",
+      "value": "Chen"
     },
     {
-      "name": "flex_grow_1",
-      "value": "FlexGrow(1)"
+      "name": "alphabetindexer_lv",
+      "value": "Lv"
     },
     {
-      "name": "flex_grow_2",
-      "value": "FlexGrow(2)"
+      "name": "alphabetindexer_liu3",
+      "value": "Liu3"
     },
     {
-      "name": "flex_no_alignSelf_100",
-      "value": "On alignSelf,height:100%"
+      "name": "alphabetindexer_liu",
+      "value": "Liu"
     },
     {
-      "name": "flex_basis_100",
-      "value": "FlexBasis(100)"
+      "name": "alphabetindexer_li",
+      "value": "Li"
     },
     {
-      "name": "flex_basis_auto",
-      "value": "FlexBasis(auto)"
+      "name": "alphabetindexer_lou",
+      "value": "Lou"
     },
     {
-      "name": "picture_border",
-      "value": "Picture border settings"
+      "name": "alphabetindexer_liang",
+      "value": "Liang"
     },
     {
-      "name": "scale",
-      "value": "Scale"
+      "name": "alphabetindexer_lei",
+      "value": "Lei"
     },
     {
-      "name": "transform",
-      "value": "Transform"
+      "name": "alphabetindexer_lu",
+      "value": "Lu"
     },
     {
-      "name": "scale_image",
-      "value": "ScaleImage"
+      "name": "alphabetindexer_cui",
+      "value": "Cui"
     },
     {
-      "name": "transform_image",
-      "value": "TransformImage"
+      "name": "alphabetindexer_cheng",
+      "value": "Cheng"
     },
     {
-      "name": "transform_init",
-      "value": "Create a fourth-order matrix"
+      "name": "alphabetindexer_list_display",
+      "value": "List Display"
     },
     {
-      "name": "transform_copy",
-      "value": "Copy matrix"
+      "name": "alphabetindexer_color_select",
+      "value": "Color Select"
     },
     {
-      "name": "transform_combine",
-      "value": "Matrix effect overlay"
+      "name": "alphabetindexer_selectedcolor_selectedcolor",
+      "value": "selectedColor"
     },
     {
-      "name": "transform_invert",
-      "value": "The matrix effect is inverted"
+      "name": "alphabetindexer_selectedcolor_selectedbgcolor",
+      "value": "selectedBackColor"
     },
     {
-      "name": "transform_translate",
-      "value": "Matrix panning effect"
+      "name": "alphabetindexer_selectedcolor_popupcolor",
+      "value": "popupColor"
     },
     {
-      "name": "transform_scale",
-      "value": "Matrix scaling effect"
+      "name": "alphabetindexer_selectedcolor_popupbackground",
+      "value": "popupBackground"
     },
     {
-      "name": "transform_rotate",
-      "value": "Matrix rotation effect"
+      "name": "alphabetindexer_selectedcolor_usingpopup",
+      "value": "usingPopup"
     },
     {
-      "name": "transform_transformPoint",
-      "value": "Matrix coordinate point transformation effect"
+      "name": "panel_show_minibar",
+      "value": "Show Minibar Type Panel"
     },
     {
-      "name": "transform_combine_text",
-      "value": "x pan 20, x magnify twice"
+      "name": "panel_close_minibar",
+      "value": "Close Minibar Type Panel"
     },
     {
-      "name": "transform_translate_text",
-      "value": "Pan x: 40, y: 40, z: 20"
+      "name": "panel_show_foldable",
+      "value": "Show Foldable Type Panel"
     },
     {
-      "name": "transform_scale_text",
-      "value": "Double the width and height"
+      "name": "panel_close_foldable",
+      "value": "Close Foldable Type Panel"
     },
     {
-      "name": "transform_rotate_text",
-      "value": "Rotate 30 degrees"
+      "name": "panel_show_temporary",
+      "value": "Show Temporary Type Panel"
     },
     {
-      "name": "transform_transformPoint_before",
-      "value": "Matrix transformed coordinates: [50,50]"
+      "name": "panel_close_temporary",
+      "value": "Close Temporary Type Panel"
     },
     {
-      "name": "transform_transformPoint_after",
-      "value": "Coordinates after matrix transformation: [100,0]"
+      "name": "panel_radio_groupname",
+      "value": "fruit"
     },
     {
-      "name": "shape_crop",
-      "value": "Shape crop"
+      "name": "checkbox_apple",
+      "value": "Apple"
     },
     {
-      "name": "shape_crop_clip",
-      "value": "Clip"
+      "name": "checkbox_blueberry",
+      "value": "Blueberry"
     },
     {
-      "name": "shape_crop_mask",
-      "value": "Mask"
+      "name": "checkbox_banbana",
+      "value": "Banana"
     },
     {
-      "name": "grid_settings",
-      "value": "Grid settings"
+      "name": "checkbox_cherries",
+      "value": "Cherries"
     },
     {
-      "name": "grid_settings_sm",
-      "value": "设备宽度为SM"
+      "name": "checkbox_durian",
+      "value": "Durian"
     },
     {
-      "name": "grid_settings_md",
-      "value": "The device width is MD"
+      "name": "checkbox_orange",
+      "value": "Orange"
     },
     {
-      "name": "grid_settings_lg",
-      "value": "The device width is LG"
+      "name": "checkbox_select_color",
+      "value": "Select Color"
     },
     {
-      "name": "grid_settings_useSize",
-      "value": "UseSizeType"
+      "name": "checkbox_select_all",
+      "value": "Select All"
     },
     {
-      "name": "grid_settings_gridSpan",
-      "value": "GridSpan gridOffset"
+      "name": "normal_display",
+      "value": "Display"
     },
     {
-      "name": "focus_control",
-      "value": "Focus control"
+      "name": "normal_options",
+      "value": "Options"
     },
     {
-      "name": "focus_control_tab",
-      "value": "Press the external keyboard Tab key to switch focus"
+      "name": "datapanel_circle",
+      "value": "Circle"
     },
     {
-      "name": "focus_control_lastPageId",
-      "value": "LastPageId"
+      "name": "datapanel_line",
+      "value": "Line"
     },
     {
-      "name": "focus_control_success",
-      "value": "Request success"
+      "name": "progress_linear",
+      "value": "Linear Progress"
     },
     {
-      "name": "focus_control_failed",
-      "value": "Request failed"
+      "name": "progress_eclipse",
+      "value": "Eclipse Progress"
     },
     {
-      "name": "focus_control_request_focus",
-      "value": "Select Fruit Request Spotlight"
+      "name": "progress_scalering",
+      "value": "ScaleRing Progress"
     },
     {
-      "name": "component_id",
-      "value": "Component id"
+      "name": "progress_ring",
+      "value": "Ring Progress"
     },
     {
-      "name": "component_blurred",
-      "value": "The component background is blurred"
+      "name": "progress_capsule",
+      "value": "Capsule Progress"
     },
     {
-      "name": "component_blurred_thin",
-      "value": "Thin material"
+      "name": "progress_change",
+      "value": "Change Progress"
     },
     {
-      "name": "restore_id",
-      "value": "Distributed migration identity"
+      "name": "textclock_timeformat",
+      "value": "Time Format"
     },
     {
-      "name": "gesture_process",
-      "value": "Gesture process"
+      "name": "scroll_horizontal",
+      "value": "Horizontal Scroll"
     },
     {
-      "name": "bind_gesture_methods",
-      "value": "Bind gesture methods"
+      "name": "scroll_vertical",
+      "value": "Vertical Scroll"
     },
     {
-      "name": "bind_gesture_priorityGesture",
-      "value": "PriorityGesture会忽略text,优先识别父组件column"
+      "name": "interaction_disable_list",
+      "value": "Disable List"
     },
     {
-      "name": "bind_gesture_parallelGesture",
-      "value": "ParallelGesture识别父子组件column，text"
+      "name": "interaction_show_one_alert",
+      "value": "Click to show one button alert"
     },
     {
-      "name": "double_click",
-      "value": "Single-finger double-tap trigger"
+      "name": "interaction_show_two_alert",
+      "value": "Click to show two button alert"
     },
     {
-      "name": "long_press_text",
-      "value": "Please press and hold me with one finger"
+      "name": "interaction_placementontop",
+      "value": "PlacementOnTop:"
     },
     {
-      "name": "long_press_cancel",
-      "value": "Cancel the event"
+      "name": "interaction_arrowoffset",
+      "value": "Change arrowOffset:"
     },
     {
-      "name": "pan_text_one",
-      "value": "Drag the black box left and right with one finger"
+      "name": "interaction_showpopup",
+      "value": "Show Popup"
     },
     {
-      "name": "pan_text",
-      "value": "Drag the black box with two fingers"
+      "name": "interaction_showcustompopup",
+      "value": "Show Custom Popup"
     },
     {
       "name": "pan_start",

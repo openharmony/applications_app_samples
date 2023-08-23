@@ -21,6 +21,10 @@
       "value": "#000000"
     },
     {
+      "name": "font_color_red",
+      "value": "#FFD22C2C"
+    },
+    {
       "name": "tab_bar_select",
       "value": "#007DFF"
     },

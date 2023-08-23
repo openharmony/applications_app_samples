@@ -17,7 +17,7 @@ import Logger from '../util/Logger'
 
 let context = getContext(this)
 
-export function getStringArrayData(resourceArrayData: Resource[]):string[] {
+export function getStringArrayData(resourceArrayData: Resource[]): string[] {
   if (!resourceArrayData) {
     return
   }
@@ -32,7 +32,7 @@ export function getStringArrayData(resourceArrayData: Resource[]):string[] {
   return resourceStringArrayData
 }
 
-export function getStringData(resourceData: Resource):string {
+export function getStringData(resourceData: Resource): string {
   if (!resourceData) {
     return
   }

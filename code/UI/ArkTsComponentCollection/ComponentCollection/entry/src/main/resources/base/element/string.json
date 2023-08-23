@@ -168,6 +168,26 @@
       "name": "text_and_input",
       "value": "Text and input"
     },
+    {
+      "name": "rows_and_columns",
+      "value": "Rows and columns"
+    },
+    {
+      "name": "stack_flex_and_grid",
+      "value": "Stack, flex and grid"
+    },
+    {
+      "name": "list_and_grid",
+      "value": "List and grid"
+    },
+    {
+      "name": "navigation",
+      "value": "Navigation"
+    },
+    {
+      "name": "canvas_and_graphic_drawing",
+      "value": "Canvas and graphic drawing"
+    },
     // layout Animation
     {
       "name": "layout_animation_expansion",
@@ -2001,7 +2021,6 @@
       "name": "scroll_bar",
       "value": "ScrollBar"
     },
-
     {
       "name": "scroll_vertical_title",
       "value": "vertical scroll"
@@ -3376,6 +3395,1453 @@
     {
       "name": "text_picker_show",
       "value": "显示文本弹窗"
+    },
+    //Row
+    {
+      "name": "row_title",
+      "value": "Row"
+    },
+    {
+      "name": "row_introduction_arguments",
+      "value": "Modifying Row parameters"
+    },
+    {
+      "name": "row_introduction_properties",
+      "value": "Modifying Row properties"
+    },
+    {
+      "name": "row_element_spacing",
+      "value": "element spacing"
+    },
+    {
+      "name": "row_alignitems_top",
+      "value": "Top"
+    },
+    {
+      "name": "row_alignitems_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "row_alignitems_center",
+      "value": "Center"
+    },
+    {
+      "name": "row_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "row_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "row_justifycontent_end",
+      "value": "End"
+    },
+    {
+      "name": "row_justifycontent_spacebetween",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "row_justifycontent_spacearound",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "row_justifycontent_spaceevenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "row_justifycontent_description",
+      "value": "Spindle alignment format"
+    },
+    {
+      "name": "row_alignitems_description",
+      "value": "Cross axis alignment format"
+    },
+    {
+      "name": "row_introduction_tips",
+      "value": "Tips:"
+    },
+    {
+      "name": "row_tips",
+      "value": "When the spindle is of type SpaceBetween, SpaceAround, or SpaceEven, the parameter space of the Row component does not take effect"
+    },
+    // RowSplit
+    {
+      "name": "rowsplit_title",
+      "value": "RowSplit Indicates the horizontal split layout"
+    },
+    {
+      "name": "rowsplit_introduction_properties",
+      "value": "Modify the drag-and-drop property of RowSplit"
+    },
+    {
+      "name": "rowsplit_drag",
+      "value": "drag switch"
+    },
+    {
+      "name": "rowsplit_drag_divider",
+      "value": "Drag the dividers left and right to change position"
+    },
+    // Column
+    {
+      "name": "column_title",
+      "value": "Column"
+    },
+    {
+      "name": "column_introduction_arguments",
+      "value": "Modifying Row parameters"
+    },
+    {
+      "name": "column_introduction_properties",
+      "value": "Modifying Row properties"
+    },
+    {
+      "name": "column_element_spacing",
+      "value": "element spacing"
+    },
+    {
+      "name": "column_alignitems_start",
+      "value": "Start"
+    },
+    {
+      "name": "column_alignitems_end",
+      "value": "End"
+    },
+    {
+      "name": "column_alignitems_center",
+      "value": "Center"
+    },
+    {
+      "name": "column_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "column_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "column_justifycontent_end",
+      "value": "End"
+    },
+    {
+      "name": "column_justifycontent_spacebetween",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "column_justifycontent_spacearound",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "column_justifycontent_spaceevenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "column_justifycontent_description",
+      "value": "Spindle alignment format"
+    },
+    {
+      "name": "column_alignitems_description",
+      "value": "Cross axis alignment format"
+    },
+    {
+      "name": "column_introduction_tips",
+      "value": "tips:"
+    },
+    {
+      "name": "column_tips",
+      "value": "When the spindle is of type SpaceBetween, SpaceAround, or SpaceEven, the parameter space of the Row component does not take effect"
+    },
+    // ColumnSplit
+    {
+      "name": "columnsplit_title",
+      "value": "RowSplit Indicates the vertical split layout"
+    },
+    {
+      "name": "columnsplit_introduction_properties",
+      "value": "Modify the drag-and-drop property of ColumnSplit"
+    },
+    {
+      "name": "columnsplit_drag",
+      "value": "drag switch"
+    },
+    {
+      "name": "columnsplit_introduction_drag_divider",
+      "value": "Drag the split line up and down to change the position"
+    },
+    // SideBarContainer
+    {
+      "name": "sidebarcontainer_title",
+      "value": "SideBarContainer"
+    },
+    {
+      "name": "sidebarcontainer_content_text",
+      "value": "SideBarContainer: A sidebar container that provides a sidebar that can be displayed and hidden. The sidebar and content area are defined by subcomponents, the first subcomponent representing the sidebar and the second subcomponent representing the content area. This component is supported starting with API Version 8. If new content is added in later versions, the upper corner mark is used to separately mark the beginning version of the content."
+    },
+    {
+      "name": "sidebarcontainer_sidebar_text_one",
+      "value": "Collect"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_text_two",
+      "value": "Home"
+    },
+    {
+      "name": "sidebarcontainer_argument",
+      "value": "Example Modify SideBarContainer"
+    },
+    {
+      "name": "sidebarcontainer_property",
+      "value": "Modify the SideBarContainer property"
+    },
+    {
+      "name": "sidebarcontainer_argument_type",
+      "value": "The sidebar shows the type"
+    },
+    {
+      "name": "sidebarcontainer_type_embed",
+      "value": "Embed"
+    },
+    {
+      "name": "sidebarcontainer_type_overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "sidebarcontainer_show_switch",
+      "value": "Display switch"
+    },
+    {
+      "name": "sidebarcontainer_left_margin",
+      "value": "Control button left margin"
+    },
+    {
+      "name": "sidebarcontainer_top_margin",
+      "value": "Control button upper margin"
+    },
+    {
+      "name": "sidebarcontainer_show_button_switch",
+      "value": "Control button display switch"
+    },
+    {
+      "name": "sidebarcontainer_position_title",
+      "value": "The sidebar shows the location"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_show_position_start",
+      "value": "Start"
+    },
+    {
+      "name": "sidebarcontainer_sidebar_show_position_end",
+      "value": "End"
+    },
+    {
+      "name": "sidebarcontainer_min_width",
+      "value": "Minimum width of sidebar"
+    },
+    {
+      "name": "sidebarcontainer_max_width",
+      "value": "Maximum width of sidebar"
+    },
+    {
+      "name": "sidebarcontainer_auto_hide",
+      "value": "Whether the sidebar is hidden in its smallest state"
+    },
+    {
+      "name": "sidebarcontainer_divider_width",
+      "value": "Dividing line width"
+    },
+    {
+      "name": "sidebarcontainer_drag_divider",
+      "value": "Drag the divider to change the sidebar size"
+    },
+    {
+      "name": "sidebarcontainer__is_show_true",
+      "value": "The sidebar has expanded"
+    },
+    {
+      "name": "sidebarcontainer__is_show_false",
+      "value": "The sidebar is closed"
+    },
+    // Stack
+    {
+      "name": "stack_title",
+      "value": "Stack"
+    },
+    {
+      "name": "stack_alignments_topstart",
+      "value": "TopStart"
+    },
+    {
+      "name": "stack_alignments_top",
+      "value": "Top"
+    },
+    {
+      "name": "stack_alignments_topend",
+      "value": "TopEnd"
+    },
+    {
+      "name": "stack_alignments_start",
+      "value": "Start"
+    },
+    {
+      "name": "stack_alignment_center",
+      "value": "Center"
+    },
+    {
+      "name": "stack_alignment_end",
+      "value": "End"
+    },
+    {
+      "name": "stack_alignments_bottomstart",
+      "value": "BottomStart"
+    },
+    {
+      "name": "stack_alignments_bottom",
+      "value": "Bottom"
+    },
+    {
+      "name": "stack_alignments_bottomend",
+      "value": "BottomEnd"
+    },
+    {
+      "name": "stack_alignment",
+      "value": "AlignContent"
+    },
+    {
+      "name": "stack_introduction",
+      "value": "The Stack attribute & parameter alignContent is updated"
+    },
+    {
+      "name": "stack_introduction_zindex",
+      "value": "sub three  zindex"
+    },
+    {
+      "name": "stack_zindex_four",
+      "value": "4"
+    },
+    {
+      "name": "stack_zindex_one",
+      "value": "1"
+    },
+    {
+      "name": "stack_zindex",
+      "value": "ZIndex"
+    },
+    // Flex
+    {
+      "name": "flex_title",
+      "value": "Flex"
+    },
+    {
+      "name": "flex_introduction_arguments",
+      "value": "Modify the Flex elastic layout parameters"
+    },
+    {
+      "name": "flex_argument_direction",
+      "value": "direction"
+    },
+    {
+      "name": "flex_argument_direction_row",
+      "value": "Row"
+    },
+    {
+      "name": "flex_argument_direction_row_reverse",
+      "value": "RowReverse"
+    },
+    {
+      "name": "flex_argument_direction_column",
+      "value": "Column"
+    },
+    {
+      "name": "flex_argument_direction_column_reverse",
+      "value": "ColumnReverse"
+    },
+    {
+      "name": "flex_argument_wrap",
+      "value": "Modify the wrap for this flex"
+    },
+    {
+      "name": "flex_argument_wrap_no_wrap",
+      "value": "NoWrap"
+    },
+    {
+      "name": "flex_argument_wrap_wrap",
+      "value": "Wrap"
+    },
+    {
+      "name": "flex_argument_wrap_wrap_reverse",
+      "value": "WrapReverse"
+    },
+    {
+      "name": "flex_introduction_direction",
+      "value": "Change the direction of all flex"
+    },
+    {
+      "name": "flex_argument_justifycontent",
+      "value": "Revised this Flex justifyContent"
+    },
+    {
+      "name": "flex_argument_justifycontent_start",
+      "value": "Start"
+    },
+    {
+      "name": "flex_argument_justifycontent_center",
+      "value": "Center"
+    },
+    {
+      "name": "flex_argument_justifycontent_End",
+      "value": "End"
+    },
+    {
+      "name": "flex_argument_justifycontent_space_between",
+      "value": "SpaceBetween"
+    },
+    {
+      "name": "flex_argument_justifycontent_space_around",
+      "value": "SpaceAround"
+    },
+    {
+      "name": "flex_argument_justifycontent_speac_evenly",
+      "value": "SpaceEvenly"
+    },
+    {
+      "name": "flex_argument_alignItems",
+      "value": "Modify alignItems in this Flex"
+    },
+    {
+      "name": "flex_argumen_alignItems_auto",
+      "value": "auto"
+    },
+    {
+      "name": "flex_argumen_alignItems_start",
+      "value": "Start"
+    },
+    {
+      "name": "flex_argumen_alignItems_center",
+      "value": "Center"
+    },
+    {
+      "name": "flex_argumen_alignItems_end",
+      "value": "End"
+    },
+    {
+      "name": "flex_argumen_alignItems_stretch",
+      "value": "Stretch"
+    },
+    {
+      "name": "flex_argumen_alignItems_baseline",
+      "value": "Baseline"
+    },
+    {
+      "name": "flex_argument_alignContent",
+      "value": "Modify the alignContent of this Flex"
+    },
+    {
+      "name": "gridcontainer_title",
+      "value": "GridContainer Grid system"
+    },
+    {
+      "name": "gridcontainer_introdional_arguments",
+      "value": "Modify the GridContainer parameters"
+    },
+    {
+      "name": "gridcontainer_introdional_properties",
+      "value": "Modify the GridContainer property"
+    },
+    {
+      "name": "gridcontainer_sizetype",
+      "value": "sizeType"
+    },
+    {
+      "name": "gridcontainer_sizetype_xs",
+      "value": "XS"
+    },
+    {
+      "name": "gridcontainer_sizetype_sm",
+      "value": "SM"
+    },
+    {
+      "name": "gridcontainer_sizetype_md",
+      "value": "MD"
+    },
+    {
+      "name": "gridcontainer_sizetype_lg",
+      "value": "LG"
+    },
+    {
+      "name": "gridcontainer_sizetype_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "gridcontainer_column",
+      "value": "columns"
+    },
+    {
+      "name": "gridcontainer_gutter",
+      "value": "gutter"
+    },
+    {
+      "name": "gridcontainer_margin",
+      "value": "margin"
+    },
+    {
+      "name": "image_video_and_media",
+      "value": "Image Video And Media"
+    },
+    {
+      "name": "image_title",
+      "value": "Image"
+    },
+    {
+      "name": "image_animator_title",
+      "value": "ImageAnimator"
+    },
+    {
+      "name": "video_title",
+      "value": "Video"
+    },
+    {
+      "name": "plugin_component_title",
+      "value": "PluginComponent"
+    },
+    {
+      "name": "xcomponent_title",
+      "value": "XComponent"
+    },
+    {
+      "name": "image_show_test",
+      "value": "Show the image"
+    },
+    {
+      "name": "image_object_fit",
+      "value": "ObjectFit"
+    },
+    {
+      "name": "image_sourcesize_height",
+      "value": "SizeHeight"
+    },
+    {
+      "name": "image_sourcesize_width",
+      "value": "SizeWidth"
+    },
+    {
+      "name": "object_fit_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "object_fit_contain",
+      "value": "Contain"
+    },
+    {
+      "name": "object_fit_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "object_fit_fill",
+      "value": "Fill"
+    },
+    {
+      "name": "object_fit_scale_down",
+      "value": "ScaleDown"
+    },
+    {
+      "name": "object_fit_none",
+      "value": "None"
+    },
+    {
+      "name": "object_fit_change",
+      "value": "ObjectFitChange"
+    },
+    {
+      "name": "image_sourcesize_change",
+      "value": "SourceSizeChange"
+    },
+    {
+      "name": "image_rendermode_original",
+      "value": "RenderModeOriginal"
+    },
+    {
+      "name": "image_rendermode_template",
+      "value": "RenderModeTemplate"
+    },
+    {
+      "name": "image_renderMode_change",
+      "value": "RenderModeChange"
+    },
+    {
+      "name": "image_repeat_xy",
+      "value": "RepeatXY"
+    },
+    {
+      "name": "image_repeat_x",
+      "value": "RepeatX"
+    },
+    {
+      "name": "image_repeat_y",
+      "value": "RepeatY"
+    },
+    {
+      "name": "image_repeat_no",
+      "value": "NoRepeat"
+    },
+    {
+      "name": "image_repeat_change",
+      "value": "RepeatChange"
+    },
+    {
+      "name": "image_fill_color_title",
+      "value": "FillColorTitle"
+    },
+    {
+      "name": "image_animator_show",
+      "value": "ImageAnimatorShow"
+    },
+    {
+      "name": "image_animator_control",
+      "value": "ImageAnimatorControl"
+    },
+    {
+      "name": "video_show",
+      "value": "VideoShow"
+    },
+    {
+      "name": "video_auto_play",
+      "value": "AutoPlay"
+    },
+    {
+      "name": "video_controls_show",
+      "value": "ControlsShow"
+    },
+    {
+      "name": "video_muted_show",
+      "value": "MutedShow"
+    },
+    {
+      "name": "video_fit_change",
+      "value": "VideoFit"
+    },
+    {
+      "name": "video_loop_show",
+      "value": "LoopShow"
+    },
+    {
+      "name": "video_current_rate_change",
+      "value": "CurrentRateChange"
+    },
+    {
+      "name": "video_play_mode",
+      "value": "VideoPlayMode"
+    },
+    {
+      "name": "video_play_switch",
+      "value": "VideoPlaySwitch"
+    },
+    {
+      "name": "web_title",
+      "value": "Web"
+    },
+    {
+      "name": "web_show",
+      "value": "WebShow"
+    },
+    {
+      "name": "web_use_reason",
+      "value": "reason"
+    },
+    {
+      "name": "xcomponent_show",
+      "value": "XComponentShow"
+    },
+    {
+      "name": "textarea_title",
+      "value": "TextArea"
+    },
+    {
+      "name": "patternlock_title",
+      "value": "PatternLock"
+    },
+    {
+      "name": "search_title",
+      "value": "Search"
+    },
+    {
+      "name": "textarea_textalign_start",
+      "value": "Start"
+    },
+    {
+      "name": "textarea_textalign_center",
+      "value": "Center"
+    },
+    {
+      "name": "textarea_textalign_end",
+      "value": "End"
+    },
+    {
+      "name": "textareaa_textalign_change",
+      "value": "textAreatextAlignChange"
+    },
+    {
+      "name": "textarea_show",
+      "value": "TextAreaShow"
+    },
+    {
+      "name": "textarea_control",
+      "value": "TextAreaControl"
+    },
+    {
+      "name": "textarea_copyoptions_none",
+      "value": "None"
+    },
+    {
+      "name": "textarea_copyoptions_inapp",
+      "value": "InApp"
+    },
+    {
+      "name": "textarea_copyoptions_localdevice",
+      "value": "LocalDevice"
+    },
+    {
+      "name": "textarea_copyoptions_change",
+      "value": "CopyOptionsChange"
+    },
+    {
+      "name": "textarea_placeholder_change",
+      "value": "PlaceholderChange"
+    },
+    {
+      "name": "textarea_caretcolor_change",
+      "value": "CaretcolorChage"
+    },
+    {
+      "name": "patternlock_active_color",
+      "value": "PatternLockActiveColor"
+    },
+    {
+      "name": "patternlock_path_color",
+      "value": "PatternLockParhColor"
+    },
+    {
+      "name": "patternlock_select_color",
+      "value": "PatternLockSelectColor"
+    },
+    {
+      "name": "patternlock_regular_color",
+      "value": "PatternLockRegularColor"
+    },
+    {
+      "name": "patternlock_side_length",
+      "value": "PatternLockSideLengh"
+    },
+    {
+      "name": "patternlock_circle_radius",
+      "value": "PatternLockCircleRadius"
+    },
+    {
+      "name": "patternlock_pathstroke_width",
+      "value": "PatternLockPathStrokeWidth"
+    },
+    {
+      "name": "patternlock_change",
+      "value": "PatternLockChange"
+    },
+    {
+      "name": "search_textalign_change",
+      "value": "SearchTextAlignChange"
+    },
+    {
+      "name": "search_placeholder_change",
+      "value": "SearchPlaceholderChange"
+    },
+    {
+      "name": "search_copyOption_change",
+      "value": "SearchCopyOptionChange"
+    },
+    {
+      "name": "search_change",
+      "value": "SearchChange"
+    },
+    // List
+    {
+      "name": "list_title",
+      "value": "List"
+    },
+    {
+      "name": "list_introduction_arguments",
+      "value": "Modifying List arguments"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "Modifying List properties"
+    },
+    {
+      "name": "list_introduction_state",
+      "value": "Status bar"
+    },
+    {
+      "name": "list_properties_direction",
+      "value": "listDirection"
+    },
+    {
+      "name": "list_properties_direction_vertical",
+      "value": "Vertical"
+    },
+    {
+      "name": "list_properties_direction_Horizontal",
+      "value": "Horizontal"
+    },
+    {
+      "name": "list_argument_space",
+      "value": "space"
+    },
+    {
+      "name": "list_properties_divider_stroke_width",
+      "value": "divider - strokeWidth"
+    },
+    {
+      "name": "list_properties_divider_color",
+      "value": "divider - color"
+    },
+    {
+      "name": "list_properties_scroll_bar",
+      "value": "scrollBar"
+    },
+    {
+      "name": "list_properties_scroll_bar_off",
+      "value": "Off"
+    },
+    {
+      "name": "list_properties_scroll_bar_on",
+      "value": "On"
+    },
+    {
+      "name": "list_properties_scroll_bar_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "list_properties_initial_index",
+      "value": "initialIndex"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
+    },
+    {
+      "name": "list_properties_edge_effect_spring",
+      "value": "Spring"
+    },
+    {
+      "name": "list_properties_edge_effect_fade",
+      "value": "Fade"
+    },
+    {
+      "name": "list_properties_edge_effect_none",
+      "value": "None"
+    },
+    {
+      "name": "list_properties_chain_animation",
+      "value": "chainAnimation"
+    },
+    {
+      "name": "list_properties_multi_selectable",
+      "value": "multiSelectable "
+    },
+    {
+      "name": "list_properties_lanes",
+      "value": "lanes"
+    },
+    {
+      "name": "list_properties_align_list_item",
+      "value": "alignListItem"
+    },
+    {
+      "name": "list_properties_align_list_item_start",
+      "value": "Start"
+    },
+    {
+      "name": "list_properties_align_list_item_Center",
+      "value": "Center"
+    },
+    {
+      "name": "list_properties_align_list_item_End",
+      "value": "End"
+    },
+    {
+      "name": "list_introduction_delete",
+      "value": "Right-click item to delete it"
+    },
+    {
+      "name": "list_item_title",
+      "value": "ListItem"
+    },
+    {
+      "name": "list_item_properties_selectable",
+      "value": "selectable"
+    },
+    {
+      "name": "list_item_introduction_drag",
+      "value": "Drag the item with your mouse to see the selectable property effect"
+    },
+    {
+      "name": "list_item_introduction_properties",
+      "value": "修改 ListItem 的属性"
+    },
+    // Grid
+    {
+      "name": "grid_title",
+      "value": "Grid"
+    },
+    {
+      "name": "grid_item_title",
+      "value": "GridItem"
+    },
+    {
+      "name": "grid_properties_columns_template",
+      "value": "columnsTemplate(Control the proportion of the third column)"
+    },
+    {
+      "name": "grid_properties_columns_gap",
+      "value": "columnsGap"
+    },
+    {
+      "name": "girid_properties_rows_gap",
+      "value": "rowsGap"
+    },
+    {
+      "name": "grid_properties_layout_direction",
+      "value": "layoutDirection"
+    },
+    {
+      "name": "grid_properties_layout_direction_row",
+      "value": "Row"
+    },
+    {
+      "name": "grid_properties_layout_direction_column",
+      "value": "Column"
+    },
+    {
+      "name": "grid_properties_layout_direction_row_reverse",
+      "value": "RowReverse"
+    },
+    {
+      "name": "grid_properties_layout_direction_column_reverse",
+      "value": "ColumnReverse"
+    },
+    {
+      "name": "grid_properties_rows_template",
+      "value": "rowsTemplate(Control the proportion of the third rows)"
+    },
+    // GridItem
+    {
+      "name": "grid_item_introduction",
+      "value": "Change the position of 1"
+    },
+    {
+      "name": "grid_item_row_start",
+      "value": "Change the start line number"
+    },
+    {
+      "name": "grid_item_row_end",
+      "value": "Modify the end line number"
+    },
+    {
+      "name": "grid_item_column_start",
+      "value": "Change the start column number"
+    },
+    {
+      "name": "grid_item_column_end",
+      "value": "Modify the end column number"
+    },
+    // Swiper
+    {
+      "name": "swiper_title",
+      "value": "swiper"
+    },
+    {
+      "name": "swiper_introduction",
+      "value": "Swipe left or right to switch pages"
+    },
+    {
+      "name": "swiper_introduction_arguments",
+      "value": "SwiperController Controller"
+    },
+    {
+      "name": "swiper_introduction_properties",
+      "value": "Modify the properties of Swiper"
+    },
+    {
+      "name": "swiper_properties_disable_swipe",
+      "value": "Disable swipe left or right to switch function"
+    },
+    {
+      "name": "swiper_properties_item_space",
+      "value": "Space between sliding pages"
+    },
+    {
+      "name": "swiper_properties_vertical",
+      "value": "Is it vertical sliding"
+    },
+    {
+      "name": "swiper_properties_duration",
+      "value": "Duration of slide switching animation (unit: ms)"
+    },
+    {
+      "name": "swiper_properties_loop",
+      "value": "Enable loop from beginning to end"
+    },
+    {
+      "name": "swiper_properties_auto_play",
+      "value": "Enable automatic loop playback"
+    },
+    {
+      "name": "swiper_properties_interval",
+      "value": "Interval of automatic playback (unit: ms)"
+    },
+    {
+      "name": "swiper_controller_next",
+      "value": "Next page"
+    },
+    {
+      "name": "swiper_controller_previous",
+      "value": "Previous page"
+    },
+    // Navigation
+    {
+      "name": "navigation_title",
+      "value": "Navigation"
+    },
+    {
+      "name": "navigation_first_page",
+      "value": "First page of Navigation"
+    },
+    {
+      "name": "navigation_second_page",
+      "value": "Second page of Navigation"
+    },
+    {
+      "name": "navigation_third_page",
+      "value": "Third page of Navigation"
+    },
+    {
+      "name": "navigation_first_page_push",
+      "value": "Go to the second page"
+    },
+    {
+      "name": "navigation_first_page_active",
+      "value": "Click to toggle activate status"
+    },
+    {
+      "name": "navigation_second_page_push",
+      "value": "Go to the third page"
+    },
+    {
+      "name": "navigation_third_page_back",
+      "value": "Go back to the first page"
+    },
+    // Tabs
+    {
+      "name": "tabs_title",
+      "value": "Tabs"
+    },
+    {
+      "name": "tabs_introduction_arguments",
+      "value": "Modify the parameters of Tabs"
+    },
+    {
+      "name": "tabs_introduction_properties",
+      "value": "Modify the properties of Tabs"
+    },
+    {
+      "name": "tabs_arguments_bar_position",
+      "value": "barPosition"
+    },
+    {
+      "name": "tabs_arguments_bar_position_start",
+      "value": "Start"
+    },
+    {
+      "name": "tabs_arguments_bar_position_end",
+      "value": "End"
+    },
+    {
+      "name": "tabs_properties_vertical",
+      "value": "vertical"
+    },
+    {
+      "name": "tabs_properties_bar_mode",
+      "value": "barMode"
+    },
+    {
+      "name": "tabs_properties_bar_mode_fixed",
+      "value": "Fixed"
+    },
+    {
+      "name": "tabs_properties_bar_scrollable",
+      "value": "Scrollable"
+    },
+    {
+      "name": "tabs_properties_is_scrollable",
+      "value": "scrollable"
+    },
+    {
+      "name": "tabs_properties_animation_duration",
+      "value": "animationDuration(ms)"
+    },
+    {
+      "name": "tabs_arguments_controller",
+      "value": "Switches to the specified index"
+    },
+    // TabsContent
+    {
+      "name": "tab_content_title",
+      "value": "TabContent"
+    },
+    {
+      "name": "tab_content_introduction",
+      "value": "Subtab/Bottom tab switcher"
+    },
+    {
+      "name": "tab_content_side",
+      "value": "Switch sidebar"
+    },
+    // Stepper
+    {
+      "name": "stepper_title",
+      "value": "Stepper&StepperItem"
+    },
+    {
+      "name": "canvas_title",
+      "value": "Canvas"
+    },
+    {
+      "name": "circle_title",
+      "value": "Circle"
+    },
+    {
+      "name": "ellipse_title",
+      "value": "Ellipse"
+    },
+    {
+      "name": "line_title",
+      "value": "Line"
+    },
+    {
+      "name": "polyline_title",
+      "value": "Polyline"
+    },
+    {
+      "name": "path_title",
+      "value": "Path"
+    },
+    {
+      "name": "polygon_title",
+      "value": "Polygon"
+    },
+    {
+      "name": "rect_title",
+      "value": "Rect"
+    },
+    {
+      "name": "shape_title",
+      "value": "shape"
+    },
+    {
+      "name": "circle_change",
+      "value": "CircleChange"
+    },
+    {
+      "name": "circle_change_fill",
+      "value": "CircleChangeFill"
+    },
+    {
+      "name": "circle_change_radius",
+      "value": "CircleRadius"
+    },
+    {
+      "name": "circle_change_fillopacity",
+      "value": "CircleChangeFillOpacity"
+    },
+    {
+      "name": "circle_change_strokewidth",
+      "value": "CircleStrokeWidth"
+    },
+    {
+      "name": "circle_stroke_dash",
+      "value": "CircleStrokeDash"
+    },
+    {
+      "name": "circle_stroke_color",
+      "value": "CircleStokeColor"
+    },
+    {
+      "name": "circle_stroke_opacity",
+      "value": "CircleStrokeOpacity"
+    },
+    {
+      "name": "ellipse_fill",
+      "value": "EllipseFill"
+    },
+    {
+      "name": "ellipse_stroke_color",
+      "value": "EllipseStrokeColor"
+    },
+    {
+      "name": "ellipse_stroke_width",
+      "value": "EllipseStrokeWidth"
+    },
+    {
+      "name": "ellipse_width",
+      "value": "EllipseWidth"
+    },
+    {
+      "name": "ellipse_height",
+      "value": "EllipseHeight"
+    },
+    {
+      "name": "ellipse_fill_opacity",
+      "value": "EllipseFillOpacity"
+    },
+    {
+      "name": "ellipse_stroke_opacity",
+      "value": "EllipseStrokeOpacity"
+    },
+    {
+      "name": "ellipse_stroke_dash",
+      "value": "EllipseStrokeDash"
+    },
+    {
+      "name": "line_start_point_x",
+      "value": "LineStartPointX"
+    },
+    {
+      "name": "line_start_point_y",
+      "value": "LineStartPointY"
+    },
+    {
+      "name": "line_end_point_x",
+      "value": "LineEndPointY"
+    },
+    {
+      "name": "line_end_point_y",
+      "value": "LineEndPointY"
+    },
+    {
+      "name": "line_stroke_width",
+      "value": "LineSrokeWidth"
+    },
+    {
+      "name": "line_stroke_color",
+      "value": "LineStrokeColor"
+    },
+    {
+      "name": "line_stroke_opacity",
+      "value": "LineStrokeOpacity"
+    },
+    {
+      "name": "line_stroke_dash",
+      "value": "LineStrokeDash"
+    },
+    {
+      "name": "polygon_fill",
+      "value": "PolygonFill"
+    },
+    {
+      "name": "polygon_fill_opacity",
+      "value": "PolygonFillOpacity"
+    },
+    {
+      "name": "polygon_stroke_color",
+      "value": "PolygonStrokeColor"
+    },
+    {
+      "name": "polygon_stroke_opacity",
+      "value": "PolygonStrokeOpacity"
+    },
+    {
+      "name": "polygon_stroke_width",
+      "value": "PolygonStrokeWidth"
+    },
+    {
+      "name": "polygon_stroke_dash",
+      "value": "PolygonStrokeDash"
+    },
+    {
+      "name": "polyline_first_x",
+      "value": "PolylineFirstX"
+    },
+    {
+      "name": "polyline_first_y",
+      "value": "PolylineFirstY"
+    },
+    {
+      "name": "polyline_second_x",
+      "value": "PolylineSecondX"
+    },
+    {
+      "name": "polyline_second_y",
+      "value": "PolylineSecondY"
+    },
+    {
+      "name": "polyline_third_x",
+      "value": "PolylineThirdX"
+    },
+    {
+      "name": "polyline_third_y",
+      "value": "PolylineThirdY"
+    },
+    {
+      "name": "polyline_stroke_width",
+      "value": "PolylineStrokeWidth"
+    },
+    {
+      "name": "polyline_stroke_color",
+      "value": "PolylineStrokeColor"
+    },
+    {
+      "name": "polyline_stroke_dash",
+      "value": "PolylineStrokeDash"
+    },
+    {
+      "name": "polyline_stroke_opacity",
+      "value": "PolylineStrokeOpacity"
+    },
+    {
+      "name": "rect_height",
+      "value": "RectHeight"
+    },
+    {
+      "name": "rect_width",
+      "value": "RectWidth"
+    },
+    {
+      "name": "rect_radius_width",
+      "value": "RectRadiusWidth"
+    },
+    {
+      "name": "rect_radius_height",
+      "value": "RectRadiusHeight"
+    },
+    {
+      "name": "rect_fill_opacity",
+      "value": "RectFillOpacity"
+    },
+    {
+      "name": "rect_stroke",
+      "value": "RectStroke"
+    },
+    {
+      "name": "rect_stroke_width",
+      "value": "RectStrokeWidth"
+    },
+    {
+      "name": "rect_stroke_dash",
+      "value": "RectSrokeDash"
+    },
+    {
+      "name": "rect_stroke_opacity",
+      "value": "RectStrokeOpacity"
+    },
+    {
+      "name": "rect_fill",
+      "value": "RectFill"
+    },
+    {
+      "name": "path_line",
+      "value": "PathLine"
+    },
+    {
+      "name": "path_triangle",
+      "value": "PathTriangle"
+    },
+    {
+      "name": "path_square",
+      "value": "PathSquare"
+    },
+    {
+      "name": "path_polygon",
+      "value": "PathPolygon"
+    },
+    {
+      "name": "path_camber_first",
+      "value": "PathCamberFirst"
+    },
+    {
+      "name": "path_camber_second",
+      "value": "PathCamberSecond"
+    },
+    {
+      "name": "path_camber_third",
+      "value": "PathCamberThird"
+    },
+    {
+      "name": "path_commands_select",
+      "value": "PathCommandsSelect"
+    },
+    {
+      "name": "path_fill",
+      "value": "PathFill"
+    },
+    {
+      "name": "path_fill_opacity",
+      "value": "PathFillOpacity"
+    },
+    {
+      "name": "path_stroke_color",
+      "value": "PathStrokeColor"
+    },
+    {
+      "name": "path_stroke_opacity",
+      "value": "PathStrokeOpacity"
+    },
+    {
+      "name": "path_stroke_dash",
+      "value": "PathStrokeDash"
+    },
+    {
+      "name": "path_stroke_width",
+      "value": "PathStrokeWidth"
+    },
+    {
+      "name": "shape_fill",
+      "value": "ShapeFill"
+    },
+    {
+      "name": "shape_stroke_color",
+      "value": "ShapeStrokeColor"
+    },
+    {
+      "name": "shape_view_port_x",
+      "value": "ShapeViewPortX"
+    },
+    {
+      "name": "shape_view_port_y",
+      "value": "ShapeViewPortY"
+    },
+    {
+      "name": "shape_view_port_width",
+      "value": "ShapeViewPortWidth"
+    },
+    {
+      "name": "shape_view_port_height",
+      "value": "ShapeViewPortHeight"
+    },
+    {
+      "name": "shape_stroke_opacity",
+      "value": "ShapeStrokeOpacity"
+    },
+    {
+      "name": "shape_fill_opacity",
+      "value": "ShapeFillOpacity"
+    },
+    {
+      "name": "shape_stroke_width",
+      "value": "ShapeStrokeWidth"
+    },
+    {
+      "name": "shape_stroke_dash",
+      "value": "ShapeStrokeDash"
+    },
+    {
+      "name": "web",
+      "value": "Web"
     },
     {
       "name": "canvas_components",
