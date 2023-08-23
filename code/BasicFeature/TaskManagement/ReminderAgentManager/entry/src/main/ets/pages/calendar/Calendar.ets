@@ -67,12 +67,14 @@ export struct ReminderCalendar {
               Text(item)
                 .fontSize(24)
               Blank()
-              Toggle({ type: ToggleType.Switch, isOn: CalendarReminder.calendarReminders[index].isStart })
-                .margin({ left: 8 })
-                .id(`calendarSwitch${index}`)
-                .onChange(async (isOn: boolean) => {
-                  await CalendarReminder.setToggle(isOn, index)
-                })
+              if(CalendarReminder.calendarReminders[index]){
+                Toggle({ type: ToggleType.Switch, isOn: CalendarReminder.calendarReminders[index].isStart })
+                  .margin({ left: 8 })
+                  .id(`calendarSwitch${index}`)
+                  .onChange(async (isOn: boolean) => {
+                    await CalendarReminder.setToggle(isOn, index);
+                  })
+              }
             }
             .width('100%')
             .borderRadius(24)
@@ -83,16 +85,20 @@ export struct ReminderCalendar {
           .id(`calendar${index}`)
           .padding({ left: 12, right: 12 })
           .gesture(
-          SwipeGesture({ direction: SwipeDirection.Horizontal })
-            .onAction((event: GestureEvent) => {
-              this.isEdit = !this.isEdit
-              this.deleteItem(index)
-            })
+            GestureGroup(GestureMode.Parallel,
+              SwipeGesture({ direction: SwipeDirection.Horizontal })
+                .onAction((event: GestureEvent) => {
+                  this.isEdit = !this.isEdit;
+                  this.deleteItem(index);
+                }),
+              TapGesture()
+                .onAction(async (event: GestureEvent) => {
+                  this.selectCalendar = index;
+                  CalendarReminder.calendarReminders[index].isStart = false;
+                  await CalendarReminder.openDialog(this.calendarSetting, index);
+                })
+            )
           )
-          .onClick(async () => {
-            this.selectCalendar = index;
-            await CalendarReminder.openDialog(this.calendarSetting, index);
-          })
         })
       }
       .layoutWeight(1)

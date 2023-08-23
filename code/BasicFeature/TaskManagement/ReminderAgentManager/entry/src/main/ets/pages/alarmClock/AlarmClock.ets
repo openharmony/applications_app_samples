@@ -77,12 +77,14 @@ export struct AlarmClock {
               Text(item)
                 .fontSize(24)
               Blank()
-              Toggle({ type: ToggleType.Switch, isOn: AlarmClockReminder.alarmClockReminders[index].isStart })
-                .margin({ left: 8 })
-                .id(`clockSwitch${index}`)
-                .onChange(async (isOn: boolean) => {
-                  await AlarmClockReminder.setToggle(isOn, index)
-                })
+              if (AlarmClockReminder.alarmClockReminders[index]) {
+                Toggle({ type: ToggleType.Switch, isOn: AlarmClockReminder.alarmClockReminders[index].isStart })
+                  .margin({ left: 8 })
+                  .id(`clockSwitch${index}`)
+                  .onChange(async (isOn: boolean) => {
+                    await AlarmClockReminder.setToggle(isOn, index);
+                  })
+              }
             }
             .width('100%')
             .borderRadius(24)
@@ -92,17 +94,20 @@ export struct AlarmClock {
           .padding({ left: 12, right: 12 })
           .id(`clock${this.selectAlarmClockIndex}`)
           .gesture(
-          SwipeGesture({ direction: SwipeDirection.Horizontal })
-            .onAction((event: GestureEvent) => {
-              this.isEdit = !this.isEdit
-              this.deleteItem(index)
-            })
+            GestureGroup(GestureMode.Parallel,
+              SwipeGesture({ direction: SwipeDirection.Horizontal })
+                .onAction((event: GestureEvent) => {
+                  this.isEdit = !this.isEdit;
+                  this.deleteItem(index);
+                }),
+              TapGesture()
+                .onAction(async (event: GestureEvent) => {
+                  this.selectAlarmClockIndex = index;
+                  AlarmClockReminder.alarmClockReminders[index].isStart = false;
+                  await AlarmClockReminder.openDialog(this.alarmClockSetting, index);
+                })
+            )
           )
-          .onClick(async () => {
-            this.selectAlarmClockIndex = index
-            AlarmClockReminder.alarmClockReminders[index].isStart = false
-            await AlarmClockReminder.openDialog(this.alarmClockSetting, index)
-          })
         })
       }
       .layoutWeight(1)
