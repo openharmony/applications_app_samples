@@ -25,7 +25,7 @@ struct Overlay {
 
   build() {
     Column() {
-      Text(AppStorage.Get('ResMgrTitle'))
+      Text($r('app.string.title'))
         .width('100%')
         .height(50)
         .backgroundColor($r('app.color.text_color'))
@@ -104,7 +104,6 @@ struct Overlay {
       .onClick(() => {
         let path = getContext().bundleCodeDir + "/libraryRuntimeOverlay-default-signed.hsp";
         try {
-          // @ts-ignore
           let ret = this.resmgr.addResource(path);
           console.error("addResource: ret" + JSON.stringify(ret));
         } catch (error) {
@@ -129,7 +128,6 @@ struct Overlay {
       .onClick(() => {
         let path = getContext().bundleCodeDir + "/libraryRuntimeOverlay-default-signed.hsp";
         try {
-          // @ts-ignore
           this.resmgr.removeResource(path);
         } catch (error) {
           console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`);
