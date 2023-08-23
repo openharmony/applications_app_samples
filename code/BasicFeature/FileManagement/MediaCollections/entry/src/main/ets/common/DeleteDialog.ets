@@ -24,6 +24,7 @@ export struct DeleteDialog {
   private index: number
   private mediaData: Array<mediaLibrary.FileAsset> = []
   private controller: CustomDialogController
+  private mediaType: mediaLibrary.MediaType
 
   async aboutToAppear() {
     let abilityDisplay = await display.getDefaultDisplay()
@@ -32,7 +33,7 @@ export struct DeleteDialog {
 
   build() {
     Column() {
-      Text($r('app.string.index_del'))
+      Text(this.mediaType == mediaLibrary.MediaType.AUDIO ? $r('app.string.index_del_audio') : $r('app.string.index_del'))
         .fontSize(18)
         .fontColor(this.displayWidth > 2500 ? Color.White : Color.Black)
         .margin({ top: 10 })
