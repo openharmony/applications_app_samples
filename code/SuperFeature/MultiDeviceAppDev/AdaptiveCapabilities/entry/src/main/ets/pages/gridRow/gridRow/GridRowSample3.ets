@@ -32,6 +32,7 @@ struct GridRowSample3 {
       ForEach(this.bgColors, (bgColor) => {
         GridCol({ span: { sm: 2, md: 2, lg: 2 } }) {
           Row()
+            .width('100%')
             .backgroundColor(bgColor)
             .height(30)
         }
