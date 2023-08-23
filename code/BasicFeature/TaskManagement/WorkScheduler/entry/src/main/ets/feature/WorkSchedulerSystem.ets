@@ -125,7 +125,7 @@ export namespace WorkSchedulerSystem {
       let workInfo = {
         workId: 1,
         bundleName: bundleName,
-        abilityName: 'FormAbility',
+        abilityName: 'WorkSchedulerAbility',
         networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
         parameters: {
           version: version,

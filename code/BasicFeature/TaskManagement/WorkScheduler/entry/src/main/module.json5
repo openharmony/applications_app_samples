@@ -71,7 +71,7 @@
     ],
     "extensionAbilities": [
       {
-        "name": "FormAbility",
+        "name": "WorkSchedulerAbility",
         "srcEntrance": "./ets/WorkSchedulerAbility/WorkSchedulerAbility.ets",
         "label": "$string:form_FormAbility_label",
         "description": "$string:form_FormAbility_desc",
