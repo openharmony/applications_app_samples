@@ -34,18 +34,12 @@
   <td width="680" colspan="4" align="center" x:str><strong>应用示例</strong></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td width="140" align="center" rowspan="3" style='height:27.00pt' x:str><strong>UI</strong></td>
-  <td rowspan="2" x:str><strong>声明式开发范式</strong></td>
+  <td width="140" align="center" rowspan="2" style='height:27.00pt' x:str><strong>UI</strong></td>
+  <td x:str><strong>声明式开发范式</strong></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集（API 10）</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/Canvas">画布组件</a></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/MediaQuery">横竖屏切换</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection">页面布局和连接</a></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/Drag">拖拽事件</a></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/UI/ArkTsComponentCollection/MediaQuery">横竖屏切换</a></td>
-  <td x:str><a href="code/UI/ArkTsComponentCollection/StateManagement">状态管理</a></td>
-  <td ></td>
-  <td ></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/StateManagement">状态管理</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>类Web开发范式</strong></td>
@@ -275,7 +269,7 @@
   <td x:str><strong>网络与连接</strong></td>
   <td x:str><a href="code/SystemFeature/Connectivity/Wlan">Wlan</a></td>
   <td x:str><a href="code/SystemFeature/Connectivity/Bluetooth">蓝牙</a></td>
-  <td x:str><a href="code/SystemFeature/Connectivity/Upload">上传</a></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
