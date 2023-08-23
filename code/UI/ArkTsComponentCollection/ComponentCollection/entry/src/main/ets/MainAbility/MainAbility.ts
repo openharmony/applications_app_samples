@@ -14,8 +14,8 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility'
-
 import Logger from '../util/Logger'
+import window from '@ohos.window';
 
 const TAG: string = 'MainAbility'
 
@@ -31,7 +31,29 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'onWindowStageCreate')
-
+    let windowClass = null;
+    try {
+      window.getLastWindow(this.context, (err, data) => {
+        if (err.code) {
+          Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        Logger.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+        let systemBarProperties = {
+          navigationBarColor: '#ffffff'
+        };
+        windowClass.setWindowSystemBarProperties(systemBarProperties, (err) => {
+          if (err.code) {
+            Logger.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          Logger.info('Succeeded in setting the system bar properties.');
+        })
+      })
+    } catch (exception) {
+      Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err) {
         Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
