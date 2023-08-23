@@ -148,9 +148,6 @@ export default {
   },
   onNewRequest() {
     logger.info(TAG, `onNewRequest`)
-    this.playerModel.pause()
-    this.playerModel.seek(0)
-    this.restoreFromWant()
   },
   onBackPress() {
     logger.debug(TAG, `onBackPress isDialogShowing=${this.isDialogShowing}`)
