@@ -215,6 +215,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 点击栅格columns和gutter
       await checkButtonAndClickWithID('GridRowSample3')
+      let checkBtn = await driver.findComponent(ON.type('GridCol'))
+      await checkBtn.click()
       await driver.pressBack()
       await driver.delayMs(1000)
       // 点击栅格margin
