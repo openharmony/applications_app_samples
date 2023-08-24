@@ -13,98 +13,92 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager'
-import { Logger } from '../utils/Logger'
+import resourceManager from '@ohos.resourceManager';
+import hilog from '@ohos.hilog';
 
+const TAG = '[Sample_ResourceManager]';
+const DOMAIN = 0xFF00;
 const SPECIFIED_NUM = 2;
+let resMgr = getContext().resourceManager;
 
 async function getString(resId: number): Promise<string> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getStringValue(resId);
     return value;
   } catch (error) {
-    Logger.error(`getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getStringArray(resource: resourceManager.Resource): Promise<Array<string>> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getStringArrayValue(resource);
     return value;
   } catch (error) {
-    Logger.error(`getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getPluralString(resId: number, num: number): Promise<string> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getPluralStringValue(resId, num);
     return value;
   } catch (error) {
-    Logger.error(`getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getDeviceCapability(): Promise<resourceManager.DeviceCapability> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getDeviceCapability();
     return value;
   } catch (error) {
-    Logger.error(`getDeviceCapability failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getDeviceCapability failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getConfiguration(): Promise<resourceManager.Configuration> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getConfiguration();
     return value;
   } catch (error) {
-    Logger.error(`getConfiguration failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getConfiguration failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getMedia(resId: number): Promise<Uint8Array> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getMediaContent(resId);
     return value;
   } catch (error) {
-    Logger.error(`getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getMediaBase64(resId: number): Promise<string> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getMediaContentBase64(resId);
     return value;
   } catch (error) {
-    Logger.error(`getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 function getFormatString(resId: number, world: string): string {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = resMgr.getStringSync(resId, world);
     return value;
   } catch (error) {
-    Logger.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
 async function getDensityMediaBase64(resId: number, density: number): Promise<string> {
-  let resMgr = getContext(this).resourceManager;
   try {
     let value = await resMgr.getMediaContentBase64(resId, density);
     return value;
   } catch (error) {
-    Logger.error(`getDensityMediaBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getDensityMediaBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
@@ -115,7 +109,7 @@ async function getSystemMediaBase64(resId: number): Promise<string> {
     let value = await sysMgr.getMediaContentBase64(resId);
     return value;
   } catch (error) {
-    Logger.error(`getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    hilog.error(DOMAIN, TAG, `getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
 }
 
@@ -135,7 +129,7 @@ struct Index {
 
   async aboutToAppear() {
     this.string_str = await getString($r('app.string.string_str').id);
-    let resource = {
+    let resource: resourceManager.Resource = {
       bundleName: "ohos.samples.resourcemanager",
       moduleName: "entry",
       id: $r('app.strarray.str_array').id
@@ -154,7 +148,7 @@ struct Index {
 
   build() {
     Column() {
-      Text(AppStorage.Get('ResMgrTitle'))
+      Text($r('app.string.title'))
         .width('100%')
         .height(50)
         .backgroundColor($r('app.color.text_color'))

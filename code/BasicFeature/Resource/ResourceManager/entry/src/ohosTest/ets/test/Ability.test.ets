@@ -24,12 +24,12 @@ const TAG = '[Sample_ResourceManager]'
 const DOMAIN = 0xF811
 const BUNDLE = 'ResourceManager_'
 const SPECIFIED_NUM = 2
+let testResMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
 
 async function getResourceFormatString(str: Resource, format: Resource): Promise<string> {
-  let resMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
   try {
-    let formatStr = resMgr.getStringSync(format)
-    let text = resMgr.getStringSync(str, formatStr)
+    let formatStr = testResMgr.getStringSync(format)
+    let text = testResMgr.getStringSync(str, formatStr)
     return text
   } catch (error) {
     hilog.error(DOMAIN, TAG, `getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
@@ -37,9 +37,8 @@ async function getResourceFormatString(str: Resource, format: Resource): Promise
 }
 
 async function getResourceString(resource: Resource): Promise<string> {
-  let resMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
   try {
-    let text = await resMgr.getStringValue(resource)
+    let text = await testResMgr.getStringValue(resource)
     return text
   } catch (error) {
     hilog.error(DOMAIN, TAG, `getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -47,9 +46,8 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 async function getResourceStringArray(resource: Resource): Promise<string> {
-  let resMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
   try {
-    let text = JSON.stringify(await resMgr.getStringArrayValue(resource))
+    let text = JSON.stringify(await testResMgr.getStringArrayValue(resource))
     return text
   } catch (error) {
     hilog.error(DOMAIN, TAG, `getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -57,9 +55,8 @@ async function getResourceStringArray(resource: Resource): Promise<string> {
 }
 
 async function getResourcePluralString(resource: Resource, num: number): Promise<string> {
-  let resMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
   try {
-    let text = await resMgr.getPluralStringValue(resource, num)
+    let text = await testResMgr.getPluralStringValue(resource, num)
     return text
   } catch (error) {
     hilog.error(DOMAIN, TAG, `getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -67,9 +64,8 @@ async function getResourcePluralString(resource: Resource, num: number): Promise
 }
 
 async function getDeviceCapability(): Promise<string> {
-  let resMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
   try {
-    let text = JSON.stringify(await resMgr.getDeviceCapability())
+    let text = JSON.stringify(await testResMgr.getDeviceCapability())
     return text
   } catch (error) {
     hilog.error(DOMAIN, TAG, `getDeviceCapability failed, error code: ${error.code}, message: ${error.message}.`)
@@ -77,9 +73,8 @@ async function getDeviceCapability(): Promise<string> {
 }
 
 async function getConfiguration(): Promise<string> {
-  let resMgr = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
   try {
-    let text = JSON.stringify(await resMgr.getConfiguration())
+    let text = JSON.stringify(await testResMgr.getConfiguration())
     return text
   } catch (error) {
     hilog.error(DOMAIN, TAG, `getConfiguration failed, error code: ${error.code}, message: ${error.message}.`)
@@ -125,7 +120,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getStringValue接口返回值
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.stringDesc'))))
@@ -138,7 +133,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_002', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_002 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getStringArrayValue接口返回值
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.stringArrayDesc'))))
@@ -151,7 +146,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_003', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_003 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getPluralStringValue接口返回值
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.pluralStringDesc'))))
@@ -165,7 +160,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_004', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_004 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getConfiguration接口返回值
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.configurationDesc'))))
@@ -178,7 +173,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_005', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_005 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getDeviceCapability接口返回值
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.capabilityDesc'))))
@@ -191,7 +186,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_006', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_006 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getMediaContent接口返回值字节数
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.mediaDesc'))))
@@ -204,7 +199,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_007', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_007 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getMediaContentBase64接口返回值长度
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.mediaBase64Desc'))))
@@ -217,7 +212,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_008', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_008 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getStringSync接口返回的格式化字符串资源
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.formatStrDesc'))))
@@ -231,7 +226,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_009', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_009 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getMediaContentBase64接口返回的指定density图片资源
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.densityMediaDesc'))))
@@ -244,7 +239,7 @@ export default function appTest() {
      */
     it(BUNDLE + 'CreateFunction_010', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_010 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(3000)
       // 测试getSystemResourceManager接口获取系统资源管理对象，并获取系统资源图片
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.systemResDesc'))))

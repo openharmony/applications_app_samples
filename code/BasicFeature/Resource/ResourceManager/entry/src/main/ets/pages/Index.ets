@@ -13,23 +13,24 @@
  * limitations under the License.
  */
 import router from '@ohos.router';
-import CommonEventManager from '@ohos.commonEventManager'
+import CommonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
 
-let subscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber: CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 // 订阅者信息
-let subscribeInfo = {
+let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
   events: ["TestResourcesEvent"]
 };
 // 订阅事件回调
-function JumpToResApiExample (err, data) {
+function JumpToResApiExample (err: BusinessError, data: CommonEventManager.CommonEventData) {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    router.pushUrl({ url: 'pages/BasicResources' })
+    router.pushUrl({ url: 'pages/BasicResources' });
   }
 }
 // 创建订阅者回调
-function createTestResources(err, commonEventSubscriber) {
+function createTestResources(err: BusinessError, commonEventSubscriber: CommonEventManager.CommonEventSubscriber) {
   if(!err) {
     subscriber = commonEventSubscriber;
     try {
@@ -53,7 +54,7 @@ try {
 struct Index {
   build() {
     Column({ space: 20 }) {
-      Text(AppStorage.Get('ResMgrTitle'))
+      Text($r('app.string.title'))
         .width('100%')
         .height(50)
         .backgroundColor($r('app.color.text_color'))
