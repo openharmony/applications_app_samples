@@ -38,7 +38,7 @@ export struct CallView {
           } else {
             this.output = ''
             this.src = this.on
-            call.dial(this.input, { extras: false }, (err, data) => {
+            call.dialCall(this.input, (err, data) => {
               this.output = this.output + `dial: ${JSON.stringify(data)}` + '\n'
               Logger.info(`${TAG}, callback: dial err->${JSON.stringify(err)} data->${JSON.stringify(data)}`)
             })
