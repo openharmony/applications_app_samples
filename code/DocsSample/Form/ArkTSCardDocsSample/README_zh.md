@@ -112,7 +112,9 @@
 可参考服务卡片开发指南如下三个章节：
 
 [卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-overview.md)
+
 [卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-animation.md)
+
 [卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-custom-drawing.md)
 
 ### 相关权限
@@ -138,7 +140,7 @@
 ```shell
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Form/MyArkTSCardDemo/ > .git/info/sparse-checkout
+echo code/DocsSample/Form/ArkTSCardDocsSample/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
