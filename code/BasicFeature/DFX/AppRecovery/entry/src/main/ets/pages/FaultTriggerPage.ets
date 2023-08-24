@@ -16,6 +16,7 @@
 import appRecovery from '@ohos.app.ability.appRecovery';
 import testNapi from 'libentry.so'
 import ResUtil from '../common/ResUtil'
+import { CurActiveAbility } from '../common/CurActiveAbility';
 
 @Entry
 @Component
@@ -34,12 +35,12 @@ struct FaultTriggerPage {
     this.callerAbility = this.storage.get<string>('CurrentAbilityName') ?? 'UnknownCallingAbility';
     this.launchReason = this.storage.get<string>('launchReason') ?? 'Unknown';
     this.lastExitReason = this.storage.get<string>('lastExitReason') ?? 'Unknown';
-    ResUtil.getString($r('app.string.save_state').id).then(value => this.curAbilitySaveState = value);
-    ResUtil.getString($r('app.string.save_state').id).then(value => this.allAbilitySaveState = value);
-    ResUtil.getString($r('app.string.set_config').id).then(value => this.setRecoveryAbility = value);
+    ResUtil.getString($r('app.string.save_state').id).then((value: string) => this.curAbilitySaveState = value);
+    ResUtil.getString($r('app.string.save_state').id).then((value: string) => this.allAbilitySaveState = value);
+    ResUtil.getString($r('app.string.set_config').id).then((value: string) => this.setRecoveryAbility = value);
   }
 
-  doHeavyWork() {
+  doHeavyWork() : void {
     let i = 0;
     while (i < 1000000000) {
       i++;
@@ -153,9 +154,9 @@ struct FaultTriggerPage {
                 .width('23.7%')
                 .fontColor($r('app.color.text_blue_opacity'))
                 .onClick(() => {
-                  appRecovery.saveAppState(globalThis.curActiveAbility.context);
+                  appRecovery.saveAppState(CurActiveAbility.GetInstance().GetGlobalAbility().context);
                   ResUtil.getString($r('app.string.save_state_done').id)
-                    .then(value => this.curAbilitySaveState = value);
+                    .then((value: string) => this.curAbilitySaveState = value);
                 })
                 .height('28vp')
                 .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
@@ -174,7 +175,7 @@ struct FaultTriggerPage {
                 .onClick(() => {
                   appRecovery.saveAppState();
                   ResUtil.getString($r('app.string.save_state_done').id)
-                    .then(value => this.allAbilitySaveState = value);
+                    .then((value: string) => this.allAbilitySaveState = value);
                 })
                 .height('28vp')
                 .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
@@ -191,13 +192,13 @@ struct FaultTriggerPage {
                 .width('23.7%')
                 .fontColor($r('app.color.text_blue_opacity'))
                 .onClick(() => {
-                  let want = {
-                    bundleName: 'com.samples.recovery',
-                    abilityName: 'RecoveryAbility',
-                    parameters: { 'RecoverAbility': this.callerAbility },
+                  let want: Record<string, Object> = {
+                    'bundleName': 'com.samples.recovery',
+                    'abilityName': 'RecoveryAbility',
+                    'parameters': { 'RecoverAbility': this.callerAbility },
                   };
                   appRecovery.setRestartWant(want);
-                  ResUtil.getString($r('app.string.set_config_done').id).then(value => this.setRecoveryAbility = value);
+                  ResUtil.getString($r('app.string.set_config_done').id).then((value: string) => this.setRecoveryAbility = value);
                 })
                 .height('28vp')
                 .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
@@ -215,11 +216,14 @@ struct FaultTriggerPage {
                   .width('23.7%')
                   .fontColor($r('app.color.text_blue_opacity'))
                   .onClick(() => {
-                    if (globalThis.curActiveAbility == undefined) {
+                    if (CurActiveAbility.GetInstance().GetGlobalAbility() == undefined) {
                       return;
                     }
-                    let want = { bundleName: 'com.samples.recovery', abilityName: 'SecondAbility' };
-                    globalThis.curActiveAbility.context.startAbility(want);
+                    let want: Record<string, Object> = {
+                      'bundleName': 'com.samples.recovery',
+                      'abilityName': 'SecondAbility'
+                    };
+                    CurActiveAbility.GetInstance().GetGlobalAbility().context.startAbility(want);
                   })
                   .height('28vp')
                   .backgroundColor($r('sys.color.ohos_id_color_sub_background'))

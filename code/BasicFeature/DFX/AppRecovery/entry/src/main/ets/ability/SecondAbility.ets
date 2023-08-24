@@ -20,6 +20,7 @@ import Want from '@ohos.app.ability.Want';
 import Window from '@ohos.window';
 
 import Logger from '../common/Logger';
+import { CurActiveAbility } from '../common/CurActiveAbility';
 
 const TAG: string = 'SecondAbility';
 
@@ -28,12 +29,14 @@ export default class SecondAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
   // Read previous saved status from want if we are launched by appRecovery
-  restoreLocalStorage(want: Want) {
-    this.storage.setOrCreate<string>('FaultTriggerPageString', want.parameters['FaultTriggerPageString'] as string);
-    this.storage.setOrCreate<number>('FaultTriggerPageCounter', want.parameters['FaultTriggerPageCounter'] as number);
+  restoreLocalStorage(want: Want) : void {
+    if (want.parameters != undefined) {
+      this.storage.setOrCreate<string>('FaultTriggerPageString', want.parameters['FaultTriggerPageString'] as string);
+      this.storage.setOrCreate<number>('FaultTriggerPageCounter', want.parameters['FaultTriggerPageCounter'] as number);
+    }
   }
 
-  onCreate(want: Want, launchParam) {
+  onCreate(want: Want, launchParam:AbilityConstant.LaunchParam): void  {
     Logger.info(TAG, 'onCreate');
     this.storage.setOrCreate<string>('CurrentAbilityName', 'SecondAbility');
     this.storage.setOrCreate<string>('launchReason', launchParam.launchReason.toString());
@@ -46,11 +49,11 @@ export default class SecondAbility extends UIAbility {
     }
   }
 
-  onDestroy() {
+  onDestroy(): void {
     Logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: Window.WindowStage): void {
     Logger.info(TAG, 'onWindowStageCreate');
     // Share storage between pages and current ability
     windowStage.loadContent('pages/Index', this.storage, (err, data) => {
@@ -61,25 +64,25 @@ export default class SecondAbility extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     Logger.info(TAG, 'onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     Logger.info(TAG, 'onForeground');
-    globalThis.curActiveAbility = this;
+    CurActiveAbility.GetInstance().SetGlobalAbility(this);
   }
 
-  onSaveState(reason, wantParam: { [key: string]: any }) {
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>): AbilityConstant.OnSaveResult {
     Logger.info(TAG, 'onSaveState');
     let string = this.storage.get<string>('FaultTriggerPageString');
     let counter = this.storage.get<number>('FaultTriggerPageCounter');
     wantParam['FaultTriggerPageString'] = string ?? 'Empty';
-    wantParam['FaultTriggerPageCounter'] = counter;
+    wantParam['FaultTriggerPageCounter'] = counter as number;
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
 
-  onBackground() {
+  onBackground(): void {
     Logger.info(TAG, 'onBackground');
     // save state when background
     appRecovery.saveAppState(this.context);

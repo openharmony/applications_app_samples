@@ -20,6 +20,7 @@ import Want from '@ohos.app.ability.Want';
 import Window from '@ohos.window';
 
 import Logger from '../common/Logger';
+import { CurActiveAbility } from '../common/CurActiveAbility';
 
 const TAG: string = 'EntryAbility';
 
@@ -28,13 +29,16 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
   // Read previous saved status from want if we are launched by appRecovery
-  restoreLocalStorage(want: Want) {
+  restoreLocalStorage(want: Want): void  {
     Logger.info(TAG, "RestoreLocalStorage String:${want.parameters['Page1Str']} Counter:${want.parameters['Page2Counter']}");
-    this.storage.setOrCreate<string>('FaultTriggerPageString', want.parameters['FaultTriggerPageString'] as string);
-    this.storage.setOrCreate<number>('FaultTriggerPageCounter', want.parameters['FaultTriggerPageCounter'] as number);
+    if (want.parameters != undefined) {
+      this.storage.setOrCreate<string>('FaultTriggerPageString', want.parameters['FaultTriggerPageString'] as string);
+      this.storage.setOrCreate<number>('FaultTriggerPageCounter', want.parameters['FaultTriggerPageCounter'] as number);
+    }
+
   }
 
-  onCreate(want: Want, launchParam) {
+  onCreate(want: Want, launchParam:AbilityConstant.LaunchParam): void  {
     Logger.info(TAG, 'onCreate Want:${JSON.stringify(want)} launchParam: ${JSON.stringify(launchParam)}');
     this.isRecoverLaunch = (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY);
     this.storage.setOrCreate<string>('CurrentAbilityName', 'EntryAbility');
@@ -47,14 +51,14 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-  onDestroy() {
+  onDestroy(): void  {
     Logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: Window.WindowStage): void {
     Logger.info(TAG, 'onWindowStageCreate');
     // Share storage between pages and current ability
-    windowStage.loadContent('pages/Index', this.storage, (err, data) => {
+    windowStage.loadContent('pages/Index', this.storage, (err, data): void => {
       if (err.code) {
         Logger.info(TAG, 'Failed to load the content. Cause:${JSON.stringify(err)}');
         return;
@@ -62,16 +66,16 @@ export default class EntryAbility extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void  {
     Logger.info(TAG, 'onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void  {
     Logger.info(TAG, 'onForeground');
-    globalThis.curActiveAbility = this;
+    CurActiveAbility.GetInstance().SetGlobalAbility(this);
   }
 
-  onSaveState(reason, wantParam: { [key: string]: any }) {
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>): AbilityConstant.OnSaveResult {
     Logger.info(TAG, 'onDestroy');
     let string = this.storage.get<string>('FaultTriggerPageString');
     let counter = this.storage.get<number>('FaultTriggerPageCounter');
@@ -81,7 +85,7 @@ export default class EntryAbility extends UIAbility {
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
 
-  onBackground() {
+  onBackground(): void  {
     Logger.info(TAG, 'onBackground');
     // save state when background
     appRecovery.saveAppState(this.context);
