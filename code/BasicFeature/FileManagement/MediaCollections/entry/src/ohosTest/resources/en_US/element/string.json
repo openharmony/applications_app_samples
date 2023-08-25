@@ -15,6 +15,30 @@
     {
       "name": "allow",
       "value": "allow"
+    },
+    {
+      "name": "index_cel",
+      "value": "index_cel"
+    },
+    {
+      "name": "index_sure",
+      "value": "index_sure"
+    },
+    {
+      "name": "index_del",
+      "value": "index_del"
+    },
+    {
+      "name": "index_del_audio",
+      "value": "index_del_audio"
+    },
+    {
+      "name": "phoneMain_audioTitle",
+      "value": "phoneMain_audioTitle"
+    },
+    {
+      "name": "phoneMain_videoTitle",
+      "value": "phoneMain_videoTitle"
     }
   ]
 }

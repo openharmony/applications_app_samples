@@ -20,6 +20,7 @@ import Logger from '../utils/Logger'
 
 const BUNDLE = 'MediaCollectionTest_'
 const TAG = '[Sample_MediaCollection_Test]'
+let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -50,7 +51,6 @@ export default function abilityTest() {
     it(BUNDLE + 'getPermission_001', 1, async (done) => {
       Logger.info(TAG, 'getPermission_001 start')
       let driver = await Driver.create()
-      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       let agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
@@ -83,6 +83,130 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       Logger.info(TAG, 'getPermission_001 end')
       done()
+    })
+
+    /**
+     * 点击音频进行重命名操作
+     */
+    it(`${BUNDLE} audioRename_001`, 0, async () => {
+      Logger.info(TAG, `${BUNDLE} audioRename_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('music'));
+      let audio = await driver.findComponent(ON.id('music'));
+      await audio.click();
+      await driver.delayMs(1000);
+      // 左滑音频，坐标基于rk3568
+      await driver.swipe(665, 915, 220, 915);
+      await driver.assertComponentExist(ON.id('rename'));
+      await driver.assertComponentExist(ON.id('delete'));
+      let rename = await driver.findComponent(ON.id('rename'));
+      // 点击重命名按钮
+      await rename.click();
+      await driver.delayMs(1000);
+      // 判断重命名弹窗是否显示正常
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.phoneMain_audioTitle'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_cel'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      await driver.assertComponentExist(ON.id('inputNewName'));
+      let renameInput = await driver.findComponent(ON.id('inputNewName'));
+      // 输入新的音频名
+      await renameInput.inputText('newAudioName');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('newAudioName'));
+      let confirm = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      // 点击确定
+      await confirm.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE} audioRename_001 end`);
+    })
+
+    /**
+     * 点击音频进行删除操作
+     */
+    it(`${BUNDLE} audioDelete_001`, 0, async () => {
+      Logger.info(TAG, `${BUNDLE} audioDelete_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 左滑音频，坐标基于rk3568
+      await driver.swipe(665, 915, 220, 915);
+      await driver.assertComponentExist(ON.id('rename'));
+      await driver.assertComponentExist(ON.id('delete'));
+      let delAudio = await driver.findComponent(ON.id('delete'));
+      // 点击删除按钮
+      await delAudio.click();
+      await driver.delayMs(1000);
+      // 判断删除弹窗是否显示正常
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_del_audio'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_cel'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      let confirm = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      // 点击确定
+      await confirm.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE} audioDelete_001 end`);
+    })
+
+    /**
+     * 点击视频进行重命名操作
+     */
+    it(`${BUNDLE} videoRename_001`, 0, async () => {
+      Logger.info(TAG, `${BUNDLE} videoRename_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('video'));
+      let video = await driver.findComponent(ON.id('video'));
+      await video.click();
+      await driver.delayMs(1000);
+      // 左滑视频，坐标基于rk3568
+      await driver.swipe(665, 915, 220, 915);
+      await driver.assertComponentExist(ON.id('rename'));
+      await driver.assertComponentExist(ON.id('delete'));
+      let rename = await driver.findComponent(ON.id('rename'));
+      // 点击重命名按钮
+      await rename.click();
+      await driver.delayMs(1000);
+      // 判断重命名弹窗是否显示正常
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.phoneMain_videoTitle'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_cel'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      await driver.assertComponentExist(ON.id('inputNewName'));
+      let renameInput = await driver.findComponent(ON.id('inputNewName'));
+      // 输入新的视频名
+      await renameInput.inputText('newVideoName');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('newVideoName'));
+      let confirm = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      // 点击确定
+      await confirm.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE} videoRename_001 end`);
+    })
+
+    /**
+     * 点击音频进行删除操作
+     */
+    it(`${BUNDLE} videoDelete_001`, 0, async () => {
+      Logger.info(TAG, `${BUNDLE} videoDelete_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 左滑视频，坐标基于rk3568
+      await driver.swipe(665, 915, 220, 915);
+      await driver.assertComponentExist(ON.id('rename'));
+      await driver.assertComponentExist(ON.id('delete'));
+      let delAudio = await driver.findComponent(ON.id('delete'));
+      // 点击删除按钮
+      await delAudio.click();
+      await driver.delayMs(1000);
+      // 判断删除弹窗是否显示正常
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_del'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_cel'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      let confirm = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.index_sure'))));
+      // 点击确定
+      await confirm.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE} videoDelete_001 end`);
     })
   })
 }

@@ -38,6 +38,7 @@ export struct RenameDialog {
         .height(22)
 
       TextInput({ placeholder: 'input name', text: this.title.substring(this.title.lastIndexOf('.'), 0) })
+        .id('inputNewName')
         .type(InputType.Normal)
         .fontWeight(FontWeight.Regular)
         .maxLength(18)
