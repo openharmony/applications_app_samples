@@ -24,6 +24,8 @@ export struct PropertiesControlPanel {
   @Link loop: boolean;
   @Link autoPlay: boolean;
   @Link interval: number;
+  @Link nextMarginLength: number;
+  @Link prevMarginLength: number;
 
   build() {
     Column() {
@@ -58,6 +60,22 @@ export struct PropertiesControlPanel {
         max: 300,
         step: 100,
         testId:"swiper_005"
+      })
+
+      CommonItemSlider({
+        changeValue: $nextMarginLength,
+        min: 0,
+        max: 50,
+        name: $r('app.string.swiper_next_margin'),
+        testId:"swiper_008"
+      })
+
+      CommonItemSlider({
+        changeValue: $prevMarginLength,
+        min: 0,
+        max: 50,
+        name: $r('app.string.swiper_previous_margin'),
+        testId:"swiper_009"
       })
 
       CommonItemSelect({

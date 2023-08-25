@@ -2470,6 +2470,10 @@
     {
       "name": "particle_spawn_stop",
       "value": "Stop"
+    },
+    {
+      "name": "safe_area",
+      "value": "SafeArea"
     }
   ]
 }

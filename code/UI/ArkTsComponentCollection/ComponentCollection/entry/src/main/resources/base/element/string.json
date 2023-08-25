@@ -36,6 +36,7 @@
       "name": "prop_background",
       "value": "Background"
     },
+    
     {
       "name": "prop_foreground",
       "value": "Foreground"
@@ -981,6 +982,15 @@
       "name": "qrcode_enter_content",
       "value": "Enter to change QR code"
     },
+    // Search
+    {
+      "name": "search_placeholder",
+      "value": "Type to search..."
+    },
+    {
+      "name": "search_name",
+      "value": "search"
+    },
     // Radio
     {
       "name": "radio_title",
@@ -1034,6 +1044,55 @@
     {
       "name": "rotate_image_angle",
       "value": "Rotate 15°"
+    },
+    // SaveArea
+    {
+      "name": "safe_area_type_and_safe_area_edge",
+      "value": "SafeAreaType And SafeAreaEdge"
+    },
+    {
+      "name": "safe_area",
+      "value": "SafeArea"
+    },
+    {
+      "name": "save_area_input_text",
+      "value": "input your word ..."
+    },
+    {
+      "name": "safe_area_type",
+      "value": "SafeAreaType"
+    },
+    {
+      "name": "safe_area_edge",
+      "value": "SafeAreaEdge"
+    },
+    {
+      "name": "safe_area_edge_top",
+      "value": "TOP"
+    },
+    {
+      "name": "safe_area_edge_bottom",
+      "value": "BOTTOM"
+    },
+    {
+      "name": "safe_area_edge_start",
+      "value": "START"
+    },
+    {
+      "name": "safe_area_edge_end",
+      "value": "END"
+    },
+    {
+      "name": "safe_area_type_system",
+      "value": "SYSTEM"
+    },
+    {
+      "name": "safe_area_type_cutout",
+      "value": "CUTOUT"
+    },
+    {
+      "name": "safe_area_type_keyboard",
+      "value": "KEYBOARD"
     },
     // Select
     {
@@ -1135,8 +1194,16 @@
       "value": "width is 60%"
     },
     {
+      "name": "size_width_fixed_60vw",
+      "value": "Width is 60vw"
+    },
+    {
       "name": "size_height",
       "value": "Height"
+    },
+    {
+      "name": "size_height_fixed_60vh",
+      "value": "Width is 60vh"
     },
     {
       "name": "size_height_fixed_100vp",
@@ -1145,6 +1212,10 @@
     {
       "name": "size_height_percent",
       "value": "Height is 60%"
+    },
+    {
+      "name": "size_height_fixed_calc",
+      "value": "Height is calc(200vp-100vp)"
     },
     // Slider
     {
@@ -1249,6 +1320,10 @@
       "value": "LetterSpacing"
     },
     {
+      "name": "span_line_height",
+      "value": "LineHeight"
+    },
+    {
       "name": "span_decoration_type",
       "value": "Decoration type"
     },
@@ -1259,6 +1334,14 @@
     {
       "name": "span_text_spacing",
       "value": "  LetterSpacing test text"
+    },
+    {
+      "name": "span_inherits_text_attribute",
+      "value": "  Span inherits text attribute"
+    },
+    {
+      "name": "span_does_not_inherit_text_attribute",
+      "value": "  Span does not inherits text attribute"
     },
     {
       "name": "span_upper_lower",
@@ -1359,6 +1442,14 @@
       "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life."
     },
     {
+      "name": "text_width",
+      "value": "Text width"
+    },
+    {
+      "name": "text_height",
+      "value": "Text height"
+    },
+    {
       "name": "text_content_en_first",
       "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. "
     },
@@ -1446,7 +1537,32 @@
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
     },
+    // TextArea
+    {
+      "name": "text_area_set_text_selection",
+      "value": "Set Text Selection"
+    },
+    {
+      "name": "text_area_set_text_selection_start_select_error",
+      "value": "Set Text Selection Start Select Error"
+    },
+    {
+      "name": "text_area_set_text_selection_end_select_error",
+      "value": "Set Text Selection End Select Error"
+    },
+    {
+      "name": "text_input_set_text_selection_start_select",
+      "value": "Start Select:"
+    },
+    {
+      "name": "text_input_set_text_selection_end_select",
+      "value": "End Select:"
+    },
     // TextInput
+    {
+      "name": "avoiding_input_method_testing",
+      "value": "Avoiding Input Method Testing"
+    },
     {
       "name": "text_input_title",
       "value": "TextInput"
@@ -1514,6 +1630,10 @@
     {
       "name": "text_input_only_input_english",
       "value": "Only english letters can be entered"
+    },
+    {
+      "name": "text_input_set_text_selection",
+      "value": "Set Text Selection"
     },
     {
       "name": "text_input_caret_position",
@@ -1928,12 +2048,52 @@
       "value": "Hover"
     },
     {
+      "name": "bind_menu_customBuilder",
+      "value": "Bind menu customBuilder"
+    },
+    {
+      "name": "bind_content_menu",
+      "value": "Bind content menu"
+    },
+    {
+      "name": "click_on_any_action_below",
+      "value": "Click on any action below"
+    },
+    {
+      "name": "long_press_any_action_below",
+      "value": "Long press any action below"
+    },
+    {
+      "name": "bind_menu_content",
+      "value": "Bind menu content"
+    },
+    {
       "name": "menu",
       "value": "Menu"
     },
     {
       "name": "multiState",
       "value": "MultiState"
+    },
+    {
+      "name": "multi_short_key",
+      "value": "multi short key"
+    },
+    {
+      "name": "set_mouse_style",
+      "value": "Set mouse style"
+    },
+    {
+      "name": "multimode_input",
+      "value": "multimode input"
+    },
+    {
+      "name": "short_key_pressed",
+      "value": "Short key pressed"
+    },
+    {
+      "name": "on_short_key",
+      "value": "Simultaneously press the shortcut key ctrl+a to trigger the following button click event"
     },
     {
       "name": "alert",
@@ -2033,6 +2193,10 @@
     {
       "name": "auxiliary_refresh",
       "value": "Refresh"
+    },
+    {
+      "name": "auxiliary_refresh_refreshing",
+      "value": "Refreshing"
     },
     {
       "name": "auxiliary_refresh_offset",
@@ -2179,6 +2343,10 @@
       "value": "Checkbox && CheckboxGroup"
     },
     {
+      "name": "checkbox",
+      "value": "Checkbox"
+    },
+    {
       "name": "checkbox_title",
       "value": "Checkbox"
     },
@@ -2245,6 +2413,34 @@
     {
       "name": "swiper_name",
       "value": "Swiper"
+    },
+    {
+      "name": "nav_router",
+      "value": "NavRouter"
+    },
+    {
+      "name": "tabs_name",
+      "value": "Tabs"
+    },
+    {
+      "name": "select_name",
+      "value": "Select"
+    },
+    {
+      "name": "slider_name",
+      "value": "Slider"
+    },
+    {
+      "name": "swiper_set_next_margin_and_previous_margin",
+      "value": "set next margin and previous margin"
+    },
+    {
+      "name": "swiper_next_margin",
+      "value": "next margin"
+    },
+    {
+      "name": "swiper_previous_margin",
+      "value": "previous margin"
     },
     {
       "name": "alphabetindexer_an",
@@ -2407,6 +2603,10 @@
       "value": "Select All"
     },
     {
+      "name": "delete_list_item",
+      "value": "Delete listItem"
+    },
+    {
       "name": "normal_display",
       "value": "Display"
     },
@@ -2477,6 +2677,10 @@
     {
       "name": "interaction_arrowoffset",
       "value": "Change arrowOffset:"
+    },
+    {
+      "name": "interaction_mask",
+      "value": "isMask:"
     },
     // ComponentTransitionSample
     {
@@ -3065,6 +3269,10 @@
     {
       "name": "grid_settings_gridSpan",
       "value": "GridSpan gridOffset"
+    },
+    {
+      "name": "grid_edgeEffect_spring",
+      "value": "Grid edgeEffect spring"
     },
     {
       "name": "focus_control",
@@ -4404,6 +4612,10 @@
       "value": "Previous page"
     },
     // Navigation
+    {
+      "name": "navRouter_title",
+      "value": "NavRouter"
+    },
     {
       "name": "navigation_title",
       "value": "Navigation"

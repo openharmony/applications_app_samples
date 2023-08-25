@@ -19,6 +19,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
   [
     {
       image: $r('app.media.ic_prop_background'),
+      title: $r('app.string.safe_area'),
+      url: 'pages/universal/properties/safeAreaSample/SafeAreaSample'
+    },
+    {
+      image: $r('app.media.ic_prop_background'),
       title: $r('app.string.prop_foreground'),
       url: 'pages/universal/properties/foregroundSample/ForegroundSample'
     },
@@ -257,7 +262,7 @@ export let visibileTypes: { value: Resource }[] =
 export let placementsNameData = ['TopLeft', 'Top', 'TopRight', 'RightTop', 'Right', 'RightBottom', 'LeftTop', 'Left', 'LeftBottom', 'BottomLeft', 'Bottom', 'BottomRight']
 export let hitTestModeNameData = ['Default', 'Block', 'Transparent', 'None']
 export let hoverEffectNameData = ['None', 'Highlight', 'Auto', 'Scale']
-
+export let pointerStyleNameData = ['DEFAULT', 'EAST', 'WEST', 'SOUTH','NORTH','WEST_EAST','NORTH_SOUTH','NORTH_EAST','NORTH_WEST','SOUTH_EAST','SOUTH_WEST','NORTH_EAST_SOUTH_WEST','NORTH_WEST_SOUTH_EAST','CROSS','CURSOR_COPY','CURSOR_FORBID','COLOR_SUCKER','HAND_GRABBING','HAND_OPEN','HAND_POINTING','HELP','MOVE','RESIZE_LEFT_RIGHT','RESIZE_UP_DOWN','SCREENSHOT_CHOOSE','SCREENSHOT_CURSOR','TEXT_CURSOR','ZOOM_IN','ZOOM_OUT','MIDDLE_BTN_EAST','MIDDLE_BTN_WEST','MIDDLE_BTN_SOUTH','MIDDLE_BTN_NORTH','MIDDLE_BTN_NORTH_SOUTH','MIDDLE_BTN_NORTH_EAST','MIDDLE_BTN_NORTH_WEST','MIDDLE_BTN_SOUTH_EAST','MIDDLE_BTN_SOUTH_WEST','MIDDLE_BTN_NORTH_SOUTH_WEST_EAST']
 
 export let selectImageSizeData: Resource[] = [$r('app.string.background_image_size_cover'), $r('app.string.background_image_size_contain')]
 

@@ -151,6 +151,10 @@ const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =
       {
         title: $r('app.string.qrcode_title'),
         url: 'pages/components/informationPresentationAndDynamicEffects/qrCodeSample/QRCodeSample'
+      }, 
+      {
+        title: $r('app.string.list'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/listSample/ListSample'
       },
       {
         title: $r('app.string.loading_progress'),
@@ -329,6 +333,10 @@ const NAVIGATION: ThirdLevelCategory =
     image: $r('app.media.ic_navigation'),
     title: $r('app.string.navigation'),
     childNodes : [
+      {
+        title: $r('app.string.navRouter_title'),
+        url: 'pages/components/navigation/navRouterSample/NavRouterSample'
+      },
       {
         title: $r('app.string.navigation_title'),
         url: 'pages/components/navigation/navigationSample/NavigationSample'

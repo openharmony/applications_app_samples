@@ -37,6 +37,10 @@
       "value": "Background"
     },
     {
+      "name": "safe_area",
+      "value": "SafeArea"
+    },
+    {
       "name": "prop_foreground",
       "value": "Foreground"
     },
@@ -866,6 +870,15 @@
       "name": "qrcode_enter_content",
       "value": "Enter to change QR code"
     },
+    // Search
+    {
+      "name": "search_placeholder",
+      "value": "Type to search..."
+    },
+    {
+      "name": "search_name",
+      "value": "search"
+    },
     // Radio
     {
       "name": "radio_title",
@@ -1016,8 +1029,16 @@
       "value": "width is 60%"
     },
     {
+      "name": "size_width_fixed_60vw",
+      "value": "Width is 60vw"
+    },
+    {
       "name": "size_height",
       "value": "Height"
+    },
+    {
+      "name": "size_height_fixed_60vh",
+      "value": "Width is 60vh"
     },
     {
       "name": "size_height_fixed_100vp",
@@ -1026,6 +1047,10 @@
     {
       "name": "size_height_percent",
       "value": "Height is 60%"
+    },
+    {
+      "name": "size_height_fixed_calc",
+      "value": "Height is calc(200vp-100vp)"
     },
     // Slider
     {
@@ -1130,6 +1155,10 @@
       "value": "LetterSpacing"
     },
     {
+      "name": "span_line_height",
+      "value": "LineHeight"
+    },
+    {
       "name": "span_decoration_type",
       "value": "Decoration type"
     },
@@ -1140,6 +1169,14 @@
     {
       "name": "span_text_spacing",
       "value": "  LetterSpacing test text"
+    },
+    {
+      "name": "span_inherits_text_attribute",
+      "value": "  Span inherits text attribute"
+    },
+    {
+      "name": "span_does_not_inherit_text_attribute",
+      "value": "  Span does not inherits text attribute"
     },
     {
       "name": "span_upper_lower",
@@ -1232,6 +1269,14 @@
       "value": "Text"
     },
     {
+      "name": "text_width",
+      "value": "Text width"
+    },
+    {
+      "name": "text_height",
+      "value": "Text height"
+    },
+    {
       "name": "text_content",
       "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life."
     },
@@ -1315,7 +1360,32 @@
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
     },
+    // TextArea
+    {
+      "name": "text_area_set_text_selection",
+      "value": "Set Text Selection"
+    },
+    {
+      "name": "text_area_set_text_selection_start_select_error",
+      "value": "Set Text Selection Start Select Error"
+    },
+    {
+      "name": "text_area_set_text_selection_end_select_error",
+      "value": "Set Text Selection End Select Error"
+    },
+    {
+      "name": "text_input_set_text_selection_start_select",
+      "value": "Start Select:"
+    },
+    {
+      "name": "text_input_set_text_selection_end_select",
+      "value": "End Select:"
+    },
     // TextInput
+    {
+      "name": "avoiding_input_method_testing",
+      "value": "Avoiding Input Method Testing"
+    },
     {
       "name": "text_input_title",
       "value": "TextInput"
@@ -1387,6 +1457,10 @@
     {
       "name": "text_input_caret_position",
       "value": "Caret position"
+    },
+    {
+      "name": "text_input_set_text_selection",
+      "value": "Set Text Selection"
     },
     {
       "name": "text_input_max_length",
@@ -1469,6 +1543,10 @@
     {
       "name": "toggle_type_switch",
       "value": "Switch"
+    },
+    {
+      "name": "checkbox",
+      "value": "Checkbox"
     },
     {
       "name": "toggle_type_checkbox",
@@ -1800,12 +1878,52 @@
       "value": "Hover"
     },
     {
+      "name": "bind_menu_customBuilder",
+      "value": "Bind menu customBuilder"
+    },
+    {
+      "name": "bind_content_menu",
+      "value": "Bind content menu"
+    },
+    {
+      "name": "click_on_any_action_below",
+      "value": "Click on any action below"
+    },
+    {
+      "name": "long_press_any_action_below",
+      "value": "Long press any action below"
+    },
+    {
+      "name": "bind_menu_content",
+      "value": "Bind menu content"
+    },
+    {
       "name": "menu",
       "value": "Menu"
     },
     {
       "name": "multiState",
       "value": "MultiState"
+    },
+    {
+      "name": "multi_short_key",
+      "value": "multi short key"
+    },
+    {
+      "name": "set_mouse_style",
+      "value": "Set mouse style"
+    },
+    {
+      "name": "multimode_input",
+      "value": "multimode input"
+    },
+    {
+      "name": "short_key_pressed",
+      "value": "Short key pressed"
+    },
+    {
+      "name": "on_short_key",
+      "value": "Simultaneously press the shortcut key ctrl+a to trigger the following button click event"
     },
     {
       "name": "alert",
@@ -2531,6 +2649,10 @@
     {
       "name": "pinch_scale",
       "value": "PinchGesture scale:\n"
+    },
+    {
+      "name": "interaction_mask",
+      "value": "isMask:"
     },
     {
       "name": "rotation_description",

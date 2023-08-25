@@ -818,6 +818,15 @@
       "name": "qrcode_enter_content",
       "value": "改变二维码内容"
     },
+    // Search
+    {
+      "name": "search_placeholder",
+      "value": "输入搜索..."
+    },
+    {
+      "name": "search_name",
+      "value": "search 搜索"
+    },
     // Radio
     {
       "name": "radio_title",
@@ -871,6 +880,23 @@
     {
       "name": "rotate_image_angle",
       "value": "旋转15°"
+    },
+    // SaveArea
+    {
+      "name": "safe_area_type_and_safe_area_edge",
+      "value": "扩展安全区域的类型和方向"
+    },
+    {
+      "name": "safe_area",
+      "value": "SafeArea 安全区域"
+    },
+    {
+      "name": "safe_area_type",
+      "value": "扩展类型"
+    },
+    {
+      "name": "safe_area_edge",
+      "value": "扩展方向"
     },
     // Select
     {
@@ -972,8 +998,16 @@
       "value": "宽度为60%"
     },
     {
+      "name": "size_width_fixed_60vw",
+      "value": "宽度为60vw"
+    },
+    {
       "name": "size_height",
       "value": "高度"
+    },
+    {
+      "name": "size_height_fixed_60vh",
+      "value": "高度为60vh"
     },
     {
       "name": "size_height_fixed_100vp",
@@ -982,6 +1016,10 @@
     {
       "name": "size_height_percent",
       "value": "高度为60%"
+    },
+    {
+      "name": "size_height_fixed_calc",
+      "value": "高度为calc(200vp-100vp)"
     },
     // Slider
     {
@@ -1086,6 +1124,10 @@
       "value": "字符间距"
     },
     {
+      "name": "span_line_height",
+      "value": "跨度线高度"
+    },
+    {
       "name": "span_decoration_type",
       "value": "装饰线类型"
     },
@@ -1096,6 +1138,14 @@
     {
       "name": "span_text_spacing",
       "value": "  字符间距示例文本"
+    },
+    {
+      "name": "span_inherits_text_attribute",
+      "value": "  Span继承text样式"
+    },
+    {
+      "name": "span_does_not_inherit_text_attribute",
+      "value": "  Span不继承text样式"
     },
     {
       "name": "span_upper_lower",
@@ -1174,6 +1224,14 @@
     {
       "name": "text_content",
       "value": "钢是在烈火和急剧冷却里锻炼出来的，所以才能坚硬和什么也不怕。我们的一代也是这样的在斗争中和可怕的考验中锻炼出来的，学习了不在生活面前屈服。"
+    },
+    {
+      "name": "text_width",
+      "value": "Text 宽"
+    },
+    {
+      "name": "text_height",
+      "value": "Text 高"
     },
     {
       "name": "text_text_align_center",
@@ -1255,7 +1313,32 @@
       "name": "text_text_case_lowercase",
       "value": "小写"
     },
+    // TextArea
+    {
+      "name": "text_area_set_text_selection",
+      "value": "文本选择"
+    },
+    {
+      "name": "text_area_set_text_selection_start_select_error",
+      "value": "起始位输入错误"
+    },
+    {
+      "name": "text_area_set_text_selection_end_select_error",
+      "value": "结束位输入错误"
+    },
+    {
+      "name": "text_input_set_text_selection_start_select",
+      "value": "起始位:"
+    },
+    {
+      "name": "text_input_set_text_selection_end_select",
+      "value": "结束位:"
+    },
     // TextInput
+    {
+      "name": "avoiding_input_method_testing",
+      "value": "避让输入法测试"
+    },
     {
       "name": "text_input_title",
       "value": "TextInput 文本输入"
@@ -1327,6 +1410,10 @@
     {
       "name": "text_input_caret_position",
       "value": "光标位置"
+    },
+    {
+      "name": "text_input_set_text_selection",
+      "value": "文本选择"
     },
     {
       "name": "text_input_max_length",
@@ -1649,12 +1736,52 @@
       "value": "悬停"
     },
     {
+      "name": "bind_menu_customBuilder",
+      "value": "绑定自定义菜单"
+    },
+    {
+      "name": "bind_content_menu",
+      "value": "绑定上下文菜单"
+    },
+    {
+      "name": "click_on_any_action_below",
+      "value": "点击下方任一操作"
+    },
+    {
+      "name": "long_press_any_action_below",
+      "value": "长按下方任一操作"
+    },
+    {
+      "name": "bind_menu_content",
+      "value": "绑定接口菜单"
+    },
+    {
       "name": "menu",
       "value": "菜单"
     },
     {
       "name": "multiState",
       "value": "多态"
+    },
+    {
+      "name": "multi_short_key",
+      "value": "快捷键"
+    },
+    {
+      "name": "set_mouse_style",
+      "value": "设置鼠标样式"
+    },
+    {
+      "name": "multimode_input",
+      "value": "多模输入"
+    },
+    {
+      "name": "short_key_pressed",
+      "value": "快捷键已按下"
+    },
+    {
+      "name": "on_short_key",
+      "value": "同时按下快捷键ctrl+a，触发以下按钮点击事件"
     },
     {
       "name": "alert",
@@ -1743,6 +1870,10 @@
       "value": "下拉刷新"
     },
     {
+      "name": "auxiliary_refresh_refreshing",
+      "value": "刷新中"
+    },
+    {
       "name": "auxiliary_panel",
       "value": "Panel 弹出面板"
     },
@@ -1776,6 +1907,10 @@
     {
       "name": "data_panel",
       "value": "DataPanel 数据面板"
+    },
+    {
+      "name": "checkbox",
+      "value": "checkbox 勾选框"
     },
     {
       "name": "checkbox_checkboxgroup",
@@ -1812,6 +1947,34 @@
     {
       "name": "swiper_name",
       "value": "Swiper 翻页"
+    },
+    {
+      "name": "nav_router",
+      "value": "点击跳转路由页面"
+    },
+    {
+      "name": "tabs_name",
+      "value": "Tabs 页签"
+    },
+    {
+      "name": "slider_name",
+      "value": "Slider 滚动条"
+    },
+    {
+      "name": "select_name",
+      "value": "Select 选择器"
+    },
+    {
+      "name": "swiper_set_next_margin_and_previous_margin",
+      "value": "设置前后页边距"
+    },
+    {
+      "name": "swiper_next_margin",
+      "value": "上一页边距"
+    },
+    {
+      "name": "swiper_previous_margin",
+      "value": "下一页边距"
     },
     {
       "name": "alphabetindexer_an",
@@ -1934,6 +2097,10 @@
       "value": "全选"
     },
     {
+      "name": "delete_list_item",
+      "value": "左划删除 listItem"
+    },
+    {
       "name": "normal_display",
       "value": "效果展示"
     },
@@ -2000,6 +2167,10 @@
     {
       "name": "interaction_placementontop",
       "value": "显示位置:"
+    },
+    {
+      "name": "interaction_mask",
+      "value": "屏蔽周边事件:"
     },
     {
       "name": "interaction_arrowoffset",
@@ -2624,6 +2795,10 @@
     {
       "name": "grid_settings_gridSpan",
       "value": "GridSpan gridOffset"
+    },
+    {
+      "name": "grid_edgeEffect_spring",
+      "value": "Grid edgeEffect spring"
     },
     {
       "name": "focus_control",
@@ -3806,6 +3981,10 @@
       "value": "上一页"
     },
     // Navigation
+    {
+      "name": "navRouter_title",
+      "value": "NavRouter"
+    },
     {
       "name": "navigation_title",
       "value": "Navigation"

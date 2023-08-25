@@ -33,6 +33,9 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct CounterSample {
+  @State mEnableInc: boolean = true
+  @State mEnableDec: boolean = true
+  @State enableCount: number = 0
   @State count: number = 0
   @State imageCount: number = 0
   private images: Resource[] = [$r('app.media.ic_button_circle_add'), $r('app.media.ic_blank_and_divider'),
@@ -70,6 +73,39 @@ struct CounterSample {
           if (this.imageCount > 0)
             this.imageCount--
         })
+      }.cardStyle()
+
+      Text('EnableInc And EnableDec')
+        .leftTitleStyle()
+      Column() {
+        Row() {
+          Text('enableInc')
+            .fontSize(15)
+          Checkbox()
+            .id('inc')
+            .select(this.mEnableInc)
+            .onChange((value) => {
+              this.mEnableInc = value
+            })
+          Text('enableDec')
+            .fontSize(15)
+          Checkbox()
+            .id('dec')
+            .select(this.mEnableDec)
+            .onChange((value) => {
+              this.mEnableDec = value
+            })
+        }.alignSelf(ItemAlign.Start)
+        Counter() {
+          Text(this.enableCount.toString())
+        }.onInc(() => {
+          this.enableCount++
+        })
+        .onDec(() => {
+          this.enableCount--
+        })
+        .enableDec(this.mEnableDec)
+        .enableInc(this.mEnableInc)
       }.cardStyle()
     }
     .backgroundColor($r('app.color.background_light_gray'))

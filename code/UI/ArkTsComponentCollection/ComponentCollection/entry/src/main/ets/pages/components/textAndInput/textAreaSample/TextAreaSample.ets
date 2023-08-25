@@ -17,9 +17,10 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import ShowToast from '../../../../util/ShowToast';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-import {textAreaControlPanel} from './ChangePanel';
+import { textAreaControlPanel } from './ChangePanel';
+import Logger from '../../../../util/Logger'
 
-@Extend(Column) function cardStyle(){
+@Extend(Column) function cardStyle() {
   .borderRadius(24)
   .backgroundColor($r('app.color.white'))
   .width('100%')
@@ -29,29 +30,33 @@ import {textAreaControlPanel} from './ChangePanel';
 @Entry
 @Component
 struct TextAreaSample {
+  @State startSelect: number = 0
+  @State endSelect: number = 0
+  @State maxSelect: number = 0
+  @State selects: string[] = ['0']
+  private select: number = 1
   @State textAreaSet: string = '';
   @State placeholderColor: Color = Color.Blue;
   @State textAlign: TextAlign = TextAlign.Start;
-  @State caretColor:Color = Color.Blue;
+  @State caretColor: Color = Color.Blue;
   @State copyOptions: CopyOptions = CopyOptions.None;
   controller: TextAreaController = new TextAreaController();
 
-
   build() {
-    Column(){
-      TitleBar({title:$r('app.string.textarea_title')})
-      Scroll(){
+    Column() {
+      TitleBar({ title: $r('app.string.textarea_title') })
+      Scroll() {
         Column() {
-          IntroductionTitle({introduction:$r('app.string.textarea_show')})
-          Column(){
+          IntroductionTitle({ introduction: $r('app.string.textarea_show') })
+          Column() {
             TextArea({
-              text:this.textAreaSet,
+              text: this.textAreaSet,
               placeholder: 'This textArea can contain more than one line, please input your word.',
-              controller:this.controller
+              controller: this.controller
             })
               .id(`textarea_001`)
               .placeholderColor(this.placeholderColor)
-              .placeholderFont({size: 16,weight:400})
+              .placeholderFont({ size: 16, weight: 400 })
               .textAlign(this.textAlign)
               .caretColor(this.caretColor)
               .copyOption(this.copyOptions)
@@ -60,23 +65,71 @@ struct TextAreaSample {
               .margin(20)
               .fontSize(16)
               .enableKeyboardOnFocus(false)
-              .onChange(()=>{
+              .onChange((value: string) => {
                 ShowToast.shortToast('The input have changed.')
+                this.textAreaSet = value
+                this.maxSelect = value.length
+                for (let i = 0;i < this.maxSelect; i++) {
+                  this.selects[i] = i.toString()
+                }
               })
-              .onCopy(()=>{
+              .onCopy(() => {
                 ShowToast.shortToast('copy')
               })
-              .onCut(()=>{
+              .onCut(() => {
                 ShowToast.shortToast('cut')
               })
-              .onPaste(()=>{
+              .onPaste(() => {
                 ShowToast.shortToast('paste')
               })
 
           }.cardStyle()
-          IntroductionTitle({introduction:$r('app.string.textarea_control')})
-          Column(){
-            textAreaControlPanel({placeholderColor:$placeholderColor,textAlign:$textAlign,caretColor:$caretColor,copyOption:$copyOptions})
+
+          IntroductionTitle({ introduction: $r('app.string.textarea_control') })
+          Column() {
+            textAreaControlPanel({
+              placeholderColor: $placeholderColor,
+              textAlign: $textAlign,
+              caretColor: $caretColor,
+              copyOption: $copyOptions
+            })
+          }.cardStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.text_area_set_text_selection') })
+          Column() {
+            Row() {
+              Text($r('app.string.text_input_set_text_selection_start_select'))
+              Column() {
+                TextPicker({ range: this.selects, selected: this.select })
+                  .onChange((value: string, index: number) => {
+                    this.startSelect = parseInt(value)
+                    Logger.info(`Picker item changed, value: ${value}, index: ${index}`)
+                  })
+              }
+              .height(90)
+              .width(100)
+
+              Text($r('app.string.text_input_set_text_selection_end_select'))
+              Column() {
+                TextPicker({ range: this.selects, selected: this.select })
+                  .onChange((value: string, index: number) => {
+                    this.endSelect = parseInt(value)
+                    Logger.info(`Picker item changed, value: ${value}, index: ${index}`)
+                  })
+              }
+              .id('end_select')
+              .height(90)
+              .width(100)
+
+              Button($r('app.string.text_area_set_text_selection'))
+                .id('button_to_select')
+                .onClick(() => {
+                  this.controller.setTextSelection(this.startSelect, this.endSelect)
+                  Logger.info(`startSelect: ${this.startSelect}, endSelect: ${this.endSelect}`)
+                })
+            }
+            .justifyContent(FlexAlign.SpaceAround)
+            .width('100%')
           }.cardStyle()
         }
         .width('100%')
