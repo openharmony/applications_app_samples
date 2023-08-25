@@ -114,11 +114,11 @@
     },
     {
       "name": "edit_image_rotate_90",
-      "value": "顺势针旋转90°"
+      "value": "顺时针旋转90°"
     },
     {
       "name": "edit_image_rotate_down_90",
-      "value": "逆势针旋转90°"
+      "value": "逆时针旋转90°"
     },
     {
       "name": "edit_image_resolution",
