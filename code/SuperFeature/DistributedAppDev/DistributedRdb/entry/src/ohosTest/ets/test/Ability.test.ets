@@ -134,9 +134,21 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('性别', MatchPattern.CONTAINS));
       let inputTexts: Component[] = await driver.findComponents(ON.type('TextInput'));
       await inputTexts[0].inputText('name1');
+      let nameValue = await inputTexts[0].getText();
+      logger.info(TAG, `AddContactFunction_001 name:${nameValue}`);
+      expect(nameValue).assertEqual('name1');
       await inputTexts[1].inputText('13300000000');
+      let phoneValue = await inputTexts[1].getText();
+      logger.info(TAG, `AddContactFunction_001 phone:${phoneValue}`);
+      expect(phoneValue).assertEqual('13300000000');
       await inputTexts[2].inputText('remark1');
+      let remarkValue = await inputTexts[2].getText();
+      logger.info(TAG, `AddContactFunction_001 remark:${remarkValue}`);
+      expect(remarkValue).assertEqual('remark1');
       await inputTexts[3].inputText('11');
+      let ageValue = await inputTexts[3].getText();
+      logger.info(TAG, `AddContactFunction_001 age:${ageValue}`);
+      expect(ageValue).assertEqual('11');
       await driver.assertComponentExist(ON.id('rightBtn'));
       let rightBtn = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn.click();
@@ -161,6 +173,9 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.type('TextInput'));
       let input: Component = await driver.findComponent(ON.type('TextInput'));
       await input.inputText('133');
+      let inputValue = await input.getText();
+      logger.info(TAG, `AddContactConflictFunction_001 input:${inputValue}`);
+      expect(inputValue).assertEqual('133');
       let btn: Component = await driver.findComponent(ON.type('Button'));
       await btn.click()
       let list: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -187,9 +202,21 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.type('TextInput'));
       let inputTexts: Component[] = await driver.findComponents(ON.type('TextInput'));
       await inputTexts[0].inputText('zhangsan');
+      let nameValue = await inputTexts[0].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 name:${nameValue}`);
+      expect(nameValue).assertEqual('zhangsan');
       await inputTexts[1].inputText('12345678901');
+      let phoneValue = await inputTexts[1].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 phone:${phoneValue}`);
+      expect(phoneValue).assertEqual('12345678901');
       await inputTexts[2].inputText('remark1');
+      let remarkValue = await inputTexts[2].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 remark:${remarkValue}`);
+      expect(remarkValue).assertEqual('remark1');
       await inputTexts[3].inputText('18');
+      let ageValue = await inputTexts[3].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 age:${ageValue}`);
+      expect(ageValue).assertEqual('18');
       await driver.assertComponentExist(ON.id('rightBtn'));
       let rightBtn = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn.click();
@@ -205,9 +232,21 @@ export default function abilityTest() {
 
       let inputTexts1: Component[] = await driver.findComponents(ON.type('TextInput'));
       await inputTexts1[0].inputText('lisi');
+      let name = await inputTexts1[0].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 name:${name}`);
+      expect(name).assertEqual('lisi');
       await inputTexts1[1].inputText('12345678901'); // 电话号码和zhangsan一样
+      let phone = await inputTexts1[1].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 phone:${phone}`);
+      expect(phone).assertEqual('12345678901');
       await inputTexts1[2].inputText('remark2');
+      let remark = await inputTexts1[2].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 remark:${remark}`);
+      expect(remark).assertEqual('remark2');
       await inputTexts1[3].inputText('25');
+      let age = await inputTexts1[3].getText();
+      logger.info(TAG, `AddContactConflictFunction_001 age:${age}`);
+      expect(age).assertEqual('25');
       await driver.assertComponentExist(ON.id('rightBtn'));
       let rightBtn1 = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn1.click();
@@ -224,6 +263,9 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.type('TextInput'));
       let input: Component = await driver.findComponent(ON.type('TextInput'));
       await input.inputText('12345678901');
+      let inputValue = await input.getText();
+      logger.info(TAG, `AddContactConflictFunction_001 input:${inputValue}`);
+      expect(inputValue).assertEqual('12345678901');
       let btn: Component = await driver.findComponent(ON.type('Button'));
       await btn.click()
       let list2: Component[] = await driver.findComponents(ON.type('ListItem'));
