@@ -47,7 +47,7 @@ struct SearchSample {
         Text('onCopy:' + this.copyValue).fontSize(18).margin(15)
         Text('onCut:' + this.cutValue).fontSize(18).margin(15)
         Text('onPaste:' + this.pasteValue).fontSize(18).margin(15)
-        Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
+        Search({ value: this.changeValue, placeholder: $r('app.string.search_placeholder'), controller: this.controller })
           .searchButton('SEARCH')
           .id('search_001')
           .width('95%')

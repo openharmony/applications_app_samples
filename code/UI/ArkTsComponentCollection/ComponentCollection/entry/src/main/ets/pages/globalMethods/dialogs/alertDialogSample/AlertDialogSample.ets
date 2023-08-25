@@ -24,6 +24,15 @@ import { TitleBar } from '../../../../common/TitleBar'
   .justifyContent(FlexAlign.SpaceBetween)
 }
 
+@Extend(Column) function columnStyle() {
+  .width('100%')
+  .borderRadius(24)
+  .margin({ top: 8, bottom: 8 })
+  .justifyContent(FlexAlign.SpaceBetween)
+  .backgroundColor(Color.White)
+  .padding(15)
+}
+
 @Extend(Button) function buttonStyle() {
   .margin(8)
   .fontSize(16)
@@ -36,6 +45,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct WarningDialogSample {
+  private mTextInputController: TextInputController = new TextInputController()
+
   build() {
     Column() {
       TitleBar({ title: $r('app.string.alert_dialog') })
@@ -249,7 +260,7 @@ struct WarningDialogSample {
                     cancel: () => {
                       ShowToast.shortToast($r('app.string.alert_dialog_cancel'))
                     },
-                    offset: { dx: 20, dy: 30 }
+                    offset: { dx: 20, dy: 150 }
                   }
                 )
               }).id('test_lowRightButton')
@@ -323,7 +334,44 @@ struct WarningDialogSample {
               }).id('test_4GridButton')
           }
           .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.avoiding_input_method_testing') })
+          Column() {
+            Row() {
+              TextInput({
+                controller: this.mTextInputController,
+                placeholder: $r('app.string.avoiding_input_method_testing')
+              })
+                .layoutWeight(1).height(50).id('test_input')
+            }.rowStyle()
+
+            Row() {
+              Button($r('app.string.alert_dialog_bottom'))
+                .buttonStyle()
+                .onClick(() => {
+                  this.mTextInputController.setTextSelection(1, 2)
+                  AlertDialog.show(
+                    {
+                      title: $r('app.string.alert_dialog_prompt'),
+                      message: $r('app.string.alert_dialog_bottom'),
+                      confirm: {
+                        value: $r('app.string.alert_dialog_confirm'),
+                        backgroundColor: $r('app.color.background_grey'),
+                        action: () => {
+                          ShowToast.shortToast($r('app.string.alert_dialog_bottom'))
+                        }
+                      },
+                      cancel: () => {
+                        ShowToast.shortToast($r('app.string.alert_dialog_cancel'))
+                      },
+                      alignment: DialogAlignment.Bottom
+                    }
+                  )
+                }).id('test_bottomButton')
+            }.rowStyle()
+          }.columnStyle().margin({ bottom: 80 })
         }
+        .padding(12)
         .constraintSize({ minHeight: '100%' })
       }
     }

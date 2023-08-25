@@ -16,13 +16,13 @@
 import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool'
 import { selectData } from '../../ComponentData'
 import { getStringArrayData } from '../../../../data/ResourceDataHandle'
-import { TestType } from '@ohos/hypium'
 
 @Component
 export struct ChangePanel {
   @Link letterSpacing: number
   @Link decoration: TextDecorationType
   @Link decorationColor: Color
+  @Link lineHeight: number
 
   build() {
     Column() {
@@ -31,7 +31,15 @@ export struct ChangePanel {
         min: 0,
         max: 12,
         name: $r('app.string.span_letter_spacing'),
-        testId: `span_001`,
+        testId:'Slider1'
+      })
+
+      CommonItemSlider({
+        changeValue: $lineHeight,
+        min: 0,
+        max: 100,
+        name: $r('app.string.span_line_height'),
+        testId:'Slider2'
       })
 
       CommonItemSelect({
@@ -51,14 +59,12 @@ export struct ChangePanel {
             default:
               this.decoration = TextDecorationType.None
           }
-        },
-        testId: `test_itemSelect`
+        }
       })
 
       CommonItemColorSelect({
         name: $r('app.string.span_decoration_color'),
-        selectColor: $decorationColor,
-        testId: `test_colorSelect`
+        selectColor: $decorationColor
       })
     }
   }

@@ -173,6 +173,8 @@ entry/src/main/ets/
 |   |   |   |   |---GaugeSample.ets                      // 仪表盘
 |   |   |   |---loadingProgressSample
 |   |   |   |   |---LoadingProgressSample.ets
+|   |   |   |---listSample                               // 列表
+|   |   |   |   |---ListSample.ets
 |   |   |   |---marqueeSample
 |   |   |   |   |---MarqueeSample.ets                    // 跑马灯
 |   |   |   |---radioSample
@@ -202,6 +204,8 @@ entry/src/main/ets/
 |   |   |   |   |---NavigationSample.ets                 // 导航
 |   |   |   |   |---NavigationSecondPage.ets
 |   |   |   |   |---NavigationThirdPage.ets
+|   |   |   |---navRouterSample
+|   |   |   |   |---NavRouterSample.ets                  // 导航
 |   |   |   |---stepperAndStepperItemSample
 |   |   |   |   |---StepperAndStepperItemSample.ets      // 步骤导航器
 |   |   |   |---tabContentSample
@@ -368,6 +372,8 @@ entry/src/main/ets/
 |   |   |   |   |---ScaleSample.ets                      // 缩放
 |   |   |   |---shapeCropSample
 |   |   |   |   |---ShapeCropSample.ets                  // 形状裁剪
+|   |   |   |---safeAreaSample
+|   |   |   |   |---SafeAreaSample.ets                   // 安全区域
 |   |   |   |---sizeSample
 |   |   |   |   |---SizeSample.ets                       // 尺寸
 |   |   |   |---transformSample

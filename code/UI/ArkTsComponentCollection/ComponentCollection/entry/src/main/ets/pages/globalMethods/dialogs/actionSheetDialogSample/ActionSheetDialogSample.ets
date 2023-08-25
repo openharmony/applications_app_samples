@@ -24,6 +24,15 @@ import { TitleBar } from '../../../../common/TitleBar';
   .justifyContent(FlexAlign.SpaceBetween)
 }
 
+@Extend(Column) function columnStyle() {
+  .width('100%')
+  .borderRadius(24)
+  .margin({ top: 8, bottom: 8 })
+  .justifyContent(FlexAlign.SpaceBetween)
+  .backgroundColor(Color.White)
+  .padding(15)
+}
+
 @Extend(Button) function buttonStyle() {
   .margin(8)
   .fontSize(16)
@@ -34,6 +43,8 @@ import { TitleBar } from '../../../../common/TitleBar';
 @Entry
 @Component
 struct ListDialogSample {
+  private mTextInputController: TextInputController = new TextInputController()
+
   build() {
     Column() {
       TitleBar({ title: $r('app.string.action_sheet_dialog') })
@@ -384,7 +395,65 @@ struct ListDialogSample {
               .id('sheet_click_contentButton')
           }
           .rowStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.avoiding_input_method_testing') })
+          Column() {
+            Row() {
+              TextInput({
+                controller: this.mTextInputController,
+                placeholder: $r('app.string.avoiding_input_method_testing')
+              })
+                .layoutWeight(1).height(50).id('test_input')
+            }.rowStyle()
+
+            Row() {
+              Button($r('app.string.alert_dialog_bottom'))
+                .id('btn_test_input')
+                .buttonStyle()
+                .onClick(() => {
+                  this.mTextInputController.setTextSelection(1, 2)
+                  ActionSheet.show(
+                    {
+                      title: $r('app.string.alert_dialog_prompt'),
+                      message: $r('app.string.alert_dialog_bottom'),
+                      confirm: {
+                        value: $r('app.string.alert_dialog_confirm'),
+                        action: () => {
+                          ShowToast.shortToast($r('app.string.alert_dialog_bottom'));
+                        }
+                      },
+                      sheets: [
+                        {
+                          title: $r('app.string.text_picker_text_apple'),
+                          action: () => {
+                            ShowToast.shortToast($r('app.string.text_picker_text_apple'));
+                          }
+                        },
+                        {
+                          title: $r('app.string.text_picker_text_banana'),
+                          action: () => {
+                            ShowToast.shortToast($r('app.string.text_picker_text_banana'));
+                          }
+                        },
+                        {
+                          title: $r('app.string.text_picker_text_peach'),
+                          action: () => {
+                            ShowToast.shortToast($r('app.string.text_picker_text_peach'));
+                          }
+                        }
+                      ],
+                      cancel: () => {
+                        ShowToast.shortToast($r('app.string.alert_dialog_cancel'));
+                      },
+                      alignment: DialogAlignment.Bottom
+                    }
+                  );
+                })
+                .id('sheet_bottomButton')
+            }.rowStyle()
+          }.columnStyle().margin({ bottom: 80 })
         }
+        .padding(12)
         .constraintSize({ minHeight: '100%' })
       }
     }

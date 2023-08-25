@@ -45,6 +45,8 @@ struct SwiperSample {
   @State loop: boolean = false;
   @State autoPlay: boolean = false;
   @State interval : number = 1000;
+  @State nextMarginLength: number = 0
+  @State prevMarginLength: number = 0
   private controller: SwiperController = new SwiperController();
   private data: number[] = [];
 
@@ -77,6 +79,8 @@ struct SwiperSample {
             }
           })
         }
+        .nextMargin(this.nextMarginLength)
+        .prevMargin(this.prevMarginLength)
         .disableSwipe(this.isDisableSwipe)
         .itemSpace(this.itemSpace)
         .vertical(this.isVertical)
@@ -122,7 +126,9 @@ struct SwiperSample {
               duration: $duration,
               loop: $loop,
               autoPlay: $autoPlay,
-              interval : $interval
+              interval : $interval,
+              nextMarginLength: $nextMarginLength,
+              prevMarginLength: $prevMarginLength
             })
           }
           .backgroundStyle()

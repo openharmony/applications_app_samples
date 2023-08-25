@@ -15,8 +15,15 @@
 
 import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
+import Logger from '../../../../util/Logger';
 
 @Extend(Row) function rowStyle() {
+  .borderRadius(24)
+  .width('100%')
+  .backgroundColor(Color.White)
+  .margin({ left: 12, right: 12 })
+}
+@Extend(Column) function columnStyle() {
   .borderRadius(24)
   .width('100%')
   .backgroundColor(Color.White)
@@ -26,95 +33,132 @@ import { TitleBar } from '../../../../common/TitleBar';
 @Entry
 @Component
 struct GridSettingsSample {
+  @State Number: String[] = ['0', '1', '2', '3']
+
   build() {
     Column() {
       TitleBar({ title: $r('app.string.grid_settings') })
-      IntroductionTitle({ introduction: $r('app.string.grid_settings_useSize') })
-      Column() {
-        GridContainer() {
-          Row() {
-            Row() {
-              Text($r('app.string.mouse_event_mouseBtn_left'))
-                .fontSize(16)
-            }
-            .useSizeType({
-              xs: { span: 1, offset: 0 }, sm: { span: 1, offset: 0 },
-              md: { span: 1, offset: 0 }, lg: { span: 2, offset: 0 }
-            })
-            .height('100%')
-            .backgroundColor(0x66bbb2cb)
+      Scroll() {
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.grid_settings_useSize') })
+          Column() {
+            GridContainer() {
+              Row() {
+                Row() {
+                  Text($r('app.string.mouse_event_mouseBtn_left'))
+                    .fontSize(16)
+                }
+                .useSizeType({
+                  xs: { span: 1, offset: 0 }, sm: { span: 1, offset: 0 },
+                  md: { span: 1, offset: 0 }, lg: { span: 2, offset: 0 }
+                })
+                .height('100%')
+                .backgroundColor(0x66bbb2cb)
 
-            Row() {
-              Text($r('app.string.location_settings_center'))
-                .fontSize(16)
-            }
-            .useSizeType({
-              xs: { span: 1, offset: 0 }, sm: { span: 2, offset: 1 },
-              md: { span: 5, offset: 1 }, lg: { span: 7, offset: 2 }
-            })
-            .height('100%')
-            .backgroundColor(0x66b6c5d1)
+                Row() {
+                  Text($r('app.string.location_settings_center'))
+                    .fontSize(16)
+                }
+                .useSizeType({
+                  xs: { span: 1, offset: 0 }, sm: { span: 2, offset: 1 },
+                  md: { span: 5, offset: 1 }, lg: { span: 7, offset: 2 }
+                })
+                .height('100%')
+                .backgroundColor(0x66b6c5d1)
 
-            Row() {
-              Text($r('app.string.mouse_event_mouseBtn_right'))
-                .fontSize(16)
+                Row() {
+                  Text($r('app.string.mouse_event_mouseBtn_right'))
+                    .fontSize(16)
+                }
+                .useSizeType({
+                  xs: { span: 1, offset: 0 }, sm: { span: 1, offset: 3 },
+                  md: { span: 2, offset: 6 }, lg: { span: 3, offset: 9 }
+                })
+                .height('100%')
+                .backgroundColor(0x66bbb2cb)
+              }
+              .height(180)
+              .rowStyle()
             }
-            .useSizeType({
-              xs: { span: 1, offset: 0 }, sm: { span: 1, offset: 3 },
-              md: { span: 2, offset: 6 }, lg: { span: 3, offset: 9 }
-            })
-            .height('100%')
-            .backgroundColor(0x66bbb2cb)
+            .height(200)
           }
-          .height(180)
-          .rowStyle()
-        }
-        .height(200)
-      }
-      .width('100%')
+          .width('100%')
 
-      IntroductionTitle({ introduction: $r('app.string.grid_settings_gridSpan') })
-      Column() {
-        GridContainer() {
-          Row() {
-            Row() {
-              Text($r('app.string.mouse_event_mouseBtn_left'))
-                .fontSize(16)
-            }
-            .gridSpan(1)
-            .height('100%')
-            .backgroundColor(0x66bbb2cb)
+          IntroductionTitle({ introduction: $r('app.string.grid_settings_gridSpan') })
+          Column() {
+            GridContainer() {
+              Row() {
+                Row() {
+                  Text($r('app.string.mouse_event_mouseBtn_left'))
+                    .fontSize(16)
+                }
+                .gridSpan(1)
+                .height('100%')
+                .backgroundColor(0x66bbb2cb)
 
-            Row() {
-              Text($r('app.string.location_settings_center'))
-                .fontSize(16)
-            }
-            .useSizeType({
-              xs: { span: 1, offset: 0 }, sm: { span: 2, offset: 1 },
-              md: { span: 5, offset: 1 }, lg: { span: 7, offset: 2 }
-            })
-            .height('100%')
-            .gridSpan(2)
-            .gridOffset(1)
-            .backgroundColor(0x66b6c5d1)
+                Row() {
+                  Text($r('app.string.location_settings_center'))
+                    .fontSize(16)
+                }
+                .useSizeType({
+                  xs: { span: 1, offset: 0 }, sm: { span: 2, offset: 1 },
+                  md: { span: 5, offset: 1 }, lg: { span: 7, offset: 2 }
+                })
+                .height('100%')
+                .gridSpan(2)
+                .gridOffset(1)
+                .backgroundColor(0x66b6c5d1)
 
-            Row() {
-              Text($r('app.string.mouse_event_mouseBtn_right'))
-                .fontSize(16)
+                Row() {
+                  Text($r('app.string.mouse_event_mouseBtn_right'))
+                    .fontSize(16)
+                }
+                .gridSpan(1)
+                .gridOffset(3)
+                .height('100%')
+                .backgroundColor(0x66bbb2cb)
+              }
+              .height(180)
+              .rowStyle()
             }
-            .gridSpan(1)
-            .gridOffset(3)
-            .height('100%')
-            .backgroundColor(0x66bbb2cb)
+            .height(200)
           }
-          .height(180)
-          .rowStyle()
+          .width('100%')
+
+          IntroductionTitle({ introduction: $r('app.string.grid_edgeEffect_spring') })
+          Column() {
+            Grid() {
+              ForEach(this.Number, (day: string) => {
+                ForEach(this.Number, (day: string) => {
+                  GridItem() {
+                    Text(day)
+                      .fontSize(16)
+                      .backgroundColor(0x66bbb2cb)
+                      .width('100%')
+                      .height(80)
+                      .textAlign(TextAlign.Center)
+                  }
+                }, day => day)
+              }, day => day)
+            }
+            .columnsTemplate('1fr 1fr 1fr 1fr')
+            .columnsGap(10)
+            .rowsGap(10)
+            .edgeEffect(EdgeEffect.Spring)
+            .onScrollIndex((first: number) => {
+              Logger.info(first.toString())
+            })
+            .width('90%')
+            .backgroundColor(0x66b6c5d1)
+            .height(300)
+            .scrollBar(BarState.On)
+          }
+          .columnStyle()
         }
-        .height(200)
+        .constraintSize({ minHeight: '100%' })
+        .padding(12)
       }
-      .width('100%')
     }
-    .height('100%')
     .width('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }

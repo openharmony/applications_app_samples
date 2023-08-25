@@ -1908,6 +1908,14 @@
       "value": "导航"
     },
     {
+      "name": "navRouter_title",
+      "value": "NavRouter"
+    },
+    {
+      "name": "multimode_input",
+      "value": "多模输入"
+    },
+    {
       "name": "navigation_title",
       "value": "Navigation"
     },
@@ -2155,6 +2163,10 @@
     {
       "name": "particle_spawn_stop",
       "value": "停止"
+    },
+    {
+      "name": "safe_area",
+      "value": "SafeArea 安全区域"
     }
   ]
 }
