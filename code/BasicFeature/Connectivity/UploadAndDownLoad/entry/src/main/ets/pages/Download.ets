@@ -65,7 +65,7 @@ struct Download {
               ListItem() {
                 this.FileItem(item, index)
               }
-            }, item => JSON.stringify(item))
+            }, (item: FileModel) => JSON.stringify(item))
           }
           .width('100%')
           .scrollBar(BarState.Off)
@@ -193,17 +193,17 @@ struct Download {
     this.isRunning = false;
     this.isPause = false;
     this.isGetData = true;
-    requestFiles.requestFiles().then(data => {
+    requestFiles.requestFiles().then((data: FileModel[]) => {
       this.checkList = [];
       this.isRunning = false;
-      this.fileData['dataArray'] = data;
-      this.fileData['dataArray'].forEach(item => {
+      this.fileData.dataArray = data;
+      this.fileData.dataArray.forEach((item: FileModel) => {
         this.checkList.push(false);
       })
       this.isGetData = false;
       this.fileData.notifyDataReload();
     })
-    fileUtils.listFolders().then(folders => {
+    fileUtils.listFolders().then((folders: Array<string>) => {
       this.downloadFolder = folders;
     })
   }
@@ -230,7 +230,7 @@ struct Download {
       if (this.checkList[i]) {
         let fileModel = this.fileData.getData(i);
         logger.info(TAG, `fileModel = ${JSON.stringify(fileModel)}`);
-        fileModel.files.forEach(url => {
+        fileModel.files.forEach((url: string) => {
           let splitUrl = url.split('//')[1].split('/');
           if (splitUrl[splitUrl.length-1] !== '') {
             this.checkFile.push(url);
@@ -249,7 +249,7 @@ struct Download {
       requestDownload.downloadFilesBackground(folder, this.checkFile);
       this.checkFile = [];
       this.checkList = [];
-      this.fileData['dataArray'].forEach(item => {
+      this.fileData.dataArray.forEach((item: FileModel) => {
         this.checkList.push(false);
       })
       this.fileData.notifyDataReload();
@@ -277,7 +277,7 @@ struct Download {
     this.isRunning = false;
     this.checkFile = [];
     this.checkList = [];
-    this.fileData['dataArray'].forEach(item => {
+    this.fileData.dataArray.forEach((item: FileModel) => {
       this.checkList.push(false);
     })
     this.fileData.notifyDataReload();

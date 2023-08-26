@@ -45,7 +45,7 @@ class UrlUtil {
 
   async getUrl(context: common.UIAbilityContext): Promise<string> {
     let preference = await preferences.getPreferences(context, STORE_NAME);
-    let url = <string> await preference.get(URL_KEY, '');
+    let url = await preference.get(URL_KEY, '') as string;
     logger.info(TAG, `getUrl,url= ${url}`);
     return url;
   }

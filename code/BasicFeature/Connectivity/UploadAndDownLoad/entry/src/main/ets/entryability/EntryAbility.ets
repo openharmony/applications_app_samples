@@ -14,16 +14,18 @@
  */
 
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import type { Permissions } from '@ohos.abilityAccessCtrl';
+import Want from '@ohos.app.ability.Want';
+import { Permissions } from '@ohos.abilityAccessCtrl';
 import { logger, urlUtils } from '@ohos/uploaddownload';
 
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA'];
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, 'Ability onCreate');
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
