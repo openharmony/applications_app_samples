@@ -30,7 +30,7 @@ import { KeyStyle } from '../common/StyleConfiguration';
 @Component
 export struct EditView {
   @State isSelection: boolean = false;
-  @Link inputStyle: KeyStyle;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
 
   build() {
     Column() {

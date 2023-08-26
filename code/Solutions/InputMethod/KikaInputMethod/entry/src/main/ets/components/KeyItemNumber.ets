@@ -13,29 +13,29 @@
  * limitations under the License.
  */
 
-import { InputHandler } from '../model/KeyboardController';
-import { KeyState, keySourceListType, } from '../model/keyboardKeyData';
-import { KeyStyle } from '../common/StyleConfiguration';
 import deviceInfo from '@ohos.deviceInfo';
+import { InputHandler } from '../model/KeyboardController';
+import { KeyState, keySourceListType, } from '../model/KeyboardKeyData';
+import { KeyStyle } from '../common/StyleConfiguration';
+
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_normal_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_normal'))
+}
 
 // 有大小写的按键组件
 @Component
 export struct KeyItemNumber {
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @Consume keyState: number;
   private keyValue: keySourceListType;
-  @Link inputStyle: KeyStyle;
-  @Link keyState: number;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_normal_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_normal'))
-  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      if (AppStorage.Get('isLandscape') && deviceInfo.deviceType === 'phone') {
+      if (AppStorage.Get<boolean>('isLandscape') && deviceInfo.deviceType === 'phone') {
         Stack({ alignContent: Alignment.TopEnd }) {
           Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue.content : this.keyValue.upperContent)
             .fontSize(this.inputStyle.en_fontSize)
@@ -83,7 +83,7 @@ export struct KeyItemNumber {
     .height('100%')
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }

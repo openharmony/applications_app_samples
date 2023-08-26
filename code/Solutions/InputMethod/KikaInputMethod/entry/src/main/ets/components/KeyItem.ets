@@ -13,23 +13,24 @@
  * limitations under the License.
  */
 
-import { keySourceListType, } from '../model/keyboardKeyData';
+import { keySourceListType, } from '../model/KeyboardKeyData';
 import { KeyStyle } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
+
+
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_normal_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_normal'))
+}
 
 // 无大小写的按键组件
 @Component
 export struct KeyItem {
   private keyValue: keySourceListType;
-  @Link inputStyle: KeyStyle;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_normal_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_normal'))
-  }
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -46,7 +47,7 @@ export struct KeyItem {
       InputHandler.getInstance().insertText(this.keyValue.content);
     })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }

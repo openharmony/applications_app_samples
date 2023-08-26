@@ -48,7 +48,7 @@ export interface KeyStyle {
 }
 
 export class StyleConfiguration {
-  static getInputStyle(islandSpace, isRkDevice, deviceType): KeyStyle {
+  static getInputStyle(islandSpace: boolean, isRkDevice: boolean, deviceType: string): KeyStyle {
     if (isRkDevice) {
       return {
         basicButtonWidth: $r('app.float.rk_basic_button_width'),

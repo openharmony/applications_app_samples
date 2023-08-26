@@ -16,19 +16,19 @@
 import { InputHandler } from '../model/KeyboardController';
 import { KeyStyle } from '../common/StyleConfiguration';
 
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_normal_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_normal'))
+}
+
 // 空格组件
 @Component
 export struct SpaceItem {
   private spaceWith: Resource;
-  @Link inputStyle: KeyStyle;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_normal_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_normal'))
-  }
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
 
   build() {
     Stack() {
@@ -45,7 +45,7 @@ export struct SpaceItem {
     })
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }

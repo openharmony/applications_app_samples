@@ -14,13 +14,13 @@
  */
 
 import { KeyStyle } from '../common/StyleConfiguration';
-import { SubMenuType } from '../model/keyboardKeyData';
+import { SubMenuType } from '../model/KeyboardKeyData';
 
 @Preview
 @Component
 export struct Submenu {
-  @Link submenuType: number;
-  @Link inputStyle: KeyStyle;
+  @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
 
   build() {
     Grid() {

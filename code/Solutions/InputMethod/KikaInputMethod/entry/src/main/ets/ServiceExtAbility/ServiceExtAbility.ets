@@ -14,27 +14,24 @@
  */
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 import Log from '../model/Log';
-import { KeyboardController } from '../model/KeyboardController';
+import { keyboardController } from '../model/KeyboardController';
+import Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'ServiceExtAbility->';
 
-class ServiceExtAbility extends InputMethodExtensionAbility {
-  keyboardController: KeyboardController;
+export default class ServiceExtAbility extends InputMethodExtensionAbility {
 
-  onCreate(want): void {
+  onCreate(want: Want): void {
     this.addLog(`onCreate want: ${want.abilityName}`);
-    this.keyboardController = new KeyboardController(this.context);
-    this.keyboardController.onCreate();
+    keyboardController.onCreate(this.context);
   }
 
   onDestroy(): void {
     this.addLog('onDestroy');
-    this.keyboardController.onDestroy();
+    keyboardController.onDestroy();
   }
 
   addLog(message: string): void {
     Log.showInfo(TAG, `kikaInput-new: ${message}`);
   }
 }
-
-export default ServiceExtAbility;

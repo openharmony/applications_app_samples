@@ -16,18 +16,18 @@
 import { InputHandler } from '../model/KeyboardController';
 import { KeyStyle } from '../common/StyleConfiguration';
 
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_gray_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_gray'))
+}
+
 // 删除组件
 @Component
 export struct DeleteItem {
-  @Link inputStyle: KeyStyle;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_gray_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_gray'))
-  }
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
 
   build() {
     Stack() {
@@ -44,7 +44,7 @@ export struct DeleteItem {
     .height('100%')
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }
