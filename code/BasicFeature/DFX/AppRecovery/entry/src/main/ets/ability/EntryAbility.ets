@@ -31,7 +31,7 @@ export default class EntryAbility extends UIAbility {
   // Read previous saved status from want if we are launched by appRecovery
   restoreLocalStorage(want: Want): void  {
     Logger.info(TAG, "RestoreLocalStorage String:${want.parameters['Page1Str']} Counter:${want.parameters['Page2Counter']}");
-    if (want.parameters != undefined) {
+    if (want.parameters !== undefined) {
       this.storage.setOrCreate<string>('FaultTriggerPageString', want.parameters['FaultTriggerPageString'] as string);
       this.storage.setOrCreate<number>('FaultTriggerPageCounter', want.parameters['FaultTriggerPageCounter'] as number);
     }

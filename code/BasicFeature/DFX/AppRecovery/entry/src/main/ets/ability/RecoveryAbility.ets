@@ -30,7 +30,7 @@ export default class RecoveryAbility extends UIAbility {
     Logger.info(TAG, 'onCreate');
     this.storage.setOrCreate<string>('launchReason', launchParam.launchReason.toString());
     this.storage.setOrCreate<string>('lastExitReason', launchParam.lastExitReason.toString());
-    if (want.parameters != undefined) {
+    if (want.parameters !== undefined) {
       AppStorage.SetOrCreate<string>('RecoverAbility', want.parameters['RecoverAbility'] as string);
     }
   }

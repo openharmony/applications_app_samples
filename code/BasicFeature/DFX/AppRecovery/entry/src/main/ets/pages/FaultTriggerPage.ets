@@ -14,8 +14,8 @@
  */
 
 import appRecovery from '@ohos.app.ability.appRecovery';
-import testNapi from 'libentry.so'
-import ResUtil from '../common/ResUtil'
+import testNapi from 'libentry.so';
+import ResUtil from '../common/ResUtil';
 import { CurActiveAbility } from '../common/CurActiveAbility';
 
 @Entry

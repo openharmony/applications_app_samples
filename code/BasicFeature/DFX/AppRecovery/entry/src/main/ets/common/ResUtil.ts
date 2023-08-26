@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager'
-import Logger from './Logger'
+import resourceManager from '@ohos.resourceManager';
+import Logger from './Logger';
 import { CurActiveAbility } from './CurActiveAbility';
 
 export class ResUtil {
