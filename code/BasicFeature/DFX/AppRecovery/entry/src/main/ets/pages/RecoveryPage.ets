@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import { CurActiveAbility } from '../common/CurActiveAbility';
 @Entry
 @Component
 struct Index {
@@ -53,11 +54,11 @@ struct Index {
                   .width('23.7%')
                   .fontColor($r('app.color.text_blue_opacity'))
                   .onClick(() => {
-                    if (globalThis.curActiveAbility == undefined) {
+                    if (CurActiveAbility.GetInstance().GetGlobalAbility() == undefined) {
                       return;
                     }
                     let want = { bundleName: 'com.samples.recovery', abilityName: 'SecondAbility' };
-                    globalThis.curActiveAbility.context.startAbility(want);
+                    CurActiveAbility.GetInstance().GetGlobalAbility().context.startAbility(want);
                   })
                   .height('28vp')
                   .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
@@ -82,11 +83,11 @@ struct Index {
                 .width('23.7%')
                 .fontColor($r('app.color.text_blue_opacity'))
                 .onClick(() => {
-                  if (globalThis.curActiveAbility == undefined) {
+                  if (CurActiveAbility.GetInstance().GetGlobalAbility() == undefined) {
                     return;
                   }
                   let want = { bundleName: 'com.samples.recovery', abilityName: 'EntryAbility' };
-                  globalThis.curActiveAbility.context.startAbility(want);
+                  CurActiveAbility.GetInstance().GetGlobalAbility().context.startAbility(want);
                 })
                 .height('28vp')
                 .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
