@@ -23,7 +23,7 @@ import Logger from '../../../main/ets/common/Logger';
 const TAG = '[Sample_AppRecovery]'
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam:AbilityConstant.LaunchParam): void {
     Logger.info(TAG, 'onCreate Want:${JSON.stringify(want)} launchParam: ${JSON.stringify(launchParam)}');
     let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();

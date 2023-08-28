@@ -192,10 +192,11 @@ struct FaultTriggerPage {
                 .width('23.7%')
                 .fontColor($r('app.color.text_blue_opacity'))
                 .onClick(() => {
+                  let tmp: Record<string, string> = {'RecoverAbility': this.callerAbility }
                   let want: Record<string, Object> = {
                     'bundleName': 'com.samples.recovery',
                     'abilityName': 'RecoveryAbility',
-                    'parameters': { 'RecoverAbility': this.callerAbility },
+                    'parameters': tmp,
                   };
                   appRecovery.setRestartWant(want);
                   ResUtil.getString($r('app.string.set_config_done').id).then((value: string) => this.setRecoveryAbility = value);
