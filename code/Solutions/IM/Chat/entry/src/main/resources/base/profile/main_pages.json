@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/ChatDetailPage",
+    "pages/Detail",
     "pages/FriendsMomentsPage"
   ]
 }

@@ -32,7 +32,7 @@ struct FriendsMomentsPage {
             .width(30)
             .onClick(() => {
               router.back()
-            })
+            }).syncLoad(true)
 
           Text($r('app.string.circle'))
             .fontSize(20)

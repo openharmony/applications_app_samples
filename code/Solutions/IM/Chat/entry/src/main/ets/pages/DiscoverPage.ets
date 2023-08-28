@@ -16,7 +16,6 @@
 import router from '@ohos.router'
 import { SettingItemView } from './SettingPage'
 
-@Entry
 @Component
 export struct DiscoverPage {
   private scroller: Scroller = new Scroller()

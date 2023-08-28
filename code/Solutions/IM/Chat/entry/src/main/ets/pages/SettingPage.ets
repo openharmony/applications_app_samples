@@ -15,7 +15,6 @@
 
 import router from '@ohos.router';
 
-@Entry
 @Component
 export struct SettingPage {
   private scroller: Scroller = new Scroller()
