@@ -14,9 +14,11 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
+import Want from '@ohos.app.ability.Want';
 import Window from '@ohos.window';
 import Logger from '../../../main/ets/common/Logger';
 

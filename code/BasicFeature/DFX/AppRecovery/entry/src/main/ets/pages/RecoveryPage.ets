@@ -91,7 +91,7 @@ struct Index {
                   }
                   let want: Record<string, Object> = {
                       'bundleName': 'com.samples.recovery',
-                      'abilityName': 'SecondAbility'
+                      'abilityName': 'EntryAbility'
                     };
                   CurActiveAbility.GetInstance().GetGlobalAbility().context.startAbility(want);
                 })
