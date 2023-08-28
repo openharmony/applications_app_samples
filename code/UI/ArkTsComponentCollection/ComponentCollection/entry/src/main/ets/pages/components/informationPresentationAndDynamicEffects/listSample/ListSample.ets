@@ -63,14 +63,13 @@ struct ListSample {
             .transition({ type: TransitionType.Delete, opacity: 0 })
             .swipeAction({
               end: {
-                useDefaultDeleteAnimation: true,
-                onDelete: () => {
+                onAction: () => {
                   animateTo({ duration: 1000 }, () => {
                     let index = this.arr.indexOf(item)
                     this.arr.splice(index, 1)
                   })
                 },
-                deleteAreaDistance: 80,
+                actionAreaDistance: 56,
               }
             })
           }, item => item)

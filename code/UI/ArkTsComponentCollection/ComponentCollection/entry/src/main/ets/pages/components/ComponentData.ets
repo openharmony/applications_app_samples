@@ -153,10 +153,6 @@ const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =
         url: 'pages/components/informationPresentationAndDynamicEffects/qrCodeSample/QRCodeSample'
       }, 
       {
-        title: $r('app.string.list'),
-        url: 'pages/components/informationPresentationAndDynamicEffects/listSample/ListSample'
-      },
-      {
         title: $r('app.string.loading_progress'),
         url: 'pages/components/informationPresentationAndDynamicEffects/loadingProgressSample/LoadingProgressSample'
       },
@@ -199,6 +195,10 @@ const INFORMATION_PRESENTATION_AND_DYNAMIC_EFFECTS: ThirdLevelCategory =
       {
         title: $r('app.string.particle_effect'),
         url: "pages/components/informationPresentationAndDynamicEffects/particleSample/ParticleSample"
+      },
+      {
+        title: $r('app.string.list'),
+        url: 'pages/components/informationPresentationAndDynamicEffects/listSample/ListSample'
       }
     ]
   }
@@ -334,10 +334,6 @@ const NAVIGATION: ThirdLevelCategory =
     title: $r('app.string.navigation'),
     childNodes : [
       {
-        title: $r('app.string.navRouter_title'),
-        url: 'pages/components/navigation/navRouterSample/NavRouterSample'
-      },
-      {
         title: $r('app.string.navigation_title'),
         url: 'pages/components/navigation/navigationSample/NavigationSample'
       },
@@ -352,6 +348,10 @@ const NAVIGATION: ThirdLevelCategory =
       {
         title: $r('app.string.stepper_title'),
         url: "pages/components/navigation/stepperAndStepperItemSample/StepperAndStepperItemSample"
+      },
+      {
+        title: $r('app.string.navRouter_title'),
+        url: 'pages/components/navigation/navRouterSample/NavRouterSample'
       }
     ]
   }
