@@ -122,6 +122,7 @@ export struct MediaItem {
             })
             .objectFit(ImageFit.Contain)
         }
+        .id('rename')
         .margin({
           left: 5
         })
@@ -143,6 +144,7 @@ export struct MediaItem {
               height: 40
             })
         }
+        .id('delete')
         .type(ButtonType.Circle)
         .size({
           width: 40,
