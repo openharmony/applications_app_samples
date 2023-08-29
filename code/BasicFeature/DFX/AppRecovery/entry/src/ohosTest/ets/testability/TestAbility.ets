@@ -14,27 +14,29 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import Window from '@ohos.window';
 import Logger from '../../../main/ets/common/Logger';
 
 const TAG = '[Sample_AppRecovery]'
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam:AbilityConstant.LaunchParam): void {
     Logger.info(TAG, 'onCreate Want:${JSON.stringify(want)} launchParam: ${JSON.stringify(launchParam)}');
     let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     Logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: Window.WindowStage): void {
     Logger.info(TAG, 'onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
@@ -43,15 +45,15 @@ export default class TestAbility extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     Logger.info(TAG, 'onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     Logger.info(TAG, 'onForeground');
   }
 
-  onBackground() {
+  onBackground(): void {
     Logger.info(TAG, 'onBackground');
   }
 }

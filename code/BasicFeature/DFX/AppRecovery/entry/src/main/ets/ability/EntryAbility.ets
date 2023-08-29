@@ -80,7 +80,7 @@ export default class EntryAbility extends UIAbility {
     let string = this.storage.get<string>('FaultTriggerPageString');
     let counter = this.storage.get<number>('FaultTriggerPageCounter');
     wantParam['FaultTriggerPageString'] = string ?? 'Empty';
-    wantParam['FaultTriggerPageCounter'] = counter;
+    wantParam['FaultTriggerPageCounter'] = counter as number;
     Logger.info(TAG, 'SavedText:${string} SavedCounter:${counter}');
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
