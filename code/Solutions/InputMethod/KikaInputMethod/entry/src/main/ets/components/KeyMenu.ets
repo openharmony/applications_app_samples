@@ -14,7 +14,7 @@
  */
 
 import { DeleteItem } from './DeleteItem';
-import { MenuKey, KeyState, keySourceListType, } from '../model/keyboardKeyData';
+import { MenuKey, KeyState, keySourceListType, keySourceListData } from '../model/KeyboardKeyData';
 import { KeyStyle } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
@@ -22,27 +22,29 @@ import { KeyItemNumber } from './KeyItemNumber';
 import { SpaceItem } from './SpaceItem';
 import { ReturnItem } from './ReturnItem';
 
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_gray_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_gray'))
+}
+
 // key键盘
 @Component
 export struct KeyMenu {
-  private keyList: keySourceListType[];
-  @Link inputStyle: KeyStyle;
-  @State public keyState: number = KeyState.LOWER_CASE;
-  @Link menuType: number;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_gray_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_gray'))
-  }
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @Consume menuType: number;
+  @Provide keyState: number = KeyState.LOWER_CASE;
+  private keyList: keySourceListType[] = keySourceListData;
+  private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
+  private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.keyList.slice(0, 10), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item, keyState: $keyState, inputStyle: $inputStyle })
+          KeyItemNumber({ keyValue: item })
         }, (item: keySourceListType) => item.content)
       }
       .width('100%')
@@ -54,7 +56,7 @@ export struct KeyMenu {
         }.width('4%').height(0)
 
         ForEach(this.keyList.slice(10, 19), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item, keyState: $keyState, inputStyle: $inputStyle })
+          KeyItemNumber({ keyValue: item })
         }, (item: keySourceListType) => item.content)
         Stack() {
         }.width('4%').height(0)
@@ -84,32 +86,25 @@ export struct KeyMenu {
         .width(this.inputStyle.switchButtonWidth)
         .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
         .stateStyles({
-          normal: this.normalStyles, pressed: this.pressedStyles
+          normal: normalStyles, pressed: pressedStyles
         })
 
 
         ForEach(this.keyList.slice(19), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item, keyState: $keyState, inputStyle: $inputStyle })
+          KeyItemNumber({ keyValue: item })
         }, (item: keySourceListType) => item.content)
-        DeleteItem({ inputStyle: $inputStyle })
+        DeleteItem()
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
       .margin({ top: this.inputStyle.paddingTop })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        KeyItemGray({ keyValue: MenuKey.NUMBER_KEY, menuType: $menuType, inputStyle: $inputStyle })
-        KeyItem({
-          keyValue: { content: ',', title: ',', upperContent: ',' },
-          inputStyle: $inputStyle
-        })
-        SpaceItem({ spaceWith: this.inputStyle.spaceButtonWidth_1, inputStyle: $inputStyle })
-
-        KeyItem({
-          keyValue: { content: '.', title: '.', upperContent: '.' },
-          inputStyle: $inputStyle
-        })
-        ReturnItem({ returnWidth: this.inputStyle.returnButtonWidthType_1, inputStyle: $inputStyle })
+        KeyItemGray({ keyValue: MenuKey.NUMBER_KEY })
+        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
+        SpaceItem({ spaceWith: this.spaceWidth })
+        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
+        ReturnItem({ returnWidth: this.returnWidth })
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)

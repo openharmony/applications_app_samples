@@ -19,8 +19,8 @@ import Log from '../model/Log';
 const TAG: string = 'AbilityStage->';
 export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
-    AppStorage.SetOrCreate<number>('windowWidth', -1);
-    AppStorage.SetOrCreate<number>('windowHeight', -1);
+    AppStorage.setOrCreate<number>('windowWidth', -1);
+    AppStorage.setOrCreate<number>('windowHeight', -1);
     Log.showInfo(TAG, '[Demo] MyAbilityStage onCreate');
   }
 }

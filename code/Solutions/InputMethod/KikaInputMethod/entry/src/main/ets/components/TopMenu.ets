@@ -15,13 +15,13 @@
 
 import { KeyStyle } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
-import { SubMenuType } from '../model/keyboardKeyData';
+import { SubMenuType } from '../model/KeyboardKeyData';
 
 @Preview
 @Component
 export struct TopMenu {
-  @Link inputStyle: KeyStyle;
-  @Link submenuType: number;
+  @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
 
   build() {
     Column() {

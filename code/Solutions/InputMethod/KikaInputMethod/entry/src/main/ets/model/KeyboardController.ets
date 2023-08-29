@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
 
 import deviceInfo from '@ohos.deviceInfo';
 import inputMethodEngine from '@ohos.inputMethodEngine';
+import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 import display from '@ohos.display';
 import windowManager from '@ohos.window';
 import Log from './Log';
@@ -23,11 +23,247 @@ import { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
 
+interface DeviceSize {
+  width: number;
+  height: number;
+}
+
+interface CursorInfo {
+  x: number;
+  y: number;
+  height: number
+}
+
 const InputMethodEngine: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
+// 定义不同设备的宽高，用于键盘显示适配不同设备
+const DEVICE_PHONE:DeviceSize = {
+  width: 1344,
+  height: 2772
+}
+const DEVICE_RK:DeviceSize = {
+  width: 720,
+  height: 1280
+}
+const DEVICE_BIG:DeviceSize = {
+  width: 2560,
+  height: 1600
+}
+// 定义键盘在不同设备上占设备高度的比例，用于键盘显示适配不同设备
+const KEYBOARD_HEIGHT_RATE_DEFAULT: number = 0.43;
+const KEYBOARD_HEIGHT_RATE_PHONE: number = 0.38;
+const KEYBOARD_HEIGHT_RATE_PHONE_LAND: number = 0.5;
+const KEYBOARD_HEIGHT_RATE_BIG_LAND: number = 0.38;
+const KEYBOARD_HEIGHT_RATE_BIG: number = 0.3;
+// 定义默认的底部导航栏高度
+const NAVIGATIONBAR_HEIGHT_DEFAULT: number = 72;
 
-export class KeyboardController {
+export class InputHandler {
+  private mKbController: inputMethodEngine.KeyboardController;
+  private mTextInputClient: inputMethodEngine.InputClient;
+  private mEditorAttribute: inputMethodEngine.EditorAttribute;
+  private cursorInfo: CursorInfo = { x: 0, y: 0, height: 0 };
+  private selectInfo: string = '';
+  private textInfo: string = '';
+  private inputInfo: string = '';
+
+  private constructor() {
+  }
+
+  public static getInstance(): InputHandler {
+    let instance = AppStorage.get<InputHandler>('inputHandler');
+    if (instance === undefined) {
+      instance = new InputHandler();
+      AppStorage.setOrCreate('inputHandler', instance);
+    }
+    return instance;
+  }
+
+  public onInputStart(kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient): void {
+    this.mKbController = kbController;
+    this.mTextInputClient = textInputClient;
+    let editorAttribute = this.mTextInputClient.getEditorAttribute();
+    this.addLog(`onInputStart editorAttribute = ${JSON.stringify(editorAttribute)}`);
+    editorAttribute.then((res: inputMethodEngine.EditorAttribute) => {
+      this.mEditorAttribute = res;
+      AppStorage.setOrCreate('enterKeyType', res.enterKeyType);
+      AppStorage.setOrCreate('inputPattern', res.inputPattern);
+      this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' + this.mEditorAttribute.inputPattern);
+    })
+  }
+
+  public hideKeyboardSelf(): void {
+    this.addLog('hideKeyboardSelf');
+    if (this.mKbController !== undefined) {
+      this.mKbController.hide();
+    } else {
+      this.addLog('hideKeyboardSelf this.mKbController is undefined');
+    }
+  }
+
+  public sendKeyFunction(): void {
+    this.addLog('sendKeyFunction')
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.sendKeyFunction(this.mEditorAttribute.enterKeyType);
+    } else {
+      this.addLog('sendKeyFunction this.mTextInputClient is undefined');
+    }
+  }
+
+  public deleteBackward(length: number): void {
+    this.addLog('deleteBackward');
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.deleteBackward(length);
+    } else {
+      this.addLog('deleteBackward this.mTextInputClient is undefined');
+    }
+    if (isDebug) {
+      this.refreshInfo();
+    }
+  }
+
+  public deleteForward(length: number): void {
+    this.addLog('deleteForward');
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.deleteForward(length);
+    } else {
+      this.addLog('deleteForward this.mTextInputClient is undefined');
+    }
+    if (isDebug) {
+      this.refreshInfo();
+    }
+  }
+
+  public insertText(text: string): void {
+    this.addLog(`insertText = ${text}`);
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.insertText(text);
+    } else {
+      this.addLog('insertText this.mTextInputClient is undefined');
+    }
+    if (isDebug) {
+      this.refreshInfo();
+    }
+  }
+
+  public addLog(message: string): void {
+    Log.showInfo(TAG, `kikaInput-js: ${message}`);
+  }
+
+  public setCursorInfo(info: CursorInfo): void {
+    this.addLog(`setCursorInfo info = ${JSON.stringify(info)}`);
+    this.cursorInfo = info;
+  }
+
+  public moveCursor(direction: inputMethodEngine.Direction): void {
+    if (this.mTextInputClient !== undefined) {
+      this.addLog(`moveCursor direction = ${direction}`);
+      this.mTextInputClient.moveCursor(direction);
+    } else {
+      this.addLog('moveCursor this.mTextInputClient is undefined');
+    }
+  }
+
+  public async moveCursorToBegin(): Promise<void> {
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.selectByRange({ start: 0, end: 0 });
+    } else {
+      this.addLog('moveCursor this.mTextInputClient is undefined');
+    }
+  }
+
+  public async moveCursorToEnd(): Promise<void> {
+    if (this.mTextInputClient !== undefined) {
+      this.addLog(`moveCursorToEnd`);
+      this.mTextInputClient.selectByRange({ start: 1000, end: 1000 });
+    } else {
+      this.addLog('moveCursor this.mTextInputClient is undefined');
+    }
+  }
+
+  public selectByMovement(direction: inputMethodEngine.Direction): void {
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.selectByMovement({ direction: direction }, (err) => {
+        this.addLog(`selectByMovement err is ${JSON.stringify(err)}`);
+      });
+    } else {
+      this.addLog('selectByMovement this.mTextInputClient is undefined');
+    }
+  }
+
+  public async selectToBegin(): Promise<void> {
+    if (this.mTextInputClient !== undefined) {
+      let index = await this.mTextInputClient.getTextIndexAtCursor();
+      this.addLog(`selectToBegin index= ${index}, x = ${this.cursorInfo.x}`);
+      if (index > 0) {
+        this.mTextInputClient.selectByRange({ start: 0, end: index });
+      } else {
+        this.mTextInputClient.selectByRange({ start: 0, end: this.cursorInfo.x });
+      }
+    } else {
+      this.addLog('selectToBegin this.mTextInputClient is undefined');
+    }
+  }
+
+  public async selectToEnd(): Promise<void> {
+    if (this.mTextInputClient !== undefined) {
+      let index = await this.mTextInputClient.getTextIndexAtCursor();
+      this.addLog(`selectToEnd index= ${index}, x = ${this.cursorInfo.x}`);
+      if (index > 0) {
+        this.mTextInputClient.selectByRange({ start: index, end: 1000 });
+      } else {
+        this.mTextInputClient.selectByRange({ start: this.cursorInfo.x, end: 1000 });
+      }
+    } else {
+      this.addLog('selectToEnd this.mTextInputClient is undefined');
+    }
+  }
+
+  public sendExtendAction(action: inputMethodEngine.ExtendAction): void {
+    if (this.mTextInputClient !== undefined) {
+      this.mTextInputClient.sendExtendAction(action);
+    } else {
+      this.addLog('sendExtendAction this.mTextInputClient is undefined');
+    }
+  }
+
+  public setSelectInfo(info: string): void {
+    this.selectInfo = info;
+    this.addLog(`setSelectInfo info = ${info}`);
+  }
+
+  public setTextInfo(info: string): void {
+    this.textInfo = info;
+    this.addLog(`setTextInfo info = ${info}`);
+  }
+
+  public setInputInfo(info: string): void {
+    this.inputInfo = info;
+    this.addLog(`setInputInfo info = ${info}`);
+  }
+
+  public refreshInfo(): void {
+    this.addLog('refreshInfo');
+    let showText = '';
+    this.addLog('refreshInfo1');
+    showText += 'five chars: before：[' + this.mTextInputClient.getForward(5) + '];after：[' + this.mTextInputClient.getBackward(5) + ']\n';
+    this.addLog('refreshInfo2');
+    showText += this.cursorInfo + "\n";
+    this.addLog('refreshInfo3');
+    showText += this.selectInfo + "\n";
+    this.addLog('refreshInfo4');
+    showText += this.textInfo + "\n";
+    this.addLog('refreshInfo5');
+    showText += this.inputInfo;
+    this.addLog('refreshInfo6');
+    AppStorage.Set<string>('showLog', showText);
+    this.addLog('refreshInfo7');
+    this.addLog('result is = ' + showText);
+  }
+}
+
+class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
   private mContext: InputMethodExtensionContext;
@@ -37,12 +273,11 @@ export class KeyboardController {
   private inputHandle: InputHandler = InputHandler.getInstance();
   private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate;
 
-  constructor(context) {
-    this.inputHandle.addLog('constructor');
-    this.mContext = context;
+  constructor() {
   }
 
-  public onCreate(): void {
+  public onCreate(context: InputMethodExtensionContext): void {
+    this.mContext = context;
     this.inputHandle.addLog('onCreate');
     this.initWindow();
     this.registerListener();
@@ -55,44 +290,46 @@ export class KeyboardController {
   }
 
   private initWindow(): void {
+    if (this.mContext === undefined) {
+      return;
+    }
     this.inputHandle.addLog('initWindow');
     let dis = display.getDefaultDisplaySync();
     this.inputHandle.addLog("initWindow-oncall display");
-    var dWidth = dis.width;
-    var dHeight = dis.height;
-    var navigationbar_height = 75;
-    var keyHeightRate = 0.43;
-    AppStorage.SetOrCreate<number>('windowWidth', dis.width);
-    AppStorage.SetOrCreate<number>('windowHeight', dis.height);
+    let dWidth = dis.width;
+    let dHeight = dis.height;
+    let navigationBar_height = NAVIGATIONBAR_HEIGHT_DEFAULT;
+    let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
+    AppStorage.setOrCreate('windowWidth', dis.width);
+    AppStorage.setOrCreate('windowHeight', dis.height);
     let isLandscape = false;
     let isRkDevice = false;
     if (dis.width > dis.height) {
       isLandscape = true;
-      AppStorage.SetOrCreate('isLandscape', true);
+      AppStorage.setOrCreate('isLandscape', true);
     } else {
-      AppStorage.SetOrCreate('isLandscape', false);
+      AppStorage.setOrCreate('isLandscape', false);
     }
-    if (dWidth === 1344 && dHeight === 2772) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.38;
-    }else if (dWidth === 2772 && dHeight === 1344) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.5;
-    }else if (dWidth === 720 && dHeight === 1280) {
-      navigationbar_height = 72;
-      AppStorage.SetOrCreate('isRkDevice', true);
+    if (dWidth === DEVICE_PHONE.width && dHeight === DEVICE_PHONE.height) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_PHONE;
+    } else if (dWidth === DEVICE_PHONE.height && dHeight === DEVICE_PHONE.width) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_PHONE_LAND;
+    } else if (dWidth === DEVICE_RK.width && dHeight === DEVICE_RK.height) {
+      navigationBar_height = KEYBOARD_HEIGHT_RATE_DEFAULT;
+      AppStorage.setOrCreate('isRkDevice', true);
       isRkDevice = true;
-    }else if (dWidth === 2560 && dHeight === 1600) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.38;
-    } else if (dWidth === 1600 && dHeight === 2560) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.3;
+    } else if (dWidth === DEVICE_BIG.width && dHeight === DEVICE_BIG.height) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG_LAND;
+    } else if (dWidth === DEVICE_BIG.height && dHeight === DEVICE_BIG.width) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG;
     }
-    var keyHeight = dHeight * keyHeightRate;
-    this.barPosition = dHeight - keyHeight - navigationbar_height;
-    this.nonBarPosition = dHeight - keyHeight;
-    this.inputHandle.addLog(`initWindow-dWidth = ${dWidth};dHeight = ${dHeight};keyboard height = ${keyHeight};;navibar height = navigationbar_height`);
+    let keyHeight = dHeight * keyHeightRate;
+    this.barPosition = dHeight - keyHeight - navigationBar_height;
+    this.inputHandle.addLog(`initWindow-dWidth = ${dWidth};dHeight = ${dHeight};keyboard height = ${keyHeight};;navibar height = navigationBar_height`);
     this.inputHandle.addLog(`initWindow-window = ${typeof (windowManager)}`);
     this.inputHandle.addLog(`initWindow-deviceType = ${deviceInfo.deviceType}`);
     let panelInfo: inputMethodEngine.PanelInfo = {
@@ -100,8 +337,8 @@ export class KeyboardController {
       flag: inputMethodEngine.PanelFlag.FLG_FIXED
     }
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
-    AppStorage.SetOrCreate('inputStyle', inputStyle);
-    InputMethodEngine.createPanel(this.mContext, panelInfo).then(panel => {
+    AppStorage.setOrCreate('inputStyle', inputStyle);
+    InputMethodEngine.createPanel(this.mContext, panelInfo).then((panel: inputMethodEngine.Panel) => {
       this.panel = panel;
       panel.resize(dWidth, keyHeight).then(() => {
         panel.moveTo(0, this.barPosition).then(() => {
@@ -115,58 +352,54 @@ export class KeyboardController {
 
   private destroyPanel(): void {
     this.inputHandle.addLog('destroyPanel');
-    try {
+    if (this.panel) {
       InputMethodEngine.destroyPanel(this.panel);
-    } catch (error) {
-      this.inputHandle.addLog(`Failed to find the Panel. Cause: ${JSON.stringify(error)}`);
     }
   }
 
   private resizePanel(): void {
     this.inputHandle.addLog('resizeWindow');
-
     let dis = display.getDefaultDisplaySync();
     this.inputHandle.addLog('resizeWindow-oncall display');
-
-    var dWidth = dis.width;
-    var dHeight = dis.height;
-    var navigationbar_height = dHeight * 0.07; //todo:有些产品导航栏高度为0，默认为0.07
-    var keyHeightRate = 0.43;
-    AppStorage.SetOrCreate<number>('windowWidth', dis.width);
-    AppStorage.SetOrCreate<number>('windowHeight', dis.height);
+    let dWidth = dis.width;
+    let dHeight = dis.height;
+    let navigationBar_height = dHeight * 0.07; // 有些产品导航栏高度为0，默认为0.07
+    let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
+    AppStorage.setOrCreate<number>('windowWidth', dis.width);
+    AppStorage.setOrCreate<number>('windowHeight', dis.height);
     let isLandscape = false;
     let isRkDevice = false;
     if (dis.width > dis.height) {
-      isLandscape= true;
-      AppStorage.SetOrCreate('isLandscape', true);
+      isLandscape = true;
+      AppStorage.setOrCreate('isLandscape', true);
     } else {
-      AppStorage.SetOrCreate('isLandscape', false);
+      AppStorage.setOrCreate('isLandscape', false);
     }
-    if (dWidth === 1344 && dHeight === 2772) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.38;
-    }else if (dWidth === 2772 && dHeight === 1344) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.5;
-    }else if (dWidth === 720 && dHeight === 1280) {
-      navigationbar_height = 72;
-      AppStorage.SetOrCreate('isRkDevice', true);
+    if (dWidth === DEVICE_PHONE.width && dHeight === DEVICE_PHONE.height) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_PHONE;
+    } else if (dWidth === DEVICE_PHONE.height && dHeight === DEVICE_PHONE.width) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_PHONE_LAND;
+    } else if (dWidth === DEVICE_RK.width && dHeight === DEVICE_RK.height) {
+      navigationBar_height = KEYBOARD_HEIGHT_RATE_DEFAULT;
+      AppStorage.setOrCreate('isRkDevice', true);
       isRkDevice = true;
-    }else if (dWidth === 2560 && dHeight === 1600) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.38;
-    } else if (dWidth === 1600 && dHeight === 2560) {
-      navigationbar_height = 0;
-      keyHeightRate = 0.3;
+    } else if (dWidth === DEVICE_BIG.width && dHeight === DEVICE_BIG.height) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG_LAND;
+    } else if (dWidth === DEVICE_BIG.height && dHeight === DEVICE_BIG.width) {
+      navigationBar_height = 0;
+      keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG;
     }
     let keyHeight = dHeight * keyHeightRate;
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
-    AppStorage.SetOrCreate('inputStyle', inputStyle);
+    AppStorage.setOrCreate('inputStyle', inputStyle);
     this.panel.resize(dWidth, keyHeight).then(() => {
-      this.panel.moveTo(0, dHeight - keyHeight - navigationbar_height).then(() => {
+      this.panel.moveTo(0, dHeight - keyHeight - navigationBar_height).then(() => {
         this.inputHandle.addLog('resizePanel-moveTo success');
       })
-    }).catch(err=>{
+    }).catch((err: Error) => {
       this.inputHandle.addLog('resizePanel-moveTo err' + JSON.stringify(err));
     })
   }
@@ -174,7 +407,7 @@ export class KeyboardController {
   private registerListener(): void {
     this.inputHandle.addLog('registerListener');
 
-    display.on('change', (screenEvent) => {
+    display.on('change', () => {
       this.inputHandle.addLog('screenChangeEvent');
       this.resizePanel();
     });
@@ -184,11 +417,8 @@ export class KeyboardController {
     })
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
+      this.onDestroy();
       this.mContext.destroy();
-    });
-    InputMethodEngine.on('keyboardShow', () => {
-      this.inputHandle.addLog('keyboard show');
-      this.showWindow();
     });
 
     InputMethodEngine.on('setCallingWindow', () => {
@@ -196,15 +426,9 @@ export class KeyboardController {
       this.initWindow();
     });
 
-    InputMethodEngine.on('keyboardHide', () => {
-      this.inputHandle.addLog('keyboard hide');
-      AppStorage.SetOrCreate('submenuType', 0);
-      this.hideWindow();
-    });
-
     this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
-    this.mKeyboardDelegate.on('keyDown', (keyEvent) => {
+    this.mKeyboardDelegate.on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
       if (this.isKeyboardShow) {
         this.inputHandle.hideKeyboardSelf();
       }
@@ -214,14 +438,15 @@ export class KeyboardController {
       return result;
     });
 
-    this.mKeyboardDelegate.on('keyUp', (keyEvent) => {
+    this.mKeyboardDelegate.on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
       this.inputHandle.addLog(`keyUp: code = ${keyEvent.keyCode}`);
       let result = this.onKeyUp(keyEvent);
       this.inputHandle.addLog(`keyUp: result = ${result}`);
       return result;
     });
-    this.mKeyboardDelegate.on('cursorContextChange', (x, y, height) => {
-      this.inputHandle.setCursorInfo({ x: x, y: y, height: height });
+    this.mKeyboardDelegate.on('cursorContextChange', (x: number, y: number, height: number) => {
+      let cursorInfo: CursorInfo = { x: x, y: y, height: height };
+      this.inputHandle.setCursorInfo(cursorInfo);
     });
     if (isDebug) {
       this.mKeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
@@ -241,7 +466,7 @@ export class KeyboardController {
     return preDownKey === KeyCode.KEYCODE_SHIFT_LEFT || preDownKey === KeyCode.KEYCODE_SHIFT_RIGHT;
   }
 
-  public onKeyDown(keyEvent): boolean {
+  public onKeyDown(keyEvent: inputMethodEngine.KeyEvent): boolean {
     this.inputHandle.addLog('onKeyDown: code = ' + keyEvent.keyCode);
     let keyCode = keyEvent.keyCode;
     let idx = this.keyCodes.indexOf(keyCode);
@@ -258,24 +483,18 @@ export class KeyboardController {
     if (this.isSpecialKeyPress || keyCode === KeyCode.KEYCODE_ALT_LEFT || keyCode === KeyCode.KEYCODE_ALT_RIGHT) {
       return false;
     }
-    var keyValue = GetHardKeyValue(keyCode, this.isShiftKeyHold());
-    if (!keyValue) {
+    let keyValue: string = GetHardKeyValue(keyCode, this.isShiftKeyHold());
+    if (keyValue === '') {
       this.inputHandle.addLog('onKeyDown: unknown keyCode');
       this.isSpecialKeyPress = true;
       return false;
     }
-    try {
-      return this.inputHardKeyCode(keyValue, keyCode);
-    } catch (error) {
-      // 方向键api需要优化
-      this.inputHandle.addLog(`inputHardKeyCode error: ${JSON.stringify(error)}`);
-      return false;
-    }
+    return this.inputHardKeyCode(keyValue, keyCode);
   }
 
-  public onKeyUp(keyEvent): boolean {
+  public onKeyUp(keyEvent: inputMethodEngine.KeyEvent): boolean {
     this.inputHandle.addLog('OnKeyUp: code = ' + keyEvent.keyCode);
-    var keyCode = keyEvent.keyCode;
+    let keyCode = keyEvent.keyCode;
     let idx = this.keyCodes.indexOf(keyCode);
     if (idx !== -1) {
       this.keyCodes.splice(idx, 1);
@@ -291,7 +510,7 @@ export class KeyboardController {
     }
 
     if (this.isSpecialKeyPress) {
-      var keyValue = GetHardKeyValue(keyCode, this.isShiftKeyHold());
+      let keyValue = GetHardKeyValue(keyCode, this.isShiftKeyHold());
       if (!keyValue) {
         this.isSpecialKeyPress = true;
       }
@@ -304,11 +523,11 @@ export class KeyboardController {
     return true;
   }
 
-  public isKeyCodeAZ(keyCode: number): void {
+  public isKeyCodeAZ(keyCode: number): boolean {
     return keyCode >= KeyCode.KEYCODE_A && keyCode <= KeyCode.KEYCODE_Z;
   }
 
-  public isKeyCodeNumber(keyCode: number): void {
+  public isKeyCodeNumber(keyCode: number): boolean {
     return (keyCode >= KeyCode.KEYCODE_0 && keyCode <= KeyCode.KEYCODE_9) || (keyCode >= KeyCode.KEYCODE_NUMPAD_0 && keyCode <= KeyCode.KEYCODE_NUMPAD_9);
   }
 
@@ -345,16 +564,16 @@ export class KeyboardController {
         this.inputHandle.deleteBackward(1);
         return true;
       case "KEYCODE_DPAD_UP":
-        this.inputHandle.MoveCursor(inputMethodEngine.CURSOR_UP);
+        this.inputHandle.moveCursor(inputMethodEngine.Direction.CURSOR_UP);
         return true;
       case "KEYCODE_DPAD_DOWN":
-        this.inputHandle.MoveCursor(inputMethodEngine.CURSOR_DOWN);
+        this.inputHandle.moveCursor(inputMethodEngine.Direction.CURSOR_DOWN);
         return true;
       case "KEYCODE_DPAD_LEFT":
-        this.inputHandle.MoveCursor(inputMethodEngine.CURSOR_LEFT);
+        this.inputHandle.moveCursor(inputMethodEngine.Direction.CURSOR_LEFT);
         return true;
       case "KEYCODE_DPAD_RIGHT":
-        this.inputHandle.MoveCursor(inputMethodEngine.CURSOR_RIGHT);
+        this.inputHandle.moveCursor(inputMethodEngine.Direction.CURSOR_RIGHT);
         return true;
       default:
         return false;
@@ -368,10 +587,6 @@ export class KeyboardController {
       this.inputHandle.addLog('inputStop off');
     });
 
-    InputMethodEngine.off('keyboardShow');
-
-    InputMethodEngine.off('keyboardHide');
-
     this.mKeyboardDelegate.off('keyDown');
 
     this.mKeyboardDelegate.off('keyUp');
@@ -384,209 +599,6 @@ export class KeyboardController {
       this.mKeyboardDelegate.off('textChange');
     }
   }
-
-  private showWindow(): void {
-    this.inputHandle.addLog('showWindow');
-    this.panel.show();
-  }
-
-  private hideWindow(): void {
-    this.inputHandle.addLog('hideWindow');
-    this.panel.hide()
-  }
 }
 
-export class InputHandler {
-  private constructor() {
-  }
-
-  public static getInstance(): InputHandler {
-    if (globalThis.instance === undefined) {
-      globalThis.instance = new InputHandler();
-    }
-    return globalThis.instance;
-  }
-
-  public onInputStart(kbController, textInputClient): void {
-    globalThis.mKbController = kbController;
-    globalThis.mTextInputClient = textInputClient;
-    globalThis.mEditorAttribute = globalThis.mTextInputClient.getEditorAttribute();
-    this.addLog(`onInputStart mEditorAttribute = ${JSON.stringify(globalThis.mEditorAttribute)}`);
-    globalThis.mEditorAttribute.then(res => {
-      globalThis.enterKeyType = res.enterKeyType;
-      globalThis.inputPattern = res.inputPattern;
-      AppStorage.SetOrCreate('enterKeyType', globalThis.enterKeyType);
-      AppStorage.SetOrCreate('inputPattern', globalThis.inputPattern);
-      this.setInputInfo("EditorInfo：enterKeyType = " + globalThis.enterKeyType + ";inputPattern = " + globalThis.inputPattern);
-    })
-  }
-
-  public hideKeyboardSelf(): void {
-    this.addLog('hideKeyboardSelf');
-    if (globalThis.mKbController !== undefined) {
-      globalThis.mKbController.hideKeyboard();
-    } else {
-      this.addLog('hideKeyboardSelf globalThis.mKbController is undefined');
-    }
-  }
-
-  public sendKeyFunction(): void {
-    this.addLog('sendKeyFunction')
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.sendKeyFunction(globalThis.enterKeyType);
-    } else {
-      this.addLog('sendKeyFunction globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public deleteBackward(length: number): void {
-    this.addLog('deleteBackward');
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.deleteBackward(length);
-    } else {
-      this.addLog('deleteBackward globalThis.mTextInputClient is undefined');
-    }
-    if (isDebug) {
-      this.refreshInfo();
-    }
-  }
-
-  public deleteForward(length: number): void {
-    this.addLog('deleteForward');
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.deleteForward(length);
-    } else {
-      this.addLog('deleteForward globalThis.mTextInputClient is undefined');
-    }
-    if (isDebug) {
-      this.refreshInfo();
-    }
-  }
-
-  public insertText(text: string): void {
-    this.addLog(`insertText = ${text}`);
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.insertText(text);
-    } else {
-      this.addLog('insertText globalThis.mTextInputClient is undefined');
-    }
-    if (isDebug) {
-      this.refreshInfo();
-    }
-  }
-
-  public addLog(message): void {
-    Log.showInfo(TAG, `kikaInput-js: ${message}`);
-  }
-
-  public setCursorInfo(info): void {
-    this.addLog(`setCursorInfo info = ${JSON.stringify(info)}`);
-    globalThis.cursorInfo = info;
-  }
-
-  public moveCursor(direction: inputMethodEngine.Direction): void {
-    if (globalThis.mTextInputClient !== undefined) {
-      this.addLog(`moveCursor direction = ${direction}`);
-      globalThis.mTextInputClient.moveCursor(direction);
-    } else {
-      this.addLog('moveCursor globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public async moveCursorToBegin(): Promise<void> {
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.selectByRange({ start: 0, end: 0 });
-    } else {
-      this.addLog('moveCursor globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public async moveCursorToEnd(): Promise<void> {
-    if (globalThis.mTextInputClient !== undefined) {
-      this.addLog(`moveCursorToEnd`);
-      globalThis.mTextInputClient.selectByRange({ start: 1000, end: 1000 });
-    } else {
-      this.addLog('moveCursor globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public selectByMovement(direction: inputMethodEngine.Direction): void {
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.selectByMovement({ direction: direction }, (err) => {
-        this.addLog(`selectByMovement err is ${JSON.stringify(err)}`);
-      });
-    } else {
-      this.addLog('selectByMovement globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public async selectToBegin(): Promise<void> {
-    if (globalThis.mTextInputClient !== undefined) {
-      let index = await globalThis.mTextInputClient.getTextIndexAtCursor();
-      this.addLog(`selectToBegin index= ${index}, x = ${globalThis.cursorInfo.x}`);
-      if (index > 0) {
-        globalThis.mTextInputClient.selectByRange({ start: 0, end: index });
-      } else {
-        globalThis.mTextInputClient.selectByRange({ start: 0, end: globalThis.cursorInfo.x });
-      }
-    } else {
-      this.addLog('selectToBegin globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public async selectToEnd(): Promise<void> {
-    if (globalThis.mTextInputClient !== undefined) {
-      let index = await globalThis.mTextInputClient.getTextIndexAtCursor();
-      this.addLog(`selectToEnd index= ${index}, x = ${globalThis.cursorInfo.x}`);
-      if (index > 0) {
-        globalThis.mTextInputClient.selectByRange({ start: index, end: 1000 });
-      } else {
-        globalThis.mTextInputClient.selectByRange({ start: globalThis.cursorInfo.x, end: 1000 });
-      }
-    } else {
-      this.addLog('selectToEnd globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public sendExtendAction(action: inputMethodEngine.ExtendAction): void {
-    if (globalThis.mTextInputClient !== undefined) {
-      globalThis.mTextInputClient.sendExtendAction(action);
-    } else {
-      this.addLog('sendExtendAction globalThis.mTextInputClient is undefined');
-    }
-  }
-
-  public setSelectInfo(info): void {
-    globalThis.selectInfo = info;
-    this.addLog(`setSelectInfo info = ${info}`);
-  }
-
-  public setTextInfo(info): void {
-    globalThis.textInfo = info;
-    this.addLog(`setTextInfo info = ${info}`);
-  }
-
-  public setInputInfo(info): void {
-    globalThis.inputInfo = info;
-    this.addLog(`setInputInfo info = ${info}`);
-  }
-
-  public refreshInfo(): void {
-    this.addLog('refreshInfo');
-    var showText = '';
-    this.addLog('refreshInfo1');
-    showText += 'five chars: before：[' + globalThis.mTextInputClient.getForward(5) + '];after：[' + globalThis.mTextInputClient.getBackward(5) + ']\n';
-    this.addLog('refreshInfo2');
-    showText += globalThis.cursorInfo + "\n";
-    this.addLog('refreshInfo3');
-    showText += globalThis.selectInfo + "\n";
-    this.addLog('refreshInfo4');
-    showText += globalThis.textInfo + "\n";
-    this.addLog('refreshInfo5');
-    showText += globalThis.inputInfo;
-    this.addLog('refreshInfo6');
-    AppStorage.Set<string>('showLog', showText);
-    this.addLog('refreshInfo7');
-    this.addLog('result is = ' + showText);
-  }
-}
+export const keyboardController: KeyboardController = new KeyboardController();

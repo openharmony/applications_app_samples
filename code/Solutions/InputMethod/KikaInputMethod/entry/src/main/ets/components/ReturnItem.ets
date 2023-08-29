@@ -21,20 +21,21 @@ enum EntryKey {
   Search = 'Search',
   Go = 'Go'
 }
+
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_gray_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_gray'))
+}
+
 // 返回组件
 @Component
 export struct ReturnItem {
-  private returnWidth: Resource;
   @StorageLink('enterKeyType') enterKeyType:EnterKeyType = EnterKeyType.Done
-  @Link inputStyle: KeyStyle;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_gray_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_gray'))
-  }
+  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  private returnWidth: Resource;
 
   build() {
     Stack() {
@@ -65,7 +66,7 @@ export struct ReturnItem {
       InputHandler.getInstance().sendKeyFunction();
     })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }
