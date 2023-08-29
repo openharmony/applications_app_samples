@@ -14,6 +14,7 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
@@ -22,28 +23,29 @@ const TAG: string = 'Sample_CustomTextArea_Test';
 const BUNDLE = 'CustomTextArea_';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // 打开应用界面
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       let driver: Driver = Driver.create();
       let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      await delegator.executeShellCommand('aa start -b com.samples.customtextinput -a EntryAbility').then(result => {
-        logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
-      }).catch(err => {
-        logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
-      })
+      await delegator.executeShellCommand('aa start -b com.samples.customtextinput -a EntryAbility')
+        .then(result => {
+          logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
+        }).catch((err: Error) => {
+          logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
+        })
       await driver.delayMs(3000);
-      await delegator.getCurrentTopAbility().then((Ability) => {
+      await delegator.getCurrentTopAbility().then((ability: UIAbility) => {
         logger.info(TAG, `${BUNDLE}get top ability`);
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+        expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
       done();
     })
 
     // 点击attach、show、on按钮绑定输入法应用，并输入内容
-    it(BUNDLE + 'ShowKeyboard_001', 0, async function (done) {
+    it(BUNDLE + 'ShowKeyboard_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ShowKeyboard_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -94,7 +96,7 @@ export default function abilityTest() {
     })
 
     // 更新光标信息
-    it(BUNDLE + 'UpdateCursor_001', 0, async function (done) {
+    it(BUNDLE + 'UpdateCursor_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}UpdateCursor_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -118,7 +120,7 @@ export default function abilityTest() {
     })
 
     // 选中文本
-    it(BUNDLE + 'ChangeSelection_001', 0, async function (done) {
+    it(BUNDLE + 'ChangeSelection_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ChangeSelection_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -146,7 +148,7 @@ export default function abilityTest() {
     })
 
     // 修改软键盘输入文本类型和Enter键类型
-    it(BUNDLE + 'UpdateAttribute_001', 0, async function (done) {
+    it(BUNDLE + 'UpdateAttribute_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}UpdateAttribute_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -186,7 +188,7 @@ export default function abilityTest() {
     })
 
     // 解绑输入法应用
-    it(BUNDLE + 'ShowKeyboard_001', 0, async function (done) {
+    it(BUNDLE + 'ShowKeyboard_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ShowKeyboard_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);

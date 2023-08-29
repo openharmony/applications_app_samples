@@ -67,25 +67,17 @@ struct Index {
   private cursorInfo: inputMethod.CursorInfo = { top: 0, left: 0, width: 0, height: 0 };
   @Provide selectStart: number = 0;
   @Provide selectEnd: number = 0;
-  @State isAttached: boolean = false;
-  @State isOn: boolean = false;
-  @State isShow: boolean = false;
-  @State isChangeSelection: boolean = false;
-  @State inputTypeIndex: number = 0;
-  @State enterKeyIndex: number = 0;
+  @Provide isAttached: boolean = false;
+  @Provide isOn: boolean = false;
+  @Provide isShow: boolean = false;
+  @Provide isChangeSelection: boolean = false;
+  @Provide inputTypeIndex: number = 0;
+  @Provide enterKeyIndex: number = 0;
 
   build() {
     Scroll() {
       Column({ space: 12 }) {
-        CustomInputText({
-          inputController: this.inputController,
-          isAttached: $isAttached,
-          isOn: $isOn,
-          isShow: $isShow,
-          isChangeSelection: $isChangeSelection,
-          inputTypeIndex: this.inputTypeIndex,
-          enterKeyIndex: this.enterKeyIndex
-        })
+        CustomInputText({ inputController: this.inputController })
         this.OperateView()
         this.UpdateView()
         this.AttributeView()
@@ -150,21 +142,21 @@ struct Index {
           .id('cursorLeft')
           .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
-            this.cursorInfo.left = parseInt(value);
+            this.cursorInfo.left = Number(value).valueOf();
           })
         TextInput({ placeholder: 'top' })
           .inputStyle()
           .id('cursorTop')
           .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
-            this.cursorInfo.top = parseInt(value);
+            this.cursorInfo.top = Number(value).valueOf();
           })
         TextInput({ placeholder: 'width' })
           .inputStyle()
           .id('cursorWidth')
           .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
-            this.cursorInfo.width = parseInt(value);
+            this.cursorInfo.width = Number(value).valueOf();
           })
 
         TextInput({ placeholder: 'height' })
@@ -172,7 +164,7 @@ struct Index {
           .id('cursorHeight')
           .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
-            this.cursorInfo.height = parseInt(value);
+            this.cursorInfo.height = Number(value).valueOf();
           })
       }
       .width('100%')
@@ -190,14 +182,14 @@ struct Index {
           .id('selectStart')
           .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
-            this.selectStart = parseInt(value);
+            this.selectStart = Number(value).valueOf();
           })
         TextInput({ placeholder: 'end' })
           .inputStyle()
           .id('selectEnd')
           .enableKeyboardOnFocus(false)
           .onChange((value: string) => {
-            this.selectEnd = parseInt(value);
+            this.selectEnd = Number(value).valueOf();
           })
       }
       .width('100%')
@@ -268,10 +260,10 @@ struct Index {
 
   aboutToAppear() {
     logger.info('Index', 'aboutToAppear')
-    inputAttribute.getInputTypeSource().forEach(item => {
+    inputAttribute.getInputTypeSource().forEach((item: Resource)  => {
       this.inputTypeArray.push({ value: item });
     })
-    inputAttribute.getEnterTypeSource().forEach(item => {
+    inputAttribute.getEnterTypeSource().forEach((item: Resource) => {
       this.enterKeyArray.push({ value: item });
     })
   }
