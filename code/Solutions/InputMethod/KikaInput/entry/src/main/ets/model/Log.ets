@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,26 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import hilog from '@ohos.hilog';
 
 const DOMAIN: number = 0x300A;
-const FILTER_KEYS = [
-  new RegExp('hide', "gi")
-]
-
-export function filterKey(target: any, propKey: string, descriptor: PropertyDescriptor) {
-  const original = descriptor.value;
-  descriptor.value = function (...args: string[]) {
-    let filterResult = args.map((str) => {
-      let tempStr = str;
-      FILTER_KEYS.forEach((filterKey) => tempStr = tempStr.replace(filterKey, '**'));
-      return tempStr;
-    });
-    const result = original.call(this, ...filterResult);
-    return result;
-  };
-}
-
 /**
  * Basic log class
  */
@@ -44,7 +28,7 @@ export default class Log {
    * @param args Indicates the log parameters.
    * @since 7
    */
-  static showDebug(tag: string, format: string, ...args: any[]) {
+  static showDebug(tag: string, format: string, ...args: string[]): void {
     if (Log.isLoggable(tag, hilog.LogLevel.DEBUG)) {
       hilog.debug(DOMAIN, tag, format, args);
     }
@@ -58,7 +42,7 @@ export default class Log {
    * @param args Indicates the log parameters.
    * @since 7
    */
-  static showInfo(tag: string, format: string, ...args: any[]) {
+  static showInfo(tag: string, format: string, ...args: string[]): void {
     if (Log.isLoggable(tag, hilog.LogLevel.INFO)) {
       hilog.info(DOMAIN, tag, format, args);
     }
@@ -72,7 +56,7 @@ export default class Log {
    * @param args Indicates the log parameters.
    * @since 7
    */
-  static showWarn(tag: string, format: string, ...args: any[]) {
+  static showWarn(tag: string, format: string, ...args: string[]): void {
     if (Log.isLoggable(tag, hilog.LogLevel.WARN)) {
       hilog.warn(DOMAIN, tag, format, args);
     }
@@ -86,7 +70,7 @@ export default class Log {
    * @param args Indicates the log parameters.
    * @since 7
    */
-  static showError(tag: string, format: string, ...args: any[]) {
+  static showError(tag: string, format: string, ...args: string[]): void {
     if (Log.isLoggable(tag, hilog.LogLevel.ERROR)) {
       hilog.error(DOMAIN, tag, format, args);
     }
@@ -100,7 +84,7 @@ export default class Log {
    * @param args Indicates the log parameters.
    * @since 7
    */
-  static showFatal(tag: string, format: string, ...args: any[]) {
+  static showFatal(tag: string, format: string, ...args: string[]): void {
     if (Log.isLoggable(tag, hilog.LogLevel.FATAL)) {
       hilog.fatal(DOMAIN, tag, format, args);
     }
