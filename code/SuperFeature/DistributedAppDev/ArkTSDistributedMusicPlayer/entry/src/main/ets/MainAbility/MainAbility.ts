@@ -26,7 +26,10 @@ export default class MainAbility extends UIAbility {
 
   onDestroy() {
     Logger.info(TAG, '[Demo] MainAbility onDestroy')
-    globalThis.viewThis.exitMusicApp()
+    let exitMusicApp = AppStorage.get<() => void>('exitMusicApp');
+    if (exitMusicApp !== undefined) {
+      exitMusicApp();
+    }
   }
 
   onWindowStageCreate(windowStage) {
