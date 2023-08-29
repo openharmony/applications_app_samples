@@ -22,12 +22,13 @@ import { MediaUtils } from '../utils/MediaUtils';
 import { BackgroundTaskState, UPLOAD_TOKEN, TOAST_BOTTOM, TASK_MAX } from '../utils/Constants';
 
 const TAG: string = 'RequestUpload';
+const HEADER: Record<string, string> = { 'Content-Type': 'multipart/form-data' };
 
 class Upload {
   private mediaUtils: MediaUtils = new MediaUtils();
   private config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: HEADER,
     url: '',
     mode: request.agent.Mode.FOREGROUND,
     method: 'POST',
@@ -53,7 +54,7 @@ class Upload {
     if (fileUris.length === 0) {
       return;
     }
-    fileUris.forEach(item => {
+    fileUris.forEach((item: string) => {
       this.waitList.push(item);
     });
   }
@@ -62,14 +63,14 @@ class Upload {
     let tasks = await request.agent.search({
       state: request.agent.State.RUNNING
     });
-    let state = AppStorage.Get('backTaskState');
+    let state = AppStorage.get<number>('backTaskState');
     if (state === BackgroundTaskState.RUNNING) {
       if (tasks.length < TASK_MAX && this.waitList.length > 0) {
         this.createBackgroundTask(this.waitList);
         this.waitList = [];
       } else {
         if (this.backgroundTask === undefined || tasks.indexOf(this.backgroundTask.tid) === -1) {
-          AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.NONE);
+          AppStorage.setOrCreate('backTaskState', BackgroundTaskState.NONE);
           this.backgroundTask = undefined;
         }
       }
@@ -83,7 +84,7 @@ class Upload {
     try {
       this.backgroundTask = await request.agent.create(this.context, this.config);
       await this.backgroundTask.start();
-      let state = AppStorage.Get('backTaskState');
+      let state = AppStorage.get<number>('backTaskState');
       if (state === BackgroundTaskState.PAUSE) {
         await this.backgroundTask.pause();
       }
@@ -116,7 +117,7 @@ class Upload {
       this.uploadTask = await request.agent.create(context, this.config);
       this.uploadTask.on('progress', (progress: request.agent.Progress) => {
         logger.info(TAG, `progress,  progress = ${progress.processed} ${progress.state}`);
-        let processed = parseInt(progress.processed.toString());
+        let processed = Number(progress.processed.toString()).valueOf();
         let size = progress.sizes[0];
         let process: number = Math.floor(processed / size * 100);
         if (process < 100) {
@@ -155,13 +156,13 @@ class Upload {
   }
 
   async pauseOrResume() {
-    let state = AppStorage.Get('backTaskState');
+    let state = AppStorage.get<number>('backTaskState');
     if (state === BackgroundTaskState.RUNNING) {
       await this.pause();
-      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.PAUSE);
+      AppStorage.setOrCreate('backTaskState', BackgroundTaskState.PAUSE);
     } else if (state === BackgroundTaskState.PAUSE) {
       await this.resume();
-      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.RUNNING);
+      AppStorage.setOrCreate('backTaskState', BackgroundTaskState.RUNNING);
     } else {
       logger.info(TAG, 'this task state is error');
     }

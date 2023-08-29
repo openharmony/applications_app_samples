@@ -28,15 +28,15 @@ class Request {
     let files: Array<FileModel> = [];
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     let url = await urlUtils.getUrl(context);
+    let header: Record<string, string> = {
+      'Content-Type': 'text/plain'
+    }
     try {
-      let response = await httpRequest.request(
-        url + '/?tpl=list&folders-filter=&recursive',
-        {
-          method: http.RequestMethod.GET,
-          header: {
-            'Content-Type': 'text/plain'
-          }
-        });
+      let requestOption: http.HttpRequestOptions = {
+        method: http.RequestMethod.GET,
+        header: header
+      }
+      let response = await httpRequest.request(url + '/?tpl=list&folders-filter=&recursive', requestOption);
       logger.info(TAG, `data = ${JSON.stringify(response)}`);
       let result: string = response.result.toString();
       logger.info(TAG, `Result = ${result}`);
@@ -66,7 +66,7 @@ class Request {
           }
         }
       }
-      files = files.sort((a, b) => {
+      files = files.sort((a: FileModel, b: FileModel) => {
         if (a.isFolder && b.isFolder) {
           return a.name.localeCompare(b.name);
         } else if (a.isFolder && b.isFolder === false) {

@@ -22,7 +22,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): FileModel {
     return undefined;
   }
 
@@ -40,20 +40,20 @@ class BasicDataSource implements IDataSource {
   }
 
   notifyDataReload(): void {
-    this.listeners.forEach(listener => {
+    this.listeners.forEach((listener: DataChangeListener) => {
       listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index);
+    this.listeners.forEach((listener: DataChangeListener) => {
+      listener.onDataAdd(index)
     })
   }
 
   notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index);
+    this.listeners.forEach((listener: DataChangeListener) => {
+      listener.onDataChange(index);
     })
   }
 }
@@ -61,9 +61,9 @@ class BasicDataSource implements IDataSource {
 export class CustomDataSource extends BasicDataSource {
   public dataArray: FileModel[] = [];
 
-  constructor(ele) {
+  constructor(ele: Array<FileModel>) {
     super();
-    for (var index = 0;index < ele.length; index++) {
+    for (let index = 0;index < ele.length; index++) {
       this.dataArray.push(ele[index]);
     }
   }

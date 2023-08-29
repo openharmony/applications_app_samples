@@ -35,7 +35,7 @@ class RequestDownload {
   async downloadFilesBackground(folder: string, files: Array<string>) {
     logger.info(TAG, 'downloadFiles');
     this.context = getContext(this) as common.UIAbilityContext;
-    files.forEach(item => {
+    files.forEach((item: string) => {
       this.waitList.push([folder, item]);
     });
   }
@@ -45,7 +45,7 @@ class RequestDownload {
       state: request.agent.State.RUNNING
     });
     if (tasks.length < TASK_MAX && this.waitList.length > 0) {
-      let downloadList = [];
+      let downloadList:Array<string[]> = [];
       if (this.waitList.length <= TASK_MAX - tasks.length) {
         downloadList = this.waitList;
         this.waitList = [];
@@ -111,7 +111,7 @@ class RequestDownload {
       this.downloadTask = await request.agent.create(context, downloadConfig);
       this.downloadTask.on('progress', (progress: request.agent.Progress) => {
         logger.info(TAG, `progress,  progress = ${progress.processed} ${progress.state}`);
-        let processed = parseInt(progress.processed.toString());
+        let processed = Number(progress.processed.toString()).valueOf();
         let size = progress.sizes[0];
         let process: number = Math.floor(processed / size * 100);
         if (process < 100) {
@@ -143,8 +143,7 @@ class RequestDownload {
         this.downloadTask.off('completed');
         this.downloadTask.off('failed');
         await request.agent.remove(this.downloadTask.tid);
-      }
-      catch (err) {
+      } catch (err) {
         logger.info(TAG, `deleteTask fail,err= ${JSON.stringify(err)}`);
       }
     }
