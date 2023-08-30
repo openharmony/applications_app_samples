@@ -61,6 +61,26 @@
       "value": "收付款"
     },
     {
+      "name": "prop_lazy_for_each",
+      "value": "懒加载"
+    },
+    {
+      "name": "prop_reusable",
+      "value": "组件复用"
+    },
+    {
+      "name": "prop_syncLoad",
+      "value": "同步加载"
+    },
+    {
+      "name": "prop_layout",
+      "value": "布局优化"
+    },
+    {
+      "name": "prop_cachedCount",
+      "value": "缓存数量"
+    },
+    {
       "name": "alert_dialog",
       "value": "功能开发中"
     },

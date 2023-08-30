@@ -26,16 +26,21 @@
 
 ### 工程目录
 ```
+chatList/src/main/ets                     // 列表类功能HAR共享包
+|   /page          
+|   |---ChatDetailPage.ets                 // 具体的某一聊天页面            
+|   |---ChatListPage.ets                   // 整体聊天页面
+|---/common
+|   |---BasicDataSource.ets                // 封装整个模块启用，监听Ability对应的窗口等逻辑
+|   |---Logger.ets                         // 封装整个日志
 entry/src/main/MainAbility
 |---/common
-|   |---BasicDataSource.ets                // 封装整个FeatureAbility模块启用，监听Ability对应的窗口等逻辑
-|   |---Loggger.ets                        // 封装整个日志
+|   |---BasicDataSource.ets                // 封装整个模块启用，监听Ability对应的窗口等逻辑
+|   |---Logger.ets                         // 封装整个日志
 |   |---MsgBase.ets                        // 组件传值定义页面
 |---/components                                 
 |   |---Header.ets                         // 定义应用头部导航栏
 |---/pages                                                               
-|   |---ChatDetailPage.ets                 // 具体的某一聊天页面            
-|   |---ChatListPage.ets                   // 整体聊天页面
 |   |---DiscoverPage.ets                   // 发现页面
 |   |---FriendsMomentsPage.ets             // 朋友圈页面
 |   |---FriendsPage.ets                    // 通讯录页面
@@ -68,7 +73,7 @@ FriendsPage() }。
 
 1.本示例已适配API version 10版本SDK，版本号：4.0.7.5。
 
-2.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上才可编译运行。
+2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上才可编译运行。
 
 ### 下载
 

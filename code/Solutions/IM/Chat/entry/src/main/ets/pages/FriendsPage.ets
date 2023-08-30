@@ -14,10 +14,8 @@
  */
 
 import router from '@ohos.router'
-import { BasicDataSource } from '../common/BasicDataSource'
-import { EMContact } from '../common/MsgBase'
+import { BasicDataSource, ChatContact } from "@ohos/chatList"
 
-@Entry
 @Component
 export struct FriendsPage {
   @State friendsListLength: number = 0
@@ -72,7 +70,7 @@ export struct FriendsPage {
               }
             }
 
-            LazyForEach(this.friendListData, (msg: EMContact) => {
+            LazyForEach(this.friendListData, (msg: ChatContact) => {
               ListItem() {
                 EMContactItemView({ image: msg.userImage, text: msg.userName })
               }
@@ -81,7 +79,7 @@ export struct FriendsPage {
                   url: "pages/ChatDetailPage",
                   params: { chatImage: msg.userImage, chatName: msg.userName, chatId: msg.userId } })
               })
-            }, (msg: EMContact) => msg.userId)
+            }, (msg: ChatContact) => msg.userId)
           }
           .listDirection(Axis.Vertical)
           .height('100%')
@@ -107,7 +105,7 @@ export struct FriendsPage {
   makeDataLocal() {
     for (let i = 0;i < 1000; i++) {
       let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-      let temp1 = new EMContact(i.toString(), `朋友${i.toString()}`, imageStr);
+      let temp1 = new ChatContact(i.toString(), `朋友${i.toString()}`, imageStr);
       this.friendListData.pushData(temp1)
     }
   }
@@ -137,7 +135,7 @@ export struct EMContactItemView {
 }
 
 class FriendListData extends BasicDataSource {
-  friendList: Array<EMContact> = []
+  friendList: Array<ChatContact> = []
 
   public totalCount(): number {
     return this.friendList.length
@@ -147,12 +145,12 @@ class FriendListData extends BasicDataSource {
     return this.friendList[index]
   }
 
-  public addData(index: number, data: EMContact): void {
+  public addData(index: number, data: ChatContact): void {
     this.friendList.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
-  public pushData(data: EMContact): void {
+  public pushData(data: ChatContact): void {
     this.friendList.push(data)
     this.notifyDataAdd(this.friendList.length - 1)
   }

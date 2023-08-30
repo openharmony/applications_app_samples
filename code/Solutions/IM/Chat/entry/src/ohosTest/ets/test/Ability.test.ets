@@ -41,7 +41,7 @@ export default function abilityTest() {
         bundleName: 'com.samples.chat',
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err, data) => {
+      delegator.startAbility(want, (err, data) => {
         Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
         expect(err).assertNull()
       })
@@ -54,7 +54,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'SendMessageFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(2000)
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 clickChatList')
       // 点击聊天列表
@@ -94,7 +94,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'ChatCommunityFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 begin')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 clickDiscover')
       // 点击发现
