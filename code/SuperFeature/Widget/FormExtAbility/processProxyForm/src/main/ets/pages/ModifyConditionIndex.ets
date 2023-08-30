@@ -13,47 +13,50 @@
  * limitations under the License.
  */
 
-import formProvider from '@ohos.app.form.formProvider';
+import base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 import formBindingData from '@ohos.app.form.formBindingData';
 import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.app.form.formProvider';
 import Logger from '../../common/Logger';
 import { getProcessConditionID, saveProcessConditionID } from '../../common/StatePersistence';
 
 const TAG = '[Sample_ModifyConditionIndex]';
 let conditionID = '110000';
-let context;
+let context: common.UIAbilityContext;
 
-function updateCardDisplayContent(runningFormInfo): void {
+function updateCardDisplayContent(runningFormInfo: formInfo.RunningFormInfo): void {
   Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   let proxies = [
     {
-      'key': 'cityName',
-      'subscriberId': conditionID
+      key: 'cityName',
+      subscriberId: conditionID
     },
     {
-      'key': 'cityTemperature',
-      'subscriberId': conditionID
+      key: 'cityTemperature',
+      subscriberId: conditionID
     }
   ];
   let formBinding = formBindingData.createFormBindingData();
   formBinding['proxies'] = proxies;
   formProvider.updateForm(runningFormInfo.formId, formBinding).then(() => {
     Logger.info(TAG, `update Form OK formData is ${JSON.stringify(formBinding)}`);
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `update Form Failed ${JSON.stringify(err)}`);
   });
 }
 
 function modifyCondition(): void {
-  let formInstanceFilter = {
+  let formInstanceFilter: formInfo.FormProviderFilter = {
     bundleName: 'ohos.samples.formextability',
     moduleName: 'processProxyForm'
   };
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
 }
@@ -65,7 +68,7 @@ struct IndexThi {
   @State processSwitchFlag: boolean = true;
 
   aboutToAppear() {
-    context = getContext(this) as typeof context;
+    context = getContext(this) as common.UIAbilityContext;
     this.processConditionID = getProcessConditionID(context);
     if (typeof this.processConditionID !== 'string' || this.processConditionID === '') {
       this.processConditionID = '110000'
