@@ -12,10 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility'
-import rpc from '@ohos.rpc'
-import Logger from '../model/Logger'
-import { APPLICATION_BUNDLE_NAME, APPLICATION_ABILITY_NAME, APPLICATION_SERVICE_NAME, MusicSharedEventCode, MusicConnectEvent } from '../common/MusicSharedDefinition'
+import rpc from '@ohos.rpc';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Logger from '../model/Logger';
+import {
+  APPLICATION_BUNDLE_NAME,
+  APPLICATION_ABILITY_NAME,
+  APPLICATION_SERVICE_NAME,
+  MusicSharedEventCode,
+  MusicConnectEvent
+} from '../common/MusicSharedDefinition';
 
 const TAG: string = 'ServiceAbility'
 const CONNECT_REMOTE_TIMEOUT = 10000

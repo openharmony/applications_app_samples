@@ -12,28 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import display from '@ohos.display'
-import hardware_deviceManager from '@ohos.distributedHardware.deviceManager'
-import KvStoreModel from '../model/KvStoreModel'
-import Logger from '../model/Logger'
-import mediaQuery from '@ohos.mediaquery'
-import PlayerModel from '../model/PlayerModel'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
-import { DeviceDialog } from '../common/DeviceDialog'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import display from '@ohos.display';
+import common from '@ohos.app.ability.common';
+import hardware_deviceManager from '@ohos.distributedHardware.deviceManager';
+import mediaQuery from '@ohos.mediaquery';
+import rpc from '@ohos.rpc';
+import Want from '@ohos.app.ability.Want';
+
+import PermissionRequestResult from 'security/PermissionRequestResult';
+import KvStoreModel from '../model/KvStoreModel';
+import Logger from '../model/Logger';
+import PlayerModel from '../model/PlayerModel';
+
+import { ConnectOptions } from 'ability/connectOptions';
+import { ElementName } from 'bundle/elementName';
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
+import { DeviceDialog } from '../common/DeviceDialog';
 import {
   APPLICATION_BUNDLE_NAME,
   APPLICATION_SERVICE_NAME,
   MusicSharedEventCode,
   MusicSharedStatus,
   MusicConnectEvent
-} from '../common/MusicSharedDefinition'
-import rpc from '@ohos.rpc'
-import common from '@ohos.app.ability.common'
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
-import Want from '@ohos.app.ability.Want';
-import { ConnectOptions } from 'ability/connectOptions';
-import PermissionRequestResult from 'security/PermissionRequestResult';
-import { ElementName } from 'bundle/elementName';
+} from '../common/MusicSharedDefinition';
 
 const TAG: string = 'Index'
 const DESIGN_WIDTH: number = 720.0
