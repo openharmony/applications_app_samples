@@ -12,13 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
+import Want from '@ohos.app.ability.Want';
+import { ConnectOptions } from 'ability/connectOptions';
+import { ElementName } from 'bundle/elementName';
+import Logger from '../logger/Logger';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'EntryAbility';
+  private context: common.UIAbilityContext;
+  private remoteConnectId: number = -1;
 
- build() {
+  aboutToAppear() {
+    this.context = getContext(this) as common.UIAbilityContext;
+  }
+
+  build() {
     Row() {
       Column() {
         Text(this.message)
@@ -30,8 +42,41 @@ struct Index {
         Button('startSecondAbility')
           .fontSize(35)
           .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            globalThis.startAbility();
+          .onClick(async () => {
+            Logger.debug('connect Service Extension Ability begin');
+            let connectWant: Want = {
+              bundleName: 'com.acts.abilityabacktoabilityb',
+              abilityName: 'ServiceAbility'
+            };
+
+            let connectOptions: ConnectOptions = {
+              onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void {
+                Logger.debug('ServiceExtensionAbility has been onConnect');
+              },
+              onDisconnect(elementName: ElementName): void {
+                Logger.debug('ServiceExtensionAbility has been onDisconnect');
+              },
+              onFailed(code: number): void {
+                Logger.debug('ServiceExtensionAbility has been onFailed');
+              }
+            };
+
+            if (this.remoteConnectId !== -1) {
+              try {
+                await this.context.stopServiceExtensionAbility(connectWant);
+                this.remoteConnectId = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+              } catch (err) {
+                Logger.error('connectServiceExtensionAbility failed');
+              }
+            } else {
+              try {
+                this.remoteConnectId = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+              } catch (err) {
+                Logger.error('connectServiceExtensionAbility failed');
+              }
+            }
+
+            Logger.debug('connect Service Extension Ability end');
           })
           .id('startSecondAbility')
           .width(400)
