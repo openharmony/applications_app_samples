@@ -183,7 +183,7 @@ DeviceManagementCollection
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例适配API version 10版本SDK，版本号：4.0.7.2，镜像版本号：OpenHarmony 4.0.7.2。
+2.本示例适配API version 10版本SDK，版本号：4.0.9.6,镜像版本号：[OpenHarmony_4.0.9.6]
 
 3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
 
