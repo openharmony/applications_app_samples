@@ -71,7 +71,7 @@ entry/src/main/ets/
 
 2.本示例不支持release版本,仅支持master版本,当前software version为OpenHarmony 4.0.8.2
 
-3.本示例SDK仅支持api10及以上版本,当前支持的SDK版本链接如下：
+3.本示例SDK仅支持api10及以上版本，版本号：4.0.9.6，镜像版本号：Openharmony 4.0.9.6。当前支持的SDK版本链接如下：
 
 [SDK全量包下载链接](http://download.ci.openharmony.cn/version/Daily_Version/ohos-sdk-public/20230610_140110/version-Daily_Version-ohos-sdk-public-20230610_140110-ohos-sdk-public.tar.gz)
 
