@@ -19,11 +19,6 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
   [
     {
       image: $r('app.media.ic_prop_background'),
-      title: $r('app.string.safe_area'),
-      url: 'pages/universal/properties/safeAreaSample/SafeAreaSample'
-    },
-    {
-      image: $r('app.media.ic_prop_background'),
       title: $r('app.string.prop_foreground'),
       url: 'pages/universal/properties/foregroundSample/ForegroundSample'
     },
@@ -133,6 +128,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
       image: $r('app.media.ic_restore_id'),
       title: $r('app.string.restore_id'),
       url: "pages/universal/properties/restoreIdSample/RestoreIdSample"
+    },
+    {
+      image: $r('app.media.ic_prop_background'),
+      title: $r('app.string.safe_area'),
+      url: 'pages/universal/properties/safeAreaSample/SafeAreaSample'
     }
   ]
 
