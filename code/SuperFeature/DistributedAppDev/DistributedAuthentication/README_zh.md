@@ -14,10 +14,9 @@
 使用说明
 1. 进入应用会自动获取本机设备信息，并且注册设备状态监听，在有设备上下线的时候，刷新可信设备列表
 2. 在主界面，可以点击允许被发现开关控制本机是否允许被发现；
-3. 在主界面，可以点击登录/注销导入凭据，模拟同账号登录；
-4. 在主界面，可以点击刷新，刷新可信设备列表，点击已认证，解除认证关系；
-5. 在主界面，可以点击过滤条件，选择对应的过滤条件，在发现设备时进行过滤；
-6. 在主界面，可以点击发现，发现周边的设备，并点击发现的设备，进行PIN码认证；
+3. 在主界面，可以点击刷新，刷新可信设备列表，点击已认证，解除认证关系；
+4. 在主界面，可以点击过滤条件，选择对应的过滤条件，在发现设备时进行过滤；
+5. 在主界面，可以点击发现，发现周边的设备，并点击发现的设备，进行PIN码认证；
 
 ### 工程目录
 
@@ -33,12 +32,11 @@ entry/src/main/ets/
 |   |---index.ets                          // 首页
 |   |---FilterOption.ets                   // 过滤条件页面
 |   |---ListDeviceView.ets                 // 列表设备组件
-|   |---LoginDialog.ets                    // 登录弹窗组件
 ```
 
 ### 具体实现
 
-获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](entry/src/main/ets/model/RemoteDeviceModel.ets)
+获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，控制设备是否允许被发现等功能，接口封装在RemoteDeviceModel，源码参考：[RemoteDeviceModel.ts](entry/src/main/ets/model/RemoteDeviceModel.ets)
 
     * 使用RemoteDeviceModel.createDeviceManager()来获取DeviceManager对象；
     * 获取本机设备信息：调用RemoteDeviceModel.getLocalDeviceInfo()来获取本机设备信息；
@@ -48,7 +46,6 @@ entry/src/main/ets/
     * 停止发布设备：调用RemoteDeviceModel.unAuthenticateDevice()停止发布;
     * 发现和停止发现设备：调用RemoteDeviceModel.startDeviceDiscovery()发现设备，调用RemoteDeviceModel.stopDeviceDiscovery()停止发现设备;
     * 认证和取消认证设备：调用RemoteDeviceModel.authenticateDevice()认证，调用RemoteDeviceModel.unAuthenticateDevice()取消认证设备;
-    * 导入和删除设备凭据：调用RemoteDeviceModel.importCredential()导入凭据，调用RemoteDeviceModel.deleteCredential()删除凭据;
 
 ### 相关概念
 
