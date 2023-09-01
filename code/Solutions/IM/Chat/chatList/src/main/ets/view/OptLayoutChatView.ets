@@ -14,10 +14,11 @@
  */
 
 import Logger from '../utils/Logger'
-import { ChatModel, ChatContact } from '../viewModel/MsgBase'
+import { ChatModel} from '../viewModel/MsgBase'
 import router from '@ohos.router'
 
 const TAG: string = 'ChatList_ChatView'
+const DETAIL_PAGE: string = 'pages/Detail'
 
 @Reusable
 @Component
@@ -58,7 +59,7 @@ struct OptLayoutChatView {
         .borderRadius(10)
         .width(20)
         .height(20)
-        .backgroundColor("#ea6055")
+         .backgroundColor($r('app.color.unread_msg_tip'))
         .fontSize(12)
         .textAlign(TextAlign.Center)
         .fontColor(Color.White)
@@ -68,7 +69,7 @@ struct OptLayoutChatView {
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
         .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
-        .id("badge")
+         .id('badge')
       }
 
       Text(this.chatItem.user.userName)
@@ -80,11 +81,11 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id("user")
+        .id('user')
 
       Text(this.chatItem.lastTime)
         .fontSize(12)
-        .fontColor("#999999")
+        .fontColor($r('app.color.chat_view_text'))
         .maxLines(1)
         .textAlign(TextAlign.End)
         .margin({ top: 5, right: 5 })
@@ -92,9 +93,9 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           right: { anchor: '__container__', align: HorizontalAlign.End }
         })
-        .id("time")
+        .id('time')
       Text(this.chatItem.lastMsg)
-        .fontColor("#999999")
+        .fontColor($r('app.color.chat_view_text'))
         .fontSize(14)
         .maxLines(1)
         .margin({ top: 30, left: 58 })
@@ -102,15 +103,15 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id("msg")
+        .id('msg')
     }
-    .width("100%")
+    .width($r('app.string.layout_100'))
     .height(70)
     .backgroundColor(Color.White)
     .padding({ left: 15, right: 10, top: 10, bottom: 10 })
-    .onClick((event: ClickEvent) => {
+    .onClick(() => {
       router.pushUrl({
-        url: 'pages/Detail',
+        url: DETAIL_PAGE,
         params: {
           chatName: this.chatItem.user.userName,
           chatId: this.chatItem.user.userId,
@@ -119,10 +120,10 @@ struct OptLayoutChatView {
         }
       }, (err) => {
         if (err) {
-          console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+          Logger.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('pushUrl success');
+        Logger.info('pushUrl success');
       })
     })
 

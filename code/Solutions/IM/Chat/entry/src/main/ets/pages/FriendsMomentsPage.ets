@@ -15,7 +15,13 @@
 
 import { BasicDataSource } from '../common/BasicDataSource'
 import router from '@ohos.router'
-import { EMContact, FriendMoment } from '../common/MsgBase'
+import {FriendMoment } from '../common/MsgBase'
+import Logger from '../common/Logger'
+import { getFriendMomentObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataFactory'
+import Constants from '@ohos/chatList/src/main/ets/utils/Constants'
+
+const TAG: string = 'entry_FriendsMomentsPage'
+
 
 @Entry
 @Component
@@ -58,7 +64,7 @@ struct FriendsMomentsPage {
                 .width('100%')
 
                 Row() {
-                  Text("name")
+                  Text($r('app.string.myself'))
                     .fontSize(20)
                     .fontColor(Color.Black)
                   Image($r('app.media.personality3'))
@@ -91,20 +97,16 @@ struct FriendsMomentsPage {
     .width('100%')
   }
 
-  aboutToAppear(): void {
-    this.makeDataLocal()
+  async aboutToAppear(): Promise<void> {
+    Logger.info(TAG, 'aboutToAppear')
+    await this.makeDataLocal()
   }
 
-  pageTransition() {
-    PageTransitionEnter({ duration: 0 })
-    PageTransitionExit({ duration: 0 })
-  }
-
-  makeDataLocal() {
-    for (let i = 0;i < 100; i++) {
-      let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-      let mo = new FriendMoment(i.toString(), new EMContact(i.toString(), `朋友${i.toString()}`, imageStr), `我是聊天社区消息${i.toString()}`)
-      this.momentData.pushData(mo)
+  async makeDataLocal() {
+    Logger.info(TAG, 'makeDataLocal')
+    let FriendMoment = await getFriendMomentObjFromJSON()
+    for (let i = 0; i < Constants.AUX_MOCK_DATA_COUNT; i++) {
+      this.momentData.pushData(FriendMoment[i])
     }
   }
 }
@@ -129,27 +131,19 @@ struct OneMoment {
         Text(this.moment.text)
           .fontSize(13)
           .fontColor(Color.Black)
-        Row({ space: 5 }) {
-          MomentsImage({ imageStr: $r('app.media.photo1'), imageStrId: 1 })
-          MomentsImage({ imageStr: $r('app.media.photo2'), imageStrId: 2 })
-          MomentsImage({ imageStr: $r('app.media.photo3'), imageStrId: 3 })
+        Grid() {
+          ForEach(this.moment.imageList, (image: string, index: number) => {
+            GridItem() {
+              MomentsImage({ imageStr: image, imageStrId: index })
+            }
+          }, image => image)
         }
-        .margin({ top: 5, right: 10 })
-
-        Row({ space: 5 }) {
-          MomentsImage({ imageStr: $r('app.media.photo4'), imageStrId: 4 })
-          MomentsImage({ imageStr: $r('app.media.photo5'), imageStrId: 5 })
-          MomentsImage({ imageStr: $r('app.media.photo6'), imageStrId: 6 })
-        }
-        .margin({ top: 5, right: 10 })
-
-        Row({ space: 5 }) {
-          MomentsImage()
-          MomentsImage({ imageStr: $r('app.media.photo7'), imageStrId: 7 })
-          MomentsImage({ imageStr: $r('app.media.photo8'), imageStrId: 8 })
-        }
-        .margin({ top: 5, right: 10 })
-
+        .columnsTemplate('1fr 1fr 1fr')
+        .rowsTemplate('1fr 1fr 1fr')
+        .columnsGap(1)
+        .rowsGap(1)
+        .height(250)
+        .width(250)
         Row() {
           Text(this.moment.time).fontColor("#e3e3e3").fontSize(12)
           Image($r('app.media.afr')).height(15).width(20)

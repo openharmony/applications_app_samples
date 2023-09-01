@@ -15,11 +15,25 @@
 
 import router from '@ohos.router'
 import { BasicDataSource, ChatContact } from "@ohos/chatList"
+import Constants from '@ohos/chatList/src/main/ets/utils/Constants'
+import { getChatModelObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataFactory'
+import Logger from '../common/Logger'
+
+const TAG: string = 'entry_FriendsPage'
+const CHAT_DETAIL_PAGE: string = 'pages/ChatDetailPage'
 
 @Component
 export struct FriendsPage {
   @State friendsListLength: number = 0
   private friendListData = new FriendListData()
+  private friendsPageItem = [
+    { image: $r('app.media.icon_addfriend'), text: $r('app.string.new_friend') },
+    { image: $r('app.media.icon_group'), text: $r('app.string.group') },
+    { image: $r('app.media.chat_home'), text: $r('app.string.only_chat') },
+    { image: $r('app.media.label'), text: $r('app.string.label') },
+    { image: $r('app.media.public'), text: $r('app.string.official_account') },
+    { image: $r('app.media.icon_public'), text: $r('app.string.subscription') },
+    { image: $r('app.media.empresa'), text: $r('app.string.enterprise') }]
 
   build() {
     Column() {
@@ -34,38 +48,17 @@ export struct FriendsPage {
                 }
                 .backgroundColor(Color.White)
                 .height('50')
-                .width('100%')
+                .width($r('app.string.layout_100'))
                 .margin({ left: 10, right: 10, top: 5, bottom: 5 })
                 .onClick(() => {
                   router.pushUrl({ url: 'pages/SearchPage' })
                 })
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.icon_addfriend'), text: $r('app.string.new_friend') })
-                }
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.icon_group'), text: $r('app.string.group') })
-                }
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.chat_home'), text: $r('app.string.only_chat') })
-                }
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.label'), text: $r('app.string.label') })
-                }
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.public'), text: $r('app.string.official_account') })
-                }
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.empresa'), text: $r('app.string.enterprise') })
-                }
-
-                Column() {
-                  EMContactItemView({ image: $r('app.media.icon_public'), text: $r('app.string.subscription') })
+                List({ space: 2, initialIndex: 0 }) {
+                  ForEach(this.friendsPageItem, (item) => {
+                    ListItem() {
+                      EMContactItemView({ image: item.image, text: item.text })
+                    }
+                  }, item => JSON.stringify(item))
                 }
               }
             }
@@ -76,37 +69,33 @@ export struct FriendsPage {
               }
               .onClick(() => {
                 router.pushUrl({
-                  url: "pages/ChatDetailPage",
+                  url: CHAT_DETAIL_PAGE,
                   params: { chatImage: msg.userImage, chatName: msg.userName, chatId: msg.userId } })
               })
             }, (msg: ChatContact) => msg.userId)
           }
           .listDirection(Axis.Vertical)
-          .height('100%')
-          .width('100%')
+          .width($r('app.string.layout_100'))
+          .height($r('app.string.layout_100'))
         }
       }
-      .width('100%')
+      .width($r('app.string.layout_100'))
     }
     .backgroundColor('#e3e3e3')
-    .width('100%')
-    .height('100%')
+    .width($r('app.string.layout_100'))
+    .height($r('app.string.layout_100'))
   }
 
-  aboutToAppear(): void {
-    this.makeDataLocal()
+  async aboutToAppear(): Promise<void> {
+    Logger.info(TAG, 'aboutToAppear')
+    await this.makeDataLocal()
   }
 
-  pageTransition() {
-    PageTransitionEnter({ duration: 0 })
-    PageTransitionExit({ duration: 0 })
-  }
-
-  makeDataLocal() {
-    for (let i = 0;i < 1000; i++) {
-      let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-      let temp1 = new ChatContact(i.toString(), `朋友${i.toString()}`, imageStr);
-      this.friendListData.pushData(temp1)
+  async makeDataLocal() {
+    Logger.info(TAG, 'makeDataLocal')
+    let chatModelMockData = await getChatModelObjFromJSON()
+    for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
+      this.friendListData.pushData(chatModelMockData[i].user)
     }
   }
 }
@@ -124,10 +113,10 @@ export struct EMContactItemView {
         .borderRadius(5)
       Text(this.text)
         .fontSize(15)
-        .fontColor("#000000")
+        .fontColor($r('app.color.friend_page_text'))
         .margin({ left: 10 })
     }
-    .width('100%')
+    .width($r('app.string.layout_100'))
     .height(60)
     .padding({ left: 10, right: 10 })
     .backgroundColor(Color.White)
