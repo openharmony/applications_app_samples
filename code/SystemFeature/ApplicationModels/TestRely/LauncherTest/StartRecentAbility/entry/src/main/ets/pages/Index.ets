@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 import systemDateTime from '@ohos.systemDateTime';
 import Logger from '../logger/Logger';
 
@@ -22,7 +24,7 @@ struct Index {
   @State message: string = 'EntryAbility';
   @State date: string = '--:--:--';
   @State time: string = '--:--:--';
-  private context;
+  private context: common.UIAbilityContext;
 
   build() {
     Row() {
@@ -50,7 +52,7 @@ struct Index {
               abilityName: "EntryAbility",
             }).then(() => {
               Logger.debug("startAbility successful");
-            }).catch((err) => {
+            }).catch((err: base.BusinessError<void>) => {
               Logger.debug("startAbility failed");
             });
           })
@@ -69,7 +71,7 @@ struct Index {
               abilityName: "SecondAbility",
             }).then(() => {
               Logger.debug("EntryAbility startAbility successful.");
-            }).catch((err) => {
+            }).catch((err: base.BusinessError<void>) => {
               Logger.debug("EntryAbility startAbility dailed.");
             });
           })
@@ -81,11 +83,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    this.context = getContext(this) as any;
-    systemDateTime.getDate().then((date) => {
+    this.context = getContext(this) as common.UIAbilityContext;
+    systemDateTime.getDate().then((date: Date) => {
       let dateStr = JSON.stringify(date);
       this.date = dateStr.substr(1, dateStr.indexOf('T') - 1);
-      this.time = dateStr.substr(dateStr.indexOf('T') + 1, dateStr.length - (dateStr.indexOf('T') + 1) -2);
+      this.time = dateStr.substr(dateStr.indexOf('T') + 1, dateStr.length - (dateStr.indexOf('T') + 1) - 2);
     });
   }
 }
