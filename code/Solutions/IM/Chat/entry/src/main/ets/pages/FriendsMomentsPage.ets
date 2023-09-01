@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { BasicDataSource } from '../common/BasicDataSource'
+import { BasicDataSource } from '@ohos/chatList'
+import { ChatContact, FriendMoment } from '@ohos/chatList'
 import router from '@ohos.router'
-import { EMContact, FriendMoment } from '../common/MsgBase'
 
 @Entry
 @Component
@@ -60,11 +60,14 @@ struct FriendsMomentsPage {
                 Row() {
                   Text("name")
                     .fontSize(20)
-                    .fontColor(Color.Black)
+                    .fontColor(Color.White)
+                    .margin({ top: -15,right: 15 })
                   Image($r('app.media.personality3'))
-                    .height(50)
-                    .width(50)
-                }.margin({ top: -25 })
+                    .height(70)
+                    .width(70)
+                    .borderRadius(5)
+                    .margin({ right: 15 })
+                }.margin({ top: -55 })
               }
               .margin({ bottom: 20 })
 
@@ -100,10 +103,10 @@ struct FriendsMomentsPage {
     PageTransitionExit({ duration: 0 })
   }
 
-  makeDataLocal() {
+   makeDataLocal() {
     for (let i = 0;i < 100; i++) {
       let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-      let mo = new FriendMoment(i.toString(), new EMContact(i.toString(), `朋友${i.toString()}`, imageStr), `我是聊天社区消息${i.toString()}`)
+      let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`)
       this.momentData.pushData(mo)
     }
   }

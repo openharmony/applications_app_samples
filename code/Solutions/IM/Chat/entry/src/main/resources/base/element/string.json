@@ -187,6 +187,14 @@
     {
       "name": "permission_internet",
       "value": "允许使用Internet网络"
+    },
+    {
+      "name": "friend_word",
+      "value": "朋友"
+    },
+    {
+      "name": "chatCommunity",
+      "value": "我是聊天社区消息"
     }
   ]
 }
