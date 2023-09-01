@@ -67,7 +67,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
   }
 
   private async confirmCallback(title: string): Promise<void> {
-    return await this.confirmCallbackBindImpl(title)
+    return await this.confirmCallbackBindImpl(title);
   }
 
   private async confirmCallbackBindImpl(title: string): Promise<void> {
@@ -121,7 +121,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
   }
 
   private cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   private cancelCallbackBindImpl(): void {

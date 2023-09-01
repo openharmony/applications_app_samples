@@ -58,7 +58,7 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   }
 
   private async confirmCallback(displayName: string): Promise<void> {
-    return await this.confirmCallbackBindImpl(displayName)
+    return await this.confirmCallbackBindImpl(displayName);
   }
 
   private async confirmCallbackBindImpl(displayName: string): Promise<void> {
@@ -99,7 +99,7 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   }
 
   private cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   private cancelCallbackBindImpl(): void {
@@ -107,7 +107,7 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   }
 
   onCompleted(): void {
-    this.onCompletedBindImpl()
+    this.onCompletedBindImpl();
   }
 
   private onCompletedBindImpl(): void {
@@ -122,7 +122,7 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
 
   private checkAndAddNumber(albumInfo: AlbumDataItem, prefixName: string, numbers: number[]): void {
     let res = albumInfo.displayName.match(new RegExp('^' + prefixName + '[1-9][0-9]*$'));
-    Log.info(TAG, `check name res ${res}`)
+    Log.info(TAG, `check name res ${res}`);
     if (res) {
       let number = res[0].match(new RegExp(`[1-9][0-9]*`));
       numbers.push(parseInt(number[0]));

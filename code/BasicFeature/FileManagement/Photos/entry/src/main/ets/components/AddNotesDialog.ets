@@ -81,7 +81,7 @@ export struct AddNotesDialog {
               return
             }
             if(this.dialogCallback != null) this.dialogCallback.confirmCallback(this.inputNote);
-            this.controller.close()
+            this.controller.close();
           })
         }
       }.margin({ top: $r('sys.float.ohos_id_text_paragraph_margin_s'),

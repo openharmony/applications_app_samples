@@ -162,7 +162,7 @@ class ScreenManager {
 
     let cbs: CallbackType[] = [];
     for (let i = 0; i < this.events.get(event).length; i++) {
-      cbs.push(this.events.get(event)[i])
+      cbs.push(this.events.get(event)[i]);
     }
 
     if (cbs.length > 0) {
@@ -258,7 +258,7 @@ class ScreenManager {
     let topWindow: window.Window = AppStorage.Get<window.Window>(Constants.MAIN_WINDOW);
     Log.debug(TAG, 'getTopWindow start');
     try {
-      await topWindow.setWindowLayoutFullScreen(true)
+      await topWindow.setWindowLayoutFullScreen(true);
       Log.debug(TAG, 'setFullScreen true Succeeded');
       await this.hideStatusBar(topWindow);
     } catch (err) {
@@ -283,7 +283,7 @@ class ScreenManager {
     Log.debug(TAG, 'getTopWindow names: ' + names + ' end');
     try {
       // @ts-ignore
-      await topWindow.setWindowSystemBarEnable(names)
+      await topWindow.setWindowSystemBarEnable(names);
       Log.debug(TAG, 'hideStatusBar Succeeded');
       let data = await topWindow.getWindowAvoidArea(0)
       Log.debug(TAG, 'Succeeded in obtaining the area. Data: ' + JSON.stringify(data));
@@ -411,14 +411,14 @@ class ScreenManager {
   }
 
   getColumnsWidth(count: number): number {
-    let columns = this.getScreenColumns()
+    let columns = this.getScreenColumns();
     Log.info(TAG, 'getColumnsWidth count is ' + count + ' columns: ' + columns);
     let columnWidth = (px2vp(this.winWidth) - COLUMN_MARGIN) / columns;
     return columnWidth * count - COLUMN_GUTTER;
   }
 
   getScreenColumns(): number {
-    let width = px2vp(this.winWidth)
+    let width = px2vp(this.winWidth);
     if (width < ScreenWidth.WIDTH_MEDIUM) {
       return ColumnSize.COLUMN_FOUR;
     } else if (width >= ScreenWidth.WIDTH_MEDIUM && width < ScreenWidth.WIDTH_LARGE) {
