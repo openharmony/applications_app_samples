@@ -19,5 +19,6 @@ export default class Constants {
 
   // mock data count
   public static readonly DATA_MOCK_COUNT:number = 10000
+  public static readonly AUX_MOCK_DATA_COUNT:number = 100
   public static readonly MOCK_ELEMENT_COUNT:number = 120
 }

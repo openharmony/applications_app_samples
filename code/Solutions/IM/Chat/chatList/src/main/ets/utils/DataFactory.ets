@@ -14,14 +14,17 @@
  */
 
 import Logger from './Logger'
-import { ChatModel, ChatContact } from '../viewModel/MsgBase'
+import { ChatModel, ChatContact, FriendMoment } from '../viewModel/MsgBase'
 import { ChatListData } from '../viewModel/ChatListDataSource'
 import Constants from '../utils/Constants'
 import util from '@ohos.util'
 
-const TAG: string = 'ChatList_DataFactory'
+const TAG: string = 'ChatList_DataFactory';
+const CHAT_MODEL_JSON_KEY: string = 'ChatModel';
+const FRIEND_MOMENT_JSON_KEY: string = 'FriendMoment';
+const MSG_LIST_JSON_KEY: string = 'MessageList';
 
-async function makeDataLocal(listData: ChatListData): Promise<void> {
+export async function makeDataLocal(listData: ChatListData): Promise<void> {
   Logger.info(TAG, 'makeDataLocal')
   let chatModelMockData = await getChatModelObjFromJSON()
   for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
@@ -29,35 +32,73 @@ async function makeDataLocal(listData: ChatListData): Promise<void> {
   }
 }
 
-async function makeDataList(listData: Array<ChatModel>): Promise<void> {
-  Logger.info(TAG, 'makeDataLocal')
+export async function makeDataList(listData: Array<ChatModel>): Promise<void> {
+  Logger.info(TAG, 'makeDataList')
   let chatModelMockData = await getChatModelObjFromJSON()
   for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
     listData.push(chatModelMockData[i])
   }
 }
 
-async function getChatModelObjFromJSON(): Promise<Array<ChatModel>> {
-  let value = await getContext().resourceManager.getRawFileContent('mockChatModelData.json')
-  let jsonObj = JSON.parse(bufferToString(value.buffer))
-  let ChatModelObj = jsonObj.ChatModel
-  let ChatModelBuckets: Array<ChatModel> = new Array<ChatModel>()
-  for (let i = 0; i < ChatModelObj.length; i++) {
-    let contactTemp = new ChatContact(ChatModelObj[i].user.userId, ChatModelObj[i].user.userName, ChatModelObj[i].user.userImage)
-    let chatModelTemp = new ChatModel(contactTemp, ChatModelObj[i].lastMsg, ChatModelObj[i].lastTime, ChatModelObj[i].unreadMsgCount)
-    ChatModelBuckets.push(chatModelTemp)
+export async function getChatModelObjFromJSON(): Promise<Array<ChatModel>> {
+  Logger.info(TAG, 'getChatModelObjFromJSON')
+  let jsonObj = await getJsonObj()
+  let chatModelBuckets: Array<ChatModel> = new Array<ChatModel>()
+  if (!jsonObj.hasOwnProperty(CHAT_MODEL_JSON_KEY)) {
+    Logger.error(TAG + '_getChatModelObjFromJSON', 'Expected ChatModel field in json, but not found')
+    return chatModelBuckets
   }
-  return ChatModelBuckets
+  let chatModelObj = jsonObj.ChatModel
+  for (let i = 0; i < chatModelObj.length; i++) {
+    let contactTemp = new ChatContact(chatModelObj[i].user.userId, chatModelObj[i].user.userName,
+      chatModelObj[i].user.userImage)
+    let chatModelTemp = new ChatModel(contactTemp, chatModelObj[i].lastMsg, chatModelObj[i].lastTime,
+      chatModelObj[i].unreadMsgCount)
+    chatModelBuckets.push(chatModelTemp)
+  }
+  return chatModelBuckets
 }
 
-async function getMessageListFromJSON(): Promise<Array<string>> {
+
+export async function getFriendMomentObjFromJSON(): Promise<Array<FriendMoment>> {
+  Logger.info(TAG, 'getFriendMomentObjFromJSON')
+  let jsonObj = await getJsonObj()
+  let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>()
+  if (!jsonObj.hasOwnProperty(FRIEND_MOMENT_JSON_KEY)) {
+    Logger.error(TAG + '_getFriendMomentObjFromJSON', 'Expected FriendMoment field in json, but not found')
+    return friendMomentBuckets
+  }
+  let friendMomentObj = jsonObj.FriendMoment
+  for (let i = 0; i < friendMomentObj.length; i++) {
+    let contactTemp = new ChatContact(friendMomentObj[i].user.userId, friendMomentObj[i].user.userName,
+      friendMomentObj[i].user.userImage)
+    let chatModelTemp = new FriendMoment(friendMomentObj[i].id, contactTemp, friendMomentObj[i].text, '',
+      friendMomentObj[i].imageList)
+    friendMomentBuckets.push(chatModelTemp)
+  }
+  return friendMomentBuckets
+}
+
+export async function getMessageListFromJSON(): Promise<Array<string>> {
+  Logger.info(TAG, 'getMessageListFromJSON')
+  let jsonObj = await getJsonObj()
+  let messageBuckets: Array<string> = new Array<string>()
+  if (!jsonObj.hasOwnProperty(MSG_LIST_JSON_KEY)) {
+    Logger.error(TAG + '_getMessageListFromJSON', 'Expected MessageList field in json, but not found')
+    return messageBuckets
+  }
+  return jsonObj.MessageList
+}
+
+async function getJsonObj() {
+  Logger.info(TAG, 'getJsonObj')
   let value = await getContext().resourceManager.getRawFileContent('mockChatModelData.json')
   let jsonObj = JSON.parse(bufferToString(value.buffer))
-  let MessageList = jsonObj.MessageList
-  return MessageList
+  return jsonObj
 }
 
 function bufferToString(buffer: ArrayBuffer): string {
+  Logger.info(TAG, 'bufferToString')
   let textDecoder = util.TextDecoder.create('utf-8', {
     ignoreBOM: true
   });
@@ -66,5 +107,3 @@ function bufferToString(buffer: ArrayBuffer): string {
   });
   return resultPut;
 }
-
-export { makeDataLocal, makeDataList, getMessageListFromJSON}

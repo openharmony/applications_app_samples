@@ -3,6 +3,19 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "chat_view_text",
+      "value": "#999999"
+    },
+    {
+      "name": "unread_msg_tip",
+      "value": "#ea6055"
+    },
+    {
+      "name": "friend_page_background",
+      "value": "#e3e3e3"
     }
+
   ]
 }
