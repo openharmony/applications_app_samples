@@ -99,11 +99,6 @@ export struct SettingPage {
     .width("100%")
     .height("100%")
   }
-
-  pageTransition() {
-    PageTransitionEnter({ duration: 0 })
-    PageTransitionExit({ duration: 0 })
-  }
 }
 
 @Component
