@@ -472,7 +472,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API10版本SDK，版本号：4.0.9.6，镜像版本号：OpenHarmony 4.0.9.6。
+2.本示例仅支持API10版本SDK，版本号：4.0.10.1,镜像版本号：[OpenHarmony_4.0.10.1]
 
 3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
 SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
