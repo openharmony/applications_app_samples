@@ -16,54 +16,55 @@
 import router from '@ohos.router'
 import { SettingItemView } from './SettingPage'
 
+interface SettingViewDataType {
+  image: Resource,
+  text: Resource
+}
+
+const CHAT_COMMUNITY = 'chatCommunity';
+
 @Component
 export struct DiscoverPage {
   private scroller: Scroller = new Scroller()
+  private settingViewData: Array<SettingViewDataType> = [
+    { image: $r('app.media.icon_de_scan'), text: $r('app.string.scan') },
+    { image: $r('app.media.icon_de_shake'), text: $r('app.string.shake') },
+    { image: $r('app.media.searchOne'), text: $r('app.string.search_one') },
+    { image: $r('app.media.applet'), text: $r('app.string.applet') },
+    { image: $r('app.media.icon_de_nearby'), text: $r('app.string.around') },
+    { image: $r('app.media.icon_de_shop'), text: $r('app.string.shopping') },
+    { image: $r('app.media.icon_de_game'), text: $r('app.string.game') }];
 
   build() {
     Column() {
       Scroll(this.scroller) {
         Column() {
-          Divider().vertical(false).strokeWidth(20).color("#cccccc")
-          Row() {
-            SettingItemView({ image: $r('app.media.find_friends'), text: $r('app.string.circle') })
-          }
-          .id('chatCommunity')
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/FriendsMomentsPage' })
+          Divider()
+            .vertical(false)
+            .strokeWidth(20)
+            .color($r('app.color.divider_color'))
+          SettingItemView({ image: $r('app.media.find_friends'), text: $r('app.string.circle') })
+            .id(CHAT_COMMUNITY)
+            .onClick(() => {
+              router.pushUrl({ url: 'pages/FriendsMomentsPage' })
+            })
+          ForEach(this.settingViewData, (item, index) => {
+            // 当index为1或者为6的时候不需要设置Divider
+            if (index === 1 || index === 6) {
+              SettingItemView({ image: item['image'], text: item['text'] })
+            } else {
+              Divider()
+                .vertical(false)
+                .strokeWidth(20)
+                .color($r('app.color.divider_color'))
+              SettingItemView({ image: item['image'], text: item['text'] })
+            }
           })
-
-          Divider().vertical(false).strokeWidth(20).color("#cccccc")
-          SettingItemView({ image: $r('app.media.icon_de_scan'), text: $r('app.string.scan') })
-          SettingItemView({ image: $r('app.media.icon_de_shake'), text: $r('app.string.shake') })
-          Divider().vertical(false).strokeWidth(20).color("#cccccc")
-          Column() {
-            SettingItemView({ image: $r('app.media.searchOne'), text: $r('app.string.search_one') })
-          }
-
-          Divider().vertical(false).strokeWidth(20).color("#cccccc")
-          Column() {
-            SettingItemView({ image: $r('app.media.applet'), text: $r('app.string.applet') })
-          }
-
-          Divider().vertical(false).strokeWidth(20).color("#cccccc")
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_de_nearby'), text: $r('app.string.around') })
-          }
-
-          Divider().vertical(false).strokeWidth(20).color("#cccccc")
-          SettingItemView({ image: $r('app.media.icon_de_shop'), text: $r('app.string.shopping') })
-          SettingItemView({ image: $r('app.media.icon_de_game'), text: $r('app.string.game') })
         }
       }
     }
-    .backgroundColor("#cccccc")
+    .backgroundColor($r('app.color.discover_page_background'))
     .width("100%")
     .height("100%")
-  }
-
-  pageTransition() {
-    PageTransitionEnter({ duration: 0 })
-    PageTransitionExit({ duration: 0 })
   }
 }

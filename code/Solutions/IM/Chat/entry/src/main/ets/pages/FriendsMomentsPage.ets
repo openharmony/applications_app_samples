@@ -98,11 +98,6 @@ struct FriendsMomentsPage {
     this.makeDataLocal()
   }
 
-  pageTransition() {
-    PageTransitionEnter({ duration: 0 })
-    PageTransitionExit({ duration: 0 })
-  }
-
    makeDataLocal() {
     for (let i = 0;i < 100; i++) {
       let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
