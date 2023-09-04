@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { TemplateBuilder } from './TemplateBuilder';
 import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { TemplateBuilder } from './TemplateBuilder';
 
 @Entry
 @Component
@@ -23,6 +24,18 @@ struct Index {
   @StorageLink('sharedFlag') sharedFlag: boolean = false;
   private context = getContext(this) as common.UIAbilityContext;
   private shareDialog: CustomDialogController;
+  private want: Want;
+
+  aboutToAppear() {
+    this.want = {
+      bundleName: 'ohos.samples.customshare',
+      abilityName: 'UIExtAbility',
+      moduleName: 'textEdit',
+      parameters: {
+        'shareMessages': this.messages
+      }
+    }
+  }
 
   build() {
     Column() {
@@ -38,14 +51,7 @@ struct Index {
           TemplateBuilder({
             shareDialog: this.shareDialog,
             context: this.context,
-            want: {
-              bundleName: 'ohos.samples.customshare',
-              abilityName: 'UIExtAbility',
-              moduleName: 'textEdit',
-              parameters: {
-                'shareMessages': this.messages
-              }
-            }
+            want: this.want
           })
             .id('receiverBuilder')
             .width('75%')

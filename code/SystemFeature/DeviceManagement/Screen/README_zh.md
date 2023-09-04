@@ -57,7 +57,7 @@ entry/src/main/ets/
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例为Stage模型，仅支持API10版本SDK，版本号：4.0.8.2，镜像版本号：OpenHarmony 4.0.8.2。
+2.本示例为Stage模型，仅支持API10版本SDK，版本号：4.0.9.6,镜像版本号：[OpenHarmony_4.0.9.6]
 
 3.编译前下载最新每日构建中ohos-sdk，解压并替换@ohos.screen.d.ts文件。
 
