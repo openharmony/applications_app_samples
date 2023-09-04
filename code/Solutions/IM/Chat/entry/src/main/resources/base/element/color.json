@@ -5,6 +5,14 @@
       "value": "#FFFFFF"
     },
     {
+      "name": "setting_column_color",
+      "value": "#cccccc"
+    },
+    {
+      "name": "setting_text_color",
+      "value": "#000000"
+    },
+    {
       "name": "discover_page_background",
       "value": "#cccccc"
     },

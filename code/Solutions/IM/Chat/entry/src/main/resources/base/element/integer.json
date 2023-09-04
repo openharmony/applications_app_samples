@@ -1,0 +1,60 @@
+{
+  "integer": [
+    {
+      "name": "setting_head_image_width",
+      "value": 80
+    },
+    {
+      "name": "setting_head_column_space",
+      "value": 10
+    },
+    {
+      "name": "setting_name_font_size",
+      "value": 15
+    },
+    {
+      "name": "setting_name_padding_left",
+      "value": 20
+    },
+    {
+      "name": "setting_head_padding_left",
+      "value": 10
+    },
+    {
+      "name": "setting_head_column_height",
+      "value": 100
+    },
+    {
+      "name": "setting_head_column_margin_bottom",
+      "value": 10
+    },
+    {
+      "name": "setting_menu_width",
+      "value": 45
+    },
+    {
+      "name": "setting_menu_font_size",
+      "value": 20
+    },
+    {
+      "name": "setting_menu_margin_left",
+      "value": 10
+    },
+    {
+      "name": "setting_menu_height",
+      "value": 60
+    },
+    {
+      "name": "setting_menu_padding_left",
+      "value": 15
+    },
+    {
+      "name": "setting_menu_arrow_height",
+      "value": 30
+    },
+    {
+      "name": "setting_menu_arrow_width",
+      "value": 20
+    }
+  ]
+}
