@@ -86,6 +86,9 @@ struct Main {
       let subscriberInfo = {
         events: this.feature.getCurrentValidEvents()
       };
+      if (subscriberInfo['events'].length === 0) {
+        return;
+      }
       commonEvent.createSubscriber(subscriberInfo, (error, subscriber) => {
         this.validEventsSubscriber = subscriber;
         commonEvent.subscribe(subscriber, this.systemEventCallback);
