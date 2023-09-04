@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { ChatModel } from '../viewModel/MsgBase'
-import Logger from '../utils/Logger'
-import router from '@ohos.router'
+import { ChatModel } from '../viewModel/MsgBase';
+import Logger from '../utils/Logger';
+import router from '@ohos.router';
 
-const TAG: string = 'ChatList_ChatView'
+const TAG: string = 'ChatList_ChatView';
 
 @Reusable
 @Component
 struct ReusableChatView {
-  @State chatItem: ChatModel = undefined
+  @State chatItem: ChatModel = undefined;
 
   aboutToReuse(params) {
     this.chatItem = params.chatItem
@@ -43,15 +43,18 @@ struct ChatView {
     Row() {
       Column() {
         Stack({ alignContent: Alignment.TopEnd }) {
-          Image(this.chatItem.user.userImage)// 用户头像
+          // 用户头像
+          Image(this.chatItem.user.userImage)
             .width(48)
             .height(48)
             .margin({ left: 20 })
             .borderRadius(5)
             .autoResize(false)
-            .syncLoad(this.img_syncLoad ? true : false) // 图片同步加载
+            // 图片同步加载
+            .syncLoad(this.img_syncLoad ? true : false)
 
-          if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
+          // 红点消息大于0条时渲染红点
+          if (this.chatItem.unreadMsgCount > 0){
             Text(`${this.chatItem.unreadMsgCount}`)
               .borderRadius(10)
               .width(20)
@@ -79,7 +82,7 @@ struct ChatView {
           .margin({ top: 5 })
       }
       .alignItems(HorizontalAlign.Start)
-      .layoutWeight(3)
+      .layoutWeight(5)
 
       Column() {
         Text(this.chatItem.lastTime)

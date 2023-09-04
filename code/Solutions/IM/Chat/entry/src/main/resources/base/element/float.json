@@ -1,0 +1,16 @@
+{
+  "float": [
+    {
+      "name": "customDialog_list_friction",
+      "value": "0.4"
+    },
+    {
+      "name": "customDialog_list_Divider",
+      "value": "0.5"
+    },
+    {
+      "name": "customDialog_diaLogDivider_strokeWidth",
+      "value": "0.5"
+    }
+  ]
+}
