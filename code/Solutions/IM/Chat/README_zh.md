@@ -71,7 +71,7 @@ FriendsPage() }。
 
 ### 约束与限制
 
-1.本示例已适配API version 10版本SDK，版本号：4.0.7.5。
+1.本示例已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: Openharmony 4.0.9.6。
 
 2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上才可编译运行。
 
