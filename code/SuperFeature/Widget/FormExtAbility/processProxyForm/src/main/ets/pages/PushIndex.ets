@@ -13,24 +13,27 @@
  * limitations under the License.
  */
 
+import base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 import dataShare from '@ohos.data.dataShare';
 import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
 import prompt from '@ohos.promptAction';
 import Logger from '../../common/Logger';
 
 const TAG = '[Sample_PushIndex]';
-let context;
-let dataShareHelper;
+let context: common.UIAbilityContext;
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ('datashareproxy://ohos.samples.formextability');
 let conditionCity = '';
 let conditionID = '110000';
 let conditionData = '-30 ℃';
-let formInstanceFilter = {
+let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: 'ohos.samples.formextability',
   moduleName: 'processProxyForm'
 };
 
-function updateCardDisplayContent(runningFormInfo): void {
+function updateCardDisplayContent(runningFormInfo: formInfo.RunningFormInfo): void {
   Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
   dataShare.createDataShareHelper(context, uri, { isProxy: true }, (err, dataHelper) => {
     Logger.info(TAG, `dataShareHelper err: ${err}`, `data: ${dataShareHelper}`);
@@ -43,11 +46,11 @@ function updateCardDisplayContent(runningFormInfo): void {
         { key: 'cityName', data: JSON.stringify(conditionCity), subscriberId: conditionID },
         { key: 'cityTemperature', data: JSON.stringify(conditionData), subscriberId: conditionID }
       ];
-      dataShareHelper.publish(publishedItemData, 'ohos.samples.formextability').then((data) => {
+      dataShareHelper.publish(publishedItemData, 'ohos.samples.formextability').then((data: Object) => {
         Logger.info(TAG, `publish success, data is ${JSON.stringify(data)}`);
         prompt.showToast(
           { message: `publish success ${conditionCity} ${conditionData}`, duration: 5000 });
-      }).catch((err) => {
+      }).catch((err: base.BusinessError<void>) => {
         Logger.error(TAG, `publish error: ${JSON.stringify(err)}`);
         prompt.showToast({ message: `publish err: ${JSON.stringify(err)}`, duration: 5000 });
       });
@@ -57,11 +60,11 @@ function updateCardDisplayContent(runningFormInfo): void {
 
 function publish(): void {
   Logger.info(TAG, 'publish called');
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
     prompt.showToast(
       { message: `publish err, getRunningFormInfosByFilter failed ${JSON.stringify(err)}`, duration: 5000 });
@@ -75,7 +78,7 @@ struct IndexSec {
   @State focus: boolean = false;
 
   aboutToAppear() {
-    context = getContext(this) as Context;
+    context = getContext(this) as common.UIAbilityContext;
     conditionCity = context.resourceManager.getStringSync($r('app.string.city_sy'));
   }
 
