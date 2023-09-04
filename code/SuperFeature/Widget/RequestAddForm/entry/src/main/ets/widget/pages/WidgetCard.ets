@@ -57,7 +57,7 @@ struct WidgetCard {
           .fontSize($r('sys.float.ohos_id_text_size_body3'))
           .fontWeight('regular')
           .margin({
-            'top': 10
+            top: 10
           })
       }
       .width(this.FULL_WIDTH_PERCENT)
@@ -66,13 +66,22 @@ struct WidgetCard {
     .width((this.FULL_WIDTH_PERCENT))
     .borderStyle(12)
     .onClick(() => {
-      postCardAction(this, {
-        "action": this.ACTION_TYPE,
-        "abilityName": this.ABILITY_NAME,
-        "params": {
-          "message": this.MESSAGE
+      class ParamsData {
+        message: string;
+      };
+      class ActionType {
+        action: string;
+        abilityName: string;
+        params: ParamsData;
+      };
+      let action: ActionType = {
+        action: this.ACTION_TYPE,
+        abilityName: this.ABILITY_NAME,
+        params: {
+          message: this.MESSAGE
         }
-      });
+      };
+      postCardAction(this, action);
     })
     .borderRadius(0)
   }

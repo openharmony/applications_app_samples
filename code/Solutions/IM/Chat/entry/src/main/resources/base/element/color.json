@@ -5,6 +5,14 @@
       "value": "#FFFFFF"
     },
     {
+      "name": "discover_page_background",
+      "value": "#cccccc"
+    },
+    {
+      "name": "divider_color",
+      "value": "#cccccc"
+    },
+    {
       "name": "friend_page_text",
       "value": "#000000"
     }

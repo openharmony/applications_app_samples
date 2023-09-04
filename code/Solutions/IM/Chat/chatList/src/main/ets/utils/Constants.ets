@@ -15,10 +15,10 @@
 
 export default class Constants {
   // cachedCount for LazyForEach
-  public static readonly CACHED_COUNT:number = 10
+  public static readonly CACHED_COUNT:number = 10;
 
   // mock data count
-  public static readonly DATA_MOCK_COUNT:number = 10000
-  public static readonly AUX_MOCK_DATA_COUNT:number = 100
-  public static readonly MOCK_ELEMENT_COUNT:number = 120
+  public static readonly DATA_MOCK_COUNT:number = 10000;
+  public static readonly AUX_MOCK_DATA_COUNT:number = 100;
+  public static readonly MOCK_ELEMENT_COUNT:number = 120;
 }

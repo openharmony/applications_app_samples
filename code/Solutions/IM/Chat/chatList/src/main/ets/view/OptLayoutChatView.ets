@@ -18,28 +18,28 @@ import Logger from '../utils/Logger';
 import { ChatModel } from '../viewModel/MsgBase';
 import PageConstants from '../utils/PageConstants';
 
-const TAG: string = 'ChatList_ChatView'
+const TAG: string = 'ChatList_ChatView';
 
 @Reusable
 @Component
 struct ReusableOptLayoutChatView {
-  @State chatItem: ChatModel = undefined
+  @State chatItem: ChatModel = undefined;
 
   aboutToReuse(params) {
-    this.chatItem = params.chatItem
-    Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString())
+    this.chatItem = params.chatItem;
+    Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
 
   build() {
-    OptLayoutChatView({ chatItem: this.chatItem })
+    OptLayoutChatView({ chatItem: this.chatItem });
   }
 }
 
 @Preview
 @Component
 struct OptLayoutChatView {
-  private chatItem: ChatModel
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
+  private chatItem: ChatModel;
+  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad');
 
   build() {
     RelativeContainer() {
@@ -52,7 +52,7 @@ struct OptLayoutChatView {
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
         .syncLoad(this.img_syncLoad ? true : false)
-        .id("figure")
+        .id("figure");
 
       if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
         Text(`${this.chatItem.unreadMsgCount}`)
@@ -69,7 +69,7 @@ struct OptLayoutChatView {
             left: { anchor: '__container__', align: HorizontalAlign.Start }
           })
           .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
-          .id('badge')
+          .id('badge');
       }
 
       Text(this.chatItem.user.userName)
@@ -81,7 +81,7 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id('user')
+        .id('user');
 
       Text(this.chatItem.lastTime)
         .fontSize($r('app.integer.text_font_12'))
@@ -93,7 +93,7 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           right: { anchor: '__container__', align: HorizontalAlign.End }
         })
-        .id('time')
+        .id('time');
       Text(this.chatItem.lastMsg)
         .fontColor($r('app.color.chat_view_text'))
         .fontSize($r('app.integer.text_font_14'))
@@ -103,7 +103,7 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id('msg')
+        .id('msg');
     }
     .width($r('app.string.layout_100_percent'))
     .height($r('app.integer.layout_70'))
@@ -135,4 +135,4 @@ struct OptLayoutChatView {
   }
 }
 
-export { OptLayoutChatView, ReusableOptLayoutChatView }
+export { OptLayoutChatView, ReusableOptLayoutChatView };

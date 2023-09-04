@@ -21,7 +21,7 @@ import { ChatView, ReusableChatView } from '../view/ChatView';
 import { OptLayoutChatView, ReusableOptLayoutChatView } from '../view/OptLayoutChatView';
 import Logger from '../utils/Logger';
 
-const TAG: string = 'ChatList_ChatListDisplayView'
+const TAG: string = 'ChatList_ChatListDisplayView';
 
 @Preview
 @Component
@@ -118,8 +118,8 @@ export struct ChatListDisplayView {
   }
 
   async aboutToAppear(): Promise<void> {
-    Logger.info(TAG, 'aboutToAppear')
-    await makeDataLocal(this.chatList_Lazy)
-    await makeDataList(this.chatList_Array)
+    Logger.info(TAG, 'aboutToAppear');
+    await makeDataLocal(this.chatList_Lazy);
+    await makeDataList(this.chatList_Array);
   }
 }

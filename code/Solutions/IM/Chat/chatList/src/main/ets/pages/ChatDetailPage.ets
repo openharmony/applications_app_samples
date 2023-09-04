@@ -146,11 +146,6 @@ struct ChatDetailPage {
     return await manager.getStringValue(resource.id)
   }
 
-  pageTransition() {
-    PageTransitionEnter({ duration: 0 })
-    PageTransitionExit({ duration: 0 })
-  }
-
   async makeDataLocal() {
     let chatDetailMsgList = await getMessageListFromJSON()
     let tdate = new Date()

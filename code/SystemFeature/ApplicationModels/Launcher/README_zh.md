@@ -102,7 +102,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.8.3。
+2.本示例已适配API version 10版本SDK，版本号：4.0.9.6,镜像版本号：[OpenHarmony_4.0.9.6]
 
 3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501 构建 2023年6月20日)才可编译运行。
 

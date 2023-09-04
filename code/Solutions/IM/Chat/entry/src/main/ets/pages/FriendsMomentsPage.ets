@@ -20,7 +20,7 @@ import Constants from '@ohos/chatList/src/main/ets/utils/Constants';
 import { FriendMoment } from '../common/MsgBase';
 import Logger from '../common/Logger';
 
-const TAG: string = 'entry_FriendsMomentsPage'
+const TAG: string = 'entry_FriendsMomentsPage';
 
 
 @Entry
@@ -69,9 +69,9 @@ struct FriendsMomentsPage {
                     .fontColor(Color.White)
                     .margin({ top: -15,right: 15 })
                   Image($r('app.media.personality3'))
-                    .height(50)
-                    .width(50)
-                }.margin({ top: -25 })
+                    .height($r('app.integer.layout_50'))
+                    .width($r('app.integer.layout_50'));
+                }.margin({ top: $r('app.integer.layout_minus_25') })
               }
               .margin({ bottom: 20 })
 
@@ -99,15 +99,15 @@ struct FriendsMomentsPage {
   }
 
   async aboutToAppear(): Promise<void> {
-    Logger.info(TAG, 'aboutToAppear')
-    await this.makeDataLocal()
+    Logger.info(TAG, 'aboutToAppear');
+    await this.makeDataLocal();
   }
 
   async makeDataLocal(): Promise<void>{
-    Logger.info(TAG, 'makeDataLocal')
-    let FriendMoment = await getFriendMomentObjFromJSON()
+    Logger.info(TAG, 'makeDataLocal');
+    let FriendMoment = await getFriendMomentObjFromJSON();
     for (let i = 0; i < Constants.AUX_MOCK_DATA_COUNT; i++) {
-      this.momentData.pushData(FriendMoment[i])
+      this.momentData.pushData(FriendMoment[i]);
     }
   }
 }
@@ -141,10 +141,10 @@ struct OneMoment {
         }
         .columnsTemplate('1fr 1fr 1fr')
         .rowsTemplate('1fr 1fr 1fr')
-        .columnsGap(1)
-        .rowsGap(1)
-        .height(250)
-        .width(250)
+        .columnsGap($r('app.integer.layout_1'))
+        .rowsGap($r('app.integer.layout_1'))
+        .height($r('app.integer.layout_250'))
+        .width($r('app.integer.layout_250'));
         Row() {
           Text(this.moment.time).fontColor("#e3e3e3").fontSize(12)
           Image($r('app.media.afr')).height(15).width(20)

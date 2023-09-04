@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\bhzhaok\\.ohos\\config\\openharmony\\auto_ohos_default_Chat_com.samples.chat.cer",
-          "storePassword": "0000001B0CF51CF45BE3793A788ACDFE1EF12CA756A6B28C4913A884C809E0BD286015EBDA1A540E369322",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BAB4D08616680EEA0B3C06C06EC1BE71A2421A471B41B1910BBEEFF0FEA1376A37627F2AB95509A",
-          "profile": "C:\\Users\\bhzhaok\\.ohos\\config\\openharmony\\auto_ohos_default_Chat_com.samples.chat.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\bhzhaok\\.ohos\\config\\openharmony\\auto_ohos_default_Chat_com.samples.chat.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",

@@ -14,7 +14,7 @@
  */
 
 export default class PageConstants {
-  public static readonly CHAT_DETAIL_PAGE: string = 'pages/ChatDetailPage'
-  public static readonly DETAIL_PAGE: string = 'pages/Detail'
-  public static readonly SEARCH_PAGE: string = 'pages/SearchPage'
+  public static readonly CHAT_DETAIL_PAGE: string = 'pages/ChatDetailPage';
+  public static readonly DETAIL_PAGE: string = 'pages/Detail';
+  public static readonly SEARCH_PAGE: string = 'pages/SearchPage';
 }
