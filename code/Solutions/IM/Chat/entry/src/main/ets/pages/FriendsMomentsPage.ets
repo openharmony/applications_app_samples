@@ -95,7 +95,7 @@ struct FriendsMomentsPage {
   }
 
   aboutToAppear(): void {
-    this.makeDataLocal()
+    this.makeLocalData()
   }
 
   pageTransition() {
@@ -103,7 +103,7 @@ struct FriendsMomentsPage {
     PageTransitionExit({ duration: 0 })
   }
 
-   makeDataLocal() {
+   makeLocalData() {
     for (let i = 0;i < 100; i++) {
       let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
       let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`)
