@@ -25,7 +25,6 @@ import Constants from '../utils/Constants';
 @Preview
 @Component
 struct ChatDetailPage {
-  @State str: string = ''
   @State chatName: string = ''
   @State msgLength: number = 0
   userMyself = new ChatContact('1', $r('app.string.myself'))
@@ -33,7 +32,7 @@ struct ChatDetailPage {
   msg = new TextMessage($r('app.string.message1'))
   msg2 = new TextMessage($r('app.string.message2'))
   tdate = new Date()
-  megbody = new MessageBase("1", this.userMyself, this.userFriend, this.msg2, 1, this.tdate.getSeconds())
+  msgbody = new MessageBase('1', this.userMyself, this.userFriend, this.msg2, 1, this.tdate.getSeconds())
   @State keyboardStr: string = ''
   private chatDetailData = new ChatDetailData()
   private scroller: Scroller = new Scroller()
@@ -62,7 +61,7 @@ struct ChatDetailPage {
           .textAlign(TextAlign.Center)
           .margin({ top: 8, left: 40 })
         Stack({ alignContent: Alignment.Center }) {
-          Text("···")
+          Text('···')
             .height(23)
             .width(50)
             .fontColor(Color.Black)
@@ -72,8 +71,8 @@ struct ChatDetailPage {
         .id('moreBtn')
       }
       .height(50)
-      .width("100%")
-      .backgroundColor("#e3e3e3")
+      .width('100%')
+      .backgroundColor($r('app.color.detail_return_background'))
       .padding({ left: 0, right: 10 })
       .justifyContent(FlexAlign.SpaceBetween)
 
@@ -85,7 +84,7 @@ struct ChatDetailPage {
         }, (msg: MessageBase) => msg.msgId)
       }
       .listDirection(Axis.Vertical)
-      .divider({ strokeWidth: 2, color: "#f3f3f3" })
+      .divider({ strokeWidth: 2, color: $r('app.color.detail_divider') })
       .padding({ left: 10, right: 10, bottom: 10 })
       .layoutWeight(1)
       .width('100%')
@@ -95,11 +94,11 @@ struct ChatDetailPage {
         Image($r('app.media.chatting_setmode_voice'))
           .height(20)
           .width(20)
-        TextInput({ placeholder: "", text: this.keyboardStr })
+        TextInput({ placeholder: '', text: this.keyboardStr })
           .id('bottomTextInput')
           .height(40)
           .width('80%')
-          .backgroundColor("#f3f3f3")
+          .backgroundColor($r('app.color.detail_bottom_text_input_background'))
           .enterKeyType(EnterKeyType.Send)
           .onChange((value: string) => {
             this.keyboardStr = value
@@ -132,12 +131,12 @@ struct ChatDetailPage {
           .width(20)
           .margin({ right: 10 })
       }
-      .backgroundColor("#e3e3e3")
-      .width("100%")
+      .backgroundColor($r('app.color.detail_bottom_input_background'))
+      .width('100%')
       .padding(10)
     }
-    .backgroundColor("#f3f3f3")
-    .height("100%")
+    .backgroundColor($r('app.color.detail_body_background'))
+    .height('100%')
   }
 
   async convertResourceToString(resource: Resource) {
@@ -177,7 +176,7 @@ struct ChatDetailPage {
       this.chatDetailData.pushData(msgBody)
     }
     let msg1 = new TextMessage(router.getParams()['lastMsg'])
-    this.chatDetailData.pushData(new MessageBase("1000", userFriend, userMyself, msg1, 1, tdate.getSeconds()))
+    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, msg1, 1, tdate.getSeconds()))
     this.msgLength = this.chatDetailData.totalCount()
   }
 
@@ -209,13 +208,13 @@ struct ChatItemView {
                   .fill(Color.White)
                 Text((this.msg.msgBody as TextMessage).msg)
                   .fontSize(15)
-                  .fontColor("#000")
+                  .fontColor($r('app.color.detail_item_message_font'))
                   .backgroundColor(Color.White)
                   .padding(10)
                   .borderRadius(5)
               }.margin({ left: -10 })
             } else if (this.msg.msgType === 2) {
-              Image((this.msg.msgBody as ImageMessage).img)
+              Image((this.msg.msgBody as ImageMessage).image)
                 .width((this.msg.msgBody as ImageMessage).width)
                 .height((this.msg.msgBody as ImageMessage).height)
             }
@@ -223,7 +222,7 @@ struct ChatItemView {
           .margin({ left: 15 })
           .alignItems(HorizontalAlign.Start)
         }
-        .width("100%")
+        .width('100%')
         .alignItems(VerticalAlign.Top)
         .margin({ top: 15 })
         .padding({ right: 50 })
@@ -239,38 +238,38 @@ struct ChatItemView {
               Row() {
                 Text((this.msg.msgBody as TextMessage).msg)
                   .fontSize(15)
-                  .fontColor("#000")
-                  .backgroundColor("#7fec7d")
+                  .fontColor($r('app.color.detail_item_message_font'))
+                  .backgroundColor($r('app.color.detail_item_message_background'))
                   .borderRadius(5)
                   .padding(10)
                 Polygon({ width: 10, height: 10 })
                   .points([[0, 0], [0, 10], [5, 5]])
-                  .fill("#7fec7d")
+                  .fill($r('app.color.detail_item_message_fill'))
               }.margin({ right: -10 })
             } else if (this.msg.msgType === 2) {
-              Image((this.msg.msgBody as ImageMessage).img)
+              Image((this.msg.msgBody as ImageMessage).image)
                 .width((this.msg.msgBody as ImageMessage).width)
                 .height((this.msg.msgBody as ImageMessage).height)
             } else if (this.msg.msgType === 3) {
               // 接收分享的页面
               Column() {
                 Text((this.msg.msgBody as ImgTextMessage).msg)
-                  .backgroundColor("#FFFFFF")
-                  .width("100%")
+                  .backgroundColor($r('app.color.detail_item_message_image_background'))
+                  .width('100%')
                   .fontSize(15)
-                  .fontColor("#000")
+                  .fontColor($r('app.color.detail_item_message_image_font'))
                   .borderRadius(5)
                   .padding(10)
-                Image((this.msg.msgBody as ImgTextMessage).img)
+                Image((this.msg.msgBody as ImgTextMessage).image)
                   .width((this.msg.msgBody as ImgTextMessage).width)
                   .height((this.msg.msgBody as ImgTextMessage).height)
                   .objectFit(ImageFit.Contain)
               }
-              .margin({ left: "40%" })
-              .padding({ left: "2%", right: "2%", bottom: "2%" })
-              .backgroundColor("#FFFFFF")
+              .margin({ left: '40%' })
+              .padding({ left: '2%', right: '2%', bottom: '2%' })
+              .backgroundColor($r('app.color.detail_item_background'))
             } else if (this.msg.msgType == 4) {
-              Image((this.msg.msgBody as FileMessage).img)
+              Image((this.msg.msgBody as FileMessage).image)
                 .width((this.msg.msgBody as FileMessage).width)
                 .height((this.msg.msgBody as FileMessage).height)
                 .objectFit(ImageFit.Contain)
@@ -280,7 +279,7 @@ struct ChatItemView {
           .alignItems(HorizontalAlign.End)
         }
         .alignItems(VerticalAlign.Top)
-        .width("100%")
+        .width('100%')
         .direction(Direction.Rtl)
         .padding({ left: 50 })
         .margin({ top: 15 })
