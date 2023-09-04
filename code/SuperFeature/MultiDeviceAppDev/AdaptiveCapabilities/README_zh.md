@@ -150,7 +150,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.3，镜像版本号：OpenHarmony 4.0.9.3。
+2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: Openharmony 4.0.9.6。
 
 3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上版本才可编译运行。
 

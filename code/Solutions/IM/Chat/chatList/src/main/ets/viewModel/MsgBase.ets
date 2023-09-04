@@ -35,7 +35,7 @@ export class ChatModel {
   }
 
   toString(): string {
-    return this.user.toString() + "  " + this.lastMsg
+    return this.user.toString() + '  ' + this.lastMsg
   }
 }
 
@@ -48,7 +48,7 @@ enum MsgType {
 
 // 聊天信息
 export class MessageBase {
-  img: image.PixelMap
+  chatImage: image.PixelMap
   msgId: string
   from: ChatContact
   to: ChatContact
@@ -66,14 +66,14 @@ export class MessageBase {
   }
 
   toString(): string {
-    return this.msgId + "  " + this.from + "  " + this.to + "  " + this.msgBody + "  " + this.msgType + "  "
+    return this.msgId + '  ' + this.from + '  ' + this.to + '  ' + this.msgBody + '  ' + this.msgType + '  '
       + this.msgTime
   }
 }
 
 export class MessageBody {
   toString(): string {
-    return ""
+    return ''
   }
 }
 
@@ -90,39 +90,39 @@ export class TextMessage extends MessageBody {
 // 图片消息
 export class ImageMessage extends MessageBody {
   toString(): string {
-    return this.height + "  " + this.width + "  " + this.img
+    return this.height + '  ' + this.width + '  ' + this.image
   }
 
-  constructor(hei: number, wid: number, img: string) {
+  constructor(height: number, width: number, image: string) {
     super()
-    this.height = hei
-    this.width = wid
-    this.img = img
+    this.height = height
+    this.width = width
+    this.image = image
   }
 
   height: number
   width: number
-  img: string
+  image: string
 }
 
 // wantParams:图片+文本消息
 export class ImgTextMessage extends MessageBody {
   toString(): string {
     return this.msg + ' ' +
-    this.height + "  " + this.width + "  " + this.img
+    this.height + '  ' + this.width + '  ' + this.image
   }
 
-  constructor(hei: number, wid: number, img: string | Resource, msg: string) {
+  constructor(hei: number, wid: number, image: string | Resource, msg: string) {
     super()
     this.height = hei
     this.width = wid
-    this.img = img
+    this.image = image
     this.msg = msg
   }
 
   height: number
   width: number
-  img: string | Resource
+  image: string | Resource
   msg: string
 }
 
@@ -130,13 +130,13 @@ export class ImgTextMessage extends MessageBody {
 export class FileMessage extends MessageBody {
   height: number | string
   width: number | string
-  img: image.PixelMap
+  image: image.PixelMap
 
-  constructor(hei: number | string, wid: number | string, img: image.PixelMap) {
+  constructor(hei: number | string, wid: number | string, image: image.PixelMap) {
     super()
     this.height = hei
     this.width = wid
-    this.img = img
+    this.image = image
   }
 }
 
@@ -147,7 +147,7 @@ export class ChatContact {
   userImage: string | Resource
 
   toString(): string {
-    return this.userId + "  " + this.userName + "  " + this.userImage
+    return this.userId + '  ' + this.userName + '  ' + this.userImage
   }
 
   constructor(id: string, name: string | Resource, image?: string | Resource) {
@@ -178,6 +178,6 @@ export class FriendMoment {
   }
 
   toString(): string {
-    return this.id + "  " + this.user.toString() + "  " + this.text + "  " + this.time
+    return this.id + '  ' + this.user.toString() + '  ' + this.text + '  ' + this.time
   }
 }

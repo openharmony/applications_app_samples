@@ -18,6 +18,7 @@ import common from '@ohos.app.ability.common'
 import { Configure } from './Configure'
 import { LogLevel } from './LogLevel'
 import { LoggerModel } from './LoggerModel'
+import hilog from '@ohos.hilog'
 
 interface ILoggerStrategy {
   debug(message: string): void
@@ -33,29 +34,31 @@ interface ILoggerStrategy {
 
 class ConsoleLoggerStrategy implements ILoggerStrategy {
   private configure?: Configure
+  private domain: number
 
   constructor(configure: Configure) {
     this.configure = configure
+    this.domain = 0xFF00
   }
 
   public debug(message: string): void {
-    console.debug(`[DEBUG] ${this.configure.defaults.appenders}, ${message}`)
+    hilog.debug(this.domain, this.configure.defaults.appenders, message)
   }
 
   public info(message: string): void {
-    console.info(`[INFO] ${this.configure.defaults.appenders}, ${message}`)
+    hilog.info(this.domain, this.configure.defaults.appenders, message)
   }
 
   public warn(message: string): void {
-    console.warn(`[WARN] ${this.configure.defaults.appenders}, ${message}`)
+    hilog.warn(this.domain, this.configure.defaults.appenders, message)
   }
 
   public error(message: string): void {
-    console.error(`[ERROR] ${this.configure.defaults.appenders}, ${message}`)
+    hilog.error(this.domain, this.configure.defaults.appenders, message)
   }
 
   public fatal(message: string): void {
-    console.log(`[Log] ${this.configure.defaults.appenders}, ${message}`)
+    hilog.fatal(this.domain, this.configure.defaults.appenders, message)
   }
 }
 

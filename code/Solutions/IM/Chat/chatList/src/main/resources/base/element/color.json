@@ -3,6 +3,58 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "detail_return_background",
+      "value": "#e3e3e3"
+    },
+    {
+      "name": "detail_divider",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "detail_bottom_text_input_background",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "detail_bottom_input_background",
+      "value": "#e3e3e3"
+    },
+    {
+      "name": "detail_body_background",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "detail_item_message_font",
+      "value": "#000"
+    },
+    {
+      "name": "detail_item_message_background",
+      "value": "#7fec7d"
+    },
+    {
+      "name": "detail_item_message_fill",
+      "value": "#7fec7d"
+    },
+    {
+      "name": "detail_item_message_image_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "detail_item_message_image_font",
+      "value": "#000"
+    },
+    {
+      "name": "detail_item_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "unread_msg",
+      "value": "#ea6055"
+    },
+    {
+      "name": "last_msg",
+      "value": "#999999"
     }
   ]
 }
