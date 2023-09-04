@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
-import { BasicDataSource } from '@ohos/chatList'
-import { ChatContact, FriendMoment } from '@ohos/chatList'
-import router from '@ohos.router'
+import { BasicDataSource } from '@ohos/chatList';
+import { ChatContact, FriendMoment } from '@ohos/chatList';
+import router from '@ohos.router';
+import Logger from '../utils/Logger';
+
+const TAG: string = '[Sample_FriendsMomentsPage]';
 
 @Entry
 @Component
@@ -52,7 +55,7 @@ struct FriendsMomentsPage {
             ListItem() {
               Column() {
                 Row() {
-                  Image($r('app.media.user_ba'))
+                  Image($r("app.media.user_bg"))
                 }
                 .height('100%')
                 .width('100%')
@@ -62,7 +65,7 @@ struct FriendsMomentsPage {
                     .fontSize(20)
                     .fontColor(Color.White)
                     .margin({ top: -15,right: 15 })
-                  Image($r('app.media.personality3'))
+                  Image($r("app.media.profile_photo_3"))
                     .height(70)
                     .width(70)
                     .borderRadius(5)
@@ -95,12 +98,14 @@ struct FriendsMomentsPage {
   }
 
   aboutToAppear(): void {
+    Logger.info(TAG, 'enter aboutToAppear');
     this.makeLocalData()
   }
 
    makeLocalData() {
     for (let i = 0;i < 100; i++) {
-      let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
+      let picNum = $r(`app.string.landscape${(i % 50).toString()}`)
+      let imageStr = `/resources/images/${picNum}.jpg`
       let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`)
       this.momentData.pushData(mo)
     }
@@ -128,23 +133,23 @@ struct OneMoment {
           .fontSize(13)
           .fontColor(Color.Black)
         Row({ space: 5 }) {
-          MomentsImage({ imageStr: $r('app.media.photo1'), imageStrId: 1 })
-          MomentsImage({ imageStr: $r('app.media.photo2'), imageStrId: 2 })
-          MomentsImage({ imageStr: $r('app.media.photo3'), imageStrId: 3 })
+          MomentsImage({ imageStr: $r("app.media.landscape1"), imageStrId: 1 })
+          MomentsImage({ imageStr: $r("app.media.landscape2"), imageStrId: 2 })
+          MomentsImage({ imageStr: $r("app.media.landscape3"), imageStrId: 3 })
         }
         .margin({ top: 5, right: 10 })
 
         Row({ space: 5 }) {
-          MomentsImage({ imageStr: $r('app.media.photo4'), imageStrId: 4 })
-          MomentsImage({ imageStr: $r('app.media.photo5'), imageStrId: 5 })
-          MomentsImage({ imageStr: $r('app.media.photo6'), imageStrId: 6 })
+          MomentsImage({ imageStr: $r("app.media.landscape4"), imageStrId: 4 })
+          MomentsImage({ imageStr: $r("app.media.landscape5"), imageStrId: 5 })
+          MomentsImage({ imageStr: $r("app.media.landscape6"), imageStrId: 6 })
         }
         .margin({ top: 5, right: 10 })
 
         Row({ space: 5 }) {
           MomentsImage()
-          MomentsImage({ imageStr: $r('app.media.photo7'), imageStrId: 7 })
-          MomentsImage({ imageStr: $r('app.media.photo8'), imageStrId: 8 })
+          MomentsImage({ imageStr: $r("app.media.landscape7"), imageStrId: 7 })
+          MomentsImage({ imageStr: $r("app.media.landscape8"), imageStrId: 8 })
         }
         .margin({ top: 5, right: 10 })
 
@@ -170,7 +175,7 @@ struct OneMoment {
 
 @Component
 struct MomentsImage {
-  private imageStr: string | Resource = $r('app.media.photo0')
+  private imageStr: string | Resource = $r("app.media.landscape0")
   private imageStrId: number = 0
   @State active: boolean = false
 

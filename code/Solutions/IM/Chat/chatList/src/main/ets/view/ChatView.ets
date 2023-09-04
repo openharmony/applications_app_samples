@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { ChatModel } from '../viewModel/MsgBase'
-import Logger from '../utils/Logger'
-import router from '@ohos.router'
+import { ChatModel } from '../viewModel/MsgBase';
+import Logger from '../utils/Logger';
+import router from '@ohos.router';
 
-const TAG: string = 'ChatList_ChatView'
+const TAG: string = 'ChatList_ChatView';
 
 @Reusable
 @Component

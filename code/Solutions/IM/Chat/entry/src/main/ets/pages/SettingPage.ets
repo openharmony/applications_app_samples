@@ -25,7 +25,7 @@ export struct SettingPage {
         Column() {
           Column() {
             Row() {
-              Image($r('app.media.personality3'))
+              Image($r("app.media.profile_photo_3"))
                 .width(80)
                 .height(80)
               Column({ space: 10 }) {
