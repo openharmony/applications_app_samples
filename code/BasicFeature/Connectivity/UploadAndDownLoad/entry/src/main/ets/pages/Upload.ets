@@ -91,7 +91,7 @@ struct Upload {
         .onClick(() => {
           if (this.isBackground && this.backTaskState !== BackgroundTaskState.NONE) {
             requestUpload.pauseOrResume();
-          }else{
+          } else {
             this.uploadFiles();
           }
         })
@@ -133,8 +133,8 @@ struct Upload {
     this.backTaskState = BackgroundTaskState.NONE;
   }
 
-  stateChange(){
-    if(this.backTaskState === BackgroundTaskState.NONE) {
+  stateChange() {
+    if (this.backTaskState === BackgroundTaskState.NONE) {
       this.imageList = [];
     }
   }

@@ -14,7 +14,7 @@
  */
 
 import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_normal_pressed'))
@@ -27,25 +27,27 @@ import { KeyStyle } from '../common/StyleConfiguration';
 // 空格组件
 @Component
 export struct SpaceItem {
-  private spaceWith: Resource;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  private spaceWith: Resource | undefined = undefined;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
-    Stack() {
-      Text('space')
-        .fontSize(this.inputStyle.symbol_fontSize)
-        .fontColor('black')
+    if (this.spaceWith) {
+      Stack() {
+        Text('space')
+          .fontSize(this.inputStyle.symbol_fontSize)
+          .fontColor('black')
+      }
+      .backgroundColor($r('app.color.key_item_normal'))
+      .width(this.spaceWith)
+      .borderRadius(4)
+      .height('100%')
+      .onClick(() => {
+        InputHandler.getInstance().insertText(' ');
+      })
+      .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+      .stateStyles({
+        normal: normalStyles, pressed: pressedStyles
+      })
     }
-    .backgroundColor($r('app.color.key_item_normal'))
-    .width(this.spaceWith)
-    .borderRadius(4)
-    .height('100%')
-    .onClick(() => {
-      InputHandler.getInstance().insertText(' ');
-    })
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
-    .stateStyles({
-      normal: normalStyles, pressed: pressedStyles
-    })
   }
 }

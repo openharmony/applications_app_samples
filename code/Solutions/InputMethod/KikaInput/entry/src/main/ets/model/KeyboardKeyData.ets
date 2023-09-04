@@ -25,7 +25,7 @@ export enum KeyState {
   UPPER_CASE = 2
 }
 
-export enum MenuKey{
+export enum MenuKey {
   NUMBER_KEY = '?123',
   NORMAL_KEY = 'ABC',
   SPECIAL_KEY = '=/\<'

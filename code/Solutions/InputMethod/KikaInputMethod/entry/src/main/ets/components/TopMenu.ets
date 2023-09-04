@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
 import { SubMenuType } from '../model/KeyboardKeyData';
 
@@ -21,7 +21,7 @@ import { SubMenuType } from '../model/KeyboardKeyData';
 @Component
 export struct TopMenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
     Column() {
@@ -37,7 +37,7 @@ export struct TopMenu {
             .objectFit(ImageFit.Contain)
             .id('keyboardMenu')
         }
-        .margin({left: 8})
+        .margin({ left: 8 })
         .width(this.inputStyle.downMenuWidth)
         .borderRadius(4)
         .height('100%')

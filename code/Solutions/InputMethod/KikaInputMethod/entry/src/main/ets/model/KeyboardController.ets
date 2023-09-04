@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
+
 import deviceInfo from '@ohos.deviceInfo';
 import inputMethodEngine from '@ohos.inputMethodEngine';
 import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 import display from '@ohos.display';
 import windowManager from '@ohos.window';
 import Log from './Log';
+import { BusinessError } from '@ohos.base';
 import { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
@@ -38,15 +40,15 @@ const InputMethodEngine: inputMethodEngine.InputMethodAbility = inputMethodEngin
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
 // 定义不同设备的宽高，用于键盘显示适配不同设备
-const DEVICE_PHONE:DeviceSize = {
+const DEVICE_PHONE: DeviceSize = {
   width: 1344,
   height: 2772
 }
-const DEVICE_RK:DeviceSize = {
+const DEVICE_RK: DeviceSize = {
   width: 720,
   height: 1280
 }
-const DEVICE_BIG:DeviceSize = {
+const DEVICE_BIG: DeviceSize = {
   width: 2560,
   height: 1600
 }
@@ -60,15 +62,18 @@ const KEYBOARD_HEIGHT_RATE_BIG: number = 0.3;
 const NAVIGATIONBAR_HEIGHT_DEFAULT: number = 72;
 
 export class InputHandler {
-  private mKbController: inputMethodEngine.KeyboardController;
-  private mTextInputClient: inputMethodEngine.InputClient;
-  private mEditorAttribute: inputMethodEngine.EditorAttribute;
+  private mKbController: inputMethodEngine.KeyboardController | undefined;
+  private mTextInputClient: inputMethodEngine.InputClient | undefined;
+  private mEditorAttribute: inputMethodEngine.EditorAttribute | undefined;
   private cursorInfo: CursorInfo = { x: 0, y: 0, height: 0 };
   private selectInfo: string = '';
   private textInfo: string = '';
   private inputInfo: string = '';
 
   private constructor() {
+    this.mKbController = undefined;
+    this.mTextInputClient = undefined;
+    this.mEditorAttribute = undefined;
   }
 
   public static getInstance(): InputHandler {
@@ -104,7 +109,7 @@ export class InputHandler {
 
   public sendKeyFunction(): void {
     this.addLog('sendKeyFunction')
-    if (this.mTextInputClient !== undefined) {
+    if (this.mTextInputClient && this.mEditorAttribute) {
       this.mTextInputClient.sendKeyFunction(this.mEditorAttribute.enterKeyType);
     } else {
       this.addLog('sendKeyFunction this.mTextInputClient is undefined');
@@ -247,7 +252,9 @@ export class InputHandler {
     this.addLog('refreshInfo');
     let showText = '';
     this.addLog('refreshInfo1');
-    showText += 'five chars: before：[' + this.mTextInputClient.getForward(5) + '];after：[' + this.mTextInputClient.getBackward(5) + ']\n';
+    if (this.mTextInputClient) {
+      showText += 'five chars: before：[' + this.mTextInputClient.getForward(5) + '];after：[' + this.mTextInputClient.getBackward(5) + ']\n';
+    }
     this.addLog('refreshInfo2');
     showText += this.cursorInfo + "\n";
     this.addLog('refreshInfo3');
@@ -257,7 +264,7 @@ export class InputHandler {
     this.addLog('refreshInfo5');
     showText += this.inputInfo;
     this.addLog('refreshInfo6');
-    AppStorage.Set<string>('showLog', showText);
+    AppStorage.set<string>('showLog', showText);
     this.addLog('refreshInfo7');
     this.addLog('result is = ' + showText);
   }
@@ -266,14 +273,17 @@ export class InputHandler {
 class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
-  private mContext: InputMethodExtensionContext;
-  private panel: inputMethodEngine.Panel;
+  private mContext: InputMethodExtensionContext | undefined;
+  private panel: inputMethodEngine.Panel | undefined;
   private isSpecialKeyPress: boolean = false;
   private isKeyboardShow: boolean = false;
   private inputHandle: InputHandler = InputHandler.getInstance();
-  private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate;
+  private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate | undefined;
 
   constructor() {
+    this.mContext = undefined;
+    this.panel = undefined;
+    this.mKeyboardDelegate = undefined;
   }
 
   public onCreate(context: InputMethodExtensionContext): void {
@@ -395,13 +405,17 @@ class KeyboardController {
     let keyHeight = dHeight * keyHeightRate;
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
     AppStorage.setOrCreate('inputStyle', inputStyle);
-    this.panel.resize(dWidth, keyHeight).then(() => {
-      this.panel.moveTo(0, dHeight - keyHeight - navigationBar_height).then(() => {
-        this.inputHandle.addLog('resizePanel-moveTo success');
+    if (this.panel) {
+      this.panel.resize(dWidth, keyHeight).then(() => {
+        if (this.panel) {
+          this.panel.moveTo(0, dHeight - keyHeight - navigationBar_height).then(() => {
+            this.inputHandle.addLog('resizePanel-moveTo success');
+          })
+        }
+      }).catch((err: BusinessError) => {
+        this.inputHandle.addLog('resizePanel-moveTo err' + JSON.stringify(err));
       })
-    }).catch((err: Error) => {
-      this.inputHandle.addLog('resizePanel-moveTo err' + JSON.stringify(err));
-    })
+    }
   }
 
   private registerListener(): void {
@@ -418,7 +432,9 @@ class KeyboardController {
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
       this.onDestroy();
-      this.mContext.destroy();
+      if (this.mContext) {
+        this.mContext.destroy();
+      }
     });
 
     InputMethodEngine.on('setCallingWindow', () => {
@@ -586,17 +602,14 @@ class KeyboardController {
     InputMethodEngine.off('inputStop', () => {
       this.inputHandle.addLog('inputStop off');
     });
-
-    this.mKeyboardDelegate.off('keyDown');
-
-    this.mKeyboardDelegate.off('keyUp');
-
-    if (isDebug) {
-      this.mKeyboardDelegate.off('cursorContextChange');
-
-      this.mKeyboardDelegate.off('selectionChange');
-
-      this.mKeyboardDelegate.off('textChange');
+    if (this.mKeyboardDelegate) {
+      this.mKeyboardDelegate.off('keyDown');
+      this.mKeyboardDelegate.off('keyUp');
+      if (isDebug) {
+        this.mKeyboardDelegate.off('cursorContextChange');
+        this.mKeyboardDelegate.off('selectionChange');
+        this.mKeyboardDelegate.off('textChange');
+      }
     }
   }
 }

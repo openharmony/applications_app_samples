@@ -16,8 +16,6 @@
 import common from '@ohos.app.ability.common';
 import commonEventManager from '@ohos.commonEventManager';
 import preferences from '@ohos.data.preferences';
-import { CommonEventSubscriber } from './commonEvent/commonEventSubscriber';
-import { CommonEventData } from './commonEvent/commonEventData';
 import { logger } from './Logger';
 
 const TAG: string = 'UrlUtils';
@@ -26,18 +24,18 @@ const URL_KEY: string = 'url';
 const STORE_NAME: string = 'server_url';
 
 class UrlUtil {
-  private subscriber: CommonEventSubscriber = undefined;
+  private subscriber: commonEventManager.CommonEventSubscriber | undefined = undefined;
 
   async subscribe(context: common.UIAbilityContext): Promise<void> {
     logger.info(TAG, `subscribe`)
     this.subscriber = await commonEventManager.createSubscriber({ events: [SUBSCRIBER_EVENT] });
-    commonEventManager.subscribe(this.subscriber, (err: Error, data: CommonEventData) => {
+    commonEventManager.subscribe(this.subscriber, (err: Error, data: commonEventManager.CommonEventData) => {
       if (err) {
         logger.error(TAG, `subscribeCallBack, failed: ${JSON.stringify(err)}`);
         return;
       }
       logger.info(TAG, `subscribeCallBack, ${JSON.stringify(data)}`);
-      if (data.event === 'uploaddownload.event.SET_URL') {
+      if (data.event === 'uploaddownload.event.SET_URL' && data.data) {
         urlUtils.saveUrl(context, data.data);
       }
     });

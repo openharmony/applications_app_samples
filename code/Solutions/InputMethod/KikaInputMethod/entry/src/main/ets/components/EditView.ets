@@ -15,7 +15,7 @@
 
 import inputMethodEngine from '@ohos.inputMethodEngine';
 import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Extend(Image) function arrowStyle(isSelection: boolean, inputStyle: KeyStyle) {
   .size({ width: inputStyle.editImageSize, height: inputStyle.editImageSize })
@@ -30,11 +30,11 @@ import { KeyStyle } from '../common/StyleConfiguration';
 @Component
 export struct EditView {
   @State isSelection: boolean = false;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
     Column() {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Button() {
           Text($r('app.string.selection'))
             .fontColor(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.text_normal'))
@@ -66,7 +66,7 @@ export struct EditView {
         Image($r('app.media.ic_arrow_right'))
           .arrowStyle(this.isSelection, this.inputStyle)
           .id('arrow_right')
-          .margin({ left: this.inputStyle.editSmallCircleMargin})
+          .margin({ left: this.inputStyle.editSmallCircleMargin })
           .onClick(() => {
             this.moveOrSelect(inputMethodEngine.CURSOR_RIGHT);
           })

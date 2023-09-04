@@ -14,7 +14,7 @@
  */
 
 import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))
@@ -27,7 +27,7 @@ import { KeyStyle } from '../common/StyleConfiguration';
 // 删除组件
 @Component
 export struct DeleteItem {
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
     Stack() {

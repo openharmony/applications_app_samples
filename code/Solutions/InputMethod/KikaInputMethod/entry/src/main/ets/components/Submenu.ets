@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { SubMenuType } from '../model/KeyboardKeyData';
 
 @Preview
 @Component
 export struct Submenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
     Grid() {

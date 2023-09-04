@@ -23,7 +23,7 @@ class BasicDataSource implements IDataSource {
   }
 
   public getData(index: number): FileModel {
-    return undefined;
+    return new FileModel('', false, []);
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {

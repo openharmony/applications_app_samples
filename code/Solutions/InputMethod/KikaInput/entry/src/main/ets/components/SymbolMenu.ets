@@ -14,7 +14,7 @@
  */
 
 import { DeleteItem } from './DeleteItem';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
 import { ReturnItem } from './ReturnItem';
@@ -24,7 +24,7 @@ import { SpaceItem } from './SpaceItem';
 // 符号键盘
 @Component
 export struct SymbolMenu {
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   private symbolList: sourceListType[] = symbolSourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_2;

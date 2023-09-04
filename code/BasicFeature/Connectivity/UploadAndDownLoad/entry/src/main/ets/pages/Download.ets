@@ -61,9 +61,11 @@ struct Download {
             .layoutWeight(1)
         } else {
           List({ space: 12 }) {
-            LazyForEach(this.fileData, (item: FileModel, index: number) => {
+            LazyForEach(this.fileData, (item: FileModel, index?: number) => {
               ListItem() {
-                this.FileItem(item, index)
+                if (index) {
+                  this.FileItem(item, index)
+                }
               }
             }, (item: FileModel) => JSON.stringify(item))
           }

@@ -17,6 +17,7 @@ import AbilityStage from "@ohos.app.ability.AbilityStage";
 import Log from '../model/Log';
 
 const TAG: string = 'AbilityStage->';
+
 export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
     AppStorage.setOrCreate<number>('windowWidth', -1);
