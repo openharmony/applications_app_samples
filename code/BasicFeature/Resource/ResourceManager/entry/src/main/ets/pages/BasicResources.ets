@@ -15,101 +15,132 @@
 
 import resourceManager from '@ohos.resourceManager';
 import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 const TAG = '[Sample_ResourceManager]';
 const DOMAIN = 0xFF00;
 const SPECIFIED_NUM = 2;
 let resMgr = getContext().resourceManager;
 
-async function getString(resId: number): Promise<string> {
+async function getString(resId: number): Promise<string | undefined> {
   try {
     let value = await resMgr.getStringValue(resId);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getStringValue failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getStringArray(resource: resourceManager.Resource): Promise<Array<string>> {
+async function getStringArray(resource: resourceManager.Resource): Promise<Array<string> | undefined> {
   try {
     let value = await resMgr.getStringArrayValue(resource);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getStringArrayValue failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getPluralString(resId: number, num: number): Promise<string> {
+async function getPluralString(resId: number, num: number): Promise<string | undefined> {
   try {
     let value = await resMgr.getPluralStringValue(resId, num);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getDeviceCapability(): Promise<resourceManager.DeviceCapability> {
+async function getDeviceCapability(): Promise<resourceManager.DeviceCapability | undefined> {
   try {
     let value = await resMgr.getDeviceCapability();
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getDeviceCapability failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getDeviceCapability failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getConfiguration(): Promise<resourceManager.Configuration> {
+async function getConfiguration(): Promise<resourceManager.Configuration | undefined> {
   try {
     let value = await resMgr.getConfiguration();
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getConfiguration failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getConfiguration failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getMedia(resId: number): Promise<Uint8Array> {
+async function getMedia(resId: number): Promise<Uint8Array | undefined> {
   try {
     let value = await resMgr.getMediaContent(resId);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getMediaContent failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getMediaBase64(resId: number): Promise<string> {
+async function getMediaBase64(resId: number): Promise<string | undefined> {
   try {
     let value = await resMgr.getMediaContentBase64(resId);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-function getFormatString(resId: number, world: string): string {
+function getFormatString(resId: number, world: string): string | undefined {
   try {
     let value = resMgr.getStringSync(resId, world);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getStringSync failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getDensityMediaBase64(resId: number, density: number): Promise<string> {
+async function getDensityMediaBase64(resId: number, density: number): Promise<string | undefined> {
   try {
     let value = await resMgr.getMediaContentBase64(resId, density);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getDensityMediaBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getDensityMediaBase64 failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
-async function getSystemMediaBase64(resId: number): Promise<string> {
+async function getSystemMediaBase64(resId: number): Promise<string | undefined> {
   // 获取仅系统资源管理对象
   let sysMgr = resourceManager.getSystemResourceManager();
   try {
     let value = await sysMgr.getMediaContentBase64(resId);
     return value;
   } catch (error) {
-    hilog.error(DOMAIN, TAG, `getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    hilog.error(DOMAIN, TAG, `getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
+    return;
   }
 }
 
@@ -128,22 +159,22 @@ struct Index {
   @State systemRes: string = 'System Res'
 
   async aboutToAppear() {
-    this.string_str = await getString($r('app.string.string_str').id);
+    this.string_str = await getString($r('app.string.string_str').id) as string;
     let resource: resourceManager.Resource = {
       bundleName: "ohos.samples.resourcemanager",
       moduleName: "entry",
       id: $r('app.strarray.str_array').id
     }
-    this.strArray = JSON.stringify(await getStringArray(resource));
-    this.plural = await getPluralString($r('app.plural.eat_apple').id, SPECIFIED_NUM);
-    this.configuration = JSON.stringify(await getConfiguration());
-    this.capability = JSON.stringify(await getDeviceCapability());
-    this.media = JSON.stringify((await getMedia($r('app.media.app_icon').id)).length);
-    this.mediaBase = JSON.stringify((await getMediaBase64($r('app.media.app_icon').id)).length);
+    this.strArray = JSON.stringify(await getStringArray(resource) as Array<string>);
+    this.plural = await getPluralString($r('app.plural.eat_apple').id, SPECIFIED_NUM) as string;
+    this.configuration = JSON.stringify(await getConfiguration() as resourceManager.Configuration);
+    this.capability = JSON.stringify(await getDeviceCapability() as resourceManager.DeviceCapability);
+    this.media = JSON.stringify(((await getMedia($r('app.media.app_icon').id)) as Uint8Array).length);
+    this.mediaBase = JSON.stringify(((await getMediaBase64($r('app.media.app_icon').id)) as string).length);
     this.formatStr = getFormatString($r('app.string.formatStr').id,
-      await getString($r('app.string.world').id));
-    this.densityMedia = await getDensityMediaBase64($r('app.media.density').id, 640);
-    this.systemRes = await getSystemMediaBase64($r('sys.media.ohos_app_icon').id);
+      await getString($r('app.string.world').id) as string) as string;
+    this.densityMedia = await getDensityMediaBase64($r('app.media.density').id, 640) as string;
+    this.systemRes = await getSystemMediaBase64($r('sys.media.ohos_app_icon').id) as string;
   }
 
   build() {

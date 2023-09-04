@@ -35,8 +35,10 @@ function createTestResources(err: BusinessError, commonEventSubscriber: CommonEv
     subscriber = commonEventSubscriber;
     try {
       CommonEventManager.subscribe(subscriber, JumpToResApiExample);
-    } catch (err) {
-      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`subscribe failed, code is ${code}, message is ${message}`);
     }
   } else {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
@@ -45,8 +47,10 @@ function createTestResources(err: BusinessError, commonEventSubscriber: CommonEv
 // 创建订阅者
 try {
   CommonEventManager.createSubscriber(subscribeInfo, createTestResources);
-} catch (err) {
-  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+} catch (error) {
+  let code = (error as BusinessError).code;
+  let message = (error as BusinessError).message;
+  console.error(`createSubscriber failed, code is ${code}, message is ${message}`);
 }
 
 @Entry
