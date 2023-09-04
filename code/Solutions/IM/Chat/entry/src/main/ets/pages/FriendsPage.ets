@@ -18,7 +18,7 @@ import { BasicDataSource, ChatContact } from '@ohos/chatList';
 import Constants from '@ohos/chatList/src/main/ets/utils/Constants';
 import PageConstants from '@ohos/chatList/src/main/ets/utils/PageConstants';
 import { getChatModelObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataFactory';
-import Logger from '../common/Logger';
+import Logger from '@ohos/chatList/src/main/ets/utils/Logger';
 
 const TAG: string = 'entry_FriendsPage';
 

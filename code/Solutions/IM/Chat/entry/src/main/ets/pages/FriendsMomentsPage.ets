@@ -14,11 +14,10 @@
  */
 
 import router from '@ohos.router';
-import { BasicDataSource } from '@ohos/chatList';
+import { BasicDataSource, FriendMoment } from '@ohos/chatList';
 import { getFriendMomentObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataFactory';
 import Constants from '@ohos/chatList/src/main/ets/utils/Constants';
-import { FriendMoment } from '../common/MsgBase';
-import Logger from '../common/Logger';
+import Logger from '@ohos/chatList/src/main/ets/utils/Logger';
 
 const TAG: string = 'entry_FriendsMomentsPage';
 
@@ -71,7 +70,8 @@ struct FriendsMomentsPage {
                   Image($r('app.media.personality3'))
                     .height($r('app.integer.layout_50'))
                     .width($r('app.integer.layout_50'));
-                }.margin({ top: $r('app.integer.layout_minus_25') })
+                }
+                .margin({ top: $r('app.integer.layout_minus_25') });
               }
               .margin({ bottom: 20 })
 
@@ -135,9 +135,9 @@ struct OneMoment {
         Grid() {
           ForEach(this.moment.imageList, (image: string, index: number) => {
             GridItem() {
-              MomentsImage({ imageStr: image, imageStrId: index })
+              MomentsImage({ imageStr: image, imageStrId: index });
             }
-          }, image => image)
+          }, image => image);
         }
         .columnsTemplate('1fr 1fr 1fr')
         .rowsTemplate('1fr 1fr 1fr')

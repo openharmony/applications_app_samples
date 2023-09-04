@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import Logger from './Logger'
-import { ChatModel, ChatContact, FriendMoment } from '../viewModel/MsgBase'
-import { ChatListData } from '../viewModel/ChatListDataSource'
-import Constants from '../utils/Constants'
-import util from '@ohos.util'
+import Logger from './Logger';
+import { ChatModel, ChatContact, FriendMoment } from '../viewModel/MsgBase';
+import { ChatListData } from '../viewModel/ChatListDataSource';
+import Constants from '../utils/Constants';
+import util from '@ohos.util';
 
 const TAG: string = 'ChatList_DataFactory';
 const CHAT_MODEL_JSON_KEY: string = 'ChatModel';
