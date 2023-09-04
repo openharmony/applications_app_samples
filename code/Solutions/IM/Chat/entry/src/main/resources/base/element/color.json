@@ -3,6 +3,14 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "discover_page_background",
+      "value": "#cccccc"
+    },
+    {
+      "name": "divider_color",
+      "value": "#cccccc"
     }
   ]
 }
