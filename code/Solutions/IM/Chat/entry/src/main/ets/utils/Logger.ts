@@ -13,35 +13,35 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 
 class Logger {
   // 日志对应的领域标识
-  private domain: number = 0xF811
+  private domain: number = 0xF811;
   // tag日志标识
-  private prefix: string = '[Sample_Chat]'
+  private prefix: string = '[Sample_Chat]';
   // 格式字符串，用于日志的格式化输出
-  private format: string = '%{public}s, %{public}s'
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix
+    this.prefix = prefix;
   }
 
   debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
   info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
   error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args)
+    hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export default new Logger('[Samples_Chat]')
+export default new Logger('[Samples_Chat]');

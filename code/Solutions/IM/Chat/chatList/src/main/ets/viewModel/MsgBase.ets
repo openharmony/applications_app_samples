@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import image from '@ohos.multimedia.image'
+import image from '@ohos.multimedia.image';
 
 /**
  * 聊天list中item对象
@@ -28,14 +28,14 @@ export class ChatModel {
   unreadMsgCount: number
 
   constructor(user: ChatContact, lastMsg: string ,lastTime: string,unreadMsgCount: number) {
-    this.user = user
-    this.lastMsg = lastMsg
-    this.lastTime = lastTime
-    this.unreadMsgCount = unreadMsgCount
+    this.user = user;
+    this.lastMsg = lastMsg;
+    this.lastTime = lastTime;
+    this.unreadMsgCount = unreadMsgCount;
   }
 
   toString(): string {
-    return this.user.toString() + '  ' + this.lastMsg
+    return this.user.toString() + '  ' + this.lastMsg;
   }
 }
 
@@ -57,31 +57,31 @@ export class MessageBase {
   msgTime: number
 
   constructor(id: string, from: ChatContact, to: ChatContact, msg: MessageBody, type: number, time?: number) {
-    this.msgId = id
-    this.from = from
-    this.to = to
-    this.msgBody = msg
-    this.msgType = type
-    this.msgTime = time
+    this.msgId = id;
+    this.from = from;
+    this.to = to;
+    this.msgBody = msg;
+    this.msgType = type;
+    this.msgTime = time;
   }
 
   toString(): string {
     return this.msgId + '  ' + this.from + '  ' + this.to + '  ' + this.msgBody + '  ' + this.msgType + '  '
-      + this.msgTime
+      + this.msgTime;
   }
 }
 
 export class MessageBody {
   toString(): string {
-    return ''
+    return '';
   }
 }
 
 // 文本消息
 export class TextMessage extends MessageBody {
   constructor(msg: string | Resource) {
-    super()
-    this.msg = msg
+    super();
+    this.msg = msg;
   }
 
   msg: string | Resource
@@ -90,14 +90,14 @@ export class TextMessage extends MessageBody {
 // 图片消息
 export class ImageMessage extends MessageBody {
   toString(): string {
-    return this.height + '  ' + this.width + '  ' + this.image
+    return this.height + '  ' + this.width + '  ' + this.image;
   }
 
   constructor(height: number, width: number, image: string) {
-    super()
-    this.height = height
-    this.width = width
-    this.image = image
+    super();
+    this.height = height;
+    this.width = width;
+    this.image = image;
   }
 
   height: number
@@ -109,15 +109,15 @@ export class ImageMessage extends MessageBody {
 export class ImgTextMessage extends MessageBody {
   toString(): string {
     return this.msg + ' ' +
-    this.height + '  ' + this.width + '  ' + this.image
+    this.height + '  ' + this.width + '  ' + this.image;
   }
 
-  constructor(hei: number, wid: number, image: string | Resource, msg: string) {
-    super()
-    this.height = hei
-    this.width = wid
-    this.image = image
-    this.msg = msg
+  constructor(height: number, width: number, image: string | Resource, msg: string) {
+    super();
+    this.height = height;
+    this.width = width;
+    this.image = image;
+    this.msg = msg;
   }
 
   height: number
@@ -132,11 +132,11 @@ export class FileMessage extends MessageBody {
   width: number | string
   image: image.PixelMap
 
-  constructor(hei: number | string, wid: number | string, image: image.PixelMap) {
-    super()
-    this.height = hei
-    this.width = wid
-    this.image = image
+  constructor(height: number | string, width: number | string, image: image.PixelMap) {
+    super();
+    this.height = height;
+    this.width = width;
+    this.image = image;
   }
 }
 
@@ -147,15 +147,15 @@ export class ChatContact {
   userImage: string | Resource
 
   toString(): string {
-    return this.userId + '  ' + this.userName + '  ' + this.userImage
+    return this.userId + '  ' + this.userName + '  ' + this.userImage;
   }
 
   constructor(id: string, name: string | Resource, image?: string | Resource) {
-    this.userId = id
-    this.userName = name
-    this.userImage = $r('app.media.personality3')
+    this.userId = id;
+    this.userName = name;
+    this.userImage = $r('app.media.personality3');
     if (image != null) {
-      this.userImage = image
+      this.userImage = image;
     }
   }
 }
@@ -168,16 +168,16 @@ export class FriendMoment {
   imageList: Array<string>
 
   constructor(id: string, user: ChatContact, text: string, time?: string, List?: Array<string>) {
-    this.id = id
-    this.user = user
-    this.time = time
-    this.text = text
+    this.id = id;
+    this.user = user;
+    this.time = time;
+    this.text = text;
     if (List != null) {
-      this.imageList = List
+      this.imageList = List;
     }
   }
 
   toString(): string {
-    return this.id + '  ' + this.user.toString() + '  ' + this.text + '  ' + this.time
+    return this.id + '  ' + this.user.toString() + '  ' + this.text + '  ' + this.time;
   }
 }
