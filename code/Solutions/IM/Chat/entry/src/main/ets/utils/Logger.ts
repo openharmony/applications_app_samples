@@ -16,8 +16,11 @@
 import hilog from '@ohos.hilog'
 
 class Logger {
+  // 日志对应的领域标识
   private domain: number = 0xF811
+  // tag日志标识
   private prefix: string = '[Sample_Chat]'
+  // 格式字符串，用于日志的格式化输出
   private format: string = '%{public}s, %{public}s'
 
   constructor(prefix: string) {

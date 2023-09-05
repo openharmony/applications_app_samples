@@ -45,6 +45,7 @@ struct ChatDetailPage {
 
   build() {
     Column() {
+      //顶部导航栏
       Row() {
         Image($r('app.media.left'))
           .id('returnBtn')
@@ -144,13 +145,14 @@ struct ChatDetailPage {
     let manager = context.resourceManager
     return await manager.getStringValue(resource.id)
   }
-
+  // 设定本地聊天内容
   async makeDataLocal() {
     let chatDetailMsgList = await getMessageListFromJSON()
     let tdate = new Date()
     let userMyself = new ChatContact('1', $r('app.string.myself'))
     let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImg'])
     let sum = 0
+    // 循环遍历本地数据，通过取模的方式选择文本数据或者图片数据
     for (let i = 0; i < 1000; i++) {
       let msg: TextMessage | ImageMessage
       let msgBody: MessageBase
