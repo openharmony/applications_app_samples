@@ -17,7 +17,7 @@ import { BasicDataSource } from '../viewModel/BasicDataSource';
 import { MessageBase, ChatContact, TextMessage, ImageMessage } from '../viewModel/MsgBase';
 import { getMessageListFromJSON } from '../utils/DataFactory';
 import router from '@ohos.router';
-import { ImgTextMessage, FileMessage } from '../viewModel/MsgBase';
+import { ImageTextMessage, FileMessage } from '../viewModel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
 
@@ -32,13 +32,13 @@ struct ChatDetailPage {
   msg = new TextMessage($r('app.string.message1'));
   msg2 = new TextMessage($r('app.string.message2'));
   todayDate = new Date();
-  msgbody = new MessageBase('1', this.userMyself, this.userFriend, this.msg2, 1, this.todayDate.getSeconds());
+  msgBody = new MessageBase('1', this.userMyself, this.userFriend, this.msg2, 1, this.todayDate.getSeconds());
   @State keyboardStr: string = '';
   private chatDetailData = new ChatDetailData();
   private scroller: Scroller = new Scroller();
-  @State imgFile: image.PixelMap = undefined;
+  @State imageFile: image.PixelMap = undefined;
   @State wantId: number = 0;
-  @State fdImg: number = undefined;
+  @State fdImage: number = undefined;
   @State userMyselfName: string = undefined;
   @State userFriendName: string = undefined;
   @State listHeight: number = 0;
@@ -80,7 +80,7 @@ struct ChatDetailPage {
       List({ scroller: this.scroller, initialIndex: this.msgLength - 1 }) {
         LazyForEach(this.chatDetailData, (msg: MessageBase) => {
           ListItem() {
-            ChatItemView({ msg: msg, imgFile: $imgFile });
+            ChatItemView({ msg: msg, imageFile: $imageFile });
           }
         }, (msg: MessageBase) => msg.msgId)
       }
@@ -104,7 +104,7 @@ struct ChatDetailPage {
           .onChange((value: string) => {
             this.keyboardStr = value;
           })
-          .onSubmit((enterKey) => {
+          .onSubmit(() => {
             this.todayDate = new Date();
             let msg = new TextMessage(this.keyboardStr);
             let msgBody = new MessageBase(this.chatDetailData.totalCount()
@@ -191,7 +191,7 @@ struct ChatDetailPage {
 @Component
 struct ChatItemView {
   private msg: MessageBase
-  @Link imgFile: image.PixelMap
+  @Link imageFile: image.PixelMap
   @State image: PixelMap = undefined;
 
   build() {
@@ -256,16 +256,16 @@ struct ChatItemView {
             } else if (this.msg.msgType === 3) {
               // 接收分享的页面
               Column() {
-                Text((this.msg.msgBody as ImgTextMessage).msg)
+                Text((this.msg.msgBody as ImageTextMessage).msg)
                   .backgroundColor($r('app.color.detail_item_message_image_background'))
                   .width('100%')
                   .fontSize(15)
                   .fontColor($r('app.color.detail_item_message_image_font'))
                   .borderRadius(5)
                   .padding(10)
-                Image((this.msg.msgBody as ImgTextMessage).image)
-                  .width((this.msg.msgBody as ImgTextMessage).width)
-                  .height((this.msg.msgBody as ImgTextMessage).height)
+                Image((this.msg.msgBody as ImageTextMessage).image)
+                  .width((this.msg.msgBody as ImageTextMessage).width)
+                  .height((this.msg.msgBody as ImageTextMessage).height)
                   .objectFit(ImageFit.Contain)
               }
               .margin({ left: '40%' })

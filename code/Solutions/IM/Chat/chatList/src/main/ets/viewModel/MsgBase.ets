@@ -106,7 +106,7 @@ export class ImageMessage extends MessageBody {
 }
 
 // wantParams:图片+文本消息
-export class ImgTextMessage extends MessageBody {
+export class ImageTextMessage extends MessageBody {
   toString(): string {
     return this.msg + ' ' +
     this.height + '  ' + this.width + '  ' + this.image;
