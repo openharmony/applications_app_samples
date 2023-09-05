@@ -13,120 +13,132 @@
  * limitations under the License.
  */
 
-import Logger from '../utils/Logger'
-import { ChatModel, ChatContact } from '../viewModel/MsgBase'
-import router from '@ohos.router'
+import router from '@ohos.router';
+import Logger from '../utils/Logger';
+import { ChatModel } from '../viewModel/MsgBase';
+import PageConstants from '../utils/PageConstants';
 
-const TAG: string = 'ChatList_ChatView'
+const TAG: string = 'ChatList_ChatView';
 
+/**
+ * 可复用且优化布局的聊天页面组件
+ */
 @Reusable
 @Component
 struct ReusableOptLayoutChatView {
-  @State chatItem: ChatModel = undefined
+  @State chatItem: ChatModel = undefined;
 
   aboutToReuse(params) {
-    this.chatItem = params.chatItem
-    Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString())
+    this.chatItem = params.chatItem;
+    Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
 
   build() {
-    OptLayoutChatView({ chatItem: this.chatItem })
+    OptLayoutChatView({ chatItem: this.chatItem });
   }
 }
 
+/**
+ * 优化布局的聊天页面组件
+ */
 @Preview
 @Component
 struct OptLayoutChatView {
-  private chatItem: ChatModel
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
+  private chatItem: ChatModel;
+  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad');
 
   build() {
     RelativeContainer() {
       Image(this.chatItem.user.userImage)
-        .width(48)
-        .height(48)
-        .borderRadius(5)
+        .width($r('app.integer.layout_48'))
+        .height($r('app.integer.layout_48'))
+        .borderRadius($r('app.integer.layout_5'))
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
         .syncLoad(this.img_syncLoad ? true : false)
-        .id("figure")
+        .id('figure')
 
-     if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
-       Text(`${this.chatItem.unreadMsgCount}`)
-        .borderRadius(10)
-        .width(20)
-        .height(20)
-        .backgroundColor("#ea6055")
-        .fontSize(12)
-        .textAlign(TextAlign.Center)
-        .fontColor(Color.White)
-        .margin({ top: -8, left: 38 })
-        .alignRules({
-          top: { anchor: '__container__', align: VerticalAlign.Top },
-          left: { anchor: '__container__', align: HorizontalAlign.Start }
-        })
-        .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
-        .id("badge")
+      if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
+        Text(`${this.chatItem.unreadMsgCount}`)
+          .borderRadius($r('app.integer.layout_10'))
+          .width($r('app.integer.layout_20'))
+          .height($r('app.integer.layout_20'))
+          .backgroundColor($r('app.color.unread_msg_tip'))
+          .fontSize($r('app.integer.text_font_12'))
+          .textAlign(TextAlign.Center)
+          .fontColor(Color.White)
+          .margin({ top: $r('app.integer.layout_minus_8'), left: $r('app.integer.layout_minus_38') })
+          .alignRules({
+            top: { anchor: '__container__', align: VerticalAlign.Top },
+            left: { anchor: '__container__', align: HorizontalAlign.Start }
+          })
+          .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
+          .id('badge')
       }
 
       Text(this.chatItem.user.userName)
         .fontColor(Color.Black)
-        .fontSize(16)
+        .fontSize($r('app.integer.text_font_16'))
         .font({ weight: 450 })
-        .margin({ top: 5, left: 58 })
+        .margin({ top: $r('app.integer.layout_5'), left: $r('app.integer.layout_58') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id("user")
+        .id('user')
 
       Text(this.chatItem.lastTime)
-        .fontSize(12)
-        .fontColor("#999999")
+        .fontSize($r('app.integer.text_font_12'))
+        .fontColor($r('app.color.chat_view_text_color'))
         .maxLines(1)
         .textAlign(TextAlign.End)
-        .margin({ top: 5, right: 5 })
+        .margin({ top: $r('app.integer.layout_5'), right: $r('app.integer.layout_5') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           right: { anchor: '__container__', align: HorizontalAlign.End }
         })
-        .id("time")
+        .id('time')
       Text(this.chatItem.lastMsg)
-        .fontColor("#999999")
-        .fontSize(14)
+        .fontColor($r('app.color.chat_view_text_color'))
+        .fontSize($r('app.integer.text_font_14'))
         .maxLines(1)
-        .margin({ top: 30, left: 58 })
+        .margin({ top: $r('app.integer.layout_30'), left: $r('app.integer.layout_58') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id("msg")
+        .id('msg')
     }
-    .width("100%")
-    .height(70)
+    .width($r('app.string.layout_100_percent'))
+    .height($r('app.integer.layout_70'))
     .backgroundColor(Color.White)
-    .padding({ left: 15, right: 10, top: 10, bottom: 10 })
-    .onClick((event: ClickEvent) => {
+    .padding({
+      left: $r('app.integer.layout_15'),
+      right: $r('app.integer.layout_10'),
+      top: $r('app.integer.layout_10'),
+      bottom: $r('app.integer.layout_10')
+    })
+    .onClick(() => {
       router.pushUrl({
-        url: 'pages/Detail',
+        url: PageConstants.DETAIL_PAGE,
         params: {
           chatName: this.chatItem.user.userName,
           chatId: this.chatItem.user.userId,
           chatImg: this.chatItem.user.userImage,
-          lastMsg:this.chatItem.lastMsg
+          lastMsg: this.chatItem.lastMsg
         }
       }, (err) => {
         if (err) {
-          console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+          Logger.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('pushUrl success');
+        Logger.info('pushUrl success');
       })
     })
 
   }
 }
 
-export { OptLayoutChatView, ReusableOptLayoutChatView }
+export { OptLayoutChatView, ReusableOptLayoutChatView };

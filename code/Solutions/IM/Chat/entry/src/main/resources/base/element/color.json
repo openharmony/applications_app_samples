@@ -51,6 +51,10 @@
     {
       "name": "customDialog_diaLogDivider_fontColor",
       "value": "#888888"
+    },
+    {
+      "name": "friends_page_text_color",
+      "value": "#000000"
     }
   ]
 }
