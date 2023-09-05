@@ -114,7 +114,7 @@ struct OptLayoutChatView {
         params: {
           chatName: this.chatItem.user.userName,
           chatId: this.chatItem.user.userId,
-          chatImg: this.chatItem.user.userImage,
+          chatImage: this.chatItem.user.userImage,
           lastMsg:this.chatItem.lastMsg
         }
       }, (err) => {
