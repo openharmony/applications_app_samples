@@ -23,6 +23,34 @@
     {
       "name": "divider_color",
       "value": "#cccccc"
+    },
+    {
+      "name": "customDialog_list_divider_color",
+      "value": "#888888"
+    },
+    {
+      "name": "customDialog_list_backgroundColor",
+      "value": "#2E363E"
+    },
+    {
+      "name": "customDialog_Toggle_selectedColor",
+      "value": "#007DFF"
+    },
+    {
+      "name": "customDialog_Toggle_switchPointColor",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "customDialog_ToggleComponent_fontColor",
+      "value": "#ffffff"
+    },
+    {
+      "name": "customDialog_Prompt_Text_fontColor",
+      "value": "#ffffff"
+    },
+    {
+      "name": "customDialog_diaLogDivider_fontColor",
+      "value": "#888888"
     }
   ]
 }

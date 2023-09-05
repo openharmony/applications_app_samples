@@ -37,9 +37,14 @@ struct CustomDialogExample {
           }
         }, item => JSON.stringify(item))
       }
-      .friction(0.4)
+      .friction($r("app.float.customDialog_list_friction"))
       .listDirection(Axis.Vertical) // 排列方向
-      .divider({ strokeWidth: 0.5, color: '#888888', startMargin: 40, endMargin: 0 }) // 每行之间的分界线
+      // 每行之间的分界线
+      .divider({
+        strokeWidth: $r("app.float.customDialog_list_friction"),
+        color: $r("app.color.customDialog_list_divider_color"),
+        startMargin: $r("app.integer.customDialog_divider_startMargin"),
+        endMargin:$r("app.integer.customDialog_divider_endMargin") })
 
       diaLogDivider()
       ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazy_for_each })
@@ -52,10 +57,10 @@ struct CustomDialogExample {
       diaLogDivider()
       ToggleComponent({ text_option: $r('app.string.prop_cachedCount'), isOn: $list_cachedCount })
     }
-    .backgroundColor("#2E363E")
-    .borderRadius(5)
-    .padding({ left: 5, bottom: 5 })
-    .width(135)
+    .backgroundColor($r("app.color.customDialog_list_backgroundColor"))
+    .borderRadius($r("app.integer.customDialog_list_borderRadius"))
+    .padding({ left: $r("app.integer.customDialog_list_padding_left"), bottom: $r("app.integer.customDialog_list_padding_bottom") })
+    .width($r("app.integer.customDialog_list_width"))
   }
 }
 
@@ -68,16 +73,16 @@ struct Prompt {
   build() {
     Row() {
       Image(this.img)
-        .height(20)
-        .width(20)
-        .margin({ top: 1, right: 10 })
+        .height($r("app.integer.customDialog_Prompt_Image_height"))
+        .width($r("app.integer.customDialog_Prompt_Image_width"))
+        .margin({ top: $r("app.integer.customDialog_Prompt_Image_margin_top"), right: $r("app.integer.customDialog_Prompt_Image_margin_right") })
       Text(this.text)
-        .fontSize(14)
-        .fontColor("#ffffff")
-        .margin({ top: 1 })
+        .fontSize($r("app.integer.customDialog_Prompt_Text_fontSize"))
+        .fontColor($r("app.color.customDialog_Prompt_Text_fontColor"))
+        .margin({ top: $r("app.integer.customDialog_Prompt_Text_margin_top") })
     }
     .width('100%')
-    .padding(8)
+    .padding($r("app.integer.customDialog_Prompt_padding"))
     .justifyContent(FlexAlign.Start)
     .onClick(() => {
       this.controller.close()
@@ -94,7 +99,10 @@ struct Prompt {
 struct diaLogDivider {
   build() {
     Column(){
-      Divider().strokeWidth(0.5).color('#888888').margin({left:40})
+      Divider()
+        .strokeWidth(getContext().resourceManager.getNumber($r('app.float.customDialog_diaLogDivider_strokeWidth')))
+        .color($r("app.color.customDialog_diaLogDivider_fontColor"))
+        .margin({ left : $r("app.integer.customDialog_diaLogDivider_margin_left") })
     }
   }
 }
@@ -108,19 +116,19 @@ struct ToggleComponent {
     Column() {
       Row() {
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-          .selectedColor('#007DFF')
-          .width(25)
-          .switchPointColor('#FFFFFF')
+          .selectedColor($r("app.color.customDialog_Toggle_selectedColor"))
+          .width($r("app.integer.customDialog_Toggle_width"))
+          .switchPointColor($r("app.color.customDialog_Toggle_switchPointColor"))
           .onChange((isOn: boolean) => {
             this.isOn = isOn
           })
         Text(this.text_option)
-          .fontSize(14)
-          .fontColor("#ffffff")
-          .margin({ left: 5 })
+          .fontSize($r("app.integer.customDialog_ToggleComponent_fontSize"))
+          .fontColor($r("app.color.customDialog_ToggleComponent_fontColor"))
+          .margin({ left: $r("app.integer.customDialog_ToggleComponent_margin_left") })
       }
       .width('100%')
-      .padding(5)
+      .padding($r("app.integer.customDialog_ToggleComponent_padding"))
       .justifyContent(FlexAlign.Start)
     }
   }

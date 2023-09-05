@@ -16,13 +16,12 @@
 import hilog from '@ohos.hilog'
 
 class Logger {
-  private domain: number = 0xFF00
+  private domain: number = 0xF811
   private prefix: string = '[Sample_Chat]'
   private format: string = '%{public}s, %{public}s'
 
   constructor(prefix: string) {
     this.prefix = prefix
-    this.domain = 0xF811
   }
 
   debug(...args: string[]): void {
