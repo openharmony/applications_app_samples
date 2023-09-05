@@ -106,7 +106,7 @@ struct ChatView {
         params: {
           chatName: this.chatItem.user.userName,
           chatId: this.chatItem.user.userId,
-          chatImage: this.chatItem.user.userImage,
+          chatImg: this.chatItem.user.userImage,
           lastMsg: this.chatItem.lastMsg
         }
       }, (err) => {

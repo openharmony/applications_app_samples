@@ -30,9 +30,9 @@ struct ChatDetailPage {
   userMyself = new ChatContact('1', $r('app.string.myself'));
   userFriend = new ChatContact('2', $r('app.string.friend'));
   msg = new TextMessage($r('app.string.message1'));
-  msg2 = new TextMessage($r('app.string.message2'));
+  msgAnother = new TextMessage($r('app.string.message2'));
   todayDate = new Date();
-  msgBody = new MessageBase('1', this.userMyself, this.userFriend, this.msg2, 1, this.todayDate.getSeconds());
+  msgBody = new MessageBase('1', this.userMyself, this.userFriend, this.msgAnother, 1, this.todayDate.getSeconds());
   @State keyboardStr: string = '';
   private chatDetailData = new ChatDetailData();
   private scroller: Scroller = new Scroller();
@@ -151,7 +151,7 @@ struct ChatDetailPage {
     let chatDetailMsgList = await getMessageListFromJSON();
     let todayDate = new Date();
     let userMyself = new ChatContact('1', $r('app.string.myself'));
-    let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImage']);
+    let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImg']);
     let sum = 0;
     // 循环遍历本地数据，通过取模的方式选择文本数据或者图片数据
     for (let i = 0; i < 1000; i++) {
@@ -178,8 +178,8 @@ struct ChatDetailPage {
       }
       this.chatDetailData.pushData(msgBody);
     }
-    let msg1 = new TextMessage(router.getParams()['lastMsg']);
-    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, msg1, 1, todayDate.getSeconds()));
+    let lastMsg = new TextMessage(router.getParams()['lastMsg']);
+    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, lastMsg, 1, todayDate.getSeconds()));
     this.msgLength = this.chatDetailData.totalCount();
   }
 
