@@ -313,4 +313,4 @@ class ChatDetailData extends BasicDataSource {
   }
 }
 
-export { ChatDetailPage, ChatItemView }
+export { ChatDetailPage, ChatItemView };
