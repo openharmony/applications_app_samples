@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { SettingItemView } from './SettingPage'
+import router from '@ohos.router';
+// 引入设置项组件
+import { SettingItemView } from './SettingPage';
 
+// 设置项的数据类型
 interface SettingViewDataType {
   image: Resource,
   text: Resource
-}
+};
 
 const CHAT_COMMUNITY = 'chatCommunity';
+// divider组件的strokWidth为20
+const DIVIDER_STROKWIDTH: number = 20;
 
 @Component
 export struct DiscoverPage {
@@ -41,8 +45,9 @@ export struct DiscoverPage {
         Column() {
           Divider()
             .vertical(false)
-            .strokeWidth(20)
+            .strokeWidth(DIVIDER_STROKWIDTH)
             .color($r('app.color.divider_color'))
+          // 设置项组件
           SettingItemView({ image: $r('app.media.find_friends'), text: $r('app.string.circle') })
             .id(CHAT_COMMUNITY)
             .onClick(() => {
@@ -55,7 +60,7 @@ export struct DiscoverPage {
             } else {
               Divider()
                 .vertical(false)
-                .strokeWidth(20)
+                .strokeWidth(DIVIDER_STROKWIDTH)
                 .color($r('app.color.divider_color'))
               SettingItemView({ image: item['image'], text: item['text'] })
             }
