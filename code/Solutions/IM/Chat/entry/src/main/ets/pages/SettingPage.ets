@@ -15,9 +15,9 @@
 
 @Observed
 class SettingMenu {
-  public id: string;
-  public image: Resource;
-  public text: Resource;
+  public id: string; // 唯一id
+  public image: Resource; // 菜单图标
+  public text: Resource; // 菜单文本
 
   constructor(id: string, image: Resource, text: Resource) {
     this.id = id;
@@ -34,12 +34,12 @@ export struct SettingPage {
     new SettingMenu('collection', $r('app.media.icon_me_collect'), $r('app.string.collection')),
     new SettingMenu('wallet', $r('app.media.icon_me_money'), $r('app.string.wallet')),
     new SettingMenu('card', $r('app.media.icon_me_card'), $r('app.string.card'))
-  ];
+  ]; // 基础功能分组
   @State otherMenuGroup: SettingMenu[] = [
     new SettingMenu('expression', $r('app.media.icon_me_smail'), $r('app.string.expression')),
     new SettingMenu('setting', $r('app.media.icon_me_setting'), $r('app.string.setting')),
     new SettingMenu('chat_history', $r('app.media.icon_me_setting'), $r('app.string.chat_list'))
-  ];
+  ]; // 其他功能分组
 
   build() {
     Column() {
@@ -52,24 +52,23 @@ export struct SettingPage {
             Row() {
               Text($r('app.string.myself'))
                 .fontSize($r('app.integer.setting_name_font_size'))
-                .fontColor(Color.Black)
+                .fontColor($r('app.color.setting_text_color'))
             }
             Text($r('app.string.chat_number'))
               .fontSize($r('app.integer.setting_name_font_size'))
-              .fontColor(Color.Black)
+              .fontColor($r('app.color.setting_text_color'))
           }
           .alignItems(HorizontalAlign.Start)
           .padding({ left: $r('app.integer.setting_name_padding_left') })
         }
-        .backgroundColor(Color.White)
         .padding($r('app.integer.setting_head_padding_left'))
-        .backgroundColor(Color.White)
         .width($r('app.string.layout_100'))
       }
-      .backgroundColor(Color.White)
+      .backgroundColor($r('app.color.setting_text_background'))
       .height($r('app.integer.setting_head_column_height'))
       .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
 
+      // 创建基础功能分组
       List() {
         ForEach(this.basicMenuGroup,
           (item: SettingMenu) => {
@@ -81,6 +80,7 @@ export struct SettingPage {
       }
       .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
 
+      // 创建其他功能分组
       List() {
         ForEach(this.otherMenuGroup,
           (item: SettingMenu) => {
@@ -101,8 +101,8 @@ export struct SettingPage {
 
 @Component
 export struct SettingItemView {
-  private image: string | Resource;
-  private text: string | Resource;
+  private image: string | Resource; // 功能菜单图标
+  private text: string | Resource; // 功能菜单文本
 
   build() {
     Stack({ alignContent: Alignment.End }) {
@@ -119,7 +119,7 @@ export struct SettingItemView {
       .height($r('app.integer.setting_menu_height'))
       .padding({ left: $r('app.integer.setting_menu_padding_left'),
         right: $r('app.integer.setting_menu_padding_left') })
-      .backgroundColor(Color.White)
+      .backgroundColor($r('app.color.setting_text_background'))
 
       Image($r('app.media.right_arrow'))
         .height($r('app.integer.setting_menu_arrow_height'))

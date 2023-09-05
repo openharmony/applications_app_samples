@@ -9,6 +9,10 @@
       "value": "#cccccc"
     },
     {
+      "name": "setting_text_background",
+      "value": "#FFFFFF"
+    },
+    {
       "name": "setting_text_color",
       "value": "#000000"
     },
