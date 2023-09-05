@@ -1,3 +1,9 @@
+export struct DeleteDialog {
+  @Link hitText: string
+  @Link currentIndex: number
+  controller: CustomDialogController
+  cancel: () => void
+  confirm: (index) => void
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -57,7 +63,7 @@ class FileSystem {
     // 读取的结果
     let dirent
     // 结果数组
-    let subdirectory: SubDirectoryType[] = []
+    let subdirectory = []
     do {
       dirent = dir.readSync()
       if (dirent) {
@@ -115,7 +121,6 @@ class FileSystem {
       }
     } catch (err) {
       Logger.error(`getFileSize failed，code is ${err.code}, message is ${err.message}`)
-      return 'N/A'
     }
   }
 
@@ -126,7 +131,6 @@ class FileSystem {
       return new Date(fileTime * 1000)
     } catch (err) {
       Logger.error(`getFileTime failed，code is ${err.code}, message is ${err.message}`)
-      return new Date()
     }
   }
 
@@ -162,7 +166,6 @@ class FileSystem {
       prompt.showToast({ message: $r('app.string.label_delete_success') })
     } catch (err) {
       Logger.error(`delete failed, code is ${err.code}, message is ${err.message}`)
-      return new Map()
     }
   }
 
@@ -186,9 +189,9 @@ class FileSystem {
   }
 
   // 开始移动文件
-  startMoveFile(filesToMove: Array<FileType>, newFilePath: string): void {
+  startMoveFile(needMoveFiles: Array<FileType>, newFilePath: string): void {
     // 遍历数据
-   filesToMove.forEach((file: FileType): void => {
+    needMoveFiles.forEach((file: FileType): void => {
       // 如果是目录
       if (file.type === 1) {
         // 先创建这个目录
@@ -196,7 +199,7 @@ class FileSystem {
         // 获取当前文件夹下的所有文件目录
         let subdirectory = this.getSubdirectory(`${file.filePath}/`)
         // 处理为我们想要的格式
-        let filesToMove: Array<FileType> = []
+        let needMoveFiles: Array<FileType> = []
         // 遍历子目录数据
         subdirectory.forEach((subdirectoryData: SubDirectoryType) => {
           let data = {
@@ -205,10 +208,10 @@ class FileSystem {
             type: subdirectoryData.type
           }
           // 逐一添加进去
-          filesToMove.push(data)
+          needMoveFiles.push(data)
         })
         // 使用我们的数据递归
-        this.startMoveFile(filesToMove, `${newFilePath}/${file.fileName}`)
+        this.startMoveFile(needMoveFiles, `${newFilePath}/${file.fileName}`)
       } else {
         this.copyFile(file.filePath, `${newFilePath}/${file.fileName}`)
       }
