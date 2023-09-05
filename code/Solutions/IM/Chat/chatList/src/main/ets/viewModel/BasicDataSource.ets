@@ -14,14 +14,12 @@
  */
 import { ChatModel } from './MsgBase'
 
-export abstract class BasicDataSource implements IDataSource {
+export abstract class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = []
 
   public abstract totalCount()
 
-  public getData(index: number): ChatModel {
-    return undefined
-  }
+  public getData(index: number):T | void {}
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {

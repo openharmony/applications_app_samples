@@ -13,31 +13,32 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import { describe, it, expect } from '@ohos/hypium'
-import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest'
-import Logger from '../util/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import Logger from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
 
-const BUNDLE = 'Chat'
-const TAG = '[Sample_Chat_Test]'
-const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'Chat';
+const TAG = '[Sample_Chat_Test]';
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 // 资源本地化
-async function getResourceString(resource: Resource): Promise<string> {
+async function getResourceString<T extends Resource>(resource: T): Promise<string> {
   let manage = delegator.getAppContext().resourceManager
   let text = await manage.getStringValue(resource)
   return text
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 打开应用
      */
-    it(BUNDLE + '_startAbility', 0, async (done) => {
+    it(BUNDLE + '_startAbility', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + '_startAbility start')
-      let want = {
+      let want: Want = {
         bundleName: 'com.samples.chat',
         abilityName: 'EntryAbility'
       }
@@ -52,7 +53,7 @@ export default function abilityTest() {
     /**
      * 聊天界面测试
      */
-    it(BUNDLE + 'SendMessageFunction_001', 0, async () => {
+    it(BUNDLE + 'SendMessageFunction_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 begin')
       let driver = Driver.create()
       await driver.delayMs(2000)
@@ -87,12 +88,13 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 existAddBtn')
       await driver.assertComponentExist(ON.id('addBtn'))
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 end')
+      done()
     })
 
     /**
      * 朋友圈测试
      */
-    it(BUNDLE + 'ChatCommunityFunction_001', 0, async () => {
+    it(BUNDLE + 'ChatCommunityFunction_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 begin')
       let driver = Driver.create()
       await driver.delayMs(1000)
@@ -114,6 +116,7 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.id('chatCommunity'))
       Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 end')
+      done()
     })
   })
 }

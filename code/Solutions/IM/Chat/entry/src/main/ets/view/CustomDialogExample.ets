@@ -13,16 +13,22 @@
  * limitations under the License.
  */
 
+import resourceManager from '@ohos.resourceManager';
+
+class PromptType {
+  img: string | Resource = ''
+  text: string | Resource = ''
+}
 
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController
-  @StorageLink('lazy_for_each') lazy_for_each: boolean = AppStorage.get('lazy_for_each')
-  @StorageLink('reusable') reusable: boolean = AppStorage.get('reusable')
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout')
-  @StorageLink('list_cachedCount') list_cachedCount: boolean = AppStorage.get('list_cachedCount')
-  private promptArr = [
+  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) })
+  @StorageLink('lazy_for_each') lazy_for_each: boolean | undefined = AppStorage.get('lazy_for_each')
+  @StorageLink('reusable') reusable: boolean | undefined = AppStorage.get('reusable')
+  @StorageLink('img_syncLoad') img_syncLoad: boolean | undefined = AppStorage.get('img_syncLoad')
+  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout')
+  @StorageLink('list_cachedCount') list_cachedCount: boolean | undefined = AppStorage.get('list_cachedCount')
+  private promptArr: PromptType[] = [
     { img: $r('app.media.pic1'), text: $r('app.string.add_friends') },
     { img: $r('app.media.pic2'), text: $r('app.string.group_chat') },
     { img: $r('app.media.pic3'), text: $r('app.string.scan') },
@@ -31,11 +37,11 @@ struct CustomDialogExample {
   build() {
     Column() {
       List({ space: 2, initialIndex: 0 }) {
-        ForEach(this.promptArr, (item, index) => {
+        ForEach(this.promptArr, (item: PromptType, index) => {
           ListItem() {
             Prompt({ img: item.img, text: item.text, controller: this.controller })
           }
-        }, item => JSON.stringify(item))
+        }, (item: PromptType) => JSON.stringify(item))
       }
       .friction($r("app.float.customDialog_list_friction"))
       .listDirection(Axis.Vertical) // 排列方向
@@ -66,9 +72,9 @@ struct CustomDialogExample {
 
 @Component
 struct Prompt {
-  @State img: Resource = $r("app.media.empresa")
-  text: string | Resource
-  controller: CustomDialogController
+  img: string | Resource = $r("app.media.empresa")
+  text: string | Resource = ''
+  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) })
 
   build() {
     Row() {
@@ -97,19 +103,22 @@ struct Prompt {
 
 @Component
 struct diaLogDivider {
+  resource: Resource = $r('app.float.customDialog_diaLogDivider_strokeWidth')
+  res: resourceManager.Resource = {
+    bundleName: this.resource.bundleName,
+    moduleName: this.resource.moduleName,
+    id: this.resource.id
+  }
   build() {
     Column(){
-      Divider()
-        .strokeWidth(getContext().resourceManager.getNumber($r('app.float.customDialog_diaLogDivider_strokeWidth')))
-        .color($r("app.color.customDialog_diaLogDivider_fontColor"))
-        .margin({ left : $r("app.integer.customDialog_diaLogDivider_margin_left") })
+      Divider().strokeWidth(0.5).color('#888888').margin({left:40})
     }
   }
 }
 
 @Component
 struct ToggleComponent {
-  text_option: string | Resource
+  text_option: string | Resource = ''
   @Link isOn: boolean
 
   build() {

@@ -29,10 +29,10 @@ const TAG: string = 'ChatList_ChatListDisplayView'
 export struct ChatListDisplayView {
   private chatList_Lazy = new ChatListData()
   private chatList_Array: Array<ChatModel> = new Array<ChatModel>()
-  @StorageLink('lazy_for_each') lazy_for_each: boolean = AppStorage.get('lazy_for_each')
-  @StorageLink('reusable') reusable: boolean = AppStorage.get('reusable')
-  @StorageLink('list_cachedCount') list_cachedCount: boolean = AppStorage.get('list_cachedCount')
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout')
+  @StorageLink('lazy_for_each') lazy_for_each: boolean | undefined = AppStorage.get('lazy_for_each')
+  @StorageLink('reusable') reusable: boolean | undefined = AppStorage.get('reusable')
+  @StorageLink('list_cachedCount') list_cachedCount: boolean | undefined = AppStorage.get('list_cachedCount')
+  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout')
 
   @Builder
   chatViewBuilder(msg: ChatModel) {
@@ -113,7 +113,7 @@ export struct ChatListDisplayView {
     .onScrollIndex((firstIndex: number) => {
 
     })
-    .onTouch((event: TouchEvent) => {
+    .onTouch((event?: TouchEvent) => {
     })
     .cachedCount(this.list_cachedCount ? Constants.CACHED_COUNT : 0) // 缓存列表数量
   }

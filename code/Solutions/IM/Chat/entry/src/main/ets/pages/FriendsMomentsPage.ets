@@ -16,6 +16,13 @@
 import { BasicDataSource } from '@ohos/chatList'
 import { ChatContact, FriendMoment } from '@ohos/chatList'
 import router from '@ohos.router'
+import resourceManager from '@ohos.resourceManager'
+
+// 获取资源文本
+async function getResourceString<T extends resourceManager.Resource>(manager: resourceManager.ResourceManager, resource: T): Promise<string> {
+  let text = await manager.getStringValue(resource)
+  return text
+}
 
 @Entry
 @Component
@@ -61,7 +68,7 @@ struct FriendsMomentsPage {
                   Text("name")
                     .fontSize(20)
                     .fontColor(Color.White)
-                    .margin({ top: -15,right: 15 })
+                    .margin({ top: -15, right: 15 })
                   Image($r('app.media.personality3'))
                     .height(70)
                     .width(70)
@@ -98,10 +105,12 @@ struct FriendsMomentsPage {
     this.makeDataLocal()
   }
 
-   makeDataLocal() {
+  makeDataLocal() {
     for (let i = 0;i < 100; i++) {
       let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-      let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`)
+      let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(), `${getResourceString(getContext()
+        .resourceManager, $r('app.string.friend_word'))}${i.toString()}${i.toString()}`, imageStr), `${getResourceString(getContext()
+        .resourceManager, $r('app.string.chatCommunity'))}${i.toString()}`)
       this.momentData.pushData(mo)
     }
   }
@@ -109,7 +118,7 @@ struct FriendsMomentsPage {
 
 @Component
 struct OneMoment {
-  private moment: FriendMoment
+  private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '')
 
   build() {
     Row() {
@@ -192,14 +201,14 @@ struct MomentsImage {
   }
 }
 
-class FriendMomentsData extends BasicDataSource {
+class FriendMomentsData extends BasicDataSource<FriendMoment> {
   momentList: Array<FriendMoment> = []
 
   public totalCount(): number {
     return this.momentList.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): FriendMoment {
     return this.momentList[index]
   }
 

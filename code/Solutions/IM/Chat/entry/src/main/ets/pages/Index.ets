@@ -28,7 +28,7 @@ PersistentStorage.persistProp('list_cachedCount', true);
 @Entry
 @Component
 struct Index {
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout')
+  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout')
   @State currentIndex: number = 0
   @State message: Resource = $r('app.string.chat')
   private controller: TabsController = new TabsController()

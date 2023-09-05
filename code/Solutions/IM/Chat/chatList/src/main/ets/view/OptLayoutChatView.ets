@@ -22,10 +22,10 @@ const TAG: string = 'ChatList_ChatView'
 @Reusable
 @Component
 struct ReusableOptLayoutChatView {
-  @State chatItem: ChatModel = undefined
+  @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0)
 
-  aboutToReuse(params) {
-    this.chatItem = params.chatItem
+  aboutToReuse(params: Record<string, Object>) {
+    this.chatItem = params.chatItem as ChatModel
     Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString())
   }
 
@@ -37,8 +37,8 @@ struct ReusableOptLayoutChatView {
 @Preview
 @Component
 struct OptLayoutChatView {
-  private chatItem: ChatModel
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
+  private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0)
+  @StorageLink('img_syncLoad') img_syncLoad: boolean | undefined = AppStorage.get('img_syncLoad')
 
   build() {
     RelativeContainer() {
@@ -53,22 +53,22 @@ struct OptLayoutChatView {
         .syncLoad(this.img_syncLoad ? true : false)
         .id("figure")
 
-     if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
-       Text(`${this.chatItem.unreadMsgCount}`)
-        .borderRadius(10)
-        .width(20)
-        .height(20)
-        .backgroundColor("#ea6055")
-        .fontSize(12)
-        .textAlign(TextAlign.Center)
-        .fontColor(Color.White)
-        .margin({ top: -8, left: 38 })
-        .alignRules({
-          top: { anchor: '__container__', align: VerticalAlign.Top },
-          left: { anchor: '__container__', align: HorizontalAlign.Start }
-        })
-        .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
-        .id("badge")
+      if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
+        Text(`${this.chatItem.unreadMsgCount}`)
+          .borderRadius(10)
+          .width(20)
+          .height(20)
+          .backgroundColor("#ea6055")
+          .fontSize(12)
+          .textAlign(TextAlign.Center)
+          .fontColor(Color.White)
+          .margin({ top: -8, left: 38 })
+          .alignRules({
+            top: { anchor: '__container__', align: VerticalAlign.Top },
+            left: { anchor: '__container__', align: HorizontalAlign.Start }
+          })
+          .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
+          .id("badge")
       }
 
       Text(this.chatItem.user.userName)
@@ -108,14 +108,14 @@ struct OptLayoutChatView {
     .height(70)
     .backgroundColor(Color.White)
     .padding({ left: 15, right: 10, top: 10, bottom: 10 })
-    .onClick((event: ClickEvent) => {
+    .onClick((event?: ClickEvent) => {
       router.pushUrl({
         url: 'pages/Detail',
         params: {
           chatName: this.chatItem.user.userName,
           chatId: this.chatItem.user.userId,
           chatImg: this.chatItem.user.userImage,
-          lastMsg:this.chatItem.lastMsg
+          lastMsg: this.chatItem.lastMsg
         }
       }, (err) => {
         if (err) {

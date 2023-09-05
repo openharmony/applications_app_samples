@@ -14,18 +14,16 @@
  */
 
 import { BasicDataSource } from '../viewModel/BasicDataSource';
-import { MessageBase, ChatContact, TextMessage, ImageMessage } from '../viewModel/MsgBase';
+import { MessageBase, ChatContact, TextMessage, ImageMessage, MessageBody } from '../viewModel/MsgBase';
 import { getMessageListFromJSON } from '../utils/DataFactory';
 import router from '@ohos.router';
 import { ImgTextMessage, FileMessage } from '../viewModel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
 
-
 @Preview
 @Component
 struct ChatDetailPage {
-  @State chatName: string = ''
   @State msgLength: number = 0
   userMyself = new ChatContact('1', $r('app.string.myself'))
   userFriend = new ChatContact('2', $r('app.string.friend'))
@@ -36,12 +34,17 @@ struct ChatDetailPage {
   @State keyboardStr: string = ''
   private chatDetailData = new ChatDetailData()
   private scroller: Scroller = new Scroller()
-  @State imgFile: image.PixelMap = undefined
+  @State imgFile: PixelMap | null = null
   @State wantId: number = 0
-  @State fdImg: number = undefined
-  @State userMyselfName: string = undefined
-  @State userFriendName: string = undefined
+  @State fdImg: number = 0
+  @State userMyselfName: string = ''
+  @State userFriendName: string = ''
   @State listHeight: number = 0
+  private params = router.getParams() as Record<string, Object>
+  chatId: number = this.params.chatId as number
+  chatName: string | Resource = this.params.chatName as string | Resource
+  chatImg: string | Resource = this.params.chatImg as string | Resource
+  lastMsg: string | Resource = this.params.lastMsg as string | Resource
 
   build() {
     Column() {
@@ -55,7 +58,7 @@ struct ChatDetailPage {
             router.back()
           })
 
-        Text(router.getParams()['chatName'])
+        Text(this.chatName)
           .fontSize(19)
           .fontColor(Color.Black)
           .textAlign(TextAlign.Center)
@@ -118,7 +121,7 @@ struct ChatDetailPage {
           .height(20)
           .width(20)
           .onClick(() => {
-            let imagestr = `/resources/images/photo${((router.getParams()['chatId']) % 50)}.jpg`
+            let imagestr = `/resources/images/photo${((this.chatId) % 50)}.jpg`
             let msg = new ImageMessage(40, 50, imagestr)
             let msgBody = new MessageBase(this.chatDetailData.totalCount()
               .toString(), this.userMyself, this.userFriend, msg, 2)
@@ -149,7 +152,7 @@ struct ChatDetailPage {
     let chatDetailMsgList = await getMessageListFromJSON()
     let tdate = new Date()
     let userMyself = new ChatContact('1', $r('app.string.myself'))
-    let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImg'])
+    let userFriend = new ChatContact('2', this.chatName, this.chatImg)
     let sum = 0
     for (let i = 0; i < 1000; i++) {
       let msg: TextMessage | ImageMessage
@@ -175,7 +178,7 @@ struct ChatDetailPage {
       }
       this.chatDetailData.pushData(msgBody)
     }
-    let msg1 = new TextMessage(router.getParams()['lastMsg'])
+    let msg1 = new TextMessage(this.lastMsg)
     this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, msg1, 1, tdate.getSeconds()))
     this.msgLength = this.chatDetailData.totalCount()
   }
@@ -187,9 +190,9 @@ struct ChatDetailPage {
 
 @Component
 struct ChatItemView {
-  private msg: MessageBase
+  private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0)
   @Link imgFile: image.PixelMap
-  @State image: PixelMap = undefined
+  @State image: image.PixelMap | null = null
 
   build() {
     Column() {
@@ -288,14 +291,14 @@ struct ChatItemView {
   }
 }
 
-class ChatDetailData extends BasicDataSource {
+class ChatDetailData extends BasicDataSource<MessageBase> {
   msgList: Array<MessageBase> = []
 
   public totalCount(): number {
     return this.msgList.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): MessageBase {
     return this.msgList[index]
   }
 

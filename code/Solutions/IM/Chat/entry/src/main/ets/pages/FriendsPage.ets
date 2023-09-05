@@ -108,8 +108,8 @@ export struct FriendsPage {
 
 @Component
 export struct EMContactItemView {
-  private image: string | Resource
-  private text: string | Resource
+  private image: string | Resource = ''
+  private text: string | Resource = ''
 
   build() {
     Row() {
@@ -129,14 +129,14 @@ export struct EMContactItemView {
   }
 }
 
-class FriendListData extends BasicDataSource {
+class FriendListData extends BasicDataSource<ChatContact> {
   friendList: Array<ChatContact> = []
 
   public totalCount(): number {
     return this.friendList.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): ChatContact {
     return this.friendList[index]
   }
 

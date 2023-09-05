@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ChatModel } from '../viewModel/MsgBase';
+import { ChatContact, ChatModel } from '../viewModel/MsgBase';
 import Logger from '../utils/Logger';
 import router from '@ohos.router';
 
@@ -22,10 +22,10 @@ const TAG: string = 'ChatList_ChatView';
 @Reusable
 @Component
 struct ReusableChatView {
-  @State chatItem: ChatModel = undefined;
+  @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
 
-  aboutToReuse(params) {
-    this.chatItem = params.chatItem
+  aboutToReuse(params: Record<string, Object>) {
+    this.chatItem = params.chatItem as ChatModel
     Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString())
   }
 
@@ -36,8 +36,8 @@ struct ReusableChatView {
 
 @Component
 struct ChatView {
-  private chatItem: ChatModel
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
+  private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0)
+  @StorageLink('img_syncLoad') img_syncLoad: boolean | undefined = AppStorage.get('img_syncLoad')
 
   build() {
     Row() {
@@ -100,7 +100,7 @@ struct ChatView {
     .width("100%")
     .height(70)
     .padding({ left: 8, right: 10, top: 10, bottom: 10 })
-    .onClick((event: ClickEvent) => {
+    .onClick((event?: ClickEvent) => {
       router.pushUrl({
         url: 'pages/Detail',
         params: {
