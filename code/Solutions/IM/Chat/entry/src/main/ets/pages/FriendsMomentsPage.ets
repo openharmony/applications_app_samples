@@ -31,24 +31,24 @@ struct FriendsMomentsPage {
       Column() {
         Row() {
           Image($r('app.media.icon_back'))
-            .height(30)
-            .width(30)
+            .height($r('app.integer.friendMomentsPage_background_width'))
+            .width($r('app.integer.friendMomentsPage_background_height'))
             .onClick(() => {
               router.back()
             }).syncLoad(true)
 
           Text($r('app.string.circle'))
-            .fontSize(20)
+            .fontSize($r('app.integer.friendMomentsPage_title_fontSize'))
             .fontColor(Color.White)
           Image($r('app.media.icon_talk'))
-            .height(30)
-            .width(30)
+            .height($r('app.integer.friendMomentsPage_background_height'))
+            .width($r('app.integer.friendMomentsPage_background_width'))
         }
         .backgroundColor(Color.Black)
         .justifyContent(FlexAlign.SpaceBetween)
-        .height(50)
+        .height($r('app.integer.friendMomentsPage_title_height'))
         .width('100%')
-        .padding({ left: 10, right: 10 })
+        .padding({ left: $r('app.integer.friendMomentsPage_title_padding_left'), right: $r('app.integer.friendMomentsPage_title_padding_right') })
 
         Column() {
           List() {
@@ -57,25 +57,24 @@ struct FriendsMomentsPage {
                 Row() {
                   Image($r("app.media.user_bg"))
                 }
-                .height('100%')
-                .width('100%')
+                .height($r('app.string.layout_100'))
+                .width($r('app.string.layout_100'))
 
                 Row() {
                   Text("name")
-                    .fontSize(20)
+                    .fontSize($r('app.integer.friendMomentsPage_name_fontSize'))
                     .fontColor(Color.White)
-                    .margin({ top: -15,right: 15 })
+                    .margin({ top: $r('app.integer.friendMomentsPage_name_margin_left'),right: $r('app.integer.friendMomentsPage_name_margin_right') })
                   Image($r("app.media.profile_photo_3"))
-                    .height(70)
-                    .width(70)
-                    .borderRadius(5)
-                    .margin({ right: 15 })
-                }.margin({ top: -55 })
+                    .height($r('app.integer.friendMomentsPage_image_height'))
+                    .width($r('app.integer.friendMomentsPage_image_width'))
+                    .borderRadius($r('app.integer.friendMomentsPage_image_borderRadius'))
+                    .margin({ right: $r('app.integer.friendMomentsPage_image_margin_right') })
+                }.margin({ top: $r('app.integer.friendMomentsPage_image_margin_top') })
               }
-              .margin({ bottom: 20 })
-
+              .margin({ bottom: $r('app.integer.friendMomentsPage_owner_margin_bottom') })
               .alignItems(HorizontalAlign.End)
-              .height('40%')
+              .height($r('app.string.friendMomentsPage_owner_margin_height'))
             }
 
             LazyForEach(this.momentData, (msg: FriendMoment) => {
@@ -84,30 +83,38 @@ struct FriendsMomentsPage {
               }
             }, (msg: FriendMoment) => msg.id)
           }
-          .width('100%')
-          .height('100%')
+          .width($r('app.string.layout_100'))
+          .height($r('app.string.layout_100'))
           .listDirection(Axis.Vertical)
         }
-        .height('100%')
+        .height($r('app.string.layout_100'))
       }
-      .height('100%')
-      .padding({ bottom: 50 })
+      .height($r('app.string.layout_100'))
+      .padding({ bottom: $r('app.integer.friendMomentsPage_layout_padding_bottom') })
     }
-    .height('100%')
-    .width('100%')
+    .height($r('app.string.layout_100'))
+    .width($r('app.string.layout_100'))
   }
 
   aboutToAppear(): void {
     Logger.info(TAG, 'enter aboutToAppear');
-    this.makeLocalData()
+    this.makeLocalData();
   }
 
   // 本地mock数据生成朋友圈数据，推到momentData里
   makeLocalData() {
     for (let i = 0;i < 100; i++) {
-      let picNum = $r(`app.string.landscape${(i % 50).toString()}`)
-      let imageStr = `/resources/images/${picNum}.jpg`
-      let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`) // 生成单个朋友圈数据
+      let picNum = $r(`app.string.landscape${(i % 50).toString()}`);
+      let imageStr = `/resources/images/${picNum}.jpg`;
+      let mo = new FriendMoment( // 生成单个朋友圈数据
+        i.toString(),
+        new ChatContact(
+          i.toString(),
+          `${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}`,
+          imageStr
+        ),
+        `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`
+      );
       this.momentData.pushData(mo)
     }
   }
@@ -123,53 +130,53 @@ struct OneMoment {
         Image(this.moment.user.userImage)
           .autoResize(false)
       }
-      .width(50)
-      .height(50)
+      .width($r('app.integer.friendMomentsPage_oneMoment_width'))
+      .height($r('app.integer.friendMomentsPage_oneMoment_height'))
 
       Column() {
         Text(this.moment.user.userName)
-          .fontSize(15)
+          .fontSize($r('app.integer.friendMomentsPage_useName_fontSize'))
           .fontColor(Color.Black)
         Text(this.moment.text)
-          .fontSize(13)
+          .fontSize($r('app.integer.friendMomentsPage_userText_fontSize'))
           .fontColor(Color.Black)
         Row({ space: 5 }) {
           MomentsImage({ imageStr: $r("app.media.landscape1"), imageStrId: 1 })
           MomentsImage({ imageStr: $r("app.media.landscape2"), imageStrId: 2 })
           MomentsImage({ imageStr: $r("app.media.landscape3"), imageStrId: 3 })
         }
-        .margin({ top: 5, right: 10 })
+        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top'), right: $r('app.integer.friendMomentsPage_row_margin_right') })
 
         Row({ space: 5 }) {
           MomentsImage({ imageStr: $r("app.media.landscape4"), imageStrId: 4 })
           MomentsImage({ imageStr: $r("app.media.landscape5"), imageStrId: 5 })
           MomentsImage({ imageStr: $r("app.media.landscape6"), imageStrId: 6 })
         }
-        .margin({ top: 5, right: 10 })
+        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top'), right: $r('app.integer.friendMomentsPage_row_margin_right') })
 
         Row({ space: 5 }) {
           MomentsImage()
           MomentsImage({ imageStr: $r("app.media.landscape7"), imageStrId: 7 })
           MomentsImage({ imageStr: $r("app.media.landscape8"), imageStrId: 8 })
         }
-        .margin({ top: 5, right: 10 })
+        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top'), right: $r('app.integer.friendMomentsPage_row_margin_right') })
 
         Row() {
-          Text(this.moment.time).fontColor("#e3e3e3").fontSize(12)
-          Image($r('app.media.afr')).height(15).width(20)
+          Text(this.moment.time).fontColor("#e3e3e3").fontSize($r('app.integer.friendMomentsPage_time_fontSize'))
+          Image($r('app.media.afr')).height($r('app.integer.friendMomentsPage_time_height')).width($r('app.integer.friendMomentsPage_time_width'))
         }
         .justifyContent(FlexAlign.SpaceBetween)
-        .width('100%')
-        .margin({ top: 5 })
-        .padding({ right: 5 })
+        .width($r('app.string.layout_100'))
+        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top') })
+        .padding({ right: $r('app.integer.friendMomentsPage_row_padding_right') })
       }
       .alignItems(HorizontalAlign.Start)
-      .width('100%')
-      .margin({ left: 10 })
+      .width($r('app.string.layout_100'))
+      .margin({ left: $r('app.integer.friendMomentsPage_col_margin_left') })
     }
     .justifyContent(FlexAlign.Start)
-    .margin({ left: 10 })
-    .padding({ right: 70 })
+    .margin({ left: $r('app.integer.friendMomentsPage_col_margin_left') })
+    .padding({ right: $r('app.integer.friendMomentsPage_col_padding_right') })
     .alignItems(VerticalAlign.Top)
   }
 }
@@ -184,8 +191,8 @@ struct MomentsImage {
     Stack() {
       Image(this.imageStr)
         .id(`${this.imageStrId}`)
-        .width(70)
-        .height(70)
+        .width($r('app.integer.friendMomentsPage_image_width'))
+        .height($r('app.integer.friendMomentsPage_image_height'))
         .onClick(() => {
           router.pushUrl({
             url: 'pages/FullImagePage',
@@ -193,8 +200,8 @@ struct MomentsImage {
           })
         })
     }
-    .width(70)
-    .height(70)
+    .width($r('app.integer.friendMomentsPage_image_width'))
+    .height($r('app.integer.friendMomentsPage_image_height'))
   }
 }
 
