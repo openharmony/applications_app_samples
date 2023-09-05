@@ -45,7 +45,7 @@ struct ChatDetailPage {
 
   build() {
     Column() {
-      //顶部导航栏
+      // 顶部导航栏
       Row() {
         Image($r('app.media.left'))
           .id('returnBtn')
@@ -90,7 +90,7 @@ struct ChatDetailPage {
       .layoutWeight(1)
       .width('100%')
 
-      //底部输入框
+      // 底部输入框
       Row({ space: 5 }) {
         Image($r('app.media.chatting_setmode_voice'))
           .height(20)
@@ -145,6 +145,7 @@ struct ChatDetailPage {
     let manager = context.resourceManager
     return await manager.getStringValue(resource.id)
   }
+
   // 设定本地聊天内容
   async makeDataLocal() {
     let chatDetailMsgList = await getMessageListFromJSON()
