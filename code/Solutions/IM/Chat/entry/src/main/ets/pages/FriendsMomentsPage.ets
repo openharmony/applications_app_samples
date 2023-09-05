@@ -102,11 +102,12 @@ struct FriendsMomentsPage {
     this.makeLocalData()
   }
 
-   makeLocalData() {
+  // 本地mock数据生成朋友圈数据，推到momentData里
+  makeLocalData() {
     for (let i = 0;i < 100; i++) {
       let picNum = $r(`app.string.landscape${(i % 50).toString()}`)
       let imageStr = `/resources/images/${picNum}.jpg`
-      let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`)
+      let mo = new FriendMoment(i.toString(), new ChatContact(i.toString(),`${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}` , imageStr), `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`) // 生成单个朋友圈数据
       this.momentData.pushData(mo)
     }
   }
@@ -200,19 +201,23 @@ struct MomentsImage {
 class FriendMomentsData extends BasicDataSource {
   momentList: Array<FriendMoment> = []
 
+  // 获取数据列表长度
   public totalCount(): number {
     return this.momentList.length
   }
 
+  // 根据index获取具体项
   public getData(index: number): any {
     return this.momentList[index]
   }
 
+  // 向规定位置添加数据
   public addData(index: number, data: FriendMoment): void {
     this.momentList.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
+  // 向列表追加数据
   public pushData(data: FriendMoment): void {
     this.momentList.push(data)
     this.notifyDataAdd(this.momentList.length - 1)

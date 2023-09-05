@@ -17,7 +17,7 @@ import router from '@ohos.router';
 import Logger from '../model/Logger';
 
 async function routePage() {
-  let options = {
+  let options: router.RouterOptions = {
     url: 'pages/second'
   }
   try {
