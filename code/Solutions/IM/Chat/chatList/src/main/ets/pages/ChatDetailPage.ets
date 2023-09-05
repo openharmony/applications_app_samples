@@ -151,7 +151,7 @@ struct ChatDetailPage {
     let chatDetailMsgList = await getMessageListFromJSON();
     let todayDate = new Date();
     let userMyself = new ChatContact('1', $r('app.string.myself'));
-    let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImg']);
+    let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImage']);
     let sum = 0;
     // 循环遍历本地数据，通过取模的方式选择文本数据或者图片数据
     for (let i = 0; i < 1000; i++) {
