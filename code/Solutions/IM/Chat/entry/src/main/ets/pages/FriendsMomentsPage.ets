@@ -69,9 +69,9 @@ struct FriendsMomentsPage {
                     .margin({ top: -15,right: 15 })
                   Image($r('app.media.personality3'))
                     .height($r('app.integer.layout_50'))
-                    .width($r('app.integer.layout_50'));
+                    .width($r('app.integer.layout_50'))
                 }
-                .margin({ top: $r('app.integer.layout_minus_25') });
+                .margin({ top: $r('app.integer.layout_minus_25') })
               }
               .margin({ bottom: 20 })
 
@@ -106,7 +106,7 @@ struct FriendsMomentsPage {
   async makeDataLocal(): Promise<void>{
     Logger.info(TAG, 'makeDataLocal');
     let FriendMoment = await getFriendMomentObjFromJSON();
-    for (let i = 0; i < Constants.AUX_MOCK_DATA_COUNT; i++) {
+    for (let i = 0; i < Constants.FRIEND_MOMENT_MOCK_DATA_COUNT; i++) {
       this.momentData.pushData(FriendMoment[i]);
     }
   }
@@ -135,16 +135,16 @@ struct OneMoment {
         Grid() {
           ForEach(this.moment.imageList, (image: string, index: number) => {
             GridItem() {
-              MomentsImage({ imageStr: image, imageStrId: index });
+              MomentsImage({ imageStr: image, imageStrId: index })
             }
-          }, image => image);
+          }, image => image)
         }
         .columnsTemplate('1fr 1fr 1fr')
         .rowsTemplate('1fr 1fr 1fr')
         .columnsGap($r('app.integer.layout_1'))
         .rowsGap($r('app.integer.layout_1'))
         .height($r('app.integer.layout_250'))
-        .width($r('app.integer.layout_250'));
+        .width($r('app.integer.layout_250'))
         Row() {
           Text(this.moment.time).fontColor("#e3e3e3").fontSize(12)
           Image($r('app.media.afr')).height(15).width(20)

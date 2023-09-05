@@ -21,10 +21,15 @@ const MESSAGE: string = 'add detail';
 const FULL_WIDTH_PERCENT: string = '100%';
 const FULL_HEIGHT_PERCENT: string = '100%';
 
+class ListType {
+  cityTemperature: string
+  cityName: string
+}
+
 @Entry(storage)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('list') list: Array<object> = [{ 'cityTemperature': '', 'cityName': '' }];
+  @LocalStorageProp('list') list: Array<object> = [{ cityTemperature: '', cityName: '' } as ListType];
 
   build() {
     Row() {
@@ -55,13 +60,23 @@ struct WidgetCard {
     .opacity(0.5)
     .height(FULL_HEIGHT_PERCENT)
     .onClick(() => {
-      postCardAction(this, {
-        'action': ACTION_TYPE,
-        'abilityName': ABILITY_NAME,
-        'params': {
-          'message': MESSAGE
+      class ParamsType {
+        message: string;
+      };
+
+      class ActionType {
+        action: string;
+        abilityName: string;
+        params: ParamsType;
+      };
+      let action: ActionType = {
+        action: ACTION_TYPE,
+        abilityName: ABILITY_NAME,
+        params: {
+          message: MESSAGE
         }
-      });
+      };
+      postCardAction(this, action);
     })
   }
 }

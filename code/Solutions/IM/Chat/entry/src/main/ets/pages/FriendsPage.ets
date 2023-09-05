@@ -21,11 +21,16 @@ import { getChatModelObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataF
 import Logger from '@ohos/chatList/src/main/ets/utils/Logger';
 
 const TAG: string = 'entry_FriendsPage';
+const LIST_SPACE: number = 2;
+const LIST_INITIAL_INDEX: number = 0;
 
+/**
+ * 通讯录页面组件
+ */
 @Component
 export struct FriendsPage {
   @State friendsListLength: number = 0;
-  private friendListData = new FriendListData();
+  private friendsListData = new FriendsListData();
   private friendsPageItem = [
     { image: $r('app.media.icon_addfriend'), text: $r('app.string.new_friend') },
     { image: $r('app.media.icon_group'), text: $r('app.string.group') },
@@ -44,7 +49,7 @@ export struct FriendsPage {
               Column() {
                 Stack({ alignContent: Alignment.Center }) {
                   Text($r('app.string.search'))
-                    .fontSize($r('app.integer.text_font_20'));
+                    .fontSize($r('app.integer.text_font_20'))
                 }
                 .backgroundColor(Color.White)
                 .height($r('app.string.layout_50'))
@@ -57,39 +62,39 @@ export struct FriendsPage {
                 })
                 .onClick(() => {
                   router.pushUrl({ url: PageConstants.SEARCH_PAGE });
-                });
+                })
 
-                List({ space: 2, initialIndex: 0 }) {
+                List({ space: LIST_SPACE, initialIndex: LIST_INITIAL_INDEX }) {
                   ForEach(this.friendsPageItem, (item) => {
                     ListItem() {
-                      EMContactItemView({ image: item.image, text: item.text });
+                      ChatContactItemView({ image: item.image, text: item.text })
                     }
-                  }, item => JSON.stringify(item));
+                  }, item => JSON.stringify(item))
                 }
               }
             }
 
-            LazyForEach(this.friendListData, (msg: ChatContact) => {
+            LazyForEach(this.friendsListData, (msg: ChatContact) => {
               ListItem() {
-                EMContactItemView({ image: msg.userImage, text: msg.userName });
+                ChatContactItemView({ image: msg.userImage, text: msg.userName })
               }
               .onClick(() => {
                 router.pushUrl({
                   url: PageConstants.CHAT_DETAIL_PAGE,
                   params: { chatImage: msg.userImage, chatName: msg.userName, chatId: msg.userId } });
-              });
-            }, (msg: ChatContact) => msg.userId);
+              })
+            }, (msg: ChatContact) => msg.userId)
           }
           .listDirection(Axis.Vertical)
           .width($r('app.string.layout_100'))
-          .height($r('app.string.layout_100'));
+          .height($r('app.string.layout_100'))
         }
       }
-      .width($r('app.string.layout_100'));
+      .width($r('app.string.layout_100'))
     }
-    .backgroundColor($r('app.color.friend_page_background'))
+    .backgroundColor($r('app.color.friends_page_background'))
     .width($r('app.string.layout_100'))
-    .height($r('app.string.layout_100'));
+    .height($r('app.string.layout_100'))
   }
 
   async aboutToAppear(): Promise<void> {
@@ -101,13 +106,16 @@ export struct FriendsPage {
     Logger.info(TAG, 'makeDataLocal');
     let chatModelMockData = await getChatModelObjFromJSON();
     for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
-      this.friendListData.pushData(chatModelMockData[i].user);
+      this.friendsListData.pushData(chatModelMockData[i].user);
     }
   }
 }
 
+/**
+ * 通讯录页面中，联系人布局组件
+ */
 @Component
-export struct EMContactItemView {
+export struct ChatContactItemView {
   private image: string | Resource;
   private text: string | Resource;
 
@@ -116,37 +124,37 @@ export struct EMContactItemView {
       Image(this.image)
         .width($r('app.integer.layout_40'))
         .height($r('app.integer.layout_40'))
-        .borderRadius($r('app.integer.layout_5'));
+        .borderRadius($r('app.integer.layout_5'))
       Text(this.text)
         .fontSize($r('app.integer.layout_15'))
-        .fontColor($r('app.color.friend_page_text'))
-        .margin({ left: $r('app.integer.layout_10') });
+        .fontColor($r('app.color.friends_page_text_color'))
+        .margin({ left: $r('app.integer.layout_10') })
     }
     .width($r('app.string.layout_100'))
     .height($r('app.integer.layout_60'))
     .padding({ left: $r('app.integer.layout_10'), right: $r('app.integer.layout_10') })
-    .backgroundColor(Color.White);
+    .backgroundColor(Color.White)
   }
 }
 
-class FriendListData extends BasicDataSource {
-  friendList: Array<ChatContact> = [];
+class FriendsListData extends BasicDataSource {
+  friendsList: Array<ChatContact> = [];
 
   public totalCount(): number {
-    return this.friendList.length;
+    return this.friendsList.length;
   }
 
   public getData(index: number): any {
-    return this.friendList[index];
+    return this.friendsList[index];
   }
 
   public addData(index: number, data: ChatContact): void {
-    this.friendList.splice(index, 0, data);
+    this.friendsList.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 
   public pushData(data: ChatContact): void {
-    this.friendList.push(data);
-    this.notifyDataAdd(this.friendList.length - 1);
+    this.friendsList.push(data);
+    this.notifyDataAdd(this.friendsList.length - 1);
   }
 }

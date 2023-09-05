@@ -20,6 +20,9 @@ import PageConstants from '../utils/PageConstants';
 
 const TAG: string = 'ChatList_ChatView';
 
+/**
+ * 可复用且优化布局的聊天页面组件
+ */
 @Reusable
 @Component
 struct ReusableOptLayoutChatView {
@@ -35,6 +38,9 @@ struct ReusableOptLayoutChatView {
   }
 }
 
+/**
+ * 优化布局的聊天页面组件
+ */
 @Preview
 @Component
 struct OptLayoutChatView {
@@ -52,7 +58,7 @@ struct OptLayoutChatView {
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
         .syncLoad(this.img_syncLoad ? true : false)
-        .id("figure");
+        .id('figure')
 
       if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
         Text(`${this.chatItem.unreadMsgCount}`)
@@ -69,7 +75,7 @@ struct OptLayoutChatView {
             left: { anchor: '__container__', align: HorizontalAlign.Start }
           })
           .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
-          .id('badge');
+          .id('badge')
       }
 
       Text(this.chatItem.user.userName)
@@ -81,11 +87,11 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id('user');
+        .id('user')
 
       Text(this.chatItem.lastTime)
         .fontSize($r('app.integer.text_font_12'))
-        .fontColor($r('app.color.chat_view_text'))
+        .fontColor($r('app.color.chat_view_text_color'))
         .maxLines(1)
         .textAlign(TextAlign.End)
         .margin({ top: $r('app.integer.layout_5'), right: $r('app.integer.layout_5') })
@@ -93,9 +99,9 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           right: { anchor: '__container__', align: HorizontalAlign.End }
         })
-        .id('time');
+        .id('time')
       Text(this.chatItem.lastMsg)
-        .fontColor($r('app.color.chat_view_text'))
+        .fontColor($r('app.color.chat_view_text_color'))
         .fontSize($r('app.integer.text_font_14'))
         .maxLines(1)
         .margin({ top: $r('app.integer.layout_30'), left: $r('app.integer.layout_58') })
@@ -103,7 +109,7 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .id('msg');
+        .id('msg')
     }
     .width($r('app.string.layout_100_percent'))
     .height($r('app.integer.layout_70'))

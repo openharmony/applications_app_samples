@@ -56,13 +56,23 @@ struct WidgetCard {
     .opacity(0.5)
     .height(FULL_HEIGHT_PERCENT)
     .onClick(() => {
-      postCardAction(this, {
-        'action': ACTION_TYPE,
-        'abilityName': ABILITY_NAME,
-        'params': {
-          'message': MESSAGE
+      class ParamsType {
+        message: string;
+      };
+
+      class ActionType {
+        action: string;
+        abilityName: string;
+        params: ParamsType;
+      };
+      let action: ActionType = {
+        action: ACTION_TYPE,
+        abilityName: ABILITY_NAME,
+        params: {
+          message: MESSAGE
         }
-      });
+      };
+      postCardAction(this, action);
     })
   }
 }

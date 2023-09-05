@@ -1,6 +1,78 @@
 {
   "integer": [
     {
+      "name": "customDialog_divider_startMargin",
+      "value": 40
+    },
+    {
+      "name": "customDialog_divider_endMargin",
+      "value": 0
+    },
+    {
+      "name": "customDialog_list_borderRadius",
+      "value": 5
+    },
+    {
+      "name": "customDialog_list_padding_left",
+      "value": 5
+    },
+    {
+      "name": "customDialog_list_padding_bottom",
+      "value": 5
+    },
+    {
+      "name": "customDialog_list_width",
+      "value": 135
+    },
+    {
+      "name": "customDialog_Toggle_width",
+      "value": 25
+    },
+    {
+      "name": "customDialog_ToggleComponent_fontSize",
+      "value": 14
+    },
+    {
+      "name": "customDialog_ToggleComponent_margin_left",
+      "value": 5
+    },
+    {
+      "name": "customDialog_ToggleComponent_padding",
+      "value": 5
+    },
+    {
+      "name": "customDialog_Prompt_Image_height",
+      "value": 20
+    },
+    {
+      "name": "customDialog_Prompt_Image_width",
+      "value": 20
+    },
+    {
+      "name": "customDialog_Prompt_Image_margin_top",
+      "value": 1
+    },
+    {
+      "name": "customDialog_Prompt_Image_margin_right",
+      "value": 10
+    },
+    {
+      "name": "customDialog_Prompt_Text_fontSize",
+      "value": 14
+    },
+    {
+      "name": "customDialog_Prompt_Text_margin_top",
+      "value": 1
+    },
+    {
+      "name": "customDialog_Prompt_padding",
+      "value": 8
+    },
+    {
+      "name": "customDialog_diaLogDivider_margin_left",
+      "value": 40
+    },
+    {
       "name": "layout_250",
       "value": 250
     },
