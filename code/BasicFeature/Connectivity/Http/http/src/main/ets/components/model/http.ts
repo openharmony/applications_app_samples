@@ -99,12 +99,12 @@ class Http {
       AppStorage.SetOrCreate('dataLength', data.byteLength);
       console.info('[ Demo dataReceive ]  ReceivedDataLength: ' + data.byteLength);
     });
-    httpRequest.on('dataProgress', function (data) {
+    httpRequest.on('dataReceiveProgress', function (data) {
       AppStorage.SetOrCreate('receiveSize', data.receiveSize);
       AppStorage.SetOrCreate('totalSize', data.totalSize);
       console.info('[ Demo dataProgress ]  ReceivedSize: ' + data.receiveSize + ' TotalSize: ' + data.totalSize);
     });
-    httpRequest.request2(this.url, this.options);
+    httpRequest.requestInStream(this.url, this.options);
   }
 }
 

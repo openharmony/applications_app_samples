@@ -50,7 +50,7 @@ struct CustomDialogExample {
         strokeWidth: $r("app.float.customDialog_list_friction"),
         color: $r("app.color.customDialog_list_divider_color"),
         startMargin: $r("app.integer.customDialog_divider_startMargin"),
-        endMargin:$r("app.integer.customDialog_divider_endMargin") })
+        endMargin: $r("app.integer.customDialog_divider_endMargin") })
 
       diaLogDivider()
       ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazy_for_each })
@@ -65,7 +65,10 @@ struct CustomDialogExample {
     }
     .backgroundColor($r("app.color.customDialog_list_backgroundColor"))
     .borderRadius($r("app.integer.customDialog_list_borderRadius"))
-    .padding({ left: $r("app.integer.customDialog_list_padding_left"), bottom: $r("app.integer.customDialog_list_padding_bottom") })
+    .padding({
+      left: $r("app.integer.customDialog_list_padding_left"),
+      bottom: $r("app.integer.customDialog_list_padding_bottom")
+    })
     .width($r("app.integer.customDialog_list_width"))
   }
 }
@@ -81,7 +84,10 @@ struct Prompt {
       Image(this.img)
         .height($r("app.integer.customDialog_Prompt_Image_height"))
         .width($r("app.integer.customDialog_Prompt_Image_width"))
-        .margin({ top: $r("app.integer.customDialog_Prompt_Image_margin_top"), right: $r("app.integer.customDialog_Prompt_Image_margin_right") })
+        .margin({
+          top: $r("app.integer.customDialog_Prompt_Image_margin_top"),
+          right: $r("app.integer.customDialog_Prompt_Image_margin_right")
+        })
       Text(this.text)
         .fontSize($r("app.integer.customDialog_Prompt_Text_fontSize"))
         .fontColor($r("app.color.customDialog_Prompt_Text_fontColor"))
@@ -109,9 +115,13 @@ struct diaLogDivider {
     moduleName: this.resource.moduleName,
     id: this.resource.id
   }
+
   build() {
-    Column(){
-      Divider().strokeWidth(0.5).color('#888888').margin({left:40})
+    Column() {
+      Divider()
+        .strokeWidth(getContext().resourceManager.getNumber(this.res))
+        .color($r("app.color.customDialog_diaLogDivider_fontColor"))
+        .margin({ left: $r("app.integer.customDialog_diaLogDivider_margin_left") })
     }
   }
 }

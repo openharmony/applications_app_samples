@@ -16,7 +16,7 @@
 import { BasicDataSource } from '@ohos/chatList'
 import { ChatContact, FriendMoment } from '@ohos/chatList'
 import router from '@ohos.router'
-import resourceManager from '@ohos.resourceManager'
+import resourceManager from '@ohos.resourceManager';
 
 // 获取资源文本
 async function getResourceString<T extends resourceManager.Resource>(manager: resourceManager.ResourceManager, resource: T): Promise<string> {
