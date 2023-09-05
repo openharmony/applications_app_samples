@@ -75,6 +75,58 @@
     {
       "name": "layout_minus_8",
       "value": -8
+    },
+    {
+      "name": "search_font_size",
+      "value": 18
+    },
+    {
+      "name": "search_border_radius",
+      "value": 4
+    },
+    {
+      "name": "search_outline_height",
+      "value": 50
+    },
+    {
+      "name": "search_outline_padding_left",
+      "value": 10
+    },
+    {
+      "name": "search_outline_padding_right",
+      "value": 10
+    },
+    {
+      "name": "search_outline_padding_top",
+      "value": 2
+    },
+    {
+      "name": "search_outline_padding_bottom",
+      "value": 13
+    },
+    {
+      "name": "chat_list_divider_stroke_width",
+      "value": 1
+    },
+    {
+      "name": "chat_list_divider_start_margin",
+      "value": 80
+    },
+    {
+      "name": "chat_list_divider_end_margin",
+      "value": 0
+    },
+    {
+      "name": "chat_list_delete_font_size",
+      "value": 20
+    },
+    {
+      "name": "chat_list_delete_width",
+      "value": 80
+    },
+    {
+      "name": "chat_list_delete_height",
+      "value": 70
     }
   ]
 }

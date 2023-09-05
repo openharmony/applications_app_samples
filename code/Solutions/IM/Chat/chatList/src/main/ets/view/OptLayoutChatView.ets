@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
 import Logger from '../utils/Logger';
 import { ChatModel, ChatContact } from '../viewModel/MsgBase';
+import router from '@ohos.router';
 import PageConstants from '../utils/PageConstants';
 
 const TAG: string = 'ChatList_ChatView';
@@ -45,7 +45,7 @@ struct ReusableOptLayoutChatView {
 @Component
 struct OptLayoutChatView {
   private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
-  @StorageLink('img_syncLoad') img_syncLoad: boolean | undefined = AppStorage.get('img_syncLoad');
+  @StorageLink('img_syncLoad') imageSyncLoad: boolean | undefined = AppStorage.get('img_syncLoad');
 
   build() {
     RelativeContainer() {
@@ -57,8 +57,8 @@ struct OptLayoutChatView {
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
         })
-        .syncLoad(this.img_syncLoad ? true : false)
-        .id('figure')
+        .syncLoad(this.imageSyncLoad ? true : false)
+        .id("figure")
 
       if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
         Text(`${this.chatItem.unreadMsgCount}`)
@@ -120,6 +120,7 @@ struct OptLayoutChatView {
       top: $r('app.integer.layout_10'),
       bottom: $r('app.integer.layout_10')
     })
+
     .onClick(() => {
       router.pushUrl({
         url: PageConstants.DETAIL_PAGE,

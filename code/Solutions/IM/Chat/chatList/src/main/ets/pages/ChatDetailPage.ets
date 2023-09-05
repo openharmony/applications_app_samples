@@ -17,37 +17,38 @@ import { BasicDataSource } from '../viewModel/BasicDataSource';
 import { MessageBase, ChatContact, TextMessage, ImageMessage, MessageBody } from '../viewModel/MsgBase';
 import { getMessageListFromJSON } from '../utils/DataFactory';
 import router from '@ohos.router';
-import { ImgTextMessage, FileMessage } from '../viewModel/MsgBase';
+import { ImageTextMessage, FileMessage } from '../viewModel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
 
 @Preview
 @Component
 struct ChatDetailPage {
-  @State msgLength: number = 0
-  userMyself = new ChatContact('1', $r('app.string.myself'))
-  userFriend = new ChatContact('2', $r('app.string.friend'))
-  msg = new TextMessage($r('app.string.message1'))
-  msg2 = new TextMessage($r('app.string.message2'))
-  tdate = new Date()
-  msgbody = new MessageBase('1', this.userMyself, this.userFriend, this.msg2, 1, this.tdate.getSeconds())
-  @State keyboardStr: string = ''
-  private chatDetailData = new ChatDetailData()
-  private scroller: Scroller = new Scroller()
-  @State imgFile: PixelMap | null = null
-  @State wantId: number = 0
-  @State fdImg: number = 0
-  @State userMyselfName: string = ''
-  @State userFriendName: string = ''
-  @State listHeight: number = 0
-  private params = router.getParams() as Record<string, Object>
-  chatId: number = this.params.chatId as number
-  chatName: string | Resource = this.params.chatName as string | Resource
-  chatImg: string | Resource = this.params.chatImg as string | Resource
-  lastMsg: string | Resource = this.params.lastMsg as string | Resource
+  @State msgLength: number = 0;
+  userMyself = new ChatContact('1', $r('app.string.myself'));
+  userFriend = new ChatContact('2', $r('app.string.friend'));
+  msg = new TextMessage($r('app.string.message1'));
+  msgAnother = new TextMessage($r('app.string.message2'));
+  todayDate = new Date();
+  msgBody = new MessageBase('1', this.userMyself, this.userFriend, this.msgAnother, 1, this.todayDate.getSeconds());
+  @State keyboardStr: string = '';
+  private chatDetailData = new ChatDetailData();
+  private scroller: Scroller = new Scroller();
+  @State imageFile: PixelMap | null = null;
+  @State wantId: number = 0;
+  @State fdImg: number = 0;
+  @State userMyselfName: string = '';
+  @State userFriendName: string = '';
+  @State listHeight: number = 0;
+  private params = router.getParams() as Record<string, Object>;
+  chatId: number = this.params.chatId as number;
+  chatName: string | Resource = this.params.chatName as string | Resource;
+  chatImg: string | Resource = this.params.chatImg as string | Resource;
+  lastMsg: string | Resource = this.params.lastMsg as string | Resource;
 
   build() {
     Column() {
+      // 顶部导航栏
       Row() {
         Image($r('app.media.left'))
           .id('returnBtn')
@@ -55,7 +56,7 @@ struct ChatDetailPage {
           .width(23)
           .margin({ top: 8 })
           .onClick(() => {
-            router.back()
+            router.back();
           })
 
         Text(this.chatName)
@@ -82,7 +83,7 @@ struct ChatDetailPage {
       List({ scroller: this.scroller, initialIndex: this.msgLength - 1 }) {
         LazyForEach(this.chatDetailData, (msg: MessageBase) => {
           ListItem() {
-            ChatItemView({ msg: msg, imgFile: $imgFile })
+            ChatItemView({ msg: msg, imageFile: $imageFile });
           }
         }, (msg: MessageBase) => msg.msgId)
       }
@@ -92,7 +93,7 @@ struct ChatDetailPage {
       .layoutWeight(1)
       .width('100%')
 
-      //底部输入框
+      // 底部输入框
       Row({ space: 5 }) {
         Image($r('app.media.chatting_setmode_voice'))
           .height(20)
@@ -104,30 +105,30 @@ struct ChatDetailPage {
           .backgroundColor($r('app.color.detail_bottom_text_input_background'))
           .enterKeyType(EnterKeyType.Send)
           .onChange((value: string) => {
-            this.keyboardStr = value
+            this.keyboardStr = value;
           })
-          .onSubmit((enterKey) => {
-            this.tdate = new Date()
-            let msg = new TextMessage(this.keyboardStr)
+          .onSubmit(() => {
+            this.todayDate = new Date();
+            let msg = new TextMessage(this.keyboardStr);
             let msgBody = new MessageBase(this.chatDetailData.totalCount()
-              .toString(), this.userMyself, this.userFriend, msg, 1, this.tdate.getSeconds())
-            this.chatDetailData.pushData(msgBody)
-            this.msgLength = this.chatDetailData.totalCount()
-            this.scroller.scrollToIndex(this.msgLength - 1)
-            this.keyboardStr = ''
+              .toString(), this.userMyself, this.userFriend, msg, 1, this.todayDate.getSeconds());
+            this.chatDetailData.pushData(msgBody);
+            this.msgLength = this.chatDetailData.totalCount();
+            this.scroller.scrollToIndex(this.msgLength - 1);
+            this.keyboardStr = '';
           })
         Image($r('app.media.chatting_expression'))
           .id('chatExpression')
           .height(20)
           .width(20)
           .onClick(() => {
-            let imagestr = `/resources/images/photo${((this.chatId) % 50)}.jpg`
-            let msg = new ImageMessage(40, 50, imagestr)
+            let imageStr = `/resources/images/photo${((this.chatId) % 50)}.jpg`;
+            let msg = new ImageMessage(40, 50, imageStr);
             let msgBody = new MessageBase(this.chatDetailData.totalCount()
-              .toString(), this.userMyself, this.userFriend, msg, 2)
-            this.chatDetailData.pushData(msgBody)
-            this.msgLength = this.chatDetailData.totalCount()
-            this.scroller.scrollToIndex(this.msgLength - 1)
+              .toString(), this.userMyself, this.userFriend, msg, 2);
+            this.chatDetailData.pushData(msgBody);
+            this.msgLength = this.chatDetailData.totalCount();
+            this.scroller.scrollToIndex(this.msgLength - 1);
           })
         Image($r('app.media.type_select'))
           .height(20)
@@ -143,55 +144,57 @@ struct ChatDetailPage {
   }
 
   async convertResourceToString(resource: Resource) {
-    let context = getContext(this)
-    let manager = context.resourceManager
-    return await manager.getStringValue(resource.id)
+    let context = getContext(this);
+    let manager = context.resourceManager;
+    return await manager.getStringValue(resource.id);
   }
 
+  // 设定本地聊天内容
   async makeDataLocal() {
-    let chatDetailMsgList = await getMessageListFromJSON()
-    let tdate = new Date()
-    let userMyself = new ChatContact('1', $r('app.string.myself'))
-    let userFriend = new ChatContact('2', this.chatName, this.chatImg)
-    let sum = 0
+    let chatDetailMsgList = await getMessageListFromJSON();
+    let todayDate = new Date();
+    let userMyself = new ChatContact('1', $r('app.string.myself'));
+    let userFriend = new ChatContact('2', this.chatName, this.chatImg);
+    let sum = 0;
+    // 循环遍历本地数据，通过取模的方式选择文本数据或者图片数据
     for (let i = 0; i < 1000; i++) {
-      let msg: TextMessage | ImageMessage
-      let msgBody: MessageBase
+      let msg: TextMessage | ImageMessage;
+      let msgBody: MessageBase;
       if (sum % 2 === 0) {
-        msg = new TextMessage(chatDetailMsgList[i % Constants.MOCK_ELEMENT_COUNT])
+        msg = new TextMessage(chatDetailMsgList[i % Constants.MOCK_ELEMENT_COUNT]);
         if (i % 2 === 0) {
-          msgBody = new MessageBase(i.toString(), userFriend, userMyself, msg, 1, tdate.getSeconds())
+          msgBody = new MessageBase(i.toString(), userFriend, userMyself, msg, 1, todayDate.getSeconds());
         } else {
-          msgBody = new MessageBase(i.toString(), userMyself, userFriend, msg, 1, tdate.getSeconds())
+          msgBody = new MessageBase(i.toString(), userMyself, userFriend, msg, 1, todayDate.getSeconds());
         }
       } else {
-        let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`
-        msg = new ImageMessage(40, 50, imageStr)
+        let imageStr = `/resources/images/photo${(i % 50).toString()}.jpg`;
+        msg = new ImageMessage(40, 50, imageStr);
         if (i % 2 === 0) {
-          msgBody = new MessageBase(i.toString(), userFriend, userMyself, msg, 2, tdate.getSeconds())
+          msgBody = new MessageBase(i.toString(), userFriend, userMyself, msg, 2, todayDate.getSeconds());
         } else {
-          msgBody = new MessageBase(i.toString(), userMyself, userFriend, msg, 2, tdate.getSeconds())
+          msgBody = new MessageBase(i.toString(), userMyself, userFriend, msg, 2, todayDate.getSeconds());
         }
       }
       if (i % 2 === 0) {
-        sum++
+        sum++;
       }
-      this.chatDetailData.pushData(msgBody)
+      this.chatDetailData.pushData(msgBody);
     }
-    let msg1 = new TextMessage(this.lastMsg)
-    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, msg1, 1, tdate.getSeconds()))
-    this.msgLength = this.chatDetailData.totalCount()
+    let lastMsg = new TextMessage(this.lastMsg);
+    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, lastMsg, 1, todayDate.getSeconds()));
+    this.msgLength = this.chatDetailData.totalCount();
   }
 
   async aboutToAppear() {
-    this.makeDataLocal()
+    this.makeDataLocal();
   }
 }
 
 @Component
 struct ChatItemView {
-  private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0)
-  @Link imgFile: image.PixelMap
+  private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0);
+  @Link imageFile: image.PixelMap;
 
   build() {
     Column() {
@@ -255,16 +258,16 @@ struct ChatItemView {
             } else if (this.msg.msgType === 3) {
               // 接收分享的页面
               Column() {
-                Text((this.msg.msgBody as ImgTextMessage).msg)
+                Text((this.msg.msgBody as ImageTextMessage).msg)
                   .backgroundColor($r('app.color.detail_item_message_image_background'))
                   .width('100%')
                   .fontSize(15)
                   .fontColor($r('app.color.detail_item_message_image_font'))
                   .borderRadius(5)
                   .padding(10)
-                Image((this.msg.msgBody as ImgTextMessage).image)
-                  .width((this.msg.msgBody as ImgTextMessage).width)
-                  .height((this.msg.msgBody as ImgTextMessage).height)
+                Image((this.msg.msgBody as ImageTextMessage).image)
+                  .width((this.msg.msgBody as ImageTextMessage).width)
+                  .height((this.msg.msgBody as ImageTextMessage).height)
                   .objectFit(ImageFit.Contain)
               }
               .margin({ left: '40%' })
@@ -291,25 +294,25 @@ struct ChatItemView {
 }
 
 class ChatDetailData extends BasicDataSource<MessageBase> {
-  msgList: Array<MessageBase> = []
+  msgList: Array<MessageBase> = [];
 
   public totalCount(): number {
-    return this.msgList.length
+    return this.msgList.length;
   }
 
   public getData(index: number): MessageBase {
-    return this.msgList[index]
+    return this.msgList[index];
   }
 
   public addData(index: number, data: MessageBase): void {
-    this.msgList.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.msgList.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   public pushData(data: MessageBase): void {
-    this.msgList.push(data)
-    this.notifyDataAdd(this.msgList.length - 1)
+    this.msgList.push(data);
+    this.notifyDataAdd(this.msgList.length - 1);
   }
 }
 
-export { ChatDetailPage, ChatItemView }
+export { ChatDetailPage, ChatItemView };

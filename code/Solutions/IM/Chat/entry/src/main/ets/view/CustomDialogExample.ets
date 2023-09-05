@@ -16,30 +16,36 @@
 import resourceManager from '@ohos.resourceManager';
 
 class PromptType {
-  img: string | Resource = ''
+  image: string | Resource = ''
   text: string | Resource = ''
 }
 
+// 首页右上角点击加号时弹出的列表
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) })
-  @StorageLink('lazy_for_each') lazy_for_each: boolean | undefined = AppStorage.get('lazy_for_each')
-  @StorageLink('reusable') reusable: boolean | undefined = AppStorage.get('reusable')
-  @StorageLink('img_syncLoad') img_syncLoad: boolean | undefined = AppStorage.get('img_syncLoad')
-  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout')
-  @StorageLink('list_cachedCount') list_cachedCount: boolean | undefined = AppStorage.get('list_cachedCount')
+  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) });
+  // 懒加载开关
+  @StorageLink('lazy_for_each') lazyForEach: boolean | undefined = AppStorage.get('lazy_for_each');
+  // 组件复用开关
+  @StorageLink('reusable') reusable: boolean | undefined = AppStorage.get('reusable');
+  // 同步加载开关
+  @StorageLink('image_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('image_sync_load');
+  // 布局优化开关
+  @StorageLink('page_layout') pageLayout: boolean | undefined = AppStorage.get('page_layout');
+  // 缓存数量开关
+  @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
   private promptArr: PromptType[] = [
-    { img: $r('app.media.pic1'), text: $r('app.string.add_friends') },
-    { img: $r('app.media.pic2'), text: $r('app.string.group_chat') },
-    { img: $r('app.media.pic3'), text: $r('app.string.scan') },
-    { img: $r('app.media.pic4'), text: $r('app.string.collection_payment') }]
-
+    { image: $r('app.media.pic1'), text: $r('app.string.add_friends') },
+    { image: $r('app.media.pic2'), text: $r('app.string.group_chat') },
+    { image: $r('app.media.pic3'), text: $r('app.string.scan') },
+    { image: $r('app.media.pic4'), text: $r('app.string.collection_payment') }];
   build() {
     Column() {
+      // 首页右上角点击加号按钮弹出的列表框的前4个item
       List({ space: 2, initialIndex: 0 }) {
-        ForEach(this.promptArr, (item: PromptType, index) => {
+        ForEach(this.promptArr, (item: PromptType) => {
           ListItem() {
-            Prompt({ img: item.img, text: item.text, controller: this.controller })
+            Prompt({ image: item.image, text: item.text, controller: this.controller })
           }
         }, (item: PromptType) => JSON.stringify(item))
       }
@@ -52,16 +58,22 @@ struct CustomDialogExample {
         startMargin: $r("app.integer.customDialog_divider_startMargin"),
         endMargin: $r("app.integer.customDialog_divider_endMargin") })
 
+      // 分隔线组件
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazy_for_each })
+      // 懒加载开关
+      ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazyForEach })
       diaLogDivider()
+      // 组件复用开关
       ToggleComponent({ text_option: $r('app.string.prop_reusable'), isOn: $reusable })
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_syncLoad'), isOn: $img_syncLoad })
+      // 同步加载开关
+      ToggleComponent({ text_option: $r('app.string.prop_syncLoad'), isOn: $imageSyncLoad })
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_layout'), isOn: $page_layout })
+      // 布局优化开关
+      ToggleComponent({ text_option: $r('app.string.prop_layout'), isOn: $pageLayout })
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_cachedCount'), isOn: $list_cachedCount })
+      // 缓存数量开关
+      ToggleComponent({ text_option: $r('app.string.prop_cachedCount'), isOn: $listCachedCount })
     }
     .backgroundColor($r("app.color.customDialog_list_backgroundColor"))
     .borderRadius($r("app.integer.customDialog_list_borderRadius"))
@@ -73,15 +85,16 @@ struct CustomDialogExample {
   }
 }
 
+// 由图片icon和文字构成的组件Prompt
 @Component
 struct Prompt {
-  img: string | Resource = $r("app.media.empresa")
-  text: string | Resource = ''
-  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) })
+  image: string | Resource = $r("app.media.empresa");
+  text: string | Resource = '';
+  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) });
 
   build() {
     Row() {
-      Image(this.img)
+      Image(this.image)
         .height($r("app.integer.customDialog_Prompt_Image_height"))
         .width($r("app.integer.customDialog_Prompt_Image_width"))
         .margin({
@@ -107,6 +120,7 @@ struct Prompt {
   }
 }
 
+// 分隔线组件
 @Component
 struct diaLogDivider {
   resource: Resource = $r('app.float.customDialog_diaLogDivider_strokeWidth')
@@ -126,14 +140,16 @@ struct diaLogDivider {
   }
 }
 
+// 由按钮开关和文字构成的组件ToggleComponent
 @Component
 struct ToggleComponent {
-  text_option: string | Resource = ''
-  @Link isOn: boolean
+  text_option: string | Resource = '';
+  @Link isOn: boolean;
 
   build() {
     Column() {
       Row() {
+        // 状态按钮样式的开关组件
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
           .selectedColor($r("app.color.customDialog_Toggle_selectedColor"))
           .width($r("app.integer.customDialog_Toggle_width"))

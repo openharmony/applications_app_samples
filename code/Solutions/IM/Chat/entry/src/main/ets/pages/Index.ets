@@ -21,9 +21,9 @@ import { TopBar } from '../view/TopBar'
 
 PersistentStorage.persistProp('lazy_for_each', true);
 PersistentStorage.persistProp('reusable', true);
-PersistentStorage.persistProp('img_syncLoad', true);
+PersistentStorage.persistProp('image_sync_load', true);
 PersistentStorage.persistProp('page_layout', true);
-PersistentStorage.persistProp('list_cachedCount', true);
+PersistentStorage.persistProp('list_cached_count', true);
 
 @Entry
 @Component
