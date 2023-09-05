@@ -13,122 +13,121 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
+@Observed
+class SettingMenu {
+  public id: string; // 唯一id
+  public image: Resource; // 菜单图标
+  public text: Resource; // 菜单文本
 
+  constructor(id: string, image: Resource, text: Resource) {
+    this.id = id;
+    this.image = image;
+    this.text = text;
+  }
+}
+
+@Preview
 @Component
 export struct SettingPage {
-  private scroller: Scroller = new Scroller()
+  @State basicMenuGroup: SettingMenu[] = [
+    new SettingMenu('album', $r('app.media.icon_me_photo'), $r('app.string.album')),
+    new SettingMenu('collection', $r('app.media.icon_me_collect'), $r('app.string.collection')),
+    new SettingMenu('wallet', $r('app.media.icon_me_money'), $r('app.string.wallet')),
+    new SettingMenu('card', $r('app.media.icon_me_card'), $r('app.string.card'))
+  ]; // 基础功能分组
+  @State otherMenuGroup: SettingMenu[] = [
+    new SettingMenu('expression', $r('app.media.icon_me_smail'), $r('app.string.expression')),
+    new SettingMenu('setting', $r('app.media.icon_me_setting'), $r('app.string.setting')),
+    new SettingMenu('chat_history', $r('app.media.icon_me_setting'), $r('app.string.chat_list'))
+  ]; // 其他功能分组
 
   build() {
     Column() {
-      Scroll(this.scroller) {
-        Column() {
+      Column() {
+        Row() {
+          Image($r('app.media.head_image'))
+            .width($r('app.integer.setting_head_image_width'))
+            .height($r('app.integer.setting_head_image_width'))
           Column() {
             Row() {
-              Image($r('app.media.personality3'))
-                .width(80)
-                .height(80)
-              Column({ space: 10 }) {
-                Row() {
-                  Text($r('app.string.myself'))
-                    .fontSize(15)
-                    .fontColor(Color.Black)
-                }
-
-                Text("聊天号：*******")
-                  .fontSize(15)
-                  .fontColor(Color.Black)
-              }
-              .id('mineMessage')
-              .alignItems(HorizontalAlign.Start)
-              .padding({ left: 20 })
+              Text($r('app.string.myself'))
+                .fontSize($r('app.integer.setting_name_font_size'))
+                .fontColor($r('app.color.setting_text_color'))
             }
-            .backgroundColor(Color.White)
-            .padding(10)
-            .backgroundColor(Color.White)
-            .width('100%')
+            Text($r('app.string.chat_number'))
+              .fontSize($r('app.integer.setting_name_font_size'))
+              .fontColor($r('app.color.setting_text_color'))
           }
-          .backgroundColor(Color.White)
-          .height(100)
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/UserInfo' })
-          })
-          .margin({ bottom: 10 })
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_photo'), text: $r("app.string.album") })
-          }
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_collect'), text: $r("app.string.collection") })
-          }
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_money'), text: $r("app.string.wallet") })
-          }
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_card'), text: $r("app.string.card") })
-          }
-          .margin({ bottom: 10 })
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_smail'), text: $r("app.string.expression") })
-          }
-          .margin({ bottom: 10 })
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_setting'), text: $r("app.string.setting") })
-          }
-          .id('setting')
-          .margin({ bottom: 10 })
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/Setting' })
-          })
-
-          Column() {
-            SettingItemView({ image: $r('app.media.icon_me_setting'), text: $r("app.string.chat_list") })
-          }
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/Index' })
-          })
+          .alignItems(HorizontalAlign.Start)
+          .padding({ left: $r('app.integer.setting_name_padding_left') })
         }
+        .padding($r('app.integer.setting_head_padding_left'))
+        .width($r('app.string.layout_100'))
+      }
+      .backgroundColor($r('app.color.setting_text_background'))
+      .height($r('app.integer.setting_head_column_height'))
+      .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
+
+      // 创建基础功能分组
+      List() {
+        ForEach(this.basicMenuGroup,
+          (item: SettingMenu) => {
+            ListItem() {
+              SettingItemView({ image: item.image, text: item.text })
+            }
+          },
+          (item: SettingMenu) => item.id.toString())
+      }
+      .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
+
+      // 创建其他功能分组
+      List() {
+        ForEach(this.otherMenuGroup,
+          (item: SettingMenu) => {
+            ListItem() {
+              SettingItemView({ image: item.image, text: item.text })
+                .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
+            }
+          },
+          (item: SettingMenu) => item.id.toString())
       }
     }
-    .backgroundColor("#cccccc")
-    .width("100%")
-    .height("100%")
+    .backgroundColor($r('app.color.setting_column_color'))
+    .width($r('app.string.layout_100'))
+    .height($r('app.string.layout_100'))
   }
+
 }
 
 @Component
 export struct SettingItemView {
-  private image: string | Resource
-  private text: string | Resource
+  private image: string | Resource; // 功能菜单图标
+  private text: string | Resource; // 功能菜单文本
 
   build() {
     Stack({ alignContent: Alignment.End }) {
       Row() {
         Image(this.image)
-          .width(45)
-          .height(45)
+          .width($r('app.integer.setting_menu_width'))
+          .height($r('app.integer.setting_menu_width'))
         Text(this.text)
-          .fontSize(20)
-          .fontColor('#000000')
-          .margin({ left: 10 })
+          .fontSize($r('app.integer.setting_menu_font_size'))
+          .fontColor($r('app.color.setting_text_color'))
+          .margin({ left: $r('app.integer.setting_menu_margin_left') })
       }
-      .width('100%')
-      .height(60)
-      .padding({ left: 15, right: 15 })
-      .backgroundColor(Color.White)
+      .width($r('app.string.layout_100'))
+      .height($r('app.integer.setting_menu_height'))
+      .padding({ left: $r('app.integer.setting_menu_padding_left'),
+        right: $r('app.integer.setting_menu_padding_left') })
+      .backgroundColor($r('app.color.setting_text_background'))
 
-      Image($r('app.media.right'))
-        .height(30)
-        .width(20)
+      Image($r('app.media.right_arrow'))
+        .height($r('app.integer.setting_menu_arrow_height'))
+        .width($r('app.integer.setting_menu_arrow_width'))
         .align(Alignment.End)
-        .margin({ right: 15 })
+        .margin({ right: $r('app.integer.setting_menu_padding_left') })
     }
-    .width('100%')
-    .height(60)
+    .width($r('app.string.layout_100'))
+    .height($r('app.integer.setting_menu_height'))
   }
 }
