@@ -3,6 +3,15 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },{
+      "name": "search_font_color",
+      "value": "#999999"
+    },{
+      "name": "search_outline_background_color",
+      "value": "#eeeeee"
+    },{
+      "name": "chat_list_divider_color",
+      "value": "#f3f3f3"
     },
     {
       "name": "detail_return_background",
@@ -47,6 +56,18 @@
     {
       "name": "detail_item_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "chat_view_text_color",
+      "value": "#999999"
+    },
+    {
+      "name": "unread_msg_tip",
+      "value": "#ea6055"
+    },
+    {
+      "name": "friends_page_background",
+      "value": "#e3e3e3"
     }
   ]
 }

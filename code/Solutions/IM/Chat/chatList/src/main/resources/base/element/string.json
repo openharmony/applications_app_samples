@@ -171,6 +171,26 @@
     {
       "name": "permission_internet",
       "value": "允许使用Internet网络"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_50",
+      "value": "50"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "layout_92",
+      "value": "92%"
     }
   ]
 }

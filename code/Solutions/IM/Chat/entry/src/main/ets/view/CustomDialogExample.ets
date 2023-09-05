@@ -13,27 +13,33 @@
  * limitations under the License.
  */
 
-
+// 首页右上角点击加号时弹出的列表
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController
-  @StorageLink('lazy_for_each') lazy_for_each: boolean = AppStorage.get('lazy_for_each')
-  @StorageLink('reusable') reusable: boolean = AppStorage.get('reusable')
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout')
-  @StorageLink('list_cachedCount') list_cachedCount: boolean = AppStorage.get('list_cachedCount')
+  controller: CustomDialogController;
+  // 懒加载开关
+  @StorageLink('lazy_for_each') lazyForEach: boolean = AppStorage.get('lazy_for_each');
+  // 组件复用开关
+  @StorageLink('reusable') reusable: boolean = AppStorage.get('reusable');
+  // 同步加载开关
+  @StorageLink('image_sync_load') imageSyncLoad: boolean = AppStorage.get('image_sync_load');
+  // 布局优化开关
+  @StorageLink('page_layout') pageLayout: boolean = AppStorage.get('page_layout');
+  // 缓存数量开关
+  @StorageLink('list_cached_count') listCachedCount: boolean = AppStorage.get('list_cached_count');
   private promptArr = [
-    { img: $r('app.media.pic1'), text: $r('app.string.add_friends') },
-    { img: $r('app.media.pic2'), text: $r('app.string.group_chat') },
-    { img: $r('app.media.pic3'), text: $r('app.string.scan') },
-    { img: $r('app.media.pic4'), text: $r('app.string.collection_payment') }]
+    { image: $r('app.media.pic1'), text: $r('app.string.add_friends') },
+    { image: $r('app.media.pic2'), text: $r('app.string.group_chat') },
+    { image: $r('app.media.pic3'), text: $r('app.string.scan') },
+    { image: $r('app.media.pic4'), text: $r('app.string.collection_payment') }];
 
   build() {
     Column() {
+      // 首页右上角点击加号按钮弹出的列表框的前4个item
       List({ space: 2, initialIndex: 0 }) {
-        ForEach(this.promptArr, (item, index) => {
+        ForEach(this.promptArr, (item) => {
           ListItem() {
-            Prompt({ img: item.img, text: item.text, controller: this.controller })
+            Prompt({ image: item.image, text: item.text, controller: this.controller })
           }
         }, item => JSON.stringify(item))
       }
@@ -44,38 +50,51 @@ struct CustomDialogExample {
         strokeWidth: $r("app.float.customDialog_list_friction"),
         color: $r("app.color.customDialog_list_divider_color"),
         startMargin: $r("app.integer.customDialog_divider_startMargin"),
-        endMargin:$r("app.integer.customDialog_divider_endMargin") })
+        endMargin: $r("app.integer.customDialog_divider_endMargin") })
 
+      // 分隔线组件
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazy_for_each })
+      // 懒加载开关
+      ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazyForEach })
       diaLogDivider()
+      // 组件复用开关
       ToggleComponent({ text_option: $r('app.string.prop_reusable'), isOn: $reusable })
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_syncLoad'), isOn: $img_syncLoad })
+      // 同步加载开关
+      ToggleComponent({ text_option: $r('app.string.prop_syncLoad'), isOn: $imageSyncLoad })
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_layout'), isOn: $page_layout })
+      // 布局优化开关
+      ToggleComponent({ text_option: $r('app.string.prop_layout'), isOn: $pageLayout })
       diaLogDivider()
-      ToggleComponent({ text_option: $r('app.string.prop_cachedCount'), isOn: $list_cachedCount })
+      // 缓存数量开关
+      ToggleComponent({ text_option: $r('app.string.prop_cachedCount'), isOn: $listCachedCount })
     }
     .backgroundColor($r("app.color.customDialog_list_backgroundColor"))
     .borderRadius($r("app.integer.customDialog_list_borderRadius"))
-    .padding({ left: $r("app.integer.customDialog_list_padding_left"), bottom: $r("app.integer.customDialog_list_padding_bottom") })
+    .padding({
+      left: $r("app.integer.customDialog_list_padding_left"),
+      bottom: $r("app.integer.customDialog_list_padding_bottom")
+    })
     .width($r("app.integer.customDialog_list_width"))
   }
 }
 
+// 由图片icon和文字构成的组件Prompt
 @Component
 struct Prompt {
-  @State img: Resource = $r("app.media.empresa")
-  text: string | Resource
-  controller: CustomDialogController
+  @State image: Resource = $r("app.media.empresa");
+  text: string | Resource;
+  controller: CustomDialogController;
 
   build() {
     Row() {
-      Image(this.img)
+      Image(this.image)
         .height($r("app.integer.customDialog_Prompt_Image_height"))
         .width($r("app.integer.customDialog_Prompt_Image_width"))
-        .margin({ top: $r("app.integer.customDialog_Prompt_Image_margin_top"), right: $r("app.integer.customDialog_Prompt_Image_margin_right") })
+        .margin({
+          top: $r("app.integer.customDialog_Prompt_Image_margin_top"),
+          right: $r("app.integer.customDialog_Prompt_Image_margin_right")
+        })
       Text(this.text)
         .fontSize($r("app.integer.customDialog_Prompt_Text_fontSize"))
         .fontColor($r("app.color.customDialog_Prompt_Text_fontColor"))
@@ -95,26 +114,29 @@ struct Prompt {
   }
 }
 
+// 分隔线组件
 @Component
 struct diaLogDivider {
   build() {
-    Column(){
+    Column() {
       Divider()
         .strokeWidth(getContext().resourceManager.getNumber($r('app.float.customDialog_diaLogDivider_strokeWidth')))
         .color($r("app.color.customDialog_diaLogDivider_fontColor"))
-        .margin({ left : $r("app.integer.customDialog_diaLogDivider_margin_left") })
+        .margin({ left: $r("app.integer.customDialog_diaLogDivider_margin_left") })
     }
   }
 }
 
+// 由按钮开关和文字构成的组件ToggleComponent
 @Component
 struct ToggleComponent {
-  text_option: string | Resource
-  @Link isOn: boolean
+  text_option: string | Resource;
+  @Link isOn: boolean;
 
   build() {
     Column() {
       Row() {
+        // 状态按钮样式的开关组件
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
           .selectedColor($r("app.color.customDialog_Toggle_selectedColor"))
           .width($r("app.integer.customDialog_Toggle_width"))

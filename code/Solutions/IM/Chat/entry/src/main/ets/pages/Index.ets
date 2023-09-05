@@ -23,22 +23,22 @@ const TAB_INDEX_0: number = 0;
 const TAB_INDEX_1: number = 1;
 const TAB_INDEX_2: number = 2;
 const TAB_INDEX_3: number = 3;
-const chatIconNormal : string = "./resources/images/chatIconNormal.png" // 聊天未选中图片路径
-const chatIconSelected : string = "./resources/images/chatIconSelected.png" // 聊天选中图片路径
-const contactIconNormal : string = "./resources/images/contactIconNormal.png" // 通讯录未选中图片路径
-const contactIconSelected : string = "./resources/images/contactIconSelected.png" // 通讯录选中图片路径
-const findIconNormal : string = "./resources/images/findIconNormal.png" // 发现未选中图片路径
-const findIconSelected : string = "./resources/images/findIconSelected.png" // 发现选中图片路径
-const profileIconNormal : string = "./resources/images/profileIconNormal.png" // 我未选中图片路径
-const profileIconSelected : string = "./resources/images/profileIconSelected.png" // 我选中图片路径
+const chatIconNormal : string = './resources/images/chatIconNormal.png'; // 聊天未选中图片路径
+const chatIconSelected : string = './resources/images/chatIconSelected.png'; // 聊天选中图片路径
+const contactIconNormal : string = './resources/images/contactIconNormal.png'; // 通讯录未选中图片路径
+const contactIconSelected : string = './resources/images/contactIconSelected.png'; // 通讯录选中图片路径
+const findIconNormal : string = './resources/images/findIconNormal.png'; // 发现未选中图片路径
+const findIconSelected : string = './resources/images/findIconSelected.png'; // 发现选中图片路径
+const profileIconNormal : string = './resources/images/profileIconNormal.png'; // 我未选中图片路径
+const profileIconSelected : string = './resources/images/profileIconSelected.png'; // 我选中图片路径
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout') // AppStorage中key对应的属性建立双向数据同步
-  @State currentIndex: number = TAB_INDEX_0 // tabBar初始选中的位置
-  @State message: Resource = $r('app.string.chat')
-  private controller: TabsController = new TabsController()
+  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout'); // AppStorage中key对应的属性建立双向数据同步
+  @State currentIndex: number = TAB_INDEX_0; // tabBar初始选中的位置
+  @State message: Resource = $r('app.string.chat');
+  private controller: TabsController = new TabsController();
 
   // 设置tabBar样式的位置、未选中图片、选中图片及文字显示的参数
   @Builder

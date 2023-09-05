@@ -151,6 +151,54 @@
     {
       "name": "customDialog_diaLogDivider_margin_left",
       "value": 40
+    },
+    {
+      "name": "layout_250",
+      "value": 250
+    },
+    {
+      "name": "layout_50",
+      "value": 50
+    },
+    {
+      "name": "layout_1",
+      "value": 1
+    },
+    {
+      "name": "layout_minus_25",
+      "value": -25
+    },
+    {
+      "name": "top_bar_font_size",
+      "value": 20
+    },
+    {
+      "name": "top_bar_text_height",
+      "value": 50
+    },
+    {
+      "name": "top_bar_add_button_image_height",
+      "value": 23
+    },
+    {
+      "name": "top_bar_add_button_image_width",
+      "value": 23
+    },
+    {
+      "name": "top_bar_add_button_width",
+      "value": 70
+    },
+    {
+      "name": "top_bar_add_button_height",
+      "value": 50
+    },
+    {
+      "name": "top_bar_add_button_padding_left",
+      "value": 20
+    },
+    {
+      "name": "top_bar_height",
+      "value": 50
     }
   ]
 }
