@@ -34,7 +34,6 @@ struct ChatDetailPage {
   @State keyboardStr: string = '';
   private chatDetailData = new ChatDetailData();
   private scroller: Scroller = new Scroller();
-  @State imageFile: PixelMap | null = null;
   @State wantId: number = 0;
   @State fdImg: number = 0;
   @State userMyselfName: string = '';
@@ -83,7 +82,7 @@ struct ChatDetailPage {
       List({ scroller: this.scroller, initialIndex: this.msgLength - 1 }) {
         LazyForEach(this.chatDetailData, (msg: MessageBase) => {
           ListItem() {
-            ChatItemView({ msg: msg, imageFile: $imageFile });
+            ChatItemView({ msg: msg });
           }
         }, (msg: MessageBase) => msg.msgId)
       }
@@ -194,7 +193,6 @@ struct ChatDetailPage {
 @Component
 struct ChatItemView {
   private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0);
-  @Link imageFile: image.PixelMap;
 
   build() {
     Column() {

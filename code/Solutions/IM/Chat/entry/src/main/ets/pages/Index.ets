@@ -13,46 +13,48 @@
  * limitations under the License.
  */
 
-import { ChatListDisplayView } from "@ohos/chatList"
-import { FriendsPage } from './FriendsPage'
-import { DiscoverPage } from './DiscoverPage'
-import { SettingPage } from './SettingPage'
-import { TopBar } from '../view/TopBar'
+import { ChatListDisplayView } from "@ohos/chatList";
+import { FriendsPage } from './FriendsPage';
+import { DiscoverPage } from './DiscoverPage';
+import { SettingPage } from './SettingPage';
+import { TopBar } from '../view/TopBar';
 
-PersistentStorage.persistProp('lazy_for_each', true);
-PersistentStorage.persistProp('reusable', true);
-PersistentStorage.persistProp('image_sync_load', true);
-PersistentStorage.persistProp('page_layout', true);
-PersistentStorage.persistProp('list_cached_count', true);
+const TAB_INDEX_0: number = 0;
+const TAB_INDEX_1: number = 1;
+const TAB_INDEX_2: number = 2;
+const TAB_INDEX_3: number = 3;
+const chatIconNormal : string = './resources/images/chatIconNormal.png'; // 聊天未选中图片路径
+const chatIconSelected : string = './resources/images/chatIconSelected.png'; // 聊天选中图片路径
+const contactIconNormal : string = './resources/images/contactIconNormal.png'; // 通讯录未选中图片路径
+const contactIconSelected : string = './resources/images/contactIconSelected.png'; // 通讯录选中图片路径
+const findIconNormal : string = './resources/images/findIconNormal.png'; // 发现未选中图片路径
+const findIconSelected : string = './resources/images/findIconSelected.png'; // 发现选中图片路径
+const profileIconNormal : string = './resources/images/profileIconNormal.png'; // 我未选中图片路径
+const profileIconSelected : string = './resources/images/profileIconSelected.png'; // 我选中图片路径
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout')
-  @State currentIndex: number = 0
-  @State message: Resource = $r('app.string.chat')
-  private controller: TabsController = new TabsController()
+  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout'); // AppStorage中key对应的属性建立双向数据同步
+  @State currentIndex: number = TAB_INDEX_0; // tabBar初始选中的位置
+  @State message: Resource = $r('app.string.chat');
+  private controller: TabsController = new TabsController();
 
-  aboutToAppear(): void {
-  }
-
-  onPageShow() {
-  }
-
+  // 设置tabBar样式的位置、未选中图片、选中图片及文字显示的参数
   @Builder
-  TabBuilder(index: number, img: string, text: Resource) {
+  TabBuilder(index: number, imageNormal: string, imageSelected: string, text: Resource) {
     Column() {
-      Image(this.currentIndex === index ? `${img}_pressed.png` : `${img}.png`)
+      Image(this.currentIndex === index ? imageSelected : imageNormal)
         .syncLoad(true)
-        .width(24)
-        .height(24)
-        .margin(6)
+        .width($r('app.integer.tabbar_image_width'))
+        .height($r('app.integer.tabbar_image_height'))
+        .margin($r('app.integer.tabbar_image_margin'))
         .objectFit(ImageFit.Contain)
       Text(text)
-        .fontSize(10)
+        .fontSize($r('app.integer.tabbar_item_font_size'))
     }
-    .height('100%')
-    .width('100%')
+    .height($r('app.string.layout_100'))
+    .width($r('app.string.layout_100'))
   }
 
   build() {
@@ -63,38 +65,37 @@ struct Index {
           ChatListDisplayView()
         }
       }
-      .tabBar(this.TabBuilder(0, '/resources/images/chatIcon', $r('app.string.chat')))
+      .tabBar(this.TabBuilder(TAB_INDEX_0, chatIconNormal, chatIconSelected, $r('app.string.chat')))
 
       TabContent() {
         FriendsPage()
       }
-      .tabBar(this.TabBuilder(1, '/resources/images/contact', $r('app.string.contacts')))
+      .tabBar(this.TabBuilder(TAB_INDEX_1, contactIconNormal, contactIconSelected, $r('app.string.contacts')))
 
       TabContent() {
         DiscoverPage()
       }
-      .tabBar(this.TabBuilder(2, '/resources/images/find', $r('app.string.discovery')))
+      .tabBar(this.TabBuilder(TAB_INDEX_2, findIconNormal, findIconSelected, $r('app.string.discovery')))
 
       TabContent() {
         SettingPage()
       }
-      .tabBar(this.TabBuilder(3, '/resources/images/profile', $r('app.string.my')))
+      .tabBar(this.TabBuilder(TAB_INDEX_3, profileIconNormal, profileIconSelected, $r('app.string.my')))
     }
     .onChange((index: number) => {
-      this.currentIndex = index
-      if (this.currentIndex == 0) {
-        this.message = $r('app.string.chat')
-      } else if (this.currentIndex == 1) {
-        this.message = $r('app.string.contacts')
-      } else if (this.currentIndex == 2) {
-        this.message = $r('app.string.discovery')
-      } else if (this.currentIndex == 3) {
-        this.message = $r('app.string.my')
+      this.currentIndex = index;
+      if (this.currentIndex === TAB_INDEX_0) {
+        this.message = $r('app.string.chat');
+      } else if (this.currentIndex === TAB_INDEX_1) {
+        this.message = $r('app.string.contacts');
+      } else if (this.currentIndex === TAB_INDEX_2) {
+        this.message = $r('app.string.discovery');
+      } else if (this.currentIndex === TAB_INDEX_3) {
+        this.message = $r('app.string.my');
       }
     })
-    .barWidth(400)
-    .barHeight(50)
-    .animationDuration(0)
-    .backgroundColor('#EEEEEE')
+    .barWidth($r('app.integer.tabbar_width'))
+    .barHeight($r('app.integer.tabbar_height'))
+    .backgroundColor($r('app.color.start_window_background'))
   }
 }

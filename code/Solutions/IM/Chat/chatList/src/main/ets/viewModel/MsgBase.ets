@@ -48,7 +48,6 @@ enum MsgType {
 
 // 聊天信息
 export class MessageBase {
-  chatImage: PixelMap | null = null
   msgId: string
   from: ChatContact
   to: ChatContact

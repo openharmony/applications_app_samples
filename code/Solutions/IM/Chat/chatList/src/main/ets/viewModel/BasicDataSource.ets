@@ -12,8 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ChatModel } from './MsgBase'
+import { ChatModel } from './MsgBase';
 
+/**
+ * IDataSource处理数据监听的基本实现
+ */
 export abstract class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = []
 
