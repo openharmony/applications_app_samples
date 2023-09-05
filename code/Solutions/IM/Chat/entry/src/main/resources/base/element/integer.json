@@ -1,6 +1,30 @@
 {
   "integer": [
     {
+      "name": "tabbar_image_width",
+      "value": 24
+    },
+    {
+      "name": "tabbar_image_height",
+      "value": 24
+    },
+    {
+      "name": "tabbar_image_margin",
+      "value": 6
+    },
+    {
+      "name": "tabbar_width",
+      "value": 400
+    },
+    {
+      "name": "tabbar_height",
+      "value": 50
+    },
+    {
+      "name": "tabbar_item_font_size",
+      "value": 10
+    },
+    {
       "name": "customDialog_divider_startMargin",
       "value": 40
     },

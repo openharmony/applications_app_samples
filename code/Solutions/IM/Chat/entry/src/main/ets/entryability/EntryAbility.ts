@@ -24,7 +24,12 @@ const TAG: string = 'EntryAbility';
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate');
-    AppStorage.setOrCreate('want', want);
+    AppStorage.SetOrCreate('want', want);
+    PersistentStorage.persistProp('lazy_for_each', true); // 初始化PersistentStorage
+    PersistentStorage.persistProp('reusable', true); // 初始化PersistentStorage
+    PersistentStorage.persistProp('img_syncLoad', true); // 初始化PersistentStorage
+    PersistentStorage.persistProp('page_layout', true); // 初始化PersistentStorage
+    PersistentStorage.persistProp('list_cachedCount', true); // 初始化PersistentStorage
   }
 
   onDestroy() {

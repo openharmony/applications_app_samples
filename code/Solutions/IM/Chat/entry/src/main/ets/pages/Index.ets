@@ -13,46 +13,47 @@
  * limitations under the License.
  */
 
-import { ChatListDisplayView } from "@ohos/chatList"
-import { FriendsPage } from './FriendsPage'
-import { DiscoverPage } from './DiscoverPage'
-import { SettingPage } from './SettingPage'
-import { TopBar } from '../view/TopBar'
+import { ChatListDisplayView } from "@ohos/chatList";
+import { FriendsPage } from './FriendsPage';
+import { DiscoverPage } from './DiscoverPage';
+import { SettingPage } from './SettingPage';
+import { TopBar } from '../view/TopBar';
 
-PersistentStorage.persistProp('lazy_for_each', true);
-PersistentStorage.persistProp('reusable', true);
-PersistentStorage.persistProp('img_syncLoad', true);
-PersistentStorage.persistProp('page_layout', true);
-PersistentStorage.persistProp('list_cachedCount', true);
+const TAB_INDEX_0: number = 0;
+const TAB_INDEX_1: number = 1;
+const TAB_INDEX_2: number = 2;
+const TAB_INDEX_3: number = 3;
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout')
-  @State currentIndex: number = 0
+  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout') // AppStorage中key对应的属性建立双向数据同步
+  @State currentIndex: number = TAB_INDEX_0 // tabBar初始选中的位置
   @State message: Resource = $r('app.string.chat')
   private controller: TabsController = new TabsController()
 
-  aboutToAppear(): void {
-  }
-
-  onPageShow() {
-  }
-
+  /* *
+   * @methodsName: TabBuilder
+   * @description: 指定页签位置来创建Tab样式。
+   * @param: index tabBar的索引位置值
+   * @param: imageNormal 未选中图片的路径
+   * @param: imageSelected 选中图片的路径
+   * @param: text tabBarItem的文字显示
+   * */
   @Builder
-  TabBuilder(index: number, img: string, text: Resource) {
+  TabBuilder(index: number, imageNormal: string, imageSelected: string, text: Resource) {
     Column() {
-      Image(this.currentIndex === index ? `${img}_pressed.png` : `${img}.png`)
+      Image(this.currentIndex === index ? imageSelected : imageNormal)
         .syncLoad(true)
-        .width(24)
-        .height(24)
-        .margin(6)
+        .width($r('app.integer.tabbar_image_width'))
+        .height($r('app.integer.tabbar_image_height'))
+        .margin($r('app.integer.tabbar_image_margin'))
         .objectFit(ImageFit.Contain)
       Text(text)
-        .fontSize(10)
+        .fontSize($r('app.integer.tabbar_item_font_size'))
     }
-    .height('100%')
-    .width('100%')
+    .height($r('app.string.layout_100'))
+    .width($r('app.string.layout_100'))
   }
 
   build() {
@@ -63,38 +64,37 @@ struct Index {
           ChatListDisplayView()
         }
       }
-      .tabBar(this.TabBuilder(0, '/resources/images/chatIcon', $r('app.string.chat')))
+      .tabBar(this.TabBuilder(TAB_INDEX_0, "./resources/images/chatIconNormal.png", "./resources/images/chatIconSelected.png", $r('app.string.chat')))
 
       TabContent() {
         FriendsPage()
       }
-      .tabBar(this.TabBuilder(1, '/resources/images/contact', $r('app.string.contacts')))
+      .tabBar(this.TabBuilder(TAB_INDEX_1, "./resources/images/contactIconNormal.png", "./resources/images/contactIconSelected.png", $r('app.string.contacts')))
 
       TabContent() {
         DiscoverPage()
       }
-      .tabBar(this.TabBuilder(2, '/resources/images/find', $r('app.string.discovery')))
+      .tabBar(this.TabBuilder(TAB_INDEX_2, "./resources/images/findIconNormal.png", "./resources/images/findIconSelected.png", $r('app.string.discovery')))
 
       TabContent() {
         SettingPage()
       }
-      .tabBar(this.TabBuilder(3, '/resources/images/profile', $r('app.string.my')))
+      .tabBar(this.TabBuilder(TAB_INDEX_3, "./resources/images/profileIconNormal.png", "./resources/images/profileIconSelected.png", $r('app.string.my')))
     }
     .onChange((index: number) => {
       this.currentIndex = index
-      if (this.currentIndex == 0) {
+      if (this.currentIndex === TAB_INDEX_0) {
         this.message = $r('app.string.chat')
-      } else if (this.currentIndex == 1) {
+      } else if (this.currentIndex === TAB_INDEX_1) {
         this.message = $r('app.string.contacts')
-      } else if (this.currentIndex == 2) {
+      } else if (this.currentIndex === TAB_INDEX_2) {
         this.message = $r('app.string.discovery')
-      } else if (this.currentIndex == 3) {
+      } else if (this.currentIndex === TAB_INDEX_3) {
         this.message = $r('app.string.my')
       }
     })
-    .barWidth(400)
-    .barHeight(50)
-    .animationDuration(0)
-    .backgroundColor('#EEEEEE')
+    .barWidth($r('app.integer.tabbar_width'))
+    .barHeight($r('app.integer.tabbar_height'))
+    .backgroundColor($r('app.color.start_window_background'))
   }
 }
