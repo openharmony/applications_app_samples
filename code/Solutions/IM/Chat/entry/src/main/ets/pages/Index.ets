@@ -23,6 +23,14 @@ const TAB_INDEX_0: number = 0;
 const TAB_INDEX_1: number = 1;
 const TAB_INDEX_2: number = 2;
 const TAB_INDEX_3: number = 3;
+const chatIconNormal : string = "./resources/images/chatIconNormal.png" // 聊天未选中图片路径
+const chatIconSelected : string = "./resources/images/chatIconSelected.png" // 聊天选中图片路径
+const contactIconNormal : string = "./resources/images/contactIconNormal.png" // 通讯录未选中图片路径
+const contactIconSelected : string = "./resources/images/contactIconSelected.png" // 通讯录选中图片路径
+const findIconNormal : string = "./resources/images/findIconNormal.png" // 发现未选中图片路径
+const findIconSelected : string = "./resources/images/findIconSelected.png" // 发现选中图片路径
+const profileIconNormal : string = "./resources/images/profileIconNormal.png" // 我未选中图片路径
+const profileIconSelected : string = "./resources/images/profileIconSelected.png" // 我选中图片路径
 
 @Entry
 @Component
@@ -57,22 +65,22 @@ struct Index {
           ChatListDisplayView()
         }
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_0, "./resources/images/chatIconNormal.png", "./resources/images/chatIconSelected.png", $r('app.string.chat')))
+      .tabBar(this.TabBuilder(TAB_INDEX_0, chatIconNormal, chatIconSelected, $r('app.string.chat')))
 
       TabContent() {
         FriendsPage()
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_1, "./resources/images/contactIconNormal.png", "./resources/images/contactIconSelected.png", $r('app.string.contacts')))
+      .tabBar(this.TabBuilder(TAB_INDEX_1, contactIconNormal, contactIconSelected, $r('app.string.contacts')))
 
       TabContent() {
         DiscoverPage()
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_2, "./resources/images/findIconNormal.png", "./resources/images/findIconSelected.png", $r('app.string.discovery')))
+      .tabBar(this.TabBuilder(TAB_INDEX_2, findIconNormal, findIconSelected, $r('app.string.discovery')))
 
       TabContent() {
         SettingPage()
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_3, "./resources/images/profileIconNormal.png", "./resources/images/profileIconSelected.png", $r('app.string.my')))
+      .tabBar(this.TabBuilder(TAB_INDEX_3, profileIconNormal, profileIconSelected, $r('app.string.my')))
     }
     .onChange((index: number) => {
       this.currentIndex = index;
