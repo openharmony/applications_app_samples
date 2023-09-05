@@ -58,6 +58,14 @@
       "value": "#FFFFFF"
     },
     {
+      "name": "unread_msg",
+      "value": "#ea6055"
+    },
+    {
+      "name": "last_msg",
+      "value": "#999999"
+    },
+    {
       "name": "chat_view_text_color",
       "value": "#999999"
     },

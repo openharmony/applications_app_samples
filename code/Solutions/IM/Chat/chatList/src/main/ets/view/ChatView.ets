@@ -22,6 +22,7 @@ const TAG: string = 'ChatList_ChatView';
 @Reusable
 @Component
 struct ReusableChatView {
+  // 聊天列表单个项
   @State chatItem: ChatModel = undefined;
 
   aboutToReuse(params) {
@@ -59,7 +60,7 @@ struct ChatView {
               .borderRadius(10)
               .width(20)
               .height(20)
-              .backgroundColor("#ea6055")
+              .backgroundColor($r('app.color.unread_msg'))
               .fontSize(12)
               .textAlign(TextAlign.Center)
               .fontColor(Color.White)
@@ -70,13 +71,14 @@ struct ChatView {
       .layoutWeight(1)
       .padding({ right: 12 })
 
+      // 对方用户名
       Column() {
         Text(this.chatItem.user.userName)
           .fontColor(Color.Black)
           .fontSize(16)
           .margin({ bottom: 3 })
         Text(this.chatItem.lastMsg)
-          .fontColor("#999999")
+          .fontColor($r('app.color.last_msg'))
           .maxLines(1)
           .fontSize(14)
           .margin({ top: 5 })
@@ -84,10 +86,11 @@ struct ChatView {
       .alignItems(HorizontalAlign.Start)
       .layoutWeight(5)
 
+      // 最后一条消息时间
       Column() {
         Text(this.chatItem.lastTime)
           .width(50)
-          .fontColor("#999999")
+          .fontColor($r('app.color.last_msg'))
           .textAlign(TextAlign.End)
           .maxLines(1)
           .fontSize(12)
@@ -101,6 +104,7 @@ struct ChatView {
     .height(70)
     .padding({ left: 8, right: 10, top: 10, bottom: 10 })
     .onClick((event: ClickEvent) => {
+      // 进入聊天详情页
       router.pushUrl({
         url: 'pages/Detail',
         params: {

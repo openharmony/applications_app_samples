@@ -203,6 +203,46 @@
     {
       "name": "chatCommunity",
       "value": "我是聊天社区消息"
+    },
+    {
+      "name": "landscape0",
+      "value": "landscape0"
+    },
+    {
+      "name": "landscape1",
+      "value": "landscape1"
+    },
+    {
+      "name": "landscape2",
+      "value": "landscape2"
+    },
+    {
+      "name": "landscape3",
+      "value": "landscape3"
+    },
+    {
+      "name": "landscape4",
+      "value": "landscape4"
+    },
+    {
+      "name": "landscape5",
+      "value": "landscape5"
+    },
+    {
+      "name": "landscape6",
+      "value": "landscape6"
+    },
+    {
+      "name": "landscape7",
+      "value": "landscape7"
+    },
+    {
+      "name": "landscape8",
+      "value": "landscape8"
+    },
+    {
+      "name": "friendMomentsPage_owner_margin_height",
+      "value": "40%"
     }
   ]
 }

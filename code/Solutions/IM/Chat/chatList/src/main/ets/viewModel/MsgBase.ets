@@ -153,7 +153,7 @@ export class ChatContact {
   constructor(id: string, name: string | Resource, image?: string | Resource) {
     this.userId = id;
     this.userName = name;
-    this.userImage = $r('app.media.personality3');
+    this.userImage = $r('app.media.profile_photo_3');
     if (image != null) {
       this.userImage = image;
     }
