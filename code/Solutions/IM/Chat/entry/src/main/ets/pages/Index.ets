@@ -32,14 +32,7 @@ struct Index {
   @State message: Resource = $r('app.string.chat')
   private controller: TabsController = new TabsController()
 
-  /* *
-   * @methodsName: TabBuilder
-   * @description: 指定页签位置来创建Tab样式。
-   * @param: index tabBar的索引位置值
-   * @param: imageNormal 未选中图片的路径
-   * @param: imageSelected 选中图片的路径
-   * @param: text tabBarItem的文字显示
-   * */
+  // 设置tabBar样式的位置、未选中图片、选中图片及文字显示的参数
   @Builder
   TabBuilder(index: number, imageNormal: string, imageSelected: string, text: Resource) {
     Column() {
@@ -82,15 +75,15 @@ struct Index {
       .tabBar(this.TabBuilder(TAB_INDEX_3, "./resources/images/profileIconNormal.png", "./resources/images/profileIconSelected.png", $r('app.string.my')))
     }
     .onChange((index: number) => {
-      this.currentIndex = index
+      this.currentIndex = index;
       if (this.currentIndex === TAB_INDEX_0) {
-        this.message = $r('app.string.chat')
+        this.message = $r('app.string.chat');
       } else if (this.currentIndex === TAB_INDEX_1) {
-        this.message = $r('app.string.contacts')
+        this.message = $r('app.string.contacts');
       } else if (this.currentIndex === TAB_INDEX_2) {
-        this.message = $r('app.string.discovery')
+        this.message = $r('app.string.discovery');
       } else if (this.currentIndex === TAB_INDEX_3) {
-        this.message = $r('app.string.my')
+        this.message = $r('app.string.my');
       }
     })
     .barWidth($r('app.integer.tabbar_width'))

@@ -25,11 +25,11 @@ export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate');
     AppStorage.SetOrCreate('want', want);
-    PersistentStorage.persistProp('lazy_for_each', true); // 初始化PersistentStorage
-    PersistentStorage.persistProp('reusable', true); // 初始化PersistentStorage
-    PersistentStorage.persistProp('img_syncLoad', true); // 初始化PersistentStorage
-    PersistentStorage.persistProp('page_layout', true); // 初始化PersistentStorage
-    PersistentStorage.persistProp('list_cachedCount', true); // 初始化PersistentStorage
+    PersistentStorage.persistProp('lazy_for_each', true); // 懒加载初始化
+    PersistentStorage.persistProp('reusable', true); // 复用初始化
+    PersistentStorage.persistProp('img_syncLoad', true); // 图片同步加载初始化
+    PersistentStorage.persistProp('page_layout', true); // 页面布局初始化
+    PersistentStorage.persistProp('list_cachedCount', true); // 列表缓存条数初始化
   }
 
   onDestroy() {
