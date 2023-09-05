@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
-import { BasicDataSource } from '@ohos/chatList';
-import { ChatContact, FriendMoment } from '@ohos/chatList';
 import router from '@ohos.router';
-import Logger from '../utils/Logger';
+import { BasicDataSource, FriendMoment } from '@ohos/chatList';
+import { getFriendMomentObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataFactory';
+import Constants from '@ohos/chatList/src/main/ets/utils/Constants';
+import Logger from '@ohos/chatList/src/main/ets/utils/Logger';
 
-const TAG: string = '[Sample_FriendsMomentsPage]';
+const TAG: string = 'entry_FriendsMomentsPage';
+
 
 @Entry
 @Component
@@ -47,7 +49,7 @@ struct FriendsMomentsPage {
         .backgroundColor(Color.Black)
         .justifyContent(FlexAlign.SpaceBetween)
         .height($r('app.integer.friendMomentsPage_title_height'))
-        .width('100%')
+        .width($r('app.string.layout_100'))
         .padding({ left: $r('app.integer.friendMomentsPage_title_padding_left'), right: $r('app.integer.friendMomentsPage_title_padding_right') })
 
         Column() {
@@ -61,16 +63,15 @@ struct FriendsMomentsPage {
                 .width($r('app.string.layout_100'))
 
                 Row() {
-                  Text("name")
+                  Text($r('app.string.myself'))
                     .fontSize($r('app.integer.friendMomentsPage_name_fontSize'))
                     .fontColor(Color.White)
                     .margin({ top: $r('app.integer.friendMomentsPage_name_margin_left'),right: $r('app.integer.friendMomentsPage_name_margin_right') })
-                  Image($r("app.media.profile_photo_3"))
-                    .height($r('app.integer.friendMomentsPage_image_height'))
-                    .width($r('app.integer.friendMomentsPage_image_width'))
-                    .borderRadius($r('app.integer.friendMomentsPage_image_borderRadius'))
-                    .margin({ right: $r('app.integer.friendMomentsPage_image_margin_right') })
-                }.margin({ top: $r('app.integer.friendMomentsPage_image_margin_top') })
+                  Image($r('app.media.profile_photo_3'))
+                    .height($r('app.integer.layout_50'))
+                    .width($r('app.integer.layout_50'))
+                }
+                .margin({ top: $r('app.integer.layout_minus_25') })
               }
               .margin({ bottom: $r('app.integer.friendMomentsPage_owner_margin_bottom') })
               .alignItems(HorizontalAlign.End)
@@ -96,26 +97,17 @@ struct FriendsMomentsPage {
     .width($r('app.string.layout_100'))
   }
 
-  aboutToAppear(): void {
-    Logger.info(TAG, 'enter aboutToAppear');
-    this.makeLocalData();
+  async aboutToAppear(): Promise<void> {
+    Logger.info(TAG, 'aboutToAppear');
+    await this.makeLocalData();
   }
 
   // 本地mock数据生成朋友圈数据，推到momentData里
-  makeLocalData() {
-    for (let i = 0;i < 100; i++) {
-      let picNum = $r(`app.string.landscape${(i % 50).toString()}`);
-      let imageStr = `/resources/images/${picNum}.jpg`;
-      let mo = new FriendMoment( // 生成单个朋友圈数据
-        i.toString(),
-        new ChatContact(
-          i.toString(),
-          `${getContext().resourceManager.getStringSync($r('app.string.friend_word'))}${i.toString()}`,
-          imageStr
-        ),
-        `${getContext().resourceManager.getStringSync($r('app.string.chatCommunity'))}${i.toString()}`
-      );
-      this.momentData.pushData(mo)
+  async makeLocalData(): Promise<void>{
+    Logger.info(TAG, 'makeLocalData');
+    let FriendMoment = await getFriendMomentObjFromJSON();
+    for (let i = 0; i < Constants.FRIEND_MOMENT_MOCK_DATA_COUNT; i++) {
+      this.momentData.pushData(FriendMoment[i]);
     }
   }
 }
@@ -140,27 +132,19 @@ struct OneMoment {
         Text(this.moment.text)
           .fontSize($r('app.integer.friendMomentsPage_userText_fontSize'))
           .fontColor(Color.Black)
-        Row({ space: 5 }) {
-          MomentsImage({ imageStr: $r("app.media.landscape1"), imageStrId: 1 })
-          MomentsImage({ imageStr: $r("app.media.landscape2"), imageStrId: 2 })
-          MomentsImage({ imageStr: $r("app.media.landscape3"), imageStrId: 3 })
+        Grid() {
+          ForEach(this.moment.imageList, (image: string, index: number) => {
+            GridItem() {
+              MomentsImage({ imageStr: image, imageStrId: index })
+            }
+          }, image => image)
         }
-        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top'), right: $r('app.integer.friendMomentsPage_row_margin_right') })
-
-        Row({ space: 5 }) {
-          MomentsImage({ imageStr: $r("app.media.landscape4"), imageStrId: 4 })
-          MomentsImage({ imageStr: $r("app.media.landscape5"), imageStrId: 5 })
-          MomentsImage({ imageStr: $r("app.media.landscape6"), imageStrId: 6 })
-        }
-        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top'), right: $r('app.integer.friendMomentsPage_row_margin_right') })
-
-        Row({ space: 5 }) {
-          MomentsImage()
-          MomentsImage({ imageStr: $r("app.media.landscape7"), imageStrId: 7 })
-          MomentsImage({ imageStr: $r("app.media.landscape8"), imageStrId: 8 })
-        }
-        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top'), right: $r('app.integer.friendMomentsPage_row_margin_right') })
-
+        .columnsTemplate('1fr 1fr 1fr')
+        .rowsTemplate('1fr 1fr 1fr')
+        .columnsGap($r('app.integer.layout_1'))
+        .rowsGap($r('app.integer.layout_1'))
+        .height($r('app.integer.layout_250'))
+        .width($r('app.integer.layout_250'))
         Row() {
           Text(this.moment.time).fontColor("#e3e3e3").fontSize($r('app.integer.friendMomentsPage_time_fontSize'))
           Image($r('app.media.afr')).height($r('app.integer.friendMomentsPage_time_height')).width($r('app.integer.friendMomentsPage_time_width'))
@@ -210,23 +194,23 @@ class FriendMomentsData extends BasicDataSource {
 
   // 获取数据列表长度
   public totalCount(): number {
-    return this.momentList.length
+    return this.momentList.length;
   }
 
   // 根据index获取具体项
   public getData(index: number): any {
-    return this.momentList[index]
+    return this.momentList[index];
   }
 
   // 向规定位置添加数据
   public addData(index: number, data: FriendMoment): void {
-    this.momentList.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.momentList.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   // 向列表追加数据
   public pushData(data: FriendMoment): void {
-    this.momentList.push(data)
-    this.notifyDataAdd(this.momentList.length - 1)
+    this.momentList.push(data);
+    this.notifyDataAdd(this.momentList.length - 1);
   }
 }

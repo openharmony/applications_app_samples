@@ -129,6 +129,22 @@
       "value": 40
     },
     {
+      "name": "layout_250",
+      "value": 250
+    },
+    {
+      "name": "layout_50",
+      "value": 50
+    },
+    {
+      "name": "layout_1",
+      "value": 1
+    },
+    {
+      "name": "layout_minus_25",
+      "value": -25
+    },
+    {
       "name": "friendMomentsPage_background_width",
       "value": 30
     },
