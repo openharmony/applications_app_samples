@@ -16,15 +16,15 @@
 // 文件价\文件结构
 export class FileStructure {
   // 名字
-  public name: string
+  public name: string = "";
   // 时间
-  public time: string
+  public time: string = "";
   // 子文件数量
-  public childrenNum: number
+  public childrenNum?: number
   // 数据类型 1：文件夹、2：文件
-  public type: number
+  public type: number = 0;
   // 文件大小
-  public size: string
+  public size?: string
   // 处理日期格式
   private dateFormat(time: Date): string {
     let date = time
@@ -75,6 +75,6 @@ export type SubDirectoryType = {
   name: string,
   type: number,
   time: Date,
-  childrenNum: number,
-  fileSize: string
+  childrenNum?: number,
+  fileSize?: string
 }
