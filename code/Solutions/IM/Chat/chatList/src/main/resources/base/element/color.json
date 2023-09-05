@@ -3,6 +3,15 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },{
+      "name": "search_font_color",
+      "value": "#999999"
+    },{
+      "name": "search_outline_background_color",
+      "value": "#eeeeee"
+    },{
+      "name": "chat_list_divider_color",
+      "value": "#f3f3f3"
     },
     {
       "name": "detail_return_background",

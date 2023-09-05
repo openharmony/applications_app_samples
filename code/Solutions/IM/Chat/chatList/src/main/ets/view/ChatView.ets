@@ -25,8 +25,8 @@ struct ReusableChatView {
   @State chatItem: ChatModel = undefined;
 
   aboutToReuse(params) {
-    this.chatItem = params.chatItem
-    Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString())
+    this.chatItem = params.chatItem;
+    Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
 
   build() {
@@ -37,7 +37,7 @@ struct ReusableChatView {
 @Component
 struct ChatView {
   private chatItem: ChatModel
-  @StorageLink('img_syncLoad') img_syncLoad: boolean = AppStorage.get('img_syncLoad')
+  @StorageLink('image_sync_load') imageSyncLoad: boolean = AppStorage.get('image_sync_load');
 
   build() {
     Row() {
@@ -51,7 +51,7 @@ struct ChatView {
             .borderRadius(5)
             .autoResize(false)
             // 图片同步加载
-            .syncLoad(this.img_syncLoad ? true : false)
+            .syncLoad(this.imageSyncLoad ? true : false)
 
           // 红点消息大于0条时渲染红点
           if (this.chatItem.unreadMsgCount > 0){

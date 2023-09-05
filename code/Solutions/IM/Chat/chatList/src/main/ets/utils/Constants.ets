@@ -14,10 +14,14 @@
  */
 
 export default class Constants {
-  // cachedCount for LazyForEach
+  // 不使用缓存数据
+  public static readonly CACHED_COUNT_0: number = 0;
+  // 使用懒加载时，缓存数据的数量
   public static readonly CACHED_COUNT: number = 10;
-  // mock data count
+  // 从json中读取数据的数量
   public static readonly DATA_MOCK_COUNT: number = 10000;
-  public static readonly FRIEND_MOMENT_MOCK_DATA_COUNT: number = 100;
+  // 聊天页面中，模拟数据的限制数量
   public static readonly MOCK_ELEMENT_COUNT: number = 120;
+  // 朋友圈模拟数据的数量
+  public static readonly FRIEND_MOMENT_MOCK_DATA_COUNT: number = 100;
 }

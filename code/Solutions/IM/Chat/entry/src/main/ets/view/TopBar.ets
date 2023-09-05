@@ -13,55 +13,56 @@
  * limitations under the License.
  */
 
-import { CustomDialogExample } from './CustomDialogExample'
+import { CustomDialogExample } from './CustomDialogExample';
+
+// 右上角+号按钮的ID
+const ID_ADD_BUTTON: string = "addBtn";
+// 点击右上角+号按钮，弹出的弹窗的X轴偏移量
+const DIALOG_CONTROLLER_OFFSET_X: number = -5;
+// 点击右上角+号按钮，弹出的弹窗的Y轴偏移量
+const DIALOG_CONTROLLER_OFFSET_Y: number = 40;
+// 点击右上角+号按钮，弹窗弹出后，点击遮罩区域，弹窗能否自动消失
+const DIALOG_CONTROLLER_AUTO_CANCEL: boolean = true;
+// 点击右上角+号按钮，弹出的弹窗容器样式是否自定义
+const DIALOG_CONTROLLER_CUSTOM_STYLE: boolean = true;
 
 @Component
 struct TopBar {
   @State num: number = 0
+  // 自定义点击右上角+号按钮时弹出的弹窗
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogExample({}),
-    autoCancel: true,
+    autoCancel: DIALOG_CONTROLLER_AUTO_CANCEL,
     alignment: DialogAlignment.TopEnd,
-    offset: { dx: "-5", dy: "40" },
-    customStyle: true
+    offset: { dx: DIALOG_CONTROLLER_OFFSET_X, dy: DIALOG_CONTROLLER_OFFSET_Y },
+    customStyle: DIALOG_CONTROLLER_CUSTOM_STYLE
   })
 
   build() {
-    Row() {
-      Column() {
-        Stack({ alignContent: Alignment.Center }) {
-          Stack({ alignContent: Alignment.Center }) {
-            Text($r('app.string.chat'))
-              .fontSize(20)
-              .fontColor(Color.Black)
-          }
-          .height(50)
-          .width("100%")
+    Stack({ alignContent: Alignment.End }) {
+      Text($r('app.string.chat'))
+        .fontSize($r('app.integer.top_bar_font_size'))
+        .fontColor(Color.Black)
+        .height($r('app.integer.top_bar_text_height'))
+        .width($r('app.string.layout_100'))
+        .textAlign(TextAlign.Center)
 
-          Stack({ alignContent: Alignment.End }) {
-            Stack({ alignContent: Alignment.End }) {
-              Image($r('app.media.ic_public_add_filled'))
-                .height(23)
-                .width(23)
-            }
-            .id('addBtn')
-            .height("100%")
-            .width(50)
-            .onClick(() => {
-              this.dialogController.open()
-            })
-          }
-          .height(50)
-          .width("100%")
-          .padding(10)
-        }
-        .backgroundColor('#eeeeee')
-        .height(50)
-        .width("100%")
+      Stack() {
+        Image($r('app.media.ic_public_add_filled'))
+          .height($r('app.integer.top_bar_add_button_image_height'))
+          .width($r('app.integer.top_bar_add_button_image_width'))
       }
+      .id(ID_ADD_BUTTON)
+      .height($r('app.integer.top_bar_add_button_height'))
+      .width($r('app.integer.top_bar_add_button_width'))
+      .padding({ left: $r('app.integer.top_bar_add_button_padding_left') })
+      .onClick(() => {
+        this.dialogController.open()
+      })
     }
-    .width('100%')
-    .height(50)
+    .backgroundColor($r('app.color.top_bar_background_color'))
+    .height($r('app.integer.top_bar_height'))
+    .width($r('app.string.layout_100'))
   }
 }
 
