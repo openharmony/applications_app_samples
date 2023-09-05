@@ -15,20 +15,6 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Chat_com.samples.chat.cer",
-          "storePassword": "0000001BC4841A619A7AF0138BE370B39B68EECDE5F1AD9973A92575F0C5B6057CB1C1274C5DE527893D8D",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BD0DF527414E482312750A13B9D712044ABBAF875D654DFAE3B749504C9CD6813994CD5FAD5B363",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Chat_com.samples.chat.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Chat_com.samples.chat.p12"
-        }
-      }
-    ],
     "products": [
       {
         "name": "default",
@@ -38,7 +24,8 @@
         "targetSdkVersion": 10,
         "runtimeOS": "OpenHarmony"
       }
-    ]
+    ],
+    "signingConfigs": []
   },
   "modules": [
     {
