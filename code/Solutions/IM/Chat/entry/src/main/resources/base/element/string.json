@@ -203,6 +203,10 @@
     {
       "name": "chatCommunity",
       "value": "我是聊天社区消息"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
     }
   ]
 }
