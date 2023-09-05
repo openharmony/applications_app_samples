@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-import Logger from '../utils/Logger'
-import { makeDataLocal, makeDataList } from '../utils/DataFactory'
-import Constants from '../utils/Constants'
-import { ChatModel, ChatContact } from '../viewModel/MsgBase'
-import { ChatListData } from '../viewModel/ChatListDataSource'
-import { ChatView, ReusableChatView } from '../view/ChatView'
-import { OptLayoutChatView, ReusableOptLayoutChatView } from '../view/OptLayoutChatView'
+import { makeDataLocal, makeDataList } from '../utils/DataFactory';
+import Constants from '../utils/Constants';
+import { ChatModel } from '../viewModel/MsgBase';
+import { ChatListData } from '../viewModel/ChatListDataSource';
+import { ChatView, ReusableChatView } from '../view/ChatView';
+import { OptLayoutChatView, ReusableOptLayoutChatView } from '../view/OptLayoutChatView';
+import Logger from '../utils/Logger';
 
-const TAG: string = 'ChatList_ChatListDisplayView'
+const TAG: string = 'ChatList_ChatListDisplayView';
 
 @Preview
 @Component
@@ -119,7 +118,8 @@ export struct ChatListDisplayView {
   }
 
   async aboutToAppear(): Promise<void> {
-    await makeDataLocal(this.chatList_Lazy)
-    await makeDataList(this.chatList_Array)
+    Logger.info(TAG, 'aboutToAppear');
+    await makeDataLocal(this.chatList_Lazy);
+    await makeDataList(this.chatList_Array);
   }
 }

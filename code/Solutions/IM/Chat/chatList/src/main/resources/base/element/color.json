@@ -47,6 +47,18 @@
     {
       "name": "detail_item_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "chat_view_text_color",
+      "value": "#999999"
+    },
+    {
+      "name": "unread_msg_tip",
+      "value": "#ea6055"
+    },
+    {
+      "name": "friends_page_background",
+      "value": "#e3e3e3"
     }
   ]
 }

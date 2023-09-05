@@ -192,7 +192,6 @@ struct ChatDetailPage {
 struct ChatItemView {
   private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0)
   @Link imgFile: image.PixelMap
-  @State image: image.PixelMap | null = null
 
   build() {
     Column() {
