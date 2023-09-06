@@ -22,6 +22,11 @@ import Constants from '../utils/Constants';
 const TAG: string = 'ChatList_DataFactory';
 const MOCK_DATA_FILE_DIR: string = 'mockChatModelData.json';
 
+class JsonObjType {
+  MessageList: Array<string> = new Array<string>()
+  ChatModel: Array<ChatModel> = new Array<ChatModel>()
+  FriendMoment: Array<FriendMoment> = new Array<FriendMoment>()
+}
 
 /**
  * 加载聊天列表数据，到参数传入的懒加载数据列表中
@@ -52,7 +57,7 @@ export async function makeDataList(listData: Array<ChatModel>): Promise<void> {
  */
 export async function getChatModelObjFromJSON(): Promise<Array<ChatModel>> {
   Logger.info(TAG, 'getChatModelObjFromJSON');
-  let jsonObj = new JsonObject(MOCK_DATA_FILE_DIR);
+  let jsonObj: JsonObject = new JsonObject(MOCK_DATA_FILE_DIR);
   return await jsonObj.getChatModelObj();
 }
 
@@ -61,7 +66,7 @@ export async function getChatModelObjFromJSON(): Promise<Array<ChatModel>> {
  */
 export async function getFriendMomentObjFromJSON(): Promise<Array<FriendMoment>> {
   Logger.info(TAG, 'getFriendMomentObjFromJSON');
-  let jsonObj = new JsonObject(MOCK_DATA_FILE_DIR);
+  let jsonObj: JsonObject = new JsonObject(MOCK_DATA_FILE_DIR);
   return await jsonObj.getFriendMomentObj();
 }
 
@@ -70,15 +75,12 @@ export async function getFriendMomentObjFromJSON(): Promise<Array<FriendMoment>>
  */
 export async function getMessageListFromJSON(): Promise<string[]> {
   Logger.info(TAG, 'getMessageListFromJSON');
-  let jsonObj = new JsonObject(MOCK_DATA_FILE_DIR);
+  let jsonObj: JsonObject = new JsonObject(MOCK_DATA_FILE_DIR);
   return await jsonObj.getMessageList();
 }
 
 
 class JsonObject {
-  CHAT_MODEL_JSON_KEY: string = 'ChatModel';
-  FRIEND_MOMENT_JSON_KEY: string = 'FriendMoment';
-  MSG_LIST_JSON_KEY: string = 'MessageList';
   private jsonFileDir: string = '';
 
   constructor(jsonFileDir: string) {
@@ -87,9 +89,9 @@ class JsonObject {
 
   async getFriendMomentObj(): Promise<Array<FriendMoment>> {
     let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj = JSON.parse(this.bufferToString(value.buffer));
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer));
     let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
-    if (!jsonObj.hasOwnProperty(this.FRIEND_MOMENT_JSON_KEY)) {
+    if (jsonObj.FriendMoment === undefined) {
       Logger.error(TAG + '_JsonObject_getFriendMomentObj', 'Expected FriendMoment field in json, but not found');
       return friendMomentBuckets;
     }
@@ -107,9 +109,9 @@ class JsonObject {
 
   async getChatModelObj(): Promise<Array<ChatModel>> {
     let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj = JSON.parse(this.bufferToString(value.buffer));
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer));
     let chatModelBuckets: Array<ChatModel> = new Array<ChatModel>();
-    if (!jsonObj.hasOwnProperty(this.CHAT_MODEL_JSON_KEY)) {
+    if (jsonObj.ChatModel === undefined) {
       Logger.error(TAG + '_getChatModelObjFromJSON', 'Expected ChatModel field in json, but not found');
       return chatModelBuckets;
     }
@@ -127,9 +129,9 @@ class JsonObject {
 
   async getMessageList(): Promise<Array<string>> {
     let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj = JSON.parse(this.bufferToString(value.buffer));
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer));
     let messageBuckets: Array<string> = new Array<string>();
-    if (!jsonObj.hasOwnProperty(this.MSG_LIST_JSON_KEY)) {
+    if (jsonObj.MessageList === undefined) {
       Logger.error(TAG + '_getMessageListFromJSON', 'Expected MessageList field in json, but not found');
       return messageBuckets;
     }

@@ -35,7 +35,7 @@ const profileIconSelected : string = './resources/images/profileIconSelected.png
 @Entry
 @Component
 struct Index {
-  @StorageLink('page_layout') page_layout: boolean = AppStorage.get('page_layout'); // AppStorage中key对应的属性建立双向数据同步
+  @StorageLink('page_layout') page_layout: boolean | undefined = AppStorage.get('page_layout'); // AppStorage中key对应的属性建立双向数据同步
   @State currentIndex: number = TAB_INDEX_0; // tabBar初始选中的位置
   @State message: Resource = $r('app.string.chat');
   private controller: TabsController = new TabsController();

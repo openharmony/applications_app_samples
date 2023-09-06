@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import Logger from '../utils/Logger';
 import { makeDataLocal, makeDataList } from '../utils/DataFactory';
 import Constants from '../utils/Constants';
 import { ChatModel } from '../viewModel/MsgBase';
 import { ChatListData } from '../viewModel/ChatListDataSource';
 import { ChatView, ReusableChatView } from '../view/ChatView';
 import { OptLayoutChatView, ReusableOptLayoutChatView } from '../view/OptLayoutChatView';
+import Logger from '../utils/Logger';
 
 const TAG: string = 'ChatListDisplayView';
 // 搜索框中搜索栏的ID
@@ -35,13 +35,13 @@ export struct ChatListDisplayView {
   // 普通加载的数据列表
   @State chatListArray: Array<ChatModel> = new Array<ChatModel>();
   // 是否使用懒加载
-  @StorageLink('lazy_for_each') lazyForEach: boolean = AppStorage.get('lazy_for_each');
+  @StorageLink('lazy_for_each') lazyForEach: boolean | undefined = AppStorage.get('lazy_for_each');
   // 是否复用列表中的子组件
-  @StorageLink('reusable') reusable: boolean = AppStorage.get('reusable');
+  @StorageLink('reusable') reusable: boolean | undefined = AppStorage.get('reusable');
   // 列表数据是否缓存
-  @StorageLink('list_cached_count') listCachedCount: boolean = AppStorage.get('list_cached_count');
+  @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
   // 是否使用布局优化
-  @StorageLink('page_layout') pageLayout: boolean = AppStorage.get('page_layout');
+  @StorageLink('page_layout') pageLayout: boolean | undefined = AppStorage.get('page_layout');
 
   // 非布局优化的列表item加载数据
   @Builder
@@ -132,7 +132,7 @@ export struct ChatListDisplayView {
           }
           .transition(TransitionEffect.OPACITY) // 删除item后，List显示的最后一个item顶上来的动画
           .swipeAction({ // 用于设置ListItem的划出组件，end是ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）
-            end: this.deleteAction.bind(this, msg),
+            end: this.deleteAction(msg),
           })
         }, (msg: ChatModel) => msg.user.userId)
       } else {
@@ -148,7 +148,7 @@ export struct ChatListDisplayView {
           }
           .transition(TransitionEffect.OPACITY) // 删除item后，List显示的最后一个item顶上来的动画
           .swipeAction({ // 用于设置ListItem的划出组件，end是ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）
-            end: this.deleteAction.bind(this, msg),
+            end: this.deleteAction(msg),
           })
         }, (msg: ChatModel) => msg.user.userId)
       }

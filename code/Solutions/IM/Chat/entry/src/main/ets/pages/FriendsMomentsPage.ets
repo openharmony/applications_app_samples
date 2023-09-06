@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { BasicDataSource, FriendMoment } from '@ohos/chatList';
+import { ChatContact, BasicDataSource, FriendMoment } from '@ohos/chatList';
 import { getFriendMomentObjFromJSON } from '@ohos/chatList/src/main/ets/utils/DataFactory';
 import Constants from '@ohos/chatList/src/main/ets/utils/Constants';
 import Logger from '@ohos/chatList/src/main/ets/utils/Logger';
@@ -114,7 +114,7 @@ struct FriendsMomentsPage {
 
 @Component
 struct OneMoment {
-  private moment: FriendMoment
+  private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '')
 
   build() {
     Row() {
@@ -133,11 +133,11 @@ struct OneMoment {
           .fontSize($r('app.integer.friendMomentsPage_userText_fontSize'))
           .fontColor(Color.Black)
         Grid() {
-          ForEach(this.moment.imageList, (image: string, index: number) => {
+          ForEach(this.moment.imageList, (image: string, index?: number) => {
             GridItem() {
               MomentsImage({ imageStr: image, imageStrId: index })
             }
-          }, image => image)
+          }, (image: string) => image)
         }
         .columnsTemplate('1fr 1fr 1fr')
         .rowsTemplate('1fr 1fr 1fr')
@@ -189,7 +189,7 @@ struct MomentsImage {
   }
 }
 
-class FriendMomentsData extends BasicDataSource {
+class FriendMomentsData extends BasicDataSource<FriendMoment> {
   momentList: Array<FriendMoment> = []
 
   // 获取数据列表长度
@@ -198,7 +198,7 @@ class FriendMomentsData extends BasicDataSource {
   }
 
   // 根据index获取具体项
-  public getData(index: number): any {
+  public getData(index: number): FriendMoment {
     return this.momentList[index];
   }
 

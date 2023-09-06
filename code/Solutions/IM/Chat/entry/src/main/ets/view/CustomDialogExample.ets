@@ -13,35 +13,41 @@
  * limitations under the License.
  */
 
+import resourceManager from '@ohos.resourceManager';
+
+class PromptType {
+  image: string | Resource = ''
+  text: string | Resource = ''
+}
+
 // 首页右上角点击加号时弹出的列表
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController;
+  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) });
   // 懒加载开关
-  @StorageLink('lazy_for_each') lazyForEach: boolean = AppStorage.get('lazy_for_each');
+  @StorageLink('lazy_for_each') lazyForEach: boolean | undefined = AppStorage.get('lazy_for_each');
   // 组件复用开关
-  @StorageLink('reusable') reusable: boolean = AppStorage.get('reusable');
+  @StorageLink('reusable') reusable: boolean | undefined = AppStorage.get('reusable');
   // 同步加载开关
-  @StorageLink('image_sync_load') imageSyncLoad: boolean = AppStorage.get('image_sync_load');
+  @StorageLink('image_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('image_sync_load');
   // 布局优化开关
-  @StorageLink('page_layout') pageLayout: boolean = AppStorage.get('page_layout');
+  @StorageLink('page_layout') pageLayout: boolean | undefined = AppStorage.get('page_layout');
   // 缓存数量开关
-  @StorageLink('list_cached_count') listCachedCount: boolean = AppStorage.get('list_cached_count');
-  private promptArr = [
+  @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
+  private promptArr: PromptType[] = [
     { image: $r('app.media.pic1'), text: $r('app.string.add_friends') },
     { image: $r('app.media.pic2'), text: $r('app.string.group_chat') },
     { image: $r('app.media.pic3'), text: $r('app.string.scan') },
     { image: $r('app.media.pic4'), text: $r('app.string.collection_payment') }];
-
   build() {
     Column() {
       // 首页右上角点击加号按钮弹出的列表框的前4个item
       List({ space: 2, initialIndex: 0 }) {
-        ForEach(this.promptArr, (item) => {
+        ForEach(this.promptArr, (item: PromptType) => {
           ListItem() {
             Prompt({ image: item.image, text: item.text, controller: this.controller })
           }
-        }, item => JSON.stringify(item))
+        }, (item: PromptType) => JSON.stringify(item))
       }
       .friction($r("app.float.customDialog_list_friction"))
       .listDirection(Axis.Vertical) // 排列方向
@@ -82,9 +88,9 @@ struct CustomDialogExample {
 // 由图片icon和文字构成的组件Prompt
 @Component
 struct Prompt {
-  @State image: Resource = $r("app.media.empresa");
-  text: string | Resource;
-  controller: CustomDialogController;
+  image: string | Resource = $r("app.media.empresa");
+  text: string | Resource = '';
+  controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) });
 
   build() {
     Row() {
@@ -117,10 +123,17 @@ struct Prompt {
 // 分隔线组件
 @Component
 struct diaLogDivider {
+  resource: Resource = $r('app.float.customDialog_diaLogDivider_strokeWidth')
+  res: resourceManager.Resource = {
+    bundleName: this.resource.bundleName,
+    moduleName: this.resource.moduleName,
+    id: this.resource.id
+  }
+
   build() {
     Column() {
       Divider()
-        .strokeWidth(getContext().resourceManager.getNumber($r('app.float.customDialog_diaLogDivider_strokeWidth')))
+        .strokeWidth(getContext().resourceManager.getNumber(this.res))
         .color($r("app.color.customDialog_diaLogDivider_fontColor"))
         .margin({ left: $r("app.integer.customDialog_diaLogDivider_margin_left") })
     }
@@ -130,7 +143,7 @@ struct diaLogDivider {
 // 由按钮开关和文字构成的组件ToggleComponent
 @Component
 struct ToggleComponent {
-  text_option: string | Resource;
+  text_option: string | Resource = '';
   @Link isOn: boolean;
 
   build() {

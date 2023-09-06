@@ -18,9 +18,9 @@ import router from '@ohos.router';
 import { SettingItemView } from './SettingPage';
 
 // 设置项的数据类型
-interface SettingViewDataType {
-  image: Resource,
-  text: Resource
+class SettingViewDataType {
+  image: string | Resource = ''
+  text: string | Resource = ''
 };
 
 const CHAT_COMMUNITY = 'chatCommunity';
@@ -53,16 +53,16 @@ export struct DiscoverPage {
             .onClick(() => {
               router.pushUrl({ url: 'pages/FriendsMomentsPage' })
             })
-          ForEach(this.settingViewData, (item, index) => {
+          ForEach(this.settingViewData, (item: SettingViewDataType, index) => {
             // 当index为1或者为6的时候不需要设置Divider
             if (index === 1 || index === 6) {
-              SettingItemView({ image: item['image'], text: item['text'] })
+              SettingItemView({ image: item.image, text: item.text })
             } else {
               Divider()
                 .vertical(false)
                 .strokeWidth(DIVIDER_STROKWIDTH)
                 .color($r('app.color.divider_color'))
-              SettingItemView({ image: item['image'], text: item['text'] })
+              SettingItemView({ image: item.image, text: item.text })
             }
           })
         }

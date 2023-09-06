@@ -14,18 +14,16 @@
  */
 
 import { BasicDataSource } from '../viewModel/BasicDataSource';
-import { MessageBase, ChatContact, TextMessage, ImageMessage } from '../viewModel/MsgBase';
+import { MessageBase, ChatContact, TextMessage, ImageMessage, MessageBody } from '../viewModel/MsgBase';
 import { getMessageListFromJSON } from '../utils/DataFactory';
 import router from '@ohos.router';
 import { ImageTextMessage, FileMessage } from '../viewModel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
 
-
 @Preview
 @Component
 struct ChatDetailPage {
-  @State chatName: string = '';
   @State msgLength: number = 0;
   userMyself = new ChatContact('1', $r('app.string.myself'));
   userFriend = new ChatContact('2', $r('app.string.friend'));
@@ -36,12 +34,16 @@ struct ChatDetailPage {
   @State keyboardStr: string = '';
   private chatDetailData = new ChatDetailData();
   private scroller: Scroller = new Scroller();
-  @State imageFile: image.PixelMap = undefined;
   @State wantId: number = 0;
-  @State fdImage: number = undefined;
-  @State userMyselfName: string = undefined;
-  @State userFriendName: string = undefined;
+  @State fdImg: number = 0;
+  @State userMyselfName: string = '';
+  @State userFriendName: string = '';
   @State listHeight: number = 0;
+  private params = router.getParams() as Record<string, Object>;
+  chatId: number = this.params.chatId as number;
+  chatName: string | Resource = this.params.chatName as string | Resource;
+  chatImg: string | Resource = this.params.chatImg as string | Resource;
+  lastMsg: string | Resource = this.params.lastMsg as string | Resource;
 
   build() {
     Column() {
@@ -56,7 +58,7 @@ struct ChatDetailPage {
             router.back();
           })
 
-        Text(router.getParams()['chatName'])
+        Text(this.chatName)
           .fontSize(19)
           .fontColor(Color.Black)
           .textAlign(TextAlign.Center)
@@ -80,7 +82,7 @@ struct ChatDetailPage {
       List({ scroller: this.scroller, initialIndex: this.msgLength - 1 }) {
         LazyForEach(this.chatDetailData, (msg: MessageBase) => {
           ListItem() {
-            ChatItemView({ msg: msg, imageFile: $imageFile });
+            ChatItemView({ msg: msg });
           }
         }, (msg: MessageBase) => msg.msgId)
       }
@@ -119,7 +121,7 @@ struct ChatDetailPage {
           .height(20)
           .width(20)
           .onClick(() => {
-            let imageStr = `/resources/images/photo${((router.getParams()['chatId']) % 50)}.jpg`;
+            let imageStr = `/resources/images/photo${((this.chatId) % 50)}.jpg`;
             let msg = new ImageMessage(40, 50, imageStr);
             let msgBody = new MessageBase(this.chatDetailData.totalCount()
               .toString(), this.userMyself, this.userFriend, msg, 2);
@@ -151,7 +153,7 @@ struct ChatDetailPage {
     let chatDetailMsgList = await getMessageListFromJSON();
     let todayDate = new Date();
     let userMyself = new ChatContact('1', $r('app.string.myself'));
-    let userFriend = new ChatContact('2', router.getParams()['chatName'], router.getParams()['chatImg']);
+    let userFriend = new ChatContact('2', this.chatName, this.chatImg);
     let sum = 0;
     // 循环遍历本地数据，通过取模的方式选择文本数据或者图片数据
     for (let i = 0; i < 1000; i++) {
@@ -178,7 +180,7 @@ struct ChatDetailPage {
       }
       this.chatDetailData.pushData(msgBody);
     }
-    let lastMsg = new TextMessage(router.getParams()['lastMsg']);
+    let lastMsg = new TextMessage(this.lastMsg);
     this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, lastMsg, 1, todayDate.getSeconds()));
     this.msgLength = this.chatDetailData.totalCount();
   }
@@ -190,9 +192,7 @@ struct ChatDetailPage {
 
 @Component
 struct ChatItemView {
-  private msg: MessageBase
-  @Link imageFile: image.PixelMap
-  @State image: PixelMap = undefined;
+  private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0);
 
   build() {
     Column() {
@@ -291,14 +291,14 @@ struct ChatItemView {
   }
 }
 
-class ChatDetailData extends BasicDataSource {
+class ChatDetailData extends BasicDataSource<MessageBase> {
   msgList: Array<MessageBase> = [];
 
   public totalCount(): number {
     return this.msgList.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): MessageBase {
     return this.msgList[index];
   }
 

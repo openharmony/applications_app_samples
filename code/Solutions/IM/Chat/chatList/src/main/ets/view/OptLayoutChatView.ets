@@ -14,7 +14,7 @@
  */
 
 import Logger from '../utils/Logger';
-import { ChatModel } from '../viewModel/MsgBase';
+import { ChatModel, ChatContact } from '../viewModel/MsgBase';
 import router from '@ohos.router';
 import PageConstants from '../utils/PageConstants';
 
@@ -26,10 +26,10 @@ const TAG: string = 'ChatList_ChatView';
 @Reusable
 @Component
 struct ReusableOptLayoutChatView {
-  @State chatItem: ChatModel = undefined;
+  @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
 
-  aboutToReuse(params) {
-    this.chatItem = params.chatItem;
+  aboutToReuse(params: Record<string, Object>) {
+    this.chatItem = params.chatItem as ChatModel;
     Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
 
@@ -44,8 +44,8 @@ struct ReusableOptLayoutChatView {
 @Preview
 @Component
 struct OptLayoutChatView {
-  private chatItem: ChatModel
-  @StorageLink('image_sync_load') imageSyncLoad: boolean = AppStorage.get('image_sync_load');
+  private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
+  @StorageLink('img_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('img_sync_load');
 
   build() {
     RelativeContainer() {

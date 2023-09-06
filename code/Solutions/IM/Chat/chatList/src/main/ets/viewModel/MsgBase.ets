@@ -27,7 +27,7 @@ export class ChatModel {
   lastTime: string
   unreadMsgCount: number
 
-  constructor(user: ChatContact, lastMsg: string ,lastTime: string,unreadMsgCount: number) {
+  constructor(user: ChatContact, lastMsg: string, lastTime: string, unreadMsgCount: number) {
     this.user = user;
     this.lastMsg = lastMsg;
     this.lastTime = lastTime;
@@ -48,13 +48,12 @@ enum MsgType {
 
 // 聊天信息
 export class MessageBase {
-  chatImage: image.PixelMap
   msgId: string
   from: ChatContact
   to: ChatContact
   msgBody: MessageBody
   msgType: MsgType
-  msgTime: number
+  msgTime: number = 0
 
   constructor(id: string, from: ChatContact, to: ChatContact, msg: MessageBody, type: number, time?: number) {
     this.msgId = id;
@@ -62,7 +61,9 @@ export class MessageBase {
     this.to = to;
     this.msgBody = msg;
     this.msgType = type;
-    this.msgTime = time;
+    if (time !== undefined) {
+      this.msgTime = time;
+    }
   }
 
   toString(): string {
@@ -164,13 +165,15 @@ export class FriendMoment {
   id: string
   user: ChatContact
   text: string
-  time: string
-  imageList: Array<string>
+  time: string = ''
+  imageList: Array<string> = new Array<string>()
 
   constructor(id: string, user: ChatContact, text: string, time?: string, List?: Array<string>) {
     this.id = id;
     this.user = user;
-    this.time = time;
+    if (time !== undefined) {
+      this.time = time;
+    }
     this.text = text;
     if (List != null) {
       this.imageList = List;

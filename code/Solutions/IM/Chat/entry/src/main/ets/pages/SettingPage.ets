@@ -101,8 +101,8 @@ export struct SettingPage {
 
 @Component
 export struct SettingItemView {
-  private image: string | Resource; // 功能菜单图标
-  private text: string | Resource; // 功能菜单文本
+  private image: string | Resource = ''; // 功能菜单图标
+  private text: string | Resource = ''; // 功能菜单文本
 
   build() {
     Stack({ alignContent: Alignment.End }) {

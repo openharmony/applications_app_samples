@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ChatDetailPage } from '@ohos/chatList'
+import { ChatDetailPage } from '@ohos/chatList';
 
 @Entry
 @Component

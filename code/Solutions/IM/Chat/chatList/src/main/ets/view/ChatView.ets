@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ChatModel } from '../viewModel/MsgBase';
+import { ChatContact, ChatModel } from '../viewModel/MsgBase';
 import Logger from '../utils/Logger';
 import router from '@ohos.router';
 
@@ -23,10 +23,10 @@ const TAG: string = 'ChatList_ChatView';
 @Component
 struct ReusableChatView {
   // 聊天列表单个项
-  @State chatItem: ChatModel = undefined;
+  @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
 
-  aboutToReuse(params) {
-    this.chatItem = params.chatItem;
+  aboutToReuse(params: Record<string, Object>) {
+    this.chatItem = params.chatItem as ChatModel;
     Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
 
@@ -37,8 +37,8 @@ struct ReusableChatView {
 
 @Component
 struct ChatView {
-  private chatItem: ChatModel
-  @StorageLink('image_sync_load') imageSyncLoad: boolean = AppStorage.get('image_sync_load');
+  private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
+  @StorageLink('imageSyncLoad') imageSyncLoad: boolean | undefined = AppStorage.get('imageSyncLoad');
 
   build() {
     Row() {
@@ -103,7 +103,7 @@ struct ChatView {
     .width("100%")
     .height(70)
     .padding({ left: 8, right: 10, top: 10, bottom: 10 })
-    .onClick((event: ClickEvent) => {
+    .onClick((event?: ClickEvent) => {
       // 进入聊天详情页
       router.pushUrl({
         url: 'pages/Detail',

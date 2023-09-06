@@ -24,14 +24,19 @@ const TAG: string = 'entry_FriendsPage';
 const LIST_SPACE: number = 2;
 const LIST_INITIAL_INDEX: number = 0;
 
+class FriendsPageItemType {
+  image: string | Resource = ''
+  text: string | Resource = ''
+}
+
 /**
  * 通讯录页面组件
  */
 @Component
 export struct FriendsPage {
   @State friendsListLength: number = 0;
-  private friendsListData = new FriendsListData();
-  private friendsPageItem = [
+  private friendsListData: FriendListData = new FriendListData();
+  private friendsPageItem: FriendsPageItemType[] = [
     { image: $r('app.media.icon_addfriend'), text: $r('app.string.new_friend') },
     { image: $r('app.media.icon_group'), text: $r('app.string.group') },
     { image: $r('app.media.chat_home'), text: $r('app.string.only_chat') },
@@ -65,11 +70,11 @@ export struct FriendsPage {
                 })
 
                 List({ space: LIST_SPACE, initialIndex: LIST_INITIAL_INDEX }) {
-                  ForEach(this.friendsPageItem, (item) => {
+                  ForEach(this.friendsPageItem, (item: FriendsPageItemType) => {
                     ListItem() {
                       ChatContactItemView({ image: item.image, text: item.text })
                     }
-                  }, item => JSON.stringify(item))
+                  }, (item: FriendsPageItemType) => JSON.stringify(item))
                 }
               }
             }
@@ -116,8 +121,8 @@ export struct FriendsPage {
  */
 @Component
 export struct ChatContactItemView {
-  private image: string | Resource;
-  private text: string | Resource;
+  private image: string | Resource = ''
+  private text: string | Resource = ''
 
   build() {
     Row() {
@@ -137,24 +142,24 @@ export struct ChatContactItemView {
   }
 }
 
-class FriendsListData extends BasicDataSource {
-  friendsList: Array<ChatContact> = [];
+class FriendListData extends BasicDataSource<ChatContact> {
+  friendList: Array<ChatContact> = [];
 
   public totalCount(): number {
-    return this.friendsList.length;
+    return this.friendList.length;
   }
 
-  public getData(index: number): any {
-    return this.friendsList[index];
+  public getData(index: number): ChatContact {
+    return this.friendList[index];
   }
 
   public addData(index: number, data: ChatContact): void {
-    this.friendsList.splice(index, 0, data);
+    this.friendList.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 
   public pushData(data: ChatContact): void {
-    this.friendsList.push(data);
-    this.notifyDataAdd(this.friendsList.length - 1);
+    this.friendList.push(data);
+    this.notifyDataAdd(this.friendList.length - 1);
   }
 }
