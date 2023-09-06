@@ -38,7 +38,7 @@ struct ReusableChatView {
 @Component
 struct ChatView {
   private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
-  @StorageLink('imageSyncLoad') imageSyncLoad: boolean | undefined = AppStorage.get('imageSyncLoad');
+  @StorageLink('image_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('image_sync_load');
 
   build() {
     Row() {
