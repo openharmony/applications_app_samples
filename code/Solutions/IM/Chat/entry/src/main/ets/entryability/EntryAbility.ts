@@ -18,7 +18,6 @@ import window from '@ohos.window';
 import router from '@ohos.router';
 import Logger from '../utils/Logger';
 import Want from '@ohos.app.ability.Want';
-import Ability from '@ohos.app.ability.Ability';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 const TAG: string = 'EntryAbility';
@@ -28,10 +27,10 @@ export default class EntryAbility extends UIAbility {
     Logger.info(TAG, 'MainAbility onCreate');
     AppStorage.setOrCreate('want', want);
     PersistentStorage.persistProp('lazy_for_each', true); // 懒加载初始化
-    PersistentStorage.persistProp('reusable', true); // 组件复用初始化
-    PersistentStorage.persistProp('image_sync_load', true); // 同步加载初始化
-    PersistentStorage.persistProp('page_layout', true); // 布局优化初始化
-    PersistentStorage.persistProp('list_cached_count', true); // 缓存数量初始化
+    PersistentStorage.persistProp('reusable', true); // 复用初始化
+    PersistentStorage.persistProp('image_sync_load', true); // 图片同步加载初始化
+    PersistentStorage.persistProp('page_layout', true); // 页面布局初始化
+    PersistentStorage.persistProp('list_cached_count', true); // 列表缓存条数初始化
   }
 
   onDestroy(): void {
