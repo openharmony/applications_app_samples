@@ -17,10 +17,15 @@ import router from '@ohos.router';
 // 引入设置项组件
 import { SettingItemView } from './SettingPage';
 
-// 设置项的数据类型
-class SettingViewDataType {
-  image: string | Resource = ''
-  text: string | Resource = ''
+// 设置项的数据类
+class SettingViewData {
+  image: string | Resource = '';
+  text: string | Resource = '';
+
+  constructor(image: string | Resource, text: string | Resource) {
+    this.image = image;
+    this.text = text;
+  }
 };
 
 const CHAT_COMMUNITY = 'chatCommunity';
@@ -29,15 +34,15 @@ const DIVIDER_STROKWIDTH: number = 20;
 
 @Component
 export struct DiscoverPage {
-  private scroller: Scroller = new Scroller()
-  private settingViewData: Array<SettingViewDataType> = [
-    { image: $r('app.media.icon_de_scan'), text: $r('app.string.scan') },
-    { image: $r('app.media.icon_de_shake'), text: $r('app.string.shake') },
-    { image: $r('app.media.searchOne'), text: $r('app.string.search_one') },
-    { image: $r('app.media.applet'), text: $r('app.string.applet') },
-    { image: $r('app.media.icon_de_nearby'), text: $r('app.string.around') },
-    { image: $r('app.media.icon_de_shop'), text: $r('app.string.shopping') },
-    { image: $r('app.media.icon_de_game'), text: $r('app.string.game') }];
+  private scroller: Scroller = new Scroller();
+  private settingViewData: Array<SettingViewData> = [
+    new SettingViewData($r('app.media.icon_de_scan'), $r('app.string.scan')),
+    new SettingViewData($r('app.media.icon_de_shake'), $r('app.string.shake')),
+    new SettingViewData($r('app.media.searchOne'), $r('app.string.search_one')),
+    new SettingViewData($r('app.media.applet'), $r('app.string.applet')),
+    new SettingViewData($r('app.media.icon_de_nearby'), $r('app.string.around')),
+    new SettingViewData($r('app.media.icon_de_shop'), $r('app.string.shopping')),
+    new SettingViewData($r('app.media.icon_de_game'), $r('app.string.game'))];
 
   build() {
     Column() {
@@ -48,28 +53,28 @@ export struct DiscoverPage {
             .strokeWidth(DIVIDER_STROKWIDTH)
             .color($r('app.color.divider_color'))
           // 设置项组件
-          SettingItemView({ image: $r('app.media.find_friends'), text: $r('app.string.circle') })
+          SettingItemView(new SettingViewData($r('app.media.find_friends'), $r('app.string.circle')))
             .id(CHAT_COMMUNITY)
             .onClick(() => {
               router.pushUrl({ url: 'pages/FriendsMomentsPage' })
             })
-          ForEach(this.settingViewData, (item: SettingViewDataType, index) => {
+          ForEach(this.settingViewData, (item: SettingViewData, index: number) => {
             // 当index为1或者为6的时候不需要设置Divider
             if (index === 1 || index === 6) {
-              SettingItemView({ image: item.image, text: item.text })
+              SettingItemView(new SettingViewData(item.image, item.text))
             } else {
               Divider()
                 .vertical(false)
                 .strokeWidth(DIVIDER_STROKWIDTH)
                 .color($r('app.color.divider_color'))
-              SettingItemView({ image: item.image, text: item.text })
+              SettingItemView(new SettingViewData(item.image, item.text))
             }
           })
         }
       }
     }
     .backgroundColor($r('app.color.discover_page_background'))
-    .width("100%")
-    .height("100%")
+    .width('100%')
+    .height('100%')
   }
 }
