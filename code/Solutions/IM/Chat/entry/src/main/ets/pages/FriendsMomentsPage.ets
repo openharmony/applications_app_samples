@@ -67,7 +67,7 @@ struct FriendsMomentsPage {
                     .fontSize($r('app.integer.friendMomentsPage_name_fontSize'))
                     .fontColor(Color.White)
                     .margin({ top: $r('app.integer.friendMomentsPage_name_margin_left'),right: $r('app.integer.friendMomentsPage_name_margin_right') })
-                  Image($r('app.media.profile_photo_3'))
+                  Image($r('app.media.head_image'))
                     .height($r('app.integer.layout_50'))
                     .width($r('app.integer.layout_50'))
                 }

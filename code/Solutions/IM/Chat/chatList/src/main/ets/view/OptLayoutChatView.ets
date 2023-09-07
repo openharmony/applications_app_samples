@@ -28,7 +28,7 @@ const TAG: string = 'ChatList_ChatView';
 struct ReusableOptLayoutChatView {
   @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
 
-  aboutToReuse(params: Record<string, Object>) {
+  aboutToReuse(params: Record<string, Object>): void {
     this.chatItem = params.chatItem as ChatModel;
     Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
@@ -45,7 +45,7 @@ struct ReusableOptLayoutChatView {
 @Component
 struct OptLayoutChatView {
   private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
-  @StorageLink('img_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('img_sync_load');
+  @StorageLink('image_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('image_sync_load');
 
   build() {
     RelativeContainer() {
