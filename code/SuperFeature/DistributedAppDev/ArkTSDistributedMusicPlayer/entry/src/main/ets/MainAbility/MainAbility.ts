@@ -26,7 +26,7 @@ export default class MainAbility extends UIAbility {
 
   onDestroy() {
     Logger.info(TAG, '[Demo] MainAbility onDestroy')
-    let exitMusicApp = AppStorage.get<() => void>('exitMusicApp');
+    let exitMusicApp = AppStorage.Get<() => void>('exitMusicApp');
     if (exitMusicApp !== undefined) {
       exitMusicApp();
     }
