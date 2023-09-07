@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "ClickAndSwitchTheme",
+      "value": "点击切换主题"
+    },
+    {
+      "name": "Day",
+      "value": "白天"
+    },
+    {
+      "name": "Night",
+      "value": "夜晚"
+    },
+    {
+      "name": "Custom",
+      "value": "自定义"
+    },
+    {
+      "name": "CurrentSystemTheme",
+      "value": "当前系统主题："
+    }
+  ]
+}
