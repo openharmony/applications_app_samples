@@ -96,6 +96,6 @@ struct Index {
     })
     .barWidth($r('app.integer.tabbar_width'))
     .barHeight($r('app.integer.tabbar_height'))
-    .backgroundColor($r('app.color.start_window_background'))
+    .backgroundColor($r('app.color.tabbar_background'))
   }
 }
