@@ -11,6 +11,26 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "ClickAndSwitchTheme",
+      "value": "click and switch theme"
+    },
+    {
+      "name": "Day",
+      "value": "day"
+    },
+    {
+      "name": "Night",
+      "value": "night"
+    },
+    {
+      "name": "Custom",
+      "value": "custom"
+    },
+    {
+      "name": "CurrentSystemTheme",
+      "value": "CurrentSystemTheme"
     }
   ]
 }
