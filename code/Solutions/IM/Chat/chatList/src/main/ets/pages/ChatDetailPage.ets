@@ -23,7 +23,8 @@ import Constants from '../utils/Constants';
 
 @Preview
 @Component
-struct ChatDetailPage {
+// 聊天页面
+export struct ChatDetailPage {
   @State msgLength: number = 0;
   userMyself = new ChatContact('1', $r('app.string.myself'));
   userFriend = new ChatContact('2', $r('app.string.friend'));
@@ -191,7 +192,8 @@ struct ChatDetailPage {
 }
 
 @Component
-struct ChatItemView {
+// 聊天对话框
+export struct ChatItemView {
   private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0);
 
   build() {
@@ -312,5 +314,3 @@ class ChatDetailData extends BasicDataSource<MessageBase> {
     this.notifyDataAdd(this.msgList.length - 1);
   }
 }
-
-export { ChatDetailPage, ChatItemView };
