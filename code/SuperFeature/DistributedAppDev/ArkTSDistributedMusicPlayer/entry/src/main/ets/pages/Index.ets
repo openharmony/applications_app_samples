@@ -53,7 +53,8 @@ class ParamType {
   uri: string
   seekTo: number
   isPlaying: boolean
-};
+}
+;
 
 @Entry
 @Component
@@ -144,7 +145,7 @@ struct Index {
 
   remoteServiceExtensionConnectEvent(event: string) {
     if (typeof (event) === 'string') {
-      let viewThis = AppStorage.get<Index>('viewThis');
+      let viewThis = AppStorage.Get<Index>('viewThis');
       if (event === MusicConnectEvent.EVENT_CONNECT) {
         viewThis.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED;
         viewThis.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause');
@@ -170,20 +171,20 @@ struct Index {
   musicPause() {
     Logger.info(TAG, 'music pause recv')
     PlayerModel.pause()
-    let viewThis = AppStorage.get<Index>('viewThis');
+    let viewThis = AppStorage.Get<Index>('viewThis');
     viewThis.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play');
   }
 
   musicPlay() {
     Logger.info(TAG, 'music play recv')
     PlayerModel.play(DEFAULT_NUM, true);
-    let viewThis = AppStorage.get<Index>('viewThis');
+    let viewThis = AppStorage.Get<Index>('viewThis');
     viewThis.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause');
   }
 
   exitMusicApp() {
     Logger.info(TAG, `exit music app called`)
-    let viewThis = AppStorage.get<Index>('viewThis');
+    let viewThis = AppStorage.Get<Index>('viewThis');
     if (typeof (viewThis.localExtensionRemote) === 'object') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
@@ -201,17 +202,17 @@ struct Index {
     };
     let connectOptions: ConnectOptions = {
       onConnect(elementName: ElementName, remote: rpc.IRemoteObject) {
-        let viewThis = AppStorage.get<Index>('viewThis');
+        let viewThis = AppStorage.Get<Index>('viewThis');
         viewThis.localExtensionRemote = remote as rpc.RemoteProxy;
         Logger.info(TAG, `onConnect called elementName is ${JSON.stringify(elementName)}`);
       },
       onDisconnect(elementName: ElementName) {
-        let viewThis = AppStorage.get<Index>('viewThis');
+        let viewThis = AppStorage.Get<Index>('viewThis');
         viewThis.context.terminateSelf();
         Logger.info(TAG, `OnDisconnect called elementName is ${JSON.stringify(elementName)}`)
       },
       onFailed(code: number) {
-        let viewThis = AppStorage.get<Index>('viewThis');
+        let viewThis = AppStorage.Get<Index>('viewThis');
         viewThis.context.terminateSelf();
         Logger.info(TAG, `OnFailed called code is ${JSON.stringify(code)}`)
       }
@@ -554,11 +555,11 @@ struct Index {
       Logger.info(TAG, 'on playlist generated, refresh ui')
       this.restoreFromWant()
     })
-    AppStorage.setOrCreate('viewThis', this);
-    AppStorage.setOrCreate('exitMusicApp', this.exitMusicApp);
-    AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', this.remoteServiceExtensionConnectEvent);
-    AppStorage.setOrCreate('musicPlay', this.musicPlay);
-    AppStorage.setOrCreate('musicPause', this.musicPause);
+    AppStorage.SetOrCreate('viewThis', this);
+    AppStorage.SetOrCreate('exitMusicApp', this.exitMusicApp);
+    AppStorage.SetOrCreate('remoteServiceExtensionConnectEvent', this.remoteServiceExtensionConnectEvent);
+    AppStorage.SetOrCreate('musicPlay', this.musicPlay);
+    AppStorage.SetOrCreate('musicPause', this.musicPause);
     this.connectLocalExtension()
   }
 
