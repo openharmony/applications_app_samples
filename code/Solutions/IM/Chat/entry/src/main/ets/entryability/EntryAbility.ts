@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,25 +17,28 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import router from '@ohos.router';
 import Logger from '../utils/Logger';
+import Want from '@ohos.app.ability.Want';
+import Ability from '@ohos.app.ability.Ability';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     Logger.info(TAG, 'MainAbility onCreate');
     AppStorage.setOrCreate('want', want);
     PersistentStorage.persistProp('lazy_for_each', true); // 懒加载初始化
-    PersistentStorage.persistProp('reusable', true); // 复用初始化
-    PersistentStorage.persistProp('img_sync_load', true); // 图片同步加载初始化
-    PersistentStorage.persistProp('page_layout', true); // 页面布局初始化
-    PersistentStorage.persistProp('list_cached_count', true); // 列表缓存条数初始化
+    PersistentStorage.persistProp('reusable', true); // 组件复用初始化
+    PersistentStorage.persistProp('image_sync_load', true); // 同步加载初始化
+    PersistentStorage.persistProp('page_layout', true); // 布局优化初始化
+    PersistentStorage.persistProp('list_cached_count', true); // 缓存数量初始化
   }
 
-  onDestroy() {
+  onDestroy(): void {
     Logger.info(TAG, 'MainAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'MainAbility onWindowStageCreate');
 
@@ -49,23 +51,25 @@ export default class EntryAbility extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     Logger.info(TAG, `MainAbility onWindowStageDestroy`);
   }
 
-  onForeground() {
+  onForeground(): void {
     // Ability has brought to foreground
     Logger.info(TAG, `MainAbility onForeground`);
   }
 
-  onBackground() {
+  onBackground(): void {
     // Ability has back to background
     Logger.info(TAG, `MainAbility onBackground`);
   }
 
-  onNewWant(want, launchParam): void {
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     AppStorage.setOrCreate('want', want);
-    router.pushUrl({ url: 'pages/Index' });
+    router.pushUrl({
+      url: 'pages/Index'
+    });
   }
 }

@@ -5,6 +5,10 @@
       "value": "#FFFFFF"
     },
     {
+      "name": "tabbar_background",
+      "value": "#EEEEEE"
+    },
+    {
       "name": "setting_column_color",
       "value": "#cccccc"
     },
