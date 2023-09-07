@@ -27,7 +27,6 @@ const char *TAG = "[Sample_rawfile]";
 static napi_value GetFileList(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetFileList Begin");
-    size_t requireArgc = 3;
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
 
@@ -89,7 +88,6 @@ namespace {
 static napi_value GetRawFileContent(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetFileContent Begin");
-    size_t requireArgc = 3;
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
 
@@ -161,7 +159,6 @@ namespace {
 static napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetRawFileDescriptor Begin");
-    size_t requireArgc = 3;
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
 

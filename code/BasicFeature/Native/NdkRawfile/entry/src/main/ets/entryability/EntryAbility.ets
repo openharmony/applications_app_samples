@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 import { Logger } from '../utils/Logger';
 import window from '@ohos.window';
-import testNapi from 'libentry.so';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info('Ability onCreate');
   }
 
@@ -30,14 +31,6 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info('Ability onWindowStageCreate');
-
-    let rawfilelist = testNapi.getFileList(this.context.resourceManager, ''); // 获取rawfile目录下的子目录和文件
-    let rawfileContet = testNapi.getRawFileContent(this.context.resourceManager, 'rawfile.txt');
-    let rawfileDescriptor = testNapi.getRawFileDescriptor(this.context.resourceManager, 'rawfile.txt');
-
-    globalThis.rawfilelist = rawfilelist.toString();
-    globalThis.rawfileContet = rawfileContet;
-    globalThis.rawfileDescriptor = rawfileDescriptor;
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
