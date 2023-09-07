@@ -28,7 +28,7 @@ const TAG: string = 'ChatList_ChatView';
 struct ReusableOptLayoutChatView {
   @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
 
-  aboutToReuse(params: Record<string, Object>) {
+  aboutToReuse(params: Record<string, Object>): void {
     this.chatItem = params.chatItem as ChatModel;
     Logger.info(TAG, 'aboutToReuse=' + this.chatItem.toString());
   }
