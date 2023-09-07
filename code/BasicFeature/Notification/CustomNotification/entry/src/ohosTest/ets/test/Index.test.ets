@@ -45,6 +45,8 @@ export default function IndexTest() {
       });
       await window.focus();
       await driver.delayMs(1000)
+      await clickBtn(driver, getString($r('app.string.mainAbility_label')));
+      await driver.delayMs(500)
       await clickBtn(driver, getString($r('app.string.allow_button')));
       await driver.delayMs(1000)
       await clickAll(driver);
