@@ -46,10 +46,10 @@ struct ChatView {
         Stack({ alignContent: Alignment.TopEnd }) {
           // 用户头像
           Image(this.chatItem.user.userImage)
-            .width(48)
-            .height(48)
-            .margin({ left: 20 })
-            .borderRadius(5)
+            .width($r('app.integer.chat_view_image_width'))
+            .height($r('app.integer.chat_view_image_height'))
+            .margin({ left: $r('app.integer.chat_view_image_margin_left') })
+            .borderRadius($r('app.integer.chat_view_image_border_radius'))
             .autoResize(false)
             // 图片同步加载
             .syncLoad(this.imageSyncLoad ? true : false)
@@ -57,31 +57,31 @@ struct ChatView {
           // 红点消息大于0条时渲染红点
           if (this.chatItem.unreadMsgCount > 0){
             Text(`${this.chatItem.unreadMsgCount}`)
-              .borderRadius(10)
-              .width(20)
-              .height(20)
+              .borderRadius($r('app.integer.chat_view_unread_border_radius'))
+              .width($r('app.integer.chat_view_unread_width'))
+              .height($r('app.integer.chat_view_unread_height'))
               .backgroundColor($r('app.color.unread_msg'))
-              .fontSize(12)
+              .fontSize($r('app.integer.chat_view_unread_font_size'))
               .textAlign(TextAlign.Center)
               .fontColor(Color.White)
-              .margin({ top: -10, right: -10 })
+              .margin({ top: $r('app.integer.chat_view_unread_margin_top'), right: $r('app.integer.chat_view_unread_margin_right') })
           }
         }
       }
       .layoutWeight(1)
-      .padding({ right: 12 })
+      .padding({ right: $r('app.integer.chat_view_col_padding_right') })
 
       // 对方用户名
       Column() {
         Text(this.chatItem.user.userName)
           .fontColor(Color.Black)
-          .fontSize(16)
-          .margin({ bottom: 3 })
+          .fontSize($r('app.integer.chat_view_user_name_font_size'))
+          .margin({ bottom: $r('app.integer.chat_view_user_name_margin_bottom') })
         Text(this.chatItem.lastMsg)
           .fontColor($r('app.color.last_msg'))
           .maxLines(1)
-          .fontSize(14)
-          .margin({ top: 5 })
+          .fontSize($r('app.integer.chat_view_user_msg_font_size'))
+          .margin({ top: $r('app.integer.chat_view_user_msg_margin_top') })
       }
       .alignItems(HorizontalAlign.Start)
       .layoutWeight(5)
@@ -89,20 +89,20 @@ struct ChatView {
       // 最后一条消息时间
       Column() {
         Text(this.chatItem.lastTime)
-          .width(50)
+          .width($r('app.integer.chat_view_time_width'))
           .fontColor($r('app.color.last_msg'))
           .textAlign(TextAlign.End)
           .maxLines(1)
-          .fontSize(12)
-          .margin({ right: 6, bottom: 27 })
+          .fontSize($r('app.integer.chat_view_time_font_size'))
+          .margin({ right: $r('app.integer.chat_view_time_margin_right'), bottom: $r('app.integer.chat_view_time_margin_bottom') })
       }
-      .padding({ left: 15 })
+      .padding({ left: $r('app.integer.chat_view_time_col_padding_left') })
       .alignItems(HorizontalAlign.End)
       .layoutWeight(1)
     }
-    .width("100%")
-    .height(70)
-    .padding({ left: 8, right: 10, top: 10, bottom: 10 })
+    .width($r('app.string.layout_100'))
+    .height($r('app.integer.chat_view_row_height'))
+    .padding({ left: $r('app.integer.chat_view_row_padding_left'), right: $r('app.integer.chat_view_row_padding_right'), top: $r('app.integer.chat_view_row_padding_top'), bottom: $r('app.integer.chat_view_row_padding_bottom') })
     .onClick((event?: ClickEvent) => {
       // 进入聊天详情页
       router.pushUrl({

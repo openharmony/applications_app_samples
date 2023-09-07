@@ -127,6 +127,106 @@
     {
       "name": "chat_list_delete_height",
       "value": 70
+    },
+    {
+      "name": "chat_view_image_width",
+      "value": 48
+    },
+    {
+      "name": "chat_view_image_height",
+      "value": 48
+    },
+    {
+      "name": "chat_view_image_margin_left",
+      "value": 20
+    },
+    {
+      "name": "chat_view_image_border_radius",
+      "value": 5
+    },
+    {
+      "name": "chat_view_unread_border_radius",
+      "value": 10
+    },
+    {
+      "name": "chat_view_unread_width",
+      "value": 20
+    },
+    {
+      "name": "chat_view_unread_height",
+      "value": 20
+    },
+    {
+      "name": "chat_view_unread_font_size",
+      "value": 12
+    },
+    {
+      "name": "chat_view_unread_margin_top",
+      "value": -10
+    },
+    {
+      "name": "chat_view_unread_margin_right",
+      "value": -10
+    },
+    {
+      "name": "chat_view_col_padding_right",
+      "value": 12
+    },
+    {
+      "name": "chat_view_user_name_font_size",
+      "value": 16
+    },
+    {
+      "name": "chat_view_user_name_margin_bottom",
+      "value": 3
+    },
+    {
+      "name": "chat_view_user_msg_font_size",
+      "value": 14
+    },
+    {
+      "name": "chat_view_user_msg_margin_top",
+      "value": 5
+    },
+    {
+      "name": "chat_view_time_width",
+      "value": 50
+    },
+    {
+      "name": "chat_view_time_font_size",
+      "value": 12
+    },
+    {
+      "name": "chat_view_time_margin_right",
+      "value": 6
+    },
+    {
+      "name": "chat_view_time_margin_bottom",
+      "value": 27
+    },
+    {
+      "name": "chat_view_time_col_padding_left",
+      "value": 15
+    },
+    {
+      "name": "chat_view_row_height",
+      "value": 70
+    },
+    {
+      "name": "chat_view_row_padding_left",
+      "value": 8
+    },
+    {
+      "name": "chat_view_row_padding_right",
+      "value": 10
+    },
+    {
+      "name": "chat_view_row_padding_top",
+      "value": 10
+    },
+    {
+      "name": "chat_view_row_padding_bottom",
+      "value": 10
     }
   ]
 }
