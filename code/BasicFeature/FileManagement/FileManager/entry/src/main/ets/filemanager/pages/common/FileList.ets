@@ -24,222 +24,222 @@ const ONE_SECOND: number = 1000
 @Preview
 @Component
 export struct FileList {
-  @State fileList: FileDataSource = new FileDataSource()
-  @State isNoFile: boolean = true
-  @State showDeleteButton: boolean = false
+  @State fileList: FileDataSource = new FileDataSource();
+  @State isNoFile: boolean = true;
+  @State showDeleteButton: boolean = false;
   title: Resource = {} as Resource;
-  mediaType: mediaLibrary.MediaType = mediaLibrary.MediaType.FILE
-  itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {}
+  mediaType: mediaLibrary.MediaType = mediaLibrary.MediaType.FILE;
+  itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {};
 
   async aboutToAppear() {
-    let files = await FileManager.getFileAssets(getContext(), this.mediaType)
+    let files = await FileManager.getFileAssets(getContext(), this.mediaType);
     if (files == undefined) {
-      Logger.error('files undefined')
-      return
+      Logger.error('files undefined');
+      return;
     }
     if (files.getCount() > 0) {
-      Logger.debug('show list')
-      this.isNoFile = false
+      Logger.debug('show list');
+      this.isNoFile = false;
     }
     for (let i = 0; i < files.getCount(); i++) {
-      let fileAsset: mediaLibrary.FileAsset = await files.getNextObject()
+      let fileAsset: mediaLibrary.FileAsset = await files.getNextObject();
       if (fileAsset == undefined) {
-        continue
+        continue;
       }
       Logger.debug('getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
-      ' data:' + fileAsset.dateAdded + ', ' + fileAsset.dateModified)
-      this.fileList.pushData(fileAsset)
+      ' data:' + fileAsset.dateAdded + ', ' + fileAsset.dateModified);
+      this.fileList.pushData(fileAsset);
     }
   }
 
   @Styles imagePressedStyles() {
-    .backgroundColor($r('app.color.item_pressed'))
-    .borderRadius(10)
+    .backgroundColor($r('app.color.item_pressed'));
+    .borderRadius(10);
   }
 
   build() {
     Column() {
       Row() {
-        Image($r('app.media.back'))
-          .id('back')
-          .width(36)
-          .height(36)
-          .objectFit(ImageFit.Fill)
-          .alignSelf(ItemAlign.Start)
+        Image($r('app.media.back'));
+          .id('back');
+          .width(36);
+          .height(36);
+          .objectFit(ImageFit.Fill);
+          .alignSelf(ItemAlign.Start);
           .responseRegion({
-            x: 0,
-            y: 0,
-            width: 45,
-            height: 45
+            x: 0;
+            y: 0;
+            width: 45;
+            height: 45;
           })
           .stateStyles({
-            pressed: this.imagePressedStyles
+            pressed: this.imagePressedStyles;
           })
           .onClick(() => {
-            router.back()
+            router.back();
           })
 
-        Text(this.title)
-          .fontSize(24)
-          .margin({ left: 10 })
-          .fontWeight(FontWeight.Bold)
-          .fontColor($r('app.color.black'))
+        Text(this.title);
+          .fontSize(24);
+          .margin({ left: 10 });
+          .fontWeight(FontWeight.Bold);
+          .fontColor($r('app.color.black'));
 
-        Blank()
+        Blank();
 
         if (this.mediaType === mediaLibrary.MediaType.FILE) {
-          Image($r('app.media.add'))
-            .id('fileAdd')
-            .width(36)
-            .height(36)
-            .objectFit(ImageFit.Fill)
-            .alignSelf(ItemAlign.End)
+          Image($r('app.media.add'));
+            .id('fileAdd');
+            .width(36);
+            .height(36);
+            .objectFit(ImageFit.Fill);
+            .alignSelf(ItemAlign.End);
             .responseRegion({
-              x: 0,
-              y: 0,
-              width: 45,
-              height: 45
+              x: 0;
+              y: 0;
+              width: 45;
+              height: 45;
             })
             .stateStyles({
-              pressed: this.imagePressedStyles
+              pressed: this.imagePressedStyles;
             })
             .onClick(async () => {
-              let fileAsset: mediaLibrary.FileAsset = await FileManager.createTxtFileAsset(getContext(this))
+              let fileAsset: mediaLibrary.FileAsset = await FileManager.createTxtFileAsset(getContext(this));
               if (fileAsset == undefined) {
-                Logger.error("createTxtFileAsset undefined")
-                return
+                Logger.error("createTxtFileAsset undefined");
+                return;
               }
-              this.fileList.pushData(fileAsset)
-              this.isNoFile = false
+              this.fileList.pushData(fileAsset);
+              this.isNoFile = false;
             })
         }
       }
-      .width('100%')
-      .margin({ top: 10, bottom: 20 })
+      .width('100%');
+      .margin({ top: 10, bottom: 20 });
 
       if (this.isNoFile) {
         Column() {
-          Image($r('app.media.no_file'))
-            .id('no_file')
-            .width(36)
-            .height(36)
-            .margin({ top: 50 })
-            .objectFit(ImageFit.Fill)
+          Image($r('app.media.no_file'));
+            .id('no_file');
+            .width(36);
+            .height(36);
+            .margin({ top: 50 });
+            .objectFit(ImageFit.Fill);
 
-          Text($r('app.string.no_file'))
-            .fontSize(16)
-            .margin({ top: 10 })
-            .fontWeight(FontWeight.Bold)
-            .fontColor($r('app.color.font_gray'))
+          Text($r('app.string.no_file'));
+            .fontSize(16);
+            .margin({ top: 10 });
+            .fontWeight(FontWeight.Bold);
+            .fontColor($r('app.color.font_gray'));
         }
-        .width('100%')
+        .width('100%');
       } else {
         List() {
           LazyForEach(this.fileList, (listItem: mediaLibrary.FileAsset) => {
             ListItem() {
               FileListItemComponent({
-                itemFileList: $fileList,
-                fileListItem: listItem,
-                itemClickFunction: this.itemClickFunction,
-                itemId: listItem.id,
-                itemShowDeleteButton: $showDeleteButton,
-                itemIsNoFile: $isNoFile
+                itemFileList: $fileList;
+                fileListItem: listItem;
+                itemClickFunction: this.itemClickFunction;
+                itemId: listItem.id;
+                itemShowDeleteButton: $showDeleteButton;
+                itemIsNoFile: $isNoFile;
               })
             }
-          }, (listItem: mediaLibrary.FileAsset) => JSON.stringify(listItem.title))
+          }, (listItem: mediaLibrary.FileAsset) => JSON.stringify(listItem.title));
         }
-        .height('100%')
-        .width('100%')
+        .height('100%');
+        .width('100%');
       }
     }
-    .height('100%')
-    .width('100%')
-    .backgroundColor($r('app.color.white'))
-    .padding(20)
+    .height('100%');
+    .width('100%');
+    .backgroundColor($r('app.color.white'));
+    .padding(20);
   }
 }
 
 @Component
 struct FileListItemComponent {
-  @Link itemFileList: FileDataSource
-  @Link itemShowDeleteButton: boolean
-  @Link itemIsNoFile: boolean
+  @Link itemFileList: FileDataSource;
+  @Link itemShowDeleteButton: boolean;
+  @Link itemIsNoFile: boolean;
   private fileListItem: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset;
-  private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {}
-  private itemId: number = 0
+  private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {};
+  private itemId: number = 0;
 
   @Styles itemPressedStyles() {
-    .backgroundColor($r('app.color.item_pressed'))
-    .borderRadius(10)
+    .backgroundColor($r('app.color.item_pressed'));
+    .borderRadius(10);
   }
 
   build() {
     Column() {
       Row() {
-        ThumbnailImage({ fileAsset: this.fileListItem })
-          .width(40)
-          .height(40)
-          .margin({ left: 20 })
+        ThumbnailImage({ fileAsset: this.fileListItem });
+          .width(40);
+          .height(40);
+          .margin({ left: 20 });
 
         Column() {
-          Text(this.fileListItem.title)
-            .maxLines(1)
-            .width('75%')
-            .textOverflow({overflow:TextOverflow.Ellipsis})
-            .fontSize(16)
-            .fontColor($r('app.color.black'))
+          Text(this.fileListItem.title);
+            .maxLines(1);
+            .width('75%');
+            .textOverflow({overflow:TextOverflow.Ellipsis});
+            .fontSize(16);
+            .fontColor($r('app.color.black'));
 
           Text(new Date(this.fileListItem.dateAdded * ONE_SECOND).toLocaleDateString() + ' - ' +
-          Math.ceil(this.fileListItem.size / SIZE_M) + 'M')
-            .fontSize(12)
-            .margin({ top: 5 })
-            .fontColor($r('app.color.font_gray'))
+          Math.ceil(this.fileListItem.size / SIZE_M) + 'M');
+            .fontSize(12);
+            .margin({ top: 5 });
+            .fontColor($r('app.color.font_gray'));
         }
-        .margin({ left: 10 })
-        .alignItems(HorizontalAlign.Start)
+        .margin({ left: 10 });
+        .alignItems(HorizontalAlign.Start);
 
         Blank()
 
         if (this.itemShowDeleteButton) {
-          Image($r('app.media.delete'))
-            .id('fileListDelete')
-            .width(30)
-            .height(30)
-            .margin({ right: 20 })
-            .objectFit(ImageFit.Fill)
+          Image($r('app.media.delete'));
+            .id('fileListDelete');
+            .width(30);
+            .height(30);
+            .margin({ right: 20 });
+            .objectFit(ImageFit.Fill);
             .responseRegion({
-              x: 0,
-              y: 0,
-              width: 50,
-              height: 50
+              x: 0;
+              y: 0;
+              width: 50;
+              height: 50;
             })
             .stateStyles({
-              pressed: this.itemPressedStyles
+              pressed: this.itemPressedStyles;
             })
             .onClick(() => {
-              FileManager.deleteFileAsset(this.fileListItem)
-              this.itemFileList.deleteData(this.itemId)
-              this.itemShowDeleteButton = false
+              FileManager.deleteFileAsset(this.fileListItem);
+              this.itemFileList.deleteData(this.itemId);
+              this.itemShowDeleteButton = false;
               if (this.itemFileList.totalCount() === 0) {
-                this.itemIsNoFile = true
+                this.itemIsNoFile = true;
               }
             })
         }
       }
-      .height(56)
-      .width('100%')
-      .margin({ top: 10 })
+      .height(56);
+      .width('100%');
+      .margin({ top: 10 });
     }
-    .width('100%')
+    .width('100%');
     .stateStyles({
-      pressed: this.itemPressedStyles
+      pressed: this.itemPressedStyles;
     })
     .onClick(async () => {
-      this.itemClickFunction(this.fileListItem)
+      this.itemClickFunction(this.fileListItem);
     })
-    .gesture(LongPressGesture({ repeat: true })
+    .gesture(LongPressGesture({ repeat: true });
       .onAction((event?: GestureEvent) => {
-        this.itemShowDeleteButton = true
+        this.itemShowDeleteButton = true;
       })
     )
   }

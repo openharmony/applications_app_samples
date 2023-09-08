@@ -13,20 +13,20 @@
  * limitations under the License.
  */
 
-import storageStatistics from '@ohos.file.storageStatistics'
-import fileio from '@ohos.fileio'
-import Logger from '../../utils/Logger'
-import { FileType, SubDirectoryType } from '../../mock/local/FileData'
-import prompt from '@ohos.promptAction'
+import storageStatistics from '@ohos.file.storageStatistics';
+import fileio from '@ohos.fileio';
+import Logger from '../../utils/Logger';
+import { FileType, SubDirectoryType } from '../../mock/local/FileData';
+import prompt from '@ohos.promptAction';
 
 // 大小和单位
-const GB_MAGNITUDE: number = 1024 * 1024 * 1024
-const MB_MAGNITUDE: number = 1024 * 1024
-const KB_MAGNITUDE: number = 1024
-const GB_SYMBOL: string = 'GB'
-const MB_SYMBOL: string = 'MB'
-const KB_SYMBOL: string = 'KB'
-const BYTE_SYMBOL: string = 'B'
+const GB_MAGNITUDE: number = 1024 * 1024 * 1024;
+const MB_MAGNITUDE: number = 1024 * 1024;
+const KB_MAGNITUDE: number = 1024;
+const GB_SYMBOL: string = 'GB';
+const MB_SYMBOL: string = 'MB';
+const KB_SYMBOL: string = 'KB';
+const BYTE_SYMBOL: string = 'B';
 
 class FileSystem {
   // 获取文件大小
@@ -50,22 +50,22 @@ class FileSystem {
 
   // 总空间---默认GB
   async getTotalSize(): Promise<string> {
-    let totalSize: number = await storageStatistics.getTotalSize()
+    let totalSize: number = await storageStatistics.getTotalSize();
     // 处理大小
-    return `${(totalSize / GB_MAGNITUDE).toFixed(2)}${GB_SYMBOL}`
+    return `${(totalSize / GB_MAGNITUDE).toFixed(2)}${GB_SYMBOL}`;
   }
 
   // 剩余空间
   async getFreeSize(): Promise<string> {
-    let freeSize = await storageStatistics.getFreeSize()
+    let freeSize = await storageStatistics.getFreeSize();
     if (freeSize / GB_MAGNITUDE > 1) {
-      return `${(freeSize / GB_MAGNITUDE).toFixed(2)}${GB_SYMBOL}`
+      return `${(freeSize / GB_MAGNITUDE).toFixed(2)}${GB_SYMBOL}`;
     } else if (freeSize / MB_MAGNITUDE > 1) {
-      return `${(freeSize / MB_MAGNITUDE).toFixed(2)}${MB_SYMBOL}`
+      return `${(freeSize / MB_MAGNITUDE).toFixed(2)}${MB_SYMBOL}`;
     } else if (freeSize / KB_MAGNITUDE > 1) {
-      return `${(freeSize / KB_MAGNITUDE).toFixed(2)}${KB_SYMBOL}`
+      return `${(freeSize / KB_MAGNITUDE).toFixed(2)}${KB_SYMBOL}`;
     } else {
-      return `${freeSize}${BYTE_SYMBOL}`
+      return `${freeSize}${BYTE_SYMBOL}`;
     }
   }
 
@@ -77,13 +77,13 @@ class FileSystem {
     let dirent: fileio.Dirent;
     // 结果数组
     class SubDirectory {
-      name: string = ''
-      type: number = 0
-      time: Date
-      childrenNum: number = 0
-      fileSize: string = ''
+      name: string = '';
+      type: number = 0;
+      time: Date;
+      childrenNum: number = 0;
+      fileSize: string = '';
       constructor(time: Date) {
-        this.time = time
+        this.time = time;
       }
     }
     let subdirectory: Array<SubDirectory> = []
@@ -101,12 +101,12 @@ class FileSystem {
           fileSize = this.getFileSize(filePath + `${dirent.name}`);
           time = this.getFileTime(filePath + `${dirent.name}`);
         }
-        let item = new SubDirectory(time)
-        item.name = dirent.name
-        item.type = dirent.isDirectory() ? 1 : 2
-        item.childrenNum = subdirectoryNum
-        item.fileSize = fileSize
-        subdirectory.push(item)
+        let item = new SubDirectory(time);
+        item.name = dirent.name;
+        item.type = dirent.isDirectory() ? 1 : 2;
+        item.childrenNum = subdirectoryNum;
+        item.fileSize = fileSize;
+        subdirectory.push(item);
       }
     } while (dirent);
     return subdirectory;
@@ -142,18 +142,18 @@ class FileSystem {
   // 创建目录
   createDirectory(filePath: string): void {
     try {
-      fileio.mkdirSync(filePath)
+      fileio.mkdirSync(filePath);
     } catch (err) {
-      Logger.error(`create directory failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`create directory failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
   // 创建文件
   createFile(filePath: string): void {
     try {
-      fileio.openSync(filePath, 0o100, 0o666)
+      fileio.openSync(filePath, 0o100, 0o666);
     } catch (err) {
-      Logger.error(`create file failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`create file failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -162,13 +162,13 @@ class FileSystem {
     try {
       dataArray.forEach((value, data) => {
         if (value === 1) {
-          fileio.rmdirSync(data)
+          fileio.rmdirSync(data);
         } else {
-          fileio.unlinkSync(data)
+          fileio.unlinkSync(data);
         }})
-      prompt.showToast({ message: $r('app.string.label_delete_success') })
+      prompt.showToast({ message: $r('app.string.label_delete_success') });
     } catch (err) {
-      Logger.error(`delete failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`delete failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -176,18 +176,18 @@ class FileSystem {
   copyFile(filePath: string, newFilePath: string): void {
     try {
       // 遍历数据直接copy所有项目
-      fileio.copyFileSync(filePath, newFilePath)
+      fileio.copyFileSync(filePath, newFilePath);
     } catch (err) {
-      Logger.error(`copy file failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`copy file failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
   // 重命名文件
   renameFile(filePath: string, newFilePath: string): void {
     try {
-      fileio.renameSync(filePath, newFilePath)
+      fileio.renameSync(filePath, newFilePath);
     } catch (err) {
-      Logger.error(`rename file failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`rename file failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -198,11 +198,11 @@ class FileSystem {
       // 如果是目录
       if (file.type === 1) {
         // 先创建这个目录
-        this.createDirectory(`${newFilePath}/${file.fileName}`)
+        this.createDirectory(`${newFilePath}/${file.fileName}`);
         // 获取当前文件夹下的所有文件目录
-        let subdirectory = this.getSubdirectory(`${file.filePath}/`)
+        let subdirectory = this.getSubdirectory(`${file.filePath}/`);
         // 处理为我们想要的格式
-        let needMoveFiles: Array<FileType> = []
+        let needMoveFiles: Array<FileType> = [];
         // 遍历子目录数据
         subdirectory.forEach((subdirectoryData: SubDirectoryType) => {
           let data: FileType = {
@@ -211,15 +211,15 @@ class FileSystem {
             type: subdirectoryData.type
           }
           // 逐一添加进去
-          needMoveFiles.push(data)
+          needMoveFiles.push(data);
         })
         // 使用我们的数据递归
-        this.startMoveFile(needMoveFiles, `${newFilePath}/${file.fileName}`)
+        this.startMoveFile(needMoveFiles, `${newFilePath}/${file.fileName}`);
       } else {
-        this.copyFile(file.filePath, `${newFilePath}/${file.fileName}`)
+        this.copyFile(file.filePath, `${newFilePath}/${file.fileName}`);
       }
     })
   }
 }
 
-export default new FileSystem()
+export default new FileSystem();

@@ -16,15 +16,15 @@
 // 用户输入名字的弹窗
 @CustomDialog
 export struct InputNameDialog {
-  controller?: CustomDialogController
-  textController: TextInputController = new TextInputController()
-  confirm: () => void = () => {}
-  name: string = ''
-  type: number = 0
+  controller?: CustomDialogController;
+  textController: TextInputController = new TextInputController();
+  confirm: () => void = () => {};
+  name: string = '';
+  type: number = 0;
 
   aboutToAppear() {
     if (this.name) {
-      AppStorage.SetOrCreate('name', this.name)
+      AppStorage.SetOrCreate('name', this.name);
     }
   }
 
@@ -32,65 +32,65 @@ export struct InputNameDialog {
     Column() {
       Row() {
         if (this.name) {
-          Text($r('app.string.label_rename'))
-            .fontSize(20)
+          Text($r('app.string.label_rename'));
+            .fontSize(20);
         } else {
-          Text(this.type === 1 ? $r('app.string.label_make_directory') : $r('app.string.label_make_file'))
-            .fontSize(20)
+          Text(this.type === 1 ? $r('app.string.label_make_directory') : $r('app.string.label_make_file'));
+            .fontSize(20);
         }
       }
-      .width('100%')
-      .justifyContent(FlexAlign.Center)
+      .width('100%');
+      .justifyContent(FlexAlign.Center);
 
       TextInput({
-        placeholder: $r('app.string.label_input'),
-        text: this.name ? this.name : '',
-        controller: this.textController
+        placeholder: $r('app.string.label_input');
+        text: this.name ? this.name : '';
+        controller: this.textController;
       })
-        .id('input')
-        .placeholderColor(Color.Grey)
-        .placeholderFont({ size: 14, weight: 400 })
-        .caretColor(Color.Blue)
-        .width('100%')
-        .height(40)
-        .margin({ top: 20, bottom: 20 })
-        .fontSize(14)
-        .fontColor(Color.Black)
-        .enableKeyboardOnFocus(false)
+        .id('input');
+        .placeholderColor(Color.Grey);
+        .placeholderFont({ size: 14, weight: 400 });
+        .caretColor(Color.Blue);
+        .width('100%');
+        .height(40);
+        .margin({ top: 20, bottom: 20 });
+        .fontSize(14);
+        .fontColor(Color.Black);
+        .enableKeyboardOnFocus(false);
         .onChange((value: string) => {
-          AppStorage.SetOrCreate('name', value)
+          AppStorage.SetOrCreate('name', value);
         })
 
       Row() {
-        Text($r('app.string.label_confirm'))
-          .id('promise')
-          .fontColor($r('app.color.text_color'))
-          .fontSize(20)
-          .letterSpacing(2)
-          .opacity(.8)
+        Text($r('app.string.label_confirm'));
+          .id('promise');
+          .fontColor($r('app.color.text_color'));
+          .fontSize(20);
+          .letterSpacing(2);
+          .opacity(.8);
       }
-      .padding({ top: 10, bottom: 10 })
-      .margin({ bottom: 20 })
+      .padding({ top: 10, bottom: 10 });
+      .margin({ bottom: 20 });
       // 界面需求，这里给出50%
-      .width('50%')
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor($r('app.color.text_color'))
-      .borderRadius(40)
+      .width('50%');
+      .justifyContent(FlexAlign.Center);
+      .borderWidth(2);
+      .borderColor($r('app.color.text_color'));
+      .borderRadius(40);
       .onClick(() => {
-        this.confirm()
+        this.confirm();
       })
 
-      Text($r('app.string.label_cancel'))
-        .id('cancel')
-        .fontSize(20)
+      Text($r('app.string.label_cancel'));
+        .id('cancel');
+        .fontSize(20);
         .onClick(() => {
-          this.controller?.close()
+          this.controller?.close();
         })
     }
-    .width('100%')
-    .padding(40)
-    .borderRadius(20)
-    .backgroundColor(Color.White)
+    .width('100%');
+    .padding(40);
+    .borderRadius(20);
+    .backgroundColor(Color.White);
   }
 }
