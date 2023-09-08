@@ -61,33 +61,8 @@ export default {
     risw: 720, // ratio independent screen width
     rish: 1280, // ratio independent screen height
     hasInitialized: false,
-    topRectHeight: 72,
-    bottomRectHeight: 72
-  },
-  // 获取导航键高度
-  getNavHegiht(){
-    let windowClass = null;
-    window.getLastWindow((err, data) => {
-      if (err.code) {
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      windowClass = data;
-      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-      try {
-        windowClass.on('avoidAreaChange', (data) => {
-          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-          this.topRectHeight=data.area.topRect.height
-          this.bottomRectHeight=data.area.bottomRect.height
-        });
-      } catch (exception) {
-        console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-      }
-    });
   },
   onInit() {
-    this.getNavHegiht()
     logger.info(TAG, `onInit begin`)
     this.grantPermission()
     logger.info(TAG, `getDefaultDisplay begin`)
