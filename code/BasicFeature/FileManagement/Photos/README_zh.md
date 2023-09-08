@@ -197,8 +197,8 @@
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例仅支持API10版本SDK，版本号：4.0.9.1，镜像版本号：OpenHarmony 4.0.9.1；
-3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)才可编译运行；
+2. 本示例仅支持API10版本SDK，版本号：4.0.9.1，镜像版本号：OpenHarmony 4.0.9.1，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)；
+3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)才可编译运行，需要配置"apl":"system_basic"才可安装成功；
 
 ### 下载
 
