@@ -18,11 +18,24 @@ import resourceManager from '@ohos.resourceManager';
 class PromptType {
   image: string | Resource = ''
   text: string | Resource = ''
+
+  constructor(image: string | Resource = '', text: string | Resource = '') {
+    this.image = image;
+    this.text = text;
+  }
+}
+
+class MessageDetail {
+  message: Resource;
+
+  constructor(message: Resource) {
+    this.message = message;
+  }
 }
 
 // 首页右上角点击加号时弹出的列表
 @CustomDialog
-struct CustomDialogExample {
+export struct CustomDialogExample {
   controller: CustomDialogController = new CustomDialogController({ builder: CustomDialogExample({}) });
   // 懒加载开关
   @StorageLink('lazy_for_each') lazyForEach: boolean | undefined = AppStorage.get('lazy_for_each');
@@ -35,10 +48,11 @@ struct CustomDialogExample {
   // 缓存数量开关
   @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
   private promptArr: PromptType[] = [
-    { image: $r('app.media.pic1'), text: $r('app.string.add_friends') },
-    { image: $r('app.media.pic2'), text: $r('app.string.group_chat') },
-    { image: $r('app.media.pic3'), text: $r('app.string.scan') },
-    { image: $r('app.media.pic4'), text: $r('app.string.collection_payment') }];
+    new PromptType($r('app.media.pic1'), $r('app.string.add_friends')),
+    new PromptType($r('app.media.pic2'), $r('app.string.group_chat')),
+    new PromptType($r('app.media.pic3'), $r('app.string.scan')),
+    new PromptType($r('app.media.pic4'), $r('app.string.collection_payment'))];
+
   build() {
     Column() {
       // 首页右上角点击加号按钮弹出的列表框的前4个item
@@ -112,9 +126,7 @@ struct Prompt {
     .onClick(() => {
       this.controller.close()
       AlertDialog.show(
-        {
-          message: $r('app.string.alert_dialog'),
-        }
+        new MessageDetail($r('app.string.alert_dialog'))
       )
     })
   }
@@ -168,5 +180,3 @@ struct ToggleComponent {
     }
   }
 }
-
-export { CustomDialogExample }
