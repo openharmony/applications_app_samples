@@ -16,9 +16,6 @@ import window from '@ohos.window';
 
 export default {
   onCreate() {
-    window.getTopWindow().then((win) => {
-      win.setFullScreen(true)
-    })
     console.info("Application onCreate");
   },
   onDestroy() {
