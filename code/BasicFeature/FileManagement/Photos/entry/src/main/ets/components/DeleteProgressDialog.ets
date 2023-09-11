@@ -40,7 +40,7 @@ export struct DeleteProgressDialog {
           .fontFamily($r('app.string.id_text_font_family_regular'))
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-        Text((this.deleteProgressParam.currentCount/this.deleteProgressParam.totalCount).toString())
+        Text(`${this.deleteProgressParam.currentCount}/${this.deleteProgressParam.totalCount}`)
           .fontSize($r('sys.float.ohos_id_text_size_body2'))
           .fontFamily($r('app.string.id_text_font_family_regular'))
           .flexGrow(1)

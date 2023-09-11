@@ -59,11 +59,11 @@ export class BatchRemoveMenuOperation extends ProcessMenuOperation {
 
   getResourceFromGrid(dataSource: ItemDataSource): Resource {
     if (dataSource != null && dataSource.isSelect()) {
-      return $r('app.string.remove_all_files_tips')
+      return $r('app.string.remove_all_files_tips');
     } else if (this.count === 1) {
-      return $r('app.string.remove_single_file_tips')
+      return $r('app.string.remove_single_file_tips');
     } else {
-      return $r('app.string.remove_files_tips', this.count)
+      return $r('app.string.remove_files_tips', this.count);
     }
   }
 
@@ -74,7 +74,7 @@ export class BatchRemoveMenuOperation extends ProcessMenuOperation {
   }
 
   confirmCallback(): void {
-    this.confirmCallbackBindImpl()
+    this.confirmCallbackBindImpl();
   }
 
   protected confirmCallbackBindImpl(): void {
@@ -87,7 +87,7 @@ export class BatchRemoveMenuOperation extends ProcessMenuOperation {
     // 2. onRemoveStart exit selection mode
     let onOperationStart: Function = this.menuContext.onOperationStart;
     if (onOperationStart != null) {
-      onOperationStart()
+      onOperationStart();
     }
 
     this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
@@ -118,7 +118,7 @@ export class BatchRemoveMenuOperation extends ProcessMenuOperation {
   }
 
   cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   protected cancelCallbackBindImpl(): void {

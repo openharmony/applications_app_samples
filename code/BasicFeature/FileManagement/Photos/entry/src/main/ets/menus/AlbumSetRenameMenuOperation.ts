@@ -70,7 +70,7 @@ export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperation
   }
 
   private async confirmCallback(newName: string): Promise<void> {
-    return await this.confirmCallbackBindImpl(newName)
+    return await this.confirmCallbackBindImpl(newName);
   }
 
   private async confirmCallbackBindImpl(newName: string): Promise<void> {
@@ -94,17 +94,17 @@ export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperation
         let isExit = await this.checkAlbumExit(simpleAlbumDataItem);
         if (isExit) {
           getResourceString($r('app.string.name_already_use')).then<void, void>((message: string): void => {
-            showToast(message)
+            showToast(message);
           })
-          Log.warn(TAG, 'album is miss')
+          Log.warn(TAG, 'album is miss');
           this.onError();
           return;
         }
       }
       Log.info(TAG, 'change album_name:' + this.item.displayName + ' to ' + name);
-      let albums: photoAccessHelper.Album = await userFileModel.getUserAlbumByName(this.item.displayName)
-      albums.albumName = name
-      await albums.commitModify()
+      let albums: photoAccessHelper.Album = await userFileModel.getUserAlbumByName(this.item.displayName);
+      albums.albumName = name;
+      await albums.commitModify();
       this.onCompleted();
     } catch (error) {
       Log.error(TAG, 'AlbumSet rename failed: ' + error);
@@ -113,7 +113,7 @@ export class AlbumSetRenameMenuOperation implements MenuOperation, MenuOperation
   }
 
   private cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   private cancelCallbackBindImpl(): void {

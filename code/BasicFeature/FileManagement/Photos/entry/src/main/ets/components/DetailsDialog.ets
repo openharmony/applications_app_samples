@@ -180,25 +180,6 @@ export struct DetailsDialog {
         }.margin({
           bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
       }
-      Row() {
-        Column() {
-          Text($r('app.string.path'))
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .fontFamily($r('app.string.id_text_font_family_regular'))
-            .fontColor($r('sys.color.ohos_id_color_text_primary'))
-        }
-
-        Column() {
-          Text(this.getDisplayPath())
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .fontFamily($r('app.string.id_text_font_family_regular'))
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .maxLines(Constants.DETAILS_DIALOG_PATH_MAX_LINE)
-            .padding({ right: $r('app.float.dialog_content_margin') })
-        }
-      }.alignItems(VerticalAlign.Top)
-      .margin({
-        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
 
       Stack({ alignContent: Alignment.Top }) {
         Button() {

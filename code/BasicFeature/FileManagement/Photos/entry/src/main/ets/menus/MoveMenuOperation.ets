@@ -70,12 +70,12 @@ export class MoveMenuOperation extends ProcessMenuOperation {
 
   requestOneBatchOperation(): void {
     let item = this.items[this.currentBatch++] as UserFileDataItem;
-    userFileModel.addPhotoToAlbumByUserFileMgr(this.albumInfo.uri, item.uri)
+    userFileModel.addPhotoToAlbumByUserFileMgr(this.albumInfo.uri, item.uri);
     this.onCompleted();
   }
 
   cancelFunc(): void {
-    this.cancelFuncBindImpl()
+    this.cancelFuncBindImpl();
   }
 
   private cancelFuncBindImpl(): void {
@@ -90,7 +90,7 @@ export class MoveMenuOperation extends ProcessMenuOperation {
 
   // Move cancel callback
   onOperateContinue(): void {
-    this.onOperateContinueBindImpl()
+    this.onOperateContinueBindImpl();
   }
 
   private onOperateContinueBindImpl(): void {

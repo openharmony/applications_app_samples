@@ -73,7 +73,7 @@ export class UserFileDataItem implements DateAdded {
     // 时间线界面角度，收藏状态变更，都需要刷新界面；大图浏览界面角度变更，需要刷新界面
     return this.status === MediaConstants.UNDEFINED ?
       '' + this.hashIndex :
-      this.uri + this.favouriteStatus + ' ' + this.orientation + ' ' + this.isSelect
+      this.uri + this.favouriteStatus + ' ' + this.orientation + ' ' + this.isSelect;
   }
 
   async loadFileAsset(): Promise<photoAccessHelper.PhotoAsset> {
@@ -106,7 +106,7 @@ export class UserFileDataItem implements DateAdded {
     this.mediaType = fileAsset.photoType;
     this.width = screenManager.getWinWidth();
     this.height = screenManager.getWinHeight();
-    this.orientation = MediaConstants.ROTATE_NONE
+    this.orientation = MediaConstants.ROTATE_NONE;
     try {
       this.orientation = fileAsset.get(photoAccessHelper.PhotoKeys.ORIENTATION.toString()) as number;
       Log.info(TAG, 'orientation ' + this.orientation);
@@ -153,7 +153,7 @@ export class UserFileDataItem implements DateAdded {
       Log.error(TAG, 'get favouriteStatus ' + JSON.stringify(err));
     }
     try {
-      this.size = fileAsset.get(photoAccessHelper.PhotoKeys.SIZE.toString()) as number
+      this.size = fileAsset.get(photoAccessHelper.PhotoKeys.SIZE.toString()) as number;
       Log.info(TAG, 'size ' + this.size);
     } catch (err) {
       Log.error(TAG, 'get favouriteStatus ' + JSON.stringify(err));
@@ -161,7 +161,7 @@ export class UserFileDataItem implements DateAdded {
     let size = { width: MediaConstants.DEFAULT_SIZE, height: MediaConstants.DEFAULT_SIZE };
     if (fileAsset != null && this.defaultThumbnail == undefined) {
       try {
-        this.defaultThumbnail = await this.fileAsset.getThumbnail(size)
+        this.defaultThumbnail = await this.fileAsset.getThumbnail(size);
       } catch (err) {
         Log.error(TAG, 'getThumbnail error: ' + JSON.stringify(err));
       }
@@ -217,7 +217,7 @@ export class UserFileDataItem implements DateAdded {
 
   async onDelete(): Promise<boolean> {
     try {
-      userFileModel.deleteOne(this.uri)
+      await userFileModel.deleteOne(this.uri);
       selectManager.deleteSelect(this.uri);
       this.status = MediaConstants.TRASHED;
       return true;
@@ -265,9 +265,9 @@ export class UserFileDataItem implements DateAdded {
     try {
       fileAsset.set(photoAccessHelper.PhotoKeys.DISPLAY_NAME.toString(), displayName);
       fileAsset.set(photoAccessHelper.PhotoKeys.TITLE.toString(), name);
+      await fileAsset.commitModify();
     } catch (err) {
-      Log.error(TAG, 'isFavor error: ' + JSON.stringify(err));
+      Log.error(TAG, 'setName error: ' + JSON.stringify(err));
     }
-    await fileAsset.commitModify();
   }
 }

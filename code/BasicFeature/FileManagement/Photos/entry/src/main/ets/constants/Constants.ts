@@ -336,4 +336,5 @@ export class Constants {
 
   static readonly DEFAULT_DIVIDER_COLOR: string = 'rgb(207, 195, 195)';
   static readonly DEFAULT_DIVIDER_HEIGHT: string = '24vp';
+  static readonly NAME_PATTERN: RegExp = /[\\.\\\\/:*?"'`<>|\[\]{}]/;
 }

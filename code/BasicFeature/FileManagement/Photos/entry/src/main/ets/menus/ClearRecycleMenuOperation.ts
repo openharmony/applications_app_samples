@@ -52,7 +52,7 @@ export class ClearRecycleMenuOperation extends BatchDeleteMenuOperation {
   }
 
   confirmCallback(): void {
-    this.confirmCallbackBindImpl()
+    this.confirmCallbackBindImpl();
   }
 
   protected confirmCallbackBindImpl(): void {

@@ -18,7 +18,6 @@ import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
 import { Constants } from '../constants/Constants';
 import { screenManager } from '../common/ScreenManager';
 import { Broadcast } from '../common/Broadcast';
-import { NoPhotoIndexComponent } from './NoPhotoIndexComponent';
 import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { broadcastManager } from '../common/BroadcastManager';
 import { AlbumSetNewMenuOperation } from '../menus/AlbumSetNewMenuOperation';
@@ -95,7 +94,7 @@ export struct AlbumSetPage {
   }
 
   onMenuClicked(action: Action, arg: Object[]): void {
-    this.onMenuClickedBindImpl(action, arg)
+    this.onMenuClickedBindImpl(action, arg);
   }
 
   private onMenuClickedBindImpl(action: Action, arg: Object[]): void {
@@ -135,7 +134,7 @@ export struct AlbumSetPage {
   }
 
   onOperationStart(): void {
-    this.onOperationStartBindImpl()
+    this.onOperationStartBindImpl();
   }
 
   private onOperationStartBindImpl(): void {
@@ -144,7 +143,7 @@ export struct AlbumSetPage {
   }
 
   private onDeleteEnd(): void {
-    this.onDeleteEndBindImpl()
+    this.onDeleteEndBindImpl();
   }
 
   private onDeleteEndBindImpl(): void {
@@ -154,7 +153,7 @@ export struct AlbumSetPage {
   }
 
   onNewEnd(): void {
-    this.onNewEndBindImpl()
+    this.onNewEndBindImpl();
   }
 
   private onNewEndBindImpl(): void {
@@ -164,7 +163,7 @@ export struct AlbumSetPage {
   }
 
   onRenameEnd(): void {
-    this.onRenameEndBindImpl()
+    this.onRenameEndBindImpl();
   }
 
   private onRenameEndBindImpl(): void {
@@ -175,7 +174,7 @@ export struct AlbumSetPage {
   }
 
   onOperationEnd(): void {
-    this.onOperationEndBindImpl()
+    this.onOperationEndBindImpl();
   }
 
   private onOperationEndBindImpl(): void {
@@ -206,7 +205,7 @@ export struct AlbumSetPage {
     });
     this.onIndexPageShow();	//TabContent uses lazy loading, call onIndexPageShow() the first time
     this.updateActionBar();
-    this.getPermission()
+    this.getPermission();
   }
 
   aboutToDisappear(): void {
@@ -243,7 +242,7 @@ export struct AlbumSetPage {
   }
 
   private moveOperation(): void {
-    this.moveOperationBindImpl()
+    this.moveOperationBindImpl();
   }
 
   private async moveOperationBindImpl(): Promise<void> {
@@ -278,7 +277,7 @@ export struct AlbumSetPage {
   }
 
   onIndexBackPress(callback: Function): void {
-    this.onIndexBackPressBindImpl(callback)
+    this.onIndexBackPressBindImpl(callback);
   }
 
   private onIndexBackPressBindImpl(callback: Function): void {
@@ -291,7 +290,7 @@ export struct AlbumSetPage {
   }
 
   onStateReset(index: number): void {
-    this.onStateResetBindImpl(index)
+    this.onStateResetBindImpl(index);
   }
 
   private onStateResetBindImpl(index: number): void {
@@ -435,10 +434,6 @@ export struct AlbumSetPage {
             toolMenuList: $toolBarMenuList,
             onMenuClicked: this.onMenuClicked
           })
-        }
-
-        if (this.isEmpty) {
-          NoPhotoIndexComponent({ index: Constants.ALBUM_PAGE_INDEX })
         }
       }
       .justifyContent(FlexAlign.Start)
