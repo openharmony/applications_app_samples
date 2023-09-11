@@ -9,6 +9,10 @@
       "value": "the test ability"
     },
     {
+      "name": "mainAbility_label",
+      "value": "通知发送"
+    },
+    {
       "name": "testAbility_label",
       "value": "test label"
     },
