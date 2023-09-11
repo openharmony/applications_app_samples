@@ -16,39 +16,39 @@
 // 用户输入名字的弹窗
 @CustomDialog
 export struct DeleteDialog {
-  controller?: CustomDialogController;
-  confirm: () => void = () => {};
+  controller?: CustomDialogController
+  confirm: () => void = () => {}
 
   build() {
     Column() {
-      Text($r('app.string.label_is_delete'));
-        .fontSize(20);
-        .margin({ bottom: 20 });
+      Text($r('app.string.label_is_delete'))
+        .fontSize(20)
+        .margin({ bottom: 20 })
 
       Row() {
-        Text($r('app.string.label_delete'));
-          .id('checkDelete');
-          .fontSize(20);
-          .fontColor(Color.Red);
-          .flexGrow(1);
-          .padding({ top: 8, bottom: 8 });
+        Text($r('app.string.label_delete'))
+          .id('checkDelete')
+          .fontSize(20)
+          .fontColor(Color.Red)
+          .flexGrow(1)
+          .padding({ top: 8, bottom: 8 })
           .onClick(() => {
-            this.confirm();
+            this.confirm()
           })
 
-        Text($r('app.string.label_cancel'));
-          .fontSize(20);
-          .fontColor(Color.Gray);
-          .padding({ top: 8, bottom: 8 });
+        Text($r('app.string.label_cancel'))
+          .fontSize(20)
+          .fontColor(Color.Gray)
+          .padding({ top: 8, bottom: 8 })
           .onClick(() => {
-            this.controller?.close();
+            this.controller?.close()
           })
       }
-      .width(200);
+      .width(200)
     }
-    .width('100%');
-    .padding(20);
-    .borderRadius(20);
-    .backgroundColor(Color.White);
+    .width('100%')
+    .padding(20)
+    .borderRadius(20)
+    .backgroundColor(Color.White)
   }
 }

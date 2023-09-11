@@ -21,46 +21,46 @@ import { Logger, FileManager } from '@ohos/feature-file-manager'
 struct ImagePreview {
   private params = router.getParams() as Record<string, Object>;
   @State imagePixelMap: PixelMap | null = null;
-  fileName: string = this.params.imageFileName as string;
+  fileName: string = this.params.imageFileName as string
 
   async aboutToAppear() {
-    this.fileName = this.params.imageFileName as string;
-    Logger.debug('fileName: ' + this.fileName);
-    let file = await FileManager.getFileAssetsByName(getContext(this), this.fileName);
-    this.imagePixelMap = await FileManager.getPixelMapByFileAsset(file);
+    this.fileName = this.params.imageFileName as string
+    Logger.debug('fileName: ' + this.fileName)
+    let file = await FileManager.getFileAssetsByName(getContext(this), this.fileName)
+    this.imagePixelMap = await FileManager.getPixelMapByFileAsset(file)
     if (this.imagePixelMap != undefined)
-      Logger.debug('pixel size: ' + this.imagePixelMap.getPixelBytesNumber());
+      Logger.debug('pixel size: ' + this.imagePixelMap.getPixelBytesNumber())
   }
 
   build() {
     Column() {
       Row() {
-        Image($r('app.media.back'));
-          .id('imageBack');
-          .width(36);
-          .height(36);
-          .objectFit(ImageFit.Fill);
-          .alignSelf(ItemAlign.Start);
+        Image($r('app.media.back'))
+          .id('imageBack')
+          .width(36)
+          .height(36)
+          .objectFit(ImageFit.Fill)
+          .alignSelf(ItemAlign.Start)
 
-        Text(this.fileName);
-          .fontSize(24);
-          .margin({ left: 10 });
-          .fontWeight(FontWeight.Bold);
-          .fontColor($r('app.color.black'));
+        Text(this.fileName)
+          .fontSize(24)
+          .margin({ left: 10 })
+          .fontWeight(FontWeight.Bold)
+          .fontColor($r('app.color.black'))
       }
-      .width('100%');
-      .margin({ top: 10 });
+      .width('100%')
+      .margin({ top: 10 })
       .onClick(() => {
-        router.back();
+        router.back()
       })
 
-      Image(this.imagePixelMap);
-        .objectFit(ImageFit.Fill);
-        .alignSelf(ItemAlign.Start);
-        .scale({ x: 0.9, y: 0.9 });
+      Image(this.imagePixelMap)
+        .objectFit(ImageFit.Fill)
+        .alignSelf(ItemAlign.Start)
+        .scale({ x: 0.9, y: 0.9 })
     }
-    .height('100%');
-    .backgroundColor($r('app.color.white'));
-    .padding(20);
+    .height('100%')
+    .backgroundColor($r('app.color.white'))
+    .padding(20)
   }
 }

@@ -37,6 +37,6 @@ export default struct ThumbnailImage {
 
   build() {
     Image(this.thumbnail == undefined ? $r('app.media.default_document') : this.thumbnail)
-      .objectFit(ImageFit.Fill);
+      .objectFit(ImageFit.Fill)
   }
 }

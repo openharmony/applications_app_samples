@@ -51,82 +51,82 @@ struct BackupExample {
 
   build() {
     Column() {
-      Text($r('app.string.fileData'));
-        .fontSize(14);
-        .fontColor('#182431');
-        .margin({ top: 8, left: 48, bottom: 8 });
-        .id('filedata');
-        .opacity(0.6);
-        .align(Alignment.TopStart);
-        .width('93%');
+      Text($r('app.string.fileData'))
+        .fontSize(14)
+        .fontColor('#182431')
+        .margin({ top: 8, left: 48, bottom: 8 })
+        .id('filedata')
+        .opacity(0.6)
+        .align(Alignment.TopStart)
+        .width('93%')
 
       List({ space: 10, initialIndex: 0 }) {
         ForEach(this.showFilePath, (item: string, index?: number) => {
           ListItem() {
             Column() {
               if (this.showFilePath[0] === '') {
-                Text($r("app.string.filelistWaitingToBeGenerated"));
-                  .fontSize(16);
-                  .margin({ top: 8 });
-                  .fontColor('#182431');
-                  .opacity(0.4);
-                  .width('90%');
-                  .align(Alignment.Start);
+                Text($r("app.string.filelistWaitingToBeGenerated"))
+                  .fontSize(16)
+                  .margin({ top: 8 })
+                  .fontColor('#182431')
+                  .opacity(0.4)
+                  .width('90%')
+                  .align(Alignment.Start)
               }
               Row() {
-                Text(' ' + item);
-                  .fontSize(16);
-                  .fontColor('#182431');
-                  .width('70%');
-                  .textAlign(TextAlign.Start);
-                  .fontWeight(500);
-                  .margin({ left: 20 });
-                  .id('file' + index);
+                Text(' ' + item)
+                  .fontSize(16)
+                  .fontColor('#182431')
+                  .width('70%')
+                  .textAlign(TextAlign.Start)
+                  .fontWeight(500)
+                  .margin({ left: 20 })
+                  .id('file' + index)
                 if (index != undefined) {
-                  Text(this.filePathSize[index]);
-                    .fontSize(14);
-                    .width('20%');
-                    .textAlign(TextAlign.End);
-                    .fontColor('#182431');
-                    .fontWeight(400);
-                    .margin({ right: 16 });
-                    .opacity(0.6);
-                    .id('size' + index);
+                  Text(this.filePathSize[index])
+                    .fontSize(14)
+                    .width('20%')
+                    .textAlign(TextAlign.End)
+                    .fontColor('#182431')
+                    .fontWeight(400)
+                    .margin({ right: 16 })
+                    .opacity(0.6)
+                    .id('size' + index)
                 }
               }
-              .width('100%');
-              .height(56);
+              .width('100%')
+              .height(56)
 
               if (this.showFilePath[0] !== '') {
-                Divider();
-                  .strokeWidth('1vp');
-                  .color('#182431');
-                  .opacity(0.05);
-                  .margin({ left: 24, right: 24 });
-                  .width('90%');
+                Divider()
+                  .strokeWidth('1vp')
+                  .color('#182431')
+                  .opacity(0.05)
+                  .margin({ left: 24, right: 24 })
+                  .width('90%')
               }
             }
-            .width('100%');
+            .width('100%')
           }
-        }, (item: string) => item);
+        }, (item: string) => item)
       }
-      .height('80%');
-      .width('93%');
-      .borderRadius(24);
-      .backgroundColor(0xFFFFFF);
-      .align(Alignment.Center);
+      .height('80%')
+      .width('93%')
+      .borderRadius(24)
+      .backgroundColor(0xFFFFFF)
+      .align(Alignment.Center)
 
-      Button($r("app.string.createFiles"));
-        .id('createFiles');
-        .backgroundColor('#007DFF');
-        .margin(15);
-        .width('87%');
-        .borderRadius(20);
+      Button($r("app.string.createFiles"))
+        .id('createFiles')
+        .backgroundColor('#007DFF')
+        .margin(15)
+        .width('87%')
+        .borderRadius(20)
         .onClick(async () => {
           await this.createFile.createTestFiles();
           this.onPageShow();
         })
-        .align(Alignment.Center);
-    }.width('100%').height('100%').backgroundColor('#F1F3F5');
+        .align(Alignment.Center)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
