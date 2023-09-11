@@ -27,14 +27,17 @@ const DIALOG_CONTROLLER_AUTO_CANCEL: boolean = true;
 const DIALOG_CONTROLLER_CUSTOM_STYLE: boolean = true;
 
 @Component
-struct TopBar {
+export struct TopBar {
   @State num: number = 0
   // 自定义点击右上角+号按钮时弹出的弹窗
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogExample({}),
     autoCancel: DIALOG_CONTROLLER_AUTO_CANCEL,
     alignment: DialogAlignment.TopEnd,
-    offset: { dx: DIALOG_CONTROLLER_OFFSET_X, dy: DIALOG_CONTROLLER_OFFSET_Y },
+    offset: {
+      dx: DIALOG_CONTROLLER_OFFSET_X,
+      dy: DIALOG_CONTROLLER_OFFSET_Y
+    },
     customStyle: DIALOG_CONTROLLER_CUSTOM_STYLE
   })
 
@@ -55,7 +58,9 @@ struct TopBar {
       .id(ID_ADD_BUTTON)
       .height($r('app.integer.top_bar_add_button_height'))
       .width($r('app.integer.top_bar_add_button_width'))
-      .padding({ left: $r('app.integer.top_bar_add_button_padding_left') })
+      .padding({
+        left: $r('app.integer.top_bar_add_button_padding_left')
+      })
       .onClick(() => {
         this.dialogController.open()
       })
@@ -65,5 +70,3 @@ struct TopBar {
     .width($r('app.string.layout_100'))
   }
 }
-
-export { TopBar }

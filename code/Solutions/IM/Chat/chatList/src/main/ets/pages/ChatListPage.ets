@@ -27,6 +27,14 @@ const ID_SEARCH: string = "search";
 // 删除item后，下方的item顶上来的动画的播放时间
 const DELETE_ANIMATION_DURATION: number = 500;
 
+class Message {
+  chatItem: ChatModel;
+
+  constructor(chatItem: ChatModel) {
+    this.chatItem = chatItem;
+  }
+}
+
 @Preview
 @Component
 export struct ChatListDisplayView {
@@ -48,10 +56,10 @@ export struct ChatListDisplayView {
   chatViewBuilder(msg: ChatModel) {
     // reusable component
     if (this.reusable) {
-      ReusableChatView({ chatItem: msg })
+      ReusableChatView(new Message(msg))
         .reuseId(msg.user.userId)
     } else {
-      ChatView({ chatItem: msg })
+      ChatView(new Message(msg))
     }
   }
 
@@ -60,10 +68,10 @@ export struct ChatListDisplayView {
   OptChatViewBuilder(msg: ChatModel) {
     // reusable component
     if (this.reusable) {
-      ReusableOptLayoutChatView({ chatItem: msg })
+      ReusableOptLayoutChatView(new Message(msg))
         .reuseId(msg.user.userId)
     } else {
-      OptLayoutChatView({ chatItem: msg })
+      OptLayoutChatView(new Message(msg))
     }
   }
 
