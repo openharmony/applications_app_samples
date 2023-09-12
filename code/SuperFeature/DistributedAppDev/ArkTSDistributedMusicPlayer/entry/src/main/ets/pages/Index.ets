@@ -53,7 +53,8 @@ class ParamType {
   uri: string
   seekTo: number
   isPlaying: boolean
-};
+}
+;
 
 @Entry
 @Component

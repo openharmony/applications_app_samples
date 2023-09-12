@@ -21,7 +21,7 @@ export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
     let status = want.parameters
-    AppStorage.SetOrCreate('status',status)
+    AppStorage.SetOrCreate('status', status)
   }
 
   onDestroy() {
