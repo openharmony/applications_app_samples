@@ -14,7 +14,7 @@
  */
 
 import { DeleteItem } from './DeleteItem';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
 import { MenuKey, numberSourceListData, sourceListType } from '../model/KeyboardKeyData';
@@ -24,7 +24,7 @@ import { ReturnItem } from './ReturnItem';
 // 数字键盘
 @Component
 export struct NumberMenu {
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   private numberList: sourceListType[] = numberSourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_2;
@@ -66,7 +66,7 @@ export struct NumberMenu {
         KeyItem({ keyValue: { content: '_', title: '_', upperContent: '_' } })
         KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
 
-        SpaceItem({ spaceWith: this.spaceWidth})
+        SpaceItem({ spaceWith: this.spaceWidth })
         KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
         ReturnItem({ returnWidth: this.returnWidth })
       }

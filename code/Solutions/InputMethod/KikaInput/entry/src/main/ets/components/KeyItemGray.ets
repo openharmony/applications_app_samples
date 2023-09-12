@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { MenuKey, MenuType } from '../model/KeyboardKeyData';
 
 @Styles function pressedStyles() {
@@ -27,13 +27,15 @@ import { MenuKey, MenuType } from '../model/KeyboardKeyData';
 // 无大小写的灰色组件
 @Component
 export struct KeyItemGray {
-  private keyValue: string;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  private keyValue: string | undefined = undefined;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
 
   build() {
     Stack() {
-      Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
+      if (this.keyValue) {
+        Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
+      }
     }
     .backgroundColor($r('app.color.key_item_gray'))
     .borderRadius(4)

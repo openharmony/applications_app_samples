@@ -19,7 +19,7 @@ import { FileBrowse } from '@ohos/uploaddownload';
 @Component
 struct DownLoadFiles {
   build() {
-    Column(){
+    Column() {
       FileBrowse()
     }
     .width('100%')

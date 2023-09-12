@@ -102,9 +102,11 @@ export struct CustomInputText {
     .backgroundColor($r('app.color.input_text_background'))
     .padding({ left: 10, right: 10, top: 5, bottom: 5 })
     .height(45)
-    .onClick((event: ClickEvent) => {
-      logger.info(TAG, `click event= ${JSON.stringify(event)}`);
-      this.initTextInput(event);
+    .onClick((event?: ClickEvent) => {
+      if (event) {
+        logger.info(TAG, `click event= ${JSON.stringify(event)}`);
+        this.initTextInput(event);
+      }
     })
   }
 
