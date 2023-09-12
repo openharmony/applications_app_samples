@@ -88,7 +88,7 @@ export default function abilityTest() {
     /**
      * 点击音频进行重命名操作
      */
-    it(`${BUNDLE} audioRename_001`, 0, async () => {
+    it(`${BUNDLE} audioRename_001`, 0, async (done) => {
       Logger.info(TAG, `${BUNDLE} audioRename_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -98,9 +98,11 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 左滑音频，坐标基于rk3568
       await driver.swipe(665, 915, 220, 915);
-      await driver.assertComponentExist(ON.id('rename'));
-      await driver.assertComponentExist(ON.id('delete'));
       let rename = await driver.findComponent(ON.id('rename'));
+      // 判断系统中有无音频文件，如果没有就结束，跳过重命名操作
+      if (rename === null) {
+        done();
+      }
       // 点击重命名按钮
       await rename.click();
       await driver.delayMs(1000);
@@ -124,15 +126,17 @@ export default function abilityTest() {
     /**
      * 点击音频进行删除操作
      */
-    it(`${BUNDLE} audioDelete_001`, 0, async () => {
+    it(`${BUNDLE} audioDelete_001`, 0, async (done) => {
       Logger.info(TAG, `${BUNDLE} audioDelete_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 左滑音频，坐标基于rk3568
       await driver.swipe(665, 915, 220, 915);
-      await driver.assertComponentExist(ON.id('rename'));
-      await driver.assertComponentExist(ON.id('delete'));
       let delAudio = await driver.findComponent(ON.id('delete'));
+      // 判断系统中有无音频文件，如果没有就结束，跳过删除操作
+      if (delAudio === null) {
+        done();
+      }
       // 点击删除按钮
       await delAudio.click();
       await driver.delayMs(1000);
