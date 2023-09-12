@@ -23,9 +23,9 @@ const TAG: string = 'ChatList_DataFactory';
 const MOCK_DATA_FILE_DIR: string = 'mockChatModelData.json';
 
 class JsonObjType {
-  MessageList: Array<string> = new Array<string>()
-  ChatModel: Array<ChatModel> = new Array<ChatModel>()
-  FriendMoment: Array<FriendMoment> = new Array<FriendMoment>()
+  MessageList: Array<string> = new Array<string>();
+  ChatModel: Array<ChatModel> = new Array<ChatModel>();
+  FriendMoment: Array<FriendMoment> = new Array<FriendMoment>();
 }
 
 /**
@@ -89,7 +89,7 @@ class JsonObject {
 
   async getFriendMomentObj(): Promise<Array<FriendMoment>> {
     let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer));
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
     let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
     if (jsonObj.FriendMoment === undefined) {
       Logger.error(TAG + '_JsonObject_getFriendMomentObj', 'Expected FriendMoment field in json, but not found');
@@ -109,7 +109,7 @@ class JsonObject {
 
   async getChatModelObj(): Promise<Array<ChatModel>> {
     let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer));
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
     let chatModelBuckets: Array<ChatModel> = new Array<ChatModel>();
     if (jsonObj.ChatModel === undefined) {
       Logger.error(TAG + '_getChatModelObjFromJSON', 'Expected ChatModel field in json, but not found');
@@ -129,7 +129,7 @@ class JsonObject {
 
   async getMessageList(): Promise<Array<string>> {
     let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer));
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
     let messageBuckets: Array<string> = new Array<string>();
     if (jsonObj.MessageList === undefined) {
       Logger.error(TAG + '_getMessageListFromJSON', 'Expected MessageList field in json, but not found');
