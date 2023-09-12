@@ -16,8 +16,8 @@
 import base from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import dataShare from '@ohos.data.dataShare';
-import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import formObserver from '@ohos.app.form.formObserver';
 import prompt from '@ohos.promptAction';
 import Logger from '../../common/Logger';
 
@@ -60,7 +60,7 @@ function updateCardDisplayContent(runningFormInfo: formInfo.RunningFormInfo): vo
 
 function publish(): void {
   Logger.info(TAG, 'publish called');
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);

@@ -71,7 +71,7 @@
         "exported": true
       }
     ],
-    "proxyDatas": [
+    "proxyData": [
       {
         "uri": "datashareproxy://ohos.samples.formextability/test",
         "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
