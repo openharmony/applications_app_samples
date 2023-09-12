@@ -22,7 +22,7 @@ const TAG: string = '[Sample_Image]';
 const DOMAIN: number = 0xF811;
 const BUNDLE: string = 'Image_';
 
-async function enterEdit(){
+async function enterEdit() {
   hilog.info(DOMAIN, TAG, BUNDLE + 'ClickPhoto_001 begin');
   let driver = Driver.create();
   await driver.delayMs(1000);
@@ -37,7 +37,7 @@ async function enterEdit(){
   hilog.info(DOMAIN, TAG, BUNDLE + 'ClickPhoto_001 end');
 }
 
-async function saveEdit(){
+async function saveEdit() {
   hilog.info(DOMAIN, TAG, BUNDLE + 'Save_001 begin');
   let driver = Driver.create();
   await driver.assertComponentExist(ON.id('Save'));
@@ -89,9 +89,22 @@ export default function ActsAbilityTest() {
       let stack = await driver.findComponent(ON.id('add'));
       await stack.click();
       await driver.delayMs(1000);
-      // 选择图片,坐标选择,固定坐标只支持RK3568，其他设备需要调整
+      // 拍照,坐标选择,固定坐标只支持RK3568，其他设备需要调整
+      const takePhoto: string = getString($r('app.string.takePhoto'));
+      await driver.assertComponentExist(ON.text(takePhoto));
+      let take_photo = await driver.findComponent(ON.text(takePhoto));
+      // 点击拍照唤起相机
+      await take_photo.click();
+      await driver.delayMs(3000);
+      // 点击拍照按钮，拍下一张照片
+      await driver.click(362, 1100);
+      await driver.delayMs(3000);
+      // 点击确定存储照片
+      await driver.click(663, 83);
+      await driver.delayMs(3000);
+      // 点击照片，选中一张照片
       await driver.click(540, 260);
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       // 点击完成
       const tipCompleted: string = getString($r('app.string.completed'));
       await driver.assertComponentExist(ON.text(tipCompleted));
