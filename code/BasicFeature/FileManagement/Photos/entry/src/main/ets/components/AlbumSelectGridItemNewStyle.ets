@@ -100,7 +100,7 @@ export struct AlbumSelectGridItemNewStyle {
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       if (this.isEmptyAlbum) {
-        EmptyAlbumComponent()
+        EmptyAlbumComponent();
       }
 
       if (this.isBigCard) {

@@ -28,6 +28,7 @@ import { userFileModel } from '../base/UserFileModel';
 import { AlbumDataItem } from '../common/AlbumDataItem';
 import { LazyItem } from '../common/ItemDataSource';
 import { MediaConstants } from '../constants/MediaConstants';
+import { AlbumsDataSource } from '../common/AlbumsDataSource';
 
 const TAG = 'AlbumSetNewMenuOperation';
 
@@ -46,16 +47,18 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
     }
     getResourceString($r('app.string.album_new_album')).then<void, void>((name: string): void => {
       Log.info(TAG, 'The display name is ' + name);
+      let newAlbumDisplayName = this.getNewAlbumDefaultName(name);
+      Log.info(TAG, `The display name of new album is ${newAlbumDisplayName}`);
       this.confirmCallback = (displayName: string): Promise<void> => this.confirmCallbackBindImpl(displayName);
       this.cancelCallback = (): void => this.cancelCallbackBindImpl();
 
       this.menuContext.broadCast.emit(BroadcastConstants.SHOW_NEW_ALBUM_PHOTO_DIALOG,
-          [name, this.confirmCallback, this.cancelCallback]);
+          [newAlbumDisplayName, this.confirmCallback, this.cancelCallback]);
     })
   }
 
   private async confirmCallback(displayName: string): Promise<void> {
-    return await this.confirmCallbackBindImpl(displayName)
+    return await this.confirmCallbackBindImpl(displayName);
   }
 
   private async confirmCallbackBindImpl(displayName: string): Promise<void> {
@@ -96,7 +99,7 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   }
 
   private cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   private cancelCallbackBindImpl(): void {
@@ -104,7 +107,7 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   }
 
   onCompleted(): void {
-    this.onCompletedBindImpl()
+    this.onCompletedBindImpl();
   }
 
   private onCompletedBindImpl(): void {
@@ -115,5 +118,50 @@ export class AlbumSetNewMenuOperation implements MenuOperation, MenuOperationCal
   onError(): void {
     Log.error(TAG, 'new album data failed!');
     if (this.onOperationEnd != null) this.onOperationEnd();
+  }
+
+  private checkAndAddNumber(albumInfo: AlbumDataItem, prefixName: string, numbers: number[]): void {
+    let res = albumInfo.displayName.match(new RegExp('^' + prefixName + '[1-9][0-9]*$'));
+    Log.info(TAG, `check name res ${res}`);
+    if (res) {
+      let number = res[0].match(new RegExp(`[1-9][0-9]*`));
+      numbers.push(parseInt(number[0]));
+    }
+  }
+
+  private getNewAlbumDefaultName(prefixName: string): string {
+    let numbers: number[] = [];
+    for (let i = 0; i < this.menuContext.dataSource.totalCount(); i++) {
+      let album = this.menuContext.dataSource as AlbumsDataSource;
+      this.checkAndAddNumber(album.getDataByIndex(i), prefixName, numbers);
+    }
+
+    Log.debug(TAG, `${JSON.stringify(numbers)}`);
+
+    if (numbers.length <= 0) {
+      return `${prefixName}1`;
+    } else if (numbers.length === 1) {
+      if (numbers[0] - 1 > 0) {
+        return `${prefixName}1`;
+      } else {
+        return `${prefixName}${numbers[0] + 1}`;
+      }
+    }
+
+    numbers.sort(function (a, b) {
+      return a - b;
+    });
+
+    if (numbers[0] - 1 > 0) {
+      return `${prefixName}1`;
+    }
+
+    for (let i = 1; i < numbers.length; i++) {
+      let res = numbers[i - 1] + 1;
+      if (res < numbers[i]) {
+        return `${prefixName}${res}`;
+      }
+    }
+    return `${prefixName}${numbers[numbers.length - 1] + 1}`;
   }
 }

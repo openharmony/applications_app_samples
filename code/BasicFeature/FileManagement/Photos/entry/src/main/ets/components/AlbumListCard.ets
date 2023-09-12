@@ -32,7 +32,7 @@ export struct AlbumListCard {
     Log.info(TAG, 'album mediaSet ' + JSON.stringify(this.item));
     this.item.load().then<void, void>(async (): Promise<void>  => {
       this.thumbnail = await this.item.getThumbnail();
-      Log.error(TAG,'this.thumbnail：'+this.thumbnail)
+      Log.error(TAG,'this.thumbnail：'+this.thumbnail);
     })
     this.item.getVideoCount().then<void, void>((videoCount: number): void  => {
       this.mediaRes = this.showMediaRes(videoCount);
