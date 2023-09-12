@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,20 +13,19 @@
  * limitations under the License.
  */
 
-
-
 import audio from '@ohos.multimedia.audio'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import { myMedia } from '../model/myMedia'
+import { AVPlayer } from '../model/AVPlayer'
 import { getTimeString } from '../model/TimeTools'
 import { isInformationDialog } from '../common/IsInformationDialog'
-
+import Logger from '../model/Logger'
 let audioManager = audio.getAudioManager()
 
+const TAG: string = 'AVPlayerSample'
 @Component
 export struct BroadcastControl {
   @Link isLoop: boolean
-  @Link myMedia: myMedia
+  @Link myMedia: AVPlayer
   @Link isOpacity: number
   @Link isSurface: boolean
   @Link isPlaying: boolean
@@ -39,17 +37,15 @@ export struct BroadcastControl {
   @State isVolume: boolean = false
   @State mediaVolumeValue: number = -1
   @State isInformation: boolean = false
-  @State isInformationObj: mediaLibrary.FileAsset = undefined
-  private timer: number = undefined
-  private timerOut: number = undefined
+  @State isInformationObj: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  private timerOut: number = 0
   private scroller: Scroller = new Scroller()
-  private mXComponentController: XComponentController
-  private dialogController: CustomDialogController = null
-  private context: any
+  private mXComponentController: XComponentController = {} as XComponentController
+  private dialogController: CustomDialogController = {} as CustomDialogController
+  private context: Context = getContext(this)
   @State selectText: string = ''
   clearVideoPlayer() {
     this.currentTime = 0
-    clearInterval(this.timer)
     this.myMedia.stop()
     this.myMedia.release()
   }
@@ -64,9 +60,13 @@ export struct BroadcastControl {
   async aboutToAppear() {
     this.mediaVolumeValue = await audioManager.getVolume(audio.AudioVolumeType.MEDIA)
     this.selectText = await this.convertResourceToString($r('app.string.phoneMain_setSpeed'))
+    this.myMedia.setTimeUpdateCallback((time) => {
+      Logger.info(TAG, 'timeUpdate, time is:' + time)
+      this.currentTime = time
+    })
   }
   async convertResourceToString(resource: Resource){
-    return await this.context.resourceManager.getString(resource)
+    return await this.context.resourceManager.getString(resource.id)
   }
   build() {
     Stack({ alignContent: Alignment.Center }) {
@@ -121,15 +121,9 @@ export struct BroadcastControl {
                 .opacity(this.isOpacity)
                 .onClick(() => {
                   this.isPlaying = true
-                  this.isSurface = !this.isSurface
-                  this.clearVideoPlayer()
-                  this.timer = setInterval(() => {
-                    this.currentTime = this.myMedia.getCurrentTime()
-                  }, 1000)
-                  this.timerOut = setTimeout(() => {
-                    let surfaceId = this.mXComponentController.getXComponentSurfaceId()
-                    this.myMedia.prev(surfaceId)
-                  }, 100)
+                  this.isLoop = false
+                  let surfaceId = this.mXComponentController.getXComponentSurfaceId()
+                  this.myMedia.prev(surfaceId)
                 })
               Image(this.isPlaying ? $r('app.media.icon_play') : $r('app.media.icon_pause'))
                 .width(24)
@@ -137,10 +131,6 @@ export struct BroadcastControl {
                 .opacity(this.isOpacity)
                 .onClick(() => {
                   this.isPlaying = !this.isPlaying
-                  clearInterval(this.timer)
-                  this.timer = setInterval(() => {
-                    this.currentTime = this.myMedia.getCurrentTime()
-                  }, 1000)
                 })
               Image($r('app.media.icon_next'))
                 .width(24)
@@ -149,15 +139,9 @@ export struct BroadcastControl {
                 .opacity(this.isOpacity)
                 .onClick(() => {
                   this.isPlaying = true
-                  this.clearVideoPlayer()
-                  this.timer = setInterval(() => {
-                    this.currentTime = this.myMedia.getCurrentTime()
-                  }, 1000)
-                  this.isSurface = !this.isSurface
-                  this.timerOut = setTimeout(() => {
-                    let surfaceId = this.mXComponentController.getXComponentSurfaceId()
-                    this.myMedia.next(surfaceId)
-                  }, 100)
+                  this.isLoop = false
+                  let surfaceId = this.mXComponentController.getXComponentSurfaceId()
+                  this.myMedia.next(surfaceId)
                 })
               Image(this.isLoop ? $r('app.media.icon_single') : $r('app.media.icon_repeatplay'))
                 .width(24)

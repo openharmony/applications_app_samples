@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +16,7 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 import Logger from '../model/Logger'
-import { myMedia } from '../model/myMedia'
+import { AVPlayer }  from '../model/AVPlayer'
 import MediaUtils from '../model/MediaUtils'
 import { promptShowToast } from '../model/Prompt'
 
@@ -28,7 +27,7 @@ import { TitleBar } from '../common/TitleBar'
 import { BroadcastControl } from '../common/BroadcastControl'
 import { Toolkit } from '../common/Toolkit'
 import { StreamingMedia } from '../common/StreamingMedia'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { MediaUtiles } from '../common/utils'
 
 const TAG: string = 'IndexMain'
 
@@ -46,47 +45,41 @@ struct Index {
   @State isXComponent: boolean = true
   @State isStreamShow: boolean = false
   @State isInformation: boolean = false
-  @State myMedia: myMedia = new myMedia()
+  @State myMedia: AVPlayer = new AVPlayer()
   @State streamBtnText: Resource = $r('app.string.index_play')
   @State streamOpacity: number = 0.4
-  @State itemDate: mediaLibrary.FileAsset = undefined
+  @State fileIndex: number = 0
+  @State fileType: number = 0
+  @State itemDate: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
   @State audioData: Array<mediaLibrary.FileAsset> = []
   @State videoData: Array<mediaLibrary.FileAsset> = []
   @State @Watch('onChangeLoop') isLoop: boolean = false
   @State @Watch('onChangePlay') isPlaying: boolean = false
   @State streamBackgroundColor: string = '#99B9F8'
-  private renameDialogController: CustomDialogController = null
-  private deleteDialogController: CustomDialogController = null
+  @State newName: string = ''
+  private testUtile: MediaUtiles = new MediaUtiles()
+  private renameDialogController: CustomDialogController = {} as CustomDialogController
+  private deleteDialogController: CustomDialogController = {} as CustomDialogController
   private mXComponentController: XComponentController = new XComponentController()
   private mainDialogController: CustomDialogController = new CustomDialogController({
     builder: mainDialog(),
     autoCancel: false,
     customStyle: true
   })
-
-  private context: any = getContext(this)
+  private context: Context = getContext(this)
 
   async aboutToAppear() {
-    MediaUtils.mediaLib = await mediaLibrary.getMediaLibrary(this.context)
-    let atManager = abilityAccessCtrl.createAtManager()
-    try {
-      await atManager.requestPermissionsFromUser(this.context, [
-        'ohos.permission.WRITE_MEDIA',
-        'ohos.permission.READ_MEDIA',
-        'ohos.permission.INTERNET']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
-      })
-    } catch(err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
-    }
+    MediaUtils.mediaLib = mediaLibrary.getMediaLibrary(this.context)
     await this.getAudioData()
     await this.getVideoData()
     this.mainDialogController.open()
+    this.myMedia.setCompleteCallback(() => {
+      Logger.info(TAG, 'completed state called')
+      this.isPlaying = !this.isPlaying
+    })
   }
   async convertResourceToString(resource: Resource){
-    return await this.context.resourceManager.getString(resource)
+    return await this.context.resourceManager.getString(resource.id)
   }
   onPageShow() {
     MediaUtils.onDateChange(this.getAudioData, this.getVideoData)
@@ -103,7 +96,7 @@ struct Index {
       Logger.info(TAG, 'getFileList callback')
       this.audioData = fileList
       this.myMedia.getAudioData(this.audioData)
-    }).catch(err => {
+    }).catch((err: Error) => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
   }
@@ -115,38 +108,41 @@ struct Index {
       Logger.info(TAG, 'getFileList callback')
       this.videoData = fileList
       this.myMedia.getVideoData(this.videoData)
-    }).catch(err => {
+    }).catch((err: Error) => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
   }
 
   onChangePlay() {
-      this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
+    Logger.info(TAG, 'onChangePlay, isPlaying is: ' + this.isPlaying)
+    this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
   }
 
   onChangeLoop() {
     this.myMedia.setIsLoopCallBack(this.isLoop)
   }
 
-  async renameDialogShow(index, mediaType) {
-    this.fillIndex = index
-    this.fillMediaType = mediaType
-    let disPlayName
-    let disPlayType
-    if (mediaType == mediaLibrary.MediaType.AUDIO) {
-      disPlayName = this.audioData[index].displayName
-      let audio = await this.convertResourceToString($r('app.string.phoneMain_audioTitle'))
+
+  async renameDialogShow(): Promise<void> {
+    this.fillIndex = this.fileIndex
+    this.fillMediaType = this.fileType
+    let disPlayName: string = ''
+    let disPlayType: string = ''
+    if (this.fileType == mediaLibrary.MediaType.AUDIO) {
+      disPlayName = this.audioData[this.fillIndex].displayName
+      let audio: string = await this.convertResourceToString($r('app.string.phoneMain_audioTitle'))
       disPlayType = audio
     } else {
-      disPlayName = this.videoData[index].displayName
-      let video = await this.convertResourceToString($r('app.string.phoneMain_videoTitle'))
+      disPlayName = this.videoData[this.fileIndex].displayName
+      let video: string = await this.convertResourceToString($r('app.string.phoneMain_videoTitle'))
       disPlayType = video
     }
     this.renameDialogController = new CustomDialogController({
       builder: RenameDialog({
         title: disPlayName,
         disPlayType: disPlayType,
-        setRename: this.setRename.bind(this)
+        testUtile: this.testUtile,
+        setRename: () => this.setRename()
       }),
       autoCancel: true,
       customStyle: true,
@@ -154,10 +150,12 @@ struct Index {
     this.renameDialogController.open()
   }
 
-  setRename(newName) {
+
+  setRename(): void {
+    this.newName = this.testUtile.getName()
     if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
-      this.audioData[this.fillIndex].displayName = newName
-      this.audioData[this.fillIndex].commitModify((err) => {
+      this.audioData[this.fileIndex].displayName = this.newName
+      this.audioData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
           console.info(`commitModify, err: ${err}`)
           promptShowToast($r('app.string.phoneMain_legitimateStr'))
@@ -167,8 +165,8 @@ struct Index {
         this.getAudioData()
       })
     } else {
-      this.videoData[this.fillIndex].displayName = newName
-      this.videoData[this.fillIndex].commitModify((err) => {
+      this.videoData[this.fileIndex].displayName = this.newName
+      this.videoData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
           console.info(`commitModify, err: ${err}`)
           promptShowToast($r('app.string.phoneMain_legitimateStr'))
@@ -180,15 +178,15 @@ struct Index {
     }
   }
 
-  deleteDialogShow(index, mediaType) {
-    let mediaData
-    if (mediaType == mediaLibrary.MediaType.AUDIO) {
+  deleteDialogShow(): void {
+    let mediaData: Array<mediaLibrary.FileAsset> = []
+    if (this.fileType == mediaLibrary.MediaType.AUDIO) {
       mediaData = this.audioData
     } else {
       mediaData = this.videoData
     }
     this.deleteDialogController = new CustomDialogController({
-      builder: DeleteDialog({ index: index, mediaData: mediaData, mediaType: mediaType }),
+      builder: DeleteDialog({ index: this.fillIndex, mediaData: mediaData, mediaType: this.fileType }),
       autoCancel: true,
       customStyle: true,
     })
@@ -255,9 +253,11 @@ struct Index {
           isXComponent: $isXComponent,
           streamBtnText: $streamBtnText,
           streamOpacity: $streamOpacity,
+          fileIndex: $fileIndex,
+          fileType: $fileType,
           mXComponentController: this.mXComponentController,
-          deleteDialogShow: this.deleteDialogShow.bind(this),
-          renameDialogShow: this.renameDialogShow.bind(this)
+          deleteDialogShow: () => this.deleteDialogShow(),
+          renameDialogShow: () => this.renameDialogShow()
         })
       }
       .width('97%')

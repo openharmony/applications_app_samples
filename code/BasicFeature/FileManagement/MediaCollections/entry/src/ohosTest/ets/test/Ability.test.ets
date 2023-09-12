@@ -14,7 +14,7 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import Logger from '../utils/Logger'
 
@@ -29,14 +29,14 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'startAbility_001', 0, async (done) => {
       Logger.info(TAG, 'StartAbility start')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       let want = {
         bundleName: 'com.example.sampledemo',
         abilityName: 'MainAbility'
       }
-      let abilityDelegator = await AbilityDelegatorRegistry.getAbilityDelegator()
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       await driver.delayMs(1000)
-      await abilityDelegator.startAbility(want, (err, data) => {
+      abilityDelegator.startAbility(want, (err) => {
         expect(err).assertNull()
         Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
       })
@@ -50,14 +50,14 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'getPermission_001', 1, async (done) => {
       Logger.info(TAG, 'getPermission_001 start')
-      let driver = await Driver.create()
+      let driver = Driver.create()
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       let agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       await agree.click()
       await driver.delayMs(1000)
       agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
-      await expect(agree).assertNull()
+      expect(agree).assertNull()
       Logger.info(TAG, 'getPermission_001 end')
       done()
     })
@@ -65,9 +65,9 @@ export default function abilityTest() {
     /**
      * 检查界面是否正常显示
      */
-    it(BUNDLE + 'getPermission_001', 2, async (done) => {
-      Logger.info(TAG, 'getPermission_001 start')
-      let driver = await Driver.create()
+    it(BUNDLE + 'getPermission_002', 2, async (done) => {
+      Logger.info(TAG, 'getPermission_002 start')
+      let driver = Driver.create()
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.id('search'))
       await driver.delayMs(200)
@@ -81,7 +81,7 @@ export default function abilityTest() {
       await driver.delayMs(200)
       await driver.assertComponentExist(ON.id('search'))
       await driver.delayMs(1000)
-      Logger.info(TAG, 'getPermission_001 end')
+      Logger.info(TAG, 'getPermission_002 end')
       done()
     })
 

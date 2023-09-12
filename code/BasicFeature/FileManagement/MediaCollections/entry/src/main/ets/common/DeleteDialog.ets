@@ -20,11 +20,11 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 @CustomDialog
 export struct DeleteDialog {
-  @State displayWidth: number = undefined
-  private index: number
+  @State displayWidth: number = 0
+  private index: number = 0
   private mediaData: Array<mediaLibrary.FileAsset> = []
-  private controller: CustomDialogController
-  private mediaType: mediaLibrary.MediaType
+  private controller: CustomDialogController = {} as CustomDialogController
+  private mediaType: mediaLibrary.MediaType = 0
 
   async aboutToAppear() {
     let abilityDisplay = await display.getDefaultDisplay()

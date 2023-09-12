@@ -17,7 +17,7 @@ import { gridData } from '../model/GridData'
 
 @Component
 export struct ToolKitItem {
-  private GridData: gridData
+  private GridData: gridData = {} as gridData
 
   build() {
     Column() {
