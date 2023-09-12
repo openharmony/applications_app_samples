@@ -14,36 +14,42 @@
  */
 import { obtainImgLevel, obtainImg, obtainImgL } from '../model/ImageList'
 
+interface ImageList {
+  image: Resource
+  value: string
+}
+
 @Component
 export struct ButtonComponentHorizontal {
-  private onInputValue: (result) => void
+  private onInputValue: (result: string) => void = () => {
+  }
 
   build() {
     Column() {
       Grid() {
-        ForEach(obtainImg(), (item, index) => {
+        ForEach(obtainImg(), (item: ImageList, index) => {
           GridItem() {
             Button({ type: ButtonType.Normal }) {
               Image(item.image)
                 .height('100%')
-                .aspectRatio(index < 2 ? 1 : 0.5)
+                .aspectRatio(index !== undefined && index < 2 ? 1 : 0.5)
                 .objectFit(ImageFit.Contain)
             }
             .id(item.value)
             .width('100%')
             .height('100%')
             .borderRadius(20)
-            .backgroundColor(index < 2 ? '#33007DFF' : '#007DFF')
+            .backgroundColor(index !== undefined && index < 2 ? '#33007DFF' : '#007DFF')
             .onClick(() => {
               this.onInputValue(item.value)
             })
           }
-          .rowStart(index)
-          .rowEnd(index === 2 ? index + 1 : index)
+          .rowStart(index !== undefined ? index : 0)
+          .rowEnd(index !== undefined && index === 2 ? (index !== undefined ? index + 1 : 0) : (index !== undefined ? index : 0))
           .columnStart(4)
           .columnEnd(4)
         })
-        ForEach(obtainImgLevel(), (item, index) => {
+        ForEach(obtainImgLevel(), (item:ImageList, index) => {
           GridItem() {
             Button({ type: ButtonType.Normal }) {
               Image(item.image)
@@ -55,13 +61,13 @@ export struct ButtonComponentHorizontal {
             .width('100%')
             .height('100%')
             .borderRadius(20)
-            .backgroundColor((index % 4 >= 3) || item.value === '+' ? '#33007DFF' : '#F0F0F0')
+            .backgroundColor((index !== undefined && index % 4 >= 3) || item.value === '+' ? '#33007DFF' : '#F0F0F0')
             .onClick(() => {
               this.onInputValue(item.value)
             })
           }
-          .columnStart(index % 4)
-          .columnEnd(item.value === '0' ? (index % 4 + 1) : index % 4)
+          .columnStart(index !== undefined ? index % 4 : 0)
+          .columnEnd(item.value === '0' ? (index !== undefined ? index % 4 + 1 : 0) : index !== undefined ? index % 4 : 0)
         })
       }
       .width('80%')
