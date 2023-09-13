@@ -152,10 +152,11 @@ class UserFileModel {
   }
 
   async createAlbum(albumName: string): Promise<SimpleAlbumDataItem> {
-    let newAlbum:SimpleAlbumDataItem = undefined;
+    let newAlbum: SimpleAlbumDataItem = undefined;
     try {
       let album = await this.userFileMgr.createAlbum(albumName);
-      newAlbum = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_USER, albumName, album.albumUri, '', '', MediaConstants.ALBUM_TYPE_USER, MediaConstants.ALBUM_SUBTYPE_USER_GENERIC);
+      newAlbum = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_USER, albumName, album.albumUri,
+        '', '', MediaConstants.ALBUM_TYPE_USER, MediaConstants.ALBUM_SUBTYPE_USER_GENERIC);
     } catch (err) {
       Log.error(TAG, 'createAlbum failed with error: ' + err);
     }
