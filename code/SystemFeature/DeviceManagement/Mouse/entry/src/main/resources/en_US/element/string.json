@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "鼠标外设"
+    },
+    {
+      "name": "mouse_setting",
+      "value": "鼠标外设"
+    },
+    {
+      "name": "mouse_pointer_primaryButton",
+      "value": "选择主按钮"
+    },
+    {
+      "name": "mouse_pointer_primaryButton_left",
+      "value": "向左键"
+    },
+    {
+      "name": "mouse_pointer_primaryButton_right",
+      "value": "向右键"
+    },
+    {
+      "name": "mouse_pointer_hoverScroll",
+      "value": "当悬停在非活动窗口上方时对其进行滚动"
+    },
+    {
+      "name": "mouse_pointer_size",
+      "value": "鼠标指针大小"
+    },
+    {
+      "name": "mouse_pointer_color",
+      "value": "鼠标指针颜色"
+    },
+    {
+      "name": "mouse_pointer_color_black",
+      "value": "黑色"
+    },
+    {
+      "name": "mouse_pointer_color_white",
+      "value": "白色"
+    },
+    {
+      "name": "mouse_pointer_style",
+      "value": "鼠标指针动画样式"
+    },
+    {
+      "name": "mouse_pointer_default",
+      "value": "静态"
+    },
+    {
+      "name": "mouse_pointer_loading",
+      "value": "动态"
+    }
+  ]
+}
