@@ -18,9 +18,13 @@ import { ChatContact, BasicDataSource, FriendMoment } from '@ohos/chatlist';
 import { getFriendMomentObjFromJSON } from '@ohos/chatlist/src/main/ets/utils/DataFactory';
 import Constants from '@ohos/chatlist/src/main/ets/utils/Constants';
 import Logger from '@ohos/chatlist/src/main/ets/utils/Logger';
+import hiTraceMeter from '@ohos.hiTraceMeter';
 
 const TAG: string = 'entry_FriendsMomentsPage';
-
+const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
+const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
+const MAKE_LOCAL_DATA_TRACE: string = 'FriendsPage_MakeLocalData_HiTrace';
+const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 
 @Entry
 @Component
@@ -98,17 +102,21 @@ struct FriendsMomentsPage {
   }
 
   async aboutToAppear(): Promise<void> {
+    hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     Logger.info(TAG, 'aboutToAppear');
     await this.makeLocalData();
+    hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
   }
 
   // 本地mock数据生成朋友圈数据，推到momentData里
   async makeLocalData(): Promise<void>{
     Logger.info(TAG, 'makeLocalData');
+    hiTraceMeter.startTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
     let FriendMoment = await getFriendMomentObjFromJSON();
     for (let i = 0; i < Constants.FRIEND_MOMENT_MOCK_DATA_COUNT; i++) {
       this.momentData.pushData(FriendMoment[i]);
     }
+    hiTraceMeter.finishTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
   }
 }
 

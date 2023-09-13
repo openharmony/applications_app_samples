@@ -19,10 +19,15 @@ import Constants from '@ohos/chatlist/src/main/ets/utils/Constants';
 import PageConstants from '@ohos/chatlist/src/main/ets/utils/PageConstants';
 import { getChatModelObjFromJSON } from '@ohos/chatlist/src/main/ets/utils/DataFactory';
 import Logger from '@ohos/chatlist/src/main/ets/utils/Logger';
+import hiTraceMeter from '@ohos.hiTraceMeter';
 
 const TAG: string = 'entry_FriendsPage';
 const LIST_SPACE: number = 2;
 const LIST_INITIAL_INDEX: number = 0;
+const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
+const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
+const MAKE_DATA_LOCAL_TRACE: string = 'FriendsPage_MakeDataLocal_HiTrace';
+const MAKE_DATA_LOCAL_TRACE_ID:number = 2; // makeDataLocal 中使用的 taskId
 
 class FriendsPageItemType {
   image: string | Resource = ''
@@ -104,15 +109,19 @@ export struct FriendsPage {
 
   async aboutToAppear(): Promise<void> {
     Logger.info(TAG, 'aboutToAppear');
+    hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     await this.makeDataLocal();
+    hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
   }
 
   async makeDataLocal(): Promise<void> {
     Logger.info(TAG, 'makeDataLocal');
+    hiTraceMeter.startTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
     let chatModelMockData = await getChatModelObjFromJSON();
     for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
       this.friendsListData.pushData(chatModelMockData[i].user);
     }
+    hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
   }
 }
 

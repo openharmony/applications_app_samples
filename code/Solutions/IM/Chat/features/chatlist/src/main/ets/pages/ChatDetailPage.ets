@@ -20,8 +20,14 @@ import router from '@ohos.router';
 import { ImageTextMessage, FileMessage } from '../viewmodel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
+import hiTraceMeter from '@ohos.hiTraceMeter';
 
-@Previewgit
+const ABOUT_TO_APPEAR_TRACE: string = 'ChatDetailPage_AboutToAppear_HiTrace';
+const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
+const MAKE_DATA_LOCAL_TRACE: string = 'ChatDetailPage_MakeDataLocal_HiTrace';
+const MAKE_DATA_LOCAL_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
+
+@Preview
 @Component
 // 聊天页面
 export struct ChatDetailPage {
@@ -151,6 +157,7 @@ export struct ChatDetailPage {
 
   // 设定本地聊天内容
   async makeDataLocal() {
+    hiTraceMeter.startTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
     let chatDetailMsgList = await getMessageListFromJSON();
     let todayDate = new Date();
     let userMyself = new ChatContact('1', $r('app.string.myself'));
@@ -184,10 +191,13 @@ export struct ChatDetailPage {
     let lastMsg = new TextMessage(this.lastMsg);
     this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, lastMsg, 1, todayDate.getSeconds()));
     this.msgLength = this.chatDetailData.totalCount();
+    hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
   }
 
   async aboutToAppear() {
+    hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     this.makeDataLocal();
+    hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
   }
 }
 
