@@ -289,7 +289,7 @@ struct Index {
     .height('100%')
   }
 
-  async onBackPress() {
+  onBackPress() {
     Logger.info(TAG, 'onBackPress')
     let context = getContext(this) as common.UIAbilityContext
     context.startAbility({
