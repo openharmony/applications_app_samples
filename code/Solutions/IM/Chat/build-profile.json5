@@ -25,12 +25,13 @@
         "runtimeOS": "OpenHarmony"
       }
     ],
-    "signingConfigs": []
+    "signingConfigs": [
+    ]
   },
   "modules": [
     {
       "name": "entry",
-      "srcPath": "./entry",
+      "srcPath": "./products/phone/entry",
       "targets": [
         {
           "name": "default",
@@ -42,7 +43,7 @@
     },
     {
       "name": "chatList",
-      "srcPath": "./chatList",
+      "srcPath": "./features/chatlist",
       "targets": [
         {
           "name": "default",
