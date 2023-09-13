@@ -42,9 +42,10 @@ struct Index {
             context: this.context,
             want: {
               bundleName: 'ohos.samples.customshare',
-              abilityName: 'UIExtAbility',
+              abilityName: 'ShareExtAbility',
               moduleName: 'textShare',
               parameters: {
+                'ability.want.params.uiExtensionType': 'share',
                 'shareMessages': this.messages
               }
             }
