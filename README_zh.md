@@ -412,6 +412,12 @@
   <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
   <td ></td>
  </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="1" align="center" x:str><strong>性能</strong></td>
+  <td rowspan="1" x:str><strong>方舟运行时</strong></td>
+  <td x:str><a href="code/Performance/ArkRuntime"> N-Body模拟程序（API 10）</a></td>
+  <td ></td>
+ </tr>
  <tr>
  <![if supportMisalignedColumns]>
    <tr height="18" style="display:none;">
@@ -474,6 +480,8 @@ code
   |---ApplicationHap               # 应用程序包
   |---Test                         # 测试框架
 |---LaunguageBaseClassLibrary  # 语言基础类库
+|---Performance                # 性能
+  |---ArkRuntime                   # 方舟运行时
 ```
 
 ## 约束<a name="section18841871178"></a>
