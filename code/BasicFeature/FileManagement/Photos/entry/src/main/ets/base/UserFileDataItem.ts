@@ -227,6 +227,18 @@ export class UserFileDataItem implements DateAdded {
     }
   }
 
+  async addToAlbum(albumUri:string): Promise<boolean> {
+    try {
+      await userFileModel.addPhotoToAlbumByUserFileMgr(albumUri, this.uri);
+      selectManager.deleteSelect(this.uri);
+      this.status = MediaConstants.TRASHED;
+      return true;
+    } catch (err) {
+      Log.error(TAG, 'addToAlbum ' + this.index + ' error: ' + JSON.stringify(err));
+      return false;
+    }
+  }
+
   isDeleted(): boolean {
     return this.status === MediaConstants.TRASHED;
   }
