@@ -17,8 +17,8 @@ import base from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import dataShare from '@ohos.data.dataShare';
 import formBindingData from '@ohos.app.form.formBindingData';
-import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import formObserver from '@ohos.app.form.formObserver';
 import formProvider from '@ohos.app.form.formProvider';
 import Logger from '../../common/Logger';
 import { getPersistentConditionID, savePersistentConditionID } from '../../common/StatePersistence';
@@ -75,14 +75,14 @@ function modifyCondition(): void {
     formName: 'persistentWidgetJS',
     moduleName: 'persistentProxyForm'
   };
-  formHost.getRunningFormInfosByFilter(formInstanceFilterArkTS).then((data: Array<formInfo.RunningFormInfo>) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilterArkTS).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
   }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
-  formHost.getRunningFormInfosByFilter(formInstanceFilterJS).then((data: Array<formInfo.RunningFormInfo>) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilterJS).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);

@@ -17,8 +17,8 @@ import base from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import formObserver from '@ohos.app.form.formObserver';
 import prompt from '@ohos.promptAction';
 import resourceManager from '@ohos.resourceManager';
 import { ValuesBucket, ValueType } from '@ohos.data.ValuesBucket';
@@ -72,7 +72,7 @@ function updateRDB(context: common.UIAbilityContext): void {
 
 function publish(): void {
   Logger.info(TAG, 'publish called');
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('RunningFormInfo', JSON.stringify(data));
   }).catch((err: base.BusinessError<void>) => {
