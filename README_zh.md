@@ -282,7 +282,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备管理</strong></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计</a></td>
-  <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
   <td ></td>
  </tr>
