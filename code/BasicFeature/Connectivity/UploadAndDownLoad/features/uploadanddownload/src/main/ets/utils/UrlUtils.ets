@@ -16,6 +16,8 @@
 import common from '@ohos.app.ability.common';
 import commonEventManager from '@ohos.commonEventManager';
 import preferences from '@ohos.data.preferences';
+import { CommonEventData } from './commonEvent/commonEventData';
+import { CommonEventSubscriber } from './commonEvent/commonEventSubscriber';
 import { logger } from './Logger';
 
 const TAG: string = 'UrlUtils';
@@ -24,12 +26,12 @@ const URL_KEY: string = 'url';
 const STORE_NAME: string = 'server_url';
 
 class UrlUtil {
-  private subscriber: commonEventManager.CommonEventSubscriber | undefined = undefined;
+  private subscriber: CommonEventSubscriber | undefined = undefined;
 
   async subscribe(context: common.UIAbilityContext): Promise<void> {
     logger.info(TAG, `subscribe`)
     this.subscriber = await commonEventManager.createSubscriber({ events: [SUBSCRIBER_EVENT] });
-    commonEventManager.subscribe(this.subscriber, (err: Error, data: commonEventManager.CommonEventData) => {
+    commonEventManager.subscribe(this.subscriber, (err: Error, data: CommonEventData) => {
       if (err) {
         logger.error(TAG, `subscribeCallBack, failed: ${JSON.stringify(err)}`);
         return;
