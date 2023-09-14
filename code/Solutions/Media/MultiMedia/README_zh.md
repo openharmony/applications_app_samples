@@ -2,7 +2,7 @@
 
 ### 介绍
 
-此Demo展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。  
+此Demo展示如何在ArkTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。  
 
 本示例用到了权限管理能力[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md )
 
