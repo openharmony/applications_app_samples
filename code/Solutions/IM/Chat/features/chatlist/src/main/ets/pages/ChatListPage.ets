@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import hiTraceMeter from '@ohos.hiTraceMeter';
 import { makeDataLocal, makeDataList } from '../utils/DataFactory';
 import Constants from '../utils/Constants';
 import { ChatModel } from '../viewmodel/MsgBase';
@@ -26,6 +27,8 @@ const TAG: string = 'ChatListDisplayView';
 const ID_SEARCH: string = "search";
 // 删除item后，下方的item顶上来的动画的播放时间
 const DELETE_ANIMATION_DURATION: number = 500;
+const ABOUT_TO_APPEAR_TRACE: string = 'ChatListPage_AboutToAppear_HiTrace';
+const ABOUT_TO_APPEAR_TRACE_ID: number = 3; // aboutToAppear 中使用的 taskId
 
 class Message {
   chatItem: ChatModel;
@@ -176,7 +179,9 @@ export struct ChatListDisplayView {
 
   async aboutToAppear(): Promise<void> {
     Logger.info(TAG, "ChatListPage aboutToAppear");
+    hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     await makeDataLocal(this.chatListLazy);
     await makeDataList(this.chatListArray);
+    hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
   }
 }

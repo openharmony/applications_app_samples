@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import hiTraceMeter from '@ohos.hiTraceMeter';
 import util from '@ohos.util';
 import Logger from './Logger';
 import { ChatModel, ChatContact, FriendMoment } from '../viewmodel/MsgBase';
@@ -21,6 +22,10 @@ import Constants from './Constants';
 
 const TAG: string = 'ChatList_DataFactory';
 const MOCK_DATA_FILE_DIR: string = 'mockChatModelData.json';
+const MAKE_DATA_LOCAL_TRACE: string = 'ChatList_MakeDataLocal_HiTrace';
+const MAKE_DATA_LOCAL_TRACE_ID: number = 1; // makeDataLocal 中使用的 taskId
+const MAKE_DATA_LIST_TRACE: string = 'ChatList_MakeDataList_HiTrace';
+const MAKE_DATA_LIST_TRACE_ID: number = 2; // makeDataList 中使用的 taskId
 
 class JsonObjType {
   MessageList: Array<string> = new Array<string>();
@@ -34,10 +39,12 @@ class JsonObjType {
  */
 export async function makeDataLocal(listData: ChatListData): Promise<void> {
   Logger.info(TAG, 'makeDataLocal');
+  hiTraceMeter.startTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
   let chatModelMockData = await getChatModelObjFromJSON();
   for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
     listData.pushData(chatModelMockData[i]);
   }
+  hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
 }
 
 /**
@@ -46,10 +53,12 @@ export async function makeDataLocal(listData: ChatListData): Promise<void> {
  */
 export async function makeDataList(listData: Array<ChatModel>): Promise<void> {
   Logger.info(TAG, 'makeDataList');
+  hiTraceMeter.startTrace(MAKE_DATA_LIST_TRACE, MAKE_DATA_LIST_TRACE_ID);
   let chatModelMockData = await getChatModelObjFromJSON();
   for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
     listData.push(chatModelMockData[i]);
   }
+  hiTraceMeter.finishTrace(MAKE_DATA_LIST_TRACE, MAKE_DATA_LIST_TRACE_ID);
 }
 
 /**
