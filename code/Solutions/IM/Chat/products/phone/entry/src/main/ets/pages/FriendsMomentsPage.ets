@@ -15,10 +15,11 @@
 
 import router from '@ohos.router';
 import { ChatContact, BasicDataSource, FriendMoment } from '@ohos/chatlist';
-import { getFriendMomentObjFromJSON } from '@ohos/chatlist/src/main/ets/utils/DataFactory';
-import Constants from '@ohos/chatlist/src/main/ets/utils/Constants';
 import Logger from '@ohos/chatlist/src/main/ets/utils/Logger';
 import hiTraceMeter from '@ohos.hiTraceMeter';
+import http from '@ohos.net.http';
+import taskpool from '@ohos.taskpool';
+import FriendMomentJsonUrl from '@ohos/chatlist/src/main/ets/utils/FriendMomentJsonUrl'
 
 const TAG: string = 'entry_FriendsMomentsPage';
 const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
@@ -30,7 +31,7 @@ const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 @Component
 struct FriendsMomentsPage {
   @State itemLength: number = 0
-  private momentData = new FriendMomentsData()
+  @StorageLink('momentData') momentData: FriendMomentsData = new FriendMomentsData()
 
   build() {
     Column() {
@@ -42,7 +43,6 @@ struct FriendsMomentsPage {
             .onClick(() => {
               router.back()
             }).syncLoad(true)
-
           Text($r('app.string.circle'))
             .fontSize($r('app.integer.friendMomentsPage_title_fontSize'))
             .fontColor(Color.White)
@@ -54,7 +54,10 @@ struct FriendsMomentsPage {
         .justifyContent(FlexAlign.SpaceBetween)
         .height($r('app.integer.friendMomentsPage_title_height'))
         .width($r('app.string.layout_100'))
-        .padding({ left: $r('app.integer.friendMomentsPage_title_padding_left'), right: $r('app.integer.friendMomentsPage_title_padding_right') })
+        .padding({
+          left: $r('app.integer.friendMomentsPage_title_padding_left'),
+          right: $r('app.integer.friendMomentsPage_title_padding_right')
+        })
 
         Column() {
           List() {
@@ -70,7 +73,10 @@ struct FriendsMomentsPage {
                   Text($r('app.string.myself'))
                     .fontSize($r('app.integer.friendMomentsPage_name_fontSize'))
                     .fontColor(Color.White)
-                    .margin({ top: $r('app.integer.friendMomentsPage_name_margin_left'),right: $r('app.integer.friendMomentsPage_name_margin_right') })
+                    .margin({
+                      top: $r('app.integer.friendMomentsPage_name_margin_left'),
+                      right: $r('app.integer.friendMomentsPage_name_margin_right')
+                    })
                   Image($r('app.media.head_image'))
                     .height($r('app.integer.layout_50'))
                     .width($r('app.integer.layout_50'))
@@ -82,12 +88,13 @@ struct FriendsMomentsPage {
               .height($r('app.string.friendMomentsPage_owner_margin_height'))
             }
 
-            LazyForEach(this.momentData, (msg: FriendMoment) => {
+            LazyForEach(this.momentData, (moment: FriendMoment) => {
               ListItem() {
-                OneMoment({ moment: msg })
+                OneMoment({ moment: moment })
               }
-            }, (msg: FriendMoment) => msg.id)
+            }, (moment: FriendMoment) => moment.id)
           }
+          .cachedCount(2)
           .width($r('app.string.layout_100'))
           .height($r('app.string.layout_100'))
           .listDirection(Axis.Vertical)
@@ -109,12 +116,17 @@ struct FriendsMomentsPage {
   }
 
   // 本地mock数据生成朋友圈数据，推到momentData里
-  async makeLocalData(): Promise<void>{
+  async makeLocalData(): Promise<void> {
     Logger.info(TAG, 'makeLocalData');
     hiTraceMeter.startTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
-    let FriendMoment = await getFriendMomentObjFromJSON();
-    for (let i = 0; i < Constants.FRIEND_MOMENT_MOCK_DATA_COUNT; i++) {
-      this.momentData.pushData(FriendMoment[i]);
+    let friendMomentJsonStr = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0])
+    if (typeof (friendMomentJsonStr.result) === 'string') {
+      let friendMomentObj = await getFriendMomentObj(friendMomentJsonStr.result)
+      for (let i = 0; i < friendMomentObj.length; i++) {
+        this.momentData.pushData(friendMomentObj[i]);
+      }
+    } else {
+      Logger.info("get JSON error")
     }
     hiTraceMeter.finishTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
   }
@@ -122,7 +134,7 @@ struct FriendsMomentsPage {
 
 @Component
 struct OneMoment {
-  private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '')
+  private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '', '', [], '', '')
 
   build() {
     Row() {
@@ -140,22 +152,98 @@ struct OneMoment {
         Text(this.moment.text)
           .fontSize($r('app.integer.friendMomentsPage_userText_fontSize'))
           .fontColor(Color.Black)
-        Grid() {
-          ForEach(this.moment.imageList, (image: string, index?: number) => {
-            GridItem() {
-              MomentsImage({ imageStr: image, imageStrId: index })
+        if (this.moment.imageList.length) {
+          Grid() {
+            if (this.moment.imageList.length >= 2) {
+              ForEach(this.moment.imageList, (image: string, index?: number) => {
+                GridItem() {
+                  Stack() {
+                    Image(image)
+                      .id(`${index}`)
+                      .width($r('app.integer.friendMomentsPage_image_width'))
+                      .height($r('app.integer.friendMomentsPage_image_height'))
+                      .borderRadius($r('app.integer.friendMomentsPage_image_radius'))
+                      .onClick(() => {
+                        router.pushUrl({
+                          url: 'pages/FullImagePage',
+                          params: {
+                            resourceStr: image,
+                            isMedia: false
+                          }
+                        })
+                      })
+                  }
+                  .width($r('app.integer.friendMomentsPage_image_width'))
+                  .height($r('app.integer.friendMomentsPage_image_height'))
+                }
+              }, (image: string) => image)
             }
-          }, (image: string) => image)
+            else {
+              GridItem() {
+                Stack() {
+                  Image(this.moment.imageList[0])
+                    .width($r('app.integer.friendMomentsPage_single_image_width'))
+                    .height($r('app.integer.friendMomentsPage_single_image_height'))
+                    .borderRadius($r('app.integer.friendMomentsPage_single_image_radius'))
+                    .onClick(() => {
+                      router.pushUrl({
+                        url: 'pages/FullImagePage',
+                        params: {
+                          resourceStr: this.moment.imageList[0],
+                          isMedia: false
+                        }
+                      })
+                    })
+                }
+                .width($r('app.integer.friendMomentsPage_single_image_width'))
+                .height($r('app.integer.friendMomentsPage_single_image_height'))
+              }
+            }
+          }
+          .columnsTemplate('1fr 1fr 1fr')
+          .rowsTemplate('1fr 1fr 1fr')
+          .columnsGap($r('app.integer.layout_1'))
+          .rowsGap($r('app.integer.layout_1'))
+          .height($r('app.integer.layout_250'))
+          .width($r('app.integer.layout_250'))
         }
-        .columnsTemplate('1fr 1fr 1fr')
-        .rowsTemplate('1fr 1fr 1fr')
-        .columnsGap($r('app.integer.layout_1'))
-        .rowsGap($r('app.integer.layout_1'))
-        .height($r('app.integer.layout_250'))
-        .width($r('app.integer.layout_250'))
+        else {
+          Grid() {
+            GridItem() {
+              Stack({ alignContent: Alignment.Center }) {
+                Image(this.moment.mediaPreview)
+                  .width($r('app.integer.friendMomentsPage_single_video_width'))
+                  .height($r('app.integer.friendMomentsPage_single_video_height'))
+                  .borderRadius($r('app.integer.friendMomentsPage_single_video_radius'))
+                  .onClick(() => {
+                    router.pushUrl({
+                      url: 'pages/FullImagePage',
+                      params: {
+                        resourceUrl: this.moment.media,
+                        isMedia: true
+                      }
+                    })
+                  })
+                Image($r('app.media.ic_public_play_norm'))
+                  .width($r('app.integer.friendMomentsPage_image_width'))
+                  .height($r('app.integer.friendMomentsPage_image_height'))
+              }
+              .width($r('app.integer.friendMomentsPage_single_video_width'))
+              .height($r('app.integer.friendMomentsPage_single_video_height'))
+            }
+          }
+          .columnsTemplate('1fr 1fr 1fr')
+          .rowsTemplate('1fr 1fr 1fr')
+          .columnsGap($r('app.integer.layout_1'))
+          .rowsGap($r('app.integer.layout_1'))
+          .height($r('app.integer.layout_250'))
+          .width($r('app.integer.layout_250'))
+        }
         Row() {
           Text(this.moment.time).fontColor("#e3e3e3").fontSize($r('app.integer.friendMomentsPage_time_fontSize'))
-          Image($r('app.media.afr')).height($r('app.integer.friendMomentsPage_time_height')).width($r('app.integer.friendMomentsPage_time_width'))
+          Image($r('app.media.afr'))
+            .height($r('app.integer.friendMomentsPage_time_height'))
+            .width($r('app.integer.friendMomentsPage_time_width'))
         }
         .justifyContent(FlexAlign.SpaceBetween)
         .width($r('app.string.layout_100'))
@@ -173,32 +261,9 @@ struct OneMoment {
   }
 }
 
-@Component
-struct MomentsImage {
-  private imageStr: string | Resource = $r("app.media.landscape0")
-  private imageStrId: number = 0
-  @State active: boolean = false
-
-  build() {
-    Stack() {
-      Image(this.imageStr)
-        .id(`${this.imageStrId}`)
-        .width($r('app.integer.friendMomentsPage_image_width'))
-        .height($r('app.integer.friendMomentsPage_image_height'))
-        .onClick(() => {
-          router.pushUrl({
-            url: 'pages/FullImagePage',
-            params: { imageStrId: this.imageStrId }
-          })
-        })
-    }
-    .width($r('app.integer.friendMomentsPage_image_width'))
-    .height($r('app.integer.friendMomentsPage_image_height'))
-  }
-}
-
 class FriendMomentsData extends BasicDataSource<FriendMoment> {
   momentList: Array<FriendMoment> = []
+  getJsonIndex: number = 1
 
   // 获取数据列表长度
   public totalCount(): number {
@@ -207,6 +272,10 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 
   // 根据index获取具体项
   public getData(index: number): FriendMoment {
+    if (index == this.momentList.length - 1) {
+      getFriendMomentByTaskPool(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[this.getJsonIndex % 3])
+      this.getJsonIndex++
+    }
     return this.momentList[index];
   }
 
@@ -221,4 +290,49 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
     this.momentList.push(data);
     this.notifyDataAdd(this.momentList.length - 1);
   }
+}
+
+// task任务池
+async function getFriendMomentByTaskPool(jsonUrl) {
+  let task = new taskpool.Task(getWebData, jsonUrl);
+  let webData = await taskpool.execute(task, taskpool.Priority.MEDIUM) as string;
+  let friendMomentJsonStr = await getFriendMomentObj(webData['result']);
+  let momentData = AppStorage.get<FriendMomentsData>('momentData')
+  for (let i = 0; i < friendMomentJsonStr.length; i++) {
+    momentData.pushData(friendMomentJsonStr[i]);
+  }
+  AppStorage.setOrCreate('momentData', momentData)
+}
+
+// 获取网络数据
+@Concurrent
+async function getWebData(url: string): Promise<http.HttpResponse> {
+  Logger.info('getWebData onMessage start');
+  try {
+    return await http.createHttp().request(
+      url,
+      { header: {
+        'Content-Type': 'application/json'
+      },
+        connectTimeout: 60000, readTimeout: 60000
+      })
+  } catch (err) {
+    Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+async function getFriendMomentObj(friendMomentStr: string): Promise<Array<FriendMoment>> {
+  let jsonObj = await JSON.parse(friendMomentStr).FriendMoment
+  console.info('sxx jsonObj ' + jsonObj)
+  let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
+  // 映射json数据为FriendMoment对象
+  for (let i = 0; i < jsonObj.length; i++) {
+    let contactTemp = new ChatContact(jsonObj[i].user.userId, jsonObj[i].user.userName,
+      jsonObj[i].user.userImage);
+    let chatModelTemp = new FriendMoment(jsonObj[i].id, contactTemp, jsonObj[i].text, '',
+      jsonObj[i].imageList, jsonObj[i].media, jsonObj[i].mediaPreview);
+    friendMomentBuckets.push(chatModelTemp);
+  }
+  Logger.info('getFriendMomentObj onMessage end');
+  return friendMomentBuckets;
 }

@@ -177,10 +177,10 @@ export class FriendMoment {
       this.time = time;
     }
     this.text = text;
-    if (List != null) {
+    if (List.length) {
       this.imageList = List;
     }
-    else {
+    else if(media){
       this.media = media;
       this.mediaPreview = mediaPreview;
     }
