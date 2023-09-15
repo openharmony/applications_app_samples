@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { makeDataLocal, makeDataList } from '../utils/DataFactory';
 import Constants from '../utils/Constants';
 import { ChatModel } from '../viewModel/MsgBase';

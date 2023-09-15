@@ -2,7 +2,7 @@
   "float": [
     {
       "name": "customDialog_list_friction",
-      "value": "0.4"
+      "value": "0.5"
     },
     {
       "name": "customDialog_list_Divider",
@@ -10,6 +10,10 @@
     },
     {
       "name": "customDialog_diaLogDivider_strokeWidth",
+      "value": "0.5"
+    },
+    {
+      "name": "top_bar_separator_line_height",
       "value": "0.5"
     }
   ]

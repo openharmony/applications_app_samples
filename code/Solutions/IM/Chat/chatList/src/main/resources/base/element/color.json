@@ -76,6 +76,10 @@
     {
       "name": "friends_page_background",
       "value": "#e3e3e3"
+    },
+    {
+      "name": "tab_bar_separator_line_color",
+      "value": "#182431"
     }
   ]
 }
