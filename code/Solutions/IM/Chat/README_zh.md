@@ -8,11 +8,11 @@
 
 文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 。  
 
-
 ### 效果预览
-|主页|通讯录|发现|个人页面|
-|-------|-------|-------|-------|
-|![](screenshots/device/chat_home.png)|![](screenshots/device/chat_address.png)|![](screenshots/device/chat_found.png)|![](screenshots/device/chat_me.png)|
+
+| 主页                                    | 通讯录                                      | 发现                                     | 个人页面                                |
+| ------------------------------------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
+| ![](screenshots/device/chat_home.png) | ![](screenshots/device/chat_address.png) | ![](screenshots\device\chat_found.png) | ![](screenshots/device/chat_me.png) |
 
 使用说明
 
@@ -25,6 +25,7 @@
 4.“发现”页面的“朋友圈”点击会进入“朋友圈”页面。
 
 ### 工程目录
+
 ```
 chatList/src/main/ets                     // 列表类功能HAR共享包
 |---/pages    
@@ -57,13 +58,14 @@ entry/src/main/ets
 |   |---Index.ets                          // 首页
 |   |---SettingPage.ets                    // 我的页面
 |---resources/images                       // 放置图片，icon资源等           
-                                            
 ```
+
 #### 相关概念
 
 懒加载：开发框架提供数据懒加载（LazyForEach组件）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
 
 ### 具体实现
+
 1、定义要跳转子页面：在entry/pages/index.ets中通过TabContent()定义要跳转的子页面，[源码参考](./entry/src/main/ets/pages/Index.ets)   
 例如：跳转通讯录界面：TabContent() {
 FriendsPage() }。  
@@ -89,10 +91,10 @@ FriendsPage() }。
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/Solutions/IM/Chat/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

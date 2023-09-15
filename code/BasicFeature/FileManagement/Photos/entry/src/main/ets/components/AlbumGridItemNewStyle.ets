@@ -42,8 +42,8 @@ export struct AlbumGridItemNewStyle {
     return this.staticIconList;
   };
 
-  item: AlbumDataItem
-  lazyItem: LazyItem<AlbumDataItem>
+  item: AlbumDataItem;
+  lazyItem: LazyItem<AlbumDataItem>;
   @State isEmptyAlbum: boolean = false;
   @State selectable: boolean = true;
   @State icHeight: number = 0;
@@ -131,7 +131,7 @@ export struct AlbumGridItemNewStyle {
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       if (this.isEmptyAlbum || this.item.count === 0) {
-        EmptyAlbumComponent()
+        EmptyAlbumComponent();
       }
 
       if (this.isBigCard) {

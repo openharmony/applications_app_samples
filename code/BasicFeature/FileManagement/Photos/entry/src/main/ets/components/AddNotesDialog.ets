@@ -71,8 +71,7 @@ export struct AddNotesDialog {
           }.height($r('app.float.icon_size'))
           .width($r('app.float.icon_size'))
           .onClick((): void => {
-            let check: RegExp = new RegExp('/[\\.\\\\/:*?<>\'|\[\]{}\s]/');
-            let passCheck = check.test(this.inputNote)
+            let passCheck = Constants.NAME_PATTERN.test(this.inputNote)
             if (passCheck) {
               let p: Promise<string> = getResourceString($r('app.string.specific_characters_not_supported'));
               p.then<void, void>((message: string): void => {
@@ -82,7 +81,7 @@ export struct AddNotesDialog {
               return
             }
             if(this.dialogCallback != null) this.dialogCallback.confirmCallback(this.inputNote);
-            this.controller.close()
+            this.controller.close();
           })
         }
       }.margin({ top: $r('sys.float.ohos_id_text_paragraph_margin_s'),

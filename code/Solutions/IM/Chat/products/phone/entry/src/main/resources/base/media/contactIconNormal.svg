@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Tab_contacts_normal</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="+菜单" transform="translate(-123.000000, -731.000000)">
+            <g id="BottomNavigationBar/Port/Item_4" transform="translate(0.000000, 724.000000)">
+                <g id="Bottomtab/item/normal" transform="translate(94.090909, 7.000000)">
+                    <g id="Tab_contacts_normal" transform="translate(28.909091, 0.000000)">
+                        <rect id="矩形" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M2.99679128,18.0277778 C3.57929276,16.7035785 5.09282055,12.75 10.9905892,12.75 C16.8883579,12.75 18.4276638,16.7035785 18.9843871,18.0277778 C19.1975808,18.5348715 19.3430916,19.2150611 19.4209195,20.0683467 C19.5212379,21.1683446 18.7108482,22.141402 17.6108514,22.2417324 C17.5504534,22.2472413 17.489836,22.25 17.4291872,22.25 L4.53938333,22.25 C3.43481872,22.2499911 2.53939219,21.3545646 2.53939219,20.25 C2.53939219,20.1907075 2.5420289,20.1314443 2.54729451,20.0723861 C2.62354192,19.2172075 2.77337417,18.5356714 2.99679128,18.0277778 Z M11,2.25 C8.37664744,2.25 6.25,4.37664744 6.25,7 C6.25,9.62335256 8.37664744,11.75 11,11.75 C13.6233526,11.75 15.75,9.62335256 15.75,7 C15.75,4.37664744 13.6233526,2.25 11,2.25 Z" id="椭圆形" fill-opacity="0.4" fill="#182431" fill-rule="nonzero"></path>
+                        <rect id="矩形" fill-opacity="0.25" fill="#182431" fill-rule="nonzero" x="16.5465618" y="4.25" width="6" height="2" rx="1"></rect>
+                        <rect id="矩形备份" fill-opacity="0.25" fill="#182431" fill-rule="nonzero" x="17.5465618" y="8.25" width="5" height="2" rx="1"></rect>
+                        <rect id="矩形备份-2" fill-opacity="0.25" fill="#182431" fill-rule="nonzero" x="18.5465618" y="12.25" width="4" height="2" rx="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

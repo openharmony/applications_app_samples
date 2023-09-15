@@ -14,7 +14,6 @@
  */-->
 
 <div class="container">
-  <div style="height : {{ topRectHeight }} px; width : 100%"></div>
   <div show="{{ hasInitialized }}" style="width : {{ risw }} px; height : {{ rish }} px; flex-direction : column;">
     <text class="title" id="music_name" style="font-size : {{ riscale * 48 }} px;">
       {{ title }}
@@ -40,7 +39,7 @@
       <image class="control_button" onclick="onNextClick" id="btn_next" src="/common/media/ic_play_next.svg"/>
     </div>
   </div>
-  <dialog id="continueAbilityDialog" class="dialog-main" oncancel="cancelDialog" style="margin-bottom : {{ bottomRectHeight+20 }} px">
+  <dialog id="continueAbilityDialog" class="dialog-main" oncancel="cancelDialog">
     <div class="dialog-div">
       <text class="dialog_title_text">{{ $t('strings.select') }}</text>
       <list class="dialog_device_list" divider="true">
@@ -59,5 +58,4 @@
       </div>
     </div>
   </dialog>
-    <div style="height : {{ bottomRectHeight }} px; width : 100%"></div>
 </div>

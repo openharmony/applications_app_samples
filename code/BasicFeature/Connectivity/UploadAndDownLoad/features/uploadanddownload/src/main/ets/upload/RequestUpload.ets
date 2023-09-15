@@ -37,9 +37,9 @@ class Upload {
     data: [],
     token: UPLOAD_TOKEN
   }
-  private context: common.UIAbilityContext = undefined;
-  private uploadTask: request.agent.Task = undefined;
-  private backgroundTask: request.agent.Task = undefined;
+  private context: common.UIAbilityContext | undefined = undefined;
+  private uploadTask: request.agent.Task | undefined = undefined;
+  private backgroundTask: request.agent.Task | undefined = undefined;
   private waitList: Array<string> = [];
 
   constructor() {
@@ -78,6 +78,9 @@ class Upload {
   }
 
   async createBackgroundTask(fileUris: Array<string>) {
+    if (this.context === undefined) {
+      return;
+    }
     this.config.url = await urlUtils.getUrl(this.context);
     this.config.data = await this.getFilesAndData(this.context.cacheDir, fileUris);
     this.config.mode = request.agent.Mode.BACKGROUND;
@@ -90,7 +93,7 @@ class Upload {
       }
       logger.info(TAG, `createBackgroundTask success`);
     } catch (err) {
-      logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
+      logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
     }
   }
 
@@ -130,19 +133,24 @@ class Upload {
         this.cancelTask();
       });
       this.uploadTask.on('failed', async (progress: request.agent.Progress) => {
-        let taskInfo = await request.agent.touch(this.uploadTask.tid, UPLOAD_TOKEN);
-        logger.info(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+        if (this.uploadTask) {
+          let taskInfo = await request.agent.touch(this.uploadTask.tid, UPLOAD_TOKEN);
+          logger.info(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+        }
         callback(100, false);
         this.cancelTask();
       });
       await this.uploadTask.start();
     } catch (err) {
-      logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
+      logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
       callback(100, false);
     }
   }
 
   async cancelTask() {
+    if (this.uploadTask === undefined) {
+      return;
+    }
     try {
       this.uploadTask.off('progress');
       this.uploadTask.off('failed');
@@ -170,6 +178,9 @@ class Upload {
 
   async pause() {
     logger.info(TAG, 'pause');
+    if (this.backgroundTask === undefined) {
+      return;
+    }
     try {
       await this.backgroundTask.pause();
     } catch (err) {
@@ -179,6 +190,9 @@ class Upload {
 
   async resume() {
     logger.info(TAG, 'resume');
+    if (this.backgroundTask === undefined) {
+      return;
+    }
     try {
       await this.backgroundTask.resume();
     } catch (err) {

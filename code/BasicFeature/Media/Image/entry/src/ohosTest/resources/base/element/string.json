@@ -87,6 +87,10 @@
     {
       "name": "toning",
       "value": "调色"
+    },
+    {
+      "name": "takePhoto",
+      "value": "拍照"
     }
   ]
 }

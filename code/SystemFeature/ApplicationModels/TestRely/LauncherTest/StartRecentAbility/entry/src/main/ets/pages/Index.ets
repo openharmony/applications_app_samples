@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import base from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import systemDateTime from '@ohos.systemDateTime';
+import common from '@ohos.app.ability.common';
+import base from 'basic';
 import Logger from '../logger/Logger';
 
 @Entry

@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import deviceInfo from '@ohos.deviceInfo';
+
 export interface KeyStyle {
   deviceType?: string,
   basicButtonWidth: Resource,
@@ -39,6 +41,22 @@ export interface KeyStyle {
 }
 
 export class StyleConfiguration {
+  static getSavedInputStyle(): KeyStyle {
+    let style = AppStorage.get<KeyStyle>('inputStyle');
+    if (style) {
+      return style;
+    }
+    let isLandscape = AppStorage.get<boolean>('isLandscape');
+    if (isLandscape === undefined) {
+      isLandscape = false;
+    }
+    let isRkDevice = AppStorage.get<boolean>('isRkDevice');
+    if (isRkDevice === undefined) {
+      isRkDevice = false;
+    }
+    return StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType)
+  }
+
   static getInputStyle(islandSpace: boolean, isRkDevice: boolean, deviceType: string): KeyStyle {
     if (isRkDevice) {
       return {

@@ -22,15 +22,15 @@ export struct GridDataItem {
   @Link isTitle: string
   @Link isXComponent: boolean
   @Link @Watch('clickSetBgrColor') clickIndex: number
-  private context: any
-  private item: gridData
+  private context: Context = getContext(this)
+  private item: gridData = {} as gridData
   private index: number = -1
   @State videoText:string = ''
   async aboutToAppear() {
     this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
   }
   async convertResourceToString(resource: Resource){
-    return await this.context.resourceManager.getString(resource)
+    return await this.context.resourceManager.getStringValue(resource.id)
   }
   clickSetBgrColor() {
     if (this.index !== this.clickIndex) {
@@ -44,7 +44,7 @@ export struct GridDataItem {
     Column() {
       Image(this.item.icon).width(40).height(40)
       Text(this.item.textStr)
-        .id(this.item.id)
+        .id(this.item.id != undefined ? this.item.id : 'default')
         .margin({ top: 5 })
         .fontSize(16)
         .fontColor('rgba(255,255,255,0.90)')

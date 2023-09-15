@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 
+import { logger } from '../../model/Logger'
+
+const TAG = 'Index'
+
 export default {
   timer: undefined,
   data: {
@@ -42,6 +46,12 @@ export default {
     }
   },
   onHide() {
-    clearInterval(this.timer)
+    if (typeof (this.timer) !== 'undefined') {
+      try {
+        clearInterval(Number(this.timer))
+      } catch (err) {
+        logger.info(TAG, "clearInterval is error : " + err)
+      }
+    }
   }
 }

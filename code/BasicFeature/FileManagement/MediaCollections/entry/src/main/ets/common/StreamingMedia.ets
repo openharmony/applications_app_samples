@@ -13,26 +13,23 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-
-import { myMedia } from '../model/myMedia'
-
+import { AVPlayer }  from '../model/AVPlayer'
 @Component
 export struct StreamingMedia {
   @State httpUrl: string = ''
   @State isEnabled: boolean = false
   @Link streamOpacity: number
   @Link streamBackgroundColor: string
-  @Link myMedia: myMedia
+  @Link myMedia: AVPlayer
   @Link isXComponent: boolean
   @Link isPlaying: boolean
   @Link isShowMenu: boolean
   @Link streamBtnText: Resource
   @Link isStreamShow: boolean
   @Link currentTime: number
-  private timer: number = undefined
-  private timerOut: number = undefined
-  private mXComponentController: XComponentController
+  private timer: number = 0
+  private timerOut: number = 0
+  private mXComponentController: XComponentController = {} as XComponentController
 
   build() {
     Row() {

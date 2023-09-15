@@ -85,7 +85,7 @@ export default function appTest() {
       await driver.delayMs(500);
       // 设置倒计时时间,8s
       for (let i = 0;i < 9; i++) {
-        await driver.swipe(576, 660, 576, 620, 500);
+        await driver.swipe(576, 660, 576, 600, 500);
         await driver.delayMs(500);
       }
       await driver.assertComponentExist(ON.text('确定'));
@@ -124,7 +124,7 @@ export default function appTest() {
       await driver.delayMs(500);
       // 设置倒计时时间,8s
       for (let i = 0;i < 9; i++) {
-        await driver.swipe(576, 660, 576, 620, 500);
+        await driver.swipe(576, 660, 576, 600, 500);
         await driver.delayMs(500);
       }
       await driver.assertComponentExist(ON.text('确定'));

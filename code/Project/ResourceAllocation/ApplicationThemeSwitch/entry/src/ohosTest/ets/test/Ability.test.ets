@@ -16,10 +16,12 @@
 import Logger from '../utils/Logger';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const BUNDLE = 'themeSwitch';
 const DRIVER = Driver.create();
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -29,7 +31,7 @@ export default function abilityTest() {
      */
     it('StartAbility_001', 0, async function (done) {
       Logger.info(BUNDLE, 'StartAbility_001 begin');
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
           bundleName: 'ohos.example.themeswitch',
@@ -47,15 +49,17 @@ export default function abilityTest() {
      */
     it('changeThemeDialog_001', 0, async (done) => {
       Logger.info(BUNDLE, 'changeThemeDialog_001 begin');
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
       await DRIVER.delayMs(1000);
       // 是否存在“点击切换主题”
-      await DRIVER.assertComponentExist(ON.text('点击切换主题'));
-      let themeBtn = await DRIVER.findComponent(ON.text('点击切换主题'));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.ClickAndSwitchTheme'))));
+      let themeBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.ClickAndSwitchTheme'))));
       await themeBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text('白天'));
-      await DRIVER.assertComponentExist(ON.text('夜晚'));
-      await DRIVER.assertComponentExist(ON.text('自定义'));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Day'))));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Night'))));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Custom'))));
       done();
       Logger.info(BUNDLE, 'changeThemeDialog_001 end');
     })
@@ -65,7 +69,9 @@ export default function abilityTest() {
      */
     it('changeToDay_001', 0, async (done) => {
       Logger.info(BUNDLE, 'changeToDay_001 begin');
-      let dayOption = await DRIVER.findComponent(ON.text('白天'));
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
+      let dayOption = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.Day'))));
       await dayOption.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('1'))
@@ -78,12 +84,14 @@ export default function abilityTest() {
      */
     it('changeToNight_001', 0, async (done) => {
       Logger.info(BUNDLE, 'changeToNight_001 begin');
-      await DRIVER.findComponent(ON.text('当前系统主题：'));
-      let themeBtn = await DRIVER.findComponent(ON.text('当前系统主题：'));
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.CurrentSystemTheme'))));
+      let themeBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.CurrentSystemTheme'))));
       await themeBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text('夜晚'));
-      let nightOption = await DRIVER.findComponent(ON.text('夜晚'));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Night'))));
+      let nightOption = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.Night'))));
       await nightOption.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('0'));
@@ -96,17 +104,39 @@ export default function abilityTest() {
      */
     it('changeToCustom_001', 0, async (done) => {
       Logger.info(BUNDLE, 'changeToCustom_001 begin');
-      await DRIVER.findComponent(ON.text('当前系统主题：'));
-      let themeBtn = await DRIVER.findComponent(ON.text('当前系统主题：'));
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.CurrentSystemTheme'))));
+      let themeBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.CurrentSystemTheme'))));
       await themeBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text('自定义'));
-      let nightOption = await DRIVER.findComponent(ON.text('自定义'));
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Custom'))));
+      let nightOption = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.Custom'))));
       await nightOption.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('3'));
       done();
       Logger.info(BUNDLE, 'changeToCustom_001 end');
+    })
+
+    /**
+     * 切换回白天
+     */
+    it('changeToDay_002', 0, async (done) => {
+      Logger.info(BUNDLE, 'changeToDay_002 begin');
+      let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
+      let manager = ability.context.resourceManager;
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.CurrentSystemTheme'))));
+      let themeBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.CurrentSystemTheme'))));
+      await themeBtn.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.Day'))));
+      let dayOption = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.Day'))));
+      await dayOption.click();
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.id('1'));
+      done();
+      Logger.info(BUNDLE, 'changeToDay_002 end');
     })
   })
 }

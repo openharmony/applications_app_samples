@@ -16,8 +16,8 @@
 import base from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import formBindingData from '@ohos.app.form.formBindingData';
-import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import formObserver from '@ohos.app.form.formObserver';
 import formProvider from '@ohos.app.form.formProvider';
 import Logger from '../../common/Logger';
 import { getProcessConditionID, saveProcessConditionID } from '../../common/StatePersistence';
@@ -52,7 +52,7 @@ function modifyCondition(): void {
     bundleName: 'ohos.samples.formextability',
     moduleName: 'processProxyForm'
   };
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);

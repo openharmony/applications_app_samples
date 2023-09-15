@@ -15,7 +15,7 @@
 
 @CustomDialog
 export struct mainDialog {
-  private controller: CustomDialogController
+  private controller: CustomDialogController = {} as CustomDialogController
 
   build() {
     Column() {

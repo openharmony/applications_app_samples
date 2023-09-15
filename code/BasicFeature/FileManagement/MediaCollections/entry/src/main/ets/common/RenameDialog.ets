@@ -12,17 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { promptShowToast } from '../model/Prompt'
 import display from '@ohos.display'
+import { MediaUtiles } from './utils'
 
 @CustomDialog
 export struct RenameDialog {
   @State title: string = ''
-  @State displayWidth: number = undefined
-  private suffix: string
-  private disPlayType: string
-  private setRename: (newName: string) => void
-  private controller: CustomDialogController
+  @State displayWidth: number = 0
+  @State testUtile: MediaUtiles = new MediaUtiles()
+  private suffix: string = ''
+  private disPlayType: string = ''
+  private setRename: () => void = () => {}
+  private controller: CustomDialogController = {} as CustomDialogController
   async aboutToAppear() {
     this.suffix = this.title.substring(this.title.lastIndexOf('.'))
     let abilityDisplay = await display.getDefaultDisplay()
@@ -70,7 +73,8 @@ export struct RenameDialog {
             promptShowToast($r('app.string.renameDialog_inputName'))
             return
           }
-          this.setRename(this.title)
+          this.testUtile.setName(this.title)
+          this.setRename()
           promptShowToast($r('app.string.renameDialog_inputNameOk'))
           this.controller.close()
         })

@@ -20,7 +20,7 @@ import { KeyboardController } from '../model/KeyboardController';
 const TAG: string = 'ServiceExtAbility->';
 
 class ServiceExtAbility extends InputMethodExtensionAbility {
-  keyboardController: KeyboardController;
+  private keyboardController: KeyboardController | undefined = undefined;
 
   onCreate(want: Want): void {
     this.addLog(`onCreate want: ${want.abilityName}`);
@@ -30,7 +30,9 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
 
   onDestroy(): void {
     this.addLog('onDestroy');
-    this.keyboardController.onDestroy();
+    if (this.keyboardController) {
+      this.keyboardController.onDestroy();
+    }
   }
 
   addLog(message: string): void {

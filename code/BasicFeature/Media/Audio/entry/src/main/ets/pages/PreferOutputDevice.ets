@@ -74,7 +74,7 @@ struct PreferOutputDevice {
     this.audioRoutingManager = null
   }
 
-  async onBackPress() {
+  onBackPress() {
     this.over()
   }
 

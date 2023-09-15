@@ -15,8 +15,8 @@
 
 import deviceInfo from '@ohos.deviceInfo';
 import { InputHandler } from '../model/KeyboardController';
-import { KeyState, keySourceListType, } from '../model/KeyboardKeyData';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyState, keySourceListType } from '../model/KeyboardKeyData';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_normal_pressed'))
@@ -29,13 +29,13 @@ import { KeyStyle } from '../common/StyleConfiguration';
 // 有大小写的按键组件
 @Component
 export struct KeyItemNumber {
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume keyState: number;
-  private keyValue: keySourceListType;
+  private keyValue: keySourceListType | undefined = undefined;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      if (AppStorage.Get<boolean>('isLandscape') && deviceInfo.deviceType === 'phone') {
+      if (AppStorage.get<boolean>('isLandscape') && deviceInfo.deviceType === 'phone' && this.keyValue) {
         Stack({ alignContent: Alignment.TopEnd }) {
           Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue.content : this.keyValue.upperContent)
             .fontSize(this.inputStyle.en_fontSize)
@@ -55,7 +55,7 @@ export struct KeyItemNumber {
         }
         .width('100%')
         .height('100%')
-      } else {
+      } else if (this.keyValue) {
         Text(this.keyValue.title)
           .fontSize(this.inputStyle.litterNumberFontSize)
           .fontColor($r('app.color.key_item_normal_text'))
@@ -70,9 +70,9 @@ export struct KeyItemNumber {
     .backgroundColor($r('app.color.key_item_normal'))
     .borderRadius(4)
     .onClick(() => {
-      if (this.keyState === KeyState.LOWER_CASE) {
+      if (this.keyState === KeyState.LOWER_CASE && this.keyValue) {
         InputHandler.getInstance().insertText(this.keyValue.content);
-      } else {
+      } else if (this.keyValue) {
         if (this.keyState === KeyState.ONCE_UPPER_CASE) {
           this.keyState = KeyState.LOWER_CASE;
         }

@@ -28,7 +28,7 @@ entry/src/main/
 |   |---rawfile_demo.cpp                       // 调用native接口
 |---ets
 |   |---entryability
-|   |   |---EntryAbility.ts
+|   |   |---EntryAbility.ets
 |   |---pages
 |   |   |---Index.ets                          // 首页
 |   |---utils
@@ -78,7 +78,7 @@ entry/src/main/
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例已适配API version 9版本SDK，版本号：3.2.12.2。
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.5。
 
 3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500 构建 2023年4月28日)及以上版本才可编译运行。
 

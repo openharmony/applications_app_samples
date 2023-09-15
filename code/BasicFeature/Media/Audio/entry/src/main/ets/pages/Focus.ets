@@ -119,7 +119,7 @@ struct Focus {
     }
   }
 
-  async onBackPress() {
+  onBackPress() {
     this.over()
   }
 

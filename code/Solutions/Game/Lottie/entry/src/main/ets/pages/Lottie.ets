@@ -309,7 +309,10 @@ struct Lottie {
                   .width(30)
                   .height(30)
                   .onClick(() => {
-                    lottie.destroy()
+                    if (this.animateItem !== null) {
+                      lottie.destroy()
+                      this.animateItem = null
+                    }
                   })
 
                 Text($r('app.string.destruction_animation'))
@@ -808,6 +811,7 @@ struct Lottie {
                         .onClick(() => {
                           if (this.animateItem !== null) {
                             this.animateItem.destroy(this.animateName)
+                            this.animateItem = null
                           }
                         })
 

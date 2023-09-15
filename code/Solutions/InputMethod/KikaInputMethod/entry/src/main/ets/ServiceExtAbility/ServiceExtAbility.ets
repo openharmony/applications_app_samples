@@ -20,7 +20,6 @@ import Want from '@ohos.app.ability.Want';
 const TAG: string = 'ServiceExtAbility->';
 
 export default class ServiceExtAbility extends InputMethodExtensionAbility {
-
   onCreate(want: Want): void {
     this.addLog(`onCreate want: ${want.abilityName}`);
     keyboardController.onCreate(this.context);

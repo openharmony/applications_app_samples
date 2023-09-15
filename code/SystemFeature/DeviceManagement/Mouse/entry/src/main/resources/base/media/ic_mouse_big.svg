@@ -1,0 +1,55 @@
+<svg height="72"
+     viewBox="0 0 72 72"
+     width="72"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path
+            id="a"
+            d="m24.4363247 15.5623247c.4217662-.4217663 1.1055844-.4217663 1.5273506 0l21.5126494 21.5126493c.2025393.2025393.3163247.4772415.3163247.7636754 0 .5964675-.4835325 1.08-1.08 1.08l-8.3066494-.0006494 6.1502651 12.2976197c.2667945.5334737.0506082 1.1822193-.4828655 1.4490137l-4.9745892 2.4878317c-.5334737.2667945-1.1822193.0506082-1.4490137-.4828655l-6.1617967-12.3205996-5.5243247 5.525974c-.1736051.1736051-.4002279.2820033-.6418124.3094312l-.1218629.0068935c-.5964675 0-1.08-.4835325-1.08-1.08v-30.7852987c0-.2864338.1137854-.561136.3163247-.7636753z"/>
+        <filter
+            id="b"
+            height="162.9%"
+            width="206.3%"
+            x="-53.1%"
+            y="-26.4%">
+            <feMorphology
+                in="SourceAlpha"
+                operator="dilate"
+                radius="1.08"
+                result="shadowSpreadOuter1"/>
+            <feOffset
+                dx="0"
+                dy="2"
+                in="shadowSpreadOuter1"
+                result="shadowOffsetOuter1"/>
+            <feGaussianBlur
+                in="shadowOffsetOuter1"
+                result="shadowBlurOuter1"
+                stdDeviation="3.5"/>
+            <feComposite
+                in="shadowBlurOuter1"
+                in2="SourceAlpha"
+                operator="out"
+                result="shadowBlurOuter1"/>
+            <feColorMatrix
+                in="shadowBlurOuter1"
+                type="matrix"
+                values="0 0 0 0 0.0941176471   0 0 0 0 0.141176471   0 0 0 0 0.192156863  0 0 0 0.399502841 0"/>
+        </filter>
+    </defs>
+    <g
+        fill="none"
+        fill-rule="evenodd">
+        <use
+            fill="#000"
+            filter="url(#b)"
+            xlink:href="#a"/>
+        <use
+            fill="#182431"
+            fill-rule="evenodd"
+            stroke="#fff"
+            stroke-width="2.16"
+            xlink:href="#a"/>
+    </g>
+</svg>

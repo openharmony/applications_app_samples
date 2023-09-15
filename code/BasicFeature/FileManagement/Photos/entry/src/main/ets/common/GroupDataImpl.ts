@@ -164,7 +164,7 @@ export class GroupDataImpl {
       fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
       predicates: predicates
     };
-    Log.info(TAG, 'albumName:' + albumName)
+    Log.info(TAG, 'albumName:' + albumName);
     if (albumType === MediaConstants.ALBUM_TYPE_ALL) {
       return await userFileModel.getAllMediaItems();
     }

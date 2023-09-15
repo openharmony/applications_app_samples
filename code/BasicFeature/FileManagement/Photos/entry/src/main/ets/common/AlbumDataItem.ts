@@ -96,7 +96,7 @@ export class AlbumDataItem {
         Log.error(TAG, 'getThumbnail error: ' + JSON.stringify(err));
       }
     }
-    return this.thumbnail
+    return this.thumbnail;
   }
 
   async getVideoCount(): Promise<number> {
@@ -116,7 +116,7 @@ export class AlbumDataItem {
       fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
       predicates: predicates
     };
-    fileAssets = await userFileModel.getAllMediaItemsByType(this.albumType, this.albumSubType, albumFetchOption, fileFetchOption)
+    fileAssets = await userFileModel.getAllMediaItemsByType(this.albumType, this.albumSubType, albumFetchOption, fileFetchOption);
     return fileAssets.length;
   }
 

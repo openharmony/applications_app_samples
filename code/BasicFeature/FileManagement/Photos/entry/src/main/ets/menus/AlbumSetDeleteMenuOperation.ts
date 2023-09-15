@@ -90,7 +90,7 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
     let item = this.items[this.currentBatch] as AlbumDataItem;
     let promise: Promise<boolean> = item.onDelete();
     promise.then<void, void>((): void => {
-      this.currentBatch++
+      this.currentBatch++;
       this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
       this.cyclicOperation();
     }).catch<void>((): void => {
@@ -99,7 +99,7 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
     }
 
   private confirmCallback(): void {
-    this.confirmCallbackBindImpl()
+    this.confirmCallbackBindImpl();
   }
 
   private confirmCallbackBindImpl(): void {
@@ -114,7 +114,7 @@ export class AlbumSetDeleteMenuOperation extends ProcessMenuOperation {
   }
 
   private cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   private cancelCallbackBindImpl(): void {

@@ -20,12 +20,10 @@ import { BroadcastConstants } from '../constants/BroadcastConstants';
 import { ProcessMenuOperation } from './ProcessMenuOperation';
 import { UserFileDataItem } from '../base/UserFileDataItem';
 import { MediaConstants } from '../constants/MediaConstants';
-import { AlbumDataImpl } from '../common/AlbumDataImpl';
 
 const TAG = 'BatchDeleteMenuOperation';
 
 export class BatchDeleteMenuOperation extends ProcessMenuOperation {
-  private albumDataImpl: AlbumDataImpl = new AlbumDataImpl();
 
   constructor(menuContext: MenuContext) {
     super(menuContext);
@@ -58,7 +56,7 @@ export class BatchDeleteMenuOperation extends ProcessMenuOperation {
   }
 
   getResourceFromBrowser(): Resource {
-    return this.menuContext.albumId === MediaConstants.ALBUM_ID_RECYCLE ? $r('app.string.recycle_single_file_tips') : $r('app.string.delete_single_file_tips')
+    return this.menuContext.albumId === MediaConstants.ALBUM_ID_RECYCLE ? $r('app.string.recycle_single_file_tips') : $r('app.string.delete_single_file_tips');
   }
 
   getResourceFromGrid(dataSource: ItemDataSource): Resource {
@@ -82,7 +80,7 @@ export class BatchDeleteMenuOperation extends ProcessMenuOperation {
   }
 
   confirmCallback(): void {
-    this.confirmCallbackBindImpl()
+    this.confirmCallbackBindImpl();
   }
 
   protected confirmCallbackBindImpl(): void {
@@ -95,7 +93,7 @@ export class BatchDeleteMenuOperation extends ProcessMenuOperation {
     // 2. onDeleteStart exit selection mode
     let onOperationStart: Function = this.menuContext.onOperationStart;
     if (onOperationStart != null) {
-      onOperationStart()
+      onOperationStart();
     }
 
     this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
@@ -123,7 +121,7 @@ export class BatchDeleteMenuOperation extends ProcessMenuOperation {
   }
 
   cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   protected cancelCallbackBindImpl(): void {

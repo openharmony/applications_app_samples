@@ -15,7 +15,7 @@
 
 import { DeleteItem } from './DeleteItem';
 import { MenuKey, KeyState, keySourceListType, keySourceListData } from '../model/KeyboardKeyData';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
 import { KeyItemNumber } from './KeyItemNumber';
@@ -33,7 +33,7 @@ import { ReturnItem } from './ReturnItem';
 // key键盘
 @Component
 export struct KeyMenu {
-  @StorageLink('inputStyle') inputStyle: KeyStyle = AppStorage.get('inputStyle');
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   @Provide keyState: number = KeyState.LOWER_CASE;
   private keyList: keySourceListType[] = keySourceListData;

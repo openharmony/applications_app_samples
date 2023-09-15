@@ -215,7 +215,7 @@ struct Index {
             .value(inputAttribute.getInputTypeValue(this.inputTypeIndex))
             .selectStyle()
             .id('inputTypeSelect')
-            .onSelect((index: number, value: string) => {
+            .onSelect((index: number) => {
               this.inputTypeIndex = index;
               focusControl.requestFocus('inputTypeSelect')
             })
@@ -230,7 +230,7 @@ struct Index {
             .value(inputAttribute.getEnterTypeValue(this.enterKeyIndex))
             .selectStyle()
             .id('enterKeySelect')
-            .onSelect((index: number, value: string) => {
+            .onSelect((index: number) => {
               this.enterKeyIndex = index;
               focusControl.requestFocus('enterKeySelect')
             })
@@ -260,7 +260,7 @@ struct Index {
 
   aboutToAppear() {
     logger.info('Index', 'aboutToAppear')
-    inputAttribute.getInputTypeSource().forEach((item: Resource)  => {
+    inputAttribute.getInputTypeSource().forEach((item: Resource) => {
       this.inputTypeArray.push({ value: item });
     })
     inputAttribute.getEnterTypeSource().forEach((item: Resource) => {
