@@ -19,10 +19,10 @@ import { filterSize, getTimeString, getDateTime } from '../model/TimeTools'
 @CustomDialog
 export struct isInformationDialog {
   @Link myMedia: myMedia
-  private controller: CustomDialogController
+  private controller: CustomDialogController = {} as CustomDialogController
   private scroller: Scroller = new Scroller()
-  private isInformation: mediaLibrary.FileAsset = null
-  private context: any
+  private isInformation: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  private context: Context = getContext(this)
   @State isInformation_id: string = ''
   @State isInformation_uri: string = ''
   @State isInformation_mimeType: string = ''
@@ -68,11 +68,9 @@ export struct isInformationDialog {
     this.isInformation_albumId = await this.convertResourceToString($r('app.string.index_formation_albumId'))
     this.isInformation_albumUri = await this.convertResourceToString($r('app.string.index_formation_albumUri'))
     this.isInformation_albumName = await this.convertResourceToString($r('app.string.index_formation_albumName'))
-
-
   }
-  async convertResourceToString(resource: Resource){
-    return await this.context.resourceManager.getString(resource)
+  async convertResourceToString(resource: Resource): Promise<string>{
+    return await this.context.resourceManager.getString(resource.id)
   }
   build() {
     Scroll(this.scroller) {
