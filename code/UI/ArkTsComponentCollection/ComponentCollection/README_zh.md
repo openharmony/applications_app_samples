@@ -200,10 +200,12 @@ entry/src/main/ets/
 |   |   |   |   |---ListControlPanel.ets
 |   |   |   |   |---ListSample.ets                       // 列表容器
 |   |   |---navigation
+|   |   |   |---navigatorSample
+|   |   |   |   |---NavigatorSample.ets                  // 路由
+|   |   |   |   |---NavigatorSecondPage.ets
+|   |   |   |   |---NavigatorThirdPage.ets
 |   |   |   |---navigationSample
-|   |   |   |   |---NavigationSample.ets                 // 导航
-|   |   |   |   |---NavigationSecondPage.ets
-|   |   |   |   |---NavigationThirdPage.ets
+|   |   |   |   |---NavigationSample.ets                 // 导航根容器
 |   |   |   |---navRouterSample
 |   |   |   |   |---NavRouterSample.ets                  // 导航
 |   |   |   |---stepperAndStepperItemSample

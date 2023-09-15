@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSliderNew, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct RectControlPanel {
@@ -43,28 +43,28 @@ export struct RectControlPanel {
         selectColor: $stroke,
         testId: 'rect_color_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $rectHeight,
         max: 200,
         min: 50,
         name: $r('app.string.rect_height'),
         testId: 'rect_slider_001'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $rectWidth,
         max: 200,
         min: 50,
         name: $r('app.string.rect_width'),
         testId: 'rect_slider_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $radiusWidth,
         max: 50,
         min: 0,
         name: $r('app.string.rect_radius_width'),
         testId: 'rect_slider_003'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $radiusHeight,
         max: 50,
         min: 0,
@@ -72,7 +72,7 @@ export struct RectControlPanel {
         testId: 'rect_slider_004'
       })
 
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $fillOpacity,
         max: 100,
         min: 0,
@@ -80,7 +80,7 @@ export struct RectControlPanel {
         vpTest: '%',
         testId: 'rect_slider_005'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -88,14 +88,14 @@ export struct RectControlPanel {
         vpTest: '%',
         testId: 'rect_slider_006'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.rect_stroke_width'),
         testId: 'rect_slider_007'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

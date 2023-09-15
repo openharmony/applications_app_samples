@@ -31,17 +31,17 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'onWindowStageCreate')
-    let windowClass = null;
     try {
+      let windowClass = null;
       window.getLastWindow(this.context, (err, data) => {
         if (err.code) {
           Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
         }
-        windowClass = data;
         Logger.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+        windowClass = data;
         let systemBarProperties = {
-          navigationBarColor: '#ffffff'
+          statusBarColor:"#f1f3f5"
         };
         windowClass.setWindowSystemBarProperties(systemBarProperties, (err) => {
           if (err.code) {

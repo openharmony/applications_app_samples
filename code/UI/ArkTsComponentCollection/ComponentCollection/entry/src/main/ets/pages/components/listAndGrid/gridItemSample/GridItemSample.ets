@@ -21,7 +21,7 @@ import { PropertiesControlPanel } from './GridItemControlPanel';
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }
@@ -30,8 +30,7 @@ import { PropertiesControlPanel } from './GridItemControlPanel';
   .width('100%')
   .height('100%')
   .textAlign(TextAlign.Center)
-  .borderRadius(15)
-  .backgroundColor($r('app.color.background_orange'))
+  .backgroundColor($r('app.color.background_blue'))
 }
 
 @Entry

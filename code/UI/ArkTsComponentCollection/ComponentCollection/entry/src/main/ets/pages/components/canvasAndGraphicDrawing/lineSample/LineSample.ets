@@ -19,7 +19,7 @@ import { LineControlPanel } from './ChangePanel';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }
@@ -52,21 +52,27 @@ struct LineSample {
             .strokeOpacity(this.strokeOpacity/100)
             .backgroundColor('#F5F5F5')
         }.cardStyle()
-        .margin({ bottom: 20 })
+        .height('35%')
+        .margin({ bottom: 10 })
 
         Column() {
-          LineControlPanel({
-            startPointX: $startPointX,
-            startPointY: $startPointY,
-            endPointX: $endPointX,
-            endPointY: $endPointY,
-            stroke: $stroke,
-            strokeWidth: $strokeWidth,
-            strokeDashArray: $strokeDashArray,
-            strokeOpacity: $strokeOpacity
-          })
+          Scroll(){
+            LineControlPanel({
+              startPointX: $startPointX,
+              startPointY: $startPointY,
+              endPointX: $endPointX,
+              endPointY: $endPointY,
+              stroke: $stroke,
+              strokeWidth: $strokeWidth,
+              strokeDashArray: $strokeDashArray,
+              strokeOpacity: $strokeOpacity
+            })
+          }
         }.cardStyle()
+        .layoutWeight(1)
+        .margin({bottom:4})
       }.padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+      .layoutWeight(1)
     }
     .backgroundColor($r('app.color.background_light_gray'))
     .height('100%')

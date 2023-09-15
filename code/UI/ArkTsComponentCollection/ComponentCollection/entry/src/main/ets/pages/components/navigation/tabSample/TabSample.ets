@@ -21,7 +21,7 @@ import { ArgumentsControlPanel, PropertiesControlPanel } from './TabControlPanel
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }
@@ -34,20 +34,18 @@ struct TabSample {
   @State selectedFontColor: string = '#007DFF';
   @State currentIndex: number = 0;
   @State barPosition: BarPosition = BarPosition.Start;
-  @State vertical : boolean = false;
-  @State isScrollable : boolean = false;
-  @State barMode : BarMode = BarMode.Fixed;
-  @State animationDuration : number = 400;
+  @State vertical: boolean = false;
+  @State isScrollable: boolean = false;
+  @State barMode: BarMode = BarMode.Fixed;
+  @State animationDuration: number = 400;
   private controller: TabsController = new TabsController();
 
   @Builder TabBuilder(index: number, name: string) {
     Column() {
-
       Text(name)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(16)
         .fontWeight(this.currentIndex === index ? 500 : 400)
-        .lineHeight(22)
         .margin({ top: 17, bottom: 7 })
 
       Divider()
@@ -62,49 +60,44 @@ struct TabSample {
       TitleBar({ title: $r('app.string.tabs_title') })
         .flexGrow(0)
       // component
-      Column() {
-        Tabs({ barPosition: this.barPosition, controller: this.controller }) {
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#00CB87')
-          }.tabBar(this.TabBuilder(0, 'green'))
+      Tabs({ barPosition: this.barPosition, controller: this.controller }) {
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#00CB87')
+        }.tabBar(this.TabBuilder(0, 'green'))
 
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#007DFF')
-          }.tabBar(this.TabBuilder(1, 'blue'))
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#007DFF')
+        }.tabBar(this.TabBuilder(1, 'blue'))
 
-          TabContent() {
-            Column().width('100%').height('100%').backgroundColor('#FFBF00')
-          }.tabBar(this.TabBuilder(2, 'yellow'))
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.TabBuilder(2, 'yellow'))
 
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#E67C92')
-          }.tabBar(this.TabBuilder(3, 'pink'))
-        }
-        .vertical(this.vertical)
-        .barMode(this.barMode)
-        .scrollable(this.isScrollable)
-        .animationDuration(this.animationDuration)
-        .width('100%')
-        .height('100%')
-        .barWidth(360)
-        .barHeight(200)
-        .onChange((index: number) => {
-          this.currentIndex = index
-        })
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#E67C92')
+        }.tabBar(this.TabBuilder(3, 'pink'))
       }
-      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
-      .backgroundStyle()
+      .vertical(this.vertical)
+      .barMode(this.barMode)
+      .scrollable(this.isScrollable)
+      .animationDuration(this.animationDuration)
       .height(300)
       .width('100%')
+      .barWidth(360)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+
       .flexGrow(0)
 
       Scroll() {
@@ -114,7 +107,7 @@ struct TabSample {
           Column() {
             ArgumentsControlPanel({
               barPosition: $barPosition,
-              changeIndex : (index)=>{
+              changeIndex: (index) => {
                 this.controller.changeIndex(index);
               }
             })
@@ -124,10 +117,10 @@ struct TabSample {
           IntroductionTitle({ introduction: $r('app.string.tabs_introduction_properties') })
           Column() {
             PropertiesControlPanel({
-              vertical : $vertical,
-              barMode : $barMode,
-              isScrollable : $isScrollable,
-              animationDuration : $animationDuration
+              vertical: $vertical,
+              barMode: $barMode,
+              isScrollable: $isScrollable,
+              animationDuration: $animationDuration
             })
           }
           .backgroundStyle()

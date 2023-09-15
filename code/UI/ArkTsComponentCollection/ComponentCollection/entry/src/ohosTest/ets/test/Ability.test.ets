@@ -160,7 +160,6 @@ export default function abilityTest() {
         }
         Logger.info(BUNDLE + 'StartAbility_001' + ' end');
       })
-
       /**
        * Divider 分隔器
        */
@@ -748,7 +747,7 @@ export default function abilityTest() {
         await checkButtonAndClickWithID(`swiper_003`);
         await checkButtonAndClickWithID(`swiper_004`);
         // 从下往上滑动列表
-        await driver.drag(200, 800, 200, 600, 800);
+        await drawSliderWithId('swiper_005')
         await checkButtonAndClickWithID(`swiper_006`);
 
         await checkButtonAndClickWithText("1000");
@@ -1706,14 +1705,15 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
         await checkButtonAndClickWithID(`sidebarContainer_001`);
-        await checkButtonAndClickWithText(`Embed`)
-        await checkButtonAndClickWithID(`sidebarContainer_002`)
-        await drawSliderWithId(`sidebarContainer_003`)
-        await drawSliderWithId(`sidebarContainer_004`)
-        await checkButtonAndClickWithID(`sidebarContainer_005`)
+        await checkButtonAndClickWithText(`Embed`);
+        await checkButtonAndClickWithID(`sidebarContainer_002`);
+        await drawSliderWithId(`sidebarContainer_003`) ;
+        await driver.drag(200, 900, 200, 620, 800);
+        await drawSliderWithId(`sidebarContainer_004`);
+        await checkButtonAndClickWithID(`sidebarContainer_005`);
         await checkButtonAndClickWithID(`sidebarContainer_006`);
-        await checkButtonAndClickWithText(`End`)
-        await driver.drag(200, 700, 200, 100, 800);
+        await checkButtonAndClickWithText(`End`);
+        await driver.drag(200, 950, 200, 500, 800);
         await drawSliderWithId(`sidebarContainer_007`)
         await drawSliderWithId(`sidebarContainer_008`)
         await checkButtonAndClickWithID(`sidebarContainer_009`)
@@ -1816,7 +1816,6 @@ export default function abilityTest() {
         Logger.info(BUNDLE + testName + ' end');
       })
 
-
       /**
        * List
        */
@@ -1841,7 +1840,7 @@ export default function abilityTest() {
         await drawSliderWithId(`list_004`);
         await checkButtonAndClickWithID(`list_005`);
         await checkButtonAndClickWithText(`Pink`);
-        await driver.drag(200, 700, 200, 100, 800);
+        await driver.drag(200, 900, 200, 200, 800);
         await checkButtonAndClickWithID(`list_006`);
         await checkButtonAndClickWithText(`On`);
         await checkButtonAndClickWithID(`list_007`);
@@ -1972,6 +1971,29 @@ export default function abilityTest() {
       })
 
       /**
+       * Navigator
+       */
+      it(BUNDLE + 'NavigatorFunction_001', 0, async function () {
+        let testName = 'NavigatorFunction';
+        Logger.info(BUNDLE + testName + ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+        let atom = await manager.getStringValue($r('app.string.navigator_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.navigation')));
+        }
+        await checkButtonAndClickWithText(atom);
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * Tabs
        */
       it(BUNDLE + 'TabsFunction_001', 0, async function () {
@@ -2059,7 +2081,6 @@ export default function abilityTest() {
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.navigation')));
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -2070,8 +2091,6 @@ export default function abilityTest() {
         let testName = 'NavRouterFunction';
         Logger.info(BUNDLE + testName + ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
-        // 往下滑动一段距离
-        await driver.drag(110, 500, 110, 300, 800);
         let atom = await manager.getStringValue($r('app.string.navRouter_title'));
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
@@ -2088,7 +2107,6 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME_FiVE);
         await driver.drag(110, 300, 110, 500, 800);
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.navigation')));
-
         Logger.info(BUNDLE + testName + ' end');
       })
 
@@ -2151,6 +2169,7 @@ export default function abilityTest() {
         await drawSliderWithId('patternLock_slider_001')
         await drawSliderWithId('patternLock_slider_002')
         await drawSliderWithId('patternLock_slider_003')
+        await driver.drag(200, 1050, 200, 700, 800);
         await checkButtonAndClickWithID('patternLock_color_001');
         await checkButtonAndClickWithText('Pink')
         await checkButtonAndClickWithID('patternLock_color_002');
@@ -2158,7 +2177,7 @@ export default function abilityTest() {
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
-        await driver.drag(200, 200, 200, 100, 800);
+        await driver.drag(200, 300, 200, 100, 800);
         Logger.info(BUNDLE + testName + ' end');
       })
       /**
@@ -2180,7 +2199,7 @@ export default function abilityTest() {
         let input = await driver.findComponent(ON.id('search_001'));
         await input.inputText('test');
         await checkButtonAndClickWithID('search_select_001');
-        await checkButtonAndClickWithText('End')
+        await checkButtonAndClickWithText('End');
         await checkButtonAndClickWithID('search_select_002');
         await checkButtonAndClickWithText('In App')
         await checkButtonAndClickWithID('search_color_001');
@@ -2189,6 +2208,7 @@ export default function abilityTest() {
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
+        await driver.drag(200, 100, 200, 800, 800);
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
         Logger.info(BUNDLE + testName + ' end');
       })
@@ -2223,7 +2243,6 @@ export default function abilityTest() {
         await checkButtonAndClickWithText('Template')
         await checkButtonAndClickWithID('image_select_003')
         await checkButtonAndClickWithText('XY')
-        await driver.drag(200, 200, 200, 100, 800);
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
@@ -2400,6 +2419,7 @@ export default function abilityTest() {
         }
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
+        await driver.drag(200, 1000, 200, 700, 800);
         // 展开装饰线颜色
         await checkButtonAndClickWithID('ellipse_color_001');
         // 选择一个Pink
@@ -2414,6 +2434,7 @@ export default function abilityTest() {
         await drawSliderWithId('ellipse_slider_003')
         await drawSliderWithId('ellipse_slider_004')
         await drawSliderWithId('ellipse_slider_005')
+
         await drawSliderWithId('ellipse_slider_006')
         await driver.delayMs(DELAY_TIME);
 
@@ -2448,10 +2469,9 @@ export default function abilityTest() {
         await drawSliderWithId('line_slider_004')
         await drawSliderWithId('line_slider_005')
         await drawSliderWithId('line_slider_006')
-        await drawSliderWithId('line_slider_006')
+        await driver.drag(200, 1020, 200, 700, 800);
+        await drawSliderWithId('line_slider_007')
         await driver.delayMs(DELAY_TIME);
-
-
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
@@ -2553,6 +2573,7 @@ export default function abilityTest() {
         await drawSliderWithId('polyline_slider_004')
         await drawSliderWithId('polyline_slider_005')
         await drawSliderWithId('polyline_slider_006')
+        await driver.drag(200, 1020, 200, 700, 800);
         await drawSliderWithId('polyline_slider_007')
         await drawSliderWithId('polyline_slider_008')
         await drawSliderWithId('polyline_slider_009')
@@ -2590,6 +2611,7 @@ export default function abilityTest() {
         await drawSliderWithId('rect_slider_003')
         await drawSliderWithId('rect_slider_004')
         await drawSliderWithId('rect_slider_005')
+        await driver.drag(200, 1000, 200, 720, 800);
         await drawSliderWithId('rect_slider_006')
         await drawSliderWithId('rect_slider_007')
         await drawSliderWithId('rect_slider_008')

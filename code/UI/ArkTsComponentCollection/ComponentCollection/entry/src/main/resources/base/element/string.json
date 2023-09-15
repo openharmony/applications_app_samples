@@ -5359,6 +5359,38 @@
     {
       "name": "particle_spawn_stop",
       "value": "Stop"
+    },
+    {
+      "name": "navigator_title",
+      "value": "Navigator"
+    },
+    {
+      "name": "navigator_first_page",
+      "value": "First page of Navigaor"
+    },
+    {
+      "name": "navigator_second_page",
+      "value": "Second page of Navigator"
+    },
+    {
+      "name": "navigator_third_page",
+      "value": "Third page of Navigator"
+    },
+    {
+      "name": "navigator_first_page_push",
+      "value": "Go to the second page"
+    },
+    {
+      "name": "navigator_first_page_active",
+      "value": "Click to toggle activate status"
+    },
+    {
+      "name": "navigator_second_page_push",
+      "value": "Go to the third page"
+    },
+    {
+      "name": "navigator_third_page_back",
+      "value": "Go back to the first page"
     }
   ]
 }

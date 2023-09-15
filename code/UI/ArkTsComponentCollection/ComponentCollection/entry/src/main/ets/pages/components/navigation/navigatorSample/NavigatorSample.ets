@@ -13,21 +13,26 @@
  * limitations under the License.
  */
 
-import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 import { TitleBar } from '../../../../common/TitleBar';
+import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
 @Entry
 @Component
-struct BackExample {
+struct NavigationSample {
+  @State active: boolean = false
+  private Text: object = {message : 'hello! 这是第一个页面传过来的参数'}
+
   build() {
-    Column() {
-      TitleBar({title : $r('app.string.navigation_third_page')})
-      Navigator({ target: 'pages/components/navigation/navigationSample/NavigationSample', type: NavigationType.Back }) {
-        Text($r('app.string.navigation_third_page_back'))
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start}) {
+      TitleBar({title: $r('app.string.navigator_title')})
+        .margin({bottom:12})
+      Navigator({ target: 'pages/components/navigation/navigatorSample/NavigatorSecondPage', type: NavigationType.Push }) {
+        Text($r('app.string.navigation_first_page_push'))
           .width('100%')
           .textAlign(TextAlign.Center)
-          .id(`navigation_003`)
-      }
+          .id(`navigator_001`)
+      }.params({ text: this.Text }) // 传参数到Detail页面
+      .margin({bottom:12})
     }
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .height('100%')

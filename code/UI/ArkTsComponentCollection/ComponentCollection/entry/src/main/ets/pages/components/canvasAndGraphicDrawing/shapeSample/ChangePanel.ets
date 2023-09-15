@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSliderNew, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct ShapeControlPanel {
@@ -38,7 +38,7 @@ export struct ShapeControlPanel {
         selectColor: $stroke,
         testId: 'shape_color_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -46,7 +46,7 @@ export struct ShapeControlPanel {
         vpTest: '%',
         testId: 'shape_slider_001'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $fillOpacity,
         max: 100,
         min: 0,
@@ -54,14 +54,14 @@ export struct ShapeControlPanel {
         vpTest: '%',
         testId: 'shape_slider_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.shape_stroke_width'),
         testId: 'shape_slider_003'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

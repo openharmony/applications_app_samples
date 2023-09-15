@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSlider, CommonItemColorSelect, CommonItemSliderNew} from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct LineControlPanel {
@@ -34,42 +34,42 @@ export struct LineControlPanel {
         selectColor: $stroke,
         testId: 'line_color_001'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $startPointX,
         max: 200,
         min: 0,
         name: $r('app.string.line_start_point_x'),
         testId: 'line_slider_001'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $startPointY,
         max: 150,
         min: 0,
         name: $r('app.string.line_start_point_y'),
         testId: 'line_slider_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $endPointX,
         max: 200,
         min: 0,
         name: $r('app.string.line_end_point_y'),
         testId: 'line_slider_003'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $endPointY,
         max: 150,
         min: 0,
         name: $r('app.string.line_end_point_y'),
         testId: 'line_slider_004'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.line_stroke_width'),
         testId: 'line_slider_005'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -77,7 +77,7 @@ export struct LineControlPanel {
         name: $r('app.string.line_stroke_opacity'),
         testId: 'line_slider_006'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

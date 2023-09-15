@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
+import { CommonItemSliderNew, CommonItemSelect, CommonItemColorSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { LIST_DIRECTION_SELECT_DATA, LIST_SCROLLBAR_SELECT_DATA,LIST_EDGE_EFFECT_SELECT_DATA, LIST_ALIGN_LIST_ITEM_SELECT_DATA } from '../../ComponentData';
 
@@ -23,7 +23,7 @@ export struct ArgumentsControlPanel {
   @Link initIndex : number;
   build() {
     Column() {
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $space,
         min: 0,
         max: 30,
@@ -74,7 +74,7 @@ export struct PropertiesControlPanel {
         testId: `list_003`
       })
 
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeWidth,
         min: 0,
         max: 15,

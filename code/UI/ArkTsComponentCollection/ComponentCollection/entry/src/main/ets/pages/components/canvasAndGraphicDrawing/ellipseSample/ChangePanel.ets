@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSlider, CommonItemColorSelect, CommonItemSliderNew } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct EllipseControlPanel {
@@ -40,21 +40,21 @@ export struct EllipseControlPanel {
         selectColor: $stroke,
         testId: 'ellipse_color_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $ellipseWidth,
         max: 200,
         min: 50,
         name: $r('app.string.ellipse_width'),
         testId: 'ellipse_slider_001'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $ellipseHeight,
         max: 200,
         min: 50,
         name: $r('app.string.ellipse_height'),
         testId: 'ellipse_slider_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -63,7 +63,7 @@ export struct EllipseControlPanel {
         vpTest: '%',
         testId: 'ellipse_slider_003'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $fillOpacity,
         max: 100,
         min: 0,
@@ -72,14 +72,14 @@ export struct EllipseControlPanel {
         vpTest: '%',
         testId: 'ellipse_slider_004'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.ellipse_stroke_width'),
         testId: 'ellipse_slider_005'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

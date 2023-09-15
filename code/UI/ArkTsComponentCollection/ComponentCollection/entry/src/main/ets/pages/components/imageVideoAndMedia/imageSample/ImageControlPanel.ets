@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSliderNew, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { OBJECT_FIT_SELECT, RENDER_MODE_SELECT, REPEAT_SELECT } from '../../../components/ComponentData';
 
@@ -53,7 +53,7 @@ export struct SourceSizeControlPanel {
           }
         },testId:'image_001'
       })
-      CommonItemSlider(
+      CommonItemSliderNew(
         {
           changeValue: $sizeHeight,
           min: 0,
@@ -62,7 +62,7 @@ export struct SourceSizeControlPanel {
           testId:'image_slider_001'
         }
       )
-      CommonItemSlider(
+      CommonItemSliderNew(
         {
           changeValue: $sizeWidth,
           min: 0,
@@ -105,7 +105,7 @@ export struct SourceSizeControlPanel {
       })
       CommonItemColorSelect({
         name: $r('app.string.qrcode_color'),
-        isItemStyle: false,
+        isItemStyle: true,
         selectColor: $fillColor,
         testId:'image_color_001'
       })

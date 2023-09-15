@@ -19,7 +19,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
 @Extend(Column) function cardStyle(){
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }

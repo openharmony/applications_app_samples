@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSliderNew, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 
 @Component
@@ -39,7 +39,7 @@ export struct PolygonControlPanel {
         selectColor: $stroke,
         testId: 'polygon_color_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -47,7 +47,7 @@ export struct PolygonControlPanel {
         vpTest:'%',
         testId: 'polygon_slider_001'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $fillOpacity,
         max: 100,
         min: 0,
@@ -55,14 +55,14 @@ export struct PolygonControlPanel {
         vpTest:'%',
         testId: 'polygon_slider_002'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.polygon_stroke_width'),
         testId: 'polygon_slider_003'
       })
-      CommonItemSlider({
+      CommonItemSliderNew({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

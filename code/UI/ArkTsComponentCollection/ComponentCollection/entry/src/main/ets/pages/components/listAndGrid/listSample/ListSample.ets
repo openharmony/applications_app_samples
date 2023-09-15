@@ -21,14 +21,14 @@ import { ArgumentsControlPanel, PropertiesControlPanel } from './ListControlPane
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }
 
 @Extend(Text) function listItemTextStyle() {
   .fontSize(15)
-  .borderRadius(24)
+  .borderRadius(8)
   .textAlign(TextAlign.Center)
   .backgroundColor($r('app.color.background_grey'))
 }

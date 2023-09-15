@@ -20,7 +20,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }
@@ -45,54 +45,56 @@ struct ImageSample {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
       TitleBar({ title: $r('app.string.image_title') }).flexGrow(0)
       IntroductionTitle({ introduction: $r('app.string.image_show_test') }).height(60)
-      Scroll() {
+      Column() {
         Column() {
-          Image(this.srcType)
-            .alt($r('app.media.ic_image_alt'))
-            .size({ width: 110, height: 110 })
-            .border({ width: 1 })
-            .objectFit(this.objectFit)
-            .renderMode(this.RenderMode)
-          Blank()
-            .height(20)
-          Image($r('app.media.ic_unselect_universal'))
-            .size({ width: 110, height: 110 })
-            .border({ width: 1 })
-            .objectFit(ImageFit
-              .ScaleDown)
-            .objectRepeat(this.RepeatMode)
-          Blank()
-            .height(20)
-          Image($r('app.media.icon'))
-            .size({ width: 110, height: 110 })
-            .border({ width: 1 })
-            .sourceSize({ height: this.imageHeight, width: this.imageWidth })
-            .matchTextDirection(true)
-          Blank()
-            .height(20)
-          Image($r('app.media.img_love'))
-            .size({ width: 110, height: 110 })
-            .border({ width: 1 })
-            .fillColor(this.fillColor)
-            .colorFilter(this.colorFilter)
-        }.cardStyle()
-      }.flexGrow(1).margin({ bottom: 20 })
+          Row() {
+            Image(this.srcType)
+              .alt($r('app.media.ic_image_alt'))
+              .size({ width: 110, height: 110 })
+              .border({ width: 1 })
+              .objectFit(this.objectFit)
+              .renderMode(this.RenderMode)
+              .margin({ right: 10 })
+            Image($r('app.media.ic_unselect_universal'))
+              .size({ width: 110, height: 110 })
+              .border({ width: 1 })
+              .objectFit(ImageFit.ScaleDown)
+              .objectRepeat(this.RepeatMode)
+          }
+          .margin({ bottom: 5 })
 
-      Scroll() {
-        Column() {
-          Column() {
-            SourceSizeControlPanel({
-              ObjectFit: $objectFit,
-              sizeHeight: $imageHeight,
-              sizeWidth: $imageWidth,
-              RenderMode: $RenderMode,
-              ObjectRepeat: $RepeatMode,
-              fillColor: $fillColor
-            })
-          }.cardStyle()
+          Row() {
+            Image($r('app.media.icon'))
+              .size({ width: 110, height: 110 })
+              .border({ width: 1 })
+              .sourceSize({ height: this.imageHeight, width: this.imageWidth })
+              .matchTextDirection(true)
+              .margin({ right: 10 })
+            Image($r('app.media.img_love'))
+              .size({ width: 110, height: 110 })
+              .border({ width: 1 })
+              .fillColor(this.fillColor)
+              .colorFilter(this.colorFilter)
+          }
+        }.width('100%')
+      }.cardStyle()
+      .flexGrow(1)
+      .margin({ bottom: 20 })
+
+      Column() {
+        Scroll() {
+          SourceSizeControlPanel({
+            ObjectFit: $objectFit,
+            sizeHeight: $imageHeight,
+            sizeWidth: $imageWidth,
+            RenderMode: $RenderMode,
+            ObjectRepeat: $RepeatMode,
+            fillColor: $fillColor
+          })
         }
-      }.flexGrow(0).margin({ bottom: 30 })
-    }
+      }.cardStyle()
+      .margin({ bottom: 5 })
+    }.flexGrow(0).margin({ bottom: 30 })
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .backgroundColor($r('app.color.background_light_gray'))
   }

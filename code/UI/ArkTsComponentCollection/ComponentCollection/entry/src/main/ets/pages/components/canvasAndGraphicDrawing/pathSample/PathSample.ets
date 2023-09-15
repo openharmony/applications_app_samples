@@ -21,7 +21,7 @@ import { PathControlPanel } from './ChangePanel';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }
@@ -53,20 +53,26 @@ struct PathSample {
             .strokeDashArray([this.strokeDashArray])
             .strokeOpacity(this.strokeOpacity/100)
         }.cardStyle()
+        .height('35%')
         .margin({ bottom: 10 })
 
         Column() {
-          PathControlPanel({
-            commands: $commands,
-            fill: $fill,
-            fillOpacity: $fillOpacity,
-            stroke: $stroke,
-            strokeWidth: $strokeWidth,
-            strokeDashArray: $strokeDashArray,
-            strokeOpacity: $strokeOpacity
-          })
+          Scroll(){
+            PathControlPanel({
+              commands: $commands,
+              fill: $fill,
+              fillOpacity: $fillOpacity,
+              stroke: $stroke,
+              strokeWidth: $strokeWidth,
+              strokeDashArray: $strokeDashArray,
+              strokeOpacity: $strokeOpacity
+            })
+          }
         }.cardStyle()
+        .layoutWeight(1)
+        .margin({bottom:4})
       }.padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+      .layoutWeight(1)
     }
     .backgroundColor($r('app.color.background_light_gray'))
     .height('100%')

@@ -20,7 +20,7 @@ import { ArgumentsControlPanel } from './GridControlPanel';
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(12)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }
@@ -29,7 +29,7 @@ import { ArgumentsControlPanel } from './GridControlPanel';
   .width('100%')
   .height('100%')
   .textAlign(TextAlign.Center)
-  .backgroundColor($r('app.color.background_orange'))
+  .backgroundColor($r('app.color.background_blue'))
 }
 
 @Entry

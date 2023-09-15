@@ -19,33 +19,120 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 @Entry
 @Component
 struct NavigationSample {
-  @State active: boolean = false
-  @State Text: object = {message : 'hello! 这是第一个页面传过来的参数'}
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State currentIndex: number = 0
+  @State Build: Array<Object> = [
+    {
+      text: 'add',
+      num: 0
+    },
+    {
+      text: 'app',
+      num: 1
+    },
+    {
+      text: 'collect',
+      num: 2
+    }
+  ]
+
+  @Builder NavigationTitle() {
+    Column() {
+      Text('Title')
+        .fontColor('#182431')
+        .fontSize(30)
+        .lineHeight(41)
+        .fontWeight(700)
+      Text('subtitle')
+        .fontColor('#182431')
+        .fontSize(14)
+        .lineHeight(19)
+        .opacity(0.4)
+        .margin({ top: 2, bottom: 20 })
+    }.alignItems(HorizontalAlign.Start)
+  }
+
+  @Builder NavigationMenus() {
+    Row() {
+      Image($r('app.media.icon'))
+        .width(24)
+        .height(24)
+      Image($r('app.media.icon'))
+        .width(24)
+        .height(24)
+        .margin({ left: 24 })
+      Image($r('app.media.icon'))
+        .width(24)
+        .height(24)
+        .margin({ left: 24 })
+    }
+  }
+
+  @Builder NavigationToolbar() {
+    Row() {
+      ForEach(this.Build, item => {
+        Column() {
+          Image(this.currentIndex == item.num ? $r('app.media.icon') : $r('app.media.ic_pen'))
+            .width(24)
+            .height(24)
+          Text(item.text)
+            .fontColor(this.currentIndex == item.num ? '#007DFF' : '#182431')
+            .fontSize(10)
+            .lineHeight(14)
+            .fontWeight(500)
+            .margin({ top: 3 })
+        }.width(104).height(56)
+        .onClick(() => {
+          this.currentIndex = item.num
+        })
+      })
+    }.width('100%').justifyContent(FlexAlign.SpaceEvenly)
+  }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start}) {
-      TitleBar({title: $r('app.string.navigation_first_page')})
-        .margin({bottom:12})
-      Navigator({ target: 'pages/components/navigation/navigationSample/NavigationSecondPage', type: NavigationType.Push }) {
-        Text($r('app.string.navigation_first_page_push'))
-          .width('100%')
-          .textAlign(TextAlign.Center)
-          .id(`navigation_001`)
-      }.params({ text: this.Text }) // 传参数到Detail页面
-      .margin({bottom:12})
+    Column() {
+      TitleBar({ title: $r('app.string.navigation_title') })
+      Column() {
+        Navigation() {
+          TextInput({ placeholder: 'search...' })
+            .width('90%')
+            .height(40)
+            .backgroundColor('#FFFFFF')
+            .margin({ top: 8 })
+            .enableKeyboardOnFocus(false)
 
-      Navigator() {
-        Button($r('app.string.navigation_first_page_active'))
+          List({ space: 12, initialIndex: 0 }) {
+            ForEach(this.arr, (item) => {
+              ListItem() {
+                Text('' + item)
+                  .width('90%')
+                  .height(72)
+                  .backgroundColor('#FFFFFF')
+                  .borderRadius(24)
+                  .fontSize(16)
+                  .fontWeight(500)
+                  .textAlign(TextAlign.Center)
+              }.editable(true)
+            }, item => item)
+          }
+          .height(324)
           .width('100%')
-          .padding(12)
-          .onClick(() => {
-            this.active = true
-          })
+          .margin({ top: 12, left: '10%' })
+        }
+        .title(this.NavigationTitle)
+        .menus(this.NavigationMenus)
+        .titleMode(NavigationTitleMode.Full)
+        .toolbarConfiguration(this.NavigationToolbar)
+        .hideTitleBar(false)
+        .hideToolBar(false)
+        .mode(NavigationMode.Stack)
+        .onTitleModeChange((titleModel: NavigationTitleMode) => {
+          console.info('titleMode' + titleModel)
+        }).width('100%')
+        .height('90%')
       }
-      .active(this.active)
-    }
-    .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
-    .height('100%')
+      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+    }.height('100%')
     .width('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }

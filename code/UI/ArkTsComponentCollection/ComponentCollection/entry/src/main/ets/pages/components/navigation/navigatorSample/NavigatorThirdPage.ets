@@ -13,33 +13,21 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
+import { TitleBar } from '../../../../common/TitleBar';
 
 @Entry
 @Component
-struct DetailExample {
-  // 接收Navigator.ets的传参
-  @State text: string = router.getParams()['text']
-
+struct BackExample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-      TitleBar({ title: $r('app.string.navigation_second_page') })
-        .margin({bottom:12})
-      Navigator({ target: 'pages/components/navigation/navigationSample/NavigationThirdPage', type: NavigationType.Push }) {
-        Text($r('app.string.navigation_second_page_push'))
+    Column() {
+      TitleBar({title : $r('app.string.navigator_third_page')})
+      Navigator({ target: 'pages/components/navigation/navigatorSample/NavigatorSample', type: NavigationType.Back }) {
+        Text($r('app.string.navigator_third_page_back'))
           .width('100%')
           .textAlign(TextAlign.Center)
-          .height(20)
-          .id(`navigation_002`)
+          .id(`navigator_003`)
       }
-      .margin({bottom:30})
-
-      Text(this.text['message'])
-        .width('100%')
-        .textAlign(TextAlign.Center)
-        .fontColor(Color.Red)
     }
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .height('100%')

@@ -19,7 +19,7 @@ import { PolylineControlPanel } from './ChangePanel';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }
@@ -56,23 +56,29 @@ struct PolylineSample {
               // 设置折线两端为半圆
             .strokeLineCap(LineCapStyle.Round)
         }.cardStyle()
+        .height('35%')
         .margin({ bottom: 10 })
 
         Column() {
-          PolylineControlPanel({
-            polylineFirstX: $polylineFirstX,
-            polylineFirstY: $polylineFirstY,
-            polylineSecondX: $polylineSecondX,
-            polylineSecondY: $polylineSecondY,
-            polylineThirdX: $polylineThirdX,
-            polylineThirdY: $polylineThirdY,
-            stroke: $stroke,
-            strokeWidth: $strokeWidth,
-            strokeDashArray: $strokeDashArray,
-            strokeOpacity: $strokeOpacity
-          })
+          Scroll(){
+            PolylineControlPanel({
+              polylineFirstX: $polylineFirstX,
+              polylineFirstY: $polylineFirstY,
+              polylineSecondX: $polylineSecondX,
+              polylineSecondY: $polylineSecondY,
+              polylineThirdX: $polylineThirdX,
+              polylineThirdY: $polylineThirdY,
+              stroke: $stroke,
+              strokeWidth: $strokeWidth,
+              strokeDashArray: $strokeDashArray,
+              strokeOpacity: $strokeOpacity
+            })
+          }.id('polyline_scroll_1')
         }.cardStyle()
+        .layoutWeight(1)
+        .margin({bottom:4})
       }.padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+      .layoutWeight(1)
     }
     .backgroundColor($r('app.color.background_light_gray'))
     .height('100%')

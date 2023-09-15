@@ -14,7 +14,7 @@
  */
 
 
-import { CommonItemSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSliderNew, CommonItemSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct ArgumentsControlPanel {
@@ -63,7 +63,7 @@ export struct ArgumentsControlPanel {
         testId : `grid_002`
       })
 
-      CommonItemSlider({
+      CommonItemSliderNew({
         name: $r('app.string.grid_properties_columns_gap'),
         min: 0,
         max: 15,
@@ -71,7 +71,7 @@ export struct ArgumentsControlPanel {
         testId : `grid_003`
       })
 
-      CommonItemSlider({
+      CommonItemSliderNew({
         name: $r('app.string.grid_properties_columns_gap'),
         min: 0,
         max: 15,

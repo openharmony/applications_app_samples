@@ -20,7 +20,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
   .width(336)
   .height(621)
   .margin({ top: 48, left: 12 })
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor('#FFFFFF')
 }
 

@@ -81,7 +81,6 @@ struct SystemIcon {
           .height(48)
           .margin({ bottom: 8 })
           .alignContent(Alignment.Center)
-
         }
         .width(54)
         .height(120)
