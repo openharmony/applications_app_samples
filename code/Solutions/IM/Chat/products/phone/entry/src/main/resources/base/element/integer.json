@@ -703,6 +703,26 @@
     {
       "name": "discovery_line_end_margin",
       "value": 48
+    },
+    {
+      "name": "slide_margin_top",
+      "value": 52
+    },
+    {
+      "name": "image_height_size",
+      "value": 630
+    },
+    {
+      "name": "video_size",
+      "value": 480
+    },
+    {
+      "name": "loading_size",
+      "value": 53
+    },
+    {
+      "name": "slide_width_size",
+      "value": 448
     }
   ]
 }
