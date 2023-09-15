@@ -180,7 +180,7 @@ export class FriendMoment {
     if (List.length) {
       this.imageList = List;
     }
-    else if(media){
+    else if (media) {
       this.media = media;
       this.mediaPreview = mediaPreview;
     }
