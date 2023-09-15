@@ -72,7 +72,7 @@ export struct MailNavigation {
           }.height(56)
 
           List() {
-            ForEach(this.mailList, (item, index) => {
+            ForEach(this.mailList, (item: string, index: number | undefined) => {
               ListItem() {
                 Column() {
                   Row() {
@@ -105,7 +105,7 @@ export struct MailNavigation {
         }
       }
     }
-    .navBarWidth(new BreakpointType(321, 321, 390).GetValue(this.currentBreakPoint))
+    .navBarWidth(new BreakpointType(321, 321, 390).GetValue(this.currentBreakPoint) as number | Length)
     .navDestination(this.myRouter)
     .menus(this.NavigationMenus)
     .width('100%')
