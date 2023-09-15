@@ -15,10 +15,10 @@
 
 @Component
 export struct MainItem {
-  itemDesc: Resource
-  src: Resource
+  itemDesc: Resource = $r("app.string.nonSense")
+  src: Resource = $r("app.media.icon")
   isUserItem: boolean = false
-  itemStatusDesc: Resource
+  itemStatusDesc: Resource = $r("app.string.nonSense")
 
   build() {
     Row() {
@@ -64,12 +64,12 @@ export struct MainItem {
 
 @Component
 export struct SubItem {
-  itemDesc: Resource
-  src: Resource
+  itemDesc: Resource = $r("app.string.nonSense")
+  src: Resource = $r("app.media.icon")
   isShowButton: boolean = false
   isShowRightArrow: boolean = false
-  itemStatusDesc: Resource
-  content: Resource
+  itemStatusDesc: Resource = $r("app.string.nonSense")
+  content: Resource = $r("app.string.nonSense")
   isLinkAddress: boolean = false
 
   build() {
