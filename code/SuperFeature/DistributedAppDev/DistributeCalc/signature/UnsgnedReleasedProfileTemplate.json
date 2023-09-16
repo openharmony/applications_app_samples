@@ -13,7 +13,7 @@
 		"distribution-certificate":"-----BEGIN CERTIFICATE-----\nMIICFjCCAZmgAwIBAgIEDtg//TAMBggqhkjOPQQDAwUAMGMxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEjMCEGA1UEAxMaT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gQ0EwHhcNMjMwNDIw\nMDI0NjI4WhcNMzMwNDE3MDI0NjI4WjBKMRUwEwYDVQQDDAxpZGVfZGVtb19hcHAx\nDTALBgNVBAsTBFVuaXQxFTATBgNVBAoTDE9yZ2FuaXphdGlvbjELMAkGA1UEBhMC\nQ04wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARgMxctkyyaUCSpYgl5Lwdjww89\nPgqLE+CsMsZ52cZ9KaMyNfpWOhM8yeytvYc3t0fB5E9NeEX4chTbZKj+dQ5Zo1Iw\nUDAdBgNVHQ4EFgQU32Pz3XSd/1xtW9fzhIhyyRhicWIwDgYDVR0PAQH/BAQDAgeA\nMB8GA1UdIwQYMBaAFNuGtyIW1QuhS7fdJXu58QV9oi1HMAwGCCqGSM49BAMDBQAD\naQAwZgIxAOCSJajGYnQQThHavvK74xjTprNfcP4bLR+mme77Qg8cYOMzYnmg3dUl\nEKWjYDhE3gIxANlaaUY702ivT4oJy1PqsEl+SwRN+kXAML03yZnSxZDKFTEoeu28\n3DoH/84ZQsqYtA==\n-----END CERTIFICATE-----\n",
 		"bundle-name":"ohos.samples.distributedcalc",
 		"apl":"normal",
-		"app-feature":"hos_normal_app"
+		"app-feature":"hos_system_app"
 	},
 	"acls":{
 		"allowed-acls":[
