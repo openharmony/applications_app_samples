@@ -273,6 +273,10 @@
       "value": 50
     },
     {
+      "name": "friendMomentsPage_useImage_radius",
+      "value": 50
+    },
+    {
       "name": "friendMomentsPage_useName_fontSize",
       "value": 15
     },

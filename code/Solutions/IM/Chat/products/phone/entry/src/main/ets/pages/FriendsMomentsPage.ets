@@ -26,11 +26,14 @@ const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_LOCAL_DATA_TRACE: string = 'FriendsPage_MakeLocalData_HiTrace';
 const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
+const CONNECT_TIME: number = 60000; // getWebData 中使用的连接时间
+const READ_TIME: number = 60000; // getWebData 中使用的读取时间
 
 @Entry
 @Component
 struct FriendsMomentsPage {
   @State itemLength: number = 0
+  @State cachedCountNumber: number = 3 // 懒加载缓存数
   @StorageLink('momentData') momentData: FriendMomentsData = new FriendMomentsData()
 
   build() {
@@ -94,7 +97,7 @@ struct FriendsMomentsPage {
               }
             }, (moment: FriendMoment) => moment.id)
           }
-          .cachedCount(2)
+          .cachedCount(this.cachedCountNumber)
           .width($r('app.string.layout_100'))
           .height($r('app.string.layout_100'))
           .listDirection(Axis.Vertical)
@@ -119,14 +122,14 @@ struct FriendsMomentsPage {
   async makeLocalData(): Promise<void> {
     Logger.info(TAG, 'makeLocalData');
     hiTraceMeter.startTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
-    let friendMomentJsonStr = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0])
+    let friendMomentJsonStr: http.HttpResponse = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0]);
     if (typeof (friendMomentJsonStr.result) === 'string') {
-      let friendMomentObj = await getFriendMomentObj(friendMomentJsonStr.result)
+      let friendMomentObj: Array<FriendMoment> = await getFriendMomentObj(friendMomentJsonStr.result)
       for (let i = 0; i < friendMomentObj.length; i++) {
         this.momentData.pushData(friendMomentObj[i]);
       }
     } else {
-      Logger.info("get JSON error")
+      Logger.info(TAG, "makeLocalData get JSON error");
     }
     hiTraceMeter.finishTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
   }
@@ -135,12 +138,14 @@ struct FriendsMomentsPage {
 @Component
 struct OneMoment {
   private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '', '', [], '', '')
+  @State imageListMinLength: number = 2
 
   build() {
     Row() {
       Row() {
         Image(this.moment.user.userImage)
           .autoResize(false)
+          .borderRadius($r('app.integer.friendMomentsPage_useImage_radius'))
       }
       .width($r('app.integer.friendMomentsPage_oneMoment_width'))
       .height($r('app.integer.friendMomentsPage_oneMoment_height'))
@@ -154,7 +159,7 @@ struct OneMoment {
           .fontColor(Color.Black)
         if (this.moment.imageList.length) {
           Grid() {
-            if (this.moment.imageList.length >= 2) {
+            if (this.moment.imageList.length >= this.imageListMinLength) {
               ForEach(this.moment.imageList, (image: string, index?: number) => {
                 GridItem() {
                   Stack() {
@@ -272,9 +277,11 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 
   // 根据index获取具体项
   public getData(index: number): FriendMoment {
+    // 判断组件是否已经缓存到最后一项数据了
     if (index == this.momentList.length - 1) {
-      getFriendMomentByTaskPool(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[this.getJsonIndex % 3])
-      this.getJsonIndex++
+      // 目前json文件只有3个，所以对3取余后加一实现循环获取3个json
+      getFriendMomentByTaskPool(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[this.getJsonIndex % 3]);
+      this.getJsonIndex++;
     }
     return this.momentList[index];
   }
@@ -294,14 +301,14 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 
 // task任务池
 async function getFriendMomentByTaskPool(jsonUrl) {
-  let task = new taskpool.Task(getWebData, jsonUrl);
-  let webData = await taskpool.execute(task, taskpool.Priority.MEDIUM) as string;
-  let friendMomentJsonStr = await getFriendMomentObj(webData['result']);
-  let momentData = AppStorage.get<FriendMomentsData>('momentData')
+  let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
+  let webData: string = await taskpool.execute(task, taskpool.Priority.MEDIUM) as string;
+  let friendMomentJsonStr: Array<FriendMoment> = await getFriendMomentObj(webData['result']);
+  let momentData: FriendMomentsData = AppStorage.get<FriendMomentsData>('momentData');
   for (let i = 0; i < friendMomentJsonStr.length; i++) {
     momentData.pushData(friendMomentJsonStr[i]);
   }
-  AppStorage.setOrCreate('momentData', momentData)
+  AppStorage.setOrCreate('momentData', momentData);
 }
 
 // 获取网络数据
@@ -314,7 +321,7 @@ async function getWebData(url: string): Promise<http.HttpResponse> {
       { header: {
         'Content-Type': 'application/json'
       },
-        connectTimeout: 60000, readTimeout: 60000
+        connectTimeout: FriendMomentJsonUrl.CONNECT_TIME, readTimeout: FriendMomentJsonUrl.READ_TIME
       })
   } catch (err) {
     Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
@@ -322,8 +329,7 @@ async function getWebData(url: string): Promise<http.HttpResponse> {
 }
 
 async function getFriendMomentObj(friendMomentStr: string): Promise<Array<FriendMoment>> {
-  let jsonObj = await JSON.parse(friendMomentStr).FriendMoment
-  console.info('sxx jsonObj ' + jsonObj)
+  let jsonObj: Array<FriendMoment> = await JSON.parse(friendMomentStr).FriendMoment;
   let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
   // 映射json数据为FriendMoment对象
   for (let i = 0; i < jsonObj.length; i++) {
