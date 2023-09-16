@@ -38,7 +38,7 @@ struct FriendsMomentsPage {
     Column() {
       Column() {
         Row() {
-          Image($r('app.media.icon_back'))
+          Image($r('app.media.icon_friend_moment_back'))
             .height($r('app.integer.friendMomentsPage_background_width'))
             .width($r('app.integer.friendMomentsPage_background_height'))
             .onClick(() => {
