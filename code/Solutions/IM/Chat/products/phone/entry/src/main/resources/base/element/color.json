@@ -62,7 +62,11 @@
     },
     {
       "name": "top_bar_background_color",
-      "value": "#eeeeee"
+      "value": "#ffffff"
+    },
+    {
+      "name": "top_bar_font_color",
+      "value": "#182431"
     }
   ]
 }

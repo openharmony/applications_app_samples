@@ -50,9 +50,9 @@ struct OptLayoutChatView {
   build() {
     RelativeContainer() {
       Image(this.chatItem.user.userImage)
-        .width($r('app.integer.layout_48'))
-        .height($r('app.integer.layout_48'))
-        .borderRadius($r('app.integer.layout_5'))
+        .width($r('app.integer.opt_layout_chat_view_profile_picture_width'))
+        .height($r('app.integer.opt_layout_chat_view_profile_picture_height'))
+        .borderRadius($r('app.integer.opt_layout_chat_view_profile_picture_radius'))
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -61,28 +61,36 @@ struct OptLayoutChatView {
         .id("figure")
 
       if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
-        Text(`${this.chatItem.unreadMsgCount}`)
-          .borderRadius($r('app.integer.layout_10'))
-          .width($r('app.integer.layout_20'))
-          .height($r('app.integer.layout_20'))
-          .backgroundColor($r('app.color.unread_msg_tip'))
-          .fontSize($r('app.integer.text_font_12'))
-          .textAlign(TextAlign.Center)
-          .fontColor(Color.White)
-          .margin({ top: $r('app.integer.layout_minus_8'), left: $r('app.integer.layout_minus_38') })
-          .alignRules({
-            top: { anchor: '__container__', align: VerticalAlign.Top },
-            left: { anchor: '__container__', align: HorizontalAlign.Start }
-          })
-          .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
-          .id('badge')
+        Row() {
+          Text(`${this.chatItem.unreadMsgCount}`)
+            .borderRadius($r('app.integer.layout_10'))
+            .constraintSize({minWidth: $r('app.integer.opt_layout_chat_view_red_dot_width')})
+            .height($r('app.integer.opt_layout_chat_view_red_dot_height'))
+            .backgroundColor($r('app.color.unread_msg_tip'))
+            .fontSize($r('app.integer.text_font_13'))
+            .textAlign(TextAlign.Center)
+            .fontColor(Color.White)
+        }
+        .alignItems(VerticalAlign.Center)
+        .justifyContent(FlexAlign.Center)
+        .borderRadius($r('app.integer.layout_11'))
+        .margin({ top: $r('app.integer.layout_minus_8'), left: $r('app.integer.layout_minus_38') })
+        .constraintSize({minWidth: $r('app.integer.opt_layout_chat_view_red_dot_container_width')})
+        .height($r('app.integer.opt_layout_chat_view_red_dot_container_height'))
+        .backgroundColor(Color.White)
+        .alignRules({
+          top: { anchor: '__container__', align: VerticalAlign.Top },
+          left: { anchor: '__container__', align: HorizontalAlign.Start }
+        })
+        .opacity(this.chatItem.unreadMsgCount > 0 ? 1 : 0)
+        .id('badge')
       }
 
       Text(this.chatItem.user.userName)
-        .fontColor(Color.Black)
-        .fontSize($r('app.integer.text_font_16'))
+        .fontColor($r('app.color.top_bar_font_color'))
+        .fontSize($r('app.integer.opt_layout_chat_view_user_name_font_size'))
         .font({ weight: 450 })
-        .margin({ top: $r('app.integer.layout_5'), left: $r('app.integer.layout_58') })
+        .margin({ top: $r('app.integer.layout_0'), left: $r('app.integer.chat_view_row_height') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -90,21 +98,21 @@ struct OptLayoutChatView {
         .id('user')
 
       Text(this.chatItem.lastTime)
-        .fontSize($r('app.integer.text_font_12'))
-        .fontColor($r('app.color.chat_view_text_color'))
+        .fontSize($r('app.integer.opt_layout_chat_view_item_padding_top'))
+        .fontColor($r('app.string.search_inline_border_color'))
         .maxLines(1)
         .textAlign(TextAlign.End)
-        .margin({ top: $r('app.integer.layout_5'), right: $r('app.integer.layout_5') })
+        .margin({ top: $r('app.integer.layout_0'), right: $r('app.integer.layout_0') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           right: { anchor: '__container__', align: HorizontalAlign.End }
         })
         .id('time')
       Text(this.chatItem.lastMsg)
-        .fontColor($r('app.color.chat_view_text_color'))
-        .fontSize($r('app.integer.text_font_14'))
+        .fontColor($r('app.string.search_inline_border_color'))
+        .fontSize($r('app.integer.search_font_size'))
         .maxLines(1)
-        .margin({ top: $r('app.integer.layout_30'), left: $r('app.integer.layout_58') })
+        .margin({ top: $r('app.integer.opt_layout_chat_view_item_padding_right'), left: $r('app.integer.chat_view_row_height') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -112,15 +120,14 @@ struct OptLayoutChatView {
         .id('msg')
     }
     .width($r('app.string.layout_100_percent'))
-    .height($r('app.integer.layout_70'))
+    .height($r('app.integer.opt_layout_chat_view_item_height'))
     .backgroundColor(Color.White)
     .padding({
-      left: $r('app.integer.layout_15'),
-      right: $r('app.integer.layout_10'),
-      top: $r('app.integer.layout_10'),
-      bottom: $r('app.integer.layout_10')
+      left: $r('app.integer.opt_layout_chat_view_item_padding_left'),
+      right: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+      top: $r('app.integer.opt_layout_chat_view_item_padding_top'),
+      bottom: $r('app.integer.opt_layout_chat_view_item_padding_bottom')
     })
-
     .onClick(() => {
       router.pushUrl({
         url: PageConstants.DETAIL_PAGE,
