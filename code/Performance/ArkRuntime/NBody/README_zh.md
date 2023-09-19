@@ -73,7 +73,7 @@ AOT(Ahead Of Time)，即预先编译，在应用程序运行前，将代码预�
 ````
 git init
 git config core.sparsecheckout true
-echo code/Performance/Benchmarks/NBody/ > .git/info/sparse-checkout
+echo code/Performance/ArkRuntime/NBody/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
