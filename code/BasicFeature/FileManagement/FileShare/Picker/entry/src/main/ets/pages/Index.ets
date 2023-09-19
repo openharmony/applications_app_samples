@@ -16,8 +16,8 @@
 import picker from '@ohos.file.picker';
 import router from '@ohos.router';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 import Logger from '../common/Logger';
 import MediaFileUri from '../media/MediaFileUri';
 
@@ -149,7 +149,7 @@ struct Index {
 
   async getFilenameByUri(myUri: string): Promise<void> {
     // 获取文件名称
-    this.filename = (myUri.split("/").pop()) as string
+    this.filename = (myUri.split("/").pop()) as string;
     router.pushUrl({
       url: 'pages/EditFile',
       params: {

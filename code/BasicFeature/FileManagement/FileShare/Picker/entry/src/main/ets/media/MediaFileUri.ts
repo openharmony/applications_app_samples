@@ -15,8 +15,8 @@
 
 import fileIo from '@ohos.fileio';
 import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
 import fileAccess from '@ohos.file.fileAccess';
+import { BusinessError } from '@ohos.base';
 import Logger from '../common/Logger';
 import { bufferToString } from '../common/Common';
 
@@ -148,13 +148,13 @@ export default class MediaFileUri {
         suffix: ['.txt']
       });
       if (!fileIterator) {
-        Logger.info(TAG, "listFile interface returns an undefined object");
+        Logger.info(TAG, 'listFile interface returns an undefined object');
       }
       while (!isDone) {
         let result = fileIterator.next();
         isDone = result.done;
         if (!isDone) {
-          this.fileInfos.push(result.value)
+          this.fileInfos.push(result.value);
         }
       }
     } catch (err) {
@@ -165,12 +165,12 @@ export default class MediaFileUri {
 
   async getAllFiles(context): Promise<void> {
     Logger.info(TAG, 'getAllFiles begin');
-    this.fileInfos = []
+    this.fileInfos = [];
     this.fileAccessHelper = fileAccess.createFileAccessHelper(context);
     let rootIterator = await this.fileAccessHelper.getRoots();
     // 获取目录url
     let catalogueUrl: string = rootIterator.next().value.uri;
-    await this.getFileData(catalogueUrl)
+    await this.getFileData(catalogueUrl);
     for (let index = 0; index < this.fileInfos.length && index < RECENT_MAX; index++) {
       this.fileNameList[index] = this.fileInfos[index].fileName;
       this.fileSizeList[index] = this.fileInfos[index].size;
