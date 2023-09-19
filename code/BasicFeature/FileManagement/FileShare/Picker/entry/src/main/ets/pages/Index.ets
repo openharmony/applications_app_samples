@@ -148,7 +148,7 @@ struct Index {
   }
 
   async getFilenameByUri(myUri: string): Promise<void> {
-    //获取文件名称
+    // 获取文件名称
     this.filename = (myUri.split("/").pop()) as string
     router.pushUrl({
       url: 'pages/EditFile',
