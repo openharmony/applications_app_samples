@@ -19,7 +19,7 @@ import Logger from '@ohos/chatlist/src/main/ets/utils/Logger';
 import hiTraceMeter from '@ohos.hiTraceMeter';
 import http from '@ohos.net.http';
 import taskpool from '@ohos.taskpool';
-import FriendMomentJsonUrl from '@ohos/chatlist/src/main/ets/utils/FriendMomentJsonUrl'
+import FriendMomentJsonUrl from '@ohos/chatlist/src/main/ets/utils/FriendMomentJsonUrl';
 
 const TAG: string = 'entry_FriendsMomentsPage';
 const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
@@ -30,9 +30,9 @@ const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 @Entry
 @Component
 struct FriendsMomentsPage {
-  @State itemLength: number = 0
-  @State cachedCountNumber: number = 3 // 懒加载缓存数
-  @StorageLink('momentData') momentData: FriendMomentsData = new FriendMomentsData()
+  @State itemLength: number = 0;
+  @State cachedCountNumber: number = 3; // 懒加载缓存数
+  @StorageLink('momentData') momentData: FriendMomentsData = new FriendMomentsData();
 
   build() {
     Column() {
@@ -122,7 +122,7 @@ struct FriendsMomentsPage {
     hiTraceMeter.startTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
     let friendMomentJsonStr: http.HttpResponse = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0]);
     if (typeof (friendMomentJsonStr.result) === 'string') {
-      let friendMomentObj: Array<FriendMoment> = await getFriendMomentObj(friendMomentJsonStr.result)
+      let friendMomentObj: Array<FriendMoment> = await getFriendMomentObj(friendMomentJsonStr.result);
       for (let i = 0; i < friendMomentObj.length; i++) {
         this.momentData.pushData(friendMomentObj[i]);
       }
@@ -135,8 +135,8 @@ struct FriendsMomentsPage {
 
 @Component
 struct OneMoment {
-  private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '', '', [], '', '')
-  @State imageListMinLength: number = 2
+  private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '', '', [], '', '');
+  @State imageListMinLength: number = 2;
 
   build() {
     Row() {
