@@ -14,13 +14,9 @@
  */
 
 import { logger } from '../MainAbility/common/logger/logger';
-import window from '@ohos.window';
 
 export default {
   onCreate() {
-    window.getTopWindow().then((win) => {
-      win.setFullScreen(true)
-    })
     logger.info("Application onCreate")
   },
   onDestroy() {
